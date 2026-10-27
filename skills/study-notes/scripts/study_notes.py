@@ -18,6 +18,7 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
+import ntpath
 import os
 import re
 import sqlite3
@@ -25,6 +26,7 @@ import sys
 import unicodedata
 from pathlib import Path
 
+IS_WINDOWS = os.name == "nt"
 PROJECTS_DIR = Path.home() / ".claude" / "projects"
 CODEX_HOME = Path(os.environ.get("CODEX_HOME") or (Path.home() / ".codex")).expanduser()
 DEFAULT_NOTES_ROOT = Path.home() / "StudyNotes"
@@ -55,20 +57,54 @@ AGENTS = ("claude", "codex")
 
 # ---------- 경로 계산 ----------
 
+def normalize_cwd(cwd: str, windows: bool = IS_WINDOWS) -> str:
+    """작업 디렉터리를 도구가 기록하는 형태의 절대경로로 통일한다.
+
+    - macOS는 경로의 한글을 자모 분리형(NFD)으로 돌려주므로 완성형(NFC)으로 정규화
+    - Windows에서 Git Bash가 주는 `/c/Users/...` 는 `C:\\Users\\...` 로 바꾸고 드라이브 문자는 대문자로
+    """
+    cwd = unicodedata.normalize("NFC", cwd)
+    if windows:
+        m = re.match(r"^/([A-Za-z])(/.*)?$", cwd)
+        if m:
+            cwd = f"{m.group(1)}:" + (m.group(2) or "/")
+        cwd = ntpath.normpath(cwd)
+        if re.match(r"^[a-z]:", cwd):
+            cwd = cwd[0].upper() + cwd[1:]
+        return cwd
+    return os.path.abspath(cwd)
+
+
+def path_key(p: str, windows: bool = IS_WINDOWS) -> str:
+    """경로 비교용 키: NFC + 구분자 통일 + (Windows) 대소문자 무시."""
+    s = unicodedata.normalize("NFC", p).replace("\\", "/").rstrip("/")
+    return s.lower() if windows else s
+
+
 def encode_cwd(cwd: str) -> str:
     """Claude Code가 프로젝트 폴더명을 만드는 규칙: 영숫자 외 문자는 전부 '-'.
 
-    macOS는 경로의 한글을 자모 분리형(NFD)으로 돌려주므로 완성형(NFC)으로 먼저 정규화한다.
+    예) /Users/me/proj → -Users-me-proj,  C:\\Users\\me\\proj → C--Users-me-proj
     """
     return re.sub(r"[^A-Za-z0-9]", "-", unicodedata.normalize("NFC", cwd))
 
 
 def project_dir(cwd: str) -> Path:
-    return PROJECTS_DIR / encode_cwd(cwd)
+    want = PROJECTS_DIR / encode_cwd(cwd)
+    if want.exists() or not PROJECTS_DIR.exists():
+        return want
+    # Windows는 드라이브 문자·폴더명 대소문자가 섞일 수 있으니 대소문자 무시로 한 번 더 찾는다
+    low = want.name.lower()
+    for d in PROJECTS_DIR.iterdir():
+        if d.is_dir() and d.name.lower() == low:
+            return d
+    return want
 
 
-def project_name(cwd: str) -> str:
-    return Path(cwd).name or "project"
+def project_name(cwd: str, windows: bool = IS_WINDOWS) -> str:
+    cwd = cwd.rstrip("/\\")
+    name = ntpath.basename(cwd) if (windows or "\\" in cwd) else os.path.basename(cwd)
+    return name or "project"
 
 
 def find_session_file(pdir: Path, session: str | None) -> Path:
@@ -105,11 +141,12 @@ def codex_find_session_file(cwd: str, session: str | None) -> Path:
         if not hits:
             raise SystemExit(f"세션 기록을 찾을 수 없습니다: {session}")
         return hits[-1]
-    want = nfc(os.path.abspath(cwd))
+    want = path_key(cwd)
     # 1순위: 스레드 목록 DB (사용자가 직접 연 스레드만, 최근 순)
     for db in sorted(CODEX_HOME.glob("state_*.sqlite"), reverse=True):
         try:
-            con = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
+            # as_uri()는 Windows 경로(C:\...)와 한글 경로를 file:///C:/... 형태로 올바르게 인코딩한다
+            con = sqlite3.connect(db.resolve().as_uri() + "?mode=ro", uri=True)
             try:
                 rows = con.execute(
                     "SELECT rollout_path, cwd FROM threads "
@@ -120,7 +157,7 @@ def codex_find_session_file(cwd: str, session: str | None) -> Path:
         except sqlite3.Error:
             continue
         for rollout, tcwd in rows:
-            if nfc(tcwd or "") == want and Path(rollout).exists():
+            if path_key(tcwd or "") == want and Path(rollout).exists():
                 return Path(rollout)
     # 2순위: 파일을 직접 훑어 session_meta.cwd 비교 (서브에이전트 스레드는 제외)
     cands: list[Path] = []
@@ -135,7 +172,7 @@ def codex_find_session_file(cwd: str, session: str | None) -> Path:
         meta = first.get("payload") or {}
         if isinstance(meta.get("source"), dict):      # {"subagent": …}
             continue
-        if nfc(meta.get("cwd") or "") == want:
+        if path_key(meta.get("cwd") or "") == want:
             cands.append(f)
     if not cands:
         raise SystemExit(f"이 폴더에서 연 Codex 스레드 기록이 없습니다: {cwd}")
@@ -382,8 +419,8 @@ def next_note_path(notes_root: Path, project: str) -> tuple[Path, int]:
 # ---------- 서브커맨드 ----------
 
 def cmd_extract(args) -> int:
-    cwd = os.path.abspath(args.cwd)
-    notes_root = Path(args.notes_root).expanduser()
+    cwd = normalize_cwd(args.cwd)
+    notes_root = Path(args.notes_root).expanduser().resolve()
     jsonl, session = resolve_session_file(args.agent, cwd, args.session)
     project = project_name(cwd)
     state = load_state(notes_root, session)
@@ -493,7 +530,7 @@ def parse_topics(note: Path) -> list[dict]:
 
 
 def cmd_commit(args) -> int:
-    notes_root = Path(args.notes_root).expanduser()
+    notes_root = Path(args.notes_root).expanduser().resolve()
     session = args.session
     note = Path(args.file).expanduser().resolve()
     if not note.exists():
@@ -535,8 +572,8 @@ def cmd_commit(args) -> int:
 
 
 def cmd_status(args) -> int:
-    cwd = os.path.abspath(args.cwd)
-    notes_root = Path(args.notes_root).expanduser()
+    cwd = normalize_cwd(args.cwd)
+    notes_root = Path(args.notes_root).expanduser().resolve()
     jsonl, session = resolve_session_file(args.agent, cwd, args.session)
     state = load_state(notes_root, session)
     recs = collect_delta(jsonl, state, args.agent)
@@ -555,6 +592,10 @@ def cmd_status(args) -> int:
 
 
 def main(argv=None) -> int:
+    # Windows 콘솔(cp949)에서 한글 JSON 출력이 깨지거나 예외가 나지 않도록
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8", errors="replace")
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
 
