@@ -4,6 +4,8 @@ description: AI와의 개발 대화에서 공부해야 할 개념·문제해결 
 ---
 # 배움노트 정리 (study-notes)
 
+Claude Code와 OpenAI Codex 어디서나 같은 방식으로 동작한다. Claude Code에서는 `/study-notes`, Codex에서는 `$study-notes`로 부른다.
+
 ## 가장 중요한 원칙: 요약이 아니라 "재강의"
 
 - 대화는 **주제를 찾는 계기**일 뿐이다. 노트 본문은 대화 문장을 발췌·축약하지 않는다. 그 개념을 **처음 배우는 학생에게 가르치듯 처음부터 다시 설명**한다.
@@ -12,18 +14,26 @@ description: AI와의 개발 대화에서 공부해야 할 개념·문제해결 
 - 주제 하나의 분량은 A4 반 쪽~한 쪽. 짧은 메모가 아니라 읽고 이해할 수 있는 교재 분량으로 쓴다.
 - 쓰고 나서 스스로 확인: "이 노트만 읽은 학생이 같은 상황을 혼자 재현하거나 남에게 설명할 수 있는가?" 아니면 더 쓴다.
 
-## 준비: 스크립트 위치(SKILL_DIR)
+## 준비: 두 변수를 먼저 정한다
 
-아래 명령의 `$SKILL_DIR`는 **이 SKILL.md가 들어 있는 폴더**다. 실행 전 실제 경로로 바꾼다.
-- 플러그인으로 설치한 경우: `${CLAUDE_PLUGIN_ROOT}/skills/study-notes`
-- `~/.claude/skills/study-notes/`에 직접 복사한 경우: `~/.claude/skills/study-notes`
+아래 명령의 `$SKILL_DIR`와 `$AGENT`는 실행 전 실제 값으로 바꾼다.
+
+- `$SKILL_DIR` = **이 SKILL.md가 들어 있는 폴더**
+  - Claude Code 플러그인: `${CLAUDE_PLUGIN_ROOT}/skills/study-notes`
+  - Claude Code 직접 복사: `~/.claude/skills/study-notes`
+  - Codex: `~/.codex/skills/study-notes` (`CODEX_HOME`을 바꿨다면 `$CODEX_HOME/skills/study-notes`)
+- `$AGENT` = 지금 실행 중인 도구. Claude Code면 `claude`, Codex면 `codex`. 스크립트가 이 값으로 어느 쪽 대화 기록을 읽을지 정한다.
+
+Codex 주의: 노트 폴더 `~/StudyNotes`는 작업 폴더 밖이다. 노트를 쓰거나 `commit`을 실행할 때 샌드박스가 막으면 쓰기 승인(escalation)을 요청한다. 기록 읽기(`~/.codex/sessions`, `~/.codex/state_*.sqlite`)는 읽기 전용이다.
 
 ## 절차
 
-1. **세션 id 확인**: 시스템 프롬프트의 Scratchpad directory 경로 마지막 디렉터리명이 현재 세션 id다 (예: `b4a801d7-…`). 찾을 수 없으면 `--session`을 생략해 스크립트가 최신 기록을 고르게 한다.
+1. **세션 id 확인**
+   - Claude Code: 시스템 프롬프트의 Scratchpad directory 경로 마지막 디렉터리명이 현재 세션 id다 (예: `b4a801d7-…`). 찾을 수 없으면 `--session`을 생략한다.
+   - Codex: 스레드 id가 프롬프트에 없으므로 `--session`을 **생략**한다. 스크립트가 스레드 목록 DB에서 "이 작업 폴더에서 사용자가 연 가장 최근 스레드"를 고른다. 이후 `commit`에는 extract 출력의 `session` 값을 그대로 넘긴다.
 2. **증분 추출**:
    ```bash
-   python3 -I "$SKILL_DIR/scripts/study_notes.py" extract --cwd "$PWD" --session <세션id>
+   python3 -I "$SKILL_DIR/scripts/study_notes.py" extract --agent $AGENT --cwd "$PWD" --session <세션id>
    ```
    stdout JSON의 `new_messages`가 0이면 "정리할 새 대화가 없습니다"라고 알리고 끝낸다.
    `delta_path`의 파일을 읽는다. 길면 나눠 읽는다. `suggested_file`이 이번에 쓸 노트 경로, `run_no`가 노트 번호다.
@@ -40,7 +50,7 @@ description: AI와의 개발 대화에서 공부해야 할 개념·문제해결 
    - 해당 없는 소제목(예: 개념 유형의 "문제 → 원인 → 해결")은 생략해도 된다. 그 외 소제목은 모두 채운다
 5. **등록**:
    ```bash
-   python3 -I "$SKILL_DIR/scripts/study_notes.py" commit --session <세션id> --file <쓴 노트 경로>
+   python3 -I "$SKILL_DIR/scripts/study_notes.py" commit --agent $AGENT --session <extract 출력의 session> --file <쓴 노트 경로>
    ```
    체크포인트가 저장되고 `~/StudyNotes/index.md`에 주제 행이 추가된다. 처음이면 `README.md`도 생긴다.
 6. **보고**: 노트의 절대 경로, 주제 수, 주제 제목 목록을 사용자에게 3~6줄로 알린다. 노트 내용을 채팅에 다시 붙이지 않는다.
@@ -58,5 +68,6 @@ description: AI와의 개발 대화에서 공부해야 할 개념·문제해결 
 ## 문제가 생기면
 
 - `세션 기록을 찾을 수 없습니다`: `--session`을 빼고 다시 실행한다.
+- `이 폴더에서 연 Codex 스레드 기록이 없습니다`: Codex에서 다른 폴더를 열었거나 `--agent`가 틀렸다. `--cwd`에 Codex가 연 작업 폴더를 넣는다.
 - 체크포인트를 되돌리고 싶으면 `~/StudyNotes/.state/<세션id>.json`을 지운다. 그 세션은 처음부터 다시 정리된다.
-- 상태 확인: `python3 -I "$SKILL_DIR/scripts/study_notes.py" status --cwd "$PWD"`
+- 상태 확인: `python3 -I "$SKILL_DIR/scripts/study_notes.py" status --agent $AGENT --cwd "$PWD"`

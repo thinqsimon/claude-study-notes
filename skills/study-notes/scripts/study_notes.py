@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
 """study-notes 스킬 보조 스크립트 (표준 라이브러리만 사용).
 
-Claude Code 세션 기록(~/.claude/projects/<proj>/<session>.jsonl)에서
-지난 정리 이후의 대화만 잘라내고, 정리가 끝나면 체크포인트와 index.md를 갱신한다.
+Claude Code 또는 OpenAI Codex의 세션 기록에서 지난 정리 이후의 대화만 잘라내고,
+정리가 끝나면 체크포인트와 index.md를 갱신한다.
+
+  - claude: ~/.claude/projects/<프로젝트 인코딩>/<세션id>.jsonl
+  - codex : $CODEX_HOME/sessions/YYYY/MM/DD/rollout-<시각>-<스레드id>.jsonl
+            (스레드 목록은 $CODEX_HOME/state_*.sqlite 의 threads 테이블)
 
 사용:
-  study_notes.py extract --cwd PATH [--session ID] [--notes-root DIR]
-  study_notes.py commit  --session ID --file NOTE_MD [--cwd PATH] [--notes-root DIR]
-  study_notes.py status  [--cwd PATH] [--session ID] [--notes-root DIR]
+  study_notes.py extract --agent claude|codex --cwd PATH [--session ID] [--notes-root DIR]
+  study_notes.py commit  --agent claude|codex --session ID --file NOTE_MD [--notes-root DIR]
+  study_notes.py status  --agent claude|codex [--cwd PATH] [--session ID] [--notes-root DIR]
 """
 from __future__ import annotations
 
@@ -16,11 +20,13 @@ import datetime as dt
 import json
 import os
 import re
+import sqlite3
 import sys
 import unicodedata
 from pathlib import Path
 
 PROJECTS_DIR = Path.home() / ".claude" / "projects"
+CODEX_HOME = Path(os.environ.get("CODEX_HOME") or (Path.home() / ".codex")).expanduser()
 DEFAULT_NOTES_ROOT = Path.home() / "StudyNotes"
 
 TOOL_INPUT_MAX = 300
@@ -33,7 +39,18 @@ STRIP_PATTERNS = [
     re.compile(r"<task-notification>.*?</task-notification>", re.S),
     re.compile(r"<command-message>.*?</command-message>", re.S),
     re.compile(r"<command-name>.*?</command-name>", re.S),
+    # Codex가 사용자 메시지에 끼워 넣는 래퍼들
+    re.compile(r"<environment_context>.*?</environment_context>", re.S),
+    re.compile(r"<external_codex_apps_open_page>.*?</external_codex_apps_open_page>", re.S),
+    re.compile(r"<user_instructions>.*?</user_instructions>", re.S),
+    re.compile(r"<permissions instructions>.*?</permissions instructions>", re.S),
+    re.compile(r"<turn_aborted>.*?</turn_aborted>", re.S),
+    re.compile(r"<app_context>.*?</app_context>", re.S),
 ]
+# 알려지지 않은 태그 하나로만 감싸인 메시지(도구가 넣은 메타)는 통째로 버린다
+WRAPPED_ONLY_RE = re.compile(r"^\s*<([A-Za-z_][\w-]*)[^>]*>.*</\1>\s*$", re.S)
+
+AGENTS = ("claude", "codex")
 
 
 # ---------- 경로 계산 ----------
@@ -64,6 +81,155 @@ def find_session_file(pdir: Path, session: str | None) -> Path:
     if not files:
         raise SystemExit(f"프로젝트 기록 폴더에 jsonl이 없습니다: {pdir}")
     return files[0]
+
+
+# ---------- Codex 백엔드 ----------
+
+def nfc(s: str) -> str:
+    return unicodedata.normalize("NFC", s)
+
+
+def codex_thread_id(jsonl: Path) -> str:
+    """rollout-2026-10-26T17-25-04-<uuid>.jsonl → <uuid>"""
+    stem = jsonl.stem
+    m = re.search(r"([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$", stem)
+    return m.group(1) if m else stem
+
+
+def codex_find_session_file(cwd: str, session: str | None) -> Path:
+    sessions_dir = CODEX_HOME / "sessions"
+    if not sessions_dir.exists():
+        raise SystemExit(f"Codex 세션 폴더가 없습니다: {sessions_dir}")
+    if session:
+        hits = sorted(sessions_dir.rglob(f"rollout-*{session}*.jsonl"))
+        if not hits:
+            raise SystemExit(f"세션 기록을 찾을 수 없습니다: {session}")
+        return hits[-1]
+    want = nfc(os.path.abspath(cwd))
+    # 1순위: 스레드 목록 DB (사용자가 직접 연 스레드만, 최근 순)
+    for db in sorted(CODEX_HOME.glob("state_*.sqlite"), reverse=True):
+        try:
+            con = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
+            try:
+                rows = con.execute(
+                    "SELECT rollout_path, cwd FROM threads "
+                    "WHERE thread_source = 'user' AND archived = 0 ORDER BY updated_at DESC"
+                ).fetchall()
+            finally:
+                con.close()
+        except sqlite3.Error:
+            continue
+        for rollout, tcwd in rows:
+            if nfc(tcwd or "") == want and Path(rollout).exists():
+                return Path(rollout)
+    # 2순위: 파일을 직접 훑어 session_meta.cwd 비교 (서브에이전트 스레드는 제외)
+    cands: list[Path] = []
+    for f in sessions_dir.rglob("rollout-*.jsonl"):
+        try:
+            with f.open(encoding="utf-8") as fh:
+                first = json.loads(fh.readline() or "{}")
+        except (OSError, json.JSONDecodeError):
+            continue
+        if first.get("type") != "session_meta":
+            continue
+        meta = first.get("payload") or {}
+        if isinstance(meta.get("source"), dict):      # {"subagent": …}
+            continue
+        if nfc(meta.get("cwd") or "") == want:
+            cands.append(f)
+    if not cands:
+        raise SystemExit(f"이 폴더에서 연 Codex 스레드 기록이 없습니다: {cwd}")
+    return max(cands, key=lambda p: p.stat().st_mtime)
+
+
+CMD_RE = re.compile(r'cmd:\s*"((?:[^"\\]|\\.)*)"')
+
+
+def codex_tool_summary(name: str, raw) -> str:
+    """도구 호출 입력을 한 줄 설명으로. exec(JS 래퍼)는 안의 셸 명령만 뽑는다."""
+    if isinstance(raw, str):
+        m = CMD_RE.search(raw)
+        if m:
+            try:
+                return json.loads('"' + m.group(1) + '"')
+            except json.JSONDecodeError:
+                return m.group(1)
+        try:
+            raw = json.loads(raw)
+        except (json.JSONDecodeError, TypeError):
+            return raw
+    if isinstance(raw, dict):
+        for k in ("cmd", "command", "prompt", "message", "task_name", "path"):
+            if raw.get(k):
+                return str(raw[k])
+        return json.dumps(raw, ensure_ascii=False)
+    return str(raw or "")
+
+
+OUT_PREFIX_RE = re.compile(r"^Script completed\nWall time [^\n]*\nOutput:\n?", re.S)
+
+
+def codex_tool_output(out) -> tuple[str, bool]:
+    """도구 결과를 (본문, 오류 여부)로. exec 결과는 JSON 래퍼를 벗긴다."""
+    if isinstance(out, list):
+        out = "\n".join(x.get("text", "") for x in out if isinstance(x, dict))
+    text = str(out or "")
+    text = OUT_PREFIX_RE.sub("", text)
+    is_error = False
+    try:
+        d = json.loads(text)
+        if isinstance(d, dict) and "output" in d:
+            is_error = d.get("exit_code") not in (0, None)
+            text = str(d["output"])
+    except (json.JSONDecodeError, TypeError):
+        pass
+    return text, is_error
+
+
+def codex_records(jsonl: Path):
+    """Codex rollout 레코드를 Claude 형식({type, uuid, timestamp, message.content})으로 바꿔 낸다."""
+    for rec in iter_records(jsonl):
+        if rec.get("type") != "response_item":
+            continue
+        p = rec.get("payload") or {}
+        t = p.get("type")
+        ts = rec.get("timestamp")
+        rid = p.get("id") or f"ord-{rec.get('ordinal')}"
+        if t == "message":
+            role = p.get("role")
+            if role not in ("user", "assistant"):
+                continue                                   # developer 메시지(시스템) 제외
+            blocks = [{"type": "text", "text": c.get("text", "")}
+                      for c in (p.get("content") or [])
+                      if isinstance(c, dict) and c.get("type") in ("input_text", "output_text")]
+            yield {"type": role, "uuid": rid, "timestamp": ts, "message": {"content": blocks}}
+        elif t in ("custom_tool_call", "function_call"):
+            raw = p.get("input") if t == "custom_tool_call" else p.get("arguments")
+            summary = codex_tool_summary(p.get("name", "?"), raw)
+            yield {"type": "assistant", "uuid": rid, "timestamp": ts,
+                   "message": {"content": [{"type": "tool_use", "name": p.get("name", "?"),
+                                            "input": {"command": summary}}]}}
+        elif t in ("custom_tool_call_output", "function_call_output"):
+            text, is_error = codex_tool_output(p.get("output"))
+            yield {"type": "user", "uuid": rid, "timestamp": ts,
+                   "message": {"content": [{"type": "tool_result", "content": text, "is_error": is_error}]}}
+
+
+# ---------- 공통: 에이전트별 분기 ----------
+
+def resolve_session_file(agent: str, cwd: str, session: str | None) -> tuple[Path, str]:
+    """(기록 파일, 세션 id)"""
+    if agent == "codex":
+        f = codex_find_session_file(cwd, session)
+        return f, codex_thread_id(f)
+    f = find_session_file(project_dir(cwd), session)
+    return f, f.stem
+
+
+def load_conversation(jsonl: Path, agent: str) -> list[dict]:
+    if agent == "codex":
+        return list(codex_records(jsonl))
+    return [r for r in iter_records(jsonl) if is_conversation(r)]
 
 
 def state_path(notes_root: Path, session: str) -> Path:
@@ -114,7 +280,10 @@ def is_conversation(rec: dict) -> bool:
 def clean_text(text: str) -> str:
     for pat in STRIP_PATTERNS:
         text = pat.sub("", text)
-    return text.strip()
+    text = text.strip()
+    if WRAPPED_ONLY_RE.match(text):
+        return ""
+    return text
 
 
 def shorten(s: str, n: int) -> str:
@@ -158,11 +327,11 @@ def render_blocks(rec: dict) -> str:
     return "\n".join(parts).strip()
 
 
-def collect_delta(jsonl: Path, state: dict) -> list[dict]:
+def collect_delta(jsonl: Path, state: dict, agent: str = "claude") -> list[dict]:
     """체크포인트 이후의 대화 레코드만 모은다."""
     last_uuid = state.get("last_uuid")
     last_ts = state.get("last_timestamp")
-    all_recs = [r for r in iter_records(jsonl) if is_conversation(r)]
+    all_recs = load_conversation(jsonl, agent)
     if last_uuid and any(r["uuid"] == last_uuid for r in all_recs):
         idx = next(i for i, r in enumerate(all_recs) if r["uuid"] == last_uuid)
         return all_recs[idx + 1:]
@@ -215,16 +384,16 @@ def next_note_path(notes_root: Path, project: str) -> tuple[Path, int]:
 def cmd_extract(args) -> int:
     cwd = os.path.abspath(args.cwd)
     notes_root = Path(args.notes_root).expanduser()
-    pdir = project_dir(cwd)
-    jsonl = find_session_file(pdir, args.session)
-    session = jsonl.stem
+    jsonl, session = resolve_session_file(args.agent, cwd, args.session)
     project = project_name(cwd)
     state = load_state(notes_root, session)
-    recs = collect_delta(jsonl, state)
+    state["agent"] = args.agent
+    recs = collect_delta(jsonl, state, args.agent)
     dpath = delta_path(notes_root, session)
     n = write_delta_file(dpath, recs, project, session)
     suggested, _ = next_note_path(notes_root, project)
     out = {
+        "agent": args.agent,
         "project": project,
         "session": session,
         "transcript": str(jsonl),
@@ -247,7 +416,8 @@ def cmd_extract(args) -> int:
 
 README_TEXT = """# StudyNotes — AI 대화 학습장
 
-Claude Code의 `/study-notes` 스킬이 개발 대화에서 공부할 주제를 골라 교재처럼 다시 설명해 저장하는 곳입니다.
+Claude Code(`/study-notes`)와 OpenAI Codex(`$study-notes`)의 study-notes 스킬이 개발 대화에서
+공부할 주제를 골라 교재처럼 다시 설명해 저장하는 곳입니다.
 
 ## 폴더 구조
 ```
@@ -265,13 +435,16 @@ StudyNotes/
 - 일반 Markdown만 사용하므로 VS Code, Obsidian, Typora 어디서나 열립니다.
 
 ## 사용법
-1. Claude Code에서 개발하다가 정리하고 싶을 때 `/study-notes` 입력
+1. 개발하다가 정리하고 싶을 때 Claude Code에서는 `/study-notes`, Codex에서는 `$study-notes` 입력
 2. 다음에 또 입력하면 **지난번 이후 대화만** 새 파일로 정리됩니다
 3. 다른 프로젝트에서도 같은 명령을 쓰면 `<프로젝트명>/` 폴더가 따로 생깁니다
 
 ## 상태 확인
 ```bash
-python3 -I ~/.claude/skills/study-notes/scripts/study_notes.py status --cwd "$PWD"
+# Claude Code
+python3 -I ~/.claude/skills/study-notes/scripts/study_notes.py status --agent claude --cwd "$PWD"
+# Codex
+python3 -I ~/.codex/skills/study-notes/scripts/study_notes.py status --agent codex --cwd "$PWD"
 ```
 """
 
@@ -364,15 +537,13 @@ def cmd_commit(args) -> int:
 def cmd_status(args) -> int:
     cwd = os.path.abspath(args.cwd)
     notes_root = Path(args.notes_root).expanduser()
-    pdir = project_dir(cwd)
-    jsonl = find_session_file(pdir, args.session)
-    session = jsonl.stem
+    jsonl, session = resolve_session_file(args.agent, cwd, args.session)
     state = load_state(notes_root, session)
-    recs = collect_delta(jsonl, state)
+    recs = collect_delta(jsonl, state, args.agent)
     pending_msgs = sum(1 for r in recs if render_blocks(r))
     print(json.dumps({
+        "agent": args.agent,
         "project": project_name(cwd),
-        "project_dir": str(pdir),
         "transcript": str(jsonl),
         "session": session,
         "run_count": state.get("run_count", 0),
@@ -388,8 +559,11 @@ def main(argv=None) -> int:
     sub = ap.add_subparsers(dest="cmd", required=True)
 
     def common(p):
+        p.add_argument("--agent", choices=AGENTS, default="claude",
+                       help="기록을 읽을 도구: claude(기본) 또는 codex")
         p.add_argument("--cwd", default=os.getcwd(), help="프로젝트 작업 디렉터리(기본: 현재)")
-        p.add_argument("--session", default=None, help="세션 id(기본: 가장 최근 jsonl)")
+        p.add_argument("--session", default=None,
+                       help="세션/스레드 id(기본: 이 폴더에서 가장 최근 기록)")
         p.add_argument("--notes-root", default=str(DEFAULT_NOTES_ROOT))
 
     p = sub.add_parser("extract", help="지난 정리 이후 대화를 델타 파일로 추출")
