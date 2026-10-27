@@ -22,6 +22,14 @@ mkdir -p ~/.claude/skills
 cp -R claude-study-notes/skills/study-notes ~/.claude/skills/
 ```
 
+### 방법 2-W. Windows (Claude Code)
+PowerShell에서:
+```powershell
+git clone https://github.com/thinqsimon/claude-study-notes.git
+New-Item -ItemType Directory -Force "$HOME\.claude\skills" | Out-Null
+Copy-Item -Recurse claude-study-notes\skills\study-notes "$HOME\.claude\skills\"
+```
+
 ### 방법 3. Codex (CLI · VS Code 확장 · 데스크톱 앱)
 Codex 채팅에 아래처럼 말하면 내장 `skill-installer`가 설치합니다.
 ```
@@ -29,18 +37,35 @@ $skill-installer 로 thinqsimon/claude-study-notes 저장소의 skills/study-not
 ```
 또는 직접 복사합니다.
 ```bash
+# macOS / Linux
 git clone https://github.com/thinqsimon/claude-study-notes.git
 mkdir -p ~/.codex/skills
 cp -R claude-study-notes/skills/study-notes ~/.codex/skills/
 ```
+```powershell
+# Windows (PowerShell)
+git clone https://github.com/thinqsimon/claude-study-notes.git
+New-Item -ItemType Directory -Force "$HOME\.codex\skills" | Out-Null
+Copy-Item -Recurse claude-study-notes\skills\study-notes "$HOME\.codex\skills\"
+```
 
 설치 후 도구를 재시작하면 Claude Code에서는 `/study-notes`, Codex에서는 `$study-notes` 가 보입니다. 같은 폴더가 두 도구에서 그대로 동작하며, Python 3.10 이상이 필요하고 표준 라이브러리만 씁니다.
+
+## 지원 환경
+| | macOS / Linux | Windows |
+|---|---|---|
+| 파이썬 명령 | `python3` | `python` 또는 `py -3` |
+| 셸 | bash, zsh | Git Bash, PowerShell (cmd.exe 미지원) |
+| 노트 위치 | `~/StudyNotes` | `%USERPROFILE%\StudyNotes` |
+| 기록 위치 | `~/.claude/projects`, `~/.codex` | `%USERPROFILE%\.claude\projects`, `%USERPROFILE%\.codex` |
+
+Windows에서는 Git Bash가 주는 `/c/Users/...` 경로, 드라이브 문자 대소문자, cp949 콘솔 인코딩을 스크립트가 처리합니다. Windows 실기 검증은 아직 하지 못했으니 문제가 있으면 이슈로 알려 주세요.
 
 ## 사용법
 - 정리하고 싶을 때 채팅에 `/study-notes`(Claude Code) 또는 `$study-notes`(Codex) 를 입력합니다.
 - 결과: `~/StudyNotes/<프로젝트>/YYYY-MM-DD_NN.md` (주제별 `## N. 제목` 섹션), `~/StudyNotes/index.md` (주제 목록).
 - 다시 입력하면 지난 정리 이후 대화만 `_02`, `_03` … 으로 이어서 정리됩니다.
-- 처음부터 다시 정리하려면 `~/StudyNotes/.state/<세션id>.json` 을 지웁니다.
+- 처음부터 다시 정리하려면 `~/StudyNotes/.state/<세션id>.json` (Windows: `%USERPROFILE%\StudyNotes\.state\`) 을 지웁니다.
 
 ## 구성
 ```

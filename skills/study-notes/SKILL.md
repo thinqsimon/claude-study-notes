@@ -14,17 +14,21 @@ Claude Code와 OpenAI Codex 어디서나 같은 방식으로 동작한다. Claud
 - 주제 하나의 분량은 A4 반 쪽~한 쪽. 짧은 메모가 아니라 읽고 이해할 수 있는 교재 분량으로 쓴다.
 - 쓰고 나서 스스로 확인: "이 노트만 읽은 학생이 같은 상황을 혼자 재현하거나 남에게 설명할 수 있는가?" 아니면 더 쓴다.
 
-## 준비: 두 변수를 먼저 정한다
+## 준비: 세 변수를 먼저 정한다
 
-아래 명령의 `$SKILL_DIR`와 `$AGENT`는 실행 전 실제 값으로 바꾼다.
+아래 명령의 `$PY`, `$SKILL_DIR`, `$AGENT`는 실행 전 실제 값으로 바꾼다.
 
-- `$SKILL_DIR` = **이 SKILL.md가 들어 있는 폴더**
+- `$PY` = 파이썬 실행 명령. macOS/Linux는 `python3 -I`, Windows는 `python -I` (없으면 `py -3 -I`). 3.10 이상.
+- `$SKILL_DIR` = **이 SKILL.md가 들어 있는 폴더**. 홈 디렉터리는 `~` 대신 `$HOME`으로 쓴다 (bash와 PowerShell 모두에서 풀리고, PowerShell은 외부 프로그램 인자의 `~`를 풀지 않는다).
   - Claude Code 플러그인: `${CLAUDE_PLUGIN_ROOT}/skills/study-notes`
-  - Claude Code 직접 복사: `~/.claude/skills/study-notes`
-  - Codex: `~/.codex/skills/study-notes` (`CODEX_HOME`을 바꿨다면 `$CODEX_HOME/skills/study-notes`)
+  - Claude Code 직접 복사: `$HOME/.claude/skills/study-notes`
+  - Codex: `$HOME/.codex/skills/study-notes` (`CODEX_HOME`을 바꿨다면 `$CODEX_HOME/skills/study-notes`)
 - `$AGENT` = 지금 실행 중인 도구. Claude Code면 `claude`, Codex면 `codex`. 스크립트가 이 값으로 어느 쪽 대화 기록을 읽을지 정한다.
 
-Codex 주의: 노트 폴더 `~/StudyNotes`는 작업 폴더 밖이다. 노트를 쓰거나 `commit`을 실행할 때 샌드박스가 막으면 쓰기 승인(escalation)을 요청한다. 기록 읽기(`~/.codex/sessions`, `~/.codex/state_*.sqlite`)는 읽기 전용이다.
+Windows 주의: 명령은 Git Bash 또는 PowerShell에서 실행한다 (cmd.exe는 `$HOME`, `$PWD`를 모른다). 경로 구분자는 `/`를 써도 된다.
+Git Bash의 `$PWD`가 `/c/Users/...` 형태여도 스크립트가 `C:\Users\...`로 바꿔 처리한다. 노트는 `%USERPROFILE%\StudyNotes`에 생긴다.
+
+Codex 주의: 노트 폴더 `$HOME/StudyNotes`는 작업 폴더 밖이다. 노트를 쓰거나 `commit`을 실행할 때 샌드박스가 막으면 쓰기 승인(escalation)을 요청한다. 기록 읽기(`~/.codex/sessions`, `~/.codex/state_*.sqlite`)는 읽기 전용이다.
 
 ## 절차
 
@@ -33,14 +37,14 @@ Codex 주의: 노트 폴더 `~/StudyNotes`는 작업 폴더 밖이다. 노트를
    - Codex: 스레드 id가 프롬프트에 없으므로 `--session`을 **생략**한다. 스크립트가 스레드 목록 DB에서 "이 작업 폴더에서 사용자가 연 가장 최근 스레드"를 고른다. 이후 `commit`에는 extract 출력의 `session` 값을 그대로 넘긴다.
 2. **증분 추출**:
    ```bash
-   python3 -I "$SKILL_DIR/scripts/study_notes.py" extract --agent $AGENT --cwd "$PWD" --session <세션id>
+   $PY "$SKILL_DIR/scripts/study_notes.py" extract --agent $AGENT --cwd "$PWD" --session <세션id>
    ```
    stdout JSON의 `new_messages`가 0이면 "정리할 새 대화가 없습니다"라고 알리고 끝낸다.
    `delta_path`의 파일을 읽는다. 길면 나눠 읽는다. `suggested_file`이 이번에 쓸 노트 경로, `run_no`가 노트 번호다.
 3. **주제 뽑기** (델타 전체를 읽은 뒤):
    - 포함: 처음 등장한 기술 개념, 오류·막힘과 해결 과정, 실행한 핵심 명령어·코드, 설계 결정과 그 이유, 워크플로·도구 사용법(스킬, 에이전트, 훅 등)
    - 제외: 인사, 단순 진행 보고, 같은 내용의 반복, 비밀값(`.env` 내용, 토큰, 키, 이메일)
-   - 중복 방지: `grep -i "<주제 키워드>" ~/StudyNotes/index.md`로 이미 정리된 주제인지 본다. 이미 있으면 새로 배운 부분만 "심화" 성격으로 쓰고 첫 줄에 기존 노트 링크를 건다.
+   - 중복 방지: `grep -i "<주제 키워드>" "$HOME/StudyNotes/index.md"` (PowerShell은 `Select-String -Path "$HOME/StudyNotes/index.md" -Pattern "<주제 키워드>"`)로 이미 정리된 주제인지 본다. 이미 있으면 새로 배운 부분만 "심화" 성격으로 쓰고 첫 줄에 기존 노트 링크를 건다.
    - 주제 수에 제한은 없다. 수십 개여도 한 파일에 모두 넣는다. 다만 억지로 쪼개지 말고 "학생이 한 번에 공부할 단위"로 묶는다.
 4. **노트 작성**: `$SKILL_DIR/templates/note.md` 구조를 그대로 따라 `suggested_file`에 쓴다. 폴더가 없으면 만든다.
    - frontmatter의 `covers`는 extract 출력의 `from ~ to`, `session`은 앞 8자
@@ -50,9 +54,9 @@ Codex 주의: 노트 폴더 `~/StudyNotes`는 작업 폴더 밖이다. 노트를
    - 해당 없는 소제목(예: 개념 유형의 "문제 → 원인 → 해결")은 생략해도 된다. 그 외 소제목은 모두 채운다
 5. **등록**:
    ```bash
-   python3 -I "$SKILL_DIR/scripts/study_notes.py" commit --agent $AGENT --session <extract 출력의 session> --file <쓴 노트 경로>
+   $PY "$SKILL_DIR/scripts/study_notes.py" commit --agent $AGENT --session <extract 출력의 session> --file <쓴 노트 경로>
    ```
-   체크포인트가 저장되고 `~/StudyNotes/index.md`에 주제 행이 추가된다. 처음이면 `README.md`도 생긴다.
+   체크포인트가 저장되고 `$HOME/StudyNotes/index.md`에 주제 행이 추가된다. 처음이면 `README.md`도 생긴다.
 6. **보고**: 노트의 절대 경로, 주제 수, 주제 제목 목록을 사용자에게 3~6줄로 알린다. 노트 내용을 채팅에 다시 붙이지 않는다.
 
 ## 작성 규칙
@@ -69,5 +73,5 @@ Codex 주의: 노트 폴더 `~/StudyNotes`는 작업 폴더 밖이다. 노트를
 
 - `세션 기록을 찾을 수 없습니다`: `--session`을 빼고 다시 실행한다.
 - `이 폴더에서 연 Codex 스레드 기록이 없습니다`: Codex에서 다른 폴더를 열었거나 `--agent`가 틀렸다. `--cwd`에 Codex가 연 작업 폴더를 넣는다.
-- 체크포인트를 되돌리고 싶으면 `~/StudyNotes/.state/<세션id>.json`을 지운다. 그 세션은 처음부터 다시 정리된다.
-- 상태 확인: `python3 -I "$SKILL_DIR/scripts/study_notes.py" status --agent $AGENT --cwd "$PWD"`
+- 체크포인트를 되돌리고 싶으면 `$HOME/StudyNotes/.state/<세션id>.json`을 지운다. 그 세션은 처음부터 다시 정리된다.
+- 상태 확인: `$PY "$SKILL_DIR/scripts/study_notes.py" status --agent $AGENT --cwd "$PWD"`
