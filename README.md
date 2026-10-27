@@ -117,7 +117,7 @@ Codex를 쓰면 경로의 `.claude`를 `.codex`로, `--agent claude`를 `--agent
 
 ## 사용법
 - 정리하고 싶을 때 채팅에 `/study-notes`(Claude Code) 또는 `$study-notes`(Codex) 를 입력합니다.
-- 결과: `~/StudyNotes/<프로젝트>/YYYY-MM-DD_NN.md` (주제별 `## N. 제목` 섹션), `~/StudyNotes/index.md` (주제 목록).
+- 결과: `~/StudyNotes/<프로젝트>/<프로젝트>_YYYY-MM-DD_NN.md` (주제별 `## N. 제목` 섹션), `~/StudyNotes/index.md` (주제 목록).
 - 다시 입력하면 지난 정리 이후 대화만 `_02`, `_03` … 으로 이어서 정리됩니다.
 - 처음부터 다시 정리하려면 `~/StudyNotes/.state/<세션id>.json` (Windows: `%USERPROFILE%\StudyNotes\.state\`) 을 지웁니다.
 

@@ -404,16 +404,28 @@ def write_delta_file(path: Path, recs: list[dict], project: str, session: str) -
     return count
 
 
+def safe_name(name: str) -> str:
+    """파일명에 쓸 수 없는 문자만 '-'로 바꾼다. 한글·공백은 그대로 둔다."""
+    return re.sub(r'[\\/:*?"<>|]', "-", name).strip() or "project"
+
+
 def next_note_path(notes_root: Path, project: str) -> tuple[Path, int]:
+    """<프로젝트>/<프로젝트>_YYYY-MM-DD_NN.md.
+
+    프로젝트마다 같은 날짜의 노트가 생기므로 파일명에 프로젝트를 넣어 다른 폴더의 노트와 겹치지 않게 한다.
+    NN은 같은 날의 옛 이름(YYYY-MM-DD_NN.md, v1.2 이전)과 새 이름을 모두 세어 이어 붙인다.
+    """
     today = dt.date.today().strftime("%Y-%m-%d")
     folder = notes_root / project
-    existing = sorted(folder.glob(f"{today}_*.md")) if folder.exists() else []
+    prefix = safe_name(project)
+    existing = sorted(folder.glob(f"*{today}_*.md")) if folder.exists() else []
+    pattern = re.compile(rf"^(?:{re.escape(prefix)}_)?{today}_(\d+)\.md$")
     nn = 1
     for f in existing:
-        m = re.match(rf"{today}_(\d+)\.md$", f.name)
+        m = pattern.match(f.name)
         if m:
             nn = max(nn, int(m.group(1)) + 1)
-    return folder / f"{today}_{nn:02d}.md", nn
+    return folder / f"{prefix}_{today}_{nn:02d}.md", nn
 
 
 # ---------- 서브커맨드 ----------
@@ -462,7 +474,7 @@ StudyNotes/
   README.md            이 파일
   index.md             모든 프로젝트의 주제 목록 (자동 갱신)
   .state/              증분 정리용 체크포인트 (지우면 처음부터 다시 정리됨)
-  <프로젝트명>/        실행 1회마다 YYYY-MM-DD_NN.md 한 파일
+  <프로젝트명>/        실행 1회마다 <프로젝트명>_YYYY-MM-DD_NN.md 한 파일
 ```
 
 ## 노트 파일 구조

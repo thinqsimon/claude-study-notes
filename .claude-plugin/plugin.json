@@ -1,6 +1,6 @@
 {
   "name": "study-notes",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "AI와의 개발 대화에서 공부할 개념과 문제해결 과정을 골라 ~/StudyNotes/<프로젝트>/ 에 초보자용 학습장(md)으로 증분 정리하는 스킬. 요약이 아니라 개념을 처음부터 다시 가르치듯 쓴다.",
   "author": { "name": "thinqsimon", "url": "https://github.com/thinqsimon" },
   "homepage": "https://github.com/thinqsimon/claude-study-notes",
