@@ -501,12 +501,15 @@ INDEX_HEADER = """# 학습 주제 목록
 
 `/study-notes` 실행 때마다 자동으로 행이 추가됩니다. 주제명을 눌러 해당 노트로 이동하세요.
 
-| 날짜 | 프로젝트 | 주제 | 유형 | 태그 | 노트 |
-|---|---|---|---|---|---|
+| 날짜 | 프로젝트 | 주제 | 유형 | 태그 | 요약 | 노트 |
+|---|---|---|---|---|---|---|
 """
+OLD_TABLE_HEADER = "| 날짜 | 프로젝트 | 주제 | 유형 | 태그 | 노트 |"
 
 TOPIC_RE = re.compile(r"^## (\d+)\. (.+?)\s*$")
 META_RE = re.compile(r"`유형`\s*([^|]+?)\s*\|\s*`태그`\s*([^|]+?)\s*(?:\||$)")
+# 템플릿의 "> 한 줄 요약: …" 줄. index.md에 실어 두면 본문을 열지 않고도 중복 여부를 판단할 수 있다.
+SUMMARY_RE = re.compile(r"^>\s*한 줄 요약\s*[:：]\s*(.+?)\s*$")
 
 
 def slugify_heading(text: str) -> str:
@@ -530,15 +533,51 @@ def parse_topics(note: Path) -> list[dict]:
         m = TOPIC_RE.match(line)
         if m:
             current = {"no": int(m.group(1)), "title": m.group(2).strip(), "type": "", "tags": "",
-                       "anchor": slugify_heading(f"{m.group(1)}. {m.group(2)}")}
+                       "summary": "", "anchor": slugify_heading(f"{m.group(1)}. {m.group(2)}")}
             topics.append(current)
             continue
+        if current and not current["summary"] and not current["type"]:
+            ms = SUMMARY_RE.match(line)
+            if ms:
+                current["summary"] = ms.group(1).strip()
+                continue
         if current and not current["type"]:
             mm = META_RE.search(line)
             if mm:
                 current["type"] = mm.group(1).strip()
                 current["tags"] = mm.group(2).strip()
     return topics
+
+
+def table_cell(text: str) -> str:
+    """표 칸 안의 | 와 줄바꿈이 GFM 표를 깨지 않게 한다."""
+    return text.replace("|", "\\|").replace("\n", " ").strip()
+
+
+def upgrade_index(index: Path, notes_root: Path) -> None:
+    """요약 열이 없던 예전 index.md에 요약 열을 넣는다. 요약은 같은 프로젝트 노트에서 제목으로 찾아 채운다."""
+    text = index.read_text(encoding="utf-8")
+    if OLD_TABLE_HEADER not in text:
+        return
+    summaries: dict[tuple[str, str], str] = {}
+    for note in notes_root.glob("*/*.md"):
+        for t in parse_topics(note):
+            if t["summary"]:
+                summaries.setdefault((note.parent.name, t["title"]), t["summary"])
+    out = []
+    for line in text.splitlines():
+        if line == OLD_TABLE_HEADER:
+            line = "| 날짜 | 프로젝트 | 주제 | 유형 | 태그 | 요약 | 노트 |"
+        elif line == "|---|---|---|---|---|---|":
+            line = "|---|---|---|---|---|---|---|"
+        elif line.startswith("| ") and line.endswith("|"):
+            cells = re.split(r"(?<!\\)\|", line)[1:-1]
+            if len(cells) == 6:
+                summary = table_cell(summaries.get((cells[1].strip(), cells[2].strip()), ""))
+                cells.insert(5, f" {summary} " if summary else " ")
+                line = "|" + "|".join(cells) + "|"
+        out.append(line)
+    index.write_text("\n".join(out) + "\n", encoding="utf-8")
 
 
 def cmd_commit(args) -> int:
@@ -563,13 +602,17 @@ def cmd_commit(args) -> int:
     index = notes_root / "index.md"
     if not index.exists():
         index.write_text(INDEX_HEADER, encoding="utf-8")
+    else:
+        upgrade_index(index, notes_root)
 
     project = note.parent.name
     date = dt.date.today().strftime("%Y-%m-%d")
     rel = note.relative_to(notes_root).as_posix()
     topics = parse_topics(note)
     rows = [
-        f"| {date} | {project} | {t['title']} | {t['type']} | {t['tags']} | [{note.stem}#{t['no']}]({rel}#{t['anchor']}) |"
+        f"| {date} | {project} | {table_cell(t['title'])} | {table_cell(t['type'])} | {table_cell(t['tags'])} "
+        f"| {table_cell(t['summary'])} "
+        f"| [{note.stem}#{t['no']}]({rel}#{t['anchor']}) |"
         for t in topics
     ]
     with index.open("a", encoding="utf-8") as fh:
