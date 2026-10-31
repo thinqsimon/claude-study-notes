@@ -1,13 +1,17 @@
 ---
-title: <프로젝트> 배움노트 #NN
+title: <프로젝트> 배움노트 #NN · <level_label>
 project: <프로젝트>
+level: <level 숫자 1~5>
+level_name: <level_name>
 session: <session 앞 8자>
 created: YYYY-MM-DD HH:MM
 covers: <from> ~ <to>
 topics: <주제 수>
 ---
-# <프로젝트> 배움노트 #NN · YYYY-MM-DD
+# <프로젝트> 배움노트 #NN · YYYY-MM-DD · <level_label>
 
+> 설명 수준: <level_label>. <level_audience>에게 맞춰 썼어요.
+>
 > 이번 구간에서 한 일 요약 2~3줄. 어떤 기능을 만들었고, 어떤 문제를 만났고, 무엇을 결정했는지.
 
 ## 목차

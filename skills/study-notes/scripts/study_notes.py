@@ -9,9 +9,12 @@ Claude Code 또는 OpenAI Codex의 세션 기록에서 지난 정리 이후의 �
             (스레드 목록은 $CODEX_HOME/state_*.sqlite 의 threads 테이블)
 
 사용:
-  study_notes.py extract --agent claude|codex --cwd PATH [--session ID] [--notes-root DIR]
+  study_notes.py extract --agent claude|codex --cwd PATH [--session ID] [--level N] [--notes-root DIR]
   study_notes.py commit  --agent claude|codex --session ID --file NOTE_MD [--notes-root DIR]
   study_notes.py status  --agent claude|codex [--cwd PATH] [--session ID] [--notes-root DIR]
+  study_notes.py level   [N|이름] [--notes-root DIR]
+
+설명 수준(level)은 1 왕초보 · 2 입문 · 3 기초 · 4 실전 · 5 심화. 고른 값은 <노트 폴더>/settings.json에 기억된다.
 """
 from __future__ import annotations
 
@@ -428,11 +431,120 @@ def next_note_path(notes_root: Path, project: str) -> tuple[Path, int]:
     return folder / f"{prefix}_{today}_{nn:02d}.md", nn
 
 
+# ---------- 설명 수준 (5단계) ----------
+# 배움일기 코치 앱의 '답변 수준'과 같은 이름·대상·방식이다. 노트를 쓰는 AI가 이 값으로 어휘와 설명 깊이를 맞춘다.
+LEVELS: dict[int, dict[str, str]] = {
+    1: {"name": "왕초보", "audience": "컴퓨터·IT 용어가 낯선 분",
+        "style": "중학생도 아는 쉬운 말, 일상 비유 먼저, 용어는 바로 풀이, 코드는 최소로"},
+    2: {"name": "입문", "audience": "비전공으로 막 입과한 분",
+        "style": "핵심 용어 소개와 한 줄 풀이, 비유 다음 짧은 코드와 주석, 흔한 실수"},
+    3: {"name": "기초", "audience": "변수·함수·조건문을 익힌 분",
+        "style": "아는 용어는 그대로, 새 개념만 풀이, 단계별 예제와 그렇게 되는 이유"},
+    4: {"name": "실전", "audience": "웹 프로젝트를 만드는 분",
+        "style": "동작 원리·설계 이유·장단점, 실무형 코드와 디버깅 방법"},
+    5: {"name": "심화", "audience": "전공자·실무 경험자",
+        "style": "기초 생략, 정확한 용어로 간결하게, 내부 동작·트레이드오프·공식 문서"},
+}
+# 고르기 전에는 2단계로 쓴다. v1.3까지의 노트(초보 개발자 대상)와 같은 수준이다.
+DEFAULT_LEVEL = 2
+SETTINGS_FILE = "settings.json"
+LEVEL_PREFIX_RE = re.compile(r"^(?:level|lv|수준|단계)\s*[=:：]?\s*", re.I)
+LEVEL_NUMBER_RE = re.compile(r"^([1-5])\s*(?:단계)?\s*(.*)$")
+
+
+def level_label(level: int) -> str:
+    return f"{level}단계 {LEVELS[level]['name']}"
+
+
+def parse_level(text) -> int:
+    """'3', '3단계', '기초', '3단계 기초', 'level=3'을 3으로 바꾼다. 알아볼 수 없으면 ValueError."""
+    s = LEVEL_PREFIX_RE.sub("", unicodedata.normalize("NFC", str(text)).strip()).strip()
+    m = LEVEL_NUMBER_RE.match(s)
+    if m:
+        level, rest = int(m.group(1)), m.group(2).strip()
+        if rest and rest != LEVELS[level]["name"]:
+            raise ValueError(f"단계 번호와 이름이 맞지 않습니다: {text!r}. {level}단계는 '{level_label(level)}'입니다")
+        return level
+    for level, info in LEVELS.items():
+        if s == info["name"]:
+            return level
+    choices = ", ".join(level_label(n) for n in LEVELS)
+    raise ValueError(f"알 수 없는 설명 수준입니다: {text!r}. 1~5 숫자나 이름으로 고르세요 ({choices})")
+
+
+def level_info(level: int) -> dict:
+    info = LEVELS[level]
+    return {"level": level, "level_name": info["name"], "level_label": level_label(level),
+            "level_audience": info["audience"], "level_style": info["style"]}
+
+
+def level_table() -> list[dict]:
+    """처음 실행 때 사용자에게 보여 줄 다섯 단계 표."""
+    return [{"level": n, "label": level_label(n), "audience": i["audience"], "style": i["style"]}
+            for n, i in LEVELS.items()]
+
+
+def settings_path(notes_root: Path) -> Path:
+    return notes_root / SETTINGS_FILE
+
+
+def load_settings(notes_root: Path) -> dict:
+    p = settings_path(notes_root)
+    if not p.exists():
+        return {}
+    try:
+        data = json.loads(p.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}          # 손으로 고치다 깨진 파일은 고른 적 없는 것으로 본다
+    return data if isinstance(data, dict) else {}
+
+
+def remember_level(notes_root: Path, level: int) -> None:
+    settings = load_settings(notes_root)
+    settings["level"] = level
+    p = settings_path(notes_root)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(json.dumps(settings, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def current_level(notes_root: Path) -> tuple[int, str]:
+    """기억된 수준과 출처. 고른 적이 없으면 (DEFAULT_LEVEL, "unset")."""
+    value = load_settings(notes_root).get("level")
+    if type(value) is int and value in LEVELS:
+        return value, "saved"
+    return DEFAULT_LEVEL, "unset"
+
+
+def note_level(note: Path) -> int | None:
+    """노트 frontmatter의 level(1~5). 없거나 알아볼 수 없으면 None."""
+    try:
+        lines = note.read_text(encoding="utf-8").splitlines()
+    except OSError:
+        return None
+    if not lines or lines[0].lstrip("﻿").strip() != "---":
+        return None
+    for line in lines[1:]:
+        if line.strip() == "---":
+            break
+        key, sep, value = line.partition(":")
+        if sep and key.strip() == "level":
+            try:
+                return parse_level(value.strip().strip("'\""))
+            except ValueError:
+                return None
+    return None
+
+
 # ---------- 서브커맨드 ----------
 
 def cmd_extract(args) -> int:
     cwd = normalize_cwd(args.cwd)
     notes_root = Path(args.notes_root).expanduser().resolve()
+    try:
+        requested = parse_level(args.level) if args.level else None
+    except ValueError as exc:
+        raise SystemExit(str(exc)) from None
+    level, level_source = (requested, "argument") if requested else current_level(notes_root)
     jsonl, session = resolve_session_file(args.agent, cwd, args.session)
     project = project_name(cwd)
     state = load_state(notes_root, session)
@@ -453,12 +565,20 @@ def cmd_extract(args) -> int:
         "suggested_file": str(suggested),
         "index_path": str(notes_root / "index.md"),
         "run_no": state.get("run_count", 0) + 1,
+        **level_info(level),
+        "level_source": level_source,
         "pending_last_uuid": recs[-1]["uuid"] if recs else None,
         "pending_last_timestamp": recs[-1].get("timestamp") if recs else None,
     }
+    if level_source == "unset":
+        # 처음 실행: SKILL.md 절차대로 이 표를 보여 주고 단계를 물은 뒤 쓴다.
+        out["levels"] = level_table()
     # commit 때 쓰도록 임시 저장
-    state["_pending"] = {"last_uuid": out["pending_last_uuid"], "last_timestamp": out["pending_last_timestamp"]}
+    state["_pending"] = {"last_uuid": out["pending_last_uuid"], "last_timestamp": out["pending_last_timestamp"],
+                         "level": level}
     save_state(notes_root, session, state)
+    if requested is not None:
+        remember_level(notes_root, requested)   # 앱에서 단계를 고르면 설정이 바뀌는 것과 같다
     print(json.dumps(out, ensure_ascii=False, indent=2))
     return 0
 
@@ -473,12 +593,14 @@ Claude Code(`/study-notes`)와 OpenAI Codex(`$study-notes`)의 study-notes 스�
 StudyNotes/
   README.md            이 파일
   index.md             모든 프로젝트의 주제 목록 (자동 갱신)
+  settings.json        기억한 설명 수준 (예: {"level": 3})
   .state/              증분 정리용 체크포인트 (지우면 처음부터 다시 정리됨)
   <프로젝트명>/        실행 1회마다 <프로젝트명>_YYYY-MM-DD_NN.md 한 파일
 ```
 
 ## 노트 파일 구조
-- 맨 위 frontmatter: title / project / session / created / covers / topics
+- 맨 위 frontmatter: title / project / level / level_name / session / created / covers / topics
+- 제목 끝과 제목 아래 인용문 첫 줄에 설명 수준 (예: `설명 수준: 3단계 기초`)
 - `## N. 주제` 섹션이 학습 단위. 각 섹션은
   상황 → 왜 필요한가 → 핵심 개념 → 프로젝트 적용 → (문제해결) → 명령어/코드 → 흔한 실수 → 자가 점검 → 더 공부할 것
 - 일반 Markdown만 사용하므로 VS Code, Obsidian, Typora 어디서나 열립니다.
@@ -487,6 +609,8 @@ StudyNotes/
 1. 개발하다가 정리하고 싶을 때 Claude Code에서는 `/study-notes`, Codex에서는 `$study-notes` 입력
 2. 다음에 또 입력하면 **지난번 이후 대화만** 새 파일로 정리됩니다
 3. 다른 프로젝트에서도 같은 명령을 쓰면 `<프로젝트명>/` 폴더가 따로 생깁니다
+4. 설명 수준(1 왕초보 · 2 입문 · 3 기초 · 4 실전 · 5 심화)은 처음 실행할 때 한 번 고르면 기억됩니다.
+   바꾸려면 `/study-notes 4`, `/study-notes 실전`처럼 붙여 부릅니다 (Codex는 `$study-notes 4`)
 
 ## 상태 확인
 ```bash
@@ -497,14 +621,32 @@ python3 -I ~/.codex/skills/study-notes/scripts/study_notes.py status --agent cod
 ```
 """
 
-INDEX_HEADER = """# 학습 주제 목록
+INDEX_COLUMNS = ("날짜", "프로젝트", "수준", "주제", "유형", "태그", "요약", "노트")
+# 예전 버전이 만든 표의 열 구성. upgrade_index가 지금 열 구성으로 바꾼다.
+LEGACY_INDEX_COLUMNS = (
+    ("날짜", "프로젝트", "주제", "유형", "태그", "노트"),          # 요약 열 이전
+    ("날짜", "프로젝트", "주제", "유형", "태그", "요약", "노트"),  # 수준 열 이전 (v1.4 전)
+)
+TABLE_DIVIDER_RE = re.compile(r"^\|(?:\s*:?-{3,}:?\s*\|)+$")
 
-`/study-notes` 실행 때마다 자동으로 행이 추가됩니다. 주제명을 눌러 해당 노트로 이동하세요.
 
-| 날짜 | 프로젝트 | 주제 | 유형 | 태그 | 요약 | 노트 |
-|---|---|---|---|---|---|---|
-"""
-OLD_TABLE_HEADER = "| 날짜 | 프로젝트 | 주제 | 유형 | 태그 | 노트 |"
+def table_header(columns) -> str:
+    return "| " + " | ".join(columns) + " |"
+
+
+def table_divider(count: int) -> str:
+    return "|" + "---|" * count
+
+
+def table_row(cells: dict) -> str:
+    return "| " + " | ".join(cells.get(c, "") for c in INDEX_COLUMNS) + " |"
+
+
+INDEX_HEADER = (
+    "# 학습 주제 목록\n\n"
+    "`/study-notes` 실행 때마다 자동으로 행이 추가됩니다. 주제명을 눌러 해당 노트로 이동하세요.\n\n"
+    f"{table_header(INDEX_COLUMNS)}\n{table_divider(len(INDEX_COLUMNS))}\n"
+)
 
 TOPIC_RE = re.compile(r"^## (\d+)\. (.+?)\s*$")
 META_RE = re.compile(r"`유형`\s*([^|]+?)\s*\|\s*`태그`\s*([^|]+?)\s*(?:\||$)")
@@ -555,27 +697,50 @@ def table_cell(text: str) -> str:
 
 
 def upgrade_index(index: Path, notes_root: Path) -> None:
-    """요약 열이 없던 예전 index.md에 요약 열을 넣는다. 요약은 같은 프로젝트 노트에서 제목으로 찾아 채운다."""
-    text = index.read_text(encoding="utf-8")
-    if OLD_TABLE_HEADER not in text:
+    """예전 열 구성의 index.md를 지금 열 구성(INDEX_COLUMNS)으로 바꾼다. 이미 최신이면 그대로 둔다.
+
+    - 요약 열이 없던 표: 같은 프로젝트 노트에서 제목으로 요약을 찾아 채운다.
+    - 수준 열이 없던 표(v1.4 전): 링크된 노트의 frontmatter level로 채운다. 예전 노트는 level이 없어 빈 칸이다.
+    """
+    lines = index.read_text(encoding="utf-8").splitlines()
+    legacy = next((cols for cols in LEGACY_INDEX_COLUMNS if table_header(cols) in lines), None)
+    if legacy is None:
         return
     summaries: dict[tuple[str, str], str] = {}
-    for note in notes_root.glob("*/*.md"):
-        for t in parse_topics(note):
-            if t["summary"]:
-                summaries.setdefault((note.parent.name, t["title"]), t["summary"])
+    if "요약" not in legacy:
+        for note in notes_root.glob("*/*.md"):
+            for t in parse_topics(note):
+                if t["summary"]:
+                    summaries.setdefault((note.parent.name, t["title"]), t["summary"])
+    levels: dict[str, str] = {}
+
+    def level_of(link: str) -> str:
+        m = re.search(r"\]\(([^)#]+)", link)
+        if not m:
+            return ""
+        rel = m.group(1)
+        if rel not in levels:
+            note = notes_root / rel
+            level = note_level(note) if note.is_file() else None
+            levels[rel] = level_label(level) if level else ""
+        return levels[rel]
+
     out = []
-    for line in text.splitlines():
-        if line == OLD_TABLE_HEADER:
-            line = "| 날짜 | 프로젝트 | 주제 | 유형 | 태그 | 요약 | 노트 |"
-        elif line == "|---|---|---|---|---|---|":
-            line = "|---|---|---|---|---|---|---|"
-        elif line.startswith("| ") and line.endswith("|"):
-            cells = re.split(r"(?<!\\)\|", line)[1:-1]
-            if len(cells) == 6:
-                summary = table_cell(summaries.get((cells[1].strip(), cells[2].strip()), ""))
-                cells.insert(5, f" {summary} " if summary else " ")
-                line = "|" + "|".join(cells) + "|"
+    in_table = False
+    for line in lines:
+        if line == table_header(legacy):
+            in_table = True
+            line = table_header(INDEX_COLUMNS)
+        elif in_table and TABLE_DIVIDER_RE.match(line):
+            line = table_divider(len(INDEX_COLUMNS))
+        elif in_table and line.startswith("|") and line.endswith("|"):
+            cells = [c.strip() for c in re.split(r"(?<!\\)\|", line)[1:-1]]
+            if len(cells) == len(legacy):
+                row = dict(zip(legacy, cells))
+                if "요약" not in row:
+                    row["요약"] = table_cell(summaries.get((row["프로젝트"], row["주제"]), ""))
+                row["수준"] = level_of(row["노트"])
+                line = table_row(row)
         out.append(line)
     index.write_text("\n".join(out) + "\n", encoding="utf-8")
 
@@ -609,10 +774,15 @@ def cmd_commit(args) -> int:
     date = dt.date.today().strftime("%Y-%m-%d")
     rel = note.relative_to(notes_root).as_posix()
     topics = parse_topics(note)
+    # 노트에 적힌 수준이 우선이다. 없으면 extract 때의 수준을 쓴다.
+    level = note_level(note) or pending.get("level")
+    level_text = level_label(level) if level in LEVELS else ""
     rows = [
-        f"| {date} | {project} | {table_cell(t['title'])} | {table_cell(t['type'])} | {table_cell(t['tags'])} "
-        f"| {table_cell(t['summary'])} "
-        f"| [{note.stem}#{t['no']}]({rel}#{t['anchor']}) |"
+        table_row({
+            "날짜": date, "프로젝트": project, "수준": level_text,
+            "주제": table_cell(t["title"]), "유형": table_cell(t["type"]), "태그": table_cell(t["tags"]),
+            "요약": table_cell(t["summary"]), "노트": f"[{note.stem}#{t['no']}]({rel}#{t['anchor']})",
+        })
         for t in topics
     ]
     with index.open("a", encoding="utf-8") as fh:
@@ -622,7 +792,7 @@ def cmd_commit(args) -> int:
     if dp.exists():
         dp.unlink()
     print(json.dumps({"committed": str(note), "topics": len(topics), "run_count": state["run_count"],
-                      "index": str(index)}, ensure_ascii=False, indent=2))
+                      "level": level_text or None, "index": str(index)}, ensure_ascii=False, indent=2))
     return 0
 
 
@@ -633,6 +803,7 @@ def cmd_status(args) -> int:
     state = load_state(notes_root, session)
     recs = collect_delta(jsonl, state, args.agent)
     pending_msgs = sum(1 for r in recs if render_blocks(r))
+    level, level_source = current_level(notes_root)
     print(json.dumps({
         "agent": args.agent,
         "project": project_name(cwd),
@@ -642,7 +813,28 @@ def cmd_status(args) -> int:
         "last_summarized_at": fmt_local(state.get("last_timestamp")),
         "unsummarized_messages": pending_msgs,
         "files": state.get("files", []),
+        **level_info(level),
+        "level_source": level_source,
     }, ensure_ascii=False, indent=2))
+    return 0
+
+
+def cmd_level(args) -> int:
+    """설명 수준 보기(값 없이)·바꾸기(값과 함께)."""
+    notes_root = Path(args.notes_root).expanduser().resolve()
+    if args.value:
+        try:
+            level = parse_level(" ".join(args.value))
+        except ValueError as exc:
+            raise SystemExit(str(exc)) from None
+        remember_level(notes_root, level)
+        out = {**level_info(level), "level_source": "saved", "settings": str(settings_path(notes_root))}
+    else:
+        level, source = current_level(notes_root)
+        out = {**level_info(level), "level_source": source}
+        if source == "unset":
+            out["levels"] = level_table()
+    print(json.dumps(out, ensure_ascii=False, indent=2))
     return 0
 
 
@@ -664,6 +856,8 @@ def main(argv=None) -> int:
 
     p = sub.add_parser("extract", help="지난 정리 이후 대화를 델타 파일로 추출")
     common(p)
+    p.add_argument("--level", default=None,
+                   help="이번 노트의 설명 수준: 1~5 또는 왕초보·입문·기초·실전·심화 (다음 실행을 위해 기억된다)")
     p.set_defaults(fn=cmd_extract)
 
     p = sub.add_parser("commit", help="작성한 노트를 등록하고 체크포인트 갱신")
@@ -674,6 +868,11 @@ def main(argv=None) -> int:
     p = sub.add_parser("status", help="체크포인트와 미정리 메시지 수 확인")
     common(p)
     p.set_defaults(fn=cmd_status)
+
+    p = sub.add_parser("level", help="설명 수준 보기·바꾸기 (1 왕초보 · 2 입문 · 3 기초 · 4 실전 · 5 심화)")
+    p.add_argument("value", nargs="*", help="바꿀 단계. 비우면 지금 단계를 보여 준다")
+    p.add_argument("--notes-root", default=str(DEFAULT_NOTES_ROOT))
+    p.set_defaults(fn=cmd_level)
 
     args = ap.parse_args(argv)
     if args.cmd == "commit" and not args.session:

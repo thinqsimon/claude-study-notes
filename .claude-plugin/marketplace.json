@@ -6,7 +6,7 @@
   "plugins": [
     {
       "name": "study-notes",
-      "description": "AI와의 개발 대화를 초보자용 배움노트(md)로 증분 정리하는 /study-notes 스킬",
+      "description": "AI와의 개발 대화를 설명 수준 5단계에 맞춘 배움노트(md)로 증분 정리하는 /study-notes 스킬",
       "category": "productivity",
       "source": "./"
     }
