@@ -13,6 +13,8 @@ Claude Code 또는 OpenAI Codex의 세션 기록에서 지난 정리 이후의 �
   study_notes.py commit  --agent claude|codex --session ID --file NOTE_MD [--notes-root DIR]
   study_notes.py status  --agent claude|codex [--cwd PATH] [--session ID] [--notes-root DIR]
   study_notes.py level   [N|이름] [--notes-root DIR]
+  study_notes.py cancel  --agent claude|codex [--cwd PATH] [--session ID] [--notes-root DIR]
+                         (extract 후 commit 전인 정리를 취소: 미완성 노트·델타 삭제, 체크포인트는 유지)
 
 설명 수준(level)은 1 왕초보 · 2 입문 · 3 기초 · 4 실전 · 5 심화. 고른 값은 <노트 폴더>/settings.json에 기억된다.
 """
@@ -575,7 +577,8 @@ def cmd_extract(args) -> int:
         out["levels"] = level_table()
     # commit 때 쓰도록 임시 저장
     state["_pending"] = {"last_uuid": out["pending_last_uuid"], "last_timestamp": out["pending_last_timestamp"],
-                         "level": level}
+                         "level": level, "suggested_file": str(suggested),
+                         "started_at": dt.datetime.now().isoformat(timespec="seconds")}
     save_state(notes_root, session, state)
     if requested is not None:
         remember_level(notes_root, requested)   # 앱에서 단계를 고르면 설정이 바뀌는 것과 같다
@@ -611,6 +614,8 @@ StudyNotes/
 3. 다른 프로젝트에서도 같은 명령을 쓰면 `<프로젝트명>/` 폴더가 따로 생깁니다
 4. 설명 수준(1 왕초보 · 2 입문 · 3 기초 · 4 실전 · 5 심화)은 처음 실행할 때 한 번 고르면 기억됩니다.
    바꾸려면 `/study-notes 4`, `/study-notes 실전`처럼 붙여 부릅니다 (Codex는 `$study-notes 4`)
+5. 옵션: `/study-notes h` 사용법 · `/study-notes d` 현재 단계와 정리 상태 · `/study-notes s` 진행 중 정리 취소
+   (정리 도중 ESC로 멈춘 뒤 `s`를 부르면 미완성 노트를 지우고, 다음 실행 때 같은 대화부터 다시 정리합니다)
 
 ## 상태 확인
 ```bash
@@ -815,6 +820,61 @@ def cmd_status(args) -> int:
         "files": state.get("files", []),
         **level_info(level),
         "level_source": level_source,
+        "in_progress": pending_info(state),
+        "settings": str(settings_path(notes_root)),
+    }, ensure_ascii=False, indent=2))
+    return 0
+
+
+def pending_info(state: dict) -> dict | None:
+    """extract는 했지만 commit은 안 한 정리가 있으면 그 정보, 없으면 None."""
+    pending = state.get("_pending")
+    if not pending or not pending.get("last_uuid"):
+        return None
+    note = pending.get("suggested_file")
+    return {
+        "note": note,
+        "note_exists": bool(note) and Path(note).exists(),
+        "started_at": pending.get("started_at"),
+        "level": level_label(pending["level"]) if pending.get("level") in LEVELS else None,
+    }
+
+
+def cmd_cancel(args) -> int:
+    """진행 중(extract 후 commit 전)인 정리를 취소한다.
+
+    미완성 노트 파일과 델타 파일을 지우고 pending을 비운다. 체크포인트(last_uuid)는 건드리지 않으므로
+    다음 extract가 같은 대화부터 다시 잘라낸다. 이미 commit된 노트(state.files)는 절대 지우지 않는다.
+    """
+    notes_root = Path(args.notes_root).expanduser().resolve()
+    if args.session:
+        session = args.session
+    else:
+        _, session = resolve_session_file(args.agent, normalize_cwd(args.cwd), None)
+    state = load_state(notes_root, session)
+    pending = state.pop("_pending", None)
+    removed_note = None
+    if pending and pending.get("suggested_file"):
+        note = Path(pending["suggested_file"])
+        committed = {str(Path(f)) for f in state.get("files", [])}
+        inside = notes_root in note.resolve().parents
+        if note.exists() and inside and str(note) not in committed:
+            note.unlink()
+            removed_note = str(note)
+    dp = delta_path(notes_root, session)
+    removed_delta = dp.exists()
+    if removed_delta:
+        dp.unlink()
+    if state_path(notes_root, session).exists() or pending:
+        save_state(notes_root, session, state)
+    print(json.dumps({
+        "cancelled": bool(pending),
+        "session": session,
+        "removed_note": removed_note,
+        "removed_delta": removed_delta,
+        "checkpoint_kept_at": fmt_local(state.get("last_timestamp")),
+        "message": ("정리를 취소했습니다. 체크포인트는 그대로라서 다음 실행 때 같은 대화부터 다시 정리합니다."
+                    if pending else "진행 중인 정리가 없습니다."),
     }, ensure_ascii=False, indent=2))
     return 0
 
@@ -868,6 +928,10 @@ def main(argv=None) -> int:
     p = sub.add_parser("status", help="체크포인트와 미정리 메시지 수 확인")
     common(p)
     p.set_defaults(fn=cmd_status)
+
+    p = sub.add_parser("cancel", help="진행 중인 정리 취소 (미완성 노트·델타 삭제, 체크포인트 유지)")
+    common(p)
+    p.set_defaults(fn=cmd_cancel)
 
     p = sub.add_parser("level", help="설명 수준 보기·바꾸기 (1 왕초보 · 2 입문 · 3 기초 · 4 실전 · 5 심화)")
     p.add_argument("value", nargs="*", help="바꿀 단계. 비우면 지금 단계를 보여 준다")

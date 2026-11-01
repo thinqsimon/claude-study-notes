@@ -8,6 +8,7 @@ Claude Code와 OpenAI Codex에서 쓰는 `study-notes` 스킬 (Claude Code: `/st
 
 **설명 수준 5단계**(1 왕초보 · 2 입문 · 3 기초 · 4 실전 · 5 심화)를 골라 독자에 맞게 씁니다. 처음 실행할 때 한 번 묻고 기억하며,
 `/study-notes 4`처럼 단계를 붙여 부르면 바뀝니다. 노트 제목과 첫머리, `index.md`의 수준 열에 단계가 표시됩니다.
+`/study-notes h`(사용법) · `d`(현재 단계와 정리 상태) · `s`(진행 중인 정리 취소) 옵션이 있고, 정리를 시작할 때 현재 단계와 바꾸는 방법을 한 줄 배너로 먼저 보여 줍니다.
 
 > **🪟 Windows 사용자는 아래 [Windows 사용자 안내](#-windows-사용자-안내-꼭-읽어-주세요)를 먼저 읽어 주세요.**
 > 맥과 다른 점(파이썬 명령, 셸, 경로)이 있고, 그 부분만 맞추면 똑같이 동작합니다.
@@ -143,6 +144,20 @@ Codex를 쓰면 경로의 `.claude`를 `.codex`로, `--agent claude`를 `--agent
 /study-notes 기초       이름으로도 고를 수 있습니다
 $study-notes 3          Codex
 ```
+
+### 옵션 (h · d · s)
+| 호출 | 동작 |
+|---|---|
+| `/study-notes h` | 사용법을 보여 주고 끝냅니다 (`help`, `?`도 됩니다) |
+| `/study-notes d` | 현재 설명 수준과 출처, 이 세션의 정리 횟수·마지막 정리 시각·미정리 메시지 수, 진행 중인 정리, 노트 목록을 보여 줍니다 (`display`, `status`) |
+| `/study-notes s` | 진행 중이던 정리를 취소합니다 (`stop`, `cancel`). 정리 도중 **ESC로 멈춘 뒤** 입력하세요 |
+| 그 외 인자 | "알 수 없는 옵션입니다" 뒤에 사용법을 보여 주고, 정리는 하지 않습니다 |
+
+정리를 시작할 때는 대화를 잘라낸 직후, 노트를 쓰기 전에 아래 배너를 먼저 보여 주고 바로 진행합니다. 단계가 아니다 싶으면 ESC로 멈추고 `s`로 취소하세요.
+```text
+📒 study-notes · 설명 수준 4단계 실전 (저장된 값) · 단계 바꾸기 /study-notes 1~5 · 상태 /study-notes d · 취소 ESC 후 /study-notes s
+```
+취소하면 쓰다 만 노트 파일과 임시 델타 파일을 지우고, 체크포인트는 그대로 둡니다. 다음 실행 때 같은 대화부터 다시 정리됩니다. 이미 등록된 노트는 건드리지 않습니다. Codex에서는 `$study-notes h`처럼 씁니다.
 노트에는 frontmatter의 `level`·`level_name`, 제목 끝의 `· 3단계 기초`, 제목 바로 아래 `> 설명 수준: 3단계 기초. …` 줄로 표시되고,
 `index.md`에는 `수준` 열이 생깁니다. 예전 `index.md`는 다음 실행 때 열이 자동으로 추가됩니다(예전 행은 빈 칸).
 
@@ -184,7 +199,7 @@ $study-notes 3          Codex
 ```
 skills/study-notes/
   SKILL.md                 절차, 설명 수준 5단계, 작성 규칙
-  scripts/study_notes.py   대화 기록 증분 추출(extract) · 체크포인트 확정(commit) · 상태(status) · 설명 수준(level)
+  scripts/study_notes.py   대화 기록 증분 추출(extract) · 체크포인트 확정(commit) · 상태(status) · 설명 수준(level) · 진행 중 정리 취소(cancel)
   templates/note.md        노트 형식 (frontmatter + 목차 + 주제 섹션)
 tests/
   test_study_notes.py      스크립트 단위 테스트 (python3 -m unittest discover -s tests)
@@ -202,6 +217,8 @@ tests/
    요약 열이 없던 예전 `index.md`는 자동으로 열을 넣어 채웁니다.
 
 ## 변경 내역
+- **v1.5.0**: 옵션 `h`(사용법) · `d`(현재 단계와 정리 상태) · `s`(진행 중 정리 취소, ESC 뒤 입력)와 정리 시작 배너. 모르는 인자는 사용법을 보여 주고 정리하지 않습니다.
+  스크립트에 `cancel` 명령이 생겨 쓰다 만 노트·델타만 지우고 체크포인트는 남기며, `status`에 진행 중인 정리(`in_progress`)가 표시됩니다.
 - **v1.4.0**: 설명 수준 5단계(1 왕초보 · 2 입문 · 3 기초 · 4 실전 · 5 심화). 처음 실행할 때 묻고 기억하며 `/study-notes <단계>`로 바꿉니다.
   노트 제목·첫머리·frontmatter와 `index.md` 수준 열에 표시합니다. `index.md` 요약 열과 토큰을 아끼는 중복 검사도 함께 들어갔습니다.
 - **v1.3.0**: 노트 파일명에 프로젝트 이름을 붙입니다(`<프로젝트>_YYYY-MM-DD_NN.md`).

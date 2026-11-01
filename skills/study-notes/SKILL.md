@@ -1,11 +1,80 @@
 ---
 name: study-notes
-description: AI와의 개발 대화에서 공부해야 할 개념·문제해결 과정을 골라 ~/StudyNotes/<프로젝트>/ 에 학습장 md로 증분 정리할 때 사용. 지난 실행 이후의 대화만 정리하며, 요약이 아니라 개념을 처음부터 다시 가르치듯 쓴다. 설명 수준은 5단계(1 왕초보 · 2 입문 · 3 기초 · 4 실전 · 5 심화) 중 사용자가 고른 단계를 따른다.
+description: AI와의 개발 대화에서 공부해야 할 개념·문제해결 과정을 골라 ~/StudyNotes/<프로젝트>/ 에 학습장 md로 증분 정리할 때 사용. 지난 실행 이후의 대화만 정리하며, 요약이 아니라 개념을 처음부터 다시 가르치듯 쓴다. 설명 수준은 5단계(1 왕초보 · 2 입문 · 3 기초 · 4 실전 · 5 심화) 중 사용자가 고른 단계를 따른다. 인자 `h`(사용법)·`d`(상태)·`s`(진행 중 정리 취소)도 이 스킬이 처리한다.
 ---
 # 배움노트 정리 (study-notes)
 
 Claude Code와 OpenAI Codex 어디서나 같은 방식으로 동작한다. Claude Code에서는 `/study-notes`, Codex에서는 `$study-notes`로 부른다.
 `/study-notes 3`, `$study-notes 기초`처럼 설명 수준을 붙여 부르면 그 단계로 쓰고, 다음 실행을 위해 기억한다.
+
+## 0. 호출 인자를 먼저 해석한다
+
+스킬에 붙은 인자(`/study-notes <인자>`의 `<인자>`)로 할 일을 정한다. **인자 없음**과 **단계**만 정리를 실행하고, 나머지는 안내·상태·취소만 하고 끝낸다. 대소문자는 구분하지 않고, 인자가 여럿이면 첫 번째만 본다.
+
+| 인자 | 할 일 |
+|---|---|
+| (없음) | 기억된 단계로 정리 실행 → "절차" |
+| `1`~`5` 또는 `왕초보`·`입문`·`기초`·`실전`·`심화` | 그 단계로 정리 실행하고 단계를 기억 → "절차" |
+| `h`, `help`, `?` | 아래 "사용법 (h)" 블록을 그대로 출력하고 끝. 정리하지 않는다 |
+| `d`, `display`, `status` | 현재 단계와 정리 상태를 보여 주고 끝 → "상태 보기 (d)" |
+| `s`, `stop`, `cancel` | 진행 중이던 정리를 취소하고 끝 → "취소 (s)" |
+| 그 외 | `알 수 없는 옵션입니다: <인자>` 한 줄 뒤에 "사용법 (h)" 블록을 출력하고 끝. 정리하지 않는다 |
+
+아래 명령의 `$PY`, `$SKILL_DIR`, `$AGENT`는 "준비" 절의 값이다.
+
+### 사용법 (h)
+아래 블록을 그대로 출력한다. Codex에서는 `/study-notes`를 `$study-notes`로 바꿔 출력한다.
+
+```
+study-notes — AI와의 개발 대화를 학습장(교재)으로 정리하는 스킬
+
+사용법
+  /study-notes          기억된 설명 수준으로, 지난 정리 이후의 대화를 정리
+  /study-notes <단계>   그 단계로 정리하고 단계를 기억  (1 왕초보 · 2 입문 · 3 기초 · 4 실전 · 5 심화)
+  /study-notes d        현재 설명 수준과 정리 상태 보기 (display)
+  /study-notes s        진행 중인 정리 취소 (stop) — 먼저 ESC로 멈춘 뒤 입력
+  /study-notes h        이 사용법 (help)
+
+예
+  /study-notes 3        3단계 기초로 정리
+  /study-notes 실전     4단계 실전으로 정리
+
+메모
+  · 한 번에 지난 실행 이후의 대화만 정리한다(증분). 노트는 ~/StudyNotes/<프로젝트>/ 에 쌓인다
+  · s로 취소해도 체크포인트는 그대로라서, 다음 실행 때 같은 대화부터 다시 정리된다
+```
+
+### 상태 보기 (d)
+```bash
+$PY "$SKILL_DIR/scripts/study_notes.py" status --agent $AGENT --cwd "$PWD" --session <세션id>
+```
+(세션 id는 "절차" 1번과 같은 방법으로 찾고, Codex면 `--session`을 뺀다.) 출력 JSON을 아래 모양의 표로 보여 주고 끝낸다. JSON 원문은 붙이지 않는다.
+
+| 항목 | 값 |
+|---|---|
+| 설명 수준 | `level_label` (`level_source`가 `saved`면 "저장됨", `unset`이면 "기본값·아직 안 고름") |
+| 프로젝트 / 세션 | `project` / `session` 앞 8자 |
+| 이 세션 정리 횟수 | `run_count`회, 마지막 정리 `last_summarized_at` |
+| 미정리 메시지 | `unsummarized_messages`개 |
+| 진행 중인 정리 | `in_progress`가 null이면 "없음", 있으면 노트 경로와 `started_at` (ESC 뒤 `/study-notes s`로 취소 가능) |
+| 이 세션의 노트 | `files` 목록 |
+
+표 아래에 한 줄: "단계를 바꾸려면 `/study-notes 1`~`5`, 정리를 시작하려면 `/study-notes`".
+
+### 취소 (s)
+정리 도중 사용자가 ESC로 실행을 끊은 뒤 부르는 옵션이다. 다른 레벨로 시작된 것을 알았거나 급한 일이 생겨 학습장 만들기를 포기할 때 쓴다.
+```bash
+$PY "$SKILL_DIR/scripts/study_notes.py" cancel --agent $AGENT --cwd "$PWD" --session <세션id>
+```
+스크립트가 extract는 했지만 commit은 안 한 정리를 찾아 **미완성 노트 파일과 델타 파일을 지우고**, 체크포인트는 그대로 둔다(이미 등록된 노트는 건드리지 않는다). 출력의 `message`를 그대로 전하고, `removed_note`가 있으면 지운 파일 경로를 한 줄 덧붙인다. `cancelled`가 false면 "진행 중인 정리가 없습니다"만 알린다. 이 뒤로는 정리 작업을 이어 가지 않는다.
+
+### 정리 시작 배너
+정리를 실행할 때는 "절차" 3번 extract가 끝난 직후, 델타를 읽기 전에 아래 한 줄을 먼저 출력하고 **기다리지 않고 바로 진행**한다. 사용자가 지금 단계가 아니라고 판단하면 ESC로 멈추고 `/study-notes s`로 취소할 수 있게 하기 위한 안내다.
+
+```
+📒 study-notes · 설명 수준 <level_label> (<출처>) · 단계 바꾸기 /study-notes 1~5 · 상태 /study-notes d · 취소 ESC 후 /study-notes s
+```
+`<출처>`는 `level_source`가 `argument`면 "이번에 지정", `saved`면 "저장된 값", 그 외면 "기본값". Codex에서는 `$study-notes`로 바꿔 쓴다.
 
 ## 가장 중요한 원칙: 요약이 아니라 "재강의"
 
@@ -71,6 +140,7 @@ Codex 주의: 노트 폴더 `$HOME/StudyNotes`는 작업 폴더 밖이다. 노�
    stdout JSON의 `new_messages`가 0이면 "정리할 새 대화가 없습니다"라고 알리고 끝낸다.
    `delta_path`의 파일을 읽는다. 길면 나눠 읽는다. `suggested_file`이 이번에 쓸 노트 경로, `run_no`가 노트 번호다.
    `level_label`(예: `3단계 기초`)·`level_audience`·`level_style`이 이번 노트의 설명 수준이다. 단계 값이 틀리면 스크립트가 고를 수 있는 값을 알려 주고 멈춘다.
+   extract가 끝나면 델타를 읽기 전에 "정리 시작 배너"(0절) 한 줄을 출력한다.
 4. **주제 뽑기** (델타 전체를 읽은 뒤):
    - 포함: 처음 등장한 기술 개념, 오류·막힘과 해결 과정, 실행한 핵심 명령어·코드, 설계 결정과 그 이유, 워크플로·도구 사용법(스킬, 에이전트, 훅 등)
    - 제외: 인사, 단순 진행 보고, 같은 내용의 반복, 비밀값(`.env` 내용, 토큰, 키, 이메일)
@@ -116,6 +186,7 @@ Codex 주의: 노트 폴더 `$HOME/StudyNotes`는 작업 폴더 밖이다. 노�
 - `세션 기록을 찾을 수 없습니다`: `--session`을 빼고 다시 실행한다.
 - `이 폴더에서 연 Codex 스레드 기록이 없습니다`: Codex에서 다른 폴더를 열었거나 `--agent`가 틀렸다. `--cwd`에 Codex가 연 작업 폴더를 넣는다.
 - 체크포인트를 되돌리고 싶으면 `$HOME/StudyNotes/.state/<세션id>.json`을 지운다. 그 세션은 처음부터 다시 정리된다.
-- 상태 확인: `$PY "$SKILL_DIR/scripts/study_notes.py" status --agent $AGENT --cwd "$PWD"`
+- 상태 확인: `/study-notes d` (= `$PY "$SKILL_DIR/scripts/study_notes.py" status --agent $AGENT --cwd "$PWD"`)
+- 정리를 중간에 그만두고 싶으면: ESC로 멈춘 뒤 `/study-notes s` (= `... cancel ...`). 미완성 노트가 지워지고 체크포인트는 남는다.
 - 설명 수준 보기·바꾸기: `$PY "$SKILL_DIR/scripts/study_notes.py" level` / `... level 4`(또는 `level 실전`). 기억된 값은 `$HOME/StudyNotes/settings.json`에 있다.
 - `알 수 없는 설명 수준입니다`: 1~5 숫자나 왕초보·입문·기초·실전·심화 중 하나로 다시 고른다.

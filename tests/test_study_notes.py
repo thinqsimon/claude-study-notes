@@ -276,7 +276,57 @@ class UpgradeIndexTest(unittest.TestCase):
         self.assertTrue(row[6].startswith("어디까지 처리했는지"))
 
 
+class CancelTest(ExtractCommitTest):
+    """extract 뒤 commit 전에 cancel하면 미완성 노트·델타만 지우고 체크포인트는 남긴다."""
+
+    def cancel(self) -> dict:
+        return run("cancel", "--agent", "claude", "--session", self.session, "--notes-root", str(self.root))
+
+    def status(self) -> dict:
+        return run("status", "--agent", "claude", "--cwd", str(self.cwd), "--session", self.session,
+                   "--notes-root", str(self.root))
+
+    def test_cancel_removes_partial_note_and_delta_but_keeps_checkpoint(self):
+        out = self.extract("--level", "3")
+        note = self.write_note(out, "# 쓰다 만 노트\n")
+        self.assertTrue(Path(out["delta_path"]).exists())
+        progress = self.status()["in_progress"]
+        self.assertEqual((progress["note"], progress["note_exists"], progress["level"]), (str(note), True, "3단계 기초"))
+
+        result = self.cancel()
+        self.assertEqual((result["cancelled"], result["removed_note"], result["removed_delta"]), (True, str(note), True))
+        self.assertFalse(note.exists())
+        self.assertFalse(Path(out["delta_path"]).exists())
+        state = json.loads(sn.state_path(self.root, self.session).read_text(encoding="utf-8"))
+        self.assertNotIn("_pending", state)
+        self.assertIsNone(state["last_uuid"])          # 체크포인트는 그대로
+        self.assertIsNone(self.status()["in_progress"])
+        self.assertEqual(self.extract()["new_messages"], 2)   # 다음 실행이 같은 대화를 다시 잘라낸다
+
+    def test_cancel_without_pending_reports_nothing_to_cancel(self):
+        result = self.cancel()
+        self.assertEqual((result["cancelled"], result["removed_note"]), (False, None))
+
+    def test_cancel_never_deletes_committed_note(self):
+        note = self.write_note(self.extract("--level", "3"), NOTE)
+        self.commit(note)
+        # 다음 extract는 같은 경로가 아닌 _02를 제안하지만, pending이 커밋된 파일을 가리켜도 지우지 않는지 확인한다
+        state = json.loads(sn.state_path(self.root, self.session).read_text(encoding="utf-8"))
+        state["_pending"] = {"last_uuid": "x", "last_timestamp": "x", "level": 3, "suggested_file": str(note)}
+        sn.save_state(self.root, self.session, state)
+        result = self.cancel()
+        self.assertEqual((result["cancelled"], result["removed_note"]), (True, None))
+        self.assertTrue(note.exists())
+
+
 class DocsTest(unittest.TestCase):
+    def test_skill_and_readme_describe_options(self):
+        for doc in (SKILL_DIR / "SKILL.md", ROOT / "README.md"):
+            text = doc.read_text(encoding="utf-8")
+            for marker in ("/study-notes h", "/study-notes d", "/study-notes s", "cancel"):
+                with self.subTest(doc=doc.name, marker=marker):
+                    self.assertIn(marker, text)
+
     def test_skill_and_readme_list_every_level(self):
         for doc in (SKILL_DIR / "SKILL.md", ROOT / "README.md"):
             text = doc.read_text(encoding="utf-8")
