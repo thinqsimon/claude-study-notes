@@ -100,7 +100,9 @@ class ItemRulesTest(CatalogTestCase):
         self.assert_rejected("importance", topic("be.http.status", importance=4))
 
     def test_title_must_be_a_name_not_a_sentence(self) -> None:
-        self.assert_rejected("제목", topic("be.http.status", title="서버가 알려 주는 숫자다"))
+        self.assert_rejected("제목", topic("be.http.status", title="서버가 숫자를 알려 준다"))
+        self.assertEqual(self.errors(topic("be.http.status", title="람다")), [])
+        self.assert_rejected("제목", topic("be.http.status", title="로그인은 왜 필요한가"))
 
     def test_objectives_rules(self) -> None:
         self.assert_rejected("~할 수 있다", topic("be.http.status", objectives=["상태 코드 이해", "오류를 가려낼 수 있다"]))
@@ -164,6 +166,12 @@ class WarningsTest(CatalogTestCase):
         self.assertTrue(any("중요도" in warning for warning in warnings), warnings)
 
 
+    def test_required_item_with_lesser_prerequisite_warns(self) -> None:
+        self.write(topic("be.http.base", level=1, importance=2), topic("be.http.a", prerequisites=["be.http.base"]))
+        _, warnings = tool.check_catalog(tool.load_catalog(self.root))
+        self.assertTrue(any("선수 개념" in warning for warning in warnings), warnings)
+
+
 class StudyOrderTest(CatalogTestCase):
     def test_prerequisite_comes_before_more_important_item(self) -> None:
         self.write(
@@ -175,11 +183,126 @@ class StudyOrderTest(CatalogTestCase):
         order = {domain["prefix"]: index for index, domain in enumerate(catalog["domains"])}
         self.assertEqual([item["id"] for item in tool.study_order(catalog["items"], order)], ["be.http.c", "be.http.b", "be.http.a"])
 
+    def test_prerequisite_of_important_item_is_pulled_forward(self) -> None:
+        self.write(
+            topic("be.http.a", importance=1, prerequisites=["be.http.base"]),
+            topic("be.http.base", importance=2),
+            topic("be.http.other", importance=2),
+        )
+        catalog = tool.load_catalog(self.root)
+        order = {domain["prefix"]: index for index, domain in enumerate(catalog["domains"])}
+        self.assertEqual([item["id"] for item in tool.study_order(catalog["items"], order)], ["be.http.base", "be.http.a", "be.http.other"])
+
     def test_same_importance_keeps_file_order(self) -> None:
         self.write(topic("be.http.a"), topic("be.http.b"), topic("be.http.c"))
         catalog = tool.load_catalog(self.root)
         order = {domain["prefix"]: index for index, domain in enumerate(catalog["domains"])}
         self.assertEqual([item["id"] for item in tool.study_order(catalog["items"], order)], ["be.http.a", "be.http.b", "be.http.c"])
+
+
+def good_note(title: str = "HTTP 상태 코드 (HTTP Status Codes)", item_id: str = "be.http.status") -> str:
+    body = "설명 문장입니다. " * 300
+    return f"""---
+title: 노트
+project: AX 개념노트
+---
+# 노트
+
+> 설명
+
+## 목차
+| # | 주제 |
+|---|---|
+| 1 | 주제 |
+
+---
+
+## 1. {title}
+> 한 줄 요약: 요약.
+
+`유형` 개념 | `태그` http | `난이도` ★★ | `개념` {item_id} | `단계` 2단계 입문 | `중요도` ★★★
+
+### 학습 목표
+- 상태 코드를 구분할 수 있다
+- 오류의 원인을 가려낼 수 있다
+
+### 먼저 알아야 할 것
+{body}
+
+### 왜 필요한가
+내용
+
+### 핵심 개념
+내용
+
+### 예제로 이해하기
+```text
+## 코드 블록 안의 제목은 주제가 아니다
+frontend/app/page.tsx
+```
+
+### 비슷한 개념과 차이
+내용
+
+### 흔한 실수
+내용
+
+### 직접 해 보기
+내용
+
+### 확인 문제
+1. 질문?
+2. 질문?
+
+### 정답
+1. 답.
+2. 답.
+
+### 공식 문서
+- [문서](https://example.com)
+
+### 만난 곳
+2026-11-03 만남.
+"""
+
+
+class NoteLintTest(CatalogTestCase):
+    def lint(self, text: str) -> list[str]:
+        self.write(topic("be.http.status"))
+        return tool.lint_note(text, tool.load_catalog(self.root))
+
+    def test_good_note_passes_and_fence_is_ignored(self) -> None:
+        self.assertEqual(self.lint(good_note()), [])
+
+    def test_unknown_concept_id_is_rejected(self) -> None:
+        self.assertTrue(any("사전에 없는" in e for e in self.lint(good_note(item_id="be.http.none"))))
+
+    def test_title_must_come_from_catalog(self) -> None:
+        self.assertTrue(any("제목" in e for e in self.lint(good_note(title="링크 하나 바꾸기와 세미콜론"))))
+
+    def test_project_bound_expressions_are_rejected(self) -> None:
+        for text in ("이번 대화에서 만난 오류다.", "frontend/app/page.tsx를 고쳤다.", "이 프로젝트에서는 이렇게 썼다."):
+            errors = self.lint(good_note().replace("### 왜 필요한가\n내용", f"### 왜 필요한가\n{text}"))
+            self.assertTrue(any("묶인 표현" in e for e in errors), text)
+
+    def test_paths_inside_links_are_allowed(self) -> None:
+        note = good_note().replace("- [문서](https://example.com)", "- [문서](https://example.com/docs/Web/HTTP)")
+        self.assertEqual(self.lint(note), [])
+
+    def test_missing_or_reordered_section_is_rejected(self) -> None:
+        self.assertTrue(any("소제목" in e for e in self.lint(good_note().replace("### 흔한 실수\n내용\n\n", ""))))
+
+    def test_objective_must_appear(self) -> None:
+        self.assertTrue(any("학습 목표" in e for e in self.lint(good_note().replace("- 오류의 원인을 가려낼 수 있다\n", ""))))
+
+    def test_answers_must_match_questions(self) -> None:
+        self.assertTrue(any("정답의 수" in e for e in self.lint(good_note().replace("2. 답.\n", ""))))
+
+    def test_official_docs_link_required(self) -> None:
+        self.assertTrue(any("공식 문서" in e for e in self.lint(good_note().replace("- [문서](https://example.com)", "- 문서"))))
+
+    def test_short_note_is_rejected(self) -> None:
+        self.assertTrue(any("너무 짧다" in e for e in self.lint(good_note().replace("설명 문장입니다. ", "짧다. ", 299))))
 
 
 class OutputsTest(CatalogTestCase):

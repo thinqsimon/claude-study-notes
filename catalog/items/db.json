@@ -1,0 +1,63 @@
+[
+  {
+    "id": "db.cache.response-caching",
+    "title": "응답 캐시로 부하와 비용 줄이기",
+    "en": "Caching to Reduce Load and Cost",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "캐시",
+    "summary": "자주 쓰는 결과를 저장해 DB와 외부 API 호출을 줄이고 언제 지울지 정한다.",
+    "objectives": [
+      "Redis로 조회 결과를 캐시하고 만료를 설정할 수 있다",
+      "데이터가 바뀔 때 캐시를 지우는 방식을 설계할 수 있다",
+      "캐시 때문에 옛 값이 보이는 문제를 찾아 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "be.fastapi.db-session"
+    ],
+    "aliases": [
+      "응답 캐시로 부하와 비용 줄이기",
+      "Caching to Reduce Load and Cost",
+      "Redis",
+      "캐시",
+      "캐싱",
+      "TTL",
+      "cache-aside",
+      "캐시 무효화"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/develop/get-started/",
+      "https://aws.amazon.com/builders-library/caching-challenges-and-strategies/"
+    ]
+  },
+  {
+    "id": "db.cache.redis",
+    "title": "Redis",
+    "en": "Redis",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "캐시",
+    "summary": "메모리에 데이터를 두는 빠른 저장소로, 캐시와 큐에 쓴다.",
+    "parent": "db.cache.response-caching",
+    "aliases": [
+      "Redis"
+    ]
+  },
+  {
+    "id": "db.cache.ttl",
+    "title": "TTL",
+    "en": "Time To Live",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "캐시",
+    "summary": "저장한 값이 자동으로 지워지기까지의 시간이다.",
+    "parent": "db.cache.response-caching",
+    "aliases": [
+      "TTL",
+      "Time To Live"
+    ]
+  }
+]

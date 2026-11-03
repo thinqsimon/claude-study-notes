@@ -6,6 +6,7 @@ python3 -I catalog/tools/catalog.py format   항목 파일을 정해진 모양�
 python3 -I catalog/tools/catalog.py build    단계별 사전(md)과 catalog.json을 만든다 (--check면 최신인지만 본다)
 python3 -I catalog/tools/catalog.py stats    단계·분야별 항목 수와 목표 대비 현황을 보여 준다
 python3 -I catalog/tools/catalog.py links    refs 주소가 살아 있는지 확인한다(네트워크 사용)
+python3 -I catalog/tools/catalog.py lint-note <노트.md>   교과서식 개념노트의 규칙을 검사한다
 """
 from __future__ import annotations
 
@@ -30,12 +31,33 @@ STARS = {1: "★★★", 2: "★★", 3: "★"}
 ID_RE = re.compile(r"^[a-z]+(\.[a-z0-9-]+){2}$")
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 # 노트와 사전이 특정 프로젝트나 대화에 묶이지 않게 막는 표현이다.
-BANNED_EXPRESSIONS = ("이번 대화", "이 프로젝트", "우리 프로젝트", "우리 앱", "사용자가", "커밋 ", "세션 ")
+BANNED_EXPRESSIONS = ("이번 대화", "이 프로젝트", "우리 프로젝트", "우리 앱", "우리 서비스")
+# 제목이 문장으로 끝나는지 보는 어미. "람다"처럼 '다'로 끝나는 이름은 막지 않는다.
+SENTENCE_ENDINGS = (
+    ".", "?", "한다", "있다", "이다", "된다", "않다", "했다", "준다", "는다", "인다", "난다", "낸다", "든다", "른다",
+    "는가", "한가", "을까", "를까", "할까", "않나", "만드나",
+)
 TITLE_MAX = 40
 SUMMARY_MIN, SUMMARY_MAX = 15, 120
 OBJECTIVES_MIN, OBJECTIVES_MAX = 2, 4
 SHARED_ALIAS_LIMIT = 3
 UNDERRATED_DEPENDENTS = 3
+
+
+NOTE_SECTIONS = (
+    "학습 목표", "먼저 알아야 할 것", "왜 필요한가", "핵심 개념", "예제로 이해하기", "비슷한 개념과 차이",
+    "흔한 실수", "직접 해 보기", "확인 문제", "정답", "공식 문서",
+)
+NOTE_OPTIONAL_LAST = "만난 곳"
+NOTE_MIN_CHARS = {1: 1500, 2: 2500, 3: 4000, 4: 4000, 5: 4000}
+# 노트 본문이 특정 프로젝트나 그때의 대화를 전제하지 않게 막는다. 코드 블록 밖에서만 본다.
+NOTE_BANNED_RE = re.compile(
+    r"이번 대화|이번 작업|이 대화|이 프로젝트|우리 프로젝트|우리 앱|우리 서비스|이 저장소|사용자가 (요청|말)|앞서 (말|만든)|"
+    r"(backend|frontend|harness|scripts|docs|samples)/[\w./-]+"
+)
+NOTE_META_RE = re.compile(r"`개념`\s*([a-z0-9.-]+)")
+NOTE_HEADING_RE = re.compile(r"^## (?:\d+\.\s*)?(.+?)\s*$")
+NOTE_SUBHEADING_RE = re.compile(r"^### (.+?)\s*$")
 
 
 def read_json(path: Path):
@@ -80,7 +102,7 @@ def check_item(item: dict, known_levels: set[int]) -> list[str]:
     if item["importance"] not in STARS:
         errors.append(f"{label}: importance는 1(필수)·2(중요)·3(선택)이다")
     title, summary = item["title"], item["summary"]
-    if len(title) > TITLE_MAX or title.endswith((".", "다")):
+    if len(title) > TITLE_MAX or title.endswith(SENTENCE_ENDINGS):
         errors.append(f"{label}: 제목은 {TITLE_MAX}자 이내의 이름으로 쓴다(문장 금지): {title}")
     if not SUMMARY_MIN <= len(summary) <= SUMMARY_MAX or not summary.endswith("."):
         errors.append(f"{label}: 요약은 {SUMMARY_MIN}~{SUMMARY_MAX}자의 한 문장이고 마침표로 끝난다")
@@ -193,6 +215,11 @@ def check_catalog(catalog: dict) -> tuple[list[str], list[str]]:
     for (level, alias), count in shared.items():
         if count > SHARED_ALIAS_LIMIT:
             warnings.append(f"{level}단계에서 별칭 '{alias}'를 {count}개 항목이 함께 쓴다(너무 넓을 수 있다)")
+    for item in items:
+        if item["importance"] == 1:
+            for parent in item.get("prerequisites", []):
+                if parent in by_id and by_id[parent]["importance"] > 1:
+                    warnings.append(f"{item['id']}: 필수(★★★)인데 선수 개념 {parent}의 중요도가 더 낮다")
     dependents = dependent_counts(items)
     for item in items:
         if item["importance"] == 3 and dependents[item["id"]] >= UNDERRATED_DEPENDENTS:
@@ -209,9 +236,24 @@ def dependent_counts(items: list[dict]) -> Counter:
     return counts
 
 
+def effective_importance(items: list[dict]) -> dict[str, int]:
+    """중요한 항목의 선수 개념은 그만큼 중요하다. 목록 안에서 뒤따르는 항목의 중요도를 끌어온다."""
+    effective = {item["id"]: item["importance"] for item in items}
+    changed = True
+    while changed:
+        changed = False
+        for item in items:
+            for parent in item.get("prerequisites", []):
+                if parent in effective and effective[item["id"]] < effective[parent]:
+                    effective[parent] = effective[item["id"]]
+                    changed = True
+    return effective
+
+
 def study_order(items: list[dict], domain_order: dict[str, int]) -> list[dict]:
     """주제를 공부 순서로 늘어놓는다. 선수 개념을 먼저 두고, 그 안에서는 중요도가 높은 것을 앞에 둔다."""
     remaining = {item["id"]: item for item in items}
+    effective = effective_importance(items)
     ordered: list[dict] = []
     while remaining:
         ready = [
@@ -220,7 +262,7 @@ def study_order(items: list[dict], domain_order: dict[str, int]) -> list[dict]:
         ]
         if not ready:  # 순환은 check가 막는다. 혹시 남으면 원래 순서로 잇는다.
             ready = list(remaining.values())
-        chosen = min(ready, key=lambda it: (it["importance"], domain_order[it["_domain"]], it["_order"]))
+        chosen = min(ready, key=lambda it: (effective[it["id"]], domain_order[it["_domain"]], it["_order"]))
         ordered.append(chosen)
         del remaining[chosen["id"]]
     return ordered
@@ -243,12 +285,12 @@ def render_level(catalog: dict, level: dict) -> str:
         "",
         "## 공부 순서",
         "",
-        "필수 주제를 선수 개념이 먼저 오도록 늘어놓았다.",
+        "중요한 주제를 앞에 두고, 먼저 알아야 할 주제가 그 앞에 오도록 늘어놓았다.",
         "",
     ]
-    required = study_order([item for item in topics if item["importance"] == 1], domain_order)
-    lines += [f"{index}. **{item['title']}** ({names[item['_domain']]})" for index, item in enumerate(required, 1)]
-    if not required:
+    ordered = study_order(topics, domain_order)
+    lines += [f"{index}. {STARS[item['importance']]} {item['title']} ({names[item['_domain']]})" for index, item in enumerate(ordered, 1)]
+    if not ordered:
         lines.append("(아직 없음)")
     lines += ["", "## 1부. 주제", ""]
     for domain in catalog["domains"]:
@@ -317,6 +359,113 @@ def format_items(root: Path, catalog: dict) -> int:
             path.write_text(text, encoding="utf-8")
             changed += 1
     return changed
+
+
+def split_note_topics(text: str) -> list[tuple[str, list[str]]]:
+    """코드 블록을 건너뛰며 노트를 주제별로 나눈다. 목차는 주제가 아니다."""
+    topics: list[tuple[str, list[str]]] = []
+    fence = None
+    for line in text.split("\n"):
+        marker = re.match(r"^\s{0,3}(`{3,}|~{3,})", line)
+        if marker:
+            mark = marker.group(1)
+            if fence is None:
+                fence = mark
+            elif mark[0] == fence[0] and len(mark) >= len(fence):
+                fence = None
+        heading = NOTE_HEADING_RE.match(line) if fence is None else None
+        if heading:
+            if heading.group(1) != "목차":
+                topics.append((heading.group(1), []))
+            else:
+                topics.append(("", []))
+            continue
+        if topics:
+            topics[-1][1].append(line)
+    return [(title, lines) for title, lines in topics if title]
+
+
+def strip_fences(lines: list[str]) -> list[str]:
+    """코드 블록을 뺀 줄만 남긴다."""
+    kept, fence = [], None
+    for line in lines:
+        marker = re.match(r"^\s{0,3}(`{3,}|~{3,})", line)
+        if marker:
+            mark = marker.group(1)
+            if fence is None:
+                fence = mark
+                continue
+            if mark[0] == fence[0] and len(mark) >= len(fence):
+                fence = None
+                continue
+        if fence is None:
+            kept.append(line)
+    return kept
+
+
+def lint_note(text: str, catalog: dict) -> list[str]:
+    """개념노트가 사전과 맞고, 대화를 몰라도 읽히는 모양인지 검사한다."""
+    by_id = {item["id"]: item for item in catalog["items"]}
+    errors: list[str] = []
+    topics = split_note_topics(text)
+    if not topics:
+        return ["주제(## 제목)가 없다"]
+    for title, lines in topics:
+        label = title[:30]
+        meta = next((NOTE_META_RE.search(line) for line in lines if NOTE_META_RE.search(line)), None)
+        if meta is None:
+            errors.append(f"{label}: 메타 줄에 `개념` id가 없다")
+            continue
+        item = by_id.get(meta.group(1))
+        if item is None:
+            errors.append(f"{label}: 사전에 없는 id {meta.group(1)}")
+            continue
+        if not title.startswith(item["title"]):
+            errors.append(f"{label}: 제목이 사전의 제목({item['title']})으로 시작하지 않는다")
+        prose = strip_fences(lines)
+        sections = [m.group(1) for m in map(NOTE_SUBHEADING_RE.match, prose) if m]
+        expected = [name for name in sections if name != NOTE_OPTIONAL_LAST]
+        if expected != list(NOTE_SECTIONS):
+            errors.append(f"{label}: 소제목이 정해진 순서와 다르다: {expected}")
+        joined = "\n".join(prose)
+        for objective in item.get("objectives", []):
+            if objective not in joined:
+                errors.append(f"{label}: 학습 목표가 빠졌다: {objective}")
+        for found in NOTE_BANNED_RE.finditer(re.sub(r"https?://\S+", "", joined)):
+            errors.append(f"{label}: 프로젝트·대화에 묶인 표현: {found.group(0)}")
+        if not re.search(r"\]\(https://", section_text(prose, "공식 문서")):
+            errors.append(f"{label}: 공식 문서 링크가 없다")
+        if not re.search(r"(?m)^\s*1\. ", section_text(prose, "정답")):
+            errors.append(f"{label}: 정답이 없다")
+        questions = len(re.findall(r"(?m)^\s*\d+\. ", section_text(prose, "확인 문제")))
+        if questions < 2:
+            errors.append(f"{label}: 확인 문제는 2개 이상이다")
+        if questions != len(re.findall(r"(?m)^\s*\d+\. ", section_text(prose, "정답"))):
+            errors.append(f"{label}: 확인 문제와 정답의 수가 다르다")
+        if sum(len(line) for line in lines) < NOTE_MIN_CHARS[item["level"]]:
+            errors.append(f"{label}: {item['level']}단계 노트로 너무 짧다({sum(len(line) for line in lines)}자)")
+    return errors
+
+
+def section_text(prose: list[str], name: str) -> str:
+    """소제목 하나의 내용을 돌려준다."""
+    collected, inside = [], False
+    for line in prose:
+        match = NOTE_SUBHEADING_RE.match(line)
+        if match:
+            inside = match.group(1) == name
+            continue
+        if inside:
+            collected.append(line)
+    return "\n".join(collected)
+
+
+def cmd_lint_note(root: Path, path: Path) -> int:
+    errors = lint_note(path.read_text(encoding="utf-8"), load_catalog(root))
+    for error in errors:
+        print("오류:", error)
+    print(f"주제 {len(split_note_topics(path.read_text(encoding='utf-8')))}개, 오류 {len(errors)}개")
+    return 1 if errors else 0
 
 
 def cmd_check(root: Path) -> int:
@@ -394,9 +543,12 @@ def main(argv: list[str] | None = None) -> int:
     for name in ("check", "format", "stats", "links"):
         sub.add_parser(name)
     sub.add_parser("build").add_argument("--check", action="store_true", help="파일을 쓰지 않고 최신인지만 본다")
+    sub.add_parser("lint-note").add_argument("note", type=Path, help="검사할 개념노트 md")
     args = parser.parse_args(argv)
     if args.command == "build":
         return cmd_build(args.root, args.check)
+    if args.command == "lint-note":
+        return cmd_lint_note(args.root, args.note)
     return {"check": cmd_check, "format": cmd_format, "stats": cmd_stats, "links": cmd_links}[args.command](args.root)
 
 

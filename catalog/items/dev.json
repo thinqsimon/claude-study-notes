@@ -1,0 +1,162 @@
+[
+  {
+    "id": "dev.test.unit",
+    "title": "단위 테스트",
+    "en": "Unit Test",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "테스트",
+    "summary": "함수 같은 작은 단위 하나를 따로 떼어 검증하는 테스트다.",
+    "parent": "be.test.pytest-first",
+    "aliases": [
+      "단위 테스트",
+      "Unit Test"
+    ]
+  },
+  {
+    "id": "dev.test.tdd",
+    "title": "테스트 먼저 쓰기: TDD",
+    "en": "Test-Driven Development",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "테스트",
+    "summary": "실패하는 테스트를 먼저 쓰고 통과시킨 뒤 구조를 다듬는 흐름으로 개발한다.",
+    "objectives": [
+      "작은 기능을 실패-통과-개선 순서로 구현할 수 있다",
+      "AI에게 구현을 맡기기 전에 테스트로 요구를 고정할 수 있다"
+    ],
+    "prerequisites": [
+      "be.test.pytest-first"
+    ],
+    "aliases": [
+      "테스트 먼저 쓰기",
+      "Test-Driven Development",
+      "TDD",
+      "테스트 주도 개발",
+      "레드 그린 리팩터"
+    ],
+    "refs": [
+      "https://martinfowler.com/bliki/TestDrivenDevelopment.html"
+    ]
+  },
+  {
+    "id": "dev.test.integration",
+    "title": "통합 테스트",
+    "en": "Integration Test",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "테스트",
+    "summary": "여러 부품을 함께 돌려 연결이 제대로 동작하는지 보는 테스트다.",
+    "parent": "be.test.testclient",
+    "aliases": [
+      "통합 테스트",
+      "Integration Test"
+    ]
+  },
+  {
+    "id": "dev.test.pyramid",
+    "title": "테스트 비중 정하기: 단위·통합·E2E",
+    "en": "The Test Pyramid",
+    "kind": "topic",
+    "level": 4,
+    "importance": 1,
+    "group": "테스트",
+    "summary": "속도와 신뢰를 따져 어떤 층에서 무엇을 시험할지 나누고 돌리는 시점을 정한다.",
+    "objectives": [
+      "기능마다 어느 층의 테스트가 알맞은지 고를 수 있다",
+      "불안정한 테스트의 원인을 찾아 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "be.test.testclient"
+    ],
+    "aliases": [
+      "테스트 비중 정하기",
+      "The Test Pyramid",
+      "테스트 피라미드",
+      "test pyramid",
+      "E2E",
+      "불안정한 테스트",
+      "flaky test"
+    ],
+    "refs": [
+      "https://martinfowler.com/articles/practical-test-pyramid.html"
+    ]
+  },
+  {
+    "id": "dev.test.coverage-meaning",
+    "title": "커버리지를 제대로 읽기",
+    "en": "Reading Test Coverage",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "테스트",
+    "summary": "숫자가 높아도 버그가 남는 이유를 알고 빠진 경우를 찾는 데 쓴다.",
+    "objectives": [
+      "커버리지 보고서에서 빠진 분기를 찾아 테스트를 더할 수 있다",
+      "커버리지 기준을 CI에 넣되 숫자만 쫓는 문제를 피할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.test.pyramid"
+    ],
+    "aliases": [
+      "커버리지를 제대로 읽기",
+      "Reading Test Coverage",
+      "커버리지",
+      "coverage",
+      "pytest-cov",
+      "분기 커버리지"
+    ],
+    "refs": [
+      "https://coverage.readthedocs.io/en/latest/",
+      "https://martinfowler.com/bliki/TestCoverage.html"
+    ]
+  },
+  {
+    "id": "dev.test.e2e",
+    "title": "E2E 테스트",
+    "en": "End-to-End Test",
+    "kind": "term",
+    "level": 4,
+    "importance": 1,
+    "group": "테스트",
+    "summary": "실제 사용자처럼 화면부터 DB까지 전 과정을 시험하는 테스트다.",
+    "parent": "dev.test.pyramid",
+    "aliases": [
+      "E2E 테스트",
+      "End-to-End Test"
+    ]
+  },
+  {
+    "id": "dev.test.flaky",
+    "title": "불안정한 테스트",
+    "en": "Flaky Test",
+    "kind": "term",
+    "level": 4,
+    "importance": 1,
+    "group": "테스트",
+    "summary": "코드가 그대로인데 어떤 때는 통과하고 어떤 때는 실패하는 테스트다.",
+    "parent": "dev.test.pyramid",
+    "aliases": [
+      "불안정한 테스트",
+      "Flaky Test"
+    ]
+  },
+  {
+    "id": "dev.test.coverage",
+    "title": "커버리지",
+    "en": "Test Coverage",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "테스트",
+    "summary": "테스트가 실행한 코드의 비율이다.",
+    "parent": "dev.test.coverage-meaning",
+    "aliases": [
+      "커버리지",
+      "Test Coverage"
+    ]
+  }
+]

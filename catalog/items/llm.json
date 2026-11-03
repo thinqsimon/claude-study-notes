@@ -1,0 +1,242 @@
+[
+  {
+    "id": "llm.basics.what-is-llm",
+    "title": "LLM이 답을 만드는 원리",
+    "en": "How an LLM Produces Answers",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "LLM 기초",
+    "summary": "LLM은 지금까지의 글을 보고 다음에 올 글자 조각을 예측해 이어 붙여 답을 만든다.",
+    "objectives": [
+      "자동 완성에 빗대어 LLM의 동작을 설명할 수 있다",
+      "LLM이 틀린 내용을 그럴듯하게 말하는 이유를 말할 수 있다"
+    ],
+    "aliases": [
+      "LLM은 어떻게 답을 만드나",
+      "How an LLM Produces Answers",
+      "LLM",
+      "대규모 언어 모델",
+      "챗GPT 원리",
+      "할루시네이션",
+      "환각"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter1/4"
+    ]
+  },
+  {
+    "id": "llm.basics.llm",
+    "title": "LLM",
+    "en": "Large Language Model",
+    "kind": "term",
+    "level": 1,
+    "importance": 1,
+    "group": "LLM 기초",
+    "summary": "많은 글을 학습해 다음에 올 말을 예측하는 언어 모델이다.",
+    "parent": "llm.basics.what-is-llm",
+    "aliases": [
+      "LLM",
+      "Large Language Model"
+    ]
+  },
+  {
+    "id": "llm.basics.hallucination",
+    "title": "할루시네이션",
+    "en": "Hallucination",
+    "kind": "term",
+    "level": 1,
+    "importance": 1,
+    "group": "LLM 기초",
+    "summary": "LLM이 사실이 아닌 내용을 그럴듯하게 지어내는 현상이다.",
+    "parent": "llm.basics.what-is-llm",
+    "aliases": [
+      "할루시네이션",
+      "Hallucination",
+      "환각"
+    ]
+  },
+  {
+    "id": "llm.basics.token-context",
+    "title": "토큰과 컨텍스트 창",
+    "en": "Tokens and the Context Window",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "LLM 기초",
+    "summary": "LLM은 글을 토큰으로 나눠 읽고 한 번에 볼 수 있는 양이 정해져 있어 비용과 답변에 영향을 준다.",
+    "objectives": [
+      "글을 토큰으로 세어 대략의 비용을 계산할 수 있다",
+      "대화가 길어지면 생기는 문제를 예제로 보일 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.what-is-llm"
+    ],
+    "aliases": [
+      "토큰과 컨텍스트 창",
+      "Tokens and the Context Window",
+      "토큰",
+      "token",
+      "컨텍스트 창",
+      "context window",
+      "입력 토큰",
+      "출력 토큰"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/token-counting",
+      "https://platform.claude.com/docs/en/about-claude/models/overview"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-03"
+  },
+  {
+    "id": "llm.api.first-call",
+    "title": "LLM API로 첫 답변 받기",
+    "en": "Your First LLM API Call",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "LLM API",
+    "summary": "API 키를 설정하고 시스템·사용자 메시지를 보내 답변과 사용량을 받는다.",
+    "objectives": [
+      "환경 변수로 키를 설정해 LLM API를 호출할 수 있다",
+      "시스템 메시지를 바꿔 답변이 달라지는 것을 보일 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.token-context",
+      "be.security.env-file",
+      "be.python.functions"
+    ],
+    "aliases": [
+      "LLM API로 첫 답변 받기",
+      "Your First LLM API Call",
+      "LLM API",
+      "chat completions",
+      "messages API",
+      "시스템 프롬프트",
+      "system message",
+      "ChatOpenAI",
+      "init_chat_model"
+    ],
+    "refs": [
+      "https://platform.openai.com/docs/guides/text",
+      "https://platform.claude.com/docs/en/get-started",
+      "https://docs.langchain.com/oss/python/langchain/models"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-03"
+  },
+  {
+    "id": "llm.basics.token",
+    "title": "토큰",
+    "en": "Token",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "LLM 기초",
+    "summary": "LLM이 글을 나눠 처리하는 단위로, 사용량과 비용의 기준이 된다.",
+    "parent": "llm.basics.token-context",
+    "aliases": [
+      "토큰",
+      "Token"
+    ]
+  },
+  {
+    "id": "llm.basics.context-window",
+    "title": "컨텍스트 창",
+    "en": "Context Window",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "LLM 기초",
+    "summary": "LLM이 한 번의 요청에서 입력과 출력을 합쳐 다룰 수 있는 토큰의 한계다.",
+    "parent": "llm.basics.token-context",
+    "aliases": [
+      "컨텍스트 창",
+      "Context Window"
+    ]
+  },
+  {
+    "id": "llm.api.system-prompt",
+    "title": "시스템 프롬프트",
+    "en": "System Prompt",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "LLM API",
+    "summary": "모델의 역할과 규칙을 정해 주는 지시문이다.",
+    "parent": "llm.api.first-call",
+    "aliases": [
+      "시스템 프롬프트",
+      "System Prompt"
+    ]
+  },
+  {
+    "id": "llm.tools.function-calling",
+    "title": "Function Calling: LLM에게 도구 쥐여 주기",
+    "en": "Function Calling",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "도구 호출",
+    "summary": "LLM이 어떤 함수를 어떤 값으로 부를지 답하면 내 코드가 실행하고 결과를 돌려주는 흐름이다.",
+    "objectives": [
+      "도구의 이름·설명·입력 형식을 정의해 모델에 넘길 수 있다",
+      "도구 호출 요청을 실행하고 결과를 돌려주는 반복문을 구현할 수 있다",
+      "모델이 고른 인자를 그대로 믿지 않고 검증할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.first-call",
+      "be.python.type-hints",
+      "be.python.json"
+    ],
+    "aliases": [
+      "Function Calling",
+      "함수 호출",
+      "도구 호출",
+      "tool use",
+      "tool calling",
+      "bind_tools",
+      "tools",
+      "tool_calls",
+      "@tool"
+    ],
+    "refs": [
+      "https://platform.openai.com/docs/guides/function-calling",
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview",
+      "https://docs.langchain.com/oss/python/langchain/tools"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-03"
+  },
+  {
+    "id": "llm.tools.tool-schema",
+    "title": "도구 스키마",
+    "en": "Tool Schema",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "도구 호출",
+    "summary": "도구의 이름과 설명, 입력 형식을 JSON 스키마로 적은 정의다.",
+    "parent": "llm.tools.function-calling",
+    "aliases": [
+      "도구 스키마",
+      "Tool Schema"
+    ]
+  },
+  {
+    "id": "llm.tools.tool-call",
+    "title": "도구 호출",
+    "en": "Tool Call",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "도구 호출",
+    "summary": "모델이 어떤 도구를 어떤 값으로 실행해 달라고 돌려주는 응답이다.",
+    "parent": "llm.tools.function-calling",
+    "aliases": [
+      "도구 호출",
+      "Tool Call"
+    ]
+  }
+]
