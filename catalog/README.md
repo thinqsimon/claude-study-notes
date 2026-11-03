@@ -118,6 +118,8 @@ python3 -I catalog/tools/catalog.py lint-note <노트.md>  # 개념노트 규칙
 
 ## 버전
 
+`broad_names.json`에는 뜻이 여러 개이거나 어디에나 나오는 이름을 모은다. 후보를 찾을 때 세지 않으므로, 별칭을 더하거나 오탐을 만나면 이 파일도 함께 본다. 주제의 제목은 넣을 수 없다.
+
 `build`는 `dist/`와 함께 스킬에 넣는 `skills/study-notes/catalog.json`도 만든다. 스킬은 폴더만 복사해 설치해도 돌아야 하기 때문이다. 항목을 고치면 `build`를 실행해 함께 커밋한다. 노트 검사 코드는 스킬의 `scripts/concepts.py`에 있다.
 
 `VERSION`은 스킬 버전과 따로 올린다. 각 노트는 쓸 때의 사전 버전을 기록한다.

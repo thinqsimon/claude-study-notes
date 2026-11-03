@@ -66,7 +66,28 @@ def load_catalog(root: Path = CATALOG_ROOT) -> dict:
         for order, item in enumerate(read_json(path)):
             items.append({**item, "_domain": domain["prefix"], "_order": order})
     version = (root / "VERSION").read_text(encoding="utf-8").strip()
-    return {"version": version, "domains": domains, "levels": levels, "items": items}
+    catalog = {"version": version, "domains": domains, "levels": levels, "items": items}
+    catalog["broad_names"] = load_broad_names(root)
+    return catalog
+
+
+def load_broad_names(root: Path) -> list[str]:
+    """뜻이 넓어 후보 찾기에서 세지 않는 이름. 파일이 없으면 빈 목록이다."""
+    path = root / "broad_names.json"
+    return read_json(path)["names"] if path.exists() else []
+
+
+def check_broad_names(catalog: dict) -> list[str]:
+    """넓은 이름에 항목의 제목이 섞이면 그 항목을 찾을 수 없게 된다. 오타로 안 쓰이는 이름도 잡는다."""
+    errors = []
+    names: set[str] = set()
+    for item in catalog["items"]:
+        titles = {item["title"].lower(), item["en"].lower()}
+        names |= titles | {alias.lower() for alias in item["aliases"]}
+        if item["kind"] == "topic":
+            errors += [f"{item['id']}: 제목이 넓은 이름 목록에 있다: {t}" for t in titles & set(catalog.get("broad_names", []))]
+    errors += [f"넓은 이름 목록의 {name}은 어느 항목에도 없다" for name in catalog.get("broad_names", []) if name not in names]
+    return errors
 
 
 def clean_item(item: dict) -> dict:
@@ -214,6 +235,7 @@ def check_catalog(catalog: dict) -> tuple[list[str], list[str]]:
     for item in items:
         if item["importance"] == 3 and dependents[item["id"]] >= UNDERRATED_DEPENDENTS:
             warnings.append(f"{item['id']}: 선택(★)인데 {dependents[item['id']]}개 항목의 선수 개념이다. 중요도를 다시 볼 것")
+    errors += check_broad_names(catalog)
     return errors, warnings
 
 
@@ -335,6 +357,7 @@ def build_outputs(catalog: dict) -> dict[str, str]:
         "version": catalog["version"],
         "domains": catalog["domains"],
         "levels": catalog["levels"],
+        "broad_names": catalog.get("broad_names", []),
         "items": [{**clean_item(item), "domain": item["_domain"]} for item in catalog["items"]],
     }
     outputs["catalog.json"] = json.dumps(payload, ensure_ascii=False, indent=1) + "\n"

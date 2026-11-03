@@ -156,8 +156,12 @@ def _name_pattern(name: str) -> re.Pattern:
 
 
 def find_candidates(text: str, catalog: dict, level: int, used, limit: int = CANDIDATE_LIMIT) -> dict:
-    """대화에 이름이 나온 주제를 찾는다. 용어가 나오면 그 용어를 가르치는 주제의 점수로 친다."""
+    """대화에 이름이 나온 주제를 찾는다. 용어가 나오면 그 용어를 가르치는 주제의 점수로 친다.
+
+    "세션"이나 commit처럼 뜻이 넓은 이름(broad_names)은 세지 않는다. 그 개념을 다뤘다는 근거가 못 된다.
+    """
     haystack = _normalize(text)
+    broad = {_normalize(name) for name in catalog.get("broad_names", [])}
     by_id = {item["id"]: item for item in catalog["items"]}
     hits: Counter = Counter()
     matched: dict[str, set] = {}
@@ -167,7 +171,7 @@ def find_candidates(text: str, catalog: dict, level: int, used, limit: int = CAN
             continue
         names = {_normalize(n).strip() for n in (item["title"], item["en"], *item.get("aliases", []))}
         for name in names:
-            if len(name) < 2 or name not in haystack:
+            if len(name) < 2 or name in broad or name not in haystack:
                 continue
             count = len(_name_pattern(name).findall(haystack))
             if count:

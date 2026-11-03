@@ -592,6 +592,13 @@ class MatchingTest(unittest.TestCase):
     def ids(self, text, used=()):
         return [c["id"] for c in concepts.find_candidates(text, self.catalog, 3, used)["candidates"]]
 
+    def test_broad_names_are_not_counted(self):
+        catalog = {**self.catalog, "broad_names": ["api", "캐시"]}
+        ids = lambda text: [c["id"] for c in concepts.find_candidates(text, catalog, 3, {})["candidates"]]
+        self.assertEqual(ids("api 캐시 얘기"), [])
+        self.assertEqual(ids("API 만들기를 배운다"), ["x.a.api"])    # 제목이 나오면 찾는다
+        self.assertEqual(ids("TTL을 짧게 했다"), ["x.a.cache"])
+
     def test_english_needs_word_boundary(self):
         self.assertEqual(self.ids("rapid capital"), [])
         self.assertEqual(self.ids("REST api를 만들었다"), ["x.a.api"])
@@ -611,6 +618,45 @@ class MatchingTest(unittest.TestCase):
     def test_other_levels_are_counted(self):
         out = concepts.find_candidates("심화 캐시", self.catalog, 3, {})
         self.assertEqual(out["other_levels"], {"5": 1})
+
+
+class RealCatalogMatchingTest(unittest.TestCase):
+    """실제 대화에서 나온 오탐을 고정한다."""
+
+    def ids(self, text, level):
+        catalog = concepts.load_catalog()
+        return [c["id"] for c in concepts.find_candidates(text, catalog, level, {})["candidates"]]
+
+    def test_homonyms_do_not_make_candidates(self):
+        texts = {
+            3: "이 세션을 다시 열었어요. session id는 없습니다. 스크립트를 실행하고 인코딩해서 보내요. 태그를 붙이고 v1.5를 썼어요.",
+            4: "git commit 하고 origin/main에 올렸어요. 포크(fork)도 했고 rollback도 했어요.",
+            2: "JWT 말고 토큰이라고만 말했어요. 테스트 하실 분이 있어요. 체크리스트와 리포트를 봤어요.",
+        }
+        unwanted = {
+            3: {"be.auth.session-cookie", "be.python.cli-pathlib", "be.python.unicode", "be.rest.openapi-docs", "be.rest.versioning"},
+            4: {"be.arch.transaction-boundary", "be.http.cors", "be.arch.reusable-starter"},
+            2: {"llm.basics.token-context", "be.test.pytest-first"},
+        }
+        for level, text in texts.items():
+            with self.subTest(level=level):
+                self.assertFalse(unwanted[level] & set(self.ids(text, level)), self.ids(text, level))
+
+    def test_real_discussions_are_still_found(self):
+        cases = [
+            ("세션 쿠키로 로그인을 만들었어요. 세션 방식과 JWT를 비교합니다.", 3, "be.auth.session-cookie"),
+            ("JWT 로그인을 구현했어요.", 3, "be.auth.jwt-flow"),
+            ("인증과 인가의 차이를 배웠어요.", 3, "be.auth.authn-authz"),
+            ("입력 검증에서 422가 났어요.", 3, "be.fastapi.validation"),
+            ("문자 인코딩 때문에 한글 깨짐이 생겼어요.", 3, "be.python.unicode"),
+            ("입력 토큰과 컨텍스트 창을 봤어요.", 2, "llm.basics.token-context"),
+            ("트랜잭션을 어디서 묶을까요?", 4, "be.arch.transaction-boundary"),
+            ("CORS 오류가 났어요.", 4, "be.http.cors"),
+            ("pytest로 테스트 코드를 썼어요.", 2, "be.test.pytest-first"),
+        ]
+        for text, level, wanted in cases:
+            with self.subTest(wanted=wanted):
+                self.assertIn(wanted, self.ids(text, level))
 
 
 class PackagingTest(unittest.TestCase):

@@ -100,7 +100,8 @@
       "포트",
       "port",
       "127.0.0.1",
-      "8000번 포트"
+      "8000번 포트",
+      "포트 번호"
     ]
   },
   {
@@ -1078,7 +1079,9 @@
       "테스트",
       "assert",
       "단위 테스트",
-      "unit test"
+      "unit test",
+      "테스트 코드",
+      "테스트 작성"
     ],
     "refs": [
       "https://docs.pytest.org/en/stable/getting-started.html"
@@ -2251,7 +2254,9 @@
       "validation",
       "422",
       "Query",
-      "Path"
+      "Path",
+      "입력 검증",
+      "입력값 검증"
     ],
     "refs": [
       "https://fastapi.tiangolo.com/tutorial/query-params-str-validations/",
@@ -2475,7 +2480,9 @@
       "from_attributes",
       "model_dump",
       "exclude_unset",
-      "model_fields_set"
+      "model_fields_set",
+      "응답 모델",
+      "입력 모델"
     ],
     "refs": [
       "https://fastapi.tiangolo.com/tutorial/extra-models/",
@@ -2536,7 +2543,10 @@
       "인가",
       "authentication",
       "authorization",
-      "권한"
+      "권한",
+      "인증과 인가",
+      "인증 인가",
+      "인가 검사"
     ],
     "refs": [
       "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html",
@@ -2640,7 +2650,9 @@
       "역할 기반 접근 제어",
       "권한 검사",
       "관리자",
-      "소유자 검사"
+      "소유자 검사",
+      "관리자 권한",
+      "관리자만"
     ],
     "refs": [
       "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html"
@@ -3104,7 +3116,12 @@
       "session",
       "세션 쿠키",
       "HttpOnly",
-      "Secure"
+      "Secure",
+      "세션과 쿠키",
+      "세션 로그인",
+      "세션 기반",
+      "세션 방식",
+      "session cookie"
     ],
     "refs": [
       "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
@@ -3265,7 +3282,8 @@
       "API Versioning",
       "API 버저닝",
       "v1",
-      "하위 호환"
+      "하위 호환",
+      "API 버전"
     ],
     "refs": [
       "https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design#implement-versioning"
@@ -3705,7 +3723,9 @@
       "NFC",
       "NFD",
       "한글 깨짐",
-      "unicodedata"
+      "unicodedata",
+      "문자 인코딩",
+      "한글 인코딩"
     ],
     "refs": [
       "https://docs.python.org/3/howto/unicode.html"
@@ -3767,7 +3787,9 @@
       "SMTP",
       "이메일",
       "SES",
-      "Resend"
+      "Resend",
+      "이메일 발송",
+      "메일 보내"
     ],
     "refs": [
       "https://docs.python.org/3/library/smtplib.html",
@@ -3892,7 +3914,9 @@
       "pathlib",
       "CLI",
       "명령줄",
-      "스크립트"
+      "스크립트",
+      "파이썬 스크립트",
+      "명령줄 도구"
     ],
     "refs": [
       "https://docs.python.org/3/howto/argparse.html",
@@ -5008,7 +5032,8 @@
       "commit",
       "rollback",
       "유닛 오브 워크",
-      "unit of work"
+      "unit of work",
+      "트랜잭션"
     ],
     "refs": [
       "https://martinfowler.com/eaaCatalog/unitOfWork.html",

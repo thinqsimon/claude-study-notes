@@ -1,5 +1,5 @@
 {
- "version": "0.2.0",
+ "version": "0.2.1",
  "domains": [
   {
    "prefix": "dev",
@@ -118,6 +118,106 @@
     "term": 400
    }
   }
+ ],
+ "broad_names": [
+  "세션",
+  "검증",
+  "관리자",
+  "권한",
+  "인증",
+  "인가",
+  "스크립트",
+  "인코딩",
+  "태그",
+  "토큰",
+  "스키마",
+  "의존성",
+  "이메일",
+  "출처",
+  "도메인",
+  "자원",
+  "리소스",
+  "필터",
+  "배치",
+  "노드",
+  "스코프",
+  "메서드",
+  "재현",
+  "합성",
+  "참조",
+  "사가",
+  "포트",
+  "집합",
+  "테스트",
+  "워커",
+  "정렬",
+  "accept",
+  "authorization",
+  "batch",
+  "class",
+  "client",
+  "commit",
+  "cursor",
+  "delete",
+  "domain",
+  "field",
+  "fork",
+  "form",
+  "function",
+  "get",
+  "header",
+  "import",
+  "instance",
+  "limit",
+  "list",
+  "method",
+  "module",
+  "none",
+  "object",
+  "offset",
+  "open",
+  "optional",
+  "origin",
+  "package",
+  "patch",
+  "path",
+  "post",
+  "put",
+  "query",
+  "raise",
+  "recall",
+  "request",
+  "requests",
+  "resource",
+  "response",
+  "rest",
+  "return",
+  "rollback",
+  "schema",
+  "scope",
+  "secret",
+  "secure",
+  "self",
+  "server",
+  "session",
+  "set",
+  "shutdown",
+  "sorted",
+  "span",
+  "split",
+  "startup",
+  "string",
+  "strip",
+  "summary",
+  "tags",
+  "token",
+  "tools",
+  "union",
+  "variable",
+  "vector",
+  "worker",
+  "zip",
+  "v1"
  ],
  "items": [
   {
@@ -392,7 +492,8 @@
     "포트",
     "port",
     "127.0.0.1",
-    "8000번 포트"
+    "8000번 포트",
+    "포트 번호"
    ],
    "domain": "be"
   },
@@ -1411,7 +1512,9 @@
     "테스트",
     "assert",
     "단위 테스트",
-    "unit test"
+    "unit test",
+    "테스트 코드",
+    "테스트 작성"
    ],
    "refs": [
     "https://docs.pytest.org/en/stable/getting-started.html"
@@ -2644,7 +2747,9 @@
     "validation",
     "422",
     "Query",
-    "Path"
+    "Path",
+    "입력 검증",
+    "입력값 검증"
    ],
    "refs": [
     "https://fastapi.tiangolo.com/tutorial/query-params-str-validations/",
@@ -2875,7 +2980,9 @@
     "from_attributes",
     "model_dump",
     "exclude_unset",
-    "model_fields_set"
+    "model_fields_set",
+    "응답 모델",
+    "입력 모델"
    ],
    "refs": [
     "https://fastapi.tiangolo.com/tutorial/extra-models/",
@@ -2938,7 +3045,10 @@
     "인가",
     "authentication",
     "authorization",
-    "권한"
+    "권한",
+    "인증과 인가",
+    "인증 인가",
+    "인가 검사"
    ],
    "refs": [
     "https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html",
@@ -3045,7 +3155,9 @@
     "역할 기반 접근 제어",
     "권한 검사",
     "관리자",
-    "소유자 검사"
+    "소유자 검사",
+    "관리자 권한",
+    "관리자만"
    ],
    "refs": [
     "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html"
@@ -3524,7 +3636,12 @@
     "session",
     "세션 쿠키",
     "HttpOnly",
-    "Secure"
+    "Secure",
+    "세션과 쿠키",
+    "세션 로그인",
+    "세션 기반",
+    "세션 방식",
+    "session cookie"
    ],
    "refs": [
     "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
@@ -3690,7 +3807,8 @@
     "API Versioning",
     "API 버저닝",
     "v1",
-    "하위 호환"
+    "하위 호환",
+    "API 버전"
    ],
    "refs": [
     "https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design#implement-versioning"
@@ -4145,7 +4263,9 @@
     "NFC",
     "NFD",
     "한글 깨짐",
-    "unicodedata"
+    "unicodedata",
+    "문자 인코딩",
+    "한글 인코딩"
    ],
    "refs": [
     "https://docs.python.org/3/howto/unicode.html"
@@ -4209,7 +4329,9 @@
     "SMTP",
     "이메일",
     "SES",
-    "Resend"
+    "Resend",
+    "이메일 발송",
+    "메일 보내"
    ],
    "refs": [
     "https://docs.python.org/3/library/smtplib.html",
@@ -4338,7 +4460,9 @@
     "pathlib",
     "CLI",
     "명령줄",
-    "스크립트"
+    "스크립트",
+    "파이썬 스크립트",
+    "명령줄 도구"
    ],
    "refs": [
     "https://docs.python.org/3/howto/argparse.html",
@@ -5517,7 +5641,8 @@
     "commit",
     "rollback",
     "유닛 오브 워크",
-    "unit of work"
+    "unit of work",
+    "트랜잭션"
    ],
    "refs": [
     "https://martinfowler.com/eaaCatalog/unitOfWork.html",
@@ -8518,7 +8643,10 @@
     "컨텍스트 창",
     "context window",
     "입력 토큰",
-    "출력 토큰"
+    "출력 토큰",
+    "토큰 수",
+    "토큰 비용",
+    "토큰 사용량"
    ],
    "refs": [
     "https://platform.claude.com/docs/en/build-with-claude/token-counting",

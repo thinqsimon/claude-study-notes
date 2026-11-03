@@ -80,7 +80,10 @@
       "컨텍스트 창",
       "context window",
       "입력 토큰",
-      "출력 토큰"
+      "출력 토큰",
+      "토큰 수",
+      "토큰 비용",
+      "토큰 사용량"
     ],
     "refs": [
       "https://platform.claude.com/docs/en/build-with-claude/token-counting",

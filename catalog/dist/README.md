@@ -1,6 +1,6 @@
 # AX 풀스택 개념사전
 
-사전 버전 0.2.0. 이 폴더의 파일은 `catalog/tools/catalog.py build`가 만든다. 직접 고치지 말고 `catalog/items/`를 고친다.
+사전 버전 0.2.1. 이 폴더의 파일은 `catalog/tools/catalog.py build`가 만든다. 직접 고치지 말고 `catalog/items/`를 고친다.
 
 | 단계 | 대상 | 배우고 나면 | 주제 | 용어 |
 |---|---|---|---|---|
