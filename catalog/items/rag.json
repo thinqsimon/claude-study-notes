@@ -1,0 +1,200 @@
+[
+  {
+    "id": "rag.embedding.meaning-as-numbers",
+    "title": "임베딩: 글의 뜻을 숫자로 바꾸기",
+    "en": "Embeddings",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "임베딩",
+    "summary": "뜻이 비슷한 글이 가까운 좌표에 놓이도록 글을 숫자 묶음으로 바꾸는 방법이다.",
+    "objectives": [
+      "임베딩이 필요한 이유를 지도 좌표에 빗대어 설명할 수 있다",
+      "키워드 검색과 의미 검색의 차이를 예를 들어 말할 수 있다"
+    ],
+    "aliases": [
+      "임베딩",
+      "embedding",
+      "의미 검색",
+      "semantic search"
+    ],
+    "refs": [
+      "https://platform.openai.com/docs/guides/embeddings"
+    ]
+  },
+  {
+    "id": "rag.embedding.similarity-search",
+    "title": "코사인 유사도로 비슷한 문장 찾기",
+    "en": "Similarity Search with Cosine Similarity",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "임베딩",
+    "summary": "문장을 벡터로 바꾼 뒤 벡터 사이의 각도로 뜻이 가까운 문장을 찾는다.",
+    "objectives": [
+      "임베딩 API로 문장을 벡터로 바꿀 수 있다",
+      "코사인 유사도로 가장 비슷한 문장을 찾는 코드를 따라 만들 수 있다"
+    ],
+    "prerequisites": [
+      "rag.embedding.meaning-as-numbers"
+    ],
+    "aliases": [
+      "코사인 유사도",
+      "cosine similarity",
+      "유사도 검색",
+      "similarity search"
+    ],
+    "refs": [
+      "https://platform.openai.com/docs/guides/embeddings",
+      "https://platform.claude.com/docs/en/build-with-claude/embeddings"
+    ]
+  },
+  {
+    "id": "rag.embedding.vector",
+    "title": "벡터",
+    "en": "Vector",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "임베딩",
+    "summary": "순서가 있는 숫자 묶음으로, 임베딩은 문장을 이런 묶음으로 바꾼다.",
+    "parent": "rag.embedding.similarity-search",
+    "aliases": [
+      "벡터",
+      "vector"
+    ]
+  },
+  {
+    "id": "rag.vector-db.basics",
+    "title": "벡터 DB로 문서 검색 만들기",
+    "en": "Document Search with a Vector Database",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "벡터 DB",
+    "summary": "문서를 조각내 벡터로 저장하고 질문과 가까운 조각을 찾아 돌려준다.",
+    "objectives": [
+      "문서를 조각내 pgvector에 저장하고 질문과 가까운 조각을 찾을 수 있다",
+      "조각 크기를 바꿔 가며 검색 결과의 차이를 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.embedding.similarity-search"
+    ],
+    "aliases": [
+      "벡터 DB",
+      "벡터 데이터베이스",
+      "vector database",
+      "pgvector",
+      "청킹",
+      "chunking"
+    ],
+    "refs": [
+      "https://github.com/pgvector/pgvector"
+    ]
+  },
+  {
+    "id": "rag.vector-db.chunk",
+    "title": "청크",
+    "en": "Chunk",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "벡터 DB",
+    "summary": "검색하기 좋게 긴 문서를 잘라 만든 조각이다.",
+    "parent": "rag.vector-db.basics",
+    "aliases": [
+      "청크",
+      "chunk",
+      "문서 조각"
+    ]
+  },
+  {
+    "id": "rag.retrieval.quality",
+    "title": "RAG 검색 품질 개선",
+    "en": "Improving RAG Retrieval Quality",
+    "kind": "topic",
+    "level": 4,
+    "importance": 1,
+    "group": "RAG",
+    "summary": "검색 실패의 원인을 가려내고 하이브리드 검색과 재순위로 정확도를 높인다.",
+    "objectives": [
+      "검색 실패 원인을 조각·임베딩·질의 중에서 가려낼 수 있다",
+      "키워드 검색과 벡터 검색을 결합하고 재순위를 적용할 수 있다",
+      "검색 품질을 평가 지표로 재서 개선 여부를 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.vector-db.basics"
+    ],
+    "aliases": [
+      "검색 품질",
+      "하이브리드 검색",
+      "hybrid search",
+      "재순위",
+      "reranking",
+      "리랭킹"
+    ],
+    "refs": [
+      "https://www.anthropic.com/engineering/contextual-retrieval"
+    ]
+  },
+  {
+    "id": "rag.retrieval.reranking",
+    "title": "재순위",
+    "en": "Reranking",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "RAG",
+    "summary": "먼저 찾은 후보를 더 정밀한 모델로 다시 점수 매겨 순서를 바꾸는 단계다.",
+    "parent": "rag.retrieval.quality",
+    "aliases": [
+      "재순위",
+      "리랭킹",
+      "reranking",
+      "reranker"
+    ]
+  },
+  {
+    "id": "rag.vector-index.internals",
+    "title": "벡터 인덱스의 내부: HNSW와 IVF",
+    "en": "Vector Index Internals",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "벡터 DB",
+    "summary": "근사 검색의 원리와 파라미터가 재현율·지연·메모리에 주는 손익을 다룬다.",
+    "objectives": [
+      "HNSW의 탐색 원리를 설명하고 파라미터가 재현율과 지연에 주는 영향을 따질 수 있다",
+      "데이터 규모와 갱신 빈도에 맞는 인덱스를 근거를 들어 고를 수 있다"
+    ],
+    "prerequisites": [
+      "rag.vector-db.basics"
+    ],
+    "aliases": [
+      "HNSW",
+      "IVF",
+      "근사 최근접 탐색",
+      "ANN",
+      "벡터 인덱스"
+    ],
+    "refs": [
+      "https://arxiv.org/abs/1603.09320",
+      "https://github.com/pgvector/pgvector"
+    ]
+  },
+  {
+    "id": "rag.vector-index.recall",
+    "title": "재현율",
+    "en": "Recall",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "벡터 DB",
+    "summary": "찾아야 할 항목을 검색 결과가 얼마나 빠뜨리지 않고 찾았는지 나타내는 비율이다.",
+    "parent": "rag.vector-index.internals",
+    "aliases": [
+      "재현율",
+      "recall"
+    ]
+  }
+]

@@ -1,0 +1,12 @@
+[
+  {"prefix": "dev", "name": "개발 기초·협업", "covers": "컴퓨팅 사고, 자료구조와 알고리즘, 터미널, Git, 테스트 일반, 협업"},
+  {"prefix": "fe", "name": "웹 프론트엔드", "covers": "HTML, CSS, JavaScript, TypeScript, React, Next.js, 상태 관리, 스트리밍 UI, 접근성, 성능"},
+  {"prefix": "be", "name": "백엔드·API", "covers": "Python, HTTP, REST, FastAPI, 인증과 인가, 에러 처리, 비동기, 웹 보안, API 테스트"},
+  {"prefix": "db", "name": "데이터베이스·데이터", "covers": "SQL, 데이터 모델링, 트랜잭션, 인덱스, ORM과 마이그레이션, 캐시와 NoSQL, 데이터 파이프라인"},
+  {"prefix": "ops", "name": "인프라·클라우드·DevOps", "covers": "리눅스, 네트워크, Docker, CI/CD, 클라우드, 배포, 모니터링, Kubernetes"},
+  {"prefix": "ml", "name": "AI·머신러닝·딥러닝 기초", "covers": "데이터 전처리, 지도·비지도 학습, 평가 지표, 신경망, 트랜스포머"},
+  {"prefix": "llm", "name": "LLM·생성형 AI·프롬프트", "covers": "토큰과 컨텍스트, 모델 선택, 프롬프트 설계, 구조화 출력, 스트리밍, 비용"},
+  {"prefix": "rag", "name": "RAG·에이전트·오케스트레이션", "covers": "임베딩, 벡터 DB, RAG, LangChain과 LangGraph, 도구 호출, 에이전트, MCP"},
+  {"prefix": "mlops", "name": "LLMOps·MLOps", "covers": "평가, 관측, 프롬프트 관리, 파인튜닝, 모델 서빙, 가드레일 운영"},
+  {"prefix": "ax", "name": "AX 실무·보안·윤리", "covers": "AI 코딩 에이전트 활용, AI 생성 코드 리뷰, AI 서비스 기획, 개인정보, AI 규제, 비용 관리"}
+]
