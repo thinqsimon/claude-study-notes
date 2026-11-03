@@ -17,8 +17,9 @@ MAX_TOPICS_PER_NOTE = 5
 CANDIDATE_LIMIT = 20
 STARS = {1: "★★★", 2: "★★", 3: "★"}
 # 학습장 앱 앞단(Cloudflare)이 명령 주입으로 보고 업로드를 403으로 막는 모양. 2026-11-03에 운영에서 시험해 찾았다.
-# 백틱·파이프·세미콜론 바로 뒤의 명령이 걸리고, 명령 이름만 쓴 `curl`이나 언어를 지정한 코드 블록은 통과한다.
-UPLOAD_BLOCKED_RE = re.compile(r"[`|;]\s*(?:python\s+-c\b|curl\s+\S|perl\s+-e\b)")
+# 백틱·파이프·세미콜론 뒤, 또는 작은따옴표로 끝난 줄의 바로 다음 줄에 명령이 오면 걸린다.
+# 앞단의 판단이 들쭉날쭉해 통과하는 표기(`curl x`)까지 조금 넓게 잡는다. 다른 규칙이 더 있을 수 있어 전부를 보장하지는 못한다.
+UPLOAD_BLOCKED_RE = re.compile(r"(?:[`|;]\s*|'\n)(?:python\s+-[cm]\b|curl\s+\S|wget\s+\S|perl\s+-e\b)")
 
 NOTE_SECTIONS = (
     "학습 목표", "먼저 알아야 할 것", "왜 필요한가", "핵심 개념", "예제로 이해하기", "비슷한 개념과 차이",
@@ -28,7 +29,7 @@ NOTE_OPTIONAL_LAST = "만난 곳"
 NOTE_MIN_CHARS = {1: 1500, 2: 2500, 3: 4000, 4: 4000, 5: 4000}
 # 노트 본문이 특정 프로젝트나 그때의 대화를 전제하지 않게 막는다. 코드 블록 밖에서만 본다.
 NOTE_BANNED_RE = re.compile(
-    r"이번 대화|이번 작업|이번 실행|이 실행|이 대화|이 프로젝트|우리 프로젝트|우리 앱|우리 서비스|이 저장소|사용자가 (요청|말)|앞서 (말|만든)|"
+    r"이번 대화|이번 작업|이번 실행|이 실행에서|이 대화|이 프로젝트|우리 프로젝트|우리 앱|우리 서비스|이 저장소|사용자가 (요청|말)|앞서 (말|만든)|"
     r"(backend|frontend|harness|scripts|docs|samples)/[\w./-]+"
 )
 NOTE_META_RE = re.compile(r"`개념`\s*([a-z0-9.-]+)")
@@ -267,7 +268,7 @@ def lint_concept_note(text: str, catalog: dict, used) -> list[str]:
     if len(prose) != len(text.splitlines()) and _fence_left_open(text):
         errors.append("닫히지 않은 코드 블록이 있다")
     for found in list(UPLOAD_BLOCKED_RE.finditer(text))[:3]:
-        errors.append(f"학습장 앱 업로드가 막히는 표기다: {found.group(0)!r}. 옵션까지 쓴 명령은 언어를 지정한 코드 블록(```bash)으로 옮긴다")
+        errors.append(f"학습장 앱 업로드가 막히는 표기다: {found.group(0)!r}. 명령은 언어를 지정한 코드 블록(```bash)으로 옮기고, 여러 줄이면 함수로 묶어 줄 앞에 명령이 바로 오지 않게 한다")
     if _toc_has_prose(prose):
         errors.append("목차 아래에는 표만 쓴다. 앱이 목차를 버리므로 다른 글은 사라진다. 환경 설명은 주제의 예제로 옮긴다")
     h1 = next((i for i, line in enumerate(prose) if re.match(r"^# ", line)), None)

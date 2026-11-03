@@ -518,12 +518,17 @@ class ConceptFlowTest(unittest.TestCase):
             "설명 수준": good.replace("> 설명 수준:", "> 수준:"),
             "업로드가 막히는 표기": good.replace("### 핵심 개념\n설명", "### 핵심 개념\n`curl -s https://example.com`으로 확인한다"),
             "목차 아래에는 표만": good.replace("# AX 개념노트 #01", "## 목차\n| # | 주제 |\n|---|---|\n\n예제 환경은 맥이다.\n\n# AX 개념노트 #01", 1),
-            "이 실행": good.replace("### 핵심 개념\n설명", "### 핵심 개념\n이 실행에서는 짧은 키를 썼다"),
+            "이 실행에서": good.replace("### 핵심 개념\n설명", "### 핵심 개념\n이 실행에서는 짧은 키를 썼다"),
         }
         for expected, text in cases.items():
             with self.subTest(expected=expected):
                 self.assertIn(expected, self.commit_error(self.write_note(out, text)))
         self.assertFalse((self.root / "concepts_used.json").exists())
+
+    def test_ordinary_sentence_about_running_is_not_rejected(self):
+        out = self.extract("--level", "3")
+        text = concept_note([self.by_id["be.auth.jwt-flow"]], 3).replace("### 핵심 개념\n설명", "### 핵심 개념\n명령이 실행됩니다.")
+        self.assertEqual(self.commit(self.write_note(out, text))["concepts"], ["be.auth.jwt-flow"])
 
     def test_commit_rejects_wrong_level_term_and_too_many_topics(self):
         out = self.extract("--level", "3")
@@ -554,13 +559,20 @@ class UploadBlockTest(unittest.TestCase):
 
     def test_shapes_blocked_by_the_edge(self):
         for text in ("`python -c ", "`curl -s ", "`curl https://example.com`", "`perl -e ", "|python -c ", "; python -c ",
-                     '```\npython -c "x"\n```'):
+                     '```\npython -c "x"\n```', "`python -m pip`", "| python -m json.tool", "```\npython -m x", "`wget -q ",
+                     "`curl -X POST`", "'\ncurl -s http://x", "'\ncurl http://x", "'\npython -c x", "'\npython -m x",
+                     "'\nwget http://x", "'\nperl -e x",
+                     "curl http://x -d '{\"a\": 1}'\ncurl http://y -d '{\"b\": 2}'"):
             with self.subTest(text=text):
                 self.assertIsNotNone(concepts.UPLOAD_BLOCKED_RE.search(text))
 
     def test_shapes_that_pass_the_edge(self):
         for text in ("`curl`", "`python app.py`", "`python3 -c ", "`bash -c ", "`ls -la`", "`git status`",
-                     '```bash\npython -c "x"\n```', 'python -c "import os"', "&& python -c "):
+                     '```bash\npython -c "x"\n```', 'python -c "import os"', "&& python -c ",
+                     "| python3 -m json.tool", "`python3 -m json.tool`", "'\npython3 -c x", "'\nbash x.sh", "'\nls",
+                     "\ncurl -s http://x", '"\ncurl -s http://x', "'\n\ncurl -s http://x", "x\ncurl -s http://x",
+                     "curl -s http://x\ncurl -s http://y", "-d '{\"a\": 1}'\nreq -X POST http://y",
+                     "'\n   curl -i -X DELETE http://x", '```bash\ncurl -s http://x\n```'):
             with self.subTest(text=text):
                 self.assertIsNone(concepts.UPLOAD_BLOCKED_RE.search(text))
 
