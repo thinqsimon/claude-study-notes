@@ -10,13 +10,19 @@ Claude Code 또는 OpenAI Codex의 세션 기록에서 지난 정리 이후의 �
 
 사용:
   study_notes.py extract --agent claude|codex --cwd PATH [--session ID] [--level N] [--notes-root DIR]
+                         (대화를 잘라내고, 그 대화에 나온 개념 중 이 단계의 사전 항목을 후보로 알려 준다)
+  study_notes.py concept ID [ID ...]   (노트를 쓸 항목의 학습 목표·선수 개념·공식 문서를 보여 준다)
+  study_notes.py candidate --title 이름 [--title 이름 ...] [--cwd PATH] [--notes-root DIR]
+                         (사전에 없는 개념을 후보함에 적는다)
   study_notes.py commit  --agent claude|codex --session ID --file NOTE_MD [--notes-root DIR]
+                         (개념노트를 검사해 등록한다. 통과하지 못하면 오류를 보여 주고 등록하지 않는다)
   study_notes.py status  --agent claude|codex [--cwd PATH] [--session ID] [--notes-root DIR]
   study_notes.py level   [N|이름] [--notes-root DIR]
   study_notes.py cancel  --agent claude|codex [--cwd PATH] [--session ID] [--notes-root DIR]
                          (extract 후 commit 전인 정리를 취소: 미완성 노트·델타 삭제, 체크포인트는 유지)
 
 설명 수준(level)은 1 왕초보 · 2 입문 · 3 기초 · 4 실전 · 5 심화. 고른 값은 <노트 폴더>/settings.json에 기억된다.
+노트 폴더는 기본이 ~/StudyNotes이고, 환경 변수 STUDY_NOTES_ROOT나 --notes-root로 바꿀 수 있다.
 """
 from __future__ import annotations
 
@@ -31,10 +37,17 @@ import sys
 import unicodedata
 from pathlib import Path
 
+# python -I로 실행하면 스크립트 폴더가 경로에 없어 직접 넣는다.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import concepts  # noqa: E402
+
 IS_WINDOWS = os.name == "nt"
 PROJECTS_DIR = Path.home() / ".claude" / "projects"
 CODEX_HOME = Path(os.environ.get("CODEX_HOME") or (Path.home() / ".codex")).expanduser()
-DEFAULT_NOTES_ROOT = Path.home() / "StudyNotes"
+DEFAULT_NOTES_ROOT = Path(os.environ.get("STUDY_NOTES_ROOT") or (Path.home() / "StudyNotes")).expanduser()
+# 개념노트는 특정 프로젝트에 묶이지 않으므로 한 폴더에 모은다. 경로를 다루기 쉽게 공백을 뺀다.
+CONCEPT_FOLDER = "AX개념노트"
+CANDIDATE_FILE = "concept_candidates.md"
 
 TOOL_INPUT_MAX = 300
 TOOL_RESULT_MAX = 500
@@ -392,6 +405,18 @@ def fmt_local(ts: str | None) -> str:
         return ts
 
 
+def spoken_text(recs: list[dict]) -> str:
+    """사람과 AI가 나눈 말만 모은다. 도구 입출력의 코드 속 낱말은 그 개념을 다뤘다는 근거가 못 된다."""
+    parts: list[str] = []
+    for rec in recs:
+        content = rec.get("message", {}).get("content")
+        if isinstance(content, str):
+            parts.append(clean_text(content))
+        elif isinstance(content, list):
+            parts.extend(clean_text(b.get("text", "")) for b in content if isinstance(b, dict) and b.get("type") == "text")
+    return "\n".join(part for part in parts if part)
+
+
 def write_delta_file(path: Path, recs: list[dict], project: str, session: str) -> int:
     path.parent.mkdir(parents=True, exist_ok=True)
     lines = [f"# 정리 대상 대화 (project={project}, session={session[:8]})", ""]
@@ -554,7 +579,13 @@ def cmd_extract(args) -> int:
     recs = collect_delta(jsonl, state, args.agent)
     dpath = delta_path(notes_root, session)
     n = write_delta_file(dpath, recs, project, session)
-    suggested, _ = next_note_path(notes_root, project)
+    suggested, _ = next_note_path(notes_root, CONCEPT_FOLDER)
+    catalog = concepts.load_catalog()
+    if n:
+        found = concepts.find_candidates(spoken_text(recs), catalog, level, concepts.load_used(notes_root))
+    else:
+        found = {"candidates": [], "candidate_total": 0, "other_levels": {}}
+    concept_dir = notes_root / CONCEPT_FOLDER
     out = {
         "agent": args.agent,
         "project": project,
@@ -567,6 +598,9 @@ def cmd_extract(args) -> int:
         "suggested_file": str(suggested),
         "index_path": str(notes_root / "index.md"),
         "run_no": state.get("run_count", 0) + 1,
+        "note_no": (len(list(concept_dir.glob("*.md"))) if concept_dir.exists() else 0) + 1,
+        "catalog_version": catalog["version"],
+        **found,
         **level_info(level),
         "level_source": level_source,
         "pending_last_uuid": recs[-1]["uuid"] if recs else None,
@@ -588,8 +622,8 @@ def cmd_extract(args) -> int:
 
 README_TEXT = """# StudyNotes — AI 대화 학습장
 
-Claude Code(`/study-notes`)와 OpenAI Codex(`$study-notes`)의 study-notes 스킬이 개발 대화에서
-공부할 주제를 골라 교재처럼 다시 설명해 저장하는 곳입니다.
+Claude Code(`/study-notes`)와 OpenAI Codex(`$study-notes`)의 study-notes 스킬이 개발 대화에 나온 개념을
+개념사전에서 찾아 교과서처럼 설명해 저장하는 곳입니다. 한 번 쓴 개념은 다시 쓰지 않습니다.
 
 ## 폴더 구조
 ```
@@ -597,21 +631,24 @@ StudyNotes/
   README.md            이 파일
   index.md             모든 프로젝트의 주제 목록 (자동 갱신)
   settings.json        기억한 설명 수준 (예: {"level": 3})
+  concepts_used.json   이미 쓴 개념 (항목을 지우면 그 개념을 다시 쓸 수 있음)
+  concept_candidates.md  대화에 나왔지만 사전에 없는 개념
   .state/              증분 정리용 체크포인트 (지우면 처음부터 다시 정리됨)
-  <프로젝트명>/        실행 1회마다 <프로젝트명>_YYYY-MM-DD_NN.md 한 파일
+  AX개념노트/          실행 1회마다 AX개념노트_YYYY-MM-DD_NN.md 한 파일
+  <프로젝트명>/        v1 스킬이 만든 예전 노트 (그대로 둡니다)
 ```
 
 ## 노트 파일 구조
-- 맨 위 frontmatter: title / project / level / level_name / session / created / covers / topics
+- 맨 위 frontmatter: title / project / level / level_name / catalog_version / created / topics
 - 제목 끝과 제목 아래 인용문 첫 줄에 설명 수준 (예: `설명 수준: 3단계 기초`)
 - `## N. 주제` 섹션이 학습 단위. 각 섹션은
-  상황 → 왜 필요한가 → 핵심 개념 → 프로젝트 적용 → (문제해결) → 명령어/코드 → 흔한 실수 → 자가 점검 → 더 공부할 것
+  학습 목표 → 먼저 알아야 할 것 → 왜 필요한가 → 핵심 개념 → 예제 → 비슷한 개념과 차이 → 흔한 실수 → 직접 해 보기 → 확인 문제 → 정답 → 공식 문서
 - 일반 Markdown만 사용하므로 VS Code, Obsidian, Typora 어디서나 열립니다.
 
 ## 사용법
 1. 개발하다가 정리하고 싶을 때 Claude Code에서는 `/study-notes`, Codex에서는 `$study-notes` 입력
-2. 다음에 또 입력하면 **지난번 이후 대화만** 새 파일로 정리됩니다
-3. 다른 프로젝트에서도 같은 명령을 쓰면 `<프로젝트명>/` 폴더가 따로 생깁니다
+2. 다음에 또 입력하면 **지난번 이후 대화만** 살펴 새 파일로 정리합니다. 한 번에 주제 3~5개를 씁니다
+3. 사전은 아직 백엔드·API 중심입니다. 대화에 나온 개념이 사전에 없으면 노트를 만들지 않고 후보함에 적습니다
 4. 설명 수준(1 왕초보 · 2 입문 · 3 기초 · 4 실전 · 5 심화)은 처음 실행할 때 한 번 고르면 기억됩니다.
    바꾸려면 `/study-notes 4`, `/study-notes 실전`처럼 붙여 부릅니다 (Codex는 `$study-notes 4`)
 5. 옵션: `/study-notes h` 사용법 · `/study-notes d` 현재 단계와 정리 상태 · `/study-notes s` 진행 중 정리 취소
@@ -756,6 +793,14 @@ def cmd_commit(args) -> int:
     note = Path(args.file).expanduser().resolve()
     if not note.exists():
         raise SystemExit(f"노트 파일이 없습니다: {note}")
+    text = note.read_text(encoding="utf-8")
+    concept_ids: list[str] = []
+    # v1 형식 노트를 다시 등록하는 일이 있어, 개념노트일 때만 검사한다.
+    if note.parent.name == CONCEPT_FOLDER or "catalog_version" in concepts.frontmatter(text):
+        errors = concepts.lint_concept_note(text, concepts.load_catalog(), concepts.load_used(notes_root))
+        if errors:
+            raise SystemExit("노트 검사를 통과하지 못해 등록하지 않았습니다. 고친 뒤 다시 commit 하세요:\n- " + "\n- ".join(errors))
+        concept_ids = concepts.note_concept_ids(text)
     state = load_state(notes_root, session)
     pending = state.pop("_pending", None)
     if not pending or not pending.get("last_uuid"):
@@ -792,12 +837,15 @@ def cmd_commit(args) -> int:
     ]
     with index.open("a", encoding="utf-8") as fh:
         fh.write("\n".join(rows) + ("\n" if rows else ""))
+    if concept_ids:
+        concepts.mark_used(notes_root, concept_ids, rel, date)
 
     dp = delta_path(notes_root, session)
     if dp.exists():
         dp.unlink()
     print(json.dumps({"committed": str(note), "topics": len(topics), "run_count": state["run_count"],
-                      "level": level_text or None, "index": str(index)}, ensure_ascii=False, indent=2))
+                      "level": level_text or None, "index": str(index), "concepts": concept_ids},
+                     ensure_ascii=False, indent=2))
     return 0
 
 
@@ -821,6 +869,8 @@ def cmd_status(args) -> int:
         **level_info(level),
         "level_source": level_source,
         "in_progress": pending_info(state),
+        "catalog_version": concepts.load_catalog()["version"],
+        "concepts_used": len(concepts.load_used(notes_root)),
         "settings": str(settings_path(notes_root)),
     }, ensure_ascii=False, indent=2))
     return 0
@@ -840,6 +890,14 @@ def pending_info(state: dict) -> dict | None:
     }
 
 
+def is_registered(notes_root: Path, note: Path) -> bool:
+    """index.md에 오른 노트인가. 노트 폴더를 함께 쓰는 다른 세션이 같은 이름으로 등록했을 수 있다."""
+    index = notes_root / "index.md"
+    if not index.exists():
+        return False
+    return f"]({note.resolve().relative_to(notes_root).as_posix()}#" in index.read_text(encoding="utf-8")
+
+
 def cmd_cancel(args) -> int:
     """진행 중(extract 후 commit 전)인 정리를 취소한다.
 
@@ -856,9 +914,9 @@ def cmd_cancel(args) -> int:
     removed_note = None
     if pending and pending.get("suggested_file"):
         note = Path(pending["suggested_file"])
-        committed = {str(Path(f)) for f in state.get("files", [])}
+        committed = {Path(f).resolve() for f in state.get("files", [])}
         inside = notes_root in note.resolve().parents
-        if note.exists() and inside and str(note) not in committed:
+        if note.exists() and inside and note.resolve() not in committed and not is_registered(notes_root, note):
             note.unlink()
             removed_note = str(note)
     dp = delta_path(notes_root, session)
@@ -876,6 +934,37 @@ def cmd_cancel(args) -> int:
         "message": ("정리를 취소했습니다. 체크포인트는 그대로라서 다음 실행 때 같은 대화부터 다시 정리합니다."
                     if pending else "진행 중인 정리가 없습니다."),
     }, ensure_ascii=False, indent=2))
+    return 0
+
+
+def cmd_concept(args) -> int:
+    """노트를 쓸 항목의 내용을 사전에서 꺼내 보여 준다."""
+    print(json.dumps({"concepts": concepts.concept_details(concepts.load_catalog(), args.ids)},
+                     ensure_ascii=False, indent=2))
+    return 0
+
+
+def cmd_candidate(args) -> int:
+    """사전에 없는 개념을 후보함에 적는다. 같은 이름은 다시 적지 않는다."""
+    notes_root = Path(args.notes_root).expanduser().resolve()
+    path = notes_root / CANDIDATE_FILE
+    if path.exists():
+        existing = path.read_text(encoding="utf-8")
+    else:
+        existing = "# 사전 후보함\n\n대화에 나왔지만 개념사전에 없는 개념입니다. 사전을 늘릴 때 참고합니다.\n\n| 날짜 | 개념 | 프로젝트 |\n|---|---|---|\n"
+    known = {c.strip().lower() for row in existing.splitlines() if row.startswith("|") for c in row.split("|")[2:3]}
+    project = project_name(normalize_cwd(args.cwd))
+    date = dt.date.today().strftime("%Y-%m-%d")
+    added = []
+    for title in args.title:
+        name = table_cell(unicodedata.normalize("NFC", title))
+        if name and name.lower() not in known:
+            existing += f"| {date} | {name} | {table_cell(project)} |\n"
+            known.add(name.lower())
+            added.append(name)
+    notes_root.mkdir(parents=True, exist_ok=True)
+    path.write_text(existing, encoding="utf-8")
+    print(json.dumps({"added": added, "file": str(path)}, ensure_ascii=False, indent=2))
     return 0
 
 
@@ -924,6 +1013,16 @@ def main(argv=None) -> int:
     common(p)
     p.add_argument("--file", required=True, help="작성한 노트 md 경로")
     p.set_defaults(fn=cmd_commit)
+
+    p = sub.add_parser("concept", help="사전 항목의 학습 목표·선수 개념·공식 문서 보기")
+    p.add_argument("ids", nargs="+", help="항목 id (extract 출력의 candidates에 있다)")
+    p.set_defaults(fn=cmd_concept)
+
+    p = sub.add_parser("candidate", help="사전에 없는 개념을 후보함에 적기")
+    p.add_argument("--title", action="append", required=True, help="개념 이름. 여러 번 줄 수 있다")
+    p.add_argument("--cwd", default=os.getcwd(), help="프로젝트 작업 디렉터리(기본: 현재)")
+    p.add_argument("--notes-root", default=str(DEFAULT_NOTES_ROOT))
+    p.set_defaults(fn=cmd_candidate)
 
     p = sub.add_parser("status", help="체크포인트와 미정리 메시지 수 확인")
     common(p)

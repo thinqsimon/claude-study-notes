@@ -1,10 +1,13 @@
 # claude-study-notes
 
-Claude Code와 OpenAI Codex에서 쓰는 `study-notes` 스킬 (Claude Code: `/study-notes`, Codex: `$study-notes`). AI와 개발하며 나눈 대화에서 **공부해야 할 개념과 문제해결 과정**을 골라
-`~/StudyNotes/<프로젝트>/` 에 초보자용 학습장(Markdown)으로 정리합니다.
+Claude Code와 OpenAI Codex에서 쓰는 `study-notes` 스킬 (Claude Code: `/study-notes`, Codex: `$study-notes`). AI와 개발하며 나눈 대화에 나온 개념을 **개념사전**에서 찾아
+`~/StudyNotes/AX개념노트/` 에 교과서식 학습 노트(Markdown)로 정리합니다.
 
-핵심 원칙은 **요약이 아니라 재강의**입니다. 대화를 발췌하는 게 아니라, 그 개념을 처음 배우는 사람에게
-가르치듯 처음부터 다시 설명합니다. 여러 번 실행하면 **지난번 이후의 대화만** 새 파일로 정리됩니다(증분).
+핵심 원칙은 **대화의 정리가 아니라 교과서**입니다. 대화는 무엇을 쓸지 고르는 계기일 뿐이고, 노트는 그때의 상황을 몰라도 읽히도록
+사전의 제목과 학습 목표에 맞춰 처음부터 설명합니다. 한 번에 주제 3~5개를 쓰고, **한 번 쓴 개념은 다시 쓰지 않습니다**. 여러 번 실행하면 **지난번 이후의 대화만** 살핍니다(증분).
+
+> **사전의 범위**: 사전 0.2.0은 항목 374개이고 대부분 **백엔드·API**입니다. 웹 프론트엔드 등 다른 분야는 아직 비어 있거나 적습니다.
+> 대화에 나온 개념이 사전에 없으면 노트를 만들지 않고 `~/StudyNotes/concept_candidates.md`에 적어 둡니다. 범위는 [catalog/dist/](catalog/dist/README.md)에서 볼 수 있습니다.
 
 **설명 수준 5단계**(1 왕초보 · 2 입문 · 3 기초 · 4 실전 · 5 심화)를 골라 독자에 맞게 씁니다. 처음 실행할 때 한 번 묻고 기억하며,
 `/study-notes 4`처럼 단계를 붙여 부르면 바뀝니다. 노트 제목과 첫머리, `index.md`의 수준 열에 단계가 표시됩니다.
@@ -95,7 +98,7 @@ Codex를 쓰면 경로의 `.claude`를 `.codex`로, `--agent claude`를 `--agent
 
 ### 4단계. 사용
 맥과 같습니다. 채팅에 `/study-notes`(Claude Code) 또는 `$study-notes`(Codex)를 입력합니다.
-노트는 **`C:\Users\<이름>\StudyNotes\<프로젝트>\`** 에 생기고, 주제 목록은 같은 폴더의 `index.md`에 쌓입니다. 탐색기 주소창에 `%USERPROFILE%\StudyNotes`를 붙여 넣으면 바로 열립니다.
+노트는 **`C:\Users\<이름>\StudyNotes\AX개념노트\`** 에 생기고, 주제 목록은 같은 폴더의 `index.md`에 쌓입니다. 탐색기 주소창에 `%USERPROFILE%\StudyNotes`를 붙여 넣으면 바로 열립니다.
 설명 수준도 맥과 같이 `/study-notes 3`처럼 붙여 고르고, 고른 값은 `%USERPROFILE%\StudyNotes\settings.json`에 기억됩니다.
 
 ### Windows에서 자주 나는 오류
@@ -122,9 +125,10 @@ Codex를 쓰면 경로의 `.claude`를 `.codex`로, `--agent claude`를 `--agent
 
 ## 사용법
 - 정리하고 싶을 때 채팅에 `/study-notes`(Claude Code) 또는 `$study-notes`(Codex) 를 입력합니다.
-- 결과: `~/StudyNotes/<프로젝트>/<프로젝트>_YYYY-MM-DD_NN.md` (주제별 `## N. 제목` 섹션), `~/StudyNotes/index.md` (주제 목록).
-- 다시 입력하면 지난 정리 이후 대화만 `_02`, `_03` … 으로 이어서 정리됩니다.
-- 처음부터 다시 정리하려면 `~/StudyNotes/.state/<세션id>.json` (Windows: `%USERPROFILE%\StudyNotes\.state\`) 을 지웁니다.
+- 결과: `~/StudyNotes/AX개념노트/AX개념노트_YYYY-MM-DD_NN.md` (주제별 `## N. 제목` 섹션), `~/StudyNotes/index.md` (주제 목록).
+- 다시 입력하면 지난 정리 이후 대화만 살펴 `_02`, `_03` … 으로 이어서 씁니다. 쓴 개념은 `~/StudyNotes/concepts_used.json`에 남아 다시 나오지 않습니다.
+- 처음부터 다시 살피려면 `~/StudyNotes/.state/<세션id>.json` (Windows: `%USERPROFILE%\StudyNotes\.state\`) 을 지웁니다.
+- 노트를 쓰는 동안 예제를 실제로 실행해 확인하므로 예전보다 오래 걸립니다. 실행하지 못한 것은 노트와 보고에 밝힙니다.
 
 ### 설명 수준 (5단계)
 처음 실행하면 아래 표를 보여 주고 단계를 묻습니다. 고른 단계는 `~/StudyNotes/settings.json`에 기억되어 다음부터는 묻지 않습니다.
@@ -174,8 +178,8 @@ $study-notes 3          Codex
   실행하면 주제가 또렷하고 세부가 살아 있습니다. 마지막 한 번은 세션을 닫기 직전에 돌리세요.
 - **`index.md`를 공부 목록으로**: 모든 프로젝트의 주제가 한 표에 모입니다. `유형` 열에서 `문제해결`만 모아 복습하거나, `태그`로 같은 기술을
   묶어 보세요. 주제 이름을 누르면 해당 노트의 그 섹션으로 바로 이동합니다.
-- **여러 프로젝트에서 그대로**: 어느 프로젝트 폴더에서 실행해도 `~/StudyNotes/<프로젝트>/`에 따로 쌓이고, 파일명에 프로젝트명이 붙어
-  (`<프로젝트>_YYYY-MM-DD_NN.md`) 날짜가 같아도 겹치지 않습니다. 다른 앱이나 도구에 올릴 때도 이름만으로 구분됩니다.
+- **여러 프로젝트에서 그대로**: 어느 프로젝트 폴더에서 실행해도 `~/StudyNotes/AX개념노트/`에 함께 쌓입니다. 개념노트는 프로젝트에 묶이지 않고,
+  다른 프로젝트에서 이미 쓴 개념도 다시 쓰지 않습니다. v1이 만든 `~/StudyNotes/<프로젝트>/`의 예전 노트는 그대로 둡니다.
 - **노트를 앱에 올려 관리하기**: 노트는 `## N. 제목` 단위로 쪼개 쓰기 쉬운 구조라, 학습 관리 앱(예: 배움일기 코치의 학습장)에 올리면
   주제별로 읽고 고치고 완료 표시를 할 수 있습니다. 둘째 줄의 `` `유형` … | `태그` … | `난이도` … `` 메타 줄이 그 앱의 분류 기준이 됩니다.
   frontmatter의 `title` 끝에 단계가 붙어 있어 앱의 학습장 목록에서도 몇 단계로 쓴 노트인지 보입니다.
@@ -199,10 +203,14 @@ $study-notes 3          Codex
 ```
 skills/study-notes/
   SKILL.md                 절차, 설명 수준 5단계, 작성 규칙
-  scripts/study_notes.py   대화 기록 증분 추출(extract) · 체크포인트 확정(commit) · 상태(status) · 설명 수준(level) · 진행 중 정리 취소(cancel)
-  templates/note.md        노트 형식 (frontmatter + 목차 + 주제 섹션)
+  catalog.json             개념사전 (catalog/의 build가 만든다. 폴더만 복사해도 돌도록 스킬 안에 둔다)
+  scripts/study_notes.py   증분 추출·후보 찾기(extract) · 사전 내용(concept) · 후보함(candidate) · 검사와 등록(commit) · 상태(status) · 설명 수준(level) · 취소(cancel)
+  scripts/concepts.py      사전 읽기, 후보 찾기, 개념노트 검사
+  templates/concept-note.md  노트 형식 (frontmatter + 목차 + 주제 섹션)
+catalog/                   개념사전 원본과 도구 (catalog/README.md)
 tests/
   test_study_notes.py      스크립트 단위 테스트 (python3 -m unittest discover -s tests)
+  test_catalog.py          사전 도구 단위 테스트
 ```
 
 ## 동작 원리
@@ -211,12 +219,12 @@ tests/
    - Claude Code: `~/.claude/projects/<프로젝트>/<세션>.jsonl`
    - Codex: `~/.codex/state_*.sqlite` 의 스레드 목록에서 현재 폴더의 최근 스레드를 찾아 `~/.codex/sessions/…/rollout-*.jsonl` 을 읽습니다. `exec` 도구 호출은 안의 셸 명령만 뽑아 보여 줍니다.
    - macOS 한글 경로의 유니코드 정규화(NFD → NFC) 차이와 Windows 경로 표기 차이도 처리합니다.
-2. AI가 그 구간을 읽고 주제를 뽑아 템플릿 구조대로 노트를 씁니다. 이미 정리한 주제는 `index.md`의 제목·태그·요약 열을
-   검색해 걸러 내고(파일 전체를 읽지 않아 토큰을 아낍니다), 겹치면 새로 배운 부분만 씁니다.
-3. `commit`: 체크포인트를 저장하고 `index.md` 에 주제 행을 추가합니다. 노트 frontmatter의 `level`이 수준 열에 들어갑니다. 각 주제의 `> 한 줄 요약`이 요약 열에 들어가고,
-   요약 열이 없던 예전 `index.md`는 자동으로 열을 넣어 채웁니다.
+   - 그 대화에서 사전 항목의 이름과 별칭을 찾아, 이 단계이고 아직 안 쓴 주제를 중요도 순의 후보로 알려 줍니다.
+2. AI가 대화에서 실제로 다룬 후보를 최대 5개 고르고, `concept`로 학습 목표·선수 개념·공식 문서를 받아 템플릿대로 노트를 씁니다. 후보에 없는 개념은 `candidate`로 후보함에 적습니다.
+3. `commit`: 먼저 노트를 검사합니다(사전과 맞는 제목·목표·단계, 소제목 순서, 프로젝트에 묶인 표현, 이미 쓴 개념, 앱이 읽는 메타 줄 등). 통과하면 체크포인트를 저장하고 `index.md`에 주제 행을 추가하며, 쓴 개념을 `concepts_used.json`에 남깁니다.
 
 ## 변경 내역
+- **v2.0.0**: 노트를 개념사전 기반의 교과서식으로 바꿨습니다. 주제는 대화에 나온 사전 항목에서 고르고(실행당 3~5개), 맥락 없이 읽히게 쓰며, 예제는 실행해 확인하고, 한 번 쓴 개념은 다시 쓰지 않습니다. 사전을 스킬 폴더에 함께 넣어 폴더만 복사해도 동작합니다. `concept`·`candidate` 명령과 등록 전 검사, `STUDY_NOTES_ROOT` 환경 변수가 생겼습니다. 새 노트는 `~/StudyNotes/AX개념노트/`에 쌓이고, v1 노트는 그대로 둡니다.
 - **v1.5.0**: 옵션 `h`(사용법) · `d`(현재 단계와 정리 상태) · `s`(진행 중 정리 취소, ESC 뒤 입력)와 정리 시작 배너. 모르는 인자는 사용법을 보여 주고 정리하지 않습니다.
   스크립트에 `cancel` 명령이 생겨 쓰다 만 노트·델타만 지우고 체크포인트는 남기며, `status`에 진행 중인 정리(`in_progress`)가 표시됩니다.
 - **v1.4.0**: 설명 수준 5단계(1 왕초보 · 2 입문 · 3 기초 · 4 실전 · 5 심화). 처음 실행할 때 묻고 기억하며 `/study-notes <단계>`로 바꿉니다.

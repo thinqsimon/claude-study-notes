@@ -2,11 +2,14 @@
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "thinqsimon",
   "description": "thinqsimon의 Claude Code 플러그인 모음",
-  "owner": { "name": "thinqsimon", "url": "https://github.com/thinqsimon" },
+  "owner": {
+    "name": "thinqsimon",
+    "url": "https://github.com/thinqsimon"
+  },
   "plugins": [
     {
       "name": "study-notes",
-      "description": "AI와의 개발 대화를 설명 수준 5단계에 맞춘 배움노트(md)로 증분 정리하는 /study-notes 스킬",
+      "description": "AI와의 개발 대화에 나온 개념을 개념사전 기반의 교과서식 노트(md)로 증분 정리하는 /study-notes 스킬",
       "category": "productivity",
       "source": "./"
     }

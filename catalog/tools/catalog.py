@@ -20,6 +20,10 @@ from collections import Counter
 from pathlib import Path
 
 CATALOG_ROOT = Path(__file__).resolve().parents[1]
+SKILL_DIR = CATALOG_ROOT.parent / "skills" / "study-notes"
+# 노트 검사는 스킬과 같은 코드를 쓴다. 스킬은 폴더만 복사해도 돌아야 해서 그쪽에 둔다.
+sys.path.insert(0, str(SKILL_DIR / "scripts"))
+from concepts import lint_note, split_note_topics  # noqa: E402
 
 FIELD_ORDER = (
     "id", "title", "en", "kind", "level", "importance", "group", "summary", "objectives",
@@ -44,20 +48,6 @@ SHARED_ALIAS_LIMIT = 3
 UNDERRATED_DEPENDENTS = 3
 
 
-NOTE_SECTIONS = (
-    "학습 목표", "먼저 알아야 할 것", "왜 필요한가", "핵심 개념", "예제로 이해하기", "비슷한 개념과 차이",
-    "흔한 실수", "직접 해 보기", "확인 문제", "정답", "공식 문서",
-)
-NOTE_OPTIONAL_LAST = "만난 곳"
-NOTE_MIN_CHARS = {1: 1500, 2: 2500, 3: 4000, 4: 4000, 5: 4000}
-# 노트 본문이 특정 프로젝트나 그때의 대화를 전제하지 않게 막는다. 코드 블록 밖에서만 본다.
-NOTE_BANNED_RE = re.compile(
-    r"이번 대화|이번 작업|이 대화|이 프로젝트|우리 프로젝트|우리 앱|우리 서비스|이 저장소|사용자가 (요청|말)|앞서 (말|만든)|"
-    r"(backend|frontend|harness|scripts|docs|samples)/[\w./-]+"
-)
-NOTE_META_RE = re.compile(r"`개념`\s*([a-z0-9.-]+)")
-NOTE_HEADING_RE = re.compile(r"^## (?:\d+\.\s*)?(.+?)\s*$")
-NOTE_SUBHEADING_RE = re.compile(r"^### (.+?)\s*$")
 
 
 def read_json(path: Path):
@@ -331,6 +321,11 @@ def render_index(catalog: dict) -> str:
     return "\n".join(lines) + "\n"
 
 
+def compact_catalog(text: str) -> str:
+    """스킬에 넣는 사전. 사람이 읽을 일이 없으니 공백을 뺀다."""
+    return json.dumps(json.loads(text), ensure_ascii=False, separators=(",", ":")) + "\n"
+
+
 def build_outputs(catalog: dict) -> dict[str, str]:
     """파일 이름별 생성 결과."""
     outputs = {"README.md": render_index(catalog)}
@@ -359,105 +354,6 @@ def format_items(root: Path, catalog: dict) -> int:
             path.write_text(text, encoding="utf-8")
             changed += 1
     return changed
-
-
-def split_note_topics(text: str) -> list[tuple[str, list[str]]]:
-    """코드 블록을 건너뛰며 노트를 주제별로 나눈다. 목차는 주제가 아니다."""
-    topics: list[tuple[str, list[str]]] = []
-    fence = None
-    for line in text.split("\n"):
-        marker = re.match(r"^\s{0,3}(`{3,}|~{3,})", line)
-        if marker:
-            mark = marker.group(1)
-            if fence is None:
-                fence = mark
-            elif mark[0] == fence[0] and len(mark) >= len(fence):
-                fence = None
-        heading = NOTE_HEADING_RE.match(line) if fence is None else None
-        if heading:
-            if heading.group(1) != "목차":
-                topics.append((heading.group(1), []))
-            else:
-                topics.append(("", []))
-            continue
-        if topics:
-            topics[-1][1].append(line)
-    return [(title, lines) for title, lines in topics if title]
-
-
-def strip_fences(lines: list[str]) -> list[str]:
-    """코드 블록을 뺀 줄만 남긴다."""
-    kept, fence = [], None
-    for line in lines:
-        marker = re.match(r"^\s{0,3}(`{3,}|~{3,})", line)
-        if marker:
-            mark = marker.group(1)
-            if fence is None:
-                fence = mark
-                continue
-            if mark[0] == fence[0] and len(mark) >= len(fence):
-                fence = None
-                continue
-        if fence is None:
-            kept.append(line)
-    return kept
-
-
-def lint_note(text: str, catalog: dict) -> list[str]:
-    """개념노트가 사전과 맞고, 대화를 몰라도 읽히는 모양인지 검사한다."""
-    by_id = {item["id"]: item for item in catalog["items"]}
-    errors: list[str] = []
-    topics = split_note_topics(text)
-    if not topics:
-        return ["주제(## 제목)가 없다"]
-    for title, lines in topics:
-        label = title[:30]
-        meta = next((NOTE_META_RE.search(line) for line in lines if NOTE_META_RE.search(line)), None)
-        if meta is None:
-            errors.append(f"{label}: 메타 줄에 `개념` id가 없다")
-            continue
-        item = by_id.get(meta.group(1))
-        if item is None:
-            errors.append(f"{label}: 사전에 없는 id {meta.group(1)}")
-            continue
-        if not title.startswith(item["title"]):
-            errors.append(f"{label}: 제목이 사전의 제목({item['title']})으로 시작하지 않는다")
-        prose = strip_fences(lines)
-        sections = [m.group(1) for m in map(NOTE_SUBHEADING_RE.match, prose) if m]
-        expected = [name for name in sections if name != NOTE_OPTIONAL_LAST]
-        if expected != list(NOTE_SECTIONS):
-            errors.append(f"{label}: 소제목이 정해진 순서와 다르다: {expected}")
-        joined = "\n".join(prose)
-        for objective in item.get("objectives", []):
-            if objective not in joined:
-                errors.append(f"{label}: 학습 목표가 빠졌다: {objective}")
-        for found in NOTE_BANNED_RE.finditer(re.sub(r"https?://\S+", "", joined)):
-            errors.append(f"{label}: 프로젝트·대화에 묶인 표현: {found.group(0)}")
-        if not re.search(r"\]\(https://", section_text(prose, "공식 문서")):
-            errors.append(f"{label}: 공식 문서 링크가 없다")
-        if not re.search(r"(?m)^\s*1\. ", section_text(prose, "정답")):
-            errors.append(f"{label}: 정답이 없다")
-        questions = len(re.findall(r"(?m)^\s*\d+\. ", section_text(prose, "확인 문제")))
-        if questions < 2:
-            errors.append(f"{label}: 확인 문제는 2개 이상이다")
-        if questions != len(re.findall(r"(?m)^\s*\d+\. ", section_text(prose, "정답"))):
-            errors.append(f"{label}: 확인 문제와 정답의 수가 다르다")
-        if sum(len(line) for line in lines) < NOTE_MIN_CHARS[item["level"]]:
-            errors.append(f"{label}: {item['level']}단계 노트로 너무 짧다({sum(len(line) for line in lines)}자)")
-    return errors
-
-
-def section_text(prose: list[str], name: str) -> str:
-    """소제목 하나의 내용을 돌려준다."""
-    collected, inside = [], False
-    for line in prose:
-        match = NOTE_SUBHEADING_RE.match(line)
-        if match:
-            inside = match.group(1) == name
-            continue
-        if inside:
-            collected.append(line)
-    return "\n".join(collected)
 
 
 def cmd_lint_note(root: Path, path: Path) -> int:
@@ -493,13 +389,20 @@ def cmd_build(root: Path, check_only: bool) -> int:
     dist = root / "dist"
     outputs = build_outputs(catalog)
     stale = [name for name, text in outputs.items() if not (dist / name).exists() or (dist / name).read_text(encoding="utf-8") != text]
+    # 스킬은 폴더만 복사해 설치해도 돌아야 하므로 스킬 폴더에도 사전을 넣는다.
+    bundle = SKILL_DIR / "catalog.json"
+    bundled = compact_catalog(outputs["catalog.json"])
+    bundle_stale = root == CATALOG_ROOT and (not bundle.exists() or bundle.read_text(encoding="utf-8") != bundled)
     if check_only:
-        print("최신이 아닌 파일:" if stale else "모두 최신이다", *stale)
-        return 1 if stale else 0
+        names = stale + ([str(bundle)] if bundle_stale else [])
+        print("최신이 아닌 파일:" if names else "모두 최신이다", *names)
+        return 1 if names else 0
     dist.mkdir(exist_ok=True)
     for name in stale:
         (dist / name).write_text(outputs[name], encoding="utf-8")
-    print("만든 파일", len(stale), "개")
+    if bundle_stale:
+        bundle.write_text(bundled, encoding="utf-8")
+    print("만든 파일", len(stale) + bool(bundle_stale), "개")
     return 0
 
 

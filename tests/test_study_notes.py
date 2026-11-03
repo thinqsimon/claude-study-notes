@@ -9,6 +9,10 @@ import contextlib
 import importlib.util
 import io
 import json
+import os
+import shutil
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -19,6 +23,7 @@ SKILL_DIR = ROOT / "skills" / "study-notes"
 _spec = importlib.util.spec_from_file_location("study_notes", SKILL_DIR / "scripts" / "study_notes.py")
 sn = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(sn)
+concepts = sn.concepts
 
 
 def run(*argv: str) -> dict:
@@ -180,6 +185,13 @@ class ExtractCommitTest(unittest.TestCase):
         note.write_text(body, encoding="utf-8")
         return note
 
+    def write_v1_note(self, body: str) -> Path:
+        """v1 형식 노트. 개념노트 폴더 밖에 쓰면 검사하지 않고 등록한다."""
+        note = self.root / "demo" / "demo_2026-10-31_01.md"
+        note.parent.mkdir(parents=True, exist_ok=True)
+        note.write_text(body, encoding="utf-8")
+        return note
+
     def test_first_run_reports_unset_level_with_table(self):
         out = self.extract()
         self.assertEqual(out["new_messages"], 2)
@@ -204,8 +216,8 @@ class ExtractCommitTest(unittest.TestCase):
         self.assertFalse((self.root / ".state").exists())
 
     def test_commit_writes_level_column(self):
-        note = self.write_note(self.extract("--level", "3"), NOTE)
-        result = self.commit(note)
+        self.extract("--level", "3")
+        result = self.commit(self.write_v1_note(NOTE))
         self.assertEqual((result["topics"], result["level"]), (2, "3단계 기초"))
         index = (self.root / "index.md").read_text(encoding="utf-8").splitlines()
         self.assertIn("| 날짜 | 프로젝트 | 수준 | 주제 | 유형 | 태그 | 요약 | 노트 |", index)
@@ -216,12 +228,12 @@ class ExtractCommitTest(unittest.TestCase):
         self.assertIn("#1-체크포인트)", row[7])
 
     def test_note_level_wins_over_extract_level(self):
-        note = self.write_note(self.extract("--level", "5"), NOTE)
-        self.assertEqual(self.commit(note)["level"], "3단계 기초")
+        self.extract("--level", "5")
+        self.assertEqual(self.commit(self.write_v1_note(NOTE))["level"], "3단계 기초")
 
     def test_commit_falls_back_to_extract_level(self):
-        note = self.write_note(self.extract("--level", "5"), NOTE_WITHOUT_LEVEL)
-        self.assertEqual(self.commit(note)["level"], "5단계 심화")
+        self.extract("--level", "5")
+        self.assertEqual(self.commit(self.write_v1_note(NOTE_WITHOUT_LEVEL))["level"], "5단계 심화")
 
 
 class UpgradeIndexTest(unittest.TestCase):
@@ -308,7 +320,8 @@ class CancelTest(ExtractCommitTest):
         self.assertEqual((result["cancelled"], result["removed_note"]), (False, None))
 
     def test_cancel_never_deletes_committed_note(self):
-        note = self.write_note(self.extract("--level", "3"), NOTE)
+        self.extract("--level", "3")
+        note = self.write_v1_note(NOTE)
         self.commit(note)
         # 다음 extract는 같은 경로가 아닌 _02를 제안하지만, pending이 커밋된 파일을 가리켜도 지우지 않는지 확인한다
         state = json.loads(sn.state_path(self.root, self.session).read_text(encoding="utf-8"))
@@ -335,10 +348,291 @@ class DocsTest(unittest.TestCase):
                     self.assertIn(sn.level_label(n), text)
 
     def test_template_shows_level(self):
-        template = (SKILL_DIR / "templates" / "note.md").read_text(encoding="utf-8")
+        template = (SKILL_DIR / "templates" / "concept-note.md").read_text(encoding="utf-8")
         for marker in ("level: ", "level_name: ", "· <level_label>", "> 설명 수준: <level_label>"):
             with self.subTest(marker=marker):
                 self.assertIn(marker, template)
+
+
+def concept_note(items: list[dict], level: int, version: str = "0.2.0") -> str:
+    """사전 항목으로 검사를 통과하는 개념노트를 만든다."""
+    label = sn.level_label(level)
+    head = (
+        f"---\ntitle: AX 개념노트 #01 · {label}\nproject: AX 개념노트\nlevel: {level}\n"
+        f"level_name: {sn.LEVELS[level]['name']}\ncatalog_version: {version}\ncreated: 2026-11-03 10:00\n"
+        f"topics: {len(items)}\n---\n# AX 개념노트 #01 · {label}\n\n> 설명 수준: {label}. 맞춰 썼어요.\n\n"
+    )
+    body = []
+    for number, item in enumerate(items, 1):
+        goals = "\n".join(f"- {goal}" for goal in item.get("objectives", []))
+        body.append(
+            f"## {number}. {item['title']} ({item['en']})\n> 한 줄 요약: {item['summary']}\n\n"
+            f"`유형` 개념 | `태그` 시험 | `난이도` {'★' * level} | `개념` {item['id']} | `단계` {label} | `중요도` ★★★\n\n"
+            f"### 학습 목표\n{goals}\n\n### 먼저 알아야 할 것\n없음\n\n### 왜 필요한가\n{'본문 ' * 1300}\n\n"
+            "### 핵심 개념\n설명\n\n### 예제로 이해하기\n```bash\n## 코드 안의 제목은 주제가 아니다\necho hi\n```\n\n"
+            "### 비슷한 개념과 차이\n차이\n\n### 흔한 실수\n실수\n\n### 직접 해 보기\n과제\n\n"
+            "### 확인 문제\n1. 질문?\n2. 질문?\n\n### 정답\n1. 답\n2. 답\n\n"
+            "### 공식 문서\n- [문서](https://example.com/doc) — 설명\n\n---\n\n"
+        )
+    return head + "".join(body)
+
+
+class ConceptFlowTest(unittest.TestCase):
+    """대화에서 후보를 찾아 개념노트를 등록하기까지."""
+
+    session = "aaaaaaaa-2222-3333-4444-555555555555"
+
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        base = Path(self._tmp.name)
+        self.root = base / "notes"
+        self.cwd = base / "demo"
+        self.cwd.mkdir()
+        projects = base / "projects"
+        self.pdir = projects / sn.encode_cwd(sn.normalize_cwd(str(self.cwd)))
+        self.pdir.mkdir(parents=True)
+        self.write_records("r1", "JWT로 로그인을 만들고 토큰을 검증하는 방법을 알려 주세요. CORS 오류도 났어요.")
+        self._projects = sn.PROJECTS_DIR
+        sn.PROJECTS_DIR = projects
+        self.catalog = concepts.load_catalog()
+        self.by_id = {item["id"]: item for item in self.catalog["items"]}
+
+    def tearDown(self):
+        sn.PROJECTS_DIR = self._projects
+        self._tmp.cleanup()
+
+    def write_records(self, uuid: str, text: str) -> None:
+        with (self.pdir / f"{self.session}.jsonl").open("a", encoding="utf-8") as fh:
+            for kind, key in (("user", "u"), ("assistant", "a")):
+                content = text if kind == "user" else [{"type": "text", "text": text}]
+                fh.write(json.dumps({"type": kind, "uuid": f"{uuid}{key}", "timestamp": f"2026-11-03T00:00:0{len(uuid)}Z",
+                                     "message": {"content": content}}, ensure_ascii=False) + "\n")
+
+    def extract(self, *extra: str) -> dict:
+        return run("extract", "--agent", "claude", "--cwd", str(self.cwd), "--session", self.session,
+                   "--notes-root", str(self.root), *extra)
+
+    def commit(self, note: Path) -> dict:
+        return run("commit", "--agent", "claude", "--session", self.session, "--file", str(note),
+                   "--notes-root", str(self.root))
+
+    def commit_error(self, note: Path) -> str:
+        with self.assertRaises(SystemExit) as caught, contextlib.redirect_stdout(io.StringIO()):
+            sn.main(["commit", "--agent", "claude", "--session", self.session, "--file", str(note),
+                     "--notes-root", str(self.root)])
+        return str(caught.exception)
+
+    def write_note(self, out: dict, text: str) -> Path:
+        note = Path(out["suggested_file"])
+        note.parent.mkdir(parents=True, exist_ok=True)
+        note.write_text(text, encoding="utf-8")
+        return note
+
+    def test_extract_lists_candidates_for_the_level(self):
+        out = self.extract("--level", "3")
+        self.assertEqual(Path(out["suggested_file"]).parent.name, sn.CONCEPT_FOLDER)
+        self.assertEqual((out["note_no"], out["catalog_version"]), (1, self.catalog["version"]))
+        ids = [c["id"] for c in out["candidates"]]
+        self.assertIn("be.auth.jwt-flow", ids)
+        self.assertTrue(all(self.by_id[i]["level"] == 3 and self.by_id[i]["kind"] == "topic" for i in ids))
+        self.assertIn("4", out["other_levels"])      # CORS는 4단계에 있다
+        self.assertEqual(out["candidates"], sorted(out["candidates"], key=lambda c: (-len(c["importance"]), -c["hits"], c["id"])))
+
+    def test_no_candidates_for_unrelated_talk(self):
+        (self.pdir / f"{self.session}.jsonl").unlink()
+        self.write_records("r2", "오늘 점심은 김치찌개를 먹었어요.")
+        out = self.extract("--level", "3")
+        self.assertEqual((out["candidates"], out["candidate_total"], out["other_levels"]), ([], 0, {}))
+
+    def test_tool_output_is_not_counted_as_talk(self):
+        (self.pdir / f"{self.session}.jsonl").unlink()
+        record = {"type": "assistant", "uuid": "t1", "timestamp": "2026-11-03T00:00:01Z", "message": {"content": [
+            {"type": "text", "text": "파일을 읽어 볼게요."},
+            {"type": "tool_use", "name": "Read", "input": {"file_path": "src/jwt_session.py"}},
+        ]}}
+        result = {"type": "user", "uuid": "t2", "timestamp": "2026-11-03T00:00:02Z", "message": {"content": [
+            {"type": "tool_result", "content": "def verify_jwt(token): session = cors()"},
+        ]}}
+        (self.pdir / f"{self.session}.jsonl").write_text(
+            "\n".join(json.dumps(r, ensure_ascii=False) for r in (record, result)) + "\n", encoding="utf-8")
+        out = self.extract("--level", "3")
+        self.assertEqual(out["new_messages"], 2)
+        self.assertEqual(out["candidates"], [])
+
+    def test_cancel_keeps_note_registered_by_another_session(self):
+        # 이 세션이 추천받은 이름으로 다른 세션이 먼저 노트를 등록한 경우
+        mine = self.extract("--level", "3")
+        other = "bbbbbbbb-2222-3333-4444-555555555555"
+        (self.pdir / f"{other}.jsonl").write_text(
+            (self.pdir / f"{self.session}.jsonl").read_text(encoding="utf-8"), encoding="utf-8")
+        run("extract", "--agent", "claude", "--cwd", str(self.cwd), "--session", other, "--notes-root", str(self.root))
+        note = self.write_note(mine, concept_note([self.by_id["be.auth.jwt-flow"]], 3))
+        run("commit", "--agent", "claude", "--session", other, "--file", str(note), "--notes-root", str(self.root))
+        result = run("cancel", "--agent", "claude", "--cwd", str(self.cwd), "--session", self.session,
+                     "--notes-root", str(self.root))
+        self.assertEqual((result["cancelled"], result["removed_note"]), (True, None))
+        self.assertTrue(note.exists())
+
+    def test_cancel_still_removes_unfinished_note(self):
+        out = self.extract("--level", "3")
+        note = self.write_note(out, "쓰다 만 노트")
+        result = run("cancel", "--agent", "claude", "--cwd", str(self.cwd), "--session", self.session,
+                     "--notes-root", str(self.root))
+        self.assertEqual(result["removed_note"], str(note))
+        self.assertFalse(note.exists())
+
+    def test_commit_records_used_concept_and_hides_it_next_time(self):
+        out = self.extract("--level", "3")
+        result = self.commit(self.write_note(out, concept_note([self.by_id["be.auth.jwt-flow"]], 3)))
+        self.assertEqual((result["topics"], result["concepts"]), (1, ["be.auth.jwt-flow"]))
+        used = json.loads((self.root / "concepts_used.json").read_text(encoding="utf-8"))
+        self.assertTrue(used["be.auth.jwt-flow"]["note"].startswith(f"{sn.CONCEPT_FOLDER}/"))
+        self.assertIn("be.auth.jwt-flow", (self.root / "index.md").read_text(encoding="utf-8") + str(used))
+        self.write_records("r3", "JWT 로그인을 다시 설명해 주세요.")
+        again = self.extract()
+        self.assertEqual(again["note_no"], 2)
+        self.assertNotIn("be.auth.jwt-flow", [c["id"] for c in again["candidates"]])
+
+    def test_commit_rejects_used_concept_and_keeps_pending(self):
+        out = self.extract("--level", "3")
+        self.commit(self.write_note(out, concept_note([self.by_id["be.auth.jwt-flow"]], 3)))
+        self.write_records("r3", "JWT 다시 한 번")
+        second = self.extract()
+        message = self.commit_error(self.write_note(second, concept_note([self.by_id["be.auth.jwt-flow"]], 3)))
+        self.assertIn("이미 쓴 개념", message)
+        state = json.loads(sn.state_path(self.root, self.session).read_text(encoding="utf-8"))
+        self.assertIn("_pending", state)             # 고쳐서 다시 commit 할 수 있다
+        self.assertEqual(state["run_count"], 1)
+
+    def test_commit_rejects_note_that_breaks_rules(self):
+        out = self.extract("--level", "3")
+        good = concept_note([self.by_id["be.auth.jwt-flow"]], 3)
+        cases = {
+            "`개념` id가 없다": good.replace("`개념` be.auth.jwt-flow", "`개념 없음`"),
+            "프로젝트·대화에 묶인": good.replace("### 핵심 개념\n설명", "### 핵심 개념\n이번 대화에서 만든 코드"),
+            "catalog_version": good.replace("catalog_version: 0.2.0\n", ""),
+            "닫히지 않은 코드 블록": good + "\n```bash\necho\n",
+            "'## N. 제목'": good.replace("## 1. ", "## "),
+            "한 줄 요약": good.replace("> 한 줄 요약:", "요약:"),
+            "소제목": good.replace("### 흔한 실수\n실수\n\n", ""),
+            "설명 수준": good.replace("> 설명 수준:", "> 수준:"),
+            "업로드가 막히는 표기": good.replace("### 핵심 개념\n설명", "### 핵심 개념\n`curl -s https://example.com`으로 확인한다"),
+            "목차 아래에는 표만": good.replace("# AX 개념노트 #01", "## 목차\n| # | 주제 |\n|---|---|\n\n예제 환경은 맥이다.\n\n# AX 개념노트 #01", 1),
+            "이 실행": good.replace("### 핵심 개념\n설명", "### 핵심 개념\n이 실행에서는 짧은 키를 썼다"),
+        }
+        for expected, text in cases.items():
+            with self.subTest(expected=expected):
+                self.assertIn(expected, self.commit_error(self.write_note(out, text)))
+        self.assertFalse((self.root / "concepts_used.json").exists())
+
+    def test_commit_rejects_wrong_level_term_and_too_many_topics(self):
+        out = self.extract("--level", "3")
+        topics = [i for i in self.catalog["items"] if i["kind"] == "topic" and i["level"] == 3]
+        self.assertIn("4단계인데", self.commit_error(self.write_note(out, concept_note([self.by_id["be.http.cors"]], 3))))
+        self.assertIn("5개까지", self.commit_error(self.write_note(out, concept_note(topics[:6], 3))))
+        term = next(i for i in self.catalog["items"] if i["kind"] == "term" and i["level"] == 3)
+        self.assertIn("용어는 주제가 될 수 없다", self.commit_error(self.write_note(out, concept_note([term], 3))))
+
+    def test_concept_shows_what_is_needed_to_write(self):
+        detail = run("concept", "be.auth.jwt-flow")["concepts"][0]
+        self.assertEqual(detail["objectives"], self.by_id["be.auth.jwt-flow"]["objectives"])
+        self.assertTrue(detail["refs"])
+        self.assertIn("importance", detail)
+        with self.assertRaises(SystemExit), contextlib.redirect_stdout(io.StringIO()):
+            sn.main(["concept", "be.없는.항목"])
+
+    def test_candidate_box_skips_duplicates(self):
+        common = ("--cwd", str(self.cwd), "--notes-root", str(self.root))
+        self.assertEqual(run("candidate", "--title", "React 훅", "--title", "Zustand", *common)["added"], ["React 훅", "Zustand"])
+        self.assertEqual(run("candidate", "--title", "react 훅", "--title", "SSR", *common)["added"], ["SSR"])
+        text = (self.root / sn.CANDIDATE_FILE).read_text(encoding="utf-8")
+        self.assertEqual(text.count("| demo |"), 3)
+
+
+class UploadBlockTest(unittest.TestCase):
+    """운영 앞단에서 직접 시험한 결과를 고정한다."""
+
+    def test_shapes_blocked_by_the_edge(self):
+        for text in ("`python -c ", "`curl -s ", "`curl https://example.com`", "`perl -e ", "|python -c ", "; python -c ",
+                     '```\npython -c "x"\n```'):
+            with self.subTest(text=text):
+                self.assertIsNotNone(concepts.UPLOAD_BLOCKED_RE.search(text))
+
+    def test_shapes_that_pass_the_edge(self):
+        for text in ("`curl`", "`python app.py`", "`python3 -c ", "`bash -c ", "`ls -la`", "`git status`",
+                     '```bash\npython -c "x"\n```', 'python -c "import os"', "&& python -c "):
+            with self.subTest(text=text):
+                self.assertIsNone(concepts.UPLOAD_BLOCKED_RE.search(text))
+
+
+class MatchingTest(unittest.TestCase):
+    catalog = {"items": [
+        {"id": "x.a.api", "title": "API 만들기", "en": "Building API", "kind": "topic", "level": 3, "importance": 2,
+         "summary": "s", "aliases": ["API"]},
+        {"id": "x.a.cache", "title": "캐시", "en": "Cache", "kind": "topic", "level": 3, "importance": 1,
+         "summary": "s", "aliases": ["캐시"]},
+        {"id": "x.a.ttl", "title": "만료 시간", "en": "TTL", "kind": "term", "level": 3, "importance": 1,
+         "summary": "s", "parent": "x.a.cache", "aliases": ["TTL"]},
+        {"id": "x.a.deep", "title": "심화 캐시", "en": "Deep Cache", "kind": "topic", "level": 5, "importance": 1,
+         "summary": "s", "aliases": ["심화 캐시"]},
+    ]}
+
+    def ids(self, text, used=()):
+        return [c["id"] for c in concepts.find_candidates(text, self.catalog, 3, used)["candidates"]]
+
+    def test_english_needs_word_boundary(self):
+        self.assertEqual(self.ids("rapid capital"), [])
+        self.assertEqual(self.ids("REST api를 만들었다"), ["x.a.api"])
+
+    def test_korean_matches_with_particles(self):
+        self.assertEqual(self.ids("캐시를 비웠다"), ["x.a.cache"])
+
+    def test_term_counts_for_its_topic(self):
+        self.assertEqual(self.ids("TTL을 짧게"), ["x.a.cache"])
+
+    def test_importance_comes_before_hits(self):
+        self.assertEqual(self.ids("api api api 캐시"), ["x.a.cache", "x.a.api"])
+
+    def test_used_topics_and_their_terms_are_skipped(self):
+        self.assertEqual(self.ids("TTL 캐시 api", used={"x.a.cache": {}}), ["x.a.api"])
+
+    def test_other_levels_are_counted(self):
+        out = concepts.find_candidates("심화 캐시", self.catalog, 3, {})
+        self.assertEqual(out["other_levels"], {"5": 1})
+
+
+class PackagingTest(unittest.TestCase):
+    """원격 설치는 스킬 폴더만 가져가는 경우가 있다."""
+
+    def test_skill_folder_alone_works(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            copy = Path(tmp) / "study-notes"
+            shutil.copytree(SKILL_DIR, copy, ignore=shutil.ignore_patterns("__pycache__"))
+            notes = Path(tmp) / "notes"
+            env = {**os.environ, "STUDY_NOTES_ROOT": str(notes)}
+            script = str(copy / "scripts" / "study_notes.py")
+            shown = subprocess.run([sys.executable, "-I", script, "concept", "be.auth.jwt-flow"],
+                                   capture_output=True, text=True, encoding="utf-8", env=env, cwd=tmp)
+            self.assertEqual(shown.returncode, 0, shown.stderr)
+            self.assertEqual(json.loads(shown.stdout)["concepts"][0]["id"], "be.auth.jwt-flow")
+            saved = subprocess.run([sys.executable, "-I", script, "level", "3"],
+                                   capture_output=True, text=True, encoding="utf-8", env=env, cwd=tmp)
+            self.assertEqual(saved.returncode, 0, saved.stderr)
+            self.assertTrue((notes / "settings.json").exists())
+
+    def test_bundled_catalog_matches_source(self):
+        bundled = json.loads((SKILL_DIR / "catalog.json").read_text(encoding="utf-8"))
+        source = json.loads((ROOT / "catalog" / "dist" / "catalog.json").read_text(encoding="utf-8"))
+        self.assertEqual(bundled, source)
+
+    def test_plugin_version_is_documented(self):
+        version = json.loads((ROOT / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))["version"]
+        self.assertIn(f"**v{version}**", (ROOT / "README.md").read_text(encoding="utf-8"))
+
+    def test_template_sections_match_the_check(self):
+        text = (SKILL_DIR / "templates" / "concept-note.md").read_text(encoding="utf-8")
+        found = [line[4:].strip() for line in text.splitlines() if line.startswith("### ")]
+        self.assertEqual([name for name in found if name != concepts.NOTE_OPTIONAL_LAST], list(concepts.NOTE_SECTIONS))
 
 
 if __name__ == "__main__":
