@@ -1,5 +1,5 @@
 {
- "version": "0.6.0",
+ "version": "0.6.1",
  "domains": [
   {
    "prefix": "dev",
@@ -15894,7 +15894,8 @@
     "모델 노후화"
    ],
    "refs": [
-    "https://madewithml.com/courses/mlops/monitoring/"
+    "https://docs.cloud.google.com/vertex-ai/docs/model-monitoring/overview",
+    "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
    ],
    "domain": "mlops"
   },
@@ -15914,7 +15915,8 @@
     "추론 서버"
    ],
    "refs": [
-    "https://madewithml.com/courses/mlops/serving/"
+    "https://mlflow.org/docs/latest/ml/deployment/",
+    "https://developers.google.com/machine-learning/crash-course/production-ml-systems/static-vs-dynamic-inference"
    ],
    "domain": "mlops"
   },
@@ -16359,7 +16361,6 @@
     "dvc push pull"
    ],
    "refs": [
-    "https://madewithml.com/courses/mlops/versioning/",
     "https://dvc.org/doc/start"
    ],
    "domain": "mlops"
