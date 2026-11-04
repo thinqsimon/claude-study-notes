@@ -31,21 +31,21 @@ def make_repo(base: Path) -> Path:
     return repo
 
 
-def draft_topic(item_id: str = "mlops.serve.model-serving", **extra) -> dict:
+def draft_topic(item_id: str = "mlops.serve.test-fixture-serving", **extra) -> dict:
     return {
-        "id": item_id, "title": "모델 서빙 기본", "en": "Model Serving Basics", "kind": "topic", "level": 4, "importance": 2,
+        "id": item_id, "title": "시험용 서빙 기본", "en": "Test Fixture Serving Basics", "kind": "topic", "level": 4, "importance": 2,
         "group": "모델 서빙", "summary": "학습한 모델을 API 뒤에 두고 요청마다 추론하는 구조와 배치·실시간의 차이를 정한다.",
         "objectives": ["실시간 추론과 배치 추론을 요구사항에 맞게 고를 수 있다", "모델 서버의 지연과 처리량을 재서 병목을 찾을 수 있다"],
-        "aliases": ["모델 서빙", "model serving"], "refs": ["https://example.com/serving"],
+        "aliases": ["시험용 서빙", "test fixture serving"], "refs": ["https://example.com/serving"],
         "basis": "예시 자료의 Serving 절. 여러 기술을 엮는 설계라 4단계. 서비스 제작 경로라 ★★.", **extra,
     }
 
 
-def draft_term(item_id: str = "mlops.serve.batch-inference", **extra) -> dict:
+def draft_term(item_id: str = "mlops.serve.test-fixture-batch-inference", **extra) -> dict:
     return {
-        "id": item_id, "title": "배치 추론", "en": "Batch Inference", "kind": "term", "level": 4, "importance": 2,
+        "id": item_id, "title": "시험용 배치 추론", "en": "Test Fixture Batch Inference", "kind": "term", "level": 4, "importance": 2,
         "group": "모델 서빙", "summary": "모아 둔 입력을 한꺼번에 추론해 결과를 저장해 두는 방식이다.",
-        "parent": "mlops.serve.model-serving", "aliases": ["배치 추론", "batch inference"], "basis": "위 주제가 가르치는 용어.", **extra,
+        "parent": "mlops.serve.test-fixture-serving", "aliases": ["시험용 배치 추론", "test fixture batch inference"], "basis": "위 주제가 가르치는 용어.", **extra,
     }
 
 
@@ -115,9 +115,9 @@ class DicMakerTest(unittest.TestCase):
     def test_start_picks_emptiest_level_and_box_mode(self):
         out = self.run_cmd("start")
         self.assertEqual(out["level"], self.run_cmd("gaps")["emptiest_level"])
-        self.box("임시 파일과 원자적 교체")
+        self.box("존재하지 않는 가상 개념 이름")
         out = self.run_cmd("start", "--force", "--box")
-        self.assertEqual((out["mode"], out["box"], list(out["draft_files"])), ("box", ["임시 파일과 원자적 교체"], ["box"]))
+        self.assertEqual((out["mode"], out["box"], list(out["draft_files"])), ("box", ["존재하지 않는 가상 개념 이름"], ["box"]))
 
     def test_guide_has_rules_level_criteria_and_existing_items(self):
         buf = io.StringIO()
@@ -167,14 +167,14 @@ class DicMakerTest(unittest.TestCase):
 
     def test_check_flags_dead_link_and_own_name_is_not_broad(self):
         for n in range(6):
-            self.say(f"s{n}", "모델 서빙 얘기를 또 했어요. 추론 서버요. ")
+            self.say(f"s{n}", "가상 모델 서빙 얘기를 또 했어요. 가상 추론 서버요. ")
         self.run_cmd("start", "--level", "4")
-        self.write_draft("mlops", [draft_topic(title="모델 서빙", en="Model Serving", aliases=["모델 서빙", "추론 서버"],
+        self.write_draft("mlops", [draft_topic(title="가상 모델 서빙", en="Virtual Model Serving", aliases=["가상 모델 서빙", "가상 추론 서버"],
                                                refs=["https://dead.invalid/x"])])
         out = self.run_cmd("check", "--links", ok=False)
         self.assertTrue(any("응답 404" in e for e in out["errors"]))
-        self.assertTrue(any("'추론 서버'" in e and "너무 넓다" in e for e in out["errors"]))
-        self.assertFalse(any("'모델 서빙'" in e for e in out["errors"]))   # 항목 자신의 이름은 막지 않는다
+        self.assertTrue(any("'가상 추론 서버'" in e and "너무 넓다" in e for e in out["errors"]))
+        self.assertFalse(any("'가상 모델 서빙'" in e for e in out["errors"]))   # 항목 자신의 이름은 막지 않는다
         self.assertEqual(out["alias_sessions"], 6)
 
     def test_alias_audit_all_ranks_existing_aliases(self):
@@ -191,27 +191,27 @@ class DicMakerTest(unittest.TestCase):
         self.write_draft("mlops", [draft_topic(), draft_term(basis="")])
         out = self.run_cmd("review-sheet")
         text = Path(out["review"]).read_text(encoding="utf-8")
-        self.assertIn("| mlops.serve.model-serving | topic | 4 | ★★ |", text)
-        self.assertIn("부모: mlops.serve.model-serving", text)
+        self.assertIn("| mlops.serve.test-fixture-serving | topic | 4 | ★★ |", text)
+        self.assertIn("부모: mlops.serve.test-fixture-serving", text)
         self.assertIn("## 검사 오류", text)
         self.assertEqual((out["items"], out["errors"]), (2, 1))
 
     def test_apply_merges_bumps_version_builds_and_clears(self):
-        self.box("모델 서빙 기본")
+        self.box("시험용 서빙 기본")
         self.run_cmd("start", "--level", "4")
         self.write_draft("mlops", [draft_topic(), draft_term(),
-                                   draft_term("mlops.serve.throughput", title="처리량", en="Throughput", parent=None,
-                                              aliases=["처리량", "throughput"], refs=["https://example.com/tp"])])
+                                   draft_term("mlops.serve.test-fixture-throughput", title="시험용 처리량", en="Test Fixture Throughput", parent=None,
+                                              aliases=["시험용 처리량", "test fixture throughput"], refs=["https://example.com/tp"])])
         before = (self.repo / "catalog" / "VERSION").read_text().strip()
         out = self.run_cmd("apply", "--note", "서빙 항목 시험")
         self.assertEqual((out["topics"], out["terms"], out["previous"]), (1, 2, before))
         self.assertEqual(out["version"], dm.bump_version(before))
-        self.assertEqual(out["box_covered"], ["모델 서빙 기본"])
+        self.assertEqual(out["box_covered"], ["시험용 서빙 기본"])
         items = json.loads((self.repo / "catalog" / "items" / "mlops.json").read_text(encoding="utf-8"))
-        wanted = {"mlops.serve.model-serving", "mlops.serve.batch-inference", "mlops.serve.throughput"}
+        wanted = {"mlops.serve.test-fixture-serving", "mlops.serve.test-fixture-batch-inference", "mlops.serve.test-fixture-throughput"}
         added = {i["id"]: i for i in items if i["id"] in wanted}
         self.assertEqual(set(added), wanted)
-        self.assertNotIn("basis", added["mlops.serve.model-serving"])
+        self.assertNotIn("basis", added["mlops.serve.test-fixture-serving"])
         self.assertIn("- 서빙 항목 시험", (self.repo / "catalog" / "CHANGELOG.md").read_text(encoding="utf-8"))
         self.assertTrue((self.repo / "catalog" / "dist" / "catalog.json").exists())
         bundle = json.loads((self.repo / "catalog" / "dist" / "catalog.json").read_text(encoding="utf-8"))
@@ -227,7 +227,7 @@ class DicMakerTest(unittest.TestCase):
         self.write_draft("mlops", [draft_topic(basis="")])
         with self.assertRaises(SystemExit):
             self.run_cmd("apply", ok=False)
-        self.assertNotIn("mlops.serve.model-serving", (self.repo / "catalog" / "items" / "mlops.json").read_text(encoding="utf-8"))
+        self.assertNotIn("mlops.serve.test-fixture-serving", (self.repo / "catalog" / "items" / "mlops.json").read_text(encoding="utf-8"))
 
     def test_cancel_removes_drafts_but_not_catalog(self):
         self.run_cmd("start", "--level", "4")
@@ -306,12 +306,12 @@ class DicMakerTest(unittest.TestCase):
     def test_review_sheet_all_writes_per_level_and_apply_merges_all(self):
         self.run_cmd("start", "--all", "--count", "10")
         self.write_level_draft(4, "mlops", [draft_topic(), draft_term()])
-        self.write_level_draft(2, "mlops", [draft_term("mlops.serve.throughput", title="처리량", en="Throughput", level=2,
-                                                       parent=None, aliases=["처리량", "throughput"], refs=["https://example.com/tp"])])
+        self.write_level_draft(2, "mlops", [draft_term("mlops.serve.test-fixture-throughput", title="시험용 처리량", en="Test Fixture Throughput", level=2,
+                                                       parent=None, aliases=["시험용 처리량", "test fixture throughput"], refs=["https://example.com/tp"])])
         out = self.run_cmd("review-sheet")
         self.assertEqual(sorted(out["reviews"]), ["1", "2", "3", "4", "5"])
-        self.assertIn("| mlops.serve.model-serving | topic | 4 |", Path(out["reviews"]["4"]).read_text(encoding="utf-8"))
-        self.assertNotIn("mlops.serve.model-serving", Path(out["reviews"]["2"]).read_text(encoding="utf-8"))
+        self.assertIn("| mlops.serve.test-fixture-serving | topic | 4 |", Path(out["reviews"]["4"]).read_text(encoding="utf-8"))
+        self.assertNotIn("mlops.serve.test-fixture-serving", Path(out["reviews"]["2"]).read_text(encoding="utf-8"))
         index = Path(out["review"]).read_text(encoding="utf-8")
         self.assertIn("[4단계](review_4.md): 주제 1개, 용어 1개", index)
         self.assertIn("다섯 단계를 한 번에", index)
