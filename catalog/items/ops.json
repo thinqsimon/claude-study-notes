@@ -95,6 +95,95 @@
     ]
   },
   {
+    "id": "ops.k8s.idea",
+    "title": "Kubernetes: 컨테이너 떼를 지휘하는 관리자",
+    "en": "What Kubernetes Is",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "컨테이너가 수십 개로 늘면 사람이 하나씩 켜고 끄기 어려우므로, 원하는 상태를 적어 두면 알아서 맞춰 주는 관리 도구다.",
+    "objectives": [
+      "Kubernetes를 오케스트라 지휘자나 관제탑에 빗대어 설명할 수 있다",
+      "죽은 컨테이너를 다시 살리는 일과 바쁠 때 늘리는 일을 예로 들어 말할 수 있다",
+      "컨테이너 하나 띄우기와 수십 개 운영하기의 차이를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.basics.container-idea"
+    ],
+    "aliases": [
+      "Kubernetes",
+      "쿠버네티스",
+      "k8s",
+      "쿠버",
+      "컨테이너 관리 도구",
+      "컨테이너 오케스트레이션"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/overview/"
+    ]
+  },
+  {
+    "id": "ops.observe.monitoring-idea",
+    "title": "모니터링",
+    "en": "Monitoring",
+    "kind": "term",
+    "level": 1,
+    "importance": 1,
+    "group": "관측",
+    "summary": "서비스가 잘 돌고 있는지 요청 수·오류 수·걸린 시간 같은 숫자를 계속 재어 보고, 이상하면 사람에게 알리는 일이다.",
+    "aliases": [
+      "모니터링",
+      "monitoring",
+      "서비스 감시",
+      "운영 감시",
+      "경보"
+    ],
+    "refs": [
+      "https://sre.google/sre-book/monitoring-distributed-systems/"
+    ]
+  },
+  {
+    "id": "ops.network.load-balancer",
+    "title": "로드 밸런서",
+    "en": "Load Balancer",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "네트워크와 앞단",
+    "summary": "식당 입구에서 손님을 빈 테이블로 안내하듯, 들어오는 요청을 여러 서버에 고르게 나누어 한 대만 몰리지 않게 하는 장치다.",
+    "aliases": [
+      "로드 밸런서",
+      "load balancer",
+      "부하 분산",
+      "로드 밸런싱",
+      "LB"
+    ],
+    "refs": [
+      "https://aws.amazon.com/what-is/load-balancing/"
+    ]
+  },
+  {
+    "id": "ops.network.cdn",
+    "title": "CDN",
+    "en": "Content Delivery Network",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "네트워크와 앞단",
+    "summary": "같은 파일의 사본을 세계 곳곳의 서버에 두고 사용자와 가장 가까운 곳에서 내주어 빠르게 전달하는 서버 묶음이다.",
+    "aliases": [
+      "CDN",
+      "콘텐츠 전송망",
+      "content delivery network",
+      "씨디엔",
+      "CDN 엣지"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/CDN"
+    ]
+  },
+  {
     "id": "ops.deploy.first-deploy",
     "title": "웹 서비스 첫 배포",
     "en": "Your First Deployment",

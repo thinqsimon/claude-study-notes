@@ -71,6 +71,101 @@
     ]
   },
   {
+    "id": "db.internals.transaction-idea",
+    "title": "트랜잭션: 전부 되거나 전부 안 되거나",
+    "en": "The Idea of Transactions",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "DB 내부",
+    "summary": "송금처럼 여러 단계를 한 묶음으로 처리해, 중간에 끊겨도 반만 바뀐 상태가 남지 않게 하는 데이터베이스의 약속이다.",
+    "objectives": [
+      "트랜잭션을 계좌 이체에 빗대어 설명할 수 있다",
+      "커밋과 롤백이 각각 무엇을 뜻하는지 말할 수 있다",
+      "다른 사람에게 반만 바뀐 상태가 보이면 왜 문제인지 예를 들어 말할 수 있다"
+    ],
+    "prerequisites": [
+      "db.basics.what-is-sql"
+    ],
+    "aliases": [
+      "트랜잭션",
+      "transaction",
+      "커밋과 롤백",
+      "원자성",
+      "all or nothing"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/tutorial-transactions.html"
+    ]
+  },
+  {
+    "id": "db.cache.cache-idea",
+    "title": "캐시: 자주 찾는 자료를 손 닿는 곳에 두기",
+    "en": "The Idea of Caching",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "캐시",
+    "summary": "한 번 꺼낸 자료를 빠른 저장소에 잠시 두었다가 같은 요청이 오면 창고까지 가지 않고 바로 내주는 방식이다.",
+    "objectives": [
+      "캐시를 책상 서랍과 창고의 관계에 빗대어 설명할 수 있다",
+      "캐시에 있으면 적중, 없으면 미스라는 말의 뜻을 말할 수 있다",
+      "캐시에 둔 자료가 낡으면 생기는 문제를 예를 들어 말할 수 있다"
+    ],
+    "prerequisites": [
+      "db.basics.what-is-database"
+    ],
+    "aliases": [
+      "캐시",
+      "cache",
+      "캐싱",
+      "caching",
+      "인메모리 캐시"
+    ],
+    "refs": [
+      "https://aws.amazon.com/caching/"
+    ]
+  },
+  {
+    "id": "db.basics.backup",
+    "title": "백업",
+    "en": "Backup",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "DB 기초",
+    "summary": "자료가 지워지거나 망가져도 되돌릴 수 있도록 데이터베이스 내용을 따로 복사해 두는 일이다.",
+    "aliases": [
+      "백업",
+      "backup",
+      "DB 백업",
+      "백업과 복원",
+      "DB 복원"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/backup.html"
+    ]
+  },
+  {
+    "id": "db.nosql.what-is-nosql",
+    "title": "NoSQL",
+    "en": "NoSQL Databases",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "NoSQL",
+    "summary": "행과 열의 표 대신 문서·키와 값·그래프 같은 다른 모양으로 자료를 담는 데이터베이스를 통틀어 부르는 말이다.",
+    "aliases": [
+      "NoSQL",
+      "노에스큐엘",
+      "비관계형 DB",
+      "문서형 DB"
+    ],
+    "refs": [
+      "https://aws.amazon.com/nosql/"
+    ]
+  },
+  {
     "id": "db.postgres.first-run",
     "title": "PostgreSQL 설치와 첫 표 만들기",
     "en": "Getting Started with PostgreSQL",
@@ -150,6 +245,304 @@
     ]
   },
   {
+    "id": "db.internals.transaction-basics",
+    "title": "트랜잭션: 여러 작업을 하나로 묶기",
+    "en": "Transactions: Grouping Changes as One Unit",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "DB 내부",
+    "summary": "BEGIN과 COMMIT 사이의 여러 SQL을 전부 되거나 전부 안 되는 한 묶음으로 만들고 ROLLBACK으로 중간에 되돌리는 방법이다.",
+    "objectives": [
+      "BEGIN·COMMIT으로 UPDATE 여러 개를 한 묶음으로 실행할 수 있다",
+      "ROLLBACK으로 묶음 안의 변경을 모두 되돌릴 수 있다",
+      "송금처럼 반드시 함께 성공해야 하는 작업에 트랜잭션이 왜 필요한지 설명할 수 있다",
+      "BEGIN 없이 실행한 문장 하나도 저절로 트랜잭션이 된다는 것을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "db.sql.write-rows"
+    ],
+    "related": [
+      "db.internals.isolation-levels"
+    ],
+    "aliases": [
+      "트랜잭션 입문",
+      "BEGIN COMMIT",
+      "ROLLBACK 되돌리기",
+      "SAVEPOINT",
+      "원자성"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/tutorial-transactions.html"
+    ]
+  },
+  {
+    "id": "db.cache.redis-first-run",
+    "title": "Redis 설치와 첫 명령: SET·GET·EXPIRE",
+    "en": "Getting Started with Redis: SET, GET and EXPIRE",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "캐시",
+    "summary": "메모리에 값을 두는 키-값 저장소 Redis를 띄우고 redis-cli와 파이썬으로 값을 넣고 읽고 몇 초 뒤 사라지게 해 보는 첫 실습이다.",
+    "objectives": [
+      "Redis를 띄우고 redis-cli로 접속할 수 있다",
+      "SET·GET으로 키에 값을 넣고 읽을 수 있다",
+      "EXPIRE와 TTL로 키가 몇 초 뒤 저절로 지워지게 하고 남은 시간을 확인할 수 있다",
+      "파이썬 redis 라이브러리로 같은 일을 코드에서 할 수 있다"
+    ],
+    "prerequisites": [
+      "db.basics.what-is-database",
+      "dev.terminal.basic-commands"
+    ],
+    "related": [
+      "db.cache.response-caching",
+      "db.cache.ttl"
+    ],
+    "aliases": [
+      "Redis 시작하기",
+      "redis-cli",
+      "SET GET",
+      "EXPIRE"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/develop/get-started/data-store/",
+      "https://redis.io/docs/latest/commands/expire/"
+    ]
+  },
+  {
+    "id": "db.internals.transaction",
+    "title": "트랜잭션",
+    "en": "Transaction",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "DB 내부",
+    "summary": "여러 SQL 문을 전부 반영되거나 전부 취소되는 하나의 작업 단위로 묶은 것이다.",
+    "parent": "db.internals.transaction-basics",
+    "aliases": [
+      "DB 트랜잭션",
+      "SQL 트랜잭션",
+      "트랜잭션 블록",
+      "transaction block"
+    ]
+  },
+  {
+    "id": "db.internals.index",
+    "title": "인덱스",
+    "en": "Index",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "DB 내부",
+    "summary": "책 뒤의 찾아보기처럼 특정 열의 값으로 행을 빨리 찾게 돕는 보조 구조로, CREATE INDEX로 만들고 쓰기마다 함께 갱신되는 비용이 있다.",
+    "related": [
+      "db.internals.btree"
+    ],
+    "aliases": [
+      "인덱스",
+      "DB 인덱스",
+      "CREATE INDEX",
+      "database index"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/indexes-intro.html"
+    ]
+  },
+  {
+    "id": "db.sql.primary-key",
+    "title": "기본 키",
+    "en": "Primary Key",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "SQL",
+    "summary": "표의 각 행을 하나로 가려내는 열로, 값이 겹치거나 비어 있을 수 없고 표마다 하나만 둔다.",
+    "parent": "db.postgres.first-run",
+    "aliases": [
+      "기본 키",
+      "primary key",
+      "PK",
+      "주 키"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/ddl-constraints.html"
+    ]
+  },
+  {
+    "id": "db.sql.foreign-key",
+    "title": "외래 키",
+    "en": "Foreign Key",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "SQL",
+    "summary": "다른 표의 기본 키를 가리키는 열로, 없는 행을 가리키는 값이 들어오지 못하게 데이터베이스가 막아 준다.",
+    "related": [
+      "db.sql.primary-key"
+    ],
+    "aliases": [
+      "외래 키",
+      "foreign key",
+      "FK",
+      "REFERENCES",
+      "참조 무결성"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/tutorial-fk.html"
+    ]
+  },
+  {
+    "id": "db.cache.key-value-store",
+    "title": "키-값 저장소",
+    "en": "Key-Value Store",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "캐시",
+    "summary": "표와 관계 대신 키 하나에 값 하나를 매달아 두고 키로만 찾는 저장소로, Redis가 대표다.",
+    "parent": "db.cache.redis-first-run",
+    "aliases": [
+      "키-값 저장소",
+      "key-value store",
+      "KV 저장소"
+    ]
+  },
+  {
+    "id": "db.internals.autocommit",
+    "title": "자동 커밋(autocommit)",
+    "en": "Autocommit",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "DB 내부",
+    "summary": "BEGIN을 쓰지 않으면 문장 하나하나가 제 트랜잭션으로 바로 확정되는 기본 동작으로, 여러 문장을 묶으려면 명시적으로 블록을 열어야 한다.",
+    "parent": "db.internals.transaction-basics",
+    "aliases": [
+      "자동 커밋",
+      "autocommit",
+      "암묵적 트랜잭션",
+      "implicit transaction"
+    ]
+  },
+  {
+    "id": "db.sql.join",
+    "title": "JOIN: 두 표 이어 붙이기",
+    "en": "JOIN",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "SQL",
+    "summary": "두 표의 행을 조건이 맞는 짝끼리 이어 한 줄로 보여 주며, 짝이 없는 행을 버리면 INNER, 왼쪽은 남기면 LEFT JOIN이다.",
+    "related": [
+      "db.sql.select-first"
+    ],
+    "aliases": [
+      "조인",
+      "INNER JOIN",
+      "LEFT JOIN",
+      "LEFT OUTER JOIN",
+      "테이블 조인",
+      "JOIN ON"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/tutorial-join.html"
+    ]
+  },
+  {
+    "id": "db.sql.group-by",
+    "title": "GROUP BY와 집계 함수",
+    "en": "GROUP BY and Aggregate Functions",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "SQL",
+    "summary": "count·sum·max 같은 집계 함수로 여러 행을 한 값으로 줄이고, GROUP BY로 묶음마다 계산하며, 집계 조건은 WHERE가 아니라 HAVING에 쓴다.",
+    "related": [
+      "db.sql.select-first"
+    ],
+    "aliases": [
+      "GROUP BY",
+      "집계 함수",
+      "aggregate function",
+      "HAVING",
+      "count sum avg"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/tutorial-agg.html"
+    ]
+  },
+  {
+    "id": "db.internals.index-design",
+    "title": "인덱스 설계와 사용 여부 확인",
+    "en": "Index Design and Verifying Index Usage",
+    "kind": "topic",
+    "level": 4,
+    "importance": 1,
+    "group": "DB 내부",
+    "summary": "어떤 열에 어떤 인덱스를 만들지 질의 패턴을 보고 고르고, EXPLAIN으로 실제로 쓰이는지 확인해 느린 쿼리의 원인을 찾는 방법이다.",
+    "objectives": [
+      "자주 나가는 질의의 WHERE·ORDER BY를 보고 단일·복합·부분 인덱스 중 무엇이 맞는지 고를 수 있다",
+      "EXPLAIN ANALYZE로 인덱스가 쓰였는지 보고, 안 쓰였다면 통계 부족·조건 불일치·작은 표 중 어느 원인인지 찾을 수 있다",
+      "pg_stat_user_indexes 같은 통계 뷰로 안 쓰는 인덱스를 찾아 지우고, 인덱스마다 쓰기 비용이 따른다는 점을 근거로 말할 수 있다"
+    ],
+    "prerequisites": [
+      "db.sql.select-first",
+      "db.sql.write-rows"
+    ],
+    "related": [
+      "db.internals.btree",
+      "db.internals.query-planner",
+      "db.internals.index"
+    ],
+    "aliases": [
+      "인덱스 설계",
+      "index design",
+      "인덱스 안 탐",
+      "인덱스 안 타는 쿼리",
+      "pg_stat_user_indexes"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/indexes.html",
+      "https://www.postgresql.org/docs/current/indexes-examine.html"
+    ]
+  },
+  {
+    "id": "db.orm.n-plus-one",
+    "title": "N+1 문제와 관계 로딩 전략",
+    "en": "The N+1 Problem and Relationship Loading Strategies",
+    "kind": "topic",
+    "level": 4,
+    "importance": 1,
+    "group": "ORM",
+    "summary": "목록을 한 번 읽고 행마다 관련 자료를 또 읽어 질의가 N+1번 나가는 문제를 찾아내고, ORM의 로딩 방식을 골라 고치는 방법이다.",
+    "objectives": [
+      "SQL 로그에서 같은 모양의 질의가 행 수만큼 반복되는 N+1 현상을 찾아낼 수 있다",
+      "지연 로딩·selectin 로딩·joined 로딩 중 컬렉션인지 단일 관계인지에 따라 맞는 방식을 근거를 들어 고를 수 있다",
+      "raiseload로 뜻하지 않은 지연 로딩을 테스트에서 오류로 잡고, 세션이 닫힌 뒤 관계에 접근해 나는 오류의 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "be.fastapi.db-session",
+      "db.sql.select-first"
+    ],
+    "related": [
+      "db.internals.index-design",
+      "be.async.stream-db-session"
+    ],
+    "aliases": [
+      "N+1",
+      "N+1 쿼리",
+      "N+1 문제",
+      "selectinload",
+      "joinedload",
+      "lazy loading 문제"
+    ],
+    "refs": [
+      "https://docs.sqlalchemy.org/en/20/orm/queryguide/relationships.html",
+      "https://docs.sqlalchemy.org/en/20/errors.html"
+    ]
+  },
+  {
     "id": "db.cache.response-caching",
     "title": "응답 캐시로 부하와 비용 줄이기",
     "en": "Caching to Reduce Load and Cost",
@@ -208,6 +601,80 @@
     "aliases": [
       "TTL",
       "Time To Live"
+    ]
+  },
+  {
+    "id": "db.internals.partial-index",
+    "title": "부분 인덱스",
+    "en": "Partial Index",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "DB 내부",
+    "summary": "WHERE 조건을 만족하는 행만 담는 인덱스로, 자주 찾는 일부 행만 작게 색인하거나 조건부 유일성을 강제할 때 쓴다.",
+    "parent": "db.internals.index-design",
+    "aliases": [
+      "partial index",
+      "조건부 인덱스",
+      "WHERE 인덱스",
+      "부분 유니크 인덱스"
+    ]
+  },
+  {
+    "id": "db.internals.multicolumn-index",
+    "title": "복합 인덱스",
+    "en": "Multicolumn Index",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "DB 내부",
+    "summary": "여러 열을 순서대로 묶은 인덱스로, 앞쪽 열부터 조건에 쓰여야 효과가 있어 열 순서가 설계의 핵심이다.",
+    "parent": "db.internals.index-design",
+    "aliases": [
+      "multicolumn index",
+      "composite index",
+      "다중 열 인덱스",
+      "복합 키 인덱스",
+      "인덱스 열 순서"
+    ]
+  },
+  {
+    "id": "db.orm.eager-loading",
+    "title": "즉시 로딩",
+    "en": "Eager Loading",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "ORM",
+    "summary": "관련 객체를 나중에 따로 읽지 않고 본 질의와 함께 미리 읽어 오는 방식으로, 대표적으로 selectin과 joined가 있다.",
+    "parent": "db.orm.n-plus-one",
+    "aliases": [
+      "eager loading",
+      "즉시 로딩 전략",
+      "selectin loading",
+      "joined eager loading",
+      "미리 읽기"
+    ]
+  },
+  {
+    "id": "db.orm.connection-pool",
+    "title": "DB 커넥션 풀",
+    "en": "Database Connection Pool",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "ORM",
+    "summary": "DB 연결을 미리 만들어 두고 돌려 쓰는 저장소로, 크기·대기 시간·끊긴 연결 검사를 어떻게 두느냐가 운영 장애를 가른다.",
+    "aliases": [
+      "DB connection pool",
+      "pool_size",
+      "pool_pre_ping",
+      "max_overflow",
+      "QueuePool",
+      "DB 연결 풀"
+    ],
+    "refs": [
+      "https://docs.sqlalchemy.org/en/20/core/pooling.html"
     ]
   },
   {

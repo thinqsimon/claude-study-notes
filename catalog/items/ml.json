@@ -48,6 +48,34 @@
     ]
   },
   {
+    "id": "ml.basics.types-of-ml",
+    "title": "머신러닝의 네 갈래: 지도·비지도·강화·생성형",
+    "en": "Types of Machine Learning",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "AI 기초",
+    "summary": "정답을 보고 배우는지, 정답 없이 무리를 찾는지, 상과 벌로 배우는지, 새 내용을 만드는지에 따라 머신러닝을 네 갈래로 나눈다.",
+    "objectives": [
+      "지도 학습을 답안지 있는 기출문제 풀이에 빗대어 설명할 수 있다",
+      "네 갈래마다 일상의 예를 하나씩 붙일 수 있다",
+      "스팸 걸러내기와 챗봇이 각각 어느 갈래인지 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.ai-ml-dl"
+    ],
+    "aliases": [
+      "지도 학습",
+      "비지도 학습",
+      "supervised learning",
+      "unsupervised learning",
+      "머신러닝의 종류"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/intro-to-ml/what-is-ml"
+    ]
+  },
+  {
     "id": "ml.basics.data-quality",
     "title": "AI에게 데이터가 중요한 이유",
     "en": "Why Data Matters to AI",
@@ -70,6 +98,102 @@
     ],
     "refs": [
       "https://developers.google.com/machine-learning/crash-course/overfitting/data-characteristics"
+    ]
+  },
+  {
+    "id": "ml.training.overfitting-idea",
+    "title": "과적합: 기출문제만 외운 모델",
+    "en": "The Idea of Overfitting",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "연습한 데이터는 거의 다 맞히지만 처음 보는 데이터에는 자주 틀리는, 이해 대신 외우기만 한 모델의 상태다.",
+    "objectives": [
+      "과적합을 기출문제 암기에 빗대어 설명할 수 있다",
+      "처음 보는 데이터에서도 맞히는 일반화가 왜 목표인지 말할 수 있다",
+      "과적합이 생기는 이유 두 가지를 일상 말로 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.train-inference",
+      "ml.basics.data-quality"
+    ],
+    "aliases": [
+      "과적합",
+      "overfitting",
+      "오버피팅",
+      "모델 일반화",
+      "과소적합"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/overfitting/overfitting"
+    ]
+  },
+  {
+    "id": "ml.basics.classification",
+    "title": "분류",
+    "en": "Classification",
+    "kind": "term",
+    "level": 1,
+    "importance": 1,
+    "group": "AI 기초",
+    "summary": "입력이 어느 범주에 드는지 고르는 문제로, 메일이 스팸인지 아닌지 가르는 일이 대표 예다.",
+    "parent": "ml.basics.types-of-ml",
+    "aliases": [
+      "classification",
+      "분류 모델",
+      "이진 분류",
+      "다중 분류"
+    ]
+  },
+  {
+    "id": "ml.basics.regression",
+    "title": "회귀(수치 예측)",
+    "en": "Regression (Numeric Prediction)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "범주가 아니라 숫자 값을 맞히는 문제로, 내일 강수량이나 집값을 예측하는 일이 예다.",
+    "parent": "ml.basics.types-of-ml",
+    "aliases": [
+      "회귀 모델",
+      "수치 예측",
+      "회귀 분석"
+    ]
+  },
+  {
+    "id": "ml.basics.clustering",
+    "title": "군집화",
+    "en": "Clustering",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "정답 없이 비슷한 것끼리 무리를 짓게 한 뒤 사람이 각 무리에 이름을 붙이는, 비지도 학습의 대표 방법이다.",
+    "parent": "ml.basics.types-of-ml",
+    "aliases": [
+      "군집화",
+      "clustering",
+      "클러스터링",
+      "군집 분석"
+    ]
+  },
+  {
+    "id": "ml.basics.reinforcement-learning",
+    "title": "강화 학습",
+    "en": "Reinforcement Learning",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "정답 대신 행동마다 상이나 벌을 받으며 가장 많은 상을 얻는 요령을 익히는 학습 방식이다.",
+    "parent": "ml.basics.types-of-ml",
+    "aliases": [
+      "강화 학습",
+      "reinforcement learning",
+      "RL",
+      "보상 학습"
     ]
   },
   {
@@ -255,6 +379,158 @@
     ],
     "refs": [
       "https://developers.google.com/machine-learning/crash-course/linear-regression/hyperparameters"
+    ]
+  },
+  {
+    "id": "ml.supervised.linear-regression",
+    "title": "선형 회귀: 직선으로 숫자 예측하기",
+    "en": "Linear Regression",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "AI 기초",
+    "summary": "특성에 가중치를 곱하고 편향을 더한 직선으로 숫자를 예측하고, 손실이 줄어드는 쪽으로 가중치를 조금씩 고쳐 가며 학습시키는 가장 기본적인 모델이다.",
+    "objectives": [
+      "특성과 레이블의 관계를 가중치·편향 식으로 쓰고 예측값을 계산할 수 있다",
+      "손실을 줄이는 방향으로 파라미터를 고쳐 가는 학습의 흐름을 손실 곡선으로 설명할 수 있다",
+      "학습률·배치 크기·에폭을 바꿔 손실이 안정되게 줄어들도록 학습시킬 수 있다",
+      "손실이 튀거나 너무 느리게 줄 때 학습률을 의심하고 조정할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.train-inference"
+    ],
+    "related": [
+      "ml.training.loss-function",
+      "ml.training.epoch-batch",
+      "ml.nn.first-neural-network",
+      "ml.training.backprop"
+    ],
+    "aliases": [
+      "선형 회귀",
+      "linear regression",
+      "직선 맞추기"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/linear-regression",
+      "https://developers.google.com/machine-learning/crash-course/linear-regression/gradient-descent",
+      "https://developers.google.com/machine-learning/crash-course/linear-regression/hyperparameters"
+    ]
+  },
+  {
+    "id": "ml.data.numeric-categorical-preprocessing",
+    "title": "숫자·범주 데이터 전처리: 정규화와 원-핫 인코딩",
+    "en": "Preprocessing Numerical and Categorical Data",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "AI 기초",
+    "summary": "숫자 특성은 비슷한 범위로 맞추고 범주 특성은 0과 1의 벡터로 바꿔 모델이 학습할 수 있는 숫자 표로 만드는 일이다.",
+    "objectives": [
+      "숫자 특성을 선형 스케일링이나 Z-점수로 비슷한 범위에 맞출 수 있다",
+      "범주 특성을 원-핫 벡터로 바꿔 모델에 넣을 수 있다",
+      "우편번호처럼 숫자 모양이지만 범주인 특성을 알아보고 범주로 다룰 수 있다",
+      "학습 때 쓴 변환을 예측 때 똑같이 적용해야 하는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.train-inference"
+    ],
+    "related": [
+      "ml.basics.data-quality",
+      "ml.basics.feature-label",
+      "ml.eval.data-splitting-cv"
+    ],
+    "aliases": [
+      "데이터 전처리",
+      "preprocessing",
+      "특성 스케일링",
+      "feature scaling",
+      "인코딩 전처리",
+      "feature engineering 기초"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/numerical-data",
+      "https://developers.google.com/machine-learning/crash-course/numerical-data/normalization",
+      "https://developers.google.com/machine-learning/crash-course/categorical-data",
+      "https://developers.google.com/machine-learning/crash-course/categorical-data/one-hot-encoding"
+    ]
+  },
+  {
+    "id": "ml.training.learning-rate",
+    "title": "학습률",
+    "en": "Learning Rate",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "딥러닝",
+    "summary": "경사 하강법에서 한 번에 가중치를 얼마나 크게 움직일지 정하는 설정값으로, 너무 작으면 느리고 너무 크면 손실이 튀어 수렴하지 않는다.",
+    "parent": "ml.supervised.linear-regression",
+    "aliases": [
+      "학습률",
+      "learning rate",
+      "lr",
+      "스텝 크기",
+      "step size"
+    ]
+  },
+  {
+    "id": "ml.data.one-hot-encoding",
+    "title": "원-핫 인코딩",
+    "en": "One-Hot Encoding",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "AI 기초",
+    "summary": "범주 하나를 범주 수만큼 긴 벡터로 바꾸고 해당 자리만 1, 나머지는 0으로 두는 표현으로, 범주가 아주 많으면 임베딩이 낫다.",
+    "parent": "ml.data.numeric-categorical-preprocessing",
+    "aliases": [
+      "원-핫 인코딩",
+      "one-hot encoding",
+      "원핫 벡터",
+      "one-hot vector",
+      "멀티-핫"
+    ]
+  },
+  {
+    "id": "ml.data.feature-normalization",
+    "title": "특성 정규화(스케일링)",
+    "en": "Feature Normalization (Scaling)",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "AI 기초",
+    "summary": "범위가 제각각인 숫자 특성을 0~1 선형 스케일링이나 평균 0·표준편차 1의 Z-점수로 맞춰 학습이 빨리 안정되게 하는 처리다.",
+    "parent": "ml.data.numeric-categorical-preprocessing",
+    "aliases": [
+      "특성 정규화",
+      "feature normalization",
+      "Z-점수 스케일링",
+      "z-score scaling",
+      "min-max 스케일링",
+      "선형 스케일링"
+    ]
+  },
+  {
+    "id": "ml.supervised.logistic-regression",
+    "title": "로지스틱 회귀",
+    "en": "Logistic Regression",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "선형 식의 결과를 시그모이드 함수에 통과시켜 0~1 사이 확률로 바꿔 '스팸인가 아닌가' 같은 예/아니오 질문에 답하는 분류 모델이다.",
+    "related": [
+      "ml.supervised.linear-regression",
+      "ml.eval.accuracy-first-evaluation",
+      "ml.eval.metrics-tradeoffs"
+    ],
+    "aliases": [
+      "로지스틱 회귀",
+      "logistic regression",
+      "이진 분류 모델"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/logistic-regression",
+      "https://developers.google.com/machine-learning/crash-course/logistic-regression/sigmoid-function"
     ]
   },
   {

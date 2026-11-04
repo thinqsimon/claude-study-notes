@@ -1,5 +1,162 @@
 [
   {
+    "id": "mlops.basics.what-is-mlops",
+    "title": "MLOps: 모델을 내놓은 뒤에도 돌보는 일",
+    "en": "What MLOps Is",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "AI 모델은 만들어 내놓은 뒤에도 세상이 바뀌면 낡으므로, 지켜보고 다시 가르치고 다시 내놓는 일을 체계로 만든 것이다.",
+    "objectives": [
+      "MLOps가 왜 필요한지 가게를 연 뒤의 운영에 빗대어 설명할 수 있다",
+      "보통 프로그램 운영과 다른 점을 데이터가 바뀐다는 말로 한 가지 말할 수 있다",
+      "배포한 모델을 지켜보다가 다시 가르치는 순환을 그림으로 그릴 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.train-inference",
+      "ops.basics.what-is-deploy"
+    ],
+    "aliases": [
+      "MLOps",
+      "엠엘옵스",
+      "LLMOps",
+      "모델 운영",
+      "AI 운영"
+    ],
+    "refs": [
+      "https://docs.cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning"
+    ]
+  },
+  {
+    "id": "mlops.guardrail.llm-top10-overview",
+    "title": "LLM 서비스의 위험 10가지: OWASP LLM Top 10",
+    "en": "OWASP Top 10 for LLM Applications at a Glance",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "LLM을 쓰는 서비스에서 자주 터지는 사고 열 가지를 보안 단체 OWASP가 순위로 정리한 목록이다.",
+    "objectives": [
+      "이 목록이 왜 있는지 사고 다발 지점 지도에 빗대어 설명할 수 있다",
+      "열 가지 가운데 세 가지 이상을 일상 말로 풀어 말할 수 있다",
+      "내가 쓰는 챗봇에 해당될 만한 위험을 목록에서 골라 볼 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.what-is-llm"
+    ],
+    "aliases": [
+      "OWASP LLM Top 10",
+      "LLM Top 10",
+      "LLM 보안 위험",
+      "LLM 취약점 목록",
+      "LLM 10대 위험"
+    ],
+    "refs": [
+      "https://genai.owasp.org/llm-top-10/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-04"
+  },
+  {
+    "id": "mlops.guardrail.guardrail",
+    "title": "가드레일",
+    "en": "Guardrails",
+    "kind": "term",
+    "level": 1,
+    "importance": 1,
+    "group": "LLM 운영",
+    "summary": "AI에게 들어가는 말과 AI가 내놓는 답을 규칙이나 다른 AI 모델로 걸러 위험한 내용을 막는 안전장치다.",
+    "aliases": [
+      "가드레일",
+      "guardrail",
+      "guardrails",
+      "AI 안전장치",
+      "출력 필터"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/guardrails"
+    ]
+  },
+  {
+    "id": "mlops.observe.drift",
+    "title": "드리프트",
+    "en": "Drift",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "모델을 가르칠 때 본 데이터와 지금 들어오는 데이터가 달라져 모델의 답이 점점 어긋나는 현상이다.",
+    "parent": "mlops.basics.what-is-mlops",
+    "aliases": [
+      "드리프트",
+      "drift",
+      "모델 노후화"
+    ],
+    "refs": [
+      "https://madewithml.com/courses/mlops/monitoring/"
+    ]
+  },
+  {
+    "id": "mlops.serve.model-serving",
+    "title": "모델 서빙",
+    "en": "Model Serving",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "다 가르친 모델을 서버에 올려 두고 요청이 올 때마다 답을 돌려주게 만드는 일이다.",
+    "aliases": [
+      "모델 서빙",
+      "model serving",
+      "모델 배포",
+      "추론 서버"
+    ],
+    "refs": [
+      "https://madewithml.com/courses/mlops/serving/"
+    ]
+  },
+  {
+    "id": "mlops.guardrail.excessive-agency",
+    "title": "과도한 자율성(Excessive Agency)",
+    "en": "Excessive Agency",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "AI에게 필요 이상의 기능·권한·결정권을 주어, 속거나 잘못 판단했을 때 큰 사고로 이어지는 위험이다.",
+    "parent": "mlops.guardrail.llm-top10-overview",
+    "aliases": [
+      "과도한 자율성",
+      "excessive agency",
+      "LLM06",
+      "LLM06:2025",
+      "에이전트 권한 과다"
+    ],
+    "refs": [
+      "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/"
+    ]
+  },
+  {
+    "id": "mlops.observe.experiment-tracking",
+    "title": "실험 추적",
+    "en": "Experiment Tracking",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "모델을 가르칠 때마다 어떤 설정으로 어떤 점수가 나왔는지 실험 일지처럼 기록해 나중에 비교하는 일이다.",
+    "aliases": [
+      "실험 추적",
+      "experiment tracking",
+      "실험 기록",
+      "MLflow 실험"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/ml/tracking/"
+    ]
+  },
+  {
     "id": "mlops.eval.first-eval",
     "title": "LLM 답 채점하기: 평가 세트와 스코어러",
     "en": "Your First LLM Evaluation: Dataset and Scorers",
@@ -63,6 +220,42 @@
     "refs": [
       "https://mlflow.org/docs/latest/genai/tracing/quickstart/",
       "https://mlflow.org/docs/latest/genai/concepts/trace/"
+    ]
+  },
+  {
+    "id": "mlops.prompt.register-load",
+    "title": "프롬프트를 코드 밖에 두기: 등록하고 불러오기",
+    "en": "Registering and Loading Prompts from a Registry",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "프롬프트 문장을 코드에 박지 않고 MLflow 프롬프트 레지스트리에 이름과 버전으로 등록한 뒤 코드에서 불러와 변수를 채워 쓰는 첫 실습이다.",
+    "objectives": [
+      "register_prompt로 {{변수}}가 든 프롬프트를 이름 붙여 등록할 수 있다",
+      "load_prompt로 prompts:/이름/버전 주소의 프롬프트를 불러와 format으로 변수를 채울 수 있다",
+      "같은 이름으로 다시 등록하면 새 버전이 생기고 지난 버전은 바뀌지 않는다는 것을 UI에서 확인할 수 있다",
+      "프롬프트를 코드와 떼어 두면 좋은 점을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.first-call",
+      "mlops.observe.tracing-quickstart"
+    ],
+    "related": [
+      "mlops.prompt.registry",
+      "mlops.prompt.alias"
+    ],
+    "aliases": [
+      "프롬프트 등록",
+      "register_prompt",
+      "load_prompt",
+      "prompts:/",
+      "프롬프트 레지스트리 입문"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/prompt-registry/",
+      "https://mlflow.org/docs/latest/genai/prompt-registry/create-and-edit-prompts/",
+      "https://mlflow.org/docs/latest/genai/prompt-registry/use-prompts-in-apps/"
     ]
   },
   {
@@ -151,6 +344,204 @@
     ],
     "refs": [
       "https://mlflow.org/docs/latest/genai/getting-started/connect-environment/"
+    ]
+  },
+  {
+    "id": "mlops.observe.trace",
+    "title": "트레이스",
+    "en": "Trace",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "요청 하나가 앱 안에서 거친 단계마다의 입력·출력·걸린 시간을 한 줄기로 묶어 남긴 기록이다.",
+    "parent": "mlops.observe.tracing-quickstart",
+    "related": [
+      "mlops.observe.llm-tracing"
+    ],
+    "aliases": [
+      "트레이스",
+      "LLM trace",
+      "trace 기록",
+      "호출 추적"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/concepts/trace/"
+    ]
+  },
+  {
+    "id": "mlops.prompt.version",
+    "title": "프롬프트 버전",
+    "en": "Prompt Version",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "같은 이름으로 다시 등록할 때마다 번호가 하나씩 붙는 프롬프트의 스냅숏으로, 한 번 만들면 내용이 바뀌지 않아 언제든 되돌아갈 수 있다.",
+    "parent": "mlops.prompt.register-load",
+    "related": [
+      "mlops.prompt.alias"
+    ],
+    "aliases": [
+      "프롬프트 버전",
+      "prompt version",
+      "프롬프트 버전 번호",
+      "불변 버전"
+    ]
+  },
+  {
+    "id": "mlops.observe.experiment",
+    "title": "MLflow 실험(experiment)",
+    "en": "MLflow Experiment",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "한 앱이나 에이전트가 보내는 트레이스와 평가 결과를 담는 상자로, set_experiment로 이름을 정하면 없을 때 새로 만들어진다.",
+    "parent": "mlops.observe.tracing-quickstart",
+    "aliases": [
+      "MLflow 실험",
+      "mlflow experiment",
+      "set_experiment",
+      "실험 이름"
+    ]
+  },
+  {
+    "id": "mlops.prompt.template-variable",
+    "title": "프롬프트 템플릿 변수",
+    "en": "Prompt Template Variable",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "등록한 프롬프트 안에 {{이름}}으로 비워 둔 자리로, 불러온 뒤 format에 값을 넘겨 채운다.",
+    "parent": "mlops.prompt.register-load",
+    "aliases": [
+      "{{variable}}",
+      "이중 중괄호 변수",
+      "prompt variable"
+    ]
+  },
+  {
+    "id": "mlops.track.experiment-tracking",
+    "title": "실험 추적: 파라미터·지표·모델 기록하기",
+    "en": "Experiment Tracking with MLflow",
+    "kind": "topic",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "학습을 돌릴 때마다 설정값·결과 지표·모델 파일을 run으로 남겨 두고 나중에 비교해 가장 좋은 run을 다시 꺼내 쓰는 방법이다.",
+    "objectives": [
+      "실험을 만들고 run 안에서 파라미터·지표·모델을 기록할 수 있다",
+      "MLflow UI에서 여러 run을 지표로 정렬해 비교하고 가장 좋은 run을 고를 수 있다",
+      "기록된 모델을 run에서 다시 불러와 새 입력에 예측을 돌릴 수 있다",
+      "autolog로 맡길 것과 log_metric으로 직접 적을 것을 구분할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.nn.first-neural-network",
+      "mlops.observe.tracing-quickstart"
+    ],
+    "related": [
+      "mlops.observe.llm-tracing",
+      "mlops.eval.llm-regression",
+      "ml.supervised.linear-regression"
+    ],
+    "aliases": [
+      "MLflow 실험 추적",
+      "run 비교",
+      "run 기록",
+      "log_metric",
+      "mlflow.start_run"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/ml/tracking/",
+      "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
+    ]
+  },
+  {
+    "id": "mlops.track.model-registry",
+    "title": "모델 레지스트리",
+    "en": "Model Registry",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "학습된 모델을 이름으로 등록해 버전을 매기고, champion 같은 별칭으로 서비스 코드가 어느 버전을 쓸지 가리키게 하는 저장소다.",
+    "related": [
+      "mlops.track.experiment-tracking",
+      "mlops.prompt.registry",
+      "mlops.prompt.alias"
+    ],
+    "aliases": [
+      "모델 레지스트리",
+      "model registry",
+      "registered model",
+      "모델 버전 등록",
+      "models:/ URI"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/ml/model-registry/"
+    ]
+  },
+  {
+    "id": "mlops.track.experiment-run",
+    "title": "런(run)",
+    "en": "MLflow Run",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "학습 코드를 한 번 실행한 기록 단위로, 그 안에 파라미터·지표·모델이 남고 run id로 다시 찾는다.",
+    "parent": "mlops.track.experiment-tracking",
+    "aliases": [
+      "MLflow run",
+      "실험 run",
+      "run id",
+      "start_run"
+    ]
+  },
+  {
+    "id": "mlops.track.params-metrics-artifacts",
+    "title": "파라미터·지표·아티팩트 기록",
+    "en": "Logging Parameters, Metrics and Artifacts",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "run에 남기는 세 가지로, 파라미터는 넣은 설정값, 지표는 나온 숫자(손실·정확도), 아티팩트는 모델 파일·그림 같은 산출물이다.",
+    "parent": "mlops.track.experiment-tracking",
+    "aliases": [
+      "log_param",
+      "log_params",
+      "log_artifact",
+      "MLflow 아티팩트",
+      "지표 로깅",
+      "metric logging"
+    ]
+  },
+  {
+    "id": "mlops.track.data-versioning",
+    "title": "데이터 버전 관리(DVC)",
+    "en": "Data Versioning (DVC)",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "큰 데이터 파일은 Git에 넣지 않고 해시가 적힌 작은 .dvc 파일만 커밋하며, 실제 파일은 원격 저장소에 push·pull해 코드 버전과 데이터 버전을 짝지어 두는 방식이다.",
+    "related": [
+      "dev.git.why-version-control",
+      "mlops.track.experiment-tracking"
+    ],
+    "aliases": [
+      "데이터 버전 관리",
+      "data versioning",
+      "DVC",
+      "dvc add",
+      "dvc push pull"
+    ],
+    "refs": [
+      "https://madewithml.com/courses/mlops/versioning/",
+      "https://dvc.org/doc/start"
     ]
   },
   {
@@ -366,6 +757,140 @@
     ],
     "refs": [
       "https://developers.openai.com/api/docs/guides/model-optimization"
+    ]
+  },
+  {
+    "id": "mlops.observe.drift-detection",
+    "title": "드리프트 탐지의 내부: 분포 비교와 창",
+    "en": "Drift Detection: Distribution Tests and Windows",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "입력·정답·관계의 분포가 바뀌는 드리프트를 기준 창과 시험 창의 통계 검정으로 잡는 원리와 창 크기·임계값의 손익을 다룬다.",
+    "objectives": [
+      "데이터 드리프트·타깃 드리프트·개념 드리프트를 구분하고 각각 어떤 신호로 드러나는지 설명할 수 있다",
+      "단변량 검정과 차원 축소 뒤 다변량 검정이 무엇을 잡고 무엇을 놓치는지 분석할 수 있다",
+      "기준 창·시험 창 크기와 경보 임계값이 탐지 지연과 오경보에 주는 손익을 근거로 설정을 정할 수 있다",
+      "정답이 늦게 오는 서비스에서 CBPE·DLE처럼 예측 확신도나 보조 모델로 성능을 추정하고 그 추정이 개념 드리프트에서 깨지는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.observe.llm-tracing",
+      "ml.eval.metrics-tradeoffs"
+    ],
+    "related": [
+      "mlops.eval.llm-regression"
+    ],
+    "aliases": [
+      "드리프트 탐지",
+      "drift detection",
+      "분포 변화 탐지"
+    ],
+    "refs": [
+      "https://docs.cloud.google.com/vertex-ai/docs/model-monitoring/overview",
+      "https://nannyml.readthedocs.io/en/stable/how_it_works/performance_estimation.html",
+      "https://nannyml.readthedocs.io/en/stable/how_it_works/multivariate_drift.html"
+    ]
+  },
+  {
+    "id": "mlops.finetune.lora-internals",
+    "title": "LoRA 파인튜닝의 내부와 손익",
+    "en": "LoRA Fine-Tuning Internals",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "가중치 변화를 낮은 랭크 행렬 두 개로 대신 학습하는 LoRA의 원리와 랭크·대상 층·병합 방식이 메모리·품질·서빙에 주는 손익을 다룬다.",
+    "objectives": [
+      "원래 가중치를 얼려 두고 저랭크 행렬만 학습하는 구조가 왜 학습 메모리를 크게 줄이는지 설명할 수 있다",
+      "랭크 r·alpha·대상 모듈 선택이 표현력과 비용에 주는 손익을 근거로 설정을 정할 수 있다",
+      "어댑터를 병합해 배포할지 따로 둘지를 추론 지연과 여러 작업 운영을 기준으로 판단할 수 있다",
+      "양자화한 기반 모델 위에 LoRA를 얹을 때 생기는 오차와 초기화 방식의 관계를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.finetune.when",
+      "ml.transformer.attention"
+    ],
+    "related": [
+      "mlops.serve.inference-optimization"
+    ],
+    "aliases": [
+      "LoRA",
+      "QLoRA",
+      "저랭크 어댑터",
+      "어댑터 학습",
+      "low-rank adaptation"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/peft/main/en/conceptual_guides/lora"
+    ]
+  },
+  {
+    "id": "mlops.observe.data-drift",
+    "title": "데이터 드리프트",
+    "en": "Data Drift",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "입력 분포 P(X)만 바뀌고 입력과 정답의 관계는 그대로인 경우로, 기준 창과 시험 창의 입력 분포 검정으로 잡힌다.",
+    "parent": "mlops.observe.drift-detection",
+    "aliases": [
+      "covariate shift",
+      "입력 분포 변화"
+    ]
+  },
+  {
+    "id": "mlops.observe.concept-drift",
+    "title": "개념 드리프트",
+    "en": "Concept Drift",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "입력과 정답 사이의 관계 P(Y|X) 자체가 바뀌어 같은 입력에 다른 답이 맞게 되는 현상이다.",
+    "parent": "mlops.observe.drift-detection",
+    "aliases": [
+      "개념 드리프트",
+      "concept drift",
+      "관계 변화",
+      "입력-정답 관계 변화"
+    ]
+  },
+  {
+    "id": "mlops.finetune.lora-rank",
+    "title": "LoRA 랭크와 alpha",
+    "en": "LoRA Rank and Alpha",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "LoRA 갱신 행렬의 크기를 정하는 r과 그 출력을 얼마나 반영할지 정하는 배율 alpha로, 학습 파라미터 수와 효과의 세기를 좌우한다.",
+    "parent": "mlops.finetune.lora-internals",
+    "aliases": [
+      "LoRA 랭크",
+      "lora_alpha",
+      "랭크 r",
+      "rank r",
+      "rsLoRA"
+    ]
+  },
+  {
+    "id": "mlops.finetune.adapter-merge",
+    "title": "어댑터 병합(merge_and_unload)",
+    "en": "Adapter Merge",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "학습한 저랭크 행렬을 기반 모델 가중치에 더해 하나의 모델로 만드는 일로, 추론 지연은 없애지만 어댑터를 바꿔 끼우는 유연함은 잃는다.",
+    "parent": "mlops.finetune.lora-internals",
+    "aliases": [
+      "어댑터 병합",
+      "merge_and_unload",
+      "LoRA 병합",
+      "adapter merge",
+      "가중치 병합"
     ]
   }
 ]

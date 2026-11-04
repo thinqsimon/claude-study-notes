@@ -1,5 +1,5 @@
 {
- "version": "0.5.0",
+ "version": "0.6.0",
  "domains": [
   {
    "prefix": "dev",
@@ -476,6 +476,70 @@
    "domain": "dev"
   },
   {
+   "id": "dev.git.remotes",
+   "title": "원격 저장소: clone·push·pull",
+   "en": "Remote Repositories: clone, push and pull",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "Git",
+   "summary": "GitHub의 저장소를 내 컴퓨터로 복제하고 내 커밋을 올리고 남의 커밋을 받아 오는 원격 저장소 기본 명령이다.",
+   "objectives": [
+    "git clone으로 원격 저장소를 통째로 내려받을 수 있다",
+    "git remote -v로 origin이 어디를 가리키는지 볼 수 있다",
+    "git push로 내 커밋을 올리고 git pull로 남의 커밋을 받아 올 수 있다",
+    "git fetch와 git pull의 차이를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.first-commit",
+    "dev.git.github-role"
+   ],
+   "related": [
+    "dev.git.branch-pr"
+   ],
+   "aliases": [
+    "원격 저장소",
+    "remote repository",
+    "git remote",
+    "git pull",
+    "git fetch"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes",
+    "https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.merge-conflict",
+   "title": "머지 충돌 해결하기",
+   "en": "Resolving Merge Conflicts",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "Git",
+   "summary": "두 브랜치가 같은 파일의 같은 곳을 고쳐 Git이 혼자 합치지 못할 때 표시를 보고 고른 뒤 add와 commit으로 끝내는 절차다.",
+   "objectives": [
+    "git merge 뒤 git status로 충돌 난 파일을 찾을 수 있다",
+    "<<<<<<<·=======·>>>>>>> 표시의 위아래가 어느 브랜치 것인지 읽을 수 있다",
+    "한쪽을 고르거나 합쳐 표시를 지운 뒤 git add와 git commit으로 머지를 마칠 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.branch-pr"
+   ],
+   "aliases": [
+    "머지 충돌",
+    "merge conflict",
+    "충돌 해결",
+    "conflict marker",
+    "git merge"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.test.unit",
    "title": "단위 테스트",
    "en": "Unit Test",
@@ -488,6 +552,82 @@
    "aliases": [
     "단위 테스트",
     "Unit Test"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.clone",
+   "title": "git clone",
+   "en": "Git Clone",
+   "kind": "term",
+   "level": 2,
+   "importance": 1,
+   "group": "Git",
+   "summary": "원격 저장소의 모든 기록을 내 컴퓨터에 통째로 복사해 새 폴더로 만드는 명령이다.",
+   "parent": "dev.git.remotes",
+   "aliases": [
+    "저장소 클론",
+    "repo clone",
+    "저장소 복제"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.gitignore",
+   "title": ".gitignore",
+   "en": ".gitignore File",
+   "kind": "term",
+   "level": 2,
+   "importance": 1,
+   "group": "Git",
+   "summary": "로그·빌드 결과·비밀값 파일처럼 기록에 넣지 않을 파일의 패턴을 적어 두는 파일로, 여기 적힌 파일은 추적 대상에서 빠진다.",
+   "related": [
+    "be.security.env-file"
+   ],
+   "aliases": [
+    ".gitignore",
+    "gitignore",
+    "무시 파일",
+    "ignore 패턴"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.staging-area",
+   "title": "스테이징 영역",
+   "en": "Staging Area",
+   "kind": "term",
+   "level": 2,
+   "importance": 1,
+   "group": "Git",
+   "summary": "다음 커밋에 넣을 변경만 골라 두는 중간 칸으로, git add를 실행한 시점의 파일 내용이 담긴다.",
+   "parent": "dev.git.first-commit",
+   "aliases": [
+    "스테이징 영역",
+    "staging area",
+    "git 스테이징",
+    "index 영역",
+    "git add 영역"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.origin",
+   "title": "origin 원격",
+   "en": "Origin Remote",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "Git",
+   "summary": "git clone이 복제해 온 서버에 붙여 주는 기본 원격 이름으로, push와 pull의 기본 상대가 된다.",
+   "parent": "dev.git.remotes",
+   "aliases": [
+    "origin 원격",
+    "기본 원격 이름",
+    "remote origin"
    ],
    "domain": "dev"
   },
@@ -596,6 +736,82 @@
    "domain": "dev"
   },
   {
+   "id": "dev.robust.atomic-replace",
+   "title": "임시 파일과 원자적 교체(os.replace)",
+   "en": "Temporary Files and Atomic Replacement (os.replace)",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "견고한 스크립트",
+   "summary": "파일을 바로 덮어쓰지 않고 임시 파일에 다 쓴 뒤 한 번에 바꿔 끼워, 도중에 꺼져도 반쯤 쓰인 파일이 남지 않게 하는 방법이다.",
+   "objectives": [
+    "쓰다 만 파일이 남거나 읽는 쪽이 반쪽짜리 내용을 보는 원인을 설명하고 임시 파일→교체 순서로 고칠 수 있다",
+    "os.rename과 os.replace의 차이, 같은 파일 시스템 안에서만 원자적이라는 조건을 알고 임시 파일을 어디에 만들지 정할 수 있다",
+    "flush·fsync를 어디까지 할지 내구성과 속도의 손익을 따져 정할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.basics.files-paths",
+    "dev.basics.how-program-runs"
+   ],
+   "related": [
+    "be.arch.transaction-boundary",
+    "be.rest.idempotency"
+   ],
+   "aliases": [
+    "os.replace",
+    "원자적 쓰기",
+    "atomic write",
+    "임시 파일로 쓰기",
+    "write-then-rename",
+    "반쯤 쓰인 파일"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/os.html#os.replace",
+    "https://docs.python.org/3/library/tempfile.html#tempfile.NamedTemporaryFile",
+    "https://luigi.readthedocs.io/en/stable/luigi_patterns.html#atomic-writes-problem"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.robust.resumable-batch",
+   "title": "재개 가능한 배치 작업과 완료 표시",
+   "en": "Resumable Batch Jobs and Completion Markers",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "견고한 스크립트",
+   "summary": "많은 항목을 처리하는 작업이 중간에 끊겨도 완료 표시를 보고 한 일은 건너뛰고 남은 일만 이어 하게 하는 설계다.",
+   "objectives": [
+    "작업 단위마다 완료 표시(결과 파일·상태 행)를 남겨 다시 돌릴 때 건너뛰도록 설계할 수 있다",
+    "같은 항목을 두 번 처리해도 결과가 같도록 INSERT를 UPSERT나 덮어쓰기로 바꾸고 입력을 고정할 수 있다",
+    "완료 표시는 있는데 결과가 비어 있는 식의 불일치 원인을 원자적 쓰기와 묶어 찾을 수 있다",
+    "중단 지점을 어디까지 잘게 기록할지 재실행 비용과 기록 비용의 손익으로 정할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.basics.files-paths",
+    "be.rest.method-semantics"
+   ],
+   "related": [
+    "dev.robust.atomic-replace",
+    "be.async.task-queue",
+    "rag.agent.checkpoint-persistence"
+   ],
+   "aliases": [
+    "resumable job",
+    "재개 가능한 작업",
+    "완료 표시",
+    "done marker",
+    "이어서 처리",
+    "중단 후 재개"
+   ],
+   "refs": [
+    "https://luigi.readthedocs.io/en/stable/tasks.html#task-output",
+    "https://luigi.readthedocs.io/en/stable/api/luigi.task.html",
+    "https://airflow.apache.org/docs/apache-airflow/stable/best-practices.html#creating-a-task"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.test.e2e",
    "title": "E2E 테스트",
    "en": "End-to-End Test",
@@ -640,6 +856,153 @@
    "aliases": [
     "커버리지",
     "Test Coverage"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.robust.tempfile",
+   "title": "임시 파일(tempfile)",
+   "en": "Temporary File (tempfile)",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "견고한 스크립트",
+   "summary": "경쟁 없이 안전하게 만든 일회용 파일로, 최종 파일과 같은 폴더에 만들어야 교체가 원자적으로 끝난다.",
+   "parent": "dev.robust.atomic-replace",
+   "aliases": [
+    "tempfile",
+    "NamedTemporaryFile",
+    "mkstemp",
+    "임시 파일 만들기",
+    "임시 폴더"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.bisect",
+   "title": "git bisect",
+   "en": "git bisect",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Git",
+   "summary": "정상이던 커밋과 고장 난 커밋 사이를 이분 탐색해 버그가 들어온 커밋을 찾는 명령으로, 검사 스크립트를 주면 자동으로 돈다.",
+   "aliases": [
+    "이분 탐색으로 커밋 찾기",
+    "버그 커밋 찾기",
+    "git bisect run",
+    "회귀 커밋 찾기"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Tools-Debugging-with-Git"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.robust.fsync",
+   "title": "fsync",
+   "en": "fsync",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "견고한 스크립트",
+   "summary": "버퍼에 머문 쓰기를 디스크까지 내려 보내도록 강제하는 호출로, 전원이 꺼져도 남아야 하는 파일에만 비용을 치르고 쓴다.",
+   "parent": "dev.robust.atomic-replace",
+   "aliases": [
+    "os.fsync",
+    "디스크 동기화",
+    "flush와 fsync",
+    "내구성 쓰기"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.robust.sentinel-file",
+   "title": "완료 표시 파일",
+   "en": "Sentinel File",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "견고한 스크립트",
+   "summary": "작업이 끝났음을 알리기 위해 마지막에 만드는 빈 파일이나 결과 파일로, 다음 실행은 이 존재만 보고 건너뛴다.",
+   "parent": "dev.robust.resumable-batch",
+   "aliases": [
+    "sentinel file",
+    "marker file",
+    ".done 파일",
+    "완료 마커",
+    "_SUCCESS 파일"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.internals",
+   "title": "Git 내부: 객체·참조·packfile",
+   "en": "Git Internals: Objects, Refs and Packfiles",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "Git",
+   "summary": "Git이 내용 해시로 객체를 저장하고 참조로 가리키며 packfile로 묶는 구조를 알고 저장소 이상과 커밋 유실을 분석한다.",
+   "objectives": [
+    "blob·tree·commit 객체가 해시로 이어지는 그래프를 보고 커밋 하나가 어떻게 저장되는지 설명할 수 있다",
+    "브랜치·태그·HEAD가 참조 파일이라는 점을 근거로 되감기와 강제 이동이 무엇을 바꾸는지 판단할 수 있다",
+    "느슨한 객체와 packfile·델타 압축의 손익을 알고 gc가 저장소 크기와 성능에 주는 영향을 설명할 수 있다",
+    "reflog와 fsck로 참조를 잃은 커밋을 찾아 복구할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.branch-pr"
+   ],
+   "aliases": [
+    "Git 객체",
+    "git objects",
+    "Git blob",
+    "tree 객체",
+    "content-addressable",
+    ".git 폴더 구조"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Internals-Git-Objects",
+    "https://git-scm.com/book/en/v2/Git-Internals-Git-References",
+    "https://git-scm.com/book/en/v2/Git-Internals-Packfiles",
+    "https://git-scm.com/book/en/v2/Git-Internals-Maintenance-and-Data-Recovery"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.reflog",
+   "title": "reflog",
+   "en": "Reflog",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "Git",
+   "summary": "HEAD와 브랜치가 어디를 가리켰는지 순서대로 남긴 기록으로, 참조를 잃은 커밋을 되찾는 출발점이다.",
+   "parent": "dev.git.internals",
+   "aliases": [
+    "reflog",
+    "리플로그",
+    "git reflog",
+    "잃어버린 커밋 복구"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.packfile",
+   "title": "packfile과 델타 압축",
+   "en": "Packfile and Delta Compression",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "Git",
+   "summary": "느슨한 객체 여러 개를 한 파일로 묶고 비슷한 내용은 차이만 저장해 공간을 줄이는 Git의 저장 형식이다.",
+   "parent": "dev.git.internals",
+   "aliases": [
+    "packfile",
+    "팩파일",
+    "델타 압축",
+    "git gc",
+    "delta compression"
    ],
    "domain": "dev"
   },
@@ -981,6 +1344,74 @@
    "domain": "plan"
   },
   {
+   "id": "plan.ai-ux.explanation-confidence-tradeoffs",
+   "title": "AI 설명과 확신도 표시의 손익",
+   "en": "Explanations and Confidence Displays",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "AI UX 설계",
+   "summary": "AI 답에 설명과 확신도를 얼마나, 어떤 형태로 보여 줄지 결정의 무게와 사용자의 과신·불신을 근거로 고른다.",
+   "objectives": [
+    "전체 설명·부분 설명·설명 없음 중 무엇이 맞는지 결정의 무게와 책임 요구를 근거로 고를 수 있다",
+    "여러 후보·범주·숫자 확률 표시 중 하나를 사용자가 잘못 읽을 위험을 근거로 고를 수 있다",
+    "설명을 어느 시점(행동 직후·예상 밖 응답·고위험·온보딩)에 내보낼지 정하고 사용자 시험으로 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.ai-ux.errors-graceful-failure",
+    "plan.ai-ux.mental-models-onboarding"
+   ],
+   "related": [
+    "plan.ai-ux.calibrated-trust"
+   ],
+   "aliases": [
+    "설명 가능성 UX",
+    "explainability UX",
+    "AI 설명 설계"
+   ],
+   "refs": [
+    "https://pair.withgoogle.com/chapter/explainability-trust/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.design-token-architecture",
+   "title": "디자인 토큰 표준과 별칭 계층 설계",
+   "en": "Design Token Standard and Alias Layers",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "디자인 토큰 교환 형식의 규칙과 변수 별칭을 층으로 쌓는 설계를 알고 디자인·코드 동기화 구조를 근거 있게 고른다.",
+   "objectives": [
+    "토큰·그룹·별칭·합성 토큰이 형식에서 어떻게 정의되고 참조가 어떤 규칙으로 풀리는지 설명할 수 있다",
+    "기본값 토큰 위에 의미 토큰을 별칭으로 얹는 층 구조를 테마 전환과 변경 전파를 근거로 고를 수 있다",
+    "Figma의 변수·컬렉션·모드를 토큰 형식과 대응시키며 도구 간 호환이 깨지는 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.dev-mode-handoff",
+    "plan.figma.frames-and-components"
+   ],
+   "related": [
+    "plan.figma.variables-modes"
+   ],
+   "aliases": [
+    "design tokens",
+    "DTCG",
+    "토큰 계층",
+    "시맨틱 토큰",
+    "디자인 토큰 형식"
+   ],
+   "refs": [
+    "https://www.designtokens.org/tr/2025.10/format/",
+    "https://help.figma.com/hc/en-us/articles/14506821864087-Overview-of-variables-collections-and-modes",
+    "https://help.figma.com/hc/en-us/articles/15145852043927-Create-and-manage-variables"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-04",
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.variables-modes",
    "title": "Figma 변수와 모드",
    "en": "Figma Variables and Modes",
@@ -1052,6 +1483,27 @@
    "domain": "plan"
   },
   {
+   "id": "plan.figma.design-token",
+   "title": "디자인 토큰",
+   "en": "Design Token",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "색·간격·글꼴 같은 디자인 값을 이름 붙인 데이터로 두어 디자인 도구와 코드가 같은 값을 쓰게 하는 단위다.",
+   "parent": "plan.figma.design-token-architecture",
+   "aliases": [
+    "design token",
+    "토큰 파일",
+    "tokens.json",
+    "디자인 값 토큰"
+   ],
+   "refs": [
+    "https://www.designtokens.org/tr/2025.10/format/"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.ready-for-dev",
    "title": "Ready for dev 상태",
    "en": "Ready for Dev Status",
@@ -1065,6 +1517,65 @@
     "Ready for dev",
     "개발 준비 완료",
     "Dev Mode 상태"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.token-alias",
+   "title": "토큰 별칭(참조)",
+   "en": "Token Alias",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "토큰 값 대신 다른 토큰의 이름을 적어 값을 끌어오는 참조로, 의미 토큰이 기본값 토큰을 가리키게 하는 장치다.",
+   "parent": "plan.figma.design-token-architecture",
+   "aliases": [
+    "토큰 별칭",
+    "alias token",
+    "변수 별칭",
+    "variable alias",
+    "토큰 참조"
+   ],
+   "refs": [
+    "https://www.designtokens.org/tr/2025.10/format/",
+    "https://help.figma.com/hc/en-us/articles/15145852043927-Create-and-manage-variables"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.ai-ux.partial-explanation",
+   "title": "부분 설명",
+   "en": "Partial Explanation",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "AI UX 설계",
+   "summary": "AI가 왜 그 답을 냈는지 전부 밝히지 않고 사용자의 판단에 영향을 주는 핵심 요인만 보여 주는 설명 방식이다.",
+   "parent": "plan.ai-ux.explanation-confidence-tradeoffs",
+   "aliases": [
+    "부분 설명",
+    "partial explanation",
+    "핵심 요인 설명",
+    "일부 설명"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.ai-ux.n-best-display",
+   "title": "N개 후보 표시(N-best)",
+   "en": "N-best Alternatives",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "AI UX 설계",
+   "summary": "확신이 낮을 때 하나만 단정하지 않고 가능성 높은 답 여럿을 함께 보여 사용자가 고르게 하는 확신도 표현 방식이다.",
+   "parent": "plan.ai-ux.explanation-confidence-tradeoffs",
+   "aliases": [
+    "N-best",
+    "후보 여러 개 표시",
+    "n-best alternatives",
+    "대안 후보 표시"
    ],
    "domain": "plan"
   },
@@ -9274,6 +9785,105 @@
    "domain": "db"
   },
   {
+   "id": "db.internals.transaction-idea",
+   "title": "트랜잭션: 전부 되거나 전부 안 되거나",
+   "en": "The Idea of Transactions",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "DB 내부",
+   "summary": "송금처럼 여러 단계를 한 묶음으로 처리해, 중간에 끊겨도 반만 바뀐 상태가 남지 않게 하는 데이터베이스의 약속이다.",
+   "objectives": [
+    "트랜잭션을 계좌 이체에 빗대어 설명할 수 있다",
+    "커밋과 롤백이 각각 무엇을 뜻하는지 말할 수 있다",
+    "다른 사람에게 반만 바뀐 상태가 보이면 왜 문제인지 예를 들어 말할 수 있다"
+   ],
+   "prerequisites": [
+    "db.basics.what-is-sql"
+   ],
+   "aliases": [
+    "트랜잭션",
+    "transaction",
+    "커밋과 롤백",
+    "원자성",
+    "all or nothing"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/tutorial-transactions.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.cache.cache-idea",
+   "title": "캐시: 자주 찾는 자료를 손 닿는 곳에 두기",
+   "en": "The Idea of Caching",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "캐시",
+   "summary": "한 번 꺼낸 자료를 빠른 저장소에 잠시 두었다가 같은 요청이 오면 창고까지 가지 않고 바로 내주는 방식이다.",
+   "objectives": [
+    "캐시를 책상 서랍과 창고의 관계에 빗대어 설명할 수 있다",
+    "캐시에 있으면 적중, 없으면 미스라는 말의 뜻을 말할 수 있다",
+    "캐시에 둔 자료가 낡으면 생기는 문제를 예를 들어 말할 수 있다"
+   ],
+   "prerequisites": [
+    "db.basics.what-is-database"
+   ],
+   "aliases": [
+    "캐시",
+    "cache",
+    "캐싱",
+    "caching",
+    "인메모리 캐시"
+   ],
+   "refs": [
+    "https://aws.amazon.com/caching/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.basics.backup",
+   "title": "백업",
+   "en": "Backup",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "DB 기초",
+   "summary": "자료가 지워지거나 망가져도 되돌릴 수 있도록 데이터베이스 내용을 따로 복사해 두는 일이다.",
+   "aliases": [
+    "백업",
+    "backup",
+    "DB 백업",
+    "백업과 복원",
+    "DB 복원"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/backup.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.nosql.what-is-nosql",
+   "title": "NoSQL",
+   "en": "NoSQL Databases",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "NoSQL",
+   "summary": "행과 열의 표 대신 문서·키와 값·그래프 같은 다른 모양으로 자료를 담는 데이터베이스를 통틀어 부르는 말이다.",
+   "aliases": [
+    "NoSQL",
+    "노에스큐엘",
+    "비관계형 DB",
+    "문서형 DB"
+   ],
+   "refs": [
+    "https://aws.amazon.com/nosql/"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.postgres.first-run",
    "title": "PostgreSQL 설치와 첫 표 만들기",
    "en": "Getting Started with PostgreSQL",
@@ -9356,6 +9966,316 @@
    "domain": "db"
   },
   {
+   "id": "db.internals.transaction-basics",
+   "title": "트랜잭션: 여러 작업을 하나로 묶기",
+   "en": "Transactions: Grouping Changes as One Unit",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "DB 내부",
+   "summary": "BEGIN과 COMMIT 사이의 여러 SQL을 전부 되거나 전부 안 되는 한 묶음으로 만들고 ROLLBACK으로 중간에 되돌리는 방법이다.",
+   "objectives": [
+    "BEGIN·COMMIT으로 UPDATE 여러 개를 한 묶음으로 실행할 수 있다",
+    "ROLLBACK으로 묶음 안의 변경을 모두 되돌릴 수 있다",
+    "송금처럼 반드시 함께 성공해야 하는 작업에 트랜잭션이 왜 필요한지 설명할 수 있다",
+    "BEGIN 없이 실행한 문장 하나도 저절로 트랜잭션이 된다는 것을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "db.sql.write-rows"
+   ],
+   "related": [
+    "db.internals.isolation-levels"
+   ],
+   "aliases": [
+    "트랜잭션 입문",
+    "BEGIN COMMIT",
+    "ROLLBACK 되돌리기",
+    "SAVEPOINT",
+    "원자성"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/tutorial-transactions.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.cache.redis-first-run",
+   "title": "Redis 설치와 첫 명령: SET·GET·EXPIRE",
+   "en": "Getting Started with Redis: SET, GET and EXPIRE",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "캐시",
+   "summary": "메모리에 값을 두는 키-값 저장소 Redis를 띄우고 redis-cli와 파이썬으로 값을 넣고 읽고 몇 초 뒤 사라지게 해 보는 첫 실습이다.",
+   "objectives": [
+    "Redis를 띄우고 redis-cli로 접속할 수 있다",
+    "SET·GET으로 키에 값을 넣고 읽을 수 있다",
+    "EXPIRE와 TTL로 키가 몇 초 뒤 저절로 지워지게 하고 남은 시간을 확인할 수 있다",
+    "파이썬 redis 라이브러리로 같은 일을 코드에서 할 수 있다"
+   ],
+   "prerequisites": [
+    "db.basics.what-is-database",
+    "dev.terminal.basic-commands"
+   ],
+   "related": [
+    "db.cache.response-caching",
+    "db.cache.ttl"
+   ],
+   "aliases": [
+    "Redis 시작하기",
+    "redis-cli",
+    "SET GET",
+    "EXPIRE"
+   ],
+   "refs": [
+    "https://redis.io/docs/latest/develop/get-started/data-store/",
+    "https://redis.io/docs/latest/commands/expire/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.transaction",
+   "title": "트랜잭션",
+   "en": "Transaction",
+   "kind": "term",
+   "level": 2,
+   "importance": 1,
+   "group": "DB 내부",
+   "summary": "여러 SQL 문을 전부 반영되거나 전부 취소되는 하나의 작업 단위로 묶은 것이다.",
+   "parent": "db.internals.transaction-basics",
+   "aliases": [
+    "DB 트랜잭션",
+    "SQL 트랜잭션",
+    "트랜잭션 블록",
+    "transaction block"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.index",
+   "title": "인덱스",
+   "en": "Index",
+   "kind": "term",
+   "level": 2,
+   "importance": 1,
+   "group": "DB 내부",
+   "summary": "책 뒤의 찾아보기처럼 특정 열의 값으로 행을 빨리 찾게 돕는 보조 구조로, CREATE INDEX로 만들고 쓰기마다 함께 갱신되는 비용이 있다.",
+   "related": [
+    "db.internals.btree"
+   ],
+   "aliases": [
+    "인덱스",
+    "DB 인덱스",
+    "CREATE INDEX",
+    "database index"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/indexes-intro.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.primary-key",
+   "title": "기본 키",
+   "en": "Primary Key",
+   "kind": "term",
+   "level": 2,
+   "importance": 1,
+   "group": "SQL",
+   "summary": "표의 각 행을 하나로 가려내는 열로, 값이 겹치거나 비어 있을 수 없고 표마다 하나만 둔다.",
+   "parent": "db.postgres.first-run",
+   "aliases": [
+    "기본 키",
+    "primary key",
+    "PK",
+    "주 키"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/ddl-constraints.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.foreign-key",
+   "title": "외래 키",
+   "en": "Foreign Key",
+   "kind": "term",
+   "level": 2,
+   "importance": 1,
+   "group": "SQL",
+   "summary": "다른 표의 기본 키를 가리키는 열로, 없는 행을 가리키는 값이 들어오지 못하게 데이터베이스가 막아 준다.",
+   "related": [
+    "db.sql.primary-key"
+   ],
+   "aliases": [
+    "외래 키",
+    "foreign key",
+    "FK",
+    "REFERENCES",
+    "참조 무결성"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/tutorial-fk.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.cache.key-value-store",
+   "title": "키-값 저장소",
+   "en": "Key-Value Store",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "캐시",
+   "summary": "표와 관계 대신 키 하나에 값 하나를 매달아 두고 키로만 찾는 저장소로, Redis가 대표다.",
+   "parent": "db.cache.redis-first-run",
+   "aliases": [
+    "키-값 저장소",
+    "key-value store",
+    "KV 저장소"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.autocommit",
+   "title": "자동 커밋(autocommit)",
+   "en": "Autocommit",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "BEGIN을 쓰지 않으면 문장 하나하나가 제 트랜잭션으로 바로 확정되는 기본 동작으로, 여러 문장을 묶으려면 명시적으로 블록을 열어야 한다.",
+   "parent": "db.internals.transaction-basics",
+   "aliases": [
+    "자동 커밋",
+    "autocommit",
+    "암묵적 트랜잭션",
+    "implicit transaction"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.join",
+   "title": "JOIN: 두 표 이어 붙이기",
+   "en": "JOIN",
+   "kind": "term",
+   "level": 3,
+   "importance": 1,
+   "group": "SQL",
+   "summary": "두 표의 행을 조건이 맞는 짝끼리 이어 한 줄로 보여 주며, 짝이 없는 행을 버리면 INNER, 왼쪽은 남기면 LEFT JOIN이다.",
+   "related": [
+    "db.sql.select-first"
+   ],
+   "aliases": [
+    "조인",
+    "INNER JOIN",
+    "LEFT JOIN",
+    "LEFT OUTER JOIN",
+    "테이블 조인",
+    "JOIN ON"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/tutorial-join.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.group-by",
+   "title": "GROUP BY와 집계 함수",
+   "en": "GROUP BY and Aggregate Functions",
+   "kind": "term",
+   "level": 3,
+   "importance": 1,
+   "group": "SQL",
+   "summary": "count·sum·max 같은 집계 함수로 여러 행을 한 값으로 줄이고, GROUP BY로 묶음마다 계산하며, 집계 조건은 WHERE가 아니라 HAVING에 쓴다.",
+   "related": [
+    "db.sql.select-first"
+   ],
+   "aliases": [
+    "GROUP BY",
+    "집계 함수",
+    "aggregate function",
+    "HAVING",
+    "count sum avg"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/tutorial-agg.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.index-design",
+   "title": "인덱스 설계와 사용 여부 확인",
+   "en": "Index Design and Verifying Index Usage",
+   "kind": "topic",
+   "level": 4,
+   "importance": 1,
+   "group": "DB 내부",
+   "summary": "어떤 열에 어떤 인덱스를 만들지 질의 패턴을 보고 고르고, EXPLAIN으로 실제로 쓰이는지 확인해 느린 쿼리의 원인을 찾는 방법이다.",
+   "objectives": [
+    "자주 나가는 질의의 WHERE·ORDER BY를 보고 단일·복합·부분 인덱스 중 무엇이 맞는지 고를 수 있다",
+    "EXPLAIN ANALYZE로 인덱스가 쓰였는지 보고, 안 쓰였다면 통계 부족·조건 불일치·작은 표 중 어느 원인인지 찾을 수 있다",
+    "pg_stat_user_indexes 같은 통계 뷰로 안 쓰는 인덱스를 찾아 지우고, 인덱스마다 쓰기 비용이 따른다는 점을 근거로 말할 수 있다"
+   ],
+   "prerequisites": [
+    "db.sql.select-first",
+    "db.sql.write-rows"
+   ],
+   "related": [
+    "db.internals.btree",
+    "db.internals.query-planner",
+    "db.internals.index"
+   ],
+   "aliases": [
+    "인덱스 설계",
+    "index design",
+    "인덱스 안 탐",
+    "인덱스 안 타는 쿼리",
+    "pg_stat_user_indexes"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/indexes.html",
+    "https://www.postgresql.org/docs/current/indexes-examine.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.orm.n-plus-one",
+   "title": "N+1 문제와 관계 로딩 전략",
+   "en": "The N+1 Problem and Relationship Loading Strategies",
+   "kind": "topic",
+   "level": 4,
+   "importance": 1,
+   "group": "ORM",
+   "summary": "목록을 한 번 읽고 행마다 관련 자료를 또 읽어 질의가 N+1번 나가는 문제를 찾아내고, ORM의 로딩 방식을 골라 고치는 방법이다.",
+   "objectives": [
+    "SQL 로그에서 같은 모양의 질의가 행 수만큼 반복되는 N+1 현상을 찾아낼 수 있다",
+    "지연 로딩·selectin 로딩·joined 로딩 중 컬렉션인지 단일 관계인지에 따라 맞는 방식을 근거를 들어 고를 수 있다",
+    "raiseload로 뜻하지 않은 지연 로딩을 테스트에서 오류로 잡고, 세션이 닫힌 뒤 관계에 접근해 나는 오류의 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "be.fastapi.db-session",
+    "db.sql.select-first"
+   ],
+   "related": [
+    "db.internals.index-design",
+    "be.async.stream-db-session"
+   ],
+   "aliases": [
+    "N+1",
+    "N+1 쿼리",
+    "N+1 문제",
+    "selectinload",
+    "joinedload",
+    "lazy loading 문제"
+   ],
+   "refs": [
+    "https://docs.sqlalchemy.org/en/20/orm/queryguide/relationships.html",
+    "https://docs.sqlalchemy.org/en/20/errors.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.cache.response-caching",
    "title": "응답 캐시로 부하와 비용 줄이기",
    "en": "Caching to Reduce Load and Cost",
@@ -9416,6 +10336,84 @@
    "aliases": [
     "TTL",
     "Time To Live"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.partial-index",
+   "title": "부분 인덱스",
+   "en": "Partial Index",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "WHERE 조건을 만족하는 행만 담는 인덱스로, 자주 찾는 일부 행만 작게 색인하거나 조건부 유일성을 강제할 때 쓴다.",
+   "parent": "db.internals.index-design",
+   "aliases": [
+    "partial index",
+    "조건부 인덱스",
+    "WHERE 인덱스",
+    "부분 유니크 인덱스"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.multicolumn-index",
+   "title": "복합 인덱스",
+   "en": "Multicolumn Index",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "여러 열을 순서대로 묶은 인덱스로, 앞쪽 열부터 조건에 쓰여야 효과가 있어 열 순서가 설계의 핵심이다.",
+   "parent": "db.internals.index-design",
+   "aliases": [
+    "multicolumn index",
+    "composite index",
+    "다중 열 인덱스",
+    "복합 키 인덱스",
+    "인덱스 열 순서"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.orm.eager-loading",
+   "title": "즉시 로딩",
+   "en": "Eager Loading",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "ORM",
+   "summary": "관련 객체를 나중에 따로 읽지 않고 본 질의와 함께 미리 읽어 오는 방식으로, 대표적으로 selectin과 joined가 있다.",
+   "parent": "db.orm.n-plus-one",
+   "aliases": [
+    "eager loading",
+    "즉시 로딩 전략",
+    "selectin loading",
+    "joined eager loading",
+    "미리 읽기"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.orm.connection-pool",
+   "title": "DB 커넥션 풀",
+   "en": "Database Connection Pool",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "ORM",
+   "summary": "DB 연결을 미리 만들어 두고 돌려 쓰는 저장소로, 크기·대기 시간·끊긴 연결 검사를 어떻게 두느냐가 운영 장애를 가른다.",
+   "aliases": [
+    "DB connection pool",
+    "pool_size",
+    "pool_pre_ping",
+    "max_overflow",
+    "QueuePool",
+    "DB 연결 풀"
+   ],
+   "refs": [
+    "https://docs.sqlalchemy.org/en/20/core/pooling.html"
    ],
    "domain": "db"
   },
@@ -10009,6 +11007,158 @@
    "domain": "fe"
   },
   {
+   "id": "fe.react.use-effect",
+   "title": "useEffect로 바깥 세계와 맞추기",
+   "en": "Synchronizing with Effects (useEffect)",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "React",
+   "summary": "렌더링이 끝난 뒤 서버 연결·구독·타이머처럼 React 바깥과 맞춰야 하는 일을 useEffect에 넣고, 의존성과 정리 함수로 실행 시점을 다스리는 방법이다.",
+   "objectives": [
+    "렌더링 뒤에 실행돼야 하는 일을 useEffect에 넣을 수 있다",
+    "의존성 배열로 Effect가 다시 실행되는 조건을 정할 수 있다",
+    "클린업 함수로 연결·구독·타이머를 정리해 중복 실행을 막을 수 있다",
+    "버튼 클릭 같은 사용자 행동에 따른 일을 Effect 대신 이벤트 핸들러에 두는 기준을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.react.state-first",
+    "fe.js.fetch-first"
+   ],
+   "related": [
+    "fe.internals.strict-mode",
+    "fe.internals.react-memoization"
+   ],
+   "aliases": [
+    "useEffect",
+    "이펙트 훅",
+    "Effect 훅",
+    "사이드 이펙트 훅",
+    "effect hook"
+   ],
+   "refs": [
+    "https://react.dev/learn/synchronizing-with-effects"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.render-and-commit",
+   "title": "React 렌더링 과정: 트리거·렌더·커밋",
+   "en": "React Rendering: Trigger, Render, Commit",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "프론트엔드 내부",
+   "summary": "state가 바뀌면 React가 컴포넌트 함수를 다시 불러 결과를 계산하고 달라진 곳만 DOM에 반영하는 세 단계 흐름이다.",
+   "objectives": [
+    "state 변경이 화면 갱신으로 이어지는 과정을 트리거·렌더·커밋 세 단계로 설명할 수 있다",
+    "부모가 다시 렌더링되면 자식도 함께 렌더링된다는 점을 알고 갱신 원인을 찾을 수 있다",
+    "렌더링 중에 바깥 변수를 고치는 코드를 찾아 순수한 계산으로 바꿀 수 있다",
+    "렌더 결과가 같으면 React가 DOM을 건드리지 않는다는 점을 입력 칸 예로 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.react.state-first"
+   ],
+   "related": [
+    "fe.internals.react-memoization",
+    "fe.internals.react-reconciliation",
+    "fe.internals.strict-mode"
+   ],
+   "aliases": [
+    "렌더와 커밋",
+    "render and commit",
+    "리렌더 과정",
+    "렌더링 세 단계",
+    "React 렌더링 흐름"
+   ],
+   "refs": [
+    "https://react.dev/learn/render-and-commit"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.react.dependency-array",
+   "title": "의존성 배열",
+   "en": "Dependency Array",
+   "kind": "term",
+   "level": 3,
+   "importance": 1,
+   "group": "React",
+   "summary": "useEffect의 둘째 인자로, 적힌 값이 지난 렌더와 달라졌을 때만 Effect를 다시 돌리며, 빈 배열이면 처음 나타날 때 한 번만 돈다.",
+   "parent": "fe.react.use-effect",
+   "aliases": [
+    "의존성 배열",
+    "dependency array",
+    "deps 배열",
+    "빈 배열 useEffect",
+    "exhaustive-deps"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.react.effect-cleanup",
+   "title": "클린업 함수",
+   "en": "Effect Cleanup Function",
+   "kind": "term",
+   "level": 3,
+   "importance": 1,
+   "group": "React",
+   "summary": "Effect가 반환하는 함수로, 다음 실행 직전과 컴포넌트가 사라질 때 불려 연결 끊기·구독 해제·타이머 취소를 맡는다.",
+   "parent": "fe.react.use-effect",
+   "aliases": [
+    "클린업 함수",
+    "cleanup function",
+    "Effect 정리",
+    "Effect 구독 해제",
+    "unmount 정리"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.react.key-prop",
+   "title": "리스트의 key 속성",
+   "en": "The key Prop in Lists",
+   "kind": "term",
+   "level": 3,
+   "importance": 1,
+   "group": "React",
+   "summary": "배열을 map으로 그릴 때 항목마다 붙이는 고유하고 바뀌지 않는 이름표로, 순서가 바뀌어도 React가 어느 항목인지 알아보게 하며 배열 인덱스를 쓰면 상태가 엉킨다.",
+   "related": [
+    "fe.react.first-component",
+    "fe.internals.render-and-commit"
+   ],
+   "aliases": [
+    "key prop",
+    "리스트 key",
+    "key 경고",
+    "unique key prop",
+    "인덱스 key"
+   ],
+   "refs": [
+    "https://react.dev/learn/rendering-lists"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.rerender",
+   "title": "리렌더링",
+   "en": "Re-render",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "프론트엔드 내부",
+   "summary": "state 설정 함수를 부르면 그 컴포넌트와 그 아래 자식들이 다시 호출돼 새 결과를 계산하는 일로, 부모가 다시 그려지면 자식도 따라 그려진다.",
+   "parent": "fe.internals.render-and-commit",
+   "aliases": [
+    "리렌더링",
+    "re-render",
+    "다시 렌더링",
+    "리렌더",
+    "state 갱신 렌더"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.internals.server-client-boundary",
    "title": "서버 컴포넌트와 클라이언트 컴포넌트 경계 정하기",
    "en": "Choosing the Server and Client Component Boundary",
@@ -10576,6 +11726,76 @@
    "domain": "llm"
   },
   {
+   "id": "llm.security.injection-basics",
+   "title": "프롬프트 인젝션 맛보기: 입력에 숨은 지시",
+   "en": "Prompt Injection Basics: Hidden Instructions in Input",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "LLM 보안",
+   "summary": "사용자 입력이나 불러온 문서에 섞인 지시를 모델이 따라 버리는 일을 직접 재현해 보고, 시스템 프롬프트와 입력을 구분하는 첫 습관을 익힌다.",
+   "objectives": [
+    "입력에 '앞의 지시는 무시하고'를 넣어 모델이 규칙을 어기는 것을 재현할 수 있다",
+    "직접 인젝션과 간접 인젝션을 예를 들어 구분할 수 있다",
+    "불러온 문서를 지시가 아닌 자료라고 표시해 넘기는 기본 처방을 따라 할 수 있다",
+    "프롬프트만으로는 다 막을 수 없어 뒤 단계의 방어가 필요하다는 것을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.prompt.first-good-prompt",
+    "llm.api.first-call"
+   ],
+   "related": [
+    "llm.security.prompt-injection"
+   ],
+   "aliases": [
+    "프롬프트 인젝션 입문",
+    "prompt injection basics",
+    "지시 무시 공격",
+    "ignore previous instructions",
+    "LLM01"
+   ],
+   "refs": [
+    "https://genai.owasp.org/llmrisk/llm01-prompt-injection/"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.generation-settings",
+   "title": "답 생성 설정 바꿔 보기: temperature와 max_tokens",
+   "en": "Generation Settings: temperature and max_tokens",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "LLM 내부",
+   "summary": "같은 프롬프트라도 temperature를 낮추면 답이 일정해지고 max_tokens를 줄이면 답이 잘리는 것을 직접 돌려 보며 두 설정의 쓰임을 익힌다.",
+   "objectives": [
+    "temperature를 0과 1 근처로 바꿔 같은 질문의 답이 얼마나 달라지는지 비교할 수 있다",
+    "max_tokens를 작게 잡아 답이 중간에 끊기는 것을 보고 적당한 값을 정할 수 있다",
+    "분류·추출처럼 일정한 답이 필요한 일과 아이디어 내기처럼 다양한 답이 필요한 일에 어느 설정이 맞는지 고를 수 있다"
+   ],
+   "prerequisites": [
+    "llm.api.first-call",
+    "llm.basics.token-context"
+   ],
+   "related": [
+    "llm.internals.tokenization-sampling"
+   ],
+   "aliases": [
+    "temperature 설정",
+    "max_tokens 설정",
+    "답 길이 제한",
+    "생성 설정",
+    "generation settings"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/models",
+    "https://github.com/microsoft/generative-ai-for-beginners/blob/main/06-text-generation-apps/README.md"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-04",
+   "domain": "llm"
+  },
+  {
    "id": "llm.basics.token",
    "title": "토큰",
    "en": "Token",
@@ -10620,6 +11840,90 @@
    "aliases": [
     "시스템 프롬프트",
     "System Prompt"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.structured-output",
+   "title": "구조화 출력",
+   "en": "Structured Output",
+   "kind": "term",
+   "level": 2,
+   "importance": 1,
+   "group": "LLM API",
+   "summary": "모델의 답을 미리 정한 JSON 스키마 모양으로만 받게 하는 기능으로, 코드가 답을 바로 파싱해 쓸 수 있다.",
+   "related": [
+    "llm.internals.structured-decoding",
+    "be.fastapi.pydantic"
+   ],
+   "aliases": [
+    "구조화 출력",
+    "structured output",
+    "JSON 출력",
+    "json_schema 출력",
+    "output_config.format"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/structured-outputs"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-04",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.temperature",
+   "title": "temperature(온도)",
+   "en": "Temperature",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "LLM 내부",
+   "summary": "답을 고를 때 무작위성을 얼마나 줄지 정하는 수로, 낮추면 매번 비슷한 답이 나오고 높이면 다양하지만 들쭉날쭉해진다.",
+   "parent": "llm.internals.generation-settings",
+   "aliases": [
+    "temperature",
+    "온도 설정",
+    "샘플링 온도",
+    "temperature 0"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.max-tokens",
+   "title": "max_tokens(최대 출력 토큰)",
+   "en": "max_tokens",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "LLM 내부",
+   "summary": "답에 쓸 수 있는 토큰 수의 상한으로, 비용과 길이를 막아 주지만 너무 작으면 답이 중간에 끊긴다.",
+   "parent": "llm.internals.generation-settings",
+   "related": [
+    "llm.basics.context-window"
+   ],
+   "aliases": [
+    "max_tokens",
+    "최대 토큰",
+    "출력 토큰 제한",
+    "max_output_tokens"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.security.indirect-injection",
+   "title": "간접 프롬프트 인젝션",
+   "en": "Indirect Prompt Injection",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "LLM 보안",
+   "summary": "사용자가 아니라 모델이 읽어 들인 웹 페이지·파일·검색 결과 안에 심어 둔 지시가 모델을 움직이는 공격이다.",
+   "parent": "llm.security.injection-basics",
+   "aliases": [
+    "간접 프롬프트 인젝션",
+    "indirect prompt injection",
+    "문서 속 숨은 지시",
+    "웹페이지 인젝션"
    ],
    "domain": "llm"
   },
@@ -10724,6 +12028,85 @@
    "domain": "llm"
   },
   {
+   "id": "llm.api.errors-rate-limits",
+   "title": "LLM API 오류와 속도 제한 대응",
+   "en": "Handling LLM API Errors and Rate Limits",
+   "kind": "topic",
+   "level": 4,
+   "importance": 1,
+   "group": "LLM API",
+   "summary": "LLM 공급자가 돌려주는 429·529·400 같은 오류를 구분해 다시 시도할 것과 멈출 것을 가르고, 실패한 호출의 원인을 추적하는 설계다.",
+   "objectives": [
+    "분당 요청·토큰 한도에 걸린 429와 지출 한도에 걸린 429·400을 구분해 각각 다르게 처리할 수 있다",
+    "retry-after 헤더와 지수 백오프를 조합해 재시도 횟수와 간격을 근거를 들어 정할 수 있다",
+    "요청 ID와 응답 헤더로 어느 호출이 왜 실패했는지 추적하고 남은 한도를 읽을 수 있다",
+    "긴 응답에서 타임아웃이 나는 원인을 찾아 스트리밍이나 배치 처리로 바꿀지 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.api.first-call",
+    "be.integrate.timeouts-retries"
+   ],
+   "related": [
+    "be.integrate.resilience",
+    "be.rest.rate-limit",
+    "be.error.request-id",
+    "llm.internals.prompt-caching"
+   ],
+   "aliases": [
+    "rate_limit_error",
+    "overloaded_error",
+    "529 오류",
+    "LLM 호출 실패",
+    "API 오류 재시도",
+    "사용량 한도 초과"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/api/errors",
+    "https://platform.claude.com/docs/en/api/rate-limits"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.context-management",
+   "title": "긴 대화의 컨텍스트 관리: 잘라내기·요약·압축",
+   "en": "Managing Context in Long Conversations",
+   "kind": "topic",
+   "level": 4,
+   "importance": 1,
+   "group": "LLM 내부",
+   "summary": "대화가 컨텍스트 창을 넘기 전에 무엇을 지우고 무엇을 요약할지 정하고, 그 선택이 비용·캐시·답변 품질에 주는 손익을 따지는 설계다.",
+   "objectives": [
+    "입력이 컨텍스트 창을 넘었을 때 나는 400 오류와 생성 도중 멈추는 stop_reason을 구분해 원인을 찾을 수 있다",
+    "오래된 도구 결과 지우기·서버 요약(컴팩션)·직접 자르기 중에서 상황에 맞는 방법을 근거를 들어 고를 수 있다",
+    "컨텍스트를 편집하면 프롬프트 캐시가 깨지는 손익을 설명하고 편집 시점을 정할 수 있다",
+    "대화 기록을 내가 보관할지 공급자가 보관하게 할지 비용과 보존 기간을 기준으로 정할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.token-context",
+    "llm.api.first-call"
+   ],
+   "related": [
+    "llm.internals.prompt-caching",
+    "llm.security.agent-boundaries"
+   ],
+   "aliases": [
+    "컨텍스트 관리",
+    "context management",
+    "대화 기록 요약",
+    "컨텍스트 초과",
+    "prompt is too long",
+    "컨텍스트 편집"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+    "https://platform.claude.com/docs/en/build-with-claude/context-editing",
+    "https://developers.openai.com/api/docs/guides/conversation-state"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-04",
+   "domain": "llm"
+  },
+  {
    "id": "llm.internals.prompt-caching",
    "title": "프롬프트 캐싱과 비용 구조",
    "en": "Prompt Caching and Cost Structure",
@@ -10747,6 +12130,92 @@
    ],
    "refs": [
     "https://platform.claude.com/docs/en/build-with-claude/prompt-caching"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-04",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.spend-limit",
+   "title": "지출 한도",
+   "en": "Spend Limit",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "한 달에 LLM API에 쓸 수 있는 금액의 상한으로, 넘으면 retry-after를 기다려도 풀리지 않고 다음 달이나 한도 상향 때까지 막힌다.",
+   "parent": "llm.api.errors-rate-limits",
+   "aliases": [
+    "spend limit",
+    "spend cap",
+    "월 지출 한도",
+    "사용 등급 한도"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.compaction",
+   "title": "컴팩션(대화 압축)",
+   "en": "Compaction",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 내부",
+   "summary": "오래된 대화 턴을 모델이 쓴 요약으로 바꿔 넣어 컨텍스트 창 안에서 대화를 계속 이어 가게 하는 방법이다.",
+   "parent": "llm.internals.context-management",
+   "aliases": [
+    "compaction",
+    "대화 압축",
+    "컨텍스트 압축",
+    "서버 요약",
+    "대화 자동 요약"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/compaction"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-04",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.usage-tier",
+   "title": "사용 등급(usage tier)",
+   "en": "Usage Tier",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM API",
+   "summary": "사용 이력에 따라 공급자가 조직에 매기는 등급으로, 분당 요청·토큰 한도와 월 지출 상한이 등급마다 다르다.",
+   "parent": "llm.api.errors-rate-limits",
+   "aliases": [
+    "usage tier",
+    "API 티어",
+    "티어 상향",
+    "등급 한도",
+    "tier increase"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-04",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.batch-api",
+   "title": "배치 API",
+   "en": "Message Batches API",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM API",
+   "summary": "바로 답이 필요 없는 요청을 한꺼번에 보내고 나중에 결과를 받는 비동기 처리 방식으로, 요금이 싸고 처리량 한도가 따로 있다.",
+   "aliases": [
+    "batch API",
+    "메시지 배치",
+    "Batches API",
+    "비동기 일괄 처리",
+    "배치 처리 요청"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/batch-processing"
    ],
    "volatile": true,
    "checked_at": "2026-11-04",
@@ -10807,6 +12276,41 @@
    "domain": "llm"
   },
   {
+   "id": "llm.internals.inference-phases",
+   "title": "LLM 추론의 내부: 프리필·디코드와 KV 캐시",
+   "en": "LLM Inference: Prefill, Decode and KV Cache",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "LLM 내부",
+   "summary": "입력 전체를 한 번에 처리하는 프리필과 토큰을 하나씩 내는 디코드의 비용 구조와 KV 캐시가 메모리로 계산을 사는 원리를 다룬다.",
+   "objectives": [
+    "프리필은 계산이, 디코드는 메모리가 병목인 이유를 설명하고 첫 토큰 시간과 토큰당 시간을 각 단계에 연결할 수 있다",
+    "KV 캐시가 무엇을 저장해 무엇을 아끼는지와 컨텍스트가 길어질 때 메모리·지연이 어떻게 자라는지 분석할 수 있다",
+    "긴 컨텍스트 모델·출력 길이·동시 요청 수 선택이 지연과 처리량에 주는 손익을 근거로 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.token-context",
+    "llm.internals.prompt-caching"
+   ],
+   "related": [
+    "ml.transformer.attention",
+    "mlops.serve.inference-optimization"
+   ],
+   "aliases": [
+    "프리필",
+    "prefill",
+    "디코드 단계",
+    "decode phase",
+    "자기회귀 생성",
+    "LLM 추론 내부"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter1/8"
+   ],
+   "domain": "llm"
+  },
+  {
    "id": "llm.internals.structured-decoding",
    "title": "구조화 출력의 보장과 한계",
    "en": "Guarantees of Structured Output",
@@ -10833,6 +12337,117 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-04",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.preference-alignment",
+   "title": "선호 정렬 학습: RLHF·DPO·GRPO",
+   "en": "Preference Alignment: RLHF, DPO and GRPO",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "사람이 고른 답을 더 내도록 모델을 다듬는 방법들이 보상 모델·참조 모델·보상 함수를 어떻게 쓰는지와 그 비용·불안정성의 손익을 다룬다.",
+   "objectives": [
+    "RLHF가 보상 모델과 강화학습으로 하던 일을 DPO가 선호 쌍의 분류 손실로 대신하는 원리를 설명할 수 있다",
+    "참조 모델과 beta가 원래 모델에서 얼마나 벗어나게 하는지 알고 과적합·길이 편향 같은 부작용을 분석할 수 있다",
+    "GRPO가 같은 프롬프트의 여러 답을 서로 비교해 이점을 매기는 방식과 검증 가능한 보상이 맞는 문제를 판단할 수 있다",
+    "SFT·DPO·GRPO 중 데이터 형태와 비용을 근거로 무엇을 고를지 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.what-is-llm",
+    "llm.internals.tokenization-sampling"
+   ],
+   "related": [
+    "mlops.finetune.when"
+   ],
+   "aliases": [
+    "RLHF",
+    "DPO 학습",
+    "GRPO",
+    "선호 정렬",
+    "preference optimization",
+    "정렬 학습"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/trl/main/en/dpo_trainer",
+    "https://huggingface.co/docs/trl/main/en/grpo_trainer",
+    "https://huggingface.co/learn/llm-course/chapter12/1"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.kv-cache",
+   "title": "KV 캐시",
+   "en": "KV Cache",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "LLM 내부",
+   "summary": "이미 처리한 토큰의 키·값 벡터를 저장해 다음 토큰을 낼 때 다시 계산하지 않게 하는 추론 메모리로, 컨텍스트 길이만큼 자란다.",
+   "parent": "llm.internals.inference-phases",
+   "aliases": [
+    "KV 캐시",
+    "KV cache",
+    "키·값 캐시",
+    "attention cache"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.ttft-tpot",
+   "title": "TTFT와 TPOT",
+   "en": "TTFT and TPOT",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "첫 토큰이 나올 때까지의 시간과 그 뒤 토큰 하나당 걸리는 시간으로, 각각 프리필과 디코드의 성능을 보여 주는 지연 지표다.",
+   "parent": "llm.internals.inference-phases",
+   "aliases": [
+    "TTFT",
+    "TPOT",
+    "첫 토큰 지연",
+    "time to first token",
+    "토큰당 시간"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.preference-pair",
+   "title": "선호 쌍(chosen·rejected)",
+   "en": "Preference Pair",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "같은 프롬프트에 대한 두 답 중 사람이 고른 쪽과 버린 쪽을 짝지은 학습 데이터 한 건이다.",
+   "parent": "llm.internals.preference-alignment",
+   "aliases": [
+    "선호 쌍",
+    "chosen rejected",
+    "preference pair",
+    "선호 데이터셋",
+    "preference dataset"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.reward-model",
+   "title": "보상 모델",
+   "en": "Reward Model",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "사람의 선호를 배워 답에 점수를 매기는 별도 모델로, RLHF에서 강화학습의 보상 신호를 만든다.",
+   "parent": "llm.internals.preference-alignment",
+   "aliases": [
+    "보상 모델",
+    "reward model",
+    "선호 점수 모델",
+    "리워드 모델"
+   ],
    "domain": "llm"
   },
   {
@@ -10912,6 +12527,118 @@
    "domain": "rag"
   },
   {
+   "id": "rag.agent.mcp-idea",
+   "title": "MCP: AI를 바깥 도구에 꽂는 공용 규격",
+   "en": "MCP at a Glance",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "AI 앱이 파일·데이터베이스·검색 같은 바깥 도구와 연결되는 방법을 하나로 통일한, 누구나 쓸 수 있는 열린 규격이다.",
+   "objectives": [
+    "MCP를 어느 기기에나 꽂히는 공용 충전 단자에 빗대어 설명할 수 있다",
+    "호스트·클라이언트·서버가 각각 누구인지 역할을 말할 수 있다",
+    "MCP로 AI가 할 수 있게 되는 일의 예를 두 가지 이상 들 수 있다"
+   ],
+   "prerequisites": [
+    "rag.basics.agent-big-picture"
+   ],
+   "aliases": [
+    "MCP",
+    "Model Context Protocol",
+    "모델 컨텍스트 프로토콜",
+    "MCP 연결",
+    "MCP 규격"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/docs/getting-started/intro",
+    "https://modelcontextprotocol.io/docs/learn/architecture"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.basics.langchain",
+   "title": "LangChain",
+   "en": "LangChain",
+   "kind": "term",
+   "level": 1,
+   "importance": 1,
+   "group": "에이전트 기초",
+   "summary": "여러 회사의 AI 모델과 도구를 같은 방식으로 이어 붙여 에이전트와 RAG 같은 AI 앱을 만들게 해 주는 도구 상자다.",
+   "aliases": [
+    "LangChain",
+    "랭체인",
+    "langchain",
+    "LangChain 프레임워크"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/overview"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-server",
+   "title": "MCP 서버",
+   "en": "MCP Server",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "AI 앱이 꽂아 쓰도록 도구·자료·프롬프트 틀을 내어 주는 작은 프로그램으로, 내 컴퓨터에서도 먼 서버에서도 돌 수 있다.",
+   "parent": "rag.agent.mcp-idea",
+   "aliases": [
+    "MCP 서버",
+    "MCP server",
+    "MCP 커넥터",
+    "로컬 MCP 서버",
+    "원격 MCP 서버"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/docs/learn/architecture"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.basics.langgraph",
+   "title": "LangGraph",
+   "en": "LangGraph",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "에이전트 기초",
+   "summary": "AI의 일 순서를 순서도처럼 칸과 화살표로 그려 두고, 중간에 멈추거나 사람이 끼어들어도 이어서 돌게 해 주는 LangChain 쪽 도구다.",
+   "aliases": [
+    "LangGraph",
+    "랭그래프",
+    "langgraph",
+    "그래프 오케스트레이션"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/overview"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.retriever",
+   "title": "검색기(retriever)",
+   "en": "Retriever",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "RAG",
+   "summary": "질문을 받아 지식 창고에서 관련 있는 문서 조각을 골라 돌려주는 RAG의 부품이다.",
+   "aliases": [
+    "검색기",
+    "retriever",
+    "리트리버",
+    "문서 검색기"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/retrieval"
+   ],
+   "domain": "rag"
+  },
+  {
    "id": "rag.embedding.similarity-search",
    "title": "코사인 유사도로 비슷한 문장 찾기",
    "en": "Similarity Search with Cosine Similarity",
@@ -10940,6 +12667,81 @@
    "domain": "rag"
   },
   {
+   "id": "rag.retrieval.load-split",
+   "title": "LangChain으로 문서 불러와 나누기: 로더와 스플리터",
+   "en": "Loading and Splitting Documents with LangChain",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "RAG",
+   "summary": "문서 로더로 파일을 Document로 읽어 들이고 텍스트 스플리터로 검색하기 좋은 크기의 조각으로 나누는 RAG의 첫 단계다.",
+   "objectives": [
+    "문서 로더의 load()로 파일을 Document 목록으로 읽어 들일 수 있다",
+    "RecursiveCharacterTextSplitter로 긴 문서를 조각으로 나눌 수 있다",
+    "chunk_size와 chunk_overlap을 바꿔 조각의 개수와 길이가 달라지는 것을 확인할 수 있다",
+    "문서를 나누는 이유를 컨텍스트 창과 검색 정확도로 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.basics.rag-big-picture",
+    "be.python.venv-packages"
+   ],
+   "related": [
+    "rag.vector-db.basics",
+    "rag.embedding.similarity-search"
+   ],
+   "aliases": [
+    "문서 불러오기",
+    "문서 분할",
+    "document loading",
+    "split_documents",
+    "RecursiveCharacterTextSplitter"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/retrieval",
+    "https://docs.langchain.com/oss/python/integrations/document_loaders/",
+    "https://docs.langchain.com/oss/python/integrations/splitters/"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.first-agent",
+   "title": "LangChain으로 첫 에이전트 만들기: create_agent와 도구",
+   "en": "Your First LangChain Agent: create_agent and Tools",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "에이전트",
+   "summary": "파이썬 함수에 @tool을 붙여 도구로 만들고 create_agent에 모델·도구·시스템 프롬프트를 넘겨 질문에 따라 도구를 골라 쓰는 에이전트를 돌려 보는 첫 실습이다.",
+   "objectives": [
+    "파이썬 함수에 @tool을 붙여 이름·설명·인자가 모델에게 보이는 도구로 만들 수 있다",
+    "create_agent에 모델·도구·시스템 프롬프트를 넘겨 에이전트를 만들고 invoke로 실행할 수 있다",
+    "결과 메시지 목록에서 모델이 도구를 불렀는지와 최종 답을 찾아볼 수 있다"
+   ],
+   "prerequisites": [
+    "rag.basics.agent-big-picture",
+    "llm.api.first-call",
+    "be.python.functions"
+   ],
+   "related": [
+    "llm.tools.function-calling",
+    "rag.agent.reliability"
+   ],
+   "aliases": [
+    "create_agent",
+    "LangChain 에이전트",
+    "langchain agent",
+    "에이전트 만들기",
+    "agent.invoke"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/quickstart",
+    "https://docs.langchain.com/oss/python/langchain/tools"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-04",
+   "domain": "rag"
+  },
+  {
    "id": "rag.embedding.vector",
    "title": "벡터",
    "en": "Vector",
@@ -10952,6 +12754,87 @@
    "aliases": [
     "벡터",
     "vector"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.document-loader",
+   "title": "문서 로더",
+   "en": "Document Loader",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "RAG",
+   "summary": "PDF·웹 페이지·메모 도구 같은 여러 출처의 자료를 같은 모양의 Document로 읽어 들이는 LangChain 부품이다.",
+   "parent": "rag.retrieval.load-split",
+   "aliases": [
+    "문서 로더",
+    "document loader",
+    "PyPDFLoader",
+    "loader 클래스"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.text-splitter",
+   "title": "텍스트 스플리터",
+   "en": "Text Splitter",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "RAG",
+   "summary": "긴 문서를 검색 단위이자 컨텍스트 창에 들어갈 크기의 조각으로 자르는 부품으로, 문단·문장·단어 순으로 잘라 보는 재귀 방식이 기본이다.",
+   "parent": "rag.retrieval.load-split",
+   "related": [
+    "rag.vector-db.chunk"
+   ],
+   "aliases": [
+    "텍스트 스플리터",
+    "text splitter",
+    "문서 분할기",
+    "스플리터"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.chunk-overlap",
+   "title": "청크 겹침",
+   "en": "Chunk Overlap",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "RAG",
+   "summary": "이웃한 조각이 앞뒤 글자를 얼마간 함께 갖게 해 문장이 조각 경계에서 잘려 뜻을 잃는 것을 줄이는 설정이다.",
+   "parent": "rag.retrieval.load-split",
+   "related": [
+    "rag.vector-db.chunk"
+   ],
+   "aliases": [
+    "청크 겹침",
+    "chunk_overlap",
+    "chunk overlap",
+    "겹치는 조각"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.tool-decorator",
+   "title": "도구 데코레이터(@tool)",
+   "en": "The @tool Decorator",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "보통 파이썬 함수를 에이전트 도구로 바꾸는 표시로, 함수 이름·독스트링·타입 힌트가 그대로 모델이 보는 도구 설명이 된다.",
+   "parent": "rag.agent.first-agent",
+   "related": [
+    "llm.tools.tool-schema"
+   ],
+   "aliases": [
+    "@tool",
+    "tool 데코레이터",
+    "도구 함수",
+    "langchain tools"
    ],
    "domain": "rag"
   },
@@ -11061,6 +12944,82 @@
    "domain": "rag"
   },
   {
+   "id": "rag.agent.checkpoint-persistence",
+   "title": "LangGraph 체크포인트로 상태 저장과 재개",
+   "en": "Persisting and Resuming Agent State with LangGraph Checkpoints",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "에이전트의 중간 상태를 저장해 대화를 이어 가고, 실패나 사람 승인 뒤에 같은 자리에서 다시 시작하게 하는 설계다.",
+   "objectives": [
+    "메모리·SQLite·PostgreSQL 체크포인터 중 개발과 운영 환경에 맞는 것을 고르고 근거를 말할 수 있다",
+    "thread_id로 대화 단위를 나누고, 재시작 뒤 상태가 사라지거나 다른 대화가 섞이는 원인을 찾을 수 있다",
+    "체크포인트가 끝없이 쌓이는 문제를 알아채고 정리 기준을 정할 수 있다",
+    "대화 안의 단기 상태(체크포인터)와 대화를 넘는 장기 기억(스토어)을 구분해 둘 곳을 정할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.basics.agent-big-picture",
+    "rag.agent.reliability"
+   ],
+   "related": [
+    "be.auth.session-cookie",
+    "db.cache.redis"
+   ],
+   "aliases": [
+    "checkpointer 설정",
+    "체크포인트 저장",
+    "LangGraph persistence",
+    "PostgresSaver",
+    "MemorySaver",
+    "상태 재개"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/persistence"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-connect",
+   "title": "MCP 서버 붙이기: 전송 방식·도구 노출·문제 찾기",
+   "en": "Connecting MCP Servers: Transports, Tool Exposure and Troubleshooting",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "에이전트에 외부 MCP 서버를 연결할 때 stdio와 Streamable HTTP 중 무엇을 쓸지, 어떤 도구를 내줄지 정하고 연결이 안 되는 원인을 찾는 방법이다.",
+   "objectives": [
+    "로컬 프로세스용 stdio와 원격용 Streamable HTTP 중 상황에 맞는 전송 방식을 근거를 들어 고를 수 있다",
+    "서버가 내주는 도구·리소스·프롬프트 가운데 에이전트에 노출할 것을 골라 권한 범위를 좁힐 수 있다",
+    "서버가 안 뜨거나 도구 호출이 조용히 실패할 때 설정 파일·절대 경로·stderr 로그로 원인을 찾을 수 있다",
+    "LangChain 에이전트에서 MCP 도구를 불러와 쓰는 구조를 설계할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.tools.function-calling",
+    "rag.agent.reliability"
+   ],
+   "related": [
+    "rag.agent.mcp-protocol",
+    "ax.coding.permission-rules"
+   ],
+   "aliases": [
+    "MCP 서버 연결",
+    "MCP 설정",
+    "mcpServers",
+    "stdio 서버",
+    "MCP 도구 연결",
+    "MCP 연결 안 됨"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/docs/develop/connect-local-servers",
+    "https://modelcontextprotocol.io/docs/learn/architecture",
+    "https://docs.langchain.com/oss/python/langchain/mcp"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-04",
+   "domain": "rag"
+  },
+  {
    "id": "rag.retrieval.reranking",
    "title": "재순위",
    "en": "Reranking",
@@ -11075,6 +13034,83 @@
     "리랭킹",
     "reranking",
     "reranker"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.checkpointer",
+   "title": "체크포인터",
+   "en": "Checkpointer",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "그래프가 한 단계 지날 때마다 상태 스냅샷을 저장하는 부품으로, 메모리·SQLite·PostgreSQL 구현 중 하나를 고른다.",
+   "parent": "rag.agent.checkpoint-persistence",
+   "aliases": [
+    "checkpointer",
+    "체크포인트 저장소",
+    "InMemorySaver",
+    "SqliteSaver",
+    "상태 저장기"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.interrupt",
+   "title": "인터럽트(사람 개입 대기)",
+   "en": "Interrupt (Human-in-the-Loop)",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "그래프 실행을 노드 안에서 멈춰 사람의 승인이나 수정을 기다렸다가 Command(resume)로 이어 가게 하는 장치로, 체크포인터가 있어야 동작한다.",
+   "aliases": [
+    "interrupt()",
+    "human-in-the-loop",
+    "HITL",
+    "사람 승인 대기",
+    "Command(resume)",
+    "승인 끼워 넣기"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/interrupts"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.memory-store",
+   "title": "장기 기억 스토어",
+   "en": "Memory Store",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "대화(스레드)를 넘어 사용자 선호나 사실을 키-값으로 보관하는 저장소로, 체크포인터의 단기 상태와 구분한다.",
+   "parent": "rag.agent.checkpoint-persistence",
+   "aliases": [
+    "memory store",
+    "LangGraph long-term memory",
+    "에이전트 장기 기억",
+    "BaseStore",
+    "InMemoryStore"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-transport",
+   "title": "MCP 전송 방식(stdio·Streamable HTTP)",
+   "en": "MCP Transports (stdio and Streamable HTTP)",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "MCP 클라이언트와 서버가 메시지를 주고받는 통로로, 같은 기계의 프로세스는 stdio, 원격 서버는 HTTP와 SSE를 쓴다.",
+   "parent": "rag.agent.mcp-connect",
+   "aliases": [
+    "MCP transport",
+    "stdio transport",
+    "streamable http"
    ],
    "domain": "rag"
   },
@@ -11531,6 +13567,184 @@
    "domain": "ax"
   },
   {
+   "id": "ax.security.sensitive-info-disclosure",
+   "title": "LLM 기능에서 민감 정보 새지 않게 하기",
+   "en": "Preventing Sensitive Information Disclosure in LLM Features",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "AI 보안과 윤리",
+   "summary": "모델에 보내기 전 개인정보를 가리고, 비밀값은 프롬프트 밖에 두고, 답에 남의 자료가 섞이지 않게 권한을 좁히는 기본 방어다.",
+   "objectives": [
+    "모델에 보내기 전 이름·연락처 같은 개인정보를 가리는 처리를 넣을 수 있다",
+    "시스템 프롬프트에 API 키·내부 규칙을 넣지 않고 코드 쪽 검사로 옮길 수 있다",
+    "사용자가 볼 자료만 모델에 넘기도록 조회 범위를 좁힐 수 있다",
+    "'프롬프트에 비밀 지키라고 썼으니 안전하다'는 착각을 알아보고 바깥 검사로 바꿀 수 있다"
+   ],
+   "prerequisites": [
+    "ax.basics.personal-data",
+    "llm.api.first-call"
+   ],
+   "related": [
+    "ax.security.model-output-handling",
+    "llm.security.prompt-injection",
+    "be.security.secrets-handling"
+   ],
+   "aliases": [
+    "민감 정보 노출",
+    "sensitive information disclosure",
+    "개인정보 유출 방지",
+    "PII 유출",
+    "LLM02:2025"
+   ],
+   "refs": [
+    "https://genai.owasp.org/llmrisk/llm022025-sensitive-information-disclosure/",
+    "https://genai.owasp.org/llmrisk/llm072025-system-prompt-leakage/"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.skills",
+   "title": "반복 작업을 스킬로 만들기: SKILL.md",
+   "en": "Packaging Repeated Work as Skills (SKILL.md)",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "자주 시키는 일을 SKILL.md 한 파일로 적어 두고 /이름으로 부르거나 에이전트가 알아서 꺼내 쓰게 하는 방법이다.",
+   "objectives": [
+    ".claude/skills/<이름>/SKILL.md를 만들어 /이름으로 부를 수 있다",
+    "description에 쓰임새를 적어 에이전트가 언제 스스로 꺼내 쓸지 정할 수 있다",
+    "$ARGUMENTS로 인자를 받아 같은 절차를 다른 대상에 적용할 수 있다",
+    "CLAUDE.md에 둘 규칙과 스킬로 뺄 절차를 구분할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.claude-md"
+   ],
+   "related": [
+    "ax.coding.rules-dir",
+    "ax.coding.subagents-permission-modes"
+   ],
+   "aliases": [
+    "스킬 파일",
+    "SKILL.md",
+    "Claude Code 스킬",
+    "custom skill",
+    "사용자 정의 명령",
+    "agent skills"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/skills"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-04",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.slash-command",
+   "title": "슬래시 명령(/이름)",
+   "en": "Slash Command",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "프롬프트 입력창에 /이름을 쳐서 스킬이나 내장 기능을 바로 부르는 호출 방식이다.",
+   "parent": "ax.coding.skills",
+   "aliases": [
+    "슬래시 명령",
+    "slash command",
+    "커스텀 명령",
+    "custom command",
+    "/명령어"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.skill-description",
+   "title": "스킬 설명(description)과 자동 적용",
+   "en": "Skill Description and Automatic Invocation",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "SKILL.md 머리말의 description은 에이전트가 요청과 견줘 스킬을 스스로 꺼낼지 정하는 기준이며, 직접 호출만 허용하려면 disable-model-invocation을 켠다.",
+   "parent": "ax.coding.skills",
+   "aliases": [
+    "스킬 description",
+    "skill description",
+    "disable-model-invocation",
+    "스킬 자동 호출",
+    "when_to_use"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.hooks",
+   "title": "훅(hooks): 정해진 시점에 자동 실행되는 명령",
+   "en": "Claude Code Hooks",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "도구 실행 전후나 응답이 끝날 때처럼 정해진 사건에 설정 파일의 셸 명령을 반드시 돌려 포맷·검사·차단을 강제하는 장치다.",
+   "related": [
+    "ax.coding.settings-file",
+    "ax.coding.permission-rules",
+    "be.integrate.webhook-term"
+   ],
+   "aliases": [
+    "Claude Code 훅",
+    "에이전트 훅",
+    "PreToolUse",
+    "PostToolUse",
+    "hooks 설정"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/hooks-guide",
+    "https://code.claude.com/docs/en/hooks"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-04",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.system-prompt-leakage",
+   "title": "시스템 프롬프트 유출",
+   "en": "System Prompt Leakage",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "모델을 조종하는 지시문이 사용자에게 드러나는 일로, 지시문 안에 비밀값이나 통제 규칙을 넣어 둔 경우에만 실제 피해가 된다.",
+   "parent": "ax.security.sensitive-info-disclosure",
+   "aliases": [
+    "시스템 프롬프트 유출",
+    "system prompt leakage",
+    "프롬프트 유출",
+    "LLM07:2025"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.pii-redaction",
+   "title": "개인정보 가리기(마스킹·리댁션)",
+   "en": "PII Masking and Redaction",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "이름·전화번호·주민번호 같은 개인정보를 모델에 보내거나 기록하기 전에 지우거나 자리표로 바꾸는 처리다.",
+   "parent": "ax.security.sensitive-info-disclosure",
+   "aliases": [
+    "PII 마스킹",
+    "PII redaction",
+    "개인정보 마스킹",
+    "데이터 마스킹",
+    "리댁션"
+   ],
+   "domain": "ax"
+  },
+  {
    "id": "ax.security.model-output-handling",
    "title": "모델 출력을 실행하기 전의 방어",
    "en": "Handling Untrusted Model Output",
@@ -11598,6 +13812,45 @@
    "refs": [
     "https://code.claude.com/docs/en/sub-agents",
     "https://code.claude.com/docs/en/permission-modes"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-04",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.hook-gates",
+   "title": "훅으로 에이전트에 검사 게이트 세우기",
+   "en": "Building Enforcement Gates for Coding Agents with Hooks",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "에이전트가 도구를 쓰기 전후나 턴이 끝날 때 자동으로 스크립트를 돌려 위험한 명령을 막고 린트·테스트를 강제하도록 검사 지점을 설계하는 방법이다.",
+   "objectives": [
+    "PreToolUse·PostToolUse·Stop 같은 이벤트 중 검사를 어디에 걸어야 하는지 목적에 맞게 고를 수 있다",
+    "종료 코드 2와 JSON 결정(allow·deny·ask)으로 도구 호출을 막거나 통과시키는 훅을 만들 수 있다",
+    "훅이 실패하면 기본으로 통과한다는 점을 알고 정책 훅의 실패 처리와 제한 시간을 정할 수 있다",
+    "저장소에 담겨 온 훅이 내 권한으로 실행되는 위험을 검토하고 신뢰 범위를 정할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.permission-rules",
+    "ax.coding.claude-md"
+   ],
+   "related": [
+    "ax.coding.subagents-permission-modes",
+    "ax.coding.agent-sandbox",
+    "dev.test.tdd"
+   ],
+   "aliases": [
+    "훅 게이트",
+    "hook gate",
+    "PreToolUse 검사",
+    "Stop 훅 테스트 강제",
+    "훅으로 막기",
+    "정책 훅"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/hooks"
    ],
    "volatile": true,
    "checked_at": "2026-11-04",
@@ -11672,6 +13925,97 @@
    "domain": "ax"
   },
   {
+   "id": "ax.security.rag-access-control",
+   "title": "검색 자료 접근 제어",
+   "en": "Permission-Aware Retrieval Access Control",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "RAG가 꺼내 오는 문서를 질문한 사용자의 권한으로 걸러, 다른 사용자나 조직의 자료가 답변에 섞이지 않게 하는 장치다.",
+   "related": [
+    "ax.security.sensitive-info-disclosure",
+    "be.arch.multi-tenancy"
+   ],
+   "aliases": [
+    "permission-aware retrieval",
+    "RAG 권한 필터",
+    "cross-tenant leakage",
+    "테넌트 분리 검색",
+    "LLM08",
+    "벡터 DB 접근 제어"
+   ],
+   "refs": [
+    "https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.hook-decision",
+   "title": "훅 결정(allow·deny·ask)",
+   "en": "Hook Permission Decision",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "훅이 종료 코드나 JSON 출력으로 도구 호출을 허용·거부·질문으로 돌리거나 입력을 고쳐 넘기는 응답 방식이다.",
+   "parent": "ax.coding.hook-gates",
+   "aliases": [
+    "permissionDecision",
+    "hookSpecificOutput",
+    "훅 exit code 2",
+    "훅으로 deny",
+    "updatedInput",
+    "훅 종료 코드"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-04",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.hook-event",
+   "title": "훅 이벤트와 매처",
+   "en": "Hook Events and Matchers",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "훅이 실행되는 시점(세션 시작·프롬프트 제출·도구 호출 전후·턴 종료)과 어떤 도구에만 걸지 거르는 조건이다.",
+   "parent": "ax.coding.hook-gates",
+   "aliases": [
+    "hook event",
+    "SessionStart",
+    "UserPromptSubmit",
+    "훅 매처",
+    "matcher 패턴",
+    "Stop 훅"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-04",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.hook-fail-open",
+   "title": "훅 실패 시 통과(fail-open)",
+   "en": "Fail-Open Hooks",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "훅이 죽거나 시간을 넘기면 기본으로 동작이 그대로 진행되는 성질로, 반드시 막아야 하는 정책 훅은 실패를 차단으로 바꿔야 한다.",
+   "parent": "ax.coding.hook-gates",
+   "aliases": [
+    "훅 fail-open",
+    "fail open 훅",
+    "onFailure block",
+    "훅 타임아웃 통과",
+    "훅 fail-closed"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-04",
+   "domain": "ax"
+  },
+  {
    "id": "ax.governance.ai-risk",
    "title": "AI 위험 관리와 규제 대응",
    "en": "AI Risk Management and Regulation",
@@ -11700,6 +14044,154 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-04",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.model-supply-chain",
+   "title": "AI 공급망 취약점: 모델·어댑터·데이터 출처",
+   "en": "AI Supply Chain Vulnerabilities",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "외부에서 받은 모델 파일·어댑터·학습 데이터가 변조되거나 오염될 수 있는 지점을 찾고 서명·출처 검증·BOM의 손익으로 방어를 정한다.",
+   "objectives": [
+    "사전 학습 모델·어댑터·병합 서비스·데이터셋 각각에서 변조와 오염이 들어오는 경로를 분석할 수 있다",
+    "트리거가 있어야 드러나는 백도어가 왜 벤치마크와 일반 시험으로 잡히지 않는지 설명할 수 있다",
+    "서명·해시 검증·AI BOM·레드팀 중 비용 대비 무엇을 먼저 적용할지 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "be.security.supply-chain",
+    "ax.basics.verify-ai-output"
+   ],
+   "related": [
+    "be.security.integrity",
+    "llm.security.prompt-injection"
+   ],
+   "aliases": [
+    "AI 공급망",
+    "모델 변조",
+    "데이터 오염",
+    "model poisoning",
+    "supply chain LLM"
+   ],
+   "refs": [
+    "https://genai.owasp.org/llmrisk/llm032025-supply-chain/",
+    "https://genai.owasp.org/llmrisk/llm042025-data-and-model-poisoning/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-04",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.sandbox-internals",
+   "title": "에이전트 샌드박스의 내부와 한계",
+   "en": "Agent Sandbox Internals and Limits",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "OS 격리와 프록시가 셸 명령을 어떻게 가두는지와 무엇은 막지 못하는지를 알고 샌드박스를 믿어도 되는 범위를 판단한다.",
+   "objectives": [
+    "파일 쓰기 제한·보호 경로·네트워크 네임스페이스·프록시가 각각 어떤 공격을 막는지 설명할 수 있다",
+    "자격 증명 읽기·허용 도메인 악용·제외 명령·훅처럼 샌드박스 밖에서 도는 경로를 찾아 남은 위험을 분석할 수 있다",
+    "제외 명령과 샌드박스 없는 재시도의 편의와 위험을 견주어 설정을 정하고 컨테이너·VM이 필요한 때를 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.subagents-permission-modes",
+    "ax.coding.permission-rules"
+   ],
+   "related": [
+    "ax.coding.agent-sandbox",
+    "ops.container.isolation",
+    "llm.security.agent-boundaries"
+   ],
+   "aliases": [
+    "샌드박스 격리",
+    "seatbelt",
+    "bubblewrap",
+    "샌드박스 우회",
+    "sandbox escape"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/sandboxing"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-04",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.model-provenance",
+   "title": "모델 출처 검증",
+   "en": "Model Provenance",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "모델 파일이 누가 만든 것이고 받는 동안 바뀌지 않았는지 서명·해시·게시자 확인으로 따지는 절차다.",
+   "parent": "ax.security.model-supply-chain",
+   "aliases": [
+    "모델 출처",
+    "model provenance",
+    "모델 서명",
+    "model signing",
+    "모델 해시 검증"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.backdoor-sleeper",
+   "title": "백도어와 슬리퍼 에이전트",
+   "en": "Backdoor and Sleeper Agent",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "오염된 모델이 평소엔 정상 동작하다가 특정 입력 트리거에만 숨긴 행동을 하는 결함으로, 일반 시험으로 찾기 어렵다.",
+   "parent": "ax.security.model-supply-chain",
+   "aliases": [
+    "백도어 모델",
+    "sleeper agent",
+    "트리거 공격",
+    "backdoor trigger",
+    "모델 백도어"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.ai-bom",
+   "title": "AI BOM(ML-BOM)",
+   "en": "AI Bill of Materials",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "모델·데이터셋·어댑터·라이브러리까지 AI 시스템을 이루는 구성 요소와 출처·라이선스를 적은 목록이다.",
+   "parent": "ax.security.model-supply-chain",
+   "aliases": [
+    "AI BOM",
+    "ML-BOM",
+    "AI 자재 명세",
+    "AI SBOM"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.sandbox-proxy",
+   "title": "샌드박스 네트워크 프록시",
+   "en": "Sandbox Network Proxy",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "샌드박스 안 명령의 바깥 연결을 모두 받아 허용 도메인인지 호스트 이름으로 가리는 샌드박스 밖의 중계 장치다.",
+   "parent": "ax.coding.sandbox-internals",
+   "aliases": [
+    "샌드박스 프록시",
+    "allowedDomains",
+    "샌드박스 허용 도메인",
+    "sandbox proxy"
+   ],
    "domain": "ax"
   },
   {
@@ -11798,6 +14290,99 @@
    ],
    "refs": [
     "https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-a-container/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.idea",
+   "title": "Kubernetes: 컨테이너 떼를 지휘하는 관리자",
+   "en": "What Kubernetes Is",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "컨테이너가 수십 개로 늘면 사람이 하나씩 켜고 끄기 어려우므로, 원하는 상태를 적어 두면 알아서 맞춰 주는 관리 도구다.",
+   "objectives": [
+    "Kubernetes를 오케스트라 지휘자나 관제탑에 빗대어 설명할 수 있다",
+    "죽은 컨테이너를 다시 살리는 일과 바쁠 때 늘리는 일을 예로 들어 말할 수 있다",
+    "컨테이너 하나 띄우기와 수십 개 운영하기의 차이를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.basics.container-idea"
+   ],
+   "aliases": [
+    "Kubernetes",
+    "쿠버네티스",
+    "k8s",
+    "쿠버",
+    "컨테이너 관리 도구",
+    "컨테이너 오케스트레이션"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/overview/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.observe.monitoring-idea",
+   "title": "모니터링",
+   "en": "Monitoring",
+   "kind": "term",
+   "level": 1,
+   "importance": 1,
+   "group": "관측",
+   "summary": "서비스가 잘 돌고 있는지 요청 수·오류 수·걸린 시간 같은 숫자를 계속 재어 보고, 이상하면 사람에게 알리는 일이다.",
+   "aliases": [
+    "모니터링",
+    "monitoring",
+    "서비스 감시",
+    "운영 감시",
+    "경보"
+   ],
+   "refs": [
+    "https://sre.google/sre-book/monitoring-distributed-systems/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.network.load-balancer",
+   "title": "로드 밸런서",
+   "en": "Load Balancer",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "네트워크와 앞단",
+   "summary": "식당 입구에서 손님을 빈 테이블로 안내하듯, 들어오는 요청을 여러 서버에 고르게 나누어 한 대만 몰리지 않게 하는 장치다.",
+   "aliases": [
+    "로드 밸런서",
+    "load balancer",
+    "부하 분산",
+    "로드 밸런싱",
+    "LB"
+   ],
+   "refs": [
+    "https://aws.amazon.com/what-is/load-balancing/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.network.cdn",
+   "title": "CDN",
+   "en": "Content Delivery Network",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "네트워크와 앞단",
+   "summary": "같은 파일의 사본을 세계 곳곳의 서버에 두고 사용자와 가장 가까운 곳에서 내주어 빠르게 전달하는 서버 묶음이다.",
+   "aliases": [
+    "CDN",
+    "콘텐츠 전송망",
+    "content delivery network",
+    "씨디엔",
+    "CDN 엣지"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Glossary/CDN"
    ],
    "domain": "ops"
   },
@@ -12443,6 +15028,35 @@
    "domain": "ml"
   },
   {
+   "id": "ml.basics.types-of-ml",
+   "title": "머신러닝의 네 갈래: 지도·비지도·강화·생성형",
+   "en": "Types of Machine Learning",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "AI 기초",
+   "summary": "정답을 보고 배우는지, 정답 없이 무리를 찾는지, 상과 벌로 배우는지, 새 내용을 만드는지에 따라 머신러닝을 네 갈래로 나눈다.",
+   "objectives": [
+    "지도 학습을 답안지 있는 기출문제 풀이에 빗대어 설명할 수 있다",
+    "네 갈래마다 일상의 예를 하나씩 붙일 수 있다",
+    "스팸 걸러내기와 챗봇이 각각 어느 갈래인지 말할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.ai-ml-dl"
+   ],
+   "aliases": [
+    "지도 학습",
+    "비지도 학습",
+    "supervised learning",
+    "unsupervised learning",
+    "머신러닝의 종류"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/intro-to-ml/what-is-ml"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.basics.data-quality",
    "title": "AI에게 데이터가 중요한 이유",
    "en": "Why Data Matters to AI",
@@ -12465,6 +15079,107 @@
    ],
    "refs": [
     "https://developers.google.com/machine-learning/crash-course/overfitting/data-characteristics"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.training.overfitting-idea",
+   "title": "과적합: 기출문제만 외운 모델",
+   "en": "The Idea of Overfitting",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "연습한 데이터는 거의 다 맞히지만 처음 보는 데이터에는 자주 틀리는, 이해 대신 외우기만 한 모델의 상태다.",
+   "objectives": [
+    "과적합을 기출문제 암기에 빗대어 설명할 수 있다",
+    "처음 보는 데이터에서도 맞히는 일반화가 왜 목표인지 말할 수 있다",
+    "과적합이 생기는 이유 두 가지를 일상 말로 말할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.train-inference",
+    "ml.basics.data-quality"
+   ],
+   "aliases": [
+    "과적합",
+    "overfitting",
+    "오버피팅",
+    "모델 일반화",
+    "과소적합"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/overfitting/overfitting"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.basics.classification",
+   "title": "분류",
+   "en": "Classification",
+   "kind": "term",
+   "level": 1,
+   "importance": 1,
+   "group": "AI 기초",
+   "summary": "입력이 어느 범주에 드는지 고르는 문제로, 메일이 스팸인지 아닌지 가르는 일이 대표 예다.",
+   "parent": "ml.basics.types-of-ml",
+   "aliases": [
+    "classification",
+    "분류 모델",
+    "이진 분류",
+    "다중 분류"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.basics.regression",
+   "title": "회귀(수치 예측)",
+   "en": "Regression (Numeric Prediction)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "범주가 아니라 숫자 값을 맞히는 문제로, 내일 강수량이나 집값을 예측하는 일이 예다.",
+   "parent": "ml.basics.types-of-ml",
+   "aliases": [
+    "회귀 모델",
+    "수치 예측",
+    "회귀 분석"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.basics.clustering",
+   "title": "군집화",
+   "en": "Clustering",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "정답 없이 비슷한 것끼리 무리를 짓게 한 뒤 사람이 각 무리에 이름을 붙이는, 비지도 학습의 대표 방법이다.",
+   "parent": "ml.basics.types-of-ml",
+   "aliases": [
+    "군집화",
+    "clustering",
+    "클러스터링",
+    "군집 분석"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.basics.reinforcement-learning",
+   "title": "강화 학습",
+   "en": "Reinforcement Learning",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "정답 대신 행동마다 상이나 벌을 받으며 가장 많은 상을 얻는 요령을 익히는 학습 방식이다.",
+   "parent": "ml.basics.types-of-ml",
+   "aliases": [
+    "강화 학습",
+    "reinforcement learning",
+    "RL",
+    "보상 학습"
    ],
    "domain": "ml"
   },
@@ -12657,6 +15372,164 @@
    ],
    "refs": [
     "https://developers.google.com/machine-learning/crash-course/linear-regression/hyperparameters"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.linear-regression",
+   "title": "선형 회귀: 직선으로 숫자 예측하기",
+   "en": "Linear Regression",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "AI 기초",
+   "summary": "특성에 가중치를 곱하고 편향을 더한 직선으로 숫자를 예측하고, 손실이 줄어드는 쪽으로 가중치를 조금씩 고쳐 가며 학습시키는 가장 기본적인 모델이다.",
+   "objectives": [
+    "특성과 레이블의 관계를 가중치·편향 식으로 쓰고 예측값을 계산할 수 있다",
+    "손실을 줄이는 방향으로 파라미터를 고쳐 가는 학습의 흐름을 손실 곡선으로 설명할 수 있다",
+    "학습률·배치 크기·에폭을 바꿔 손실이 안정되게 줄어들도록 학습시킬 수 있다",
+    "손실이 튀거나 너무 느리게 줄 때 학습률을 의심하고 조정할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.train-inference"
+   ],
+   "related": [
+    "ml.training.loss-function",
+    "ml.training.epoch-batch",
+    "ml.nn.first-neural-network",
+    "ml.training.backprop"
+   ],
+   "aliases": [
+    "선형 회귀",
+    "linear regression",
+    "직선 맞추기"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/linear-regression",
+    "https://developers.google.com/machine-learning/crash-course/linear-regression/gradient-descent",
+    "https://developers.google.com/machine-learning/crash-course/linear-regression/hyperparameters"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.numeric-categorical-preprocessing",
+   "title": "숫자·범주 데이터 전처리: 정규화와 원-핫 인코딩",
+   "en": "Preprocessing Numerical and Categorical Data",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "AI 기초",
+   "summary": "숫자 특성은 비슷한 범위로 맞추고 범주 특성은 0과 1의 벡터로 바꿔 모델이 학습할 수 있는 숫자 표로 만드는 일이다.",
+   "objectives": [
+    "숫자 특성을 선형 스케일링이나 Z-점수로 비슷한 범위에 맞출 수 있다",
+    "범주 특성을 원-핫 벡터로 바꿔 모델에 넣을 수 있다",
+    "우편번호처럼 숫자 모양이지만 범주인 특성을 알아보고 범주로 다룰 수 있다",
+    "학습 때 쓴 변환을 예측 때 똑같이 적용해야 하는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.train-inference"
+   ],
+   "related": [
+    "ml.basics.data-quality",
+    "ml.basics.feature-label",
+    "ml.eval.data-splitting-cv"
+   ],
+   "aliases": [
+    "데이터 전처리",
+    "preprocessing",
+    "특성 스케일링",
+    "feature scaling",
+    "인코딩 전처리",
+    "feature engineering 기초"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/numerical-data",
+    "https://developers.google.com/machine-learning/crash-course/numerical-data/normalization",
+    "https://developers.google.com/machine-learning/crash-course/categorical-data",
+    "https://developers.google.com/machine-learning/crash-course/categorical-data/one-hot-encoding"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.training.learning-rate",
+   "title": "학습률",
+   "en": "Learning Rate",
+   "kind": "term",
+   "level": 3,
+   "importance": 1,
+   "group": "딥러닝",
+   "summary": "경사 하강법에서 한 번에 가중치를 얼마나 크게 움직일지 정하는 설정값으로, 너무 작으면 느리고 너무 크면 손실이 튀어 수렴하지 않는다.",
+   "parent": "ml.supervised.linear-regression",
+   "aliases": [
+    "학습률",
+    "learning rate",
+    "lr",
+    "스텝 크기",
+    "step size"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.one-hot-encoding",
+   "title": "원-핫 인코딩",
+   "en": "One-Hot Encoding",
+   "kind": "term",
+   "level": 3,
+   "importance": 1,
+   "group": "AI 기초",
+   "summary": "범주 하나를 범주 수만큼 긴 벡터로 바꾸고 해당 자리만 1, 나머지는 0으로 두는 표현으로, 범주가 아주 많으면 임베딩이 낫다.",
+   "parent": "ml.data.numeric-categorical-preprocessing",
+   "aliases": [
+    "원-핫 인코딩",
+    "one-hot encoding",
+    "원핫 벡터",
+    "one-hot vector",
+    "멀티-핫"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.feature-normalization",
+   "title": "특성 정규화(스케일링)",
+   "en": "Feature Normalization (Scaling)",
+   "kind": "term",
+   "level": 3,
+   "importance": 1,
+   "group": "AI 기초",
+   "summary": "범위가 제각각인 숫자 특성을 0~1 선형 스케일링이나 평균 0·표준편차 1의 Z-점수로 맞춰 학습이 빨리 안정되게 하는 처리다.",
+   "parent": "ml.data.numeric-categorical-preprocessing",
+   "aliases": [
+    "특성 정규화",
+    "feature normalization",
+    "Z-점수 스케일링",
+    "z-score scaling",
+    "min-max 스케일링",
+    "선형 스케일링"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.logistic-regression",
+   "title": "로지스틱 회귀",
+   "en": "Logistic Regression",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "선형 식의 결과를 시그모이드 함수에 통과시켜 0~1 사이 확률로 바꿔 '스팸인가 아닌가' 같은 예/아니오 질문에 답하는 분류 모델이다.",
+   "related": [
+    "ml.supervised.linear-regression",
+    "ml.eval.accuracy-first-evaluation",
+    "ml.eval.metrics-tradeoffs"
+   ],
+   "aliases": [
+    "로지스틱 회귀",
+    "logistic regression",
+    "이진 분류 모델"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/logistic-regression",
+    "https://developers.google.com/machine-learning/crash-course/logistic-regression/sigmoid-function"
    ],
    "domain": "ml"
   },
@@ -12924,6 +15797,170 @@
    "domain": "ml"
   },
   {
+   "id": "mlops.basics.what-is-mlops",
+   "title": "MLOps: 모델을 내놓은 뒤에도 돌보는 일",
+   "en": "What MLOps Is",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "AI 모델은 만들어 내놓은 뒤에도 세상이 바뀌면 낡으므로, 지켜보고 다시 가르치고 다시 내놓는 일을 체계로 만든 것이다.",
+   "objectives": [
+    "MLOps가 왜 필요한지 가게를 연 뒤의 운영에 빗대어 설명할 수 있다",
+    "보통 프로그램 운영과 다른 점을 데이터가 바뀐다는 말로 한 가지 말할 수 있다",
+    "배포한 모델을 지켜보다가 다시 가르치는 순환을 그림으로 그릴 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.train-inference",
+    "ops.basics.what-is-deploy"
+   ],
+   "aliases": [
+    "MLOps",
+    "엠엘옵스",
+    "LLMOps",
+    "모델 운영",
+    "AI 운영"
+   ],
+   "refs": [
+    "https://docs.cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.guardrail.llm-top10-overview",
+   "title": "LLM 서비스의 위험 10가지: OWASP LLM Top 10",
+   "en": "OWASP Top 10 for LLM Applications at a Glance",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "LLM을 쓰는 서비스에서 자주 터지는 사고 열 가지를 보안 단체 OWASP가 순위로 정리한 목록이다.",
+   "objectives": [
+    "이 목록이 왜 있는지 사고 다발 지점 지도에 빗대어 설명할 수 있다",
+    "열 가지 가운데 세 가지 이상을 일상 말로 풀어 말할 수 있다",
+    "내가 쓰는 챗봇에 해당될 만한 위험을 목록에서 골라 볼 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.what-is-llm"
+   ],
+   "aliases": [
+    "OWASP LLM Top 10",
+    "LLM Top 10",
+    "LLM 보안 위험",
+    "LLM 취약점 목록",
+    "LLM 10대 위험"
+   ],
+   "refs": [
+    "https://genai.owasp.org/llm-top-10/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-04",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.guardrail.guardrail",
+   "title": "가드레일",
+   "en": "Guardrails",
+   "kind": "term",
+   "level": 1,
+   "importance": 1,
+   "group": "LLM 운영",
+   "summary": "AI에게 들어가는 말과 AI가 내놓는 답을 규칙이나 다른 AI 모델로 걸러 위험한 내용을 막는 안전장치다.",
+   "aliases": [
+    "가드레일",
+    "guardrail",
+    "guardrails",
+    "AI 안전장치",
+    "출력 필터"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/guardrails"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.drift",
+   "title": "드리프트",
+   "en": "Drift",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "모델을 가르칠 때 본 데이터와 지금 들어오는 데이터가 달라져 모델의 답이 점점 어긋나는 현상이다.",
+   "parent": "mlops.basics.what-is-mlops",
+   "aliases": [
+    "드리프트",
+    "drift",
+    "모델 노후화"
+   ],
+   "refs": [
+    "https://madewithml.com/courses/mlops/monitoring/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.model-serving",
+   "title": "모델 서빙",
+   "en": "Model Serving",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "다 가르친 모델을 서버에 올려 두고 요청이 올 때마다 답을 돌려주게 만드는 일이다.",
+   "aliases": [
+    "모델 서빙",
+    "model serving",
+    "모델 배포",
+    "추론 서버"
+   ],
+   "refs": [
+    "https://madewithml.com/courses/mlops/serving/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.guardrail.excessive-agency",
+   "title": "과도한 자율성(Excessive Agency)",
+   "en": "Excessive Agency",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "AI에게 필요 이상의 기능·권한·결정권을 주어, 속거나 잘못 판단했을 때 큰 사고로 이어지는 위험이다.",
+   "parent": "mlops.guardrail.llm-top10-overview",
+   "aliases": [
+    "과도한 자율성",
+    "excessive agency",
+    "LLM06",
+    "LLM06:2025",
+    "에이전트 권한 과다"
+   ],
+   "refs": [
+    "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.experiment-tracking",
+   "title": "실험 추적",
+   "en": "Experiment Tracking",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "모델을 가르칠 때마다 어떤 설정으로 어떤 점수가 나왔는지 실험 일지처럼 기록해 나중에 비교하는 일이다.",
+   "aliases": [
+    "실험 추적",
+    "experiment tracking",
+    "실험 기록",
+    "MLflow 실험"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/ml/tracking/"
+   ],
+   "domain": "mlops"
+  },
+  {
    "id": "mlops.eval.first-eval",
    "title": "LLM 답 채점하기: 평가 세트와 스코어러",
    "en": "Your First LLM Evaluation: Dataset and Scorers",
@@ -12988,6 +16025,43 @@
    "refs": [
     "https://mlflow.org/docs/latest/genai/tracing/quickstart/",
     "https://mlflow.org/docs/latest/genai/concepts/trace/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.prompt.register-load",
+   "title": "프롬프트를 코드 밖에 두기: 등록하고 불러오기",
+   "en": "Registering and Loading Prompts from a Registry",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "프롬프트 문장을 코드에 박지 않고 MLflow 프롬프트 레지스트리에 이름과 버전으로 등록한 뒤 코드에서 불러와 변수를 채워 쓰는 첫 실습이다.",
+   "objectives": [
+    "register_prompt로 {{변수}}가 든 프롬프트를 이름 붙여 등록할 수 있다",
+    "load_prompt로 prompts:/이름/버전 주소의 프롬프트를 불러와 format으로 변수를 채울 수 있다",
+    "같은 이름으로 다시 등록하면 새 버전이 생기고 지난 버전은 바뀌지 않는다는 것을 UI에서 확인할 수 있다",
+    "프롬프트를 코드와 떼어 두면 좋은 점을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.api.first-call",
+    "mlops.observe.tracing-quickstart"
+   ],
+   "related": [
+    "mlops.prompt.registry",
+    "mlops.prompt.alias"
+   ],
+   "aliases": [
+    "프롬프트 등록",
+    "register_prompt",
+    "load_prompt",
+    "prompts:/",
+    "프롬프트 레지스트리 입문"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/prompt-registry/",
+    "https://mlflow.org/docs/latest/genai/prompt-registry/create-and-edit-prompts/",
+    "https://mlflow.org/docs/latest/genai/prompt-registry/use-prompts-in-apps/"
    ],
    "domain": "mlops"
   },
@@ -13080,6 +16154,213 @@
    ],
    "refs": [
     "https://mlflow.org/docs/latest/genai/getting-started/connect-environment/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.trace",
+   "title": "트레이스",
+   "en": "Trace",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "요청 하나가 앱 안에서 거친 단계마다의 입력·출력·걸린 시간을 한 줄기로 묶어 남긴 기록이다.",
+   "parent": "mlops.observe.tracing-quickstart",
+   "related": [
+    "mlops.observe.llm-tracing"
+   ],
+   "aliases": [
+    "트레이스",
+    "LLM trace",
+    "trace 기록",
+    "호출 추적"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/concepts/trace/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.prompt.version",
+   "title": "프롬프트 버전",
+   "en": "Prompt Version",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "같은 이름으로 다시 등록할 때마다 번호가 하나씩 붙는 프롬프트의 스냅숏으로, 한 번 만들면 내용이 바뀌지 않아 언제든 되돌아갈 수 있다.",
+   "parent": "mlops.prompt.register-load",
+   "related": [
+    "mlops.prompt.alias"
+   ],
+   "aliases": [
+    "프롬프트 버전",
+    "prompt version",
+    "프롬프트 버전 번호",
+    "불변 버전"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.experiment",
+   "title": "MLflow 실험(experiment)",
+   "en": "MLflow Experiment",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "한 앱이나 에이전트가 보내는 트레이스와 평가 결과를 담는 상자로, set_experiment로 이름을 정하면 없을 때 새로 만들어진다.",
+   "parent": "mlops.observe.tracing-quickstart",
+   "aliases": [
+    "MLflow 실험",
+    "mlflow experiment",
+    "set_experiment",
+    "실험 이름"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.prompt.template-variable",
+   "title": "프롬프트 템플릿 변수",
+   "en": "Prompt Template Variable",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "등록한 프롬프트 안에 {{이름}}으로 비워 둔 자리로, 불러온 뒤 format에 값을 넘겨 채운다.",
+   "parent": "mlops.prompt.register-load",
+   "aliases": [
+    "{{variable}}",
+    "이중 중괄호 변수",
+    "prompt variable"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.track.experiment-tracking",
+   "title": "실험 추적: 파라미터·지표·모델 기록하기",
+   "en": "Experiment Tracking with MLflow",
+   "kind": "topic",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "학습을 돌릴 때마다 설정값·결과 지표·모델 파일을 run으로 남겨 두고 나중에 비교해 가장 좋은 run을 다시 꺼내 쓰는 방법이다.",
+   "objectives": [
+    "실험을 만들고 run 안에서 파라미터·지표·모델을 기록할 수 있다",
+    "MLflow UI에서 여러 run을 지표로 정렬해 비교하고 가장 좋은 run을 고를 수 있다",
+    "기록된 모델을 run에서 다시 불러와 새 입력에 예측을 돌릴 수 있다",
+    "autolog로 맡길 것과 log_metric으로 직접 적을 것을 구분할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.nn.first-neural-network",
+    "mlops.observe.tracing-quickstart"
+   ],
+   "related": [
+    "mlops.observe.llm-tracing",
+    "mlops.eval.llm-regression",
+    "ml.supervised.linear-regression"
+   ],
+   "aliases": [
+    "MLflow 실험 추적",
+    "run 비교",
+    "run 기록",
+    "log_metric",
+    "mlflow.start_run"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/ml/tracking/",
+    "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.track.model-registry",
+   "title": "모델 레지스트리",
+   "en": "Model Registry",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "학습된 모델을 이름으로 등록해 버전을 매기고, champion 같은 별칭으로 서비스 코드가 어느 버전을 쓸지 가리키게 하는 저장소다.",
+   "related": [
+    "mlops.track.experiment-tracking",
+    "mlops.prompt.registry",
+    "mlops.prompt.alias"
+   ],
+   "aliases": [
+    "모델 레지스트리",
+    "model registry",
+    "registered model",
+    "모델 버전 등록",
+    "models:/ URI"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/ml/model-registry/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.track.experiment-run",
+   "title": "런(run)",
+   "en": "MLflow Run",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "학습 코드를 한 번 실행한 기록 단위로, 그 안에 파라미터·지표·모델이 남고 run id로 다시 찾는다.",
+   "parent": "mlops.track.experiment-tracking",
+   "aliases": [
+    "MLflow run",
+    "실험 run",
+    "run id",
+    "start_run"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.track.params-metrics-artifacts",
+   "title": "파라미터·지표·아티팩트 기록",
+   "en": "Logging Parameters, Metrics and Artifacts",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "run에 남기는 세 가지로, 파라미터는 넣은 설정값, 지표는 나온 숫자(손실·정확도), 아티팩트는 모델 파일·그림 같은 산출물이다.",
+   "parent": "mlops.track.experiment-tracking",
+   "aliases": [
+    "log_param",
+    "log_params",
+    "log_artifact",
+    "MLflow 아티팩트",
+    "지표 로깅",
+    "metric logging"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.track.data-versioning",
+   "title": "데이터 버전 관리(DVC)",
+   "en": "Data Versioning (DVC)",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "큰 데이터 파일은 Git에 넣지 않고 해시가 적힌 작은 .dvc 파일만 커밋하며, 실제 파일은 원격 저장소에 push·pull해 코드 버전과 데이터 버전을 짝지어 두는 방식이다.",
+   "related": [
+    "dev.git.why-version-control",
+    "mlops.track.experiment-tracking"
+   ],
+   "aliases": [
+    "데이터 버전 관리",
+    "data versioning",
+    "DVC",
+    "dvc add",
+    "dvc push pull"
+   ],
+   "refs": [
+    "https://madewithml.com/courses/mlops/versioning/",
+    "https://dvc.org/doc/start"
    ],
    "domain": "mlops"
   },
@@ -13303,6 +16584,146 @@
    ],
    "refs": [
     "https://developers.openai.com/api/docs/guides/model-optimization"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.drift-detection",
+   "title": "드리프트 탐지의 내부: 분포 비교와 창",
+   "en": "Drift Detection: Distribution Tests and Windows",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "입력·정답·관계의 분포가 바뀌는 드리프트를 기준 창과 시험 창의 통계 검정으로 잡는 원리와 창 크기·임계값의 손익을 다룬다.",
+   "objectives": [
+    "데이터 드리프트·타깃 드리프트·개념 드리프트를 구분하고 각각 어떤 신호로 드러나는지 설명할 수 있다",
+    "단변량 검정과 차원 축소 뒤 다변량 검정이 무엇을 잡고 무엇을 놓치는지 분석할 수 있다",
+    "기준 창·시험 창 크기와 경보 임계값이 탐지 지연과 오경보에 주는 손익을 근거로 설정을 정할 수 있다",
+    "정답이 늦게 오는 서비스에서 CBPE·DLE처럼 예측 확신도나 보조 모델로 성능을 추정하고 그 추정이 개념 드리프트에서 깨지는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.observe.llm-tracing",
+    "ml.eval.metrics-tradeoffs"
+   ],
+   "related": [
+    "mlops.eval.llm-regression"
+   ],
+   "aliases": [
+    "드리프트 탐지",
+    "drift detection",
+    "분포 변화 탐지"
+   ],
+   "refs": [
+    "https://docs.cloud.google.com/vertex-ai/docs/model-monitoring/overview",
+    "https://nannyml.readthedocs.io/en/stable/how_it_works/performance_estimation.html",
+    "https://nannyml.readthedocs.io/en/stable/how_it_works/multivariate_drift.html"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.finetune.lora-internals",
+   "title": "LoRA 파인튜닝의 내부와 손익",
+   "en": "LoRA Fine-Tuning Internals",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "가중치 변화를 낮은 랭크 행렬 두 개로 대신 학습하는 LoRA의 원리와 랭크·대상 층·병합 방식이 메모리·품질·서빙에 주는 손익을 다룬다.",
+   "objectives": [
+    "원래 가중치를 얼려 두고 저랭크 행렬만 학습하는 구조가 왜 학습 메모리를 크게 줄이는지 설명할 수 있다",
+    "랭크 r·alpha·대상 모듈 선택이 표현력과 비용에 주는 손익을 근거로 설정을 정할 수 있다",
+    "어댑터를 병합해 배포할지 따로 둘지를 추론 지연과 여러 작업 운영을 기준으로 판단할 수 있다",
+    "양자화한 기반 모델 위에 LoRA를 얹을 때 생기는 오차와 초기화 방식의 관계를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.finetune.when",
+    "ml.transformer.attention"
+   ],
+   "related": [
+    "mlops.serve.inference-optimization"
+   ],
+   "aliases": [
+    "LoRA",
+    "QLoRA",
+    "저랭크 어댑터",
+    "어댑터 학습",
+    "low-rank adaptation"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/peft/main/en/conceptual_guides/lora"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.data-drift",
+   "title": "데이터 드리프트",
+   "en": "Data Drift",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "입력 분포 P(X)만 바뀌고 입력과 정답의 관계는 그대로인 경우로, 기준 창과 시험 창의 입력 분포 검정으로 잡힌다.",
+   "parent": "mlops.observe.drift-detection",
+   "aliases": [
+    "covariate shift",
+    "입력 분포 변화"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.concept-drift",
+   "title": "개념 드리프트",
+   "en": "Concept Drift",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "입력과 정답 사이의 관계 P(Y|X) 자체가 바뀌어 같은 입력에 다른 답이 맞게 되는 현상이다.",
+   "parent": "mlops.observe.drift-detection",
+   "aliases": [
+    "개념 드리프트",
+    "concept drift",
+    "관계 변화",
+    "입력-정답 관계 변화"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.finetune.lora-rank",
+   "title": "LoRA 랭크와 alpha",
+   "en": "LoRA Rank and Alpha",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "LoRA 갱신 행렬의 크기를 정하는 r과 그 출력을 얼마나 반영할지 정하는 배율 alpha로, 학습 파라미터 수와 효과의 세기를 좌우한다.",
+   "parent": "mlops.finetune.lora-internals",
+   "aliases": [
+    "LoRA 랭크",
+    "lora_alpha",
+    "랭크 r",
+    "rank r",
+    "rsLoRA"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.finetune.adapter-merge",
+   "title": "어댑터 병합(merge_and_unload)",
+   "en": "Adapter Merge",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "학습한 저랭크 행렬을 기반 모델 가중치에 더해 하나의 모델로 만드는 일로, 추론 지연은 없애지만 어댑터를 바꿔 끼우는 유연함은 잃는다.",
+   "parent": "mlops.finetune.lora-internals",
+   "aliases": [
+    "어댑터 병합",
+    "merge_and_unload",
+    "LoRA 병합",
+    "adapter merge",
+    "가중치 병합"
    ],
    "domain": "mlops"
   }

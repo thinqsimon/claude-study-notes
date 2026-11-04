@@ -355,6 +355,152 @@
     ]
   },
   {
+    "id": "fe.react.use-effect",
+    "title": "useEffect로 바깥 세계와 맞추기",
+    "en": "Synchronizing with Effects (useEffect)",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "React",
+    "summary": "렌더링이 끝난 뒤 서버 연결·구독·타이머처럼 React 바깥과 맞춰야 하는 일을 useEffect에 넣고, 의존성과 정리 함수로 실행 시점을 다스리는 방법이다.",
+    "objectives": [
+      "렌더링 뒤에 실행돼야 하는 일을 useEffect에 넣을 수 있다",
+      "의존성 배열로 Effect가 다시 실행되는 조건을 정할 수 있다",
+      "클린업 함수로 연결·구독·타이머를 정리해 중복 실행을 막을 수 있다",
+      "버튼 클릭 같은 사용자 행동에 따른 일을 Effect 대신 이벤트 핸들러에 두는 기준을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.react.state-first",
+      "fe.js.fetch-first"
+    ],
+    "related": [
+      "fe.internals.strict-mode",
+      "fe.internals.react-memoization"
+    ],
+    "aliases": [
+      "useEffect",
+      "이펙트 훅",
+      "Effect 훅",
+      "사이드 이펙트 훅",
+      "effect hook"
+    ],
+    "refs": [
+      "https://react.dev/learn/synchronizing-with-effects"
+    ]
+  },
+  {
+    "id": "fe.internals.render-and-commit",
+    "title": "React 렌더링 과정: 트리거·렌더·커밋",
+    "en": "React Rendering: Trigger, Render, Commit",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "프론트엔드 내부",
+    "summary": "state가 바뀌면 React가 컴포넌트 함수를 다시 불러 결과를 계산하고 달라진 곳만 DOM에 반영하는 세 단계 흐름이다.",
+    "objectives": [
+      "state 변경이 화면 갱신으로 이어지는 과정을 트리거·렌더·커밋 세 단계로 설명할 수 있다",
+      "부모가 다시 렌더링되면 자식도 함께 렌더링된다는 점을 알고 갱신 원인을 찾을 수 있다",
+      "렌더링 중에 바깥 변수를 고치는 코드를 찾아 순수한 계산으로 바꿀 수 있다",
+      "렌더 결과가 같으면 React가 DOM을 건드리지 않는다는 점을 입력 칸 예로 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.react.state-first"
+    ],
+    "related": [
+      "fe.internals.react-memoization",
+      "fe.internals.react-reconciliation",
+      "fe.internals.strict-mode"
+    ],
+    "aliases": [
+      "렌더와 커밋",
+      "render and commit",
+      "리렌더 과정",
+      "렌더링 세 단계",
+      "React 렌더링 흐름"
+    ],
+    "refs": [
+      "https://react.dev/learn/render-and-commit"
+    ]
+  },
+  {
+    "id": "fe.react.dependency-array",
+    "title": "의존성 배열",
+    "en": "Dependency Array",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "React",
+    "summary": "useEffect의 둘째 인자로, 적힌 값이 지난 렌더와 달라졌을 때만 Effect를 다시 돌리며, 빈 배열이면 처음 나타날 때 한 번만 돈다.",
+    "parent": "fe.react.use-effect",
+    "aliases": [
+      "의존성 배열",
+      "dependency array",
+      "deps 배열",
+      "빈 배열 useEffect",
+      "exhaustive-deps"
+    ]
+  },
+  {
+    "id": "fe.react.effect-cleanup",
+    "title": "클린업 함수",
+    "en": "Effect Cleanup Function",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "React",
+    "summary": "Effect가 반환하는 함수로, 다음 실행 직전과 컴포넌트가 사라질 때 불려 연결 끊기·구독 해제·타이머 취소를 맡는다.",
+    "parent": "fe.react.use-effect",
+    "aliases": [
+      "클린업 함수",
+      "cleanup function",
+      "Effect 정리",
+      "Effect 구독 해제",
+      "unmount 정리"
+    ]
+  },
+  {
+    "id": "fe.react.key-prop",
+    "title": "리스트의 key 속성",
+    "en": "The key Prop in Lists",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "React",
+    "summary": "배열을 map으로 그릴 때 항목마다 붙이는 고유하고 바뀌지 않는 이름표로, 순서가 바뀌어도 React가 어느 항목인지 알아보게 하며 배열 인덱스를 쓰면 상태가 엉킨다.",
+    "related": [
+      "fe.react.first-component",
+      "fe.internals.render-and-commit"
+    ],
+    "aliases": [
+      "key prop",
+      "리스트 key",
+      "key 경고",
+      "unique key prop",
+      "인덱스 key"
+    ],
+    "refs": [
+      "https://react.dev/learn/rendering-lists"
+    ]
+  },
+  {
+    "id": "fe.internals.rerender",
+    "title": "리렌더링",
+    "en": "Re-render",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "프론트엔드 내부",
+    "summary": "state 설정 함수를 부르면 그 컴포넌트와 그 아래 자식들이 다시 호출돼 새 결과를 계산하는 일로, 부모가 다시 그려지면 자식도 따라 그려진다.",
+    "parent": "fe.internals.render-and-commit",
+    "aliases": [
+      "리렌더링",
+      "re-render",
+      "다시 렌더링",
+      "리렌더",
+      "state 갱신 렌더"
+    ]
+  },
+  {
     "id": "fe.internals.server-client-boundary",
     "title": "서버 컴포넌트와 클라이언트 컴포넌트 경계 정하기",
     "en": "Choosing the Server and Client Component Boundary",

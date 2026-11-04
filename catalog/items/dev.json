@@ -238,6 +238,68 @@
     ]
   },
   {
+    "id": "dev.git.remotes",
+    "title": "원격 저장소: clone·push·pull",
+    "en": "Remote Repositories: clone, push and pull",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "Git",
+    "summary": "GitHub의 저장소를 내 컴퓨터로 복제하고 내 커밋을 올리고 남의 커밋을 받아 오는 원격 저장소 기본 명령이다.",
+    "objectives": [
+      "git clone으로 원격 저장소를 통째로 내려받을 수 있다",
+      "git remote -v로 origin이 어디를 가리키는지 볼 수 있다",
+      "git push로 내 커밋을 올리고 git pull로 남의 커밋을 받아 올 수 있다",
+      "git fetch와 git pull의 차이를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.first-commit",
+      "dev.git.github-role"
+    ],
+    "related": [
+      "dev.git.branch-pr"
+    ],
+    "aliases": [
+      "원격 저장소",
+      "remote repository",
+      "git remote",
+      "git pull",
+      "git fetch"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes",
+      "https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository"
+    ]
+  },
+  {
+    "id": "dev.git.merge-conflict",
+    "title": "머지 충돌 해결하기",
+    "en": "Resolving Merge Conflicts",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "Git",
+    "summary": "두 브랜치가 같은 파일의 같은 곳을 고쳐 Git이 혼자 합치지 못할 때 표시를 보고 고른 뒤 add와 commit으로 끝내는 절차다.",
+    "objectives": [
+      "git merge 뒤 git status로 충돌 난 파일을 찾을 수 있다",
+      "<<<<<<<·=======·>>>>>>> 표시의 위아래가 어느 브랜치 것인지 읽을 수 있다",
+      "한쪽을 고르거나 합쳐 표시를 지운 뒤 git add와 git commit으로 머지를 마칠 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.branch-pr"
+    ],
+    "aliases": [
+      "머지 충돌",
+      "merge conflict",
+      "충돌 해결",
+      "conflict marker",
+      "git merge"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging"
+    ]
+  },
+  {
     "id": "dev.test.unit",
     "title": "단위 테스트",
     "en": "Unit Test",
@@ -250,6 +312,78 @@
     "aliases": [
       "단위 테스트",
       "Unit Test"
+    ]
+  },
+  {
+    "id": "dev.git.clone",
+    "title": "git clone",
+    "en": "Git Clone",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "Git",
+    "summary": "원격 저장소의 모든 기록을 내 컴퓨터에 통째로 복사해 새 폴더로 만드는 명령이다.",
+    "parent": "dev.git.remotes",
+    "aliases": [
+      "저장소 클론",
+      "repo clone",
+      "저장소 복제"
+    ]
+  },
+  {
+    "id": "dev.git.gitignore",
+    "title": ".gitignore",
+    "en": ".gitignore File",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "Git",
+    "summary": "로그·빌드 결과·비밀값 파일처럼 기록에 넣지 않을 파일의 패턴을 적어 두는 파일로, 여기 적힌 파일은 추적 대상에서 빠진다.",
+    "related": [
+      "be.security.env-file"
+    ],
+    "aliases": [
+      ".gitignore",
+      "gitignore",
+      "무시 파일",
+      "ignore 패턴"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository"
+    ]
+  },
+  {
+    "id": "dev.git.staging-area",
+    "title": "스테이징 영역",
+    "en": "Staging Area",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "Git",
+    "summary": "다음 커밋에 넣을 변경만 골라 두는 중간 칸으로, git add를 실행한 시점의 파일 내용이 담긴다.",
+    "parent": "dev.git.first-commit",
+    "aliases": [
+      "스테이징 영역",
+      "staging area",
+      "git 스테이징",
+      "index 영역",
+      "git add 영역"
+    ]
+  },
+  {
+    "id": "dev.git.origin",
+    "title": "origin 원격",
+    "en": "Origin Remote",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Git",
+    "summary": "git clone이 복제해 온 서버에 붙여 주는 기본 원격 이름으로, push와 pull의 기본 상대가 된다.",
+    "parent": "dev.git.remotes",
+    "aliases": [
+      "origin 원격",
+      "기본 원격 이름",
+      "remote origin"
     ]
   },
   {
@@ -353,6 +487,80 @@
     ]
   },
   {
+    "id": "dev.robust.atomic-replace",
+    "title": "임시 파일과 원자적 교체(os.replace)",
+    "en": "Temporary Files and Atomic Replacement (os.replace)",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "견고한 스크립트",
+    "summary": "파일을 바로 덮어쓰지 않고 임시 파일에 다 쓴 뒤 한 번에 바꿔 끼워, 도중에 꺼져도 반쯤 쓰인 파일이 남지 않게 하는 방법이다.",
+    "objectives": [
+      "쓰다 만 파일이 남거나 읽는 쪽이 반쪽짜리 내용을 보는 원인을 설명하고 임시 파일→교체 순서로 고칠 수 있다",
+      "os.rename과 os.replace의 차이, 같은 파일 시스템 안에서만 원자적이라는 조건을 알고 임시 파일을 어디에 만들지 정할 수 있다",
+      "flush·fsync를 어디까지 할지 내구성과 속도의 손익을 따져 정할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.basics.files-paths",
+      "dev.basics.how-program-runs"
+    ],
+    "related": [
+      "be.arch.transaction-boundary",
+      "be.rest.idempotency"
+    ],
+    "aliases": [
+      "os.replace",
+      "원자적 쓰기",
+      "atomic write",
+      "임시 파일로 쓰기",
+      "write-then-rename",
+      "반쯤 쓰인 파일"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/os.html#os.replace",
+      "https://docs.python.org/3/library/tempfile.html#tempfile.NamedTemporaryFile",
+      "https://luigi.readthedocs.io/en/stable/luigi_patterns.html#atomic-writes-problem"
+    ]
+  },
+  {
+    "id": "dev.robust.resumable-batch",
+    "title": "재개 가능한 배치 작업과 완료 표시",
+    "en": "Resumable Batch Jobs and Completion Markers",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "견고한 스크립트",
+    "summary": "많은 항목을 처리하는 작업이 중간에 끊겨도 완료 표시를 보고 한 일은 건너뛰고 남은 일만 이어 하게 하는 설계다.",
+    "objectives": [
+      "작업 단위마다 완료 표시(결과 파일·상태 행)를 남겨 다시 돌릴 때 건너뛰도록 설계할 수 있다",
+      "같은 항목을 두 번 처리해도 결과가 같도록 INSERT를 UPSERT나 덮어쓰기로 바꾸고 입력을 고정할 수 있다",
+      "완료 표시는 있는데 결과가 비어 있는 식의 불일치 원인을 원자적 쓰기와 묶어 찾을 수 있다",
+      "중단 지점을 어디까지 잘게 기록할지 재실행 비용과 기록 비용의 손익으로 정할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.basics.files-paths",
+      "be.rest.method-semantics"
+    ],
+    "related": [
+      "dev.robust.atomic-replace",
+      "be.async.task-queue",
+      "rag.agent.checkpoint-persistence"
+    ],
+    "aliases": [
+      "resumable job",
+      "재개 가능한 작업",
+      "완료 표시",
+      "done marker",
+      "이어서 처리",
+      "중단 후 재개"
+    ],
+    "refs": [
+      "https://luigi.readthedocs.io/en/stable/tasks.html#task-output",
+      "https://luigi.readthedocs.io/en/stable/api/luigi.task.html",
+      "https://airflow.apache.org/docs/apache-airflow/stable/best-practices.html#creating-a-task"
+    ]
+  },
+  {
     "id": "dev.test.e2e",
     "title": "E2E 테스트",
     "en": "End-to-End Test",
@@ -395,6 +603,146 @@
     "aliases": [
       "커버리지",
       "Test Coverage"
+    ]
+  },
+  {
+    "id": "dev.robust.tempfile",
+    "title": "임시 파일(tempfile)",
+    "en": "Temporary File (tempfile)",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "견고한 스크립트",
+    "summary": "경쟁 없이 안전하게 만든 일회용 파일로, 최종 파일과 같은 폴더에 만들어야 교체가 원자적으로 끝난다.",
+    "parent": "dev.robust.atomic-replace",
+    "aliases": [
+      "tempfile",
+      "NamedTemporaryFile",
+      "mkstemp",
+      "임시 파일 만들기",
+      "임시 폴더"
+    ]
+  },
+  {
+    "id": "dev.git.bisect",
+    "title": "git bisect",
+    "en": "git bisect",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Git",
+    "summary": "정상이던 커밋과 고장 난 커밋 사이를 이분 탐색해 버그가 들어온 커밋을 찾는 명령으로, 검사 스크립트를 주면 자동으로 돈다.",
+    "aliases": [
+      "이분 탐색으로 커밋 찾기",
+      "버그 커밋 찾기",
+      "git bisect run",
+      "회귀 커밋 찾기"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Tools-Debugging-with-Git"
+    ]
+  },
+  {
+    "id": "dev.robust.fsync",
+    "title": "fsync",
+    "en": "fsync",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "견고한 스크립트",
+    "summary": "버퍼에 머문 쓰기를 디스크까지 내려 보내도록 강제하는 호출로, 전원이 꺼져도 남아야 하는 파일에만 비용을 치르고 쓴다.",
+    "parent": "dev.robust.atomic-replace",
+    "aliases": [
+      "os.fsync",
+      "디스크 동기화",
+      "flush와 fsync",
+      "내구성 쓰기"
+    ]
+  },
+  {
+    "id": "dev.robust.sentinel-file",
+    "title": "완료 표시 파일",
+    "en": "Sentinel File",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "견고한 스크립트",
+    "summary": "작업이 끝났음을 알리기 위해 마지막에 만드는 빈 파일이나 결과 파일로, 다음 실행은 이 존재만 보고 건너뛴다.",
+    "parent": "dev.robust.resumable-batch",
+    "aliases": [
+      "sentinel file",
+      "marker file",
+      ".done 파일",
+      "완료 마커",
+      "_SUCCESS 파일"
+    ]
+  },
+  {
+    "id": "dev.git.internals",
+    "title": "Git 내부: 객체·참조·packfile",
+    "en": "Git Internals: Objects, Refs and Packfiles",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "Git",
+    "summary": "Git이 내용 해시로 객체를 저장하고 참조로 가리키며 packfile로 묶는 구조를 알고 저장소 이상과 커밋 유실을 분석한다.",
+    "objectives": [
+      "blob·tree·commit 객체가 해시로 이어지는 그래프를 보고 커밋 하나가 어떻게 저장되는지 설명할 수 있다",
+      "브랜치·태그·HEAD가 참조 파일이라는 점을 근거로 되감기와 강제 이동이 무엇을 바꾸는지 판단할 수 있다",
+      "느슨한 객체와 packfile·델타 압축의 손익을 알고 gc가 저장소 크기와 성능에 주는 영향을 설명할 수 있다",
+      "reflog와 fsck로 참조를 잃은 커밋을 찾아 복구할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.branch-pr"
+    ],
+    "aliases": [
+      "Git 객체",
+      "git objects",
+      "Git blob",
+      "tree 객체",
+      "content-addressable",
+      ".git 폴더 구조"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Internals-Git-Objects",
+      "https://git-scm.com/book/en/v2/Git-Internals-Git-References",
+      "https://git-scm.com/book/en/v2/Git-Internals-Packfiles",
+      "https://git-scm.com/book/en/v2/Git-Internals-Maintenance-and-Data-Recovery"
+    ]
+  },
+  {
+    "id": "dev.git.reflog",
+    "title": "reflog",
+    "en": "Reflog",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "Git",
+    "summary": "HEAD와 브랜치가 어디를 가리켰는지 순서대로 남긴 기록으로, 참조를 잃은 커밋을 되찾는 출발점이다.",
+    "parent": "dev.git.internals",
+    "aliases": [
+      "reflog",
+      "리플로그",
+      "git reflog",
+      "잃어버린 커밋 복구"
+    ]
+  },
+  {
+    "id": "dev.git.packfile",
+    "title": "packfile과 델타 압축",
+    "en": "Packfile and Delta Compression",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Git",
+    "summary": "느슨한 객체 여러 개를 한 파일로 묶고 비슷한 내용은 차이만 저장해 공간을 줄이는 Git의 저장 형식이다.",
+    "parent": "dev.git.internals",
+    "aliases": [
+      "packfile",
+      "팩파일",
+      "델타 압축",
+      "git gc",
+      "delta compression"
     ]
   }
 ]

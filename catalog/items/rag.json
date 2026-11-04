@@ -73,6 +73,113 @@
     ]
   },
   {
+    "id": "rag.agent.mcp-idea",
+    "title": "MCP: AI를 바깥 도구에 꽂는 공용 규격",
+    "en": "MCP at a Glance",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "AI 앱이 파일·데이터베이스·검색 같은 바깥 도구와 연결되는 방법을 하나로 통일한, 누구나 쓸 수 있는 열린 규격이다.",
+    "objectives": [
+      "MCP를 어느 기기에나 꽂히는 공용 충전 단자에 빗대어 설명할 수 있다",
+      "호스트·클라이언트·서버가 각각 누구인지 역할을 말할 수 있다",
+      "MCP로 AI가 할 수 있게 되는 일의 예를 두 가지 이상 들 수 있다"
+    ],
+    "prerequisites": [
+      "rag.basics.agent-big-picture"
+    ],
+    "aliases": [
+      "MCP",
+      "Model Context Protocol",
+      "모델 컨텍스트 프로토콜",
+      "MCP 연결",
+      "MCP 규격"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/docs/getting-started/intro",
+      "https://modelcontextprotocol.io/docs/learn/architecture"
+    ]
+  },
+  {
+    "id": "rag.basics.langchain",
+    "title": "LangChain",
+    "en": "LangChain",
+    "kind": "term",
+    "level": 1,
+    "importance": 1,
+    "group": "에이전트 기초",
+    "summary": "여러 회사의 AI 모델과 도구를 같은 방식으로 이어 붙여 에이전트와 RAG 같은 AI 앱을 만들게 해 주는 도구 상자다.",
+    "aliases": [
+      "LangChain",
+      "랭체인",
+      "langchain",
+      "LangChain 프레임워크"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/overview"
+    ]
+  },
+  {
+    "id": "rag.agent.mcp-server",
+    "title": "MCP 서버",
+    "en": "MCP Server",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "AI 앱이 꽂아 쓰도록 도구·자료·프롬프트 틀을 내어 주는 작은 프로그램으로, 내 컴퓨터에서도 먼 서버에서도 돌 수 있다.",
+    "parent": "rag.agent.mcp-idea",
+    "aliases": [
+      "MCP 서버",
+      "MCP server",
+      "MCP 커넥터",
+      "로컬 MCP 서버",
+      "원격 MCP 서버"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/docs/learn/architecture"
+    ]
+  },
+  {
+    "id": "rag.basics.langgraph",
+    "title": "LangGraph",
+    "en": "LangGraph",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "에이전트 기초",
+    "summary": "AI의 일 순서를 순서도처럼 칸과 화살표로 그려 두고, 중간에 멈추거나 사람이 끼어들어도 이어서 돌게 해 주는 LangChain 쪽 도구다.",
+    "aliases": [
+      "LangGraph",
+      "랭그래프",
+      "langgraph",
+      "그래프 오케스트레이션"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/overview"
+    ]
+  },
+  {
+    "id": "rag.retrieval.retriever",
+    "title": "검색기(retriever)",
+    "en": "Retriever",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "RAG",
+    "summary": "질문을 받아 지식 창고에서 관련 있는 문서 조각을 골라 돌려주는 RAG의 부품이다.",
+    "aliases": [
+      "검색기",
+      "retriever",
+      "리트리버",
+      "문서 검색기"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/retrieval"
+    ]
+  },
+  {
     "id": "rag.embedding.similarity-search",
     "title": "코사인 유사도로 비슷한 문장 찾기",
     "en": "Similarity Search with Cosine Similarity",
@@ -100,6 +207,79 @@
     ]
   },
   {
+    "id": "rag.retrieval.load-split",
+    "title": "LangChain으로 문서 불러와 나누기: 로더와 스플리터",
+    "en": "Loading and Splitting Documents with LangChain",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "RAG",
+    "summary": "문서 로더로 파일을 Document로 읽어 들이고 텍스트 스플리터로 검색하기 좋은 크기의 조각으로 나누는 RAG의 첫 단계다.",
+    "objectives": [
+      "문서 로더의 load()로 파일을 Document 목록으로 읽어 들일 수 있다",
+      "RecursiveCharacterTextSplitter로 긴 문서를 조각으로 나눌 수 있다",
+      "chunk_size와 chunk_overlap을 바꿔 조각의 개수와 길이가 달라지는 것을 확인할 수 있다",
+      "문서를 나누는 이유를 컨텍스트 창과 검색 정확도로 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.basics.rag-big-picture",
+      "be.python.venv-packages"
+    ],
+    "related": [
+      "rag.vector-db.basics",
+      "rag.embedding.similarity-search"
+    ],
+    "aliases": [
+      "문서 불러오기",
+      "문서 분할",
+      "document loading",
+      "split_documents",
+      "RecursiveCharacterTextSplitter"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/retrieval",
+      "https://docs.langchain.com/oss/python/integrations/document_loaders/",
+      "https://docs.langchain.com/oss/python/integrations/splitters/"
+    ]
+  },
+  {
+    "id": "rag.agent.first-agent",
+    "title": "LangChain으로 첫 에이전트 만들기: create_agent와 도구",
+    "en": "Your First LangChain Agent: create_agent and Tools",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "에이전트",
+    "summary": "파이썬 함수에 @tool을 붙여 도구로 만들고 create_agent에 모델·도구·시스템 프롬프트를 넘겨 질문에 따라 도구를 골라 쓰는 에이전트를 돌려 보는 첫 실습이다.",
+    "objectives": [
+      "파이썬 함수에 @tool을 붙여 이름·설명·인자가 모델에게 보이는 도구로 만들 수 있다",
+      "create_agent에 모델·도구·시스템 프롬프트를 넘겨 에이전트를 만들고 invoke로 실행할 수 있다",
+      "결과 메시지 목록에서 모델이 도구를 불렀는지와 최종 답을 찾아볼 수 있다"
+    ],
+    "prerequisites": [
+      "rag.basics.agent-big-picture",
+      "llm.api.first-call",
+      "be.python.functions"
+    ],
+    "related": [
+      "llm.tools.function-calling",
+      "rag.agent.reliability"
+    ],
+    "aliases": [
+      "create_agent",
+      "LangChain 에이전트",
+      "langchain agent",
+      "에이전트 만들기",
+      "agent.invoke"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/quickstart",
+      "https://docs.langchain.com/oss/python/langchain/tools"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-04"
+  },
+  {
     "id": "rag.embedding.vector",
     "title": "벡터",
     "en": "Vector",
@@ -112,6 +292,83 @@
     "aliases": [
       "벡터",
       "vector"
+    ]
+  },
+  {
+    "id": "rag.retrieval.document-loader",
+    "title": "문서 로더",
+    "en": "Document Loader",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "RAG",
+    "summary": "PDF·웹 페이지·메모 도구 같은 여러 출처의 자료를 같은 모양의 Document로 읽어 들이는 LangChain 부품이다.",
+    "parent": "rag.retrieval.load-split",
+    "aliases": [
+      "문서 로더",
+      "document loader",
+      "PyPDFLoader",
+      "loader 클래스"
+    ]
+  },
+  {
+    "id": "rag.retrieval.text-splitter",
+    "title": "텍스트 스플리터",
+    "en": "Text Splitter",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "RAG",
+    "summary": "긴 문서를 검색 단위이자 컨텍스트 창에 들어갈 크기의 조각으로 자르는 부품으로, 문단·문장·단어 순으로 잘라 보는 재귀 방식이 기본이다.",
+    "parent": "rag.retrieval.load-split",
+    "related": [
+      "rag.vector-db.chunk"
+    ],
+    "aliases": [
+      "텍스트 스플리터",
+      "text splitter",
+      "문서 분할기",
+      "스플리터"
+    ]
+  },
+  {
+    "id": "rag.retrieval.chunk-overlap",
+    "title": "청크 겹침",
+    "en": "Chunk Overlap",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "RAG",
+    "summary": "이웃한 조각이 앞뒤 글자를 얼마간 함께 갖게 해 문장이 조각 경계에서 잘려 뜻을 잃는 것을 줄이는 설정이다.",
+    "parent": "rag.retrieval.load-split",
+    "related": [
+      "rag.vector-db.chunk"
+    ],
+    "aliases": [
+      "청크 겹침",
+      "chunk_overlap",
+      "chunk overlap",
+      "겹치는 조각"
+    ]
+  },
+  {
+    "id": "rag.agent.tool-decorator",
+    "title": "도구 데코레이터(@tool)",
+    "en": "The @tool Decorator",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "보통 파이썬 함수를 에이전트 도구로 바꾸는 표시로, 함수 이름·독스트링·타입 힌트가 그대로 모델이 보는 도구 설명이 된다.",
+    "parent": "rag.agent.first-agent",
+    "related": [
+      "llm.tools.tool-schema"
+    ],
+    "aliases": [
+      "@tool",
+      "tool 데코레이터",
+      "도구 함수",
+      "langchain tools"
     ]
   },
   {
@@ -216,6 +473,80 @@
     ]
   },
   {
+    "id": "rag.agent.checkpoint-persistence",
+    "title": "LangGraph 체크포인트로 상태 저장과 재개",
+    "en": "Persisting and Resuming Agent State with LangGraph Checkpoints",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "에이전트의 중간 상태를 저장해 대화를 이어 가고, 실패나 사람 승인 뒤에 같은 자리에서 다시 시작하게 하는 설계다.",
+    "objectives": [
+      "메모리·SQLite·PostgreSQL 체크포인터 중 개발과 운영 환경에 맞는 것을 고르고 근거를 말할 수 있다",
+      "thread_id로 대화 단위를 나누고, 재시작 뒤 상태가 사라지거나 다른 대화가 섞이는 원인을 찾을 수 있다",
+      "체크포인트가 끝없이 쌓이는 문제를 알아채고 정리 기준을 정할 수 있다",
+      "대화 안의 단기 상태(체크포인터)와 대화를 넘는 장기 기억(스토어)을 구분해 둘 곳을 정할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.basics.agent-big-picture",
+      "rag.agent.reliability"
+    ],
+    "related": [
+      "be.auth.session-cookie",
+      "db.cache.redis"
+    ],
+    "aliases": [
+      "checkpointer 설정",
+      "체크포인트 저장",
+      "LangGraph persistence",
+      "PostgresSaver",
+      "MemorySaver",
+      "상태 재개"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/persistence"
+    ]
+  },
+  {
+    "id": "rag.agent.mcp-connect",
+    "title": "MCP 서버 붙이기: 전송 방식·도구 노출·문제 찾기",
+    "en": "Connecting MCP Servers: Transports, Tool Exposure and Troubleshooting",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "에이전트에 외부 MCP 서버를 연결할 때 stdio와 Streamable HTTP 중 무엇을 쓸지, 어떤 도구를 내줄지 정하고 연결이 안 되는 원인을 찾는 방법이다.",
+    "objectives": [
+      "로컬 프로세스용 stdio와 원격용 Streamable HTTP 중 상황에 맞는 전송 방식을 근거를 들어 고를 수 있다",
+      "서버가 내주는 도구·리소스·프롬프트 가운데 에이전트에 노출할 것을 골라 권한 범위를 좁힐 수 있다",
+      "서버가 안 뜨거나 도구 호출이 조용히 실패할 때 설정 파일·절대 경로·stderr 로그로 원인을 찾을 수 있다",
+      "LangChain 에이전트에서 MCP 도구를 불러와 쓰는 구조를 설계할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.tools.function-calling",
+      "rag.agent.reliability"
+    ],
+    "related": [
+      "rag.agent.mcp-protocol",
+      "ax.coding.permission-rules"
+    ],
+    "aliases": [
+      "MCP 서버 연결",
+      "MCP 설정",
+      "mcpServers",
+      "stdio 서버",
+      "MCP 도구 연결",
+      "MCP 연결 안 됨"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/docs/develop/connect-local-servers",
+      "https://modelcontextprotocol.io/docs/learn/architecture",
+      "https://docs.langchain.com/oss/python/langchain/mcp"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-04"
+  },
+  {
     "id": "rag.retrieval.reranking",
     "title": "재순위",
     "en": "Reranking",
@@ -230,6 +561,79 @@
       "리랭킹",
       "reranking",
       "reranker"
+    ]
+  },
+  {
+    "id": "rag.agent.checkpointer",
+    "title": "체크포인터",
+    "en": "Checkpointer",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "그래프가 한 단계 지날 때마다 상태 스냅샷을 저장하는 부품으로, 메모리·SQLite·PostgreSQL 구현 중 하나를 고른다.",
+    "parent": "rag.agent.checkpoint-persistence",
+    "aliases": [
+      "checkpointer",
+      "체크포인트 저장소",
+      "InMemorySaver",
+      "SqliteSaver",
+      "상태 저장기"
+    ]
+  },
+  {
+    "id": "rag.agent.interrupt",
+    "title": "인터럽트(사람 개입 대기)",
+    "en": "Interrupt (Human-in-the-Loop)",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "그래프 실행을 노드 안에서 멈춰 사람의 승인이나 수정을 기다렸다가 Command(resume)로 이어 가게 하는 장치로, 체크포인터가 있어야 동작한다.",
+    "aliases": [
+      "interrupt()",
+      "human-in-the-loop",
+      "HITL",
+      "사람 승인 대기",
+      "Command(resume)",
+      "승인 끼워 넣기"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/interrupts"
+    ]
+  },
+  {
+    "id": "rag.agent.memory-store",
+    "title": "장기 기억 스토어",
+    "en": "Memory Store",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "대화(스레드)를 넘어 사용자 선호나 사실을 키-값으로 보관하는 저장소로, 체크포인터의 단기 상태와 구분한다.",
+    "parent": "rag.agent.checkpoint-persistence",
+    "aliases": [
+      "memory store",
+      "LangGraph long-term memory",
+      "에이전트 장기 기억",
+      "BaseStore",
+      "InMemoryStore"
+    ]
+  },
+  {
+    "id": "rag.agent.mcp-transport",
+    "title": "MCP 전송 방식(stdio·Streamable HTTP)",
+    "en": "MCP Transports (stdio and Streamable HTTP)",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "MCP 클라이언트와 서버가 메시지를 주고받는 통로로, 같은 기계의 프로세스는 stdio, 원격 서버는 HTTP와 SSE를 쓴다.",
+    "parent": "rag.agent.mcp-connect",
+    "aliases": [
+      "MCP transport",
+      "stdio transport",
+      "streamable http"
     ]
   },
   {

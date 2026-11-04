@@ -324,6 +324,72 @@
     ]
   },
   {
+    "id": "plan.ai-ux.explanation-confidence-tradeoffs",
+    "title": "AI 설명과 확신도 표시의 손익",
+    "en": "Explanations and Confidence Displays",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "AI UX 설계",
+    "summary": "AI 답에 설명과 확신도를 얼마나, 어떤 형태로 보여 줄지 결정의 무게와 사용자의 과신·불신을 근거로 고른다.",
+    "objectives": [
+      "전체 설명·부분 설명·설명 없음 중 무엇이 맞는지 결정의 무게와 책임 요구를 근거로 고를 수 있다",
+      "여러 후보·범주·숫자 확률 표시 중 하나를 사용자가 잘못 읽을 위험을 근거로 고를 수 있다",
+      "설명을 어느 시점(행동 직후·예상 밖 응답·고위험·온보딩)에 내보낼지 정하고 사용자 시험으로 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.ai-ux.errors-graceful-failure",
+      "plan.ai-ux.mental-models-onboarding"
+    ],
+    "related": [
+      "plan.ai-ux.calibrated-trust"
+    ],
+    "aliases": [
+      "설명 가능성 UX",
+      "explainability UX",
+      "AI 설명 설계"
+    ],
+    "refs": [
+      "https://pair.withgoogle.com/chapter/explainability-trust/"
+    ]
+  },
+  {
+    "id": "plan.figma.design-token-architecture",
+    "title": "디자인 토큰 표준과 별칭 계층 설계",
+    "en": "Design Token Standard and Alias Layers",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "디자인 토큰 교환 형식의 규칙과 변수 별칭을 층으로 쌓는 설계를 알고 디자인·코드 동기화 구조를 근거 있게 고른다.",
+    "objectives": [
+      "토큰·그룹·별칭·합성 토큰이 형식에서 어떻게 정의되고 참조가 어떤 규칙으로 풀리는지 설명할 수 있다",
+      "기본값 토큰 위에 의미 토큰을 별칭으로 얹는 층 구조를 테마 전환과 변경 전파를 근거로 고를 수 있다",
+      "Figma의 변수·컬렉션·모드를 토큰 형식과 대응시키며 도구 간 호환이 깨지는 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.dev-mode-handoff",
+      "plan.figma.frames-and-components"
+    ],
+    "related": [
+      "plan.figma.variables-modes"
+    ],
+    "aliases": [
+      "design tokens",
+      "DTCG",
+      "토큰 계층",
+      "시맨틱 토큰",
+      "디자인 토큰 형식"
+    ],
+    "refs": [
+      "https://www.designtokens.org/tr/2025.10/format/",
+      "https://help.figma.com/hc/en-us/articles/14506821864087-Overview-of-variables-collections-and-modes",
+      "https://help.figma.com/hc/en-us/articles/15145852043927-Create-and-manage-variables"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-04"
+  },
+  {
     "id": "plan.figma.variables-modes",
     "title": "Figma 변수와 모드",
     "en": "Figma Variables and Modes",
@@ -392,6 +458,26 @@
     ]
   },
   {
+    "id": "plan.figma.design-token",
+    "title": "디자인 토큰",
+    "en": "Design Token",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "색·간격·글꼴 같은 디자인 값을 이름 붙인 데이터로 두어 디자인 도구와 코드가 같은 값을 쓰게 하는 단위다.",
+    "parent": "plan.figma.design-token-architecture",
+    "aliases": [
+      "design token",
+      "토큰 파일",
+      "tokens.json",
+      "디자인 값 토큰"
+    ],
+    "refs": [
+      "https://www.designtokens.org/tr/2025.10/format/"
+    ]
+  },
+  {
     "id": "plan.figma.ready-for-dev",
     "title": "Ready for dev 상태",
     "en": "Ready for Dev Status",
@@ -405,6 +491,62 @@
       "Ready for dev",
       "개발 준비 완료",
       "Dev Mode 상태"
+    ]
+  },
+  {
+    "id": "plan.figma.token-alias",
+    "title": "토큰 별칭(참조)",
+    "en": "Token Alias",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "토큰 값 대신 다른 토큰의 이름을 적어 값을 끌어오는 참조로, 의미 토큰이 기본값 토큰을 가리키게 하는 장치다.",
+    "parent": "plan.figma.design-token-architecture",
+    "aliases": [
+      "토큰 별칭",
+      "alias token",
+      "변수 별칭",
+      "variable alias",
+      "토큰 참조"
+    ],
+    "refs": [
+      "https://www.designtokens.org/tr/2025.10/format/",
+      "https://help.figma.com/hc/en-us/articles/15145852043927-Create-and-manage-variables"
+    ]
+  },
+  {
+    "id": "plan.ai-ux.partial-explanation",
+    "title": "부분 설명",
+    "en": "Partial Explanation",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "AI UX 설계",
+    "summary": "AI가 왜 그 답을 냈는지 전부 밝히지 않고 사용자의 판단에 영향을 주는 핵심 요인만 보여 주는 설명 방식이다.",
+    "parent": "plan.ai-ux.explanation-confidence-tradeoffs",
+    "aliases": [
+      "부분 설명",
+      "partial explanation",
+      "핵심 요인 설명",
+      "일부 설명"
+    ]
+  },
+  {
+    "id": "plan.ai-ux.n-best-display",
+    "title": "N개 후보 표시(N-best)",
+    "en": "N-best Alternatives",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "AI UX 설계",
+    "summary": "확신이 낮을 때 하나만 단정하지 않고 가능성 높은 답 여럿을 함께 보여 사용자가 고르게 하는 확신도 표현 방식이다.",
+    "parent": "plan.ai-ux.explanation-confidence-tradeoffs",
+    "aliases": [
+      "N-best",
+      "후보 여러 개 표시",
+      "n-best alternatives",
+      "대안 후보 표시"
     ]
   }
 ]
