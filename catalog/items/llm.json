@@ -10,19 +10,114 @@
     "summary": "LLM은 지금까지의 글을 보고 다음에 올 글자 조각을 예측해 이어 붙여 답을 만든다.",
     "objectives": [
       "자동 완성에 빗대어 LLM의 동작을 설명할 수 있다",
-      "LLM이 틀린 내용을 그럴듯하게 말하는 이유를 말할 수 있다"
+      "LLM이 사실을 찾아보지 않고 글을 이어 만든다는 점을 말할 수 있다"
     ],
     "aliases": [
       "LLM은 어떻게 답을 만드나",
       "How an LLM Produces Answers",
       "LLM",
       "대규모 언어 모델",
-      "챗GPT 원리",
-      "할루시네이션",
-      "환각"
+      "챗GPT 원리"
     ],
     "refs": [
       "https://huggingface.co/learn/llm-course/chapter1/4"
+    ]
+  },
+  {
+    "id": "llm.basics.generative-ai",
+    "title": "생성형 AI가 할 수 있는 일과 못 하는 일",
+    "en": "What Generative AI Can and Cannot Do",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "LLM 기초",
+    "summary": "생성형 AI는 글과 그림을 새로 만들어 내지만 사실 확인과 최신 정보에는 약하다.",
+    "objectives": [
+      "생성형 AI가 만들어 낼 수 있는 것을 예를 들어 말할 수 있다",
+      "검색과 생성형 AI의 차이를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.what-is-llm"
+    ],
+    "aliases": [
+      "생성형 AI",
+      "generative ai"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/about-claude/models/overview"
+    ]
+  },
+  {
+    "id": "llm.basics.what-is-prompt",
+    "title": "프롬프트: AI에게 일을 맡기는 말",
+    "en": "What a Prompt Is",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "LLM 기초",
+    "summary": "AI에게 하는 부탁의 글로, 분명하게 쓸수록 원하는 답에 가까워진다.",
+    "objectives": [
+      "프롬프트를 새 동료에게 주는 업무 지시에 빗대어 설명할 수 있다",
+      "막연한 부탁을 구체적인 부탁으로 고쳐 볼 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.what-is-llm"
+    ],
+    "aliases": [
+      "프롬프트",
+      "prompt"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview"
+    ]
+  },
+  {
+    "id": "llm.basics.why-hallucinate",
+    "title": "환각: AI가 그럴듯하게 틀리는 이유",
+    "en": "Hallucination",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "LLM 기초",
+    "summary": "LLM은 사실을 찾아보는 대신 그럴듯한 글을 이어 만들기 때문에 없는 내용을 지어내기도 한다.",
+    "objectives": [
+      "환각이 생기는 이유를 비유로 설명할 수 있다",
+      "근거 자료를 함께 주면 환각이 줄어드는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.what-is-llm"
+    ],
+    "aliases": [
+      "환각",
+      "hallucination",
+      "할루시네이션"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations"
+    ]
+  },
+  {
+    "id": "llm.basics.model-choices",
+    "title": "AI 모델의 종류와 요금의 큰 그림",
+    "en": "AI Models and Pricing at a Glance",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "모델마다 성능과 속도, 요금이 달라 일에 맞게 고르며 쓴 양만큼 돈을 낸다.",
+    "objectives": [
+      "성능이 높은 모델이 언제나 정답이 아닌 이유를 말할 수 있다",
+      "AI 사용 요금이 쓴 양에 따라 달라지는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.what-is-llm"
+    ],
+    "aliases": [
+      "AI 모델",
+      "모델 선택"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/about-claude/models/overview"
     ]
   },
   {
@@ -49,7 +144,7 @@
     "importance": 1,
     "group": "LLM 기초",
     "summary": "LLM이 사실이 아닌 내용을 그럴듯하게 지어내는 현상이다.",
-    "parent": "llm.basics.what-is-llm",
+    "parent": "llm.basics.why-hallucinate",
     "aliases": [
       "할루시네이션",
       "Hallucination",
@@ -128,6 +223,32 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-03"
+  },
+  {
+    "id": "llm.prompt.first-good-prompt",
+    "title": "좋은 프롬프트 쓰는 기본",
+    "en": "Prompting Basics",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "프롬프트",
+    "summary": "역할과 맥락, 원하는 형식, 예시를 적어 답의 품질을 높인다.",
+    "objectives": [
+      "역할·맥락·형식을 넣어 프롬프트를 고쳐 쓸 수 있다",
+      "예시를 넣기 전후의 답을 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.what-is-prompt"
+    ],
+    "aliases": [
+      "프롬프트 작성",
+      "프롬프트 엔지니어링",
+      "few-shot",
+      "시스템 프롬프트"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview"
+    ]
   },
   {
     "id": "llm.basics.token",
@@ -241,5 +362,141 @@
       "도구 호출",
       "Tool Call"
     ]
+  },
+  {
+    "id": "llm.security.prompt-injection",
+    "title": "프롬프트 인젝션 공격과 방어",
+    "en": "Prompt Injection Attacks and Defenses",
+    "kind": "topic",
+    "level": 4,
+    "importance": 1,
+    "group": "LLM 보안",
+    "summary": "사용자 입력이나 외부 글에 섞인 지시가 모델을 조종하는 원리를 알고 여러 겹의 방어를 설계한다.",
+    "objectives": [
+      "직접 공격과 간접 공격의 경로를 분석할 수 있다",
+      "프롬프트만으로 막을 수 없는 이유를 근거를 들어 말할 수 있다",
+      "권한 제한을 포함한 방어를 설계할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.tools.function-calling"
+    ],
+    "aliases": [
+      "프롬프트 인젝션",
+      "prompt injection",
+      "간접 인젝션",
+      "탈옥",
+      "jailbreak"
+    ],
+    "refs": [
+      "https://genai.owasp.org/llmrisk/llm01-prompt-injection/"
+    ]
+  },
+  {
+    "id": "llm.internals.prompt-caching",
+    "title": "프롬프트 캐싱과 비용 구조",
+    "en": "Prompt Caching and Cost Structure",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 내부",
+    "summary": "입력의 앞부분을 재사용하는 원리로 비용과 지연을 줄이고 효과를 측정한다.",
+    "objectives": [
+      "캐시가 맞거나 빗나가는 조건을 설명할 수 있다",
+      "프롬프트 구조를 바꿔 비용 절감을 측정할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.first-call"
+    ],
+    "aliases": [
+      "프롬프트 캐싱",
+      "prompt caching",
+      "캐시 적중",
+      "LLM 비용"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-caching"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-04"
+  },
+  {
+    "id": "llm.internals.tokenization-sampling",
+    "title": "토큰화와 샘플링",
+    "en": "Tokenization and Sampling",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM 내부",
+    "summary": "글이 토큰으로 나뉘는 방식과 다음 토큰을 고르는 방식이 비용과 답의 일관성에 주는 영향을 다룬다.",
+    "objectives": [
+      "토큰화 방식이 비용과 오류에 주는 영향을 설명할 수 있다",
+      "temperature와 top_p가 답의 분포를 바꾸는 원리를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.token-context"
+    ],
+    "aliases": [
+      "토큰화",
+      "tokenizer",
+      "top_p"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/main/en/tokenizer_summary",
+      "https://huggingface.co/docs/transformers/main/en/generation_strategies"
+    ]
+  },
+  {
+    "id": "llm.security.agent-boundaries",
+    "title": "에이전트 권한 경계와 데이터 유출 경로",
+    "en": "Agent Permission Boundaries",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM 보안",
+    "summary": "도구 권한과 외부 입력, 외부 전송이 겹칠 때 생기는 유출 경로를 분석해 경계를 설계한다.",
+    "objectives": [
+      "비공개 자료·외부 입력·외부 전송이 겹치는 위험을 분석할 수 있다",
+      "최소 권한과 사람 승인으로 경계를 설계할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.security.prompt-injection"
+    ],
+    "aliases": [
+      "excessive agency",
+      "과도한 권한",
+      "데이터 유출 경로",
+      "최소 권한"
+    ],
+    "refs": [
+      "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/"
+    ]
+  },
+  {
+    "id": "llm.internals.structured-decoding",
+    "title": "구조화 출력의 보장과 한계",
+    "en": "Guarantees of Structured Output",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "스키마를 따르도록 생성을 제약하는 방식과, 형식이 맞아도 내용은 보장되지 않는 한계를 다룬다.",
+    "objectives": [
+      "제약 디코딩이 형식을 보장하는 원리를 설명할 수 있다",
+      "형식이 맞아도 틀릴 수 있는 내용을 검증하는 절차를 설계할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.first-call"
+    ],
+    "aliases": [
+      "제약 디코딩",
+      "constrained decoding",
+      "structured outputs",
+      "JSON 모드"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/structured-outputs"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-04"
   }
 ]

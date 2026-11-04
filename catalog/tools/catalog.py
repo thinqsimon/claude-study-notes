@@ -121,8 +121,8 @@ def check_item(item: dict, known_levels: set[int]) -> list[str]:
     if item["kind"] == "topic":
         if not OBJECTIVES_MIN <= len(objectives) <= OBJECTIVES_MAX:
             errors.append(f"{label}: 주제의 학습 목표는 {OBJECTIVES_MIN}~{OBJECTIVES_MAX}개다")
-        if item["level"] >= 2 and not item.get("refs"):
-            errors.append(f"{label}: 2단계 이상 주제는 공식 자료 링크(refs)가 필요하다")
+        if not item.get("refs"):
+            errors.append(f"{label}: 주제는 공식 자료 링크(refs)가 필요하다")
     elif objectives:
         errors.append(f"{label}: 용어에는 학습 목표를 쓰지 않는다")
     for objective in objectives:

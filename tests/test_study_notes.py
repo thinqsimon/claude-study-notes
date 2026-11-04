@@ -693,5 +693,254 @@ class PackagingTest(unittest.TestCase):
         self.assertEqual([name for name in found if name != concepts.NOTE_OPTIONAL_LAST], list(concepts.NOTE_SECTIONS))
 
 
+
+class QueueTest(unittest.TestCase):
+    """u 옵션: 목록 만들기 → 주제별 작성 → 묶어 등록. 토큰이 끊겨도 이어진다."""
+
+    session = "cccccccc-2222-3333-4444-555555555555"
+
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        base = Path(self._tmp.name)
+        self.root = base / "notes"
+        self.cwd = base / "demo"
+        self.cwd.mkdir()
+        projects = base / "projects"
+        self.pdir = projects / sn.encode_cwd(sn.normalize_cwd(str(self.cwd)))
+        self.pdir.mkdir(parents=True)
+        self.say("u1", "JWT 로그인을 구현하고 세션 쿠키와 비교했어요. HTTP 헤더와 입력 검증도 다뤘어요.")
+        self._projects = sn.PROJECTS_DIR
+        sn.PROJECTS_DIR = projects
+        self.catalog = concepts.load_catalog()
+        self.by_id = {item["id"]: item for item in self.catalog["items"]}
+        self.level3 = [i for i in self.catalog["items"] if i["kind"] == "topic" and i["level"] == 3]
+
+    def tearDown(self):
+        sn.PROJECTS_DIR = self._projects
+        self._tmp.cleanup()
+
+    def say(self, uuid: str, text: str) -> None:
+        with (self.pdir / f"{self.session}.jsonl").open("a", encoding="utf-8") as fh:
+            fh.write(json.dumps({"type": "user", "uuid": uuid, "timestamp": f"2026-11-04T00:00:{len(uuid):02d}Z",
+                                 "message": {"content": text}}, ensure_ascii=False) + "\n")
+
+    def extract(self, *extra: str) -> dict:
+        return run("extract", "--agent", "claude", "--cwd", str(self.cwd), "--session", self.session,
+                   "--notes-root", str(self.root), *extra)
+
+    def add(self, *ids: str) -> dict:
+        return run("queue-add", "--session", self.session, "--ids", *ids, "--notes-root", str(self.root))
+
+    def next(self, *extra: str) -> dict:
+        return run("queue-next", "--notes-root", str(self.root), *extra)
+
+    def bundle(self) -> dict:
+        return run("queue-bundle", "--notes-root", str(self.root))
+
+    def write(self, topic: dict, level_item: dict | None = None) -> None:
+        item = level_item or self.by_id[topic["id"]]
+        note = concept_note([item], item["level"])
+        Path(topic["draft_file"]).write_text(note[note.index("## 1. "):], encoding="utf-8")
+        run("queue-done", "--id", item["id"], "--notes-root", str(self.root))
+
+    def fill(self, count: int) -> list[str]:
+        self.extract("--level", "3", "--all")
+        ids = [i["id"] for i in self.level3[:count]]
+        self.add(*ids)
+        return ids
+
+    def test_all_returns_every_candidate(self):
+        text = " ".join(i["title"] for i in self.level3)
+        self.say("u2", text)
+        limited = self.extract("--level", "3")
+        everything = self.extract("--all")
+        self.assertEqual(len(limited["candidates"]), concepts.CANDIDATE_LIMIT)
+        self.assertEqual(len(everything["candidates"]), everything["candidate_total"])
+        self.assertGreater(everything["candidate_total"], concepts.CANDIDATE_LIMIT)
+
+    def test_queue_add_skips_duplicates_and_used(self):
+        self.extract("--level", "3", "--all")
+        first = self.add("be.auth.jwt-flow", "be.fastapi.validation", "be.auth.jwt-flow")
+        self.assertEqual(first["added"], ["be.auth.jwt-flow", "be.fastapi.validation"])
+        concepts.mark_used(self.root, ["be.rest.status-choice"], "x.md", "2026-11-04")
+        self.say("u2", "더 이야기했어요")
+        self.extract("--all")
+        second = self.add("be.auth.jwt-flow", "be.rest.status-choice", "be.auth.session-cookie")
+        self.assertEqual(second["added"], ["be.auth.session-cookie"])
+        self.assertEqual(second["skipped"], ["be.auth.jwt-flow", "be.rest.status-choice"])
+        self.assertEqual(second["queue"]["total"], 3)
+
+    def test_queue_add_rejects_what_is_not_a_topic_of_this_level(self):
+        self.extract("--level", "3", "--all")
+        term = next(i for i in self.catalog["items"] if i["kind"] == "term" and i["level"] == 3)
+        for bad, message in (("be.없는.항목", "사전에 없는"), (term["id"], "용어는"), ("be.http.cors", "4단계")):
+            with self.subTest(bad=bad), self.assertRaises(SystemExit) as caught, contextlib.redirect_stdout(io.StringIO()):
+                sn.main(["queue-add", "--session", self.session, "--ids", bad, "--notes-root", str(self.root)])
+            self.assertIn(message, str(caught.exception))
+
+    def test_queued_topics_are_not_candidates_again(self):
+        self.extract("--level", "3", "--all")
+        self.add("be.auth.jwt-flow")
+        self.say("u2", "JWT 로그인을 또 이야기했어요")
+        ids = [c["id"] for c in self.extract("--all")["candidates"]]
+        self.assertNotIn("be.auth.jwt-flow", ids)
+
+    def test_next_gives_at_most_thirty_in_importance_order(self):
+        self.fill(45)
+        out = self.next()
+        self.assertEqual(len(out["topics"]), sn.MAX_RUN_TOPICS)
+        self.assertEqual(out["queue"]["pending"], 45)
+        stars = [len(t["importance"]) for t in out["topics"]]
+        self.assertEqual(stars, sorted(stars, reverse=True))
+        self.assertEqual(len(self.next("--limit", "99")["topics"]), sn.MAX_RUN_TOPICS)
+        self.assertEqual(len(self.next("--limit", "2")["topics"]), 2)
+
+    def test_done_rejects_bad_topic_and_keeps_it_pending(self):
+        ids = self.fill(1)
+        topic = self.next()["topics"][0]
+        Path(topic["draft_file"]).write_text("## 1. 제목만 있는 조각\n", encoding="utf-8")
+        with self.assertRaises(SystemExit) as caught, contextlib.redirect_stdout(io.StringIO()):
+            sn.main(["queue-done", "--id", ids[0], "--notes-root", str(self.root)])
+        self.assertIn("통과하지 못했습니다", str(caught.exception))
+        self.assertEqual(self.next()["queue"]["pending"], 1)
+
+    def test_done_rejects_wrong_concept_and_frontmatter(self):
+        self.fill(2)
+        first, second = self.next()["topics"]
+        other = concept_note([self.by_id[second["id"]]], 3)
+        Path(first["draft_file"]).write_text(other[other.index("## 1. "):], encoding="utf-8")
+        with self.assertRaises(SystemExit) as caught, contextlib.redirect_stdout(io.StringIO()):
+            sn.main(["queue-done", "--id", first["id"], "--notes-root", str(self.root)])
+        self.assertIn(first["id"], str(caught.exception))
+        Path(first["draft_file"]).write_text(concept_note([self.by_id[first["id"]]], 3), encoding="utf-8")
+        with self.assertRaises(SystemExit) as caught, contextlib.redirect_stdout(io.StringIO()):
+            sn.main(["queue-done", "--id", first["id"], "--notes-root", str(self.root)])
+        self.assertIn("frontmatter", str(caught.exception))
+
+    def test_interrupted_run_loses_only_unfinished_topics(self):
+        self.fill(5)
+        topics = self.next()["topics"]
+        for topic in topics[:2]:
+            self.write(topic)
+        Path(topics[2]["draft_file"]).write_text("쓰다 끊긴 글", encoding="utf-8")   # 토큰이 여기서 끊겼다
+        after = self.next()
+        self.assertEqual(after["queue"], {"total": 5, "done": 0, "written": 2, "pending": 3})
+        self.assertEqual([t["id"] for t in after["topics"]], [t["id"] for t in topics[2:]])
+        for topic in after["topics"]:
+            self.write(topic)
+        out = self.bundle()
+        self.assertEqual(len(out["notes"][0]["topics"]), 5)
+        self.assertEqual(out["queue"], {"total": 5, "done": 5, "written": 0, "pending": 0})
+
+    def test_bundle_splits_every_twenty_and_is_registered(self):
+        ids = self.fill(30)
+        for topic in self.next()["topics"]:
+            self.write(topic)
+        out = self.bundle()
+        self.assertEqual([len(n["topics"]) for n in out["notes"]], [20, 10])
+        self.assertTrue(all(n["level"] == "3단계 기초" for n in out["notes"]))
+        used = json.loads((self.root / "concepts_used.json").read_text(encoding="utf-8"))
+        self.assertEqual(set(ids), set(used))
+        index = (self.root / "index.md").read_text(encoding="utf-8")
+        self.assertEqual(sum(1 for line in index.splitlines() if "| 3단계 기초 |" in line), 30)
+        first = Path(out["notes"][0]["file"]).read_text(encoding="utf-8")
+        self.assertEqual(concepts.frontmatter(first)["topics"], "20")
+        self.assertIn("## 20. ", first)
+        self.assertEqual(concepts.lint_concept_note(first, self.catalog, {}, sn.TOPICS_PER_FILE), [])
+        self.assertEqual(list((self.root / sn.PARTS_DIR).glob("*.md")), [])
+        self.assertNotEqual(out["notes"][0]["file"], out["notes"][1]["file"])
+
+    def test_bundle_keeps_levels_in_separate_files(self):
+        self.fill(1)
+        self.say("u2", "1단계 이야기")
+        self.extract("--level", "1", "--all")
+        one = next(i for i in self.catalog["items"] if i["kind"] == "topic" and i["level"] == 1)
+        self.add(one["id"])
+        for topic in self.next()["topics"]:
+            self.write(topic)
+        self.assertEqual(sorted(n["level"] for n in self.bundle()["notes"]), ["1단계 왕초보", "3단계 기초"])
+
+    def test_checkpoint_moves_only_when_a_note_is_made(self):
+        self.fill(1)
+        state = json.loads(sn.state_path(self.root, self.session).read_text(encoding="utf-8"))
+        self.assertIsNone(state.get("last_uuid"))     # 목록만 만들었다
+        self.assertNotIn("_pending", state)
+        topic = self.next()["topics"][0]
+        self.write(topic)
+        self.say("u2", "목록을 만든 뒤에 나눈 이야기")
+        self.bundle()
+        state = json.loads(sn.state_path(self.root, self.session).read_text(encoding="utf-8"))
+        self.assertEqual((state["last_uuid"], state["run_count"]), ("u1", 1))
+        self.assertEqual(self.extract()["new_messages"], 1)   # 뒤의 이야기는 다음에 살핀다
+
+    def test_bundle_with_nothing_ready_changes_nothing(self):
+        self.fill(1)
+        out = self.bundle()
+        self.assertEqual(out["notes"], [])
+        state = json.loads(sn.state_path(self.root, self.session).read_text(encoding="utf-8"))
+        self.assertIsNone(state.get("last_uuid"))
+
+    def test_next_works_without_session_after_tokens_run_out(self):
+        self.fill(2)
+        sn.PROJECTS_DIR = Path(self._tmp.name) / "없는 폴더"
+        self.assertEqual(len(self.next()["topics"]), 2)
+
+    def test_thirty_topics_fit_the_app_limit(self):
+        """앱은 파일 하나에 50만 자까지 받는다. 실제 노트의 주제가 약 1만 자다."""
+        self.assertLess(sn.TOPICS_PER_FILE * 11_000, 500_000)
+        self.assertLessEqual(sn.TOPICS_PER_FILE, sn.MAX_RUN_TOPICS)
+
+    def test_status_shows_queue(self):
+        self.fill(3)
+        status = run("status", "--agent", "claude", "--cwd", str(self.cwd), "--session", self.session,
+                     "--notes-root", str(self.root))
+        self.assertEqual(status["queue"], {"total": 3, "done": 0, "written": 0, "pending": 3})
+        self.assertIsNone(status["in_progress"])
+
+    def test_plain_run_still_excludes_queue_and_is_limited(self):
+        self.fill(1)
+        self.say("u2", "JWT 로그인을 또 했어요")
+        out = self.extract()
+        self.assertLessEqual(len(out["candidates"]), concepts.CANDIDATE_LIMIT)
+        self.assertNotIn(self.level3[0]["id"], [c["id"] for c in out["candidates"]])
+
+
+class SpokenTextTest(unittest.TestCase):
+    def test_urls_are_not_matched_as_concepts(self):
+        recs = [{"message": {"content": "문서는 https://example.com/a 에 있고 HTTPS 인증서를 물어봤어요"}}]
+        text = sn.spoken_text(recs)
+        self.assertNotIn("https://", text)
+        self.assertIn("HTTPS 인증서", text)
+
+
+class SkillDocsQueueTest(unittest.TestCase):
+    def test_agents_stop_servers_by_pid_and_main_cleans_up(self):
+        text = (SKILL_DIR / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn('SERVER=$!', text)
+        self.assertIn('kill "$SERVER"', text)
+        self.assertIn('grep -qF "<TMP>/study-notes/"', text)
+
+    def test_few_topics_still_use_agents(self):
+        text = (SKILL_DIR / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("주제가 한두 개뿐이어도 직접 쓰지 말고 에이전트로 쓴다", text)
+
+    def test_every_topic_in_bundle_has_a_link(self):
+        bundle = json.loads((SKILL_DIR / "catalog.json").read_text(encoding="utf-8"))
+        missing = [i["id"] for i in bundle["items"] if i["kind"] == "topic" and not i.get("refs")]
+        self.assertEqual(missing, [])
+
+    def test_skill_describes_options(self):
+        text = (SKILL_DIR / "SKILL.md").read_text(encoding="utf-8")
+        for marker in ("/study-notes u", "/study-notes c", "queue-add", "queue-next", "queue-done", "queue-bundle", "--all"):
+            with self.subTest(marker=marker):
+                self.assertIn(marker, text)
+
+    def test_readme_describes_options(self):
+        text = (ROOT / "README.md").read_text(encoding="utf-8")
+        for marker in ("/study-notes u", "/study-notes c", "최대 30개"):
+            with self.subTest(marker=marker):
+                self.assertIn(marker, text)
+
+
 if __name__ == "__main__":
     unittest.main()

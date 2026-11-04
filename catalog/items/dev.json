@@ -1,5 +1,243 @@
 [
   {
+    "id": "dev.basics.terminal",
+    "title": "터미널: 글자로 컴퓨터에 명령하기",
+    "en": "The Terminal",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "개발 환경",
+    "summary": "마우스 대신 글자로 컴퓨터에 명령을 내리는 창이다.",
+    "objectives": [
+      "터미널이 왜 개발에 쓰이는지 비유로 설명할 수 있다",
+      "터미널을 열고 명령을 한 번 실행해 볼 수 있다"
+    ],
+    "aliases": [
+      "터미널",
+      "terminal",
+      "명령 프롬프트",
+      "PowerShell"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Command_line"
+    ]
+  },
+  {
+    "id": "dev.basics.files-paths",
+    "title": "폴더와 경로 이해하기",
+    "en": "Folders and Paths",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "개발 환경",
+    "summary": "파일이 어디 있는지를 폴더 이름을 이어 적어 나타내는 방법이다.",
+    "objectives": [
+      "절대 경로와 상대 경로의 차이를 길 찾기에 빗대어 설명할 수 있다",
+      "파일을 찾지 못한다는 오류의 뜻을 말할 수 있다"
+    ],
+    "aliases": [
+      "절대 경로",
+      "상대 경로",
+      "폴더 구조",
+      "작업 폴더"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Dealing_with_files"
+    ]
+  },
+  {
+    "id": "dev.git.why-version-control",
+    "title": "버전 관리와 Git: 저장 기록 남기기",
+    "en": "Version Control with Git",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "Git",
+    "summary": "파일이 언제 어떻게 바뀌었는지 기록해 두고 필요하면 예전으로 돌아가게 해 주는 도구다.",
+    "objectives": [
+      "버전 관리가 필요한 이유를 게임 저장에 빗대어 설명할 수 있다",
+      "Git이 남기는 기록이 어떤 도움을 주는지 예를 들어 말할 수 있다"
+    ],
+    "aliases": [
+      "Git",
+      "버전 관리",
+      "version control"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control"
+    ]
+  },
+  {
+    "id": "dev.git.github-role",
+    "title": "GitHub: 코드를 함께 보관하는 곳",
+    "en": "What GitHub Does",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "Git",
+    "summary": "Git 기록을 인터넷에 올려 보관하고 다른 사람과 함께 작업하게 해 주는 서비스다.",
+    "objectives": [
+      "Git과 GitHub의 차이를 일기장과 도서관에 빗대어 설명할 수 있다",
+      "저장소를 인터넷에 올려 두면 좋은 점을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.why-version-control"
+    ],
+    "aliases": [
+      "GitHub",
+      "깃허브",
+      "원격 저장소"
+    ],
+    "refs": [
+      "https://docs.github.com/en/get-started/start-your-journey/about-github-and-git"
+    ]
+  },
+  {
+    "id": "dev.basics.code-editor",
+    "title": "코드 편집기 설치와 첫 사용",
+    "en": "Getting Started with a Code Editor",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "개발 환경",
+    "summary": "코드를 쓰고 고치기 쉽게 도와주는 프로그램을 설치해 프로젝트를 열어 본다.",
+    "objectives": [
+      "코드 편집기를 설치하고 폴더를 열어 볼 수 있다",
+      "메모장과 코드 편집기의 차이를 말할 수 있다"
+    ],
+    "aliases": [
+      "코드 편집기",
+      "VS Code",
+      "VSCode"
+    ],
+    "refs": [
+      "https://code.visualstudio.com/docs/getstarted/getting-started"
+    ]
+  },
+  {
+    "id": "dev.basics.how-program-runs",
+    "title": "프로그램이 실행되는 과정",
+    "en": "How a Program Runs",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "개발 환경",
+    "summary": "코드가 파일로 저장되고 컴퓨터가 그것을 읽어 차례로 실행하는 큰 흐름이다.",
+    "objectives": [
+      "코드 파일과 실행 중인 프로그램의 차이를 요리법과 요리에 빗대어 설명할 수 있다",
+      "프로그램을 끄면 메모리의 내용이 사라지는 이유를 말할 수 있다"
+    ],
+    "aliases": [
+      "프로그램 실행"
+    ],
+    "refs": [
+      "https://docs.python.org/3/tutorial/interpreter.html"
+    ]
+  },
+  {
+    "id": "dev.basics.read-docs",
+    "title": "공식 문서 찾아 읽는 법",
+    "en": "Finding and Reading Official Docs",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "개발 환경",
+    "summary": "도구의 사용법을 만든 쪽이 직접 쓴 문서에서 찾아 확인하는 습관이다.",
+    "objectives": [
+      "공식 문서와 블로그 글의 차이를 말할 수 있다",
+      "문서에서 시작하기 안내와 찾아보기 자료를 구분할 수 있다"
+    ],
+    "aliases": [
+      "documentation",
+      "문서 찾아 읽기"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Soft_skills/Research_and_learning"
+    ]
+  },
+  {
+    "id": "dev.terminal.basic-commands",
+    "title": "터미널 기본 명령어",
+    "en": "Basic Terminal Commands",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "터미널",
+    "summary": "폴더를 옮겨 다니고 파일을 보고 만드는 명령을 익힌다.",
+    "objectives": [
+      "pwd, ls, cd로 폴더를 옮겨 다닐 수 있다",
+      "mkdir, cat으로 폴더를 만들고 파일을 볼 수 있다"
+    ],
+    "prerequisites": [
+      "dev.basics.terminal",
+      "dev.basics.files-paths"
+    ],
+    "aliases": [
+      "터미널 명령어",
+      "mkdir",
+      "pwd"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Command_line"
+    ]
+  },
+  {
+    "id": "dev.git.first-commit",
+    "title": "Git 첫 커밋과 되돌리기",
+    "en": "First Commits with Git",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "Git",
+    "summary": "변경을 골라 기록으로 남기고 기록을 보며 잘못한 변경을 되돌린다.",
+    "objectives": [
+      "git init, add, commit을 따라 할 수 있다",
+      "git status와 git log로 상태와 기록을 볼 수 있다",
+      "아직 저장하지 않은 변경을 되돌릴 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.why-version-control",
+      "dev.terminal.basic-commands"
+    ],
+    "aliases": [
+      "커밋",
+      "git add",
+      "git log",
+      "git status"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository"
+    ]
+  },
+  {
+    "id": "dev.git.branch-pr",
+    "title": "브랜치와 풀 리퀘스트",
+    "en": "Branches and Pull Requests",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "Git",
+    "summary": "작업을 갈래로 나눠 진행하고 GitHub에서 검토받은 뒤 합친다.",
+    "objectives": [
+      "브랜치를 만들어 올리고 풀 리퀘스트를 열 수 있다",
+      "브랜치를 쓰는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.first-commit",
+      "dev.git.github-role"
+    ],
+    "aliases": [
+      "브랜치",
+      "풀 리퀘스트",
+      "pull request",
+      "git push"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell",
+      "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests"
+    ]
+  },
+  {
     "id": "dev.test.unit",
     "title": "단위 테스트",
     "en": "Unit Test",

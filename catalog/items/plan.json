@@ -1,0 +1,122 @@
+[
+  {
+    "id": "plan.basics.problem-first",
+    "title": "문제부터 정의하기",
+    "en": "Starting from the Problem",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "기획 기초",
+    "summary": "무엇을 만들지 정하기 전에 누가 어떤 문제로 곤란한지를 먼저 분명히 한다.",
+    "objectives": [
+      "기능 아이디어와 사용자 문제의 차이를 예를 들어 말할 수 있다",
+      "만들려는 서비스의 문제를 한 문장으로 적을 수 있다"
+    ],
+    "aliases": [
+      "문제 정의",
+      "problem statement",
+      "페인 포인트"
+    ],
+    "refs": [
+      "https://pair.withgoogle.com/chapter/user-needs/"
+    ]
+  },
+  {
+    "id": "plan.basics.user-and-need",
+    "title": "사용자와 필요 찾기",
+    "en": "Understanding Users and Needs",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "기획 기초",
+    "summary": "서비스를 쓸 사람을 구체적으로 그려 보고 그가 정말 원하는 것을 듣는 일이다.",
+    "objectives": [
+      "내가 원하는 것과 사용자가 원하는 것을 구분할 수 있다",
+      "사용자에게 물어볼 질문을 세 개 적을 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.problem-first"
+    ],
+    "aliases": [
+      "사용자 조사",
+      "사용자 인터뷰"
+    ],
+    "refs": [
+      "https://www.nngroup.com/articles/which-ux-research-methods/"
+    ]
+  },
+  {
+    "id": "plan.basics.ai-fit",
+    "title": "AI가 어울리는 일과 어울리지 않는 일",
+    "en": "When AI Is a Good Fit",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "기획 기초",
+    "summary": "답이 조금 틀려도 괜찮고 사람이 확인할 수 있는 일에 AI가 잘 맞는다.",
+    "objectives": [
+      "AI에 맡기기 좋은 일과 나쁜 일을 예를 들어 나눌 수 있다",
+      "틀렸을 때의 피해를 기준으로 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.what-is-llm"
+    ],
+    "aliases": [
+      "AI 적합성",
+      "AI 활용 판단"
+    ],
+    "refs": [
+      "https://pair.withgoogle.com/chapter/user-needs/"
+    ]
+  },
+  {
+    "id": "plan.basics.mvp-idea",
+    "title": "MVP: 작게 만들어 먼저 확인하기",
+    "en": "The Idea of an MVP",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "핵심 기능만 담은 가장 작은 제품을 먼저 만들어 사용자의 반응을 확인하는 방식이다.",
+    "objectives": [
+      "MVP가 필요한 이유를 시식 코너에 빗대어 설명할 수 있다",
+      "기능 목록에서 꼭 필요한 것과 나중에 할 것을 나눌 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.problem-first"
+    ],
+    "aliases": [
+      "MVP",
+      "최소 기능 제품"
+    ],
+    "refs": [
+      "https://www.agilealliance.org/glossary/mvp/"
+    ]
+  },
+  {
+    "id": "plan.basics.service-flow",
+    "title": "서비스 화면 흐름 그리기",
+    "en": "Sketching a Service Flow",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "사용자가 어떤 화면을 어떤 순서로 지나가는지 그림으로 그려 보는 일이다.",
+    "objectives": [
+      "가입부터 첫 사용까지의 화면 흐름을 그릴 수 있다",
+      "흐름도를 그리면 어떤 문제를 미리 찾는지 말할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.user-and-need"
+    ],
+    "aliases": [
+      "화면 흐름",
+      "유저 플로우",
+      "user flow",
+      "와이어프레임"
+    ],
+    "refs": [
+      "https://www.nngroup.com/articles/user-journeys-vs-user-flows/"
+    ]
+  }
+]

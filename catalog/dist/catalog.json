@@ -1,5 +1,5 @@
 {
- "version": "0.2.1",
+ "version": "0.3.0",
  "domains": [
   {
    "prefix": "dev",
@@ -217,9 +217,264 @@
   "vector",
   "worker",
   "zip",
-  "v1"
+  "v1",
+  "git",
+  "github",
+  "커밋",
+  "브랜치",
+  "frontend",
+  "풀스택",
+  "claude code"
  ],
  "items": [
+  {
+   "id": "dev.basics.terminal",
+   "title": "터미널: 글자로 컴퓨터에 명령하기",
+   "en": "The Terminal",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "개발 환경",
+   "summary": "마우스 대신 글자로 컴퓨터에 명령을 내리는 창이다.",
+   "objectives": [
+    "터미널이 왜 개발에 쓰이는지 비유로 설명할 수 있다",
+    "터미널을 열고 명령을 한 번 실행해 볼 수 있다"
+   ],
+   "aliases": [
+    "터미널",
+    "terminal",
+    "명령 프롬프트",
+    "PowerShell"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Command_line"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.files-paths",
+   "title": "폴더와 경로 이해하기",
+   "en": "Folders and Paths",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "개발 환경",
+   "summary": "파일이 어디 있는지를 폴더 이름을 이어 적어 나타내는 방법이다.",
+   "objectives": [
+    "절대 경로와 상대 경로의 차이를 길 찾기에 빗대어 설명할 수 있다",
+    "파일을 찾지 못한다는 오류의 뜻을 말할 수 있다"
+   ],
+   "aliases": [
+    "절대 경로",
+    "상대 경로",
+    "폴더 구조",
+    "작업 폴더"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Dealing_with_files"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.why-version-control",
+   "title": "버전 관리와 Git: 저장 기록 남기기",
+   "en": "Version Control with Git",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "Git",
+   "summary": "파일이 언제 어떻게 바뀌었는지 기록해 두고 필요하면 예전으로 돌아가게 해 주는 도구다.",
+   "objectives": [
+    "버전 관리가 필요한 이유를 게임 저장에 빗대어 설명할 수 있다",
+    "Git이 남기는 기록이 어떤 도움을 주는지 예를 들어 말할 수 있다"
+   ],
+   "aliases": [
+    "Git",
+    "버전 관리",
+    "version control"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.github-role",
+   "title": "GitHub: 코드를 함께 보관하는 곳",
+   "en": "What GitHub Does",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "Git",
+   "summary": "Git 기록을 인터넷에 올려 보관하고 다른 사람과 함께 작업하게 해 주는 서비스다.",
+   "objectives": [
+    "Git과 GitHub의 차이를 일기장과 도서관에 빗대어 설명할 수 있다",
+    "저장소를 인터넷에 올려 두면 좋은 점을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.why-version-control"
+   ],
+   "aliases": [
+    "GitHub",
+    "깃허브",
+    "원격 저장소"
+   ],
+   "refs": [
+    "https://docs.github.com/en/get-started/start-your-journey/about-github-and-git"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.code-editor",
+   "title": "코드 편집기 설치와 첫 사용",
+   "en": "Getting Started with a Code Editor",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "개발 환경",
+   "summary": "코드를 쓰고 고치기 쉽게 도와주는 프로그램을 설치해 프로젝트를 열어 본다.",
+   "objectives": [
+    "코드 편집기를 설치하고 폴더를 열어 볼 수 있다",
+    "메모장과 코드 편집기의 차이를 말할 수 있다"
+   ],
+   "aliases": [
+    "코드 편집기",
+    "VS Code",
+    "VSCode"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/getstarted/getting-started"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.how-program-runs",
+   "title": "프로그램이 실행되는 과정",
+   "en": "How a Program Runs",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "개발 환경",
+   "summary": "코드가 파일로 저장되고 컴퓨터가 그것을 읽어 차례로 실행하는 큰 흐름이다.",
+   "objectives": [
+    "코드 파일과 실행 중인 프로그램의 차이를 요리법과 요리에 빗대어 설명할 수 있다",
+    "프로그램을 끄면 메모리의 내용이 사라지는 이유를 말할 수 있다"
+   ],
+   "aliases": [
+    "프로그램 실행"
+   ],
+   "refs": [
+    "https://docs.python.org/3/tutorial/interpreter.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.read-docs",
+   "title": "공식 문서 찾아 읽는 법",
+   "en": "Finding and Reading Official Docs",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "개발 환경",
+   "summary": "도구의 사용법을 만든 쪽이 직접 쓴 문서에서 찾아 확인하는 습관이다.",
+   "objectives": [
+    "공식 문서와 블로그 글의 차이를 말할 수 있다",
+    "문서에서 시작하기 안내와 찾아보기 자료를 구분할 수 있다"
+   ],
+   "aliases": [
+    "documentation",
+    "문서 찾아 읽기"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Soft_skills/Research_and_learning"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.terminal.basic-commands",
+   "title": "터미널 기본 명령어",
+   "en": "Basic Terminal Commands",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "터미널",
+   "summary": "폴더를 옮겨 다니고 파일을 보고 만드는 명령을 익힌다.",
+   "objectives": [
+    "pwd, ls, cd로 폴더를 옮겨 다닐 수 있다",
+    "mkdir, cat으로 폴더를 만들고 파일을 볼 수 있다"
+   ],
+   "prerequisites": [
+    "dev.basics.terminal",
+    "dev.basics.files-paths"
+   ],
+   "aliases": [
+    "터미널 명령어",
+    "mkdir",
+    "pwd"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Command_line"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.first-commit",
+   "title": "Git 첫 커밋과 되돌리기",
+   "en": "First Commits with Git",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "Git",
+   "summary": "변경을 골라 기록으로 남기고 기록을 보며 잘못한 변경을 되돌린다.",
+   "objectives": [
+    "git init, add, commit을 따라 할 수 있다",
+    "git status와 git log로 상태와 기록을 볼 수 있다",
+    "아직 저장하지 않은 변경을 되돌릴 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.why-version-control",
+    "dev.terminal.basic-commands"
+   ],
+   "aliases": [
+    "커밋",
+    "git add",
+    "git log",
+    "git status"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.branch-pr",
+   "title": "브랜치와 풀 리퀘스트",
+   "en": "Branches and Pull Requests",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "Git",
+   "summary": "작업을 갈래로 나눠 진행하고 GitHub에서 검토받은 뒤 합친다.",
+   "objectives": [
+    "브랜치를 만들어 올리고 풀 리퀘스트를 열 수 있다",
+    "브랜치를 쓰는 이유를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.first-commit",
+    "dev.git.github-role"
+   ],
+   "aliases": [
+    "브랜치",
+    "풀 리퀘스트",
+    "pull request",
+    "git push"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell",
+    "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests"
+   ],
+   "domain": "dev"
+  },
   {
    "id": "dev.test.unit",
    "title": "단위 테스트",
@@ -389,6 +644,131 @@
    "domain": "dev"
   },
   {
+   "id": "plan.basics.problem-first",
+   "title": "문제부터 정의하기",
+   "en": "Starting from the Problem",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "기획 기초",
+   "summary": "무엇을 만들지 정하기 전에 누가 어떤 문제로 곤란한지를 먼저 분명히 한다.",
+   "objectives": [
+    "기능 아이디어와 사용자 문제의 차이를 예를 들어 말할 수 있다",
+    "만들려는 서비스의 문제를 한 문장으로 적을 수 있다"
+   ],
+   "aliases": [
+    "문제 정의",
+    "problem statement",
+    "페인 포인트"
+   ],
+   "refs": [
+    "https://pair.withgoogle.com/chapter/user-needs/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.user-and-need",
+   "title": "사용자와 필요 찾기",
+   "en": "Understanding Users and Needs",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "기획 기초",
+   "summary": "서비스를 쓸 사람을 구체적으로 그려 보고 그가 정말 원하는 것을 듣는 일이다.",
+   "objectives": [
+    "내가 원하는 것과 사용자가 원하는 것을 구분할 수 있다",
+    "사용자에게 물어볼 질문을 세 개 적을 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.problem-first"
+   ],
+   "aliases": [
+    "사용자 조사",
+    "사용자 인터뷰"
+   ],
+   "refs": [
+    "https://www.nngroup.com/articles/which-ux-research-methods/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.ai-fit",
+   "title": "AI가 어울리는 일과 어울리지 않는 일",
+   "en": "When AI Is a Good Fit",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "기획 기초",
+   "summary": "답이 조금 틀려도 괜찮고 사람이 확인할 수 있는 일에 AI가 잘 맞는다.",
+   "objectives": [
+    "AI에 맡기기 좋은 일과 나쁜 일을 예를 들어 나눌 수 있다",
+    "틀렸을 때의 피해를 기준으로 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.what-is-llm"
+   ],
+   "aliases": [
+    "AI 적합성",
+    "AI 활용 판단"
+   ],
+   "refs": [
+    "https://pair.withgoogle.com/chapter/user-needs/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.mvp-idea",
+   "title": "MVP: 작게 만들어 먼저 확인하기",
+   "en": "The Idea of an MVP",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "핵심 기능만 담은 가장 작은 제품을 먼저 만들어 사용자의 반응을 확인하는 방식이다.",
+   "objectives": [
+    "MVP가 필요한 이유를 시식 코너에 빗대어 설명할 수 있다",
+    "기능 목록에서 꼭 필요한 것과 나중에 할 것을 나눌 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.problem-first"
+   ],
+   "aliases": [
+    "MVP",
+    "최소 기능 제품"
+   ],
+   "refs": [
+    "https://www.agilealliance.org/glossary/mvp/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.service-flow",
+   "title": "서비스 화면 흐름 그리기",
+   "en": "Sketching a Service Flow",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "사용자가 어떤 화면을 어떤 순서로 지나가는지 그림으로 그려 보는 일이다.",
+   "objectives": [
+    "가입부터 첫 사용까지의 화면 흐름을 그릴 수 있다",
+    "흐름도를 그리면 어떤 문제를 미리 찾는지 말할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.user-and-need"
+   ],
+   "aliases": [
+    "화면 흐름",
+    "유저 플로우",
+    "user flow",
+    "와이어프레임"
+   ],
+   "refs": [
+    "https://www.nngroup.com/articles/user-journeys-vs-user-flows/"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "be.basics.what-is-backend",
    "title": "백엔드가 하는 일",
    "en": "What a Backend Does",
@@ -407,6 +787,9 @@
     "백엔드",
     "backend",
     "서버 개발"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Introduction"
    ],
    "domain": "be"
   },
@@ -495,6 +878,10 @@
     "8000번 포트",
     "포트 번호"
    ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Glossary/Port",
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Tools_and_setup/set_up_a_local_testing_server"
+   ],
    "domain": "be"
   },
   {
@@ -518,6 +905,9 @@
     "What an API Is",
     "에이피아이"
    ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Glossary/API"
+   ],
    "domain": "be"
   },
   {
@@ -540,6 +930,9 @@
     "JSON",
     "What JSON Is",
     "제이슨"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/JSON"
    ],
    "domain": "be"
   },
@@ -592,6 +985,9 @@
     "login",
     "회원가입"
    ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Glossary/Authentication"
+   ],
    "domain": "be"
   },
   {
@@ -619,6 +1015,10 @@
     "api key",
     "secret"
    ],
+   "refs": [
+    "https://docs.github.com/en/rest/authentication/keeping-your-api-credentials-secure",
+    "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html"
+   ],
    "domain": "be"
   },
   {
@@ -640,6 +1040,9 @@
     "오류 메시지",
     "에러 메시지",
     "error message"
+   ],
+   "refs": [
+    "https://docs.python.org/3/tutorial/errors.html"
    ],
    "domain": "be"
   },
@@ -8147,7 +8550,8 @@
     "서비스 특성에 따른 프로토콜 선택의 손익을 근거를 들어 따질 수 있다"
    ],
    "prerequisites": [
-    "be.http.headers-body"
+    "be.http.headers-body",
+    "ops.network.tcp-internals"
    ],
    "aliases": [
     "HTTP/1.1·HTTP/2·HTTP/3의 연결과 성능",
@@ -8496,6 +8900,162 @@
    "domain": "be"
   },
   {
+   "id": "db.basics.what-is-database",
+   "title": "데이터베이스: 잘 정리된 자료 창고",
+   "en": "What a Database Is",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "DB 기초",
+   "summary": "많은 자료를 잃어버리지 않게 저장하고 빠르게 찾도록 만든 프로그램이다.",
+   "objectives": [
+    "파일 저장과 데이터베이스의 차이를 창고에 빗대어 설명할 수 있다",
+    "웹 서비스에서 데이터베이스가 맡는 일을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "be.basics.what-is-backend"
+   ],
+   "aliases": [
+    "데이터베이스",
+    "database"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/tutorial-concepts.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.basics.table-row-column",
+   "title": "표로 자료 저장하기: 행과 열",
+   "en": "Tables, Rows, and Columns",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "DB 기초",
+   "summary": "데이터베이스는 자료를 엑셀처럼 행과 열로 된 표에 저장한다.",
+   "objectives": [
+    "행과 열이 무엇인지 엑셀에 빗대어 설명할 수 있다",
+    "회원 정보를 표로 나타내 볼 수 있다"
+   ],
+   "prerequisites": [
+    "db.basics.what-is-database"
+   ],
+   "aliases": [
+    "행과 열",
+    "칼럼"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/tutorial-concepts.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.basics.what-is-sql",
+   "title": "SQL: 데이터베이스에 말 거는 언어",
+   "en": "What SQL Is",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "DB 기초",
+   "summary": "데이터베이스에 자료를 찾아 달라거나 저장해 달라고 부탁할 때 쓰는 언어다.",
+   "objectives": [
+    "SQL이 하는 일을 사서에게 부탁하는 일에 빗대어 설명할 수 있다",
+    "간단한 조회 문장이 무슨 뜻인지 읽을 수 있다"
+   ],
+   "prerequisites": [
+    "db.basics.table-row-column"
+   ],
+   "aliases": [
+    "SQL"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/tutorial-sql-intro.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.postgres.first-run",
+   "title": "PostgreSQL 설치와 첫 표 만들기",
+   "en": "Getting Started with PostgreSQL",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "SQL",
+   "summary": "PostgreSQL을 띄우고 접속해 첫 표를 만든다.",
+   "objectives": [
+    "PostgreSQL에 접속해 표를 만들 수 있다",
+    "칸의 자료형과 기본 키를 보고 따라 정할 수 있다"
+   ],
+   "prerequisites": [
+    "db.basics.what-is-sql"
+   ],
+   "aliases": [
+    "PostgreSQL",
+    "postgres",
+    "psql",
+    "CREATE TABLE",
+    "기본 키"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/tutorial-start.html",
+    "https://www.postgresql.org/docs/current/tutorial-table.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.select-first",
+   "title": "SQL로 자료 조회하기: SELECT",
+   "en": "Querying with SELECT",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "SQL",
+   "summary": "SELECT로 원하는 칸과 조건을 골라 자료를 정렬해 가져온다.",
+   "objectives": [
+    "WHERE와 ORDER BY로 조건에 맞는 자료를 조회할 수 있다",
+    "LIMIT으로 앞의 몇 개만 가져올 수 있다"
+   ],
+   "prerequisites": [
+    "db.postgres.first-run"
+   ],
+   "aliases": [
+    "SELECT 문",
+    "WHERE 절",
+    "ORDER BY"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/tutorial-select.html",
+    "https://www.postgresql.org/docs/current/queries-limit.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.write-rows",
+   "title": "SQL로 자료 넣고 고치고 지우기",
+   "en": "Writing Rows with SQL",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "SQL",
+   "summary": "INSERT, UPDATE, DELETE로 표의 자료를 바꾸며 조건을 빠뜨리면 생기는 위험을 안다.",
+   "objectives": [
+    "INSERT, UPDATE, DELETE를 보고 따라 쓸 수 있다",
+    "WHERE 없는 UPDATE와 DELETE가 왜 위험한지 말할 수 있다"
+   ],
+   "prerequisites": [
+    "db.sql.select-first"
+   ],
+   "aliases": [
+    "INSERT 문",
+    "UPDATE 문",
+    "DELETE 문"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/dml.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.cache.response-caching",
    "title": "응답 캐시로 부하와 비용 줄이기",
    "en": "Caching to Reduce Load and Cost",
@@ -8560,6 +9120,757 @@
    "domain": "db"
   },
   {
+   "id": "db.internals.query-planner",
+   "title": "PostgreSQL 실행 계획과 비용 추정",
+   "en": "Query Plans and Cost Estimation",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "플래너가 통계로 비용을 추정해 실행 방법을 고르는 원리를 읽고 잘못된 선택을 분석한다.",
+   "objectives": [
+    "EXPLAIN ANALYZE의 예상과 실제를 비교해 느린 원인을 찾을 수 있다",
+    "통계와 설정이 플래너의 선택을 바꾸는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "be.run.performance"
+   ],
+   "aliases": [
+    "EXPLAIN ANALYZE",
+    "쿼리 플래너",
+    "query planner",
+    "쿼리 실행 계획"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/using-explain.html",
+    "https://www.postgresql.org/docs/current/planner-stats.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.mvcc-vacuum",
+   "title": "MVCC와 VACUUM",
+   "en": "MVCC and VACUUM",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "행의 여러 버전을 두어 읽기와 쓰기를 나누는 방식과 죽은 행을 치우는 비용을 다룬다.",
+   "objectives": [
+    "MVCC에서 죽은 행이 생기는 과정을 설명할 수 있다",
+    "테이블 팽창과 VACUUM 지연으로 생기는 장애를 분석할 수 있다"
+   ],
+   "aliases": [
+    "MVCC",
+    "VACUUM",
+    "죽은 행",
+    "dead tuple",
+    "autovacuum",
+    "테이블 팽창"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/mvcc.html",
+    "https://www.postgresql.org/docs/current/routine-vacuuming.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.isolation-levels",
+   "title": "트랜잭션 격리 수준과 이상 현상",
+   "en": "Transaction Isolation and Anomalies",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "격리 수준마다 허용되는 이상 현상과 비용을 근거로 수준과 재시도 전략을 고른다.",
+   "objectives": [
+    "격리 수준별로 나타나는 이상 현상을 재현해 설명할 수 있다",
+    "쓰기 충돌에 맞는 격리 수준과 재시도를 근거를 들어 고를 수 있다"
+   ],
+   "prerequisites": [
+    "be.arch.transaction-boundary"
+   ],
+   "aliases": [
+    "격리 수준",
+    "isolation level",
+    "phantom read"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/transaction-iso.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.btree",
+   "title": "B-tree 인덱스의 내부",
+   "en": "B-tree Index Internals",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "페이지 구조와 분할, 선택도가 인덱스의 성능과 쓰기 비용에 주는 영향을 따진다.",
+   "objectives": [
+    "복합 인덱스의 칸 순서가 쿼리에 주는 영향을 구조로 설명할 수 있다",
+    "인덱스가 쓰기 성능과 저장 공간에 주는 비용을 따질 수 있다"
+   ],
+   "prerequisites": [
+    "db.internals.query-planner"
+   ],
+   "aliases": [
+    "B-tree",
+    "B트리",
+    "복합 인덱스",
+    "커버링 인덱스"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/btree.html",
+    "https://www.postgresql.org/docs/current/indexes-multicolumn.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.locks",
+   "title": "잠금과 교착 상태 분석",
+   "en": "Locks and Deadlocks",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "행과 표의 잠금이 충돌하는 방식과 교착 상태가 생기는 순서를 분석해 장애를 줄인다.",
+   "objectives": [
+    "잠금 대기와 교착 상태를 시스템 뷰와 로그로 진단할 수 있다",
+    "잠금 순서와 범위를 바꿔 교착 상태를 줄이는 설계를 할 수 있다"
+   ],
+   "prerequisites": [
+    "db.internals.isolation-levels"
+   ],
+   "aliases": [
+    "교착 상태",
+    "deadlock",
+    "데드락",
+    "잠금 대기",
+    "SELECT FOR UPDATE"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/explicit-locking.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.wal-replication",
+   "title": "WAL과 복제",
+   "en": "WAL and Replication",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "변경을 로그에 먼저 쓰는 원리와 복제 지연, 장애 전환의 손익을 다룬다.",
+   "objectives": [
+    "WAL이 장애 복구를 보장하는 원리를 설명할 수 있다",
+    "동기 복제와 비동기 복제의 손익을 근거를 들어 고를 수 있다"
+   ],
+   "aliases": [
+    "WAL",
+    "write-ahead log",
+    "복제 지연",
+    "읽기 복제본",
+    "replication"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/wal-intro.html",
+    "https://www.postgresql.org/docs/current/high-availability.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.prepared-statements",
+   "title": "준비된 문장과 계획 캐시",
+   "en": "Prepared Statements and Plan Caching",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "쿼리 계획을 재사용하는 이점과, 계획이 고정되어 생기는 함정을 분석한다.",
+   "objectives": [
+    "일반 계획과 맞춤 계획이 선택되는 조건을 설명할 수 있다",
+    "드라이버의 준비된 문장 때문에 달라지는 동작을 진단할 수 있다"
+   ],
+   "prerequisites": [
+    "db.internals.query-planner"
+   ],
+   "aliases": [
+    "준비된 문장",
+    "prepared statement",
+    "prepare_threshold",
+    "plan_cache_mode",
+    "계획 캐시"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/sql-prepare.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.partitioning",
+   "title": "파티셔닝과 샤딩",
+   "en": "Partitioning and Sharding",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "표를 나누는 기준과 조회·운영 비용을 근거로 파티셔닝과 샤딩을 판단한다.",
+   "objectives": [
+    "파티션 키에 따라 조회 성능이 달라지는 이유를 설명할 수 있다",
+    "샤딩이 필요한 조건과 대가를 따질 수 있다"
+   ],
+   "prerequisites": [
+    "db.internals.query-planner"
+   ],
+   "aliases": [
+    "파티셔닝",
+    "샤딩",
+    "partitioning",
+    "sharding",
+    "파티션 키"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/ddl-partitioning.html",
+    "https://docs.citusdata.com/en/stable/get_started/what_is_citus.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "fe.basics.web-page-parts",
+   "title": "웹 페이지의 세 재료: HTML·CSS·JavaScript",
+   "en": "Three Materials of a Web Page",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "웹 기초",
+   "summary": "웹 페이지는 내용을 담는 HTML, 모양을 꾸미는 CSS, 움직임을 만드는 JavaScript로 이루어진다.",
+   "objectives": [
+    "HTML·CSS·JavaScript가 맡는 일을 집에 빗대어 설명할 수 있다",
+    "웹 페이지의 어느 부분이 어떤 재료로 만들어졌는지 짐작할 수 있다"
+   ],
+   "prerequisites": [
+    "be.http.web-conversation"
+   ],
+   "aliases": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "자바스크립트"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/How_the_web_works"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.frontend-role",
+   "title": "프론트엔드가 하는 일",
+   "en": "What the Frontend Does",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "웹 기초",
+   "summary": "프론트엔드는 사용자가 보고 누르는 화면을 만들고 서버와 주고받은 내용을 보여 준다.",
+   "objectives": [
+    "프론트엔드와 백엔드의 역할을 식당에 빗대어 나눌 수 있다",
+    "버튼을 눌렀을 때 화면과 서버에서 일어나는 일을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "be.basics.what-is-backend"
+   ],
+   "aliases": [
+    "프론트엔드",
+    "frontend"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/How_the_web_works"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.browser-devtools",
+   "title": "브라우저 개발자 도구 둘러보기",
+   "en": "Browser DevTools Tour",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "웹 기초",
+   "summary": "브라우저에 들어 있는 개발자 도구로 화면의 구조와 오류, 오간 요청을 들여다본다.",
+   "objectives": [
+    "개발자 도구를 열고 Console과 Network 탭이 보여 주는 것을 말할 수 있다",
+    "화면이 안 될 때 개발자 도구에서 무엇을 찾아볼지 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "be.http.web-conversation"
+   ],
+   "aliases": [
+    "개발자 도구",
+    "devtools"
+   ],
+   "refs": [
+    "https://developer.chrome.com/docs/devtools/overview"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.responsive-idea",
+   "title": "화면 크기에 맞추는 반응형 화면",
+   "en": "Responsive Screens",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 기초",
+   "summary": "휴대폰과 컴퓨터처럼 크기가 다른 화면에서도 보기 좋게 배치를 바꾸는 방식이다.",
+   "objectives": [
+    "반응형 화면이 필요한 이유를 예를 들어 말할 수 있다",
+    "같은 페이지가 화면 크기에 따라 달라지는 모습을 찾아볼 수 있다"
+   ],
+   "prerequisites": [
+    "fe.basics.web-page-parts"
+   ],
+   "aliases": [
+    "반응형",
+    "responsive"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.framework-why",
+   "title": "화면 라이브러리와 프레임워크를 쓰는 이유",
+   "en": "Why Use UI Libraries and Frameworks",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 기초",
+   "summary": "React 같은 화면 도구는 복잡한 화면을 작은 부품으로 나눠 만들게 도와주고, Next.js는 그 위에 페이지 구성을 더한다.",
+   "objectives": [
+    "화면을 부품으로 나누는 이점을 레고에 빗대어 설명할 수 있다",
+    "React와 Next.js가 어떤 관계인지 한 문장으로 말할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.basics.web-page-parts"
+   ],
+   "aliases": [
+    "React",
+    "리액트"
+   ],
+   "refs": [
+    "https://react.dev/learn/thinking-in-react"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.html.first-page",
+   "title": "HTML로 첫 페이지 만들기",
+   "en": "Your First HTML Page",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "HTML",
+   "summary": "제목과 문단, 링크, 이미지 태그로 브라우저에 뜨는 첫 페이지를 만든다.",
+   "objectives": [
+    "HTML 파일을 만들어 브라우저에서 열 수 있다",
+    "제목·문단·링크·이미지 태그를 보고 따라 쓸 수 있다"
+   ],
+   "prerequisites": [
+    "fe.basics.web-page-parts"
+   ],
+   "aliases": [
+    "HTML 태그",
+    "시맨틱 태그",
+    "index.html"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.html.forms",
+   "title": "HTML 폼과 입력 칸",
+   "en": "HTML Forms",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "HTML",
+   "summary": "사용자가 값을 입력해 서버로 보내는 입력 칸과 버튼을 만든다.",
+   "objectives": [
+    "입력 칸과 라벨, 버튼으로 폼을 만들 수 있다",
+    "입력 종류와 필수 입력 표시를 보고 따라 쓸 수 있다"
+   ],
+   "prerequisites": [
+    "fe.html.first-page"
+   ],
+   "aliases": [
+    "HTML 폼",
+    "입력 칸",
+    "form 태그",
+    "label 태그"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Your_first_form"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.css.box-flex",
+   "title": "CSS 박스 모델과 Flexbox",
+   "en": "CSS Box Model and Flexbox",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "CSS",
+   "summary": "요소의 여백과 테두리를 정하고 Flexbox로 나란히 배치한다.",
+   "objectives": [
+    "margin과 padding의 차이를 화면에서 보일 수 있다",
+    "Flexbox로 요소를 가로로 나란히 놓을 수 있다"
+   ],
+   "prerequisites": [
+    "fe.html.first-page"
+   ],
+   "aliases": [
+    "박스 모델",
+    "box model",
+    "Flexbox",
+    "margin",
+    "padding"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Box_model",
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Flexbox"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.js.basics",
+   "title": "JavaScript 기초 문법",
+   "en": "JavaScript Basics",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "JavaScript",
+   "summary": "변수와 조건문, 함수, 배열로 브라우저에서 도는 간단한 코드를 쓴다.",
+   "objectives": [
+    "변수와 함수를 만들어 콘솔에서 실행할 수 있다",
+    "배열과 객체를 보고 따라 쓸 수 있다"
+   ],
+   "prerequisites": [
+    "fe.basics.web-page-parts"
+   ],
+   "aliases": [
+    "JS 문법",
+    "const",
+    "화살표 함수",
+    "console.log"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.js.dom-events",
+   "title": "DOM과 이벤트",
+   "en": "The DOM and Events",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "JavaScript",
+   "summary": "JavaScript로 화면 요소를 찾아 바꾸고 클릭 같은 사용자 동작에 반응한다.",
+   "objectives": [
+    "버튼을 누르면 글자가 바뀌는 코드를 따라 만들 수 있다",
+    "DOM이 무엇인지 HTML과 연결해 말할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.js.basics"
+   ],
+   "aliases": [
+    "addEventListener",
+    "querySelector",
+    "DOM 조작"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/DOM_scripting",
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.js.fetch-first",
+   "title": "fetch로 API 호출하기",
+   "en": "Calling APIs with fetch",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "JavaScript",
+   "summary": "브라우저 코드에서 서버 API를 불러 받은 JSON을 화면에 보여 준다.",
+   "objectives": [
+    "fetch로 API를 불러 결과를 콘솔에 찍을 수 있다",
+    "async와 await를 보고 따라 쓸 수 있다",
+    "응답의 상태 코드를 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.js.basics",
+    "be.http.methods-status"
+   ],
+   "aliases": [
+    "fetch API",
+    "response.json"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.react.first-component",
+   "title": "React 컴포넌트와 props",
+   "en": "React Components and Props",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "React",
+   "summary": "화면을 함수로 된 부품으로 나누고 props로 값을 넘겨 다시 쓴다.",
+   "objectives": [
+    "컴포넌트를 만들어 화면에 넣을 수 있다",
+    "props로 값을 넘겨 같은 부품을 다르게 보여 줄 수 있다"
+   ],
+   "prerequisites": [
+    "fe.js.basics"
+   ],
+   "aliases": [
+    "컴포넌트",
+    "component",
+    "props",
+    "JSX"
+   ],
+   "refs": [
+    "https://react.dev/learn/your-first-component",
+    "https://react.dev/learn/passing-props-to-a-component"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.react.state-first",
+   "title": "useState로 화면 바꾸기",
+   "en": "Updating the Screen with useState",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "React",
+   "summary": "컴포넌트가 기억할 값을 state로 두고 값이 바뀌면 화면이 다시 그려지게 한다.",
+   "objectives": [
+    "useState로 카운터와 입력 칸을 따라 만들 수 있다",
+    "일반 변수와 state의 차이를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.react.first-component"
+   ],
+   "aliases": [
+    "useState",
+    "상태 값"
+   ],
+   "refs": [
+    "https://react.dev/learn/state-a-components-memory"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.first-page",
+   "title": "Next.js로 첫 페이지 만들기",
+   "en": "Your First Next.js Page",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "Next.js",
+   "summary": "폴더 이름이 곧 주소가 되는 Next.js로 페이지를 만들고 실행한다.",
+   "objectives": [
+    "Next.js 프로젝트를 만들어 실행할 수 있다",
+    "폴더와 page 파일로 새 주소를 추가할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.react.first-component"
+   ],
+   "aliases": [
+    "Next.js",
+    "넥스트",
+    "App Router"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/getting-started/installation"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.render-pipeline",
+   "title": "브라우저 렌더링 파이프라인",
+   "en": "Browser Rendering Pipeline",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "프론트엔드 내부",
+   "summary": "HTML을 받아 화면에 그리기까지의 단계와 각 단계의 비용으로 성능 문제를 분석한다.",
+   "objectives": [
+    "레이아웃과 페인트, 합성의 차이로 느린 화면의 원인을 찾을 수 있다",
+    "렌더링을 막는 자원을 찾아 줄일 수 있다"
+   ],
+   "aliases": [
+    "렌더링 파이프라인",
+    "리플로우",
+    "reflow",
+    "repaint",
+    "critical rendering path"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/How_browsers_work"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.react-reconciliation",
+   "title": "React 재조정과 렌더링 모델",
+   "en": "React Reconciliation",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "프론트엔드 내부",
+   "summary": "state가 바뀔 때 React가 무엇을 다시 그리고 무엇을 유지하는지 원리로 따진다.",
+   "objectives": [
+    "재조정이 트리 위치로 상태를 유지하는 원리를 설명할 수 있다",
+    "불필요한 리렌더링을 측정하고 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "fe.react.state-first"
+   ],
+   "aliases": [
+    "reconciliation",
+    "React Profiler"
+   ],
+   "refs": [
+    "https://react.dev/learn/preserving-and-resetting-state",
+    "https://react.dev/learn/render-and-commit"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.server-components",
+   "title": "React 서버 컴포넌트와 하이드레이션",
+   "en": "Server Components and Hydration",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "프론트엔드 내부",
+   "summary": "서버 렌더링 결과가 브라우저로 전달되어 하이드레이션되는 내부 과정과 경계의 손익을 분석한다.",
+   "objectives": [
+    "RSC 페이로드와 하이드레이션의 단계를 설명하고 경계를 근거를 들어 정할 수 있다",
+    "하이드레이션 불일치의 원인을 찾아 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "fe.next.first-page"
+   ],
+   "aliases": [
+    "서버 컴포넌트",
+    "Server Components",
+    "하이드레이션",
+    "hydration",
+    "RSC"
+   ],
+   "refs": [
+    "https://react.dev/reference/rsc/server-components",
+    "https://nextjs.org/docs/app/getting-started/server-and-client-components"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.security.browser-model",
+   "title": "브라우저 보안 모델: 동일 출처와 CSP",
+   "en": "Browser Security Model",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "프론트엔드 내부",
+   "summary": "동일 출처 정책과 CSP가 막는 공격과 막지 못하는 공격을 구분한다.",
+   "objectives": [
+    "동일 출처 정책이 막는 범위와 한계를 설명할 수 있다",
+    "CSP를 설계하고 위반 보고로 문제를 분석할 수 있다"
+   ],
+   "prerequisites": [
+    "be.http.cors"
+   ],
+   "aliases": [
+    "nonce",
+    "report-to",
+    "COOP",
+    "브라우저 보안 모델"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy",
+    "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.web-vitals",
+   "title": "Core Web Vitals 분석과 최적화",
+   "en": "Core Web Vitals Optimization",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "사용자 체감 지표를 재서 병목을 찾고 개선의 효과를 근거로 판단한다.",
+   "objectives": [
+    "LCP·INP·CLS를 재서 원인을 찾을 수 있다",
+    "최적화의 효과와 비용을 측정값으로 따질 수 있다"
+   ],
+   "prerequisites": [
+    "fe.internals.render-pipeline"
+   ],
+   "aliases": [
+    "Core Web Vitals",
+    "웹 바이탈",
+    "LCP",
+    "INP"
+   ],
+   "refs": [
+    "https://web.dev/articles/vitals"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.event-loop",
+   "title": "브라우저 이벤트 루프와 마이크로태스크",
+   "en": "Browser Event Loop and Microtasks",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "태스크와 마이크로태스크의 실행 순서가 화면 응답성과 비동기 코드의 동작에 주는 영향을 분석한다.",
+   "objectives": [
+    "태스크와 마이크로태스크의 실행 순서를 코드로 보일 수 있다",
+    "긴 작업이 화면을 멈추는 원인을 찾아 나눌 수 있다"
+   ],
+   "prerequisites": [
+    "fe.js.fetch-first"
+   ],
+   "aliases": [
+    "브라우저 이벤트 루프",
+    "마이크로태스크",
+    "microtask",
+    "롱 태스크"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Execution_model"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "llm.basics.what-is-llm",
    "title": "LLM이 답을 만드는 원리",
    "en": "How an LLM Produces Answers",
@@ -8570,19 +9881,118 @@
    "summary": "LLM은 지금까지의 글을 보고 다음에 올 글자 조각을 예측해 이어 붙여 답을 만든다.",
    "objectives": [
     "자동 완성에 빗대어 LLM의 동작을 설명할 수 있다",
-    "LLM이 틀린 내용을 그럴듯하게 말하는 이유를 말할 수 있다"
+    "LLM이 사실을 찾아보지 않고 글을 이어 만든다는 점을 말할 수 있다"
    ],
    "aliases": [
     "LLM은 어떻게 답을 만드나",
     "How an LLM Produces Answers",
     "LLM",
     "대규모 언어 모델",
-    "챗GPT 원리",
-    "할루시네이션",
-    "환각"
+    "챗GPT 원리"
    ],
    "refs": [
     "https://huggingface.co/learn/llm-course/chapter1/4"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.generative-ai",
+   "title": "생성형 AI가 할 수 있는 일과 못 하는 일",
+   "en": "What Generative AI Can and Cannot Do",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "LLM 기초",
+   "summary": "생성형 AI는 글과 그림을 새로 만들어 내지만 사실 확인과 최신 정보에는 약하다.",
+   "objectives": [
+    "생성형 AI가 만들어 낼 수 있는 것을 예를 들어 말할 수 있다",
+    "검색과 생성형 AI의 차이를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.what-is-llm"
+   ],
+   "aliases": [
+    "생성형 AI",
+    "generative ai"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/about-claude/models/overview"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.what-is-prompt",
+   "title": "프롬프트: AI에게 일을 맡기는 말",
+   "en": "What a Prompt Is",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "LLM 기초",
+   "summary": "AI에게 하는 부탁의 글로, 분명하게 쓸수록 원하는 답에 가까워진다.",
+   "objectives": [
+    "프롬프트를 새 동료에게 주는 업무 지시에 빗대어 설명할 수 있다",
+    "막연한 부탁을 구체적인 부탁으로 고쳐 볼 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.what-is-llm"
+   ],
+   "aliases": [
+    "프롬프트",
+    "prompt"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.why-hallucinate",
+   "title": "환각: AI가 그럴듯하게 틀리는 이유",
+   "en": "Hallucination",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "LLM 기초",
+   "summary": "LLM은 사실을 찾아보는 대신 그럴듯한 글을 이어 만들기 때문에 없는 내용을 지어내기도 한다.",
+   "objectives": [
+    "환각이 생기는 이유를 비유로 설명할 수 있다",
+    "근거 자료를 함께 주면 환각이 줄어드는 이유를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.what-is-llm"
+   ],
+   "aliases": [
+    "환각",
+    "hallucination",
+    "할루시네이션"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.model-choices",
+   "title": "AI 모델의 종류와 요금의 큰 그림",
+   "en": "AI Models and Pricing at a Glance",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "모델마다 성능과 속도, 요금이 달라 일에 맞게 고르며 쓴 양만큼 돈을 낸다.",
+   "objectives": [
+    "성능이 높은 모델이 언제나 정답이 아닌 이유를 말할 수 있다",
+    "AI 사용 요금이 쓴 양에 따라 달라지는 이유를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.what-is-llm"
+   ],
+   "aliases": [
+    "AI 모델",
+    "모델 선택"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/about-claude/models/overview"
    ],
    "domain": "llm"
   },
@@ -8611,7 +10021,7 @@
    "importance": 1,
    "group": "LLM 기초",
    "summary": "LLM이 사실이 아닌 내용을 그럴듯하게 지어내는 현상이다.",
-   "parent": "llm.basics.what-is-llm",
+   "parent": "llm.basics.why-hallucinate",
    "aliases": [
     "할루시네이션",
     "Hallucination",
@@ -8692,6 +10102,33 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-03",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.prompt.first-good-prompt",
+   "title": "좋은 프롬프트 쓰는 기본",
+   "en": "Prompting Basics",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "프롬프트",
+   "summary": "역할과 맥락, 원하는 형식, 예시를 적어 답의 품질을 높인다.",
+   "objectives": [
+    "역할·맥락·형식을 넣어 프롬프트를 고쳐 쓸 수 있다",
+    "예시를 넣기 전후의 답을 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.what-is-prompt"
+   ],
+   "aliases": [
+    "프롬프트 작성",
+    "프롬프트 엔지니어링",
+    "few-shot",
+    "시스템 프롬프트"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview"
+   ],
    "domain": "llm"
   },
   {
@@ -8814,6 +10251,147 @@
    "domain": "llm"
   },
   {
+   "id": "llm.security.prompt-injection",
+   "title": "프롬프트 인젝션 공격과 방어",
+   "en": "Prompt Injection Attacks and Defenses",
+   "kind": "topic",
+   "level": 4,
+   "importance": 1,
+   "group": "LLM 보안",
+   "summary": "사용자 입력이나 외부 글에 섞인 지시가 모델을 조종하는 원리를 알고 여러 겹의 방어를 설계한다.",
+   "objectives": [
+    "직접 공격과 간접 공격의 경로를 분석할 수 있다",
+    "프롬프트만으로 막을 수 없는 이유를 근거를 들어 말할 수 있다",
+    "권한 제한을 포함한 방어를 설계할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.tools.function-calling"
+   ],
+   "aliases": [
+    "프롬프트 인젝션",
+    "prompt injection",
+    "간접 인젝션",
+    "탈옥",
+    "jailbreak"
+   ],
+   "refs": [
+    "https://genai.owasp.org/llmrisk/llm01-prompt-injection/"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.prompt-caching",
+   "title": "프롬프트 캐싱과 비용 구조",
+   "en": "Prompt Caching and Cost Structure",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 내부",
+   "summary": "입력의 앞부분을 재사용하는 원리로 비용과 지연을 줄이고 효과를 측정한다.",
+   "objectives": [
+    "캐시가 맞거나 빗나가는 조건을 설명할 수 있다",
+    "프롬프트 구조를 바꿔 비용 절감을 측정할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.api.first-call"
+   ],
+   "aliases": [
+    "프롬프트 캐싱",
+    "prompt caching",
+    "캐시 적중",
+    "LLM 비용"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-caching"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-04",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.tokenization-sampling",
+   "title": "토큰화와 샘플링",
+   "en": "Tokenization and Sampling",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "LLM 내부",
+   "summary": "글이 토큰으로 나뉘는 방식과 다음 토큰을 고르는 방식이 비용과 답의 일관성에 주는 영향을 다룬다.",
+   "objectives": [
+    "토큰화 방식이 비용과 오류에 주는 영향을 설명할 수 있다",
+    "temperature와 top_p가 답의 분포를 바꾸는 원리를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.token-context"
+   ],
+   "aliases": [
+    "토큰화",
+    "tokenizer",
+    "top_p"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/main/en/tokenizer_summary",
+    "https://huggingface.co/docs/transformers/main/en/generation_strategies"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.security.agent-boundaries",
+   "title": "에이전트 권한 경계와 데이터 유출 경로",
+   "en": "Agent Permission Boundaries",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "LLM 보안",
+   "summary": "도구 권한과 외부 입력, 외부 전송이 겹칠 때 생기는 유출 경로를 분석해 경계를 설계한다.",
+   "objectives": [
+    "비공개 자료·외부 입력·외부 전송이 겹치는 위험을 분석할 수 있다",
+    "최소 권한과 사람 승인으로 경계를 설계할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.security.prompt-injection"
+   ],
+   "aliases": [
+    "excessive agency",
+    "과도한 권한",
+    "데이터 유출 경로",
+    "최소 권한"
+   ],
+   "refs": [
+    "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.structured-decoding",
+   "title": "구조화 출력의 보장과 한계",
+   "en": "Guarantees of Structured Output",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "스키마를 따르도록 생성을 제약하는 방식과, 형식이 맞아도 내용은 보장되지 않는 한계를 다룬다.",
+   "objectives": [
+    "제약 디코딩이 형식을 보장하는 원리를 설명할 수 있다",
+    "형식이 맞아도 틀릴 수 있는 내용을 검증하는 절차를 설계할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.api.first-call"
+   ],
+   "aliases": [
+    "제약 디코딩",
+    "constrained decoding",
+    "structured outputs",
+    "JSON 모드"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/structured-outputs"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-04",
+   "domain": "llm"
+  },
+  {
    "id": "rag.embedding.meaning-as-numbers",
    "title": "임베딩: 글의 뜻을 숫자로 바꾸기",
    "en": "Embeddings",
@@ -8834,6 +10412,58 @@
    ],
    "refs": [
     "https://platform.openai.com/docs/guides/embeddings"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.basics.rag-big-picture",
+   "title": "RAG: 자료를 찾아 보고 답하는 AI",
+   "en": "RAG at a Glance",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "RAG 기초",
+   "summary": "질문과 관련된 자료를 먼저 찾아 LLM에 함께 주어 그 자료를 근거로 답하게 하는 방식이다.",
+   "objectives": [
+    "RAG를 오픈북 시험에 빗대어 설명할 수 있다",
+    "회사 문서에 답하는 챗봇에 RAG가 필요한 이유를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.what-is-llm",
+    "rag.embedding.meaning-as-numbers"
+   ],
+   "aliases": [
+    "RAG",
+    "검색 증강 생성",
+    "문서 기반 답변"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/rag"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.basics.agent-big-picture",
+   "title": "AI 에이전트: 스스로 도구를 쓰는 AI",
+   "en": "AI Agents at a Glance",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "에이전트 기초",
+   "summary": "목표를 받으면 스스로 할 일을 나누고 도구를 써 가며 끝까지 해 보는 AI 프로그램이다.",
+   "objectives": [
+    "챗봇과 에이전트의 차이를 비서에 빗대어 설명할 수 있다",
+    "에이전트에게 일을 맡길 때 위험한 점을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.what-is-llm"
+   ],
+   "aliases": [
+    "AI 에이전트",
+    "에이전트"
+   ],
+   "refs": [
+    "https://www.anthropic.com/engineering/building-effective-agents"
    ],
    "domain": "rag"
   },
@@ -8958,6 +10588,35 @@
    "domain": "rag"
   },
   {
+   "id": "rag.agent.reliability",
+   "title": "에이전트 설계: 루프·권한·실패 처리",
+   "en": "Agent Reliability",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "루프와 도구 권한, 실패 복구를 설계해 비용 폭주와 위험한 행동을 막는다.",
+   "objectives": [
+    "워크플로와 에이전트 중 어느 쪽이 맞는지 근거를 들어 고를 수 있다",
+    "반복 제한과 도구 권한으로 위험을 줄이는 설계를 할 수 있다",
+    "에이전트의 실패를 기록으로 분석할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.tools.function-calling"
+   ],
+   "aliases": [
+    "에이전트 루프",
+    "에이전트 설계",
+    "멀티 에이전트",
+    "LangGraph"
+   ],
+   "refs": [
+    "https://www.anthropic.com/engineering/building-effective-agents",
+    "https://docs.langchain.com/oss/python/langgraph/overview"
+   ],
+   "domain": "rag"
+  },
+  {
    "id": "rag.retrieval.reranking",
    "title": "재순위",
    "en": "Reranking",
@@ -9005,6 +10664,116 @@
    "domain": "rag"
   },
   {
+   "id": "rag.retrieval.hybrid-rerank",
+   "title": "하이브리드 검색과 재순위",
+   "en": "Hybrid Search and Reranking",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "검색 내부",
+   "summary": "낱말 점수와 벡터 유사도를 합치는 방법과 크로스 인코더 재순위의 비용을 근거로 검색 구조를 정한다.",
+   "objectives": [
+    "BM25와 벡터 검색의 순위를 RRF로 합치는 계산을 설명할 수 있다",
+    "재순위 후보 수가 상위 k 재현율과 지연, 비용에 주는 영향을 측정할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.retrieval.quality"
+   ],
+   "aliases": [
+    "BM25",
+    "RRF",
+    "크로스 인코더",
+    "cross-encoder"
+   ],
+   "refs": [
+    "https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion",
+    "https://www.sbert.net/docs/cross_encoder/usage/usage.html"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.eval.metrics",
+   "title": "RAG 평가 설계",
+   "en": "Designing RAG Evaluation",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "검색 내부",
+   "summary": "검색과 생성을 나눠 재고 정답 세트로 변경의 효과를 판단한다.",
+   "objectives": [
+    "검색 지표와 생성 지표를 나눠 정의할 수 있다",
+    "정답 세트를 만들어 변경 전후를 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.retrieval.quality"
+   ],
+   "aliases": [
+    "RAG 평가",
+    "ragas",
+    "faithfulness",
+    "골든 데이터셋"
+   ],
+   "refs": [
+    "https://docs.ragas.io/en/stable/"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-protocol",
+   "title": "MCP 프로토콜의 구조",
+   "en": "Model Context Protocol Architecture",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "호스트가 서버마다 클라이언트를 두고 서버가 도구·자원·프롬프트를 제공하는 구조와 보안의 손익을 다룬다.",
+   "objectives": [
+    "MCP의 구성 요소와 메시지 흐름을 설명할 수 있다",
+    "외부 MCP 서버를 연결할 때의 보안 위험을 따질 수 있다"
+   ],
+   "prerequisites": [
+    "llm.tools.function-calling"
+   ],
+   "aliases": [
+    "MCP",
+    "Model Context Protocol",
+    "MCP 서버"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/docs/learn/architecture"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-04",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.embedding.model-tradeoffs",
+   "title": "임베딩 모델 선택과 차원의 손익",
+   "en": "Embedding Model Tradeoffs",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "검색 내부",
+   "summary": "언어와 차원, 비용이 검색 품질과 저장 비용에 주는 영향을 재서 임베딩 모델을 고른다.",
+   "objectives": [
+    "차원과 모델 크기가 검색 품질과 비용에 주는 영향을 측정할 수 있다",
+    "모델을 바꿀 때의 재임베딩 비용과 절차를 설계할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.vector-db.basics"
+   ],
+   "aliases": [
+    "임베딩 모델",
+    "embedding model",
+    "재임베딩",
+    "다국어 임베딩"
+   ],
+   "refs": [
+    "https://www.sbert.net/docs/sentence_transformer/pretrained_models.html"
+   ],
+   "domain": "rag"
+  },
+  {
    "id": "rag.vector-index.recall",
    "title": "재현율",
    "en": "Recall",
@@ -9019,6 +10788,352 @@
     "recall"
    ],
    "domain": "rag"
+  },
+  {
+   "id": "ax.basics.ai-coding-tools",
+   "title": "AI 코딩 도구의 큰 그림",
+   "en": "AI Coding Tools at a Glance",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "AI 네이티브 개발",
+   "summary": "코드 작성과 수정을 AI에게 맡기고 사람은 방향을 정하고 결과를 확인하는 개발 방식이다.",
+   "objectives": [
+    "자동 완성, 채팅, 코딩 에이전트의 차이를 말할 수 있다",
+    "AI 코딩 도구를 쓸 때 사람이 맡아야 할 일을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.what-is-prompt"
+   ],
+   "aliases": [
+    "AI 코딩",
+    "바이브 코딩",
+    "코딩 에이전트",
+    "Claude Code"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/overview"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.basics.verify-ai-output",
+   "title": "AI가 만든 결과를 믿기 전에 확인하기",
+   "en": "Verifying AI Output",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "AI 네이티브 개발",
+   "summary": "AI의 답과 코드는 틀릴 수 있으므로 실행하고 근거를 찾아 사람이 확인한다.",
+   "objectives": [
+    "AI가 만든 결과를 확인하는 방법을 두 가지 이상 말할 수 있다",
+    "확인 없이 쓰면 안 되는 경우를 예를 들어 말할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.why-hallucinate"
+   ],
+   "aliases": [
+    "결과 검증",
+    "AI 검증"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/best-practices"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.basics.personal-data",
+   "title": "개인정보와 AI에 넣으면 안 되는 정보",
+   "en": "Personal Data and AI",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "AI 보안과 윤리",
+   "summary": "AI 서비스에 넣은 내용은 밖으로 나갈 수 있으니 개인정보와 비밀은 넣기 전에 가린다.",
+   "objectives": [
+    "AI에 넣으면 안 되는 정보를 예를 들어 말할 수 있다",
+    "개인정보가 왜 특별히 보호되는지 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "be.security.why-secrets"
+   ],
+   "aliases": [
+    "개인정보",
+    "민감 정보",
+    "PII"
+   ],
+   "refs": [
+    "https://www.pipc.go.kr/",
+    "https://www.law.go.kr/법령/개인정보보호법"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.basics.fullstack-path",
+   "title": "AI 서비스가 만들어지는 전체 경로",
+   "en": "End-to-End Path of an AI Service",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "AX 기초",
+   "summary": "기획에서 화면, 서버, 데이터베이스, LLM을 거쳐 배포까지 이어지는 제작 경로의 지도다.",
+   "objectives": [
+    "AI 서비스의 제작 단계를 순서대로 말할 수 있다",
+    "사용자의 질문이 답으로 돌아오는 길을 그림으로 그릴 수 있다"
+   ],
+   "prerequisites": [
+    "be.basics.what-is-backend",
+    "llm.basics.what-is-llm"
+   ],
+   "aliases": [
+    "AI 서비스 구조",
+    "풀스택",
+    "fullstack"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/How_the_web_works",
+    "https://docs.langchain.com/oss/python/langchain/rag"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.basics.what-is-ax",
+   "title": "AX: 일하는 방식을 AI로 바꾸기",
+   "en": "What AX Is",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "AX 기초",
+   "summary": "AI를 도구로 덧붙이는 데 그치지 않고 일의 흐름 자체를 AI에 맞게 바꾸는 일이다.",
+   "objectives": [
+    "AX와 단순한 AI 도구 도입의 차이를 예를 들어 말할 수 있다",
+    "내 일에서 AI로 바꿀 수 있는 흐름을 찾아볼 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.ai-fit"
+   ],
+   "aliases": [
+    "AI 전환",
+    "AI Transformation"
+   ],
+   "refs": [
+    "https://www.ibm.com/think/topics/ai-transformation"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.agent-first",
+   "title": "AI 코딩 에이전트에게 일 시키기",
+   "en": "Working with an AI Coding Agent",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "AI 네이티브 개발",
+   "summary": "목표와 확인 방법을 분명히 주고 작은 단위로 맡긴 뒤 결과를 직접 확인한다.",
+   "objectives": [
+    "AI 코딩 에이전트에 작은 작업을 맡기고 결과를 확인할 수 있다",
+    "목표와 확인 방법을 담아 요청을 쓸 수 있다"
+   ],
+   "prerequisites": [
+    "ax.basics.ai-coding-tools",
+    "dev.git.first-commit"
+   ],
+   "aliases": [
+    "코딩 에이전트 사용",
+    "Claude Code",
+    "Codex",
+    "CLAUDE.md"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/best-practices"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.ai-risk",
+   "title": "AI 위험 관리와 규제 대응",
+   "en": "AI Risk Management and Regulation",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "AI 기능의 위험을 찾아 관리 체계를 세우고 규제 요구를 근거로 설계에 반영한다.",
+   "objectives": [
+    "위험 관리 틀로 AI 기능의 위험을 식별하고 대응을 정할 수 있다",
+    "규제 요구를 근거로 기록과 고지 방식을 설계할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.basics.personal-data"
+   ],
+   "aliases": [
+    "AI 거버넌스",
+    "AI 기본법",
+    "NIST AI RMF",
+    "EU AI Act"
+   ],
+   "refs": [
+    "https://www.nist.gov/itl/ai-risk-management-framework",
+    "https://genai.owasp.org/llm-top-10/",
+    "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-04",
+   "domain": "ax"
+  },
+  {
+   "id": "ops.basics.what-is-deploy",
+   "title": "배포: 내 서비스를 세상에 내놓기",
+   "en": "What Deployment Is",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "배포 기초",
+   "summary": "내 컴퓨터에서 돌던 서비스를 다른 사람도 쓸 수 있는 곳에 올리는 일이다.",
+   "objectives": [
+    "localhost와 배포된 주소의 차이를 설명할 수 있다",
+    "배포가 필요한 이유를 가게 개업에 빗대어 말할 수 있다"
+   ],
+   "prerequisites": [
+    "be.basics.localhost-port"
+   ],
+   "aliases": [
+    "배포",
+    "deploy",
+    "deployment"
+   ],
+   "refs": [
+    "https://vercel.com/docs/deployments"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.cloud",
+   "title": "클라우드: 빌려 쓰는 컴퓨터",
+   "en": "What the Cloud Is",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "배포 기초",
+   "summary": "컴퓨터를 직접 사지 않고 인터넷으로 필요한 만큼 빌려 쓰는 방식이다.",
+   "objectives": [
+    "클라우드를 전기 요금제에 빗대어 설명할 수 있다",
+    "서버를 직접 두는 것과 빌려 쓰는 것의 차이를 말할 수 있다"
+   ],
+   "aliases": [
+    "클라우드",
+    "cloud",
+    "AWS"
+   ],
+   "refs": [
+    "https://aws.amazon.com/what-is-cloud-computing/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.domain-dns",
+   "title": "도메인과 DNS: 인터넷 주소록",
+   "en": "Domain Names and DNS",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "배포 기초",
+   "summary": "기억하기 쉬운 이름을 컴퓨터의 숫자 주소로 바꿔 주는 인터넷의 주소록이다.",
+   "objectives": [
+    "도메인과 IP 주소의 관계를 전화번호부에 빗대어 설명할 수 있다",
+    "주소를 입력했을 때 DNS가 하는 일을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "be.basics.url-anatomy"
+   ],
+   "aliases": [
+    "DNS",
+    "도메인 이름",
+    "IP 주소"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_domain_name"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.container-idea",
+   "title": "컨테이너: 프로그램을 통째로 담는 상자",
+   "en": "The Idea of Containers",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "배포 기초",
+   "summary": "프로그램과 실행에 필요한 것을 한데 담아 어디서나 똑같이 돌게 만드는 방식이다.",
+   "objectives": [
+    "내 컴퓨터에서만 되는 문제를 컨테이너가 어떻게 줄이는지 설명할 수 있다",
+    "컨테이너를 이삿짐 상자에 빗대어 말할 수 있다"
+   ],
+   "aliases": [
+    "컨테이너",
+    "container",
+    "Docker",
+    "도커"
+   ],
+   "refs": [
+    "https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-a-container/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.deploy.first-deploy",
+   "title": "웹 서비스 첫 배포",
+   "en": "Your First Deployment",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "배포",
+   "summary": "GitHub 저장소를 호스팅 서비스에 연결해 공개 주소로 서비스를 올린다.",
+   "objectives": [
+    "프론트엔드를 호스팅 서비스에 올려 주소로 열 수 있다",
+    "배포 환경에 환경 변수를 넣을 수 있다",
+    "배포 실패 로그를 찾아볼 수 있다"
+   ],
+   "prerequisites": [
+    "ops.basics.what-is-deploy",
+    "dev.git.github-role"
+   ],
+   "aliases": [
+    "Vercel",
+    "첫 배포",
+    "Render 배포"
+   ],
+   "refs": [
+    "https://vercel.com/docs/getting-started-with-vercel"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.docker.first-container",
+   "title": "Docker로 첫 컨테이너 실행하기",
+   "en": "Your First Docker Container",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "Docker",
+   "summary": "이미지를 받아 컨테이너로 실행하고 포트를 연결해 접속한다.",
+   "objectives": [
+    "docker run으로 컨테이너를 띄우고 포트를 연결할 수 있다",
+    "이미지와 컨테이너의 차이를 말할 수 있다",
+    "컨테이너를 멈추고 지울 수 있다"
+   ],
+   "prerequisites": [
+    "ops.basics.container-idea",
+    "dev.terminal.basic-commands"
+   ],
+   "aliases": [
+    "docker run",
+    "도커 이미지",
+    "docker ps"
+   ],
+   "refs": [
+    "https://docs.docker.com/get-started/"
+   ],
+   "domain": "ops"
   },
   {
    "id": "ops.observe.metrics",
@@ -9083,6 +11198,91 @@
    "refs": [
     "https://fastapi.tiangolo.com/advanced/opentelemetry/",
     "https://opentelemetry.io/docs/concepts/signals/traces/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.deploy.zero-downtime",
+   "title": "무중단 배포 전략",
+   "en": "Zero-Downtime Deployment Strategies",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "배포 전략",
+   "summary": "롤링, 블루그린, 카나리의 위험과 비용을 따지고 스키마 변경까지 함께 설계한다.",
+   "objectives": [
+    "배포 전략의 손익을 근거를 들어 고를 수 있다",
+    "DB 스키마 변경을 포함한 무중단 절차를 설계할 수 있다",
+    "배포 중 트래픽을 빼는 순서를 설계해 요청이 끊기지 않게 할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.deploy.first-deploy"
+   ],
+   "aliases": [
+    "무중단 배포",
+    "롤링 배포",
+    "블루그린",
+    "카나리 배포",
+    "connection draining",
+    "연결 드레이닝"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/",
+    "https://docs.aws.amazon.com/whitepapers/latest/overview-deployment-options/bluegreen-deployments.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.network.edge-waf",
+   "title": "웹 방화벽(WAF)과 오탐 분석",
+   "en": "WAF Rules and False Positives",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "네트워크와 앞단",
+   "summary": "앞단이 요청을 검사해 막는 방식과 정상 요청이 막힐 때 원인을 좁히는 방법을 다룬다.",
+   "objectives": [
+    "앱 오류와 앞단 차단을 응답과 로그로 구별할 수 있다",
+    "정상 요청을 막는 규칙을 좁혀 찾고 예외 처리의 위험을 따질 수 있다"
+   ],
+   "aliases": [
+    "WAF",
+    "웹 방화벽",
+    "웹 애플리케이션 방화벽",
+    "false positive"
+   ],
+   "refs": [
+    "https://developers.cloudflare.com/waf/",
+    "https://coreruleset.org/docs/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.basics",
+   "title": "Kubernetes 기본 구성: 파드·디플로이먼트·서비스",
+   "en": "Kubernetes Basics",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "컨테이너를 여러 대에서 운영하는 기본 단위를 알고 Compose나 호스팅 서비스와 견주어 도입을 판단한다.",
+   "objectives": [
+    "파드·디플로이먼트·서비스의 역할을 설명하고 간단한 서비스를 올릴 수 있다",
+    "Kubernetes가 필요한 규모인지 근거를 들어 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.docker.first-container"
+   ],
+   "aliases": [
+    "Kubernetes",
+    "쿠버네티스",
+    "K8s",
+    "파드",
+    "kubectl"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/overview/",
+    "https://kubernetes.io/docs/concepts/workloads/pods/"
    ],
    "domain": "ops"
   },
@@ -9182,6 +11382,139 @@
    "domain": "ops"
   },
   {
+   "id": "ops.container.isolation",
+   "title": "컨테이너 격리: 네임스페이스와 cgroup",
+   "en": "Namespaces and cgroups",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "컨테이너 내부",
+   "summary": "컨테이너가 커널 기능으로 격리되는 원리와 그 한계로 장애와 보안을 분석한다.",
+   "objectives": [
+    "네임스페이스와 cgroup이 나누는 것을 설명할 수 있다",
+    "메모리 제한으로 프로세스가 죽는 장애를 분석할 수 있다"
+   ],
+   "aliases": [
+    "cgroup",
+    "OOM killer",
+    "컨테이너 격리",
+    "리눅스 네임스페이스"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man7/namespaces.7.html",
+    "https://man7.org/linux/man-pages/man7/cgroups.7.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.scheduling",
+   "title": "Kubernetes 스케줄링과 자원 관리",
+   "en": "Kubernetes Scheduling and Resources",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "요청은 배치와 축출 순서에, 제한은 실행 중 스로틀과 OOM에 영향을 주는 원리로 자원을 설계한다.",
+   "objectives": [
+    "requests가 배치와 축출에, limits가 스로틀과 OOM에 주는 영향을 설명할 수 있다",
+    "파드가 대기하거나 재시작하는 원인을 분석할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.container.isolation",
+    "ops.k8s.basics"
+   ],
+   "aliases": [
+    "kube-scheduler",
+    "파드 축출",
+    "requests와 limits",
+    "QoS 클래스"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/",
+    "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.network.tcp-internals",
+   "title": "TCP 연결과 혼잡 제어",
+   "en": "TCP Connections and Congestion Control",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "네트워크와 앞단",
+   "summary": "연결 수립과 재전송, 혼잡 제어가 지연과 처리량에 주는 영향을 분석한다.",
+   "objectives": [
+    "연결 수립과 재전송이 지연에 주는 영향을 설명할 수 있다",
+    "연결 재사용의 이득과 위험을 따질 수 있다"
+   ],
+   "aliases": [
+    "TCP",
+    "혼잡 제어",
+    "3-way handshake"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9293",
+    "https://www.rfc-editor.org/rfc/rfc5681"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.linux.process-signals",
+   "title": "리눅스 프로세스와 신호",
+   "en": "Linux Processes and Signals",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "리눅스",
+   "summary": "부모와 자식 프로세스, 신호의 전달로 서버 종료와 백그라운드 실행의 동작을 분석한다.",
+   "objectives": [
+    "SIGTERM과 SIGKILL을 받은 프로세스의 동작을 설명할 수 있다",
+    "창을 닫으면 백그라운드 작업이 죽는 원인을 분석할 수 있다",
+    "종료 신호를 받아 정리 작업을 하는 프로세스를 설계할 수 있다"
+   ],
+   "aliases": [
+    "nohup",
+    "SIGTERM",
+    "SIGKILL",
+    "시그널",
+    "백그라운드 프로세스",
+    "좀비 프로세스"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man7/signal.7.html",
+    "https://man7.org/linux/man-pages/man1/nohup.1.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.network.dns-resolution",
+   "title": "DNS 조회 과정과 장애 분석",
+   "en": "DNS Resolution and Failure Analysis",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "네트워크와 앞단",
+   "summary": "재귀 조회와 캐시, TTL의 동작으로 도메인 변경이 늦게 퍼지는 장애를 분석한다.",
+   "objectives": [
+    "재귀 조회와 권한 서버의 역할을 단계별로 설명할 수 있다",
+    "TTL과 캐시 때문에 생기는 장애를 도구로 분석할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.basics.domain-dns"
+   ],
+   "aliases": [
+    "DNS 조회",
+    "재귀 리졸버",
+    "권한 네임서버",
+    "DNS 전파"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc1034"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.observe.slo",
    "title": "SLO",
    "en": "Service Level Objective",
@@ -9212,6 +11545,271 @@
     "Error Budget"
    ],
    "domain": "ops"
+  },
+  {
+   "id": "ml.basics.ai-ml-dl",
+   "title": "AI·머신러닝·딥러닝의 관계",
+   "en": "AI, Machine Learning, and Deep Learning",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "AI 기초",
+   "summary": "AI 안에 데이터로 배우는 머신러닝이 있고, 그 안에 신경망을 쓰는 딥러닝이 있다.",
+   "objectives": [
+    "세 말의 관계를 그림으로 그려 설명할 수 있다",
+    "규칙을 직접 짜는 프로그램과 데이터로 배우는 모델의 차이를 말할 수 있다"
+   ],
+   "aliases": [
+    "머신러닝",
+    "딥러닝",
+    "machine learning",
+    "deep learning",
+    "인공지능"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/intro-to-ml/what-is-ml"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.basics.train-inference",
+   "title": "학습과 추론",
+   "en": "Training and Inference",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "AI 기초",
+   "summary": "모델이 데이터로 배우는 단계가 학습이고, 배운 것으로 답을 내는 단계가 추론이다.",
+   "objectives": [
+    "학습과 추론을 공부와 시험에 빗대어 설명할 수 있다",
+    "서비스에서 사용자가 쓰는 단계가 어느 쪽인지 말할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.ai-ml-dl"
+   ],
+   "aliases": [
+    "학습과 추론",
+    "모델 추론"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/intro-to-ml/supervised"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.basics.data-quality",
+   "title": "AI에게 데이터가 중요한 이유",
+   "en": "Why Data Matters to AI",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "모델은 본 데이터에서 배우므로 데이터가 치우치거나 틀리면 결과도 그렇게 된다.",
+   "objectives": [
+    "데이터가 치우치면 생기는 문제를 예를 들어 말할 수 있다",
+    "좋은 데이터의 조건을 두 가지 이상 말할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.ai-ml-dl"
+   ],
+   "aliases": [
+    "데이터 품질",
+    "학습 데이터",
+    "편향"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/overfitting/data-characteristics"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.metrics-tradeoffs",
+   "title": "평가 지표의 함정: 정밀도와 재현율",
+   "en": "Evaluation Metric Tradeoffs",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "모델 평가",
+   "summary": "정확도가 속이는 경우를 알고 오류의 비용에 맞는 지표와 임계값을 고른다.",
+   "objectives": [
+    "불균형 데이터에서 정확도가 속이는 이유를 보일 수 있다",
+    "오류의 비용을 근거로 지표와 임계값을 고를 수 있다"
+   ],
+   "aliases": [
+    "정밀도",
+    "precision",
+    "F1 점수",
+    "혼동 행렬"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/classification/accuracy-precision-recall"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.transformer.attention",
+   "title": "트랜스포머와 어텐션",
+   "en": "Transformers and Attention",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "어텐션으로 문맥을 계산하는 구조와 그것이 LLM의 능력과 한계에 주는 영향을 다룬다.",
+   "objectives": [
+    "셀프 어텐션의 계산을 단계별로 설명할 수 있다",
+    "컨텍스트 길이가 어텐션 연산량에 주는 영향과 토큰 요금의 차이를 구분할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.token-context"
+   ],
+   "aliases": [
+    "트랜스포머",
+    "transformer",
+    "어텐션",
+    "attention",
+    "셀프 어텐션"
+   ],
+   "refs": [
+    "https://arxiv.org/abs/1706.03762",
+    "https://huggingface.co/learn/llm-course/chapter1/4"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.training.backprop",
+   "title": "역전파와 경사 하강법",
+   "en": "Backpropagation and Gradient Descent",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "딥러닝",
+   "summary": "손실을 줄이는 방향으로 가중치를 고치는 학습의 원리와 잘 안 될 때의 원인을 다룬다.",
+   "objectives": [
+    "역전파가 기울기를 계산하는 과정을 설명할 수 있다",
+    "학습률과 기울기 소실로 생기는 문제를 분석할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.train-inference"
+   ],
+   "aliases": [
+    "역전파",
+    "backpropagation",
+    "경사 하강법",
+    "gradient descent",
+    "학습률"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/neural-networks/backpropagation"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.training.overfitting",
+   "title": "과적합과 일반화 분석",
+   "en": "Overfitting and Generalization",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "딥러닝",
+   "summary": "학습과 검증의 차이로 과적합을 진단하고 데이터 분할과 규제 기법의 효과를 따진다.",
+   "objectives": [
+    "학습 곡선으로 과적합과 데이터 누수를 진단할 수 있다",
+    "규제 기법과 데이터 추가의 손익을 측정으로 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.train-inference"
+   ],
+   "aliases": [
+    "과적합",
+    "overfitting",
+    "데이터 누수"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/overfitting"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "mlops.eval.llm-regression",
+   "title": "LLM 평가와 회귀 시험",
+   "en": "LLM Evaluation and Regression Testing",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "답이 매번 달라지는 LLM 기능을 평가 세트로 재서 모델과 프롬프트 변경을 판단한다.",
+   "objectives": [
+    "평가 세트와 채점 기준을 설계할 수 있다",
+    "모델과 프롬프트를 바꿀 때 회귀를 잡는 절차를 만들 수 있다"
+   ],
+   "prerequisites": [
+    "llm.api.first-call"
+   ],
+   "aliases": [
+    "LLM 평가",
+    "회귀 시험",
+    "evals",
+    "프롬프트 평가"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.inference-optimization",
+   "title": "모델 서빙과 양자화",
+   "en": "Model Serving and Quantization",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "직접 모델을 띄울 때의 배치와 양자화가 처리량과 품질에 주는 손익을 따진다.",
+   "objectives": [
+    "양자화와 배치가 지연과 품질에 주는 영향을 측정할 수 있다",
+    "API 호출과 직접 서빙의 비용을 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.transformer.attention"
+   ],
+   "aliases": [
+    "모델 서빙",
+    "양자화",
+    "quantization",
+    "vLLM",
+    "GPU 서빙"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/main/en/quantization/overview",
+    "https://docs.vllm.ai/en/latest/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.finetune.when",
+   "title": "파인튜닝과 RAG의 선택",
+   "en": "Fine-Tuning vs RAG",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "프롬프트, RAG, 파인튜닝 중 무엇이 맞는지 문제의 성격과 비용으로 판단한다.",
+   "objectives": [
+    "파인튜닝이 맞는 문제와 맞지 않는 문제를 나눌 수 있다",
+    "학습 데이터와 유지 비용을 근거로 방법을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "rag.retrieval.quality"
+   ],
+   "aliases": [
+    "파인튜닝",
+    "fine-tuning",
+    "미세 조정"
+   ],
+   "refs": [
+    "https://developers.openai.com/api/docs/guides/model-optimization"
+   ],
+   "domain": "mlops"
   }
  ]
 }

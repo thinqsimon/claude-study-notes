@@ -1,0 +1,186 @@
+[
+  {
+    "id": "ax.basics.ai-coding-tools",
+    "title": "AI 코딩 도구의 큰 그림",
+    "en": "AI Coding Tools at a Glance",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "AI 네이티브 개발",
+    "summary": "코드 작성과 수정을 AI에게 맡기고 사람은 방향을 정하고 결과를 확인하는 개발 방식이다.",
+    "objectives": [
+      "자동 완성, 채팅, 코딩 에이전트의 차이를 말할 수 있다",
+      "AI 코딩 도구를 쓸 때 사람이 맡아야 할 일을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.what-is-prompt"
+    ],
+    "aliases": [
+      "AI 코딩",
+      "바이브 코딩",
+      "코딩 에이전트",
+      "Claude Code"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/overview"
+    ]
+  },
+  {
+    "id": "ax.basics.verify-ai-output",
+    "title": "AI가 만든 결과를 믿기 전에 확인하기",
+    "en": "Verifying AI Output",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "AI 네이티브 개발",
+    "summary": "AI의 답과 코드는 틀릴 수 있으므로 실행하고 근거를 찾아 사람이 확인한다.",
+    "objectives": [
+      "AI가 만든 결과를 확인하는 방법을 두 가지 이상 말할 수 있다",
+      "확인 없이 쓰면 안 되는 경우를 예를 들어 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.why-hallucinate"
+    ],
+    "aliases": [
+      "결과 검증",
+      "AI 검증"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/best-practices"
+    ]
+  },
+  {
+    "id": "ax.basics.personal-data",
+    "title": "개인정보와 AI에 넣으면 안 되는 정보",
+    "en": "Personal Data and AI",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "AI 보안과 윤리",
+    "summary": "AI 서비스에 넣은 내용은 밖으로 나갈 수 있으니 개인정보와 비밀은 넣기 전에 가린다.",
+    "objectives": [
+      "AI에 넣으면 안 되는 정보를 예를 들어 말할 수 있다",
+      "개인정보가 왜 특별히 보호되는지 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "be.security.why-secrets"
+    ],
+    "aliases": [
+      "개인정보",
+      "민감 정보",
+      "PII"
+    ],
+    "refs": [
+      "https://www.pipc.go.kr/",
+      "https://www.law.go.kr/법령/개인정보보호법"
+    ]
+  },
+  {
+    "id": "ax.basics.fullstack-path",
+    "title": "AI 서비스가 만들어지는 전체 경로",
+    "en": "End-to-End Path of an AI Service",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "AX 기초",
+    "summary": "기획에서 화면, 서버, 데이터베이스, LLM을 거쳐 배포까지 이어지는 제작 경로의 지도다.",
+    "objectives": [
+      "AI 서비스의 제작 단계를 순서대로 말할 수 있다",
+      "사용자의 질문이 답으로 돌아오는 길을 그림으로 그릴 수 있다"
+    ],
+    "prerequisites": [
+      "be.basics.what-is-backend",
+      "llm.basics.what-is-llm"
+    ],
+    "aliases": [
+      "AI 서비스 구조",
+      "풀스택",
+      "fullstack"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/How_the_web_works",
+      "https://docs.langchain.com/oss/python/langchain/rag"
+    ]
+  },
+  {
+    "id": "ax.basics.what-is-ax",
+    "title": "AX: 일하는 방식을 AI로 바꾸기",
+    "en": "What AX Is",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "AX 기초",
+    "summary": "AI를 도구로 덧붙이는 데 그치지 않고 일의 흐름 자체를 AI에 맞게 바꾸는 일이다.",
+    "objectives": [
+      "AX와 단순한 AI 도구 도입의 차이를 예를 들어 말할 수 있다",
+      "내 일에서 AI로 바꿀 수 있는 흐름을 찾아볼 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.ai-fit"
+    ],
+    "aliases": [
+      "AI 전환",
+      "AI Transformation"
+    ],
+    "refs": [
+      "https://www.ibm.com/think/topics/ai-transformation"
+    ]
+  },
+  {
+    "id": "ax.coding.agent-first",
+    "title": "AI 코딩 에이전트에게 일 시키기",
+    "en": "Working with an AI Coding Agent",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "AI 네이티브 개발",
+    "summary": "목표와 확인 방법을 분명히 주고 작은 단위로 맡긴 뒤 결과를 직접 확인한다.",
+    "objectives": [
+      "AI 코딩 에이전트에 작은 작업을 맡기고 결과를 확인할 수 있다",
+      "목표와 확인 방법을 담아 요청을 쓸 수 있다"
+    ],
+    "prerequisites": [
+      "ax.basics.ai-coding-tools",
+      "dev.git.first-commit"
+    ],
+    "aliases": [
+      "코딩 에이전트 사용",
+      "Claude Code",
+      "Codex",
+      "CLAUDE.md"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/best-practices"
+    ]
+  },
+  {
+    "id": "ax.governance.ai-risk",
+    "title": "AI 위험 관리와 규제 대응",
+    "en": "AI Risk Management and Regulation",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "AI 기능의 위험을 찾아 관리 체계를 세우고 규제 요구를 근거로 설계에 반영한다.",
+    "objectives": [
+      "위험 관리 틀로 AI 기능의 위험을 식별하고 대응을 정할 수 있다",
+      "규제 요구를 근거로 기록과 고지 방식을 설계할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.basics.personal-data"
+    ],
+    "aliases": [
+      "AI 거버넌스",
+      "AI 기본법",
+      "NIST AI RMF",
+      "EU AI Act"
+    ],
+    "refs": [
+      "https://www.nist.gov/itl/ai-risk-management-framework",
+      "https://genai.owasp.org/llm-top-10/",
+      "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-04"
+  }
+]

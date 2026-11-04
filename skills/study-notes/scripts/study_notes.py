@@ -16,6 +16,11 @@ Claude Code 또는 OpenAI Codex의 세션 기록에서 지난 정리 이후의 �
                          (사전에 없는 개념을 후보함에 적는다)
   study_notes.py commit  --agent claude|codex --session ID --file NOTE_MD [--notes-root DIR]
                          (개념노트를 검사해 등록한다. 통과하지 못하면 오류를 보여 주고 등록하지 않는다)
+  study_notes.py extract ... --all          (u 옵션: 후보를 모두 알려 준다)
+  study_notes.py queue-add --session ID --ids ID [ID ...]   (주제 목록에 넣는다. 이미 쓰거나 목록에 있으면 건너뛴다)
+  study_notes.py queue-next [--limit N]     (이번에 쓸 주제. 한 번에 30개까지)
+  study_notes.py queue-done --id ID         (쓴 주제를 검사해 완료 표시. 토큰이 끊겨도 남는다)
+  study_notes.py queue-bundle               (완료한 주제를 20개씩 노트 파일로 묶어 등록한다)
   study_notes.py status  --agent claude|codex [--cwd PATH] [--session ID] [--notes-root DIR]
   study_notes.py level   [N|이름] [--notes-root DIR]
   study_notes.py cancel  --agent claude|codex [--cwd PATH] [--session ID] [--notes-root DIR]
@@ -48,6 +53,12 @@ DEFAULT_NOTES_ROOT = Path(os.environ.get("STUDY_NOTES_ROOT") or (Path.home() / "
 # 개념노트는 특정 프로젝트에 묶이지 않으므로 한 폴더에 모은다. 경로를 다루기 쉽게 공백을 뺀다.
 CONCEPT_FOLDER = "AX개념노트"
 CANDIDATE_FILE = "concept_candidates.md"
+QUEUE_FILE = "topic_queue.json"
+PARTS_DIR = ".parts"
+# u 옵션의 한도. 사전이 늘면 함께 올린다. 주제 하나가 약 1만 자이고 앱은 파일 하나에 50만 자까지 받는다.
+MAX_RUN_TOPICS = 30
+TOPICS_PER_FILE = 20
+AGENT_CONCURRENCY = 5
 
 TOOL_INPUT_MAX = 300
 TOOL_RESULT_MAX = 500
@@ -405,8 +416,11 @@ def fmt_local(ts: str | None) -> str:
         return ts
 
 
+URL_RE = re.compile(r"https?://\S+")
+
+
 def spoken_text(recs: list[dict]) -> str:
-    """사람과 AI가 나눈 말만 모은다. 도구 입출력의 코드 속 낱말은 그 개념을 다뤘다는 근거가 못 된다."""
+    """사람과 AI가 나눈 말만 모은다. 도구 입출력의 코드 속 낱말과 주소의 https는 그 개념을 다뤘다는 근거가 못 된다."""
     parts: list[str] = []
     for rec in recs:
         content = rec.get("message", {}).get("content")
@@ -414,7 +428,7 @@ def spoken_text(recs: list[dict]) -> str:
             parts.append(clean_text(content))
         elif isinstance(content, list):
             parts.extend(clean_text(b.get("text", "")) for b in content if isinstance(b, dict) and b.get("type") == "text")
-    return "\n".join(part for part in parts if part)
+    return URL_RE.sub(" ", "\n".join(part for part in parts if part))
 
 
 def write_delta_file(path: Path, recs: list[dict], project: str, session: str) -> int:
@@ -582,7 +596,10 @@ def cmd_extract(args) -> int:
     suggested, _ = next_note_path(notes_root, CONCEPT_FOLDER)
     catalog = concepts.load_catalog()
     if n:
-        found = concepts.find_candidates(spoken_text(recs), catalog, level, concepts.load_used(notes_root))
+        # 이미 쓴 개념과 목록에 들어간 주제는 후보로 내지 않는다.
+        taken = {**concepts.load_used(notes_root), **{t["id"]: True for t in load_queue(notes_root)["topics"]}}
+        limit = len(catalog["items"]) if args.all else concepts.CANDIDATE_LIMIT
+        found = concepts.find_candidates(spoken_text(recs), catalog, level, taken, limit)
     else:
         found = {"candidates": [], "candidate_total": 0, "other_levels": {}}
     concept_dir = notes_root / CONCEPT_FOLDER
@@ -633,6 +650,7 @@ StudyNotes/
   settings.json        기억한 설명 수준 (예: {"level": 3})
   concepts_used.json   이미 쓴 개념 (항목을 지우면 그 개념을 다시 쓸 수 있음)
   concept_candidates.md  대화에 나왔지만 사전에 없는 개념
+  topic_queue.json     u 옵션의 주제 목록 (.parts/에 완료한 주제가 등록 전까지 남습니다)
   .state/              증분 정리용 체크포인트 (지우면 처음부터 다시 정리됨)
   AX개념노트/          실행 1회마다 AX개념노트_YYYY-MM-DD_NN.md 한 파일
   <프로젝트명>/        v1 스킬이 만든 예전 노트 (그대로 둡니다)
@@ -651,7 +669,7 @@ StudyNotes/
 3. 사전은 아직 백엔드·API 중심입니다. 대화에 나온 개념이 사전에 없으면 노트를 만들지 않고 후보함에 적습니다
 4. 설명 수준(1 왕초보 · 2 입문 · 3 기초 · 4 실전 · 5 심화)은 처음 실행할 때 한 번 고르면 기억됩니다.
    바꾸려면 `/study-notes 4`, `/study-notes 실전`처럼 붙여 부릅니다 (Codex는 `$study-notes 4`)
-5. 옵션: `/study-notes h` 사용법 · `/study-notes d` 현재 단계와 정리 상태 · `/study-notes s` 진행 중 정리 취소
+5. 옵션: `/study-notes u` 많이 쓰기(한 번에 30개까지) · `/study-notes c` 남은 주제 이어 쓰기 · `/study-notes h` 사용법 · `/study-notes d` 현재 단계와 정리 상태 · `/study-notes s` 진행 중 정리 취소
    (정리 도중 ESC로 멈춘 뒤 `s`를 부르면 미완성 노트를 지우고, 다음 실행 때 같은 대화부터 다시 정리합니다)
 
 ## 상태 확인
@@ -811,6 +829,19 @@ def cmd_commit(args) -> int:
     state.setdefault("files", []).append(str(note))
     save_state(notes_root, session, state)
 
+    topics, level_text = register_note(notes_root, note, pending.get("level"), concept_ids)
+
+    dp = delta_path(notes_root, session)
+    if dp.exists():
+        dp.unlink()
+    print(json.dumps({"committed": str(note), "topics": len(topics), "run_count": state["run_count"],
+                      "level": level_text or None, "index": str(notes_root / "index.md"), "concepts": concept_ids},
+                     ensure_ascii=False, indent=2))
+    return 0
+
+
+def register_note(notes_root: Path, note: Path, fallback_level, concept_ids: list[str]) -> tuple[list[dict], str]:
+    """노트를 index.md에 올리고 쓴 개념을 남긴다."""
     readme = notes_root / "README.md"
     if not readme.exists():
         readme.write_text(README_TEXT, encoding="utf-8")
@@ -825,7 +856,7 @@ def cmd_commit(args) -> int:
     rel = note.relative_to(notes_root).as_posix()
     topics = parse_topics(note)
     # 노트에 적힌 수준이 우선이다. 없으면 extract 때의 수준을 쓴다.
-    level = note_level(note) or pending.get("level")
+    level = note_level(note) or fallback_level
     level_text = level_label(level) if level in LEVELS else ""
     rows = [
         table_row({
@@ -839,13 +870,204 @@ def cmd_commit(args) -> int:
         fh.write("\n".join(rows) + ("\n" if rows else ""))
     if concept_ids:
         concepts.mark_used(notes_root, concept_ids, rel, date)
+    return topics, level_text
 
-    dp = delta_path(notes_root, session)
+
+# ---------- 주제 목록 (u, c) ----------
+# 완료 표시는 주제마다 .parts/<id>.md 파일 하나다. 여러 에이전트가 동시에 끝내도 목록 파일을 고치지 않으므로 서로 덮어쓰지 않고,
+# 토큰이 끊겨도 검사를 통과한 주제는 남는다. 상태는 파일에서 계산한다: 쓴 개념에 있으면 done, 파일이 있으면 written, 없으면 pending.
+
+def load_queue(notes_root: Path) -> dict:
+    path = notes_root / QUEUE_FILE
+    data = {}
+    if path.exists():
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            raise SystemExit(f"주제 목록을 읽을 수 없습니다: {path}. 파일을 고치거나 지운 뒤 다시 실행하세요") from None
+    return {"topics": data.get("topics", []), "scans": data.get("scans", {})}
+
+
+def save_queue(notes_root: Path, queue: dict) -> None:
+    path = notes_root / QUEUE_FILE
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temp = path.with_suffix(".tmp")
+    temp.write_text(json.dumps(queue, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    os.replace(temp, path)
+
+
+def part_path(notes_root: Path, topic_id: str) -> Path:
+    return notes_root / PARTS_DIR / f"{topic_id}.md"
+
+
+def draft_path(notes_root: Path, topic_id: str) -> Path:
+    return notes_root / PARTS_DIR / f"{topic_id}.draft"
+
+
+def queue_counts(notes_root: Path, queue: dict | None = None) -> dict:
+    queue = queue or load_queue(notes_root)
+    used = concepts.load_used(notes_root)
+    done = [t for t in queue["topics"] if t["id"] in used]
+    written = [t for t in queue["topics"] if t["id"] not in used and part_path(notes_root, t["id"]).exists()]
+    return {"total": len(queue["topics"]), "done": len(done), "written": len(written),
+            "pending": len(queue["topics"]) - len(done) - len(written)}
+
+
+def cmd_queue_add(args) -> int:
+    """고른 주제를 목록에 넣는다. 이 대화를 살펴본 위치는 노트가 만들어질 때 체크포인트가 된다."""
+    notes_root = Path(args.notes_root).expanduser().resolve()
+    state = load_state(notes_root, args.session)
+    pending = state.pop("_pending", None)
+    if not pending or not pending.get("last_uuid"):
+        raise SystemExit("먼저 extract를 실행해야 합니다 (pending 체크포인트 없음)")
+    catalog = concepts.load_catalog()
+    by_id = {item["id"]: item for item in catalog["items"]}
+    used = concepts.load_used(notes_root)
+    queue = load_queue(notes_root)
+    queued = {t["id"] for t in queue["topics"]}
+    added, skipped = [], []
+    for topic_id in dict.fromkeys(args.ids):
+        item = by_id.get(topic_id)
+        if item is None:
+            raise SystemExit(f"사전에 없는 id입니다: {topic_id}")
+        if item["kind"] != "topic":
+            raise SystemExit(f"용어는 주제가 될 수 없습니다: {topic_id} (주제 {item.get('parent')}를 쓰세요)")
+        if item["level"] != pending["level"]:
+            raise SystemExit(f"{topic_id}는 {item['level']}단계입니다. 이번 단계는 {pending['level']}단계입니다")
+        if topic_id in used or topic_id in queued:
+            skipped.append(topic_id)
+            continue
+        queue["topics"].append({"id": topic_id, "title": item["title"], "level": item["level"],
+                                "importance": item["importance"], "added": dt.date.today().strftime("%Y-%m-%d")})
+        queued.add(topic_id)
+        added.append(topic_id)
+    queue["scans"][args.session] = {"last_uuid": pending["last_uuid"], "last_timestamp": pending["last_timestamp"]}
+    save_queue(notes_root, queue)
+    save_state(notes_root, args.session, state)
+    dp = delta_path(notes_root, args.session)
     if dp.exists():
         dp.unlink()
-    print(json.dumps({"committed": str(note), "topics": len(topics), "run_count": state["run_count"],
-                      "level": level_text or None, "index": str(index), "concepts": concept_ids},
-                     ensure_ascii=False, indent=2))
+    print(json.dumps({"added": added, "skipped": skipped, "queue": queue_counts(notes_root, queue),
+                      "queue_file": str(notes_root / QUEUE_FILE)}, ensure_ascii=False, indent=2))
+    return 0
+
+
+def cmd_queue_next(args) -> int:
+    """이번에 쓸 주제를 중요도 순으로 알려 준다. 쓰고 나서 등록 전인 주제는 다시 내지 않는다."""
+    notes_root = Path(args.notes_root).expanduser().resolve()
+    queue = load_queue(notes_root)
+    used = concepts.load_used(notes_root)
+    (notes_root / PARTS_DIR).mkdir(parents=True, exist_ok=True)
+    waiting = [t for t in queue["topics"] if t["id"] not in used and not part_path(notes_root, t["id"]).exists()]
+    waiting.sort(key=lambda t: (t["importance"], t["level"], queue["topics"].index(t)))
+    limit = min(args.limit or MAX_RUN_TOPICS, MAX_RUN_TOPICS)
+    print(json.dumps({
+        "topics": [{"id": t["id"], "title": t["title"], "importance": concepts.STARS[t["importance"]],
+                    "draft_file": str(draft_path(notes_root, t["id"])), **level_info(t["level"])}
+                   for t in waiting[:limit]],
+        "queue": queue_counts(notes_root, queue),
+        "max_run_topics": MAX_RUN_TOPICS,
+        "topics_per_file": TOPICS_PER_FILE,
+        "agent_concurrency": AGENT_CONCURRENCY,
+        "catalog_version": concepts.load_catalog()["version"],
+    }, ensure_ascii=False, indent=2))
+    return 0
+
+
+def concept_note_text(topics: list[str], number: int, level: int, version: str, created: str) -> str:
+    """주제 조각을 합쳐 노트 한 편의 글을 만든다."""
+    label = level_label(level)
+    topics = [part.strip() for part in topics]
+    titles = [re.match(r"## \d+\. (.+)", part).group(1) for part in topics]
+    # 쓰다 만 조각에는 메타 줄이 없을 수 있다. 빠진 칸은 검사가 알려 준다.
+    stars = [found.group(1) if (found := re.search(r"`중요도` (★+)", part)) else "" for part in topics]
+    short = [re.sub(r" \([^()]*\)$", "", title) for title in titles]
+    head = (
+        f"---\ntitle: AX 개념노트 #{number:02d} · {label}\nproject: AX 개념노트\nlevel: {level}\n"
+        f"level_name: {LEVELS[level]['name']}\ncatalog_version: {version}\ncreated: {created}\ntopics: {len(topics)}\n---\n"
+        f"# AX 개념노트 #{number:02d} · {label}\n\n"
+        f"> 설명 수준: {label}. {LEVELS[level]['audience']}에게 맞춰 썼어요.\n>\n"
+        f"> 이 노트에서 배우는 주제: {', '.join(short[:5])}{' 등' if len(short) > 5 else ''}\n\n"
+        "## 목차\n| # | 주제 | 중요도 | 단계 |\n|---|---|---|---|\n"
+        + "".join(f"| {i} | {table_cell(t)} | {s} | {label} |\n" for i, (t, s) in enumerate(zip(short, stars), 1))
+        + "\n---\n\n"
+    )
+    body = []
+    for i, part in enumerate(topics, 1):
+        text = re.sub(r"^## \d+\. ", f"## {i}. ", part.strip(), count=1)
+        text = re.sub(r"\n+---\s*$", "", text)
+        body.append(text + "\n\n---\n\n")
+    return head + "".join(body)
+
+
+def cmd_queue_done(args) -> int:
+    """에이전트가 쓴 주제를 검사하고, 통과하면 완료 표시를 남긴다."""
+    notes_root = Path(args.notes_root).expanduser().resolve()
+    topic_id = args.id
+    draft, part = draft_path(notes_root, topic_id), part_path(notes_root, topic_id)
+    entry = next((t for t in load_queue(notes_root)["topics"] if t["id"] == topic_id), None)
+    if entry is None:
+        raise SystemExit(f"목록에 없는 주제입니다: {topic_id}")
+    if not draft.exists():
+        if part.exists():
+            print(json.dumps({"done": topic_id, "already": True}, ensure_ascii=False))
+            return 0
+        raise SystemExit(f"쓴 파일이 없습니다: {draft}")
+    text = draft.read_text(encoding="utf-8")
+    if not re.match(r"## \d+\. .+", text.lstrip()):
+        raise SystemExit("주제 조각은 '## 1. 제목 (영어)' 줄로 시작해야 합니다. frontmatter와 목차는 쓰지 않습니다")
+    catalog = concepts.load_catalog()
+    whole = concept_note_text([text], 1, entry["level"], catalog["version"], "시험")
+    errors = concepts.lint_concept_note(whole, catalog, concepts.load_used(notes_root))
+    if concepts.note_concept_ids(whole) != [topic_id]:
+        errors.append(f"메타 줄의 `개념`이 {topic_id} 하나여야 한다")
+    if errors:
+        raise SystemExit("주제 검사를 통과하지 못했습니다. 고친 뒤 다시 실행하세요:\n- " + "\n- ".join(errors))
+    os.replace(draft, part)
+    print(json.dumps({"done": topic_id, "part": str(part)}, ensure_ascii=False))
+    return 0
+
+
+def cmd_queue_bundle(args) -> int:
+    """완료한 주제를 단계별로 20개씩 묶어 노트로 등록한다. 살펴본 대화의 체크포인트도 이때 옮긴다."""
+    notes_root = Path(args.notes_root).expanduser().resolve()
+    queue = load_queue(notes_root)
+    used = concepts.load_used(notes_root)
+    ready = [t for t in queue["topics"] if t["id"] not in used and part_path(notes_root, t["id"]).exists()]
+    ready.sort(key=lambda t: (t["level"], t["importance"], queue["topics"].index(t)))
+    catalog = concepts.load_catalog()
+    folder = notes_root / CONCEPT_FOLDER
+    folder.mkdir(parents=True, exist_ok=True)
+    notes = []
+    created = dt.datetime.now().strftime("%Y-%m-%d %H:%M")
+    for level in sorted({t["level"] for t in ready}):
+        group = [t for t in ready if t["level"] == level]
+        for start in range(0, len(group), TOPICS_PER_FILE):
+            chunk = group[start:start + TOPICS_PER_FILE]
+            parts = [part_path(notes_root, t["id"]).read_text(encoding="utf-8") for t in chunk]
+            number = len(list(folder.glob("*.md"))) + 1
+            text = concept_note_text(parts, number, level, catalog["version"], created)
+            errors = concepts.lint_concept_note(text, catalog, concepts.load_used(notes_root), TOPICS_PER_FILE)
+            if errors:
+                raise SystemExit("노트 검사를 통과하지 못했습니다:\n- " + "\n- ".join(errors))
+            note, _ = next_note_path(notes_root, CONCEPT_FOLDER)
+            note.write_text(text, encoding="utf-8")
+            ids = [t["id"] for t in chunk]
+            register_note(notes_root, note, level, ids)
+            for t in chunk:
+                part_path(notes_root, t["id"]).unlink()
+            notes.append({"file": str(note), "level": level_label(level), "chars": len(text),
+                          "topics": [t["title"] for t in chunk]})
+    if notes:
+        for session, scan in queue["scans"].items():
+            state = load_state(notes_root, session)
+            state["last_uuid"], state["last_timestamp"] = scan["last_uuid"], scan["last_timestamp"]
+            state["run_count"] = state.get("run_count", 0) + 1
+            state.setdefault("files", []).extend(n["file"] for n in notes)
+            save_state(notes_root, session, state)
+        queue["scans"] = {}
+        save_queue(notes_root, queue)
+    print(json.dumps({"notes": notes, "queue": queue_counts(notes_root, queue)}, ensure_ascii=False, indent=2))
     return 0
 
 
@@ -871,6 +1093,7 @@ def cmd_status(args) -> int:
         "in_progress": pending_info(state),
         "catalog_version": concepts.load_catalog()["version"],
         "concepts_used": len(concepts.load_used(notes_root)),
+        "queue": queue_counts(notes_root),
         "settings": str(settings_path(notes_root)),
     }, ensure_ascii=False, indent=2))
     return 0
@@ -1007,7 +1230,28 @@ def main(argv=None) -> int:
     common(p)
     p.add_argument("--level", default=None,
                    help="이번 노트의 설명 수준: 1~5 또는 왕초보·입문·기초·실전·심화 (다음 실행을 위해 기억된다)")
+    p.add_argument("--all", action="store_true", help="후보를 모두 알려 준다 (u 옵션)")
     p.set_defaults(fn=cmd_extract)
+
+    p = sub.add_parser("queue-add", help="주제 목록에 넣기 (이미 쓰거나 목록에 있으면 건너뛴다)")
+    p.add_argument("--session", required=True)
+    p.add_argument("--ids", nargs="+", required=True, help="항목 id")
+    p.add_argument("--notes-root", default=str(DEFAULT_NOTES_ROOT))
+    p.set_defaults(fn=cmd_queue_add)
+
+    p = sub.add_parser("queue-next", help="이번에 쓸 주제 보기")
+    p.add_argument("--limit", type=int, default=None, help=f"최대 {MAX_RUN_TOPICS}개")
+    p.add_argument("--notes-root", default=str(DEFAULT_NOTES_ROOT))
+    p.set_defaults(fn=cmd_queue_next)
+
+    p = sub.add_parser("queue-done", help="쓴 주제를 검사해 완료 표시")
+    p.add_argument("--id", required=True)
+    p.add_argument("--notes-root", default=str(DEFAULT_NOTES_ROOT))
+    p.set_defaults(fn=cmd_queue_done)
+
+    p = sub.add_parser("queue-bundle", help="완료한 주제를 노트 파일로 묶어 등록")
+    p.add_argument("--notes-root", default=str(DEFAULT_NOTES_ROOT))
+    p.set_defaults(fn=cmd_queue_bundle)
 
     p = sub.add_parser("commit", help="작성한 노트를 등록하고 체크포인트 갱신")
     common(p)

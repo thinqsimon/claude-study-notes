@@ -261,7 +261,7 @@ def _meta_ids(lines: list[str]) -> list[str]:
     return []
 
 
-def lint_concept_note(text: str, catalog: dict, used) -> list[str]:
+def lint_concept_note(text: str, catalog: dict, used, max_topics: int = MAX_TOPICS_PER_NOTE) -> list[str]:
     """lint_note에 더해, 앱과 index.md가 읽는 모양과 '한 번 쓴 개념은 다시 쓰지 않는다'를 확인한다."""
     errors = lint_note(text, catalog)
     front = frontmatter(text)
@@ -284,8 +284,8 @@ def lint_concept_note(text: str, catalog: dict, used) -> list[str]:
         if line.startswith("## ") and line.strip() != "## 목차" and not re.match(r"^## \d+\. ", line):
             errors.append(f"주제 제목은 '## N. 제목' 모양이어야 한다: {line[:40]}")
     topics = split_note_topics(text)
-    if len(topics) > MAX_TOPICS_PER_NOTE:
-        errors.append(f"한 노트의 주제는 {MAX_TOPICS_PER_NOTE}개까지다: {len(topics)}개")
+    if len(topics) > max_topics:
+        errors.append(f"한 노트의 주제는 {max_topics}개까지다: {len(topics)}개")
     by_id = {item["id"]: item for item in catalog["items"]}
     seen: set[str] = set()
     for title, lines in topics:

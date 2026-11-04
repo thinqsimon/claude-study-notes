@@ -18,6 +18,9 @@
       "백엔드",
       "backend",
       "서버 개발"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Introduction"
     ]
   },
   {
@@ -102,6 +105,10 @@
       "127.0.0.1",
       "8000번 포트",
       "포트 번호"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/Port",
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Tools_and_setup/set_up_a_local_testing_server"
     ]
   },
   {
@@ -124,6 +131,9 @@
       "API",
       "What an API Is",
       "에이피아이"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/API"
     ]
   },
   {
@@ -146,6 +156,9 @@
       "JSON",
       "What JSON Is",
       "제이슨"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/JSON"
     ]
   },
   {
@@ -195,6 +208,9 @@
       "로그인",
       "login",
       "회원가입"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/Authentication"
     ]
   },
   {
@@ -221,6 +237,10 @@
       "시크릿",
       "api key",
       "secret"
+    ],
+    "refs": [
+      "https://docs.github.com/en/rest/authentication/keeping-your-api-credentials-secure",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html"
     ]
   },
   {
@@ -242,6 +262,9 @@
       "오류 메시지",
       "에러 메시지",
       "error message"
+    ],
+    "refs": [
+      "https://docs.python.org/3/tutorial/errors.html"
     ]
   },
   {
@@ -7441,7 +7464,8 @@
       "서비스 특성에 따른 프로토콜 선택의 손익을 근거를 들어 따질 수 있다"
     ],
     "prerequisites": [
-      "be.http.headers-body"
+      "be.http.headers-body",
+      "ops.network.tcp-internals"
     ],
     "aliases": [
       "HTTP/1.1·HTTP/2·HTTP/3의 연결과 성능",

@@ -1,0 +1,513 @@
+[
+  {
+    "id": "fe.basics.web-page-parts",
+    "title": "웹 페이지의 세 재료: HTML·CSS·JavaScript",
+    "en": "Three Materials of a Web Page",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "웹 기초",
+    "summary": "웹 페이지는 내용을 담는 HTML, 모양을 꾸미는 CSS, 움직임을 만드는 JavaScript로 이루어진다.",
+    "objectives": [
+      "HTML·CSS·JavaScript가 맡는 일을 집에 빗대어 설명할 수 있다",
+      "웹 페이지의 어느 부분이 어떤 재료로 만들어졌는지 짐작할 수 있다"
+    ],
+    "prerequisites": [
+      "be.http.web-conversation"
+    ],
+    "aliases": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "자바스크립트"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/How_the_web_works"
+    ]
+  },
+  {
+    "id": "fe.basics.frontend-role",
+    "title": "프론트엔드가 하는 일",
+    "en": "What the Frontend Does",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "웹 기초",
+    "summary": "프론트엔드는 사용자가 보고 누르는 화면을 만들고 서버와 주고받은 내용을 보여 준다.",
+    "objectives": [
+      "프론트엔드와 백엔드의 역할을 식당에 빗대어 나눌 수 있다",
+      "버튼을 눌렀을 때 화면과 서버에서 일어나는 일을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "be.basics.what-is-backend"
+    ],
+    "aliases": [
+      "프론트엔드",
+      "frontend"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/How_the_web_works"
+    ]
+  },
+  {
+    "id": "fe.basics.browser-devtools",
+    "title": "브라우저 개발자 도구 둘러보기",
+    "en": "Browser DevTools Tour",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "웹 기초",
+    "summary": "브라우저에 들어 있는 개발자 도구로 화면의 구조와 오류, 오간 요청을 들여다본다.",
+    "objectives": [
+      "개발자 도구를 열고 Console과 Network 탭이 보여 주는 것을 말할 수 있다",
+      "화면이 안 될 때 개발자 도구에서 무엇을 찾아볼지 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "be.http.web-conversation"
+    ],
+    "aliases": [
+      "개발자 도구",
+      "devtools"
+    ],
+    "refs": [
+      "https://developer.chrome.com/docs/devtools/overview"
+    ]
+  },
+  {
+    "id": "fe.basics.responsive-idea",
+    "title": "화면 크기에 맞추는 반응형 화면",
+    "en": "Responsive Screens",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "휴대폰과 컴퓨터처럼 크기가 다른 화면에서도 보기 좋게 배치를 바꾸는 방식이다.",
+    "objectives": [
+      "반응형 화면이 필요한 이유를 예를 들어 말할 수 있다",
+      "같은 페이지가 화면 크기에 따라 달라지는 모습을 찾아볼 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.web-page-parts"
+    ],
+    "aliases": [
+      "반응형",
+      "responsive"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design"
+    ]
+  },
+  {
+    "id": "fe.basics.framework-why",
+    "title": "화면 라이브러리와 프레임워크를 쓰는 이유",
+    "en": "Why Use UI Libraries and Frameworks",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "React 같은 화면 도구는 복잡한 화면을 작은 부품으로 나눠 만들게 도와주고, Next.js는 그 위에 페이지 구성을 더한다.",
+    "objectives": [
+      "화면을 부품으로 나누는 이점을 레고에 빗대어 설명할 수 있다",
+      "React와 Next.js가 어떤 관계인지 한 문장으로 말할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.web-page-parts"
+    ],
+    "aliases": [
+      "React",
+      "리액트"
+    ],
+    "refs": [
+      "https://react.dev/learn/thinking-in-react"
+    ]
+  },
+  {
+    "id": "fe.html.first-page",
+    "title": "HTML로 첫 페이지 만들기",
+    "en": "Your First HTML Page",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "HTML",
+    "summary": "제목과 문단, 링크, 이미지 태그로 브라우저에 뜨는 첫 페이지를 만든다.",
+    "objectives": [
+      "HTML 파일을 만들어 브라우저에서 열 수 있다",
+      "제목·문단·링크·이미지 태그를 보고 따라 쓸 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.web-page-parts"
+    ],
+    "aliases": [
+      "HTML 태그",
+      "시맨틱 태그",
+      "index.html"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content"
+    ]
+  },
+  {
+    "id": "fe.html.forms",
+    "title": "HTML 폼과 입력 칸",
+    "en": "HTML Forms",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "HTML",
+    "summary": "사용자가 값을 입력해 서버로 보내는 입력 칸과 버튼을 만든다.",
+    "objectives": [
+      "입력 칸과 라벨, 버튼으로 폼을 만들 수 있다",
+      "입력 종류와 필수 입력 표시를 보고 따라 쓸 수 있다"
+    ],
+    "prerequisites": [
+      "fe.html.first-page"
+    ],
+    "aliases": [
+      "HTML 폼",
+      "입력 칸",
+      "form 태그",
+      "label 태그"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Your_first_form"
+    ]
+  },
+  {
+    "id": "fe.css.box-flex",
+    "title": "CSS 박스 모델과 Flexbox",
+    "en": "CSS Box Model and Flexbox",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "CSS",
+    "summary": "요소의 여백과 테두리를 정하고 Flexbox로 나란히 배치한다.",
+    "objectives": [
+      "margin과 padding의 차이를 화면에서 보일 수 있다",
+      "Flexbox로 요소를 가로로 나란히 놓을 수 있다"
+    ],
+    "prerequisites": [
+      "fe.html.first-page"
+    ],
+    "aliases": [
+      "박스 모델",
+      "box model",
+      "Flexbox",
+      "margin",
+      "padding"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Box_model",
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Flexbox"
+    ]
+  },
+  {
+    "id": "fe.js.basics",
+    "title": "JavaScript 기초 문법",
+    "en": "JavaScript Basics",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "JavaScript",
+    "summary": "변수와 조건문, 함수, 배열로 브라우저에서 도는 간단한 코드를 쓴다.",
+    "objectives": [
+      "변수와 함수를 만들어 콘솔에서 실행할 수 있다",
+      "배열과 객체를 보고 따라 쓸 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.web-page-parts"
+    ],
+    "aliases": [
+      "JS 문법",
+      "const",
+      "화살표 함수",
+      "console.log"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting"
+    ]
+  },
+  {
+    "id": "fe.js.dom-events",
+    "title": "DOM과 이벤트",
+    "en": "The DOM and Events",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "JavaScript",
+    "summary": "JavaScript로 화면 요소를 찾아 바꾸고 클릭 같은 사용자 동작에 반응한다.",
+    "objectives": [
+      "버튼을 누르면 글자가 바뀌는 코드를 따라 만들 수 있다",
+      "DOM이 무엇인지 HTML과 연결해 말할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.js.basics"
+    ],
+    "aliases": [
+      "addEventListener",
+      "querySelector",
+      "DOM 조작"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/DOM_scripting",
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events"
+    ]
+  },
+  {
+    "id": "fe.js.fetch-first",
+    "title": "fetch로 API 호출하기",
+    "en": "Calling APIs with fetch",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "JavaScript",
+    "summary": "브라우저 코드에서 서버 API를 불러 받은 JSON을 화면에 보여 준다.",
+    "objectives": [
+      "fetch로 API를 불러 결과를 콘솔에 찍을 수 있다",
+      "async와 await를 보고 따라 쓸 수 있다",
+      "응답의 상태 코드를 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.js.basics",
+      "be.http.methods-status"
+    ],
+    "aliases": [
+      "fetch API",
+      "response.json"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch"
+    ]
+  },
+  {
+    "id": "fe.react.first-component",
+    "title": "React 컴포넌트와 props",
+    "en": "React Components and Props",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "React",
+    "summary": "화면을 함수로 된 부품으로 나누고 props로 값을 넘겨 다시 쓴다.",
+    "objectives": [
+      "컴포넌트를 만들어 화면에 넣을 수 있다",
+      "props로 값을 넘겨 같은 부품을 다르게 보여 줄 수 있다"
+    ],
+    "prerequisites": [
+      "fe.js.basics"
+    ],
+    "aliases": [
+      "컴포넌트",
+      "component",
+      "props",
+      "JSX"
+    ],
+    "refs": [
+      "https://react.dev/learn/your-first-component",
+      "https://react.dev/learn/passing-props-to-a-component"
+    ]
+  },
+  {
+    "id": "fe.react.state-first",
+    "title": "useState로 화면 바꾸기",
+    "en": "Updating the Screen with useState",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "React",
+    "summary": "컴포넌트가 기억할 값을 state로 두고 값이 바뀌면 화면이 다시 그려지게 한다.",
+    "objectives": [
+      "useState로 카운터와 입력 칸을 따라 만들 수 있다",
+      "일반 변수와 state의 차이를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.react.first-component"
+    ],
+    "aliases": [
+      "useState",
+      "상태 값"
+    ],
+    "refs": [
+      "https://react.dev/learn/state-a-components-memory"
+    ]
+  },
+  {
+    "id": "fe.next.first-page",
+    "title": "Next.js로 첫 페이지 만들기",
+    "en": "Your First Next.js Page",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "Next.js",
+    "summary": "폴더 이름이 곧 주소가 되는 Next.js로 페이지를 만들고 실행한다.",
+    "objectives": [
+      "Next.js 프로젝트를 만들어 실행할 수 있다",
+      "폴더와 page 파일로 새 주소를 추가할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.react.first-component"
+    ],
+    "aliases": [
+      "Next.js",
+      "넥스트",
+      "App Router"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/getting-started/installation"
+    ]
+  },
+  {
+    "id": "fe.internals.render-pipeline",
+    "title": "브라우저 렌더링 파이프라인",
+    "en": "Browser Rendering Pipeline",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "프론트엔드 내부",
+    "summary": "HTML을 받아 화면에 그리기까지의 단계와 각 단계의 비용으로 성능 문제를 분석한다.",
+    "objectives": [
+      "레이아웃과 페인트, 합성의 차이로 느린 화면의 원인을 찾을 수 있다",
+      "렌더링을 막는 자원을 찾아 줄일 수 있다"
+    ],
+    "aliases": [
+      "렌더링 파이프라인",
+      "리플로우",
+      "reflow",
+      "repaint",
+      "critical rendering path"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/How_browsers_work"
+    ]
+  },
+  {
+    "id": "fe.internals.react-reconciliation",
+    "title": "React 재조정과 렌더링 모델",
+    "en": "React Reconciliation",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "프론트엔드 내부",
+    "summary": "state가 바뀔 때 React가 무엇을 다시 그리고 무엇을 유지하는지 원리로 따진다.",
+    "objectives": [
+      "재조정이 트리 위치로 상태를 유지하는 원리를 설명할 수 있다",
+      "불필요한 리렌더링을 측정하고 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "fe.react.state-first"
+    ],
+    "aliases": [
+      "reconciliation",
+      "React Profiler"
+    ],
+    "refs": [
+      "https://react.dev/learn/preserving-and-resetting-state",
+      "https://react.dev/learn/render-and-commit"
+    ]
+  },
+  {
+    "id": "fe.internals.server-components",
+    "title": "React 서버 컴포넌트와 하이드레이션",
+    "en": "Server Components and Hydration",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "프론트엔드 내부",
+    "summary": "서버 렌더링 결과가 브라우저로 전달되어 하이드레이션되는 내부 과정과 경계의 손익을 분석한다.",
+    "objectives": [
+      "RSC 페이로드와 하이드레이션의 단계를 설명하고 경계를 근거를 들어 정할 수 있다",
+      "하이드레이션 불일치의 원인을 찾아 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "fe.next.first-page"
+    ],
+    "aliases": [
+      "서버 컴포넌트",
+      "Server Components",
+      "하이드레이션",
+      "hydration",
+      "RSC"
+    ],
+    "refs": [
+      "https://react.dev/reference/rsc/server-components",
+      "https://nextjs.org/docs/app/getting-started/server-and-client-components"
+    ]
+  },
+  {
+    "id": "fe.security.browser-model",
+    "title": "브라우저 보안 모델: 동일 출처와 CSP",
+    "en": "Browser Security Model",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "프론트엔드 내부",
+    "summary": "동일 출처 정책과 CSP가 막는 공격과 막지 못하는 공격을 구분한다.",
+    "objectives": [
+      "동일 출처 정책이 막는 범위와 한계를 설명할 수 있다",
+      "CSP를 설계하고 위반 보고로 문제를 분석할 수 있다"
+    ],
+    "prerequisites": [
+      "be.http.cors"
+    ],
+    "aliases": [
+      "nonce",
+      "report-to",
+      "COOP",
+      "브라우저 보안 모델"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP"
+    ]
+  },
+  {
+    "id": "fe.internals.web-vitals",
+    "title": "Core Web Vitals 분석과 최적화",
+    "en": "Core Web Vitals Optimization",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "프론트엔드 내부",
+    "summary": "사용자 체감 지표를 재서 병목을 찾고 개선의 효과를 근거로 판단한다.",
+    "objectives": [
+      "LCP·INP·CLS를 재서 원인을 찾을 수 있다",
+      "최적화의 효과와 비용을 측정값으로 따질 수 있다"
+    ],
+    "prerequisites": [
+      "fe.internals.render-pipeline"
+    ],
+    "aliases": [
+      "Core Web Vitals",
+      "웹 바이탈",
+      "LCP",
+      "INP"
+    ],
+    "refs": [
+      "https://web.dev/articles/vitals"
+    ]
+  },
+  {
+    "id": "fe.internals.event-loop",
+    "title": "브라우저 이벤트 루프와 마이크로태스크",
+    "en": "Browser Event Loop and Microtasks",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "프론트엔드 내부",
+    "summary": "태스크와 마이크로태스크의 실행 순서가 화면 응답성과 비동기 코드의 동작에 주는 영향을 분석한다.",
+    "objectives": [
+      "태스크와 마이크로태스크의 실행 순서를 코드로 보일 수 있다",
+      "긴 작업이 화면을 멈추는 원인을 찾아 나눌 수 있다"
+    ],
+    "prerequisites": [
+      "fe.js.fetch-first"
+    ],
+    "aliases": [
+      "브라우저 이벤트 루프",
+      "마이크로태스크",
+      "microtask",
+      "롱 태스크"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Execution_model"
+    ]
+  }
+]

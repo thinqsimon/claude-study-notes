@@ -23,6 +23,56 @@
     ]
   },
   {
+    "id": "rag.basics.rag-big-picture",
+    "title": "RAG: 자료를 찾아 보고 답하는 AI",
+    "en": "RAG at a Glance",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "RAG 기초",
+    "summary": "질문과 관련된 자료를 먼저 찾아 LLM에 함께 주어 그 자료를 근거로 답하게 하는 방식이다.",
+    "objectives": [
+      "RAG를 오픈북 시험에 빗대어 설명할 수 있다",
+      "회사 문서에 답하는 챗봇에 RAG가 필요한 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.what-is-llm",
+      "rag.embedding.meaning-as-numbers"
+    ],
+    "aliases": [
+      "RAG",
+      "검색 증강 생성",
+      "문서 기반 답변"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/rag"
+    ]
+  },
+  {
+    "id": "rag.basics.agent-big-picture",
+    "title": "AI 에이전트: 스스로 도구를 쓰는 AI",
+    "en": "AI Agents at a Glance",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "에이전트 기초",
+    "summary": "목표를 받으면 스스로 할 일을 나누고 도구를 써 가며 끝까지 해 보는 AI 프로그램이다.",
+    "objectives": [
+      "챗봇과 에이전트의 차이를 비서에 빗대어 설명할 수 있다",
+      "에이전트에게 일을 맡길 때 위험한 점을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.what-is-llm"
+    ],
+    "aliases": [
+      "AI 에이전트",
+      "에이전트"
+    ],
+    "refs": [
+      "https://www.anthropic.com/engineering/building-effective-agents"
+    ]
+  },
+  {
     "id": "rag.embedding.similarity-search",
     "title": "코사인 유사도로 비슷한 문장 찾기",
     "en": "Similarity Search with Cosine Similarity",
@@ -138,6 +188,34 @@
     ]
   },
   {
+    "id": "rag.agent.reliability",
+    "title": "에이전트 설계: 루프·권한·실패 처리",
+    "en": "Agent Reliability",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "루프와 도구 권한, 실패 복구를 설계해 비용 폭주와 위험한 행동을 막는다.",
+    "objectives": [
+      "워크플로와 에이전트 중 어느 쪽이 맞는지 근거를 들어 고를 수 있다",
+      "반복 제한과 도구 권한으로 위험을 줄이는 설계를 할 수 있다",
+      "에이전트의 실패를 기록으로 분석할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.tools.function-calling"
+    ],
+    "aliases": [
+      "에이전트 루프",
+      "에이전트 설계",
+      "멀티 에이전트",
+      "LangGraph"
+    ],
+    "refs": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://docs.langchain.com/oss/python/langgraph/overview"
+    ]
+  },
+  {
     "id": "rag.retrieval.reranking",
     "title": "재순위",
     "en": "Reranking",
@@ -180,6 +258,112 @@
     "refs": [
       "https://arxiv.org/abs/1603.09320",
       "https://github.com/pgvector/pgvector"
+    ]
+  },
+  {
+    "id": "rag.retrieval.hybrid-rerank",
+    "title": "하이브리드 검색과 재순위",
+    "en": "Hybrid Search and Reranking",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "검색 내부",
+    "summary": "낱말 점수와 벡터 유사도를 합치는 방법과 크로스 인코더 재순위의 비용을 근거로 검색 구조를 정한다.",
+    "objectives": [
+      "BM25와 벡터 검색의 순위를 RRF로 합치는 계산을 설명할 수 있다",
+      "재순위 후보 수가 상위 k 재현율과 지연, 비용에 주는 영향을 측정할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.retrieval.quality"
+    ],
+    "aliases": [
+      "BM25",
+      "RRF",
+      "크로스 인코더",
+      "cross-encoder"
+    ],
+    "refs": [
+      "https://www.elastic.co/docs/reference/elasticsearch/rest-apis/reciprocal-rank-fusion",
+      "https://www.sbert.net/docs/cross_encoder/usage/usage.html"
+    ]
+  },
+  {
+    "id": "rag.eval.metrics",
+    "title": "RAG 평가 설계",
+    "en": "Designing RAG Evaluation",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "검색 내부",
+    "summary": "검색과 생성을 나눠 재고 정답 세트로 변경의 효과를 판단한다.",
+    "objectives": [
+      "검색 지표와 생성 지표를 나눠 정의할 수 있다",
+      "정답 세트를 만들어 변경 전후를 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.retrieval.quality"
+    ],
+    "aliases": [
+      "RAG 평가",
+      "ragas",
+      "faithfulness",
+      "골든 데이터셋"
+    ],
+    "refs": [
+      "https://docs.ragas.io/en/stable/"
+    ]
+  },
+  {
+    "id": "rag.agent.mcp-protocol",
+    "title": "MCP 프로토콜의 구조",
+    "en": "Model Context Protocol Architecture",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "호스트가 서버마다 클라이언트를 두고 서버가 도구·자원·프롬프트를 제공하는 구조와 보안의 손익을 다룬다.",
+    "objectives": [
+      "MCP의 구성 요소와 메시지 흐름을 설명할 수 있다",
+      "외부 MCP 서버를 연결할 때의 보안 위험을 따질 수 있다"
+    ],
+    "prerequisites": [
+      "llm.tools.function-calling"
+    ],
+    "aliases": [
+      "MCP",
+      "Model Context Protocol",
+      "MCP 서버"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/docs/learn/architecture"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-04"
+  },
+  {
+    "id": "rag.embedding.model-tradeoffs",
+    "title": "임베딩 모델 선택과 차원의 손익",
+    "en": "Embedding Model Tradeoffs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "검색 내부",
+    "summary": "언어와 차원, 비용이 검색 품질과 저장 비용에 주는 영향을 재서 임베딩 모델을 고른다.",
+    "objectives": [
+      "차원과 모델 크기가 검색 품질과 비용에 주는 영향을 측정할 수 있다",
+      "모델을 바꿀 때의 재임베딩 비용과 절차를 설계할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.vector-db.basics"
+    ],
+    "aliases": [
+      "임베딩 모델",
+      "embedding model",
+      "재임베딩",
+      "다국어 임베딩"
+    ],
+    "refs": [
+      "https://www.sbert.net/docs/sentence_transformer/pretrained_models.html"
     ]
   },
   {

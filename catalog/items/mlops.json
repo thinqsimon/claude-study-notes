@@ -1,0 +1,81 @@
+[
+  {
+    "id": "mlops.eval.llm-regression",
+    "title": "LLM 평가와 회귀 시험",
+    "en": "LLM Evaluation and Regression Testing",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "답이 매번 달라지는 LLM 기능을 평가 세트로 재서 모델과 프롬프트 변경을 판단한다.",
+    "objectives": [
+      "평가 세트와 채점 기준을 설계할 수 있다",
+      "모델과 프롬프트를 바꿀 때 회귀를 잡는 절차를 만들 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.first-call"
+    ],
+    "aliases": [
+      "LLM 평가",
+      "회귀 시험",
+      "evals",
+      "프롬프트 평가"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests"
+    ]
+  },
+  {
+    "id": "mlops.serve.inference-optimization",
+    "title": "모델 서빙과 양자화",
+    "en": "Model Serving and Quantization",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "직접 모델을 띄울 때의 배치와 양자화가 처리량과 품질에 주는 손익을 따진다.",
+    "objectives": [
+      "양자화와 배치가 지연과 품질에 주는 영향을 측정할 수 있다",
+      "API 호출과 직접 서빙의 비용을 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.transformer.attention"
+    ],
+    "aliases": [
+      "모델 서빙",
+      "양자화",
+      "quantization",
+      "vLLM",
+      "GPU 서빙"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/main/en/quantization/overview",
+      "https://docs.vllm.ai/en/latest/"
+    ]
+  },
+  {
+    "id": "mlops.finetune.when",
+    "title": "파인튜닝과 RAG의 선택",
+    "en": "Fine-Tuning vs RAG",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "프롬프트, RAG, 파인튜닝 중 무엇이 맞는지 문제의 성격과 비용으로 판단한다.",
+    "objectives": [
+      "파인튜닝이 맞는 문제와 맞지 않는 문제를 나눌 수 있다",
+      "학습 데이터와 유지 비용을 근거로 방법을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "rag.retrieval.quality"
+    ],
+    "aliases": [
+      "파인튜닝",
+      "fine-tuning",
+      "미세 조정"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/model-optimization"
+    ]
+  }
+]

@@ -109,11 +109,11 @@ class ItemRulesTest(CatalogTestCase):
         self.assert_rejected("학습 목표", topic("be.http.status", objectives=["오류를 가려낼 수 있다"]))
         self.assert_rejected("용어에는", term("be.http.code", objectives=["구분할 수 있다", "말할 수 있다"]))
 
-    def test_topic_above_level_one_needs_refs(self) -> None:
+    def test_every_topic_needs_refs(self) -> None:
         item = topic("be.http.status")
         del item["refs"]
         self.assert_rejected("refs", item)
-        self.assertEqual(self.errors({**item, "level": 1}), [])
+        self.assertTrue(any("refs" in e for e in self.errors({**item, "level": 1})))
 
     def test_project_bound_expression_is_rejected(self) -> None:
         self.assert_rejected("묶인 표현", topic("be.http.status", summary="이 프로젝트에서 상태 코드를 쓰는 방법이다."))

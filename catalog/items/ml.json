@@ -1,0 +1,178 @@
+[
+  {
+    "id": "ml.basics.ai-ml-dl",
+    "title": "AI·머신러닝·딥러닝의 관계",
+    "en": "AI, Machine Learning, and Deep Learning",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "AI 기초",
+    "summary": "AI 안에 데이터로 배우는 머신러닝이 있고, 그 안에 신경망을 쓰는 딥러닝이 있다.",
+    "objectives": [
+      "세 말의 관계를 그림으로 그려 설명할 수 있다",
+      "규칙을 직접 짜는 프로그램과 데이터로 배우는 모델의 차이를 말할 수 있다"
+    ],
+    "aliases": [
+      "머신러닝",
+      "딥러닝",
+      "machine learning",
+      "deep learning",
+      "인공지능"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/intro-to-ml/what-is-ml"
+    ]
+  },
+  {
+    "id": "ml.basics.train-inference",
+    "title": "학습과 추론",
+    "en": "Training and Inference",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "AI 기초",
+    "summary": "모델이 데이터로 배우는 단계가 학습이고, 배운 것으로 답을 내는 단계가 추론이다.",
+    "objectives": [
+      "학습과 추론을 공부와 시험에 빗대어 설명할 수 있다",
+      "서비스에서 사용자가 쓰는 단계가 어느 쪽인지 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.ai-ml-dl"
+    ],
+    "aliases": [
+      "학습과 추론",
+      "모델 추론"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/intro-to-ml/supervised"
+    ]
+  },
+  {
+    "id": "ml.basics.data-quality",
+    "title": "AI에게 데이터가 중요한 이유",
+    "en": "Why Data Matters to AI",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "모델은 본 데이터에서 배우므로 데이터가 치우치거나 틀리면 결과도 그렇게 된다.",
+    "objectives": [
+      "데이터가 치우치면 생기는 문제를 예를 들어 말할 수 있다",
+      "좋은 데이터의 조건을 두 가지 이상 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.ai-ml-dl"
+    ],
+    "aliases": [
+      "데이터 품질",
+      "학습 데이터",
+      "편향"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/overfitting/data-characteristics"
+    ]
+  },
+  {
+    "id": "ml.eval.metrics-tradeoffs",
+    "title": "평가 지표의 함정: 정밀도와 재현율",
+    "en": "Evaluation Metric Tradeoffs",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "모델 평가",
+    "summary": "정확도가 속이는 경우를 알고 오류의 비용에 맞는 지표와 임계값을 고른다.",
+    "objectives": [
+      "불균형 데이터에서 정확도가 속이는 이유를 보일 수 있다",
+      "오류의 비용을 근거로 지표와 임계값을 고를 수 있다"
+    ],
+    "aliases": [
+      "정밀도",
+      "precision",
+      "F1 점수",
+      "혼동 행렬"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/classification/accuracy-precision-recall"
+    ]
+  },
+  {
+    "id": "ml.transformer.attention",
+    "title": "트랜스포머와 어텐션",
+    "en": "Transformers and Attention",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "어텐션으로 문맥을 계산하는 구조와 그것이 LLM의 능력과 한계에 주는 영향을 다룬다.",
+    "objectives": [
+      "셀프 어텐션의 계산을 단계별로 설명할 수 있다",
+      "컨텍스트 길이가 어텐션 연산량에 주는 영향과 토큰 요금의 차이를 구분할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.token-context"
+    ],
+    "aliases": [
+      "트랜스포머",
+      "transformer",
+      "어텐션",
+      "attention",
+      "셀프 어텐션"
+    ],
+    "refs": [
+      "https://arxiv.org/abs/1706.03762",
+      "https://huggingface.co/learn/llm-course/chapter1/4"
+    ]
+  },
+  {
+    "id": "ml.training.backprop",
+    "title": "역전파와 경사 하강법",
+    "en": "Backpropagation and Gradient Descent",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "손실을 줄이는 방향으로 가중치를 고치는 학습의 원리와 잘 안 될 때의 원인을 다룬다.",
+    "objectives": [
+      "역전파가 기울기를 계산하는 과정을 설명할 수 있다",
+      "학습률과 기울기 소실로 생기는 문제를 분석할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.train-inference"
+    ],
+    "aliases": [
+      "역전파",
+      "backpropagation",
+      "경사 하강법",
+      "gradient descent",
+      "학습률"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/neural-networks/backpropagation"
+    ]
+  },
+  {
+    "id": "ml.training.overfitting",
+    "title": "과적합과 일반화 분석",
+    "en": "Overfitting and Generalization",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "학습과 검증의 차이로 과적합을 진단하고 데이터 분할과 규제 기법의 효과를 따진다.",
+    "objectives": [
+      "학습 곡선으로 과적합과 데이터 누수를 진단할 수 있다",
+      "규제 기법과 데이터 추가의 손익을 측정으로 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.train-inference"
+    ],
+    "aliases": [
+      "과적합",
+      "overfitting",
+      "데이터 누수"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/overfitting"
+    ]
+  }
+]
