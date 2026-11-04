@@ -120,6 +120,155 @@
     ]
   },
   {
+    "id": "plan.figma.frames-and-components",
+    "title": "Figma 프레임과 컴포넌트로 화면 만들기",
+    "en": "Building Screens with Frames and Components in Figma",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Figma에서 기기 크기의 프레임을 만들고 버튼 같은 요소를 컴포넌트로 묶어 여러 화면에 반복해 쓰는 첫 사용법이다.",
+    "objectives": [
+      "Figma Design 파일의 툴바·레이어·속성 패널이 각각 무엇을 하는지 말할 수 있다",
+      "프레임 프리셋으로 휴대폰 화면 크기의 프레임을 만들고 그 안에 프레임을 중첩할 수 있다",
+      "선택한 레이어를 컴포넌트로 만들고 Assets 탭에서 인스턴스를 꺼내 화면에 놓을 수 있다",
+      "같은 버튼을 복사해 쓰는 대신 컴포넌트를 쓰는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.service-flow"
+    ],
+    "related": [
+      "plan.figma.dev-mode-handoff"
+    ],
+    "aliases": [
+      "Figma 컴포넌트",
+      "피그마 컴포넌트",
+      "피그마 화면 만들기",
+      "Figma 첫 사용"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/15297425105303-Explore-design-files",
+      "https://help.figma.com/hc/en-us/articles/360041539473-Frames-in-Figma-Design",
+      "https://help.figma.com/hc/en-us/articles/360038663154-Create-components-to-reuse-in-designs",
+      "https://help.figma.com/hc/en-us/articles/360039150173-Create-and-insert-component-instances"
+    ]
+  },
+  {
+    "id": "plan.ai-ux.mental-models-onboarding",
+    "title": "AI 제품의 멘탈 모델과 단계별 온보딩",
+    "en": "Mental Models and Staged Onboarding for AI Products",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "AI UX 설계",
+    "summary": "사용자가 AI 제품이 무엇을 할 수 있고 어떻게 바뀌는지 기대를 맞추도록 첫 화면과 온보딩을 짜는 기본 원칙이다.",
+    "objectives": [
+      "멘탈 모델이 무엇이고 기대와 실제가 어긋나면 사용자가 어떻게 행동하는지 설명할 수 있다",
+      "AI 기능을 소개할 때 기술 대신 사용자가 얻는 이점을 적은 안내 문구를 쓸 수 있다",
+      "온보딩을 한 번에 다 보여주지 않고 기능이 필요한 순간에 나누어 소개하는 흐름을 그릴 수 있다",
+      "되돌릴 수 있는 낮은 위험의 첫 행동으로 사용자가 AI를 시험해 보게 하는 화면을 만들 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.ai-fit"
+    ],
+    "related": [
+      "plan.ai-ux.errors-graceful-failure",
+      "plan.ai-ux.calibrated-trust"
+    ],
+    "aliases": [
+      "AI 온보딩",
+      "AI UX 기본 원칙",
+      "AI 제품 온보딩",
+      "staged onboarding"
+    ],
+    "refs": [
+      "https://pair.withgoogle.com/chapter/mental-models/"
+    ]
+  },
+  {
+    "id": "plan.figma.frame",
+    "title": "Figma 프레임",
+    "en": "Figma Frame",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Figma에서 화면이나 요소를 담는 그릇이 되는 레이어로, 오토 레이아웃·제약·프로토타입을 붙이는 단위다.",
+    "parent": "plan.figma.frames-and-components",
+    "aliases": [
+      "피그마 프레임",
+      "프레임 프리셋",
+      "frame preset",
+      "top-level frame"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360041539473-Frames-in-Figma-Design"
+    ]
+  },
+  {
+    "id": "plan.figma.main-component-instance",
+    "title": "메인 컴포넌트와 인스턴스",
+    "en": "Main Component and Instance",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "원본인 메인 컴포넌트를 고치면 그것을 복제해 둔 인스턴스가 모두 따라 바뀌는 Figma의 재사용 구조다.",
+    "parent": "plan.figma.frames-and-components",
+    "aliases": [
+      "메인 컴포넌트",
+      "컴포넌트 인스턴스",
+      "main component",
+      "component instance",
+      "Assets 탭"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360038662654-Guide-to-components-in-Figma",
+      "https://help.figma.com/hc/en-us/articles/360039150173-Create-and-insert-component-instances"
+    ]
+  },
+  {
+    "id": "plan.ai-ux.mental-model",
+    "title": "멘탈 모델",
+    "en": "Mental Model",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI UX 설계",
+    "summary": "사용자가 제품이 어떻게 움직이고 내 행동이 결과에 어떤 영향을 주는지 머릿속에 그려 둔 이해다.",
+    "parent": "plan.ai-ux.mental-models-onboarding",
+    "aliases": [
+      "멘털 모델",
+      "사용자 멘탈 모델",
+      "mental model",
+      "사용자 기대치 설정"
+    ],
+    "refs": [
+      "https://pair.withgoogle.com/chapter/mental-models/"
+    ]
+  },
+  {
+    "id": "plan.figma.prototype-connection",
+    "title": "프로토타입 연결과 핫스팟",
+    "en": "Prototype Connection and Hotspot",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Figma에서 버튼 같은 핫스팟을 다른 프레임에 이어 화면이 넘어가는 흐름을 클릭해 볼 수 있게 하는 기능이다.",
+    "aliases": [
+      "Figma 프로토타입",
+      "피그마 프로토타입",
+      "프로토타입 핫스팟",
+      "prototype hotspot",
+      "프로토타입 플로우",
+      "flow starting point"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360040314193-Guide-to-prototyping-in-Figma"
+    ]
+  },
+  {
     "id": "plan.ai-ux.errors-graceful-failure",
     "title": "AI 오류 유형과 우아한 실패 설계",
     "en": "AI Error Types and Graceful Failure",

@@ -149,6 +149,125 @@
     ]
   },
   {
+    "id": "ops.linux.shell-script-basics",
+    "title": "셸 스크립트 첫걸음: 변수·따옴표·파이프",
+    "en": "Shell Scripting Basics: Variables, Quotes and Pipes",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "터미널 명령을 변수·따옴표·파이프·리다이렉션으로 엮어 작은 셸 스크립트를 만든다.",
+    "objectives": [
+      "name=value로 변수를 만들고 $name으로 꺼내 쓸 수 있다",
+      "작은따옴표와 큰따옴표의 차이를 알고 변수를 큰따옴표로 감쌀 수 있다",
+      "파이프(|)와 리다이렉션(>, >>, 2>)으로 명령의 출력을 잇거나 파일에 담을 수 있다",
+      "$?로 직전 명령이 성공했는지 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.terminal.basic-commands"
+    ],
+    "related": [
+      "ops.linux.process-signals"
+    ],
+    "aliases": [
+      "셸 스크립트",
+      "shell script",
+      "bash 스크립트",
+      "셸 리다이렉션",
+      "파이프라인 연산자"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man1/bash.1.html"
+    ]
+  },
+  {
+    "id": "ops.linux.word-splitting",
+    "title": "셸 변수의 단어 분리",
+    "en": "Word Splitting of Shell Variables",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "따옴표 없는 $var를 bash는 공백마다 여러 인자로 나누지만 zsh는 나누지 않으므로 \"$var\"로 감싸 두 셸에서 같게 만든다.",
+    "parent": "ops.linux.shell-script-basics",
+    "aliases": [
+      "단어 분리",
+      "word splitting",
+      "SH_WORD_SPLIT",
+      "변수 큰따옴표",
+      "IFS",
+      "bash zsh 차이"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man1/bash.1.html",
+      "https://zsh.sourceforge.io/Doc/Release/Expansion.html",
+      "https://zsh.sourceforge.io/Doc/Release/Options.html"
+    ]
+  },
+  {
+    "id": "ops.docker.port-publishing",
+    "title": "포트 공개(-p 호스트:컨테이너)",
+    "en": "Publishing Ports (-p HOST:CONTAINER)",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Docker",
+    "summary": "격리된 컨테이너의 포트를 -p 8080:80처럼 호스트 포트에 이어 브라우저에서 접속하게 하는 docker run 옵션이다.",
+    "parent": "ops.docker.first-container",
+    "aliases": [
+      "포트 공개",
+      "포트 매핑",
+      "port mapping",
+      "publish port",
+      "-p 8080:80",
+      "도커 포트 포워딩"
+    ],
+    "refs": [
+      "https://docs.docker.com/get-started/docker-concepts/running-containers/publishing-ports/"
+    ]
+  },
+  {
+    "id": "ops.docker.dockerfile",
+    "title": "Dockerfile",
+    "en": "Dockerfile",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Docker",
+    "summary": "FROM·COPY·RUN·CMD 같은 명령을 줄줄이 적어 컨테이너 이미지를 만드는 방법을 담는 텍스트 파일이다.",
+    "aliases": [
+      "도커파일",
+      "Dockerfile",
+      "docker build",
+      "이미지 빌드",
+      "베이스 이미지"
+    ],
+    "refs": [
+      "https://docs.docker.com/get-started/docker-concepts/building-images/writing-a-dockerfile/"
+    ]
+  },
+  {
+    "id": "ops.ci.github-actions-workflow",
+    "title": "GitHub Actions 워크플로",
+    "en": "GitHub Actions Workflow",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "CI/CD",
+    "summary": "저장소의 .github/workflows에 둔 YAML 파일로, push 같은 이벤트가 일어나면 러너가 정해진 잡을 자동으로 실행한다.",
+    "aliases": [
+      "GitHub Actions",
+      "깃허브 액션",
+      "Actions 워크플로 파일",
+      ".github/workflows",
+      "액션 러너",
+      "GitHub Actions CI"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/get-started/understanding-github-actions"
+    ]
+  },
+  {
     "id": "ops.observe.metrics",
     "title": "운영 지표 측정",
     "en": "Service Metrics",

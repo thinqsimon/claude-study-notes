@@ -154,6 +154,137 @@
     ]
   },
   {
+    "id": "ax.coding.permission-rules",
+    "title": "에이전트가 할 수 있는 일 정하기: 권한 규칙",
+    "en": "Permission Rules for a Coding Agent",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "AI 네이티브 개발",
+    "summary": "코딩 에이전트가 묻지 않고 해도 되는 일과 절대 하면 안 되는 일을 allow·ask·deny 규칙으로 적어 두는 첫 설정이다.",
+    "objectives": [
+      "권한 프롬프트가 떴을 때 한 번만 허용할지 계속 허용할지 고를 수 있다",
+      "자주 쓰는 명령을 allow 규칙으로, .env 읽기 같은 일을 deny 규칙으로 settings.json에 적을 수 있다",
+      "deny·ask·allow 순서로 규칙이 적용된다는 것을 예를 들어 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.agent-first"
+    ],
+    "related": [
+      "ax.coding.permission-mode"
+    ],
+    "aliases": [
+      "권한 규칙",
+      "allow 규칙",
+      "deny 규칙",
+      "permissions.allow",
+      "/permissions",
+      "권한 프롬프트"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/permissions"
+    ]
+  },
+  {
+    "id": "ax.coding.claude-md",
+    "title": "CLAUDE.md로 프로젝트 규칙 알려주기",
+    "en": "Project Instructions with CLAUDE.md",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "AI 네이티브 개발",
+    "summary": "매 세션 처음에 읽히는 CLAUDE.md에 빌드 명령·코딩 규칙·주의점을 적어 같은 말을 되풀이하지 않게 하는 방법이다.",
+    "objectives": [
+      "프로젝트용·개인용·조직 관리용 CLAUDE.md를 어디에 두는지 구분할 수 있다",
+      "빌드·테스트 명령과 지켜야 할 규칙을 담은 CLAUDE.md를 만들 수 있다",
+      "CLAUDE.md는 참고 지시이고 강제 설정이 아니라는 점을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.agent-first"
+    ],
+    "aliases": [
+      "CLAUDE.md 작성",
+      "프로젝트 메모리",
+      "project memory",
+      "AGENTS.md",
+      "claude md"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/memory"
+    ]
+  },
+  {
+    "id": "ax.coding.settings-file",
+    "title": "Claude Code 설정 파일(settings.json)",
+    "en": "Claude Code Settings File",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "권한 규칙과 환경 변수 등을 담는 JSON 파일로, 사용자용·프로젝트 공용·프로젝트 개인용의 세 곳에 둘 수 있다.",
+    "parent": "ax.coding.permission-rules",
+    "aliases": [
+      "settings.json",
+      "settings.local.json",
+      ".claude/settings.json",
+      "Claude Code 설정 파일"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/settings"
+    ]
+  },
+  {
+    "id": "ax.coding.workspace-trust",
+    "title": "폴더 신뢰(workspace trust)",
+    "en": "Workspace Trust",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "처음 여는 폴더의 프로젝트 설정이 담은 allow 규칙을 사람이 확인하고 받아들여야 적용되는 안전장치다.",
+    "parent": "ax.coding.permission-rules",
+    "aliases": [
+      "폴더 신뢰",
+      "workspace trust",
+      "신뢰 대화상자",
+      "trust dialog"
+    ]
+  },
+  {
+    "id": "ax.coding.auto-memory",
+    "title": "자동 메모리(auto memory)",
+    "en": "Auto Memory",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "사람이 쓰는 CLAUDE.md와 달리 에이전트가 교정과 선호를 스스로 적어 다음 세션에 읽는 메모다.",
+    "parent": "ax.coding.claude-md",
+    "aliases": [
+      "자동 메모리",
+      "auto memory",
+      "MEMORY.md",
+      "/memory"
+    ]
+  },
+  {
+    "id": "ax.coding.rules-dir",
+    "title": ".claude/rules 규칙 파일",
+    "en": "Rules Directory (.claude/rules)",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "CLAUDE.md가 길어질 때 주제별 마크다운 파일로 나누고 특정 경로에서만 읽히게 할 수 있는 규칙 폴더다.",
+    "parent": "ax.coding.claude-md",
+    "aliases": [
+      ".claude/rules",
+      "rules 폴더",
+      "경로별 규칙",
+      "path-specific rules"
+    ]
+  },
+  {
     "id": "ax.security.model-output-handling",
     "title": "모델 출력을 실행하기 전의 방어",
     "en": "Handling Untrusted Model Output",

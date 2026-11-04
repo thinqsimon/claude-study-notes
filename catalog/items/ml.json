@@ -73,6 +73,191 @@
     ]
   },
   {
+    "id": "ml.nn.first-neural-network",
+    "title": "신경망 첫 모델 만들기",
+    "en": "Building Your First Neural Network",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "딥러닝",
+    "summary": "입력에 가중치를 곱해 더하는 층을 이어 붙인 것이 신경망이며, 튜토리얼을 따라 첫 모델을 학습시키고 예측까지 해 본다.",
+    "objectives": [
+      "신경망이 입력 값에 가중치를 곱하고 편향을 더해 다음 층으로 넘기는 층의 연결임을 설명할 수 있다",
+      "PyTorch 퀵스타트를 따라 데이터 불러오기·모델 정의·학습·테스트 순서로 첫 신경망을 만들 수 있다",
+      "학습이 도는 동안 손실이 줄고 정확도가 오르는 출력을 읽을 수 있다",
+      "학습한 모델을 저장했다가 다시 불러와 예측할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.ai-ml-dl",
+      "ml.basics.train-inference",
+      "be.python.classes"
+    ],
+    "related": [
+      "ml.nn.hidden-layers-activation",
+      "ml.training.backprop"
+    ],
+    "aliases": [
+      "신경망 입문",
+      "neural network basics",
+      "첫 신경망",
+      "뉴럴 네트워크",
+      "PyTorch 퀵스타트",
+      "nn.Module"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/neural-networks",
+      "https://developers.google.com/machine-learning/crash-course/neural-networks/nodes-hidden-layers",
+      "https://docs.pytorch.org/tutorials/beginner/basics/quickstart_tutorial.html"
+    ]
+  },
+  {
+    "id": "ml.eval.accuracy-first-evaluation",
+    "title": "모델 평가 입문: 정확도로 점수 매기기",
+    "en": "Model Evaluation Basics: Scoring with Accuracy",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "모델 평가",
+    "summary": "학습에 쓰지 않은 데이터로 예측을 정답과 맞춰 보고, 맞힌 비율인 정확도로 모델에 첫 점수를 매긴다.",
+    "objectives": [
+      "모델 평가가 학습에 쓰지 않은 데이터의 예측을 정답과 비교하는 일임을 설명할 수 있다",
+      "정확도를 맞힌 개수 나누기 전체 개수로 손으로 계산할 수 있다",
+      "예측 리스트와 정답 리스트를 scikit-learn의 accuracy_score에 넣어 정확도를 구할 수 있다",
+      "정확도 하나로는 모델을 다 알 수 없음을 알고 다른 지표가 있다는 것을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.train-inference"
+    ],
+    "related": [
+      "ml.eval.metrics-tradeoffs",
+      "ml.eval.data-splitting-cv"
+    ],
+    "aliases": [
+      "모델 평가 입문",
+      "model evaluation basics",
+      "accuracy_score",
+      "모델 점수"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/intro-to-ml/supervised",
+      "https://developers.google.com/machine-learning/crash-course/classification/accuracy-precision-recall",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html"
+    ]
+  },
+  {
+    "id": "ml.eval.accuracy",
+    "title": "정확도",
+    "en": "Accuracy",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "모델 평가",
+    "summary": "전체 예측 가운데 정답을 맞힌 비율로, 분류 모델에 매기는 가장 기본적인 점수다.",
+    "parent": "ml.eval.accuracy-first-evaluation",
+    "related": [
+      "ml.eval.metrics-tradeoffs"
+    ],
+    "aliases": [
+      "정확도",
+      "accuracy",
+      "정답률",
+      "분류 정확도"
+    ]
+  },
+  {
+    "id": "ml.nn.weight-bias",
+    "title": "가중치와 편향",
+    "en": "Weights and Biases",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "딥러닝",
+    "summary": "가중치는 입력마다 곱하는 수, 편향은 그 합에 더하는 상수로, 학습이 바꿔 가는 모델의 숫자다.",
+    "parent": "ml.nn.first-neural-network",
+    "aliases": [
+      "가중치",
+      "weights",
+      "bias 항",
+      "가중치와 편향",
+      "학습 파라미터",
+      "model parameters"
+    ]
+  },
+  {
+    "id": "ml.training.loss-function",
+    "title": "손실 함수",
+    "en": "Loss Function",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "딥러닝",
+    "summary": "예측이 정답에서 얼마나 멀리 틀렸는지를 숫자 하나로 재는 함수로, 학습은 이 값을 줄이는 과정이다.",
+    "related": [
+      "ml.training.backprop",
+      "ml.eval.accuracy"
+    ],
+    "aliases": [
+      "손실 함수",
+      "loss function",
+      "손실 값",
+      "평균 제곱 오차",
+      "MSE",
+      "MAE"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/linear-regression/loss"
+    ]
+  },
+  {
+    "id": "ml.basics.feature-label",
+    "title": "특성과 레이블",
+    "en": "Features and Labels",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "AI 기초",
+    "summary": "특성은 모델에 넣는 입력 값이고 레이블은 모델이 맞혀야 할 정답으로, 지도 학습 데이터의 두 기둥이다.",
+    "related": [
+      "ml.basics.train-inference",
+      "ml.basics.data-quality"
+    ],
+    "aliases": [
+      "특성과 레이블",
+      "features and labels",
+      "입력 특성",
+      "정답 레이블",
+      "feature column"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/intro-to-ml/supervised"
+    ]
+  },
+  {
+    "id": "ml.training.epoch-batch",
+    "title": "에폭과 배치 크기",
+    "en": "Epoch and Batch Size",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "에폭은 학습 데이터를 한 바퀴 다 본 횟수, 배치 크기는 가중치를 한 번 고치기 전에 보는 예시 개수다.",
+    "related": [
+      "ml.nn.first-neural-network",
+      "ml.training.backprop"
+    ],
+    "aliases": [
+      "에폭",
+      "epoch",
+      "배치 크기",
+      "batch size",
+      "미니배치",
+      "mini-batch"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/linear-regression/hyperparameters"
+    ]
+  },
+  {
     "id": "ml.eval.metrics-tradeoffs",
     "title": "평가 지표의 함정: 정밀도와 재현율",
     "en": "Evaluation Metric Tradeoffs",

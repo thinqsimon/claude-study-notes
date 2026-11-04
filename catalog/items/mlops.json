@@ -1,5 +1,159 @@
 [
   {
+    "id": "mlops.eval.first-eval",
+    "title": "LLM 답 채점하기: 평가 세트와 스코어러",
+    "en": "Your First LLM Evaluation: Dataset and Scorers",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "질문과 기대 답을 짝지은 평가 세트를 만들고 채점기를 붙여 LLM 앱의 답을 한 번에 채점해 보는 첫 실습이다.",
+    "objectives": [
+      "질문과 기대 답을 짝지은 평가 세트를 파이썬 리스트로 만들 수 있다",
+      "내장 채점기와 짧은 함수 채점기를 골라 평가 한 번을 돌릴 수 있다",
+      "결과 화면에서 어느 질문이 왜 틀렸는지 찾아볼 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.first-call"
+    ],
+    "related": [
+      "mlops.eval.llm-regression",
+      "mlops.observe.tracing-quickstart"
+    ],
+    "aliases": [
+      "LLM 평가 입문",
+      "평가 돌리기",
+      "mlflow.genai.evaluate",
+      "evaluation quickstart",
+      "답 채점"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/eval-monitor/quickstart/",
+      "https://mlflow.org/docs/latest/genai/eval-monitor/"
+    ]
+  },
+  {
+    "id": "mlops.observe.tracing-quickstart",
+    "title": "LLM 호출 자동 기록: 트레이싱 시작하기",
+    "en": "Getting Started with LLM Tracing",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "로컬 MLflow 서버를 띄우고 한 줄로 자동 기록을 켜서 LLM 호출의 입력·출력·소요 시간을 브라우저에서 보는 첫 실습이다.",
+    "objectives": [
+      "로컬 MLflow 서버를 띄우고 실험 이름을 정해 연결할 수 있다",
+      "autolog 한 줄로 LLM 호출을 자동 기록할 수 있다",
+      "UI의 Traces 탭에서 호출마다 보낸 프롬프트·받은 답·걸린 시간을 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.first-call"
+    ],
+    "related": [
+      "mlops.observe.llm-tracing",
+      "ops.observe.tracing"
+    ],
+    "aliases": [
+      "트레이싱 시작하기",
+      "tracing quickstart",
+      "LLM 호출 기록",
+      "Traces 탭",
+      "호출 기록 보기"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/tracing/quickstart/",
+      "https://mlflow.org/docs/latest/genai/concepts/trace/"
+    ]
+  },
+  {
+    "id": "mlops.eval.eval-dataset",
+    "title": "평가 세트(evaluation dataset)",
+    "en": "Evaluation Dataset",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "앱에 넣을 입력과 그에 기대하는 답을 짝지어 모아 둔 문제집으로, 모델이나 프롬프트를 바꿀 때마다 같은 문제로 다시 채점한다.",
+    "parent": "mlops.eval.first-eval",
+    "related": [
+      "mlops.eval.llm-regression"
+    ],
+    "aliases": [
+      "평가 세트",
+      "평가 데이터셋",
+      "evaluation dataset",
+      "eval dataset",
+      "inputs와 expectations"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/datasets/"
+    ]
+  },
+  {
+    "id": "mlops.eval.scorer",
+    "title": "스코어러(채점기)",
+    "en": "Scorer",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "LLM 앱의 답 하나를 받아 맞았는지, 규칙을 지켰는지 점수나 통과 여부로 돌려주는 채점 단위로, 내장 심판과 직접 쓴 함수가 모두 해당한다.",
+    "parent": "mlops.eval.first-eval",
+    "related": [
+      "mlops.eval.llm-judge"
+    ],
+    "aliases": [
+      "스코어러",
+      "채점기",
+      "scorer",
+      "채점 함수",
+      "@scorer"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/"
+    ]
+  },
+  {
+    "id": "mlops.observe.autolog",
+    "title": "자동 트레이싱(autolog)",
+    "en": "Automatic Tracing (autolog)",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "코드를 고치지 않고 라이브러리별 autolog 한 줄만 켜면 LLM·에이전트 라이브러리의 호출을 모두 트레이스로 남겨 주는 기능이다.",
+    "parent": "mlops.observe.tracing-quickstart",
+    "aliases": [
+      "autolog",
+      "자동 트레이싱",
+      "mlflow.openai.autolog",
+      "automatic tracing"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/tracing/app-instrumentation/automatic/"
+    ]
+  },
+  {
+    "id": "mlops.observe.mlflow-server",
+    "title": "MLflow 서버와 UI",
+    "en": "MLflow Server and UI",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "기록된 트레이스와 평가 결과를 받아 저장하고 브라우저 화면으로 보여 주는 로컬 서버로, mlflow server 한 줄로 띄운다.",
+    "parent": "mlops.observe.tracing-quickstart",
+    "aliases": [
+      "mlflow server",
+      "MLflow UI",
+      "MLflow 추적 서버",
+      "tracking server"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/getting-started/connect-environment/"
+    ]
+  },
+  {
     "id": "mlops.eval.llm-regression",
     "title": "LLM 평가와 회귀 시험",
     "en": "LLM Evaluation and Regression Testing",

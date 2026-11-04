@@ -1,5 +1,5 @@
 {
- "version": "0.4.0",
+ "version": "0.5.0",
  "domains": [
   {
    "prefix": "dev",
@@ -765,6 +765,161 @@
    ],
    "refs": [
     "https://www.nngroup.com/articles/user-journeys-vs-user-flows/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.frames-and-components",
+   "title": "Figma 프레임과 컴포넌트로 화면 만들기",
+   "en": "Building Screens with Frames and Components in Figma",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "Figma에서 기기 크기의 프레임을 만들고 버튼 같은 요소를 컴포넌트로 묶어 여러 화면에 반복해 쓰는 첫 사용법이다.",
+   "objectives": [
+    "Figma Design 파일의 툴바·레이어·속성 패널이 각각 무엇을 하는지 말할 수 있다",
+    "프레임 프리셋으로 휴대폰 화면 크기의 프레임을 만들고 그 안에 프레임을 중첩할 수 있다",
+    "선택한 레이어를 컴포넌트로 만들고 Assets 탭에서 인스턴스를 꺼내 화면에 놓을 수 있다",
+    "같은 버튼을 복사해 쓰는 대신 컴포넌트를 쓰는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.service-flow"
+   ],
+   "related": [
+    "plan.figma.dev-mode-handoff"
+   ],
+   "aliases": [
+    "Figma 컴포넌트",
+    "피그마 컴포넌트",
+    "피그마 화면 만들기",
+    "Figma 첫 사용"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/15297425105303-Explore-design-files",
+    "https://help.figma.com/hc/en-us/articles/360041539473-Frames-in-Figma-Design",
+    "https://help.figma.com/hc/en-us/articles/360038663154-Create-components-to-reuse-in-designs",
+    "https://help.figma.com/hc/en-us/articles/360039150173-Create-and-insert-component-instances"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.ai-ux.mental-models-onboarding",
+   "title": "AI 제품의 멘탈 모델과 단계별 온보딩",
+   "en": "Mental Models and Staged Onboarding for AI Products",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "AI UX 설계",
+   "summary": "사용자가 AI 제품이 무엇을 할 수 있고 어떻게 바뀌는지 기대를 맞추도록 첫 화면과 온보딩을 짜는 기본 원칙이다.",
+   "objectives": [
+    "멘탈 모델이 무엇이고 기대와 실제가 어긋나면 사용자가 어떻게 행동하는지 설명할 수 있다",
+    "AI 기능을 소개할 때 기술 대신 사용자가 얻는 이점을 적은 안내 문구를 쓸 수 있다",
+    "온보딩을 한 번에 다 보여주지 않고 기능이 필요한 순간에 나누어 소개하는 흐름을 그릴 수 있다",
+    "되돌릴 수 있는 낮은 위험의 첫 행동으로 사용자가 AI를 시험해 보게 하는 화면을 만들 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.ai-fit"
+   ],
+   "related": [
+    "plan.ai-ux.errors-graceful-failure",
+    "plan.ai-ux.calibrated-trust"
+   ],
+   "aliases": [
+    "AI 온보딩",
+    "AI UX 기본 원칙",
+    "AI 제품 온보딩",
+    "staged onboarding"
+   ],
+   "refs": [
+    "https://pair.withgoogle.com/chapter/mental-models/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.frame",
+   "title": "Figma 프레임",
+   "en": "Figma Frame",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "Figma에서 화면이나 요소를 담는 그릇이 되는 레이어로, 오토 레이아웃·제약·프로토타입을 붙이는 단위다.",
+   "parent": "plan.figma.frames-and-components",
+   "aliases": [
+    "피그마 프레임",
+    "프레임 프리셋",
+    "frame preset",
+    "top-level frame"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360041539473-Frames-in-Figma-Design"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.main-component-instance",
+   "title": "메인 컴포넌트와 인스턴스",
+   "en": "Main Component and Instance",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "원본인 메인 컴포넌트를 고치면 그것을 복제해 둔 인스턴스가 모두 따라 바뀌는 Figma의 재사용 구조다.",
+   "parent": "plan.figma.frames-and-components",
+   "aliases": [
+    "메인 컴포넌트",
+    "컴포넌트 인스턴스",
+    "main component",
+    "component instance",
+    "Assets 탭"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360038662654-Guide-to-components-in-Figma",
+    "https://help.figma.com/hc/en-us/articles/360039150173-Create-and-insert-component-instances"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.ai-ux.mental-model",
+   "title": "멘탈 모델",
+   "en": "Mental Model",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI UX 설계",
+   "summary": "사용자가 제품이 어떻게 움직이고 내 행동이 결과에 어떤 영향을 주는지 머릿속에 그려 둔 이해다.",
+   "parent": "plan.ai-ux.mental-models-onboarding",
+   "aliases": [
+    "멘털 모델",
+    "사용자 멘탈 모델",
+    "mental model",
+    "사용자 기대치 설정"
+   ],
+   "refs": [
+    "https://pair.withgoogle.com/chapter/mental-models/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.prototype-connection",
+   "title": "프로토타입 연결과 핫스팟",
+   "en": "Prototype Connection and Hotspot",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "Figma에서 버튼 같은 핫스팟을 다른 프레임에 이어 화면이 넘어가는 흐름을 클릭해 볼 수 있게 하는 기능이다.",
+   "aliases": [
+    "Figma 프로토타입",
+    "피그마 프로토타입",
+    "프로토타입 핫스팟",
+    "prototype hotspot",
+    "프로토타입 플로우",
+    "flow starting point"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360040314193-Guide-to-prototyping-in-Figma"
    ],
    "domain": "plan"
   },
@@ -11239,6 +11394,143 @@
    "domain": "ax"
   },
   {
+   "id": "ax.coding.permission-rules",
+   "title": "에이전트가 할 수 있는 일 정하기: 권한 규칙",
+   "en": "Permission Rules for a Coding Agent",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "AI 네이티브 개발",
+   "summary": "코딩 에이전트가 묻지 않고 해도 되는 일과 절대 하면 안 되는 일을 allow·ask·deny 규칙으로 적어 두는 첫 설정이다.",
+   "objectives": [
+    "권한 프롬프트가 떴을 때 한 번만 허용할지 계속 허용할지 고를 수 있다",
+    "자주 쓰는 명령을 allow 규칙으로, .env 읽기 같은 일을 deny 규칙으로 settings.json에 적을 수 있다",
+    "deny·ask·allow 순서로 규칙이 적용된다는 것을 예를 들어 말할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.agent-first"
+   ],
+   "related": [
+    "ax.coding.permission-mode"
+   ],
+   "aliases": [
+    "권한 규칙",
+    "allow 규칙",
+    "deny 규칙",
+    "permissions.allow",
+    "/permissions",
+    "권한 프롬프트"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/permissions"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.claude-md",
+   "title": "CLAUDE.md로 프로젝트 규칙 알려주기",
+   "en": "Project Instructions with CLAUDE.md",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "AI 네이티브 개발",
+   "summary": "매 세션 처음에 읽히는 CLAUDE.md에 빌드 명령·코딩 규칙·주의점을 적어 같은 말을 되풀이하지 않게 하는 방법이다.",
+   "objectives": [
+    "프로젝트용·개인용·조직 관리용 CLAUDE.md를 어디에 두는지 구분할 수 있다",
+    "빌드·테스트 명령과 지켜야 할 규칙을 담은 CLAUDE.md를 만들 수 있다",
+    "CLAUDE.md는 참고 지시이고 강제 설정이 아니라는 점을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.agent-first"
+   ],
+   "aliases": [
+    "CLAUDE.md 작성",
+    "프로젝트 메모리",
+    "project memory",
+    "AGENTS.md",
+    "claude md"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/memory"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.settings-file",
+   "title": "Claude Code 설정 파일(settings.json)",
+   "en": "Claude Code Settings File",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "권한 규칙과 환경 변수 등을 담는 JSON 파일로, 사용자용·프로젝트 공용·프로젝트 개인용의 세 곳에 둘 수 있다.",
+   "parent": "ax.coding.permission-rules",
+   "aliases": [
+    "settings.json",
+    "settings.local.json",
+    ".claude/settings.json",
+    "Claude Code 설정 파일"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/settings"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.workspace-trust",
+   "title": "폴더 신뢰(workspace trust)",
+   "en": "Workspace Trust",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "처음 여는 폴더의 프로젝트 설정이 담은 allow 규칙을 사람이 확인하고 받아들여야 적용되는 안전장치다.",
+   "parent": "ax.coding.permission-rules",
+   "aliases": [
+    "폴더 신뢰",
+    "workspace trust",
+    "신뢰 대화상자",
+    "trust dialog"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.auto-memory",
+   "title": "자동 메모리(auto memory)",
+   "en": "Auto Memory",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "사람이 쓰는 CLAUDE.md와 달리 에이전트가 교정과 선호를 스스로 적어 다음 세션에 읽는 메모다.",
+   "parent": "ax.coding.claude-md",
+   "aliases": [
+    "자동 메모리",
+    "auto memory",
+    "MEMORY.md",
+    "/memory"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.rules-dir",
+   "title": ".claude/rules 규칙 파일",
+   "en": "Rules Directory (.claude/rules)",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "CLAUDE.md가 길어질 때 주제별 마크다운 파일로 나누고 특정 경로에서만 읽히게 할 수 있는 규칙 폴더다.",
+   "parent": "ax.coding.claude-md",
+   "aliases": [
+    ".claude/rules",
+    "rules 폴더",
+    "경로별 규칙",
+    "path-specific rules"
+   ],
+   "domain": "ax"
+  },
+  {
    "id": "ax.security.model-output-handling",
    "title": "모델 출력을 실행하기 전의 방어",
    "en": "Handling Untrusted Model Output",
@@ -11562,6 +11854,130 @@
    ],
    "refs": [
     "https://docs.docker.com/get-started/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.linux.shell-script-basics",
+   "title": "셸 스크립트 첫걸음: 변수·따옴표·파이프",
+   "en": "Shell Scripting Basics: Variables, Quotes and Pipes",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "리눅스",
+   "summary": "터미널 명령을 변수·따옴표·파이프·리다이렉션으로 엮어 작은 셸 스크립트를 만든다.",
+   "objectives": [
+    "name=value로 변수를 만들고 $name으로 꺼내 쓸 수 있다",
+    "작은따옴표와 큰따옴표의 차이를 알고 변수를 큰따옴표로 감쌀 수 있다",
+    "파이프(|)와 리다이렉션(>, >>, 2>)으로 명령의 출력을 잇거나 파일에 담을 수 있다",
+    "$?로 직전 명령이 성공했는지 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.terminal.basic-commands"
+   ],
+   "related": [
+    "ops.linux.process-signals"
+   ],
+   "aliases": [
+    "셸 스크립트",
+    "shell script",
+    "bash 스크립트",
+    "셸 리다이렉션",
+    "파이프라인 연산자"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man1/bash.1.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.linux.word-splitting",
+   "title": "셸 변수의 단어 분리",
+   "en": "Word Splitting of Shell Variables",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "리눅스",
+   "summary": "따옴표 없는 $var를 bash는 공백마다 여러 인자로 나누지만 zsh는 나누지 않으므로 \"$var\"로 감싸 두 셸에서 같게 만든다.",
+   "parent": "ops.linux.shell-script-basics",
+   "aliases": [
+    "단어 분리",
+    "word splitting",
+    "SH_WORD_SPLIT",
+    "변수 큰따옴표",
+    "IFS",
+    "bash zsh 차이"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man1/bash.1.html",
+    "https://zsh.sourceforge.io/Doc/Release/Expansion.html",
+    "https://zsh.sourceforge.io/Doc/Release/Options.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.docker.port-publishing",
+   "title": "포트 공개(-p 호스트:컨테이너)",
+   "en": "Publishing Ports (-p HOST:CONTAINER)",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "Docker",
+   "summary": "격리된 컨테이너의 포트를 -p 8080:80처럼 호스트 포트에 이어 브라우저에서 접속하게 하는 docker run 옵션이다.",
+   "parent": "ops.docker.first-container",
+   "aliases": [
+    "포트 공개",
+    "포트 매핑",
+    "port mapping",
+    "publish port",
+    "-p 8080:80",
+    "도커 포트 포워딩"
+   ],
+   "refs": [
+    "https://docs.docker.com/get-started/docker-concepts/running-containers/publishing-ports/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.docker.dockerfile",
+   "title": "Dockerfile",
+   "en": "Dockerfile",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "Docker",
+   "summary": "FROM·COPY·RUN·CMD 같은 명령을 줄줄이 적어 컨테이너 이미지를 만드는 방법을 담는 텍스트 파일이다.",
+   "aliases": [
+    "도커파일",
+    "Dockerfile",
+    "docker build",
+    "이미지 빌드",
+    "베이스 이미지"
+   ],
+   "refs": [
+    "https://docs.docker.com/get-started/docker-concepts/building-images/writing-a-dockerfile/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.ci.github-actions-workflow",
+   "title": "GitHub Actions 워크플로",
+   "en": "GitHub Actions Workflow",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "CI/CD",
+   "summary": "저장소의 .github/workflows에 둔 YAML 파일로, push 같은 이벤트가 일어나면 러너가 정해진 잡을 자동으로 실행한다.",
+   "aliases": [
+    "GitHub Actions",
+    "깃허브 액션",
+    "Actions 워크플로 파일",
+    ".github/workflows",
+    "액션 러너",
+    "GitHub Actions CI"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/get-started/understanding-github-actions"
    ],
    "domain": "ops"
   },
@@ -12053,6 +12469,198 @@
    "domain": "ml"
   },
   {
+   "id": "ml.nn.first-neural-network",
+   "title": "신경망 첫 모델 만들기",
+   "en": "Building Your First Neural Network",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "딥러닝",
+   "summary": "입력에 가중치를 곱해 더하는 층을 이어 붙인 것이 신경망이며, 튜토리얼을 따라 첫 모델을 학습시키고 예측까지 해 본다.",
+   "objectives": [
+    "신경망이 입력 값에 가중치를 곱하고 편향을 더해 다음 층으로 넘기는 층의 연결임을 설명할 수 있다",
+    "PyTorch 퀵스타트를 따라 데이터 불러오기·모델 정의·학습·테스트 순서로 첫 신경망을 만들 수 있다",
+    "학습이 도는 동안 손실이 줄고 정확도가 오르는 출력을 읽을 수 있다",
+    "학습한 모델을 저장했다가 다시 불러와 예측할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.ai-ml-dl",
+    "ml.basics.train-inference",
+    "be.python.classes"
+   ],
+   "related": [
+    "ml.nn.hidden-layers-activation",
+    "ml.training.backprop"
+   ],
+   "aliases": [
+    "신경망 입문",
+    "neural network basics",
+    "첫 신경망",
+    "뉴럴 네트워크",
+    "PyTorch 퀵스타트",
+    "nn.Module"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/neural-networks",
+    "https://developers.google.com/machine-learning/crash-course/neural-networks/nodes-hidden-layers",
+    "https://docs.pytorch.org/tutorials/beginner/basics/quickstart_tutorial.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.accuracy-first-evaluation",
+   "title": "모델 평가 입문: 정확도로 점수 매기기",
+   "en": "Model Evaluation Basics: Scoring with Accuracy",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "모델 평가",
+   "summary": "학습에 쓰지 않은 데이터로 예측을 정답과 맞춰 보고, 맞힌 비율인 정확도로 모델에 첫 점수를 매긴다.",
+   "objectives": [
+    "모델 평가가 학습에 쓰지 않은 데이터의 예측을 정답과 비교하는 일임을 설명할 수 있다",
+    "정확도를 맞힌 개수 나누기 전체 개수로 손으로 계산할 수 있다",
+    "예측 리스트와 정답 리스트를 scikit-learn의 accuracy_score에 넣어 정확도를 구할 수 있다",
+    "정확도 하나로는 모델을 다 알 수 없음을 알고 다른 지표가 있다는 것을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.train-inference"
+   ],
+   "related": [
+    "ml.eval.metrics-tradeoffs",
+    "ml.eval.data-splitting-cv"
+   ],
+   "aliases": [
+    "모델 평가 입문",
+    "model evaluation basics",
+    "accuracy_score",
+    "모델 점수"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/intro-to-ml/supervised",
+    "https://developers.google.com/machine-learning/crash-course/classification/accuracy-precision-recall",
+    "https://scikit-learn.org/stable/modules/model_evaluation.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.accuracy",
+   "title": "정확도",
+   "en": "Accuracy",
+   "kind": "term",
+   "level": 2,
+   "importance": 1,
+   "group": "모델 평가",
+   "summary": "전체 예측 가운데 정답을 맞힌 비율로, 분류 모델에 매기는 가장 기본적인 점수다.",
+   "parent": "ml.eval.accuracy-first-evaluation",
+   "related": [
+    "ml.eval.metrics-tradeoffs"
+   ],
+   "aliases": [
+    "정확도",
+    "accuracy",
+    "정답률",
+    "분류 정확도"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.weight-bias",
+   "title": "가중치와 편향",
+   "en": "Weights and Biases",
+   "kind": "term",
+   "level": 2,
+   "importance": 1,
+   "group": "딥러닝",
+   "summary": "가중치는 입력마다 곱하는 수, 편향은 그 합에 더하는 상수로, 학습이 바꿔 가는 모델의 숫자다.",
+   "parent": "ml.nn.first-neural-network",
+   "aliases": [
+    "가중치",
+    "weights",
+    "bias 항",
+    "가중치와 편향",
+    "학습 파라미터",
+    "model parameters"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.training.loss-function",
+   "title": "손실 함수",
+   "en": "Loss Function",
+   "kind": "term",
+   "level": 2,
+   "importance": 1,
+   "group": "딥러닝",
+   "summary": "예측이 정답에서 얼마나 멀리 틀렸는지를 숫자 하나로 재는 함수로, 학습은 이 값을 줄이는 과정이다.",
+   "related": [
+    "ml.training.backprop",
+    "ml.eval.accuracy"
+   ],
+   "aliases": [
+    "손실 함수",
+    "loss function",
+    "손실 값",
+    "평균 제곱 오차",
+    "MSE",
+    "MAE"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/linear-regression/loss"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.basics.feature-label",
+   "title": "특성과 레이블",
+   "en": "Features and Labels",
+   "kind": "term",
+   "level": 2,
+   "importance": 1,
+   "group": "AI 기초",
+   "summary": "특성은 모델에 넣는 입력 값이고 레이블은 모델이 맞혀야 할 정답으로, 지도 학습 데이터의 두 기둥이다.",
+   "related": [
+    "ml.basics.train-inference",
+    "ml.basics.data-quality"
+   ],
+   "aliases": [
+    "특성과 레이블",
+    "features and labels",
+    "입력 특성",
+    "정답 레이블",
+    "feature column"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/intro-to-ml/supervised"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.training.epoch-batch",
+   "title": "에폭과 배치 크기",
+   "en": "Epoch and Batch Size",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "에폭은 학습 데이터를 한 바퀴 다 본 횟수, 배치 크기는 가중치를 한 번 고치기 전에 보는 예시 개수다.",
+   "related": [
+    "ml.nn.first-neural-network",
+    "ml.training.backprop"
+   ],
+   "aliases": [
+    "에폭",
+    "epoch",
+    "배치 크기",
+    "batch size",
+    "미니배치",
+    "mini-batch"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/linear-regression/hyperparameters"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.eval.metrics-tradeoffs",
    "title": "평가 지표의 함정: 정밀도와 재현율",
    "en": "Evaluation Metric Tradeoffs",
@@ -12314,6 +12922,166 @@
     "https://developers.google.com/machine-learning/crash-course/overfitting"
    ],
    "domain": "ml"
+  },
+  {
+   "id": "mlops.eval.first-eval",
+   "title": "LLM 답 채점하기: 평가 세트와 스코어러",
+   "en": "Your First LLM Evaluation: Dataset and Scorers",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "질문과 기대 답을 짝지은 평가 세트를 만들고 채점기를 붙여 LLM 앱의 답을 한 번에 채점해 보는 첫 실습이다.",
+   "objectives": [
+    "질문과 기대 답을 짝지은 평가 세트를 파이썬 리스트로 만들 수 있다",
+    "내장 채점기와 짧은 함수 채점기를 골라 평가 한 번을 돌릴 수 있다",
+    "결과 화면에서 어느 질문이 왜 틀렸는지 찾아볼 수 있다"
+   ],
+   "prerequisites": [
+    "llm.api.first-call"
+   ],
+   "related": [
+    "mlops.eval.llm-regression",
+    "mlops.observe.tracing-quickstart"
+   ],
+   "aliases": [
+    "LLM 평가 입문",
+    "평가 돌리기",
+    "mlflow.genai.evaluate",
+    "evaluation quickstart",
+    "답 채점"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/eval-monitor/quickstart/",
+    "https://mlflow.org/docs/latest/genai/eval-monitor/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.tracing-quickstart",
+   "title": "LLM 호출 자동 기록: 트레이싱 시작하기",
+   "en": "Getting Started with LLM Tracing",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "로컬 MLflow 서버를 띄우고 한 줄로 자동 기록을 켜서 LLM 호출의 입력·출력·소요 시간을 브라우저에서 보는 첫 실습이다.",
+   "objectives": [
+    "로컬 MLflow 서버를 띄우고 실험 이름을 정해 연결할 수 있다",
+    "autolog 한 줄로 LLM 호출을 자동 기록할 수 있다",
+    "UI의 Traces 탭에서 호출마다 보낸 프롬프트·받은 답·걸린 시간을 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.api.first-call"
+   ],
+   "related": [
+    "mlops.observe.llm-tracing",
+    "ops.observe.tracing"
+   ],
+   "aliases": [
+    "트레이싱 시작하기",
+    "tracing quickstart",
+    "LLM 호출 기록",
+    "Traces 탭",
+    "호출 기록 보기"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/tracing/quickstart/",
+    "https://mlflow.org/docs/latest/genai/concepts/trace/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.eval.eval-dataset",
+   "title": "평가 세트(evaluation dataset)",
+   "en": "Evaluation Dataset",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "앱에 넣을 입력과 그에 기대하는 답을 짝지어 모아 둔 문제집으로, 모델이나 프롬프트를 바꿀 때마다 같은 문제로 다시 채점한다.",
+   "parent": "mlops.eval.first-eval",
+   "related": [
+    "mlops.eval.llm-regression"
+   ],
+   "aliases": [
+    "평가 세트",
+    "평가 데이터셋",
+    "evaluation dataset",
+    "eval dataset",
+    "inputs와 expectations"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/datasets/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.eval.scorer",
+   "title": "스코어러(채점기)",
+   "en": "Scorer",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "LLM 앱의 답 하나를 받아 맞았는지, 규칙을 지켰는지 점수나 통과 여부로 돌려주는 채점 단위로, 내장 심판과 직접 쓴 함수가 모두 해당한다.",
+   "parent": "mlops.eval.first-eval",
+   "related": [
+    "mlops.eval.llm-judge"
+   ],
+   "aliases": [
+    "스코어러",
+    "채점기",
+    "scorer",
+    "채점 함수",
+    "@scorer"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.autolog",
+   "title": "자동 트레이싱(autolog)",
+   "en": "Automatic Tracing (autolog)",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "코드를 고치지 않고 라이브러리별 autolog 한 줄만 켜면 LLM·에이전트 라이브러리의 호출을 모두 트레이스로 남겨 주는 기능이다.",
+   "parent": "mlops.observe.tracing-quickstart",
+   "aliases": [
+    "autolog",
+    "자동 트레이싱",
+    "mlflow.openai.autolog",
+    "automatic tracing"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/tracing/app-instrumentation/automatic/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.mlflow-server",
+   "title": "MLflow 서버와 UI",
+   "en": "MLflow Server and UI",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "기록된 트레이스와 평가 결과를 받아 저장하고 브라우저 화면으로 보여 주는 로컬 서버로, mlflow server 한 줄로 띄운다.",
+   "parent": "mlops.observe.tracing-quickstart",
+   "aliases": [
+    "mlflow server",
+    "MLflow UI",
+    "MLflow 추적 서버",
+    "tracking server"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/getting-started/connect-environment/"
+   ],
+   "domain": "mlops"
   },
   {
    "id": "mlops.eval.llm-regression",
