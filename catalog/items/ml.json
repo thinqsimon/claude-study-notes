@@ -96,6 +96,156 @@
     ]
   },
   {
+    "id": "ml.nn.hidden-layers-activation",
+    "title": "신경망 구조 설계: 은닉층과 활성화 함수",
+    "en": "Neural Network Architecture: Hidden Layers and Activation Functions",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "선형 모델로 풀리지 않는 문제에 은닉층과 활성화 함수를 어떻게 쌓을지 고르고 그 근거를 말한다.",
+    "objectives": [
+      "선형 모델이 못 푸는 문제에 왜 은닉층과 비선형 활성화 함수가 함께 필요한지 설명할 수 있다",
+      "층 수·뉴런 수·활성화 함수를 고를 때 파라미터 수, 계산 비용, 기울기 소실을 근거로 말할 수 있다",
+      "층을 지나는 텐서 모양을 추적해 층의 입력·출력 크기를 맞출 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.ai-ml-dl",
+      "ml.basics.train-inference"
+    ],
+    "related": [
+      "ml.training.backprop",
+      "ml.training.overfitting"
+    ],
+    "aliases": [
+      "신경망 구조",
+      "neural network architecture",
+      "nn.Sequential",
+      "다층 퍼셉트론",
+      "MLP",
+      "은닉층 설계"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/neural-networks/nodes-hidden-layers",
+      "https://developers.google.com/machine-learning/crash-course/neural-networks/activation-functions",
+      "https://docs.pytorch.org/tutorials/beginner/basics/buildmodel_tutorial.html"
+    ]
+  },
+  {
+    "id": "ml.eval.data-splitting-cv",
+    "title": "데이터 분할과 교차 검증",
+    "en": "Data Splitting and Cross-Validation",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "모델 평가",
+    "summary": "학습·검증·테스트 세트를 어떻게 나누고 교차 검증을 어떻게 돌려야 평가 점수를 믿을 수 있는지 다룬다.",
+    "objectives": [
+      "검증 세트와 테스트 세트를 따로 두는 이유와 테스트 세트를 반복해 쓰면 생기는 문제를 설명할 수 있다",
+      "데이터의 성질(클래스 불균형, 같은 사용자의 묶음, 시간 순서)에 맞는 분할 방식을 고르고 근거를 말할 수 있다",
+      "오프라인 점수는 높은데 실제 서비스에서 떨어지는 원인을 중복 데이터, 전처리 순서, 분할 방식에서 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.train-inference",
+      "ml.basics.data-quality"
+    ],
+    "related": [
+      "ml.training.overfitting",
+      "ml.eval.metrics-tradeoffs"
+    ],
+    "aliases": [
+      "데이터 분할",
+      "data splitting",
+      "train_test_split",
+      "홀드아웃",
+      "hold-out",
+      "k-fold"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets",
+      "https://scikit-learn.org/stable/modules/cross_validation.html"
+    ]
+  },
+  {
+    "id": "ml.nn.activation-function",
+    "title": "활성화 함수",
+    "en": "Activation Function",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "뉴런의 출력에 비선형성을 더해 층을 쌓는 의미를 만드는 함수로 ReLU·시그모이드·tanh가 대표다.",
+    "parent": "ml.nn.hidden-layers-activation",
+    "aliases": [
+      "활성화 함수",
+      "activation function",
+      "ReLU",
+      "시그모이드",
+      "sigmoid",
+      "tanh"
+    ]
+  },
+  {
+    "id": "ml.eval.cross-validation",
+    "title": "교차 검증",
+    "en": "Cross-Validation",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "모델 평가",
+    "summary": "데이터를 k개 조각으로 나눠 조각마다 한 번씩 검증에 쓰고 점수를 평균해, 한 번의 분할에 운이 끼는 것을 줄이는 평가 방법이다.",
+    "parent": "ml.eval.data-splitting-cv",
+    "aliases": [
+      "교차 검증",
+      "cross-validation",
+      "cross_val_score",
+      "k겹 교차 검증",
+      "KFold"
+    ]
+  },
+  {
+    "id": "ml.eval.train-val-test-sets",
+    "title": "학습·검증·테스트 세트",
+    "en": "Training, Validation, and Test Sets",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "모델 평가",
+    "summary": "모델을 맞추는 학습 세트, 설계를 조정하며 반복 평가하는 검증 세트, 마지막에 한 번 확인하는 테스트 세트로 역할이 나뉜다.",
+    "parent": "ml.eval.data-splitting-cv",
+    "aliases": [
+      "학습 세트",
+      "검증 세트",
+      "테스트 세트",
+      "validation set",
+      "test set",
+      "training set"
+    ]
+  },
+  {
+    "id": "ml.eval.roc-auc",
+    "title": "ROC 곡선과 AUC",
+    "en": "ROC Curve and AUC",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "모델 평가",
+    "summary": "임계값을 바꿔 가며 참 양성률과 거짓 양성률을 그린 곡선과 그 아래 넓이로, 임계값과 무관하게 모델의 순위 매기기 능력을 비교한다.",
+    "related": [
+      "ml.eval.metrics-tradeoffs"
+    ],
+    "aliases": [
+      "ROC 곡선",
+      "ROC curve",
+      "AUC",
+      "roc_auc",
+      "참 양성률"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc"
+    ]
+  },
+  {
     "id": "ml.transformer.attention",
     "title": "트랜스포머와 어텐션",
     "en": "Transformers and Attention",

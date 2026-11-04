@@ -1,5 +1,5 @@
 {
- "version": "0.3.0",
+ "version": "0.4.0",
  "domains": [
   {
    "prefix": "dev",
@@ -765,6 +765,151 @@
    ],
    "refs": [
     "https://www.nngroup.com/articles/user-journeys-vs-user-flows/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.ai-ux.errors-graceful-failure",
+   "title": "AI 오류 유형과 우아한 실패 설계",
+   "en": "AI Error Types and Graceful Failure",
+   "kind": "topic",
+   "level": 4,
+   "importance": 1,
+   "group": "AI UX 설계",
+   "summary": "AI의 틀린 답을 사용자·시스템·맥락 오류로 나누고, 틀렸을 때 사용자가 제어권을 되찾는 길을 미리 설계하는 일이다.",
+   "objectives": [
+    "사용자가 겪은 AI 오류를 맥락 오류·시스템 한계·배경 오류 중 어느 것인지 분류할 수 있다",
+    "작업의 위험도에 따라 허용할 오류 수준과 안전 장치를 다르게 정할 수 있다",
+    "오류 화면에서 피드백 받기와 수동 전환을 어떻게 넣을지 근거를 들어 고를 수 있다",
+    "오류가 학습 데이터·입력·관련성·시스템 충돌 중 어디서 왔는지 짚어 볼 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.ai-fit"
+   ],
+   "aliases": [
+    "우아한 실패",
+    "graceful failure",
+    "AI 오류 설계",
+    "맥락 오류"
+   ],
+   "refs": [
+    "https://pair.withgoogle.com/chapter/errors-failing/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.dev-mode-handoff",
+   "title": "Dev Mode로 하는 디자인·개발 핸드오프",
+   "en": "Design-to-Development Handoff with Dev Mode",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "Figma Dev Mode에서 속성·코드·주석과 상태 표시를 써서 디자인을 개발로 넘기고 변경을 추적하는 절차다.",
+   "objectives": [
+    "핸드오프에 넘길 화면에 주석·상태·개발 자료를 어떻게 붙일지 팀 규칙으로 정할 수 있다",
+    "개발자가 Inspect로 읽는 값과 디자인 시스템 코드(Code Connect)를 어느 쪽 기준으로 맞출지 고를 수 있다",
+    "구현이 디자인과 어긋났을 때 Compare changes로 어느 버전에서 바뀌었는지 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.service-flow"
+   ],
+   "aliases": [
+    "Figma Dev Mode",
+    "디자인 핸드오프",
+    "design handoff",
+    "Figma Inspect"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/15023124644247-Guide-to-Dev-Mode"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.variables-modes",
+   "title": "Figma 변수와 모드",
+   "en": "Figma Variables and Modes",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "색·숫자·문자 값을 변수로 두고 라이트·다크 같은 모드마다 다른 값을 담아 한 디자인으로 여러 맥락을 표현하는 장치다.",
+   "aliases": [
+    "Figma 변수",
+    "Figma variables",
+    "변수 모드",
+    "variable modes",
+    "Figma 디자인 토큰"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/15145852043927-Create-and-manage-variables",
+    "https://help.figma.com/hc/en-us/articles/15343816063383-Modes-for-variables"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.ai-ux.calibrated-trust",
+   "title": "신뢰 보정",
+   "en": "Calibrated Trust",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "AI UX 설계",
+   "summary": "사용자가 AI를 지나치게 믿지도 불신하지도 않도록 데이터 출처·확신도·한계를 보여 주어 믿을 만큼만 믿게 하는 설계 목표다.",
+   "related": [
+    "plan.ai-ux.errors-graceful-failure"
+   ],
+   "aliases": [
+    "calibrated trust",
+    "보정된 신뢰",
+    "과신 방지",
+    "확신도 표시",
+    "confidence display"
+   ],
+   "refs": [
+    "https://pair.withgoogle.com/chapter/explainability-trust/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.ai-ux.implicit-explicit-feedback",
+   "title": "암묵적 피드백과 명시적 피드백",
+   "en": "Implicit and Explicit Feedback",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "AI UX 설계",
+   "summary": "사용 기록에서 읽어 내는 신호와 사용자가 일부러 남기는 평가를 구분해 어느 쪽으로 모델을 고칠지 정하는 기준이다.",
+   "related": [
+    "plan.ai-ux.calibrated-trust"
+   ],
+   "aliases": [
+    "암묵적 피드백",
+    "implicit feedback",
+    "명시적 피드백",
+    "explicit feedback",
+    "좋아요 싫어요 버튼",
+    "thumbs up down"
+   ],
+   "refs": [
+    "https://pair.withgoogle.com/chapter/feedback-controls/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.ready-for-dev",
+   "title": "Ready for dev 상태",
+   "en": "Ready for Dev Status",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "프레임이나 컴포넌트가 개발로 넘어갈 준비가 됐다고 Figma에 표시해 개발자에게 알리는 상태값이다.",
+   "parent": "plan.figma.dev-mode-handoff",
+   "aliases": [
+    "Ready for dev",
+    "개발 준비 완료",
+    "Dev Mode 상태"
    ],
    "domain": "plan"
   },
@@ -9709,6 +9854,150 @@
    "domain": "fe"
   },
   {
+   "id": "fe.internals.server-client-boundary",
+   "title": "서버 컴포넌트와 클라이언트 컴포넌트 경계 정하기",
+   "en": "Choosing the Server and Client Component Boundary",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "프론트엔드 내부",
+   "summary": "어느 컴포넌트를 브라우저에서 실행할지 정하고 경계를 넘는 코드와 데이터의 규칙으로 오류 원인을 찾는다.",
+   "objectives": [
+    "상태·이벤트·브라우저 API가 필요한 부분만 클라이언트 컴포넌트로 정하고 그 근거를 말할 수 있다",
+    "함수 props 오류와 서버 전용 코드의 번들 유입 같은 경계 위반의 원인을 찾아 고칠 수 있다",
+    "children 슬롯과 컨텍스트 제공자 래퍼로 서버와 클라이언트 컴포넌트를 섞어 쓸 수 있다"
+   ],
+   "prerequisites": [
+    "fe.next.first-page",
+    "fe.react.first-component"
+   ],
+   "related": [
+    "fe.internals.server-components"
+   ],
+   "aliases": [
+    "서버·클라이언트 경계",
+    "클라이언트 컴포넌트",
+    "Client Component",
+    "server and client boundary"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/guides/server-and-client-boundary",
+    "https://react.dev/reference/rsc/use-client",
+    "https://nextjs.org/docs/app/getting-started/server-and-client-components"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.react-memoization",
+   "title": "React 리렌더링과 메모이제이션 선택",
+   "en": "React Re-rendering and Memoization Choices",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "프론트엔드 내부",
+   "summary": "부모가 다시 그려질 때 자식이 따라 그려지는 이유를 알고 memo·useMemo·useCallback을 넣을지 측정으로 정하며, React Compiler가 대신 메모하는 경우를 가린다.",
+   "objectives": [
+    "트리거·렌더·커밋 단계로 어떤 state 변경이 어느 컴포넌트를 다시 그리는지 설명할 수 있다",
+    "memo·useMemo·useCallback이 효과를 내는 조건을 알고 측정 결과로 넣을지 말지 정할 수 있다",
+    "객체·배열·함수 props 때문에 메모가 깨지는 원인을 의존성 비교로 찾을 수 있다",
+    "Strict Mode의 이중 렌더링이 드러낸 순수하지 않은 코드와 정리 안 된 Effect를 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "fe.react.state-first"
+   ],
+   "related": [
+    "fe.internals.react-reconciliation"
+   ],
+   "aliases": [
+    "불필요한 리렌더링",
+    "리렌더링 최적화",
+    "useMemo",
+    "useCallback",
+    "React 메모이제이션"
+   ],
+   "refs": [
+    "https://react.dev/learn/render-and-commit",
+    "https://react.dev/reference/react/memo",
+    "https://react.dev/reference/react/useMemo",
+    "https://react.dev/reference/react/useCallback",
+    "https://react.dev/reference/react/StrictMode"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.use-client-directive",
+   "title": "'use client' 지시어",
+   "en": "'use client' Directive",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "프론트엔드 내부",
+   "summary": "파일 맨 위에 적어 그 모듈과 그것이 가져오는 모듈 전부를 브라우저로 보내는 클라이언트 경계 표시다.",
+   "parent": "fe.internals.server-client-boundary",
+   "aliases": [
+    "use client",
+    "'use client'",
+    "use client 지시어",
+    "클라이언트 지시어"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.react-memo",
+   "title": "React.memo",
+   "en": "React.memo",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "프론트엔드 내부",
+   "summary": "props가 Object.is로 같으면 부모가 다시 그려져도 그 컴포넌트의 리렌더링을 건너뛰게 감싸는 함수다.",
+   "parent": "fe.internals.react-memoization",
+   "aliases": [
+    "React.memo",
+    "memo()",
+    "memo 컴포넌트",
+    "메모 컴포넌트"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.strict-mode",
+   "title": "Strict Mode 이중 렌더링",
+   "en": "Strict Mode Double Rendering",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "프론트엔드 내부",
+   "summary": "개발 중에만 컴포넌트와 Effect를 두 번 실행해 순수하지 않은 코드와 빠진 정리 함수를 드러내는 검사다.",
+   "parent": "fe.internals.react-memoization",
+   "aliases": [
+    "StrictMode",
+    "React Strict Mode",
+    "이중 렌더링",
+    "두 번 렌더링",
+    "useEffect 두 번 실행"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.server-only",
+   "title": "server-only와 client-only",
+   "en": "server-only and client-only",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "비밀값을 읽는 모듈이 실수로 클라이언트 번들에 들어가면 빌드 때 오류를 내게 하는 표시 패키지다.",
+   "parent": "fe.internals.server-client-boundary",
+   "aliases": [
+    "server-only",
+    "client-only",
+    "environment poisoning",
+    "서버 전용 모듈"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.internals.render-pipeline",
    "title": "브라우저 렌더링 파이프라인",
    "en": "Browser Rendering Pipeline",
@@ -10950,6 +11239,147 @@
    "domain": "ax"
   },
   {
+   "id": "ax.security.model-output-handling",
+   "title": "모델 출력을 실행하기 전의 방어",
+   "en": "Handling Untrusted Model Output",
+   "kind": "topic",
+   "level": 4,
+   "importance": 1,
+   "group": "AI 보안과 윤리",
+   "summary": "모델의 답을 셸·SQL·HTML·파일 경로에 넘기기 전에 사용자 입력처럼 믿지 않고 쓰이는 곳에 맞춰 검사·인코딩·매개변수화하는 설계다.",
+   "objectives": [
+    "모델 출력이 흘러가는 곳(셸, 쿼리, 화면, 파일 경로, 메일)마다 어떤 공격이 되는지 가릴 수 있다",
+    "출력이 쓰이는 곳에 맞춰 매개변수화·인코딩·허용 목록 중 무엇을 적용할지 고를 수 있다",
+    "출력 로그에서 이상 패턴을 찾아 인젝션의 결과가 어디까지 번졌는지 추적할 수 있다"
+   ],
+   "prerequisites": [
+    "be.security.input-output",
+    "llm.security.prompt-injection"
+   ],
+   "related": [
+    "be.security.sql-injection",
+    "be.security.xss",
+    "llm.security.agent-boundaries",
+    "be.security.supply-chain"
+   ],
+   "aliases": [
+    "출력 처리 취약점",
+    "improper output handling",
+    "LLM05:2025",
+    "모델 출력 검증",
+    "untrusted output"
+   ],
+   "refs": [
+    "https://genai.owasp.org/llmrisk/llm052025-improper-output-handling/"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.subagents-permission-modes",
+   "title": "하위 에이전트 병렬 실행과 권한 모드",
+   "en": "Parallel Subagents and Permission Modes",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "독립된 일을 하위 에이전트에 나눠 병렬로 돌리고, 권한 모드와 도구 제한으로 에이전트마다 할 수 있는 일을 설계한다.",
+   "objectives": [
+    "하위 에이전트에 맡길 일과 주 대화에서 직접 할 일을 컨텍스트와 지연의 손익으로 가를 수 있다",
+    "묻기(default)·편집 허용·계획·자동 같은 권한 모드를 작업의 위험도에 맞게 고를 수 있다",
+    "하위 에이전트의 도구 목록과 권한 모드를 좁혀 위험한 동작을 막을 수 있다",
+    "컨텍스트 격리 때문에 하위 에이전트가 엉뚱하게 답하는 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.agent-first"
+   ],
+   "related": [
+    "rag.agent.reliability",
+    "llm.security.agent-boundaries",
+    "ax.coding.agent-sandbox"
+   ],
+   "aliases": [
+    "하위 에이전트 병렬 실행",
+    "서브에이전트 병렬",
+    "parallel subagents",
+    "subagent permissionMode"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/sub-agents",
+    "https://code.claude.com/docs/en/permission-modes"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-04",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.subagent",
+   "title": "하위 에이전트",
+   "en": "Subagent",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "주 대화가 한 가지 일을 맡겨 새 컨텍스트에서 돌리고 마지막 요약만 돌려받는 별도의 에이전트다.",
+   "parent": "ax.coding.subagents-permission-modes",
+   "aliases": [
+    "서브에이전트",
+    "subagent",
+    "sub-agent",
+    "백그라운드 에이전트",
+    "Agent 도구"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.permission-mode",
+   "title": "권한 모드",
+   "en": "Permission Mode",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "코딩 에이전트가 어떤 동작을 묻지 않고 실행할지 정하는 설정으로, 묻기(default)·편집 허용·계획·자동·거부(dontAsk)·우회 같은 단계가 있다.",
+   "parent": "ax.coding.subagents-permission-modes",
+   "related": [
+    "ax.coding.agent-sandbox"
+   ],
+   "aliases": [
+    "permission mode",
+    "acceptEdits",
+    "계획 모드",
+    "bypassPermissions",
+    "dontAsk",
+    "auto 모드"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-04",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.agent-sandbox",
+   "title": "에이전트 샌드박스",
+   "en": "Agent Sandbox",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "에이전트가 실행하는 셸 명령을 OS 수준에서 가두어 쓸 수 있는 파일과 접속할 수 있는 주소를 제한하는 장치다.",
+   "related": [
+    "ax.coding.permission-mode",
+    "ops.container.isolation"
+   ],
+   "aliases": [
+    "bash 샌드박스",
+    "셸 샌드박스",
+    "sandboxing",
+    "sandbox-runtime"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/sandboxing"
+   ],
+   "domain": "ax"
+  },
+  {
    "id": "ax.governance.ai-risk",
    "title": "AI 위험 관리와 규제 대응",
    "en": "AI Risk Management and Regulation",
@@ -11647,6 +12077,162 @@
    "domain": "ml"
   },
   {
+   "id": "ml.nn.hidden-layers-activation",
+   "title": "신경망 구조 설계: 은닉층과 활성화 함수",
+   "en": "Neural Network Architecture: Hidden Layers and Activation Functions",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "선형 모델로 풀리지 않는 문제에 은닉층과 활성화 함수를 어떻게 쌓을지 고르고 그 근거를 말한다.",
+   "objectives": [
+    "선형 모델이 못 푸는 문제에 왜 은닉층과 비선형 활성화 함수가 함께 필요한지 설명할 수 있다",
+    "층 수·뉴런 수·활성화 함수를 고를 때 파라미터 수, 계산 비용, 기울기 소실을 근거로 말할 수 있다",
+    "층을 지나는 텐서 모양을 추적해 층의 입력·출력 크기를 맞출 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.ai-ml-dl",
+    "ml.basics.train-inference"
+   ],
+   "related": [
+    "ml.training.backprop",
+    "ml.training.overfitting"
+   ],
+   "aliases": [
+    "신경망 구조",
+    "neural network architecture",
+    "nn.Sequential",
+    "다층 퍼셉트론",
+    "MLP",
+    "은닉층 설계"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/neural-networks/nodes-hidden-layers",
+    "https://developers.google.com/machine-learning/crash-course/neural-networks/activation-functions",
+    "https://docs.pytorch.org/tutorials/beginner/basics/buildmodel_tutorial.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.data-splitting-cv",
+   "title": "데이터 분할과 교차 검증",
+   "en": "Data Splitting and Cross-Validation",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "모델 평가",
+   "summary": "학습·검증·테스트 세트를 어떻게 나누고 교차 검증을 어떻게 돌려야 평가 점수를 믿을 수 있는지 다룬다.",
+   "objectives": [
+    "검증 세트와 테스트 세트를 따로 두는 이유와 테스트 세트를 반복해 쓰면 생기는 문제를 설명할 수 있다",
+    "데이터의 성질(클래스 불균형, 같은 사용자의 묶음, 시간 순서)에 맞는 분할 방식을 고르고 근거를 말할 수 있다",
+    "오프라인 점수는 높은데 실제 서비스에서 떨어지는 원인을 중복 데이터, 전처리 순서, 분할 방식에서 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.train-inference",
+    "ml.basics.data-quality"
+   ],
+   "related": [
+    "ml.training.overfitting",
+    "ml.eval.metrics-tradeoffs"
+   ],
+   "aliases": [
+    "데이터 분할",
+    "data splitting",
+    "train_test_split",
+    "홀드아웃",
+    "hold-out",
+    "k-fold"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets",
+    "https://scikit-learn.org/stable/modules/cross_validation.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.activation-function",
+   "title": "활성화 함수",
+   "en": "Activation Function",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "뉴런의 출력에 비선형성을 더해 층을 쌓는 의미를 만드는 함수로 ReLU·시그모이드·tanh가 대표다.",
+   "parent": "ml.nn.hidden-layers-activation",
+   "aliases": [
+    "활성화 함수",
+    "activation function",
+    "ReLU",
+    "시그모이드",
+    "sigmoid",
+    "tanh"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.cross-validation",
+   "title": "교차 검증",
+   "en": "Cross-Validation",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "모델 평가",
+   "summary": "데이터를 k개 조각으로 나눠 조각마다 한 번씩 검증에 쓰고 점수를 평균해, 한 번의 분할에 운이 끼는 것을 줄이는 평가 방법이다.",
+   "parent": "ml.eval.data-splitting-cv",
+   "aliases": [
+    "교차 검증",
+    "cross-validation",
+    "cross_val_score",
+    "k겹 교차 검증",
+    "KFold"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.train-val-test-sets",
+   "title": "학습·검증·테스트 세트",
+   "en": "Training, Validation, and Test Sets",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "모델 평가",
+   "summary": "모델을 맞추는 학습 세트, 설계를 조정하며 반복 평가하는 검증 세트, 마지막에 한 번 확인하는 테스트 세트로 역할이 나뉜다.",
+   "parent": "ml.eval.data-splitting-cv",
+   "aliases": [
+    "학습 세트",
+    "검증 세트",
+    "테스트 세트",
+    "validation set",
+    "test set",
+    "training set"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.roc-auc",
+   "title": "ROC 곡선과 AUC",
+   "en": "ROC Curve and AUC",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "모델 평가",
+   "summary": "임계값을 바꿔 가며 참 양성률과 거짓 양성률을 그린 곡선과 그 아래 넓이로, 임계값과 무관하게 모델의 순위 매기기 능력을 비교한다.",
+   "related": [
+    "ml.eval.metrics-tradeoffs"
+   ],
+   "aliases": [
+    "ROC 곡선",
+    "ROC curve",
+    "AUC",
+    "roc_auc",
+    "참 양성률"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.transformer.attention",
    "title": "트랜스포머와 어텐션",
    "en": "Transformers and Attention",
@@ -11753,6 +12339,147 @@
    ],
    "refs": [
     "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.llm-tracing",
+   "title": "LLM 트레이스: 프롬프트·응답·토큰 기록",
+   "en": "LLM Tracing: Recording Prompts, Outputs and Tokens",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "LLM 기능의 단계마다 입력·출력·토큰·지연을 트레이스로 남겨 품질 문제의 원인을 찾고 평가 자료로 쓴다.",
+   "objectives": [
+    "LLM 호출과 검색·도구 단계를 트레이스로 묶어 어느 단계에서 답이 나빠졌는지 찾을 수 있다",
+    "프롬프트·응답 본문을 트레이스에 저장할 때의 비용과 개인정보 문제를 따져 무엇을 남길지 정할 수 있다",
+    "트레이스에 사용자 피드백을 붙여 평가 세트를 만드는 흐름을 설계할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.observe.tracing",
+    "llm.api.first-call"
+   ],
+   "related": [
+    "ops.observe.tracing",
+    "mlops.eval.llm-regression"
+   ],
+   "aliases": [
+    "LLM 트레이스",
+    "LLM trace",
+    "MLflow Tracing",
+    "LLM 관측",
+    "LLM observability",
+    "GenAI 시맨틱 컨벤션",
+    "token usage",
+    "gen_ai.usage"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/tracing/",
+    "https://mlflow.org/docs/latest/genai/tracing/prod-tracing/",
+    "https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/README.md"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.prompt.registry",
+   "title": "프롬프트 버전 관리와 별칭 배포",
+   "en": "Prompt Versioning and Alias-Based Rollout",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "프롬프트를 코드에 박지 않고 버전으로 등록한 뒤 별칭을 옮겨 배포·되돌리기와 비교를 운영한다.",
+   "objectives": [
+    "프롬프트를 코드와 분리해 버전으로 관리할 때의 이점과 비용을 말할 수 있다",
+    "별칭으로 배포·되돌리기를 설계하고 별칭 캐시가 반영 지연을 만드는 원인을 찾을 수 있다",
+    "프롬프트 버전 변경을 평가 세트와 이어 회귀를 막는 절차를 만들 수 있다"
+   ],
+   "prerequisites": [
+    "llm.prompt.first-good-prompt",
+    "dev.git.why-version-control"
+   ],
+   "related": [
+    "mlops.eval.llm-regression",
+    "llm.api.system-prompt"
+   ],
+   "aliases": [
+    "프롬프트 레지스트리",
+    "prompt registry",
+    "프롬프트 버전",
+    "prompt versioning",
+    "프롬프트 관리"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/prompt-registry/",
+    "https://mlflow.org/docs/latest/genai/prompt-registry/manage-prompt-lifecycles-with-aliases/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.eval.llm-judge",
+   "title": "LLM 심판(LLM-as-a-judge)",
+   "en": "LLM-as-a-Judge",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "정답과 표현이 달라도 뜻이 맞는지 다른 LLM에게 기준을 주어 채점하게 하는 평가 방법이다.",
+   "parent": "mlops.eval.llm-regression",
+   "related": [
+    "ml.eval.metrics-tradeoffs"
+   ],
+   "aliases": [
+    "LLM 심판",
+    "LLM-as-a-judge",
+    "LLM judge",
+    "judge 모델",
+    "AI 채점"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.guardrail.unbounded-consumption",
+   "title": "무제한 소비(Unbounded Consumption)",
+   "en": "Unbounded Consumption",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "입력 크기·호출 횟수·실행 시간을 묶지 않아 LLM 서비스가 비용 폭증, 자원 고갈, 모델 복제에 노출되는 위험이다.",
+   "related": [
+    "be.rest.rate-limit",
+    "llm.security.prompt-injection"
+   ],
+   "aliases": [
+    "무제한 소비",
+    "Unbounded Consumption",
+    "denial of wallet",
+    "지갑 고갈 공격",
+    "LLM10:2025"
+   ],
+   "refs": [
+    "https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.prompt.alias",
+   "title": "프롬프트 별칭",
+   "en": "Prompt Alias",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "production처럼 환경 이름을 붙여 특정 프롬프트 버전을 가리키고 옮길 수 있는 이름표다.",
+   "parent": "mlops.prompt.registry",
+   "aliases": [
+    "프롬프트 별칭",
+    "prompt alias",
+    "@production"
    ],
    "domain": "mlops"
   },

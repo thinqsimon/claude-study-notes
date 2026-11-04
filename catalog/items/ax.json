@@ -154,6 +154,142 @@
     ]
   },
   {
+    "id": "ax.security.model-output-handling",
+    "title": "모델 출력을 실행하기 전의 방어",
+    "en": "Handling Untrusted Model Output",
+    "kind": "topic",
+    "level": 4,
+    "importance": 1,
+    "group": "AI 보안과 윤리",
+    "summary": "모델의 답을 셸·SQL·HTML·파일 경로에 넘기기 전에 사용자 입력처럼 믿지 않고 쓰이는 곳에 맞춰 검사·인코딩·매개변수화하는 설계다.",
+    "objectives": [
+      "모델 출력이 흘러가는 곳(셸, 쿼리, 화면, 파일 경로, 메일)마다 어떤 공격이 되는지 가릴 수 있다",
+      "출력이 쓰이는 곳에 맞춰 매개변수화·인코딩·허용 목록 중 무엇을 적용할지 고를 수 있다",
+      "출력 로그에서 이상 패턴을 찾아 인젝션의 결과가 어디까지 번졌는지 추적할 수 있다"
+    ],
+    "prerequisites": [
+      "be.security.input-output",
+      "llm.security.prompt-injection"
+    ],
+    "related": [
+      "be.security.sql-injection",
+      "be.security.xss",
+      "llm.security.agent-boundaries",
+      "be.security.supply-chain"
+    ],
+    "aliases": [
+      "출력 처리 취약점",
+      "improper output handling",
+      "LLM05:2025",
+      "모델 출력 검증",
+      "untrusted output"
+    ],
+    "refs": [
+      "https://genai.owasp.org/llmrisk/llm052025-improper-output-handling/"
+    ]
+  },
+  {
+    "id": "ax.coding.subagents-permission-modes",
+    "title": "하위 에이전트 병렬 실행과 권한 모드",
+    "en": "Parallel Subagents and Permission Modes",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "독립된 일을 하위 에이전트에 나눠 병렬로 돌리고, 권한 모드와 도구 제한으로 에이전트마다 할 수 있는 일을 설계한다.",
+    "objectives": [
+      "하위 에이전트에 맡길 일과 주 대화에서 직접 할 일을 컨텍스트와 지연의 손익으로 가를 수 있다",
+      "묻기(default)·편집 허용·계획·자동 같은 권한 모드를 작업의 위험도에 맞게 고를 수 있다",
+      "하위 에이전트의 도구 목록과 권한 모드를 좁혀 위험한 동작을 막을 수 있다",
+      "컨텍스트 격리 때문에 하위 에이전트가 엉뚱하게 답하는 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.agent-first"
+    ],
+    "related": [
+      "rag.agent.reliability",
+      "llm.security.agent-boundaries",
+      "ax.coding.agent-sandbox"
+    ],
+    "aliases": [
+      "하위 에이전트 병렬 실행",
+      "서브에이전트 병렬",
+      "parallel subagents",
+      "subagent permissionMode"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/sub-agents",
+      "https://code.claude.com/docs/en/permission-modes"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-04"
+  },
+  {
+    "id": "ax.coding.subagent",
+    "title": "하위 에이전트",
+    "en": "Subagent",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "주 대화가 한 가지 일을 맡겨 새 컨텍스트에서 돌리고 마지막 요약만 돌려받는 별도의 에이전트다.",
+    "parent": "ax.coding.subagents-permission-modes",
+    "aliases": [
+      "서브에이전트",
+      "subagent",
+      "sub-agent",
+      "백그라운드 에이전트",
+      "Agent 도구"
+    ]
+  },
+  {
+    "id": "ax.coding.permission-mode",
+    "title": "권한 모드",
+    "en": "Permission Mode",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "코딩 에이전트가 어떤 동작을 묻지 않고 실행할지 정하는 설정으로, 묻기(default)·편집 허용·계획·자동·거부(dontAsk)·우회 같은 단계가 있다.",
+    "parent": "ax.coding.subagents-permission-modes",
+    "related": [
+      "ax.coding.agent-sandbox"
+    ],
+    "aliases": [
+      "permission mode",
+      "acceptEdits",
+      "계획 모드",
+      "bypassPermissions",
+      "dontAsk",
+      "auto 모드"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-04"
+  },
+  {
+    "id": "ax.coding.agent-sandbox",
+    "title": "에이전트 샌드박스",
+    "en": "Agent Sandbox",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "에이전트가 실행하는 셸 명령을 OS 수준에서 가두어 쓸 수 있는 파일과 접속할 수 있는 주소를 제한하는 장치다.",
+    "related": [
+      "ax.coding.permission-mode",
+      "ops.container.isolation"
+    ],
+    "aliases": [
+      "bash 샌드박스",
+      "셸 샌드박스",
+      "sandboxing",
+      "sandbox-runtime"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/sandboxing"
+    ]
+  },
+  {
     "id": "ax.governance.ai-risk",
     "title": "AI 위험 관리와 규제 대응",
     "en": "AI Risk Management and Regulation",

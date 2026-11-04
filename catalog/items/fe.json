@@ -355,6 +355,144 @@
     ]
   },
   {
+    "id": "fe.internals.server-client-boundary",
+    "title": "서버 컴포넌트와 클라이언트 컴포넌트 경계 정하기",
+    "en": "Choosing the Server and Client Component Boundary",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "프론트엔드 내부",
+    "summary": "어느 컴포넌트를 브라우저에서 실행할지 정하고 경계를 넘는 코드와 데이터의 규칙으로 오류 원인을 찾는다.",
+    "objectives": [
+      "상태·이벤트·브라우저 API가 필요한 부분만 클라이언트 컴포넌트로 정하고 그 근거를 말할 수 있다",
+      "함수 props 오류와 서버 전용 코드의 번들 유입 같은 경계 위반의 원인을 찾아 고칠 수 있다",
+      "children 슬롯과 컨텍스트 제공자 래퍼로 서버와 클라이언트 컴포넌트를 섞어 쓸 수 있다"
+    ],
+    "prerequisites": [
+      "fe.next.first-page",
+      "fe.react.first-component"
+    ],
+    "related": [
+      "fe.internals.server-components"
+    ],
+    "aliases": [
+      "서버·클라이언트 경계",
+      "클라이언트 컴포넌트",
+      "Client Component",
+      "server and client boundary"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/guides/server-and-client-boundary",
+      "https://react.dev/reference/rsc/use-client",
+      "https://nextjs.org/docs/app/getting-started/server-and-client-components"
+    ]
+  },
+  {
+    "id": "fe.internals.react-memoization",
+    "title": "React 리렌더링과 메모이제이션 선택",
+    "en": "React Re-rendering and Memoization Choices",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "프론트엔드 내부",
+    "summary": "부모가 다시 그려질 때 자식이 따라 그려지는 이유를 알고 memo·useMemo·useCallback을 넣을지 측정으로 정하며, React Compiler가 대신 메모하는 경우를 가린다.",
+    "objectives": [
+      "트리거·렌더·커밋 단계로 어떤 state 변경이 어느 컴포넌트를 다시 그리는지 설명할 수 있다",
+      "memo·useMemo·useCallback이 효과를 내는 조건을 알고 측정 결과로 넣을지 말지 정할 수 있다",
+      "객체·배열·함수 props 때문에 메모가 깨지는 원인을 의존성 비교로 찾을 수 있다",
+      "Strict Mode의 이중 렌더링이 드러낸 순수하지 않은 코드와 정리 안 된 Effect를 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "fe.react.state-first"
+    ],
+    "related": [
+      "fe.internals.react-reconciliation"
+    ],
+    "aliases": [
+      "불필요한 리렌더링",
+      "리렌더링 최적화",
+      "useMemo",
+      "useCallback",
+      "React 메모이제이션"
+    ],
+    "refs": [
+      "https://react.dev/learn/render-and-commit",
+      "https://react.dev/reference/react/memo",
+      "https://react.dev/reference/react/useMemo",
+      "https://react.dev/reference/react/useCallback",
+      "https://react.dev/reference/react/StrictMode"
+    ]
+  },
+  {
+    "id": "fe.internals.use-client-directive",
+    "title": "'use client' 지시어",
+    "en": "'use client' Directive",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "프론트엔드 내부",
+    "summary": "파일 맨 위에 적어 그 모듈과 그것이 가져오는 모듈 전부를 브라우저로 보내는 클라이언트 경계 표시다.",
+    "parent": "fe.internals.server-client-boundary",
+    "aliases": [
+      "use client",
+      "'use client'",
+      "use client 지시어",
+      "클라이언트 지시어"
+    ]
+  },
+  {
+    "id": "fe.internals.react-memo",
+    "title": "React.memo",
+    "en": "React.memo",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "프론트엔드 내부",
+    "summary": "props가 Object.is로 같으면 부모가 다시 그려져도 그 컴포넌트의 리렌더링을 건너뛰게 감싸는 함수다.",
+    "parent": "fe.internals.react-memoization",
+    "aliases": [
+      "React.memo",
+      "memo()",
+      "memo 컴포넌트",
+      "메모 컴포넌트"
+    ]
+  },
+  {
+    "id": "fe.internals.strict-mode",
+    "title": "Strict Mode 이중 렌더링",
+    "en": "Strict Mode Double Rendering",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "프론트엔드 내부",
+    "summary": "개발 중에만 컴포넌트와 Effect를 두 번 실행해 순수하지 않은 코드와 빠진 정리 함수를 드러내는 검사다.",
+    "parent": "fe.internals.react-memoization",
+    "aliases": [
+      "StrictMode",
+      "React Strict Mode",
+      "이중 렌더링",
+      "두 번 렌더링",
+      "useEffect 두 번 실행"
+    ]
+  },
+  {
+    "id": "fe.internals.server-only",
+    "title": "server-only와 client-only",
+    "en": "server-only and client-only",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "프론트엔드 내부",
+    "summary": "비밀값을 읽는 모듈이 실수로 클라이언트 번들에 들어가면 빌드 때 오류를 내게 하는 표시 패키지다.",
+    "parent": "fe.internals.server-client-boundary",
+    "aliases": [
+      "server-only",
+      "client-only",
+      "environment poisoning",
+      "서버 전용 모듈"
+    ]
+  },
+  {
     "id": "fe.internals.render-pipeline",
     "title": "브라우저 렌더링 파이프라인",
     "en": "Browser Rendering Pipeline",

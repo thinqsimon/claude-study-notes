@@ -118,5 +118,144 @@
     "refs": [
       "https://www.nngroup.com/articles/user-journeys-vs-user-flows/"
     ]
+  },
+  {
+    "id": "plan.ai-ux.errors-graceful-failure",
+    "title": "AI 오류 유형과 우아한 실패 설계",
+    "en": "AI Error Types and Graceful Failure",
+    "kind": "topic",
+    "level": 4,
+    "importance": 1,
+    "group": "AI UX 설계",
+    "summary": "AI의 틀린 답을 사용자·시스템·맥락 오류로 나누고, 틀렸을 때 사용자가 제어권을 되찾는 길을 미리 설계하는 일이다.",
+    "objectives": [
+      "사용자가 겪은 AI 오류를 맥락 오류·시스템 한계·배경 오류 중 어느 것인지 분류할 수 있다",
+      "작업의 위험도에 따라 허용할 오류 수준과 안전 장치를 다르게 정할 수 있다",
+      "오류 화면에서 피드백 받기와 수동 전환을 어떻게 넣을지 근거를 들어 고를 수 있다",
+      "오류가 학습 데이터·입력·관련성·시스템 충돌 중 어디서 왔는지 짚어 볼 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.ai-fit"
+    ],
+    "aliases": [
+      "우아한 실패",
+      "graceful failure",
+      "AI 오류 설계",
+      "맥락 오류"
+    ],
+    "refs": [
+      "https://pair.withgoogle.com/chapter/errors-failing/"
+    ]
+  },
+  {
+    "id": "plan.figma.dev-mode-handoff",
+    "title": "Dev Mode로 하는 디자인·개발 핸드오프",
+    "en": "Design-to-Development Handoff with Dev Mode",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Figma Dev Mode에서 속성·코드·주석과 상태 표시를 써서 디자인을 개발로 넘기고 변경을 추적하는 절차다.",
+    "objectives": [
+      "핸드오프에 넘길 화면에 주석·상태·개발 자료를 어떻게 붙일지 팀 규칙으로 정할 수 있다",
+      "개발자가 Inspect로 읽는 값과 디자인 시스템 코드(Code Connect)를 어느 쪽 기준으로 맞출지 고를 수 있다",
+      "구현이 디자인과 어긋났을 때 Compare changes로 어느 버전에서 바뀌었는지 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.service-flow"
+    ],
+    "aliases": [
+      "Figma Dev Mode",
+      "디자인 핸드오프",
+      "design handoff",
+      "Figma Inspect"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/15023124644247-Guide-to-Dev-Mode"
+    ]
+  },
+  {
+    "id": "plan.figma.variables-modes",
+    "title": "Figma 변수와 모드",
+    "en": "Figma Variables and Modes",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "색·숫자·문자 값을 변수로 두고 라이트·다크 같은 모드마다 다른 값을 담아 한 디자인으로 여러 맥락을 표현하는 장치다.",
+    "aliases": [
+      "Figma 변수",
+      "Figma variables",
+      "변수 모드",
+      "variable modes",
+      "Figma 디자인 토큰"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/15145852043927-Create-and-manage-variables",
+      "https://help.figma.com/hc/en-us/articles/15343816063383-Modes-for-variables"
+    ]
+  },
+  {
+    "id": "plan.ai-ux.calibrated-trust",
+    "title": "신뢰 보정",
+    "en": "Calibrated Trust",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "AI UX 설계",
+    "summary": "사용자가 AI를 지나치게 믿지도 불신하지도 않도록 데이터 출처·확신도·한계를 보여 주어 믿을 만큼만 믿게 하는 설계 목표다.",
+    "related": [
+      "plan.ai-ux.errors-graceful-failure"
+    ],
+    "aliases": [
+      "calibrated trust",
+      "보정된 신뢰",
+      "과신 방지",
+      "확신도 표시",
+      "confidence display"
+    ],
+    "refs": [
+      "https://pair.withgoogle.com/chapter/explainability-trust/"
+    ]
+  },
+  {
+    "id": "plan.ai-ux.implicit-explicit-feedback",
+    "title": "암묵적 피드백과 명시적 피드백",
+    "en": "Implicit and Explicit Feedback",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "AI UX 설계",
+    "summary": "사용 기록에서 읽어 내는 신호와 사용자가 일부러 남기는 평가를 구분해 어느 쪽으로 모델을 고칠지 정하는 기준이다.",
+    "related": [
+      "plan.ai-ux.calibrated-trust"
+    ],
+    "aliases": [
+      "암묵적 피드백",
+      "implicit feedback",
+      "명시적 피드백",
+      "explicit feedback",
+      "좋아요 싫어요 버튼",
+      "thumbs up down"
+    ],
+    "refs": [
+      "https://pair.withgoogle.com/chapter/feedback-controls/"
+    ]
+  },
+  {
+    "id": "plan.figma.ready-for-dev",
+    "title": "Ready for dev 상태",
+    "en": "Ready for Dev Status",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "프레임이나 컴포넌트가 개발로 넘어갈 준비가 됐다고 Figma에 표시해 개발자에게 알리는 상태값이다.",
+    "parent": "plan.figma.dev-mode-handoff",
+    "aliases": [
+      "Ready for dev",
+      "개발 준비 완료",
+      "Dev Mode 상태"
+    ]
   }
 ]

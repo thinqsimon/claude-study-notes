@@ -26,6 +26,142 @@
     ]
   },
   {
+    "id": "mlops.observe.llm-tracing",
+    "title": "LLM 트레이스: 프롬프트·응답·토큰 기록",
+    "en": "LLM Tracing: Recording Prompts, Outputs and Tokens",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "LLM 기능의 단계마다 입력·출력·토큰·지연을 트레이스로 남겨 품질 문제의 원인을 찾고 평가 자료로 쓴다.",
+    "objectives": [
+      "LLM 호출과 검색·도구 단계를 트레이스로 묶어 어느 단계에서 답이 나빠졌는지 찾을 수 있다",
+      "프롬프트·응답 본문을 트레이스에 저장할 때의 비용과 개인정보 문제를 따져 무엇을 남길지 정할 수 있다",
+      "트레이스에 사용자 피드백을 붙여 평가 세트를 만드는 흐름을 설계할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.observe.tracing",
+      "llm.api.first-call"
+    ],
+    "related": [
+      "ops.observe.tracing",
+      "mlops.eval.llm-regression"
+    ],
+    "aliases": [
+      "LLM 트레이스",
+      "LLM trace",
+      "MLflow Tracing",
+      "LLM 관측",
+      "LLM observability",
+      "GenAI 시맨틱 컨벤션",
+      "token usage",
+      "gen_ai.usage"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/tracing/",
+      "https://mlflow.org/docs/latest/genai/tracing/prod-tracing/",
+      "https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/README.md"
+    ]
+  },
+  {
+    "id": "mlops.prompt.registry",
+    "title": "프롬프트 버전 관리와 별칭 배포",
+    "en": "Prompt Versioning and Alias-Based Rollout",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "프롬프트를 코드에 박지 않고 버전으로 등록한 뒤 별칭을 옮겨 배포·되돌리기와 비교를 운영한다.",
+    "objectives": [
+      "프롬프트를 코드와 분리해 버전으로 관리할 때의 이점과 비용을 말할 수 있다",
+      "별칭으로 배포·되돌리기를 설계하고 별칭 캐시가 반영 지연을 만드는 원인을 찾을 수 있다",
+      "프롬프트 버전 변경을 평가 세트와 이어 회귀를 막는 절차를 만들 수 있다"
+    ],
+    "prerequisites": [
+      "llm.prompt.first-good-prompt",
+      "dev.git.why-version-control"
+    ],
+    "related": [
+      "mlops.eval.llm-regression",
+      "llm.api.system-prompt"
+    ],
+    "aliases": [
+      "프롬프트 레지스트리",
+      "prompt registry",
+      "프롬프트 버전",
+      "prompt versioning",
+      "프롬프트 관리"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/prompt-registry/",
+      "https://mlflow.org/docs/latest/genai/prompt-registry/manage-prompt-lifecycles-with-aliases/"
+    ]
+  },
+  {
+    "id": "mlops.eval.llm-judge",
+    "title": "LLM 심판(LLM-as-a-judge)",
+    "en": "LLM-as-a-Judge",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "정답과 표현이 달라도 뜻이 맞는지 다른 LLM에게 기준을 주어 채점하게 하는 평가 방법이다.",
+    "parent": "mlops.eval.llm-regression",
+    "related": [
+      "ml.eval.metrics-tradeoffs"
+    ],
+    "aliases": [
+      "LLM 심판",
+      "LLM-as-a-judge",
+      "LLM judge",
+      "judge 모델",
+      "AI 채점"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/"
+    ]
+  },
+  {
+    "id": "mlops.guardrail.unbounded-consumption",
+    "title": "무제한 소비(Unbounded Consumption)",
+    "en": "Unbounded Consumption",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "입력 크기·호출 횟수·실행 시간을 묶지 않아 LLM 서비스가 비용 폭증, 자원 고갈, 모델 복제에 노출되는 위험이다.",
+    "related": [
+      "be.rest.rate-limit",
+      "llm.security.prompt-injection"
+    ],
+    "aliases": [
+      "무제한 소비",
+      "Unbounded Consumption",
+      "denial of wallet",
+      "지갑 고갈 공격",
+      "LLM10:2025"
+    ],
+    "refs": [
+      "https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/"
+    ]
+  },
+  {
+    "id": "mlops.prompt.alias",
+    "title": "프롬프트 별칭",
+    "en": "Prompt Alias",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "production처럼 환경 이름을 붙여 특정 프롬프트 버전을 가리키고 옮길 수 있는 이름표다.",
+    "parent": "mlops.prompt.registry",
+    "aliases": [
+      "프롬프트 별칭",
+      "prompt alias",
+      "@production"
+    ]
+  },
+  {
     "id": "mlops.serve.inference-optimization",
     "title": "모델 서빙과 양자화",
     "en": "Model Serving and Quantization",
