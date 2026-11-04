@@ -4,9 +4,12 @@
 모든 명령은 사전 저장소(catalog/tools/catalog.py가 있는 폴더)에서 실행한다. 다른 곳이면 --repo로 가리킨다.
 
 python3 -I <스킬>/scripts/dic_maker.py gaps [--level N]            단계·분야별 격차, 사다리 빈칸, 후보함
-python3 -I <스킬>/scripts/dic_maker.py start [--level N] [--count 30] [--box]   이번 실행 계획을 세우고 초안 파일 자리를 만든다
-python3 -I <스킬>/scripts/dic_maker.py guide --domain <분야> [--level N]       조사 에이전트가 읽을 규칙·기준·기존 항목
-python3 -I <스킬>/scripts/dic_maker.py check [--links]              초안 전체 검사(사전 규칙·겹침·별칭 오탐·근거·자료)
+python3 -I <스킬>/scripts/dic_maker.py start [--level N] [--count 30] [--box] [--all]   이번 실행 계획을 세우고 초안 파일 자리를 만든다
+python3 -I <스킬>/scripts/dic_maker.py guide [--domain <분야> ...] [--level N]  조사 에이전트가 읽을 규칙·기준·기존 항목
+python3 -I <스킬>/scripts/dic_maker.py check [--links] [--level N]  초안 검사(사전 규칙·겹침·별칭 오탐·근거·자료). --level은 그 단계 폴더의 항목만 본다
+
+--all은 다섯 단계를 한꺼번에 늘린다. 단계마다 에이전트 하나가 draft/L<단계>/<분야>.json에 쓰고, 공유 파일(링크 캐시·대화 기록 색인)은
+파일 잠금과 임시 파일 교체로 지킨다. 다른 단계가 아직 쓰는 중인(깨진) 초안은 --level 검사에서 건너뛴다.
 python3 -I <스킬>/scripts/dic_maker.py alias-audit [--all | --draft] 별칭이 실제 대화에서 얼마나 흔한지 잰다
 python3 -I <스킬>/scripts/dic_maker.py review-sheet                 사람이 볼 검토 표(md)를 만든다
 python3 -I <스킬>/scripts/dic_maker.py apply --note "변경 설명"     초안을 사전에 넣고 버전을 올린다
@@ -30,9 +33,18 @@ import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
+try:
+    import fcntl
+except ImportError:  # Windows에는 fcntl이 없다. 잠금 없이 돌고, 동시 실행은 쓰는 쪽이 피한다
+    fcntl = None
+
 WORK_DIR = ".dic-maker"
 DRAFT_DIR = "draft"
+# --all 실행의 초안 폴더 이름. draft/L3/be.json처럼 단계마다 폴더를 나눠 에이전트끼리 같은 파일을 쓰지 않는다.
+LEVEL_DIR_RE = re.compile(r"^L([1-5])$")
+CROSS_LEVEL_TAG = "[단계 간]"
 RUN_FILE = "run.json"
+LOCK_FILE = "lock"
 LINKS_FILE = "links.json"
 CORPUS_DIR = "corpus"
 CORPUS_INDEX = "corpus_index.json"
@@ -101,28 +113,62 @@ class Repo:
     def write_json(self, name: str, data) -> Path:
         path = self.work / name
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(json.dumps(data, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        atomic_write(path, json.dumps(data, ensure_ascii=False, indent=1) + "\n")
         return path
+
+    @contextlib.contextmanager
+    def locked(self):
+        """작업 폴더의 공유 파일(링크 캐시·대화 기록 색인)을 고치는 동안 다른 에이전트의 프로세스를 기다리게 한다."""
+        self.work.mkdir(parents=True, exist_ok=True)
+        with (self.work / LOCK_FILE).open("a+") as handle:
+            if fcntl:
+                fcntl.flock(handle, fcntl.LOCK_EX)
+            try:
+                yield
+            finally:
+                if fcntl:
+                    fcntl.flock(handle, fcntl.LOCK_UN)
 
     def draft_files(self) -> list[Path]:
         folder = self.work / DRAFT_DIR
-        return sorted(folder.glob("*.json")) if folder.exists() else []
+        return sorted(folder.rglob("*.json")) if folder.exists() else []
 
-    def drafts(self) -> list[dict]:
-        """초안 항목 전부. 파일 이름은 자유이고 분야는 id 접두사로 정한다."""
+    def draft_label(self, path: Path) -> str:
+        return path.relative_to(self.work / DRAFT_DIR).as_posix()
+
+    def drafts(self, level: int | None = None) -> list[dict]:
+        """초안 항목 전부. 파일 이름은 자유이고 분야는 id 접두사로 정한다.
+
+        --all 실행에서는 draft/L<단계>/ 폴더가 항목의 자리(_slot)다. level을 주면 다른 단계의 깨진 파일은
+        아직 쓰는 중으로 보고 건너뛰며 self.skipped에 적는다. 자기 단계의 깨진 파일은 오류다.
+        """
         items = []
+        self.skipped = []
         for path in self.draft_files():
+            label = self.draft_label(path)
+            match = LEVEL_DIR_RE.match(path.parent.name)
+            slot = int(match.group(1)) if match else None
             try:
                 group = json.loads(path.read_text(encoding="utf-8"))
-            except json.JSONDecodeError as error:
-                raise SystemExit(f"{path.name}: JSON이 아닙니다 ({error})")
-            if not isinstance(group, list):
-                raise SystemExit(f"{path.name}: 항목 목록(배열)이어야 합니다")
+                if not isinstance(group, list):
+                    raise ValueError("항목 목록(배열)이어야 합니다")
+                if any(not isinstance(item, dict) for item in group):
+                    raise ValueError("객체가 아닌 항목이 있습니다")
+            except (json.JSONDecodeError, ValueError) as error:
+                if level is not None and slot != level:
+                    self.skipped.append(f"{label}: 다른 단계가 쓰는 중이라 건너뛴다 ({error})")
+                    continue
+                raise SystemExit(f"{label}: JSON 항목 목록이 아닙니다 ({error})")
             for order, item in enumerate(group):
-                if not isinstance(item, dict):
-                    raise SystemExit(f"{path.name}: {order + 1}번째가 객체가 아닙니다")
-                items.append({**item, "_file": path.name, "_order": order})
+                items.append({**item, "_file": label, "_order": order, "_slot": slot})
         return items
+
+
+def atomic_write(path: Path, text: str) -> None:
+    """임시 파일에 쓴 뒤 이름을 바꾼다. 읽는 쪽이 반쯤 쓰인 파일을 보지 않는다."""
+    tmp = path.with_name(f".{path.name}.{os.getpid()}.tmp")
+    tmp.write_text(text, encoding="utf-8")
+    os.replace(tmp, path)
 
 
 def today() -> str:
@@ -273,39 +319,69 @@ def existing_brief(catalog: dict, domain: str, level: int | None) -> list[dict]:
     ]
 
 
+def level_plan(repo: Repo, catalog: dict, level_no: int, count: int, folder: Path) -> dict:
+    """한 단계의 몫과 초안 파일 자리. --all에서는 단계마다 하나씩 만든다."""
+    level = next(l for l in catalog["levels"] if l["level"] == level_no)
+    topics, terms = split_count(level, count)
+    quotas = plan_domains(catalog, level_no, topics, terms)
+    return {
+        "level": level_no, "count": count, "topics": topics, "terms": terms, "quotas": quotas,
+        "draft_files": {d: str(folder / f"{d}.json") for d in quotas},
+        "level_info": level,
+        "ladder_gaps": [g for g in ladder_gaps(catalog) if g["domain"] in quotas],
+        "domains": {d: {"name": next(x["name"] for x in catalog["domains"] if x["prefix"] == d),
+                        "sources": sources_for(repo, catalog, d)} for d in quotas},
+    }
+
+
+def clear_drafts(repo: Repo) -> None:
+    folder = repo.work / DRAFT_DIR
+    for path in repo.draft_files():
+        path.unlink()
+    for sub in (p for p in folder.iterdir() if p.is_dir()) if folder.exists() else []:
+        if not any(sub.iterdir()):
+            sub.rmdir()
+
+
 def cmd_start(repo: Repo, args) -> int:
     run = repo.read_json(RUN_FILE, None)
     if run and not args.force:
         raise SystemExit(f"진행 중인 실행이 있습니다({run['started']}, {run['mode']}). 이어 하려면 status·check를, 버리려면 cancel을 쓰세요.")
+    if args.all and (args.box or args.level):
+        raise SystemExit("--all은 --box, --level과 함께 쓸 수 없습니다.")
     catalog = repo.catalog()
     count = min(args.count or DEFAULT_COUNT, MAX_COUNT)
     box = [b for b in box_covered(catalog, read_box()) if not b["covered_by"]]
+    extra: dict = {}
     if args.box:
         if not box:
             raise SystemExit("후보함에 사전에 없는 개념이 없습니다.")
         run = {"started": today(), "mode": "box", "level": None, "count": len(box), "quotas": {},
                "box": [b["name"] for b in box], "status": "drafting"}
-        drafts = {"box": str(repo.work / DRAFT_DIR / "box.json")}
+        extra = {"draft_files": {"box": str(repo.work / DRAFT_DIR / "box.json")}, "level_info": None, "ladder_gaps": [], "domains": {}}
+    elif args.all:
+        plans = {str(l["level"]): level_plan(repo, catalog, l["level"], count, repo.work / DRAFT_DIR / f"L{l['level']}")
+                 for l in catalog["levels"]}
+        run = {"started": today(), "mode": "all", "level": None, "count": count,
+               "topics": sum(p["topics"] for p in plans.values()), "terms": sum(p["terms"] for p in plans.values()),
+               "levels": {k: {key: p[key] for key in ("level", "count", "topics", "terms", "quotas", "draft_files")} for k, p in plans.items()},
+               "box": [b["name"] for b in box], "status": "drafting"}
+        # 별칭 대조용 대화 기록 색인을 미리 만든다. 에이전트 다섯이 동시에 처음 만들다 서로 기다리지 않게 한다.
+        extra = {"plans": plans, "alias_sessions": len(corpus_sessions(repo))}
     else:
         rows = level_rows(catalog)
         level_no = args.level or min(rows, key=lambda r: r["filled"])["level"]
-        level = next(l for l in catalog["levels"] if l["level"] == level_no)
-        topics, terms = split_count(level, count)
-        quotas = plan_domains(catalog, level_no, topics, terms)
-        run = {"started": today(), "mode": "level", "level": level_no, "count": count, "topics": topics, "terms": terms,
-               "quotas": quotas, "box": [b["name"] for b in box], "status": "drafting"}
-        drafts = {d: str(repo.work / DRAFT_DIR / f"{d}.json") for d in quotas}
+        plan = level_plan(repo, catalog, level_no, count, repo.work / DRAFT_DIR)
+        run = {"started": today(), "mode": "level", "level": level_no, "count": count, "topics": plan["topics"], "terms": plan["terms"],
+               "quotas": plan["quotas"], "box": [b["name"] for b in box], "status": "drafting"}
+        extra = {key: plan[key] for key in ("draft_files", "level_info", "ladder_gaps", "domains")}
     (repo.work / DRAFT_DIR).mkdir(parents=True, exist_ok=True)
-    for path in repo.draft_files():
-        path.unlink()
+    clear_drafts(repo)
+    if run["mode"] == "all":
+        for key in run["levels"]:
+            (repo.work / DRAFT_DIR / f"L{key}").mkdir(exist_ok=True)
     repo.write_json(RUN_FILE, run)
-    print(json.dumps({
-        **run, "draft_files": drafts, "agent_concurrency": AGENT_CONCURRENCY,
-        "level_info": next((l for l in catalog["levels"] if l["level"] == run["level"]), None),
-        "ladder_gaps": [g for g in ladder_gaps(catalog) if g["domain"] in drafts],
-        "domains": {d: {"name": next(x["name"] for x in catalog["domains"] if x["prefix"] == d),
-                        "sources": sources_for(repo, catalog, d)} for d in drafts if d != "box"},
-    }, ensure_ascii=False, indent=2))
+    print(json.dumps({**run, **extra, "agent_concurrency": AGENT_CONCURRENCY}, ensure_ascii=False, indent=2))
     return 0
 
 
@@ -345,13 +421,13 @@ def cmd_guide(repo: Repo, args) -> int:
     else:
         parts.append("## 단계 기준 (전체)\n" + json.dumps(catalog["levels"], ensure_ascii=False, indent=1))
     parts.append(item_format(repo))
-    if args.domain:
-        domain = next((d for d in catalog["domains"] if d["prefix"] == args.domain), None)
+    for prefix in args.domain or []:
+        domain = next((d for d in catalog["domains"] if d["prefix"] == prefix), None)
         if domain is None:
-            raise SystemExit(f"없는 분야입니다: {args.domain}. 분야: {[d['prefix'] for d in catalog['domains']]}")
-        parts.append(f"## 분야 {domain['prefix']} ({domain['name']})\n범위: {domain['covers']}\n기준 자료: {sources_for(repo, catalog, args.domain)}")
-        existing = existing_brief(catalog, args.domain, args.level)
-        parts.append("## 이 분야의 기존 항목 (근처 단계) — 겹치지 않게 보고, 묶음(group) 이름을 맞춘다\n" +
+            raise SystemExit(f"없는 분야입니다: {prefix}. 분야: {[d['prefix'] for d in catalog['domains']]}")
+        parts.append(f"## 분야 {domain['prefix']} ({domain['name']})\n범위: {domain['covers']}\n기준 자료: {sources_for(repo, catalog, prefix)}")
+        existing = existing_brief(catalog, prefix, args.level)
+        parts.append(f"## {domain['prefix']}의 기존 항목 (근처 단계) — 겹치지 않게 보고, 묶음(group) 이름을 맞춘다\n" +
                      "\n".join(f"- {i['id']} [{i['kind']} L{i['level']} {i['group']}] {i['title']}" for i in existing))
     parts.append("## 넓은 말 (별칭으로 쓰지 않는다)\n" + ", ".join(catalog.get("broad_names", [])))
     print("\n\n".join(p for p in parts if p))
@@ -401,16 +477,21 @@ def overlap_check(catalog: dict, drafts: list[dict]) -> tuple[list[str], list[st
         for alias in item["aliases"]:
             aliases[(item["level"], alias.lower())].append(item["id"])
     bags = {i["id"]: tokens(" ".join([i["summary"], *i.get("objectives", [])])) for i in catalog["items"] if i["kind"] == "topic"}
-    seen_titles: dict[str, str] = {}
+    seen_titles: dict[str, tuple[str, int | None]] = {}
+    draft_bags: list[tuple[str, int | None, set[str]]] = []
     for item in drafts:
         label = item.get("id", f"{item.get('_file')}#{item.get('_order', 0) + 1}")
+        slot = item.get("_slot")
         for name in (str(item.get("title", "")), str(item.get("en", ""))):
             key = name.lower()
             if key and key in names:
                 errors.append(f"{label}: 이름 '{name}'이 기존 항목 {names[key]}과 같다")
-            if key and seen_titles.get(key) not in (None, label):
-                errors.append(f"{label}: 이름 '{name}'이 초안 {seen_titles[key]}과 같다")
-            seen_titles[key] = label
+            seen = seen_titles.get(key)
+            if key and seen and seen[0] != label:
+                # --all 실행에서 다른 단계 에이전트가 같은 개념을 냈으면 표시를 붙인다. 어느 단계에 둘지는 검토 단계가 정한다.
+                tag = f"{CROSS_LEVEL_TAG} " if seen[1] != slot else ""
+                errors.append(f"{tag}{label}: 이름 '{name}'이 초안 {seen[0]}{f'(L{seen[1]})' if tag else ''}과 같다")
+            seen_titles[key] = (label, slot)
         for alias in item.get("aliases", []) or []:
             key = str(alias).lower()
             if key in names and names[key] != item.get("parent"):
@@ -423,6 +504,10 @@ def overlap_check(catalog: dict, drafts: list[dict]) -> tuple[list[str], list[st
             for other_id, other in bags.items():
                 if bag and other and len(bag & other) / len(bag | other) >= OVERLAP_JACCARD:
                     warnings.append(f"{label}: {other_id}과 내용이 많이 겹친다(낱말 {len(bag & other)}개 공통). 다른 항목인지 확인")
+            for other_label, other_slot, other in draft_bags:
+                if other_slot != slot and bag and other and len(bag & other) / len(bag | other) >= OVERLAP_JACCARD:
+                    warnings.append(f"{CROSS_LEVEL_TAG} {label}: 초안 {other_label}(L{other_slot})과 내용이 많이 겹친다(낱말 {len(bag & other)}개 공통)")
+            draft_bags.append((label, slot, bag))
     return errors, warnings
 
 
@@ -436,6 +521,20 @@ def basis_check(drafts: list[dict]) -> list[str]:
 
 
 def quota_check(run: dict | None, drafts: list[dict]) -> dict:
+    """몫 대비 초안 수. --all 실행은 단계마다 같은 모양으로 나누고(by_level) short·over·wrong_level은 'L3 be topic 1/2'처럼 합친다."""
+    if run and run.get("mode") == "all":
+        report: dict = {"drafted": {}, "short": [], "over": [], "wrong_level": [], "by_level": {}}
+        for key, plan in run["levels"].items():
+            level_no = int(key)
+            part = quota_check(plan, [i for i in drafts if i.get("_slot") == level_no])
+            # 단계 폴더의 항목은 주제·용어 모두 그 단계여야 몫이 맞는다.
+            part["wrong_level"] = [i.get("id") for i in drafts if i.get("_slot") == level_no and i.get("level") != level_no]
+            report["by_level"][key] = part
+            report["drafted"][key] = part["drafted"]
+            for name in ("short", "over"):
+                report[name] += [f"L{key} {line}" for line in part[name]]
+            report["wrong_level"] += part["wrong_level"]
+        return report
     counts: dict[str, Counter] = defaultdict(Counter)
     for item in drafts:
         counts[domain_of(item)][item.get("kind", "?")] += 1
@@ -456,7 +555,15 @@ def quota_check(run: dict | None, drafts: list[dict]) -> dict:
 # ---------- 별칭 오탐 측정 ----------
 
 def corpus_sessions(repo: Repo, limit_mb: int = 300) -> list[tuple[str, str]]:
-    """이 컴퓨터의 Claude Code 대화 기록을 (이름, 사람·AI가 나눈 말)로 모은다. 결과는 저장소의 작업 폴더에만 저장한다."""
+    """이 컴퓨터의 Claude Code 대화 기록을 (이름, 사람·AI가 나눈 말)로 모은다. 결과는 저장소의 작업 폴더에만 저장한다.
+
+    캐시를 만들고 색인을 쓰는 동안 잠근다. 에이전트 여럿이 동시에 check를 돌려도 색인이 서로 덮이지 않는다.
+    """
+    with repo.locked():
+        return _corpus_sessions(repo, limit_mb)
+
+
+def _corpus_sessions(repo: Repo, limit_mb: int) -> list[tuple[str, str]]:
     index = repo.read_json(CORPUS_INDEX, {})
     folder = repo.work / CORPUS_DIR
     folder.mkdir(parents=True, exist_ok=True)
@@ -557,11 +664,16 @@ def fetch_link(url: str) -> dict:
 
 
 def check_links(repo: Repo, urls: list[str], refresh: bool = False) -> dict[str, dict]:
+    """링크를 열어 캐시에 넣는다. 네트워크는 잠금 밖에서 하고, 저장할 때만 잠가 다른 프로세스가 그사이 넣은 항목과 합친다."""
     cache = repo.read_json(LINKS_FILE, {})
+    fetched = {}
     for url in urls:
         if refresh or url not in cache or cache[url].get("status") != "200":
-            cache[url] = fetch_link(url)
-    repo.write_json(LINKS_FILE, cache)
+            fetched[url] = fetch_link(url)
+    if fetched:
+        with repo.locked():
+            cache = {**repo.read_json(LINKS_FILE, {}), **fetched}
+            repo.write_json(LINKS_FILE, cache)
     return {u: cache[u] for u in urls}
 
 
@@ -569,9 +681,15 @@ def links_of(items: list[dict]) -> list[str]:
     return sorted({ref for i in items for ref in (i.get("refs") or [])})
 
 
-def run_checks(repo: Repo, with_links: bool) -> dict:
+def mentions(lines: list[str], ids: set[str]) -> list[str]:
+    return [line for line in lines if any(str(i) in line for i in ids)]
+
+
+def run_checks(repo: Repo, with_links: bool, level: int | None = None) -> dict:
+    """초안 검사. level을 주면(--all 실행의 단계 에이전트용) 그 단계 폴더의 항목이 들어간 줄만 돌려준다.
+    다른 단계의 초안도 함께 읽어 단계 사이 겹침은 잡되, 아직 쓰는 중인 파일은 건너뛴다."""
     catalog = repo.catalog()
-    drafts = repo.drafts()
+    drafts = repo.drafts(level=level)
     run = repo.read_json(RUN_FILE, None)
     merged = merged_catalog(catalog, drafts)
     errors, warnings = repo.tool.check_catalog(merged)
@@ -583,6 +701,11 @@ def run_checks(repo: Repo, with_links: bool) -> dict:
     alias_errors, alias_warnings, audit = alias_audit(repo, catalog, drafts)
     errors += basis_check(drafts) + overlap_errors + alias_errors
     warnings += overlap_warnings + alias_warnings
+    if level is not None:
+        mine = {i.get("id", f"{i.get('_file')}#{i.get('_order', 0) + 1}") for i in drafts if i.get("_slot") == level}
+        errors, warnings = mentions(errors, mine), mentions(warnings, mine)
+        drafts = [i for i in drafts if i.get("_slot") == level]
+    warnings += repo.skipped
     links = {}
     if with_links:
         links = check_links(repo, links_of(drafts))
@@ -598,33 +721,33 @@ def run_checks(repo: Repo, with_links: bool) -> dict:
             for ref in item.get("refs") or []:
                 shared[ref].append(item.get("id"))
     warnings += [f"같은 자료 {u}로 주제 {ids}를 만들었다. 분야가 달라도 한 항목으로 합칠 수 있는지 확인" for u, ids in shared.items() if len(ids) > 1]
-    return {"items": len(drafts), "errors": errors, "warnings": warnings, "quota": quota_check(run, drafts),
+    quota = quota_check(run, drafts)
+    if level is not None and quota.get("by_level"):
+        quota = quota["by_level"].get(str(level), quota)
+    return {"items": len(drafts), "level": level, "errors": errors, "warnings": warnings, "quota": quota,
+            "cross_level": [e for e in errors if e.startswith(CROSS_LEVEL_TAG)],
             "alias_sessions": audit.get("sessions", 0), "links": links}
 
 
 def cmd_check(repo: Repo, args) -> int:
-    report = run_checks(repo, args.links)
+    report = run_checks(repo, args.links, args.level)
     print(json.dumps(report, ensure_ascii=False, indent=1))
     return 1 if report["errors"] else 0
 
 
 # ---------- 검토 표 ----------
 
-def cmd_review_sheet(repo: Repo, args) -> int:
-    catalog = repo.catalog()
-    drafts = repo.drafts()
-    run = repo.read_json(RUN_FILE, {})
-    report = run_checks(repo, False)
+def sheet_lines(repo: Repo, catalog: dict, heading: str, drafts: list[dict], errors: list[str], warnings: list[str]) -> list[str]:
     links = repo.read_json(LINKS_FILE, {})
     names = {d["prefix"]: d["name"] for d in catalog["domains"]}
     stars = repo.tool.STARS
     lines = [f"# 사전 추가 검토표 ({today()})", "",
-             f"실행: {run.get('mode', '?')} · 단계 {run.get('level', '-')} · 항목 {len(drafts)}개 · 검사 오류 {len(report['errors'])}개 · 경고 {len(report['warnings'])}개", "",
+             f"{heading} · 항목 {len(drafts)}개 · 검사 오류 {len(errors)}개 · 경고 {len(warnings)}개", "",
              "승인하면 `/dic-maker apply`로 사전에 넣습니다. 빼고 싶은 항목은 초안 파일에서 지우거나 여기 적어 주세요.", ""]
-    if report["errors"]:
-        lines += ["## 검사 오류 (적용 전에 고쳐야 함)", *[f"- {e}" for e in report["errors"]], ""]
-    if report["warnings"]:
-        lines += ["## 경고 (판단 필요)", *[f"- {w}" for w in report["warnings"]], ""]
+    if errors:
+        lines += ["## 검사 오류 (적용 전에 고쳐야 함)", *[f"- {e}" for e in errors], ""]
+    if warnings:
+        lines += ["## 경고 (판단 필요)", *[f"- {w}" for w in warnings], ""]
     by_domain: dict[str, list[dict]] = defaultdict(list)
     for item in drafts:
         by_domain[domain_of(item)].append(item)
@@ -641,10 +764,50 @@ def cmd_review_sheet(repo: Repo, args) -> int:
                 ", ".join(item.get("aliases") or []), refs or "-", item.get("basis", ""),
             )) + " |")
         lines.append("")
+    return lines
+
+
+def review_files(repo: Repo) -> list[Path]:
+    return sorted(repo.work.glob("review*.md")) if repo.work.exists() else []
+
+
+def cmd_review_sheet(repo: Repo, args) -> int:
+    catalog = repo.catalog()
+    drafts = repo.drafts()
+    run = repo.read_json(RUN_FILE, {})
+    report = run_checks(repo, False)
+    for old in review_files(repo):
+        old.unlink()
     path = repo.work / REVIEW_FILE
-    path.write_text("\n".join(lines), encoding="utf-8")
-    print(json.dumps({"review": str(path), "items": len(drafts), "errors": len(report["errors"]), "warnings": len(report["warnings"])},
-                     ensure_ascii=False))
+    out = {"review": str(path), "items": len(drafts), "errors": len(report["errors"]), "warnings": len(report["warnings"])}
+    if run.get("mode") == "all":
+        # 단계마다 표 하나. review.md는 차례와 단계 사이 겹침만 담는다. apply는 다섯 단계를 한 번에 넣는다.
+        reviews = {}
+        counts = []
+        for key in run["levels"]:
+            level_no = int(key)
+            mine = [i for i in drafts if i.get("_slot") == level_no]
+            ids = {i.get("id", f"{i.get('_file')}#{i.get('_order', 0) + 1}") for i in mine}
+            topics = sum(1 for i in mine if i.get("kind") == "topic")
+            level_path = repo.work / f"review_{key}.md"
+            level_path.write_text("\n".join(sheet_lines(
+                repo, catalog, f"실행: all · 단계 {key} · 주제 {topics}개 + 용어 {len(mine) - topics}개", mine,
+                mentions(report["errors"], ids), mentions(report["warnings"], ids))), encoding="utf-8")
+            reviews[key] = str(level_path)
+            counts.append(f"- [{key}단계]({level_path.name}): 주제 {topics}개, 용어 {len(mine) - topics}개")
+        lines = [f"# 사전 추가 검토표 차례 ({today()})", "",
+                 f"실행: all · 단계마다 {run.get('count')}개 · 항목 {len(drafts)}개 · 검사 오류 {len(report['errors'])}개 · 경고 {len(report['warnings'])}개", "",
+                 "단계별 표를 보고 승인하면 `/dic-maker apply`가 다섯 단계를 한 번에 사전에 넣습니다. 빼고 싶은 항목은 단계와 id를 말씀해 주세요.", "",
+                 *counts, ""]
+        if report["cross_level"]:
+            lines += ["## 단계 사이 겹침 (한쪽을 지워야 적용됨)", *[f"- {e}" for e in report["cross_level"]], ""]
+        path.write_text("\n".join(lines), encoding="utf-8")
+        out["reviews"] = reviews
+    else:
+        path.write_text("\n".join(sheet_lines(
+            repo, catalog, f"실행: {run.get('mode', '?')} · 단계 {run.get('level', '-')}", drafts,
+            report["errors"], report["warnings"])), encoding="utf-8")
+    print(json.dumps(out, ensure_ascii=False))
     return 0
 
 
@@ -686,7 +849,12 @@ def cmd_apply(repo: Repo, args) -> int:
     changelog = repo.catalog_root / "CHANGELOG.md"
     topics = sum(1 for i in drafts if i.get("kind") == "topic")
     terms = len(drafts) - topics
-    note = args.note or f"dic-maker로 주제 {topics}개, 용어 {terms}개를 더했다."
+    run = repo.read_json(RUN_FILE, {}) or {}
+    if run.get("mode") == "all":
+        per_level = ", ".join(f"{k}단계 {sum(1 for i in drafts if i.get('_slot') == int(k))}개" for k in run["levels"])
+        note = args.note or f"dic-maker로 모든 단계에 주제 {topics}개, 용어 {terms}개를 더했다({per_level})."
+    else:
+        note = args.note or f"dic-maker로 주제 {topics}개, 용어 {terms}개를 더했다."
     head, sep, rest = changelog.read_text(encoding="utf-8").partition("\n## ")
     changelog.write_text(f"{head}\n## {new_version}\n\n- {note}\n- 분야별: " +
                          ", ".join(f"{d} {len(ids)}개" for d, ids in added.items()) + f"\n{sep}{rest}", encoding="utf-8")
@@ -696,14 +864,12 @@ def cmd_apply(repo: Repo, args) -> int:
         built = repo.tool.cmd_build(repo.catalog_root, False)
     if built != 0:
         raise SystemExit("build에 실패했습니다.\n" + build_log.getvalue())
-    run = repo.read_json(RUN_FILE, {}) or {}
     history = repo.work / HISTORY_DIR
     history.mkdir(parents=True, exist_ok=True)
     (history / f"{today()}_{new_version}.json").write_text(
         json.dumps({"run": run, "added": added, "items": [strip_draft_fields(i) for i in drafts]}, ensure_ascii=False, indent=1) + "\n",
         encoding="utf-8")
-    for path in repo.draft_files():
-        path.unlink()
+    clear_drafts(repo)
     (repo.work / RUN_FILE).unlink(missing_ok=True)
     covered = [b for b in box_covered(fresh, read_box()) if b["covered_by"] and b["covered_by"] in {i for ids in added.values() for i in ids}]
     print(json.dumps({"version": new_version, "previous": old_version, "added": added, "topics": topics, "terms": terms,
@@ -770,25 +936,32 @@ def cmd_mark_checked(repo: Repo, args) -> int:
 
 def cmd_status(repo: Repo, args) -> int:
     run = repo.read_json(RUN_FILE, None)
-    drafts = repo.drafts() if run else []
+    drafts = repo.drafts(level=0) if run else []   # 쓰는 중인 파일은 건너뛰고 보여 준다
     catalog = repo.catalog()
-    print(json.dumps({
+    out = {
         "version": catalog["version"], "items": len(catalog["items"]),
         "run": run, "drafted": quota_check(run, drafts)["drafted"] if run else {},
-        "draft_files": [p.name for p in repo.draft_files()],
+        "draft_files": [repo.draft_label(p) for p in repo.draft_files()],
+        "writing": repo.skipped if run else [],
         "review": str(repo.work / REVIEW_FILE) if (repo.work / REVIEW_FILE).exists() else None,
+        "reviews": [str(p) for p in review_files(repo)],
         "levels": level_rows(catalog),
-    }, ensure_ascii=False, indent=1))
+    }
+    if run and run.get("mode") == "all":
+        # 단계마다 아직 없는 초안 파일. c로 이어 할 때 어느 단계 에이전트를 다시 띄울지 여기서 본다.
+        out["missing_files"] = {key: [d for d, p in plan["draft_files"].items() if not Path(p).exists()]
+                                for key, plan in run["levels"].items()}
+    print(json.dumps(out, ensure_ascii=False, indent=1))
     return 0
 
 
 def cmd_cancel(repo: Repo, args) -> int:
     run = repo.read_json(RUN_FILE, None)
-    removed = [p.name for p in repo.draft_files()]
-    for path in repo.draft_files():
-        path.unlink()
+    removed = [repo.draft_label(p) for p in repo.draft_files()]
+    clear_drafts(repo)
     (repo.work / RUN_FILE).unlink(missing_ok=True)
-    (repo.work / REVIEW_FILE).unlink(missing_ok=True)
+    for path in review_files(repo):
+        path.unlink()
     print(json.dumps({"cancelled": bool(run), "removed_drafts": removed,
                       "message": "실행을 취소했습니다. 사전 파일은 건드리지 않았습니다." if run else "진행 중인 실행이 없습니다."},
                      ensure_ascii=False))
@@ -809,14 +982,16 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--level", type=int)
     p.add_argument("--count", type=int, default=DEFAULT_COUNT, help=f"기본 {DEFAULT_COUNT}, 최대 {MAX_COUNT}")
     p.add_argument("--box", action="store_true", help="후보함의 개념만")
+    p.add_argument("--all", action="store_true", help="다섯 단계 모두 --count씩 (단계마다 에이전트 하나)")
     p.add_argument("--force", action="store_true", help="진행 중인 실행을 버리고 새로 시작")
     p.set_defaults(fn=cmd_start)
     p = sub.add_parser("guide", help="조사 에이전트가 읽을 규칙")
-    p.add_argument("--domain")
+    p.add_argument("--domain", action="append", help="분야 접두사. 여러 번 줄 수 있다")
     p.add_argument("--level", type=int)
     p.set_defaults(fn=cmd_guide)
     p = sub.add_parser("check", help="초안 검사")
     p.add_argument("--links", action="store_true", help="자료 링크도 연다(네트워크)")
+    p.add_argument("--level", type=int, help="--all 실행에서 이 단계 폴더의 항목만 본다")
     p.set_defaults(fn=cmd_check)
     p = sub.add_parser("alias-audit", help="별칭 오탐률 재기")
     p.add_argument("--all", action="store_true", help="사전 전체 별칭")

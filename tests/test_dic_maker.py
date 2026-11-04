@@ -237,6 +237,108 @@ class DicMakerTest(unittest.TestCase):
         self.assertEqual(self.run_cmd("cancel")["cancelled"], False)
         self.assertEqual(self.run_cmd("status")["version"], (ROOT / "catalog" / "VERSION").read_text().strip())
 
+    # ----- 전체 단계 (all) -----
+
+    def write_level_draft(self, level: int, name: str, items: list[dict]) -> None:
+        self.write_draft(f"L{level}/{name}", items)
+
+    def test_start_all_plans_every_level_and_prewarms_corpus(self):
+        self.say("s0", "대화 기록이 하나 있어요. ")
+        out = self.run_cmd("start", "--all", "--count", "30")
+        self.assertEqual((out["mode"], out["level"], sorted(out["levels"])), ("all", None, ["1", "2", "3", "4", "5"]))
+        for key, plan in out["levels"].items():
+            with self.subTest(level=key):
+                self.assertEqual(plan["topics"] + plan["terms"], 30)
+                self.assertTrue(all(p.endswith(f"L{key}/{d}.json") for d, p in plan["draft_files"].items()))
+                self.assertTrue((self.repo / dm.WORK_DIR / dm.DRAFT_DIR / f"L{key}").is_dir())
+        self.assertEqual(out["topics"], sum(p["topics"] for p in out["levels"].values()))
+        self.assertIn("level_info", out["plans"]["3"])
+        self.assertEqual(out["alias_sessions"], 1)   # 에이전트를 띄우기 전에 대화 기록 색인을 만들어 둔다
+        self.assertTrue((self.repo / dm.WORK_DIR / dm.CORPUS_INDEX).exists())
+        for bad in (["--all", "--level", "2"], ["--all", "--box"]):
+            with self.assertRaises(SystemExit):
+                self.run_cmd("start", "--force", *bad)
+
+    def test_check_level_sees_only_its_level_and_skips_file_being_written(self):
+        self.run_cmd("start", "--all", "--count", "10")
+        self.write_level_draft(4, "mlops", [draft_topic(), draft_term()])
+        self.write_level_draft(2, "be", [draft_topic("be.x.y", title="다른 이름", en="Another", level=2, basis="")])
+        folder = self.repo / dm.WORK_DIR / dm.DRAFT_DIR
+        (folder / "L3" / "fe.json").write_text('[{"id": "fe.half', encoding="utf-8")   # 다른 에이전트가 쓰는 중
+        out = self.run_cmd("check", "--level", "4")
+        self.assertEqual(out["errors"], [])                                 # 2단계의 오류는 보이지 않는다
+        self.assertEqual((out["level"], out["items"]), (4, 2))
+        self.assertTrue(any("L3/fe.json" in w and "쓰는 중" in w for w in out["warnings"]))
+        self.assertEqual(out["quota"]["drafted"]["mlops"], {"topic": 1, "term": 1})
+        self.assertTrue(out["quota"]["short"])
+        with self.assertRaises(SystemExit):                                  # 전체 검사는 깨진 파일을 봐준다
+            self.run_cmd("check", ok=False)
+        with self.assertRaises(SystemExit):                                  # 자기 단계의 깨진 파일도 오류다
+            self.run_cmd("check", "--level", "3", ok=False)
+        (folder / "L3" / "fe.json").unlink()
+        out = self.run_cmd("check", ok=False)
+        self.assertTrue(any("be.x.y" in e for e in out["errors"]))
+        self.assertEqual(out["quota"]["by_level"]["4"]["drafted"]["mlops"], {"topic": 1, "term": 1})
+        status = self.run_cmd("status")
+        self.assertEqual(status["draft_files"], ["L2/be.json", "L4/mlops.json"])
+        self.assertIn("mlops", status["missing_files"]["4"] + list(status["drafted"]["4"]))
+        out = self.run_cmd("cancel")
+        self.assertEqual(out["removed_drafts"], ["L2/be.json", "L4/mlops.json"])
+        self.assertEqual([p.name for p in folder.iterdir()], [])
+
+    def test_cross_level_duplicate_is_tagged_for_both_levels(self):
+        self.run_cmd("start", "--all", "--count", "10")
+        self.write_level_draft(4, "mlops", [draft_topic()])
+        self.write_level_draft(3, "mlops", [draft_topic("mlops.serve.model-serving-intro", level=3)])
+        for level in (3, 4):
+            out = self.run_cmd("check", "--level", str(level), ok=False)
+            with self.subTest(level=level):
+                self.assertTrue(out["cross_level"])
+                self.assertTrue(all(e.startswith(dm.CROSS_LEVEL_TAG) for e in out["cross_level"]))
+                self.assertIn("(L", out["cross_level"][0])
+        out = self.run_cmd("check", "--level", "4", ok=False)
+        self.assertTrue(any("wrong_level" in k for k in out["quota"]))
+        self.assertEqual(out["quota"]["wrong_level"], [])
+        self.assertEqual(self.run_cmd("check", "--level", "3", ok=False)["quota"]["wrong_level"], [])
+        sheet = self.run_cmd("review-sheet")
+        self.assertIn("단계 사이 겹침", Path(sheet["review"]).read_text(encoding="utf-8"))
+
+    def test_review_sheet_all_writes_per_level_and_apply_merges_all(self):
+        self.run_cmd("start", "--all", "--count", "10")
+        self.write_level_draft(4, "mlops", [draft_topic(), draft_term()])
+        self.write_level_draft(2, "mlops", [draft_term("mlops.serve.throughput", title="처리량", en="Throughput", level=2,
+                                                       parent=None, aliases=["처리량", "throughput"], refs=["https://example.com/tp"])])
+        out = self.run_cmd("review-sheet")
+        self.assertEqual(sorted(out["reviews"]), ["1", "2", "3", "4", "5"])
+        self.assertIn("| mlops.serve.model-serving | topic | 4 |", Path(out["reviews"]["4"]).read_text(encoding="utf-8"))
+        self.assertNotIn("mlops.serve.model-serving", Path(out["reviews"]["2"]).read_text(encoding="utf-8"))
+        index = Path(out["review"]).read_text(encoding="utf-8")
+        self.assertIn("[4단계](review_4.md): 주제 1개, 용어 1개", index)
+        self.assertIn("다섯 단계를 한 번에", index)
+        before = (self.repo / "catalog" / "VERSION").read_text().strip()
+        out = self.run_cmd("apply")
+        self.assertEqual((out["topics"], out["terms"], out["version"]), (1, 2, dm.bump_version(before)))
+        changelog = (self.repo / "catalog" / "CHANGELOG.md").read_text(encoding="utf-8")
+        self.assertIn("모든 단계에 주제 1개, 용어 2개", changelog)
+        self.assertIn("4단계 2개", changelog)
+        self.assertEqual([p.name for p in (self.repo / dm.WORK_DIR / dm.DRAFT_DIR).iterdir()], [])
+        self.assertEqual(self.run_cmd("status")["run"], None)
+
+    def test_shared_caches_survive_a_concurrent_writer(self):
+        repo = dm.Repo(self.repo)
+
+        def slow_fetch(url):   # 네트워크를 여는 사이 다른 프로세스가 캐시에 항목을 넣는다
+            repo.write_json(dm.LINKS_FILE, {"https://example.com/other": {"status": "200", "title": "다른 에이전트", "checked": dm.today()}})
+            return {"status": "200", "title": "예시", "checked": dm.today()}
+
+        dm.fetch_link = slow_fetch
+        dm.check_links(repo, ["https://example.com/mine"])
+        cache = repo.read_json(dm.LINKS_FILE, {})
+        self.assertEqual(sorted(cache), ["https://example.com/mine", "https://example.com/other"])
+        self.assertEqual([p.name for p in (self.repo / dm.WORK_DIR).glob("*.tmp")], [])
+        with repo.locked():
+            self.assertTrue((self.repo / dm.WORK_DIR / dm.LOCK_FILE).exists())
+
     # ----- 갱신 -----
 
     def test_refresh_lists_stale_volatile_and_mark_checked_updates(self):
@@ -267,8 +369,9 @@ def sys_tool_check(repo: Path) -> int:
 class SkillDocsTest(unittest.TestCase):
     def test_skill_describes_options_and_stops_before_apply(self):
         text = (SKILL_DIR / "SKILL.md").read_text(encoding="utf-8")
-        for marker in ("/dic-maker box", "/dic-maker c", "/dic-maker apply", "/dic-maker refresh", "review-sheet",
-                       "apply를 스스로 실행하지 않는다", "푸시는 사용자에게 묻는다", "적대적 검토자", "guide --domain", "mark-checked"):
+        for marker in ("/dic-maker box", "/dic-maker c", "/dic-maker apply", "/dic-maker refresh", "/dic-maker a 30", "review-sheet",
+                       "apply를 스스로 실행하지 않는다", "푸시는 사용자에게 묻는다", "적대적 검토자", "guide --domain", "mark-checked",
+                       "start --all", "check --links --level", "review_1.md", "[단계 간]"):
             with self.subTest(marker=marker):
                 self.assertIn(marker, text)
 
