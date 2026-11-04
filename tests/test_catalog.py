@@ -35,7 +35,7 @@ def term(item_id: str, level: int = 2, importance: int = 1, **extra) -> dict:
     return {
         "id": item_id, "title": "상태 코드", "en": "Status Code", "kind": "term",
         "level": level, "importance": importance, "group": "HTTP",
-        "summary": "요청 결과를 알려 주는 세 자리 숫자다.", "aliases": [item_id], **extra,
+        "summary": "요청 결과를 알려 주는 세 자리 숫자다.", "aliases": [item_id], "refs": ["https://example.com/doc"], **extra,
     }
 
 
@@ -108,6 +108,12 @@ class ItemRulesTest(CatalogTestCase):
         self.assert_rejected("~할 수 있다", topic("be.http.status", objectives=["상태 코드 이해", "오류를 가려낼 수 있다"]))
         self.assert_rejected("학습 목표", topic("be.http.status", objectives=["오류를 가려낼 수 있다"]))
         self.assert_rejected("용어에는", term("be.http.code", objectives=["구분할 수 있다", "말할 수 있다"]))
+
+    def test_term_without_parent_needs_refs(self) -> None:
+        item = term("be.http.code")
+        del item["refs"]
+        self.assert_rejected("부모 주제가 없는 용어", item)
+        self.assertEqual(self.errors(topic("be.http.status"), {**item, "parent": "be.http.status"}), [])
 
     def test_every_topic_needs_refs(self) -> None:
         item = topic("be.http.status")

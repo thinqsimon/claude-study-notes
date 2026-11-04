@@ -27,7 +27,7 @@
 | LLM·생성형 AI·프롬프트 | [Hugging Face LLM 과정](https://huggingface.co/learn/llm-course), [Microsoft 초보자를 위한 생성형 AI](https://github.com/microsoft/generative-ai-for-beginners), [Claude 프롬프트 가이드](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview), [OpenAI 텍스트 생성 가이드](https://platform.openai.com/docs/guides/text) |
 | RAG·에이전트·오케스트레이션 | [LangChain 문서](https://docs.langchain.com/), [LangGraph 문서](https://langchain-ai.github.io/langgraph/), [MCP 문서](https://modelcontextprotocol.io/docs/getting-started/intro) |
 | LLMOps·MLOps | [Made With ML](https://madewithml.com/), [OWASP LLM Top 10](https://genai.owasp.org/llm-top-10/) |
-| AX 실무·보안·윤리 | [NIST AI 위험 관리 프레임워크](https://www.nist.gov/itl/ai-risk-management-framework), [OWASP LLM Top 10](https://genai.owasp.org/llm-top-10/) |
+| AI 네이티브 개발·보안·윤리 | [NIST AI 위험 관리 프레임워크](https://www.nist.gov/itl/ai-risk-management-framework), [OWASP LLM Top 10](https://genai.owasp.org/llm-top-10/) |
 
 ## 과정 교과목과 분야의 연결
 

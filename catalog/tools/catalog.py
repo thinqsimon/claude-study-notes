@@ -125,6 +125,8 @@ def check_item(item: dict, known_levels: set[int]) -> list[str]:
             errors.append(f"{label}: 주제는 공식 자료 링크(refs)가 필요하다")
     elif objectives:
         errors.append(f"{label}: 용어에는 학습 목표를 쓰지 않는다")
+    elif not item.get("parent") and not item.get("refs"):
+        errors.append(f"{label}: 부모 주제가 없는 용어는 공식 자료 링크(refs)가 필요하다")
     for objective in objectives:
         if not objective.endswith("수 있다"):
             errors.append(f"{label}: 학습 목표는 '~할 수 있다'로 끝난다: {objective}")
