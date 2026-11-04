@@ -59,6 +59,7 @@ PARTS_DIR = ".parts"
 MAX_RUN_TOPICS = 30
 TOPICS_PER_FILE = 20
 AGENT_CONCURRENCY = 5
+GUIDE_SECTIONS = ("## 가장 중요한 원칙: 대화의 정리가 아니라 교과서", "## 설명 수준 (5단계)", "## 작성 규칙")
 
 TOOL_INPUT_MAX = 300
 TOOL_RESULT_MAX = 500
@@ -600,6 +601,10 @@ def cmd_extract(args) -> int:
         taken = {**concepts.load_used(notes_root), **{t["id"]: True for t in load_queue(notes_root)["topics"]}}
         limit = len(catalog["items"]) if args.all else concepts.CANDIDATE_LIMIT
         found = concepts.find_candidates(spoken_text(recs), catalog, level, taken, limit)
+        if args.all:
+            # 후보가 많아도 출력이 커지지 않게 고르는 데 쓰는 칸만 남긴다.
+            found["candidates"] = [{key: c[key] for key in ("id", "title", "importance", "hits", "matched")}
+                                   for c in found["candidates"]]
     else:
         found = {"candidates": [], "candidate_total": 0, "other_levels": {}}
     concept_dir = notes_root / CONCEPT_FOLDER
@@ -961,16 +966,36 @@ def cmd_queue_next(args) -> int:
     waiting = [t for t in queue["topics"] if t["id"] not in used and not part_path(notes_root, t["id"]).exists()]
     waiting.sort(key=lambda t: (t["importance"], t["level"], queue["topics"].index(t)))
     limit = min(args.limit or MAX_RUN_TOPICS, MAX_RUN_TOPICS)
+    topics = waiting[:limit]
     print(json.dumps({
         "topics": [{"id": t["id"], "title": t["title"], "importance": concepts.STARS[t["importance"]],
-                    "draft_file": str(draft_path(notes_root, t["id"])), **level_info(t["level"])}
-                   for t in waiting[:limit]],
+                    "level": t["level"], "draft_file": str(draft_path(notes_root, t["id"]))}
+                   for t in topics],
+        "levels": {str(level): level_info(level) for level in sorted({t["level"] for t in topics})},
         "queue": queue_counts(notes_root, queue),
         "max_run_topics": MAX_RUN_TOPICS,
         "topics_per_file": TOPICS_PER_FILE,
         "agent_concurrency": AGENT_CONCURRENCY,
         "catalog_version": concepts.load_catalog()["version"],
     }, ensure_ascii=False, indent=2))
+    return 0
+
+
+def doc_section(text: str, heading: str) -> str:
+    """md 글에서 heading 절을 다음 ## 제목 앞까지 잘라 낸다."""
+    start = text.index(f"\n{heading}\n") + 1
+    end = text.find("\n## ", start + 1)
+    return text[start:end if end != -1 else None].strip()
+
+
+def cmd_guide(args) -> int:
+    """에이전트가 읽을 작성 규칙과 노트 틀을 내보낸다. SKILL.md를 통째로 읽거나 sed로 자르지 않게 한다."""
+    skill_dir = Path(__file__).resolve().parents[1]
+    skill = (skill_dir / "SKILL.md").read_text(encoding="utf-8")
+    template = (skill_dir / "templates" / "concept-note.md").read_text(encoding="utf-8")
+    parts = [doc_section(skill, heading) for heading in GUIDE_SECTIONS]
+    parts.append(template[re.search(r"^## 1\.", template, re.M).start():].strip())
+    print("\n\n".join(parts))
     return 0
 
 
@@ -1243,6 +1268,9 @@ def main(argv=None) -> int:
     p.add_argument("--limit", type=int, default=None, help=f"최대 {MAX_RUN_TOPICS}개")
     p.add_argument("--notes-root", default=str(DEFAULT_NOTES_ROOT))
     p.set_defaults(fn=cmd_queue_next)
+
+    p = sub.add_parser("guide", help="에이전트가 읽을 작성 규칙과 노트 틀 보기")
+    p.set_defaults(fn=cmd_guide)
 
     p = sub.add_parser("queue-done", help="쓴 주제를 검사해 완료 표시")
     p.add_argument("--id", required=True)

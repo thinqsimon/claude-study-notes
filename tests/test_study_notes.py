@@ -758,6 +758,31 @@ class QueueTest(unittest.TestCase):
         self.assertEqual(len(everything["candidates"]), everything["candidate_total"])
         self.assertGreater(everything["candidate_total"], concepts.CANDIDATE_LIMIT)
 
+    def test_all_candidates_keep_only_fields_for_choosing(self):
+        candidate = self.extract("--level", "3", "--all")["candidates"][0]
+        self.assertEqual(set(candidate), {"id", "title", "importance", "hits", "matched"})
+
+    def test_queue_next_lists_level_info_once(self):
+        ids = self.fill(3)
+        out = self.next()
+        self.assertEqual([t["level"] for t in out["topics"]], [3, 3, 3])
+        self.assertTrue(all("level_style" not in t for t in out["topics"]))
+        self.assertEqual(list(out["levels"]), ["3"])
+        self.assertEqual(out["levels"]["3"]["level_label"], "3단계 기초")
+        self.assertEqual(sorted(t["id"] for t in out["topics"]), sorted(ids))
+
+    def test_guide_prints_rules_and_template_without_procedure(self):
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            self.assertEqual(sn.main(["guide"]), 0)
+        text = buf.getvalue()
+        for marker in ("대화의 정리가 아니라 교과서", "1단계 왕초보", "## 작성 규칙", "### 학습 목표", "### 공식 문서"):
+            with self.subTest(marker=marker):
+                self.assertIn(marker, text)
+        for marker in ("queue-bundle", "## 절차", "title: AX"):
+            with self.subTest(marker=marker):
+                self.assertNotIn(marker, text)
+
     def test_queue_add_skips_duplicates_and_used(self):
         self.extract("--level", "3", "--all")
         first = self.add("be.auth.jwt-flow", "be.fastapi.validation", "be.auth.jwt-flow")
@@ -919,6 +944,14 @@ class SkillDocsQueueTest(unittest.TestCase):
         self.assertIn('SERVER=$!', text)
         self.assertIn('kill "$SERVER"', text)
         self.assertIn('grep -qF "<TMP>/study-notes/"', text)
+
+    def test_agents_and_main_do_not_give_up(self):
+        text = (SKILL_DIR / "SKILL.md").read_text(encoding="utf-8")
+        for marker in ("guide 의 출력 전부", "Bash 전체가 막힌 것이 아닙니다", "남은 주제를 계속 띄운다",
+                       "사용 한도나 비용을 짐작해", "`head`로 자르지 않는다", "분량 제한을 덧붙이지 않는다"):
+            with self.subTest(marker=marker):
+                self.assertIn(marker, text)
+        self.assertNotIn('"설명 수준", "작성 규칙" 절과', text)
 
     def test_few_topics_still_use_agents(self):
         text = (SKILL_DIR / "SKILL.md").read_text(encoding="utf-8")
