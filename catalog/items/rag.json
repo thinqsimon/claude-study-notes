@@ -372,6 +372,31 @@
     ]
   },
   {
+    "id": "rag.embedding.embeddings-interface",
+    "title": "임베딩 호출: embed_query와 embed_documents",
+    "en": "Embeddings Interface: embed_query and embed_documents",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "임베딩",
+    "summary": "LangChain의 Embeddings 클래스는 어느 회사 모델이든 질문 한 문장은 embed_query로, 문서 여러 개는 embed_documents로 숫자 벡터 목록을 돌려준다.",
+    "related": [
+      "rag.embedding.similarity-search",
+      "rag.embedding.model-tradeoffs"
+    ],
+    "aliases": [
+      "embed_query",
+      "embed_documents",
+      "OpenAIEmbeddings",
+      "Embeddings 클래스",
+      "임베딩 인터페이스",
+      "LangChain 임베딩"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/integrations/text_embedding"
+    ]
+  },
+  {
     "id": "rag.vector-db.basics",
     "title": "벡터 DB로 문서 검색 만들기",
     "en": "Document Search with a Vector Database",
@@ -413,6 +438,33 @@
       "청크",
       "chunk",
       "문서 조각"
+    ]
+  },
+  {
+    "id": "rag.retrieval.top-k-filter",
+    "title": "검색 결과 개수 k와 메타데이터 필터",
+    "en": "Top-k and Metadata Filter in Similarity Search",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "검색 내부",
+    "summary": "유사도 검색에서 몇 개를 돌려받을지(k)와 출처·날짜 같은 메타데이터로 범위를 좁힐지 정하는 두 가지 조건이다.",
+    "parent": "rag.vector-db.basics",
+    "related": [
+      "rag.retrieval.quality",
+      "rag.retrieval.retriever"
+    ],
+    "aliases": [
+      "검색 top-k",
+      "top_k 검색",
+      "검색 결과 개수 k",
+      "search_kwargs",
+      "similarity_search k",
+      "메타데이터 필터"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/integrations/vectorstores",
+      "https://docs.langchain.com/oss/python/langchain/knowledge-base"
     ]
   },
   {
@@ -783,6 +835,28 @@
     "aliases": [
       "재현율",
       "recall"
+    ]
+  },
+  {
+    "id": "rag.embedding.quantization",
+    "title": "임베딩 양자화(binary·int8)",
+    "en": "Embedding Quantization",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "검색 내부",
+    "summary": "float32 임베딩을 1비트나 8비트로 줄여 메모리와 검색 속도를 크게 얻고, 잃은 정확도는 상위 후보를 원본 쿼리 벡터로 다시 채점해 되찾는 기법이다.",
+    "parent": "rag.embedding.model-tradeoffs",
+    "aliases": [
+      "임베딩 양자화",
+      "embedding quantization",
+      "binary quantization",
+      "이진 임베딩",
+      "int8 임베딩",
+      "양자화 리스코어링"
+    ],
+    "refs": [
+      "https://sbert.net/examples/sentence_transformer/applications/embedding-quantization/README.html"
     ]
   }
 ]

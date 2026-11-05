@@ -120,6 +120,57 @@
     ]
   },
   {
+    "id": "plan.basics.wireframe",
+    "title": "와이어프레임",
+    "en": "Wireframe",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "색과 그림을 빼고 선과 네모만으로 화면의 뼈대와 배치를 그린 밑그림으로, 꾸미기 전에 무엇을 어디에 둘지 합의하는 데 쓴다.",
+    "parent": "plan.basics.service-flow",
+    "related": [
+      "plan.basics.prototype",
+      "plan.figma.frame"
+    ],
+    "aliases": [
+      "wireframe",
+      "화면 뼈대",
+      "로파이 와이어프레임",
+      "lo-fi wireframe",
+      "화면 밑그림"
+    ],
+    "refs": [
+      "https://www.figma.com/resource-library/what-is-wireframing/"
+    ]
+  },
+  {
+    "id": "plan.basics.prototype",
+    "title": "프로토타입",
+    "en": "Prototype",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "진짜 만들기 전에 눌러 보고 넘겨 볼 수 있게 만든 시제품으로, 사용자와 팀이 써 보고 고칠 점을 먼저 찾는 데 쓴다.",
+    "related": [
+      "plan.basics.wireframe",
+      "plan.basics.mvp-idea",
+      "plan.figma.prototype-connection"
+    ],
+    "aliases": [
+      "디자인 프로토타입",
+      "클릭 가능한 프로토타입",
+      "clickable prototype",
+      "시제품",
+      "lo-fi 프로토타입"
+    ],
+    "refs": [
+      "https://www.figma.com/resource-library/what-is-prototyping/",
+      "https://help.figma.com/hc/en-us/articles/360040314193-Guide-to-prototyping-in-Figma"
+    ]
+  },
+  {
     "id": "plan.figma.frames-and-components",
     "title": "Figma 프레임과 컴포넌트로 화면 만들기",
     "en": "Building Screens with Frames and Components in Figma",
@@ -183,6 +234,42 @@
     ],
     "refs": [
       "https://pair.withgoogle.com/chapter/mental-models/"
+    ]
+  },
+  {
+    "id": "plan.figma.styles",
+    "title": "Figma 스타일로 색과 글꼴 통일하기",
+    "en": "Keeping Colors and Fonts Consistent with Figma Styles",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "자주 쓰는 색과 글꼴 묶음을 스타일로 저장해 여러 화면에 적용하고, 스타일 하나를 고치면 쓰는 곳이 모두 바뀌게 만드는 Figma의 첫 통일 방법이다.",
+    "objectives": [
+      "선택한 레이어의 채우기 색을 색 스타일로 저장하고 다른 레이어에 적용할 수 있다",
+      "글꼴·크기·줄 간격을 텍스트 스타일로 묶어 제목과 본문에 적용할 수 있다",
+      "스타일을 고쳐 그 스타일을 쓰는 레이어가 한꺼번에 바뀌는 것을 확인하고 분리(detach)가 무엇인지 말할 수 있다",
+      "색 값을 화면마다 손으로 넣는 대신 스타일을 쓰는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.frames-and-components"
+    ],
+    "related": [
+      "plan.figma.variables-modes"
+    ],
+    "aliases": [
+      "Figma 스타일",
+      "피그마 스타일",
+      "Figma styles",
+      "로컬 스타일",
+      "스타일 적용",
+      "텍스트 스타일"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360039238753-Styles-in-Figma",
+      "https://help.figma.com/hc/en-us/articles/360038746534-Create-color-text-effect-and-layout-guide-styles",
+      "https://help.figma.com/hc/en-us/articles/360040316193-Apply-styles-to-layers-and-objects",
+      "https://help.figma.com/hc/en-us/articles/360039820134-Manage-and-share-styles"
     ]
   },
   {
@@ -266,6 +353,130 @@
     ],
     "refs": [
       "https://help.figma.com/hc/en-us/articles/360040314193-Guide-to-prototyping-in-Figma"
+    ]
+  },
+  {
+    "id": "plan.figma.color-style",
+    "title": "색 스타일(color style)",
+    "en": "Color Style",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "채우기·선·그라데이션 같은 색 값을 이름 붙여 저장한 Figma 스타일로, 여러 레이어에 같은 색을 적용하고 한 번에 바꿀 수 있다.",
+    "parent": "plan.figma.styles",
+    "aliases": [
+      "색 스타일",
+      "color style",
+      "컬러 스타일",
+      "paint style",
+      "채우기 스타일"
+    ]
+  },
+  {
+    "id": "plan.figma.layout-guides",
+    "title": "레이아웃 가이드(레이아웃 그리드)",
+    "en": "Layout Guides (Layout Grids)",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "프레임 위에 열·행·바둑판 모양의 안내선을 깔아 요소를 같은 간격과 폭에 맞춰 놓게 돕는 Figma 기능으로, 2025년에 레이아웃 그리드에서 이름이 바뀌었다.",
+    "related": [
+      "plan.figma.frame"
+    ],
+    "aliases": [
+      "레이아웃 그리드",
+      "layout grid",
+      "레이아웃 가이드",
+      "layout guide",
+      "컬럼 그리드",
+      "8포인트 그리드"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360040450513-Create-layout-grids-with-grids-columns-and-rows"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-05"
+  },
+  {
+    "id": "plan.figma.auto-layout",
+    "title": "오토 레이아웃으로 늘어나고 줄어드는 화면 만들기",
+    "en": "Building Responsive Screens with Auto Layout",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "내용 길이와 화면 폭이 바뀌어도 깨지지 않도록 방향·간격·크기 규칙으로 요소를 배치하는 Figma 기능이다.",
+    "objectives": [
+      "방향·간격·패딩을 정해 버튼·카드·목록을 오토 레이아웃 프레임으로 만들 수 있다",
+      "hug·fill·fixed 크기 조절의 차이를 구분해 글자 길이가 바뀌어도 모양이 유지되는 컴포넌트를 만들 수 있다",
+      "오토 레이아웃과 제약(constraints)이 각각 언제 작동하는지 알고 요소마다 어느 쪽을 쓸지 고를 수 있다",
+      "wrap으로 좁은 화면에서 줄이 바뀌는 태그 목록이나 카드 격자를 만들 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.frames-and-components"
+    ],
+    "related": [
+      "plan.figma.constraints"
+    ],
+    "aliases": [
+      "오토 레이아웃",
+      "auto layout",
+      "오토레이아웃",
+      "Figma auto layout",
+      "hug contents",
+      "fill container"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360040451373-Guide-to-auto-layout-in-Figma"
+    ]
+  },
+  {
+    "id": "plan.figma.variants",
+    "title": "컴포넌트 변형(variants)",
+    "en": "Component Variants",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "한 버튼의 크기·상태 같은 변형들을 컴포넌트 세트 하나로 묶고 속성 값으로 골라 쓰는 Figma 기능이다.",
+    "related": [
+      "plan.figma.main-component-instance"
+    ],
+    "aliases": [
+      "Figma variants",
+      "컴포넌트 세트",
+      "component set",
+      "variant property",
+      "변형 속성",
+      "버튼 상태 변형"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360056440594-Create-and-use-variants"
+    ]
+  },
+  {
+    "id": "plan.figma.constraints",
+    "title": "제약(constraints)",
+    "en": "Figma Constraints",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "부모 프레임 크기가 바뀔 때 자식 요소를 어느 변에 붙이거나 비율로 늘릴지 정하는 Figma 설정이다.",
+    "parent": "plan.figma.auto-layout",
+    "related": [
+      "plan.figma.frame"
+    ],
+    "aliases": [
+      "피그마 제약",
+      "리사이즈 제약",
+      "scale 제약",
+      "left and right 제약"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360039957734-Apply-constraints-to-define-how-layers-resize"
     ]
   },
   {
@@ -388,6 +599,39 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-04"
+  },
+  {
+    "id": "plan.figma.branch-merge-governance",
+    "title": "Figma 브랜치·머지로 하는 디자인 시스템 변경 관리",
+    "en": "Design System Change Management with Figma Branching",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "라이브러리 변경을 브랜치에서 격리해 검토·병합하는 Figma의 구조와 제약을 알고 버전 기록·파일 복제 같은 대안과 비교해 변경 절차를 정한다.",
+    "objectives": [
+      "메인 파일의 변경은 통째로 받거나 미룰 수 있을 뿐 골라 받을 수 없고 충돌은 병합 때 푼다는 방식을 근거로, 병합에서 충돌이 나거나 원치 않는 메인 변경이 함께 들어오는 원인을 찾을 수 있다",
+      "라이브러리 게시가 메인 파일에서만 되고 댓글이 브랜치와 메인 사이를 오가지 않는 제약을 반영해 검토·배포 순서를 설계할 수 있다",
+      "브랜치와 파일 복제 중 무엇으로 변경을 격리할지, 되돌리기는 버전 기록에 맡길지를 접근 권한과 플랜 비용, 추적성을 근거로 고를 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.dev-mode-handoff",
+      "plan.figma.frames-and-components"
+    ],
+    "related": [
+      "dev.git.branch-pr"
+    ],
+    "aliases": [
+      "Figma 브랜치",
+      "Figma branching",
+      "디자인 브랜치",
+      "Figma 머지"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360063144053-Create-branches-and-merge-changes"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-05"
   },
   {
     "id": "plan.figma.variables-modes",
@@ -548,5 +792,50 @@
       "n-best alternatives",
       "대안 후보 표시"
     ]
+  },
+  {
+    "id": "plan.figma.code-connect",
+    "title": "Code Connect",
+    "en": "Code Connect",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "코드 저장소의 컴포넌트를 Figma 컴포넌트에 연결해 MCP 서버로 AI 에이전트에게 실제 코드를 알려 주는 장치로, CLI로 연결하면 속성까지 이어져 Dev Mode의 자동 생성 코드를 대신한다.",
+    "parent": "plan.figma.dev-mode-handoff",
+    "aliases": [
+      "Code Connect",
+      "코드 커넥트",
+      "Figma 코드 연결",
+      "Code Connect CLI",
+      "Figma 컴포넌트 매핑"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-05"
+  },
+  {
+    "id": "plan.figma.library-analytics",
+    "title": "라이브러리 분석(library analytics)",
+    "en": "Library Analytics",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "게시한 라이브러리의 컴포넌트·스타일·변수가 어느 팀과 파일에서 얼마나 삽입되고 분리됐는지 집계해 디자인 시스템의 채택률과 폐기 후보를 판단하는 근거다.",
+    "aliases": [
+      "library analytics",
+      "라이브러리 분석",
+      "컴포넌트 삽입 수",
+      "detach 집계",
+      "디자인 시스템 채택률"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360039238353-View-library-analytics"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-05"
   }
 ]

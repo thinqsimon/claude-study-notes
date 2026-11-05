@@ -357,6 +357,88 @@
     ]
   },
   {
+    "id": "ops.linux.stdout-stderr-redirection",
+    "title": "표준 출력·표준 오류 리다이렉션",
+    "en": "Redirecting stdout and stderr",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "명령의 결과(stdout)와 오류 메시지(stderr)는 다른 통로라서 > 와 2> 로 따로 파일에 담고, 2>&1로 합칠 수 있으며 이때 순서에 따라 결과가 달라진다.",
+    "parent": "ops.linux.shell-script-basics",
+    "aliases": [
+      "2>&1",
+      "stdout",
+      "stderr",
+      "표준 출력",
+      "표준 오류",
+      "표준 출력 리다이렉션"
+    ],
+    "refs": [
+      "https://www.gnu.org/software/bash/manual/html_node/Redirections.html"
+    ]
+  },
+  {
+    "id": "ops.observe.container-healthcheck",
+    "title": "컨테이너 상태 보기: HEALTHCHECK와 docker logs",
+    "en": "Container Health with Docker HEALTHCHECK and docker logs",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "관측",
+    "summary": "Dockerfile의 HEALTHCHECK로 컨테이너 상태를 주기적으로 검사하고, docker inspect로 검사 출력을, docker logs로 앱의 출력을 읽어 실패 원인을 찾는 방법이다.",
+    "objectives": [
+      "Dockerfile의 HEALTHCHECK를 써서 컨테이너 상태가 starting·healthy·unhealthy로 바뀌는 것을 볼 수 있다",
+      "start-period·retries 같은 옵션으로 느리게 시작하는 서비스의 오탐을 막을 수 있다",
+      "docker inspect로 검사 명령의 출력을 보고 docker logs로 앱의 표준 출력·표준 오류를 읽어 unhealthy가 된 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "ops.docker.first-container"
+    ],
+    "related": [
+      "ops.observe.monitoring-idea",
+      "be.error.health-check",
+      "ops.docker.dockerfile"
+    ],
+    "aliases": [
+      "HEALTHCHECK",
+      "Dockerfile HEALTHCHECK",
+      "docker logs",
+      "컨테이너 상태 확인",
+      "unhealthy 컨테이너"
+    ],
+    "refs": [
+      "https://docs.docker.com/reference/dockerfile/#healthcheck",
+      "https://docs.docker.com/engine/logging/"
+    ]
+  },
+  {
+    "id": "ops.docker.compose",
+    "title": "Docker Compose",
+    "en": "Docker Compose",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "Docker",
+    "summary": "앱과 DB처럼 여러 컨테이너를 compose.yaml 한 파일에 적어 명령 하나로 함께 띄우고 내리는 도구다.",
+    "related": [
+      "ops.docker.dockerfile",
+      "ops.docker.first-container"
+    ],
+    "aliases": [
+      "도커 컴포즈",
+      "compose.yaml",
+      "docker-compose.yml",
+      "docker compose up",
+      "docker compose down",
+      "컴포즈 파일"
+    ],
+    "refs": [
+      "https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-docker-compose/",
+      "https://docs.docker.com/get-started/docker-concepts/running-containers/multi-container-applications/"
+    ]
+  },
+  {
     "id": "ops.observe.metrics",
     "title": "운영 지표 측정",
     "en": "Service Metrics",
@@ -532,6 +614,35 @@
     "aliases": [
       "스팬",
       "Span"
+    ]
+  },
+  {
+    "id": "ops.linux.flock",
+    "title": "파일 잠금(flock)으로 동시 실행 막기",
+    "en": "flock: File Locking Against Concurrent Runs",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "리눅스",
+    "summary": "같은 파일에 잠금을 걸어 크론 작업이나 스크립트가 겹쳐 돌지 못하게 하는 권고 잠금으로, 잠금을 확인하지 않는 프로세스까지 막지는 못한다.",
+    "related": [
+      "db.internals.locks",
+      "ops.linux.process-signals",
+      "ops.linux.shell-script-basics",
+      "be.async.scheduled-jobs",
+      "dev.robust.file-lock-flock"
+    ],
+    "aliases": [
+      "flock",
+      "파일 잠금",
+      "file lock",
+      "flock -n",
+      "flock 명령",
+      "크론 중복 실행 방지"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man1/flock.1.html",
+      "https://man7.org/linux/man-pages/man2/flock.2.html"
     ]
   },
   {

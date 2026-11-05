@@ -685,6 +685,32 @@
     "checked_at": "2026-11-04"
   },
   {
+    "id": "llm.prompt.prompt-chaining",
+    "title": "프롬프트 체이닝",
+    "en": "Prompt Chaining",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "프롬프트",
+    "summary": "한 작업을 여러 API 호출로 나눠 앞 호출의 결과를 다음 호출에 넘기며, 중간 결과를 기록·평가·분기할 수 있게 하는 설계다.",
+    "related": [
+      "llm.prompt.first-good-prompt",
+      "mlops.eval.llm-regression",
+      "ax.coding.subagents-permission-modes"
+    ],
+    "aliases": [
+      "프롬프트 체이닝",
+      "prompt chaining",
+      "프롬프트 체인",
+      "chain prompts",
+      "자기 교정 체인",
+      "초안-검토-수정"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#chain-complex-prompts"
+    ]
+  },
+  {
     "id": "llm.api.usage-tier",
     "title": "사용 등급(usage tier)",
     "en": "Usage Tier",

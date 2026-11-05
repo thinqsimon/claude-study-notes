@@ -122,6 +122,83 @@
     ]
   },
   {
+    "id": "fe.basics.accessibility-idea",
+    "title": "웹 접근성: 모두가 쓸 수 있는 웹",
+    "en": "Web Accessibility: The Big Picture",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "시력·청력·손 움직임·인지가 다른 사람도, 작은 화면이나 느린 인터넷을 쓰는 사람도 같은 웹 페이지를 쓸 수 있게 만드는 일이다.",
+    "objectives": [
+      "웹 접근성이 무엇인지 건물의 경사로 같은 일상 비유로 설명할 수 있다",
+      "접근성이 장애가 있는 사람뿐 아니라 모두에게 도움이 되는 이유를 말할 수 있다",
+      "스크린 리더 같은 보조 기술이 웹 페이지를 어떻게 읽는지 큰 그림으로 말할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.web-page-parts"
+    ],
+    "related": [
+      "fe.basics.responsive-idea"
+    ],
+    "aliases": [
+      "웹 접근성",
+      "web accessibility",
+      "a11y",
+      "보조 기술",
+      "assistive technology"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/What_is_accessibility"
+    ]
+  },
+  {
+    "id": "fe.basics.screen-reader",
+    "title": "스크린 리더",
+    "en": "Screen Reader",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "화면에 보이는 글과 버튼을 소리로 읽어 주어 눈으로 보지 않고도 웹 페이지를 쓰게 하는 프로그램이다.",
+    "parent": "fe.basics.accessibility-idea",
+    "aliases": [
+      "screen reader",
+      "화면 낭독 프로그램",
+      "VoiceOver",
+      "NVDA",
+      "TalkBack"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/What_is_accessibility"
+    ]
+  },
+  {
+    "id": "fe.basics.alt-text",
+    "title": "대체 텍스트(alt)",
+    "en": "Alternative Text (alt)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "이미지가 보이지 않을 때 대신 읽히도록 이미지에 붙여 두는 짧은 설명 글로, 스크린 리더와 이미지가 깨진 화면이 이 글을 쓴다.",
+    "parent": "fe.basics.accessibility-idea",
+    "related": [
+      "fe.basics.screen-reader"
+    ],
+    "aliases": [
+      "alt 텍스트",
+      "alt text",
+      "이미지 대체 텍스트",
+      "alt 속성",
+      "텍스트 대안"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/HTML",
+      "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/img"
+    ]
+  },
+  {
     "id": "fe.html.first-page",
     "title": "HTML로 첫 페이지 만들기",
     "en": "Your First HTML Page",
@@ -570,6 +647,44 @@
     ]
   },
   {
+    "id": "fe.next.streaming-suspense",
+    "title": "Next.js 스트리밍과 Suspense 경계 설계",
+    "en": "Streaming and Suspense Boundary Design in Next.js",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "Next.js",
+    "summary": "느린 데이터를 Suspense 경계로 나눠 먼저 보일 것과 나중에 채울 것을 정하고, 스트리밍이 상태 코드·SEO·프록시에 미치는 영향까지 따지는 설계다.",
+    "objectives": [
+      "loading.js와 <Suspense> 중 무엇을 어디에 둘지 골라 페이지 단위와 구역 단위 스트리밍을 설계할 수 있다",
+      "cookies()·params 같은 동적 접근을 그것을 쓰는 컴포넌트까지 내려 보내 먼저 보내는 정적 셸을 키울 수 있다",
+      "스트리밍이 시작되면 상태 코드와 헤더를 바꿀 수 없다는 제약을 알고 notFound()·redirect()를 어디서 부를지 정할 수 있다",
+      "프록시·CDN·압축·브라우저 버퍼링 때문에 스트리밍이 한 덩어리로 보일 때 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "fe.internals.server-client-boundary",
+      "fe.next.first-page"
+    ],
+    "related": [
+      "fe.internals.server-components",
+      "fe.internals.web-vitals",
+      "be.async.stream-failure"
+    ],
+    "aliases": [
+      "Next.js 스트리밍",
+      "스트리밍 SSR",
+      "streaming SSR",
+      "정적 셸",
+      "static shell",
+      "Suspense 스트리밍"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/getting-started/fetching-data",
+      "https://nextjs.org/docs/app/guides/streaming",
+      "https://react.dev/reference/react/Suspense"
+    ]
+  },
+  {
     "id": "fe.internals.use-client-directive",
     "title": "'use client' 지시어",
     "en": "'use client' Directive",
@@ -622,6 +737,32 @@
     ]
   },
   {
+    "id": "fe.react.suspense-boundary",
+    "title": "Suspense 경계",
+    "en": "Suspense Boundary",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "React",
+    "summary": "<Suspense>로 감싼 구역이 준비될 때까지 fallback을 보여 주고, 같은 경계 안의 내용은 모두 준비된 뒤 한꺼번에 드러내는 로딩 단위다.",
+    "parent": "fe.next.streaming-suspense",
+    "related": [
+      "fe.react.use-effect",
+      "fe.next.loading-file"
+    ],
+    "aliases": [
+      "Suspense",
+      "<Suspense>",
+      "Suspense fallback",
+      "서스펜스 경계",
+      "중첩 Suspense",
+      "nested Suspense"
+    ],
+    "refs": [
+      "https://react.dev/reference/react/Suspense"
+    ]
+  },
+  {
     "id": "fe.internals.server-only",
     "title": "server-only와 client-only",
     "en": "server-only and client-only",
@@ -636,6 +777,30 @@
       "client-only",
       "environment poisoning",
       "서버 전용 모듈"
+    ]
+  },
+  {
+    "id": "fe.next.loading-file",
+    "title": "loading.js(라우트 로딩 UI)",
+    "en": "loading.js File Convention",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Next.js",
+    "summary": "page.js 옆에 두면 그 라우트 구간 전체를 Suspense 경계로 감싸 이동 즉시 로딩 화면을 보여 주는 Next.js 특수 파일이다.",
+    "parent": "fe.next.streaming-suspense",
+    "related": [
+      "fe.react.suspense-boundary"
+    ],
+    "aliases": [
+      "loading.js",
+      "loading.tsx",
+      "로딩 UI 파일",
+      "instant loading state",
+      "즉시 로딩 상태"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/api-reference/file-conventions/loading"
     ]
   },
   {
@@ -792,6 +957,27 @@
     ],
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Execution_model"
+    ]
+  },
+  {
+    "id": "fe.internals.css-containment",
+    "title": "CSS 컨테인먼트(contain)",
+    "en": "CSS Containment",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "프론트엔드 내부",
+    "summary": "요소의 레이아웃·페인트·크기가 바깥과 독립이라고 브라우저에 알려 다시 계산할 범위를 그 서브트리로 좁히되, 새 포함 블록과 쌓임 맥락이 생기는 부작용을 안고 쓰는 속성이다.",
+    "parent": "fe.internals.render-pipeline",
+    "aliases": [
+      "CSS containment",
+      "contain 속성",
+      "CSS 컨테인먼트",
+      "content-visibility",
+      "contain-intrinsic-size"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Using_CSS_containment"
     ]
   }
 ]

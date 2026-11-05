@@ -147,6 +147,29 @@
     ]
   },
   {
+    "id": "db.orm.what-is-orm",
+    "title": "ORM(객체 관계 매핑)",
+    "en": "ORM (Object-Relational Mapping)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "ORM",
+    "summary": "데이터베이스의 표와 행을 프로그램 안의 물건(객체)처럼 다루게 이어 주는 통역사로, SQL을 매번 쓰지 않고도 자료를 넣고 꺼낼 수 있게 한다.",
+    "related": [
+      "db.basics.what-is-sql",
+      "db.basics.table-row-column"
+    ],
+    "aliases": [
+      "ORM",
+      "객체 관계 매핑",
+      "object-relational mapping",
+      "오알엠"
+    ],
+    "refs": [
+      "https://docs.sqlalchemy.org/en/20/tutorial/index.html"
+    ]
+  },
+  {
     "id": "db.nosql.what-is-nosql",
     "title": "NoSQL",
     "en": "NoSQL Databases",
@@ -426,6 +449,43 @@
     ]
   },
   {
+    "id": "db.orm.sqlalchemy-basics",
+    "title": "SQLAlchemy ORM으로 표 정의하고 읽고 쓰기",
+    "en": "SQLAlchemy ORM Basics: Mapped Classes and Session",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "ORM",
+    "summary": "파이썬 클래스로 표를 정의하고 Session으로 행을 넣고 읽고 고치는 ORM의 기본 사용법이다.",
+    "objectives": [
+      "DeclarativeBase와 mapped_column으로 표를 클래스로 정의하고 create_all로 만들 수 있다",
+      "Session으로 행을 추가·조회·수정·삭제하고 commit으로 확정하거나 rollback으로 되돌릴 수 있다",
+      "relationship()으로 두 표를 잇고 관련 객체를 함께 저장할 수 있다",
+      "commit 뒤 속성이 다시 읽히는 것과 세션을 닫은 뒤 접근하는 오류(DetachedInstanceError)의 원인을 알고 피할 수 있다"
+    ],
+    "prerequisites": [
+      "db.sql.select-first",
+      "db.sql.write-rows"
+    ],
+    "related": [
+      "db.orm.n-plus-one",
+      "db.internals.transaction-basics"
+    ],
+    "aliases": [
+      "SQLAlchemy ORM",
+      "SQLAlchemy",
+      "ORM 매핑",
+      "mapped_column",
+      "DeclarativeBase",
+      "ORM 모델 클래스"
+    ],
+    "refs": [
+      "https://docs.sqlalchemy.org/en/20/tutorial/metadata.html",
+      "https://docs.sqlalchemy.org/en/20/tutorial/orm_data_manipulation.html",
+      "https://docs.sqlalchemy.org/en/20/tutorial/orm_related_objects.html"
+    ]
+  },
+  {
     "id": "db.sql.join",
     "title": "JOIN: 두 표 이어 붙이기",
     "en": "JOIN",
@@ -470,6 +530,31 @@
     ],
     "refs": [
       "https://www.postgresql.org/docs/current/tutorial-agg.html"
+    ]
+  },
+  {
+    "id": "db.orm.session",
+    "title": "ORM 세션(Session)",
+    "en": "ORM Session",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "ORM",
+    "summary": "불러온 객체를 들고 있다가 commit 때 한 트랜잭션으로 DB에 반영하는 SQLAlchemy의 작업 단위다.",
+    "parent": "db.orm.sqlalchemy-basics",
+    "related": [
+      "db.internals.transaction",
+      "db.orm.connection-pool",
+      "be.fastapi.db-session"
+    ],
+    "aliases": [
+      "SQLAlchemy Session",
+      "ORM 세션",
+      "sessionmaker",
+      "session.commit"
+    ],
+    "refs": [
+      "https://docs.sqlalchemy.org/en/20/orm/session_basics.html"
     ]
   },
   {

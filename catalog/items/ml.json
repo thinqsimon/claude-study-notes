@@ -269,6 +269,41 @@
     ]
   },
   {
+    "id": "ml.data.first-look",
+    "title": "데이터 처음 살펴보기: 요약 통계와 히스토그램",
+    "en": "First Look at Data: Summary Statistics and Histograms",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "모델을 만들기 전에 pandas의 describe()와 히스토그램으로 각 열의 평균·중앙값·퍼짐과 분포 모양을 보고 이상한 값을 먼저 찾아낸다.",
+    "objectives": [
+      "CSV를 pandas로 읽고 describe()로 평균·표준편차·최소·백분위·최대를 뽑을 수 있다",
+      "열 하나의 히스토그램을 그려 분포가 한쪽으로 쏠렸는지 볼 수 있다",
+      "백분위와 그림에서 이상치를 찾아내고 지울지 남길지 기준을 말할 수 있다",
+      "전처리와 학습 전에 데이터를 먼저 보는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.data-quality",
+      "be.python.list-dict"
+    ],
+    "related": [
+      "ml.data.numeric-categorical-preprocessing"
+    ],
+    "aliases": [
+      "데이터 살펴보기",
+      "EDA 첫걸음",
+      "describe()",
+      "요약 통계",
+      "히스토그램",
+      "데이터 탐색"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/numerical-data/first-steps",
+      "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.describe.html"
+    ]
+  },
+  {
     "id": "ml.eval.accuracy",
     "title": "정확도",
     "en": "Accuracy",
@@ -379,6 +414,24 @@
     ],
     "refs": [
       "https://developers.google.com/machine-learning/crash-course/linear-regression/hyperparameters"
+    ]
+  },
+  {
+    "id": "ml.data.outlier",
+    "title": "이상치(outlier)",
+    "en": "Outlier",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "한 열의 대부분 값에서 멀리 떨어진 값으로, 입력 실수면 지우고 실제 일어나는 값이면 모델이 맞혀야 하는지에 따라 남기거나 잘라 낸다.",
+    "parent": "ml.data.first-look",
+    "aliases": [
+      "이상치",
+      "outlier",
+      "아웃라이어",
+      "극단값",
+      "이상값"
     ]
   },
   {
@@ -628,6 +681,42 @@
     ]
   },
   {
+    "id": "ml.data.imbalanced-datasets",
+    "title": "클래스 불균형 데이터 다루기: 다운샘플링과 가중치 보정",
+    "en": "Handling Class-Imbalanced Datasets",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "한쪽 레이블이 드문 데이터에서 배치에 소수 클래스가 거의 안 들어오는 문제를 알아보고, 다수 클래스를 줄인 뒤 가중치로 비율을 되돌리는 방법을 고르는 설계다.",
+    "objectives": [
+      "레이블 비율과 배치 크기를 보고 불균형이 학습을 방해하는 정도를 판단할 수 있다",
+      "다수 클래스를 다운샘플링하고 같은 배수로 가중치를 올려 예측 편향을 되돌릴 수 있다",
+      "소수 클래스가 배치에 부족해 특징을 배우지 못하는 학습 실패의 원인을 찾을 수 있다",
+      "다운샘플링 배수를 하이퍼파라미터로 보고 실험으로 고를 수 있다"
+    ],
+    "prerequisites": [
+      "ml.eval.metrics-tradeoffs",
+      "ml.eval.accuracy-first-evaluation"
+    ],
+    "related": [
+      "ml.eval.roc-auc",
+      "ml.training.epoch-batch",
+      "ml.eval.data-splitting-cv"
+    ],
+    "aliases": [
+      "클래스 불균형",
+      "불균형 데이터",
+      "imbalanced dataset",
+      "class imbalance",
+      "소수 클래스",
+      "majority class"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/overfitting/imbalanced-datasets"
+    ]
+  },
+  {
     "id": "ml.nn.activation-function",
     "title": "활성화 함수",
     "en": "Activation Function",
@@ -681,6 +770,28 @@
       "validation set",
       "test set",
       "training set"
+    ]
+  },
+  {
+    "id": "ml.data.downsampling-upweighting",
+    "title": "다운샘플링과 가중치 상향",
+    "en": "Downsampling and Upweighting",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "다수 클래스 예시를 일부만 학습에 쓰고, 그 배수만큼 다수 클래스 오류의 손실을 키워 실제 비율을 되살리는 두 단계 기법이다.",
+    "parent": "ml.data.imbalanced-datasets",
+    "related": [
+      "ml.training.loss-function"
+    ],
+    "aliases": [
+      "다수 클래스 다운샘플링",
+      "majority downsampling",
+      "upweighting",
+      "가중치 상향",
+      "예시 가중치",
+      "example weight"
     ]
   },
   {
@@ -784,6 +895,57 @@
     ],
     "refs": [
       "https://developers.google.com/machine-learning/crash-course/overfitting"
+    ]
+  },
+  {
+    "id": "ml.eval.fairness-evaluation",
+    "title": "ML 공정성: 편향 진단과 공정성 지표의 손익",
+    "en": "ML Fairness: Bias Diagnosis and Fairness Metric Tradeoffs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "모델 평가",
+    "summary": "학습 데이터의 편향 유형을 가려내고 인구 통계적 동등성·기회 균등 같은 지표가 같은 모델에 다른 판정을 내리는 이유를 알고 완화 기법을 고른다.",
+    "objectives": [
+      "보고·역사·선택·집단 귀속 편향이 데이터에 어떻게 들어오는지 가려 전체 지표가 가리는 하위 집단 성능 저하를 찾을 수 있다",
+      "인구 통계적 동등성과 기회 균등이 같은 모델에 다른 판정을 내리는 계산을 설명하고 쓰임에 맞는 지표를 고를 수 있다",
+      "데이터 보강이 안 될 때 MinDiff·반사실 로짓 쌍 중 쓰임에 맞는 것을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "ml.eval.metrics-tradeoffs",
+      "ml.basics.data-quality"
+    ],
+    "aliases": [
+      "ML 공정성",
+      "ML fairness",
+      "공정성 지표",
+      "fairness metrics",
+      "편향 완화",
+      "MinDiff"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/fairness/types-of-bias",
+      "https://developers.google.com/machine-learning/crash-course/fairness/evaluating-for-bias",
+      "https://developers.google.com/machine-learning/crash-course/fairness/mitigating-bias",
+      "https://developers.google.com/machine-learning/crash-course/fairness/demographic-parity",
+      "https://developers.google.com/machine-learning/crash-course/fairness/equality-of-opportunity"
+    ]
+  },
+  {
+    "id": "ml.eval.equality-of-opportunity",
+    "title": "기회 균등(equality of opportunity)",
+    "en": "Equality of Opportunity",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "모델 평가",
+    "summary": "선호 레이블을 가진 사례가 집단에 관계없이 같은 비율로 긍정 판정을 받도록 집단별 참 양성률을 같게 요구하는 공정성 지표다.",
+    "parent": "ml.eval.fairness-evaluation",
+    "aliases": [
+      "equality of opportunity",
+      "기회 균등",
+      "참 양성률 동등",
+      "TPR parity"
     ]
   }
 ]

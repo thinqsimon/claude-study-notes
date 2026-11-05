@@ -156,6 +156,31 @@
     ]
   },
   {
+    "id": "dev.git.open-source-license",
+    "title": "오픈소스 라이선스와 MIT 라이선스",
+    "en": "Open Source Licenses and the MIT License",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "Git",
+    "summary": "공개한 코드를 남이 어디까지 써도 되는지 적은 사용 허가증으로, MIT 라이선스는 저작권 표시만 남기면 거의 무엇이든 해도 된다고 허락하는 가장 짧은 종류다.",
+    "related": [
+      "dev.git.github-role"
+    ],
+    "aliases": [
+      "오픈소스 라이선스",
+      "open source license",
+      "MIT 라이선스",
+      "MIT license",
+      "LICENSE 파일"
+    ],
+    "refs": [
+      "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository",
+      "https://choosealicense.com/",
+      "https://opensource.org/license/mit"
+    ]
+  },
+  {
     "id": "dev.terminal.basic-commands",
     "title": "터미널 기본 명령어",
     "en": "Basic Terminal Commands",
@@ -426,6 +451,32 @@
     "aliases": [
       "통합 테스트",
       "Integration Test"
+    ]
+  },
+  {
+    "id": "dev.git.semver",
+    "title": "시맨틱 버전(SemVer)",
+    "en": "Semantic Versioning",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Git",
+    "summary": "MAJOR.MINOR.PATCH 세 숫자로 호환이 깨지는 변경, 기능 추가, 버그 수정을 구분해 버전을 올리는 규칙이다.",
+    "related": [
+      "be.python.venv-packages",
+      "dev.git.branch-pr"
+    ],
+    "aliases": [
+      "SemVer",
+      "semantic versioning",
+      "시맨틱 버저닝",
+      "MAJOR.MINOR.PATCH",
+      "버전 올리기",
+      "버전 번호 규칙"
+    ],
+    "refs": [
+      "https://semver.org/",
+      "https://git-scm.com/book/en/v2/Git-Basics-Tagging"
     ]
   },
   {
@@ -711,6 +762,37 @@
     ]
   },
   {
+    "id": "dev.robust.file-lock-flock",
+    "title": "파일 잠금(flock)으로 프로세스 간 동시 쓰기 막기",
+    "en": "File Locking with flock Across Processes",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "견고한 스크립트",
+    "summary": "여러 프로세스가 같은 파일을 동시에 고치지 못하게 잠그는 flock의 동작과 한계를 알고 잠금이 안 걸리거나 풀리지 않는 장애를 분석한다.",
+    "objectives": [
+      "잠금이 파일 기술자가 아니라 열린 파일 설명에 붙어 fork·dup으로 공유되고 모두 닫힐 때 풀린다는 점을 근거로 잠금이 예상보다 일찍 또는 늦게 풀리는 원인을 찾을 수 있다",
+      "flock과 fcntl 레코드 잠금이 리눅스에서 서로 보지 못하고 NFS·CIFS에서는 다르게 에뮬레이트된다는 점을 알고 어느 호출을 쓸지 고를 수 있다",
+      "LOCK_NB로 바로 실패시킬지 기다릴지, 공유 잠금을 배타 잠금으로 바꿀 때 생기는 틈을 어떻게 다룰지 손익을 따져 정할 수 있다",
+      "잠금 파일과 원자적 교체·완료 표시를 조합해 여러 워커가 한 작업을 두 번 하지 않게 설계할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.robust.atomic-replace",
+      "dev.robust.resumable-batch"
+    ],
+    "aliases": [
+      "flock",
+      "fcntl.flock",
+      "파일 잠금",
+      "file lock",
+      "lockf"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/fcntl.html",
+      "https://man7.org/linux/man-pages/man2/flock.2.html"
+    ]
+  },
+  {
     "id": "dev.git.reflog",
     "title": "reflog",
     "en": "Reflog",
@@ -743,6 +825,43 @@
       "델타 압축",
       "git gc",
       "delta compression"
+    ]
+  },
+  {
+    "id": "dev.robust.advisory-lock",
+    "title": "권고 잠금(advisory lock)",
+    "en": "Advisory Lock",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "견고한 스크립트",
+    "summary": "잠금을 확인하는 프로세스끼리만 효력이 있고 확인하지 않고 쓰는 프로세스를 막지는 못하는 잠금 방식으로, flock이 거는 잠금이 이에 해당한다.",
+    "parent": "dev.robust.file-lock-flock",
+    "aliases": [
+      "advisory lock",
+      "권고 잠금",
+      "협조적 잠금"
+    ]
+  },
+  {
+    "id": "dev.git.dangling-object",
+    "title": "매달린 객체(dangling object)",
+    "en": "Dangling Object",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Git",
+    "summary": "어떤 참조나 다른 객체도 가리키지 않아 도달할 수 없게 된 Git 객체로, fsck로 찾을 수 있고 gc가 지우기 전까지는 브랜치를 붙여 되살릴 수 있다.",
+    "parent": "dev.git.internals",
+    "aliases": [
+      "dangling commit",
+      "매달린 커밋",
+      "git fsck",
+      "unreachable object",
+      "도달 불가 객체"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Internals-Maintenance-and-Data-Recovery"
     ]
   }
 ]

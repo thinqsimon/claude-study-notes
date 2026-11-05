@@ -127,6 +127,88 @@
     ]
   },
   {
+    "id": "ax.governance.trustworthy-ai",
+    "title": "믿을 수 있는 AI의 일곱 가지 조건",
+    "en": "Characteristics of Trustworthy AI",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "AI를 믿고 써도 되는지는 잘 맞는지·안전한지·공격에 버티는지·책임을 물을 수 있는지·설명되는지·개인정보를 지키는지·공정한지의 일곱 잣대로 본다.",
+    "objectives": [
+      "믿을 수 있는 AI의 일곱 조건을 일상 비유로 설명할 수 있다",
+      "AI 서비스에서 생긴 문제가 일곱 조건 중 어느 것이 빠져서 생겼는지 짚을 수 있다",
+      "AI 위험이란 무엇이고 왜 사람·조직·사회 모두에게 미치는지 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.basics.verify-ai-output"
+    ],
+    "related": [
+      "ax.governance.ai-risk",
+      "ax.basics.personal-data",
+      "ax.governance.rmf-core-functions"
+    ],
+    "aliases": [
+      "믿을 수 있는 AI",
+      "trustworthy AI",
+      "신뢰할 수 있는 AI",
+      "AI 신뢰성"
+    ],
+    "refs": [
+      "https://airc.nist.gov/airmf-resources/airmf/3-sec-characteristics/",
+      "https://www.nist.gov/itl/ai-risk-management-framework"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-05"
+  },
+  {
+    "id": "ax.governance.harmful-bias",
+    "title": "AI 편향(harmful bias)",
+    "en": "Harmful Bias in AI",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "AI가 특정 집단에 체계적으로 불리하거나 유리한 결과를 내는 치우침으로, 사회 구조·데이터와 계산·사람의 판단 습관에서 생긴다.",
+    "parent": "ax.governance.trustworthy-ai",
+    "related": [
+      "ml.basics.data-quality"
+    ],
+    "aliases": [
+      "AI 편향",
+      "알고리즘 편향",
+      "harmful bias",
+      "유해한 편향"
+    ],
+    "refs": [
+      "https://airc.nist.gov/airmf-resources/airmf/3-sec-characteristics/"
+    ]
+  },
+  {
+    "id": "ax.governance.explainability",
+    "title": "설명 가능성(explainability)",
+    "en": "Explainability and Interpretability",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "AI가 어떤 과정으로 답을 냈는지 사람이 알 수 있는 성질이 설명 가능성이고, 그 답이 쓰이는 자리에서 무슨 뜻인지 알 수 있는 성질이 해석 가능성이다.",
+    "parent": "ax.governance.trustworthy-ai",
+    "related": [
+      "plan.ai-ux.explanation-confidence-tradeoffs"
+    ],
+    "aliases": [
+      "설명 가능한 AI",
+      "explainable AI",
+      "XAI",
+      "해석 가능성",
+      "interpretability"
+    ],
+    "refs": [
+      "https://airc.nist.gov/airmf-resources/airmf/3-sec-characteristics/"
+    ]
+  },
+  {
     "id": "ax.coding.agent-first",
     "title": "AI 코딩 에이전트에게 일 시키기",
     "en": "Working with an AI Coding Agent",
@@ -214,6 +296,41 @@
     ]
   },
   {
+    "id": "ax.security.misinformation",
+    "title": "AI의 잘못된 정보 알아채기: 환각 패키지와 가짜 근거",
+    "en": "Spotting LLM Misinformation (LLM09)",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "LLM이 없는 패키지 이름이나 없는 판례를 그럴듯하게 내놓고 사람이 그대로 믿어 사고가 되는 위험(OWASP LLM09)을 알고, 설치·인용 전에 확인하는 습관을 익힌다.",
+    "objectives": [
+      "사실 오류·근거 없는 주장·안전하지 않은 코드 추천이 잘못된 정보의 종류이고 과의존이 피해를 키운다는 것을 예를 들어 말할 수 있다",
+      "AI가 추천한 패키지를 설치하기 전에 공식 저장소에 있는지만 보지 않고 라이브러리 공식 문서가 안내하는 이름인지, 게시자와 이력이 믿을 만한지 확인하는 순서를 따라 할 수 있다",
+      "AI 답에 나온 사실과 인용을 원본 출처와 대조하는 습관을 설명할 수 있다",
+      "서비스에 AI 생성 표시와 한계 안내 문구를 넣는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.basics.verify-ai-output",
+      "llm.basics.why-hallucinate"
+    ],
+    "related": [
+      "mlops.guardrail.llm-top10-overview",
+      "be.security.supply-chain"
+    ],
+    "aliases": [
+      "AI 잘못된 정보",
+      "misinformation",
+      "LLM09",
+      "LLM09:2025",
+      "overreliance",
+      "AI 과의존"
+    ],
+    "refs": [
+      "https://genai.owasp.org/llmrisk/llm092025-misinformation/"
+    ]
+  },
+  {
     "id": "ax.coding.settings-file",
     "title": "Claude Code 설정 파일(settings.json)",
     "en": "Claude Code Settings File",
@@ -251,6 +368,27 @@
     ]
   },
   {
+    "id": "ax.security.hallucinated-package",
+    "title": "환각 패키지(없는 패키지 이름 추천)",
+    "en": "Hallucinated Package",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "AI 코딩 도구가 실제로 없는 라이브러리 이름을 추천하는 일로, 공격자가 그 이름으로 악성 패키지를 미리 올려 두면 설치만으로 당한다.",
+    "parent": "ax.security.misinformation",
+    "related": [
+      "be.security.supply-chain"
+    ],
+    "aliases": [
+      "환각 패키지",
+      "hallucinated package",
+      "없는 패키지 추천",
+      "패키지 환각",
+      "가짜 패키지 이름"
+    ]
+  },
+  {
     "id": "ax.coding.auto-memory",
     "title": "자동 메모리(auto memory)",
     "en": "Auto Memory",
@@ -283,6 +421,33 @@
       "경로별 규칙",
       "path-specific rules"
     ]
+  },
+  {
+    "id": "ax.governance.rmf-core-functions",
+    "title": "AI RMF Core 네 기능",
+    "en": "AI RMF Core Functions",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "NIST AI RMF가 AI 위험을 다루는 일을 조직 문화 세우기(Govern), 맥락 파악(Map), 측정(Measure), 대응(Manage)의 네 묶음으로 나눈 뼈대다.",
+    "related": [
+      "ax.governance.ai-risk",
+      "ax.governance.trustworthy-ai"
+    ],
+    "aliases": [
+      "AI RMF Core",
+      "Govern Map Measure Manage",
+      "AI RMF 네 기능",
+      "거버넌스·맵·측정·관리",
+      "AI RMF 기능"
+    ],
+    "refs": [
+      "https://www.nist.gov/itl/ai-risk-management-framework",
+      "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-05"
   },
   {
     "id": "ax.security.sensitive-info-disclosure",

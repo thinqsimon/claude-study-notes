@@ -644,6 +644,40 @@
     ]
   },
   {
+    "id": "mlops.serve.static-dynamic-inference",
+    "title": "추론 방식 선택: 배치 추론과 온라인 추론",
+    "en": "Choosing Static vs Dynamic Inference",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "예측을 미리 계산해 두는 배치(정적) 추론과 요청마다 계산하는 온라인(동적) 추론의 손익을 따져 서비스에 맞는 쪽을 고르는 설계다.",
+    "objectives": [
+      "입력 집합이 미리 정해지는지와 모델의 비용·지연을 보고 배치 추론과 온라인 추론 중 하나를 고를 수 있다",
+      "배치 추론의 약점(없는 입력, 갱신 지연)과 온라인 추론의 약점(지연·계산 비용, 모니터링 부담)을 설명할 수 있다",
+      "예측이 틀렸을 때 캐시된 오래된 예측인지 지연 때문에 단순화한 모델인지 원인을 가려낼 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.basics.what-is-mlops",
+      "ml.basics.train-inference"
+    ],
+    "related": [
+      "mlops.serve.inference-optimization",
+      "llm.api.batch-api",
+      "be.rest.long-running"
+    ],
+    "aliases": [
+      "추론 방식 선택",
+      "정적 추론과 동적 추론",
+      "static vs dynamic inference",
+      "추론 파이프라인 선택",
+      "예측 캐시 vs 실시간"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/static-vs-dynamic-inference"
+    ]
+  },
+  {
     "id": "mlops.eval.llm-judge",
     "title": "LLM 심판(LLM-as-a-judge)",
     "en": "LLM-as-a-Judge",
@@ -689,6 +723,52 @@
     ],
     "refs": [
       "https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/"
+    ]
+  },
+  {
+    "id": "mlops.serve.batch-inference",
+    "title": "배치 추론(정적 추론)",
+    "en": "Batch (Static) Inference",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "예상되는 입력들의 예측을 미리 한꺼번에 계산해 저장해 두고, 요청이 오면 저장된 값을 돌려주는 추론 방식이다.",
+    "parent": "mlops.serve.static-dynamic-inference",
+    "related": [
+      "mlops.serve.online-inference",
+      "llm.api.batch-api"
+    ],
+    "aliases": [
+      "배치 추론",
+      "정적 추론",
+      "오프라인 추론",
+      "offline inference",
+      "static inference",
+      "예측 미리 계산"
+    ]
+  },
+  {
+    "id": "mlops.serve.online-inference",
+    "title": "온라인 추론(동적 추론)",
+    "en": "Online (Dynamic) Inference",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "요청이 들어올 때마다 모델을 돌려 예측을 만드는 방식으로, 어떤 입력도 받을 수 있지만 지연과 계산 비용을 감당해야 한다.",
+    "parent": "mlops.serve.static-dynamic-inference",
+    "related": [
+      "mlops.serve.batch-inference",
+      "llm.api.errors-rate-limits"
+    ],
+    "aliases": [
+      "온라인 추론",
+      "동적 추론",
+      "실시간 추론",
+      "real-time inference",
+      "dynamic inference",
+      "요청 시 추론"
     ]
   },
   {

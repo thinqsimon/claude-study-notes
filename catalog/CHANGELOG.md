@@ -1,5 +1,10 @@
 # 개념사전 변경 내역
 
+## 0.7.0
+
+- dic-maker로 모든 단계에 주제 14개, 용어 35개를 더했다
+- 분야별: dev 5개, plan 11개, db 3개, fe 7개, llm 1개, rag 3개, ax 6개, ops 4개, ml 6개, mlops 3개
+
 ## 0.6.1
 
 - 강의 자료 Made With ML을 쓰던 항목 3개(`mlops.observe.drift`, `mlops.serve.model-serving`, `mlops.track.data-versioning`)의 자료 링크를 공식 문서로 바꿨다. `sources.md`의 LLMOps·MLOps 기준 자료도 MLflow 문서와 Google 운영 ML 시스템으로 바꿨다.
