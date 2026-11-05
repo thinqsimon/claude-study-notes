@@ -209,6 +209,29 @@
     ]
   },
   {
+    "id": "ax.governance.automation-bias",
+    "title": "자동화 편향",
+    "en": "Automation Bias",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "기계가 내놓은 답이라는 이유로 사람이 지나치게 믿고 따라가며 의심하지 않게 되는 경향이다.",
+    "parent": "ax.basics.verify-ai-output",
+    "related": [
+      "ax.governance.harmful-bias",
+      "plan.ai-ux.calibrated-trust"
+    ],
+    "aliases": [
+      "AI 과신",
+      "over-reliance",
+      "AI 맹신"
+    ],
+    "refs": [
+      "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+    ]
+  },
+  {
     "id": "ax.coding.agent-first",
     "title": "AI 코딩 에이전트에게 일 시키기",
     "en": "Working with an AI Coding Agent",
@@ -1051,6 +1074,30 @@
       "allowedDomains",
       "샌드박스 허용 도메인",
       "sandbox proxy"
+    ]
+  },
+  {
+    "id": "ax.security.model-extraction",
+    "title": "모델 추출 공격",
+    "en": "Model Extraction Attack",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "API 질의와 부채널로 모델의 구조·가중치 정보나 기능이 비슷한 복제본을 얻어 내는 공격으로, 이후 더 강한 공격의 발판이 된다.",
+    "related": [
+      "mlops.guardrail.unbounded-consumption"
+    ],
+    "aliases": [
+      "model extraction",
+      "모델 탈취",
+      "model stealing",
+      "모델 복제 공격",
+      "functional model replication"
+    ],
+    "refs": [
+      "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2025.pdf",
+      "https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/"
     ]
   }
 ]

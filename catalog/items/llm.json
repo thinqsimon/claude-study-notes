@@ -121,6 +121,37 @@
     ]
   },
   {
+    "id": "llm.basics.image-generation",
+    "title": "이미지 생성 AI: 글로 주문하는 그림",
+    "en": "Image Generation from Text",
+    "kind": "topic",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "그림으로 옮길 내용을 글로 설명하면 AI가 그 설명에 맞는 새 그림을 만들어 주는 기술이다.",
+    "objectives": [
+      "이미지 생성 AI가 일하는 방식을 화가에게 말로 주문하는 일에 빗대어 설명할 수 있다",
+      "같은 설명을 넣어도 그림이 매번 달라지는 이유를 말할 수 있다",
+      "이미지 생성 AI로 할 수 있는 일을 새로 그리기와 일부 고치기로 나누어 예를 들 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.generative-ai",
+      "llm.basics.what-is-prompt"
+    ],
+    "aliases": [
+      "AI 이미지 생성",
+      "그림 생성 AI",
+      "AI 그림",
+      "text-to-image",
+      "image generation",
+      "이미지 생성 AI"
+    ],
+    "refs": [
+      "https://github.com/microsoft/generative-ai-for-beginners/blob/main/09-building-image-applications/README.md",
+      "https://developers.openai.com/api/docs/guides/image-generation"
+    ]
+  },
+  {
     "id": "llm.basics.llm",
     "title": "LLM",
     "en": "Large Language Model",
@@ -149,6 +180,56 @@
       "할루시네이션",
       "Hallucination",
       "환각"
+    ]
+  },
+  {
+    "id": "llm.basics.open-model",
+    "title": "오픈 모델",
+    "en": "Open Model",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "학습 결과물을 공개해 내려받아 직접 돌리고 고쳐 쓸 수 있게 한 AI 모델로, 학습 자료 정보와 코드까지 공개해야 엄밀한 오픈소스다.",
+    "parent": "llm.basics.model-choices",
+    "related": [
+      "llm.basics.small-language-model"
+    ],
+    "aliases": [
+      "공개 모델",
+      "오픈소스 모델",
+      "open source model",
+      "오픈 웨이트",
+      "open weight"
+    ],
+    "refs": [
+      "https://github.com/microsoft/generative-ai-for-beginners/blob/main/16-open-source-models/README.md",
+      "https://opensource.org/ai/open-source-ai-definition",
+      "https://huggingface.co/docs/hub/models"
+    ]
+  },
+  {
+    "id": "llm.basics.small-language-model",
+    "title": "소형 언어 모델(SLM)",
+    "en": "Small Language Model",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "LLM보다 훨씬 작게 만들어 휴대폰이나 평범한 컴퓨터에서도 돌아가지만 아는 폭은 좁은 언어 모델이다.",
+    "parent": "llm.basics.model-choices",
+    "related": [
+      "llm.basics.llm",
+      "llm.basics.open-model"
+    ],
+    "aliases": [
+      "SLM",
+      "소형 언어 모델",
+      "작은 언어 모델"
+    ],
+    "refs": [
+      "https://github.com/microsoft/generative-ai-for-beginners/blob/main/19-slm/README.md",
+      "https://learn.microsoft.com/en-us/azure/azure-sovereign-clouds/private/foundry-local/concept-models"
     ]
   },
   {
@@ -482,6 +563,43 @@
     "checked_at": "2026-11-03"
   },
   {
+    "id": "llm.api.multi-turn",
+    "title": "여러 턴 대화 만들기: 메시지 이력 보내기",
+    "en": "Building Multi-Turn Conversations",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "LLM API",
+    "summary": "이전 응답이나 대화 id를 가리키지 않은 API 호출은 앞 대화를 모른다는 점을 알고 사용자와 어시스턴트 메시지를 쌓아 보내 이어지는 대화를 만든다.",
+    "objectives": [
+      "user와 assistant 메시지를 번갈아 쌓아 이어지는 대화를 구현할 수 있다",
+      "이력을 빠뜨려 모델이 앞 내용을 잊는 실수를 찾아 고칠 수 있다",
+      "이력을 직접 보내는 방식과 서버에 맡기는 방식의 차이를 말할 수 있다",
+      "턴이 늘수록 입력 토큰과 비용이 늘어나는 것을 사용량 값으로 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.first-call",
+      "llm.basics.token-context"
+    ],
+    "related": [
+      "llm.internals.context-management"
+    ],
+    "aliases": [
+      "멀티턴 대화",
+      "multi-turn",
+      "대화 이력",
+      "conversation history",
+      "messages 배열",
+      "previous_response_id"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/working-with-messages",
+      "https://developers.openai.com/api/docs/guides/conversation-state"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-05"
+  },
+  {
     "id": "llm.tools.tool-schema",
     "title": "도구 스키마",
     "en": "Tool Schema",
@@ -510,6 +628,34 @@
       "도구 호출",
       "Tool Call"
     ]
+  },
+  {
+    "id": "llm.api.response-streaming",
+    "title": "LLM 응답 스트리밍",
+    "en": "Streaming LLM Responses",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "요청에 stream을 켜고 모델이 쓰는 대로 오는 델타 이벤트를 이어 붙여 답을 보여 주며, 스트림 도중 오는 오류 이벤트도 함께 처리하는 호출 방식이다.",
+    "related": [
+      "be.fastapi.streaming",
+      "be.fastapi.sse",
+      "llm.api.first-call"
+    ],
+    "aliases": [
+      "LLM 스트리밍",
+      "text_delta",
+      "content_block_delta",
+      "output_text.delta",
+      "델타 이벤트"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/streaming",
+      "https://developers.openai.com/api/docs/guides/streaming-responses"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-05"
   },
   {
     "id": "llm.security.prompt-injection",
@@ -709,6 +855,31 @@
     "refs": [
       "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#chain-complex-prompts"
     ]
+  },
+  {
+    "id": "llm.api.model-snapshot",
+    "title": "모델 스냅샷 고정",
+    "en": "Model Snapshot Pinning",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "운영 앱의 모델 ID를 한 스냅샷으로 고정해 모델이 저절로 바뀌지 않게 하고, 평가를 거쳐 직접 올리는 방식으로, 서빙 쪽 변화로 인한 동작 차이는 남을 수 있다.",
+    "related": [
+      "mlops.eval.llm-regression"
+    ],
+    "aliases": [
+      "모델 버전 고정",
+      "model pinning",
+      "model snapshot",
+      "스냅샷 모델 ID"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/text",
+      "https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-05"
   },
   {
     "id": "llm.api.usage-tier",

@@ -468,6 +468,34 @@
     ]
   },
   {
+    "id": "rag.retrieval.keyword-vs-vector",
+    "title": "키워드 검색과 벡터 검색의 차이",
+    "en": "Keyword Search vs Vector Search",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "검색 내부",
+    "summary": "낱말이 맞아야 찾는 키워드 검색과 뜻이 가까우면 찾는 벡터 검색의 차이로, 제품 코드나 이름은 키워드 검색이 더 잘 찾는다.",
+    "related": [
+      "rag.vector-db.basics",
+      "rag.retrieval.top-k-filter",
+      "rag.retrieval.hybrid-rerank"
+    ],
+    "aliases": [
+      "키워드 검색",
+      "keyword search",
+      "전문 검색",
+      "full-text search",
+      "lexical search",
+      "키워드 vs 벡터 검색"
+    ],
+    "refs": [
+      "https://www.elastic.co/docs/solutions/search/vector",
+      "https://www.elastic.co/docs/solutions/search/full-text",
+      "https://learn.microsoft.com/en-us/azure/search/hybrid-search-overview"
+    ]
+  },
+  {
     "id": "rag.retrieval.quality",
     "title": "RAG 검색 품질 개선",
     "en": "Improving RAG Retrieval Quality",

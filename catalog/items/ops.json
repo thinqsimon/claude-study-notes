@@ -270,6 +270,40 @@
     ]
   },
   {
+    "id": "ops.network.nginx-first-config",
+    "title": "Nginx 첫 설정: 정적 파일과 간단한 프록시",
+    "en": "First Nginx Setup: Static Files and a Simple Proxy",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "네트워크와 앞단",
+    "summary": "설정 파일에 server와 location을 적어 정적 파일을 내보내고 요청을 뒤쪽 서버로 넘겨 보는 앞단 서버의 첫 사용법이다.",
+    "objectives": [
+      "nginx.conf의 server와 location 블록을 읽고 root로 정적 파일 경로를 지정할 수 있다",
+      "proxy_pass로 요청을 뒤쪽 서버에 넘기는 간단한 프록시를 설정할 수 있다",
+      "nginx -s reload로 바뀐 설정을 적용하고 access.log와 error.log를 열어 볼 수 있다"
+    ],
+    "prerequisites": [
+      "dev.terminal.basic-commands",
+      "be.http.web-conversation"
+    ],
+    "related": [
+      "be.http.reverse-proxy",
+      "ops.network.load-balancer"
+    ],
+    "aliases": [
+      "nginx 설정",
+      "엔진엑스 설정",
+      "nginx.conf",
+      "proxy_pass",
+      "nginx reload",
+      "nginx 정적 파일"
+    ],
+    "refs": [
+      "https://nginx.org/en/docs/beginners_guide.html"
+    ]
+  },
+  {
     "id": "ops.linux.word-splitting",
     "title": "셸 변수의 단어 분리",
     "en": "Word Splitting of Shell Variables",
@@ -379,6 +413,53 @@
     ]
   },
   {
+    "id": "ops.linux.command-substitution",
+    "title": "명령 치환($(…))",
+    "en": "Command Substitution",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "$(명령)은 명령의 출력을 그 자리에 넣어 변수에 담게 해 주며, 끝 줄바꿈은 지워지고 큰따옴표로 감싸면 단어 분리를 막는다.",
+    "related": [
+      "ops.linux.word-splitting",
+      "ops.linux.stdout-stderr-redirection"
+    ],
+    "aliases": [
+      "명령 치환",
+      "$(명령)",
+      "백틱 치환",
+      "명령 출력 변수 저장",
+      "명령 결과 변수"
+    ],
+    "refs": [
+      "https://www.gnu.org/software/bash/manual/html_node/Command-Substitution.html"
+    ]
+  },
+  {
+    "id": "ops.docker.exec",
+    "title": "컨테이너 안에서 명령 실행(docker exec)",
+    "en": "Running Commands in a Container (docker exec)",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Docker",
+    "summary": "실행 중인 컨테이너 안에서 새 명령을 돌리는 명령으로, docker exec -it 이름 sh로 셸을 열어 안쪽을 둘러볼 수 있다.",
+    "related": [
+      "ops.docker.first-container",
+      "ops.observe.container-healthcheck"
+    ],
+    "aliases": [
+      "docker exec",
+      "docker exec -it",
+      "컨테이너 셸 접속",
+      "컨테이너 안 명령 실행"
+    ],
+    "refs": [
+      "https://docs.docker.com/reference/cli/docker/container/exec/"
+    ]
+  },
+  {
     "id": "ops.observe.container-healthcheck",
     "title": "컨테이너 상태 보기: HEALTHCHECK와 docker logs",
     "en": "Container Health with Docker HEALTHCHECK and docker logs",
@@ -413,6 +494,42 @@
     ]
   },
   {
+    "id": "ops.container.image-layers",
+    "title": "이미지 레이어와 빌드 캐시",
+    "en": "Image Layers and Build Cache",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "컨테이너 내부",
+    "summary": "이미지가 파일 변경의 층으로 쌓이는 구조를 알고 Dockerfile 순서를 고쳐 다시 빌드하는 시간을 줄인다.",
+    "objectives": [
+      "docker image history로 이미지가 어떤 레이어로 쌓였는지 읽을 수 있다",
+      "컨테이너에서 바꾼 파일이 이미지에 남지 않는 이유를 쓰기 층으로 설명할 수 있다",
+      "의존성 설치를 소스 복사 앞으로 옮겨 Dockerfile의 캐시 적중을 늘릴 수 있다",
+      ".dockerignore로 불필요한 파일을 빼서 캐시가 깨지는 실수를 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "ops.docker.first-container"
+    ],
+    "related": [
+      "ops.docker.dockerfile",
+      "ops.container.isolation"
+    ],
+    "aliases": [
+      "도커 이미지 레이어",
+      "image layer",
+      "도커 빌드 캐시",
+      "docker build cache",
+      "docker image history",
+      ".dockerignore"
+    ],
+    "refs": [
+      "https://docs.docker.com/get-started/docker-concepts/building-images/understanding-image-layers/",
+      "https://docs.docker.com/get-started/docker-concepts/building-images/using-the-build-cache/",
+      "https://docs.docker.com/engine/storage/drivers/"
+    ]
+  },
+  {
     "id": "ops.docker.compose",
     "title": "Docker Compose",
     "en": "Docker Compose",
@@ -436,6 +553,52 @@
     "refs": [
       "https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-docker-compose/",
       "https://docs.docker.com/get-started/docker-concepts/running-containers/multi-container-applications/"
+    ]
+  },
+  {
+    "id": "ops.network.dns-records",
+    "title": "DNS 레코드: A·CNAME·TTL",
+    "en": "DNS Records: A, CNAME and TTL",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "네트워크와 앞단",
+    "summary": "도메인이 가리킬 곳을 A는 IP 주소로, CNAME은 다른 도메인 이름으로 적고 TTL로 캐시 유지 시간을 정하는 DNS의 기록 항목이다.",
+    "related": [
+      "ops.basics.domain-dns",
+      "ops.network.dns-resolution"
+    ],
+    "aliases": [
+      "A 레코드",
+      "CNAME 레코드",
+      "AAAA 레코드",
+      "DNS TTL",
+      "DNS record",
+      "도메인 연결 설정"
+    ],
+    "refs": [
+      "https://developers.cloudflare.com/dns/manage-dns-records/reference/dns-record-types/",
+      "https://www.rfc-editor.org/rfc/rfc1034"
+    ]
+  },
+  {
+    "id": "ops.deploy.rolling-update",
+    "title": "롤링 업데이트",
+    "en": "Rolling Update",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "배포 전략",
+    "summary": "전부 내리고 다시 올리는 Recreate와 달리 인스턴스를 조금씩 새 버전으로 바꿔, 옛 버전과 새 버전이 잠시 함께 돌며 배포 중에도 응답을 이어 가는 배포 방식이다.",
+    "related": [
+      "ops.deploy.zero-downtime"
+    ],
+    "aliases": [
+      "RollingUpdate",
+      "Recreate 전략"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
     ]
   },
   {
@@ -533,6 +696,43 @@
     ]
   },
   {
+    "id": "ops.container.resource-limits",
+    "title": "컨테이너 메모리·CPU 제한 설계",
+    "en": "Container Memory and CPU Limits",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "컨테이너 내부",
+    "summary": "컨테이너에 메모리와 CPU 상한을 정하고, 넘었을 때 종료되는지 느려지는지를 구분해 장애 원인을 찾는다.",
+    "objectives": [
+      "상한 없는 컨테이너가 호스트 메모리를 다 쓸 때의 위험을 들어 메모리 상한을 어떻게 둘지 정할 수 있다",
+      "--memory와 --memory-swap 조합으로 스왑 허용 범위를 고르고 그 근거를 말할 수 있다",
+      "메모리 초과는 프로세스 강제 종료로(바로 죽지 않을 수도 있다), CPU 초과는 속도 저하로 나타나는 차이를 종료 이유·종료 코드로 확인해 장애 원인을 가를 수 있다",
+      "재시작을 되풀이하는 컨테이너에서 누수 수정과 상한 상향 중 무엇이 맞는지 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.docker.first-container",
+      "ops.observe.container-healthcheck"
+    ],
+    "related": [
+      "ops.container.isolation",
+      "ops.k8s.scheduling",
+      "ops.k8s.basics"
+    ],
+    "aliases": [
+      "컨테이너 자원 제한",
+      "컨테이너 메모리 제한",
+      "docker --memory",
+      "--memory-swap",
+      "--cpus",
+      "container memory limit"
+    ],
+    "refs": [
+      "https://docs.docker.com/engine/containers/resource_constraints/",
+      "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+    ]
+  },
+  {
     "id": "ops.network.edge-waf",
     "title": "웹 방화벽(WAF)과 오탐 분석",
     "en": "WAF Rules and False Positives",
@@ -617,6 +817,32 @@
     ]
   },
   {
+    "id": "ops.container.oom-killed",
+    "title": "OOMKilled와 종료 코드 137",
+    "en": "OOMKilled and Exit Code 137",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "컨테이너 내부",
+    "summary": "컨테이너가 메모리 한도를 넘겨 강제 종료됐다는 표시로, 137은 SIGKILL을 뜻하므로 종료 이유까지 함께 본다.",
+    "parent": "ops.container.resource-limits",
+    "related": [
+      "ops.container.isolation"
+    ],
+    "aliases": [
+      "OOMKilled",
+      "종료 코드 137",
+      "exit code 137",
+      "메모리 초과 종료",
+      "컨테이너 메모리 초과"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+      "https://man7.org/linux/man-pages/man1/bash.1.html",
+      "https://man7.org/linux/man-pages/man7/signal.7.html"
+    ]
+  },
+  {
     "id": "ops.linux.flock",
     "title": "파일 잠금(flock)으로 동시 실행 막기",
     "en": "flock: File Locking Against Concurrent Runs",
@@ -643,6 +869,30 @@
     "refs": [
       "https://man7.org/linux/man-pages/man1/flock.1.html",
       "https://man7.org/linux/man-pages/man2/flock.2.html"
+    ]
+  },
+  {
+    "id": "ops.container.linux-capabilities",
+    "title": "리눅스 케이퍼빌리티로 컨테이너 권한 줄이기",
+    "en": "Linux Capabilities for Containers",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "컨테이너 내부",
+    "summary": "root 권한을 잘게 나눈 단위로, 컨테이너에 꼭 필요한 것만 남기고 나머지는 빼서 컨테이너가 뚫려도 피해와 호스트로의 권한 상승을 줄인다.",
+    "related": [
+      "ops.container.isolation"
+    ],
+    "aliases": [
+      "컨테이너 케이퍼빌리티",
+      "--cap-drop",
+      "--cap-add",
+      "--privileged",
+      "컨테이너 권한 축소"
+    ],
+    "refs": [
+      "https://docs.docker.com/engine/security/",
+      "https://docs.docker.com/engine/containers/run/"
     ]
   },
   {

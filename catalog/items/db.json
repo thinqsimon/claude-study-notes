@@ -127,6 +127,31 @@
     ]
   },
   {
+    "id": "db.basics.relational-database",
+    "title": "관계형 데이터베이스",
+    "en": "Relational Database",
+    "kind": "term",
+    "level": 1,
+    "importance": 1,
+    "group": "DB 기초",
+    "summary": "자료를 이름 붙인 여러 표에 나누어 담고 필요할 때 서로 이어 보는 흔히 쓰이는 방식의 데이터베이스다.",
+    "parent": "db.basics.table-row-column",
+    "related": [
+      "db.nosql.what-is-nosql"
+    ],
+    "aliases": [
+      "관계형 DB",
+      "RDB",
+      "RDBMS",
+      "관계형 데이터베이스 관리 시스템",
+      "relational DB"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/tutorial-concepts.html",
+      "https://www.postgresql.org/docs/current/tutorial-join.html"
+    ]
+  },
+  {
     "id": "db.basics.backup",
     "title": "백업",
     "en": "Backup",
@@ -660,6 +685,47 @@
     ]
   },
   {
+    "id": "db.internals.online-schema-change",
+    "title": "운영 중 스키마 변경: 잠금과 단계적 마이그레이션",
+    "en": "Online Schema Change: Locks and Phased Migrations",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "DB 내부",
+    "summary": "운영 중인 표를 바꿀 때 어떤 DDL이 어떤 잠금과 재작성을 부르는지 따져 서비스를 멈추지 않는 순서로 쪼갠다.",
+    "objectives": [
+      "ALTER TABLE 하위 명령의 잠금 수준·표 재작성 여부와 CREATE INDEX의 쓰기 차단을 확인해 변경의 위험을 말할 수 있다",
+      "제약 추가를 NOT VALID와 VALIDATE CONSTRAINT 두 단계로 나눠 쓰기 차단을 줄이는 절차를 짤 수 있다",
+      "lock_timeout을 걸어 잠금 대기가 길어지면 변경을 포기하고 다시 시도하게 할 수 있다",
+      "Alembic 자동 생성이 놓치는 표·열 이름 변경을 찾아 마이그레이션 스크립트를 손으로 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "db.postgres.first-run",
+      "db.sql.write-rows",
+      "db.internals.transaction-basics",
+      "db.orm.sqlalchemy-basics"
+    ],
+    "related": [
+      "ops.deploy.zero-downtime",
+      "db.internals.locks",
+      "db.internals.mvcc-vacuum"
+    ],
+    "aliases": [
+      "운영 중 마이그레이션",
+      "zero-downtime migration",
+      "무중단 스키마 변경",
+      "온라인 스키마 변경",
+      "Alembic 자동 생성",
+      "VALIDATE CONSTRAINT"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/sql-altertable.html",
+      "https://www.postgresql.org/docs/current/runtime-config-client.html",
+      "https://alembic.sqlalchemy.org/en/latest/autogenerate.html",
+      "https://www.postgresql.org/docs/current/sql-createindex.html"
+    ]
+  },
+  {
     "id": "db.cache.redis",
     "title": "Redis",
     "en": "Redis",
@@ -760,6 +826,53 @@
     ],
     "refs": [
       "https://docs.sqlalchemy.org/en/20/core/pooling.html"
+    ]
+  },
+  {
+    "id": "db.internals.create-index-concurrently",
+    "title": "CREATE INDEX CONCURRENTLY",
+    "en": "CREATE INDEX CONCURRENTLY",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "DB 내부",
+    "summary": "쓰기를 막지 않고 인덱스를 만드는 방식으로, 더 오래 걸리고 실패하면 무효 인덱스가 남아 치워야 한다.",
+    "parent": "db.internals.online-schema-change",
+    "related": [
+      "db.internals.index-design"
+    ],
+    "aliases": [
+      "동시 인덱스 생성",
+      "무효 인덱스",
+      "INVALID 인덱스"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/sql-createindex.html"
+    ]
+  },
+  {
+    "id": "db.orm.version-counter",
+    "title": "버전 열로 동시 수정 감지(version_id_col)",
+    "en": "Version Counter (version_id_col)",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "ORM",
+    "summary": "읽을 때의 버전을 UPDATE 조건에 넣어, 그 사이 다른 쪽이 고쳤으면 오류를 내 덮어쓰기를 막는 ORM 설정이다.",
+    "related": [
+      "db.internals.isolation-levels",
+      "db.orm.session",
+      "be.async.race-condition"
+    ],
+    "aliases": [
+      "낙관적 잠금",
+      "optimistic locking",
+      "version_id_col",
+      "StaleDataError",
+      "버전 카운터"
+    ],
+    "refs": [
+      "https://docs.sqlalchemy.org/en/20/orm/versioning.html"
     ]
   },
   {

@@ -304,6 +304,41 @@
     ]
   },
   {
+    "id": "ml.supervised.sklearn-first-model",
+    "title": "scikit-learn으로 첫 모델 만들기: fit과 predict",
+    "en": "First Model with scikit-learn: fit and predict",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "데이터와 정답을 fit에 넘겨 모델을 학습시키고 predict로 새 데이터의 값을 예측해 보는 scikit-learn의 첫 사용법이다.",
+    "objectives": [
+      "표본과 특성을 담은 X와 정답 y를 준비해 모델을 fit으로 학습시킬 수 있다",
+      "학습한 모델에 predict로 새 데이터의 예측값을 받을 수 있다",
+      "모델 종류를 바꿔도 같은 fit·predict 순서로 코드를 따라 쓸 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.train-inference",
+      "be.python.modules-import",
+      "be.python.venv-packages"
+    ],
+    "related": [
+      "ml.nn.first-neural-network",
+      "ml.eval.accuracy-first-evaluation",
+      "ml.basics.feature-label"
+    ],
+    "aliases": [
+      "사이킷런",
+      "sklearn",
+      "sklearn 첫 모델",
+      "fit과 predict",
+      "사이킷런 입문"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/getting_started.html"
+    ]
+  },
+  {
     "id": "ml.eval.accuracy",
     "title": "정확도",
     "en": "Accuracy",
@@ -432,6 +467,31 @@
       "아웃라이어",
       "극단값",
       "이상값"
+    ]
+  },
+  {
+    "id": "ml.training.loss-curve",
+    "title": "손실 곡선",
+    "en": "Loss Curve",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "학습이 진행될수록 손실이 어떻게 바뀌는지 그린 그래프로, 내려가다 평평해지면 모델이 수렴했다고 본다.",
+    "related": [
+      "ml.training.loss-function",
+      "ml.training.epoch-batch",
+      "ml.training.overfitting-idea"
+    ],
+    "aliases": [
+      "loss curve",
+      "손실 그래프",
+      "loss 그래프",
+      "학습 손실 곡선",
+      "모델 수렴"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/linear-regression/gradient-descent"
     ]
   },
   {
@@ -795,6 +855,30 @@
     ]
   },
   {
+    "id": "ml.data.training-serving-skew",
+    "title": "학습-서빙 편향(training-serving skew)",
+    "en": "Training-Serving Skew",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "학습과 서빙에서 입력 데이터의 스키마나 특성 계산이 어긋나는 현상으로, 같은 규칙으로 양쪽을 검사해 찾는다.",
+    "related": [
+      "mlops.observe.data-drift"
+    ],
+    "aliases": [
+      "학습 서빙 스큐",
+      "training serving skew",
+      "특성 스큐",
+      "feature skew",
+      "스키마 스큐",
+      "schema skew"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
+    ]
+  },
+  {
     "id": "ml.eval.roc-auc",
     "title": "ROC 곡선과 AUC",
     "en": "ROC Curve and AUC",
@@ -932,6 +1016,41 @@
     ]
   },
   {
+    "id": "ml.eval.probability-calibration",
+    "title": "확률 보정: Platt·등위 회귀·온도 스케일링의 손익",
+    "en": "Probability Calibration: Platt, Isotonic, and Temperature Scaling",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "모델 평가",
+    "summary": "모델이 낸 확률이 실제 빈도와 맞는지 신뢰도 곡선으로 진단하고 데이터 크기와 왜곡 모양에 맞는 보정 방법을 고른다.",
+    "objectives": [
+      "신뢰도 곡선과 예측 편향으로 확률이 실제 빈도에서 어긋나는 방향을 찾아 모델 종류별 왜곡 모양과 연결할 수 있다",
+      "Platt·등위 회귀·온도 스케일링의 가정과 표본 크기 손익, 순위와 정확도에 주는 영향을 비교해 고를 수 있다",
+      "보정기를 학습에 쓰지 않은 데이터로 맞춰야 하는 이유를 설명하고 교차 검증 앙상블 여부의 비용을 따질 수 있다"
+    ],
+    "prerequisites": [
+      "ml.eval.metrics-tradeoffs",
+      "ml.eval.data-splitting-cv"
+    ],
+    "related": [
+      "ml.eval.roc-auc",
+      "plan.ai-ux.calibrated-trust"
+    ],
+    "aliases": [
+      "확률 보정",
+      "probability calibration",
+      "모델 보정",
+      "신뢰도 곡선",
+      "reliability diagram",
+      "CalibratedClassifierCV"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/calibration.html",
+      "https://developers.google.com/machine-learning/crash-course/classification/prediction-bias"
+    ]
+  },
+  {
     "id": "ml.eval.equality-of-opportunity",
     "title": "기회 균등(equality of opportunity)",
     "en": "Equality of Opportunity",
@@ -946,6 +1065,46 @@
       "기회 균등",
       "참 양성률 동등",
       "TPR parity"
+    ]
+  },
+  {
+    "id": "ml.eval.brier-score",
+    "title": "Brier 점수",
+    "en": "Brier Score",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "모델 평가",
+    "summary": "예측 확률과 실제 결과의 차이를 재는 점수로, 보정과 변별력이 섞여 있어 값이 낮아도 보정이 좋다고 단정할 수 없다.",
+    "parent": "ml.eval.probability-calibration",
+    "aliases": [
+      "브라이어 점수",
+      "brier_score_loss"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/calibration.html"
+    ]
+  },
+  {
+    "id": "ml.training.vanishing-exploding-gradients",
+    "title": "기울기 소실과 폭주",
+    "en": "Vanishing and Exploding Gradients",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "깊은 신경망의 아래층 기울기가 곱셈을 거치며 0에 가까워지거나 너무 커져 학습이 멈추거나 수렴하지 못하는 현상이다.",
+    "parent": "ml.training.backprop",
+    "aliases": [
+      "기울기 소실",
+      "기울기 폭주",
+      "vanishing gradient",
+      "exploding gradient",
+      "그래디언트 소실",
+      "그래디언트 폭주"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/neural-networks/backpropagation"
     ]
   }
 ]

@@ -1,5 +1,5 @@
 {
- "version": "0.7.0",
+ "version": "0.8.0",
  "domains": [
   {
    "prefix": "dev",
@@ -686,6 +686,41 @@
    "domain": "dev"
   },
   {
+   "id": "dev.git.merge-methods",
+   "title": "병합 방식 고르기: fast-forward·병합 커밋·squash",
+   "en": "Merge Methods: Fast-Forward, Merge Commit, Squash",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "브랜치를 합칠 때 포인터만 옮기는 fast-forward, 부모가 둘인 병합 커밋, 한 커밋으로 줄이는 squash의 기록 차이를 보고 고른다.",
+   "objectives": [
+    "git log --graph로 fast-forward와 병합 커밋의 기록 차이를 구분할 수 있다",
+    "--ff-only, --no-ff, --squash를 골라 원하는 병합 결과를 만들 수 있다",
+    "GitHub의 병합 옵션 세 가지(Merge·Squash·Rebase)가 기본 브랜치 기록을 어떻게 바꾸는지 비교할 수 있다",
+    "squash 뒤 같은 브랜치를 계속 쓰면 충돌이 되풀이되는 이유를 말하고 피할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.branch-pr",
+    "dev.git.merge-conflict"
+   ],
+   "aliases": [
+    "fast-forward 병합",
+    "squash 병합",
+    "병합 커밋",
+    "merge commit",
+    "squash and merge",
+    "git merge --squash"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging",
+    "https://git-scm.com/docs/git-merge",
+    "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/about-pull-request-merges",
+    "https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.test.integration",
    "title": "통합 테스트",
    "en": "Integration Test",
@@ -725,6 +760,58 @@
    "refs": [
     "https://semver.org/",
     "https://git-scm.com/book/en/v2/Git-Basics-Tagging"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.rm-cached",
+   "title": "git rm --cached로 추적 해제",
+   "en": "Untracking Files with git rm --cached",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "이미 추적 중인 파일을 디스크에 남긴 채 Git 추적에서만 빼는 명령으로, 앞서 커밋된 기록까지 지우지는 않는다.",
+   "related": [
+    "dev.git.gitignore",
+    "be.security.secrets-handling"
+   ],
+   "aliases": [
+    "git rm --cached",
+    "추적 해제",
+    "untrack file",
+    "gitignore가 안 먹힘"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository",
+    "https://git-scm.com/docs/git-rm",
+    "https://docs.github.com/en/get-started/git-basics/ignoring-files",
+    "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.cherry-pick",
+   "title": "git cherry-pick",
+   "en": "git cherry-pick",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "다른 브랜치의 특정 커밋이 만든 변경만 현재 브랜치에 새 커밋으로 다시 적용하는 명령으로, 원래 커밋과 해시가 달라진다.",
+   "related": [
+    "dev.git.merge-methods",
+    "dev.git.merge-conflict"
+   ],
+   "aliases": [
+    "체리픽",
+    "cherry-pick",
+    "cherry pick",
+    "커밋 하나만 가져오기"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Distributed-Git-Maintaining-a-Project",
+    "https://git-scm.com/docs/git-cherry-pick"
    ],
    "domain": "dev"
   },
@@ -1055,6 +1142,45 @@
    "domain": "dev"
   },
   {
+   "id": "dev.robust.crash-consistency",
+   "title": "크래시 일관성: 쓰기 순서와 커밋 지점",
+   "en": "Crash Consistency: Write Ordering and the Commit Point",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "견고한 스크립트",
+   "summary": "전원이 꺼져도 파일이 이전 또는 이후 상태로만 남도록 쓰기 순서와 동기화를 짜는 원리와 손상 장애의 원인을 분석한다.",
+   "objectives": [
+    "커밋 지점을 원자적 동작 하나에 두고 그 앞뒤 쓰기를 동기화로 순서 짓는 구조를 롤백 저널의 절차로 설명할 수 있다",
+    "동기화 실패나 쓰기 순서 뒤바뀜이 내구성 손실로 끝나는 경우와 파일 손상으로 번지는 경우를 구분해 장애 원인을 찾을 수 있다",
+    "롤백 저널·WAL·임시 파일 교체를 쓰기 횟수, 동기화 횟수, 복구 비용으로 비교해 고를 수 있다",
+    "크래시 뒤에 남은 저널을 보고 커밋 여부를 판단하고 지우면 안 되는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.robust.atomic-replace"
+   ],
+   "related": [
+    "db.internals.wal-replication",
+    "dev.robust.fsync",
+    "dev.robust.resumable-batch"
+   ],
+   "aliases": [
+    "crash consistency",
+    "크래시 안전",
+    "commit point",
+    "롤백 저널",
+    "rollback journal"
+   ],
+   "refs": [
+    "https://www.sqlite.org/atomiccommit.html",
+    "https://www.sqlite.org/howtocorrupt.html",
+    "https://www.sqlite.org/wal.html",
+    "https://man7.org/linux/man-pages/man2/fsync.2.html",
+    "https://docs.python.org/3/library/os.html#os.replace"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.git.reflog",
    "title": "reflog",
    "en": "Reflog",
@@ -1127,6 +1253,31 @@
    ],
    "refs": [
     "https://git-scm.com/book/en/v2/Git-Internals-Maintenance-and-Data-Recovery"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.robust.directory-fsync",
+   "title": "디렉터리 fsync",
+   "en": "Directory fsync",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "견고한 스크립트",
+   "summary": "파일의 fsync만으로는 디렉터리 항목이 디스크에 남는다는 보장이 없어, 만들거나 교체한 이름까지 남기려고 폴더도 동기화하는 일이다.",
+   "parent": "dev.robust.crash-consistency",
+   "related": [
+    "dev.robust.fsync"
+   ],
+   "aliases": [
+    "directory fsync",
+    "디렉터리 동기화",
+    "폴더 fsync",
+    "rename 내구성"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man2/fsync.2.html",
+    "https://www.sqlite.org/atomiccommit.html"
    ],
    "domain": "dev"
   },
@@ -1305,6 +1456,54 @@
    "refs": [
     "https://www.figma.com/resource-library/what-is-prototyping/",
     "https://help.figma.com/hc/en-us/articles/360040314193-Guide-to-prototyping-in-Figma"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.what-is-figma",
+   "title": "Figma(피그마)",
+   "en": "Figma",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "웹 브라우저나 데스크톱 앱으로 열어 여럿이 한 파일에서 동시에 화면을 그리고 시험해 보는 디자인 도구다.",
+   "related": [
+    "plan.figma.figjam"
+   ],
+   "aliases": [
+    "피그마",
+    "Figma Design",
+    "피그마 디자인",
+    "피그마 설치"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/15297425105303-Explore-design-files",
+    "https://help.figma.com/hc/en-us/articles/14381406380183-Guide-to-the-file-browser",
+    "https://www.figma.com/downloads/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.figjam",
+   "title": "FigJam(온라인 화이트보드)",
+   "en": "FigJam",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "디자인 경험이 없어도 여럿이 함께 포스트잇을 붙이고 흐름도를 그리며 생각을 정리하는 온라인 화이트보드다.",
+   "related": [
+    "plan.figma.what-is-figma"
+   ],
+   "aliases": [
+    "피그잼",
+    "Figma 화이트보드",
+    "FigJam 보드"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/1500004362321-Guide-to-FigJam",
+    "https://help.figma.com/hc/en-us/articles/15300412458647-Explore-FigJam-files"
    ],
    "domain": "plan"
   },
@@ -1547,6 +1746,32 @@
    "domain": "plan"
   },
   {
+   "id": "plan.figma.publish-library",
+   "title": "Figma 라이브러리 게시",
+   "en": "Publishing a Figma Library",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "파일의 컴포넌트·스타일·변수를 Assets 탭의 라이브러리 창에서 게시해 다른 파일에서도 쓰게 하는 기능으로, Starter 요금제에서는 게시할 수 없다.",
+   "related": [
+    "plan.figma.styles",
+    "plan.figma.main-component-instance",
+    "plan.figma.branch-merge-governance"
+   ],
+   "aliases": [
+    "피그마 라이브러리 게시",
+    "Figma 라이브러리",
+    "피그마 라이브러리"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360025508373-Publish-a-library"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-05",
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.auto-layout",
    "title": "오토 레이아웃으로 늘어나고 줄어드는 화면 만들기",
    "en": "Building Responsive Screens with Auto Layout",
@@ -1602,6 +1827,31 @@
    ],
    "refs": [
     "https://help.figma.com/hc/en-us/articles/360056440594-Create-and-use-variants"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.component-properties",
+   "title": "컴포넌트 속성(component properties)",
+   "en": "Figma Component Properties",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "아이콘 표시 여부, 글자, 안쪽 인스턴스처럼 바꿔도 되는 부분을 불리언·텍스트·인스턴스 교체 속성으로 열어 오른쪽 패널에서 조작하게 하는 Figma 기능이다.",
+   "related": [
+    "plan.figma.variants",
+    "plan.figma.main-component-instance"
+   ],
+   "aliases": [
+    "Figma 컴포넌트 속성",
+    "Figma 불리언 속성",
+    "인스턴스 교체 속성",
+    "instance swap property",
+    "Figma 텍스트 속성"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/5579474826519-Explore-component-properties"
    ],
    "domain": "plan"
   },
@@ -1783,6 +2033,44 @@
    ],
    "refs": [
     "https://help.figma.com/hc/en-us/articles/360063144053-Create-branches-and-merge-changes"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-05",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.file-memory-model",
+   "title": "Figma 파일 메모리 관리와 잠금 복구",
+   "en": "Figma File Memory Management and Lock Recovery",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "탭마다 한도가 있는 WebAssembly 메모리에 레이어를 올리는 Figma의 구조를 알고 경고와 파일 잠김의 원인을 분석한다.",
+   "objectives": [
+    "숨긴 레이어·변형 조합이 메모리를 얼마나 쓰는지 레이어별로 재고, 이미지 디코딩은 메모리 경고에 잡히지 않는다는 차이를 알아 경고와 잠김의 원인을 가릴 수 있다",
+    "변형과 숨긴 레이어를 늘리는 구조와 컴포넌트 속성으로 줄이는 구조의 메모리 손익을 근거로 비교할 수 있다",
+    "인스턴스 연결을 유지하며 컴포넌트를 옮기거나 페이지를 새 파일로 나누는 길을 고를 수 있다",
+    "다시 불러오기·복구 모드·이전 버전 복원을 권한과 상황에 따라 고르고, 흰 화면이면 썸네일 전용 열기를 쓸 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.frames-and-components"
+   ],
+   "related": [
+    "plan.figma.variants",
+    "plan.figma.component-properties"
+   ],
+   "aliases": [
+    "Figma 메모리",
+    "Figma 메모리 사용량",
+    "Figma memory usage",
+    "Figma 파일 잠김",
+    "Figma recovery mode",
+    "피그마 메모리 한도"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360040528173-Reduce-memory-usage-in-files",
+    "https://developers.figma.com/docs/plugins/migrating-to-dynamic-loading/"
    ],
    "volatile": true,
    "checked_at": "2026-11-05",
@@ -1978,6 +2266,50 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-05",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.dynamic-page-loading",
+   "title": "Figma 동적 페이지 로딩",
+   "en": "Figma Dynamic Page Loading",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "파일을 열 때 필요한 페이지만 불러와 큰 파일의 지연을 줄이는 방식으로, 플러그인은 문서 전체가 있다고 가정하지 못하고 비동기로 읽어야 한다.",
+   "related": [
+    "plan.figma.file-memory-model"
+   ],
+   "aliases": [
+    "documentAccess dynamic-page",
+    "loadAllPagesAsync",
+    "Figma 페이지 지연 로드"
+   ],
+   "refs": [
+    "https://developers.figma.com/docs/plugins/migrating-to-dynamic-loading/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-05",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.plugin-sandbox",
+   "title": "Figma 플러그인 샌드박스",
+   "en": "Figma Plugin Sandbox",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "성능과 안전을 위해 문서를 다루는 메인 스레드 샌드박스와 브라우저 API를 쓰는 iframe을 나누고 메시지로만 잇는 실행 모델이다.",
+   "aliases": [
+    "figma.showUI",
+    "Figma 플러그인 iframe",
+    "Figma 플러그인 실행 모델"
+   ],
+   "refs": [
+    "https://developers.figma.com/docs/plugins/how-plugins-run/",
+    "https://developers.figma.com/docs/plugins/making-network-requests/"
+   ],
    "domain": "plan"
   },
   {
@@ -10267,6 +10599,32 @@
    "domain": "db"
   },
   {
+   "id": "db.basics.relational-database",
+   "title": "관계형 데이터베이스",
+   "en": "Relational Database",
+   "kind": "term",
+   "level": 1,
+   "importance": 1,
+   "group": "DB 기초",
+   "summary": "자료를 이름 붙인 여러 표에 나누어 담고 필요할 때 서로 이어 보는 흔히 쓰이는 방식의 데이터베이스다.",
+   "parent": "db.basics.table-row-column",
+   "related": [
+    "db.nosql.what-is-nosql"
+   ],
+   "aliases": [
+    "관계형 DB",
+    "RDB",
+    "RDBMS",
+    "관계형 데이터베이스 관리 시스템",
+    "relational DB"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/tutorial-concepts.html",
+    "https://www.postgresql.org/docs/current/tutorial-join.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.basics.backup",
    "title": "백업",
    "en": "Backup",
@@ -10821,6 +11179,48 @@
    "domain": "db"
   },
   {
+   "id": "db.internals.online-schema-change",
+   "title": "운영 중 스키마 변경: 잠금과 단계적 마이그레이션",
+   "en": "Online Schema Change: Locks and Phased Migrations",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "운영 중인 표를 바꿀 때 어떤 DDL이 어떤 잠금과 재작성을 부르는지 따져 서비스를 멈추지 않는 순서로 쪼갠다.",
+   "objectives": [
+    "ALTER TABLE 하위 명령의 잠금 수준·표 재작성 여부와 CREATE INDEX의 쓰기 차단을 확인해 변경의 위험을 말할 수 있다",
+    "제약 추가를 NOT VALID와 VALIDATE CONSTRAINT 두 단계로 나눠 쓰기 차단을 줄이는 절차를 짤 수 있다",
+    "lock_timeout을 걸어 잠금 대기가 길어지면 변경을 포기하고 다시 시도하게 할 수 있다",
+    "Alembic 자동 생성이 놓치는 표·열 이름 변경을 찾아 마이그레이션 스크립트를 손으로 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "db.postgres.first-run",
+    "db.sql.write-rows",
+    "db.internals.transaction-basics",
+    "db.orm.sqlalchemy-basics"
+   ],
+   "related": [
+    "ops.deploy.zero-downtime",
+    "db.internals.locks",
+    "db.internals.mvcc-vacuum"
+   ],
+   "aliases": [
+    "운영 중 마이그레이션",
+    "zero-downtime migration",
+    "무중단 스키마 변경",
+    "온라인 스키마 변경",
+    "Alembic 자동 생성",
+    "VALIDATE CONSTRAINT"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/sql-altertable.html",
+    "https://www.postgresql.org/docs/current/runtime-config-client.html",
+    "https://alembic.sqlalchemy.org/en/latest/autogenerate.html",
+    "https://www.postgresql.org/docs/current/sql-createindex.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.cache.redis",
    "title": "Redis",
    "en": "Redis",
@@ -10926,6 +11326,55 @@
    ],
    "refs": [
     "https://docs.sqlalchemy.org/en/20/core/pooling.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.create-index-concurrently",
+   "title": "CREATE INDEX CONCURRENTLY",
+   "en": "CREATE INDEX CONCURRENTLY",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "쓰기를 막지 않고 인덱스를 만드는 방식으로, 더 오래 걸리고 실패하면 무효 인덱스가 남아 치워야 한다.",
+   "parent": "db.internals.online-schema-change",
+   "related": [
+    "db.internals.index-design"
+   ],
+   "aliases": [
+    "동시 인덱스 생성",
+    "무효 인덱스",
+    "INVALID 인덱스"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/sql-createindex.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.orm.version-counter",
+   "title": "버전 열로 동시 수정 감지(version_id_col)",
+   "en": "Version Counter (version_id_col)",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "ORM",
+   "summary": "읽을 때의 버전을 UPDATE 조건에 넣어, 그 사이 다른 쪽이 고쳤으면 오류를 내 덮어쓰기를 막는 ORM 설정이다.",
+   "related": [
+    "db.internals.isolation-levels",
+    "db.orm.session",
+    "be.async.race-condition"
+   ],
+   "aliases": [
+    "낙관적 잠금",
+    "optimistic locking",
+    "version_id_col",
+    "StaleDataError",
+    "버전 카운터"
+   ],
+   "refs": [
+    "https://docs.sqlalchemy.org/en/20/orm/versioning.html"
    ],
    "domain": "db"
   },
@@ -11599,6 +12048,88 @@
    "domain": "fe"
   },
   {
+   "id": "fe.ts.first-types",
+   "title": "TypeScript 첫걸음: 타입 표시와 tsc",
+   "en": "First Steps in TypeScript: Type Annotations and tsc",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "TypeScript",
+   "summary": "변수와 함수에 타입을 적고 tsc로 검사해 실행 전에 잘못된 값을 찾아내는 TypeScript의 첫 사용법이다.",
+   "objectives": [
+    "tsc로 .ts 파일을 검사하고 .js 파일로 바꿀 수 있다",
+    "변수와 함수의 매개변수·반환값에 string·number·boolean 타입을 표시할 수 있다",
+    "객체의 모양을 interface로 이름 붙여 함수에 쓸 수 있다",
+    "타입 오류 메시지를 읽고 잘못 넘긴 값을 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "fe.js.basics"
+   ],
+   "related": [
+    "be.python.type-hints"
+   ],
+   "aliases": [
+    "TypeScript",
+    "타입스크립트",
+    "tsc",
+    "TS 타입 표기",
+    "TypeScript 타입 주석"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/docs/handbook/2/basic-types.html",
+    "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.css.grid",
+   "title": "CSS Grid 레이아웃",
+   "en": "CSS Grid Layout",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "CSS",
+   "summary": "display: grid로 행과 열을 정해 요소를 가로세로 두 방향으로 배치하는 CSS의 레이아웃 방법이다.",
+   "related": [
+    "fe.css.box-flex"
+   ],
+   "aliases": [
+    "CSS 그리드",
+    "그리드 레이아웃",
+    "display: grid",
+    "grid-template-columns",
+    "fr 단위"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Grids"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.css.media-query",
+   "title": "미디어 쿼리",
+   "en": "Media Query",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "CSS",
+   "summary": "화면 너비 같은 조건을 @media로 적어 조건이 맞을 때만 CSS 규칙이 적용되게 하는 반응형 화면의 기본 문법이다.",
+   "related": [
+    "fe.basics.responsive-idea",
+    "fe.css.box-flex"
+   ],
+   "aliases": [
+    "미디어쿼리",
+    "@media",
+    "media queries",
+    "반응형 브레이크포인트"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Media_queries"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.react.use-effect",
    "title": "useEffect로 바깥 세계와 맞추기",
    "en": "Synchronizing with Effects (useEffect)",
@@ -11861,6 +12392,44 @@
    "domain": "fe"
   },
   {
+   "id": "fe.next.server-data-fetching",
+   "title": "서버 컴포넌트에서 데이터 가져오기와 병렬 요청",
+   "en": "Data Fetching and Parallel Requests in Server Components",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "Next.js",
+   "summary": "서버 컴포넌트에서 요청을 어디서 어떤 순서로 보낼지 정해 요청 폭포를 줄이고, 실패와 중복 요청까지 다루는 설계다.",
+   "objectives": [
+    "앞 결과가 필요한 요청과 독립 요청을 가려 차례로 await할지 Promise.all로 함께 보낼지 고를 수 있다",
+    "병렬 요청 일부가 실패할 때 Promise.all과 Promise.allSettled 중 무엇을 쓸지 화면 요구에 맞춰 정할 수 있다",
+    "같은 데이터를 여러 컴포넌트가 쓸 때 props로 내려 주지 않고 요청 메모이제이션으로 한 번만 실행되게 할 수 있다",
+    "다른 작업에 막혀 늦게 시작되는 요청을 찾아 미리 불러오기로 앞당길 수 있다"
+   ],
+   "prerequisites": [
+    "fe.internals.server-client-boundary",
+    "fe.next.first-page",
+    "fe.js.fetch-first"
+   ],
+   "related": [
+    "fe.next.streaming-suspense",
+    "db.orm.n-plus-one"
+   ],
+   "aliases": [
+    "서버 컴포넌트 데이터 페칭",
+    "병렬 데이터 페칭",
+    "parallel data fetching",
+    "순차 데이터 페칭",
+    "요청 폭포",
+    "request waterfall"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/getting-started/fetching-data",
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.internals.use-client-directive",
    "title": "'use client' 지시어",
    "en": "'use client' Directive",
@@ -11940,6 +12509,33 @@
    "refs": [
     "https://react.dev/reference/react/Suspense"
    ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.request-memoization",
+   "title": "요청 메모이제이션(fetch·React.cache)",
+   "en": "Request Memoization",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Next.js",
+   "summary": "한 번의 서버 렌더링 안에서 같은 요청을 한 번만 실행해 결과를 나누는 장치로, 요청 간에 남는 캐시와 다르다.",
+   "parent": "fe.next.server-data-fetching",
+   "related": [
+    "fe.internals.react-memoization"
+   ],
+   "aliases": [
+    "fetch 메모이제이션",
+    "React.cache",
+    "Next.js 요청 중복 제거",
+    "fetch deduplication"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/api-reference/functions/fetch",
+    "https://react.dev/reference/react/cache"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-05",
    "domain": "fe"
   },
   {
@@ -12170,6 +12766,34 @@
    "domain": "fe"
   },
   {
+   "id": "fe.internals.layer-promotion",
+   "title": "합성 레이어 승격",
+   "en": "Compositor Layer Promotion",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "요소를 자기 레이어로 올려 GPU 합성으로 다시 그리기를 줄이는 대신 메모리를 더 쓰고 쌓임 맥락도 바꿀 수 있어 손익을 재고 쓰는 최적화다.",
+   "parent": "fe.internals.render-pipeline",
+   "related": [
+    "fe.internals.css-containment"
+   ],
+   "aliases": [
+    "레이어 승격",
+    "layer promotion",
+    "합성 레이어",
+    "compositor layer",
+    "will-change",
+    "off main thread animation"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/How_browsers_work",
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/will-change",
+    "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/CSS_JavaScript_animation_performance"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "llm.basics.what-is-llm",
    "title": "LLM이 답을 만드는 원리",
    "en": "How an LLM Produces Answers",
@@ -12296,6 +12920,38 @@
    "domain": "llm"
   },
   {
+   "id": "llm.basics.image-generation",
+   "title": "이미지 생성 AI: 글로 주문하는 그림",
+   "en": "Image Generation from Text",
+   "kind": "topic",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "그림으로 옮길 내용을 글로 설명하면 AI가 그 설명에 맞는 새 그림을 만들어 주는 기술이다.",
+   "objectives": [
+    "이미지 생성 AI가 일하는 방식을 화가에게 말로 주문하는 일에 빗대어 설명할 수 있다",
+    "같은 설명을 넣어도 그림이 매번 달라지는 이유를 말할 수 있다",
+    "이미지 생성 AI로 할 수 있는 일을 새로 그리기와 일부 고치기로 나누어 예를 들 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.generative-ai",
+    "llm.basics.what-is-prompt"
+   ],
+   "aliases": [
+    "AI 이미지 생성",
+    "그림 생성 AI",
+    "AI 그림",
+    "text-to-image",
+    "image generation",
+    "이미지 생성 AI"
+   ],
+   "refs": [
+    "https://github.com/microsoft/generative-ai-for-beginners/blob/main/09-building-image-applications/README.md",
+    "https://developers.openai.com/api/docs/guides/image-generation"
+   ],
+   "domain": "llm"
+  },
+  {
    "id": "llm.basics.llm",
    "title": "LLM",
    "en": "Large Language Model",
@@ -12325,6 +12981,58 @@
     "할루시네이션",
     "Hallucination",
     "환각"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.open-model",
+   "title": "오픈 모델",
+   "en": "Open Model",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "학습 결과물을 공개해 내려받아 직접 돌리고 고쳐 쓸 수 있게 한 AI 모델로, 학습 자료 정보와 코드까지 공개해야 엄밀한 오픈소스다.",
+   "parent": "llm.basics.model-choices",
+   "related": [
+    "llm.basics.small-language-model"
+   ],
+   "aliases": [
+    "공개 모델",
+    "오픈소스 모델",
+    "open source model",
+    "오픈 웨이트",
+    "open weight"
+   ],
+   "refs": [
+    "https://github.com/microsoft/generative-ai-for-beginners/blob/main/16-open-source-models/README.md",
+    "https://opensource.org/ai/open-source-ai-definition",
+    "https://huggingface.co/docs/hub/models"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.small-language-model",
+   "title": "소형 언어 모델(SLM)",
+   "en": "Small Language Model",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "LLM보다 훨씬 작게 만들어 휴대폰이나 평범한 컴퓨터에서도 돌아가지만 아는 폭은 좁은 언어 모델이다.",
+   "parent": "llm.basics.model-choices",
+   "related": [
+    "llm.basics.llm",
+    "llm.basics.open-model"
+   ],
+   "aliases": [
+    "SLM",
+    "소형 언어 모델",
+    "작은 언어 모델"
+   ],
+   "refs": [
+    "https://github.com/microsoft/generative-ai-for-beginners/blob/main/19-slm/README.md",
+    "https://learn.microsoft.com/en-us/azure/azure-sovereign-clouds/private/foundry-local/concept-models"
    ],
    "domain": "llm"
   },
@@ -12672,6 +13380,44 @@
    "domain": "llm"
   },
   {
+   "id": "llm.api.multi-turn",
+   "title": "여러 턴 대화 만들기: 메시지 이력 보내기",
+   "en": "Building Multi-Turn Conversations",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "LLM API",
+   "summary": "이전 응답이나 대화 id를 가리키지 않은 API 호출은 앞 대화를 모른다는 점을 알고 사용자와 어시스턴트 메시지를 쌓아 보내 이어지는 대화를 만든다.",
+   "objectives": [
+    "user와 assistant 메시지를 번갈아 쌓아 이어지는 대화를 구현할 수 있다",
+    "이력을 빠뜨려 모델이 앞 내용을 잊는 실수를 찾아 고칠 수 있다",
+    "이력을 직접 보내는 방식과 서버에 맡기는 방식의 차이를 말할 수 있다",
+    "턴이 늘수록 입력 토큰과 비용이 늘어나는 것을 사용량 값으로 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.api.first-call",
+    "llm.basics.token-context"
+   ],
+   "related": [
+    "llm.internals.context-management"
+   ],
+   "aliases": [
+    "멀티턴 대화",
+    "multi-turn",
+    "대화 이력",
+    "conversation history",
+    "messages 배열",
+    "previous_response_id"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/working-with-messages",
+    "https://developers.openai.com/api/docs/guides/conversation-state"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-05",
+   "domain": "llm"
+  },
+  {
    "id": "llm.tools.tool-schema",
    "title": "도구 스키마",
    "en": "Tool Schema",
@@ -12701,6 +13447,35 @@
     "도구 호출",
     "Tool Call"
    ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.response-streaming",
+   "title": "LLM 응답 스트리밍",
+   "en": "Streaming LLM Responses",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "요청에 stream을 켜고 모델이 쓰는 대로 오는 델타 이벤트를 이어 붙여 답을 보여 주며, 스트림 도중 오는 오류 이벤트도 함께 처리하는 호출 방식이다.",
+   "related": [
+    "be.fastapi.streaming",
+    "be.fastapi.sse",
+    "llm.api.first-call"
+   ],
+   "aliases": [
+    "LLM 스트리밍",
+    "text_delta",
+    "content_block_delta",
+    "output_text.delta",
+    "델타 이벤트"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/streaming",
+    "https://developers.openai.com/api/docs/guides/streaming-responses"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-05",
    "domain": "llm"
   },
   {
@@ -12907,6 +13682,32 @@
    "refs": [
     "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#chain-complex-prompts"
    ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.model-snapshot",
+   "title": "모델 스냅샷 고정",
+   "en": "Model Snapshot Pinning",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "운영 앱의 모델 ID를 한 스냅샷으로 고정해 모델이 저절로 바뀌지 않게 하고, 평가를 거쳐 직접 올리는 방식으로, 서빙 쪽 변화로 인한 동작 차이는 남을 수 있다.",
+   "related": [
+    "mlops.eval.llm-regression"
+   ],
+   "aliases": [
+    "모델 버전 고정",
+    "model pinning",
+    "model snapshot",
+    "스냅샷 모델 ID"
+   ],
+   "refs": [
+    "https://developers.openai.com/api/docs/guides/text",
+    "https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-05",
    "domain": "llm"
   },
   {
@@ -13671,6 +14472,35 @@
    "domain": "rag"
   },
   {
+   "id": "rag.retrieval.keyword-vs-vector",
+   "title": "키워드 검색과 벡터 검색의 차이",
+   "en": "Keyword Search vs Vector Search",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "검색 내부",
+   "summary": "낱말이 맞아야 찾는 키워드 검색과 뜻이 가까우면 찾는 벡터 검색의 차이로, 제품 코드나 이름은 키워드 검색이 더 잘 찾는다.",
+   "related": [
+    "rag.vector-db.basics",
+    "rag.retrieval.top-k-filter",
+    "rag.retrieval.hybrid-rerank"
+   ],
+   "aliases": [
+    "키워드 검색",
+    "keyword search",
+    "전문 검색",
+    "full-text search",
+    "lexical search",
+    "키워드 vs 벡터 검색"
+   ],
+   "refs": [
+    "https://www.elastic.co/docs/solutions/search/vector",
+    "https://www.elastic.co/docs/solutions/search/full-text",
+    "https://learn.microsoft.com/en-us/azure/search/hybrid-search-overview"
+   ],
+   "domain": "rag"
+  },
+  {
    "id": "rag.retrieval.quality",
    "title": "RAG 검색 품질 개선",
    "en": "Improving RAG Retrieval Quality",
@@ -14292,6 +15122,30 @@
    ],
    "refs": [
     "https://airc.nist.gov/airmf-resources/airmf/3-sec-characteristics/"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.automation-bias",
+   "title": "자동화 편향",
+   "en": "Automation Bias",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "기계가 내놓은 답이라는 이유로 사람이 지나치게 믿고 따라가며 의심하지 않게 되는 경향이다.",
+   "parent": "ax.basics.verify-ai-output",
+   "related": [
+    "ax.governance.harmful-bias",
+    "plan.ai-ux.calibrated-trust"
+   ],
+   "aliases": [
+    "AI 과신",
+    "over-reliance",
+    "AI 맹신"
+   ],
+   "refs": [
+    "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
    ],
    "domain": "ax"
   },
@@ -15175,6 +16029,31 @@
    "domain": "ax"
   },
   {
+   "id": "ax.security.model-extraction",
+   "title": "모델 추출 공격",
+   "en": "Model Extraction Attack",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "API 질의와 부채널로 모델의 구조·가중치 정보나 기능이 비슷한 복제본을 얻어 내는 공격으로, 이후 더 강한 공격의 발판이 된다.",
+   "related": [
+    "mlops.guardrail.unbounded-consumption"
+   ],
+   "aliases": [
+    "model extraction",
+    "모델 탈취",
+    "model stealing",
+    "모델 복제 공격",
+    "functional model replication"
+   ],
+   "refs": [
+    "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2025.pdf",
+    "https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/"
+   ],
+   "domain": "ax"
+  },
+  {
    "id": "ops.basics.what-is-deploy",
    "title": "배포: 내 서비스를 세상에 내놓기",
    "en": "What Deployment Is",
@@ -15456,6 +16335,41 @@
    "domain": "ops"
   },
   {
+   "id": "ops.network.nginx-first-config",
+   "title": "Nginx 첫 설정: 정적 파일과 간단한 프록시",
+   "en": "First Nginx Setup: Static Files and a Simple Proxy",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "네트워크와 앞단",
+   "summary": "설정 파일에 server와 location을 적어 정적 파일을 내보내고 요청을 뒤쪽 서버로 넘겨 보는 앞단 서버의 첫 사용법이다.",
+   "objectives": [
+    "nginx.conf의 server와 location 블록을 읽고 root로 정적 파일 경로를 지정할 수 있다",
+    "proxy_pass로 요청을 뒤쪽 서버에 넘기는 간단한 프록시를 설정할 수 있다",
+    "nginx -s reload로 바뀐 설정을 적용하고 access.log와 error.log를 열어 볼 수 있다"
+   ],
+   "prerequisites": [
+    "dev.terminal.basic-commands",
+    "be.http.web-conversation"
+   ],
+   "related": [
+    "be.http.reverse-proxy",
+    "ops.network.load-balancer"
+   ],
+   "aliases": [
+    "nginx 설정",
+    "엔진엑스 설정",
+    "nginx.conf",
+    "proxy_pass",
+    "nginx reload",
+    "nginx 정적 파일"
+   ],
+   "refs": [
+    "https://nginx.org/en/docs/beginners_guide.html"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.linux.word-splitting",
    "title": "셸 변수의 단어 분리",
    "en": "Word Splitting of Shell Variables",
@@ -15570,6 +16484,55 @@
    "domain": "ops"
   },
   {
+   "id": "ops.linux.command-substitution",
+   "title": "명령 치환($(…))",
+   "en": "Command Substitution",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "리눅스",
+   "summary": "$(명령)은 명령의 출력을 그 자리에 넣어 변수에 담게 해 주며, 끝 줄바꿈은 지워지고 큰따옴표로 감싸면 단어 분리를 막는다.",
+   "related": [
+    "ops.linux.word-splitting",
+    "ops.linux.stdout-stderr-redirection"
+   ],
+   "aliases": [
+    "명령 치환",
+    "$(명령)",
+    "백틱 치환",
+    "명령 출력 변수 저장",
+    "명령 결과 변수"
+   ],
+   "refs": [
+    "https://www.gnu.org/software/bash/manual/html_node/Command-Substitution.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.docker.exec",
+   "title": "컨테이너 안에서 명령 실행(docker exec)",
+   "en": "Running Commands in a Container (docker exec)",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "Docker",
+   "summary": "실행 중인 컨테이너 안에서 새 명령을 돌리는 명령으로, docker exec -it 이름 sh로 셸을 열어 안쪽을 둘러볼 수 있다.",
+   "related": [
+    "ops.docker.first-container",
+    "ops.observe.container-healthcheck"
+   ],
+   "aliases": [
+    "docker exec",
+    "docker exec -it",
+    "컨테이너 셸 접속",
+    "컨테이너 안 명령 실행"
+   ],
+   "refs": [
+    "https://docs.docker.com/reference/cli/docker/container/exec/"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.observe.container-healthcheck",
    "title": "컨테이너 상태 보기: HEALTHCHECK와 docker logs",
    "en": "Container Health with Docker HEALTHCHECK and docker logs",
@@ -15605,6 +16568,43 @@
    "domain": "ops"
   },
   {
+   "id": "ops.container.image-layers",
+   "title": "이미지 레이어와 빌드 캐시",
+   "en": "Image Layers and Build Cache",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "컨테이너 내부",
+   "summary": "이미지가 파일 변경의 층으로 쌓이는 구조를 알고 Dockerfile 순서를 고쳐 다시 빌드하는 시간을 줄인다.",
+   "objectives": [
+    "docker image history로 이미지가 어떤 레이어로 쌓였는지 읽을 수 있다",
+    "컨테이너에서 바꾼 파일이 이미지에 남지 않는 이유를 쓰기 층으로 설명할 수 있다",
+    "의존성 설치를 소스 복사 앞으로 옮겨 Dockerfile의 캐시 적중을 늘릴 수 있다",
+    ".dockerignore로 불필요한 파일을 빼서 캐시가 깨지는 실수를 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "ops.docker.first-container"
+   ],
+   "related": [
+    "ops.docker.dockerfile",
+    "ops.container.isolation"
+   ],
+   "aliases": [
+    "도커 이미지 레이어",
+    "image layer",
+    "도커 빌드 캐시",
+    "docker build cache",
+    "docker image history",
+    ".dockerignore"
+   ],
+   "refs": [
+    "https://docs.docker.com/get-started/docker-concepts/building-images/understanding-image-layers/",
+    "https://docs.docker.com/get-started/docker-concepts/building-images/using-the-build-cache/",
+    "https://docs.docker.com/engine/storage/drivers/"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.docker.compose",
    "title": "Docker Compose",
    "en": "Docker Compose",
@@ -15628,6 +16628,54 @@
    "refs": [
     "https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-docker-compose/",
     "https://docs.docker.com/get-started/docker-concepts/running-containers/multi-container-applications/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.network.dns-records",
+   "title": "DNS 레코드: A·CNAME·TTL",
+   "en": "DNS Records: A, CNAME and TTL",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "네트워크와 앞단",
+   "summary": "도메인이 가리킬 곳을 A는 IP 주소로, CNAME은 다른 도메인 이름으로 적고 TTL로 캐시 유지 시간을 정하는 DNS의 기록 항목이다.",
+   "related": [
+    "ops.basics.domain-dns",
+    "ops.network.dns-resolution"
+   ],
+   "aliases": [
+    "A 레코드",
+    "CNAME 레코드",
+    "AAAA 레코드",
+    "DNS TTL",
+    "DNS record",
+    "도메인 연결 설정"
+   ],
+   "refs": [
+    "https://developers.cloudflare.com/dns/manage-dns-records/reference/dns-record-types/",
+    "https://www.rfc-editor.org/rfc/rfc1034"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.deploy.rolling-update",
+   "title": "롤링 업데이트",
+   "en": "Rolling Update",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "배포 전략",
+   "summary": "전부 내리고 다시 올리는 Recreate와 달리 인스턴스를 조금씩 새 버전으로 바꿔, 옛 버전과 새 버전이 잠시 함께 돌며 배포 중에도 응답을 이어 가는 배포 방식이다.",
+   "related": [
+    "ops.deploy.zero-downtime"
+   ],
+   "aliases": [
+    "RollingUpdate",
+    "Recreate 전략"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
    ],
    "domain": "ops"
   },
@@ -15729,6 +16777,44 @@
    "domain": "ops"
   },
   {
+   "id": "ops.container.resource-limits",
+   "title": "컨테이너 메모리·CPU 제한 설계",
+   "en": "Container Memory and CPU Limits",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "컨테이너 내부",
+   "summary": "컨테이너에 메모리와 CPU 상한을 정하고, 넘었을 때 종료되는지 느려지는지를 구분해 장애 원인을 찾는다.",
+   "objectives": [
+    "상한 없는 컨테이너가 호스트 메모리를 다 쓸 때의 위험을 들어 메모리 상한을 어떻게 둘지 정할 수 있다",
+    "--memory와 --memory-swap 조합으로 스왑 허용 범위를 고르고 그 근거를 말할 수 있다",
+    "메모리 초과는 프로세스 강제 종료로(바로 죽지 않을 수도 있다), CPU 초과는 속도 저하로 나타나는 차이를 종료 이유·종료 코드로 확인해 장애 원인을 가를 수 있다",
+    "재시작을 되풀이하는 컨테이너에서 누수 수정과 상한 상향 중 무엇이 맞는지 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.docker.first-container",
+    "ops.observe.container-healthcheck"
+   ],
+   "related": [
+    "ops.container.isolation",
+    "ops.k8s.scheduling",
+    "ops.k8s.basics"
+   ],
+   "aliases": [
+    "컨테이너 자원 제한",
+    "컨테이너 메모리 제한",
+    "docker --memory",
+    "--memory-swap",
+    "--cpus",
+    "container memory limit"
+   ],
+   "refs": [
+    "https://docs.docker.com/engine/containers/resource_constraints/",
+    "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.network.edge-waf",
    "title": "웹 방화벽(WAF)과 오탐 분석",
    "en": "WAF Rules and False Positives",
@@ -15817,6 +16903,33 @@
    "domain": "ops"
   },
   {
+   "id": "ops.container.oom-killed",
+   "title": "OOMKilled와 종료 코드 137",
+   "en": "OOMKilled and Exit Code 137",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "컨테이너 내부",
+   "summary": "컨테이너가 메모리 한도를 넘겨 강제 종료됐다는 표시로, 137은 SIGKILL을 뜻하므로 종료 이유까지 함께 본다.",
+   "parent": "ops.container.resource-limits",
+   "related": [
+    "ops.container.isolation"
+   ],
+   "aliases": [
+    "OOMKilled",
+    "종료 코드 137",
+    "exit code 137",
+    "메모리 초과 종료",
+    "컨테이너 메모리 초과"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+    "https://man7.org/linux/man-pages/man1/bash.1.html",
+    "https://man7.org/linux/man-pages/man7/signal.7.html"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.linux.flock",
    "title": "파일 잠금(flock)으로 동시 실행 막기",
    "en": "flock: File Locking Against Concurrent Runs",
@@ -15843,6 +16956,31 @@
    "refs": [
     "https://man7.org/linux/man-pages/man1/flock.1.html",
     "https://man7.org/linux/man-pages/man2/flock.2.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.container.linux-capabilities",
+   "title": "리눅스 케이퍼빌리티로 컨테이너 권한 줄이기",
+   "en": "Linux Capabilities for Containers",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "컨테이너 내부",
+   "summary": "root 권한을 잘게 나눈 단위로, 컨테이너에 꼭 필요한 것만 남기고 나머지는 빼서 컨테이너가 뚫려도 피해와 호스트로의 권한 상승을 줄인다.",
+   "related": [
+    "ops.container.isolation"
+   ],
+   "aliases": [
+    "컨테이너 케이퍼빌리티",
+    "--cap-drop",
+    "--cap-add",
+    "--privileged",
+    "컨테이너 권한 축소"
+   ],
+   "refs": [
+    "https://docs.docker.com/engine/security/",
+    "https://docs.docker.com/engine/containers/run/"
    ],
    "domain": "ops"
   },
@@ -16389,6 +17527,42 @@
    "domain": "ml"
   },
   {
+   "id": "ml.supervised.sklearn-first-model",
+   "title": "scikit-learn으로 첫 모델 만들기: fit과 predict",
+   "en": "First Model with scikit-learn: fit and predict",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "데이터와 정답을 fit에 넘겨 모델을 학습시키고 predict로 새 데이터의 값을 예측해 보는 scikit-learn의 첫 사용법이다.",
+   "objectives": [
+    "표본과 특성을 담은 X와 정답 y를 준비해 모델을 fit으로 학습시킬 수 있다",
+    "학습한 모델에 predict로 새 데이터의 예측값을 받을 수 있다",
+    "모델 종류를 바꿔도 같은 fit·predict 순서로 코드를 따라 쓸 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.train-inference",
+    "be.python.modules-import",
+    "be.python.venv-packages"
+   ],
+   "related": [
+    "ml.nn.first-neural-network",
+    "ml.eval.accuracy-first-evaluation",
+    "ml.basics.feature-label"
+   ],
+   "aliases": [
+    "사이킷런",
+    "sklearn",
+    "sklearn 첫 모델",
+    "fit과 predict",
+    "사이킷런 입문"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/getting_started.html"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.eval.accuracy",
    "title": "정확도",
    "en": "Accuracy",
@@ -16522,6 +17696,32 @@
     "아웃라이어",
     "극단값",
     "이상값"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.training.loss-curve",
+   "title": "손실 곡선",
+   "en": "Loss Curve",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "학습이 진행될수록 손실이 어떻게 바뀌는지 그린 그래프로, 내려가다 평평해지면 모델이 수렴했다고 본다.",
+   "related": [
+    "ml.training.loss-function",
+    "ml.training.epoch-batch",
+    "ml.training.overfitting-idea"
+   ],
+   "aliases": [
+    "loss curve",
+    "손실 그래프",
+    "loss 그래프",
+    "학습 손실 곡선",
+    "모델 수렴"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/linear-regression/gradient-descent"
    ],
    "domain": "ml"
   },
@@ -16900,6 +18100,31 @@
    "domain": "ml"
   },
   {
+   "id": "ml.data.training-serving-skew",
+   "title": "학습-서빙 편향(training-serving skew)",
+   "en": "Training-Serving Skew",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "학습과 서빙에서 입력 데이터의 스키마나 특성 계산이 어긋나는 현상으로, 같은 규칙으로 양쪽을 검사해 찾는다.",
+   "related": [
+    "mlops.observe.data-drift"
+   ],
+   "aliases": [
+    "학습 서빙 스큐",
+    "training serving skew",
+    "특성 스큐",
+    "feature skew",
+    "스키마 스큐",
+    "schema skew"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.eval.roc-auc",
    "title": "ROC 곡선과 AUC",
    "en": "ROC Curve and AUC",
@@ -17042,6 +18267,42 @@
    "domain": "ml"
   },
   {
+   "id": "ml.eval.probability-calibration",
+   "title": "확률 보정: Platt·등위 회귀·온도 스케일링의 손익",
+   "en": "Probability Calibration: Platt, Isotonic, and Temperature Scaling",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "모델 평가",
+   "summary": "모델이 낸 확률이 실제 빈도와 맞는지 신뢰도 곡선으로 진단하고 데이터 크기와 왜곡 모양에 맞는 보정 방법을 고른다.",
+   "objectives": [
+    "신뢰도 곡선과 예측 편향으로 확률이 실제 빈도에서 어긋나는 방향을 찾아 모델 종류별 왜곡 모양과 연결할 수 있다",
+    "Platt·등위 회귀·온도 스케일링의 가정과 표본 크기 손익, 순위와 정확도에 주는 영향을 비교해 고를 수 있다",
+    "보정기를 학습에 쓰지 않은 데이터로 맞춰야 하는 이유를 설명하고 교차 검증 앙상블 여부의 비용을 따질 수 있다"
+   ],
+   "prerequisites": [
+    "ml.eval.metrics-tradeoffs",
+    "ml.eval.data-splitting-cv"
+   ],
+   "related": [
+    "ml.eval.roc-auc",
+    "plan.ai-ux.calibrated-trust"
+   ],
+   "aliases": [
+    "확률 보정",
+    "probability calibration",
+    "모델 보정",
+    "신뢰도 곡선",
+    "reliability diagram",
+    "CalibratedClassifierCV"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/calibration.html",
+    "https://developers.google.com/machine-learning/crash-course/classification/prediction-bias"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.eval.equality-of-opportunity",
    "title": "기회 균등(equality of opportunity)",
    "en": "Equality of Opportunity",
@@ -17056,6 +18317,48 @@
     "기회 균등",
     "참 양성률 동등",
     "TPR parity"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.brier-score",
+   "title": "Brier 점수",
+   "en": "Brier Score",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "모델 평가",
+   "summary": "예측 확률과 실제 결과의 차이를 재는 점수로, 보정과 변별력이 섞여 있어 값이 낮아도 보정이 좋다고 단정할 수 없다.",
+   "parent": "ml.eval.probability-calibration",
+   "aliases": [
+    "브라이어 점수",
+    "brier_score_loss"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/calibration.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.training.vanishing-exploding-gradients",
+   "title": "기울기 소실과 폭주",
+   "en": "Vanishing and Exploding Gradients",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "딥러닝",
+   "summary": "깊은 신경망의 아래층 기울기가 곱셈을 거치며 0에 가까워지거나 너무 커져 학습이 멈추거나 수렴하지 못하는 현상이다.",
+   "parent": "ml.training.backprop",
+   "aliases": [
+    "기울기 소실",
+    "기울기 폭주",
+    "vanishing gradient",
+    "exploding gradient",
+    "그래디언트 소실",
+    "그래디언트 폭주"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/neural-networks/backpropagation"
    ],
    "domain": "ml"
   },
@@ -17118,6 +18421,38 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-04",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.eval.why-evaluate",
+   "title": "AI 답 평가의 큰 그림: 시험지와 채점 기준",
+   "en": "Why Evaluate AI Answers",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "미리 정한 시험 문제와 채점 기준으로 AI의 답을 매번 똑같이 재서 정말 나아졌는지 확인하는 일이다.",
+   "objectives": [
+    "AI 답 평가를 시험지와 채점 기준에 빗대어 설명할 수 있다",
+    "몇 번 써 보고 좋다고 판단하는 것만으로 모자란 이유를 말할 수 있다",
+    "좋은 답의 기준을 정확성·말투·속도·비용처럼 나누어 예를 들 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.what-is-prompt"
+   ],
+   "related": [
+    "ax.basics.verify-ai-output"
+   ],
+   "aliases": [
+    "AI 평가",
+    "LLM 평가",
+    "AI 답 평가",
+    "evals"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/eval-monitor/",
+    "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests"
+   ],
    "domain": "mlops"
   },
   {
@@ -17206,6 +18541,31 @@
    "domain": "mlops"
   },
   {
+   "id": "mlops.basics.retraining",
+   "title": "재학습",
+   "en": "Model Retraining",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "세상이 바뀌어 낡은 모델에게 새 자료를 주어 다시 가르치고 새 판으로 바꾸어 내놓는 일이다.",
+   "parent": "mlops.basics.what-is-mlops",
+   "related": [
+    "mlops.observe.drift",
+    "mlops.finetune.fine-tuning"
+   ],
+   "aliases": [
+    "모델 재학습",
+    "retraining",
+    "재훈련"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/production-ml-systems/static-vs-dynamic-training",
+    "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
+   ],
+   "domain": "mlops"
+  },
+  {
    "id": "mlops.observe.experiment-tracking",
    "title": "실험 추적",
    "en": "Experiment Tracking",
@@ -17222,6 +18582,28 @@
    ],
    "refs": [
     "https://mlflow.org/docs/latest/ml/tracking/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.finetune.fine-tuning",
+   "title": "파인튜닝(미세 조정)",
+   "en": "Fine-Tuning",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "이미 다 배운 언어 모델에게 특정 일의 예시를 더 가르쳐 그 일에 맞게 다듬는 방법이다.",
+   "related": [
+    "mlops.basics.retraining"
+   ],
+   "aliases": [
+    "파인튜닝",
+    "파인 튜닝",
+    "모델 미세 조정"
+   ],
+   "refs": [
+    "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/models/tune-models"
    ],
    "domain": "mlops"
   },

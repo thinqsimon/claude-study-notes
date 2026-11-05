@@ -59,6 +59,37 @@
     "checked_at": "2026-11-04"
   },
   {
+    "id": "mlops.eval.why-evaluate",
+    "title": "AI 답 평가의 큰 그림: 시험지와 채점 기준",
+    "en": "Why Evaluate AI Answers",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "미리 정한 시험 문제와 채점 기준으로 AI의 답을 매번 똑같이 재서 정말 나아졌는지 확인하는 일이다.",
+    "objectives": [
+      "AI 답 평가를 시험지와 채점 기준에 빗대어 설명할 수 있다",
+      "몇 번 써 보고 좋다고 판단하는 것만으로 모자란 이유를 말할 수 있다",
+      "좋은 답의 기준을 정확성·말투·속도·비용처럼 나누어 예를 들 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.what-is-prompt"
+    ],
+    "related": [
+      "ax.basics.verify-ai-output"
+    ],
+    "aliases": [
+      "AI 평가",
+      "LLM 평가",
+      "AI 답 평가",
+      "evals"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/eval-monitor/",
+      "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests"
+    ]
+  },
+  {
     "id": "mlops.guardrail.guardrail",
     "title": "가드레일",
     "en": "Guardrails",
@@ -140,6 +171,30 @@
     ]
   },
   {
+    "id": "mlops.basics.retraining",
+    "title": "재학습",
+    "en": "Model Retraining",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "세상이 바뀌어 낡은 모델에게 새 자료를 주어 다시 가르치고 새 판으로 바꾸어 내놓는 일이다.",
+    "parent": "mlops.basics.what-is-mlops",
+    "related": [
+      "mlops.observe.drift",
+      "mlops.finetune.fine-tuning"
+    ],
+    "aliases": [
+      "모델 재학습",
+      "retraining",
+      "재훈련"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/static-vs-dynamic-training",
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
+    ]
+  },
+  {
     "id": "mlops.observe.experiment-tracking",
     "title": "실험 추적",
     "en": "Experiment Tracking",
@@ -156,6 +211,27 @@
     ],
     "refs": [
       "https://mlflow.org/docs/latest/ml/tracking/"
+    ]
+  },
+  {
+    "id": "mlops.finetune.fine-tuning",
+    "title": "파인튜닝(미세 조정)",
+    "en": "Fine-Tuning",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "이미 다 배운 언어 모델에게 특정 일의 예시를 더 가르쳐 그 일에 맞게 다듬는 방법이다.",
+    "related": [
+      "mlops.basics.retraining"
+    ],
+    "aliases": [
+      "파인튜닝",
+      "파인 튜닝",
+      "모델 미세 조정"
+    ],
+    "refs": [
+      "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/models/tune-models"
     ]
   },
   {

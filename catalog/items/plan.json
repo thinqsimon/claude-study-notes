@@ -171,6 +171,52 @@
     ]
   },
   {
+    "id": "plan.figma.what-is-figma",
+    "title": "Figma(피그마)",
+    "en": "Figma",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "웹 브라우저나 데스크톱 앱으로 열어 여럿이 한 파일에서 동시에 화면을 그리고 시험해 보는 디자인 도구다.",
+    "related": [
+      "plan.figma.figjam"
+    ],
+    "aliases": [
+      "피그마",
+      "Figma Design",
+      "피그마 디자인",
+      "피그마 설치"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/15297425105303-Explore-design-files",
+      "https://help.figma.com/hc/en-us/articles/14381406380183-Guide-to-the-file-browser",
+      "https://www.figma.com/downloads/"
+    ]
+  },
+  {
+    "id": "plan.figma.figjam",
+    "title": "FigJam(온라인 화이트보드)",
+    "en": "FigJam",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "디자인 경험이 없어도 여럿이 함께 포스트잇을 붙이고 흐름도를 그리며 생각을 정리하는 온라인 화이트보드다.",
+    "related": [
+      "plan.figma.what-is-figma"
+    ],
+    "aliases": [
+      "피그잼",
+      "Figma 화이트보드",
+      "FigJam 보드"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/1500004362321-Guide-to-FigJam",
+      "https://help.figma.com/hc/en-us/articles/15300412458647-Explore-FigJam-files"
+    ]
+  },
+  {
     "id": "plan.figma.frames-and-components",
     "title": "Figma 프레임과 컴포넌트로 화면 만들기",
     "en": "Building Screens with Frames and Components in Figma",
@@ -400,6 +446,31 @@
     "checked_at": "2026-11-05"
   },
   {
+    "id": "plan.figma.publish-library",
+    "title": "Figma 라이브러리 게시",
+    "en": "Publishing a Figma Library",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "파일의 컴포넌트·스타일·변수를 Assets 탭의 라이브러리 창에서 게시해 다른 파일에서도 쓰게 하는 기능으로, Starter 요금제에서는 게시할 수 없다.",
+    "related": [
+      "plan.figma.styles",
+      "plan.figma.main-component-instance",
+      "plan.figma.branch-merge-governance"
+    ],
+    "aliases": [
+      "피그마 라이브러리 게시",
+      "Figma 라이브러리",
+      "피그마 라이브러리"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360025508373-Publish-a-library"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-05"
+  },
+  {
     "id": "plan.figma.auto-layout",
     "title": "오토 레이아웃으로 늘어나고 줄어드는 화면 만들기",
     "en": "Building Responsive Screens with Auto Layout",
@@ -454,6 +525,30 @@
     ],
     "refs": [
       "https://help.figma.com/hc/en-us/articles/360056440594-Create-and-use-variants"
+    ]
+  },
+  {
+    "id": "plan.figma.component-properties",
+    "title": "컴포넌트 속성(component properties)",
+    "en": "Figma Component Properties",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "아이콘 표시 여부, 글자, 안쪽 인스턴스처럼 바꿔도 되는 부분을 불리언·텍스트·인스턴스 교체 속성으로 열어 오른쪽 패널에서 조작하게 하는 Figma 기능이다.",
+    "related": [
+      "plan.figma.variants",
+      "plan.figma.main-component-instance"
+    ],
+    "aliases": [
+      "Figma 컴포넌트 속성",
+      "Figma 불리언 속성",
+      "인스턴스 교체 속성",
+      "instance swap property",
+      "Figma 텍스트 속성"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/5579474826519-Explore-component-properties"
     ]
   },
   {
@@ -629,6 +724,43 @@
     ],
     "refs": [
       "https://help.figma.com/hc/en-us/articles/360063144053-Create-branches-and-merge-changes"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-05"
+  },
+  {
+    "id": "plan.figma.file-memory-model",
+    "title": "Figma 파일 메모리 관리와 잠금 복구",
+    "en": "Figma File Memory Management and Lock Recovery",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "탭마다 한도가 있는 WebAssembly 메모리에 레이어를 올리는 Figma의 구조를 알고 경고와 파일 잠김의 원인을 분석한다.",
+    "objectives": [
+      "숨긴 레이어·변형 조합이 메모리를 얼마나 쓰는지 레이어별로 재고, 이미지 디코딩은 메모리 경고에 잡히지 않는다는 차이를 알아 경고와 잠김의 원인을 가릴 수 있다",
+      "변형과 숨긴 레이어를 늘리는 구조와 컴포넌트 속성으로 줄이는 구조의 메모리 손익을 근거로 비교할 수 있다",
+      "인스턴스 연결을 유지하며 컴포넌트를 옮기거나 페이지를 새 파일로 나누는 길을 고를 수 있다",
+      "다시 불러오기·복구 모드·이전 버전 복원을 권한과 상황에 따라 고르고, 흰 화면이면 썸네일 전용 열기를 쓸 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.frames-and-components"
+    ],
+    "related": [
+      "plan.figma.variants",
+      "plan.figma.component-properties"
+    ],
+    "aliases": [
+      "Figma 메모리",
+      "Figma 메모리 사용량",
+      "Figma memory usage",
+      "Figma 파일 잠김",
+      "Figma recovery mode",
+      "피그마 메모리 한도"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360040528173-Reduce-memory-usage-in-files",
+      "https://developers.figma.com/docs/plugins/migrating-to-dynamic-loading/"
     ],
     "volatile": true,
     "checked_at": "2026-11-05"
@@ -815,6 +947,48 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-05"
+  },
+  {
+    "id": "plan.figma.dynamic-page-loading",
+    "title": "Figma 동적 페이지 로딩",
+    "en": "Figma Dynamic Page Loading",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "파일을 열 때 필요한 페이지만 불러와 큰 파일의 지연을 줄이는 방식으로, 플러그인은 문서 전체가 있다고 가정하지 못하고 비동기로 읽어야 한다.",
+    "related": [
+      "plan.figma.file-memory-model"
+    ],
+    "aliases": [
+      "documentAccess dynamic-page",
+      "loadAllPagesAsync",
+      "Figma 페이지 지연 로드"
+    ],
+    "refs": [
+      "https://developers.figma.com/docs/plugins/migrating-to-dynamic-loading/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-05"
+  },
+  {
+    "id": "plan.figma.plugin-sandbox",
+    "title": "Figma 플러그인 샌드박스",
+    "en": "Figma Plugin Sandbox",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "성능과 안전을 위해 문서를 다루는 메인 스레드 샌드박스와 브라우저 API를 쓰는 iframe을 나누고 메시지로만 잇는 실행 모델이다.",
+    "aliases": [
+      "figma.showUI",
+      "Figma 플러그인 iframe",
+      "Figma 플러그인 실행 모델"
+    ],
+    "refs": [
+      "https://developers.figma.com/docs/plugins/how-plugins-run/",
+      "https://developers.figma.com/docs/plugins/making-network-requests/"
+    ]
   },
   {
     "id": "plan.figma.library-analytics",

@@ -439,6 +439,40 @@
     ]
   },
   {
+    "id": "dev.git.merge-methods",
+    "title": "병합 방식 고르기: fast-forward·병합 커밋·squash",
+    "en": "Merge Methods: Fast-Forward, Merge Commit, Squash",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "Git",
+    "summary": "브랜치를 합칠 때 포인터만 옮기는 fast-forward, 부모가 둘인 병합 커밋, 한 커밋으로 줄이는 squash의 기록 차이를 보고 고른다.",
+    "objectives": [
+      "git log --graph로 fast-forward와 병합 커밋의 기록 차이를 구분할 수 있다",
+      "--ff-only, --no-ff, --squash를 골라 원하는 병합 결과를 만들 수 있다",
+      "GitHub의 병합 옵션 세 가지(Merge·Squash·Rebase)가 기본 브랜치 기록을 어떻게 바꾸는지 비교할 수 있다",
+      "squash 뒤 같은 브랜치를 계속 쓰면 충돌이 되풀이되는 이유를 말하고 피할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.branch-pr",
+      "dev.git.merge-conflict"
+    ],
+    "aliases": [
+      "fast-forward 병합",
+      "squash 병합",
+      "병합 커밋",
+      "merge commit",
+      "squash and merge",
+      "git merge --squash"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging",
+      "https://git-scm.com/docs/git-merge",
+      "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/about-pull-request-merges",
+      "https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History"
+    ]
+  },
+  {
     "id": "dev.test.integration",
     "title": "통합 테스트",
     "en": "Integration Test",
@@ -477,6 +511,56 @@
     "refs": [
       "https://semver.org/",
       "https://git-scm.com/book/en/v2/Git-Basics-Tagging"
+    ]
+  },
+  {
+    "id": "dev.git.rm-cached",
+    "title": "git rm --cached로 추적 해제",
+    "en": "Untracking Files with git rm --cached",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Git",
+    "summary": "이미 추적 중인 파일을 디스크에 남긴 채 Git 추적에서만 빼는 명령으로, 앞서 커밋된 기록까지 지우지는 않는다.",
+    "related": [
+      "dev.git.gitignore",
+      "be.security.secrets-handling"
+    ],
+    "aliases": [
+      "git rm --cached",
+      "추적 해제",
+      "untrack file",
+      "gitignore가 안 먹힘"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository",
+      "https://git-scm.com/docs/git-rm",
+      "https://docs.github.com/en/get-started/git-basics/ignoring-files",
+      "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository"
+    ]
+  },
+  {
+    "id": "dev.git.cherry-pick",
+    "title": "git cherry-pick",
+    "en": "git cherry-pick",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Git",
+    "summary": "다른 브랜치의 특정 커밋이 만든 변경만 현재 브랜치에 새 커밋으로 다시 적용하는 명령으로, 원래 커밋과 해시가 달라진다.",
+    "related": [
+      "dev.git.merge-methods",
+      "dev.git.merge-conflict"
+    ],
+    "aliases": [
+      "체리픽",
+      "cherry-pick",
+      "cherry pick",
+      "커밋 하나만 가져오기"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Distributed-Git-Maintaining-a-Project",
+      "https://git-scm.com/docs/git-cherry-pick"
     ]
   },
   {
@@ -793,6 +877,44 @@
     ]
   },
   {
+    "id": "dev.robust.crash-consistency",
+    "title": "크래시 일관성: 쓰기 순서와 커밋 지점",
+    "en": "Crash Consistency: Write Ordering and the Commit Point",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "견고한 스크립트",
+    "summary": "전원이 꺼져도 파일이 이전 또는 이후 상태로만 남도록 쓰기 순서와 동기화를 짜는 원리와 손상 장애의 원인을 분석한다.",
+    "objectives": [
+      "커밋 지점을 원자적 동작 하나에 두고 그 앞뒤 쓰기를 동기화로 순서 짓는 구조를 롤백 저널의 절차로 설명할 수 있다",
+      "동기화 실패나 쓰기 순서 뒤바뀜이 내구성 손실로 끝나는 경우와 파일 손상으로 번지는 경우를 구분해 장애 원인을 찾을 수 있다",
+      "롤백 저널·WAL·임시 파일 교체를 쓰기 횟수, 동기화 횟수, 복구 비용으로 비교해 고를 수 있다",
+      "크래시 뒤에 남은 저널을 보고 커밋 여부를 판단하고 지우면 안 되는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.robust.atomic-replace"
+    ],
+    "related": [
+      "db.internals.wal-replication",
+      "dev.robust.fsync",
+      "dev.robust.resumable-batch"
+    ],
+    "aliases": [
+      "crash consistency",
+      "크래시 안전",
+      "commit point",
+      "롤백 저널",
+      "rollback journal"
+    ],
+    "refs": [
+      "https://www.sqlite.org/atomiccommit.html",
+      "https://www.sqlite.org/howtocorrupt.html",
+      "https://www.sqlite.org/wal.html",
+      "https://man7.org/linux/man-pages/man2/fsync.2.html",
+      "https://docs.python.org/3/library/os.html#os.replace"
+    ]
+  },
+  {
     "id": "dev.git.reflog",
     "title": "reflog",
     "en": "Reflog",
@@ -862,6 +984,30 @@
     ],
     "refs": [
       "https://git-scm.com/book/en/v2/Git-Internals-Maintenance-and-Data-Recovery"
+    ]
+  },
+  {
+    "id": "dev.robust.directory-fsync",
+    "title": "디렉터리 fsync",
+    "en": "Directory fsync",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "견고한 스크립트",
+    "summary": "파일의 fsync만으로는 디렉터리 항목이 디스크에 남는다는 보장이 없어, 만들거나 교체한 이름까지 남기려고 폴더도 동기화하는 일이다.",
+    "parent": "dev.robust.crash-consistency",
+    "related": [
+      "dev.robust.fsync"
+    ],
+    "aliases": [
+      "directory fsync",
+      "디렉터리 동기화",
+      "폴더 fsync",
+      "rename 내구성"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man2/fsync.2.html",
+      "https://www.sqlite.org/atomiccommit.html"
     ]
   }
 ]
