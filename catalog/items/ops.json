@@ -297,7 +297,8 @@
       "nginx.conf",
       "proxy_pass",
       "nginx reload",
-      "nginx 정적 파일"
+      "nginx 정적 파일",
+      "nginx"
     ],
     "refs": [
       "https://nginx.org/en/docs/beginners_guide.html"
@@ -588,7 +589,6 @@
       "ops.deploy.first-deploy"
     ],
     "related": [
-      "ops.deploy.rolling-update",
       "ops.deploy.zero-downtime",
       "be.error.health-check",
       "ops.observe.container-healthcheck"
@@ -749,12 +749,14 @@
     "importance": 3,
     "group": "배포 전략",
     "summary": "전부 내리고 다시 올리는 Recreate와 달리 인스턴스를 조금씩 새 버전으로 바꿔, 옛 버전과 새 버전이 잠시 함께 돌며 배포 중에도 응답을 이어 가는 배포 방식이다.",
+    "parent": "ops.deploy.rollout-basics",
     "related": [
       "ops.deploy.zero-downtime"
     ],
     "aliases": [
       "RollingUpdate",
-      "Recreate 전략"
+      "Recreate 전략",
+      "롤링 배포"
     ],
     "refs": [
       "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
@@ -809,7 +811,6 @@
       "Prometheus",
       "p95",
       "p99",
-      "SLO",
       "RED 지표"
     ],
     "refs": [
@@ -840,8 +841,6 @@
       "OpenTelemetry",
       "트레이싱",
       "tracing",
-      "스팬",
-      "span",
       "Jaeger"
     ],
     "refs": [
@@ -864,11 +863,14 @@
       "배포 중 트래픽을 빼는 순서를 설계해 요청이 끊기지 않게 할 수 있다"
     ],
     "prerequisites": [
-      "ops.deploy.first-deploy"
+      "ops.deploy.first-deploy",
+      "ops.deploy.rollout-basics"
+    ],
+    "related": [
+      "db.internals.online-schema-change"
     ],
     "aliases": [
       "무중단 배포",
-      "롤링 배포",
       "블루그린",
       "카나리 배포",
       "connection draining",
@@ -1150,6 +1152,9 @@
     "objectives": [
       "네임스페이스와 cgroup이 나누는 것을 설명할 수 있다",
       "메모리 제한으로 프로세스가 죽는 장애를 분석할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.container.resource-limits"
     ],
     "aliases": [
       "cgroup",

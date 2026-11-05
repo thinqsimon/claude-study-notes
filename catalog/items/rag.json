@@ -418,7 +418,9 @@
       "vector database",
       "pgvector",
       "청킹",
-      "chunking"
+      "chunking",
+      "벡터 검색",
+      "vector search"
     ],
     "refs": [
       "https://github.com/pgvector/pgvector"

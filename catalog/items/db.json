@@ -657,7 +657,8 @@
       "alembic revision --autogenerate",
       "--autogenerate",
       "target_metadata",
-      "마이그레이션 자동 생성"
+      "마이그레이션 자동 생성",
+      "Alembic 자동 생성"
     ],
     "refs": [
       "https://alembic.sqlalchemy.org/en/latest/autogenerate.html"
@@ -809,7 +810,8 @@
       "db.postgres.first-run",
       "db.sql.write-rows",
       "db.internals.transaction-basics",
-      "db.orm.sqlalchemy-basics"
+      "db.orm.sqlalchemy-basics",
+      "db.orm.alembic-basics"
     ],
     "related": [
       "ops.deploy.zero-downtime",
@@ -821,7 +823,6 @@
       "zero-downtime migration",
       "무중단 스키마 변경",
       "온라인 스키마 변경",
-      "Alembic 자동 생성",
       "VALIDATE CONSTRAINT"
     ],
     "refs": [

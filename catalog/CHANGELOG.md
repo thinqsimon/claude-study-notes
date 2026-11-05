@@ -1,5 +1,11 @@
 # 개념사전 변경 내역
 
+## 0.10.1
+
+- 기존 항목을 정리했다. 새 입문 주제를 선수로 이어 사다리를 잇고(`fe.next.server-data-fetching`, `fe.next.streaming-suspense`, `ops.deploy.zero-downtime`, `ops.container.isolation`, `db.internals.online-schema-change`, `mlops.eval.first-eval`, `dev.robust.atomic-replace`, `dev.robust.resumable-batch`), `ops.deploy.rolling-update`에 부모를 달았다.
+- 겹치거나 넓은 별칭을 옮기거나 뺐다(`nginx`, `few-shot`, `Alembic 자동 생성`, `롤링 배포`, `SLO`, `span`, `학습률`, `와이어프레임`, `미세 조정`). `벡터 검색`을 `rag.vector-db.basics`에 더했다.
+- 옮겨 간 자료 링크 2개를 고쳤고(`be.error.health-check`, `llm.api.first-call`), `ml.supervised.linear-regression`의 목표에 하이퍼파라미터를 넣었다.
+
 ## 0.10.0
 
 - dic-maker로 3단계에 주제 8개, 용어 17개를 더했다

@@ -813,7 +813,8 @@
     ],
     "prerequisites": [
       "dev.basics.files-paths",
-      "dev.basics.how-program-runs"
+      "dev.basics.how-program-runs",
+      "dev.robust.report-failure"
     ],
     "related": [
       "be.arch.transaction-boundary",
@@ -850,7 +851,8 @@
     ],
     "prerequisites": [
       "dev.basics.files-paths",
-      "be.rest.method-semantics"
+      "be.rest.method-semantics",
+      "dev.robust.report-failure"
     ],
     "related": [
       "dev.robust.atomic-replace",

@@ -5181,7 +5181,7 @@
       "readiness"
     ],
     "refs": [
-      "https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/"
+      "https://kubernetes.io/docs/concepts/workloads/pods/probes/"
     ]
   },
   {
@@ -5842,7 +5842,6 @@
       "리버스 프록시",
       "X-Forwarded-For",
       "root_path",
-      "nginx",
       "reverse proxy"
     ],
     "refs": [

@@ -298,7 +298,7 @@
       "init_chat_model"
     ],
     "refs": [
-      "https://platform.openai.com/docs/guides/text",
+      "https://developers.openai.com/api/docs/guides/text",
       "https://platform.claude.com/docs/en/get-started",
       "https://docs.langchain.com/oss/python/langchain/models"
     ],
@@ -324,7 +324,6 @@
     "aliases": [
       "프롬프트 작성",
       "프롬프트 엔지니어링",
-      "few-shot",
       "시스템 프롬프트"
     ],
     "refs": [
@@ -708,7 +707,8 @@
       "퓨샷",
       "multishot",
       "few-shot 예시",
-      "예시 기반 프롬프트"
+      "예시 기반 프롬프트",
+      "few-shot"
     ],
     "refs": [
       "https://developers.openai.com/api/docs/guides/prompt-engineering",

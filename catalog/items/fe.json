@@ -875,7 +875,8 @@
     ],
     "prerequisites": [
       "fe.internals.server-client-boundary",
-      "fe.next.first-page"
+      "fe.next.first-page",
+      "fe.next.server-data-fetching"
     ],
     "related": [
       "fe.internals.server-components",
@@ -914,7 +915,8 @@
     "prerequisites": [
       "fe.internals.server-client-boundary",
       "fe.next.first-page",
-      "fe.js.fetch-first"
+      "fe.js.fetch-first",
+      "fe.next.async-server-data"
     ],
     "related": [
       "fe.next.streaming-suspense",

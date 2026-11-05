@@ -249,7 +249,8 @@
       "결과 화면에서 어느 질문이 왜 틀렸는지 찾아볼 수 있다"
     ],
     "prerequisites": [
-      "llm.api.first-call"
+      "llm.api.first-call",
+      "mlops.eval.why-evaluate"
     ],
     "related": [
       "mlops.eval.llm-regression",
@@ -964,7 +965,7 @@
     "aliases": [
       "파인튜닝",
       "fine-tuning",
-      "미세 조정"
+      "모델 미세 조정"
     ],
     "refs": [
       "https://developers.openai.com/api/docs/guides/model-optimization"
