@@ -545,6 +545,72 @@
     ]
   },
   {
+    "id": "fe.next.async-server-data",
+    "title": "async 서버 컴포넌트로 데이터 보여 주기",
+    "en": "Showing Data with an Async Server Component",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "Next.js",
+    "summary": "Next.js 페이지를 async 함수로 만들어 서버에서 받은 데이터를 목록으로 그리고, 요청이 실패했을 때의 화면까지 갖춘다.",
+    "objectives": [
+      "페이지 컴포넌트를 async 함수로 바꿔 await한 fetch 결과를 목록으로 그릴 수 있다",
+      "res.ok를 확인해 요청이 실패하면 오류 문구를 대신 보여 줄 수 있다",
+      "같은 요청을 서버 컴포넌트에서 보낼 때와 브라우저에서 보낼 때 비밀값 노출이 어떻게 다른지 말할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.next.first-page",
+      "fe.js.fetch-first"
+    ],
+    "related": [
+      "fe.react.use-effect",
+      "fe.next.server-data-fetching",
+      "fe.internals.server-client-boundary"
+    ],
+    "aliases": [
+      "async 서버 컴포넌트",
+      "async server component",
+      "async 페이지 컴포넌트",
+      "서버 컴포넌트 fetch"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/getting-started/fetching-data",
+      "https://nextjs.org/docs/app/getting-started/error-handling",
+      "https://nextjs.org/docs/app/getting-started/server-and-client-components"
+    ]
+  },
+  {
+    "id": "fe.ts.union-narrowing",
+    "title": "유니언 타입과 타입 좁히기",
+    "en": "Union Types and Narrowing",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "TypeScript",
+    "summary": "값이 여러 타입 중 하나일 때 유니언으로 적고, typeof·in 같은 검사로 분기마다 타입을 좁혀 안전하게 쓴다.",
+    "objectives": [
+      "string | number 같은 유니언과 \"left\" | \"right\" 같은 리터럴 유니언을 매개변수 타입으로 쓸 수 있다",
+      "typeof·in·instanceof 검사로 타입을 좁혀 분기마다 맞는 메서드를 호출할 수 있다",
+      "선택 속성에서 나는 possibly undefined 오류를 확인 코드나 옵셔널 체이닝으로 고칠 수 있다",
+      "참·거짓 검사가 0과 빈 문자열까지 걸러 내는 실수를 찾아 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "fe.ts.first-types"
+    ],
+    "aliases": [
+      "TS 유니언 타입",
+      "TypeScript union type",
+      "타입 좁히기",
+      "type narrowing",
+      "타입 가드",
+      "type guard"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
+      "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html"
+    ]
+  },
+  {
     "id": "fe.internals.render-and-commit",
     "title": "React 렌더링 과정: 트리거·렌더·커밋",
     "en": "React Rendering: Trigger, Render, Commit",
@@ -639,6 +705,29 @@
     ]
   },
   {
+    "id": "fe.react.lifting-state",
+    "title": "상태 끌어올리기",
+    "en": "Lifting State Up",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "React",
+    "summary": "두 컴포넌트가 함께 쓰는 state를 가장 가까운 공통 부모로 옮기고, 값과 변경 핸들러를 props로 내려 주는 방법이다.",
+    "prerequisites": [
+      "fe.react.state-first"
+    ],
+    "aliases": [
+      "state 끌어올리기",
+      "lift state up",
+      "state lifting",
+      "공통 부모로 state 옮기기",
+      "컴포넌트 간 state 공유"
+    ],
+    "refs": [
+      "https://react.dev/learn/sharing-state-between-components"
+    ]
+  },
+  {
     "id": "fe.internals.rerender",
     "title": "리렌더링",
     "en": "Re-render",
@@ -654,6 +743,50 @@
       "다시 렌더링",
       "리렌더",
       "state 갱신 렌더"
+    ]
+  },
+  {
+    "id": "fe.ts.discriminated-union",
+    "title": "판별 유니언",
+    "en": "Discriminated Union",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "TypeScript",
+    "summary": "kind처럼 리터럴 타입을 가진 공통 속성으로 유니언의 어느 쪽인지 가려, switch 분기마다 타입이 좁혀지게 하는 패턴이다.",
+    "parent": "fe.ts.union-narrowing",
+    "aliases": [
+      "구별된 유니언",
+      "태그된 유니언",
+      "tagged union",
+      "판별 속성",
+      "discriminant 속성"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/2/narrowing.html#discriminated-unions"
+    ]
+  },
+  {
+    "id": "fe.ts.generics",
+    "title": "TypeScript 제네릭",
+    "en": "TypeScript Generics",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "TypeScript",
+    "summary": "타입 자리를 매개변수로 비워 두었다가 호출할 때 정해, any 없이 여러 타입에 쓰는 함수와 타입을 만드는 문법이다.",
+    "prerequisites": [
+      "fe.ts.first-types"
+    ],
+    "aliases": [
+      "TS 제네릭",
+      "TS 제네릭 함수",
+      "TypeScript generic function",
+      "TS 타입 매개변수",
+      "TS 제네릭 제약"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/2/generics.html"
     ]
   },
   {

@@ -1,5 +1,5 @@
 {
- "version": "0.9.0",
+ "version": "0.10.0",
  "domains": [
   {
    "prefix": "dev",
@@ -721,6 +721,87 @@
    "domain": "dev"
   },
   {
+   "id": "dev.robust.report-failure",
+   "title": "실패를 알리는 스크립트: 종료 코드와 오류 처리",
+   "en": "Scripts That Report Failure: Exit Codes and Error Handling",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "견고한 스크립트",
+   "summary": "스크립트가 실패하면 조용히 넘어가지 않고 종료 코드와 오류 메시지로 알려, 다음 단계가 망가진 결과로 이어 가지 않게 하는 기본기다.",
+   "objectives": [
+    "sys.exit로 성공과 실패를 다른 종료 코드로 돌려주고 셸에서 $?로 확인할 수 있다",
+    "오류 메시지를 stderr로 내보내 결과 출력과 섞이지 않게 할 수 있다",
+    "except에서 오류를 삼켜 실패한 작업이 성공처럼 끝나는 실수를 찾아 고칠 수 있다",
+    "셸 스크립트에 set -e와 pipefail을 켜서 실패한 명령 뒤로 넘어가지 않게 할 수 있다"
+   ],
+   "prerequisites": [
+    "be.python.exceptions",
+    "ops.linux.shell-script-basics"
+   ],
+   "related": [
+    "ops.linux.stdout-stderr-redirection",
+    "dev.robust.atomic-replace",
+    "dev.robust.resumable-batch",
+    "be.error.handling-design"
+   ],
+   "aliases": [
+    "스크립트 오류 처리",
+    "스크립트 실패 처리",
+    "오류 삼키기",
+    "sys.stderr"
+   ],
+   "refs": [
+    "https://docs.python.org/3/tutorial/errors.html",
+    "https://docs.python.org/3/tutorial/stdlib.html",
+    "https://docs.python.org/3/library/sys.html#sys.exit",
+    "https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.fork-duplicate",
+   "title": "GitHub 포크와 저장소 미러 복제",
+   "en": "Forking and Duplicating a GitHub Repository",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "원본에 기여하려고 연결된 사본을 만드는 포크와, 연결을 끊고 저장소를 통째로 옮기는 미러 푸시 복제의 차이를 알고 고른다.",
+   "objectives": [
+    "쓰기 권한이 없는 저장소를 포크해 토픽 브랜치를 올리고 원본으로 풀 리퀘스트를 열 수 있다",
+    "포크에 원본의 새 커밋을 받아 와 맞출 수 있다",
+    "브랜치·git clone·포크·미러 복제의 차이를 구분해 상황에 맞게 고를 수 있다",
+    "git clone --bare와 git push --mirror로 저장소를 옮기고, --mirror가 대상의 참조를 덮어쓰고 지운다는 점을 알고 대상을 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.remotes",
+    "dev.git.branch-pr"
+   ],
+   "related": [
+    "dev.git.clone"
+   ],
+   "aliases": [
+    "저장소 포크",
+    "GitHub fork",
+    "git push --mirror",
+    "미러 푸시",
+    "git clone --bare",
+    "포크 뜨기",
+    "포크 동기화",
+    "sync fork"
+   ],
+   "refs": [
+    "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks",
+    "https://docs.github.com/en/repositories/creating-and-managing-repositories/duplicating-a-repository",
+    "https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project",
+    "https://git-scm.com/docs/git-push",
+    "https://git-scm.com/docs/git-clone",
+    "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.test.integration",
    "title": "통합 테스트",
    "en": "Integration Test",
@@ -812,6 +893,107 @@
    "refs": [
     "https://git-scm.com/book/en/v2/Distributed-Git-Maintaining-a-Project",
     "https://git-scm.com/docs/git-cherry-pick"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.branch-protection",
+   "title": "브랜치 보호 규칙",
+   "en": "Branch Protection Rule",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "GitHub에서 중요한 브랜치에 리뷰와 상태 검사 통과 같은 병합 조건을 걸고 강제 푸시와 삭제를 막는 저장소 설정으로, 무료 요금제에서는 공개 저장소에만 쓸 수 있다.",
+   "prerequisites": [
+    "dev.git.branch-pr"
+   ],
+   "related": [
+    "dev.git.merge-methods"
+   ],
+   "aliases": [
+    "보호 브랜치",
+    "protected branch",
+    "branch protection",
+    "main 브랜치 보호",
+    "필수 상태 검사",
+    "required status check"
+   ],
+   "refs": [
+    "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-05",
+   "domain": "dev"
+  },
+  {
+   "id": "dev.robust.exit-code",
+   "title": "종료 코드",
+   "en": "Exit Code",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "견고한 스크립트",
+   "summary": "프로그램이 끝나며 돌려주는 숫자로, 0은 성공이고 그 밖의 값은 실패를 뜻해 다음 명령이 결과를 판단하는 근거가 된다.",
+   "parent": "dev.robust.report-failure",
+   "related": [
+    "ops.container.oom-killed",
+    "ax.coding.hook-decision"
+   ],
+   "aliases": [
+    "exit code",
+    "exit status",
+    "종료 상태",
+    "sys.exit"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/sys.html#sys.exit",
+    "https://www.gnu.org/software/bash/manual/html_node/Exit-Status.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.robust.set-errexit",
+   "title": "셸의 set -e와 pipefail",
+   "en": "Shell set -e and pipefail",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "견고한 스크립트",
+   "summary": "명령이 실패하면 셸 스크립트를 바로 멈추는 설정으로, if 조건 안의 실패는 멈추지 않고 파이프 중간의 실패는 pipefail을 더해야 잡힌다.",
+   "parent": "dev.robust.report-failure",
+   "aliases": [
+    "set -e",
+    "set -euo pipefail",
+    "pipefail",
+    "errexit"
+   ],
+   "refs": [
+    "https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.upstream-remote",
+   "title": "업스트림 원격",
+   "en": "Upstream Remote",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "Git",
+   "summary": "포크의 원본 저장소를 가리키도록 따로 등록한 원격으로, 원본의 새 커밋을 내 포크로 받아 올 때 쓴다.",
+   "parent": "dev.git.fork-duplicate",
+   "related": [
+    "dev.git.origin"
+   ],
+   "aliases": [
+    "upstream 원격",
+    "git remote add upstream",
+    "git fetch upstream"
+   ],
+   "refs": [
+    "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork",
+    "https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project"
    ],
    "domain": "dev"
   },
@@ -12355,6 +12537,74 @@
    "domain": "fe"
   },
   {
+   "id": "fe.next.async-server-data",
+   "title": "async 서버 컴포넌트로 데이터 보여 주기",
+   "en": "Showing Data with an Async Server Component",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "Next.js",
+   "summary": "Next.js 페이지를 async 함수로 만들어 서버에서 받은 데이터를 목록으로 그리고, 요청이 실패했을 때의 화면까지 갖춘다.",
+   "objectives": [
+    "페이지 컴포넌트를 async 함수로 바꿔 await한 fetch 결과를 목록으로 그릴 수 있다",
+    "res.ok를 확인해 요청이 실패하면 오류 문구를 대신 보여 줄 수 있다",
+    "같은 요청을 서버 컴포넌트에서 보낼 때와 브라우저에서 보낼 때 비밀값 노출이 어떻게 다른지 말할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.next.first-page",
+    "fe.js.fetch-first"
+   ],
+   "related": [
+    "fe.react.use-effect",
+    "fe.next.server-data-fetching",
+    "fe.internals.server-client-boundary"
+   ],
+   "aliases": [
+    "async 서버 컴포넌트",
+    "async server component",
+    "async 페이지 컴포넌트",
+    "서버 컴포넌트 fetch"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/getting-started/fetching-data",
+    "https://nextjs.org/docs/app/getting-started/error-handling",
+    "https://nextjs.org/docs/app/getting-started/server-and-client-components"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.ts.union-narrowing",
+   "title": "유니언 타입과 타입 좁히기",
+   "en": "Union Types and Narrowing",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "TypeScript",
+   "summary": "값이 여러 타입 중 하나일 때 유니언으로 적고, typeof·in 같은 검사로 분기마다 타입을 좁혀 안전하게 쓴다.",
+   "objectives": [
+    "string | number 같은 유니언과 \"left\" | \"right\" 같은 리터럴 유니언을 매개변수 타입으로 쓸 수 있다",
+    "typeof·in·instanceof 검사로 타입을 좁혀 분기마다 맞는 메서드를 호출할 수 있다",
+    "선택 속성에서 나는 possibly undefined 오류를 확인 코드나 옵셔널 체이닝으로 고칠 수 있다",
+    "참·거짓 검사가 0과 빈 문자열까지 걸러 내는 실수를 찾아 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "fe.ts.first-types"
+   ],
+   "aliases": [
+    "TS 유니언 타입",
+    "TypeScript union type",
+    "타입 좁히기",
+    "type narrowing",
+    "타입 가드",
+    "type guard"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
+    "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.internals.render-and-commit",
    "title": "React 렌더링 과정: 트리거·렌더·커밋",
    "en": "React Rendering: Trigger, Render, Commit",
@@ -12453,6 +12703,30 @@
    "domain": "fe"
   },
   {
+   "id": "fe.react.lifting-state",
+   "title": "상태 끌어올리기",
+   "en": "Lifting State Up",
+   "kind": "term",
+   "level": 3,
+   "importance": 1,
+   "group": "React",
+   "summary": "두 컴포넌트가 함께 쓰는 state를 가장 가까운 공통 부모로 옮기고, 값과 변경 핸들러를 props로 내려 주는 방법이다.",
+   "prerequisites": [
+    "fe.react.state-first"
+   ],
+   "aliases": [
+    "state 끌어올리기",
+    "lift state up",
+    "state lifting",
+    "공통 부모로 state 옮기기",
+    "컴포넌트 간 state 공유"
+   ],
+   "refs": [
+    "https://react.dev/learn/sharing-state-between-components"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.internals.rerender",
    "title": "리렌더링",
    "en": "Re-render",
@@ -12468,6 +12742,52 @@
     "다시 렌더링",
     "리렌더",
     "state 갱신 렌더"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.ts.discriminated-union",
+   "title": "판별 유니언",
+   "en": "Discriminated Union",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "TypeScript",
+   "summary": "kind처럼 리터럴 타입을 가진 공통 속성으로 유니언의 어느 쪽인지 가려, switch 분기마다 타입이 좁혀지게 하는 패턴이다.",
+   "parent": "fe.ts.union-narrowing",
+   "aliases": [
+    "구별된 유니언",
+    "태그된 유니언",
+    "tagged union",
+    "판별 속성",
+    "discriminant 속성"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/docs/handbook/2/narrowing.html#discriminated-unions"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.ts.generics",
+   "title": "TypeScript 제네릭",
+   "en": "TypeScript Generics",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "TypeScript",
+   "summary": "타입 자리를 매개변수로 비워 두었다가 호출할 때 정해, any 없이 여러 타입에 쓰는 함수와 타입을 만드는 문법이다.",
+   "prerequisites": [
+    "fe.ts.first-types"
+   ],
+   "aliases": [
+    "TS 제네릭",
+    "TS 제네릭 함수",
+    "TypeScript generic function",
+    "TS 타입 매개변수",
+    "TS 제네릭 제약"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/docs/handbook/2/generics.html"
    ],
    "domain": "fe"
   },
@@ -15814,6 +16134,45 @@
    "domain": "ax"
   },
   {
+   "id": "ax.coding.review-ai-code",
+   "title": "AI가 쓴 코드 검토하기: 확인 명령과 AI 특유의 함정",
+   "en": "Reviewing AI-Generated Code",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "AI 네이티브 개발",
+   "summary": "에이전트가 끝났다고 해도 테스트와 정적 분석 결과를 먼저 보고, 없는 API·건너뛴 테스트·새 패키지 같은 AI 특유의 실수를 찾아 고치는 검토 순서다.",
+   "objectives": [
+    "에이전트에게 통과·실패로 답하는 확인 명령을 주고 실행한 명령과 출력을 근거로 받아 볼 수 있다",
+    "변경 내용에서 없는 API, 무시된 제약 조건, 지워지거나 건너뛴 테스트를 찾아낼 수 있다",
+    "변경 내용에서 새로 들어온 패키지를 찾아 유지 상태와 라이선스를 확인할 수 있다",
+    "고치는 품이 다시 쓰는 품보다 큰 결과물을 받지 않고 다시 시킬 수 있다"
+   ],
+   "prerequisites": [
+    "ax.basics.verify-ai-output",
+    "ax.coding.agent-first",
+    "be.test.pytest-first"
+   ],
+   "related": [
+    "ax.security.misinformation",
+    "ax.security.hallucinated-package",
+    "dev.test.tdd",
+    "be.security.supply-chain"
+   ],
+   "aliases": [
+    "AI 코드 리뷰",
+    "AI 생성 코드 검토",
+    "AI 코드 검증",
+    "AI-generated code review",
+    "에이전트 결과 검토"
+   ],
+   "refs": [
+    "https://docs.github.com/en/copilot/tutorials/review-ai-generated-code",
+    "https://code.claude.com/docs/en/best-practices"
+   ],
+   "domain": "ax"
+  },
+  {
    "id": "ax.coding.skills",
    "title": "반복 작업을 스킬로 만들기: SKILL.md",
    "en": "Packaging Repeated Work as Skills (SKILL.md)",
@@ -15952,6 +16311,99 @@
     "데이터 마스킹",
     "리댁션"
    ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.test-tampering",
+   "title": "실패한 테스트 지우기·건너뛰기",
+   "en": "Deleting or Skipping Failing Tests",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "AI가 코드를 고치는 대신 실패하는 테스트를 없애거나 건너뛰게 바꿔 초록불만 만드는 실수로, 테스트 파일의 변경 내용을 보면 잡아낼 수 있다.",
+   "prerequisites": [
+    "ax.basics.verify-ai-output"
+   ],
+   "parent": "ax.coding.review-ai-code",
+   "related": [
+    "dev.test.unit"
+   ],
+   "aliases": [
+    "AI 테스트 삭제",
+    "실패 테스트 삭제",
+    "실패 테스트 건너뛰기",
+    "테스트 우회",
+    "deleted failing test"
+   ],
+   "refs": [
+    "https://docs.github.com/en/copilot/tutorials/review-ai-generated-code"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.agent-token-usage",
+   "title": "Claude Code 사용량 확인과 줄이기(/usage·/clear)",
+   "en": "Tracking and Reducing Claude Code Token Usage",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "Claude Code는 요청마다 대화 전체를 보내므로 /usage로 쓴 양을 보고 관계없는 일로 넘어갈 때 /clear로 비우면 토큰 사용량이 준다.",
+   "prerequisites": [
+    "llm.basics.token-context",
+    "ax.coding.agent-first"
+   ],
+   "related": [
+    "llm.internals.compaction",
+    "llm.internals.prompt-caching",
+    "llm.api.multi-turn"
+   ],
+   "aliases": [
+    "/usage",
+    "/clear",
+    "Claude Code 비용",
+    "코딩 에이전트 비용",
+    "에이전트 토큰 사용량"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/costs"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-05",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.ai-disclosure-labelling",
+   "title": "AI 고지와 생성물 표시 의무",
+   "en": "AI Disclosure and Content Labelling Obligations",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "이용자에게 AI를 쓰는 서비스임을 알리고 AI 생성물에 표시를 남기라는 투명성 의무로, EU AI법 제50조와 한국 AI 기본법이 정한다.",
+   "prerequisites": [
+    "ax.governance.trustworthy-ai"
+   ],
+   "related": [
+    "ax.governance.ai-risk",
+    "ax.security.misinformation"
+   ],
+   "aliases": [
+    "AI 생성물 표시",
+    "AI 고지 의무",
+    "AI 투명성 의무",
+    "딥페이크 라벨링",
+    "AI Act Article 50",
+    "AI content labelling"
+   ],
+   "refs": [
+    "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-50",
+    "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148958380"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-05",
    "domain": "ax"
   },
   {
@@ -16981,6 +17433,86 @@
    "domain": "ops"
   },
   {
+   "id": "ops.ci.environment-secrets",
+   "title": "GitHub Environments와 환경별 시크릿",
+   "en": "GitHub Environments and Environment Secrets",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "CI/CD",
+   "summary": "스테이징·프로덕션처럼 배포 대상을 환경으로 나눠 시크릿을 따로 두고, 잡이 그 환경을 지정할 때만 값을 읽게 하는 방법으로, 무료 요금제에서는 공개 저장소에만 쓸 수 있다.",
+   "objectives": [
+    "잡에 environment를 지정해 스테이징과 프로덕션 배포가 서로 다른 시크릿을 쓰게 할 수 있다",
+    "같은 이름의 시크릿이 조직·저장소·환경에 함께 있을 때 어느 값이 쓰이는지 가릴 수 있다",
+    "민감한 값은 secrets에, 민감하지 않은 설정은 vars에 나눠 넣을 수 있다",
+    "포크에서 시작한 워크플로에 시크릿이 오지 않거나 없는 시크릿이 빈 문자열이 되는 실패의 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "ops.deploy.first-deploy",
+    "be.security.secrets-handling"
+   ],
+   "related": [
+    "ops.ci.github-actions-workflow",
+    "be.security.env-file"
+   ],
+   "aliases": [
+    "GitHub 환경",
+    "환경별 시크릿",
+    "environment secrets",
+    "GitHub deployment environment",
+    "secrets 컨텍스트"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/concepts/workflows-and-actions/deployment-environments",
+    "https://docs.github.com/en/actions/concepts/security/secrets",
+    "https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets",
+    "https://docs.github.com/en/actions/reference/security/secrets",
+    "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-05",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.deploy.rollout-basics",
+   "title": "배포 방식 입문: Recreate·롤링과 되돌리기",
+   "en": "Deployment Rollouts and Rollbacks",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "배포 전략",
+   "summary": "새 버전을 올리는 동안 옛 버전을 어떻게 두는지에 따른 Recreate와 롤링의 차이를 알고, 잘못된 배포를 이전 버전으로 되돌린다.",
+   "objectives": [
+    "Recreate와 롤링 업데이트가 배포 중 서비스 중단에서 어떻게 다른지 구분할 수 있다",
+    "헬스 체크 경로를 설정해 새 인스턴스가 실패하면 이전 버전이 계속 서비스되게 할 수 있다",
+    "잘못 나간 배포를 호스팅 서비스에서 이전 배포로 되돌리고 꺼진 자동 배포를 다시 켤 수 있다",
+    "디스크 데이터처럼 되돌려도 돌아오지 않는 것을 문서에서 찾아 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.deploy.first-deploy"
+   ],
+   "related": [
+    "ops.deploy.rolling-update",
+    "ops.deploy.zero-downtime",
+    "be.error.health-check",
+    "ops.observe.container-healthcheck"
+   ],
+   "aliases": [
+    "배포 방식",
+    "배포 전략 입문",
+    "배포 롤아웃",
+    "deployment rollout"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/",
+    "https://render.com/docs/deploys",
+    "https://render.com/docs/rollbacks",
+    "https://vercel.com/docs/instant-rollback",
+    "https://render.com/docs/health-checks"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.docker.compose",
    "title": "Docker Compose",
    "en": "Docker Compose",
@@ -17035,6 +17567,90 @@
    "domain": "ops"
   },
   {
+   "id": "ops.deploy.deploy-rollback",
+   "title": "배포 롤백",
+   "en": "Deployment Rollback",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "배포 전략",
+   "summary": "잘못 나간 새 버전을 고치기 전에 남아 있는 이전 배포 결과물로 서비스를 되돌려 장애부터 멈추는 조치다.",
+   "parent": "ops.deploy.rollout-basics",
+   "related": [
+    "ops.deploy.rolling-update",
+    "db.internals.transaction-basics"
+   ],
+   "aliases": [
+    "배포 되돌리기",
+    "이전 배포로 되돌리기",
+    "Instant Rollback",
+    "kubectl rollout undo"
+   ],
+   "refs": [
+    "https://render.com/docs/rollbacks",
+    "https://vercel.com/docs/instant-rollback",
+    "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-back-a-deployment"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.docker.multi-stage-build",
+   "title": "멀티 스테이지 빌드",
+   "en": "Multi-Stage Build",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Docker",
+   "summary": "Dockerfile에 FROM을 여러 번 써서 빌드 도구는 앞 단계에 두고 실행에 필요한 결과물만 최종 이미지로 옮기는 방식이다.",
+   "prerequisites": [
+    "ops.docker.first-container"
+   ],
+   "related": [
+    "ops.docker.dockerfile",
+    "ops.container.image-layers"
+   ],
+   "aliases": [
+    "멀티스테이지 빌드",
+    "COPY --from",
+    "docker build --target",
+    "Dockerfile 빌드 스테이지"
+   ],
+   "refs": [
+    "https://docs.docker.com/get-started/docker-concepts/building-images/multi-stage-builds/",
+    "https://docs.docker.com/build/building/multi-stage/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.docker.volume",
+   "title": "Docker 볼륨",
+   "en": "Docker Volume",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Docker",
+   "summary": "컨테이너를 지워도 데이터가 남도록 Docker가 관리하는 저장 공간을 컨테이너 경로에 잇는 기능으로, 호스트 폴더를 직접 잇는 바인드 마운트와 다르다.",
+   "prerequisites": [
+    "ops.docker.first-container"
+   ],
+   "related": [
+    "ops.docker.compose",
+    "ops.container.image-layers"
+   ],
+   "aliases": [
+    "도커 볼륨",
+    "named volume",
+    "바인드 마운트",
+    "bind mount",
+    "컨테이너 데이터 유지"
+   ],
+   "refs": [
+    "https://docs.docker.com/get-started/docker-concepts/running-containers/persisting-container-data/",
+    "https://docs.docker.com/engine/storage/volumes/"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.deploy.rolling-update",
    "title": "롤링 업데이트",
    "en": "Rolling Update",
@@ -17053,6 +17669,32 @@
    "refs": [
     "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
    ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.ci.deployment-protection-rules",
+   "title": "배포 보호 규칙",
+   "en": "Deployment Protection Rules",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "CI/CD",
+   "summary": "승인자, 대기 시간, 허용 브랜치 같은 조건을 모두 통과해야 환경을 쓰는 잡이 러너에 배정되게 하는 GitHub Actions의 배포 관문으로, 비공개 저장소에서는 요금제에 따라 쓸 수 있는 규칙이 다르다.",
+   "parent": "ops.ci.environment-secrets",
+   "aliases": [
+    "배포 필수 검토자",
+    "environment required reviewers",
+    "wait timer",
+    "배포 승인",
+    "Review deployments"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/manage-environments",
+    "https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/review-deployments",
+    "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-05",
    "domain": "ops"
   },
   {
@@ -18177,6 +18819,47 @@
    "domain": "ml"
   },
   {
+   "id": "ml.unsupervised.kmeans-clustering",
+   "title": "K-평균 군집화: 정답 없는 데이터 무리 짓기",
+   "en": "K-Means Clustering",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "군집 수 k를 정해 주면 가까운 샘플끼리 k개 무리로 나누는 비지도 학습 방법으로, 특성 척도를 맞추고 k를 비교해 가며 쓴다.",
+   "objectives": [
+    "특성 척도를 맞춘 뒤 KMeans로 데이터를 k개 군집으로 나누고 labels_로 결과를 확인할 수 있다",
+    "predict로 새 샘플이 어느 군집에 드는지 알아낼 수 있다",
+    "후보 k마다 결과를 비교해 데이터에 맞는 군집 수를 고를 수 있다",
+    "이상치·척도 차이·초기값 탓에 군집이 이상하게 나올 때 원인을 찾아 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "ml.supervised.sklearn-first-model",
+    "ml.data.numeric-categorical-preprocessing"
+   ],
+   "related": [
+    "ml.basics.clustering",
+    "ml.data.feature-normalization",
+    "ml.data.outlier"
+   ],
+   "aliases": [
+    "K-means",
+    "k-평균",
+    "KMeans",
+    "k-평균 군집화",
+    "centroid",
+    "군집 중심"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/clustering.html#k-means",
+    "https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html",
+    "https://developers.google.com/machine-learning/clustering/prepare-data",
+    "https://developers.google.com/machine-learning/clustering/kmeans/advantages-disadvantages",
+    "https://scikit-learn.org/stable/auto_examples/cluster/plot_kmeans_silhouette_analysis.html"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.training.learning-rate",
    "title": "학습률",
    "en": "Learning Rate",
@@ -18256,6 +18939,82 @@
    "refs": [
     "https://developers.google.com/machine-learning/crash-course/logistic-regression",
     "https://developers.google.com/machine-learning/crash-course/logistic-regression/sigmoid-function"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.decision-tree",
+   "title": "의사결정나무",
+   "en": "Decision Tree",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "특성을 묻는 if-then-else 규칙을 나무처럼 이어 예측하는 모델로, 규칙을 읽어 볼 수 있지만 깊이를 제한하지 않으면 쉽게 과적합한다.",
+   "prerequisites": [
+    "ml.supervised.sklearn-first-model"
+   ],
+   "related": [
+    "ml.supervised.logistic-regression",
+    "ml.training.overfitting-idea"
+   ],
+   "aliases": [
+    "결정 트리",
+    "의사결정 트리",
+    "결정 나무",
+    "DecisionTreeClassifier",
+    "DecisionTreeRegressor"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/tree.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.training.hyperparameter",
+   "title": "하이퍼파라미터",
+   "en": "Hyperparameter",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "학습률·배치 크기·에폭처럼 학습 전에 사람이 정하는 값으로, 학습 중 모델이 스스로 고치는 가중치·편향 같은 파라미터와 구분한다.",
+   "parent": "ml.supervised.linear-regression",
+   "related": [
+    "ml.training.learning-rate",
+    "ml.training.epoch-batch",
+    "ml.nn.weight-bias",
+    "mlops.track.params-metrics-artifacts"
+   ],
+   "aliases": [
+    "하이퍼 파라미터",
+    "hyperparameters",
+    "파라미터와 하이퍼파라미터"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/linear-regression/hyperparameters"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.unsupervised.silhouette-score",
+   "title": "실루엣 점수",
+   "en": "Silhouette Score",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "샘플이 자기 군집과 이웃 군집 사이에서 얼마나 잘 갈라졌는지 -1에서 1로 재는 값으로, 군집 수 k를 고를 때 후보끼리 비교하는 데 쓴다.",
+   "parent": "ml.unsupervised.kmeans-clustering",
+   "aliases": [
+    "실루엣 분석",
+    "silhouette analysis",
+    "silhouette_score",
+    "실루엣 계수",
+    "silhouette coefficient"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/auto_examples/cluster/plot_kmeans_silhouette_analysis.html"
    ],
    "domain": "ml"
   },

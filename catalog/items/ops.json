@@ -530,6 +530,84 @@
     ]
   },
   {
+    "id": "ops.ci.environment-secrets",
+    "title": "GitHub Environments와 환경별 시크릿",
+    "en": "GitHub Environments and Environment Secrets",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "CI/CD",
+    "summary": "스테이징·프로덕션처럼 배포 대상을 환경으로 나눠 시크릿을 따로 두고, 잡이 그 환경을 지정할 때만 값을 읽게 하는 방법으로, 무료 요금제에서는 공개 저장소에만 쓸 수 있다.",
+    "objectives": [
+      "잡에 environment를 지정해 스테이징과 프로덕션 배포가 서로 다른 시크릿을 쓰게 할 수 있다",
+      "같은 이름의 시크릿이 조직·저장소·환경에 함께 있을 때 어느 값이 쓰이는지 가릴 수 있다",
+      "민감한 값은 secrets에, 민감하지 않은 설정은 vars에 나눠 넣을 수 있다",
+      "포크에서 시작한 워크플로에 시크릿이 오지 않거나 없는 시크릿이 빈 문자열이 되는 실패의 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "ops.deploy.first-deploy",
+      "be.security.secrets-handling"
+    ],
+    "related": [
+      "ops.ci.github-actions-workflow",
+      "be.security.env-file"
+    ],
+    "aliases": [
+      "GitHub 환경",
+      "환경별 시크릿",
+      "environment secrets",
+      "GitHub deployment environment",
+      "secrets 컨텍스트"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/concepts/workflows-and-actions/deployment-environments",
+      "https://docs.github.com/en/actions/concepts/security/secrets",
+      "https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets",
+      "https://docs.github.com/en/actions/reference/security/secrets",
+      "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-05"
+  },
+  {
+    "id": "ops.deploy.rollout-basics",
+    "title": "배포 방식 입문: Recreate·롤링과 되돌리기",
+    "en": "Deployment Rollouts and Rollbacks",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "배포 전략",
+    "summary": "새 버전을 올리는 동안 옛 버전을 어떻게 두는지에 따른 Recreate와 롤링의 차이를 알고, 잘못된 배포를 이전 버전으로 되돌린다.",
+    "objectives": [
+      "Recreate와 롤링 업데이트가 배포 중 서비스 중단에서 어떻게 다른지 구분할 수 있다",
+      "헬스 체크 경로를 설정해 새 인스턴스가 실패하면 이전 버전이 계속 서비스되게 할 수 있다",
+      "잘못 나간 배포를 호스팅 서비스에서 이전 배포로 되돌리고 꺼진 자동 배포를 다시 켤 수 있다",
+      "디스크 데이터처럼 되돌려도 돌아오지 않는 것을 문서에서 찾아 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.deploy.first-deploy"
+    ],
+    "related": [
+      "ops.deploy.rolling-update",
+      "ops.deploy.zero-downtime",
+      "be.error.health-check",
+      "ops.observe.container-healthcheck"
+    ],
+    "aliases": [
+      "배포 방식",
+      "배포 전략 입문",
+      "배포 롤아웃",
+      "deployment rollout"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/",
+      "https://render.com/docs/deploys",
+      "https://render.com/docs/rollbacks",
+      "https://vercel.com/docs/instant-rollback",
+      "https://render.com/docs/health-checks"
+    ]
+  },
+  {
     "id": "ops.docker.compose",
     "title": "Docker Compose",
     "en": "Docker Compose",
@@ -582,6 +660,87 @@
     ]
   },
   {
+    "id": "ops.deploy.deploy-rollback",
+    "title": "배포 롤백",
+    "en": "Deployment Rollback",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "배포 전략",
+    "summary": "잘못 나간 새 버전을 고치기 전에 남아 있는 이전 배포 결과물로 서비스를 되돌려 장애부터 멈추는 조치다.",
+    "parent": "ops.deploy.rollout-basics",
+    "related": [
+      "ops.deploy.rolling-update",
+      "db.internals.transaction-basics"
+    ],
+    "aliases": [
+      "배포 되돌리기",
+      "이전 배포로 되돌리기",
+      "Instant Rollback",
+      "kubectl rollout undo"
+    ],
+    "refs": [
+      "https://render.com/docs/rollbacks",
+      "https://vercel.com/docs/instant-rollback",
+      "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-back-a-deployment"
+    ]
+  },
+  {
+    "id": "ops.docker.multi-stage-build",
+    "title": "멀티 스테이지 빌드",
+    "en": "Multi-Stage Build",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Docker",
+    "summary": "Dockerfile에 FROM을 여러 번 써서 빌드 도구는 앞 단계에 두고 실행에 필요한 결과물만 최종 이미지로 옮기는 방식이다.",
+    "prerequisites": [
+      "ops.docker.first-container"
+    ],
+    "related": [
+      "ops.docker.dockerfile",
+      "ops.container.image-layers"
+    ],
+    "aliases": [
+      "멀티스테이지 빌드",
+      "COPY --from",
+      "docker build --target",
+      "Dockerfile 빌드 스테이지"
+    ],
+    "refs": [
+      "https://docs.docker.com/get-started/docker-concepts/building-images/multi-stage-builds/",
+      "https://docs.docker.com/build/building/multi-stage/"
+    ]
+  },
+  {
+    "id": "ops.docker.volume",
+    "title": "Docker 볼륨",
+    "en": "Docker Volume",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Docker",
+    "summary": "컨테이너를 지워도 데이터가 남도록 Docker가 관리하는 저장 공간을 컨테이너 경로에 잇는 기능으로, 호스트 폴더를 직접 잇는 바인드 마운트와 다르다.",
+    "prerequisites": [
+      "ops.docker.first-container"
+    ],
+    "related": [
+      "ops.docker.compose",
+      "ops.container.image-layers"
+    ],
+    "aliases": [
+      "도커 볼륨",
+      "named volume",
+      "바인드 마운트",
+      "bind mount",
+      "컨테이너 데이터 유지"
+    ],
+    "refs": [
+      "https://docs.docker.com/get-started/docker-concepts/running-containers/persisting-container-data/",
+      "https://docs.docker.com/engine/storage/volumes/"
+    ]
+  },
+  {
     "id": "ops.deploy.rolling-update",
     "title": "롤링 업데이트",
     "en": "Rolling Update",
@@ -600,6 +759,31 @@
     "refs": [
       "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
     ]
+  },
+  {
+    "id": "ops.ci.deployment-protection-rules",
+    "title": "배포 보호 규칙",
+    "en": "Deployment Protection Rules",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "CI/CD",
+    "summary": "승인자, 대기 시간, 허용 브랜치 같은 조건을 모두 통과해야 환경을 쓰는 잡이 러너에 배정되게 하는 GitHub Actions의 배포 관문으로, 비공개 저장소에서는 요금제에 따라 쓸 수 있는 규칙이 다르다.",
+    "parent": "ops.ci.environment-secrets",
+    "aliases": [
+      "배포 필수 검토자",
+      "environment required reviewers",
+      "wait timer",
+      "배포 승인",
+      "Review deployments"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/manage-environments",
+      "https://docs.github.com/en/actions/how-tos/deploy/configure-and-manage-deployments/review-deployments",
+      "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-05"
   },
   {
     "id": "ops.observe.metrics",

@@ -568,6 +568,46 @@
     ]
   },
   {
+    "id": "ml.unsupervised.kmeans-clustering",
+    "title": "K-평균 군집화: 정답 없는 데이터 무리 짓기",
+    "en": "K-Means Clustering",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "군집 수 k를 정해 주면 가까운 샘플끼리 k개 무리로 나누는 비지도 학습 방법으로, 특성 척도를 맞추고 k를 비교해 가며 쓴다.",
+    "objectives": [
+      "특성 척도를 맞춘 뒤 KMeans로 데이터를 k개 군집으로 나누고 labels_로 결과를 확인할 수 있다",
+      "predict로 새 샘플이 어느 군집에 드는지 알아낼 수 있다",
+      "후보 k마다 결과를 비교해 데이터에 맞는 군집 수를 고를 수 있다",
+      "이상치·척도 차이·초기값 탓에 군집이 이상하게 나올 때 원인을 찾아 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.sklearn-first-model",
+      "ml.data.numeric-categorical-preprocessing"
+    ],
+    "related": [
+      "ml.basics.clustering",
+      "ml.data.feature-normalization",
+      "ml.data.outlier"
+    ],
+    "aliases": [
+      "K-means",
+      "k-평균",
+      "KMeans",
+      "k-평균 군집화",
+      "centroid",
+      "군집 중심"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/clustering.html#k-means",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html",
+      "https://developers.google.com/machine-learning/clustering/prepare-data",
+      "https://developers.google.com/machine-learning/clustering/kmeans/advantages-disadvantages",
+      "https://scikit-learn.org/stable/auto_examples/cluster/plot_kmeans_silhouette_analysis.html"
+    ]
+  },
+  {
     "id": "ml.training.learning-rate",
     "title": "학습률",
     "en": "Learning Rate",
@@ -644,6 +684,79 @@
     "refs": [
       "https://developers.google.com/machine-learning/crash-course/logistic-regression",
       "https://developers.google.com/machine-learning/crash-course/logistic-regression/sigmoid-function"
+    ]
+  },
+  {
+    "id": "ml.supervised.decision-tree",
+    "title": "의사결정나무",
+    "en": "Decision Tree",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "특성을 묻는 if-then-else 규칙을 나무처럼 이어 예측하는 모델로, 규칙을 읽어 볼 수 있지만 깊이를 제한하지 않으면 쉽게 과적합한다.",
+    "prerequisites": [
+      "ml.supervised.sklearn-first-model"
+    ],
+    "related": [
+      "ml.supervised.logistic-regression",
+      "ml.training.overfitting-idea"
+    ],
+    "aliases": [
+      "결정 트리",
+      "의사결정 트리",
+      "결정 나무",
+      "DecisionTreeClassifier",
+      "DecisionTreeRegressor"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/tree.html"
+    ]
+  },
+  {
+    "id": "ml.training.hyperparameter",
+    "title": "하이퍼파라미터",
+    "en": "Hyperparameter",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "학습률·배치 크기·에폭처럼 학습 전에 사람이 정하는 값으로, 학습 중 모델이 스스로 고치는 가중치·편향 같은 파라미터와 구분한다.",
+    "parent": "ml.supervised.linear-regression",
+    "related": [
+      "ml.training.learning-rate",
+      "ml.training.epoch-batch",
+      "ml.nn.weight-bias",
+      "mlops.track.params-metrics-artifacts"
+    ],
+    "aliases": [
+      "하이퍼 파라미터",
+      "hyperparameters",
+      "파라미터와 하이퍼파라미터"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/linear-regression/hyperparameters"
+    ]
+  },
+  {
+    "id": "ml.unsupervised.silhouette-score",
+    "title": "실루엣 점수",
+    "en": "Silhouette Score",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "샘플이 자기 군집과 이웃 군집 사이에서 얼마나 잘 갈라졌는지 -1에서 1로 재는 값으로, 군집 수 k를 고를 때 후보끼리 비교하는 데 쓴다.",
+    "parent": "ml.unsupervised.kmeans-clustering",
+    "aliases": [
+      "실루엣 분석",
+      "silhouette analysis",
+      "silhouette_score",
+      "실루엣 계수",
+      "silhouette coefficient"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/auto_examples/cluster/plot_kmeans_silhouette_analysis.html"
     ]
   },
   {

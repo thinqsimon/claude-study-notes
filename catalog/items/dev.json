@@ -473,6 +473,85 @@
     ]
   },
   {
+    "id": "dev.robust.report-failure",
+    "title": "실패를 알리는 스크립트: 종료 코드와 오류 처리",
+    "en": "Scripts That Report Failure: Exit Codes and Error Handling",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "견고한 스크립트",
+    "summary": "스크립트가 실패하면 조용히 넘어가지 않고 종료 코드와 오류 메시지로 알려, 다음 단계가 망가진 결과로 이어 가지 않게 하는 기본기다.",
+    "objectives": [
+      "sys.exit로 성공과 실패를 다른 종료 코드로 돌려주고 셸에서 $?로 확인할 수 있다",
+      "오류 메시지를 stderr로 내보내 결과 출력과 섞이지 않게 할 수 있다",
+      "except에서 오류를 삼켜 실패한 작업이 성공처럼 끝나는 실수를 찾아 고칠 수 있다",
+      "셸 스크립트에 set -e와 pipefail을 켜서 실패한 명령 뒤로 넘어가지 않게 할 수 있다"
+    ],
+    "prerequisites": [
+      "be.python.exceptions",
+      "ops.linux.shell-script-basics"
+    ],
+    "related": [
+      "ops.linux.stdout-stderr-redirection",
+      "dev.robust.atomic-replace",
+      "dev.robust.resumable-batch",
+      "be.error.handling-design"
+    ],
+    "aliases": [
+      "스크립트 오류 처리",
+      "스크립트 실패 처리",
+      "오류 삼키기",
+      "sys.stderr"
+    ],
+    "refs": [
+      "https://docs.python.org/3/tutorial/errors.html",
+      "https://docs.python.org/3/tutorial/stdlib.html",
+      "https://docs.python.org/3/library/sys.html#sys.exit",
+      "https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html"
+    ]
+  },
+  {
+    "id": "dev.git.fork-duplicate",
+    "title": "GitHub 포크와 저장소 미러 복제",
+    "en": "Forking and Duplicating a GitHub Repository",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "Git",
+    "summary": "원본에 기여하려고 연결된 사본을 만드는 포크와, 연결을 끊고 저장소를 통째로 옮기는 미러 푸시 복제의 차이를 알고 고른다.",
+    "objectives": [
+      "쓰기 권한이 없는 저장소를 포크해 토픽 브랜치를 올리고 원본으로 풀 리퀘스트를 열 수 있다",
+      "포크에 원본의 새 커밋을 받아 와 맞출 수 있다",
+      "브랜치·git clone·포크·미러 복제의 차이를 구분해 상황에 맞게 고를 수 있다",
+      "git clone --bare와 git push --mirror로 저장소를 옮기고, --mirror가 대상의 참조를 덮어쓰고 지운다는 점을 알고 대상을 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.remotes",
+      "dev.git.branch-pr"
+    ],
+    "related": [
+      "dev.git.clone"
+    ],
+    "aliases": [
+      "저장소 포크",
+      "GitHub fork",
+      "git push --mirror",
+      "미러 푸시",
+      "git clone --bare",
+      "포크 뜨기",
+      "포크 동기화",
+      "sync fork"
+    ],
+    "refs": [
+      "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks",
+      "https://docs.github.com/en/repositories/creating-and-managing-repositories/duplicating-a-repository",
+      "https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project",
+      "https://git-scm.com/docs/git-push",
+      "https://git-scm.com/docs/git-clone",
+      "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork"
+    ]
+  },
+  {
     "id": "dev.test.integration",
     "title": "통합 테스트",
     "en": "Integration Test",
@@ -561,6 +640,103 @@
     "refs": [
       "https://git-scm.com/book/en/v2/Distributed-Git-Maintaining-a-Project",
       "https://git-scm.com/docs/git-cherry-pick"
+    ]
+  },
+  {
+    "id": "dev.git.branch-protection",
+    "title": "브랜치 보호 규칙",
+    "en": "Branch Protection Rule",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Git",
+    "summary": "GitHub에서 중요한 브랜치에 리뷰와 상태 검사 통과 같은 병합 조건을 걸고 강제 푸시와 삭제를 막는 저장소 설정으로, 무료 요금제에서는 공개 저장소에만 쓸 수 있다.",
+    "prerequisites": [
+      "dev.git.branch-pr"
+    ],
+    "related": [
+      "dev.git.merge-methods"
+    ],
+    "aliases": [
+      "보호 브랜치",
+      "protected branch",
+      "branch protection",
+      "main 브랜치 보호",
+      "필수 상태 검사",
+      "required status check"
+    ],
+    "refs": [
+      "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-05"
+  },
+  {
+    "id": "dev.robust.exit-code",
+    "title": "종료 코드",
+    "en": "Exit Code",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "견고한 스크립트",
+    "summary": "프로그램이 끝나며 돌려주는 숫자로, 0은 성공이고 그 밖의 값은 실패를 뜻해 다음 명령이 결과를 판단하는 근거가 된다.",
+    "parent": "dev.robust.report-failure",
+    "related": [
+      "ops.container.oom-killed",
+      "ax.coding.hook-decision"
+    ],
+    "aliases": [
+      "exit code",
+      "exit status",
+      "종료 상태",
+      "sys.exit"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/sys.html#sys.exit",
+      "https://www.gnu.org/software/bash/manual/html_node/Exit-Status.html"
+    ]
+  },
+  {
+    "id": "dev.robust.set-errexit",
+    "title": "셸의 set -e와 pipefail",
+    "en": "Shell set -e and pipefail",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "견고한 스크립트",
+    "summary": "명령이 실패하면 셸 스크립트를 바로 멈추는 설정으로, if 조건 안의 실패는 멈추지 않고 파이프 중간의 실패는 pipefail을 더해야 잡힌다.",
+    "parent": "dev.robust.report-failure",
+    "aliases": [
+      "set -e",
+      "set -euo pipefail",
+      "pipefail",
+      "errexit"
+    ],
+    "refs": [
+      "https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html"
+    ]
+  },
+  {
+    "id": "dev.git.upstream-remote",
+    "title": "업스트림 원격",
+    "en": "Upstream Remote",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "Git",
+    "summary": "포크의 원본 저장소를 가리키도록 따로 등록한 원격으로, 원본의 새 커밋을 내 포크로 받아 올 때 쓴다.",
+    "parent": "dev.git.fork-duplicate",
+    "related": [
+      "dev.git.origin"
+    ],
+    "aliases": [
+      "upstream 원격",
+      "git remote add upstream",
+      "git fetch upstream"
+    ],
+    "refs": [
+      "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork",
+      "https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project"
     ]
   },
   {

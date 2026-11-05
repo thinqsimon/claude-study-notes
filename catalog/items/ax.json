@@ -509,6 +509,44 @@
     ]
   },
   {
+    "id": "ax.coding.review-ai-code",
+    "title": "AI가 쓴 코드 검토하기: 확인 명령과 AI 특유의 함정",
+    "en": "Reviewing AI-Generated Code",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "AI 네이티브 개발",
+    "summary": "에이전트가 끝났다고 해도 테스트와 정적 분석 결과를 먼저 보고, 없는 API·건너뛴 테스트·새 패키지 같은 AI 특유의 실수를 찾아 고치는 검토 순서다.",
+    "objectives": [
+      "에이전트에게 통과·실패로 답하는 확인 명령을 주고 실행한 명령과 출력을 근거로 받아 볼 수 있다",
+      "변경 내용에서 없는 API, 무시된 제약 조건, 지워지거나 건너뛴 테스트를 찾아낼 수 있다",
+      "변경 내용에서 새로 들어온 패키지를 찾아 유지 상태와 라이선스를 확인할 수 있다",
+      "고치는 품이 다시 쓰는 품보다 큰 결과물을 받지 않고 다시 시킬 수 있다"
+    ],
+    "prerequisites": [
+      "ax.basics.verify-ai-output",
+      "ax.coding.agent-first",
+      "be.test.pytest-first"
+    ],
+    "related": [
+      "ax.security.misinformation",
+      "ax.security.hallucinated-package",
+      "dev.test.tdd",
+      "be.security.supply-chain"
+    ],
+    "aliases": [
+      "AI 코드 리뷰",
+      "AI 생성 코드 검토",
+      "AI 코드 검증",
+      "AI-generated code review",
+      "에이전트 결과 검토"
+    ],
+    "refs": [
+      "https://docs.github.com/en/copilot/tutorials/review-ai-generated-code",
+      "https://code.claude.com/docs/en/best-practices"
+    ]
+  },
+  {
     "id": "ax.coding.skills",
     "title": "반복 작업을 스킬로 만들기: SKILL.md",
     "en": "Packaging Repeated Work as Skills (SKILL.md)",
@@ -642,6 +680,96 @@
       "데이터 마스킹",
       "리댁션"
     ]
+  },
+  {
+    "id": "ax.coding.test-tampering",
+    "title": "실패한 테스트 지우기·건너뛰기",
+    "en": "Deleting or Skipping Failing Tests",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "AI가 코드를 고치는 대신 실패하는 테스트를 없애거나 건너뛰게 바꿔 초록불만 만드는 실수로, 테스트 파일의 변경 내용을 보면 잡아낼 수 있다.",
+    "prerequisites": [
+      "ax.basics.verify-ai-output"
+    ],
+    "parent": "ax.coding.review-ai-code",
+    "related": [
+      "dev.test.unit"
+    ],
+    "aliases": [
+      "AI 테스트 삭제",
+      "실패 테스트 삭제",
+      "실패 테스트 건너뛰기",
+      "테스트 우회",
+      "deleted failing test"
+    ],
+    "refs": [
+      "https://docs.github.com/en/copilot/tutorials/review-ai-generated-code"
+    ]
+  },
+  {
+    "id": "ax.coding.agent-token-usage",
+    "title": "Claude Code 사용량 확인과 줄이기(/usage·/clear)",
+    "en": "Tracking and Reducing Claude Code Token Usage",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "Claude Code는 요청마다 대화 전체를 보내므로 /usage로 쓴 양을 보고 관계없는 일로 넘어갈 때 /clear로 비우면 토큰 사용량이 준다.",
+    "prerequisites": [
+      "llm.basics.token-context",
+      "ax.coding.agent-first"
+    ],
+    "related": [
+      "llm.internals.compaction",
+      "llm.internals.prompt-caching",
+      "llm.api.multi-turn"
+    ],
+    "aliases": [
+      "/usage",
+      "/clear",
+      "Claude Code 비용",
+      "코딩 에이전트 비용",
+      "에이전트 토큰 사용량"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/costs"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-05"
+  },
+  {
+    "id": "ax.governance.ai-disclosure-labelling",
+    "title": "AI 고지와 생성물 표시 의무",
+    "en": "AI Disclosure and Content Labelling Obligations",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "이용자에게 AI를 쓰는 서비스임을 알리고 AI 생성물에 표시를 남기라는 투명성 의무로, EU AI법 제50조와 한국 AI 기본법이 정한다.",
+    "prerequisites": [
+      "ax.governance.trustworthy-ai"
+    ],
+    "related": [
+      "ax.governance.ai-risk",
+      "ax.security.misinformation"
+    ],
+    "aliases": [
+      "AI 생성물 표시",
+      "AI 고지 의무",
+      "AI 투명성 의무",
+      "딥페이크 라벨링",
+      "AI Act Article 50",
+      "AI content labelling"
+    ],
+    "refs": [
+      "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-50",
+      "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+      "https://www.korea.kr/news/policyNewsView.do?newsId=148958380"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-05"
   },
   {
     "id": "ax.security.model-output-handling",
