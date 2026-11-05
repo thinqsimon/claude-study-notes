@@ -622,6 +622,60 @@
     ]
   },
   {
+    "id": "mlops.track.model-signature",
+    "title": "모델 시그니처",
+    "en": "Model Signature",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "모델이 받을 입력과 돌려줄 출력의 형식을 적어 두는 계약으로, 불러와 추론하거나 서빙할 때 들어온 입력이 이 형식에 맞는지 확인한다.",
+    "prerequisites": [
+      "mlops.track.experiment-tracking"
+    ],
+    "related": [
+      "mlops.track.model-flavor"
+    ],
+    "aliases": [
+      "model signature",
+      "infer_signature",
+      "input_example",
+      "ModelSignature",
+      "시그니처 강제",
+      "signature enforcement"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/ml/model/signatures/"
+    ]
+  },
+  {
+    "id": "mlops.track.model-flavor",
+    "title": "모델 플레이버와 pyfunc",
+    "en": "Model Flavors and pyfunc",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "같은 모델을 라이브러리 고유 객체로도, 어떤 라이브러리든 predict 하나로 돌리는 pyfunc로도 읽게 해 주는 MLflow 모델의 저장 규약이다.",
+    "prerequisites": [
+      "mlops.track.experiment-tracking"
+    ],
+    "related": [
+      "mlops.track.model-signature"
+    ],
+    "aliases": [
+      "MLflow flavor",
+      "MLflow 플레이버",
+      "pyfunc",
+      "python_function",
+      "mlflow.pyfunc.load_model",
+      "MLmodel 파일"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/ml/model/"
+    ]
+  },
+  {
     "id": "mlops.eval.llm-regression",
     "title": "LLM 평가와 회귀 시험",
     "en": "LLM Evaluation and Regression Testing",

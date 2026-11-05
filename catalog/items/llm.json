@@ -600,6 +600,40 @@
     "checked_at": "2026-11-05"
   },
   {
+    "id": "llm.prompt.prompt-structure",
+    "title": "프롬프트 구조 잡기: 지시·자료·예시 나누기",
+    "en": "Structuring Prompts: Separating Instructions, Context, and Examples",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "프롬프트",
+    "summary": "지시와 참고 자료, 예시, 사용자 입력을 XML 태그나 Markdown으로 나눠 적어 모델이 각 부분을 헷갈리지 않게 하는 작성법이다.",
+    "objectives": [
+      "지시·참고 자료·예시·입력을 XML 태그나 Markdown 제목으로 나눠 프롬프트를 쓸 수 있다",
+      "바뀌는 값을 함수 인자로 받아 프롬프트에 넣는 코드를 짜서 기능 하나를 완성할 수 있다",
+      "답이 원하는 형식에서 벗어날 때 지시·예시·태그 중 고칠 곳을 찾아 다시 시도할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.prompt.first-good-prompt",
+      "llm.api.first-call"
+    ],
+    "related": [
+      "llm.prompt.prompt-chaining",
+      "mlops.prompt.template-variable"
+    ],
+    "aliases": [
+      "프롬프트 구조화",
+      "XML 태그 프롬프트",
+      "프롬프트 구분자",
+      "structured prompt",
+      "Markdown 프롬프트"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+      "https://developers.openai.com/api/docs/guides/prompt-engineering"
+    ]
+  },
+  {
     "id": "llm.tools.tool-schema",
     "title": "도구 스키마",
     "en": "Tool Schema",
@@ -653,6 +687,61 @@
     "refs": [
       "https://platform.claude.com/docs/en/build-with-claude/streaming",
       "https://developers.openai.com/api/docs/guides/streaming-responses"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-05"
+  },
+  {
+    "id": "llm.prompt.few-shot",
+    "title": "퓨샷 프롬프팅",
+    "en": "Few-shot Prompting",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "프롬프트",
+    "summary": "입력과 출력의 짝을 몇 개 프롬프트에 넣어 모델이 재학습 없이 그 패턴을 따라 답하게 하는 기법이다.",
+    "parent": "llm.prompt.prompt-structure",
+    "related": [
+      "llm.prompt.first-good-prompt"
+    ],
+    "aliases": [
+      "퓨샷",
+      "multishot",
+      "few-shot 예시",
+      "예시 기반 프롬프트"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/prompt-engineering",
+      "https://aistudio.google.com/docs/prompting-strategies",
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+    ]
+  },
+  {
+    "id": "llm.api.stop-reason",
+    "title": "stop_reason(응답 종료 사유)",
+    "en": "Stop Reason",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "모델이 답을 왜 멈췄는지 알려 주는 응답 값으로, 정상 응답이어도 잘리거나 거절된 답일 수 있어 쓰기 전에 확인한다.",
+    "related": [
+      "llm.internals.max-tokens",
+      "llm.api.errors-rate-limits",
+      "llm.internals.context-management"
+    ],
+    "aliases": [
+      "stop_reason",
+      "종료 사유",
+      "finish_reason",
+      "end_turn",
+      "응답 잘림 확인",
+      "incomplete_details"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons",
+      "https://developers.openai.com/api/docs/guides/structured-outputs",
+      "https://developers.openai.com/api/reference/resources/chat/subresources/completions/methods/create"
     ],
     "volatile": true,
     "checked_at": "2026-11-05"

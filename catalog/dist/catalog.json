@@ -1,5 +1,5 @@
 {
- "version": "0.8.0",
+ "version": "0.9.0",
  "domains": [
   {
    "prefix": "dev",
@@ -1806,6 +1806,37 @@
    "domain": "plan"
   },
   {
+   "id": "plan.basics.user-stories",
+   "title": "유저 스토리로 기능 요구사항 쓰기",
+   "en": "Writing Requirements as User Stories",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "누가 무엇을 왜 필요로 하는지 짧게 적어 기능의 범위와 끝나는 기준을 팀이 함께 정하는 기획 방법이다.",
+   "objectives": [
+    "행위자·필요·목표를 갖춰 기능 하나의 유저 스토리를 쓸 수 있다",
+    "결과를 확인할 수 있는 인수 기준을 스토리에 붙일 수 있다",
+    "한 반복 안에 끝나지 않는 큰 스토리(에픽)를 작은 스토리로 쪼갤 수 있다",
+    "스토리를 화면 요소나 문서 항목으로 착각한 실수를 찾아 목표 중심으로 고쳐 쓸 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.problem-first",
+    "plan.basics.user-and-need"
+   ],
+   "aliases": [
+    "유저 스토리",
+    "사용자 스토리",
+    "user story",
+    "에픽 쪼개기"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/agile-delivery/writing-user-stories",
+    "https://www.agilealliance.org/glossary/user-stories/"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.variants",
    "title": "컴포넌트 변형(variants)",
    "en": "Component Variants",
@@ -1856,6 +1887,28 @@
    "domain": "plan"
   },
   {
+   "id": "plan.basics.acceptance-criteria",
+   "title": "인수 기준(acceptance criteria)",
+   "en": "Acceptance Criteria",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "유저 스토리가 사용자의 필요를 채웠는지 판단하려고 미리 적어 두는 짧은 결과 목록이다.",
+   "parent": "plan.basics.user-stories",
+   "aliases": [
+    "인수 기준",
+    "수용 기준",
+    "인수 조건",
+    "Given-When-Then"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/agile-delivery/writing-user-stories",
+    "https://www.agilealliance.org/glossary/gwt/"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.constraints",
    "title": "제약(constraints)",
    "en": "Figma Constraints",
@@ -1876,6 +1929,33 @@
    ],
    "refs": [
     "https://help.figma.com/hc/en-us/articles/360039957734-Apply-constraints-to-define-how-layers-resize"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.prototype-overlay",
+   "title": "프로토타입 오버레이",
+   "en": "Prototype Overlay",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "화면을 옮기지 않고 메뉴나 알림창 같은 내용을 현재 화면 위에 띄우는 Figma 프로토타입 동작이다.",
+   "prerequisites": [
+    "plan.figma.frames-and-components"
+   ],
+   "related": [
+    "plan.figma.prototype-connection"
+   ],
+   "aliases": [
+    "Figma 오버레이",
+    "피그마 오버레이",
+    "Open overlay",
+    "Swap overlay",
+    "오버레이 프레임"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360039818254-Create-overlays-in-your-prototypes"
    ],
    "domain": "plan"
   },
@@ -10999,6 +11079,41 @@
    "domain": "db"
   },
   {
+   "id": "db.orm.alembic-basics",
+   "title": "Alembic으로 표 구조 변경 기록하고 적용하기",
+   "en": "Alembic Basics: init, revision, upgrade",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "ORM",
+   "summary": "표 구조 변경을 리비전 스크립트로 남기고 upgrade·downgrade 명령으로 DB에 차례로 적용하거나 되돌리는 Alembic의 기본 사용법이다.",
+   "objectives": [
+    "alembic init으로 마이그레이션 환경을 만들고 alembic.ini에 DB 주소를 넣어 연결할 수 있다",
+    "alembic revision으로 리비전 파일을 만들고 upgrade()와 downgrade()에 열 추가와 삭제를 쓸 수 있다",
+    "alembic upgrade head로 적용하고 alembic downgrade -1로 되돌린 뒤 current와 history로 현재 위치를 확인할 수 있다",
+    "create_all로 충분한 경우와 Alembic이 필요한 경우를 구분할 수 있다"
+   ],
+   "prerequisites": [
+    "db.orm.sqlalchemy-basics"
+   ],
+   "related": [
+    "db.internals.online-schema-change"
+   ],
+   "aliases": [
+    "alembic init",
+    "alembic revision",
+    "alembic upgrade",
+    "DB 마이그레이션",
+    "데이터베이스 마이그레이션",
+    "마이그레이션 스크립트"
+   ],
+   "refs": [
+    "https://alembic.sqlalchemy.org/en/latest/tutorial.html",
+    "https://docs.sqlalchemy.org/en/20/tutorial/metadata.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.sql.join",
    "title": "JOIN: 두 표 이어 붙이기",
    "en": "JOIN",
@@ -11048,6 +11163,31 @@
    "domain": "db"
   },
   {
+   "id": "db.sql.null-comparison",
+   "title": "NULL 비교와 IS NULL",
+   "en": "NULL Comparison and IS NULL",
+   "kind": "term",
+   "level": 3,
+   "importance": 1,
+   "group": "SQL",
+   "summary": "NULL은 알 수 없는 값이라 = NULL로 비교하면 참이 되지 않으므로, 값이 NULL인 행을 찾을 때는 IS NULL을 쓴다.",
+   "related": [
+    "db.sql.select-first",
+    "db.sql.join"
+   ],
+   "aliases": [
+    "IS NULL",
+    "IS NOT NULL",
+    "IS DISTINCT FROM",
+    "널 비교",
+    "= NULL"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/functions-comparison.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.orm.session",
    "title": "ORM 세션(Session)",
    "en": "ORM Session",
@@ -11070,6 +11210,56 @@
    ],
    "refs": [
     "https://docs.sqlalchemy.org/en/20/orm/session_basics.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.orm.alembic-autogenerate",
+   "title": "Alembic autogenerate",
+   "en": "Alembic Autogenerate",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "ORM",
+   "summary": "모델의 메타데이터와 DB의 현재 상태를 비교해 마이그레이션 초안을 만드는 Alembic 기능으로, 이름 변경처럼 놓치는 부분은 사람이 검토해 고친다.",
+   "parent": "db.orm.alembic-basics",
+   "related": [
+    "db.internals.online-schema-change"
+   ],
+   "aliases": [
+    "alembic revision --autogenerate",
+    "--autogenerate",
+    "target_metadata",
+    "마이그레이션 자동 생성"
+   ],
+   "refs": [
+    "https://alembic.sqlalchemy.org/en/latest/autogenerate.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.upsert-on-conflict",
+   "title": "ON CONFLICT: 겹치면 고치거나 건너뛰기(upsert)",
+   "en": "INSERT ON CONFLICT (Upsert)",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "INSERT가 유니크 제약에 걸릴 때 오류 대신 그 행을 건너뛰거나(DO NOTHING) 기존 행을 고치도록(DO UPDATE) 정하는 PostgreSQL 문법이다.",
+   "related": [
+    "db.sql.write-rows",
+    "db.sql.primary-key"
+   ],
+   "aliases": [
+    "upsert",
+    "업서트",
+    "ON CONFLICT",
+    "ON CONFLICT DO UPDATE",
+    "ON CONFLICT DO NOTHING",
+    "INSERT ON CONFLICT"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/sql-insert.html"
    ],
    "domain": "db"
   },
@@ -13418,6 +13608,41 @@
    "domain": "llm"
   },
   {
+   "id": "llm.prompt.prompt-structure",
+   "title": "프롬프트 구조 잡기: 지시·자료·예시 나누기",
+   "en": "Structuring Prompts: Separating Instructions, Context, and Examples",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "프롬프트",
+   "summary": "지시와 참고 자료, 예시, 사용자 입력을 XML 태그나 Markdown으로 나눠 적어 모델이 각 부분을 헷갈리지 않게 하는 작성법이다.",
+   "objectives": [
+    "지시·참고 자료·예시·입력을 XML 태그나 Markdown 제목으로 나눠 프롬프트를 쓸 수 있다",
+    "바뀌는 값을 함수 인자로 받아 프롬프트에 넣는 코드를 짜서 기능 하나를 완성할 수 있다",
+    "답이 원하는 형식에서 벗어날 때 지시·예시·태그 중 고칠 곳을 찾아 다시 시도할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.prompt.first-good-prompt",
+    "llm.api.first-call"
+   ],
+   "related": [
+    "llm.prompt.prompt-chaining",
+    "mlops.prompt.template-variable"
+   ],
+   "aliases": [
+    "프롬프트 구조화",
+    "XML 태그 프롬프트",
+    "프롬프트 구분자",
+    "structured prompt",
+    "Markdown 프롬프트"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+    "https://developers.openai.com/api/docs/guides/prompt-engineering"
+   ],
+   "domain": "llm"
+  },
+  {
    "id": "llm.tools.tool-schema",
    "title": "도구 스키마",
    "en": "Tool Schema",
@@ -13473,6 +13698,63 @@
    "refs": [
     "https://platform.claude.com/docs/en/build-with-claude/streaming",
     "https://developers.openai.com/api/docs/guides/streaming-responses"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-05",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.prompt.few-shot",
+   "title": "퓨샷 프롬프팅",
+   "en": "Few-shot Prompting",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "프롬프트",
+   "summary": "입력과 출력의 짝을 몇 개 프롬프트에 넣어 모델이 재학습 없이 그 패턴을 따라 답하게 하는 기법이다.",
+   "parent": "llm.prompt.prompt-structure",
+   "related": [
+    "llm.prompt.first-good-prompt"
+   ],
+   "aliases": [
+    "퓨샷",
+    "multishot",
+    "few-shot 예시",
+    "예시 기반 프롬프트"
+   ],
+   "refs": [
+    "https://developers.openai.com/api/docs/guides/prompt-engineering",
+    "https://aistudio.google.com/docs/prompting-strategies",
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.stop-reason",
+   "title": "stop_reason(응답 종료 사유)",
+   "en": "Stop Reason",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "모델이 답을 왜 멈췄는지 알려 주는 응답 값으로, 정상 응답이어도 잘리거나 거절된 답일 수 있어 쓰기 전에 확인한다.",
+   "related": [
+    "llm.internals.max-tokens",
+    "llm.api.errors-rate-limits",
+    "llm.internals.context-management"
+   ],
+   "aliases": [
+    "stop_reason",
+    "종료 사유",
+    "finish_reason",
+    "end_turn",
+    "응답 잘림 확인",
+    "incomplete_details"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons",
+    "https://developers.openai.com/api/docs/guides/structured-outputs",
+    "https://developers.openai.com/api/reference/resources/chat/subresources/completions/methods/create"
    ],
    "volatile": true,
    "checked_at": "2026-11-05",
@@ -14427,6 +14709,47 @@
    "domain": "rag"
   },
   {
+   "id": "rag.retrieval.search-types",
+   "title": "검색 방식 고르기: 유사도·MMR·점수 기준",
+   "en": "Choosing a Search Type: Similarity, MMR, Score Threshold",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "검색 내부",
+   "summary": "벡터 저장소를 검색기로 바꾸고 유사도·MMR·점수 기준 중 하나를 골라, 비슷한 조각만 겹치거나 관련 없는 조각이 섞이는 결과를 고친다.",
+   "objectives": [
+    "as_retriever로 벡터 저장소를 검색기로 바꿔 invoke로 문서를 받아 올 수 있다",
+    "search_type을 바꿔 가며 유사도·MMR·점수 기준 검색의 결과 차이를 비교할 수 있다",
+    "비슷한 조각이 겹치거나 관련 없는 조각이 섞인 결과를 보고 알맞은 검색 방식으로 고칠 수 있다",
+    "similarity_search_with_score의 값(저장소에 따라 거리 또는 유사도)과 similarity_score_threshold가 쓰는 0~1 관련도를 구분해 기준값을 정할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.vector-db.basics",
+    "rag.retrieval.load-split"
+   ],
+   "related": [
+    "rag.retrieval.retriever",
+    "rag.retrieval.top-k-filter",
+    "rag.retrieval.keyword-vs-vector",
+    "rag.retrieval.quality"
+   ],
+   "aliases": [
+    "as_retriever",
+    "search_type",
+    "VectorStoreRetriever",
+    "검색 방식 선택",
+    "벡터 저장소 검색기",
+    "similarity_score_threshold",
+    "score_threshold"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/knowledge-base",
+    "https://reference.langchain.com/python/langchain-core/vectorstores/base/VectorStore/as_retriever",
+    "https://reference.langchain.com/python/langchain-core/vectorstores/base/VectorStore/similarity_search_with_relevance_scores"
+   ],
+   "domain": "rag"
+  },
+  {
    "id": "rag.vector-db.chunk",
    "title": "청크",
    "en": "Chunk",
@@ -14497,6 +14820,59 @@
     "https://www.elastic.co/docs/solutions/search/vector",
     "https://www.elastic.co/docs/solutions/search/full-text",
     "https://learn.microsoft.com/en-us/azure/search/hybrid-search-overview"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.score-vs-distance",
+   "title": "유사도 점수와 거리 값",
+   "en": "Similarity Score vs Distance",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "검색 내부",
+   "summary": "유사도는 클수록 가깝고 거리는 작을수록 가까우며 저장소마다 돌려주는 값이 달라, 기준값을 정하기 전에 어느 쪽인지 확인해야 한다.",
+   "parent": "rag.retrieval.search-types",
+   "related": [
+    "rag.embedding.similarity-search"
+   ],
+   "aliases": [
+    "similarity_search_with_score",
+    "유사도 점수",
+    "코사인 거리",
+    "cosine distance"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/knowledge-base",
+    "https://github.com/pgvector/pgvector",
+    "https://learn.microsoft.com/en-us/azure/search/vector-search-ranking"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.mmr",
+   "title": "MMR(최대 한계 관련성)",
+   "en": "Maximum Marginal Relevance",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "검색 내부",
+   "summary": "질문과 가까운 후보를 넉넉히 뽑은 뒤 서로 너무 닮은 문서를 덜어 내, 관련성과 다양성의 균형을 맞추는 검색 방식이다.",
+   "parent": "rag.retrieval.search-types",
+   "related": [
+    "rag.retrieval.reranking"
+   ],
+   "aliases": [
+    "MMR",
+    "maximal marginal relevance",
+    "최대 한계 관련성",
+    "lambda_mult",
+    "fetch_k",
+    "MMR 검색"
+   ],
+   "refs": [
+    "https://reference.langchain.com/python/langchain-core/vectorstores/base/VectorStore/as_retriever",
+    "https://www.elastic.co/docs/reference/elasticsearch/rest-apis/retrievers/diversify-retriever"
    ],
    "domain": "rag"
   },
@@ -19007,6 +19383,62 @@
    ],
    "refs": [
     "https://dvc.org/doc/start"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.track.model-signature",
+   "title": "모델 시그니처",
+   "en": "Model Signature",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "모델이 받을 입력과 돌려줄 출력의 형식을 적어 두는 계약으로, 불러와 추론하거나 서빙할 때 들어온 입력이 이 형식에 맞는지 확인한다.",
+   "prerequisites": [
+    "mlops.track.experiment-tracking"
+   ],
+   "related": [
+    "mlops.track.model-flavor"
+   ],
+   "aliases": [
+    "model signature",
+    "infer_signature",
+    "input_example",
+    "ModelSignature",
+    "시그니처 강제",
+    "signature enforcement"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/ml/model/signatures/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.track.model-flavor",
+   "title": "모델 플레이버와 pyfunc",
+   "en": "Model Flavors and pyfunc",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "같은 모델을 라이브러리 고유 객체로도, 어떤 라이브러리든 predict 하나로 돌리는 pyfunc로도 읽게 해 주는 MLflow 모델의 저장 규약이다.",
+   "prerequisites": [
+    "mlops.track.experiment-tracking"
+   ],
+   "related": [
+    "mlops.track.model-signature"
+   ],
+   "aliases": [
+    "MLflow flavor",
+    "MLflow 플레이버",
+    "pyfunc",
+    "python_function",
+    "mlflow.pyfunc.load_model",
+    "MLmodel 파일"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/ml/model/"
    ],
    "domain": "mlops"
   },

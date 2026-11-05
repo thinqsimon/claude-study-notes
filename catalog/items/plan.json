@@ -504,6 +504,36 @@
     ]
   },
   {
+    "id": "plan.basics.user-stories",
+    "title": "유저 스토리로 기능 요구사항 쓰기",
+    "en": "Writing Requirements as User Stories",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "누가 무엇을 왜 필요로 하는지 짧게 적어 기능의 범위와 끝나는 기준을 팀이 함께 정하는 기획 방법이다.",
+    "objectives": [
+      "행위자·필요·목표를 갖춰 기능 하나의 유저 스토리를 쓸 수 있다",
+      "결과를 확인할 수 있는 인수 기준을 스토리에 붙일 수 있다",
+      "한 반복 안에 끝나지 않는 큰 스토리(에픽)를 작은 스토리로 쪼갤 수 있다",
+      "스토리를 화면 요소나 문서 항목으로 착각한 실수를 찾아 목표 중심으로 고쳐 쓸 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.problem-first",
+      "plan.basics.user-and-need"
+    ],
+    "aliases": [
+      "유저 스토리",
+      "사용자 스토리",
+      "user story",
+      "에픽 쪼개기"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/agile-delivery/writing-user-stories",
+      "https://www.agilealliance.org/glossary/user-stories/"
+    ]
+  },
+  {
     "id": "plan.figma.variants",
     "title": "컴포넌트 변형(variants)",
     "en": "Component Variants",
@@ -552,6 +582,27 @@
     ]
   },
   {
+    "id": "plan.basics.acceptance-criteria",
+    "title": "인수 기준(acceptance criteria)",
+    "en": "Acceptance Criteria",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "유저 스토리가 사용자의 필요를 채웠는지 판단하려고 미리 적어 두는 짧은 결과 목록이다.",
+    "parent": "plan.basics.user-stories",
+    "aliases": [
+      "인수 기준",
+      "수용 기준",
+      "인수 조건",
+      "Given-When-Then"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/agile-delivery/writing-user-stories",
+      "https://www.agilealliance.org/glossary/gwt/"
+    ]
+  },
+  {
     "id": "plan.figma.constraints",
     "title": "제약(constraints)",
     "en": "Figma Constraints",
@@ -572,6 +623,32 @@
     ],
     "refs": [
       "https://help.figma.com/hc/en-us/articles/360039957734-Apply-constraints-to-define-how-layers-resize"
+    ]
+  },
+  {
+    "id": "plan.figma.prototype-overlay",
+    "title": "프로토타입 오버레이",
+    "en": "Prototype Overlay",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "화면을 옮기지 않고 메뉴나 알림창 같은 내용을 현재 화면 위에 띄우는 Figma 프로토타입 동작이다.",
+    "prerequisites": [
+      "plan.figma.frames-and-components"
+    ],
+    "related": [
+      "plan.figma.prototype-connection"
+    ],
+    "aliases": [
+      "Figma 오버레이",
+      "피그마 오버레이",
+      "Open overlay",
+      "Swap overlay",
+      "오버레이 프레임"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360039818254-Create-overlays-in-your-prototypes"
     ]
   },
   {

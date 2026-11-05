@@ -425,6 +425,46 @@
     ]
   },
   {
+    "id": "rag.retrieval.search-types",
+    "title": "검색 방식 고르기: 유사도·MMR·점수 기준",
+    "en": "Choosing a Search Type: Similarity, MMR, Score Threshold",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "검색 내부",
+    "summary": "벡터 저장소를 검색기로 바꾸고 유사도·MMR·점수 기준 중 하나를 골라, 비슷한 조각만 겹치거나 관련 없는 조각이 섞이는 결과를 고친다.",
+    "objectives": [
+      "as_retriever로 벡터 저장소를 검색기로 바꿔 invoke로 문서를 받아 올 수 있다",
+      "search_type을 바꿔 가며 유사도·MMR·점수 기준 검색의 결과 차이를 비교할 수 있다",
+      "비슷한 조각이 겹치거나 관련 없는 조각이 섞인 결과를 보고 알맞은 검색 방식으로 고칠 수 있다",
+      "similarity_search_with_score의 값(저장소에 따라 거리 또는 유사도)과 similarity_score_threshold가 쓰는 0~1 관련도를 구분해 기준값을 정할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.vector-db.basics",
+      "rag.retrieval.load-split"
+    ],
+    "related": [
+      "rag.retrieval.retriever",
+      "rag.retrieval.top-k-filter",
+      "rag.retrieval.keyword-vs-vector",
+      "rag.retrieval.quality"
+    ],
+    "aliases": [
+      "as_retriever",
+      "search_type",
+      "VectorStoreRetriever",
+      "검색 방식 선택",
+      "벡터 저장소 검색기",
+      "similarity_score_threshold",
+      "score_threshold"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/knowledge-base",
+      "https://reference.langchain.com/python/langchain-core/vectorstores/base/VectorStore/as_retriever",
+      "https://reference.langchain.com/python/langchain-core/vectorstores/base/VectorStore/similarity_search_with_relevance_scores"
+    ]
+  },
+  {
     "id": "rag.vector-db.chunk",
     "title": "청크",
     "en": "Chunk",
@@ -493,6 +533,57 @@
       "https://www.elastic.co/docs/solutions/search/vector",
       "https://www.elastic.co/docs/solutions/search/full-text",
       "https://learn.microsoft.com/en-us/azure/search/hybrid-search-overview"
+    ]
+  },
+  {
+    "id": "rag.retrieval.score-vs-distance",
+    "title": "유사도 점수와 거리 값",
+    "en": "Similarity Score vs Distance",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "검색 내부",
+    "summary": "유사도는 클수록 가깝고 거리는 작을수록 가까우며 저장소마다 돌려주는 값이 달라, 기준값을 정하기 전에 어느 쪽인지 확인해야 한다.",
+    "parent": "rag.retrieval.search-types",
+    "related": [
+      "rag.embedding.similarity-search"
+    ],
+    "aliases": [
+      "similarity_search_with_score",
+      "유사도 점수",
+      "코사인 거리",
+      "cosine distance"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/knowledge-base",
+      "https://github.com/pgvector/pgvector",
+      "https://learn.microsoft.com/en-us/azure/search/vector-search-ranking"
+    ]
+  },
+  {
+    "id": "rag.retrieval.mmr",
+    "title": "MMR(최대 한계 관련성)",
+    "en": "Maximum Marginal Relevance",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "검색 내부",
+    "summary": "질문과 가까운 후보를 넉넉히 뽑은 뒤 서로 너무 닮은 문서를 덜어 내, 관련성과 다양성의 균형을 맞추는 검색 방식이다.",
+    "parent": "rag.retrieval.search-types",
+    "related": [
+      "rag.retrieval.reranking"
+    ],
+    "aliases": [
+      "MMR",
+      "maximal marginal relevance",
+      "최대 한계 관련성",
+      "lambda_mult",
+      "fetch_k",
+      "MMR 검색"
+    ],
+    "refs": [
+      "https://reference.langchain.com/python/langchain-core/vectorstores/base/VectorStore/as_retriever",
+      "https://www.elastic.co/docs/reference/elasticsearch/rest-apis/retrievers/diversify-retriever"
     ]
   },
   {
