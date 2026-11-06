@@ -666,6 +666,45 @@
     ]
   },
   {
+    "id": "llm.api.structured-output-parse",
+    "title": "SDK로 구조화 출력 받아 쓰기: Pydantic 모델과 실패 처리",
+    "en": "Parsing Structured Outputs with SDK Helpers",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "LLM API",
+    "summary": "Pydantic이나 Zod로 정한 모양을 SDK의 parse 함수에 넘겨 타입이 붙은 결과를 받고, 거절·잘림처럼 스키마가 지켜지지 않는 경우를 따로 처리한다.",
+    "objectives": [
+      "Pydantic 모델을 정의해 parse 함수로 넘기고 파싱된 결과 객체를 꺼내 쓸 수 있다",
+      "필드마다 required와 additionalProperties: false를 맞춰 스키마 오류를 피할 수 있다",
+      "파싱 전에 종료 사유를 확인해 거절과 max_tokens 잘림을 스키마 오류와 나눠 처리할 수 있다",
+      "숫자 범위처럼 지원되지 않는 제약을 코드 쪽 검증으로 옮길 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.first-call",
+      "be.fastapi.body-model"
+    ],
+    "related": [
+      "llm.api.structured-output",
+      "llm.internals.structured-decoding",
+      "rag.agent.structured-output"
+    ],
+    "aliases": [
+      "messages.parse",
+      "responses.parse",
+      "parsed_output",
+      "output_parsed",
+      "Pydantic 구조화 출력",
+      "Zod 스키마 출력"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+      "https://developers.openai.com/api/docs/guides/structured-outputs"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
     "id": "llm.prompt.prompt-structure",
     "title": "프롬프트 구조 잡기: 지시·자료·예시 나누기",
     "en": "Structuring Prompts: Separating Instructions, Context, and Examples",
@@ -951,6 +990,75 @@
     "checked_at": "2026-11-06"
   },
   {
+    "id": "llm.basics.datasets-library",
+    "title": "Datasets 라이브러리로 데이터 불러와 다듬기",
+    "en": "Loading and Processing Data with Hugging Face Datasets",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "Hugging Face Datasets로 Hub나 내 CSV·JSON 파일을 불러와 거르고 열을 바꾸고 토큰화한 뒤 학습·검증 분할로 나눠 저장한다.",
+    "objectives": [
+      "load_dataset에 형식 이름과 data_files를 넣어 로컬·원격 파일을 불러올 수 있다",
+      "filter와 map으로 빈 행을 거르고 새 열을 만들 수 있다",
+      "map에 batched=True를 주어 토큰화를 빠르게 하고 행 수가 바뀔 때 remove_columns로 오류를 피할 수 있다",
+      "pandas 형식으로 바꿔 살펴보고 학습·검증 분할을 만들어 저장할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.tokenizer-batching"
+    ],
+    "related": [
+      "ml.nn.dataset-dataloader",
+      "mlops.finetune.sft-chat-data"
+    ],
+    "aliases": [
+      "Hugging Face Datasets",
+      "datasets 라이브러리",
+      "load_dataset",
+      "허깅페이스 데이터셋",
+      "Dataset.filter"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter5/2",
+      "https://huggingface.co/learn/llm-course/chapter5/3"
+    ]
+  },
+  {
+    "id": "llm.internals.generate-decoding",
+    "title": "generate()로 텍스트 생성하기: greedy·샘플링·빔 서치",
+    "en": "Text Generation with generate(): Greedy, Sampling, Beam Search",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 내부",
+    "summary": "Transformers의 generate()에 max_new_tokens와 디코딩 방식을 주어 오픈 모델로 글을 만들고, 짧게 끊기거나 같은 말을 되풀이하는 흔한 문제를 설정으로 고친다.",
+    "objectives": [
+      "max_new_tokens를 정해 generate()로 문장을 이어 쓰게 하고 decode로 결과를 읽을 수 있다",
+      "기본값 탓에 답이 짧게 끊기는 문제를 찾아 길이 설정으로 고칠 수 있다",
+      "do_sample과 num_beams를 바꿔 greedy·샘플링·빔 서치의 결과 차이를 비교할 수 있다",
+      "되풀이가 심한 긴 글과 입력에 묶인 짧은 글에 맞는 디코딩 방식을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.transformers-pipeline",
+      "llm.internals.generation-settings"
+    ],
+    "related": [
+      "llm.internals.tokenization-sampling",
+      "llm.internals.generation-settings"
+    ],
+    "aliases": [
+      "model.generate",
+      "디코딩 전략",
+      "decoding strategy",
+      "generation strategies",
+      "GenerationConfig",
+      "max_new_tokens"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/generation_strategies"
+    ]
+  },
+  {
     "id": "llm.api.image-generation-api",
     "title": "이미지 생성 API로 그림 만들고 고치기",
     "en": "Generating and Editing Images with an API",
@@ -982,6 +1090,41 @@
     "refs": [
       "https://developers.openai.com/api/docs/guides/image-generation",
       "https://github.com/microsoft/generative-ai-for-beginners/blob/main/09-building-image-applications/README.md"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "llm.basics.share-on-hub",
+    "title": "Hugging Face Hub에 모델 올려 공유하기",
+    "en": "Sharing Models on the Hugging Face Hub",
+    "kind": "topic",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "로그인한 뒤 push_to_hub나 huggingface_hub 라이브러리로 저장소를 만들고 모델·토크나이저 파일을 올려 다른 사람이 이름 하나로 불러 쓰게 한다.",
+    "objectives": [
+      "터미널이나 노트북에서 Hub에 로그인하고 토큰을 저장할 수 있다",
+      "모델과 토크나이저를 push_to_hub로 내 저장소나 조직 저장소에 올릴 수 있다",
+      "create_repo와 upload_file로 공개·비공개 저장소를 만들고 파일을 올릴 수 있다",
+      "큰 가중치 파일을 git으로 올릴 때 git-lfs가 필요한 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.transformers-pipeline"
+    ],
+    "related": [
+      "llm.basics.model-card",
+      "llm.basics.model-checkpoint"
+    ],
+    "aliases": [
+      "Hub 업로드",
+      "Hugging Face Hub 공유",
+      "huggingface_hub",
+      "create_repo",
+      "huggingface-cli login"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter4/3"
     ],
     "volatile": true,
     "checked_at": "2026-11-06"
@@ -1492,6 +1635,133 @@
     ]
   },
   {
+    "id": "llm.api.refusal-response",
+    "title": "거절 응답(refusal)",
+    "en": "Refusal Response",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "모델이 안전 문제로 거절한 응답으로, Claude는 stop_details.category로 어떤 분야인지 알려 다른 모델로 다시 시도할지 정하게 하고 OpenAI는 refusal 칸에 담는다.",
+    "parent": "llm.api.structured-output-parse",
+    "related": [
+      "llm.api.stop-reason"
+    ],
+    "aliases": [
+      "refusal 응답",
+      "refusal 필드",
+      "모델 거절 응답",
+      "안전 거절"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback",
+      "https://developers.openai.com/api/docs/guides/structured-outputs"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "llm.tools.strict-tool-use",
+    "title": "strict 도구 사용(엄격 모드)",
+    "en": "Strict Tool Use",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "도구 호출",
+    "summary": "도구 정의에 strict를 켜면 모델이 만드는 도구 이름과 인자가 입력 스키마를 반드시 따라 \"2\" 대신 2처럼 타입이 맞는 값이 온다.",
+    "parent": "llm.tools.function-calling",
+    "related": [
+      "llm.tools.tool-schema",
+      "llm.api.structured-output"
+    ],
+    "aliases": [
+      "strict tool use",
+      "strict: true 도구",
+      "엄격한 도구 호출",
+      "도구 엄격 모드",
+      "function calling strict"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use",
+      "https://developers.openai.com/api/docs/guides/structured-outputs"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "llm.tools.tool-choice",
+    "title": "tool_choice(도구 선택 지정)",
+    "en": "tool_choice",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "도구 호출",
+    "summary": "모델이 도구를 알아서 고를지(auto), 꼭 하나를 부를지(any·required·특정 도구), 아예 부르지 않을지(none)를 정하는 요청 값이며 일부 모델은 강제 호출을 받지 않는다.",
+    "parent": "llm.tools.function-calling",
+    "related": [
+      "llm.tools.strict-tool-use"
+    ],
+    "aliases": [
+      "tool_choice",
+      "도구 강제 호출",
+      "forced tool use",
+      "tool_choice auto",
+      "도구 선택 옵션"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools",
+      "https://developers.openai.com/api/docs/guides/function-calling"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "llm.basics.dataset-map-batched",
+    "title": "Dataset.map과 batched 처리",
+    "en": "Dataset.map with batched=True",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "데이터셋의 모든 행에 함수를 적용해 열을 고치거나 더하는 메서드로, batched=True면 여러 행을 한 번에 넘겨 빠른 토크나이저와 함께 훨씬 빨라진다.",
+    "parent": "llm.basics.datasets-library",
+    "aliases": [
+      "Dataset.map",
+      "batched=True",
+      "map 전처리",
+      "num_proc",
+      "remove_columns"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter5/3"
+    ]
+  },
+  {
+    "id": "llm.internals.greedy-vs-sampling",
+    "title": "greedy 탐색과 샘플링(do_sample)",
+    "en": "Greedy Search vs Sampling",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 내부",
+    "summary": "매번 가장 확률 높은 토큰을 고르는 greedy 탐색은 짧고 일정한 답에 맞지만 길면 되풀이하고, do_sample=True로 확률에 따라 뽑으면 답이 다양해진다.",
+    "parent": "llm.internals.generate-decoding",
+    "related": [
+      "llm.internals.temperature"
+    ],
+    "aliases": [
+      "greedy search",
+      "탐욕 탐색",
+      "그리디 디코딩",
+      "do_sample",
+      "multinomial sampling",
+      "다항 샘플링"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/generation_strategies"
+    ]
+  },
+  {
     "id": "llm.api.files-api",
     "title": "Files API",
     "en": "Files API",
@@ -1657,6 +1927,68 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-06"
+  },
+  {
+    "id": "llm.basics.dataset-dict",
+    "title": "DatasetDict(분할 묶음)",
+    "en": "DatasetDict",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "train·validation·test 같은 분할 이름마다 Dataset 하나를 담은 묶음으로, 분할을 지정하지 않고 파일을 불러오면 train 하나만 생긴다.",
+    "parent": "llm.basics.datasets-library",
+    "aliases": [
+      "DatasetDict",
+      "데이터셋 분할 묶음",
+      "data_files 분할"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter5/2"
+    ]
+  },
+  {
+    "id": "llm.basics.push-to-hub",
+    "title": "push_to_hub",
+    "en": "push_to_hub",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "모델·토크나이저 객체나 학습 설정에서 바로 Hub 저장소로 파일을 올리는 메서드로, 저장소가 없으면 만들고 organization 인자로 조직 아래에 올린다.",
+    "parent": "llm.basics.share-on-hub",
+    "aliases": [
+      "push_to_hub",
+      "model.push_to_hub",
+      "PushToHubCallback",
+      "TrainingArguments push_to_hub"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter4/3"
+    ]
+  },
+  {
+    "id": "llm.internals.beam-search",
+    "title": "빔 서치(beam search)",
+    "en": "Beam Search",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "여러 후보 문장(빔)을 함께 이어 가다 전체 확률이 가장 높은 것을 고르는 디코딩 방식으로, num_beams를 2 이상으로 주면 켜진다.",
+    "parent": "llm.internals.generate-decoding",
+    "related": [
+      "llm.internals.greedy-vs-sampling"
+    ],
+    "aliases": [
+      "beam search",
+      "num_beams",
+      "빔 탐색",
+      "빔 검색"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/generation_strategies"
+    ]
   },
   {
     "id": "llm.security.prompt-injection",

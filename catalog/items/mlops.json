@@ -893,6 +893,81 @@
     "checked_at": "2026-11-06"
   },
   {
+    "id": "mlops.eval.builtin-judges",
+    "title": "내장 LLM 심판 골라 쓰기",
+    "en": "Using Built-in LLM Judges",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "질문 관련성·정답 사실·안전·검색 근거처럼 흔한 채점 기준을 MLflow가 미리 만들어 둔 심판으로 골라 붙이고, 각 심판이 요구하는 데이터를 맞춰 준다.",
+    "objectives": [
+      "채점하려는 기준에 맞는 내장 심판을 응답 품질·RAG·도구 호출 묶음에서 고를 수 있다",
+      "심판마다 필요한 expectations 값과 트레이스가 있는지 확인하고 평가 세트를 맞출 수 있다",
+      "정답이 필요한 심판에 expected_facts를 빼먹거나 트레이스 없는 데이터로 RAG 심판을 돌리는 실수를 찾아 고칠 수 있다",
+      "내장 심판으로 부족한 기준을 Guidelines 심판이나 코드 스코어러로 넘길지 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.eval.first-eval"
+    ],
+    "related": [
+      "mlops.eval.custom-scorer",
+      "mlops.eval.llm-judge"
+    ],
+    "aliases": [
+      "내장 심판",
+      "built-in judge",
+      "predefined scorer",
+      "내장 LLM 심판",
+      "Correctness 심판",
+      "RelevanceToQuery"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/llm-judge/predefined/",
+      "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "mlops.serve.responses-agent",
+    "title": "ResponsesAgent로 에이전트 포장해 기록하기",
+    "en": "Packaging an Agent with ResponsesAgent",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "프레임워크와 상관없이 만든 에이전트를 ResponsesAgent의 predict·predict_stream 규약에 맞춰 감싸고, 코드 파일째 MLflow 모델로 기록해 다시 불러 써 본다.",
+    "objectives": [
+      "ResponsesAgent를 상속해 predict가 ResponsesAgentResponse를 돌려주게 쓸 수 있다",
+      "도우미 메서드로 텍스트 답·도구 호출·도구 결과 항목을 만들어 출력에 담을 수 있다",
+      "에이전트 파일 경로를 python_model로 넘겨 기록하고 pyfunc로 불러와 같은 요청으로 시험할 수 있다",
+      "스트리밍 조각과 완료 이벤트의 item_id가 어긋나거나 입력 예시가 요청 형식과 다른 실수를 찾아 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.track.experiment-tracking",
+      "llm.tools.function-calling"
+    ],
+    "related": [
+      "mlops.track.model-flavor",
+      "mlops.serve.local-model-serving"
+    ],
+    "aliases": [
+      "ResponsesAgent",
+      "ResponsesAgentRequest",
+      "ResponsesAgentResponse",
+      "에이전트 포장",
+      "에이전트 모델 기록",
+      "predict_stream"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/flavors/responses-agent-intro/",
+      "https://mlflow.org/docs/latest/genai/flavors/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
     "id": "mlops.track.experiment-tracking",
     "title": "실험 추적: 파라미터·지표·모델 기록하기",
     "en": "Experiment Tracking with MLflow",
@@ -927,6 +1002,40 @@
       "https://mlflow.org/docs/latest/ml/tracking/",
       "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
     ]
+  },
+  {
+    "id": "mlops.serve.agent-server",
+    "title": "MLflow Agent Server로 에이전트 API 띄우기",
+    "en": "Hosting an Agent with MLflow Agent Server",
+    "kind": "topic",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "에이전트 함수를 데코레이터로 등록하고 FastAPI 기반 Agent Server를 띄워 /invocations로 요청하면 트레이스가 저절로 쌓이는 로컬 에이전트 API를 만든다.",
+    "objectives": [
+      "@invoke와 @stream으로 일반 응답 함수와 스트리밍 함수를 등록할 수 있다",
+      "AgentServer를 만들어 포트·워커 수·자동 재시작 옵션으로 실행할 수 있다",
+      "/invocations에 input 메시지 목록을 보내고 stream 값을 바꿔 두 응답 방식을 비교할 수 있다",
+      "서버 함수를 predict_fn으로 감싸 내장 심판으로 평가를 돌릴 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.observe.tracing-quickstart",
+      "mlops.serve.responses-agent"
+    ],
+    "related": [
+      "mlops.serve.local-model-serving",
+      "mlops.serve.vllm-openai-server"
+    ],
+    "aliases": [
+      "Agent Server",
+      "AgentServer",
+      "MLflow 에이전트 서버"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/serving/agent-server/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
   },
   {
     "id": "mlops.track.model-registry",
@@ -1180,6 +1289,84 @@
     "refs": [
       "https://mlflow.org/docs/latest/genai/version-tracking/"
     ]
+  },
+  {
+    "id": "mlops.eval.guidelines-judge",
+    "title": "Guidelines 심판(자연어 규칙 채점)",
+    "en": "Guidelines Judge",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "\"가격을 구체적으로 말하지 않는다\"처럼 자연어로 쓴 규칙을 주면 모든 답이 그 규칙을 지켰는지 yes·no와 이유로 판정하는 내장 심판이다.",
+    "parent": "mlops.eval.builtin-judges",
+    "related": [
+      "mlops.eval.custom-scorer"
+    ],
+    "aliases": [
+      "Guidelines 심판",
+      "Guidelines judge",
+      "가이드라인 심판",
+      "Guidelines()",
+      "규칙 채점"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/llm-judge/guidelines/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "mlops.eval.retrieval-judges",
+    "title": "검색 근거 심판(RetrievalGroundedness 등)",
+    "en": "Retrieval Judges for RAG",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "트레이스 안 검색 스팬을 읽어 가져온 문서가 질문과 맞는지, 답이 그 문서에 근거하는지, 필요한 내용이 다 있었는지 판정하는 RAG용 내장 심판이다.",
+    "parent": "mlops.eval.builtin-judges",
+    "related": [
+      "rag.eval.metrics"
+    ],
+    "aliases": [
+      "RetrievalGroundedness",
+      "RetrievalRelevance",
+      "RetrievalSufficiency",
+      "검색 근거성 심판",
+      "RAG 심판"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/llm-judge/predefined/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "mlops.track.models-from-code",
+    "title": "코드로 모델 기록하기(Models from Code)",
+    "en": "Models from Code",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "모델 객체를 피클로 굳히는 대신 set_model을 부른 파이썬 파일 경로를 log_model에 넘겨, 읽을 수 있는 코드 그대로 모델을 기록하는 방식이다.",
+    "parent": "mlops.serve.responses-agent",
+    "related": [
+      "mlops.track.model-flavor"
+    ],
+    "aliases": [
+      "Models from Code",
+      "모델을 코드로 기록",
+      "set_model",
+      "code_paths",
+      "코드 기반 모델 기록"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/ml/model/models-from-code/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
   },
   {
     "id": "mlops.track.experiment-run",
@@ -1617,6 +1804,106 @@
     "refs": [
       "https://mlflow.org/docs/latest/genai/version-tracking/quickstart/"
     ]
+  },
+  {
+    "id": "mlops.eval.expectations-guidelines",
+    "title": "행마다 다른 채점 규칙(ExpectationsGuidelines)",
+    "en": "ExpectationsGuidelines Judge",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "평가 세트의 각 행 expectations에 그 예시만의 규칙을 적어 두면 행마다 다른 기준으로 답을 판정하는 내장 심판이다.",
+    "parent": "mlops.eval.builtin-judges",
+    "related": [
+      "mlops.eval.guidelines-judge"
+    ],
+    "aliases": [
+      "ExpectationsGuidelines",
+      "행별 가이드라인",
+      "per-row guidelines",
+      "예시별 채점 규칙"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/llm-judge/guidelines/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "mlops.eval.tool-call-judges",
+    "title": "도구 호출 심판",
+    "en": "Tool Call Judges",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "에이전트의 트레이스를 읽어 질문에 맞는 도구를 맞는 인자로 불렀는지, 쓸데없이 여러 번 부르지 않았는지 판정하는 내장 심판이다.",
+    "parent": "mlops.eval.builtin-judges",
+    "related": [
+      "llm.tools.tool-call"
+    ],
+    "aliases": [
+      "ToolCallCorrectness",
+      "ToolCallEfficiency",
+      "도구 호출 평가",
+      "tool call judge",
+      "에이전트 도구 채점"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/eval-monitor/running-evaluation/agents/",
+      "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/llm-judge/predefined/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "mlops.serve.responses-stream-events",
+    "title": "에이전트 응답 스트림 이벤트",
+    "en": "ResponsesAgent Stream Events",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "스트리밍 에이전트가 글자 조각을 delta 이벤트로 흘려보낸 뒤 같은 item_id의 완료 이벤트로 전체 항목을 한 번 더 보내는 이벤트 규약이다.",
+    "parent": "mlops.serve.responses-agent",
+    "related": [
+      "llm.api.response-output-items",
+      "llm.api.response-streaming"
+    ],
+    "aliases": [
+      "ResponsesAgentStreamEvent",
+      "output_item.done",
+      "에이전트 스트리밍 이벤트",
+      "스트림 완료 이벤트"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/flavors/responses-agent-intro/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "mlops.serve.invoke-stream-decorators",
+    "title": "@invoke·@stream 데코레이터(에이전트 함수 등록)",
+    "en": "@invoke and @stream Decorators",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Agent Server가 요청을 받을 때 부를 함수를 표시하는 데코레이터로, @invoke는 한 번에 답하는 함수를, @stream은 조각으로 흘려보내는 함수를 등록한다.",
+    "parent": "mlops.serve.agent-server",
+    "aliases": [
+      "@invoke",
+      "@stream",
+      "에이전트 함수 등록",
+      "invoke 데코레이터"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/serving/agent-server/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
   },
   {
     "id": "mlops.eval.llm-regression",

@@ -1,5 +1,5 @@
 {
- "version": "0.17.0",
+ "version": "0.18.0",
  "domains": [
   {
    "prefix": "dev",
@@ -726,6 +726,41 @@
    "domain": "dev"
   },
   {
+   "id": "dev.git.diff",
+   "title": "git diff로 바뀐 내용 비교하기",
+   "en": "Comparing Changes with git diff",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "Git",
+   "summary": "작업 폴더·스테이징 영역·커밋 가운데 어느 둘을 비교하는지 골라 git diff로 바뀐 줄을 확인한다.",
+   "objectives": [
+    "git diff와 git diff --staged가 각각 무엇과 무엇을 비교하는지 구분할 수 있다",
+    "두 커밋이나 두 브랜치 사이의 차이를 경로를 좁혀 볼 수 있다",
+    "--stat과 --name-only로 바뀐 파일만 빠르게 훑을 수 있다",
+    "git diff에 아무것도 안 나올 때 이미 스테이징했는지 의심할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.first-commit"
+   ],
+   "related": [
+    "dev.git.revision-range",
+    "dev.git.history-search"
+   ],
+   "aliases": [
+    "git diff",
+    "변경 비교",
+    "diff 보기",
+    "git diff HEAD",
+    "git diff --stat"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository",
+    "https://git-scm.com/docs/git-diff"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.test.tdd",
    "title": "테스트 먼저 쓰기: TDD",
    "en": "Test-Driven Development",
@@ -1078,6 +1113,107 @@
     "https://docs.python.org/3/tutorial/stdlib2.html#tools-for-working-with-lists",
     "https://docs.python.org/3/library/collections.html",
     "https://docs.python.org/3/library/heapq.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.remote-tracking",
+   "title": "원격 추적 브랜치와 업스트림 설정",
+   "en": "Remote-Tracking Branches and Upstream",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "origin/main 같은 원격 추적 브랜치가 무엇을 기록하는지 알고 내 브랜치의 업스트림을 정해 앞섬·뒤처짐을 확인한다.",
+   "objectives": [
+    "origin/main과 로컬 main이 서로 다른 브랜치임을 설명할 수 있다",
+    "git branch -u로 업스트림을 정하고 git branch -vv로 앞섬·뒤처짐을 읽을 수 있다",
+    "fetch 뒤에 원격 추적 브랜치만 바뀌고 작업 폴더는 그대로임을 확인할 수 있다",
+    "필요 없어진 원격 브랜치를 지우고 로컬의 낡은 추적 브랜치를 정리할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.remotes",
+    "dev.git.branch-pr"
+   ],
+   "related": [
+    "dev.git.upstream-remote",
+    "dev.git.pull-rebase"
+   ],
+   "aliases": [
+    "원격 추적 브랜치",
+    "remote-tracking branch",
+    "origin/main",
+    "git branch -vv",
+    "ahead behind"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches",
+    "https://git-scm.com/docs/git-fetch"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.commit-guidelines",
+   "title": "좋은 커밋 만들기: 커밋 단위와 메시지",
+   "en": "Commit Guidelines: Scope and Messages",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "한 커밋에 한 가지 변경만 담고 제목줄과 본문을 나눈 메시지를 써서 검토와 되돌리기가 쉬운 기록을 남긴다.",
+   "objectives": [
+    "섞인 변경을 논리 단위로 나눠 여러 커밋으로 만들 수 있다",
+    "제목줄·빈 줄·본문 형식으로 커밋 메시지를 쓸 수 있다",
+    "커밋 전에 git diff --check로 공백 오류를 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.first-commit"
+   ],
+   "related": [
+    "dev.git.amend",
+    "dev.git.interactive-rebase"
+   ],
+   "aliases": [
+    "커밋 규칙",
+    "commit guidelines",
+    "작은 커밋",
+    "git diff --check",
+    "원자적 커밋"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.submodules",
+   "title": "Git 서브모듈로 다른 저장소 담기",
+   "en": "Git Submodules",
+   "kind": "topic",
+   "level": 3,
+   "importance": 3,
+   "group": "Git",
+   "summary": "다른 저장소를 하위 폴더에 특정 커밋으로 고정해 담고, 복제·pull 뒤 서브모듈이 비거나 옛 커밋에 머무는 실수를 피한다.",
+   "objectives": [
+    "git submodule add로 서브모듈을 추가하고 .gitmodules의 역할을 설명할 수 있다",
+    "--recurse-submodules나 submodule update --init --recursive로 빈 서브모듈 폴더를 채울 수 있다",
+    "상위 저장소가 서브모듈의 커밋 하나를 기록한다는 점을 알고 갱신 뒤 커밋할 수 있다",
+    "서브모듈 안에서 작업하기 전에 분리된 HEAD에서 브랜치로 옮길 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.remotes"
+   ],
+   "related": [
+    "dev.git.detached-head"
+   ],
+   "aliases": [
+    "서브모듈",
+    "git submodule",
+    "submodule",
+    "--recurse-submodules"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Tools-Submodules"
    ],
    "domain": "dev"
   },
@@ -1536,6 +1672,128 @@
    "domain": "dev"
   },
   {
+   "id": "dev.git.tracking-branch",
+   "title": "추적 브랜치와 @{u}",
+   "en": "Tracking Branch and @{u}",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "원격 추적 브랜치와 짝지어진 로컬 브랜치로, 인자 없는 push·pull의 대상이 되고 @{u}로 그 짝을 가리킬 수 있다.",
+   "parent": "dev.git.remote-tracking",
+   "related": [
+    "dev.git.upstream-remote"
+   ],
+   "aliases": [
+    "tracking branch",
+    "업스트림 브랜치",
+    "upstream branch",
+    "@{u}",
+    "git branch -u",
+    "--set-upstream-to"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.diff-staged",
+   "title": "git diff --staged",
+   "en": "git diff --staged",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "스테이징 영역과 마지막 커밋을 비교해 다음 커밋에 실제로 들어갈 변경만 보여 주는 옵션이며 --cached와 같다.",
+   "parent": "dev.git.diff",
+   "related": [
+    "dev.git.staging-area"
+   ],
+   "aliases": [
+    "git diff --staged",
+    "git diff --cached",
+    "diff --cached",
+    "스테이징된 변경 보기"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/git-diff"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.add-patch",
+   "title": "git add -p로 일부만 스테이징",
+   "en": "Partial Staging with git add -p",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "한 파일 안의 변경을 덩어리(hunk)마다 묻고 고른 부분만 스테이징하는 대화형 방식으로, s로 덩어리를 더 쪼갤 수 있다.",
+   "parent": "dev.git.commit-guidelines",
+   "related": [
+    "dev.git.staging-area"
+   ],
+   "aliases": [
+    "git add -p",
+    "git add --patch",
+    "부분 스테이징",
+    "partial staging",
+    "hunk 스테이징"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Tools-Interactive-Staging"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.commit-message",
+   "title": "커밋 메시지 형식",
+   "en": "Commit Message Format",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "50자 안팎의 명령형 제목줄, 빈 줄, 72자에서 줄바꿈한 본문으로 무엇을 왜 바꿨는지 적는 Git 커뮤니티의 관례다.",
+   "parent": "dev.git.commit-guidelines",
+   "aliases": [
+    "커밋 메시지",
+    "commit message",
+    "커밋 메시지 제목줄",
+    "50/72 규칙"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.config-levels",
+   "title": "Git 설정 단계: system·global·local",
+   "en": "Git Configuration Levels",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "기계 전체·사용자·저장소 세 단계의 설정 파일이 있고 좁은 쪽이 넓은 쪽을 덮으며, --show-origin으로 값이 어디서 왔는지 볼 수 있다.",
+   "related": [
+    "dev.git.alias",
+    "dev.git.line-endings"
+   ],
+   "aliases": [
+    "git config --global",
+    "git config --local",
+    "git config --show-origin",
+    ".gitconfig",
+    "git 설정 파일"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup",
+    "https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.git.upstream-remote",
    "title": "업스트림 원격",
    "en": "Upstream Remote",
@@ -1672,6 +1930,92 @@
    "refs": [
     "https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases",
     "https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.fetch-prune",
+   "title": "git fetch --prune",
+   "en": "git fetch --prune",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "Git",
+   "summary": "원격에서 이미 지워진 브랜치의 로컬 원격 추적 참조를 fetch할 때 함께 지우는 옵션으로, fetch.prune 설정으로 늘 켤 수 있다.",
+   "parent": "dev.git.remote-tracking",
+   "aliases": [
+    "fetch --prune",
+    "fetch.prune",
+    "git remote prune",
+    "낡은 원격 브랜치 정리"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/git-fetch"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.push-delete",
+   "title": "원격 브랜치 삭제: git push --delete",
+   "en": "Deleting a Remote Branch with git push --delete",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "Git",
+   "summary": "서버에 있는 브랜치 포인터를 지우는 push 형태로, 로컬 브랜치는 따로 git branch -d로 지워야 한다.",
+   "parent": "dev.git.remote-tracking",
+   "aliases": [
+    "git push --delete",
+    "git push origin --delete",
+    "원격 브랜치 삭제",
+    "delete remote branch"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.gitmodules",
+   "title": ".gitmodules와 submodule update",
+   "en": ".gitmodules and git submodule update",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "Git",
+   "summary": "서브모듈의 경로와 URL을 적어 함께 커밋하는 설정 파일과, 상위 저장소가 기록한 커밋으로 서브모듈을 맞추는 명령이다.",
+   "parent": "dev.git.submodules",
+   "aliases": [
+    ".gitmodules",
+    "git submodule update",
+    "submodule update --init",
+    "submodule update --remote"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Tools-Submodules"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.test.doctest",
+   "title": "doctest",
+   "en": "doctest",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "테스트",
+   "summary": "독스트링에 적은 >>> 대화형 예제를 실행해 적힌 출력과 글자 그대로 같은지 검사하는 파이썬 표준 모듈이다.",
+   "related": [
+    "dev.test.unit"
+   ],
+   "aliases": [
+    "doctest",
+    "python -m doctest",
+    "doctest.testmod",
+    "독스트링 테스트"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/doctest.html"
    ],
    "domain": "dev"
   },
@@ -2235,6 +2579,43 @@
    "domain": "cs"
   },
   {
+   "id": "cs.dsa.stack-queue",
+   "title": "스택과 큐로 꺼내는 순서 정하기",
+   "en": "Stacks and Queues",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "자료구조",
+   "summary": "마지막에 넣은 것을 먼저 꺼내는 스택과 먼저 넣은 것을 먼저 꺼내는 큐의 차이를 익히고 상황에 맞게 고른다.",
+   "objectives": [
+    "LIFO와 FIFO의 차이를 예시로 설명할 수 있다",
+    "되돌리기·괄호 짝 맞추기를 스택으로, 대기열 처리를 큐로 구현할 수 있다",
+    "문제를 보고 스택과 큐 중 무엇을 쓸지 고를 수 있다"
+   ],
+   "prerequisites": [
+    "cs.algo.big-o-estimate"
+   ],
+   "related": [
+    "dev.dsa.deque",
+    "be.async.message-queue",
+    "dev.dsa.collections-choice"
+   ],
+   "aliases": [
+    "스택과 큐",
+    "stack and queue",
+    "LIFO 순서",
+    "FIFO 순서",
+    "후입선출",
+    "선입선출"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/stack.html",
+    "https://xlinux.nist.gov/dads/HTML/queue.html",
+    "https://docs.python.org/3/tutorial/datastructures.html#using-lists-as-stacks"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.algo.recursion",
    "title": "재귀 함수 작성하기",
    "en": "Writing Recursive Functions",
@@ -2257,6 +2638,107 @@
    "refs": [
     "https://xlinux.nist.gov/dads/HTML/recursion.html",
     "https://docs.python.org/3/library/exceptions.html#RecursionError"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dsa.array-vs-linked-list",
+   "title": "배열과 연결 리스트 비교",
+   "en": "Arrays vs Linked Lists",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "자료구조",
+   "summary": "연속된 칸에 담는 배열과 다음 칸을 가리키며 잇는 연결 리스트가 접근·삽입 비용에서 어떻게 다른지 비교한다.",
+   "objectives": [
+    "인덱스 접근과 중간 삽입의 비용을 배열과 연결 리스트로 나눠 비교할 수 있다",
+    "파이썬 리스트가 동적 배열이라 앞쪽 삽입이 느리다는 점을 코드로 확인할 수 있다",
+    "작업 패턴을 보고 배열과 연결 리스트 중 알맞은 쪽을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "cs.algo.big-o-estimate"
+   ],
+   "related": [
+    "cs.dsa.stack-queue",
+    "dev.dsa.collections-choice"
+   ],
+   "aliases": [
+    "배열 vs 연결 리스트",
+    "array vs linked list",
+    "연결 리스트 비교",
+    "리스트 삽입 비용"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/array.html",
+    "https://xlinux.nist.gov/dads/HTML/linkedList.html",
+    "https://docs.python.org/3/builtins/time-complexity.html",
+    "https://docs.python.org/3/faq/design.html#how-are-lists-implemented-in-cpython"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.algo.graph-traversal",
+   "title": "BFS와 DFS로 그래프 탐색하기",
+   "en": "Graph Traversal with BFS and DFS",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "알고리즘과 복잡도",
+   "summary": "그래프를 인접 리스트로 담고, 가까운 곳부터 넓게 도는 BFS와 한 길을 끝까지 가는 DFS로 모든 정점을 방문한다.",
+   "objectives": [
+    "연결 관계를 인접 리스트로 표현할 수 있다",
+    "큐로 BFS를, 스택이나 재귀로 DFS를 구현할 수 있다",
+    "방문 표시를 빠뜨려 무한 반복에 빠지는 실수를 찾아 고칠 수 있다",
+    "최단 단계 수가 필요할 때 BFS를 골라야 하는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.dsa.stack-queue",
+    "cs.algo.recursion"
+   ],
+   "related": [
+    "cs.dsa.hash-table"
+   ],
+   "aliases": [
+    "그래프 탐색",
+    "graph traversal",
+    "너비 우선과 깊이 우선",
+    "BFS DFS"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/breadthfirst.html",
+    "https://xlinux.nist.gov/dads/HTML/depthfirst.html",
+    "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/pages/lecture-notes/"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.tcp-vs-udp",
+   "title": "TCP와 UDP의 차이",
+   "en": "TCP vs UDP",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "네트워크",
+   "summary": "순서와 도착을 보장하는 연결형 TCP와 가볍지만 보장이 없는 UDP의 차이를 알고 쓰임에 맞게 고른다.",
+   "objectives": [
+    "TCP가 보장하는 것과 UDP가 보장하지 않는 것을 나눠 설명할 수 있다",
+    "웹·파일 전송·DNS·실시간 음성처럼 쓰임새별로 알맞은 프로토콜을 고를 수 있다",
+    "포트 번호가 한 컴퓨터 안의 프로그램을 구분한다는 점을 설명할 수 있다"
+   ],
+   "related": [
+    "ops.network.tcp-internals",
+    "be.async.websocket"
+   ],
+   "aliases": [
+    "TCP UDP 차이",
+    "tcp vs udp",
+    "전송 계층 프로토콜",
+    "transport protocol",
+    "연결형과 비연결형"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9293",
+    "https://www.rfc-editor.org/rfc/rfc768"
    ],
    "domain": "cs"
   },
@@ -2306,6 +2788,55 @@
    "refs": [
     "https://man7.org/linux/man-pages/man7/pthreads.7.html",
     "https://pages.cs.wisc.edu/~remzi/OSTEP/"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dsa.stack",
+   "title": "스택(자료구조)",
+   "en": "Stack (data structure)",
+   "kind": "term",
+   "level": 3,
+   "importance": 1,
+   "group": "자료구조",
+   "summary": "가장 나중에 넣은 항목만 꺼낼 수 있는, push와 pop으로 다루는 후입선출 자료구조다.",
+   "parent": "cs.dsa.stack-queue",
+   "related": [
+    "cs.dsa.queue"
+   ],
+   "aliases": [
+    "스택 자료구조",
+    "stack data structure",
+    "LIFO 스택"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/stack.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dsa.queue",
+   "title": "큐(자료구조)",
+   "en": "Queue (data structure)",
+   "kind": "term",
+   "level": 3,
+   "importance": 1,
+   "group": "자료구조",
+   "summary": "뒤로 넣고 앞에서 꺼내 가장 먼저 들어온 항목부터 처리하는 선입선출 자료구조다.",
+   "parent": "cs.dsa.stack-queue",
+   "related": [
+    "cs.dsa.stack",
+    "dev.dsa.deque",
+    "be.async.message-queue"
+   ],
+   "aliases": [
+    "큐 자료구조",
+    "queue data structure",
+    "dequeue 연산",
+    "FIFO 큐"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/queue.html"
    ],
    "domain": "cs"
   },
@@ -2453,6 +2984,170 @@
    ],
    "refs": [
     "https://man7.org/linux/man-pages/man2/open.2.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dsa.linked-list",
+   "title": "연결 리스트",
+   "en": "Linked List",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "자료구조",
+   "summary": "각 항목이 다음 항목을 가리키는 연결로 이어진 리스트로, 찾을 때는 처음부터 차례로 따라가야 한다.",
+   "parent": "cs.dsa.array-vs-linked-list",
+   "related": [
+    "cs.dsa.dynamic-array"
+   ],
+   "aliases": [
+    "링크드 리스트",
+    "linked list",
+    "단일 연결 리스트",
+    "singly linked list",
+    "이중 연결 리스트"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/linkedList.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dsa.dynamic-array",
+   "title": "동적 배열",
+   "en": "Dynamic Array",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "자료구조",
+   "summary": "항목이 늘거나 줄면 크기를 바꾸는 배열로, 여유 칸을 미리 잡아 두어 끝에 붙이기가 대개 빠르다.",
+   "parent": "cs.dsa.array-vs-linked-list",
+   "related": [
+    "cs.dsa.linked-list"
+   ],
+   "aliases": [
+    "가변 배열",
+    "dynamic array",
+    "resizable array",
+    "가변 길이 배열"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/dynamicarray.html",
+    "https://docs.python.org/3/faq/design.html#how-are-lists-implemented-in-cpython"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.algo.bfs",
+   "title": "너비 우선 탐색(BFS)",
+   "en": "Breadth-First Search",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "알고리즘과 복잡도",
+   "summary": "시작점에서 가까운 정점부터 차례로 큐에 넣으며 넓게 퍼져 나가는 그래프 탐색 방법이다.",
+   "parent": "cs.algo.graph-traversal",
+   "related": [
+    "cs.algo.dfs"
+   ],
+   "aliases": [
+    "BFS",
+    "너비 우선 탐색",
+    "breadth first search",
+    "레벨 순회"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/breadthfirst.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.algo.dfs",
+   "title": "깊이 우선 탐색(DFS)",
+   "en": "Depth-First Search",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "알고리즘과 복잡도",
+   "summary": "한 갈래를 끝까지 따라간 뒤 되돌아와 다른 갈래로 가는 그래프 탐색 방법으로, 재귀로 쉽게 짠다.",
+   "parent": "cs.algo.graph-traversal",
+   "related": [
+    "cs.algo.bfs"
+   ],
+   "aliases": [
+    "DFS",
+    "깊이 우선 탐색",
+    "depth first search"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/depthfirst.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dsa.adjacency-list",
+   "title": "인접 리스트",
+   "en": "Adjacency List",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "자료구조",
+   "summary": "정점마다 이어진 이웃 정점의 목록을 두는 그래프 표현으로, 간선이 적은 그래프에서 인접 행렬보다 작다.",
+   "parent": "cs.algo.graph-traversal",
+   "aliases": [
+    "adjacency list",
+    "그래프 표현"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/adjacencyListRep.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.udp",
+   "title": "UDP",
+   "en": "User Datagram Protocol",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "네트워크",
+   "summary": "연결 없이 데이터그램을 바로 보내는 전송 프로토콜로, 도착과 순서를 보장하지 않는 대신 가볍다.",
+   "parent": "cs.net.tcp-vs-udp",
+   "related": [
+    "ops.network.tcp-internals"
+   ],
+   "aliases": [
+    "UDP",
+    "유디피",
+    "UDP 데이터그램",
+    "UDP 프로토콜"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc768"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.socket",
+   "title": "네트워크 소켓",
+   "en": "Network Socket",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "네트워크",
+   "summary": "프로그램이 운영체제를 거쳐 네트워크로 데이터를 주고받는 끝점으로, 스트림형과 데이터그램형이 있다.",
+   "related": [
+    "cs.os.file-descriptor",
+    "be.async.websocket-term",
+    "cs.net.tcp-vs-udp"
+   ],
+   "aliases": [
+    "SOCK_STREAM",
+    "SOCK_DGRAM",
+    "소켓 프로그래밍"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man7/socket.7.html"
    ],
    "domain": "cs"
   },
@@ -13575,6 +14270,101 @@
    "domain": "db"
   },
   {
+   "id": "db.sql.full-text-search",
+   "title": "전문 검색으로 글 찾기: tsvector와 tsquery",
+   "en": "Full Text Search with tsvector and tsquery",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "글을 낱말 기본형으로 바꿔 두고 검색어와 맞춰 보아 LIKE보다 뜻에 가깝게 문서를 찾는 PostgreSQL 기능이다.",
+   "objectives": [
+    "to_tsvector와 to_tsquery를 @@로 맞춰 글이 들어간 행을 찾을 수 있다",
+    "LIKE 검색과 전문 검색이 낱말 변형을 다루는 방식의 차이를 설명할 수 있다",
+    "&·|·<-> 연산자로 여러 낱말 조건과 구 검색을 쓸 수 있다"
+   ],
+   "prerequisites": [
+    "db.sql.select-first"
+   ],
+   "related": [
+    "db.sql.like-ilike"
+   ],
+   "aliases": [
+    "PostgreSQL 전문 검색",
+    "to_tsvector",
+    "to_tsquery",
+    "tsvector",
+    "@@ 연산자"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/textsearch-intro.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.arrays",
+   "title": "PostgreSQL 배열 열 다루기",
+   "en": "Working with PostgreSQL Arrays",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "열 하나에 같은 자료형 값 여러 개를 배열로 담고, 첨자로 꺼내거나 원소를 조건으로 찾는 방법이다.",
+   "objectives": [
+    "integer[]·text[] 열을 만들고 ARRAY[...]로 값을 넣을 수 있다",
+    "첨자가 1부터 시작하고 범위를 벗어나면 NULL이 나오는 점을 고려해 원소를 꺼낼 수 있다",
+    "원소를 자주 찾아야 하면 배열 대신 별도 표가 나은 경우를 구분할 수 있다"
+   ],
+   "prerequisites": [
+    "db.sql.data-types"
+   ],
+   "related": [
+    "db.sql.jsonb"
+   ],
+   "aliases": [
+    "배열 열",
+    "array column",
+    "ARRAY 생성자",
+    "integer[]",
+    "text[]"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/arrays.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.python-sqlite3",
+   "title": "파이썬 sqlite3로 파일 DB 쓰기",
+   "en": "Using SQLite from Python with sqlite3",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "서버 없이 파일 하나로 도는 SQLite를 파이썬 표준 라이브러리 sqlite3로 열고, SQL을 실행하고, 결과를 받아 오는 방법이다.",
+   "objectives": [
+    "connect·execute·commit 순서로 표를 만들고 행을 넣을 수 있다",
+    "? 자리표시자와 executemany로 여러 행을 안전하게 넣을 수 있다",
+    "fetchone·fetchall과 row_factory로 결과 행을 원하는 모양으로 받을 수 있다",
+    "commit을 빠뜨려 넣은 행이 사라지는 실수를 찾아 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "db.sql.write-rows"
+   ],
+   "related": [
+    "db.orm.core-connection"
+   ],
+   "aliases": [
+    "sqlite3 모듈",
+    "sqlite3.connect",
+    "파이썬 SQLite"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/sqlite3.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.sql.join",
    "title": "JOIN: 두 표 이어 붙이기",
    "en": "JOIN",
@@ -14236,6 +15026,79 @@
    "domain": "db"
   },
   {
+   "id": "db.sql.uuid-type",
+   "title": "uuid 자료형과 gen_random_uuid()",
+   "en": "UUID Type",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "128비트 범용 고유 식별자를 담는 자료형으로, 여러 DB에 걸쳐도 겹치지 않는 기본 키를 만들 때 쓴다.",
+   "related": [
+    "db.sql.identity-column"
+   ],
+   "aliases": [
+    "uuid 자료형",
+    "uuid 기본 키",
+    "gen_random_uuid",
+    "uuidv7"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/datatype-uuid.html",
+    "https://www.postgresql.org/docs/current/functions-uuid.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.array-agg-string-agg",
+   "title": "array_agg와 string_agg: 여러 행을 하나로 모으기",
+   "en": "array_agg and string_agg",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "그룹 안의 여러 행 값을 배열 하나나 구분자로 이은 글자 하나로 모으는 집계 함수로, 순서는 함수 안 ORDER BY로 정한다.",
+   "parent": "db.sql.arrays",
+   "related": [
+    "db.sql.group-by"
+   ],
+   "aliases": [
+    "array_agg",
+    "string_agg",
+    "문자열 집계",
+    "배열 집계"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/functions-aggregate.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.sqlite3-connection-with",
+   "title": "sqlite3 연결과 with 문",
+   "en": "sqlite3 Connection Context Manager",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "with con: 블록은 끝날 때 트랜잭션을 커밋하거나 예외면 롤백할 뿐 연결은 닫지 않으므로 close()를 따로 불러야 한다.",
+   "parent": "db.sql.python-sqlite3",
+   "related": [
+    "be.python.context-manager"
+   ],
+   "aliases": [
+    "with con",
+    "sqlite3 컨텍스트 관리자",
+    "sqlite3 close"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/sqlite3.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.sql.view",
    "title": "뷰: 쿼리에 이름 붙여 표처럼 쓰기",
    "en": "View",
@@ -14299,6 +15162,102 @@
    ],
    "refs": [
     "https://www.postgresql.org/docs/current/functions-datetime.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.generated-column",
+   "title": "생성 열: 다른 열로 계산되는 열",
+   "en": "Generated Columns",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "SQL",
+   "summary": "같은 행의 다른 열로 늘 계산되는 열로, 직접 값을 넣을 수 없고 STORED는 쓸 때, VIRTUAL은 읽을 때 계산된다.",
+   "related": [
+    "db.sql.identity-column",
+    "db.sql.view"
+   ],
+   "aliases": [
+    "생성 열",
+    "generated column",
+    "GENERATED ALWAYS AS",
+    "계산 열"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/ddl-generated-columns.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.enum-type",
+   "title": "열거형(ENUM) 자료형",
+   "en": "Enumerated Types",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "SQL",
+   "summary": "CREATE TYPE ... AS ENUM으로 정한 몇 개의 이름표만 넣을 수 있는 자료형으로, 정렬은 만든 순서를 따른다.",
+   "related": [
+    "db.sql.check-constraint"
+   ],
+   "aliases": [
+    "PostgreSQL ENUM",
+    "PostgreSQL 열거형",
+    "CREATE TYPE AS ENUM"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/datatype-enum.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.array-any-all",
+   "title": "ANY와 ALL: 배열 원소와 비교하기",
+   "en": "ANY and ALL with Arrays",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "SQL",
+   "summary": "값 하나를 배열의 원소 가운데 하나라도 또는 전부와 비교하는 식으로, 배열 열에서 원소가 든 행을 찾을 때 쓴다.",
+   "parent": "db.sql.arrays",
+   "related": [
+    "db.sql.exists-in-subquery"
+   ],
+   "aliases": [
+    "= ANY",
+    "ANY 배열",
+    "ALL 배열",
+    "배열 원소 검색"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/arrays.html",
+    "https://www.postgresql.org/docs/current/functions-comparisons.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.orm.table-reflection",
+   "title": "테이블 리플렉션: 있는 표를 읽어 와 쓰기",
+   "en": "Table Reflection",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "ORM",
+   "summary": "파이썬에 열을 직접 적지 않고 autoload_with로 이미 있는 DB의 표 구조를 읽어 Table 객체로 만드는 SQLAlchemy 기능이다.",
+   "related": [
+    "db.orm.sqlalchemy-basics"
+   ],
+   "aliases": [
+    "SQLAlchemy 리플렉션",
+    "table reflection",
+    "autoload_with",
+    "표 구조 읽어 오기"
+   ],
+   "refs": [
+    "https://docs.sqlalchemy.org/en/20/tutorial/metadata.html"
    ],
    "domain": "db"
   },
@@ -17742,6 +18701,46 @@
    "domain": "llm"
   },
   {
+   "id": "llm.api.structured-output-parse",
+   "title": "SDK로 구조화 출력 받아 쓰기: Pydantic 모델과 실패 처리",
+   "en": "Parsing Structured Outputs with SDK Helpers",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "LLM API",
+   "summary": "Pydantic이나 Zod로 정한 모양을 SDK의 parse 함수에 넘겨 타입이 붙은 결과를 받고, 거절·잘림처럼 스키마가 지켜지지 않는 경우를 따로 처리한다.",
+   "objectives": [
+    "Pydantic 모델을 정의해 parse 함수로 넘기고 파싱된 결과 객체를 꺼내 쓸 수 있다",
+    "필드마다 required와 additionalProperties: false를 맞춰 스키마 오류를 피할 수 있다",
+    "파싱 전에 종료 사유를 확인해 거절과 max_tokens 잘림을 스키마 오류와 나눠 처리할 수 있다",
+    "숫자 범위처럼 지원되지 않는 제약을 코드 쪽 검증으로 옮길 수 있다"
+   ],
+   "prerequisites": [
+    "llm.api.first-call",
+    "be.fastapi.body-model"
+   ],
+   "related": [
+    "llm.api.structured-output",
+    "llm.internals.structured-decoding",
+    "rag.agent.structured-output"
+   ],
+   "aliases": [
+    "messages.parse",
+    "responses.parse",
+    "parsed_output",
+    "output_parsed",
+    "Pydantic 구조화 출력",
+    "Zod 스키마 출력"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+    "https://developers.openai.com/api/docs/guides/structured-outputs"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "llm"
+  },
+  {
    "id": "llm.prompt.prompt-structure",
    "title": "프롬프트 구조 잡기: 지시·자료·예시 나누기",
    "en": "Structuring Prompts: Separating Instructions, Context, and Examples",
@@ -18035,6 +19034,77 @@
    "domain": "llm"
   },
   {
+   "id": "llm.basics.datasets-library",
+   "title": "Datasets 라이브러리로 데이터 불러와 다듬기",
+   "en": "Loading and Processing Data with Hugging Face Datasets",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "Hugging Face Datasets로 Hub나 내 CSV·JSON 파일을 불러와 거르고 열을 바꾸고 토큰화한 뒤 학습·검증 분할로 나눠 저장한다.",
+   "objectives": [
+    "load_dataset에 형식 이름과 data_files를 넣어 로컬·원격 파일을 불러올 수 있다",
+    "filter와 map으로 빈 행을 거르고 새 열을 만들 수 있다",
+    "map에 batched=True를 주어 토큰화를 빠르게 하고 행 수가 바뀔 때 remove_columns로 오류를 피할 수 있다",
+    "pandas 형식으로 바꿔 살펴보고 학습·검증 분할을 만들어 저장할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.tokenizer-batching"
+   ],
+   "related": [
+    "ml.nn.dataset-dataloader",
+    "mlops.finetune.sft-chat-data"
+   ],
+   "aliases": [
+    "Hugging Face Datasets",
+    "datasets 라이브러리",
+    "load_dataset",
+    "허깅페이스 데이터셋",
+    "Dataset.filter"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter5/2",
+    "https://huggingface.co/learn/llm-course/chapter5/3"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.generate-decoding",
+   "title": "generate()로 텍스트 생성하기: greedy·샘플링·빔 서치",
+   "en": "Text Generation with generate(): Greedy, Sampling, Beam Search",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 내부",
+   "summary": "Transformers의 generate()에 max_new_tokens와 디코딩 방식을 주어 오픈 모델로 글을 만들고, 짧게 끊기거나 같은 말을 되풀이하는 흔한 문제를 설정으로 고친다.",
+   "objectives": [
+    "max_new_tokens를 정해 generate()로 문장을 이어 쓰게 하고 decode로 결과를 읽을 수 있다",
+    "기본값 탓에 답이 짧게 끊기는 문제를 찾아 길이 설정으로 고칠 수 있다",
+    "do_sample과 num_beams를 바꿔 greedy·샘플링·빔 서치의 결과 차이를 비교할 수 있다",
+    "되풀이가 심한 긴 글과 입력에 묶인 짧은 글에 맞는 디코딩 방식을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.transformers-pipeline",
+    "llm.internals.generation-settings"
+   ],
+   "related": [
+    "llm.internals.tokenization-sampling",
+    "llm.internals.generation-settings"
+   ],
+   "aliases": [
+    "model.generate",
+    "디코딩 전략",
+    "decoding strategy",
+    "generation strategies",
+    "GenerationConfig",
+    "max_new_tokens"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/generation_strategies"
+   ],
+   "domain": "llm"
+  },
+  {
    "id": "llm.api.image-generation-api",
    "title": "이미지 생성 API로 그림 만들고 고치기",
    "en": "Generating and Editing Images with an API",
@@ -18066,6 +19136,42 @@
    "refs": [
     "https://developers.openai.com/api/docs/guides/image-generation",
     "https://github.com/microsoft/generative-ai-for-beginners/blob/main/09-building-image-applications/README.md"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.share-on-hub",
+   "title": "Hugging Face Hub에 모델 올려 공유하기",
+   "en": "Sharing Models on the Hugging Face Hub",
+   "kind": "topic",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "로그인한 뒤 push_to_hub나 huggingface_hub 라이브러리로 저장소를 만들고 모델·토크나이저 파일을 올려 다른 사람이 이름 하나로 불러 쓰게 한다.",
+   "objectives": [
+    "터미널이나 노트북에서 Hub에 로그인하고 토큰을 저장할 수 있다",
+    "모델과 토크나이저를 push_to_hub로 내 저장소나 조직 저장소에 올릴 수 있다",
+    "create_repo와 upload_file로 공개·비공개 저장소를 만들고 파일을 올릴 수 있다",
+    "큰 가중치 파일을 git으로 올릴 때 git-lfs가 필요한 이유를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.transformers-pipeline"
+   ],
+   "related": [
+    "llm.basics.model-card",
+    "llm.basics.model-checkpoint"
+   ],
+   "aliases": [
+    "Hub 업로드",
+    "Hugging Face Hub 공유",
+    "huggingface_hub",
+    "create_repo",
+    "huggingface-cli login"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter4/3"
    ],
    "volatile": true,
    "checked_at": "2026-11-06",
@@ -18598,6 +19704,138 @@
    "domain": "llm"
   },
   {
+   "id": "llm.api.refusal-response",
+   "title": "거절 응답(refusal)",
+   "en": "Refusal Response",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "모델이 안전 문제로 거절한 응답으로, Claude는 stop_details.category로 어떤 분야인지 알려 다른 모델로 다시 시도할지 정하게 하고 OpenAI는 refusal 칸에 담는다.",
+   "parent": "llm.api.structured-output-parse",
+   "related": [
+    "llm.api.stop-reason"
+   ],
+   "aliases": [
+    "refusal 응답",
+    "refusal 필드",
+    "모델 거절 응답",
+    "안전 거절"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback",
+    "https://developers.openai.com/api/docs/guides/structured-outputs"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.tools.strict-tool-use",
+   "title": "strict 도구 사용(엄격 모드)",
+   "en": "Strict Tool Use",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "도구 호출",
+   "summary": "도구 정의에 strict를 켜면 모델이 만드는 도구 이름과 인자가 입력 스키마를 반드시 따라 \"2\" 대신 2처럼 타입이 맞는 값이 온다.",
+   "parent": "llm.tools.function-calling",
+   "related": [
+    "llm.tools.tool-schema",
+    "llm.api.structured-output"
+   ],
+   "aliases": [
+    "strict tool use",
+    "strict: true 도구",
+    "엄격한 도구 호출",
+    "도구 엄격 모드",
+    "function calling strict"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use",
+    "https://developers.openai.com/api/docs/guides/structured-outputs"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.tools.tool-choice",
+   "title": "tool_choice(도구 선택 지정)",
+   "en": "tool_choice",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "도구 호출",
+   "summary": "모델이 도구를 알아서 고를지(auto), 꼭 하나를 부를지(any·required·특정 도구), 아예 부르지 않을지(none)를 정하는 요청 값이며 일부 모델은 강제 호출을 받지 않는다.",
+   "parent": "llm.tools.function-calling",
+   "related": [
+    "llm.tools.strict-tool-use"
+   ],
+   "aliases": [
+    "tool_choice",
+    "도구 강제 호출",
+    "forced tool use",
+    "tool_choice auto",
+    "도구 선택 옵션"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools",
+    "https://developers.openai.com/api/docs/guides/function-calling"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.dataset-map-batched",
+   "title": "Dataset.map과 batched 처리",
+   "en": "Dataset.map with batched=True",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "데이터셋의 모든 행에 함수를 적용해 열을 고치거나 더하는 메서드로, batched=True면 여러 행을 한 번에 넘겨 빠른 토크나이저와 함께 훨씬 빨라진다.",
+   "parent": "llm.basics.datasets-library",
+   "aliases": [
+    "Dataset.map",
+    "batched=True",
+    "map 전처리",
+    "num_proc",
+    "remove_columns"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter5/3"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.greedy-vs-sampling",
+   "title": "greedy 탐색과 샘플링(do_sample)",
+   "en": "Greedy Search vs Sampling",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 내부",
+   "summary": "매번 가장 확률 높은 토큰을 고르는 greedy 탐색은 짧고 일정한 답에 맞지만 길면 되풀이하고, do_sample=True로 확률에 따라 뽑으면 답이 다양해진다.",
+   "parent": "llm.internals.generate-decoding",
+   "related": [
+    "llm.internals.temperature"
+   ],
+   "aliases": [
+    "greedy search",
+    "탐욕 탐색",
+    "그리디 디코딩",
+    "do_sample",
+    "multinomial sampling",
+    "다항 샘플링"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/generation_strategies"
+   ],
+   "domain": "llm"
+  },
+  {
    "id": "llm.api.files-api",
    "title": "Files API",
    "en": "Files API",
@@ -18769,6 +20007,71 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-06",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.dataset-dict",
+   "title": "DatasetDict(분할 묶음)",
+   "en": "DatasetDict",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "train·validation·test 같은 분할 이름마다 Dataset 하나를 담은 묶음으로, 분할을 지정하지 않고 파일을 불러오면 train 하나만 생긴다.",
+   "parent": "llm.basics.datasets-library",
+   "aliases": [
+    "DatasetDict",
+    "데이터셋 분할 묶음",
+    "data_files 분할"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter5/2"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.push-to-hub",
+   "title": "push_to_hub",
+   "en": "push_to_hub",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "모델·토크나이저 객체나 학습 설정에서 바로 Hub 저장소로 파일을 올리는 메서드로, 저장소가 없으면 만들고 organization 인자로 조직 아래에 올린다.",
+   "parent": "llm.basics.share-on-hub",
+   "aliases": [
+    "push_to_hub",
+    "model.push_to_hub",
+    "PushToHubCallback",
+    "TrainingArguments push_to_hub"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter4/3"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.beam-search",
+   "title": "빔 서치(beam search)",
+   "en": "Beam Search",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "여러 후보 문장(빔)을 함께 이어 가다 전체 확률이 가장 높은 것을 고르는 디코딩 방식으로, num_beams를 2 이상으로 주면 켜진다.",
+   "parent": "llm.internals.generate-decoding",
+   "related": [
+    "llm.internals.greedy-vs-sampling"
+   ],
+   "aliases": [
+    "beam search",
+    "num_beams",
+    "빔 탐색",
+    "빔 검색"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/generation_strategies"
+   ],
    "domain": "llm"
   },
   {
@@ -28995,6 +30298,83 @@
    "domain": "mlops"
   },
   {
+   "id": "mlops.eval.builtin-judges",
+   "title": "내장 LLM 심판 골라 쓰기",
+   "en": "Using Built-in LLM Judges",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "질문 관련성·정답 사실·안전·검색 근거처럼 흔한 채점 기준을 MLflow가 미리 만들어 둔 심판으로 골라 붙이고, 각 심판이 요구하는 데이터를 맞춰 준다.",
+   "objectives": [
+    "채점하려는 기준에 맞는 내장 심판을 응답 품질·RAG·도구 호출 묶음에서 고를 수 있다",
+    "심판마다 필요한 expectations 값과 트레이스가 있는지 확인하고 평가 세트를 맞출 수 있다",
+    "정답이 필요한 심판에 expected_facts를 빼먹거나 트레이스 없는 데이터로 RAG 심판을 돌리는 실수를 찾아 고칠 수 있다",
+    "내장 심판으로 부족한 기준을 Guidelines 심판이나 코드 스코어러로 넘길지 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.eval.first-eval"
+   ],
+   "related": [
+    "mlops.eval.custom-scorer",
+    "mlops.eval.llm-judge"
+   ],
+   "aliases": [
+    "내장 심판",
+    "built-in judge",
+    "predefined scorer",
+    "내장 LLM 심판",
+    "Correctness 심판",
+    "RelevanceToQuery"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/llm-judge/predefined/",
+    "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.responses-agent",
+   "title": "ResponsesAgent로 에이전트 포장해 기록하기",
+   "en": "Packaging an Agent with ResponsesAgent",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "프레임워크와 상관없이 만든 에이전트를 ResponsesAgent의 predict·predict_stream 규약에 맞춰 감싸고, 코드 파일째 MLflow 모델로 기록해 다시 불러 써 본다.",
+   "objectives": [
+    "ResponsesAgent를 상속해 predict가 ResponsesAgentResponse를 돌려주게 쓸 수 있다",
+    "도우미 메서드로 텍스트 답·도구 호출·도구 결과 항목을 만들어 출력에 담을 수 있다",
+    "에이전트 파일 경로를 python_model로 넘겨 기록하고 pyfunc로 불러와 같은 요청으로 시험할 수 있다",
+    "스트리밍 조각과 완료 이벤트의 item_id가 어긋나거나 입력 예시가 요청 형식과 다른 실수를 찾아 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.track.experiment-tracking",
+    "llm.tools.function-calling"
+   ],
+   "related": [
+    "mlops.track.model-flavor",
+    "mlops.serve.local-model-serving"
+   ],
+   "aliases": [
+    "ResponsesAgent",
+    "ResponsesAgentRequest",
+    "ResponsesAgentResponse",
+    "에이전트 포장",
+    "에이전트 모델 기록",
+    "predict_stream"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/flavors/responses-agent-intro/",
+    "https://mlflow.org/docs/latest/genai/flavors/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "mlops"
+  },
+  {
    "id": "mlops.track.experiment-tracking",
    "title": "실험 추적: 파라미터·지표·모델 기록하기",
    "en": "Experiment Tracking with MLflow",
@@ -29029,6 +30409,41 @@
     "https://mlflow.org/docs/latest/ml/tracking/",
     "https://mlflow.org/docs/latest/ml/tracking/quickstart/"
    ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.agent-server",
+   "title": "MLflow Agent Server로 에이전트 API 띄우기",
+   "en": "Hosting an Agent with MLflow Agent Server",
+   "kind": "topic",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "에이전트 함수를 데코레이터로 등록하고 FastAPI 기반 Agent Server를 띄워 /invocations로 요청하면 트레이스가 저절로 쌓이는 로컬 에이전트 API를 만든다.",
+   "objectives": [
+    "@invoke와 @stream으로 일반 응답 함수와 스트리밍 함수를 등록할 수 있다",
+    "AgentServer를 만들어 포트·워커 수·자동 재시작 옵션으로 실행할 수 있다",
+    "/invocations에 input 메시지 목록을 보내고 stream 값을 바꿔 두 응답 방식을 비교할 수 있다",
+    "서버 함수를 predict_fn으로 감싸 내장 심판으로 평가를 돌릴 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.observe.tracing-quickstart",
+    "mlops.serve.responses-agent"
+   ],
+   "related": [
+    "mlops.serve.local-model-serving",
+    "mlops.serve.vllm-openai-server"
+   ],
+   "aliases": [
+    "Agent Server",
+    "AgentServer",
+    "MLflow 에이전트 서버"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/serving/agent-server/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
    "domain": "mlops"
   },
   {
@@ -29293,6 +30708,87 @@
    "refs": [
     "https://mlflow.org/docs/latest/genai/version-tracking/"
    ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.eval.guidelines-judge",
+   "title": "Guidelines 심판(자연어 규칙 채점)",
+   "en": "Guidelines Judge",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "\"가격을 구체적으로 말하지 않는다\"처럼 자연어로 쓴 규칙을 주면 모든 답이 그 규칙을 지켰는지 yes·no와 이유로 판정하는 내장 심판이다.",
+   "parent": "mlops.eval.builtin-judges",
+   "related": [
+    "mlops.eval.custom-scorer"
+   ],
+   "aliases": [
+    "Guidelines 심판",
+    "Guidelines judge",
+    "가이드라인 심판",
+    "Guidelines()",
+    "규칙 채점"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/llm-judge/guidelines/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.eval.retrieval-judges",
+   "title": "검색 근거 심판(RetrievalGroundedness 등)",
+   "en": "Retrieval Judges for RAG",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "트레이스 안 검색 스팬을 읽어 가져온 문서가 질문과 맞는지, 답이 그 문서에 근거하는지, 필요한 내용이 다 있었는지 판정하는 RAG용 내장 심판이다.",
+   "parent": "mlops.eval.builtin-judges",
+   "related": [
+    "rag.eval.metrics"
+   ],
+   "aliases": [
+    "RetrievalGroundedness",
+    "RetrievalRelevance",
+    "RetrievalSufficiency",
+    "검색 근거성 심판",
+    "RAG 심판"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/llm-judge/predefined/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.track.models-from-code",
+   "title": "코드로 모델 기록하기(Models from Code)",
+   "en": "Models from Code",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "모델 객체를 피클로 굳히는 대신 set_model을 부른 파이썬 파일 경로를 log_model에 넘겨, 읽을 수 있는 코드 그대로 모델을 기록하는 방식이다.",
+   "parent": "mlops.serve.responses-agent",
+   "related": [
+    "mlops.track.model-flavor"
+   ],
+   "aliases": [
+    "Models from Code",
+    "모델을 코드로 기록",
+    "set_model",
+    "code_paths",
+    "코드 기반 모델 기록"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/ml/model/models-from-code/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
    "domain": "mlops"
   },
   {
@@ -29750,6 +31246,110 @@
    "refs": [
     "https://mlflow.org/docs/latest/genai/version-tracking/quickstart/"
    ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.eval.expectations-guidelines",
+   "title": "행마다 다른 채점 규칙(ExpectationsGuidelines)",
+   "en": "ExpectationsGuidelines Judge",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "평가 세트의 각 행 expectations에 그 예시만의 규칙을 적어 두면 행마다 다른 기준으로 답을 판정하는 내장 심판이다.",
+   "parent": "mlops.eval.builtin-judges",
+   "related": [
+    "mlops.eval.guidelines-judge"
+   ],
+   "aliases": [
+    "ExpectationsGuidelines",
+    "행별 가이드라인",
+    "per-row guidelines",
+    "예시별 채점 규칙"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/llm-judge/guidelines/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.eval.tool-call-judges",
+   "title": "도구 호출 심판",
+   "en": "Tool Call Judges",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "에이전트의 트레이스를 읽어 질문에 맞는 도구를 맞는 인자로 불렀는지, 쓸데없이 여러 번 부르지 않았는지 판정하는 내장 심판이다.",
+   "parent": "mlops.eval.builtin-judges",
+   "related": [
+    "llm.tools.tool-call"
+   ],
+   "aliases": [
+    "ToolCallCorrectness",
+    "ToolCallEfficiency",
+    "도구 호출 평가",
+    "tool call judge",
+    "에이전트 도구 채점"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/eval-monitor/running-evaluation/agents/",
+    "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/llm-judge/predefined/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.responses-stream-events",
+   "title": "에이전트 응답 스트림 이벤트",
+   "en": "ResponsesAgent Stream Events",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "스트리밍 에이전트가 글자 조각을 delta 이벤트로 흘려보낸 뒤 같은 item_id의 완료 이벤트로 전체 항목을 한 번 더 보내는 이벤트 규약이다.",
+   "parent": "mlops.serve.responses-agent",
+   "related": [
+    "llm.api.response-output-items",
+    "llm.api.response-streaming"
+   ],
+   "aliases": [
+    "ResponsesAgentStreamEvent",
+    "output_item.done",
+    "에이전트 스트리밍 이벤트",
+    "스트림 완료 이벤트"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/flavors/responses-agent-intro/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.invoke-stream-decorators",
+   "title": "@invoke·@stream 데코레이터(에이전트 함수 등록)",
+   "en": "@invoke and @stream Decorators",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "Agent Server가 요청을 받을 때 부를 함수를 표시하는 데코레이터로, @invoke는 한 번에 답하는 함수를, @stream은 조각으로 흘려보내는 함수를 등록한다.",
+   "parent": "mlops.serve.agent-server",
+   "aliases": [
+    "@invoke",
+    "@stream",
+    "에이전트 함수 등록",
+    "invoke 데코레이터"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/serving/agent-server/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
    "domain": "mlops"
   },
   {

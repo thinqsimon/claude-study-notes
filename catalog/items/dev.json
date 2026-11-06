@@ -449,6 +449,40 @@
     ]
   },
   {
+    "id": "dev.git.diff",
+    "title": "git diff로 바뀐 내용 비교하기",
+    "en": "Comparing Changes with git diff",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "Git",
+    "summary": "작업 폴더·스테이징 영역·커밋 가운데 어느 둘을 비교하는지 골라 git diff로 바뀐 줄을 확인한다.",
+    "objectives": [
+      "git diff와 git diff --staged가 각각 무엇과 무엇을 비교하는지 구분할 수 있다",
+      "두 커밋이나 두 브랜치 사이의 차이를 경로를 좁혀 볼 수 있다",
+      "--stat과 --name-only로 바뀐 파일만 빠르게 훑을 수 있다",
+      "git diff에 아무것도 안 나올 때 이미 스테이징했는지 의심할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.first-commit"
+    ],
+    "related": [
+      "dev.git.revision-range",
+      "dev.git.history-search"
+    ],
+    "aliases": [
+      "git diff",
+      "변경 비교",
+      "diff 보기",
+      "git diff HEAD",
+      "git diff --stat"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository",
+      "https://git-scm.com/docs/git-diff"
+    ]
+  },
+  {
     "id": "dev.test.tdd",
     "title": "테스트 먼저 쓰기: TDD",
     "en": "Test-Driven Development",
@@ -792,6 +826,104 @@
       "https://docs.python.org/3/tutorial/stdlib2.html#tools-for-working-with-lists",
       "https://docs.python.org/3/library/collections.html",
       "https://docs.python.org/3/library/heapq.html"
+    ]
+  },
+  {
+    "id": "dev.git.remote-tracking",
+    "title": "원격 추적 브랜치와 업스트림 설정",
+    "en": "Remote-Tracking Branches and Upstream",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "Git",
+    "summary": "origin/main 같은 원격 추적 브랜치가 무엇을 기록하는지 알고 내 브랜치의 업스트림을 정해 앞섬·뒤처짐을 확인한다.",
+    "objectives": [
+      "origin/main과 로컬 main이 서로 다른 브랜치임을 설명할 수 있다",
+      "git branch -u로 업스트림을 정하고 git branch -vv로 앞섬·뒤처짐을 읽을 수 있다",
+      "fetch 뒤에 원격 추적 브랜치만 바뀌고 작업 폴더는 그대로임을 확인할 수 있다",
+      "필요 없어진 원격 브랜치를 지우고 로컬의 낡은 추적 브랜치를 정리할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.remotes",
+      "dev.git.branch-pr"
+    ],
+    "related": [
+      "dev.git.upstream-remote",
+      "dev.git.pull-rebase"
+    ],
+    "aliases": [
+      "원격 추적 브랜치",
+      "remote-tracking branch",
+      "origin/main",
+      "git branch -vv",
+      "ahead behind"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches",
+      "https://git-scm.com/docs/git-fetch"
+    ]
+  },
+  {
+    "id": "dev.git.commit-guidelines",
+    "title": "좋은 커밋 만들기: 커밋 단위와 메시지",
+    "en": "Commit Guidelines: Scope and Messages",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "Git",
+    "summary": "한 커밋에 한 가지 변경만 담고 제목줄과 본문을 나눈 메시지를 써서 검토와 되돌리기가 쉬운 기록을 남긴다.",
+    "objectives": [
+      "섞인 변경을 논리 단위로 나눠 여러 커밋으로 만들 수 있다",
+      "제목줄·빈 줄·본문 형식으로 커밋 메시지를 쓸 수 있다",
+      "커밋 전에 git diff --check로 공백 오류를 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.first-commit"
+    ],
+    "related": [
+      "dev.git.amend",
+      "dev.git.interactive-rebase"
+    ],
+    "aliases": [
+      "커밋 규칙",
+      "commit guidelines",
+      "작은 커밋",
+      "git diff --check",
+      "원자적 커밋"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project"
+    ]
+  },
+  {
+    "id": "dev.git.submodules",
+    "title": "Git 서브모듈로 다른 저장소 담기",
+    "en": "Git Submodules",
+    "kind": "topic",
+    "level": 3,
+    "importance": 3,
+    "group": "Git",
+    "summary": "다른 저장소를 하위 폴더에 특정 커밋으로 고정해 담고, 복제·pull 뒤 서브모듈이 비거나 옛 커밋에 머무는 실수를 피한다.",
+    "objectives": [
+      "git submodule add로 서브모듈을 추가하고 .gitmodules의 역할을 설명할 수 있다",
+      "--recurse-submodules나 submodule update --init --recursive로 빈 서브모듈 폴더를 채울 수 있다",
+      "상위 저장소가 서브모듈의 커밋 하나를 기록한다는 점을 알고 갱신 뒤 커밋할 수 있다",
+      "서브모듈 안에서 작업하기 전에 분리된 HEAD에서 브랜치로 옮길 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.remotes"
+    ],
+    "related": [
+      "dev.git.detached-head"
+    ],
+    "aliases": [
+      "서브모듈",
+      "git submodule",
+      "submodule",
+      "--recurse-submodules"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Tools-Submodules"
     ]
   },
   {
@@ -1230,6 +1362,123 @@
     ]
   },
   {
+    "id": "dev.git.tracking-branch",
+    "title": "추적 브랜치와 @{u}",
+    "en": "Tracking Branch and @{u}",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Git",
+    "summary": "원격 추적 브랜치와 짝지어진 로컬 브랜치로, 인자 없는 push·pull의 대상이 되고 @{u}로 그 짝을 가리킬 수 있다.",
+    "parent": "dev.git.remote-tracking",
+    "related": [
+      "dev.git.upstream-remote"
+    ],
+    "aliases": [
+      "tracking branch",
+      "업스트림 브랜치",
+      "upstream branch",
+      "@{u}",
+      "git branch -u",
+      "--set-upstream-to"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches"
+    ]
+  },
+  {
+    "id": "dev.git.diff-staged",
+    "title": "git diff --staged",
+    "en": "git diff --staged",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Git",
+    "summary": "스테이징 영역과 마지막 커밋을 비교해 다음 커밋에 실제로 들어갈 변경만 보여 주는 옵션이며 --cached와 같다.",
+    "parent": "dev.git.diff",
+    "related": [
+      "dev.git.staging-area"
+    ],
+    "aliases": [
+      "git diff --staged",
+      "git diff --cached",
+      "diff --cached",
+      "스테이징된 변경 보기"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/git-diff"
+    ]
+  },
+  {
+    "id": "dev.git.add-patch",
+    "title": "git add -p로 일부만 스테이징",
+    "en": "Partial Staging with git add -p",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Git",
+    "summary": "한 파일 안의 변경을 덩어리(hunk)마다 묻고 고른 부분만 스테이징하는 대화형 방식으로, s로 덩어리를 더 쪼갤 수 있다.",
+    "parent": "dev.git.commit-guidelines",
+    "related": [
+      "dev.git.staging-area"
+    ],
+    "aliases": [
+      "git add -p",
+      "git add --patch",
+      "부분 스테이징",
+      "partial staging",
+      "hunk 스테이징"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Tools-Interactive-Staging"
+    ]
+  },
+  {
+    "id": "dev.git.commit-message",
+    "title": "커밋 메시지 형식",
+    "en": "Commit Message Format",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Git",
+    "summary": "50자 안팎의 명령형 제목줄, 빈 줄, 72자에서 줄바꿈한 본문으로 무엇을 왜 바꿨는지 적는 Git 커뮤니티의 관례다.",
+    "parent": "dev.git.commit-guidelines",
+    "aliases": [
+      "커밋 메시지",
+      "commit message",
+      "커밋 메시지 제목줄",
+      "50/72 규칙"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project"
+    ]
+  },
+  {
+    "id": "dev.git.config-levels",
+    "title": "Git 설정 단계: system·global·local",
+    "en": "Git Configuration Levels",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Git",
+    "summary": "기계 전체·사용자·저장소 세 단계의 설정 파일이 있고 좁은 쪽이 넓은 쪽을 덮으며, --show-origin으로 값이 어디서 왔는지 볼 수 있다.",
+    "related": [
+      "dev.git.alias",
+      "dev.git.line-endings"
+    ],
+    "aliases": [
+      "git config --global",
+      "git config --local",
+      "git config --show-origin",
+      ".gitconfig",
+      "git 설정 파일"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup",
+      "https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration"
+    ]
+  },
+  {
     "id": "dev.git.upstream-remote",
     "title": "업스트림 원격",
     "en": "Upstream Remote",
@@ -1361,6 +1610,88 @@
     "refs": [
       "https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases",
       "https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration"
+    ]
+  },
+  {
+    "id": "dev.git.fetch-prune",
+    "title": "git fetch --prune",
+    "en": "git fetch --prune",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "Git",
+    "summary": "원격에서 이미 지워진 브랜치의 로컬 원격 추적 참조를 fetch할 때 함께 지우는 옵션으로, fetch.prune 설정으로 늘 켤 수 있다.",
+    "parent": "dev.git.remote-tracking",
+    "aliases": [
+      "fetch --prune",
+      "fetch.prune",
+      "git remote prune",
+      "낡은 원격 브랜치 정리"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/git-fetch"
+    ]
+  },
+  {
+    "id": "dev.git.push-delete",
+    "title": "원격 브랜치 삭제: git push --delete",
+    "en": "Deleting a Remote Branch with git push --delete",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "Git",
+    "summary": "서버에 있는 브랜치 포인터를 지우는 push 형태로, 로컬 브랜치는 따로 git branch -d로 지워야 한다.",
+    "parent": "dev.git.remote-tracking",
+    "aliases": [
+      "git push --delete",
+      "git push origin --delete",
+      "원격 브랜치 삭제",
+      "delete remote branch"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches"
+    ]
+  },
+  {
+    "id": "dev.git.gitmodules",
+    "title": ".gitmodules와 submodule update",
+    "en": ".gitmodules and git submodule update",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "Git",
+    "summary": "서브모듈의 경로와 URL을 적어 함께 커밋하는 설정 파일과, 상위 저장소가 기록한 커밋으로 서브모듈을 맞추는 명령이다.",
+    "parent": "dev.git.submodules",
+    "aliases": [
+      ".gitmodules",
+      "git submodule update",
+      "submodule update --init",
+      "submodule update --remote"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Tools-Submodules"
+    ]
+  },
+  {
+    "id": "dev.test.doctest",
+    "title": "doctest",
+    "en": "doctest",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "테스트",
+    "summary": "독스트링에 적은 >>> 대화형 예제를 실행해 적힌 출력과 글자 그대로 같은지 검사하는 파이썬 표준 모듈이다.",
+    "related": [
+      "dev.test.unit"
+    ],
+    "aliases": [
+      "doctest",
+      "python -m doctest",
+      "doctest.testmod",
+      "독스트링 테스트"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/doctest.html"
     ]
   },
   {

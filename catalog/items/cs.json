@@ -88,6 +88,42 @@
     ]
   },
   {
+    "id": "cs.dsa.stack-queue",
+    "title": "스택과 큐로 꺼내는 순서 정하기",
+    "en": "Stacks and Queues",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "자료구조",
+    "summary": "마지막에 넣은 것을 먼저 꺼내는 스택과 먼저 넣은 것을 먼저 꺼내는 큐의 차이를 익히고 상황에 맞게 고른다.",
+    "objectives": [
+      "LIFO와 FIFO의 차이를 예시로 설명할 수 있다",
+      "되돌리기·괄호 짝 맞추기를 스택으로, 대기열 처리를 큐로 구현할 수 있다",
+      "문제를 보고 스택과 큐 중 무엇을 쓸지 고를 수 있다"
+    ],
+    "prerequisites": [
+      "cs.algo.big-o-estimate"
+    ],
+    "related": [
+      "dev.dsa.deque",
+      "be.async.message-queue",
+      "dev.dsa.collections-choice"
+    ],
+    "aliases": [
+      "스택과 큐",
+      "stack and queue",
+      "LIFO 순서",
+      "FIFO 순서",
+      "후입선출",
+      "선입선출"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/stack.html",
+      "https://xlinux.nist.gov/dads/HTML/queue.html",
+      "https://docs.python.org/3/tutorial/datastructures.html#using-lists-as-stacks"
+    ]
+  },
+  {
     "id": "cs.algo.recursion",
     "title": "재귀 함수 작성하기",
     "en": "Writing Recursive Functions",
@@ -110,6 +146,104 @@
     "refs": [
       "https://xlinux.nist.gov/dads/HTML/recursion.html",
       "https://docs.python.org/3/library/exceptions.html#RecursionError"
+    ]
+  },
+  {
+    "id": "cs.dsa.array-vs-linked-list",
+    "title": "배열과 연결 리스트 비교",
+    "en": "Arrays vs Linked Lists",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "자료구조",
+    "summary": "연속된 칸에 담는 배열과 다음 칸을 가리키며 잇는 연결 리스트가 접근·삽입 비용에서 어떻게 다른지 비교한다.",
+    "objectives": [
+      "인덱스 접근과 중간 삽입의 비용을 배열과 연결 리스트로 나눠 비교할 수 있다",
+      "파이썬 리스트가 동적 배열이라 앞쪽 삽입이 느리다는 점을 코드로 확인할 수 있다",
+      "작업 패턴을 보고 배열과 연결 리스트 중 알맞은 쪽을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "cs.algo.big-o-estimate"
+    ],
+    "related": [
+      "cs.dsa.stack-queue",
+      "dev.dsa.collections-choice"
+    ],
+    "aliases": [
+      "배열 vs 연결 리스트",
+      "array vs linked list",
+      "연결 리스트 비교",
+      "리스트 삽입 비용"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/array.html",
+      "https://xlinux.nist.gov/dads/HTML/linkedList.html",
+      "https://docs.python.org/3/builtins/time-complexity.html",
+      "https://docs.python.org/3/faq/design.html#how-are-lists-implemented-in-cpython"
+    ]
+  },
+  {
+    "id": "cs.algo.graph-traversal",
+    "title": "BFS와 DFS로 그래프 탐색하기",
+    "en": "Graph Traversal with BFS and DFS",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "알고리즘과 복잡도",
+    "summary": "그래프를 인접 리스트로 담고, 가까운 곳부터 넓게 도는 BFS와 한 길을 끝까지 가는 DFS로 모든 정점을 방문한다.",
+    "objectives": [
+      "연결 관계를 인접 리스트로 표현할 수 있다",
+      "큐로 BFS를, 스택이나 재귀로 DFS를 구현할 수 있다",
+      "방문 표시를 빠뜨려 무한 반복에 빠지는 실수를 찾아 고칠 수 있다",
+      "최단 단계 수가 필요할 때 BFS를 골라야 하는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.dsa.stack-queue",
+      "cs.algo.recursion"
+    ],
+    "related": [
+      "cs.dsa.hash-table"
+    ],
+    "aliases": [
+      "그래프 탐색",
+      "graph traversal",
+      "너비 우선과 깊이 우선",
+      "BFS DFS"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/breadthfirst.html",
+      "https://xlinux.nist.gov/dads/HTML/depthfirst.html",
+      "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/pages/lecture-notes/"
+    ]
+  },
+  {
+    "id": "cs.net.tcp-vs-udp",
+    "title": "TCP와 UDP의 차이",
+    "en": "TCP vs UDP",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "순서와 도착을 보장하는 연결형 TCP와 가볍지만 보장이 없는 UDP의 차이를 알고 쓰임에 맞게 고른다.",
+    "objectives": [
+      "TCP가 보장하는 것과 UDP가 보장하지 않는 것을 나눠 설명할 수 있다",
+      "웹·파일 전송·DNS·실시간 음성처럼 쓰임새별로 알맞은 프로토콜을 고를 수 있다",
+      "포트 번호가 한 컴퓨터 안의 프로그램을 구분한다는 점을 설명할 수 있다"
+    ],
+    "related": [
+      "ops.network.tcp-internals",
+      "be.async.websocket"
+    ],
+    "aliases": [
+      "TCP UDP 차이",
+      "tcp vs udp",
+      "전송 계층 프로토콜",
+      "transport protocol",
+      "연결형과 비연결형"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9293",
+      "https://www.rfc-editor.org/rfc/rfc768"
     ]
   },
   {
@@ -157,6 +291,53 @@
     "refs": [
       "https://man7.org/linux/man-pages/man7/pthreads.7.html",
       "https://pages.cs.wisc.edu/~remzi/OSTEP/"
+    ]
+  },
+  {
+    "id": "cs.dsa.stack",
+    "title": "스택(자료구조)",
+    "en": "Stack (data structure)",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "자료구조",
+    "summary": "가장 나중에 넣은 항목만 꺼낼 수 있는, push와 pop으로 다루는 후입선출 자료구조다.",
+    "parent": "cs.dsa.stack-queue",
+    "related": [
+      "cs.dsa.queue"
+    ],
+    "aliases": [
+      "스택 자료구조",
+      "stack data structure",
+      "LIFO 스택"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/stack.html"
+    ]
+  },
+  {
+    "id": "cs.dsa.queue",
+    "title": "큐(자료구조)",
+    "en": "Queue (data structure)",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "자료구조",
+    "summary": "뒤로 넣고 앞에서 꺼내 가장 먼저 들어온 항목부터 처리하는 선입선출 자료구조다.",
+    "parent": "cs.dsa.stack-queue",
+    "related": [
+      "cs.dsa.stack",
+      "dev.dsa.deque",
+      "be.async.message-queue"
+    ],
+    "aliases": [
+      "큐 자료구조",
+      "queue data structure",
+      "dequeue 연산",
+      "FIFO 큐"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/queue.html"
     ]
   },
   {
@@ -297,6 +478,163 @@
     ],
     "refs": [
       "https://man7.org/linux/man-pages/man2/open.2.html"
+    ]
+  },
+  {
+    "id": "cs.dsa.linked-list",
+    "title": "연결 리스트",
+    "en": "Linked List",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "자료구조",
+    "summary": "각 항목이 다음 항목을 가리키는 연결로 이어진 리스트로, 찾을 때는 처음부터 차례로 따라가야 한다.",
+    "parent": "cs.dsa.array-vs-linked-list",
+    "related": [
+      "cs.dsa.dynamic-array"
+    ],
+    "aliases": [
+      "링크드 리스트",
+      "linked list",
+      "단일 연결 리스트",
+      "singly linked list",
+      "이중 연결 리스트"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/linkedList.html"
+    ]
+  },
+  {
+    "id": "cs.dsa.dynamic-array",
+    "title": "동적 배열",
+    "en": "Dynamic Array",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "자료구조",
+    "summary": "항목이 늘거나 줄면 크기를 바꾸는 배열로, 여유 칸을 미리 잡아 두어 끝에 붙이기가 대개 빠르다.",
+    "parent": "cs.dsa.array-vs-linked-list",
+    "related": [
+      "cs.dsa.linked-list"
+    ],
+    "aliases": [
+      "가변 배열",
+      "dynamic array",
+      "resizable array",
+      "가변 길이 배열"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/dynamicarray.html",
+      "https://docs.python.org/3/faq/design.html#how-are-lists-implemented-in-cpython"
+    ]
+  },
+  {
+    "id": "cs.algo.bfs",
+    "title": "너비 우선 탐색(BFS)",
+    "en": "Breadth-First Search",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "알고리즘과 복잡도",
+    "summary": "시작점에서 가까운 정점부터 차례로 큐에 넣으며 넓게 퍼져 나가는 그래프 탐색 방법이다.",
+    "parent": "cs.algo.graph-traversal",
+    "related": [
+      "cs.algo.dfs"
+    ],
+    "aliases": [
+      "BFS",
+      "너비 우선 탐색",
+      "breadth first search",
+      "레벨 순회"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/breadthfirst.html"
+    ]
+  },
+  {
+    "id": "cs.algo.dfs",
+    "title": "깊이 우선 탐색(DFS)",
+    "en": "Depth-First Search",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "알고리즘과 복잡도",
+    "summary": "한 갈래를 끝까지 따라간 뒤 되돌아와 다른 갈래로 가는 그래프 탐색 방법으로, 재귀로 쉽게 짠다.",
+    "parent": "cs.algo.graph-traversal",
+    "related": [
+      "cs.algo.bfs"
+    ],
+    "aliases": [
+      "DFS",
+      "깊이 우선 탐색",
+      "depth first search"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/depthfirst.html"
+    ]
+  },
+  {
+    "id": "cs.dsa.adjacency-list",
+    "title": "인접 리스트",
+    "en": "Adjacency List",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "자료구조",
+    "summary": "정점마다 이어진 이웃 정점의 목록을 두는 그래프 표현으로, 간선이 적은 그래프에서 인접 행렬보다 작다.",
+    "parent": "cs.algo.graph-traversal",
+    "aliases": [
+      "adjacency list",
+      "그래프 표현"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/adjacencyListRep.html"
+    ]
+  },
+  {
+    "id": "cs.net.udp",
+    "title": "UDP",
+    "en": "User Datagram Protocol",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "연결 없이 데이터그램을 바로 보내는 전송 프로토콜로, 도착과 순서를 보장하지 않는 대신 가볍다.",
+    "parent": "cs.net.tcp-vs-udp",
+    "related": [
+      "ops.network.tcp-internals"
+    ],
+    "aliases": [
+      "UDP",
+      "유디피",
+      "UDP 데이터그램",
+      "UDP 프로토콜"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc768"
+    ]
+  },
+  {
+    "id": "cs.net.socket",
+    "title": "네트워크 소켓",
+    "en": "Network Socket",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "프로그램이 운영체제를 거쳐 네트워크로 데이터를 주고받는 끝점으로, 스트림형과 데이터그램형이 있다.",
+    "related": [
+      "cs.os.file-descriptor",
+      "be.async.websocket-term",
+      "cs.net.tcp-vs-udp"
+    ],
+    "aliases": [
+      "SOCK_STREAM",
+      "SOCK_DGRAM",
+      "소켓 프로그래밍"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man7/socket.7.html"
     ]
   }
 ]
