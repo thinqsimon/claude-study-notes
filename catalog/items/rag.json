@@ -763,6 +763,153 @@
     "checked_at": "2026-11-06"
   },
   {
+    "id": "rag.agent.functional-api",
+    "title": "LangGraph 함수형 API: entrypoint와 task",
+    "en": "LangGraph Functional API: entrypoint and task",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "노드와 엣지를 그리지 않고 평범한 파이썬 함수와 if·반복문으로 LangGraph 워크플로를 짜며, 작업 단위의 결과를 저장해 멈췄다 이어 갈 수 있게 하는 방식이다.",
+    "objectives": [
+      "함수에 @entrypoint를 붙여 워크플로를 만들고 입력을 딕셔너리 하나로 넘겨 실행할 수 있다",
+      "API 호출 같은 작업을 @task로 감싸고 돌려받은 future를 .result()로 풀어 여러 작업을 함께 돌릴 수 있다",
+      "현재 시각·난수·외부 쓰기를 task 밖에 두면 재개할 때 다른 길로 가거나 두 번 실행되는 실수를 고칠 수 있다",
+      "같은 일을 Graph API와 Functional API 중 어느 쪽으로 짤지 상태 선언·시각화 여부를 기준으로 고를 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.graph-api",
+      "be.python.decorators",
+      "rag.agent.short-term-memory"
+    ],
+    "related": [
+      "rag.agent.graph-api",
+      "rag.agent.checkpoint-persistence"
+    ],
+    "aliases": [
+      "Functional API",
+      "함수형 API",
+      "LangGraph entrypoint",
+      "@entrypoint",
+      "LangGraph 함수형 API"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/functional-api"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "rag.agent.subgraphs",
+    "title": "LangGraph 서브그래프로 그래프 나누기",
+    "en": "Splitting Graphs with LangGraph Subgraphs",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "컴파일한 그래프를 다른 그래프의 노드로 넣거나 노드 안에서 불러, 큰 에이전트를 상태가 나뉜 작은 그래프들로 쪼개 만드는 방법이다.",
+    "objectives": [
+      "부모와 상태 키를 함께 쓰는 서브그래프를 add_node에 그대로 넣어 연결할 수 있다",
+      "상태 구조가 다른 서브그래프를 감싸는 노드에서 입력과 출력을 바꿔 가며 불러 쓸 수 있다",
+      "공유하지 않은 키가 각 그래프 안에만 남는 점을 이용해 메시지 기록을 서로 떼어 둘 수 있다",
+      "부모 그래프에 체크포인터가 없으면 서브그래프 상태를 볼 수 없는 실수를 알아채고 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.graph-api",
+      "rag.agent.short-term-memory"
+    ],
+    "related": [
+      "rag.agent.orchestrator-worker",
+      "ax.coding.subagent"
+    ],
+    "aliases": [
+      "서브그래프",
+      "subgraph",
+      "하위 그래프",
+      "LangGraph subgraph",
+      "중첩 그래프"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/use-subgraphs"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "rag.agent.middleware",
+    "title": "에이전트 미들웨어 붙이기: 재시도·호출 제한·대체 모델",
+    "en": "Adding Agent Middleware: Retries, Call Limits and Fallbacks",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "create_agent의 middleware 목록에 LangChain 내장 미들웨어를 넣어 모델 호출과 도구 실행 앞뒤에 재시도·횟수 제한·대체 모델 같은 동작을 끼우는 방법이다.",
+    "objectives": [
+      "create_agent의 middleware 인자에 내장 미들웨어 여러 개를 목록으로 넘겨 에이전트에 붙일 수 있다",
+      "모델 호출·도구 호출 제한 미들웨어로 끝없이 도는 에이전트 루프를 멈추게 할 수 있다",
+      "도구 재시도와 도구 오류 미들웨어를 함께 써서 일시적 실패는 다시 시도하고 남은 오류는 모델이 읽게 할 수 있다",
+      "주 모델이 실패할 때 다른 모델로 넘어가도록 대체 모델 미들웨어를 설정할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.first-agent"
+    ],
+    "related": [
+      "be.fastapi.middleware",
+      "rag.agent.reliability"
+    ],
+    "aliases": [
+      "에이전트 미들웨어",
+      "agent middleware",
+      "LangChain 미들웨어",
+      "LangChain middleware",
+      "내장 미들웨어",
+      "built-in middleware"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/middleware/overview",
+      "https://docs.langchain.com/oss/python/langchain/middleware/built-in"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "rag.agent.mcp-build-client",
+    "title": "파이썬으로 MCP 클라이언트 만들기",
+    "en": "Building an MCP Client in Python",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "파이썬 MCP SDK로 서버 프로세스를 stdio로 띄워 연결하고, 도구 목록을 모델에 넘긴 뒤 모델이 고른 도구를 대신 불러 결과를 돌려주는 채팅 클라이언트를 만드는 과정이다.",
+    "objectives": [
+      "StdioServerParameters와 stdio_client로 서버를 띄우고 async with 블록 하나로 연결과 정리를 맡길 수 있다",
+      "list_tools로 받은 도구의 이름·설명·입력 스키마를 모델 API의 도구 정의로 바꿔 넘길 수 있다",
+      "모델의 도구 사용 요청을 call_tool로 실행하고 결과를 tool_result로 되돌려 대화를 이어 갈 수 있다",
+      "서버 경로 오류나 첫 응답이 느린 문제를 문서의 문제 해결 순서대로 찾아 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.mcp-build-server",
+      "llm.tools.function-calling",
+      "be.async.await-basics"
+    ],
+    "related": [
+      "rag.agent.mcp-build-server",
+      "rag.agent.mcp-connect"
+    ],
+    "aliases": [
+      "MCP 클라이언트 만들기",
+      "build MCP client",
+      "MCP 클라이언트 개발",
+      "MCP Python 클라이언트",
+      "stdio_client"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/docs/develop/build-client"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
     "id": "rag.vector-db.chunk",
     "title": "청크",
     "en": "Chunk",
@@ -1118,6 +1265,128 @@
     ]
   },
   {
+    "id": "rag.agent.task-decorator",
+    "title": "태스크(@task)",
+    "en": "Task (@task)",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "Functional API에서 한 번에 끝나는 작업을 표시하는 데코레이터로, 부르면 바로 future를 돌려주고 끝난 결과는 체크포인트에 남아 재개할 때 다시 돌지 않는다.",
+    "parent": "rag.agent.functional-api",
+    "related": [
+      "rag.agent.tool-decorator"
+    ],
+    "aliases": [
+      "@task",
+      "LangGraph task",
+      "태스크 데코레이터",
+      "task future"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/functional-api#task"
+    ]
+  },
+  {
+    "id": "rag.agent.call-limit-middleware",
+    "title": "호출 횟수 제한 미들웨어",
+    "en": "ModelCallLimitMiddleware and ToolCallLimitMiddleware",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "한 번의 실행이나 한 스레드 안에서 모델 호출 수와 도구 호출 수에 상한을 두고, 넘으면 끝내거나 오류를 내도록 정하는 LangChain 내장 미들웨어다.",
+    "parent": "rag.agent.middleware",
+    "related": [
+      "rag.agent.recursion-limit"
+    ],
+    "aliases": [
+      "ModelCallLimitMiddleware",
+      "ToolCallLimitMiddleware",
+      "모델 호출 제한",
+      "도구 호출 제한",
+      "run_limit",
+      "thread_limit"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/middleware/built-in#model-call-limit"
+    ]
+  },
+  {
+    "id": "rag.agent.tool-retry-middleware",
+    "title": "도구 재시도 미들웨어",
+    "en": "ToolRetryMiddleware",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "실패한 도구 호출을 정한 횟수만큼 간격을 점점 늘리며 다시 시도하고, 끝내 실패하면 계속 갈지 오류를 낼지 정하는 LangChain 내장 미들웨어다.",
+    "parent": "rag.agent.middleware",
+    "related": [
+      "rag.agent.tool-error-middleware"
+    ],
+    "aliases": [
+      "ToolRetryMiddleware",
+      "도구 재시도",
+      "tool retry"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/middleware/built-in#tool-retry"
+    ]
+  },
+  {
+    "id": "rag.agent.call-tool-result",
+    "title": "MCP 도구 호출 결과와 is_error",
+    "en": "CallToolResult and is_error",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "MCP 클라이언트가 call_tool로 받는 결과로, 내용이 블록 목록이라 글 블록만 골라 읽어야 하고 도구 안의 실패는 예외가 아니라 is_error 표시로 온다.",
+    "parent": "rag.agent.mcp-build-client",
+    "related": [
+      "rag.agent.tool-call-id",
+      "rag.agent.tool-error-middleware"
+    ],
+    "aliases": [
+      "CallToolResult",
+      "is_error",
+      "isError",
+      "MCP 도구 결과",
+      "call_tool 결과"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/docs/develop/build-client"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "rag.agent.mcp-tool",
+    "title": "MCP 도구",
+    "en": "MCP Tools",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "MCP 서버가 JSON Schema로 입력을 정해 내주는 실행 기능으로, 클라이언트가 tools/list로 찾고 tools/call로 부르며 언제 쓸지는 모델이 정한다.",
+    "parent": "rag.agent.mcp-build-server",
+    "related": [
+      "rag.agent.mcp-resource",
+      "rag.agent.mcp-prompt"
+    ],
+    "aliases": [
+      "MCP tool",
+      "MCP 툴",
+      "tools/list",
+      "tools/call",
+      "MCP 도구 호출"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/docs/learn/server-concepts"
+    ]
+  },
+  {
     "id": "rag.retrieval.mmr",
     "title": "MMR(최대 한계 관련성)",
     "en": "Maximum Marginal Relevance",
@@ -1253,6 +1522,71 @@
     "refs": [
       "https://modelcontextprotocol.io/specification/2026-07-28/server/prompts",
       "https://modelcontextprotocol.io/docs/learn/server-concepts"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "rag.agent.entrypoint-previous",
+    "title": "previous와 entrypoint.final",
+    "en": "previous and entrypoint.final",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "같은 스레드의 지난 실행이 남긴 값을 previous 인자로 받아 쓰고, entrypoint.final로 돌려줄 값과 다음 실행에 남길 값을 따로 정하는 Functional API의 단기 기억 장치다.",
+    "parent": "rag.agent.functional-api",
+    "related": [
+      "rag.agent.checkpointer"
+    ],
+    "aliases": [
+      "entrypoint.final",
+      "previous 인자",
+      "previous parameter",
+      "함수형 API 단기 기억"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/functional-api#short-term-memory"
+    ]
+  },
+  {
+    "id": "rag.agent.model-fallback",
+    "title": "모델 대체 미들웨어",
+    "en": "ModelFallbackMiddleware",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "주 모델 호출이 실패하면 미리 적어 둔 다른 모델들을 차례로 시도하게 하는 LangChain 내장 미들웨어다.",
+    "parent": "rag.agent.middleware",
+    "aliases": [
+      "ModelFallbackMiddleware",
+      "LangChain 모델 폴백"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/middleware/built-in#model-fallback"
+    ]
+  },
+  {
+    "id": "rag.agent.tool-error-middleware",
+    "title": "도구 오류 미들웨어",
+    "en": "ToolErrorMiddleware",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "도구가 예외를 던지면 실행을 멈추지 않고 그 내용을 모델이 읽을 오류 메시지로 바꿔 돌려주는 LangChain 내장 미들웨어로, 스스로 다시 시도하지는 않는다.",
+    "parent": "rag.agent.middleware",
+    "related": [
+      "rag.agent.tool-retry-middleware",
+      "rag.agent.call-tool-result"
+    ],
+    "aliases": [
+      "ToolErrorMiddleware",
+      "LangChain 도구 오류 미들웨어"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/middleware/built-in#tool-error"
     ],
     "volatile": true,
     "checked_at": "2026-11-06"

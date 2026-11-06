@@ -580,6 +580,39 @@
     ]
   },
   {
+    "id": "db.sql.data-types",
+    "title": "PostgreSQL 자료형 고르기: 숫자·글자",
+    "en": "Choosing PostgreSQL Numeric and Character Types",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "SQL",
+    "summary": "정수는 integer와 bigint, 정확한 소수는 numeric, 글자는 text와 varchar(n) 가운데 할 일에 맞는 열 자료형을 고르는 방법이다.",
+    "objectives": [
+      "범위를 보고 smallint·integer·bigint 가운데 열에 맞는 정수형을 고를 수 있다",
+      "돈처럼 반올림 오차가 나면 안 되는 값에 numeric을, 근삿값이면 충분한 값에 double precision을 고를 수 있다",
+      "text와 varchar(n)의 차이를 알고 길이 초과 오류가 났을 때 원인을 찾아 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "db.postgres.first-run"
+    ],
+    "related": [
+      "db.sql.identity-column",
+      "db.sql.timestamptz"
+    ],
+    "aliases": [
+      "PostgreSQL 자료형",
+      "SQL 데이터 타입",
+      "열 자료형",
+      "column data type",
+      "integer bigint"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/datatype-numeric.html",
+      "https://www.postgresql.org/docs/current/datatype-character.html"
+    ]
+  },
+  {
     "id": "db.sql.subquery-cte",
     "title": "서브쿼리와 WITH 절로 조회 나누기",
     "en": "Subqueries and WITH Queries (CTE)",
@@ -784,6 +817,76 @@
     ]
   },
   {
+    "id": "db.sql.date-time-functions",
+    "title": "날짜·시간 계산: interval과 date_trunc",
+    "en": "Date/Time Arithmetic and Functions",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "날짜에 interval을 더하고 빼서 기간을 구하고, date_trunc와 EXTRACT로 시각을 일·월 단위로 잘라 묶거나 일부만 꺼내는 SQL 방법이다.",
+    "objectives": [
+      "date와 timestamp에 interval을 더하고 빼서 7일 뒤나 지난 30일 같은 조건을 쓸 수 있다",
+      "date_trunc로 시각을 날짜나 달 단위로 잘라 GROUP BY로 일별·월별 집계를 만들 수 있다",
+      "EXTRACT로 연·월·요일 같은 부분만 꺼내 조건이나 열로 쓸 수 있다",
+      "now()가 트랜잭션 시작 시각이라 한 트랜잭션 안에서 바뀌지 않는다는 점을 알고 필요하면 clock_timestamp()를 고를 수 있다"
+    ],
+    "prerequisites": [
+      "db.sql.select-first"
+    ],
+    "related": [
+      "db.sql.timestamptz",
+      "db.sql.group-by"
+    ],
+    "aliases": [
+      "날짜 함수",
+      "PostgreSQL 날짜 계산",
+      "date arithmetic",
+      "월별 집계",
+      "날짜 연산"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/functions-datetime.html",
+      "https://www.postgresql.org/docs/current/datatype-datetime.html"
+    ]
+  },
+  {
+    "id": "db.orm.core-connection",
+    "title": "SQLAlchemy Engine과 Connection으로 SQL 실행하기",
+    "en": "Executing SQL with SQLAlchemy Engine and Connection",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "ORM",
+    "summary": "create_engine으로 DB 주소를 정하고 Connection에서 text()로 쓴 SQL을 매개변수와 함께 실행해 Result의 행을 읽고 트랜잭션을 확정하는 SQLAlchemy Core의 기본 흐름이다.",
+    "objectives": [
+      "dialect+driver 형식의 URL로 create_engine을 만들고 echo=True로 실행되는 SQL을 볼 수 있다",
+      "text()에 :이름 자리표시자를 쓰고 값을 딕셔너리로 넘겨 SQL을 실행할 수 있다",
+      "Result에서 Row를 꺼내 이름이나 순서로 열 값을 읽을 수 있다",
+      "commit 없이 with 블록을 나가면 변경이 되돌려지는 이유를 알고 conn.commit()과 engine.begin() 중 하나를 골라 쓸 수 있다"
+    ],
+    "prerequisites": [
+      "db.internals.transaction-basics",
+      "db.sql.select-first"
+    ],
+    "related": [
+      "db.orm.sqlalchemy-basics",
+      "db.orm.session",
+      "be.security.sql-injection"
+    ],
+    "aliases": [
+      "SQLAlchemy Core",
+      "create_engine",
+      "engine.connect",
+      "sqlalchemy text()",
+      "SQLAlchemy 원시 SQL"
+    ],
+    "refs": [
+      "https://docs.sqlalchemy.org/en/20/tutorial/engine.html",
+      "https://docs.sqlalchemy.org/en/20/tutorial/dbapi_transactions.html"
+    ]
+  },
+  {
     "id": "db.sql.join",
     "title": "JOIN: 두 표 이어 붙이기",
     "en": "JOIN",
@@ -899,6 +1002,27 @@
     ],
     "refs": [
       "https://www.postgresql.org/docs/current/functions-conditional.html"
+    ]
+  },
+  {
+    "id": "db.sql.numeric-type",
+    "title": "numeric과 부동소수점",
+    "en": "numeric vs Floating-Point Types",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "SQL",
+    "summary": "numeric은 소수를 정확히 담아 돈 계산에 맞지만 느리고, real과 double precision은 빠르지만 근삿값으로 저장해 반올림 오차가 생긴다.",
+    "parent": "db.sql.data-types",
+    "aliases": [
+      "numeric 타입",
+      "NUMERIC(p, s)",
+      "double precision",
+      "부동소수점 오차",
+      "decimal 타입"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/datatype-numeric.html"
     ]
   },
   {
@@ -1268,6 +1392,134 @@
     ]
   },
   {
+    "id": "db.sql.varchar-text",
+    "title": "text와 varchar(n)",
+    "en": "text vs varchar(n)",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "PostgreSQL에서 text는 길이 제한이 없고 varchar(n)은 n자를 넘으면 오류를 내며, 둘 사이에 성능 차이는 거의 없고 char(n)은 피하는 편이 낫다.",
+    "parent": "db.sql.data-types",
+    "aliases": [
+      "varchar",
+      "character varying",
+      "char(n)",
+      "value too long for type",
+      "PostgreSQL 문자열 자료형"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/datatype-character.html"
+    ]
+  },
+  {
+    "id": "db.sql.interval",
+    "title": "interval: 기간 자료형",
+    "en": "interval Type",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "'1 day 2 hours'처럼 시간의 길이를 담는 PostgreSQL 자료형으로, 달·일·마이크로초를 따로 저장해 달마다 다른 길이를 바르게 더한다.",
+    "parent": "db.sql.date-time-functions",
+    "aliases": [
+      "interval 타입",
+      "INTERVAL '1 day'",
+      "기간 자료형",
+      "PostgreSQL interval"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/datatype-datetime.html"
+    ]
+  },
+  {
+    "id": "db.sql.date-trunc-extract",
+    "title": "date_trunc와 EXTRACT",
+    "en": "date_trunc and EXTRACT",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "date_trunc는 시각을 시·일·월 같은 단위로 잘라 아래 자리를 0으로 만들고, EXTRACT는 시각에서 연·월·요일 같은 한 부분만 숫자로 꺼낸다.",
+    "parent": "db.sql.date-time-functions",
+    "aliases": [
+      "date_trunc",
+      "EXTRACT 함수",
+      "date_part",
+      "날짜 자르기",
+      "extract epoch"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/functions-datetime.html"
+    ]
+  },
+  {
+    "id": "db.sql.set-operations",
+    "title": "UNION·INTERSECT·EXCEPT",
+    "en": "Set Operations: UNION, INTERSECT, EXCEPT",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "열의 수와 자료형이 맞는 두 조회 결과를 이어 붙이거나(UNION) 공통 행만(INTERSECT) 또는 한쪽에만 있는 행만(EXCEPT) 남기며, ALL을 붙이지 않으면 중복이 사라진다.",
+    "related": [
+      "db.sql.join"
+    ],
+    "aliases": [
+      "UNION ALL",
+      "SQL UNION",
+      "INTERSECT",
+      "EXCEPT 연산",
+      "SQL 집합 연산"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/queries-union.html"
+    ]
+  },
+  {
+    "id": "db.sql.returning",
+    "title": "RETURNING: 바꾼 행 돌려받기",
+    "en": "RETURNING Clause",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "INSERT·UPDATE·DELETE 끝에 붙여 방금 넣거나 고치거나 지운 행의 값을 바로 돌려받는 절로, 새로 매겨진 id를 다시 조회하지 않고 얻을 때 쓴다.",
+    "related": [
+      "db.sql.identity-column",
+      "db.sql.upsert-on-conflict"
+    ],
+    "aliases": [
+      "RETURNING 절",
+      "INSERT RETURNING",
+      "RETURNING id",
+      "returning clause"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/dml-returning.html"
+    ]
+  },
+  {
+    "id": "db.orm.engine-begin",
+    "title": "commit as you go와 engine.begin()",
+    "en": "Commit As You Go vs Begin Once",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "ORM",
+    "summary": "SQLAlchemy에서 engine.connect() 블록 안에서 직접 conn.commit()을 부르는 방식과, engine.begin() 블록이 끝날 때 성공하면 확정하고 예외면 되돌리게 맡기는 방식이다.",
+    "parent": "db.orm.core-connection",
+    "aliases": [
+      "engine.begin()",
+      "commit as you go",
+      "begin once",
+      "conn.commit()"
+    ],
+    "refs": [
+      "https://docs.sqlalchemy.org/en/20/tutorial/dbapi_transactions.html"
+    ]
+  },
+  {
     "id": "db.sql.view",
     "title": "뷰: 쿼리에 이름 붙여 표처럼 쓰기",
     "en": "View",
@@ -1308,6 +1560,27 @@
     "refs": [
       "https://www.postgresql.org/docs/current/app-psql.html",
       "https://www.postgresql.org/docs/current/sql-copy.html"
+    ]
+  },
+  {
+    "id": "db.sql.now-transaction-time",
+    "title": "now()와 clock_timestamp()",
+    "en": "now() vs clock_timestamp()",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "SQL",
+    "summary": "now()와 CURRENT_TIMESTAMP는 트랜잭션이 시작된 시각을 돌려줘 한 트랜잭션 안에서 같은 값이고, 실제 지금 시각이 필요하면 clock_timestamp()를 쓴다.",
+    "parent": "db.sql.date-time-functions",
+    "aliases": [
+      "PostgreSQL now()",
+      "CURRENT_TIMESTAMP",
+      "clock_timestamp",
+      "statement_timestamp",
+      "트랜잭션 시작 시각"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/functions-datetime.html"
     ]
   },
   {

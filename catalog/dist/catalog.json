@@ -1,5 +1,5 @@
 {
- "version": "0.14.0",
+ "version": "0.15.0",
  "domains": [
   {
    "prefix": "dev",
@@ -2865,6 +2865,134 @@
    "domain": "plan"
   },
   {
+   "id": "plan.figma.prototype-scroll",
+   "title": "Figma 프로토타입의 스크롤과 고정 요소",
+   "en": "Prototype Scroll and Overflow Behavior in Figma",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "프레임 밖으로 넘친 내용을 스크롤하게 하고, 상단 바나 하단 메뉴처럼 스크롤해도 제자리에 남는 요소를 정하는 Figma 프로토타입 설정이다.",
+   "objectives": [
+    "긴 화면·가로 슬라이더·지도처럼 내용에 맞게 프레임의 스크롤 방향을 고를 수 있다",
+    "스크롤이 안 될 때 내용이 프레임 경계를 넘는지와 클립 설정을 확인해 고칠 수 있다",
+    "상태 바·하단 탭은 고정으로, 섹션 머리글은 스티키로 지정해 스크롤 중 위치를 유지할 수 있다",
+    "오토 레이아웃 안의 요소를 고정하려면 절대 위치가 필요하다는 점을 알고 겹침 순서를 레이어 순서로 맞출 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.prototype-interactions",
+    "plan.figma.auto-layout"
+   ],
+   "related": [
+    "fe.css.position"
+   ],
+   "aliases": [
+    "Figma 스크롤",
+    "scroll behavior",
+    "overflow scrolling",
+    "프로토타입 스크롤",
+    "스크롤 동작"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360039818734-Prototype-scroll-behavior"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.color-contrast",
+   "title": "화면 디자인의 색 대비 확인하기",
+   "en": "Checking Color Contrast in Screen Designs",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "글자와 버튼 테두리·아이콘이 배경과 충분히 구분되는지 WCAG 명암비 기준으로 재고 모자라면 색을 고치는 디자인 점검이다.",
+   "objectives": [
+    "일반 글자와 큰 글자에 적용되는 명암비 기준을 구분해 시안의 글자 색을 판정할 수 있다",
+    "입력창 테두리·포커스 표시·의미 있는 아이콘처럼 글자가 아닌 요소도 대비 기준에 드는지 가릴 수 있다",
+    "비활성 컨트롤·장식·로고처럼 기준에서 빠지는 경우를 알고 예외를 잘못 넓히지 않을 수 있다",
+    "대비 검사 도구로 색 쌍을 재고 기준을 넘지 못하는 색을 바꿀 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.styles"
+   ],
+   "related": [
+    "fe.basics.accessibility-idea"
+   ],
+   "aliases": [
+    "색 대비",
+    "color contrast",
+    "WCAG 대비",
+    "접근성 색상 대비",
+    "대비 검사"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
+    "https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.recruit-participants",
+   "title": "사용자 조사 참여자 모으기",
+   "en": "Finding User Research Participants",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "조사 목적에 맞는 모집 기준을 세우고 경로를 골라 참여자를 모은 뒤, 사례비와 개인정보, 동의까지 챙겨 세션을 준비하는 일이다.",
+   "objectives": [
+    "조사할 사용자 집단과 경험을 바탕으로 모집 기준을 정하고 다양한 사람이 섞이도록 할 수 있다",
+    "모집 대행·관련 단체·기존 사용자 등 경로의 장단점을 알고 내부 직원을 참여자로 쓰지 않을 수 있다",
+    "접근성 요구가 있는 참여자를 위해 일정 여유와 연락·이동 지원을 계획할 수 있다",
+    "안내문과 동의 절차를 준비하고 참여자 정보를 필요한 만큼만 모아 다룰 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.usability-testing"
+   ],
+   "aliases": [
+    "참여자 모집",
+    "조사 리크루팅",
+    "participant recruitment",
+    "조사 대상자 모집",
+    "user research recruitment"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/user-research/find-user-research-participants",
+    "https://www.gov.uk/service-manual/user-research/getting-users-consent-for-research"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.card-sorting",
+   "title": "카드 소팅으로 메뉴 구조 정하기",
+   "en": "Card Sorting for Information Architecture",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "참여자가 콘텐츠 이름이 적힌 카드를 스스로 묶고 이름 붙이게 해 사용자가 생각하는 분류를 알아내고 메뉴와 정보 구조에 반영하는 조사 방법이다.",
+   "objectives": [
+    "30~50장 정도의 카드를 겹치는 단어 없이 준비하고 파일럿으로 점검할 수 있다",
+    "열린 카드 소팅과 닫힌 카드 소팅 중 목적에 맞는 방식을 고를 수 있다",
+    "결과에서 자주 함께 묶인 카드와 넣기 어려워한 카드를 찾아 메뉴 묶음과 이름을 정할 수 있다",
+    "카드 소팅으로 만든 구조를 트리 테스트로 확인하는 순서를 계획할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.service-flow"
+   ],
+   "aliases": [
+    "카드 분류",
+    "card sort",
+    "카드 소팅 조사"
+   ],
+   "refs": [
+    "https://www.nngroup.com/articles/card-sorting-definition/",
+    "https://www.nngroup.com/articles/tree-testing/"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.branch-and-publish",
    "title": "Figma 브랜치에서 고치고 라이브러리 업데이트 게시하기",
    "en": "Editing in a Figma Branch and Publishing Library Updates",
@@ -3265,6 +3393,115 @@
    "domain": "plan"
   },
   {
+   "id": "plan.figma.overflow-direction",
+   "title": "스크롤 오버플로 방향",
+   "en": "Overflow Scrolling Direction",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "프레임 경계를 넘친 내용을 세로·가로·양방향 중 어느 쪽으로 스크롤할지, 또는 스크롤하지 않을지 정하는 프레임 설정이다.",
+   "parent": "plan.figma.prototype-scroll",
+   "aliases": [
+    "Figma 가로 스크롤",
+    "Figma 세로 스크롤",
+    "Figma overflow scrolling"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360039818734-Prototype-scroll-behavior"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.fixed-sticky-position",
+   "title": "고정·스티키 스크롤 위치",
+   "en": "Fixed and Sticky Scroll Position",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "고정은 스크롤 내내 제자리에 머물고, 스티키는 부모 프레임 위쪽에 닿을 때까지 함께 움직이다 그 자리에 붙는 레이어의 스크롤 위치 설정이다.",
+   "parent": "plan.figma.prototype-scroll",
+   "related": [
+    "fe.css.position"
+   ],
+   "aliases": [
+    "fixed position Figma",
+    "Figma 스티키",
+    "Figma 고정 레이어"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360039818734-Prototype-scroll-behavior"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.contrast-ratio",
+   "title": "명암비(contrast ratio)",
+   "en": "Contrast Ratio",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "두 색의 상대 휘도로 계산한 밝기 차이의 비율로, 일반 글자는 4.5:1, 큰 글자는 3:1 이상이어야 WCAG AA를 통과한다.",
+   "parent": "plan.basics.color-contrast",
+   "aliases": [
+    "명암 대비율",
+    "대비율",
+    "4.5:1",
+    "WCAG AA 대비"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.informed-consent",
+   "title": "조사 참여 동의(informed consent)",
+   "en": "Informed Consent for Research",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "조사 목적·수집 자료·녹화 여부·철회 권리를 알린 뒤 참여자가 스스로 동의하게 하고, 그 동의를 기록으로 남기는 절차다.",
+   "parent": "plan.basics.recruit-participants",
+   "aliases": [
+    "조사 동의서",
+    "consent form",
+    "조사 동의",
+    "참여 동의서"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/user-research/getting-users-consent-for-research"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.hug-fill-fixed",
+   "title": "Hug·Fill·Fixed 크기 조절",
+   "en": "Hug Contents, Fill Container, and Fixed Resizing",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "오토 레이아웃에서 프레임이 내용에 맞춰 줄고 늘지, 부모의 남은 공간을 채울지, 정한 크기를 지킬지 축마다 고르는 크기 설정이다.",
+   "parent": "plan.figma.auto-layout",
+   "related": [
+    "plan.figma.constraints"
+   ],
+   "aliases": [
+    "Figma Fixed 크기",
+    "오토 레이아웃 크기 조절",
+    "Figma min/max 크기",
+    "Hug·Fill·Fixed"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360040451373-Guide-to-auto-layout-in-Figma"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.constraints",
    "title": "제약(constraints)",
    "en": "Figma Constraints",
@@ -3400,6 +3637,92 @@
    ],
    "refs": [
     "https://help.figma.com/hc/en-us/articles/360061175334-Create-interactive-components-with-variants"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.non-text-contrast",
+   "title": "비텍스트 대비(non-text contrast)",
+   "en": "Non-text Contrast",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "컨트롤과 그 상태를 알아보는 데 필요한 시각 정보와 이해에 필요한 그래픽이 인접한 색과 3:1 이상으로 구분되어야 한다는 WCAG 기준으로, 경계선은 그것이 유일한 단서일 때만 해당한다.",
+   "parent": "plan.basics.color-contrast",
+   "aliases": [
+    "포커스 표시 대비",
+    "UI 컴포넌트 대비",
+    "그래픽 대비",
+    "WCAG 1.4.11"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.research-incentive",
+   "title": "조사 참여 사례비(인센티브)",
+   "en": "Research Participant Incentive",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "조사에 시간을 내준 참여자에게 참여자 유형과 세션 길이에 맞춰 주는 보상으로, 현금 대신 상품권이나 대행사 지급을 쓰고 세션 시작 때 건넨다.",
+   "parent": "plan.basics.recruit-participants",
+   "aliases": [
+    "조사 사례비",
+    "research incentive",
+    "participant incentive"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/user-research/find-user-research-participants"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.open-closed-card-sort",
+   "title": "열린 카드 소팅과 닫힌 카드 소팅",
+   "en": "Open and Closed Card Sorting",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "열린 방식은 참여자가 묶음과 이름을 직접 만들고, 닫힌 방식은 미리 정한 분류에 카드를 넣게 하는 카드 소팅의 두 유형이다.",
+   "parent": "plan.basics.card-sorting",
+   "aliases": [
+    "열린 카드 소팅",
+    "닫힌 카드 소팅",
+    "open card sort",
+    "closed card sort"
+   ],
+   "refs": [
+    "https://www.nngroup.com/articles/card-sorting-definition/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.tree-testing",
+   "title": "트리 테스트(tree testing)",
+   "en": "Tree Testing",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "화면 디자인 없이 글자로 된 메뉴 계층만 보여 주고 과제의 답이 있을 곳을 찾게 해 성공률과 직행 여부로 정보 구조를 평가하는 방법이다.",
+   "parent": "plan.basics.card-sorting",
+   "related": [
+    "plan.basics.usability-testing"
+   ],
+   "aliases": [
+    "트리 테스팅",
+    "역 카드 소팅",
+    "reverse card sorting",
+    "메뉴 구조 테스트"
+   ],
+   "refs": [
+    "https://www.nngroup.com/articles/tree-testing/"
    ],
    "domain": "plan"
   },
@@ -12593,6 +12916,40 @@
    "domain": "db"
   },
   {
+   "id": "db.sql.data-types",
+   "title": "PostgreSQL 자료형 고르기: 숫자·글자",
+   "en": "Choosing PostgreSQL Numeric and Character Types",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "SQL",
+   "summary": "정수는 integer와 bigint, 정확한 소수는 numeric, 글자는 text와 varchar(n) 가운데 할 일에 맞는 열 자료형을 고르는 방법이다.",
+   "objectives": [
+    "범위를 보고 smallint·integer·bigint 가운데 열에 맞는 정수형을 고를 수 있다",
+    "돈처럼 반올림 오차가 나면 안 되는 값에 numeric을, 근삿값이면 충분한 값에 double precision을 고를 수 있다",
+    "text와 varchar(n)의 차이를 알고 길이 초과 오류가 났을 때 원인을 찾아 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "db.postgres.first-run"
+   ],
+   "related": [
+    "db.sql.identity-column",
+    "db.sql.timestamptz"
+   ],
+   "aliases": [
+    "PostgreSQL 자료형",
+    "SQL 데이터 타입",
+    "열 자료형",
+    "column data type",
+    "integer bigint"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/datatype-numeric.html",
+    "https://www.postgresql.org/docs/current/datatype-character.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.sql.subquery-cte",
    "title": "서브쿼리와 WITH 절로 조회 나누기",
    "en": "Subqueries and WITH Queries (CTE)",
@@ -12803,6 +13160,78 @@
    "domain": "db"
   },
   {
+   "id": "db.sql.date-time-functions",
+   "title": "날짜·시간 계산: interval과 date_trunc",
+   "en": "Date/Time Arithmetic and Functions",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "날짜에 interval을 더하고 빼서 기간을 구하고, date_trunc와 EXTRACT로 시각을 일·월 단위로 잘라 묶거나 일부만 꺼내는 SQL 방법이다.",
+   "objectives": [
+    "date와 timestamp에 interval을 더하고 빼서 7일 뒤나 지난 30일 같은 조건을 쓸 수 있다",
+    "date_trunc로 시각을 날짜나 달 단위로 잘라 GROUP BY로 일별·월별 집계를 만들 수 있다",
+    "EXTRACT로 연·월·요일 같은 부분만 꺼내 조건이나 열로 쓸 수 있다",
+    "now()가 트랜잭션 시작 시각이라 한 트랜잭션 안에서 바뀌지 않는다는 점을 알고 필요하면 clock_timestamp()를 고를 수 있다"
+   ],
+   "prerequisites": [
+    "db.sql.select-first"
+   ],
+   "related": [
+    "db.sql.timestamptz",
+    "db.sql.group-by"
+   ],
+   "aliases": [
+    "날짜 함수",
+    "PostgreSQL 날짜 계산",
+    "date arithmetic",
+    "월별 집계",
+    "날짜 연산"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/functions-datetime.html",
+    "https://www.postgresql.org/docs/current/datatype-datetime.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.orm.core-connection",
+   "title": "SQLAlchemy Engine과 Connection으로 SQL 실행하기",
+   "en": "Executing SQL with SQLAlchemy Engine and Connection",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "ORM",
+   "summary": "create_engine으로 DB 주소를 정하고 Connection에서 text()로 쓴 SQL을 매개변수와 함께 실행해 Result의 행을 읽고 트랜잭션을 확정하는 SQLAlchemy Core의 기본 흐름이다.",
+   "objectives": [
+    "dialect+driver 형식의 URL로 create_engine을 만들고 echo=True로 실행되는 SQL을 볼 수 있다",
+    "text()에 :이름 자리표시자를 쓰고 값을 딕셔너리로 넘겨 SQL을 실행할 수 있다",
+    "Result에서 Row를 꺼내 이름이나 순서로 열 값을 읽을 수 있다",
+    "commit 없이 with 블록을 나가면 변경이 되돌려지는 이유를 알고 conn.commit()과 engine.begin() 중 하나를 골라 쓸 수 있다"
+   ],
+   "prerequisites": [
+    "db.internals.transaction-basics",
+    "db.sql.select-first"
+   ],
+   "related": [
+    "db.orm.sqlalchemy-basics",
+    "db.orm.session",
+    "be.security.sql-injection"
+   ],
+   "aliases": [
+    "SQLAlchemy Core",
+    "create_engine",
+    "engine.connect",
+    "sqlalchemy text()",
+    "SQLAlchemy 원시 SQL"
+   ],
+   "refs": [
+    "https://docs.sqlalchemy.org/en/20/tutorial/engine.html",
+    "https://docs.sqlalchemy.org/en/20/tutorial/dbapi_transactions.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.sql.join",
    "title": "JOIN: 두 표 이어 붙이기",
    "en": "JOIN",
@@ -12922,6 +13351,28 @@
    ],
    "refs": [
     "https://www.postgresql.org/docs/current/functions-conditional.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.numeric-type",
+   "title": "numeric과 부동소수점",
+   "en": "numeric vs Floating-Point Types",
+   "kind": "term",
+   "level": 3,
+   "importance": 1,
+   "group": "SQL",
+   "summary": "numeric은 소수를 정확히 담아 돈 계산에 맞지만 느리고, real과 double precision은 빠르지만 근삿값으로 저장해 반올림 오차가 생긴다.",
+   "parent": "db.sql.data-types",
+   "aliases": [
+    "numeric 타입",
+    "NUMERIC(p, s)",
+    "double precision",
+    "부동소수점 오차",
+    "decimal 타입"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/datatype-numeric.html"
    ],
    "domain": "db"
   },
@@ -13308,6 +13759,140 @@
    "domain": "db"
   },
   {
+   "id": "db.sql.varchar-text",
+   "title": "text와 varchar(n)",
+   "en": "text vs varchar(n)",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "PostgreSQL에서 text는 길이 제한이 없고 varchar(n)은 n자를 넘으면 오류를 내며, 둘 사이에 성능 차이는 거의 없고 char(n)은 피하는 편이 낫다.",
+   "parent": "db.sql.data-types",
+   "aliases": [
+    "varchar",
+    "character varying",
+    "char(n)",
+    "value too long for type",
+    "PostgreSQL 문자열 자료형"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/datatype-character.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.interval",
+   "title": "interval: 기간 자료형",
+   "en": "interval Type",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "'1 day 2 hours'처럼 시간의 길이를 담는 PostgreSQL 자료형으로, 달·일·마이크로초를 따로 저장해 달마다 다른 길이를 바르게 더한다.",
+   "parent": "db.sql.date-time-functions",
+   "aliases": [
+    "interval 타입",
+    "INTERVAL '1 day'",
+    "기간 자료형",
+    "PostgreSQL interval"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/datatype-datetime.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.date-trunc-extract",
+   "title": "date_trunc와 EXTRACT",
+   "en": "date_trunc and EXTRACT",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "date_trunc는 시각을 시·일·월 같은 단위로 잘라 아래 자리를 0으로 만들고, EXTRACT는 시각에서 연·월·요일 같은 한 부분만 숫자로 꺼낸다.",
+   "parent": "db.sql.date-time-functions",
+   "aliases": [
+    "date_trunc",
+    "EXTRACT 함수",
+    "date_part",
+    "날짜 자르기",
+    "extract epoch"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/functions-datetime.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.set-operations",
+   "title": "UNION·INTERSECT·EXCEPT",
+   "en": "Set Operations: UNION, INTERSECT, EXCEPT",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "열의 수와 자료형이 맞는 두 조회 결과를 이어 붙이거나(UNION) 공통 행만(INTERSECT) 또는 한쪽에만 있는 행만(EXCEPT) 남기며, ALL을 붙이지 않으면 중복이 사라진다.",
+   "related": [
+    "db.sql.join"
+   ],
+   "aliases": [
+    "UNION ALL",
+    "SQL UNION",
+    "INTERSECT",
+    "EXCEPT 연산",
+    "SQL 집합 연산"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/queries-union.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.returning",
+   "title": "RETURNING: 바꾼 행 돌려받기",
+   "en": "RETURNING Clause",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "INSERT·UPDATE·DELETE 끝에 붙여 방금 넣거나 고치거나 지운 행의 값을 바로 돌려받는 절로, 새로 매겨진 id를 다시 조회하지 않고 얻을 때 쓴다.",
+   "related": [
+    "db.sql.identity-column",
+    "db.sql.upsert-on-conflict"
+   ],
+   "aliases": [
+    "RETURNING 절",
+    "INSERT RETURNING",
+    "RETURNING id",
+    "returning clause"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/dml-returning.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.orm.engine-begin",
+   "title": "commit as you go와 engine.begin()",
+   "en": "Commit As You Go vs Begin Once",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "ORM",
+   "summary": "SQLAlchemy에서 engine.connect() 블록 안에서 직접 conn.commit()을 부르는 방식과, engine.begin() 블록이 끝날 때 성공하면 확정하고 예외면 되돌리게 맡기는 방식이다.",
+   "parent": "db.orm.core-connection",
+   "aliases": [
+    "engine.begin()",
+    "commit as you go",
+    "begin once",
+    "conn.commit()"
+   ],
+   "refs": [
+    "https://docs.sqlalchemy.org/en/20/tutorial/dbapi_transactions.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.sql.view",
    "title": "뷰: 쿼리에 이름 붙여 표처럼 쓰기",
    "en": "View",
@@ -13349,6 +13934,28 @@
    "refs": [
     "https://www.postgresql.org/docs/current/app-psql.html",
     "https://www.postgresql.org/docs/current/sql-copy.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.now-transaction-time",
+   "title": "now()와 clock_timestamp()",
+   "en": "now() vs clock_timestamp()",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "SQL",
+   "summary": "now()와 CURRENT_TIMESTAMP는 트랜잭션이 시작된 시각을 돌려줘 한 트랜잭션 안에서 같은 값이고, 실제 지금 시각이 필요하면 clock_timestamp()를 쓴다.",
+   "parent": "db.sql.date-time-functions",
+   "aliases": [
+    "PostgreSQL now()",
+    "CURRENT_TIMESTAMP",
+    "clock_timestamp",
+    "statement_timestamp",
+    "트랜잭션 시작 시각"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/functions-datetime.html"
    ],
    "domain": "db"
   },
@@ -16488,6 +17095,40 @@
    "domain": "llm"
   },
   {
+   "id": "llm.prompt.output-format-control",
+   "title": "답의 형식과 길이 맞추기: 형식 지시와 장황함 조절",
+   "en": "Controlling Response Format and Verbosity",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "프롬프트",
+   "summary": "하지 말라 대신 원하는 모양을 말하고 프롬프트의 문체를 원하는 답에 맞춰, 마크다운 남용이나 너무 길고 짧은 답을 고친다.",
+   "objectives": [
+    "금지 대신 바라는 출력 모양을 적는 지시로 고쳐 쓸 수 있다",
+    "프롬프트의 서식을 원하는 답의 서식에 맞춰 마크다운 양을 조절할 수 있다",
+    "답이 너무 장황하거나 요약을 빼먹을 때 길이와 보고 방식을 지시로 바로잡을 수 있다"
+   ],
+   "prerequisites": [
+    "llm.prompt.first-good-prompt"
+   ],
+   "related": [
+    "llm.api.structured-output",
+    "llm.prompt.prompt-structure"
+   ],
+   "aliases": [
+    "출력 형식 지정",
+    "응답 형식 제어",
+    "마크다운 줄이기",
+    "답변 길이 조절",
+    "output formatting"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#control-the-format-of-responses",
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#communication-style-and-verbosity"
+   ],
+   "domain": "llm"
+  },
+  {
    "id": "llm.prompt.prompt-structure",
    "title": "프롬프트 구조 잡기: 지시·자료·예시 나누기",
    "en": "Structuring Prompts: Separating Instructions, Context, and Examples",
@@ -16709,6 +17350,75 @@
     "https://developers.openai.com/api/docs/guides/file-inputs",
     "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
    ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.tokenizer-batching",
+   "title": "토크나이저로 여러 문장 한꺼번에 넣기: 패딩과 자르기",
+   "en": "Batching Inputs with a Tokenizer: Padding and Truncation",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "길이가 다른 문장 여러 개를 토크나이저로 패딩·자르기해 한 묶음의 텐서로 만들고 어텐션 마스크와 함께 모델에 넣는다.",
+   "objectives": [
+    "padding과 truncation, max_length 옵션을 골라 길이가 다른 문장을 한 묶음으로 만들 수 있다",
+    "어텐션 마스크를 빼면 패딩 때문에 결과가 달라지는 실수를 찾아 고칠 수 있다",
+    "토크나이저가 붙인 특수 토큰을 decode로 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.transformers-pipeline",
+    "llm.basics.token-context"
+   ],
+   "related": [
+    "llm.internals.tokenization-sampling"
+   ],
+   "aliases": [
+    "토크나이저 사용법",
+    "tokenizer 호출",
+    "배치 입력",
+    "여러 문장 토큰화",
+    "return_tensors"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter2/5",
+    "https://huggingface.co/learn/llm-course/chapter2/6"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.message-roles",
+   "title": "메시지 역할과 지시 우선순위",
+   "en": "Message Roles and Instruction Priority",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "개발자 지시와 사용자 입력과 이전 답을 서로 다른 역할에 담아, 어느 지시가 먼저 지켜지는지 알고 메시지를 나눠 보낸다.",
+   "objectives": [
+    "개발자 지시·사용자 입력·모델 답을 알맞은 역할의 메시지로 나눠 보낼 수 있다",
+    "developer 메시지가 user 메시지보다 우선하는 규칙을 써서 사용자가 바꾸면 안 되는 지시를 둘 수 있다",
+    "이전 응답을 이어 붙일 때 instructions가 다음 요청에 남지 않는 실수를 피할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.api.first-call",
+    "llm.api.multi-turn"
+   ],
+   "related": [
+    "llm.api.system-prompt",
+    "rag.agent.messages"
+   ],
+   "aliases": [
+    "메시지 역할",
+    "message roles",
+    "지시 우선순위",
+    "역할별 메시지"
+   ],
+   "refs": [
+    "https://developers.openai.com/api/docs/guides/text#message-roles-and-instruction-following"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
    "domain": "llm"
   },
   {
@@ -17206,6 +17916,75 @@
    "domain": "llm"
   },
   {
+   "id": "llm.basics.attention-mask",
+   "title": "어텐션 마스크",
+   "en": "Attention Mask",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "입력과 같은 모양의 1과 0 배열로, 모델이 진짜 토큰만 보고 패딩 토큰은 무시하게 알려 준다.",
+   "parent": "llm.basics.tokenizer-batching",
+   "aliases": [
+    "attention_mask",
+    "어텐션 마스크 배열",
+    "패딩 마스크"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter2/5"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.padding-truncation",
+   "title": "패딩과 자르기(padding·truncation)",
+   "en": "Padding and Truncation",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "짧은 문장은 패딩 토큰으로 채우고 모델 최대 길이를 넘는 문장은 잘라 묶음의 길이를 맞추는 토크나이저 옵션이다.",
+   "parent": "llm.basics.tokenizer-batching",
+   "aliases": [
+    "패딩 토큰",
+    "pad_token_id",
+    "truncation=True",
+    "시퀀스 자르기",
+    "입력 길이 맞추기"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter2/6"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.special-tokens",
+   "title": "특수 토큰",
+   "en": "Special Tokens",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "[CLS]·[SEP]·<eos>처럼 문장의 시작과 끝이나 역할을 표시하려고 토크나이저가 넣는 토큰으로, 모델마다 종류와 자리가 다르다.",
+   "parent": "llm.basics.tokenizer-batching",
+   "related": [
+    "mlops.finetune.chat-template"
+   ],
+   "aliases": [
+    "special token",
+    "CLS 토큰",
+    "SEP 토큰",
+    "eos 토큰",
+    "bos 토큰",
+    "add_special_tokens"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter2/6",
+    "https://huggingface.co/docs/transformers/main/en/chat_templating"
+   ],
+   "domain": "llm"
+  },
+  {
    "id": "llm.api.files-api",
    "title": "Files API",
    "en": "Files API",
@@ -17302,6 +18081,81 @@
     "https://platform.claude.com/docs/en/api/messages/create",
     "https://developers.openai.com/api/reference/resources/chat/subresources/completions/methods/create"
    ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.prompt.prefill",
+   "title": "응답 미리 채우기(prefill)",
+   "en": "Response Prefill",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "프롬프트",
+   "summary": "마지막 assistant 메시지에 답의 앞부분을 적어 모델이 거기서 이어 쓰게 하는 방법으로, 최신 Claude 모델에서는 막혀 지시로 대신한다.",
+   "parent": "llm.prompt.output-format-control",
+   "aliases": [
+    "응답 프리필",
+    "prefilled response",
+    "assistant prefill",
+    "continue_final_message"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#migrating-away-from-prefilled-responses",
+    "https://huggingface.co/docs/transformers/main/en/chat_templating"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.developer-message",
+   "title": "developer 메시지",
+   "en": "Developer Message",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM API",
+   "summary": "OpenAI API에서 앱 개발자의 규칙을 담는 역할의 메시지로, 사용자 메시지보다 먼저 지켜진다.",
+   "parent": "llm.api.message-roles",
+   "related": [
+    "llm.api.system-prompt"
+   ],
+   "aliases": [
+    "developer role",
+    "developer 역할",
+    "개발자 메시지"
+   ],
+   "refs": [
+    "https://developers.openai.com/api/docs/guides/text#message-roles-and-instruction-following"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.response-output-items",
+   "title": "응답 output 배열과 output_text",
+   "en": "Response Output Items and output_text",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM API",
+   "summary": "Responses API의 답은 텍스트·도구 호출·추론 등 여러 항목이 든 output 배열이라 output[0]을 바로 읽지 말고 output_text 같은 도우미로 글만 모아야 한다.",
+   "related": [
+    "llm.api.first-call",
+    "llm.tools.tool-call"
+   ],
+   "aliases": [
+    "output 배열",
+    "output_text",
+    "Responses API 출력",
+    "응답 output 항목"
+   ],
+   "refs": [
+    "https://developers.openai.com/api/docs/guides/text"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
    "domain": "llm"
   },
   {
@@ -18600,6 +19454,157 @@
    "domain": "rag"
   },
   {
+   "id": "rag.agent.functional-api",
+   "title": "LangGraph 함수형 API: entrypoint와 task",
+   "en": "LangGraph Functional API: entrypoint and task",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "노드와 엣지를 그리지 않고 평범한 파이썬 함수와 if·반복문으로 LangGraph 워크플로를 짜며, 작업 단위의 결과를 저장해 멈췄다 이어 갈 수 있게 하는 방식이다.",
+   "objectives": [
+    "함수에 @entrypoint를 붙여 워크플로를 만들고 입력을 딕셔너리 하나로 넘겨 실행할 수 있다",
+    "API 호출 같은 작업을 @task로 감싸고 돌려받은 future를 .result()로 풀어 여러 작업을 함께 돌릴 수 있다",
+    "현재 시각·난수·외부 쓰기를 task 밖에 두면 재개할 때 다른 길로 가거나 두 번 실행되는 실수를 고칠 수 있다",
+    "같은 일을 Graph API와 Functional API 중 어느 쪽으로 짤지 상태 선언·시각화 여부를 기준으로 고를 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.graph-api",
+    "be.python.decorators",
+    "rag.agent.short-term-memory"
+   ],
+   "related": [
+    "rag.agent.graph-api",
+    "rag.agent.checkpoint-persistence"
+   ],
+   "aliases": [
+    "Functional API",
+    "함수형 API",
+    "LangGraph entrypoint",
+    "@entrypoint",
+    "LangGraph 함수형 API"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/functional-api"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.subgraphs",
+   "title": "LangGraph 서브그래프로 그래프 나누기",
+   "en": "Splitting Graphs with LangGraph Subgraphs",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "컴파일한 그래프를 다른 그래프의 노드로 넣거나 노드 안에서 불러, 큰 에이전트를 상태가 나뉜 작은 그래프들로 쪼개 만드는 방법이다.",
+   "objectives": [
+    "부모와 상태 키를 함께 쓰는 서브그래프를 add_node에 그대로 넣어 연결할 수 있다",
+    "상태 구조가 다른 서브그래프를 감싸는 노드에서 입력과 출력을 바꿔 가며 불러 쓸 수 있다",
+    "공유하지 않은 키가 각 그래프 안에만 남는 점을 이용해 메시지 기록을 서로 떼어 둘 수 있다",
+    "부모 그래프에 체크포인터가 없으면 서브그래프 상태를 볼 수 없는 실수를 알아채고 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.graph-api",
+    "rag.agent.short-term-memory"
+   ],
+   "related": [
+    "rag.agent.orchestrator-worker",
+    "ax.coding.subagent"
+   ],
+   "aliases": [
+    "서브그래프",
+    "subgraph",
+    "하위 그래프",
+    "LangGraph subgraph",
+    "중첩 그래프"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/use-subgraphs"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.middleware",
+   "title": "에이전트 미들웨어 붙이기: 재시도·호출 제한·대체 모델",
+   "en": "Adding Agent Middleware: Retries, Call Limits and Fallbacks",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "create_agent의 middleware 목록에 LangChain 내장 미들웨어를 넣어 모델 호출과 도구 실행 앞뒤에 재시도·횟수 제한·대체 모델 같은 동작을 끼우는 방법이다.",
+   "objectives": [
+    "create_agent의 middleware 인자에 내장 미들웨어 여러 개를 목록으로 넘겨 에이전트에 붙일 수 있다",
+    "모델 호출·도구 호출 제한 미들웨어로 끝없이 도는 에이전트 루프를 멈추게 할 수 있다",
+    "도구 재시도와 도구 오류 미들웨어를 함께 써서 일시적 실패는 다시 시도하고 남은 오류는 모델이 읽게 할 수 있다",
+    "주 모델이 실패할 때 다른 모델로 넘어가도록 대체 모델 미들웨어를 설정할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.first-agent"
+   ],
+   "related": [
+    "be.fastapi.middleware",
+    "rag.agent.reliability"
+   ],
+   "aliases": [
+    "에이전트 미들웨어",
+    "agent middleware",
+    "LangChain 미들웨어",
+    "LangChain middleware",
+    "내장 미들웨어",
+    "built-in middleware"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/middleware/overview",
+    "https://docs.langchain.com/oss/python/langchain/middleware/built-in"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-build-client",
+   "title": "파이썬으로 MCP 클라이언트 만들기",
+   "en": "Building an MCP Client in Python",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "파이썬 MCP SDK로 서버 프로세스를 stdio로 띄워 연결하고, 도구 목록을 모델에 넘긴 뒤 모델이 고른 도구를 대신 불러 결과를 돌려주는 채팅 클라이언트를 만드는 과정이다.",
+   "objectives": [
+    "StdioServerParameters와 stdio_client로 서버를 띄우고 async with 블록 하나로 연결과 정리를 맡길 수 있다",
+    "list_tools로 받은 도구의 이름·설명·입력 스키마를 모델 API의 도구 정의로 바꿔 넘길 수 있다",
+    "모델의 도구 사용 요청을 call_tool로 실행하고 결과를 tool_result로 되돌려 대화를 이어 갈 수 있다",
+    "서버 경로 오류나 첫 응답이 느린 문제를 문서의 문제 해결 순서대로 찾아 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.mcp-build-server",
+    "llm.tools.function-calling",
+    "be.async.await-basics"
+   ],
+   "related": [
+    "rag.agent.mcp-build-server",
+    "rag.agent.mcp-connect"
+   ],
+   "aliases": [
+    "MCP 클라이언트 만들기",
+    "build MCP client",
+    "MCP 클라이언트 개발",
+    "MCP Python 클라이언트",
+    "stdio_client"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/docs/develop/build-client"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "rag"
+  },
+  {
    "id": "rag.vector-db.chunk",
    "title": "청크",
    "en": "Chunk",
@@ -18970,6 +19975,133 @@
    "domain": "rag"
   },
   {
+   "id": "rag.agent.task-decorator",
+   "title": "태스크(@task)",
+   "en": "Task (@task)",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "Functional API에서 한 번에 끝나는 작업을 표시하는 데코레이터로, 부르면 바로 future를 돌려주고 끝난 결과는 체크포인트에 남아 재개할 때 다시 돌지 않는다.",
+   "parent": "rag.agent.functional-api",
+   "related": [
+    "rag.agent.tool-decorator"
+   ],
+   "aliases": [
+    "@task",
+    "LangGraph task",
+    "태스크 데코레이터",
+    "task future"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/functional-api#task"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.call-limit-middleware",
+   "title": "호출 횟수 제한 미들웨어",
+   "en": "ModelCallLimitMiddleware and ToolCallLimitMiddleware",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "한 번의 실행이나 한 스레드 안에서 모델 호출 수와 도구 호출 수에 상한을 두고, 넘으면 끝내거나 오류를 내도록 정하는 LangChain 내장 미들웨어다.",
+   "parent": "rag.agent.middleware",
+   "related": [
+    "rag.agent.recursion-limit"
+   ],
+   "aliases": [
+    "ModelCallLimitMiddleware",
+    "ToolCallLimitMiddleware",
+    "모델 호출 제한",
+    "도구 호출 제한",
+    "run_limit",
+    "thread_limit"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/middleware/built-in#model-call-limit"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.tool-retry-middleware",
+   "title": "도구 재시도 미들웨어",
+   "en": "ToolRetryMiddleware",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "실패한 도구 호출을 정한 횟수만큼 간격을 점점 늘리며 다시 시도하고, 끝내 실패하면 계속 갈지 오류를 낼지 정하는 LangChain 내장 미들웨어다.",
+   "parent": "rag.agent.middleware",
+   "related": [
+    "rag.agent.tool-error-middleware"
+   ],
+   "aliases": [
+    "ToolRetryMiddleware",
+    "도구 재시도",
+    "tool retry"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/middleware/built-in#tool-retry"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.call-tool-result",
+   "title": "MCP 도구 호출 결과와 is_error",
+   "en": "CallToolResult and is_error",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "MCP 클라이언트가 call_tool로 받는 결과로, 내용이 블록 목록이라 글 블록만 골라 읽어야 하고 도구 안의 실패는 예외가 아니라 is_error 표시로 온다.",
+   "parent": "rag.agent.mcp-build-client",
+   "related": [
+    "rag.agent.tool-call-id",
+    "rag.agent.tool-error-middleware"
+   ],
+   "aliases": [
+    "CallToolResult",
+    "is_error",
+    "isError",
+    "MCP 도구 결과",
+    "call_tool 결과"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/docs/develop/build-client"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-tool",
+   "title": "MCP 도구",
+   "en": "MCP Tools",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "MCP 서버가 JSON Schema로 입력을 정해 내주는 실행 기능으로, 클라이언트가 tools/list로 찾고 tools/call로 부르며 언제 쓸지는 모델이 정한다.",
+   "parent": "rag.agent.mcp-build-server",
+   "related": [
+    "rag.agent.mcp-resource",
+    "rag.agent.mcp-prompt"
+   ],
+   "aliases": [
+    "MCP tool",
+    "MCP 툴",
+    "tools/list",
+    "tools/call",
+    "MCP 도구 호출"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/docs/learn/server-concepts"
+   ],
+   "domain": "rag"
+  },
+  {
    "id": "rag.retrieval.mmr",
    "title": "MMR(최대 한계 관련성)",
    "en": "Maximum Marginal Relevance",
@@ -19110,6 +20242,74 @@
    "refs": [
     "https://modelcontextprotocol.io/specification/2026-07-28/server/prompts",
     "https://modelcontextprotocol.io/docs/learn/server-concepts"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.entrypoint-previous",
+   "title": "previous와 entrypoint.final",
+   "en": "previous and entrypoint.final",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "같은 스레드의 지난 실행이 남긴 값을 previous 인자로 받아 쓰고, entrypoint.final로 돌려줄 값과 다음 실행에 남길 값을 따로 정하는 Functional API의 단기 기억 장치다.",
+   "parent": "rag.agent.functional-api",
+   "related": [
+    "rag.agent.checkpointer"
+   ],
+   "aliases": [
+    "entrypoint.final",
+    "previous 인자",
+    "previous parameter",
+    "함수형 API 단기 기억"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/functional-api#short-term-memory"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.model-fallback",
+   "title": "모델 대체 미들웨어",
+   "en": "ModelFallbackMiddleware",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "주 모델 호출이 실패하면 미리 적어 둔 다른 모델들을 차례로 시도하게 하는 LangChain 내장 미들웨어다.",
+   "parent": "rag.agent.middleware",
+   "aliases": [
+    "ModelFallbackMiddleware",
+    "LangChain 모델 폴백"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/middleware/built-in#model-fallback"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.tool-error-middleware",
+   "title": "도구 오류 미들웨어",
+   "en": "ToolErrorMiddleware",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "도구가 예외를 던지면 실행을 멈추지 않고 그 내용을 모델이 읽을 오류 메시지로 바꿔 돌려주는 LangChain 내장 미들웨어로, 스스로 다시 시도하지는 않는다.",
+   "parent": "rag.agent.middleware",
+   "related": [
+    "rag.agent.tool-retry-middleware",
+    "rag.agent.call-tool-result"
+   ],
+   "aliases": [
+    "ToolErrorMiddleware",
+    "LangChain 도구 오류 미들웨어"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/middleware/built-in#tool-error"
    ],
    "volatile": true,
    "checked_at": "2026-11-06",
@@ -26081,6 +27281,150 @@
    "domain": "mlops"
   },
   {
+   "id": "mlops.serve.vllm-openai-server",
+   "title": "vLLM으로 OpenAI 호환 LLM 서버 띄우기",
+   "en": "Serving an LLM with vLLM's OpenAI-Compatible Server",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "vllm serve 한 줄로 공개 모델을 로컬 API 서버로 띄우고, OpenAI 클라이언트의 base_url만 바꿔 호출해 본다.",
+   "objectives": [
+    "vllm serve로 모델 서버를 띄우고 포트와 API 키를 정할 수 있다",
+    "OpenAI 클라이언트의 base_url을 바꿔 채팅 완성 엔드포인트를 호출할 수 있다",
+    "채팅 템플릿이 없는 모델에서 채팅 요청이 실패하는 원인을 찾아 --chat-template으로 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "llm.api.first-call"
+   ],
+   "related": [
+    "mlops.serve.local-model-serving",
+    "mlops.finetune.chat-template"
+   ],
+   "aliases": [
+    "vllm serve",
+    "vLLM 서버",
+    "vLLM 서빙",
+    "OpenAI 호환 서버",
+    "OpenAI-compatible server"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/getting_started/quickstart.html",
+    "https://docs.vllm.ai/en/latest/serving/online_serving/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.finetune.qlora-quickstart",
+   "title": "4비트로 불러와 LoRA 붙이기: QLoRA 시작",
+   "en": "Getting Started with QLoRA",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "BitsAndBytesConfig로 기반 모델을 4비트로 불러온 뒤 LoRA 어댑터만 학습해, GPU 메모리가 작아도 큰 모델을 파인튜닝한다.",
+   "objectives": [
+    "BitsAndBytesConfig로 모델을 4비트나 8비트로 불러오고 메모리 사용량을 확인할 수 있다",
+    "양자화한 모델을 학습 준비시킨 뒤 LoRA 어댑터를 붙일 수 있다",
+    "양자화 모델의 원래 가중치는 학습할 수 없고 추가한 어댑터만 학습된다는 점을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.finetune.lora-quickstart"
+   ],
+   "related": [
+    "mlops.finetune.lora-quickstart",
+    "mlops.serve.inference-optimization"
+   ],
+   "aliases": [
+    "QLoRA 파인튜닝",
+    "4비트 파인튜닝",
+    "4-bit fine-tuning",
+    "BitsAndBytesConfig",
+    "bitsandbytes",
+    "load_in_4bit"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/main/en/quantization/bitsandbytes",
+    "https://huggingface.co/docs/peft/main/en/developer_guides/quantization"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.ai-gateway-quickstart",
+   "title": "AI 게이트웨이로 LLM 호출 한곳에 모으기",
+   "en": "Routing LLM Calls Through an AI Gateway",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "MLflow 서버 안의 AI 게이트웨이에 제공자 키와 엔드포인트를 등록하고, 앱은 키 없이 엔드포인트 이름만으로 여러 LLM을 부른다.",
+   "objectives": [
+    "LLM 연결을 먼저 만들고 그 연결로 게이트웨이 엔드포인트를 만들 수 있다",
+    "OpenAI SDK와 HTTP 요청에서 게이트웨이 엔드포인트를 부르는 주소 형식의 차이를 구분할 수 있다",
+    "엔드포인트에 두 모델의 트래픽 비율을 나눠 새 모델을 실제 요청으로 시험할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.observe.mlflow-server"
+   ],
+   "related": [
+    "be.arch.api-gateway",
+    "be.integrate.fallback"
+   ],
+   "aliases": [
+    "AI 게이트웨이",
+    "AI Gateway",
+    "LLM 게이트웨이",
+    "LLM gateway",
+    "MLflow AI Gateway"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/governance/ai-gateway/",
+    "https://mlflow.org/docs/latest/genai/governance/ai-gateway/quickstart/",
+    "https://mlflow.org/docs/latest/genai/governance/ai-gateway/traffic-routing-fallbacks/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.track.app-version-tracking",
+   "title": "LLM 앱 버전 추적: 활성 모델에 트레이스 묶기",
+   "en": "Tracking LLM App Versions",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "앱 버전마다 활성 모델을 정해 두고 그 뒤에 생긴 트레이스와 평가 결과를 그 버전에 묶어, 어느 버전이 어떤 답을 냈는지 비교한다.",
+   "objectives": [
+    "set_active_model로 앱 버전을 정하고 이후 트레이스가 그 버전에 묶이게 할 수 있다",
+    "모델 id로 한 버전의 트레이스만 골라 볼 수 있다",
+    "git 커밋으로 버전 이름을 만들어 코드와 결과를 이어 둘 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.observe.tracing-quickstart",
+    "mlops.track.experiment-tracking"
+   ],
+   "related": [
+    "mlops.track.model-registry",
+    "mlops.prompt.version"
+   ],
+   "aliases": [
+    "앱 버전 추적",
+    "app version tracking",
+    "버전별 트레이스",
+    "LLM 앱 버전 추적"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/version-tracking/",
+    "https://mlflow.org/docs/latest/genai/version-tracking/quickstart/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "mlops"
+  },
+  {
    "id": "mlops.track.experiment-tracking",
    "title": "실험 추적: 파라미터·지표·모델 기록하기",
    "en": "Experiment Tracking with MLflow",
@@ -26308,6 +27652,76 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-06",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.openai-compatible-endpoint",
+   "title": "OpenAI 호환 엔드포인트(/v1/chat/completions)",
+   "en": "OpenAI-Compatible Endpoint",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "OpenAI API와 같은 경로와 요청 형식을 따르는 서버 주소로, 클라이언트 코드를 그대로 두고 base_url만 바꿔 다른 모델을 부를 수 있게 한다.",
+   "parent": "mlops.serve.vllm-openai-server",
+   "related": [
+    "mlops.serve.invocations-endpoint"
+   ],
+   "aliases": [
+    "OpenAI 호환 API",
+    "OpenAI compatible API",
+    "base_url 바꾸기"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/serving/online_serving/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.finetune.kbit-training-prep",
+   "title": "양자화 모델 학습 준비(kbit training)",
+   "en": "Preparing a Quantized Model for Training",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "4비트나 8비트로 불러온 모델에 어댑터를 붙이기 전에 학습할 수 있는 상태로 다듬어 주는 PEFT 함수다.",
+   "parent": "mlops.finetune.qlora-quickstart",
+   "related": [
+    "mlops.finetune.lora-target-modules"
+   ],
+   "aliases": [
+    "prepare_model_for_kbit_training",
+    "kbit training",
+    "양자화 모델 학습 준비"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/peft/main/en/developer_guides/quantization"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.track.logged-model",
+   "title": "LoggedModel(앱 버전 기록)",
+   "en": "LoggedModel",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "코드 참조·설정·평가 결과·트레이스를 한 버전으로 묶어 LLM 앱의 한 버전을 나타내는 MLflow의 기록 단위다.",
+   "parent": "mlops.track.app-version-tracking",
+   "related": [
+    "mlops.track.model-registry",
+    "mlops.track.experiment-run"
+   ],
+   "aliases": [
+    "LoggedModel",
+    "로그드 모델",
+    "앱 버전 기록"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/version-tracking/"
+   ],
    "domain": "mlops"
   },
   {
@@ -26631,6 +28045,139 @@
    ],
    "refs": [
     "https://mlflow.org/docs/latest/genai/tracing/search-traces/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.generation-config-default",
+   "title": "모델 생성 설정 기본값(generation_config.json)",
+   "en": "Model Generation Config Defaults",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "모델 저장소에 들어 있는 생성 설정 파일로, vLLM은 이 값을 기본 샘플링 값으로 써서 내가 기대한 temperature와 결과가 달라질 수 있다.",
+   "parent": "mlops.serve.vllm-openai-server",
+   "related": [
+    "llm.internals.temperature"
+   ],
+   "aliases": [
+    "generation_config.json",
+    "generation config",
+    "생성 설정 파일",
+    "--generation-config vllm"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/getting_started/quickstart.html"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.finetune.nf4",
+   "title": "NF4(4비트 정규 분포 자료형)",
+   "en": "NormalFloat4 (NF4)",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "정규 분포로 퍼진 가중치에 맞춰 만든 4비트 자료형으로, 4비트 기반 모델을 학습할 때 bnb_4bit_quant_type에 고르는 값이다.",
+   "parent": "mlops.finetune.qlora-quickstart",
+   "aliases": [
+    "NormalFloat4",
+    "bnb_4bit_quant_type",
+    "nf4 양자화"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/main/en/quantization/bitsandbytes"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.finetune.double-quant",
+   "title": "이중 양자화(nested quantization)",
+   "en": "Double (Nested) Quantization",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "이미 양자화한 가중치의 보조 값까지 한 번 더 줄여 메모리를 조금 더 아끼는 설정으로, bnb_4bit_use_double_quant로 켠다.",
+   "parent": "mlops.finetune.qlora-quickstart",
+   "aliases": [
+    "이중 양자화",
+    "double quantization",
+    "nested quantization",
+    "bnb_4bit_use_double_quant"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/main/en/quantization/bitsandbytes"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.llm-connection",
+   "title": "LLM 연결(게이트웨이에 제공자 키 보관)",
+   "en": "LLM Connection",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "제공자 API 키를 게이트웨이 서버에 암호화해 두는 등록 항목으로, 클라이언트는 실제 키 없이 엔드포인트만 부른다.",
+   "parent": "mlops.serve.ai-gateway-quickstart",
+   "aliases": [
+    "LLM connection",
+    "LLM Connections"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/governance/ai-gateway/quickstart/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.traffic-split",
+   "title": "트래픽 분할(가중치로 모델 나눠 보내기)",
+   "en": "Traffic Splitting",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "한 엔드포인트로 들어온 요청을 정한 비율에 따라 여러 모델에 나눠 보내는 설정으로, 비율의 합은 100%여야 한다.",
+   "parent": "mlops.serve.ai-gateway-quickstart",
+   "related": [
+    "be.integrate.fallback-term"
+   ],
+   "aliases": [
+    "트래픽 분할",
+    "traffic splitting",
+    "트래픽 가중치",
+    "모델 A/B 시험"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/governance/ai-gateway/traffic-routing-fallbacks/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.track.active-model",
+   "title": "활성 모델(set_active_model)",
+   "en": "Active Model",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "지금 실행 중인 코드가 어느 앱 버전인지 정해 두는 설정으로, 이후 만들어지는 트레이스가 그 버전에 자동으로 묶인다.",
+   "parent": "mlops.track.app-version-tracking",
+   "aliases": [
+    "set_active_model",
+    "활성 모델 설정",
+    "active model",
+    "get_active_model_id"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/version-tracking/quickstart/"
    ],
    "domain": "mlops"
   },

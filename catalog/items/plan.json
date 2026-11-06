@@ -724,6 +724,130 @@
     ]
   },
   {
+    "id": "plan.figma.prototype-scroll",
+    "title": "Figma 프로토타입의 스크롤과 고정 요소",
+    "en": "Prototype Scroll and Overflow Behavior in Figma",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "프레임 밖으로 넘친 내용을 스크롤하게 하고, 상단 바나 하단 메뉴처럼 스크롤해도 제자리에 남는 요소를 정하는 Figma 프로토타입 설정이다.",
+    "objectives": [
+      "긴 화면·가로 슬라이더·지도처럼 내용에 맞게 프레임의 스크롤 방향을 고를 수 있다",
+      "스크롤이 안 될 때 내용이 프레임 경계를 넘는지와 클립 설정을 확인해 고칠 수 있다",
+      "상태 바·하단 탭은 고정으로, 섹션 머리글은 스티키로 지정해 스크롤 중 위치를 유지할 수 있다",
+      "오토 레이아웃 안의 요소를 고정하려면 절대 위치가 필요하다는 점을 알고 겹침 순서를 레이어 순서로 맞출 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.prototype-interactions",
+      "plan.figma.auto-layout"
+    ],
+    "related": [
+      "fe.css.position"
+    ],
+    "aliases": [
+      "Figma 스크롤",
+      "scroll behavior",
+      "overflow scrolling",
+      "프로토타입 스크롤",
+      "스크롤 동작"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360039818734-Prototype-scroll-behavior"
+    ]
+  },
+  {
+    "id": "plan.basics.color-contrast",
+    "title": "화면 디자인의 색 대비 확인하기",
+    "en": "Checking Color Contrast in Screen Designs",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "글자와 버튼 테두리·아이콘이 배경과 충분히 구분되는지 WCAG 명암비 기준으로 재고 모자라면 색을 고치는 디자인 점검이다.",
+    "objectives": [
+      "일반 글자와 큰 글자에 적용되는 명암비 기준을 구분해 시안의 글자 색을 판정할 수 있다",
+      "입력창 테두리·포커스 표시·의미 있는 아이콘처럼 글자가 아닌 요소도 대비 기준에 드는지 가릴 수 있다",
+      "비활성 컨트롤·장식·로고처럼 기준에서 빠지는 경우를 알고 예외를 잘못 넓히지 않을 수 있다",
+      "대비 검사 도구로 색 쌍을 재고 기준을 넘지 못하는 색을 바꿀 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.styles"
+    ],
+    "related": [
+      "fe.basics.accessibility-idea"
+    ],
+    "aliases": [
+      "색 대비",
+      "color contrast",
+      "WCAG 대비",
+      "접근성 색상 대비",
+      "대비 검사"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
+      "https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html"
+    ]
+  },
+  {
+    "id": "plan.basics.recruit-participants",
+    "title": "사용자 조사 참여자 모으기",
+    "en": "Finding User Research Participants",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "조사 목적에 맞는 모집 기준을 세우고 경로를 골라 참여자를 모은 뒤, 사례비와 개인정보, 동의까지 챙겨 세션을 준비하는 일이다.",
+    "objectives": [
+      "조사할 사용자 집단과 경험을 바탕으로 모집 기준을 정하고 다양한 사람이 섞이도록 할 수 있다",
+      "모집 대행·관련 단체·기존 사용자 등 경로의 장단점을 알고 내부 직원을 참여자로 쓰지 않을 수 있다",
+      "접근성 요구가 있는 참여자를 위해 일정 여유와 연락·이동 지원을 계획할 수 있다",
+      "안내문과 동의 절차를 준비하고 참여자 정보를 필요한 만큼만 모아 다룰 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.usability-testing"
+    ],
+    "aliases": [
+      "참여자 모집",
+      "조사 리크루팅",
+      "participant recruitment",
+      "조사 대상자 모집",
+      "user research recruitment"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/user-research/find-user-research-participants",
+      "https://www.gov.uk/service-manual/user-research/getting-users-consent-for-research"
+    ]
+  },
+  {
+    "id": "plan.basics.card-sorting",
+    "title": "카드 소팅으로 메뉴 구조 정하기",
+    "en": "Card Sorting for Information Architecture",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "참여자가 콘텐츠 이름이 적힌 카드를 스스로 묶고 이름 붙이게 해 사용자가 생각하는 분류를 알아내고 메뉴와 정보 구조에 반영하는 조사 방법이다.",
+    "objectives": [
+      "30~50장 정도의 카드를 겹치는 단어 없이 준비하고 파일럿으로 점검할 수 있다",
+      "열린 카드 소팅과 닫힌 카드 소팅 중 목적에 맞는 방식을 고를 수 있다",
+      "결과에서 자주 함께 묶인 카드와 넣기 어려워한 카드를 찾아 메뉴 묶음과 이름을 정할 수 있다",
+      "카드 소팅으로 만든 구조를 트리 테스트로 확인하는 순서를 계획할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.service-flow"
+    ],
+    "aliases": [
+      "카드 분류",
+      "card sort",
+      "카드 소팅 조사"
+    ],
+    "refs": [
+      "https://www.nngroup.com/articles/card-sorting-definition/",
+      "https://www.nngroup.com/articles/tree-testing/"
+    ]
+  },
+  {
     "id": "plan.figma.branch-and-publish",
     "title": "Figma 브랜치에서 고치고 라이브러리 업데이트 게시하기",
     "en": "Editing in a Figma Branch and Publishing Library Updates",
@@ -1107,6 +1231,110 @@
     ]
   },
   {
+    "id": "plan.figma.overflow-direction",
+    "title": "스크롤 오버플로 방향",
+    "en": "Overflow Scrolling Direction",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "프레임 경계를 넘친 내용을 세로·가로·양방향 중 어느 쪽으로 스크롤할지, 또는 스크롤하지 않을지 정하는 프레임 설정이다.",
+    "parent": "plan.figma.prototype-scroll",
+    "aliases": [
+      "Figma 가로 스크롤",
+      "Figma 세로 스크롤",
+      "Figma overflow scrolling"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360039818734-Prototype-scroll-behavior"
+    ]
+  },
+  {
+    "id": "plan.figma.fixed-sticky-position",
+    "title": "고정·스티키 스크롤 위치",
+    "en": "Fixed and Sticky Scroll Position",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "고정은 스크롤 내내 제자리에 머물고, 스티키는 부모 프레임 위쪽에 닿을 때까지 함께 움직이다 그 자리에 붙는 레이어의 스크롤 위치 설정이다.",
+    "parent": "plan.figma.prototype-scroll",
+    "related": [
+      "fe.css.position"
+    ],
+    "aliases": [
+      "fixed position Figma",
+      "Figma 스티키",
+      "Figma 고정 레이어"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360039818734-Prototype-scroll-behavior"
+    ]
+  },
+  {
+    "id": "plan.basics.contrast-ratio",
+    "title": "명암비(contrast ratio)",
+    "en": "Contrast Ratio",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "두 색의 상대 휘도로 계산한 밝기 차이의 비율로, 일반 글자는 4.5:1, 큰 글자는 3:1 이상이어야 WCAG AA를 통과한다.",
+    "parent": "plan.basics.color-contrast",
+    "aliases": [
+      "명암 대비율",
+      "대비율",
+      "4.5:1",
+      "WCAG AA 대비"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html"
+    ]
+  },
+  {
+    "id": "plan.basics.informed-consent",
+    "title": "조사 참여 동의(informed consent)",
+    "en": "Informed Consent for Research",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "조사 목적·수집 자료·녹화 여부·철회 권리를 알린 뒤 참여자가 스스로 동의하게 하고, 그 동의를 기록으로 남기는 절차다.",
+    "parent": "plan.basics.recruit-participants",
+    "aliases": [
+      "조사 동의서",
+      "consent form",
+      "조사 동의",
+      "참여 동의서"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/user-research/getting-users-consent-for-research"
+    ]
+  },
+  {
+    "id": "plan.figma.hug-fill-fixed",
+    "title": "Hug·Fill·Fixed 크기 조절",
+    "en": "Hug Contents, Fill Container, and Fixed Resizing",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "오토 레이아웃에서 프레임이 내용에 맞춰 줄고 늘지, 부모의 남은 공간을 채울지, 정한 크기를 지킬지 축마다 고르는 크기 설정이다.",
+    "parent": "plan.figma.auto-layout",
+    "related": [
+      "plan.figma.constraints"
+    ],
+    "aliases": [
+      "Figma Fixed 크기",
+      "오토 레이아웃 크기 조절",
+      "Figma min/max 크기",
+      "Hug·Fill·Fixed"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360040451373-Guide-to-auto-layout-in-Figma"
+    ]
+  },
+  {
     "id": "plan.figma.constraints",
     "title": "제약(constraints)",
     "en": "Figma Constraints",
@@ -1237,6 +1465,88 @@
     ],
     "refs": [
       "https://help.figma.com/hc/en-us/articles/360061175334-Create-interactive-components-with-variants"
+    ]
+  },
+  {
+    "id": "plan.basics.non-text-contrast",
+    "title": "비텍스트 대비(non-text contrast)",
+    "en": "Non-text Contrast",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "컨트롤과 그 상태를 알아보는 데 필요한 시각 정보와 이해에 필요한 그래픽이 인접한 색과 3:1 이상으로 구분되어야 한다는 WCAG 기준으로, 경계선은 그것이 유일한 단서일 때만 해당한다.",
+    "parent": "plan.basics.color-contrast",
+    "aliases": [
+      "포커스 표시 대비",
+      "UI 컴포넌트 대비",
+      "그래픽 대비",
+      "WCAG 1.4.11"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html"
+    ]
+  },
+  {
+    "id": "plan.basics.research-incentive",
+    "title": "조사 참여 사례비(인센티브)",
+    "en": "Research Participant Incentive",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "조사에 시간을 내준 참여자에게 참여자 유형과 세션 길이에 맞춰 주는 보상으로, 현금 대신 상품권이나 대행사 지급을 쓰고 세션 시작 때 건넨다.",
+    "parent": "plan.basics.recruit-participants",
+    "aliases": [
+      "조사 사례비",
+      "research incentive",
+      "participant incentive"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/user-research/find-user-research-participants"
+    ]
+  },
+  {
+    "id": "plan.basics.open-closed-card-sort",
+    "title": "열린 카드 소팅과 닫힌 카드 소팅",
+    "en": "Open and Closed Card Sorting",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "열린 방식은 참여자가 묶음과 이름을 직접 만들고, 닫힌 방식은 미리 정한 분류에 카드를 넣게 하는 카드 소팅의 두 유형이다.",
+    "parent": "plan.basics.card-sorting",
+    "aliases": [
+      "열린 카드 소팅",
+      "닫힌 카드 소팅",
+      "open card sort",
+      "closed card sort"
+    ],
+    "refs": [
+      "https://www.nngroup.com/articles/card-sorting-definition/"
+    ]
+  },
+  {
+    "id": "plan.basics.tree-testing",
+    "title": "트리 테스트(tree testing)",
+    "en": "Tree Testing",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "화면 디자인 없이 글자로 된 메뉴 계층만 보여 주고 과제의 답이 있을 곳을 찾게 해 성공률과 직행 여부로 정보 구조를 평가하는 방법이다.",
+    "parent": "plan.basics.card-sorting",
+    "related": [
+      "plan.basics.usability-testing"
+    ],
+    "aliases": [
+      "트리 테스팅",
+      "역 카드 소팅",
+      "reverse card sorting",
+      "메뉴 구조 테스트"
+    ],
+    "refs": [
+      "https://www.nngroup.com/articles/tree-testing/"
     ]
   },
   {

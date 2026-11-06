@@ -632,6 +632,39 @@
     ]
   },
   {
+    "id": "llm.prompt.output-format-control",
+    "title": "답의 형식과 길이 맞추기: 형식 지시와 장황함 조절",
+    "en": "Controlling Response Format and Verbosity",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "프롬프트",
+    "summary": "하지 말라 대신 원하는 모양을 말하고 프롬프트의 문체를 원하는 답에 맞춰, 마크다운 남용이나 너무 길고 짧은 답을 고친다.",
+    "objectives": [
+      "금지 대신 바라는 출력 모양을 적는 지시로 고쳐 쓸 수 있다",
+      "프롬프트의 서식을 원하는 답의 서식에 맞춰 마크다운 양을 조절할 수 있다",
+      "답이 너무 장황하거나 요약을 빼먹을 때 길이와 보고 방식을 지시로 바로잡을 수 있다"
+    ],
+    "prerequisites": [
+      "llm.prompt.first-good-prompt"
+    ],
+    "related": [
+      "llm.api.structured-output",
+      "llm.prompt.prompt-structure"
+    ],
+    "aliases": [
+      "출력 형식 지정",
+      "응답 형식 제어",
+      "마크다운 줄이기",
+      "답변 길이 조절",
+      "output formatting"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#control-the-format-of-responses",
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#communication-style-and-verbosity"
+    ]
+  },
+  {
     "id": "llm.prompt.prompt-structure",
     "title": "프롬프트 구조 잡기: 지시·자료·예시 나누기",
     "en": "Structuring Prompts: Separating Instructions, Context, and Examples",
@@ -848,6 +881,73 @@
       "https://developers.openai.com/api/docs/guides/file-inputs",
       "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
     ]
+  },
+  {
+    "id": "llm.basics.tokenizer-batching",
+    "title": "토크나이저로 여러 문장 한꺼번에 넣기: 패딩과 자르기",
+    "en": "Batching Inputs with a Tokenizer: Padding and Truncation",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "길이가 다른 문장 여러 개를 토크나이저로 패딩·자르기해 한 묶음의 텐서로 만들고 어텐션 마스크와 함께 모델에 넣는다.",
+    "objectives": [
+      "padding과 truncation, max_length 옵션을 골라 길이가 다른 문장을 한 묶음으로 만들 수 있다",
+      "어텐션 마스크를 빼면 패딩 때문에 결과가 달라지는 실수를 찾아 고칠 수 있다",
+      "토크나이저가 붙인 특수 토큰을 decode로 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.transformers-pipeline",
+      "llm.basics.token-context"
+    ],
+    "related": [
+      "llm.internals.tokenization-sampling"
+    ],
+    "aliases": [
+      "토크나이저 사용법",
+      "tokenizer 호출",
+      "배치 입력",
+      "여러 문장 토큰화",
+      "return_tensors"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter2/5",
+      "https://huggingface.co/learn/llm-course/chapter2/6"
+    ]
+  },
+  {
+    "id": "llm.api.message-roles",
+    "title": "메시지 역할과 지시 우선순위",
+    "en": "Message Roles and Instruction Priority",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "개발자 지시와 사용자 입력과 이전 답을 서로 다른 역할에 담아, 어느 지시가 먼저 지켜지는지 알고 메시지를 나눠 보낸다.",
+    "objectives": [
+      "개발자 지시·사용자 입력·모델 답을 알맞은 역할의 메시지로 나눠 보낼 수 있다",
+      "developer 메시지가 user 메시지보다 우선하는 규칙을 써서 사용자가 바꾸면 안 되는 지시를 둘 수 있다",
+      "이전 응답을 이어 붙일 때 instructions가 다음 요청에 남지 않는 실수를 피할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.first-call",
+      "llm.api.multi-turn"
+    ],
+    "related": [
+      "llm.api.system-prompt",
+      "rag.agent.messages"
+    ],
+    "aliases": [
+      "메시지 역할",
+      "message roles",
+      "지시 우선순위",
+      "역할별 메시지"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/text#message-roles-and-instruction-following"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
   },
   {
     "id": "llm.api.image-generation-api",
@@ -1325,6 +1425,72 @@
     "checked_at": "2026-11-06"
   },
   {
+    "id": "llm.basics.attention-mask",
+    "title": "어텐션 마스크",
+    "en": "Attention Mask",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "입력과 같은 모양의 1과 0 배열로, 모델이 진짜 토큰만 보고 패딩 토큰은 무시하게 알려 준다.",
+    "parent": "llm.basics.tokenizer-batching",
+    "aliases": [
+      "attention_mask",
+      "어텐션 마스크 배열",
+      "패딩 마스크"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter2/5"
+    ]
+  },
+  {
+    "id": "llm.basics.padding-truncation",
+    "title": "패딩과 자르기(padding·truncation)",
+    "en": "Padding and Truncation",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "짧은 문장은 패딩 토큰으로 채우고 모델 최대 길이를 넘는 문장은 잘라 묶음의 길이를 맞추는 토크나이저 옵션이다.",
+    "parent": "llm.basics.tokenizer-batching",
+    "aliases": [
+      "패딩 토큰",
+      "pad_token_id",
+      "truncation=True",
+      "시퀀스 자르기",
+      "입력 길이 맞추기"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter2/6"
+    ]
+  },
+  {
+    "id": "llm.basics.special-tokens",
+    "title": "특수 토큰",
+    "en": "Special Tokens",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "[CLS]·[SEP]·<eos>처럼 문장의 시작과 끝이나 역할을 표시하려고 토크나이저가 넣는 토큰으로, 모델마다 종류와 자리가 다르다.",
+    "parent": "llm.basics.tokenizer-batching",
+    "related": [
+      "mlops.finetune.chat-template"
+    ],
+    "aliases": [
+      "special token",
+      "CLS 토큰",
+      "SEP 토큰",
+      "eos 토큰",
+      "bos 토큰",
+      "add_special_tokens"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter2/6",
+      "https://huggingface.co/docs/transformers/main/en/chat_templating"
+    ]
+  },
+  {
     "id": "llm.api.files-api",
     "title": "Files API",
     "en": "Files API",
@@ -1418,6 +1584,78 @@
       "https://platform.claude.com/docs/en/api/messages/create",
       "https://developers.openai.com/api/reference/resources/chat/subresources/completions/methods/create"
     ]
+  },
+  {
+    "id": "llm.prompt.prefill",
+    "title": "응답 미리 채우기(prefill)",
+    "en": "Response Prefill",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "프롬프트",
+    "summary": "마지막 assistant 메시지에 답의 앞부분을 적어 모델이 거기서 이어 쓰게 하는 방법으로, 최신 Claude 모델에서는 막혀 지시로 대신한다.",
+    "parent": "llm.prompt.output-format-control",
+    "aliases": [
+      "응답 프리필",
+      "prefilled response",
+      "assistant prefill",
+      "continue_final_message"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#migrating-away-from-prefilled-responses",
+      "https://huggingface.co/docs/transformers/main/en/chat_templating"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "llm.api.developer-message",
+    "title": "developer 메시지",
+    "en": "Developer Message",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "OpenAI API에서 앱 개발자의 규칙을 담는 역할의 메시지로, 사용자 메시지보다 먼저 지켜진다.",
+    "parent": "llm.api.message-roles",
+    "related": [
+      "llm.api.system-prompt"
+    ],
+    "aliases": [
+      "developer role",
+      "developer 역할",
+      "개발자 메시지"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/text#message-roles-and-instruction-following"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "llm.api.response-output-items",
+    "title": "응답 output 배열과 output_text",
+    "en": "Response Output Items and output_text",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "Responses API의 답은 텍스트·도구 호출·추론 등 여러 항목이 든 output 배열이라 output[0]을 바로 읽지 말고 output_text 같은 도우미로 글만 모아야 한다.",
+    "related": [
+      "llm.api.first-call",
+      "llm.tools.tool-call"
+    ],
+    "aliases": [
+      "output 배열",
+      "output_text",
+      "Responses API 출력",
+      "응답 output 항목"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/text"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
   },
   {
     "id": "llm.security.prompt-injection",

@@ -752,6 +752,146 @@
     ]
   },
   {
+    "id": "mlops.serve.vllm-openai-server",
+    "title": "vLLM으로 OpenAI 호환 LLM 서버 띄우기",
+    "en": "Serving an LLM with vLLM's OpenAI-Compatible Server",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "vllm serve 한 줄로 공개 모델을 로컬 API 서버로 띄우고, OpenAI 클라이언트의 base_url만 바꿔 호출해 본다.",
+    "objectives": [
+      "vllm serve로 모델 서버를 띄우고 포트와 API 키를 정할 수 있다",
+      "OpenAI 클라이언트의 base_url을 바꿔 채팅 완성 엔드포인트를 호출할 수 있다",
+      "채팅 템플릿이 없는 모델에서 채팅 요청이 실패하는 원인을 찾아 --chat-template으로 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.first-call"
+    ],
+    "related": [
+      "mlops.serve.local-model-serving",
+      "mlops.finetune.chat-template"
+    ],
+    "aliases": [
+      "vllm serve",
+      "vLLM 서버",
+      "vLLM 서빙",
+      "OpenAI 호환 서버",
+      "OpenAI-compatible server"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/getting_started/quickstart.html",
+      "https://docs.vllm.ai/en/latest/serving/online_serving/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "mlops.finetune.qlora-quickstart",
+    "title": "4비트로 불러와 LoRA 붙이기: QLoRA 시작",
+    "en": "Getting Started with QLoRA",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "BitsAndBytesConfig로 기반 모델을 4비트로 불러온 뒤 LoRA 어댑터만 학습해, GPU 메모리가 작아도 큰 모델을 파인튜닝한다.",
+    "objectives": [
+      "BitsAndBytesConfig로 모델을 4비트나 8비트로 불러오고 메모리 사용량을 확인할 수 있다",
+      "양자화한 모델을 학습 준비시킨 뒤 LoRA 어댑터를 붙일 수 있다",
+      "양자화 모델의 원래 가중치는 학습할 수 없고 추가한 어댑터만 학습된다는 점을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.finetune.lora-quickstart"
+    ],
+    "related": [
+      "mlops.finetune.lora-quickstart",
+      "mlops.serve.inference-optimization"
+    ],
+    "aliases": [
+      "QLoRA 파인튜닝",
+      "4비트 파인튜닝",
+      "4-bit fine-tuning",
+      "BitsAndBytesConfig",
+      "bitsandbytes",
+      "load_in_4bit"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/main/en/quantization/bitsandbytes",
+      "https://huggingface.co/docs/peft/main/en/developer_guides/quantization"
+    ]
+  },
+  {
+    "id": "mlops.serve.ai-gateway-quickstart",
+    "title": "AI 게이트웨이로 LLM 호출 한곳에 모으기",
+    "en": "Routing LLM Calls Through an AI Gateway",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "MLflow 서버 안의 AI 게이트웨이에 제공자 키와 엔드포인트를 등록하고, 앱은 키 없이 엔드포인트 이름만으로 여러 LLM을 부른다.",
+    "objectives": [
+      "LLM 연결을 먼저 만들고 그 연결로 게이트웨이 엔드포인트를 만들 수 있다",
+      "OpenAI SDK와 HTTP 요청에서 게이트웨이 엔드포인트를 부르는 주소 형식의 차이를 구분할 수 있다",
+      "엔드포인트에 두 모델의 트래픽 비율을 나눠 새 모델을 실제 요청으로 시험할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.observe.mlflow-server"
+    ],
+    "related": [
+      "be.arch.api-gateway",
+      "be.integrate.fallback"
+    ],
+    "aliases": [
+      "AI 게이트웨이",
+      "AI Gateway",
+      "LLM 게이트웨이",
+      "LLM gateway",
+      "MLflow AI Gateway"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/governance/ai-gateway/",
+      "https://mlflow.org/docs/latest/genai/governance/ai-gateway/quickstart/",
+      "https://mlflow.org/docs/latest/genai/governance/ai-gateway/traffic-routing-fallbacks/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "mlops.track.app-version-tracking",
+    "title": "LLM 앱 버전 추적: 활성 모델에 트레이스 묶기",
+    "en": "Tracking LLM App Versions",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "앱 버전마다 활성 모델을 정해 두고 그 뒤에 생긴 트레이스와 평가 결과를 그 버전에 묶어, 어느 버전이 어떤 답을 냈는지 비교한다.",
+    "objectives": [
+      "set_active_model로 앱 버전을 정하고 이후 트레이스가 그 버전에 묶이게 할 수 있다",
+      "모델 id로 한 버전의 트레이스만 골라 볼 수 있다",
+      "git 커밋으로 버전 이름을 만들어 코드와 결과를 이어 둘 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.observe.tracing-quickstart",
+      "mlops.track.experiment-tracking"
+    ],
+    "related": [
+      "mlops.track.model-registry",
+      "mlops.prompt.version"
+    ],
+    "aliases": [
+      "앱 버전 추적",
+      "app version tracking",
+      "버전별 트레이스",
+      "LLM 앱 버전 추적"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/version-tracking/",
+      "https://mlflow.org/docs/latest/genai/version-tracking/quickstart/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
     "id": "mlops.track.experiment-tracking",
     "title": "실험 추적: 파라미터·지표·모델 기록하기",
     "en": "Experiment Tracking with MLflow",
@@ -971,6 +1111,73 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-06"
+  },
+  {
+    "id": "mlops.serve.openai-compatible-endpoint",
+    "title": "OpenAI 호환 엔드포인트(/v1/chat/completions)",
+    "en": "OpenAI-Compatible Endpoint",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "OpenAI API와 같은 경로와 요청 형식을 따르는 서버 주소로, 클라이언트 코드를 그대로 두고 base_url만 바꿔 다른 모델을 부를 수 있게 한다.",
+    "parent": "mlops.serve.vllm-openai-server",
+    "related": [
+      "mlops.serve.invocations-endpoint"
+    ],
+    "aliases": [
+      "OpenAI 호환 API",
+      "OpenAI compatible API",
+      "base_url 바꾸기"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/serving/online_serving/"
+    ]
+  },
+  {
+    "id": "mlops.finetune.kbit-training-prep",
+    "title": "양자화 모델 학습 준비(kbit training)",
+    "en": "Preparing a Quantized Model for Training",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "4비트나 8비트로 불러온 모델에 어댑터를 붙이기 전에 학습할 수 있는 상태로 다듬어 주는 PEFT 함수다.",
+    "parent": "mlops.finetune.qlora-quickstart",
+    "related": [
+      "mlops.finetune.lora-target-modules"
+    ],
+    "aliases": [
+      "prepare_model_for_kbit_training",
+      "kbit training",
+      "양자화 모델 학습 준비"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/peft/main/en/developer_guides/quantization"
+    ]
+  },
+  {
+    "id": "mlops.track.logged-model",
+    "title": "LoggedModel(앱 버전 기록)",
+    "en": "LoggedModel",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "코드 참조·설정·평가 결과·트레이스를 한 버전으로 묶어 LLM 앱의 한 버전을 나타내는 MLflow의 기록 단위다.",
+    "parent": "mlops.track.app-version-tracking",
+    "related": [
+      "mlops.track.model-registry",
+      "mlops.track.experiment-run"
+    ],
+    "aliases": [
+      "LoggedModel",
+      "로그드 모델",
+      "앱 버전 기록"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/version-tracking/"
+    ]
   },
   {
     "id": "mlops.track.experiment-run",
@@ -1280,6 +1487,133 @@
     ],
     "refs": [
       "https://mlflow.org/docs/latest/genai/tracing/search-traces/"
+    ]
+  },
+  {
+    "id": "mlops.serve.generation-config-default",
+    "title": "모델 생성 설정 기본값(generation_config.json)",
+    "en": "Model Generation Config Defaults",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "모델 저장소에 들어 있는 생성 설정 파일로, vLLM은 이 값을 기본 샘플링 값으로 써서 내가 기대한 temperature와 결과가 달라질 수 있다.",
+    "parent": "mlops.serve.vllm-openai-server",
+    "related": [
+      "llm.internals.temperature"
+    ],
+    "aliases": [
+      "generation_config.json",
+      "generation config",
+      "생성 설정 파일",
+      "--generation-config vllm"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/getting_started/quickstart.html"
+    ]
+  },
+  {
+    "id": "mlops.finetune.nf4",
+    "title": "NF4(4비트 정규 분포 자료형)",
+    "en": "NormalFloat4 (NF4)",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "정규 분포로 퍼진 가중치에 맞춰 만든 4비트 자료형으로, 4비트 기반 모델을 학습할 때 bnb_4bit_quant_type에 고르는 값이다.",
+    "parent": "mlops.finetune.qlora-quickstart",
+    "aliases": [
+      "NormalFloat4",
+      "bnb_4bit_quant_type",
+      "nf4 양자화"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/main/en/quantization/bitsandbytes"
+    ]
+  },
+  {
+    "id": "mlops.finetune.double-quant",
+    "title": "이중 양자화(nested quantization)",
+    "en": "Double (Nested) Quantization",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "이미 양자화한 가중치의 보조 값까지 한 번 더 줄여 메모리를 조금 더 아끼는 설정으로, bnb_4bit_use_double_quant로 켠다.",
+    "parent": "mlops.finetune.qlora-quickstart",
+    "aliases": [
+      "이중 양자화",
+      "double quantization",
+      "nested quantization",
+      "bnb_4bit_use_double_quant"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/main/en/quantization/bitsandbytes"
+    ]
+  },
+  {
+    "id": "mlops.serve.llm-connection",
+    "title": "LLM 연결(게이트웨이에 제공자 키 보관)",
+    "en": "LLM Connection",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "제공자 API 키를 게이트웨이 서버에 암호화해 두는 등록 항목으로, 클라이언트는 실제 키 없이 엔드포인트만 부른다.",
+    "parent": "mlops.serve.ai-gateway-quickstart",
+    "aliases": [
+      "LLM connection",
+      "LLM Connections"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/governance/ai-gateway/quickstart/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "mlops.serve.traffic-split",
+    "title": "트래픽 분할(가중치로 모델 나눠 보내기)",
+    "en": "Traffic Splitting",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "한 엔드포인트로 들어온 요청을 정한 비율에 따라 여러 모델에 나눠 보내는 설정으로, 비율의 합은 100%여야 한다.",
+    "parent": "mlops.serve.ai-gateway-quickstart",
+    "related": [
+      "be.integrate.fallback-term"
+    ],
+    "aliases": [
+      "트래픽 분할",
+      "traffic splitting",
+      "트래픽 가중치",
+      "모델 A/B 시험"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/governance/ai-gateway/traffic-routing-fallbacks/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "mlops.track.active-model",
+    "title": "활성 모델(set_active_model)",
+    "en": "Active Model",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "지금 실행 중인 코드가 어느 앱 버전인지 정해 두는 설정으로, 이후 만들어지는 트레이스가 그 버전에 자동으로 묶인다.",
+    "parent": "mlops.track.app-version-tracking",
+    "aliases": [
+      "set_active_model",
+      "활성 모델 설정",
+      "active model",
+      "get_active_model_id"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/version-tracking/quickstart/"
     ]
   },
   {
