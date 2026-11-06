@@ -613,6 +613,37 @@
     ]
   },
   {
+    "id": "db.orm.select-construct",
+    "title": "SQLAlchemy select()로 조건·조인·집계 쿼리 만들기",
+    "en": "Building Queries with SQLAlchemy select()",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "ORM",
+    "summary": "select()에 열과 클래스를 넣고 where·join·order_by·group_by를 이어 붙여 파이썬 코드로 SELECT 문을 조립하는 방법이다.",
+    "objectives": [
+      "select()에 ORM 클래스나 속성을 넣고 where()와 and_()·or_()로 조건을 붙여 행을 조회할 수 있다",
+      "join()과 join_from()으로 두 표를 잇고 ON 조건을 직접 지정하거나 isouter로 바깥 조인을 만들 수 있다",
+      "order_by·group_by·having과 func.count 같은 함수로 정렬과 집계 쿼리를 만들 수 있다",
+      "Session.execute()가 돌려주는 행과 Session.scalars()가 돌려주는 객체의 차이를 알고 골라 쓸 수 있다"
+    ],
+    "prerequisites": [
+      "db.orm.sqlalchemy-basics"
+    ],
+    "related": [
+      "db.sql.select-first"
+    ],
+    "aliases": [
+      "SQLAlchemy select",
+      "select 구문",
+      "SQLAlchemy 쿼리 만들기",
+      "join_from"
+    ],
+    "refs": [
+      "https://docs.sqlalchemy.org/en/20/tutorial/data_select.html"
+    ]
+  },
+  {
     "id": "db.sql.subquery-cte",
     "title": "서브쿼리와 WITH 절로 조회 나누기",
     "en": "Subqueries and WITH Queries (CTE)",
@@ -976,6 +1007,70 @@
     ],
     "refs": [
       "https://docs.python.org/3/library/sqlite3.html"
+    ]
+  },
+  {
+    "id": "db.sql.roles-privileges",
+    "title": "PostgreSQL 역할과 GRANT로 계정 권한 나누기",
+    "en": "PostgreSQL Roles and Privileges",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "CREATE ROLE로 앱 전용 로그인 계정을 만들고 GRANT·REVOKE로 표마다 읽기·쓰기 권한을 필요한 만큼만 주는 방법이다.",
+    "objectives": [
+      "CREATE ROLE ... LOGIN으로 앱 전용 계정을 만들고 \\du로 역할 목록을 확인할 수 있다",
+      "GRANT와 REVOKE로 표에 SELECT·INSERT·UPDATE·DELETE 권한을 주고 거둘 수 있다",
+      "객체의 소유자와 PUBLIC 의사 역할이 기본으로 가진 권한을 구분할 수 있다",
+      "permission denied 오류가 나면 \\dp로 권한 목록을 읽고 빠진 권한을 찾아 줄 수 있다"
+    ],
+    "prerequisites": [
+      "db.postgres.first-run"
+    ],
+    "aliases": [
+      "GRANT 문",
+      "REVOKE 문",
+      "CREATE ROLE",
+      "DB 권한",
+      "데이터베이스 역할",
+      "permission denied for table"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/database-roles.html",
+      "https://www.postgresql.org/docs/current/ddl-priv.html"
+    ]
+  },
+  {
+    "id": "db.sql.pandas-read-write",
+    "title": "pandas로 SQL 결과 읽고 표로 저장하기",
+    "en": "Reading and Writing SQL Tables with pandas",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "read_sql로 쿼리 결과를 DataFrame으로 받아 가공하고 to_sql로 DataFrame을 데이터베이스 표에 다시 넣는 방법이다.",
+    "objectives": [
+      "SQLAlchemy 엔진이나 sqlite3 연결을 넘겨 read_sql로 쿼리 결과를 DataFrame으로 읽을 수 있다",
+      "params로 값을 넘겨 문자열 이어 붙이기 없이 조건 쿼리를 실행할 수 있다",
+      "parse_dates로 날짜 열을 날짜형으로 읽을 수 있다",
+      "to_sql의 if_exists와 index 옵션을 골라 DataFrame을 표에 저장할 수 있다"
+    ],
+    "prerequisites": [
+      "db.orm.core-connection"
+    ],
+    "related": [
+      "db.sql.copy-csv"
+    ],
+    "aliases": [
+      "read_sql",
+      "to_sql",
+      "pd.read_sql",
+      "DataFrame.to_sql",
+      "판다스 SQL"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/reference/api/pandas.read_sql.html",
+      "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_sql.html"
     ]
   },
   {
@@ -1682,6 +1777,74 @@
     ]
   },
   {
+    "id": "db.orm.session-scalars",
+    "title": "Session.scalars(): 행 대신 객체로 받기",
+    "en": "Session.scalars()",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "ORM",
+    "summary": "select(클래스)를 실행할 때 한 칸짜리 행을 풀어 ORM 객체를 바로 돌려주는 Session 메서드다.",
+    "parent": "db.orm.select-construct",
+    "related": [
+      "db.orm.session"
+    ],
+    "aliases": [
+      "session.scalars",
+      "scalars()",
+      "scalar_one",
+      "scalars().all()"
+    ],
+    "refs": [
+      "https://docs.sqlalchemy.org/en/20/tutorial/data_select.html"
+    ]
+  },
+  {
+    "id": "db.orm.update-delete-construct",
+    "title": "update()·delete() 구문과 rowcount",
+    "en": "SQLAlchemy update() and delete() Constructs",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "ORM",
+    "summary": "조건에 맞는 여러 행을 객체로 불러오지 않고 한 번에 고치거나 지우며 rowcount로 몇 행이 걸렸는지 확인하는 SQLAlchemy 구문이다.",
+    "related": [
+      "db.sql.write-rows",
+      "db.sql.returning"
+    ],
+    "aliases": [
+      "SQLAlchemy update",
+      "SQLAlchemy delete",
+      "CursorResult.rowcount"
+    ],
+    "refs": [
+      "https://docs.sqlalchemy.org/en/20/tutorial/data_update.html"
+    ]
+  },
+  {
+    "id": "db.sql.trigger-function",
+    "title": "트리거 함수로 수정 시각 자동 기록하기",
+    "en": "PL/pgSQL Trigger Functions",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "행이 들어가거나 바뀔 때 데이터베이스가 스스로 실행하는 함수로, BEFORE 행 트리거에서 NEW를 고쳐 updated_at 같은 열을 채운다.",
+    "related": [
+      "db.sql.generated-column"
+    ],
+    "aliases": [
+      "CREATE TRIGGER",
+      "trigger function",
+      "BEFORE UPDATE 트리거",
+      "updated_at 트리거"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/plpgsql-trigger.html",
+      "https://www.postgresql.org/docs/current/sql-createtrigger.html"
+    ]
+  },
+  {
     "id": "db.sql.view",
     "title": "뷰: 쿼리에 이름 붙여 표처럼 쓰기",
     "en": "View",
@@ -1835,6 +1998,111 @@
     ],
     "refs": [
       "https://docs.sqlalchemy.org/en/20/tutorial/metadata.html"
+    ]
+  },
+  {
+    "id": "db.sql.group-role",
+    "title": "그룹 역할: 역할에 역할을 넣기",
+    "en": "Group Roles and Role Membership",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "SQL",
+    "summary": "권한을 모은 역할을 만들고 GRANT 역할 TO 사용자로 여러 계정에 같은 권한을 한꺼번에 주는 PostgreSQL 방식이다.",
+    "parent": "db.sql.roles-privileges",
+    "aliases": [
+      "group role",
+      "GRANT role TO",
+      "SET ROLE",
+      "역할 소속",
+      "role membership"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/role-membership.html"
+    ]
+  },
+  {
+    "id": "db.sql.default-privileges",
+    "title": "ALTER DEFAULT PRIVILEGES: 앞으로 만들 표의 권한",
+    "en": "ALTER DEFAULT PRIVILEGES",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "SQL",
+    "summary": "나중에 만들어질 표·시퀀스·함수에 줄 권한을 미리 정해 두는 PostgreSQL 명령이며 이미 있는 객체에는 영향을 주지 않는다.",
+    "parent": "db.sql.roles-privileges",
+    "aliases": [
+      "default privileges",
+      "기본 권한",
+      "ALTER DEFAULT PRIVILEGES IN SCHEMA"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/sql-alterdefaultprivileges.html"
+    ]
+  },
+  {
+    "id": "db.sql.to-sql-if-exists",
+    "title": "to_sql의 if_exists: 있는 표에 저장할 때의 동작",
+    "en": "pandas to_sql if_exists",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "SQL",
+    "summary": "DataFrame을 저장할 표가 이미 있을 때 오류를 낼지, 표를 지우고 새로 만들지, 행을 덧붙일지, 행만 비울지 정하는 옵션이다.",
+    "parent": "db.sql.pandas-read-write",
+    "aliases": [
+      "if_exists",
+      "if_exists='replace'",
+      "if_exists='append'",
+      "to_sql replace"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_sql.html"
+    ]
+  },
+  {
+    "id": "db.sql.distinct-on",
+    "title": "DISTINCT ON: 묶음마다 첫 행 하나만",
+    "en": "DISTINCT ON",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "SQL",
+    "summary": "지정한 열 값이 같은 행끼리 묶어 ORDER BY로 정한 첫 행 하나만 남기는 PostgreSQL 확장 문법이다.",
+    "related": [
+      "db.sql.rank-functions",
+      "db.sql.group-by"
+    ],
+    "aliases": [
+      "SELECT DISTINCT ON",
+      "그룹별 최신 행",
+      "distinct on"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/sql-select.html"
+    ]
+  },
+  {
+    "id": "db.sql.aggregate-filter",
+    "title": "집계 함수의 FILTER 절",
+    "en": "Aggregate FILTER Clause",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "SQL",
+    "summary": "count(*) FILTER (WHERE 조건)처럼 집계 함수마다 따로 조건을 걸어 한 번의 조회로 여러 조건별 개수와 합계를 구하는 문법이다.",
+    "related": [
+      "db.sql.group-by",
+      "db.sql.case-expression"
+    ],
+    "aliases": [
+      "FILTER (WHERE",
+      "조건부 집계",
+      "aggregate filter",
+      "count filter"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/sql-expressions.html"
     ]
   },
   {

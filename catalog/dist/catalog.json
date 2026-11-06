@@ -1,5 +1,5 @@
 {
- "version": "0.19.0",
+ "version": "0.20.0",
  "domains": [
   {
    "prefix": "dev",
@@ -761,6 +761,38 @@
    "domain": "dev"
   },
   {
+   "id": "dev.git.pr-review",
+   "title": "풀 리퀘스트 리뷰하기: 코멘트·제안·승인",
+   "en": "Reviewing Pull Requests",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "Git",
+   "summary": "남의 풀 리퀘스트에 줄 단위 의견과 수정 제안을 남기고 승인이나 수정 요청으로 리뷰를 마무리하는 과정이다.",
+   "objectives": [
+    "바뀐 줄에 코멘트를 달고 여러 코멘트를 하나의 리뷰로 묶어 제출할 수 있다",
+    "Comment·Approve·Request changes 가운데 상황에 맞는 리뷰 종류를 고를 수 있다",
+    "받은 수정 제안을 커밋으로 반영하고 리뷰 의견에 답할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.branch-pr"
+   ],
+   "related": [
+    "ax.coding.review-ai-code"
+   ],
+   "aliases": [
+    "PR 리뷰",
+    "pull request review",
+    "리뷰 승인",
+    "request changes"
+   ],
+   "refs": [
+    "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-proposed-changes-in-a-pull-request",
+    "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/incorporating-feedback-in-your-pull-request"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.test.tdd",
    "title": "테스트 먼저 쓰기: TDD",
    "en": "Test-Driven Development",
@@ -1182,6 +1214,70 @@
    ],
    "refs": [
     "https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.test.unittest",
+   "title": "unittest로 테스트 묶기: TestCase와 assert 메서드",
+   "en": "Testing with unittest",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "테스트",
+   "summary": "파이썬 표준 라이브러리 unittest로 TestCase 클래스에 테스트를 모으고 준비·정리 코드와 함께 실행하는 법이다.",
+   "objectives": [
+    "TestCase를 상속한 클래스에 test로 시작하는 메서드를 써서 테스트를 만들 수 있다",
+    "assertEqual·assertRaises 같은 assert 메서드로 결과와 예외를 확인할 수 있다",
+    "python -m unittest로 테스트를 찾아 실행하고 실패 보고를 읽을 수 있다"
+   ],
+   "prerequisites": [
+    "be.python.classes"
+   ],
+   "related": [
+    "be.test.pytest-first",
+    "dev.test.doctest"
+   ],
+   "aliases": [
+    "파이썬 unittest",
+    "unittest.TestCase",
+    "TestCase 클래스",
+    "assertRaises",
+    "python -m unittest"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/unittest.html",
+    "https://docs.python.org/3/tutorial/stdlib.html#quality-control"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.issue-pr-link",
+   "title": "이슈로 할 일 나누고 풀 리퀘스트와 연결하기",
+   "en": "Linking Issues and Pull Requests",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "GitHub 이슈에 할 일을 적어 담당자와 라벨을 붙이고, 풀 리퀘스트와 이어서 병합될 때 이슈가 닫히게 하는 작업 흐름이다.",
+   "objectives": [
+    "버그나 기능 요청을 이슈로 쓰고 라벨·담당자·마일스톤을 붙일 수 있다",
+    "닫는 키워드로 풀 리퀘스트와 이슈를 연결할 수 있다",
+    "기본 브랜치가 아닌 곳으로 병합할 때 이슈가 자동으로 닫히지 않는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.branch-pr"
+   ],
+   "aliases": [
+    "GitHub 이슈",
+    "GitHub issues",
+    "이슈 연결",
+    "linked issue",
+    "이슈 트래킹"
+   ],
+   "refs": [
+    "https://docs.github.com/en/issues/tracking-your-work-with-issues/learning-about-issues/about-issues",
+    "https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue"
    ],
    "domain": "dev"
   },
@@ -1794,6 +1890,122 @@
    "domain": "dev"
   },
   {
+   "id": "dev.git.suggested-change",
+   "title": "리뷰의 수정 제안(suggested changes)",
+   "en": "Suggested Changes",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "리뷰어가 바꿀 코드를 제안 블록으로 적으면 작성자가 버튼 하나로 커밋해 반영할 수 있는 GitHub 리뷰 기능이다.",
+   "parent": "dev.git.pr-review",
+   "aliases": [
+    "수정 제안",
+    "suggestion block",
+    "제안 커밋",
+    "commit suggestion",
+    "suggested change"
+   ],
+   "refs": [
+    "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/incorporating-feedback-in-your-pull-request"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.codeowners",
+   "title": "CODEOWNERS 파일",
+   "en": "CODEOWNERS",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "경로 패턴마다 책임자를 적어 두면 그 파일을 고친 풀 리퀘스트에 리뷰 요청이 자동으로 가게 하는 파일이다.",
+   "parent": "dev.git.pr-review",
+   "related": [
+    "dev.git.branch-protection"
+   ],
+   "aliases": [
+    "코드 오너",
+    "code owners",
+    "코드 소유자",
+    ".github/CODEOWNERS"
+   ],
+   "refs": [
+    "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.closing-keywords",
+   "title": "이슈 닫는 키워드(Fixes #번호)",
+   "en": "Closing Keywords",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "풀 리퀘스트 설명이나 커밋 메시지에 fixes·closes·resolves와 이슈 번호를 쓰면 기본 브랜치에 병합될 때 그 이슈가 닫힌다.",
+   "parent": "dev.git.issue-pr-link",
+   "aliases": [
+    "closes #",
+    "fixes #",
+    "이슈 자동 닫기",
+    "closing keyword",
+    "resolves #"
+   ],
+   "refs": [
+    "https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.test.setup-teardown",
+   "title": "setUp과 tearDown",
+   "en": "setUp and tearDown",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "테스트",
+   "summary": "unittest에서 각 테스트 메서드 앞뒤에 실행되어 공통 준비와 정리를 맡는 메서드다.",
+   "parent": "dev.test.unittest",
+   "related": [
+    "be.test.fixture"
+   ],
+   "aliases": [
+    "setUp 메서드",
+    "tearDown 메서드",
+    "테스트 준비와 정리",
+    "setUpClass"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/unittest.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.credential-helper",
+   "title": "Git 자격 증명 도우미(credential helper)",
+   "en": "Git Credential Helper",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "HTTPS 원격에 접속할 때마다 묻는 아이디와 비밀번호를 메모리나 운영체제 키체인에 맡겨 다시 묻지 않게 하는 Git 설정이다.",
+   "related": [
+    "dev.git.config-levels"
+   ],
+   "aliases": [
+    "credential.helper",
+    "자격 증명 저장",
+    "git credential",
+    "osxkeychain",
+    "Git Credential Manager"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.git.upstream-remote",
    "title": "업스트림 원격",
    "en": "Upstream Remote",
@@ -2016,6 +2228,67 @@
    ],
    "refs": [
     "https://docs.python.org/3/library/doctest.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.draft-pr",
+   "title": "초안 풀 리퀘스트(draft PR)",
+   "en": "Draft Pull Request",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "Git",
+   "summary": "작업 중인 변경을 미리 보여 주되 병합은 막고 코드 오너 리뷰 요청도 보내지 않는 풀 리퀘스트 상태다.",
+   "parent": "dev.git.pr-review",
+   "aliases": [
+    "드래프트 PR",
+    "draft pull request",
+    "초안 PR",
+    "ready for review"
+   ],
+   "refs": [
+    "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.pr-template",
+   "title": "풀 리퀘스트 템플릿",
+   "en": "Pull Request Template",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "Git",
+   "summary": "저장소에 pull_request_template.md를 두면 새 풀 리퀘스트 본문에 정해 둔 양식이 미리 채워진다.",
+   "parent": "dev.git.issue-pr-link",
+   "aliases": [
+    "PR 템플릿",
+    "pull_request_template.md",
+    "PR 양식",
+    "PULL_REQUEST_TEMPLATE"
+   ],
+   "refs": [
+    "https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/creating-a-pull-request-template-for-your-repository"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.test.test-discovery",
+   "title": "unittest 테스트 자동 찾기",
+   "en": "unittest Test Discovery",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "테스트",
+   "summary": "python -m unittest가 test*.py 이름의 파일을 찾아 그 안의 테스트를 모두 실행하는 방식이다.",
+   "parent": "dev.test.unittest",
+   "aliases": [
+    "unittest discover",
+    "test*.py"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/unittest.html"
    ],
    "domain": "dev"
   },
@@ -2616,6 +2889,35 @@
    "domain": "cs"
   },
   {
+   "id": "cs.os.process-vs-thread",
+   "title": "프로세스와 스레드의 차이",
+   "en": "Processes vs Threads",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "운영체제",
+   "summary": "프로세스는 저마다 따로 된 주소 공간을 갖고, 한 프로세스 안의 스레드들은 메모리를 함께 쓰되 각자 스택과 레지스터를 갖는다.",
+   "objectives": [
+    "프로세스끼리와 스레드끼리 무엇을 나눠 쓰고 무엇을 따로 갖는지 구분할 수 있다",
+    "스레드가 같은 데이터를 함께 고칠 때 생기는 문제를 예로 들 수 있다",
+    "작업을 여러 프로세스로 나눌지 여러 스레드로 나눌지 장단점을 들어 고를 수 있다"
+   ],
+   "related": [
+    "be.async.concurrency-parallelism"
+   ],
+   "aliases": [
+    "프로세스와 스레드 차이",
+    "process vs thread",
+    "멀티프로세스와 멀티스레드",
+    "multiprocessing vs multithreading"
+   ],
+   "refs": [
+    "https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf",
+    "https://pages.cs.wisc.edu/~remzi/OSTEP/threads-intro.pdf"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.algo.recursion",
    "title": "재귀 함수 작성하기",
    "en": "Writing Recursive Functions",
@@ -2870,6 +3172,109 @@
    "refs": [
     "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-api.pdf",
     "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-intro.pdf"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dsa.binary-heap",
+   "title": "이진 힙과 우선순위 큐",
+   "en": "Binary Heaps and Priority Queues",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "자료구조",
+   "summary": "가장 작은 값이나 가장 큰 값을 늘 맨 위에 두어, 넣고 꺼낼 때마다 우선순위가 가장 높은 것을 빠르게 얻게 하는 트리 자료구조다.",
+   "objectives": [
+    "힙 속성을 지키며 값을 넣고 꺼내는 과정을 손으로 따라갈 수 있다",
+    "이진 힙을 배열 하나로 저장할 때 부모와 자식의 위치를 계산할 수 있다",
+    "우선순위 큐가 필요한 문제를 알아보고 정렬된 리스트 대신 힙을 골라 쓸 수 있다"
+   ],
+   "prerequisites": [
+    "cs.algo.big-o-estimate"
+   ],
+   "related": [
+    "cs.dsa.binary-search-tree",
+    "cs.os.stack-heap"
+   ],
+   "aliases": [
+    "이진 힙",
+    "binary heap",
+    "최소 힙",
+    "min-heap",
+    "최대 힙",
+    "max-heap"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/heap.html",
+    "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec8/"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.algo.dynamic-programming",
+   "title": "동적 계획법으로 부분 문제 재사용하기",
+   "en": "Dynamic Programming",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "알고리즘과 복잡도",
+   "summary": "큰 문제를 겹치는 작은 문제로 나누고 한 번 푼 답을 저장해 다시 쓰는 방식으로, 같은 계산을 되풀이하는 재귀를 빠르게 바꾼다.",
+   "objectives": [
+    "문제를 부분 문제와 그 사이의 점화식으로 나누어 적을 수 있다",
+    "메모이제이션을 쓴 하향식 풀이와 반복문을 쓴 상향식 풀이를 서로 바꿔 쓸 수 있다",
+    "부분 문제 수와 각각의 계산량으로 동적 계획법의 시간 복잡도를 어림할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.algo.recursion",
+    "cs.algo.big-o-estimate"
+   ],
+   "related": [
+    "cs.algo.memoization"
+   ],
+   "aliases": [
+    "동적 프로그래밍",
+    "다이나믹 프로그래밍",
+    "DP 알고리즘",
+    "DP 풀이",
+    "점화식 풀이"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/dynamicprog.html",
+    "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec15/"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.algo.shortest-path",
+   "title": "가중 그래프의 최단 경로 찾기",
+   "en": "Shortest Paths in Weighted Graphs",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "알고리즘과 복잡도",
+   "summary": "간선마다 거리나 비용이 붙은 그래프에서 출발점부터 각 지점까지 가장 싼 경로를 구하는 방법으로, 가중치가 음수가 아니면 다익스트라를 쓴다.",
+   "objectives": [
+    "간선 가중치가 모두 같을 때는 BFS로, 다를 때는 다익스트라로 최단 경로를 구해야 하는 까닭을 설명할 수 있다",
+    "우선순위 큐를 써서 다익스트라 알고리즘을 직접 구현할 수 있다",
+    "음수 가중치가 있으면 다익스트라 결과가 틀릴 수 있음을 알아볼 수 있다"
+   ],
+   "prerequisites": [
+    "cs.algo.graph-traversal",
+    "cs.dsa.binary-heap"
+   ],
+   "related": [
+    "cs.algo.bfs"
+   ],
+   "aliases": [
+    "최단 경로",
+    "shortest path",
+    "최단 거리 알고리즘",
+    "길찾기 알고리즘"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/shortestpath.html",
+    "https://xlinux.nist.gov/dads/HTML/dijkstraalgo.html",
+    "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec13/"
    ],
    "domain": "cs"
   },
@@ -3428,6 +3833,162 @@
    "domain": "cs"
   },
   {
+   "id": "cs.dsa.priority-queue",
+   "title": "우선순위 큐",
+   "en": "Priority Queue",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "자료구조",
+   "summary": "넣은 순서가 아니라 우선순위가 가장 높은 항목부터 꺼내 주는 추상 자료형으로, 보통 힙으로 만든다.",
+   "parent": "cs.dsa.binary-heap",
+   "related": [
+    "cs.dsa.queue"
+   ],
+   "aliases": [
+    "priority queue",
+    "우선 순위 큐",
+    "PriorityQueue"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/priorityque.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.algo.bottom-up-dp",
+   "title": "상향식 동적 계획법",
+   "en": "Bottom-up Dynamic Programming",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "알고리즘과 복잡도",
+   "summary": "가장 작은 부분 문제부터 반복문으로 차례로 풀어 표에 채워 가며 원래 문제의 답에 이르는 동적 계획법 방식이다.",
+   "parent": "cs.algo.dynamic-programming",
+   "related": [
+    "cs.algo.memoization"
+   ],
+   "aliases": [
+    "상향식 DP",
+    "bottom-up DP",
+    "타뷸레이션",
+    "tabulation"
+   ],
+   "refs": [
+    "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec15/"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.algo.dijkstra",
+   "title": "다익스트라 알고리즘",
+   "en": "Dijkstra's Algorithm",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "알고리즘과 복잡도",
+   "summary": "가중치가 음수가 아닌 그래프에서 한 출발점부터 모든 정점까지의 최단 거리를 가까운 정점부터 확정하며 구하는 알고리즘이다.",
+   "parent": "cs.algo.shortest-path",
+   "aliases": [
+    "Dijkstra",
+    "데이크스트라",
+    "다익스트라 최단 경로"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/dijkstraalgo.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dsa.weighted-graph",
+   "title": "가중 그래프",
+   "en": "Weighted Graph",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "자료구조",
+   "summary": "간선마다 거리·비용·시간 같은 숫자 가중치가 붙은 그래프로, 최단 경로 문제의 입력이 된다.",
+   "parent": "cs.algo.shortest-path",
+   "related": [
+    "cs.dsa.adjacency-list"
+   ],
+   "aliases": [
+    "weighted graph",
+    "가중치 그래프",
+    "간선 가중치",
+    "edge weight"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/weightedGraph.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.context-switch",
+   "title": "문맥 교환",
+   "en": "Context Switch",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "CPU가 실행 중인 프로세스나 스레드를 바꿀 때 지금 레지스터 상태를 저장하고 다음 것의 상태를 되살리는 일이다.",
+   "parent": "cs.os.process-vs-thread",
+   "aliases": [
+    "컨텍스트 스위치",
+    "컨텍스트 스위칭",
+    "context switching",
+    "문맥 전환"
+   ],
+   "refs": [
+    "https://pages.cs.wisc.edu/~remzi/OSTEP/threads-intro.pdf"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.algo.topological-sort",
+   "title": "위상 정렬",
+   "en": "Topological Sort",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "알고리즘과 복잡도",
+   "summary": "방향이 있고 순환이 없는 그래프의 정점을 모든 간선이 앞에서 뒤로 향하도록 한 줄로 늘어놓는 방법이다.",
+   "parent": "cs.algo.graph-traversal",
+   "related": [
+    "cs.algo.dfs"
+   ],
+   "aliases": [
+    "topological sort",
+    "위상 순서",
+    "topological order",
+    "선후 관계 정렬"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/topologicalSort.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.three-way-handshake",
+   "title": "TCP 3방향 핸드셰이크",
+   "en": "TCP Three-Way Handshake",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "네트워크",
+   "summary": "TCP가 데이터를 보내기 전에 SYN, SYN-ACK, ACK 세 번의 주고받기로 양쪽의 시작 순서 번호를 맞추고 연결을 여는 절차다.",
+   "parent": "cs.net.tcp-vs-udp",
+   "aliases": [
+    "쓰리웨이 핸드셰이크",
+    "TCP 핸드셰이크",
+    "SYN SYN-ACK ACK"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9293.html"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.algo.inorder-traversal",
    "title": "중위 순회",
    "en": "In-order Traversal",
@@ -3469,6 +4030,49 @@
    "refs": [
     "https://man7.org/linux/man-pages/man7/signal.7.html",
     "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-api.pdf"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.algo.heapsort",
+   "title": "힙 정렬",
+   "en": "Heapsort",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "알고리즘과 복잡도",
+   "summary": "자료로 힙을 만든 뒤 맨 위 값을 하나씩 꺼내 정렬하는 방식으로, 추가 배열 없이 O(n log n)에 끝난다.",
+   "parent": "cs.dsa.binary-heap",
+   "related": [
+    "cs.algo.merge-sort",
+    "cs.algo.sorting"
+   ],
+   "aliases": [
+    "heap sort",
+    "heapsort 알고리즘"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/heapSort.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.algo.optimality-principle",
+   "title": "최적성 원리",
+   "en": "Principle of Optimality",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "알고리즘과 복잡도",
+   "summary": "전체 최적해를 이루는 조각이 각자의 부분 문제에서도 최적해라는 성질로, 동적 계획법을 쓸 수 있는지 가르는 기준이다.",
+   "parent": "cs.algo.dynamic-programming",
+   "aliases": [
+    "최적 부분 구조",
+    "optimal substructure",
+    "최적성의 원리"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/principle.html"
    ],
    "domain": "cs"
   },
@@ -14604,6 +15208,38 @@
    "domain": "db"
   },
   {
+   "id": "db.orm.select-construct",
+   "title": "SQLAlchemy select()로 조건·조인·집계 쿼리 만들기",
+   "en": "Building Queries with SQLAlchemy select()",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "ORM",
+   "summary": "select()에 열과 클래스를 넣고 where·join·order_by·group_by를 이어 붙여 파이썬 코드로 SELECT 문을 조립하는 방법이다.",
+   "objectives": [
+    "select()에 ORM 클래스나 속성을 넣고 where()와 and_()·or_()로 조건을 붙여 행을 조회할 수 있다",
+    "join()과 join_from()으로 두 표를 잇고 ON 조건을 직접 지정하거나 isouter로 바깥 조인을 만들 수 있다",
+    "order_by·group_by·having과 func.count 같은 함수로 정렬과 집계 쿼리를 만들 수 있다",
+    "Session.execute()가 돌려주는 행과 Session.scalars()가 돌려주는 객체의 차이를 알고 골라 쓸 수 있다"
+   ],
+   "prerequisites": [
+    "db.orm.sqlalchemy-basics"
+   ],
+   "related": [
+    "db.sql.select-first"
+   ],
+   "aliases": [
+    "SQLAlchemy select",
+    "select 구문",
+    "SQLAlchemy 쿼리 만들기",
+    "join_from"
+   ],
+   "refs": [
+    "https://docs.sqlalchemy.org/en/20/tutorial/data_select.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.sql.subquery-cte",
    "title": "서브쿼리와 WITH 절로 조회 나누기",
    "en": "Subqueries and WITH Queries (CTE)",
@@ -14977,6 +15613,72 @@
    ],
    "refs": [
     "https://docs.python.org/3/library/sqlite3.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.roles-privileges",
+   "title": "PostgreSQL 역할과 GRANT로 계정 권한 나누기",
+   "en": "PostgreSQL Roles and Privileges",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "CREATE ROLE로 앱 전용 로그인 계정을 만들고 GRANT·REVOKE로 표마다 읽기·쓰기 권한을 필요한 만큼만 주는 방법이다.",
+   "objectives": [
+    "CREATE ROLE ... LOGIN으로 앱 전용 계정을 만들고 \\du로 역할 목록을 확인할 수 있다",
+    "GRANT와 REVOKE로 표에 SELECT·INSERT·UPDATE·DELETE 권한을 주고 거둘 수 있다",
+    "객체의 소유자와 PUBLIC 의사 역할이 기본으로 가진 권한을 구분할 수 있다",
+    "permission denied 오류가 나면 \\dp로 권한 목록을 읽고 빠진 권한을 찾아 줄 수 있다"
+   ],
+   "prerequisites": [
+    "db.postgres.first-run"
+   ],
+   "aliases": [
+    "GRANT 문",
+    "REVOKE 문",
+    "CREATE ROLE",
+    "DB 권한",
+    "데이터베이스 역할",
+    "permission denied for table"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/database-roles.html",
+    "https://www.postgresql.org/docs/current/ddl-priv.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.pandas-read-write",
+   "title": "pandas로 SQL 결과 읽고 표로 저장하기",
+   "en": "Reading and Writing SQL Tables with pandas",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "read_sql로 쿼리 결과를 DataFrame으로 받아 가공하고 to_sql로 DataFrame을 데이터베이스 표에 다시 넣는 방법이다.",
+   "objectives": [
+    "SQLAlchemy 엔진이나 sqlite3 연결을 넘겨 read_sql로 쿼리 결과를 DataFrame으로 읽을 수 있다",
+    "params로 값을 넘겨 문자열 이어 붙이기 없이 조건 쿼리를 실행할 수 있다",
+    "parse_dates로 날짜 열을 날짜형으로 읽을 수 있다",
+    "to_sql의 if_exists와 index 옵션을 골라 DataFrame을 표에 저장할 수 있다"
+   ],
+   "prerequisites": [
+    "db.orm.core-connection"
+   ],
+   "related": [
+    "db.sql.copy-csv"
+   ],
+   "aliases": [
+    "read_sql",
+    "to_sql",
+    "pd.read_sql",
+    "DataFrame.to_sql",
+    "판다스 SQL"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/reference/api/pandas.read_sql.html",
+    "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_sql.html"
    ],
    "domain": "db"
   },
@@ -15715,6 +16417,77 @@
    "domain": "db"
   },
   {
+   "id": "db.orm.session-scalars",
+   "title": "Session.scalars(): 행 대신 객체로 받기",
+   "en": "Session.scalars()",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "ORM",
+   "summary": "select(클래스)를 실행할 때 한 칸짜리 행을 풀어 ORM 객체를 바로 돌려주는 Session 메서드다.",
+   "parent": "db.orm.select-construct",
+   "related": [
+    "db.orm.session"
+   ],
+   "aliases": [
+    "session.scalars",
+    "scalars()",
+    "scalar_one",
+    "scalars().all()"
+   ],
+   "refs": [
+    "https://docs.sqlalchemy.org/en/20/tutorial/data_select.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.orm.update-delete-construct",
+   "title": "update()·delete() 구문과 rowcount",
+   "en": "SQLAlchemy update() and delete() Constructs",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "ORM",
+   "summary": "조건에 맞는 여러 행을 객체로 불러오지 않고 한 번에 고치거나 지우며 rowcount로 몇 행이 걸렸는지 확인하는 SQLAlchemy 구문이다.",
+   "related": [
+    "db.sql.write-rows",
+    "db.sql.returning"
+   ],
+   "aliases": [
+    "SQLAlchemy update",
+    "SQLAlchemy delete",
+    "CursorResult.rowcount"
+   ],
+   "refs": [
+    "https://docs.sqlalchemy.org/en/20/tutorial/data_update.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.trigger-function",
+   "title": "트리거 함수로 수정 시각 자동 기록하기",
+   "en": "PL/pgSQL Trigger Functions",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "행이 들어가거나 바뀔 때 데이터베이스가 스스로 실행하는 함수로, BEFORE 행 트리거에서 NEW를 고쳐 updated_at 같은 열을 채운다.",
+   "related": [
+    "db.sql.generated-column"
+   ],
+   "aliases": [
+    "CREATE TRIGGER",
+    "trigger function",
+    "BEFORE UPDATE 트리거",
+    "updated_at 트리거"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/plpgsql-trigger.html",
+    "https://www.postgresql.org/docs/current/sql-createtrigger.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.sql.view",
    "title": "뷰: 쿼리에 이름 붙여 표처럼 쓰기",
    "en": "View",
@@ -15874,6 +16647,116 @@
    ],
    "refs": [
     "https://docs.sqlalchemy.org/en/20/tutorial/metadata.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.group-role",
+   "title": "그룹 역할: 역할에 역할을 넣기",
+   "en": "Group Roles and Role Membership",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "SQL",
+   "summary": "권한을 모은 역할을 만들고 GRANT 역할 TO 사용자로 여러 계정에 같은 권한을 한꺼번에 주는 PostgreSQL 방식이다.",
+   "parent": "db.sql.roles-privileges",
+   "aliases": [
+    "group role",
+    "GRANT role TO",
+    "SET ROLE",
+    "역할 소속",
+    "role membership"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/role-membership.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.default-privileges",
+   "title": "ALTER DEFAULT PRIVILEGES: 앞으로 만들 표의 권한",
+   "en": "ALTER DEFAULT PRIVILEGES",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "SQL",
+   "summary": "나중에 만들어질 표·시퀀스·함수에 줄 권한을 미리 정해 두는 PostgreSQL 명령이며 이미 있는 객체에는 영향을 주지 않는다.",
+   "parent": "db.sql.roles-privileges",
+   "aliases": [
+    "default privileges",
+    "기본 권한",
+    "ALTER DEFAULT PRIVILEGES IN SCHEMA"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/sql-alterdefaultprivileges.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.to-sql-if-exists",
+   "title": "to_sql의 if_exists: 있는 표에 저장할 때의 동작",
+   "en": "pandas to_sql if_exists",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "SQL",
+   "summary": "DataFrame을 저장할 표가 이미 있을 때 오류를 낼지, 표를 지우고 새로 만들지, 행을 덧붙일지, 행만 비울지 정하는 옵션이다.",
+   "parent": "db.sql.pandas-read-write",
+   "aliases": [
+    "if_exists",
+    "if_exists='replace'",
+    "if_exists='append'",
+    "to_sql replace"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_sql.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.distinct-on",
+   "title": "DISTINCT ON: 묶음마다 첫 행 하나만",
+   "en": "DISTINCT ON",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "SQL",
+   "summary": "지정한 열 값이 같은 행끼리 묶어 ORDER BY로 정한 첫 행 하나만 남기는 PostgreSQL 확장 문법이다.",
+   "related": [
+    "db.sql.rank-functions",
+    "db.sql.group-by"
+   ],
+   "aliases": [
+    "SELECT DISTINCT ON",
+    "그룹별 최신 행",
+    "distinct on"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/sql-select.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.aggregate-filter",
+   "title": "집계 함수의 FILTER 절",
+   "en": "Aggregate FILTER Clause",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "SQL",
+   "summary": "count(*) FILTER (WHERE 조건)처럼 집계 함수마다 따로 조건을 걸어 한 번의 조회로 여러 조건별 개수와 합계를 구하는 문법이다.",
+   "related": [
+    "db.sql.group-by",
+    "db.sql.case-expression"
+   ],
+   "aliases": [
+    "FILTER (WHERE",
+    "조건부 집계",
+    "aggregate filter",
+    "count filter"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/sql-expressions.html"
    ],
    "domain": "db"
   },
@@ -24497,6 +25380,44 @@
    "domain": "ax"
   },
   {
+   "id": "ax.coding.agent-prompt-injection",
+   "title": "코딩 에이전트를 프롬프트 인젝션에서 지키기",
+   "en": "Protecting a Coding Agent from Prompt Injection",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "AI 보안과 윤리",
+   "summary": "에이전트가 읽은 웹 페이지·이슈·파일에 숨은 지시를 따르지 않도록 권한 승인, 네트워크 명령 확인, 폴더 신뢰, 격리 실행을 겹쳐 쓰는 습관이다.",
+   "objectives": [
+    "에이전트가 읽는 외부 글이 지시로 작동할 수 있는 경로를 예를 들어 말할 수 있다",
+    "curl·wget 같은 네트워크 명령과 작업 폴더 밖 접근이 왜 승인을 거치는지 설명하고 deny 규칙으로 막을 수 있다",
+    "-p 실행에서는 폴더 신뢰와 .mcp.json 승인 창이 뜨지 않는다는 점을 알고 믿을 수 없는 저장소에서 피할 수 있다",
+    "믿을 수 없는 내용을 다룰 때 VM이나 개발 컨테이너로 옮겨 실행할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.security.injection-basics",
+    "ax.coding.permission-rules"
+   ],
+   "related": [
+    "llm.security.prompt-injection",
+    "ax.coding.devcontainer",
+    "ax.coding.security-guidance"
+   ],
+   "aliases": [
+    "에이전트 프롬프트 인젝션",
+    "코딩 에이전트 인젝션 방어",
+    "agent prompt injection",
+    "Claude Code 프롬프트 인젝션"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/security",
+    "https://genai.owasp.org/llmrisk/llm01-prompt-injection/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "ax"
+  },
+  {
    "id": "ax.coding.skills",
    "title": "반복 작업을 스킬로 만들기: SKILL.md",
    "en": "Packaging Repeated Work as Skills (SKILL.md)",
@@ -24895,6 +25816,121 @@
    "refs": [
     "https://www.nist.gov/publications/reducing-risks-posed-synthetic-content-overview-technical-approaches-digital-content",
     "https://spec.c2pa.org/specifications/specifications/2.2/explainer/Explainer.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.third-party-mcp-risks",
+   "title": "남이 만든 MCP 서버의 위험 알고 안전하게 쓰기",
+   "en": "Securely Using Third-Party MCP Servers",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "외부 MCP 서버의 도구 설명에 숨은 지시, 몰래 바뀐 도구, 위험한 실행 명령을 알아보고 설치 전 확인과 최소 권한으로 피해를 막는 방법이다.",
+   "objectives": [
+    "MCP 서버를 연결하기 전에 실행 명령과 도구 설명 전체를 읽고 수상한 지시를 찾아낼 수 있다",
+    "도구 오염·러그 풀·도구 간섭이 각각 어떤 경로로 에이전트를 움직이는지 구분할 수 있다",
+    "서버·도구 버전을 고정하고 체크섬으로 몰래 바뀐 도구를 알아챌 수 있다",
+    "서버가 쓸 수 있는 파일·네트워크 범위를 좁히고 위험한 도구 호출에 사람 승인을 걸 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.mcp-servers",
+    "llm.security.injection-basics"
+   ],
+   "related": [
+    "ax.security.model-supply-chain",
+    "ax.coding.agent-sandbox"
+   ],
+   "aliases": [
+    "MCP 보안",
+    "MCP security",
+    "서드파티 MCP",
+    "third-party MCP server",
+    "MCP 서버 위험"
+   ],
+   "refs": [
+    "https://genai.owasp.org/resource/cheatsheet-a-practical-guide-for-securely-using-third-party-mcp-servers-1-0/",
+    "https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices",
+    "https://code.claude.com/docs/en/mcp"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.automated-decision-rights",
+   "title": "AI 자동화된 결정에 설명·거부 요구 대비하기",
+   "en": "Preparing for Rights over Automated Decisions",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "사람 개입 없이 AI가 내린 결정에 당사자는 설명·검토를 요구할 수 있고 권리에 중대한 영향이 있으면 거부할 수 있으므로, 기준 공개와 사람 재검토 경로를 기능에 넣는 일이다.",
+   "objectives": [
+    "만든 기능이 개인정보 보호법 제37조의2의 자동화된 결정에 해당하는지 사람 개입 여부로 판단할 수 있다",
+    "설명 요구에 답할 결정 기준과 주요 입력 정보를 기록해 두는 구조를 만들 수 있다",
+    "거부나 검토 요구가 오면 자동 결정을 멈추고 사람이 다시 처리하는 경로를 기능에 넣을 수 있다",
+    "자동화된 결정의 기준과 절차를 서비스 화면이나 처리방침에 미리 공개할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.basics.personal-data",
+    "ax.governance.ai-act-risk-levels"
+   ],
+   "related": [
+    "ax.governance.explainability",
+    "ax.governance.automation-bias",
+    "ax.governance.high-risk-ai"
+   ],
+   "aliases": [
+    "자동화된 결정",
+    "automated decision-making",
+    "자동화된 결정 거부권",
+    "AI 결정 설명 요구권",
+    "제37조의2"
+   ],
+   "refs": [
+    "https://www.korea.kr/briefing/pressReleaseView.do?newsId=156652359",
+    "https://www.korea.kr/briefing/pressReleaseView.do?newsId=156631080",
+    "https://www.law.go.kr/법령/개인정보보호법"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.genai-privacy-lifecycle",
+   "title": "생성형 AI 기능의 개인정보 처리 단계별 점검",
+   "en": "Privacy Checks Across the Generative AI Lifecycle",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "목적 설정·전략 수립·학습 개발·적용 관리 네 단계마다 개인정보 처리 근거와 최소 안전조치를 확인해 생성형 AI 기능을 법 테두리 안에서 만드는 방법이다.",
+   "objectives": [
+    "상용 LLM API 연계·오픈 모델 미세 조정·자체 개발 중 내 기능의 활용 유형을 고르고 유형별 주의점을 찾을 수 있다",
+    "학습이나 검색에 쓸 데이터마다 동의·정당한 이익·가명처리 중 어떤 처리 근거를 쓸지 정할 수 있다",
+    "적용 단계에서 이용 방침 안내와 부적절한 답·개인정보 노출 신고 기능을 넣을 수 있다"
+   ],
+   "prerequisites": [
+    "ax.basics.personal-data",
+    "ax.security.sensitive-info-disclosure"
+   ],
+   "related": [
+    "ax.coding.agent-data-usage",
+    "ax.governance.genai-profile"
+   ],
+   "aliases": [
+    "생성형 AI 개인정보 처리 안내서",
+    "AI 개인정보 처리 기준",
+    "AI 프라이버시 점검",
+    "generative AI privacy guide"
+   ],
+   "refs": [
+    "https://pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS217&mCode=G010030000&nttId=11439",
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148947194"
    ],
    "volatile": true,
    "checked_at": "2026-11-06",
@@ -25445,6 +26481,113 @@
    "domain": "ax"
   },
   {
+   "id": "ax.security.tool-poisoning",
+   "title": "도구 오염(tool poisoning)",
+   "en": "Tool Poisoning",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "MCP 도구의 설명이나 매개변수 안에 모델이 따를 지시를 숨겨 두어 사용자 모르게 파일을 읽거나 정보를 빼내게 하는 간접 프롬프트 인젝션이다.",
+   "parent": "ax.security.third-party-mcp-risks",
+   "related": [
+    "llm.security.indirect-injection"
+   ],
+   "aliases": [
+    "MCP 도구 오염",
+    "tool poisoning attack",
+    "도구 설명 인젝션",
+    "MCP tool poisoning"
+   ],
+   "refs": [
+    "https://genai.owasp.org/resource/cheatsheet-a-practical-guide-for-securely-using-third-party-mcp-servers-1-0/"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.network-command-approval",
+   "title": "네트워크 명령 승인(curl·wget)",
+   "en": "Network Command Approval",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "Claude Code는 curl·wget처럼 웹에서 내용을 가져오는 명령을 기본으로 자동 허용하지 않아, 숨은 지시가 정보를 밖으로 보내거나 악성 글을 끌어오는 일을 승인 단계에서 끊는다.",
+   "parent": "ax.coding.agent-prompt-injection",
+   "related": [
+    "ax.coding.devcontainer-egress-firewall",
+    "ax.coding.agent-sandbox"
+   ],
+   "aliases": [
+    "Bash(curl *)",
+    "네트워크 요청 승인",
+    "network request approval",
+    "curl 승인"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/security"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.additional-directories",
+   "title": "추가 작업 폴더(--add-dir)",
+   "en": "Additional Working Directories",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "시작 폴더 밖의 폴더를 --add-dir·/add-dir·additionalDirectories로 더해 에이전트가 읽고 고칠 수 있게 하는 설정으로, 파일 접근만 넓힐 뿐 그 폴더의 설정 대부분은 불러오지 않는다.",
+   "parent": "ax.coding.agent-prompt-injection",
+   "related": [
+    "ax.coding.permission-rules",
+    "ax.coding.workspace-trust"
+   ],
+   "aliases": [
+    "--add-dir",
+    "/add-dir",
+    "additionalDirectories",
+    "작업 디렉터리 경계",
+    "working directory boundary"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/permissions",
+    "https://code.claude.com/docs/en/security"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.pseudonymized-data",
+   "title": "가명정보와 가명처리",
+   "en": "Pseudonymized Data",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "추가 정보 없이는 누구인지 알 수 없게 바꾼 개인정보로, 통계 작성·과학적 연구 같은 목적이면 동의 없이 AI 학습에 쓸 수 있지만 위험도에 맞는 처리와 검토가 따라야 한다.",
+   "parent": "ax.governance.genai-privacy-lifecycle",
+   "related": [
+    "ax.security.pii-redaction"
+   ],
+   "aliases": [
+    "가명정보",
+    "가명처리",
+    "pseudonymization",
+    "가명정보 처리 가이드라인"
+   ],
+   "refs": [
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148961790",
+    "https://www.law.go.kr/법령/개인정보보호법"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "ax"
+  },
+  {
    "id": "ax.governance.gpai-model",
    "title": "범용 AI 모델(GPAI)",
    "en": "General-Purpose AI Model",
@@ -25698,6 +26841,108 @@
    ],
    "refs": [
     "https://www.nist.gov/publications/reducing-risks-posed-synthetic-content-overview-technical-approaches-digital-content"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.mcp-rug-pull",
+   "title": "MCP 러그 풀(몰래 바뀐 도구)",
+   "en": "MCP Rug Pull",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "처음 승인할 때는 멀쩡하던 MCP 도구가 나중에 악성 버전으로 바뀌어 이미 얻은 신뢰를 이용하는 도구 오염의 한 형태로, 버전 고정과 변경 감시로 막는다.",
+   "parent": "ax.security.third-party-mcp-risks",
+   "related": [
+    "ax.security.tool-poisoning",
+    "ax.security.model-supply-chain"
+   ],
+   "aliases": [
+    "러그 풀",
+    "rug pull attack",
+    "MCP 도구 바꿔치기"
+   ],
+   "refs": [
+    "https://genai.owasp.org/resource/cheatsheet-a-practical-guide-for-securely-using-third-party-mcp-servers-1-0/"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.gdpr-automated-decision",
+   "title": "GDPR 제22조 자동화된 개별 결정",
+   "en": "GDPR Article 22 Automated Individual Decision-Making",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "EU에서 법적 효과나 그만큼 큰 영향을 주는 결정을 오직 자동 처리로만 내리지 못하게 하고, 예외로 허용해도 사람 개입·의견 표명·이의 제기 권리를 보장하게 한 규정이다.",
+   "parent": "ax.governance.automated-decision-rights",
+   "related": [
+    "ax.governance.high-risk-ai"
+   ],
+   "aliases": [
+    "GDPR Article 22",
+    "GDPR 22조",
+    "프로파일링 규제",
+    "solely automated decision"
+   ],
+   "refs": [
+    "https://commission.europa.eu/law/law-topic/data-protection/information-individuals_en"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.public-data-legitimate-interest",
+   "title": "공개된 개인정보의 AI 학습과 정당한 이익",
+   "en": "Legitimate Interest for Training on Publicly Available Personal Data",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "인터넷에 공개된 개인정보를 AI 학습에 쓸 때 개인정보 보호법 제15조의 정당한 이익을 근거로 삼되 목적의 정당성·처리 필요성·이익형량 세 요건을 따져 기록하는 기준이다.",
+   "parent": "ax.governance.genai-privacy-lifecycle",
+   "related": [
+    "ax.governance.pseudonymized-data"
+   ],
+   "aliases": [
+    "공개된 개인정보 처리",
+    "웹 크롤링 데이터 학습",
+    "공개 데이터 처리 안내서",
+    "정당한 이익 처리 근거",
+    "공개 개인정보 AI 학습"
+   ],
+   "refs": [
+    "https://pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS217&mCode=D010030000&nttId=10375",
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148931542"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.privacy-impact-assessment",
+   "title": "개인정보 영향평가(PIA)",
+   "en": "Privacy Impact Assessment",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "개인정보를 많이 다루는 시스템을 만들거나 크게 바꾸기 전에 침해 위험을 미리 분석하고 개선책을 세우는 평가로, 공공기관은 의무이고 2025년부터 AI 학습·운영 평가 분야가 더해졌다.",
+   "parent": "ax.governance.genai-privacy-lifecycle",
+   "related": [
+    "ax.governance.genai-profile"
+   ],
+   "aliases": [
+    "개인정보 영향평가",
+    "privacy impact assessment",
+    "PIA 평가"
+   ],
+   "refs": [
+    "https://pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS074&mCode=C020010000&nttId=11475",
+    "https://www.korea.kr/briefing/pressReleaseView.do?newsId=156733810"
    ],
    "volatile": true,
    "checked_at": "2026-11-06",
@@ -29744,6 +30989,143 @@
    "domain": "ml"
   },
   {
+   "id": "ml.nn.cnn-image-classifier",
+   "title": "합성곱 신경망으로 이미지 분류하기",
+   "en": "Image Classification with a Convolutional Neural Network",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "합성곱 층과 풀링 층을 쌓은 작은 신경망을 PyTorch로 만들어 작은 컬러 이미지를 열 가지 종류로 분류해 보는 과정이다.",
+   "objectives": [
+    "torchvision 데이터셋과 변환으로 이미지를 정규화된 텐서로 불러올 수 있다",
+    "Conv2d·MaxPool2d·Linear 층을 쌓아 이미지 분류 신경망을 정의할 수 있다",
+    "합성곱과 풀링을 거친 뒤 완전 연결 층에 넣을 입력 크기를 계산해 모양 오류를 고칠 수 있다",
+    "학습한 모델의 테스트 정확도를 클래스별로 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.nn.training-loop",
+    "ml.nn.dataset-dataloader"
+   ],
+   "related": [
+    "ml.nn.multiclass-softmax"
+   ],
+   "aliases": [
+    "CNN",
+    "합성곱 신경망",
+    "convolutional neural network",
+    "이미지 분류 모델",
+    "CIFAR10 분류"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html",
+    "https://docs.pytorch.org/docs/main/generated/torch.nn.Conv2d.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.tree-ensembles",
+   "title": "트리 앙상블: 랜덤 포레스트와 그래디언트 부스팅",
+   "en": "Tree Ensembles: Random Forests and Gradient Boosting",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "의사결정나무 여러 그루를 모아 하나보다 정확하고 과적합에 강한 예측을 얻는 방법으로, scikit-learn에서 랜덤 포레스트와 그래디언트 부스팅으로 쓴다.",
+   "objectives": [
+    "RandomForestClassifier와 HistGradientBoostingClassifier로 표 데이터 분류 모델을 학습하고 비교할 수 있다",
+    "나무를 독립적으로 키우는 랜덤 포레스트와 앞 나무의 오차를 고쳐 나가는 부스팅의 차이를 설명할 수 있다",
+    "나무 개수·깊이·학습률 같은 주요 하이퍼파라미터를 바꿔 결과를 비교할 수 있다",
+    "검증 데이터에서 순열 중요도로 어떤 특성이 예측에 영향을 주는지 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.supervised.sklearn-first-model",
+    "ml.supervised.sklearn-pipeline"
+   ],
+   "related": [
+    "ml.supervised.decision-tree",
+    "ml.training.regularization"
+   ],
+   "aliases": [
+    "RandomForestClassifier",
+    "트리 앙상블",
+    "decision forest",
+    "random forest",
+    "랜덤 포레스트"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/ensemble.html",
+    "https://developers.google.com/machine-learning/decision-forests/random-forests"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.text-vectorization",
+   "title": "텍스트를 특성으로 바꾸기: CountVectorizer와 TF-IDF",
+   "en": "Text Feature Extraction with CountVectorizer and TF-IDF",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "문장을 단어별 개수나 TF-IDF 가중치로 이루어진 희소 행렬로 바꿔 scikit-learn 분류 모델에 넣는 방법이다.",
+   "objectives": [
+    "CountVectorizer로 문서 모음을 단어 개수 행렬로 바꾸고 어휘 사전을 확인할 수 있다",
+    "TfidfVectorizer로 흔한 단어의 가중치를 낮춘 특성을 만들어 분류 모델에 연결할 수 있다",
+    "학습 데이터에만 fit하고 새 문서에는 transform만 해야 하는 이유와 처음 보는 단어가 무시되는 점을 설명할 수 있다",
+    "불용어와 n-gram 설정을 바꿔 결과가 어떻게 달라지는지 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.supervised.sklearn-pipeline",
+    "ml.data.numeric-categorical-preprocessing"
+   ],
+   "related": [
+    "ml.nn.embedding-layer"
+   ],
+   "aliases": [
+    "텍스트 벡터화",
+    "text vectorization",
+    "CountVectorizer",
+    "TfidfVectorizer",
+    "텍스트 특성 추출"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/feature_extraction.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.sklearn-model-persistence",
+   "title": "scikit-learn 모델 저장과 불러오기",
+   "en": "Model Persistence in scikit-learn",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "학습한 scikit-learn 모델이나 파이프라인을 파일로 저장해 다른 프로그램에서 다시 불러 예측에 쓰는 방법과 그때 지켜야 할 주의점이다.",
+   "objectives": [
+    "joblib이나 pickle로 학습한 파이프라인을 저장하고 다시 불러 예측할 수 있다",
+    "믿을 수 없는 출처의 pickle 파일을 불러오면 안 되는 이유와 skops.io 같은 대안을 설명할 수 있다",
+    "저장할 때와 불러올 때 scikit-learn 버전이 다르면 생기는 문제를 알고 버전을 함께 기록할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.supervised.sklearn-pipeline"
+   ],
+   "related": [
+    "ml.nn.save-load-model"
+   ],
+   "aliases": [
+    "scikit-learn 모델 저장",
+    "sklearn 모델 저장",
+    "joblib.dump",
+    "skops.io",
+    "InconsistentVersionWarning"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/model_persistence.html"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.training.learning-rate",
    "title": "학습률",
    "en": "Learning Rate",
@@ -30364,6 +31746,80 @@
    "domain": "ml"
   },
   {
+   "id": "ml.nn.conv2d",
+   "title": "합성곱 층(Conv2d)",
+   "en": "2D Convolution Layer (Conv2d)",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "작은 필터를 이미지 위로 밀며 지역 패턴을 찾아 여러 채널의 특성 맵을 만드는 신경망 층이다.",
+   "parent": "ml.nn.cnn-image-classifier",
+   "related": [
+    "ml.nn.max-pooling"
+   ],
+   "aliases": [
+    "nn.Conv2d",
+    "합성곱 층",
+    "convolution layer",
+    "커널 크기"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/main/generated/torch.nn.Conv2d.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.gradient-boosted-trees",
+   "title": "그래디언트 부스팅 트리",
+   "en": "Gradient Boosted Trees",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "작은 나무를 하나씩 더하면서 새 나무가 지금까지 모델의 오차를 줄이도록 학습시키는 앙상블 모델이다.",
+   "parent": "ml.supervised.tree-ensembles",
+   "related": [
+    "ml.supervised.bagging"
+   ],
+   "aliases": [
+    "gradient boosting",
+    "그래디언트 부스팅",
+    "GBDT",
+    "HistGradientBoostingClassifier",
+    "XGBoost"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/decision-forests/intro-to-gbdt",
+    "https://scikit-learn.org/stable/modules/ensemble.html#gradient-boosted-trees"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.tf-idf",
+   "title": "TF-IDF",
+   "en": "Term Frequency-Inverse Document Frequency",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "한 문서에 자주 나오면서 다른 문서에는 드문 단어일수록 큰 값을 주도록 단어 개수에 가중치를 매기는 방법이다.",
+   "parent": "ml.data.text-vectorization",
+   "related": [
+    "ml.data.bag-of-words"
+   ],
+   "aliases": [
+    "tf-idf",
+    "tfidf",
+    "TfidfTransformer",
+    "역문서 빈도"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/feature_extraction.html#tfidf-term-weighting"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.unsupervised.silhouette-score",
    "title": "실루엣 점수",
    "en": "Silhouette Score",
@@ -30443,6 +31899,121 @@
     "feature crosses",
     "교차 특성",
     "특성 조합"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.max-pooling",
+   "title": "최대 풀링(MaxPool2d)",
+   "en": "Max Pooling (MaxPool2d)",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "딥러닝",
+   "summary": "작은 창마다 가장 큰 값만 남겨 특성 맵의 가로세로 크기를 줄이는 층이다.",
+   "parent": "ml.nn.cnn-image-classifier",
+   "related": [
+    "ml.nn.conv2d"
+   ],
+   "aliases": [
+    "nn.MaxPool2d",
+    "max pooling",
+    "맥스 풀링",
+    "풀링 층"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/main/generated/torch.nn.MaxPool2d.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.image-augmentation",
+   "title": "이미지 데이터 증강",
+   "en": "Image Data Augmentation",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "딥러닝",
+   "summary": "학습할 때마다 이미지를 무작위로 뒤집거나 잘라 같은 사진을 조금씩 다르게 보여 줘서 과적합을 줄이는 방법이다.",
+   "parent": "ml.nn.cnn-image-classifier",
+   "related": [
+    "ml.training.regularization"
+   ],
+   "aliases": [
+    "RandomHorizontalFlip",
+    "RandomResizedCrop",
+    "이미지 증강",
+    "image augmentation"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/vision/stable/transforms.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.bagging",
+   "title": "배깅(bagging)",
+   "en": "Bagging",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "학습 데이터에서 중복을 허용해 뽑은 표본마다 모델을 따로 학습시키고 그 예측을 모으는 앙상블 방법이다.",
+   "parent": "ml.supervised.tree-ensembles",
+   "related": [
+    "ml.supervised.gradient-boosted-trees"
+   ],
+   "aliases": [
+    "bootstrap aggregating",
+    "부트스트랩 집계",
+    "BaggingClassifier"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/decision-forests/random-forests",
+    "https://scikit-learn.org/stable/modules/ensemble.html#bagging-meta-estimator"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.permutation-importance",
+   "title": "순열 특성 중요도",
+   "en": "Permutation Feature Importance",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "모델 평가",
+   "summary": "특성 하나의 값을 무작위로 섞었을 때 모델 점수가 얼마나 떨어지는지로 그 특성이 예측에 얼마나 쓰이는지 재는 방법이다.",
+   "parent": "ml.supervised.tree-ensembles",
+   "aliases": [
+    "permutation importance",
+    "permutation_importance"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/permutation_importance.html",
+    "https://developers.google.com/machine-learning/decision-forests/variable-importances"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.bag-of-words",
+   "title": "단어 주머니(bag of words)",
+   "en": "Bag of Words",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "단어의 순서는 버리고 문서마다 각 단어가 몇 번 나왔는지만 세어 숫자 벡터로 나타내는 방식이다.",
+   "parent": "ml.data.text-vectorization",
+   "related": [
+    "ml.data.tf-idf"
+   ],
+   "aliases": [
+    "bag-of-words",
+    "BoW",
+    "단어 빈도 벡터"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/feature_extraction.html#the-bag-of-words-representation"
    ],
    "domain": "ml"
   },

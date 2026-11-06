@@ -124,6 +124,34 @@
     ]
   },
   {
+    "id": "cs.os.process-vs-thread",
+    "title": "프로세스와 스레드의 차이",
+    "en": "Processes vs Threads",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "운영체제",
+    "summary": "프로세스는 저마다 따로 된 주소 공간을 갖고, 한 프로세스 안의 스레드들은 메모리를 함께 쓰되 각자 스택과 레지스터를 갖는다.",
+    "objectives": [
+      "프로세스끼리와 스레드끼리 무엇을 나눠 쓰고 무엇을 따로 갖는지 구분할 수 있다",
+      "스레드가 같은 데이터를 함께 고칠 때 생기는 문제를 예로 들 수 있다",
+      "작업을 여러 프로세스로 나눌지 여러 스레드로 나눌지 장단점을 들어 고를 수 있다"
+    ],
+    "related": [
+      "be.async.concurrency-parallelism"
+    ],
+    "aliases": [
+      "프로세스와 스레드 차이",
+      "process vs thread",
+      "멀티프로세스와 멀티스레드",
+      "multiprocessing vs multithreading"
+    ],
+    "refs": [
+      "https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf",
+      "https://pages.cs.wisc.edu/~remzi/OSTEP/threads-intro.pdf"
+    ]
+  },
+  {
     "id": "cs.algo.recursion",
     "title": "재귀 함수 작성하기",
     "en": "Writing Recursive Functions",
@@ -371,6 +399,106 @@
     "refs": [
       "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-api.pdf",
       "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-intro.pdf"
+    ]
+  },
+  {
+    "id": "cs.dsa.binary-heap",
+    "title": "이진 힙과 우선순위 큐",
+    "en": "Binary Heaps and Priority Queues",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "자료구조",
+    "summary": "가장 작은 값이나 가장 큰 값을 늘 맨 위에 두어, 넣고 꺼낼 때마다 우선순위가 가장 높은 것을 빠르게 얻게 하는 트리 자료구조다.",
+    "objectives": [
+      "힙 속성을 지키며 값을 넣고 꺼내는 과정을 손으로 따라갈 수 있다",
+      "이진 힙을 배열 하나로 저장할 때 부모와 자식의 위치를 계산할 수 있다",
+      "우선순위 큐가 필요한 문제를 알아보고 정렬된 리스트 대신 힙을 골라 쓸 수 있다"
+    ],
+    "prerequisites": [
+      "cs.algo.big-o-estimate"
+    ],
+    "related": [
+      "cs.dsa.binary-search-tree",
+      "cs.os.stack-heap"
+    ],
+    "aliases": [
+      "이진 힙",
+      "binary heap",
+      "최소 힙",
+      "min-heap",
+      "최대 힙",
+      "max-heap"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/heap.html",
+      "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec8/"
+    ]
+  },
+  {
+    "id": "cs.algo.dynamic-programming",
+    "title": "동적 계획법으로 부분 문제 재사용하기",
+    "en": "Dynamic Programming",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "알고리즘과 복잡도",
+    "summary": "큰 문제를 겹치는 작은 문제로 나누고 한 번 푼 답을 저장해 다시 쓰는 방식으로, 같은 계산을 되풀이하는 재귀를 빠르게 바꾼다.",
+    "objectives": [
+      "문제를 부분 문제와 그 사이의 점화식으로 나누어 적을 수 있다",
+      "메모이제이션을 쓴 하향식 풀이와 반복문을 쓴 상향식 풀이를 서로 바꿔 쓸 수 있다",
+      "부분 문제 수와 각각의 계산량으로 동적 계획법의 시간 복잡도를 어림할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.algo.recursion",
+      "cs.algo.big-o-estimate"
+    ],
+    "related": [
+      "cs.algo.memoization"
+    ],
+    "aliases": [
+      "동적 프로그래밍",
+      "다이나믹 프로그래밍",
+      "DP 알고리즘",
+      "DP 풀이",
+      "점화식 풀이"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/dynamicprog.html",
+      "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec15/"
+    ]
+  },
+  {
+    "id": "cs.algo.shortest-path",
+    "title": "가중 그래프의 최단 경로 찾기",
+    "en": "Shortest Paths in Weighted Graphs",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "알고리즘과 복잡도",
+    "summary": "간선마다 거리나 비용이 붙은 그래프에서 출발점부터 각 지점까지 가장 싼 경로를 구하는 방법으로, 가중치가 음수가 아니면 다익스트라를 쓴다.",
+    "objectives": [
+      "간선 가중치가 모두 같을 때는 BFS로, 다를 때는 다익스트라로 최단 경로를 구해야 하는 까닭을 설명할 수 있다",
+      "우선순위 큐를 써서 다익스트라 알고리즘을 직접 구현할 수 있다",
+      "음수 가중치가 있으면 다익스트라 결과가 틀릴 수 있음을 알아볼 수 있다"
+    ],
+    "prerequisites": [
+      "cs.algo.graph-traversal",
+      "cs.dsa.binary-heap"
+    ],
+    "related": [
+      "cs.algo.bfs"
+    ],
+    "aliases": [
+      "최단 경로",
+      "shortest path",
+      "최단 거리 알고리즘",
+      "길찾기 알고리즘"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/shortestpath.html",
+      "https://xlinux.nist.gov/dads/HTML/dijkstraalgo.html",
+      "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec13/"
     ]
   },
   {
@@ -903,6 +1031,155 @@
     ]
   },
   {
+    "id": "cs.dsa.priority-queue",
+    "title": "우선순위 큐",
+    "en": "Priority Queue",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "자료구조",
+    "summary": "넣은 순서가 아니라 우선순위가 가장 높은 항목부터 꺼내 주는 추상 자료형으로, 보통 힙으로 만든다.",
+    "parent": "cs.dsa.binary-heap",
+    "related": [
+      "cs.dsa.queue"
+    ],
+    "aliases": [
+      "priority queue",
+      "우선 순위 큐",
+      "PriorityQueue"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/priorityque.html"
+    ]
+  },
+  {
+    "id": "cs.algo.bottom-up-dp",
+    "title": "상향식 동적 계획법",
+    "en": "Bottom-up Dynamic Programming",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "알고리즘과 복잡도",
+    "summary": "가장 작은 부분 문제부터 반복문으로 차례로 풀어 표에 채워 가며 원래 문제의 답에 이르는 동적 계획법 방식이다.",
+    "parent": "cs.algo.dynamic-programming",
+    "related": [
+      "cs.algo.memoization"
+    ],
+    "aliases": [
+      "상향식 DP",
+      "bottom-up DP",
+      "타뷸레이션",
+      "tabulation"
+    ],
+    "refs": [
+      "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec15/"
+    ]
+  },
+  {
+    "id": "cs.algo.dijkstra",
+    "title": "다익스트라 알고리즘",
+    "en": "Dijkstra's Algorithm",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "알고리즘과 복잡도",
+    "summary": "가중치가 음수가 아닌 그래프에서 한 출발점부터 모든 정점까지의 최단 거리를 가까운 정점부터 확정하며 구하는 알고리즘이다.",
+    "parent": "cs.algo.shortest-path",
+    "aliases": [
+      "Dijkstra",
+      "데이크스트라",
+      "다익스트라 최단 경로"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/dijkstraalgo.html"
+    ]
+  },
+  {
+    "id": "cs.dsa.weighted-graph",
+    "title": "가중 그래프",
+    "en": "Weighted Graph",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "자료구조",
+    "summary": "간선마다 거리·비용·시간 같은 숫자 가중치가 붙은 그래프로, 최단 경로 문제의 입력이 된다.",
+    "parent": "cs.algo.shortest-path",
+    "related": [
+      "cs.dsa.adjacency-list"
+    ],
+    "aliases": [
+      "weighted graph",
+      "가중치 그래프",
+      "간선 가중치",
+      "edge weight"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/weightedGraph.html"
+    ]
+  },
+  {
+    "id": "cs.os.context-switch",
+    "title": "문맥 교환",
+    "en": "Context Switch",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "CPU가 실행 중인 프로세스나 스레드를 바꿀 때 지금 레지스터 상태를 저장하고 다음 것의 상태를 되살리는 일이다.",
+    "parent": "cs.os.process-vs-thread",
+    "aliases": [
+      "컨텍스트 스위치",
+      "컨텍스트 스위칭",
+      "context switching",
+      "문맥 전환"
+    ],
+    "refs": [
+      "https://pages.cs.wisc.edu/~remzi/OSTEP/threads-intro.pdf"
+    ]
+  },
+  {
+    "id": "cs.algo.topological-sort",
+    "title": "위상 정렬",
+    "en": "Topological Sort",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "알고리즘과 복잡도",
+    "summary": "방향이 있고 순환이 없는 그래프의 정점을 모든 간선이 앞에서 뒤로 향하도록 한 줄로 늘어놓는 방법이다.",
+    "parent": "cs.algo.graph-traversal",
+    "related": [
+      "cs.algo.dfs"
+    ],
+    "aliases": [
+      "topological sort",
+      "위상 순서",
+      "topological order",
+      "선후 관계 정렬"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/topologicalSort.html"
+    ]
+  },
+  {
+    "id": "cs.net.three-way-handshake",
+    "title": "TCP 3방향 핸드셰이크",
+    "en": "TCP Three-Way Handshake",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "TCP가 데이터를 보내기 전에 SYN, SYN-ACK, ACK 세 번의 주고받기로 양쪽의 시작 순서 번호를 맞추고 연결을 여는 절차다.",
+    "parent": "cs.net.tcp-vs-udp",
+    "aliases": [
+      "쓰리웨이 핸드셰이크",
+      "TCP 핸드셰이크",
+      "SYN SYN-ACK ACK"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9293.html"
+    ]
+  },
+  {
     "id": "cs.algo.inorder-traversal",
     "title": "중위 순회",
     "en": "In-order Traversal",
@@ -943,6 +1220,47 @@
     "refs": [
       "https://man7.org/linux/man-pages/man7/signal.7.html",
       "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-api.pdf"
+    ]
+  },
+  {
+    "id": "cs.algo.heapsort",
+    "title": "힙 정렬",
+    "en": "Heapsort",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "알고리즘과 복잡도",
+    "summary": "자료로 힙을 만든 뒤 맨 위 값을 하나씩 꺼내 정렬하는 방식으로, 추가 배열 없이 O(n log n)에 끝난다.",
+    "parent": "cs.dsa.binary-heap",
+    "related": [
+      "cs.algo.merge-sort",
+      "cs.algo.sorting"
+    ],
+    "aliases": [
+      "heap sort",
+      "heapsort 알고리즘"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/heapSort.html"
+    ]
+  },
+  {
+    "id": "cs.algo.optimality-principle",
+    "title": "최적성 원리",
+    "en": "Principle of Optimality",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "알고리즘과 복잡도",
+    "summary": "전체 최적해를 이루는 조각이 각자의 부분 문제에서도 최적해라는 성질로, 동적 계획법을 쓸 수 있는지 가르는 기준이다.",
+    "parent": "cs.algo.dynamic-programming",
+    "aliases": [
+      "최적 부분 구조",
+      "optimal substructure",
+      "최적성의 원리"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/principle.html"
     ]
   }
 ]

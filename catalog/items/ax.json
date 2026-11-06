@@ -584,6 +584,43 @@
     "checked_at": "2026-11-06"
   },
   {
+    "id": "ax.coding.agent-prompt-injection",
+    "title": "코딩 에이전트를 프롬프트 인젝션에서 지키기",
+    "en": "Protecting a Coding Agent from Prompt Injection",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "AI 보안과 윤리",
+    "summary": "에이전트가 읽은 웹 페이지·이슈·파일에 숨은 지시를 따르지 않도록 권한 승인, 네트워크 명령 확인, 폴더 신뢰, 격리 실행을 겹쳐 쓰는 습관이다.",
+    "objectives": [
+      "에이전트가 읽는 외부 글이 지시로 작동할 수 있는 경로를 예를 들어 말할 수 있다",
+      "curl·wget 같은 네트워크 명령과 작업 폴더 밖 접근이 왜 승인을 거치는지 설명하고 deny 규칙으로 막을 수 있다",
+      "-p 실행에서는 폴더 신뢰와 .mcp.json 승인 창이 뜨지 않는다는 점을 알고 믿을 수 없는 저장소에서 피할 수 있다",
+      "믿을 수 없는 내용을 다룰 때 VM이나 개발 컨테이너로 옮겨 실행할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.security.injection-basics",
+      "ax.coding.permission-rules"
+    ],
+    "related": [
+      "llm.security.prompt-injection",
+      "ax.coding.devcontainer",
+      "ax.coding.security-guidance"
+    ],
+    "aliases": [
+      "에이전트 프롬프트 인젝션",
+      "코딩 에이전트 인젝션 방어",
+      "agent prompt injection",
+      "Claude Code 프롬프트 인젝션"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/security",
+      "https://genai.owasp.org/llmrisk/llm01-prompt-injection/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
     "id": "ax.coding.skills",
     "title": "반복 작업을 스킬로 만들기: SKILL.md",
     "en": "Packaging Repeated Work as Skills (SKILL.md)",
@@ -972,6 +1009,118 @@
     "refs": [
       "https://www.nist.gov/publications/reducing-risks-posed-synthetic-content-overview-technical-approaches-digital-content",
       "https://spec.c2pa.org/specifications/specifications/2.2/explainer/Explainer.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.security.third-party-mcp-risks",
+    "title": "남이 만든 MCP 서버의 위험 알고 안전하게 쓰기",
+    "en": "Securely Using Third-Party MCP Servers",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "외부 MCP 서버의 도구 설명에 숨은 지시, 몰래 바뀐 도구, 위험한 실행 명령을 알아보고 설치 전 확인과 최소 권한으로 피해를 막는 방법이다.",
+    "objectives": [
+      "MCP 서버를 연결하기 전에 실행 명령과 도구 설명 전체를 읽고 수상한 지시를 찾아낼 수 있다",
+      "도구 오염·러그 풀·도구 간섭이 각각 어떤 경로로 에이전트를 움직이는지 구분할 수 있다",
+      "서버·도구 버전을 고정하고 체크섬으로 몰래 바뀐 도구를 알아챌 수 있다",
+      "서버가 쓸 수 있는 파일·네트워크 범위를 좁히고 위험한 도구 호출에 사람 승인을 걸 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.mcp-servers",
+      "llm.security.injection-basics"
+    ],
+    "related": [
+      "ax.security.model-supply-chain",
+      "ax.coding.agent-sandbox"
+    ],
+    "aliases": [
+      "MCP 보안",
+      "MCP security",
+      "서드파티 MCP",
+      "third-party MCP server",
+      "MCP 서버 위험"
+    ],
+    "refs": [
+      "https://genai.owasp.org/resource/cheatsheet-a-practical-guide-for-securely-using-third-party-mcp-servers-1-0/",
+      "https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices",
+      "https://code.claude.com/docs/en/mcp"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.governance.automated-decision-rights",
+    "title": "AI 자동화된 결정에 설명·거부 요구 대비하기",
+    "en": "Preparing for Rights over Automated Decisions",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "사람 개입 없이 AI가 내린 결정에 당사자는 설명·검토를 요구할 수 있고 권리에 중대한 영향이 있으면 거부할 수 있으므로, 기준 공개와 사람 재검토 경로를 기능에 넣는 일이다.",
+    "objectives": [
+      "만든 기능이 개인정보 보호법 제37조의2의 자동화된 결정에 해당하는지 사람 개입 여부로 판단할 수 있다",
+      "설명 요구에 답할 결정 기준과 주요 입력 정보를 기록해 두는 구조를 만들 수 있다",
+      "거부나 검토 요구가 오면 자동 결정을 멈추고 사람이 다시 처리하는 경로를 기능에 넣을 수 있다",
+      "자동화된 결정의 기준과 절차를 서비스 화면이나 처리방침에 미리 공개할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.basics.personal-data",
+      "ax.governance.ai-act-risk-levels"
+    ],
+    "related": [
+      "ax.governance.explainability",
+      "ax.governance.automation-bias",
+      "ax.governance.high-risk-ai"
+    ],
+    "aliases": [
+      "자동화된 결정",
+      "automated decision-making",
+      "자동화된 결정 거부권",
+      "AI 결정 설명 요구권",
+      "제37조의2"
+    ],
+    "refs": [
+      "https://www.korea.kr/briefing/pressReleaseView.do?newsId=156652359",
+      "https://www.korea.kr/briefing/pressReleaseView.do?newsId=156631080",
+      "https://www.law.go.kr/법령/개인정보보호법"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.governance.genai-privacy-lifecycle",
+    "title": "생성형 AI 기능의 개인정보 처리 단계별 점검",
+    "en": "Privacy Checks Across the Generative AI Lifecycle",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "목적 설정·전략 수립·학습 개발·적용 관리 네 단계마다 개인정보 처리 근거와 최소 안전조치를 확인해 생성형 AI 기능을 법 테두리 안에서 만드는 방법이다.",
+    "objectives": [
+      "상용 LLM API 연계·오픈 모델 미세 조정·자체 개발 중 내 기능의 활용 유형을 고르고 유형별 주의점을 찾을 수 있다",
+      "학습이나 검색에 쓸 데이터마다 동의·정당한 이익·가명처리 중 어떤 처리 근거를 쓸지 정할 수 있다",
+      "적용 단계에서 이용 방침 안내와 부적절한 답·개인정보 노출 신고 기능을 넣을 수 있다"
+    ],
+    "prerequisites": [
+      "ax.basics.personal-data",
+      "ax.security.sensitive-info-disclosure"
+    ],
+    "related": [
+      "ax.coding.agent-data-usage",
+      "ax.governance.genai-profile"
+    ],
+    "aliases": [
+      "생성형 AI 개인정보 처리 안내서",
+      "AI 개인정보 처리 기준",
+      "AI 프라이버시 점검",
+      "generative AI privacy guide"
+    ],
+    "refs": [
+      "https://pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS217&mCode=G010030000&nttId=11439",
+      "https://www.korea.kr/news/policyNewsView.do?newsId=148947194"
     ],
     "volatile": true,
     "checked_at": "2026-11-06"
@@ -1499,6 +1648,109 @@
     ]
   },
   {
+    "id": "ax.security.tool-poisoning",
+    "title": "도구 오염(tool poisoning)",
+    "en": "Tool Poisoning",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "MCP 도구의 설명이나 매개변수 안에 모델이 따를 지시를 숨겨 두어 사용자 모르게 파일을 읽거나 정보를 빼내게 하는 간접 프롬프트 인젝션이다.",
+    "parent": "ax.security.third-party-mcp-risks",
+    "related": [
+      "llm.security.indirect-injection"
+    ],
+    "aliases": [
+      "MCP 도구 오염",
+      "tool poisoning attack",
+      "도구 설명 인젝션",
+      "MCP tool poisoning"
+    ],
+    "refs": [
+      "https://genai.owasp.org/resource/cheatsheet-a-practical-guide-for-securely-using-third-party-mcp-servers-1-0/"
+    ]
+  },
+  {
+    "id": "ax.coding.network-command-approval",
+    "title": "네트워크 명령 승인(curl·wget)",
+    "en": "Network Command Approval",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "Claude Code는 curl·wget처럼 웹에서 내용을 가져오는 명령을 기본으로 자동 허용하지 않아, 숨은 지시가 정보를 밖으로 보내거나 악성 글을 끌어오는 일을 승인 단계에서 끊는다.",
+    "parent": "ax.coding.agent-prompt-injection",
+    "related": [
+      "ax.coding.devcontainer-egress-firewall",
+      "ax.coding.agent-sandbox"
+    ],
+    "aliases": [
+      "Bash(curl *)",
+      "네트워크 요청 승인",
+      "network request approval",
+      "curl 승인"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/security"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.coding.additional-directories",
+    "title": "추가 작업 폴더(--add-dir)",
+    "en": "Additional Working Directories",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "시작 폴더 밖의 폴더를 --add-dir·/add-dir·additionalDirectories로 더해 에이전트가 읽고 고칠 수 있게 하는 설정으로, 파일 접근만 넓힐 뿐 그 폴더의 설정 대부분은 불러오지 않는다.",
+    "parent": "ax.coding.agent-prompt-injection",
+    "related": [
+      "ax.coding.permission-rules",
+      "ax.coding.workspace-trust"
+    ],
+    "aliases": [
+      "--add-dir",
+      "/add-dir",
+      "additionalDirectories",
+      "작업 디렉터리 경계",
+      "working directory boundary"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/permissions",
+      "https://code.claude.com/docs/en/security"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.governance.pseudonymized-data",
+    "title": "가명정보와 가명처리",
+    "en": "Pseudonymized Data",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "추가 정보 없이는 누구인지 알 수 없게 바꾼 개인정보로, 통계 작성·과학적 연구 같은 목적이면 동의 없이 AI 학습에 쓸 수 있지만 위험도에 맞는 처리와 검토가 따라야 한다.",
+    "parent": "ax.governance.genai-privacy-lifecycle",
+    "related": [
+      "ax.security.pii-redaction"
+    ],
+    "aliases": [
+      "가명정보",
+      "가명처리",
+      "pseudonymization",
+      "가명정보 처리 가이드라인"
+    ],
+    "refs": [
+      "https://www.korea.kr/news/policyNewsView.do?newsId=148961790",
+      "https://www.law.go.kr/법령/개인정보보호법"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
     "id": "ax.governance.gpai-model",
     "title": "범용 AI 모델(GPAI)",
     "en": "General-Purpose AI Model",
@@ -1742,6 +1994,104 @@
     ],
     "refs": [
       "https://www.nist.gov/publications/reducing-risks-posed-synthetic-content-overview-technical-approaches-digital-content"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.security.mcp-rug-pull",
+    "title": "MCP 러그 풀(몰래 바뀐 도구)",
+    "en": "MCP Rug Pull",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "처음 승인할 때는 멀쩡하던 MCP 도구가 나중에 악성 버전으로 바뀌어 이미 얻은 신뢰를 이용하는 도구 오염의 한 형태로, 버전 고정과 변경 감시로 막는다.",
+    "parent": "ax.security.third-party-mcp-risks",
+    "related": [
+      "ax.security.tool-poisoning",
+      "ax.security.model-supply-chain"
+    ],
+    "aliases": [
+      "러그 풀",
+      "rug pull attack",
+      "MCP 도구 바꿔치기"
+    ],
+    "refs": [
+      "https://genai.owasp.org/resource/cheatsheet-a-practical-guide-for-securely-using-third-party-mcp-servers-1-0/"
+    ]
+  },
+  {
+    "id": "ax.governance.gdpr-automated-decision",
+    "title": "GDPR 제22조 자동화된 개별 결정",
+    "en": "GDPR Article 22 Automated Individual Decision-Making",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "EU에서 법적 효과나 그만큼 큰 영향을 주는 결정을 오직 자동 처리로만 내리지 못하게 하고, 예외로 허용해도 사람 개입·의견 표명·이의 제기 권리를 보장하게 한 규정이다.",
+    "parent": "ax.governance.automated-decision-rights",
+    "related": [
+      "ax.governance.high-risk-ai"
+    ],
+    "aliases": [
+      "GDPR Article 22",
+      "GDPR 22조",
+      "프로파일링 규제",
+      "solely automated decision"
+    ],
+    "refs": [
+      "https://commission.europa.eu/law/law-topic/data-protection/information-individuals_en"
+    ]
+  },
+  {
+    "id": "ax.governance.public-data-legitimate-interest",
+    "title": "공개된 개인정보의 AI 학습과 정당한 이익",
+    "en": "Legitimate Interest for Training on Publicly Available Personal Data",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "인터넷에 공개된 개인정보를 AI 학습에 쓸 때 개인정보 보호법 제15조의 정당한 이익을 근거로 삼되 목적의 정당성·처리 필요성·이익형량 세 요건을 따져 기록하는 기준이다.",
+    "parent": "ax.governance.genai-privacy-lifecycle",
+    "related": [
+      "ax.governance.pseudonymized-data"
+    ],
+    "aliases": [
+      "공개된 개인정보 처리",
+      "웹 크롤링 데이터 학습",
+      "공개 데이터 처리 안내서",
+      "정당한 이익 처리 근거",
+      "공개 개인정보 AI 학습"
+    ],
+    "refs": [
+      "https://pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS217&mCode=D010030000&nttId=10375",
+      "https://www.korea.kr/news/policyNewsView.do?newsId=148931542"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.governance.privacy-impact-assessment",
+    "title": "개인정보 영향평가(PIA)",
+    "en": "Privacy Impact Assessment",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "개인정보를 많이 다루는 시스템을 만들거나 크게 바꾸기 전에 침해 위험을 미리 분석하고 개선책을 세우는 평가로, 공공기관은 의무이고 2025년부터 AI 학습·운영 평가 분야가 더해졌다.",
+    "parent": "ax.governance.genai-privacy-lifecycle",
+    "related": [
+      "ax.governance.genai-profile"
+    ],
+    "aliases": [
+      "개인정보 영향평가",
+      "privacy impact assessment",
+      "PIA 평가"
+    ],
+    "refs": [
+      "https://pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS074&mCode=C020010000&nttId=11475",
+      "https://www.korea.kr/briefing/pressReleaseView.do?newsId=156733810"
     ],
     "volatile": true,
     "checked_at": "2026-11-06"

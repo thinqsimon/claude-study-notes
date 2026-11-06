@@ -980,6 +980,139 @@
     ]
   },
   {
+    "id": "ml.nn.cnn-image-classifier",
+    "title": "합성곱 신경망으로 이미지 분류하기",
+    "en": "Image Classification with a Convolutional Neural Network",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "합성곱 층과 풀링 층을 쌓은 작은 신경망을 PyTorch로 만들어 작은 컬러 이미지를 열 가지 종류로 분류해 보는 과정이다.",
+    "objectives": [
+      "torchvision 데이터셋과 변환으로 이미지를 정규화된 텐서로 불러올 수 있다",
+      "Conv2d·MaxPool2d·Linear 층을 쌓아 이미지 분류 신경망을 정의할 수 있다",
+      "합성곱과 풀링을 거친 뒤 완전 연결 층에 넣을 입력 크기를 계산해 모양 오류를 고칠 수 있다",
+      "학습한 모델의 테스트 정확도를 클래스별로 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.nn.training-loop",
+      "ml.nn.dataset-dataloader"
+    ],
+    "related": [
+      "ml.nn.multiclass-softmax"
+    ],
+    "aliases": [
+      "CNN",
+      "합성곱 신경망",
+      "convolutional neural network",
+      "이미지 분류 모델",
+      "CIFAR10 분류"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html",
+      "https://docs.pytorch.org/docs/main/generated/torch.nn.Conv2d.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.tree-ensembles",
+    "title": "트리 앙상블: 랜덤 포레스트와 그래디언트 부스팅",
+    "en": "Tree Ensembles: Random Forests and Gradient Boosting",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "의사결정나무 여러 그루를 모아 하나보다 정확하고 과적합에 강한 예측을 얻는 방법으로, scikit-learn에서 랜덤 포레스트와 그래디언트 부스팅으로 쓴다.",
+    "objectives": [
+      "RandomForestClassifier와 HistGradientBoostingClassifier로 표 데이터 분류 모델을 학습하고 비교할 수 있다",
+      "나무를 독립적으로 키우는 랜덤 포레스트와 앞 나무의 오차를 고쳐 나가는 부스팅의 차이를 설명할 수 있다",
+      "나무 개수·깊이·학습률 같은 주요 하이퍼파라미터를 바꿔 결과를 비교할 수 있다",
+      "검증 데이터에서 순열 중요도로 어떤 특성이 예측에 영향을 주는지 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.sklearn-first-model",
+      "ml.supervised.sklearn-pipeline"
+    ],
+    "related": [
+      "ml.supervised.decision-tree",
+      "ml.training.regularization"
+    ],
+    "aliases": [
+      "RandomForestClassifier",
+      "트리 앙상블",
+      "decision forest",
+      "random forest",
+      "랜덤 포레스트"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/ensemble.html",
+      "https://developers.google.com/machine-learning/decision-forests/random-forests"
+    ]
+  },
+  {
+    "id": "ml.data.text-vectorization",
+    "title": "텍스트를 특성으로 바꾸기: CountVectorizer와 TF-IDF",
+    "en": "Text Feature Extraction with CountVectorizer and TF-IDF",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "문장을 단어별 개수나 TF-IDF 가중치로 이루어진 희소 행렬로 바꿔 scikit-learn 분류 모델에 넣는 방법이다.",
+    "objectives": [
+      "CountVectorizer로 문서 모음을 단어 개수 행렬로 바꾸고 어휘 사전을 확인할 수 있다",
+      "TfidfVectorizer로 흔한 단어의 가중치를 낮춘 특성을 만들어 분류 모델에 연결할 수 있다",
+      "학습 데이터에만 fit하고 새 문서에는 transform만 해야 하는 이유와 처음 보는 단어가 무시되는 점을 설명할 수 있다",
+      "불용어와 n-gram 설정을 바꿔 결과가 어떻게 달라지는지 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.sklearn-pipeline",
+      "ml.data.numeric-categorical-preprocessing"
+    ],
+    "related": [
+      "ml.nn.embedding-layer"
+    ],
+    "aliases": [
+      "텍스트 벡터화",
+      "text vectorization",
+      "CountVectorizer",
+      "TfidfVectorizer",
+      "텍스트 특성 추출"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/feature_extraction.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.sklearn-model-persistence",
+    "title": "scikit-learn 모델 저장과 불러오기",
+    "en": "Model Persistence in scikit-learn",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "학습한 scikit-learn 모델이나 파이프라인을 파일로 저장해 다른 프로그램에서 다시 불러 예측에 쓰는 방법과 그때 지켜야 할 주의점이다.",
+    "objectives": [
+      "joblib이나 pickle로 학습한 파이프라인을 저장하고 다시 불러 예측할 수 있다",
+      "믿을 수 없는 출처의 pickle 파일을 불러오면 안 되는 이유와 skops.io 같은 대안을 설명할 수 있다",
+      "저장할 때와 불러올 때 scikit-learn 버전이 다르면 생기는 문제를 알고 버전을 함께 기록할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.sklearn-pipeline"
+    ],
+    "related": [
+      "ml.nn.save-load-model"
+    ],
+    "aliases": [
+      "scikit-learn 모델 저장",
+      "sklearn 모델 저장",
+      "joblib.dump",
+      "skops.io",
+      "InconsistentVersionWarning"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/model_persistence.html"
+    ]
+  },
+  {
     "id": "ml.training.learning-rate",
     "title": "학습률",
     "en": "Learning Rate",
@@ -1571,6 +1704,77 @@
     ]
   },
   {
+    "id": "ml.nn.conv2d",
+    "title": "합성곱 층(Conv2d)",
+    "en": "2D Convolution Layer (Conv2d)",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "작은 필터를 이미지 위로 밀며 지역 패턴을 찾아 여러 채널의 특성 맵을 만드는 신경망 층이다.",
+    "parent": "ml.nn.cnn-image-classifier",
+    "related": [
+      "ml.nn.max-pooling"
+    ],
+    "aliases": [
+      "nn.Conv2d",
+      "합성곱 층",
+      "convolution layer",
+      "커널 크기"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/main/generated/torch.nn.Conv2d.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.gradient-boosted-trees",
+    "title": "그래디언트 부스팅 트리",
+    "en": "Gradient Boosted Trees",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "작은 나무를 하나씩 더하면서 새 나무가 지금까지 모델의 오차를 줄이도록 학습시키는 앙상블 모델이다.",
+    "parent": "ml.supervised.tree-ensembles",
+    "related": [
+      "ml.supervised.bagging"
+    ],
+    "aliases": [
+      "gradient boosting",
+      "그래디언트 부스팅",
+      "GBDT",
+      "HistGradientBoostingClassifier",
+      "XGBoost"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/decision-forests/intro-to-gbdt",
+      "https://scikit-learn.org/stable/modules/ensemble.html#gradient-boosted-trees"
+    ]
+  },
+  {
+    "id": "ml.data.tf-idf",
+    "title": "TF-IDF",
+    "en": "Term Frequency-Inverse Document Frequency",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "한 문서에 자주 나오면서 다른 문서에는 드문 단어일수록 큰 값을 주도록 단어 개수에 가중치를 매기는 방법이다.",
+    "parent": "ml.data.text-vectorization",
+    "related": [
+      "ml.data.bag-of-words"
+    ],
+    "aliases": [
+      "tf-idf",
+      "tfidf",
+      "TfidfTransformer",
+      "역문서 빈도"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/feature_extraction.html#tfidf-term-weighting"
+    ]
+  },
+  {
     "id": "ml.unsupervised.silhouette-score",
     "title": "실루엣 점수",
     "en": "Silhouette Score",
@@ -1647,6 +1851,116 @@
       "feature crosses",
       "교차 특성",
       "특성 조합"
+    ]
+  },
+  {
+    "id": "ml.nn.max-pooling",
+    "title": "최대 풀링(MaxPool2d)",
+    "en": "Max Pooling (MaxPool2d)",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "작은 창마다 가장 큰 값만 남겨 특성 맵의 가로세로 크기를 줄이는 층이다.",
+    "parent": "ml.nn.cnn-image-classifier",
+    "related": [
+      "ml.nn.conv2d"
+    ],
+    "aliases": [
+      "nn.MaxPool2d",
+      "max pooling",
+      "맥스 풀링",
+      "풀링 층"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/main/generated/torch.nn.MaxPool2d.html"
+    ]
+  },
+  {
+    "id": "ml.nn.image-augmentation",
+    "title": "이미지 데이터 증강",
+    "en": "Image Data Augmentation",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "학습할 때마다 이미지를 무작위로 뒤집거나 잘라 같은 사진을 조금씩 다르게 보여 줘서 과적합을 줄이는 방법이다.",
+    "parent": "ml.nn.cnn-image-classifier",
+    "related": [
+      "ml.training.regularization"
+    ],
+    "aliases": [
+      "RandomHorizontalFlip",
+      "RandomResizedCrop",
+      "이미지 증강",
+      "image augmentation"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/vision/stable/transforms.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.bagging",
+    "title": "배깅(bagging)",
+    "en": "Bagging",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "학습 데이터에서 중복을 허용해 뽑은 표본마다 모델을 따로 학습시키고 그 예측을 모으는 앙상블 방법이다.",
+    "parent": "ml.supervised.tree-ensembles",
+    "related": [
+      "ml.supervised.gradient-boosted-trees"
+    ],
+    "aliases": [
+      "bootstrap aggregating",
+      "부트스트랩 집계",
+      "BaggingClassifier"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/decision-forests/random-forests",
+      "https://scikit-learn.org/stable/modules/ensemble.html#bagging-meta-estimator"
+    ]
+  },
+  {
+    "id": "ml.eval.permutation-importance",
+    "title": "순열 특성 중요도",
+    "en": "Permutation Feature Importance",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "모델 평가",
+    "summary": "특성 하나의 값을 무작위로 섞었을 때 모델 점수가 얼마나 떨어지는지로 그 특성이 예측에 얼마나 쓰이는지 재는 방법이다.",
+    "parent": "ml.supervised.tree-ensembles",
+    "aliases": [
+      "permutation importance",
+      "permutation_importance"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/permutation_importance.html",
+      "https://developers.google.com/machine-learning/decision-forests/variable-importances"
+    ]
+  },
+  {
+    "id": "ml.data.bag-of-words",
+    "title": "단어 주머니(bag of words)",
+    "en": "Bag of Words",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "단어의 순서는 버리고 문서마다 각 단어가 몇 번 나왔는지만 세어 숫자 벡터로 나타내는 방식이다.",
+    "parent": "ml.data.text-vectorization",
+    "related": [
+      "ml.data.tf-idf"
+    ],
+    "aliases": [
+      "bag-of-words",
+      "BoW",
+      "단어 빈도 벡터"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/feature_extraction.html#the-bag-of-words-representation"
     ]
   },
   {
