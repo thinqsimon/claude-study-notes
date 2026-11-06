@@ -845,6 +845,133 @@
     ]
   },
   {
+    "id": "plan.ai-ux.feedback-control",
+    "title": "AI 기능의 피드백 요청과 사용자 제어 설계",
+    "en": "Designing Feedback and User Control for AI Features",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI UX 설계",
+    "summary": "AI 기능에서 어떤 피드백을 어디서 받을지 정하고, 그 값과 반영 시점을 알리며, 끄기·수정·초기화 같은 제어를 함께 둔다.",
+    "objectives": [
+      "화면의 사용자 행동과 피드백 기회를 목록으로 적고 암묵적·명시적 피드백으로 나눌 수 있다",
+      "피드백을 받은 뒤 무엇이 언제 바뀌는지 알려 주는 확인 문구를 쓸 수 있다",
+      "사용자가 AI 기능을 끄거나 지난 선택을 지우고 처음 상태로 되돌릴 수 있는 화면을 설계할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.ai-ux.mental-models-onboarding"
+    ],
+    "related": [
+      "plan.ai-ux.implicit-explicit-feedback"
+    ],
+    "aliases": [
+      "AI 피드백 설계",
+      "feedback and control",
+      "AI 사용자 제어",
+      "피드백 UX",
+      "AI 기능 제어권"
+    ],
+    "refs": [
+      "https://pair.withgoogle.com/chapter/feedback-controls/"
+    ]
+  },
+  {
+    "id": "plan.ai-ux.error-cost-tradeoff",
+    "title": "AI 기능의 거짓 양성과 거짓 음성 비용 비교",
+    "en": "Choosing Between False Positives and False Negatives in AI Features",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI UX 설계",
+    "summary": "AI가 잘못 맞다고 할 때와 놓칠 때 사용자가 겪는 피해를 비교해 정밀도와 재현율 중 우선할 쪽을 기획 단계에서 정한다.",
+    "objectives": [
+      "기능 하나에서 거짓 양성과 거짓 음성이 사용자에게 각각 어떤 일을 일으키는지 예로 적을 수 있다",
+      "피해 비교를 근거로 정밀도 우선과 재현율 우선 중 하나를 골라 이유를 말할 수 있다",
+      "목표를 완벽히 이뤘을 때의 부작용과 문제 신호가 될 지표의 경계값을 함께 적을 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.ai-fit",
+      "plan.basics.success-metrics"
+    ],
+    "related": [
+      "ml.eval.threshold-confusion-matrix"
+    ],
+    "aliases": [
+      "오류 비용 비교",
+      "오탐 미탐 손익",
+      "AI 오류 우선순위"
+    ],
+    "refs": [
+      "https://pair.withgoogle.com/chapter/user-needs/"
+    ]
+  },
+  {
+    "id": "plan.figma.instance-overrides",
+    "title": "Figma 인스턴스 오버라이드와 되돌리기",
+    "en": "Overriding Instances in Figma",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "인스턴스의 글자·색·효과·안쪽 인스턴스는 바꿔 쓰고, 구조는 바꿀 수 없다는 한계를 알고 초기화·분리·메인 반영 중 맞는 길을 고른다.",
+    "objectives": [
+      "인스턴스에서 바꿀 수 있는 속성과 레이어 순서·위치처럼 바꿀 수 없는 속성을 구분할 수 있다",
+      "속성 하나 또는 전체 변경을 초기화해 메인 컴포넌트 값으로 되돌릴 수 있다",
+      "안쪽 인스턴스를 교체할 때 레이어 이름이 같아야 변경이 유지된다는 점을 지켜 작업할 수 있다",
+      "구조를 바꿔야 할 때 분리와 메인 컴포넌트 수정 중 하나를 골라 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.frames-and-components"
+    ],
+    "related": [
+      "plan.figma.component-properties",
+      "plan.figma.variants"
+    ],
+    "aliases": [
+      "인스턴스 오버라이드",
+      "instance override",
+      "Figma 오버라이드",
+      "오버라이드 초기화",
+      "reset overrides"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360039150733-Apply-overrides-to-instances"
+    ]
+  },
+  {
+    "id": "plan.basics.research-plan",
+    "title": "조사 질문으로 사용자 조사 회차 계획하기",
+    "en": "Planning a Round of User Research",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "팀이 알아야 할 조사 질문을 모아 우선순위를 정하고, 그에 맞춰 방법·참여자·세션 일정·기록·분석 시간을 한 회차 계획으로 묶는다.",
+    "objectives": [
+      "팀 워크숍으로 조사 질문을 모아 묶고 투표로 우선순위를 정할 수 있다",
+      "조사 질문과 참여자에게 묻는 인터뷰 질문을 구분해 쓸 수 있다",
+      "하루 세션 수와 사이 간격, 관찰자와 기록 담당, 분석 시간을 넣은 회차 일정을 짤 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.user-and-need"
+    ],
+    "related": [
+      "plan.basics.discussion-guide",
+      "plan.basics.recruit-participants"
+    ],
+    "aliases": [
+      "조사 계획",
+      "research plan",
+      "리서치 계획",
+      "user research planning",
+      "조사 회차 계획"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/user-research/plan-round-of-user-research",
+      "https://www.gov.uk/service-manual/user-research/capturing-research-questions"
+    ]
+  },
+  {
     "id": "plan.figma.branch-and-publish",
     "title": "Figma 브랜치에서 고치고 라이브러리 업데이트 게시하기",
     "en": "Editing in a Figma Branch and Publishing Library Updates",
@@ -1335,6 +1462,99 @@
     ]
   },
   {
+    "id": "plan.basics.research-question",
+    "title": "조사 질문(research question)",
+    "en": "Research Question",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "참여자에게 직접 묻는 말이 아니라 팀이 조사로 알아내야 할 것을 누가·왜·어떻게 같은 열린 형태로 적은 질문이다.",
+    "parent": "plan.basics.research-plan",
+    "related": [
+      "plan.basics.open-question",
+      "plan.basics.discussion-guide"
+    ],
+    "aliases": [
+      "리서치 질문",
+      "research question",
+      "조사 목표 질문",
+      "리서치 퀘스천"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/user-research/capturing-research-questions"
+    ]
+  },
+  {
+    "id": "plan.ai-ux.automation-vs-augmentation",
+    "title": "자동화와 보조(augmentation)",
+    "en": "Automation vs. Augmentation",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI UX 설계",
+    "summary": "AI가 일을 대신 끝낼지 사람이 더 잘하도록 도울지를 가르는 구분으로, 지루하거나 정답이 뚜렷한 일은 자동화, 책임이 크거나 즐기는 일은 보조가 맞다.",
+    "parent": "plan.ai-ux.feedback-control",
+    "related": [
+      "plan.basics.ai-fit"
+    ],
+    "aliases": [
+      "자동화 대 보조",
+      "automation vs augmentation",
+      "AI 증강",
+      "사람 보조형 AI",
+      "AI 보조 설계"
+    ],
+    "refs": [
+      "https://pair.withgoogle.com/chapter/user-needs/",
+      "https://pair.withgoogle.com/chapter/feedback-controls/"
+    ]
+  },
+  {
+    "id": "plan.ai-ux.ai-opt-out",
+    "title": "AI 기능 끄기와 수동 대안",
+    "en": "Opting Out of AI Features",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI UX 설계",
+    "summary": "사용자가 AI 기능을 시험하거나 끌 수 있게 하고, 끈 뒤에도 같은 일을 손으로 할 수 있는 길을 남겨 두는 설계다.",
+    "parent": "plan.ai-ux.feedback-control",
+    "aliases": [
+      "AI 옵트아웃",
+      "AI opt-out",
+      "AI 기능 끄기",
+      "수동 대안",
+      "manual fallback"
+    ],
+    "refs": [
+      "https://pair.withgoogle.com/chapter/feedback-controls/"
+    ]
+  },
+  {
+    "id": "plan.figma.detach-instance",
+    "title": "인스턴스 분리(detach instance)",
+    "en": "Detach Instance",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "인스턴스를 메인 컴포넌트와 끊어 일반 프레임으로 바꾸는 일로, 구조를 마음대로 고칠 수 있지만 이후 컴포넌트 업데이트를 받지 못한다.",
+    "parent": "plan.figma.instance-overrides",
+    "related": [
+      "plan.figma.library-analytics"
+    ],
+    "aliases": [
+      "인스턴스 분리",
+      "detach instance",
+      "컴포넌트 연결 끊기",
+      "Figma detach"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360038665754-Detach-an-instance-from-the-component"
+    ]
+  },
+  {
     "id": "plan.figma.constraints",
     "title": "제약(constraints)",
     "en": "Figma Constraints",
@@ -1547,6 +1767,70 @@
     ],
     "refs": [
       "https://www.nngroup.com/articles/tree-testing/"
+    ]
+  },
+  {
+    "id": "plan.basics.recruitment-brief",
+    "title": "모집 브리프와 스크리너",
+    "en": "Recruitment Brief and Screener",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "모집 대행사에 조사 일정·장소·인원·모집 기준·사례비를 글로 전하는 지시서이고, 대행사는 이를 바탕으로 참여자를 거르는 질문지인 스크리너를 만든다.",
+    "parent": "plan.basics.recruit-participants",
+    "aliases": [
+      "리크루팅 브리프",
+      "recruitment brief",
+      "스크리너",
+      "screener",
+      "모집 기준표"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/user-research/write-a-recruitment-brief"
+    ]
+  },
+  {
+    "id": "plan.ai-ux.personalization-reset",
+    "title": "AI 개인화 기록 편집과 초기화",
+    "en": "Editing and Resetting AI Personalization",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI UX 설계",
+    "summary": "AI가 배운 사용자의 지난 선택을 고치거나 지우고, 개인화가 없는 처음 상태로 되돌리는 기능이다.",
+    "parent": "plan.ai-ux.feedback-control",
+    "related": [
+      "plan.ai-ux.ai-opt-out"
+    ],
+    "aliases": [
+      "개인화 초기화",
+      "personalization reset",
+      "추천 기록 삭제",
+      "AI 기록 편집"
+    ],
+    "refs": [
+      "https://pair.withgoogle.com/chapter/feedback-controls/"
+    ]
+  },
+  {
+    "id": "plan.figma.push-to-main-component",
+    "title": "메인 컴포넌트에 변경 반영(Push changes)",
+    "en": "Push Changes to Main Component",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "인스턴스에서 바꾼 내용을 같은 파일의 메인 컴포넌트로 올려 다른 인스턴스도 함께 바뀌게 하는 기능이다.",
+    "parent": "plan.figma.instance-overrides",
+    "aliases": [
+      "Push changes to main component",
+      "메인 컴포넌트에 반영",
+      "인스턴스 변경 반영",
+      "변경 사항 메인으로 올리기"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360039150733-Apply-overrides-to-instances"
     ]
   },
   {

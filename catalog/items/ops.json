@@ -935,6 +935,109 @@
     ]
   },
   {
+    "id": "ops.docker.dockerfile-instructions",
+    "title": "Dockerfile 명령 고르기: RUN·CMD·ARG·ENV",
+    "en": "Choosing Dockerfile Instructions: RUN, CMD, ENTRYPOINT, ARG and ENV",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "Docker",
+    "summary": "빌드할 때 도는 명령과 컨테이너가 시작할 때 도는 명령을 나누고, 값을 빌드에만 쓸지 실행 중에도 남길지 골라 Dockerfile을 직접 고친다.",
+    "objectives": [
+      "RUN은 빌드 때, CMD·ENTRYPOINT는 컨테이너 시작 때 실행된다는 차이를 설명할 수 있다",
+      "ENTRYPOINT와 CMD를 함께 써서 docker run 인수로 기본 인수만 바꾸는 이미지를 만들 수 있다",
+      "셸 형식과 exec 형식 중 무엇을 썼는지 보고 변수가 펼쳐지지 않거나 종료 신호가 전달되지 않는 실수를 고칠 수 있다",
+      "빌드에만 필요한 값은 ARG로, 실행 중에도 필요한 값은 ENV로 넣고 비밀값을 둘 다에 넣지 않을 수 있다"
+    ],
+    "prerequisites": [
+      "ops.docker.first-container"
+    ],
+    "related": [
+      "ops.docker.dockerfile",
+      "ops.container.image-layers",
+      "ops.docker.multi-stage-build"
+    ],
+    "aliases": [
+      "Dockerfile 명령어",
+      "Dockerfile instructions",
+      "Dockerfile RUN",
+      "Dockerfile 작성법"
+    ],
+    "refs": [
+      "https://docs.docker.com/reference/dockerfile/",
+      "https://docs.docker.com/reference/dockerfile/#shell-and-exec-form"
+    ]
+  },
+  {
+    "id": "ops.ci.using-actions",
+    "title": "남이 만든 액션 쓰기: uses·with·버전 고정",
+    "en": "Using Prebuilt Actions: uses, with and Version Pinning",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "CI/CD",
+    "summary": "공개 저장소·같은 저장소·Docker 이미지의 액션을 uses로 불러 with로 입력을 주고, 태그·브랜치·커밋 SHA 중 어떤 버전으로 묶을지 정한다.",
+    "objectives": [
+      "owner/repo@ref·로컬 경로·docker:// 세 가지 방식으로 액션을 불러 스텝에 넣을 수 있다",
+      "액션의 action.yml에서 입력과 출력을 찾아 with로 필요한 값을 넘길 수 있다",
+      "태그·브랜치·전체 커밋 SHA로 고정했을 때의 차이를 설명하고 외부 액션은 SHA로 고정할 수 있다",
+      "./ 경로의 로컬 액션을 checkout 없이 불러 실패하는 실수를 찾아 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "ops.ci.workflow-basics"
+    ],
+    "related": [
+      "ops.ci.reusable-workflow",
+      "ops.ci.github-token"
+    ],
+    "aliases": [
+      "GitHub 액션 사용",
+      "uses 키",
+      "Marketplace 액션",
+      "써드파티 액션",
+      "third-party action"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/find-and-customize-actions",
+      "https://docs.github.com/en/actions/reference/security/secure-use"
+    ]
+  },
+  {
+    "id": "ops.network.ufw-open-ports",
+    "title": "서버 방화벽과 열린 포트 확인: ufw·ss",
+    "en": "Server Firewall and Listening Ports with ufw and ss",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "네트워크와 앞단",
+    "summary": "ufw로 필요한 포트만 열고, ss로 프로그램이 어느 주소와 포트에서 기다리는지 확인해 외부에서 접속되지 않는 원인을 찾는다.",
+    "objectives": [
+      "ufw 기본 정책을 확인하고 SSH를 먼저 허용한 뒤 방화벽을 켜서 원격 접속이 끊기는 실수를 피할 수 있다",
+      "ufw allow·delete·status numbered로 웹 포트를 열고 잘못 넣은 규칙을 지울 수 있다",
+      "ss -tlnp로 서버 프로그램이 0.0.0.0과 127.0.0.1 중 어디에서 기다리는지 보고 접속 실패 원인을 가를 수 있다",
+      "Docker로 공개한 포트가 ufw 규칙을 따르지 않는다는 점을 알고 필요하면 127.0.0.1에만 공개할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.linux.ssh-key-login"
+    ],
+    "related": [
+      "ops.docker.port-publishing",
+      "ops.network.edge-waf"
+    ],
+    "aliases": [
+      "ufw",
+      "Uncomplicated Firewall",
+      "우분투 방화벽",
+      "ufw allow",
+      "서버 방화벽 설정"
+    ],
+    "refs": [
+      "https://manpages.ubuntu.com/manpages/noble/man8/ufw.8.html",
+      "https://man7.org/linux/man-pages/man8/ss.8.html",
+      "https://docs.docker.com/engine/network/packet-filtering-firewalls/"
+    ]
+  },
+  {
     "id": "ops.docker.compose",
     "title": "Docker Compose",
     "en": "Docker Compose",
@@ -1520,6 +1623,168 @@
     ]
   },
   {
+    "id": "ops.docker.cmd-entrypoint",
+    "title": "CMD와 ENTRYPOINT",
+    "en": "CMD and ENTRYPOINT",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Docker",
+    "summary": "ENTRYPOINT는 컨테이너가 실행할 프로그램을 정하고 CMD는 기본 인수를 주며, docker run 뒤에 붙인 인수는 CMD만 바꾼다.",
+    "parent": "ops.docker.dockerfile-instructions",
+    "aliases": [
+      "Dockerfile CMD",
+      "Dockerfile ENTRYPOINT",
+      "CMD 덮어쓰기",
+      "docker run --entrypoint"
+    ],
+    "refs": [
+      "https://docs.docker.com/reference/dockerfile/#entrypoint",
+      "https://docs.docker.com/reference/dockerfile/#cmd"
+    ]
+  },
+  {
+    "id": "ops.docker.exec-shell-form",
+    "title": "exec 형식과 셸 형식",
+    "en": "Exec Form and Shell Form",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Docker",
+    "summary": "Dockerfile 명령을 JSON 배열로 쓰면 셸 없이 바로 실행되고 문자열로 쓰면 /bin/sh -c로 실행되어, 변수 펼치기와 종료 신호 전달이 달라진다.",
+    "parent": "ops.docker.dockerfile-instructions",
+    "related": [
+      "ops.linux.process-signals"
+    ],
+    "aliases": [
+      "exec form",
+      "shell form",
+      "JSON 배열 형식",
+      "Dockerfile exec 형식"
+    ],
+    "refs": [
+      "https://docs.docker.com/reference/dockerfile/#shell-and-exec-form"
+    ]
+  },
+  {
+    "id": "ops.docker.arg-vs-env",
+    "title": "빌드 인수(ARG)와 ENV",
+    "en": "Build Arguments (ARG) vs ENV",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Docker",
+    "summary": "ARG는 빌드하는 동안만 쓰는 값이라 이미지에 남지 않고, ENV는 이미지에 남아 실행 중인 컨테이너에서도 읽히며 docker run --env로 바꿀 수 있다.",
+    "parent": "ops.docker.dockerfile-instructions",
+    "related": [
+      "ops.docker.compose-variable-interpolation"
+    ],
+    "aliases": [
+      "Dockerfile ARG",
+      "Dockerfile ENV",
+      "build-arg",
+      "--build-arg",
+      "빌드 인수"
+    ],
+    "refs": [
+      "https://docs.docker.com/reference/dockerfile/#arg",
+      "https://docs.docker.com/reference/dockerfile/#env"
+    ]
+  },
+  {
+    "id": "ops.ci.action-sha-pinning",
+    "title": "액션을 커밋 SHA로 고정하기",
+    "en": "Pinning Actions to a Commit SHA",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "CI/CD",
+    "summary": "외부 액션을 옮겨질 수 있는 태그 대신 바뀌지 않는 전체 커밋 SHA로 불러 남이 몰래 바꾼 코드가 워크플로에서 돌지 않게 하는 방법이다.",
+    "parent": "ops.ci.using-actions",
+    "aliases": [
+      "SHA 고정",
+      "SHA pinning",
+      "액션 버전 고정",
+      "pin actions",
+      "commit SHA pin"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/reference/security/secure-use",
+      "https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/find-and-customize-actions"
+    ]
+  },
+  {
+    "id": "ops.network.ss-listening",
+    "title": "ss로 수신 중인 포트 보기",
+    "en": "Listing Listening Ports with ss",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "네트워크와 앞단",
+    "summary": "ss -tlnp는 연결을 기다리는 TCP 소켓을 숫자 포트와 그 소켓을 쥔 프로세스와 함께 보여 주어 서버가 실제로 떠 있는지 확인하게 한다.",
+    "parent": "ops.network.ufw-open-ports",
+    "aliases": [
+      "ss -tlnp",
+      "ss 명령",
+      "listening socket",
+      "수신 포트 확인",
+      "열린 포트 확인"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man8/ss.8.html"
+    ]
+  },
+  {
+    "id": "ops.network.bind-address",
+    "title": "수신 주소: 0.0.0.0과 127.0.0.1",
+    "en": "Bind Address: 0.0.0.0 vs 127.0.0.1",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "네트워크와 앞단",
+    "summary": "서버를 0.0.0.0에 묶으면 모든 네트워크 인터페이스에서 접속을 받고 127.0.0.1에 묶으면 그 컴퓨터 안에서만 받으며, Docker는 주소를 주지 않으면 모든 주소에 포트를 공개한다.",
+    "parent": "ops.network.ufw-open-ports",
+    "related": [
+      "ops.docker.port-publishing",
+      "be.basics.localhost-port"
+    ],
+    "aliases": [
+      "bind address",
+      "0.0.0.0 바인딩",
+      "INADDR_ANY",
+      "루프백 바인딩",
+      "-p 127.0.0.1"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man7/ip.7.html",
+      "https://docs.docker.com/engine/network/port-publishing/"
+    ]
+  },
+  {
+    "id": "ops.docker.ufw-bypass",
+    "title": "Docker 공개 포트와 ufw 우회",
+    "en": "Docker Published Ports Bypassing ufw",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Docker",
+    "summary": "Docker는 공개한 포트의 트래픽을 ufw가 검사하는 단계보다 먼저 컨테이너로 돌려보내서, ufw로 막은 포트도 docker run -p로 공개하면 밖에서 열린다.",
+    "parent": "ops.network.ufw-open-ports",
+    "related": [
+      "ops.docker.port-publishing",
+      "ops.network.bind-address"
+    ],
+    "aliases": [
+      "Docker ufw 우회",
+      "docker ufw",
+      "도커 방화벽 우회",
+      "ufw docker 충돌"
+    ],
+    "refs": [
+      "https://docs.docker.com/engine/network/packet-filtering-firewalls/"
+    ]
+  },
+  {
     "id": "ops.deploy.rolling-update",
     "title": "롤링 업데이트",
     "en": "Rolling Update",
@@ -1649,6 +1914,30 @@
     ],
     "refs": [
       "https://man.openbsd.org/ssh_config"
+    ]
+  },
+  {
+    "id": "ops.ci.github-env",
+    "title": "GITHUB_ENV로 다음 스텝에 환경 변수 넘기기",
+    "en": "Passing Environment Variables with GITHUB_ENV",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "CI/CD",
+    "summary": "스텝에서 NAME=value 줄을 $GITHUB_ENV 파일에 덧붙이면 같은 잡의 다음 스텝부터 그 환경 변수를 읽을 수 있으며, 쓴 스텝 안에서는 아직 보이지 않는다.",
+    "related": [
+      "ops.ci.job-outputs",
+      "ops.ci.contexts-expressions"
+    ],
+    "aliases": [
+      "GITHUB_ENV",
+      "$GITHUB_ENV",
+      "환경 파일",
+      "environment files",
+      "스텝 간 환경 변수"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-an-environment-variable"
     ]
   },
   {

@@ -468,6 +468,38 @@
     "checked_at": "2026-11-06"
   },
   {
+    "id": "rag.agent.chat-models",
+    "title": "채팅 모델 다루기: init_chat_model과 호출",
+    "en": "Chat Models in LangChain: init_chat_model and Invocation",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "에이전트",
+    "summary": "init_chat_model로 제공사와 모델 이름만 바꿔 채팅 모델을 만들고 invoke·stream·batch 중 상황에 맞는 호출 방식을 고르는 법이다.",
+    "objectives": [
+      "init_chat_model에 제공사·모델 이름과 temperature·timeout·max_retries를 넘겨 채팅 모델을 만들 수 있다",
+      "invoke·stream·batch의 차이를 설명하고 화면 출력이나 여러 요청 처리에 맞는 쪽을 고를 수 있다",
+      "stream으로 받은 조각을 이어 붙여 완성된 메시지로 만들 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.first-agent"
+    ],
+    "related": [
+      "rag.agent.streaming",
+      "rag.agent.messages"
+    ],
+    "aliases": [
+      "채팅 모델",
+      "chat model",
+      "model.invoke",
+      "LangChain 모델 호출",
+      "batch_as_completed"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/models"
+    ]
+  },
+  {
     "id": "rag.retrieval.search-types",
     "title": "검색 방식 고르기: 유사도·MMR·점수 기준",
     "en": "Choosing a Search Type: Similarity, MMR, Score Threshold",
@@ -908,6 +940,106 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-06"
+  },
+  {
+    "id": "rag.agent.tool-runtime",
+    "title": "도구에서 실행 정보 쓰기: ToolRuntime",
+    "en": "Accessing Runtime in Tools: ToolRuntime",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "도구 함수에 ToolRuntime 인자를 더해 모델에게는 숨긴 채 대화 상태·실행 컨텍스트·장기 저장소를 읽고 쓰는 방법이다.",
+    "objectives": [
+      "도구 시그니처에 runtime: ToolRuntime을 넣어 runtime.state와 runtime.context를 읽을 수 있다",
+      "args_schema로 도구 인자의 타입·기본값·설명을 정할 수 있다",
+      "config·runtime 같은 예약된 인자 이름을 피해 도구를 정의할 수 있다",
+      "도구에서 Command를 돌려줄 때 tool_call_id가 맞는 ToolMessage를 함께 넣어 오류를 피할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.first-agent",
+      "rag.agent.messages"
+    ],
+    "related": [
+      "rag.agent.short-term-memory"
+    ],
+    "aliases": [
+      "ToolRuntime",
+      "runtime.state",
+      "도구 런타임",
+      "tool runtime",
+      "도구 상태 접근"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/tools",
+      "https://docs.langchain.com/oss/python/langchain/runtime"
+    ]
+  },
+  {
+    "id": "rag.agent.subagents",
+    "title": "서브에이전트를 도구로 감싸 멀티 에이전트 만들기",
+    "en": "Building Multi-Agent Systems with Subagents",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "create_agent로 만든 하위 에이전트를 @tool 함수 안에서 불러 주 에이전트가 도구처럼 고르게 하는 멀티 에이전트 구성법이다.",
+    "objectives": [
+      "하위 에이전트를 도구 함수로 감싸 주 에이전트의 tools에 넣을 수 있다",
+      "에이전트마다 도구를 따로 둘지 디스패치 도구 하나로 모을지 고를 수 있다",
+      "하위 에이전트에 넘길 입력과 마지막 메시지로 돌려줄 결과를 정할 수 있다",
+      "결과가 마지막 메시지에 빠지거나 도구 설명이 모호해 호출되지 않는 실수를 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.first-agent",
+      "rag.agent.messages"
+    ],
+    "related": [
+      "rag.agent.handoffs",
+      "rag.agent.orchestrator-worker",
+      "ax.coding.subagent"
+    ],
+    "aliases": [
+      "LangChain 서브에이전트",
+      "subagents 패턴",
+      "supervisor agent"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/multi-agent/subagents",
+      "https://docs.langchain.com/oss/python/langchain/multi-agent"
+    ]
+  },
+  {
+    "id": "rag.agent.handoffs",
+    "title": "핸드오프로 에이전트 사이에 제어 넘기기",
+    "en": "Handoffs Between Agents",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "도구가 Command로 활성 에이전트를 나타내는 상태 값을 바꿔 다음 차례에 다른 프롬프트·도구나 다른 에이전트가 대화를 이어받게 하는 방식이다.",
+    "objectives": [
+      "current_step 같은 상태 값을 Command로 바꾸는 핸드오프 도구를 만들 수 있다",
+      "미들웨어로 한 에이전트의 설정을 바꾸는 방식과 에이전트별 서브그래프로 나누는 방식 중 하나를 고를 수 있다",
+      "핸드오프 때 넘길 메시지를 골라 ToolMessage 누락이나 기록 과다 전달 같은 실수를 피할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.tool-runtime",
+      "rag.agent.middleware",
+      "rag.agent.subgraphs"
+    ],
+    "related": [
+      "rag.agent.subagents",
+      "rag.agent.routing"
+    ],
+    "aliases": [
+      "에이전트 핸드오프",
+      "agent handoff",
+      "active_agent"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/multi-agent/handoffs"
+    ]
   },
   {
     "id": "rag.vector-db.chunk",
@@ -1387,6 +1519,102 @@
     ]
   },
   {
+    "id": "rag.agent.args-schema",
+    "title": "도구 인자 스키마(args_schema)",
+    "en": "Tool Argument Schema (args_schema)",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "@tool에 Pydantic 모델이나 JSON 스키마를 넘겨 모델이 채울 도구 인자의 타입·허용값·설명을 함수 시그니처보다 자세히 정하는 설정이다.",
+    "parent": "rag.agent.tool-runtime",
+    "related": [
+      "llm.tools.tool-schema"
+    ],
+    "aliases": [
+      "args_schema",
+      "도구 인자 스키마",
+      "tool args schema",
+      "Pydantic 도구 입력"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/tools"
+    ]
+  },
+  {
+    "id": "rag.agent.runtime-context",
+    "title": "런타임 컨텍스트(context_schema)",
+    "en": "Runtime Context (context_schema)",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "create_agent에 context_schema로 형식을 정하고 invoke 때 사용자 id 같은 값을 넘기면 도구와 미들웨어가 runtime.context로 읽는 한 번 실행 동안 바뀌지 않는 데이터다.",
+    "parent": "rag.agent.tool-runtime",
+    "related": [
+      "rag.agent.state-reducer"
+    ],
+    "aliases": [
+      "context_schema",
+      "runtime.context",
+      "런타임 컨텍스트",
+      "runtime context",
+      "에이전트 실행 컨텍스트"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/runtime"
+    ]
+  },
+  {
+    "id": "rag.agent.command",
+    "title": "Command 객체",
+    "en": "Command",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "LangGraph 노드나 도구가 돌려주는 값으로, update로 상태를 바꾸고 goto로 다음 노드를 정하는 일을 한 번에 하며 resume으로 멈춘 실행을 잇는 데도 쓴다.",
+    "related": [
+      "rag.agent.conditional-edge",
+      "rag.agent.interrupt",
+      "rag.agent.graph-api"
+    ],
+    "aliases": [
+      "LangGraph Command",
+      "Command 반환",
+      "Command(resume=)",
+      "update와 goto",
+      "커맨드 객체"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/graph-api#command"
+    ]
+  },
+  {
+    "id": "rag.agent.retry-policy",
+    "title": "노드 재시도 정책(RetryPolicy)",
+    "en": "Node Retry Policy (RetryPolicy)",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "add_node에 RetryPolicy를 넘겨 실패한 노드를 횟수·대기 간격·재시도할 예외 종류에 따라 다시 실행하게 하는 LangGraph 설정이다.",
+    "related": [
+      "rag.agent.tool-retry-middleware",
+      "rag.agent.graph-api"
+    ],
+    "aliases": [
+      "RetryPolicy",
+      "retry_policy",
+      "LangGraph 재시도",
+      "노드 재시도"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/fault-tolerance",
+      "https://docs.langchain.com/oss/python/langgraph/use-graph-api"
+    ]
+  },
+  {
     "id": "rag.retrieval.mmr",
     "title": "MMR(최대 한계 관련성)",
     "en": "Maximum Marginal Relevance",
@@ -1587,6 +1815,122 @@
     ],
     "refs": [
       "https://docs.langchain.com/oss/python/langchain/middleware/built-in#tool-error"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "rag.agent.configurable-model",
+    "title": "설정 가능한 모델",
+    "en": "Configurable Model",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "init_chat_model로 만들되 제공사나 모델 이름을 실행할 때 config로 정하게 해 코드 수정 없이 모델을 바꿔 끼우는 모델 객체다.",
+    "parent": "rag.agent.chat-models",
+    "related": [
+      "rag.agent.model-fallback"
+    ],
+    "aliases": [
+      "configurable model",
+      "configurable_fields",
+      "config_prefix",
+      "실행 중 모델 교체"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/models"
+    ]
+  },
+  {
+    "id": "rag.agent.command-parent",
+    "title": "부모 그래프로 이동(Command.PARENT)",
+    "en": "Navigating to the Parent Graph (Command.PARENT)",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "서브그래프 안의 노드나 도구가 Command에 graph=Command.PARENT를 주어 부모 그래프의 다른 노드로 실행을 옮기는 방법이다.",
+    "parent": "rag.agent.handoffs",
+    "related": [
+      "rag.agent.subgraphs",
+      "rag.agent.command"
+    ],
+    "aliases": [
+      "Command.PARENT",
+      "graph=Command.PARENT",
+      "부모 그래프 이동",
+      "parent graph navigation"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/graph-api#command",
+      "https://docs.langchain.com/oss/python/langchain/multi-agent/handoffs"
+    ]
+  },
+  {
+    "id": "rag.agent.dispatch-tool",
+    "title": "디스패치 도구",
+    "en": "Single Dispatch Tool",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "하위 에이전트마다 도구를 따로 두지 않고 에이전트 이름과 할 일을 인자로 받는 도구 하나로 여러 하위 에이전트를 부르는 방식이다.",
+    "parent": "rag.agent.subagents",
+    "related": [
+      "rag.agent.routing"
+    ],
+    "aliases": [
+      "dispatch tool",
+      "single dispatch tool",
+      "디스패치 도구 패턴",
+      "서브에이전트 디스패치"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/multi-agent/subagents"
+    ]
+  },
+  {
+    "id": "rag.agent.async-subagent",
+    "title": "비동기 서브에이전트",
+    "en": "Asynchronous Subagent",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "주 에이전트가 하위 에이전트 작업을 백그라운드로 시작해 작업 id를 받고, 상태 확인·결과 받기 도구로 나중에 결과를 가져오는 방식이다.",
+    "parent": "rag.agent.subagents",
+    "related": [
+      "rag.agent.streaming"
+    ],
+    "aliases": [
+      "async subagent",
+      "비동기 하위 에이전트"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/multi-agent/subagents"
+    ]
+  },
+  {
+    "id": "rag.agent.mcp-elicitation",
+    "title": "MCP 일리시테이션",
+    "en": "MCP Elicitation",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "MCP 서버가 도구를 처리하다 필요한 정보를 클라이언트를 거쳐 사용자에게 폼이나 URL로 물어보고 받은 답으로 요청을 이어 가는 클라이언트 기능이다.",
+    "parent": "rag.agent.mcp-build-client",
+    "related": [
+      "rag.agent.interrupt"
+    ],
+    "aliases": [
+      "elicitation/create",
+      "MCP 사용자 입력 요청",
+      "MCP 일리시테이션 요청"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/docs/learn/client-concepts"
     ],
     "volatile": true,
     "checked_at": "2026-11-06"

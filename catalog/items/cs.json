@@ -247,6 +247,133 @@
     ]
   },
   {
+    "id": "cs.algo.sorting",
+    "title": "정렬 알고리즘과 안정 정렬",
+    "en": "Sorting Algorithms and Stable Sorting",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "알고리즘과 복잡도",
+    "summary": "삽입·선택·병합 정렬이 어떻게 다르게 비용을 쓰는지 보고, 같은 키의 순서를 지키는 안정 정렬로 여러 기준 정렬을 만든다.",
+    "objectives": [
+      "삽입 정렬·선택 정렬·병합 정렬의 시간 복잡도를 비교해 설명할 수 있다",
+      "안정 정렬을 이용해 두 기준으로 차례로 정렬하는 코드를 작성할 수 있다",
+      "제자리 정렬과 새 배열을 만드는 정렬의 차이를 구분할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.algo.big-o-estimate",
+      "cs.algo.recursion"
+    ],
+    "related": [
+      "cs.algo.binary-search"
+    ],
+    "aliases": [
+      "정렬 알고리즘",
+      "sorting algorithm",
+      "삽입 정렬",
+      "insertion sort",
+      "다중 키 정렬"
+    ],
+    "refs": [
+      "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec3/",
+      "https://docs.python.org/3/howto/sorting.html",
+      "https://xlinux.nist.gov/dads/HTML/stable.html"
+    ]
+  },
+  {
+    "id": "cs.dsa.binary-search-tree",
+    "title": "이진 탐색 트리로 정렬된 자료 다루기",
+    "en": "Binary Search Trees",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "자료구조",
+    "summary": "왼쪽에는 작은 키, 오른쪽에는 큰 키를 두는 이진 탐색 트리로 찾기·넣기와 순서대로 꺼내기를 함께 해낸다.",
+    "objectives": [
+      "이진 탐색 트리에 키를 넣고 찾는 함수를 재귀로 작성할 수 있다",
+      "트리 높이에 따라 찾기 비용이 O(log n)에서 O(n)까지 달라지는 이유를 설명할 수 있다",
+      "해시 테이블과 이진 탐색 트리 중 순서가 필요한 경우를 골라 쓸 수 있다"
+    ],
+    "prerequisites": [
+      "cs.algo.recursion",
+      "cs.dsa.array-vs-linked-list"
+    ],
+    "related": [
+      "cs.dsa.hash-table",
+      "cs.algo.binary-search"
+    ],
+    "aliases": [
+      "이진 검색 트리",
+      "BST",
+      "binary search tree"
+    ],
+    "refs": [
+      "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec6/",
+      "https://xlinux.nist.gov/dads/HTML/binarySearchTree.html"
+    ]
+  },
+  {
+    "id": "cs.data.binary-bitwise",
+    "title": "2진수·16진수와 비트 연산",
+    "en": "Binary, Hexadecimal and Bitwise Operations",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "정수를 2진수와 16진수로 읽고 AND·OR·XOR·시프트 연산으로 특정 비트를 켜고 끄고 확인한다.",
+    "objectives": [
+      "10진수·2진수·16진수 사이를 변환하고 코드에서 0b·0x 표기로 쓸 수 있다",
+      "AND·OR·XOR·시프트 연산으로 특정 비트를 켜고 끄고 검사하는 코드를 작성할 수 있다",
+      "음수에 비트 연산을 했을 때 2의 보수 때문에 생기는 결과를 설명할 수 있다"
+    ],
+    "related": [
+      "cs.data.float-error"
+    ],
+    "aliases": [
+      "비트 연산",
+      "bitwise operation",
+      "비트 연산자",
+      "시프트 연산",
+      "bit shift"
+    ],
+    "refs": [
+      "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c1/c1s1/",
+      "https://docs.python.org/3/library/stdtypes.html#bitwise-operations-on-integer-types",
+      "https://docs.python.org/3/library/functions.html#bin"
+    ]
+  },
+  {
+    "id": "cs.os.stack-heap",
+    "title": "스택 메모리와 힙 메모리",
+    "en": "Stack Memory and Heap Memory",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "함수 호출마다 자동으로 쌓였다 사라지는 스택 메모리와 직접 할당하고 풀어야 오래 남는 힙 메모리의 차이를 구분한다.",
+    "objectives": [
+      "프로세스 주소 공간에서 코드·힙·스택 영역이 각각 무엇을 담는지 설명할 수 있다",
+      "지역 변수와 동적으로 만든 객체가 스택과 힙 중 어디에 놓이는지 구분할 수 있다",
+      "해제 누락·이미 해제한 메모리 사용 같은 흔한 메모리 실수를 알아보고 원인을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.algo.recursion"
+    ],
+    "related": [
+      "be.python.memory"
+    ],
+    "aliases": [
+      "stack memory",
+      "heap memory",
+      "스택 영역",
+      "힙 영역"
+    ],
+    "refs": [
+      "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-api.pdf",
+      "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-intro.pdf"
+    ]
+  },
+  {
     "id": "cs.os.process",
     "title": "프로세스",
     "en": "Process",
@@ -338,6 +465,30 @@
     ],
     "refs": [
       "https://xlinux.nist.gov/dads/HTML/queue.html"
+    ]
+  },
+  {
+    "id": "cs.os.call-stack",
+    "title": "콜 스택",
+    "en": "Call Stack",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "운영체제",
+    "summary": "함수가 호출될 때마다 지역 변수와 돌아갈 위치를 담은 프레임을 쌓고, 함수가 끝나면 걷어 내는 메모리 영역이다.",
+    "parent": "cs.os.stack-heap",
+    "related": [
+      "cs.algo.recursion-limit",
+      "cs.dsa.stack"
+    ],
+    "aliases": [
+      "호출 스택",
+      "call stack",
+      "스택 프레임",
+      "stack frame"
+    ],
+    "refs": [
+      "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-intro.pdf"
     ]
   },
   {
@@ -635,6 +786,163 @@
     ],
     "refs": [
       "https://man7.org/linux/man-pages/man7/socket.7.html"
+    ]
+  },
+  {
+    "id": "cs.algo.stable-sort",
+    "title": "안정 정렬",
+    "en": "Stable Sort",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "알고리즘과 복잡도",
+    "summary": "키가 같은 원소들이 정렬 전의 앞뒤 순서를 그대로 유지하는 정렬 방식이다.",
+    "parent": "cs.algo.sorting",
+    "aliases": [
+      "stable sorting",
+      "정렬 안정성",
+      "sort stability"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/stable.html"
+    ]
+  },
+  {
+    "id": "cs.algo.merge-sort",
+    "title": "병합 정렬",
+    "en": "Merge Sort",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "알고리즘과 복잡도",
+    "summary": "배열을 반으로 나눠 각각 재귀로 정렬한 뒤 두 정렬된 부분을 합치는, O(n log n) 정렬 알고리즘이다.",
+    "parent": "cs.algo.sorting",
+    "aliases": [
+      "mergesort",
+      "합병 정렬"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/mergesort.html"
+    ]
+  },
+  {
+    "id": "cs.dsa.binary-tree",
+    "title": "이진 트리",
+    "en": "Binary Tree",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "자료구조",
+    "summary": "각 노드가 왼쪽과 오른쪽 자식을 최대 둘까지 갖는 트리 구조다.",
+    "parent": "cs.dsa.binary-search-tree",
+    "aliases": [
+      "이진트리",
+      "이진 트리 구조"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/binarytree.html"
+    ]
+  },
+  {
+    "id": "cs.data.bitmask",
+    "title": "비트 마스크",
+    "en": "Bitmask",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "여러 켜짐·꺼짐 값을 한 정수의 비트에 담고 AND·OR로 골라 확인하거나 합치는 방법이다.",
+    "parent": "cs.data.binary-bitwise",
+    "aliases": [
+      "bit mask",
+      "비트 플래그",
+      "bit flag",
+      "플래그 비트"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/enum.html#enum.Flag"
+    ]
+  },
+  {
+    "id": "cs.data.twos-complement",
+    "title": "2의 보수",
+    "en": "Two's Complement",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "가장 높은 비트에 음의 가중치를 주어 부호 있는 정수를 나타내는, 컴퓨터가 쓰는 표준 정수 표현이다.",
+    "parent": "cs.data.binary-bitwise",
+    "aliases": [
+      "2의 보수법",
+      "two's complement",
+      "부호 있는 정수 표현"
+    ],
+    "refs": [
+      "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c1/c1s1/"
+    ]
+  },
+  {
+    "id": "cs.data.hexadecimal",
+    "title": "16진수 표기",
+    "en": "Hexadecimal Notation",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "숫자 하나가 2진수 4비트에 대응하는 16진법 표기로, 0x를 붙여 바이트 값이나 색상 코드를 짧게 적는다.",
+    "parent": "cs.data.binary-bitwise",
+    "aliases": [
+      "16진수",
+      "hexadecimal",
+      "hex 표기",
+      "0x 표기"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/functions.html#hex"
+    ]
+  },
+  {
+    "id": "cs.algo.inorder-traversal",
+    "title": "중위 순회",
+    "en": "In-order Traversal",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "알고리즘과 복잡도",
+    "summary": "왼쪽 부분 트리, 자기 자신, 오른쪽 부분 트리 순서로 방문해 이진 탐색 트리의 키를 오름차순으로 얻는 순회 방법이다.",
+    "parent": "cs.dsa.binary-search-tree",
+    "related": [
+      "cs.algo.dfs"
+    ],
+    "aliases": [
+      "inorder traversal",
+      "중순위 순회",
+      "in-order 순회"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/inorderTraversal.html"
+    ]
+  },
+  {
+    "id": "cs.os.segmentation-fault",
+    "title": "세그멘테이션 폴트",
+    "en": "Segmentation Fault",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "프로그램이 접근할 수 없는 메모리 주소를 건드려 운영체제가 SIGSEGV 신호로 프로세스를 끝내는 오류다.",
+    "parent": "cs.os.stack-heap",
+    "aliases": [
+      "segfault",
+      "SIGSEGV",
+      "세그폴트",
+      "segmentation fault (core dumped)"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man7/signal.7.html",
+      "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-api.pdf"
     ]
   }
 ]

@@ -803,6 +803,68 @@
     "checked_at": "2026-11-06"
   },
   {
+    "id": "fe.ts.function-types",
+    "title": "TypeScript 함수 타입 다루기",
+    "en": "Function Types in TypeScript",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "TypeScript",
+    "summary": "함수의 매개변수와 반환값 모양을 타입으로 적고, 선택 매개변수·나머지 매개변수·void 반환을 알맞게 고르는 법이다.",
+    "objectives": [
+      "함수 타입 표현식으로 콜백 매개변수의 모양을 적을 수 있다",
+      "선택 매개변수와 기본값, 나머지 매개변수를 타입과 함께 쓸 수 있다",
+      "void·never·unknown 반환 타입이 각각 언제 쓰이는지 구분할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.ts.first-types"
+    ],
+    "related": [
+      "fe.ts.generics"
+    ],
+    "aliases": [
+      "함수 타입",
+      "function type expression",
+      "함수 타입 표현식",
+      "콜백 타입"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/2/functions.html"
+    ]
+  },
+  {
+    "id": "fe.css.responsive-design",
+    "title": "반응형 웹 디자인",
+    "en": "Responsive Web Design",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "CSS",
+    "summary": "뷰포트 설정, 유연한 레이아웃, 미디어 쿼리, 크기가 바뀌는 이미지와 글자를 묶어 한 페이지가 휴대폰과 데스크톱에 모두 맞게 하는 방법이다.",
+    "objectives": [
+      "모바일 우선으로 기본 스타일을 쓰고 미디어 쿼리로 넓은 화면 규칙을 더할 수 있다",
+      "Flexbox와 Grid로 화면 너비에 따라 열 수가 바뀌는 레이아웃을 만들 수 있다",
+      "이미지와 글자 크기가 화면에 맞게 줄어들도록 하고 확대를 막지 않을 수 있다"
+    ],
+    "prerequisites": [
+      "fe.css.box-flex"
+    ],
+    "related": [
+      "fe.css.media-query",
+      "fe.css.grid"
+    ],
+    "aliases": [
+      "반응형 디자인",
+      "반응형 레이아웃",
+      "responsive design",
+      "모바일 우선",
+      "mobile first"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Responsive_Design"
+    ]
+  },
+  {
     "id": "fe.internals.render-and-commit",
     "title": "React 렌더링 과정: 트리거·렌더·커밋",
     "en": "React Rendering: Trigger, Render, Commit",
@@ -993,6 +1055,37 @@
     ]
   },
   {
+    "id": "fe.next.route-handlers",
+    "title": "Next.js Route Handler로 API 만들기",
+    "en": "Next.js Route Handlers",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "Next.js",
+    "summary": "app 폴더의 route.ts에 GET·POST 같은 함수를 내보내 웹 표준 Request와 Response로 JSON을 주고받는 엔드포인트를 만드는 법이다.",
+    "objectives": [
+      "route.ts에 HTTP 메서드 이름의 함수를 내보내 JSON 응답을 돌려줄 수 있다",
+      "같은 경로에 page와 route를 함께 두면 충돌하는 이유를 설명할 수 있다",
+      "동적 세그먼트의 값을 Route Handler 안에서 읽을 수 있다"
+    ],
+    "prerequisites": [
+      "fe.next.first-page",
+      "fe.js.fetch-first"
+    ],
+    "related": [
+      "fe.next.server-actions"
+    ],
+    "aliases": [
+      "Route Handler",
+      "라우트 핸들러",
+      "route.ts",
+      "Next.js API 라우트"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/getting-started/route-handlers"
+    ]
+  },
+  {
     "id": "fe.react.dependency-array",
     "title": "의존성 배열",
     "en": "Dependency Array",
@@ -1162,6 +1255,50 @@
     ],
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax"
+    ]
+  },
+  {
+    "id": "fe.css.viewport-meta",
+    "title": "viewport 메타 태그",
+    "en": "Viewport Meta Tag",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "CSS",
+    "summary": "모바일 브라우저가 넓은 가상 화면 대신 기기 너비로 페이지를 그리게 해 미디어 쿼리가 제대로 듣게 하는 HTML 설정이다.",
+    "parent": "fe.css.responsive-design",
+    "related": [
+      "fe.css.media-query"
+    ],
+    "aliases": [
+      "뷰포트 메타",
+      "meta viewport",
+      "width=device-width"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Viewport_meta_element"
+    ]
+  },
+  {
+    "id": "fe.js.destructuring",
+    "title": "구조 분해 할당",
+    "en": "Destructuring Assignment",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "JavaScript",
+    "summary": "배열은 위치로, 객체는 속성 이름으로 값을 꺼내 변수에 한 번에 담는 JavaScript 문법이다.",
+    "related": [
+      "fe.js.spread-syntax"
+    ],
+    "aliases": [
+      "구조 분해",
+      "destructuring",
+      "비구조화 할당",
+      "객체 구조 분해"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring"
     ]
   },
   {
@@ -1582,6 +1719,117 @@
     ]
   },
   {
+    "id": "fe.ts.unknown-type",
+    "title": "unknown 타입",
+    "en": "The unknown Type",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "TypeScript",
+    "summary": "어떤 값이든 받을 수 있지만 타입을 좁히기 전에는 쓸 수 없게 막아 any보다 안전한 TypeScript 타입이다.",
+    "parent": "fe.ts.function-types",
+    "related": [
+      "fe.ts.union-narrowing",
+      "fe.ts.type-assertion"
+    ],
+    "aliases": [
+      "unknown 타입",
+      "any와 unknown",
+      "unknown type"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/2/functions.html#unknown"
+    ]
+  },
+  {
+    "id": "fe.css.responsive-images",
+    "title": "반응형 이미지(srcset·sizes·picture)",
+    "en": "Responsive Images",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "CSS",
+    "summary": "srcset·sizes와 picture 요소로 화면 크기와 해상도에 맞는 이미지 파일을 브라우저가 골라 받게 하는 방법이다.",
+    "parent": "fe.css.responsive-design",
+    "related": [
+      "fe.next.image-component"
+    ],
+    "aliases": [
+      "srcset",
+      "picture 요소",
+      "picture 아트 디렉션",
+      "해상도 전환"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images"
+    ]
+  },
+  {
+    "id": "fe.css.transitions",
+    "title": "CSS 트랜지션",
+    "en": "CSS Transitions",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "CSS",
+    "summary": "속성 값이 바뀔 때 지정한 시간과 가속 곡선에 따라 서서히 변하게 하는 CSS 기능이다.",
+    "aliases": [
+      "transition 속성",
+      "transitionend",
+      "CSS 전환 효과",
+      "CSS transition"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Transitions/Using"
+    ]
+  },
+  {
+    "id": "fe.js.event-delegation",
+    "title": "이벤트 버블링과 위임",
+    "en": "Event Bubbling and Delegation",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "JavaScript",
+    "summary": "자식에서 일어난 이벤트가 부모로 올라가는 성질을 이용해 부모에 리스너 하나만 달아 여러 자식을 처리하는 방법이다.",
+    "related": [
+      "fe.js.dom-events"
+    ],
+    "aliases": [
+      "이벤트 버블링",
+      "event bubbling",
+      "이벤트 위임",
+      "event delegation",
+      "stopPropagation"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Event_bubbling"
+    ]
+  },
+  {
+    "id": "fe.html.dialog-element",
+    "title": "dialog 요소로 모달 만들기",
+    "en": "The dialog Element",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "HTML",
+    "summary": "showModal()로 열면 나머지 화면을 막고 Esc로 닫히는 모달 창을 브라우저가 대신 만들어 주는 HTML 요소다.",
+    "related": [
+      "fe.html.accessible-markup",
+      "fe.html.tabindex"
+    ],
+    "aliases": [
+      "dialog 요소",
+      "showModal",
+      "HTML 모달",
+      "::backdrop"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog"
+    ]
+  },
+  {
     "id": "fe.html.constraint-validation",
     "title": "Constraint Validation API",
     "en": "Constraint Validation API",
@@ -1639,6 +1887,28 @@
     ],
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/tabindex"
+    ]
+  },
+  {
+    "id": "fe.ts.function-overload",
+    "title": "함수 오버로드",
+    "en": "Function Overloads",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "TypeScript",
+    "summary": "한 함수에 호출 모양이 다른 시그니처를 여러 개 적고 구현은 하나로 두는 TypeScript 문법이다.",
+    "parent": "fe.ts.function-types",
+    "related": [
+      "fe.ts.union-narrowing"
+    ],
+    "aliases": [
+      "오버로드 시그니처",
+      "overload signature",
+      "함수 오버로딩"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/2/functions.html#function-overloads"
     ]
   },
   {
