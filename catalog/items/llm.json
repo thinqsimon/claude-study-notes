@@ -1059,6 +1059,42 @@
     ]
   },
   {
+    "id": "llm.api.speech-to-text",
+    "title": "음성을 글로 바꾸기: 전사 API",
+    "en": "Speech-to-Text Transcription API",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "녹음 파일을 전사 API에 보내 글로 받고, 용어 힌트와 파일 나누기로 정확도와 크기 제한을 다루는 방법이다.",
+    "objectives": [
+      "오디오 파일을 전사 API에 보내 글로 된 결과를 받아 쓸 수 있다",
+      "프롬프트나 키워드로 고유명사·전문 용어의 철자를 바로잡을 수 있다",
+      "파일 크기 제한을 넘는 긴 녹음을 문장 경계에서 나눠 전사할 수 있다",
+      "녹음 파일 전사와 마이크·통화 같은 실시간 전사의 쓰임새를 구분할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.first-call"
+    ],
+    "related": [
+      "llm.api.vision-input",
+      "llm.api.response-streaming"
+    ],
+    "aliases": [
+      "음성 인식",
+      "음성 전사",
+      "speech to text",
+      "STT",
+      "transcription API",
+      "받아쓰기 API"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/speech-to-text"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
     "id": "llm.api.image-generation-api",
     "title": "이미지 생성 API로 그림 만들고 고치기",
     "en": "Generating and Editing Images with an API",
