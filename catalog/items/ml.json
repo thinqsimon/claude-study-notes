@@ -638,6 +638,42 @@
     ]
   },
   {
+    "id": "ml.data.missing-values",
+    "title": "결측값 처리: 삭제·대체·결측 표시",
+    "en": "Handling Missing Values",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "AI 기초",
+    "summary": "값이 빠진 예를 지울지 평균·최빈값으로 채울지 고르고, 채운 자리를 따로 표시해 모델이 빈칸 때문에 망가지지 않게 하는 일이다.",
+    "objectives": [
+      "데이터에서 결측값이 있는 열과 비율을 찾아낼 수 있다",
+      "결측값이 있는 예를 지울지 채울지 상황에 맞게 고를 수 있다",
+      "SimpleImputer로 숫자 열은 평균·중앙값, 범주 열은 최빈값으로 채울 수 있다",
+      "대체 규칙을 학습 데이터로만 맞추고 테스트 데이터에는 적용만 해야 하는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.train-inference"
+    ],
+    "related": [
+      "ml.data.first-look",
+      "ml.data.outlier",
+      "ml.basics.data-quality",
+      "ml.data.numeric-categorical-preprocessing"
+    ],
+    "aliases": [
+      "결측값 처리",
+      "missing values",
+      "결측치",
+      "NaN 처리",
+      "빠진 값 처리"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/overfitting/data-characteristics",
+      "https://scikit-learn.org/stable/modules/impute.html"
+    ]
+  },
+  {
     "id": "ml.unsupervised.kmeans-clustering",
     "title": "K-평균 군집화: 정답 없는 데이터 무리 짓기",
     "en": "K-Means Clustering",
@@ -744,6 +780,72 @@
     ]
   },
   {
+    "id": "ml.supervised.sklearn-pipeline",
+    "title": "scikit-learn 파이프라인: 전처리와 모델 묶기",
+    "en": "scikit-learn Pipelines",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "결측값 대체·스케일링·인코딩과 모델을 Pipeline 하나로 이어 fit과 predict를 한 번에 부르고, 전처리가 테스트 데이터를 미리 보는 실수를 막는다.",
+    "objectives": [
+      "make_pipeline으로 전처리 단계와 모델을 한 객체로 이어 학습하고 예측할 수 있다",
+      "ColumnTransformer로 숫자 열과 범주 열에 서로 다른 전처리를 붙일 수 있다",
+      "'단계이름__파라미터' 형식으로 파이프라인 안 단계의 설정을 바꿀 수 있다",
+      "전처리를 전체 데이터에 먼저 맞추면 평가 점수가 부풀려지는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.sklearn-first-model",
+      "ml.data.numeric-categorical-preprocessing"
+    ],
+    "related": [
+      "ml.eval.data-splitting-cv",
+      "ml.data.training-serving-skew"
+    ],
+    "aliases": [
+      "사이킷런 파이프라인",
+      "sklearn Pipeline",
+      "make_pipeline",
+      "전처리 파이프라인",
+      "scikit-learn pipeline"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/compose.html"
+    ]
+  },
+  {
+    "id": "ml.nn.save-load-model",
+    "title": "PyTorch 모델 저장과 불러오기",
+    "en": "Saving and Loading PyTorch Models",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "학습한 신경망의 가중치를 파일로 저장했다가 다시 불러와 예측하거나, 체크포인트로 멈춘 학습을 이어 가는 방법이다.",
+    "objectives": [
+      "torch.save와 load_state_dict로 학습한 가중치를 저장하고 같은 구조의 모델에 다시 넣을 수 있다",
+      "state_dict만 저장하는 방식과 모델 전체를 저장하는 방식의 차이를 설명할 수 있다",
+      "에폭·옵티마이저 상태·손실을 담은 체크포인트로 중단한 학습을 이어 갈 수 있다",
+      "불러온 모델로 예측하기 전에 model.eval()을 불러야 하는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.nn.first-neural-network"
+    ],
+    "related": [
+      "llm.basics.model-checkpoint",
+      "mlops.finetune.adapter-save-load"
+    ],
+    "aliases": [
+      "torch.save",
+      "PyTorch 모델 저장",
+      "PyTorch 모델 불러오기",
+      "torch.load"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/tutorials/beginner/saving_loading_models.html"
+    ]
+  },
+  {
     "id": "ml.training.learning-rate",
     "title": "학습률",
     "en": "Learning Rate",
@@ -796,6 +898,45 @@
       "z-score scaling",
       "min-max 스케일링",
       "선형 스케일링"
+    ]
+  },
+  {
+    "id": "ml.data.imputation",
+    "title": "결측값 대체(imputation)",
+    "en": "Imputation",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "AI 기초",
+    "summary": "빠진 값을 그 열의 평균·중앙값·최빈값이나 정한 상수로 채워 넣는 처리로, scikit-learn에서는 SimpleImputer가 대표다.",
+    "parent": "ml.data.missing-values",
+    "aliases": [
+      "결측값 대체",
+      "imputation",
+      "SimpleImputer",
+      "평균 대체",
+      "KNNImputer"
+    ]
+  },
+  {
+    "id": "ml.nn.eval-train-mode",
+    "title": "model.eval()과 model.train()",
+    "en": "Evaluation and Training Modes",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "딥러닝",
+    "summary": "드롭아웃·배치 정규화 층의 동작을 예측용과 학습용으로 바꾸는 PyTorch 모드 전환으로, 예측 전에 eval()을 빼먹으면 결과가 들쭉날쭉해진다.",
+    "parent": "ml.nn.save-load-model",
+    "related": [
+      "ml.nn.dropout"
+    ],
+    "aliases": [
+      "model.eval()",
+      "model.train()",
+      "평가 모드",
+      "eval mode",
+      "train mode"
     ]
   },
   {
@@ -989,6 +1130,122 @@
       "분류 기준값",
       "best_threshold_",
       "임계값 조정"
+    ]
+  },
+  {
+    "id": "ml.data.missing-indicator",
+    "title": "결측 표시 특성",
+    "en": "Missing Indicator",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "원래 값이 비어 있었는지를 0과 1로 적은 열을 따로 만들어, 채운 값과 진짜 값을 모델이 구분할 수 있게 하는 특성이다.",
+    "parent": "ml.data.missing-values",
+    "aliases": [
+      "missing indicator",
+      "MissingIndicator",
+      "add_indicator",
+      "결측 플래그",
+      "is_imputed 열"
+    ]
+  },
+  {
+    "id": "ml.supervised.column-transformer",
+    "title": "ColumnTransformer(열별 전처리)",
+    "en": "ColumnTransformer",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "표의 열마다 다른 전처리를 붙이는 scikit-learn 도구로, 지정하지 않은 열은 기본으로 버리고 remainder로 그대로 넘길 수 있다.",
+    "parent": "ml.supervised.sklearn-pipeline",
+    "aliases": [
+      "ColumnTransformer",
+      "make_column_transformer",
+      "열별 전처리",
+      "make_column_selector"
+    ]
+  },
+  {
+    "id": "ml.nn.state-dict",
+    "title": "state_dict",
+    "en": "state_dict",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "PyTorch 모델의 층 이름마다 학습된 가중치 텐서를 짝지어 둔 파이썬 딕셔너리로, 저장과 복원의 기본 단위다.",
+    "parent": "ml.nn.save-load-model",
+    "aliases": [
+      "state_dict",
+      "load_state_dict",
+      "모델 상태 딕셔너리",
+      "optimizer state_dict"
+    ]
+  },
+  {
+    "id": "ml.nn.training-checkpoint",
+    "title": "학습 체크포인트",
+    "en": "Training Checkpoint",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "현재 에폭, 모델과 옵티마이저의 state_dict, 마지막 손실을 한 파일에 묶어 두어 멈춘 학습을 그 자리에서 다시 시작하게 하는 저장본이다.",
+    "parent": "ml.nn.save-load-model",
+    "related": [
+      "llm.basics.model-checkpoint"
+    ],
+    "aliases": [
+      "학습 체크포인트",
+      "training checkpoint",
+      "학습 재개",
+      "resume training"
+    ]
+  },
+  {
+    "id": "ml.data.log-scaling",
+    "title": "로그 스케일링",
+    "en": "Log Scaling",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "판매량처럼 소수 값이 아주 크고 꼬리가 긴 숫자 특성에 로그를 씌워 범위를 좁히는 변환이다.",
+    "related": [
+      "ml.data.feature-normalization"
+    ],
+    "aliases": [
+      "로그 변환",
+      "log transform",
+      "log scaling",
+      "log1p"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/numerical-data/normalization"
+    ]
+  },
+  {
+    "id": "ml.data.clipping",
+    "title": "특성 클리핑",
+    "en": "Feature Clipping",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "정한 최댓값이나 최솟값을 넘는 값을 그 경계값으로 잘라 극단적인 이상치가 학습을 휘두르지 못하게 하는 처리다.",
+    "related": [
+      "ml.data.outlier",
+      "ml.data.feature-normalization"
+    ],
+    "aliases": [
+      "특성 클리핑",
+      "feature clipping",
+      "이상치 클리핑"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/numerical-data/normalization"
     ]
   },
   {

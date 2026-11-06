@@ -1,5 +1,5 @@
 {
- "version": "0.13.0",
+ "version": "0.14.0",
  "domains": [
   {
    "prefix": "dev",
@@ -658,6 +658,44 @@
    "domain": "dev"
   },
   {
+   "id": "dev.git.undo-commits",
+   "title": "커밋 되돌리기: reset·revert·restore",
+   "en": "Undoing Commits: reset, revert and restore",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "Git",
+   "summary": "잘못한 커밋과 변경을 되돌릴 때 기록을 지우는 reset, 반대 커밋을 새로 쌓는 revert, 파일만 되살리는 restore를 상황에 맞게 고른다.",
+   "objectives": [
+    "HEAD·인덱스·작업 폴더 세 곳 중 각 명령이 무엇을 바꾸는지 구분해 되돌릴 명령을 고를 수 있다",
+    "이미 push한 커밋은 revert로 되돌리고 아직 공유하지 않은 커밋만 reset으로 지울 수 있다",
+    "reset --hard와 git restore가 커밋하지 않은 변경을 되살릴 수 없게 지운다는 점을 알고 먼저 stash나 브랜치로 지킬 수 있다",
+    "revert 중 충돌이 나면 고친 뒤 --continue로 잇거나 --abort로 취소할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.first-commit",
+    "dev.git.remotes"
+   ],
+   "related": [
+    "dev.git.amend",
+    "dev.git.stash",
+    "dev.git.reflog"
+   ],
+   "aliases": [
+    "커밋 되돌리기",
+    "undo commit",
+    "reset vs revert",
+    "커밋 취소"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Tools-Reset-Demystified",
+    "https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things",
+    "https://git-scm.com/docs/git-revert",
+    "https://git-scm.com/docs/git-restore"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.test.tdd",
    "title": "테스트 먼저 쓰기: TDD",
    "en": "Test-Driven Development",
@@ -901,6 +939,115 @@
    "refs": [
     "https://git-scm.com/book/en/v2/Git-Tools-Stashing-and-Cleaning",
     "https://git-scm.com/docs/git-stash"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.history-search",
+   "title": "커밋 기록 찾아보기: log 필터와 범위 표기",
+   "en": "Searching History: git log Filters and Revision Ranges",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "git log의 필터와 HEAD~·A..B 같은 커밋 지정법으로 원하는 커밋만 골라 보고, 두 브랜치의 차이나 push할 커밋을 확인한다.",
+   "objectives": [
+    "--author·--since·--grep·-S·경로 필터를 조합해 찾는 커밋만 걸러 볼 수 있다",
+    "HEAD~3·HEAD^2·짧은 해시로 원하는 커밋을 가리킬 수 있다",
+    "A..B와 A...B의 차이를 알고 origin/main..HEAD로 push할 커밋을 미리 확인할 수 있다",
+    "-p·--stat·--oneline·--graph로 기록을 읽기 좋은 모양으로 바꿀 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.first-commit",
+    "dev.git.branch-pr"
+   ],
+   "related": [
+    "dev.git.blame",
+    "dev.git.bisect"
+   ],
+   "aliases": [
+    "커밋 기록 검색",
+    "git log 필터",
+    "git log -S",
+    "pickaxe",
+    "커밋 지정",
+    "revision selection"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History",
+    "https://git-scm.com/book/en/v2/Git-Tools-Revision-Selection"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.hooks",
+   "title": "Git 훅으로 커밋 전에 검사 돌리기",
+   "en": "Running Checks with Git Hooks",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "커밋이나 push 직전에 Git이 정해진 이름의 스크립트를 실행하게 해, 린트와 테스트가 실패하면 커밋을 막는 Git 훅을 만든다.",
+   "objectives": [
+    ".git/hooks에 실행 권한을 준 pre-commit 스크립트를 두어 실패할 때 0이 아닌 종료 코드로 커밋을 막을 수 있다",
+    "pre-commit·commit-msg·pre-push가 각각 언제 돌고 무엇을 받는지 구분해 검사를 알맞은 훅에 넣을 수 있다",
+    "훅이 clone으로 복사되지 않는다는 점을 알고 core.hooksPath로 저장소에 둔 훅 폴더를 함께 쓰게 할 수 있다",
+    "--no-verify로 건너뛸 수 있으므로 꼭 지켜야 하는 규칙은 CI나 서버 쪽에도 두어야 한다고 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.first-commit",
+    "dev.robust.report-failure"
+   ],
+   "related": [
+    "ax.coding.hooks",
+    "dev.git.branch-protection"
+   ],
+   "aliases": [
+    "Git 훅",
+    "git hooks",
+    ".git/hooks",
+    "커밋 훅",
+    "core.hooksPath"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks",
+    "https://git-scm.com/docs/githooks"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.dsa.collections-choice",
+   "title": "표준 자료구조 고르기: deque·Counter·heapq",
+   "en": "Choosing Data Structures: deque, Counter, defaultdict, heapq",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "자료구조와 알고리즘",
+   "summary": "리스트와 딕셔너리로 느리거나 번거로운 일을 큐·개수 세기·기본값 딕셔너리·최솟값 꺼내기에 맞춘 표준 라이브러리 자료구조로 바꿔 구현한다.",
+   "objectives": [
+    "리스트의 pop(0)·insert(0)이 느린 이유를 말하고 큐가 필요할 때 deque로 바꿀 수 있다",
+    "Counter의 most_common과 defaultdict(list)로 개수 세기와 묶기를 짧게 구현할 수 있다",
+    "defaultdict는 d[key]에서만 기본값을 넣고 get()에서는 넣지 않는다는 차이를 알고 실수를 피할 수 있다",
+    "heapq로 우선순위 큐를 만들고, 우선순위가 같을 때 비교 오류를 순번 값으로 막을 수 있다"
+   ],
+   "prerequisites": [
+    "be.python.list-dict"
+   ],
+   "related": [
+    "be.python.comprehension"
+   ],
+   "aliases": [
+    "collections 모듈",
+    "collections.Counter",
+    "defaultdict",
+    "heapq",
+    "heapq 우선순위 큐"
+   ],
+   "refs": [
+    "https://docs.python.org/3/tutorial/datastructures.html#using-lists-as-queues",
+    "https://docs.python.org/3/tutorial/stdlib2.html#tools-for-working-with-lists",
+    "https://docs.python.org/3/library/collections.html",
+    "https://docs.python.org/3/library/heapq.html"
    ],
    "domain": "dev"
   },
@@ -1199,6 +1346,166 @@
    "domain": "dev"
   },
   {
+   "id": "dev.git.reset-modes",
+   "title": "git reset의 --soft·--mixed·--hard",
+   "en": "git reset Modes: --soft, --mixed, --hard",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "브랜치를 옮기는 데서 멈추는 --soft, 스테이징까지 되돌리는 기본값 --mixed, 작업 폴더까지 덮어쓰는 --hard로 나뉘며 --hard만 변경을 잃게 한다.",
+   "parent": "dev.git.undo-commits",
+   "aliases": [
+    "git reset --hard",
+    "git reset --soft",
+    "reset --mixed",
+    "reset HEAD~"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Tools-Reset-Demystified"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.revert",
+   "title": "git revert",
+   "en": "git revert",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "지정한 커밋의 변경을 거꾸로 적용한 새 커밋을 만들어, 기록을 지우지 않고 되돌리므로 이미 공유한 브랜치에서도 안전하다.",
+   "parent": "dev.git.undo-commits",
+   "related": [
+    "dev.git.cherry-pick"
+   ],
+   "aliases": [
+    "git revert",
+    "되돌림 커밋",
+    "revert commit",
+    "revert -m 1"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/git-revert"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.restore",
+   "title": "git restore",
+   "en": "git restore",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "파일을 인덱스나 지정한 커밋의 내용으로 되살리는 명령으로, --staged는 스테이징만 풀고 옵션 없이 쓰면 작업 폴더의 변경을 지운다.",
+   "parent": "dev.git.undo-commits",
+   "related": [
+    "dev.git.staging-area"
+   ],
+   "aliases": [
+    "git restore",
+    "restore --staged",
+    "언스테이징",
+    "unstage",
+    "git checkout --"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/git-restore",
+    "https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.ancestry-refs",
+   "title": "조상 참조 HEAD~와 HEAD^",
+   "en": "Ancestry References: HEAD~ and HEAD^",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "커밋의 부모를 가리키는 표기로, ~N은 첫째 부모를 N번 거슬러 가고 ^2는 병합 커밋의 둘째 부모를 가리킨다.",
+   "parent": "dev.git.history-search",
+   "aliases": [
+    "HEAD~1",
+    "HEAD^",
+    "HEAD~",
+    "부모 커밋 표기",
+    "조상 참조"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Tools-Revision-Selection"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.pre-commit-hook",
+   "title": "pre-commit 훅",
+   "en": "pre-commit Hook",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "커밋 메시지를 받기 전에 실행되는 Git 훅으로, 0이 아닌 값으로 끝나면 커밋이 취소되고 --no-verify로 건너뛸 수 있다.",
+   "parent": "dev.git.hooks",
+   "aliases": [
+    "pre-commit hook",
+    "pre-commit 스크립트",
+    "커밋 전 검사",
+    "--no-verify"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/githooks",
+    "https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.line-endings",
+   "title": "줄바꿈 설정: core.autocrlf와 .gitattributes",
+   "en": "Line Endings: core.autocrlf and .gitattributes",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "Windows의 CRLF와 macOS·Linux의 LF가 섞여 모든 줄이 바뀐 것처럼 보이는 문제를 core.autocrlf와 저장소의 .gitattributes로 맞추는 설정이다.",
+   "aliases": [
+    "core.autocrlf",
+    ".gitattributes",
+    "CRLF",
+    "줄바꿈 설정",
+    "line endings",
+    "git add --renormalize"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration",
+    "https://docs.github.com/en/get-started/git-basics/configuring-git-to-handle-line-endings"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.dsa.deque",
+   "title": "덱(deque)",
+   "en": "Deque",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "자료구조와 알고리즘",
+   "summary": "양쪽 끝에서 넣고 빼기가 빠른 큐로, 가운데 접근은 느리고 maxlen을 주면 넘친 항목이 반대쪽에서 버려진다.",
+   "parent": "dev.dsa.collections-choice",
+   "aliases": [
+    "deque",
+    "collections.deque",
+    "양방향 큐",
+    "double-ended queue",
+    "popleft"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/collections.html#collections.deque"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.git.upstream-remote",
    "title": "업스트림 원격",
    "en": "Upstream Remote",
@@ -1292,6 +1599,49 @@
    "refs": [
     "https://git-scm.com/book/en/v2/Git-Tools-Debugging-with-Git",
     "https://git-scm.com/docs/git-blame"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.revision-range",
+   "title": "커밋 범위 표기: 두 점과 세 점",
+   "en": "Commit Ranges: Double Dot and Triple Dot",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "Git",
+   "summary": "A..B는 B에만 있고 A에는 없는 커밋을, A...B는 둘 중 한쪽에만 있는 커밋을 고르는 표기로, 브랜치 사이의 차이를 볼 때 쓴다.",
+   "parent": "dev.git.history-search",
+   "aliases": [
+    "두 점 범위",
+    "세 점 범위",
+    "git double dot",
+    "A...B",
+    "main..feature"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Tools-Revision-Selection"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.alias",
+   "title": "Git 별칭(alias)",
+   "en": "Git Alias",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "Git",
+   "summary": "git config의 alias 설정으로 긴 Git 명령에 짧은 이름을 붙이는 기능으로, 앞에 !를 붙이면 Git 밖의 명령도 실행한다.",
+   "aliases": [
+    "git alias",
+    "git config alias",
+    "Git 단축 명령",
+    "alias.st"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases",
+    "https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration"
    ],
    "domain": "dev"
   },
@@ -14261,6 +14611,71 @@
    "domain": "fe"
   },
   {
+   "id": "fe.react.immutable-updates",
+   "title": "상태 속 객체와 배열을 새로 만들어 바꾸기",
+   "en": "Updating Objects and Arrays in State",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "React",
+   "summary": "상태에 든 객체와 배열은 직접 고치지 않고 복사본을 만들어 setter에 넘겨야 화면이 다시 그려진다.",
+   "objectives": [
+    "상태 객체를 직접 고쳤을 때 화면이 바뀌지 않는 이유를 설명할 수 있다",
+    "전개 구문으로 중첩된 객체의 한 칸만 바꾼 새 객체를 만들 수 있다",
+    "push·splice 대신 filter·map·전개 구문으로 배열 상태를 추가·삭제·교체할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.react.state-first"
+   ],
+   "related": [
+    "fe.react.reducer"
+   ],
+   "aliases": [
+    "상태 불변성",
+    "state immutability",
+    "상태 직접 수정",
+    "배열 상태 업데이트",
+    "객체 상태 업데이트"
+   ],
+   "refs": [
+    "https://react.dev/learn/updating-objects-in-state",
+    "https://react.dev/learn/updating-arrays-in-state"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.js.modules",
+   "title": "JavaScript 모듈로 코드 나누기",
+   "en": "JavaScript Modules",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "JavaScript",
+   "summary": "export와 import로 코드를 파일 단위 모듈로 나누고, 각 모듈은 자기만의 범위를 가져 이름이 섞이지 않는다.",
+   "objectives": [
+    "export와 import로 다른 파일의 함수와 값을 가져다 쓸 수 있다",
+    "이름이 겹칠 때 as나 네임스페이스 import로 피할 수 있다",
+    "script type=\"module\"과 로컬 서버가 필요한 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.js.basics"
+   ],
+   "related": [
+    "be.python.modules-import"
+   ],
+   "aliases": [
+    "ES 모듈",
+    "ES modules",
+    "ESM",
+    "import export",
+    "type=\"module\""
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.internals.render-and-commit",
    "title": "React 렌더링 과정: 트리거·렌더·커밋",
    "en": "React Rendering: Trigger, Render, Commit",
@@ -14323,6 +14738,69 @@
    ],
    "refs": [
     "https://react.dev/learn/extracting-state-logic-into-a-reducer"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.react.refs",
+   "title": "useRef로 값 기억하고 DOM 다루기",
+   "en": "Refs with useRef",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "React",
+   "summary": "useRef는 다시 그리지 않고도 렌더 사이에 값을 기억하며, ref 속성으로 실제 DOM 노드를 잡아 포커스나 스크롤을 줄 수 있다.",
+   "objectives": [
+    "화면에 보이는 값은 state, 보이지 않는 값은 ref에 두도록 고를 수 있다",
+    "ref로 입력 칸에 포커스를 주거나 요소로 스크롤할 수 있다",
+    "렌더 중에 ref.current를 읽고 쓰는 실수를 피할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.react.state-first",
+    "fe.js.dom-events"
+   ],
+   "related": [
+    "fe.react.state-first"
+   ],
+   "aliases": [
+    "useRef",
+    "리액트 ref",
+    "React ref",
+    "ref.current"
+   ],
+   "refs": [
+    "https://react.dev/learn/referencing-values-with-refs",
+    "https://react.dev/learn/manipulating-the-dom-with-refs"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.html.form-validation",
+   "title": "브라우저에서 폼 입력 검사하기",
+   "en": "Client-side Form Validation",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "HTML",
+   "summary": "required·pattern 같은 HTML 속성과 Constraint Validation API로 잘못된 입력을 제출 전에 막고 알맞은 오류 메시지를 보여 준다.",
+   "objectives": [
+    "HTML 속성만으로 필수·길이·형식 검사를 걸 수 있다",
+    ":invalid 같은 의사 클래스로 잘못된 칸을 표시할 수 있다",
+    "setCustomValidity로 직접 정한 오류 메시지를 보여 줄 수 있다",
+    "브라우저 검사만으로는 안전하지 않아 서버에서도 다시 검사해야 하는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.html.forms",
+    "fe.js.dom-events"
+   ],
+   "aliases": [
+    "폼 검증",
+    "form validation",
+    "클라이언트 검증",
+    "HTML5 validation"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation"
    ],
    "domain": "fe"
   },
@@ -14482,6 +14960,27 @@
    ],
    "refs": [
     "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Handling_conflicts"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.js.spread-syntax",
+   "title": "전개 구문(...)",
+   "en": "Spread Syntax",
+   "kind": "term",
+   "level": 3,
+   "importance": 1,
+   "group": "JavaScript",
+   "summary": "...으로 배열이나 객체의 내용을 펼쳐 새 배열·객체를 만들며, 복사는 한 단계 깊이까지만 이루어진다.",
+   "parent": "fe.react.immutable-updates",
+   "aliases": [
+    "스프레드 문법",
+    "spread operator",
+    "객체 전개",
+    "배열 전개"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax"
    ],
    "domain": "fe"
   },
@@ -14655,6 +15154,165 @@
    ],
    "refs": [
     "https://www.typescriptlang.org/docs/handbook/2/objects.html#optional-properties"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.js.named-default-export",
+   "title": "이름 있는 내보내기와 기본 내보내기",
+   "en": "Named and Default Exports",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "JavaScript",
+   "summary": "named export는 여러 개를 중괄호로 같은 이름으로 가져오고, default export는 모듈에 하나뿐이며 가져오는 쪽이 이름을 정한다.",
+   "parent": "fe.js.modules",
+   "aliases": [
+    "export default",
+    "named export",
+    "default export",
+    "기본 내보내기"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.react.dom-ref",
+   "title": "ref 속성으로 DOM 노드 잡기",
+   "en": "Accessing DOM Nodes with ref",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "React",
+   "summary": "JSX 요소에 ref를 넘기면 커밋 뒤 ref.current에 실제 DOM 노드가 들어와 focus나 scrollIntoView를 부를 수 있다.",
+   "parent": "fe.react.refs",
+   "aliases": [
+    "DOM ref",
+    "inputRef",
+    "ref 콜백",
+    "ref callback"
+   ],
+   "refs": [
+    "https://react.dev/learn/manipulating-the-dom-with-refs"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.react.custom-hook",
+   "title": "커스텀 훅",
+   "en": "Custom Hooks",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "React",
+   "summary": "use로 시작하고 다른 훅을 부르는 함수로 상태 로직을 꺼내 여러 컴포넌트가 함께 쓰며, 상태 자체는 부를 때마다 따로 생긴다.",
+   "related": [
+    "fe.react.lifting-state",
+    "fe.react.use-effect"
+   ],
+   "aliases": [
+    "custom hook",
+    "사용자 정의 훅",
+    "훅 추출"
+   ],
+   "refs": [
+    "https://react.dev/learn/reusing-logic-with-custom-hooks"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.css.position",
+   "title": "CSS position 속성",
+   "en": "CSS Positioning",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "CSS",
+   "summary": "relative·absolute·fixed·sticky로 요소를 일반 흐름에서 옮기며, absolute는 가장 가까운 위치 지정 조상을 기준으로 놓인다.",
+   "related": [
+    "fe.css.box-flex"
+   ],
+   "aliases": [
+    "position absolute",
+    "position sticky",
+    "position relative",
+    "z-index",
+    "CSS 포지셔닝"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Positioning"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.ts.utility-types",
+   "title": "TypeScript 유틸리티 타입",
+   "en": "Utility Types",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "TypeScript",
+   "summary": "Partial·Pick·Omit·Record처럼 이미 있는 타입을 바꿔 새 타입을 만드는 TypeScript 내장 제네릭 타입이다.",
+   "prerequisites": [
+    "fe.ts.object-types"
+   ],
+   "related": [
+    "fe.ts.generics"
+   ],
+   "aliases": [
+    "Partial<T>",
+    "Pick<T, K>",
+    "Omit<T, K>",
+    "Record 타입",
+    "utility type"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/docs/handbook/utility-types.html"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.image-component",
+   "title": "Next.js Image 컴포넌트",
+   "en": "Next.js Image Component",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Next.js",
+   "summary": "next/image의 Image는 기기에 맞는 크기로 이미지를 줄이고 지연 로딩하며, 원격 이미지는 width·height와 remotePatterns 설정이 필요하다.",
+   "related": [
+    "fe.next.link-component"
+   ],
+   "aliases": [
+    "next/image",
+    "Next.js 이미지 최적화",
+    "remotePatterns"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/getting-started/images"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.html.constraint-validation",
+   "title": "Constraint Validation API",
+   "en": "Constraint Validation API",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "HTML",
+   "summary": "폼 요소의 validity·checkValidity·setCustomValidity로 JavaScript에서 입력이 올바른지 읽고 직접 오류를 정한다.",
+   "parent": "fe.html.form-validation",
+   "aliases": [
+    "setCustomValidity",
+    "checkValidity",
+    "reportValidity",
+    "ValidityState"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation"
    ],
    "domain": "fe"
   },
@@ -19614,6 +20272,116 @@
    "domain": "ax"
   },
   {
+   "id": "ax.coding.plugins",
+   "title": "플러그인으로 스킬·훅·MCP 묶어 나누기",
+   "en": "Packaging Claude Code Plugins",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "흩어진 스킬·하위 에이전트·훅·MCP 설정을 한 폴더와 매니페스트로 묶어 여러 프로젝트와 동료에게 설치하게 하는 방법이다.",
+   "objectives": [
+    "독립 설정과 플러그인 중 무엇이 맞는지 공유 범위를 보고 고를 수 있다",
+    "plugin.json과 skills·hooks 폴더를 알맞은 자리에 두어 플러그인을 만들고 --plugin-dir로 시험할 수 있다",
+    "기존 .claude 폴더의 스킬과 훅을 플러그인으로 옮기고 이름 앞에 붙는 접두사와 훅 중복 실행을 확인할 수 있다",
+    "설치 전에 플러그인의 훅·MCP·bin 내용을 읽어 믿을 만한지 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.skills",
+    "ax.coding.mcp-servers"
+   ],
+   "related": [
+    "ax.coding.skills",
+    "ax.coding.mcp-scope"
+   ],
+   "aliases": [
+    "Claude Code 플러그인",
+    "Claude Code plugin",
+    "/plugin 명령",
+    "claude plugin install",
+    "/reload-plugins"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/plugins",
+    "https://code.claude.com/docs/en/plugins/create",
+    "https://code.claude.com/docs/en/plugins/security"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.devcontainer",
+   "title": "개발 컨테이너에서 코딩 에이전트 돌리기",
+   "en": "Running a Coding Agent in a Dev Container",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "에이전트가 실행하는 명령을 호스트가 아닌 dev container 안에 가두고, 인증 유지·정책·나가는 통신 제한을 설정해 쓰는 방법이다.",
+   "objectives": [
+    "devcontainer.json에 Claude Code 기능을 넣고 컨테이너를 다시 빌드해 에이전트를 실행할 수 있다",
+    "볼륨과 CLAUDE_CONFIG_DIR로 다시 빌드해도 로그인과 설정이 남게 할 수 있다",
+    "권한 확인을 끄고 돌릴 때 컨테이너가 막아 주지 못하는 것(작업 폴더 수정, 컨테이너 안 자격 증명 유출)을 설명할 수 있다",
+    "호스트의 ~/.ssh나 클라우드 자격 증명을 마운트하지 않고 짧은 토큰으로 바꿀 수 있다"
+   ],
+   "prerequisites": [
+    "ops.docker.first-container",
+    "ax.coding.permission-rules"
+   ],
+   "related": [
+    "ax.coding.agent-sandbox",
+    "ax.coding.permission-mode"
+   ],
+   "aliases": [
+    "dev container",
+    "devcontainer.json",
+    "개발 컨테이너",
+    "Claude Code 컨테이너",
+    "Codespaces Claude Code"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/devcontainer"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.genai-profile",
+   "title": "생성형 AI 위험 목록으로 기능 점검하기",
+   "en": "Using the NIST Generative AI Profile",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "NIST AI 600-1이 정리한 생성형 AI의 위험 12가지를 체크리스트로 삼아 만들려는 AI 기능에 해당하는 위험과 대응을 고르는 방법이다.",
+   "objectives": [
+    "생성형 AI 위험 12가지 이름을 보고 내 기능에 해당하는 것을 골라낼 수 있다",
+    "고른 위험마다 AI RMF 네 기능(Govern·Map·Measure·Manage)의 권장 조치를 찾아 연결할 수 있다",
+    "배포 전 시험·콘텐츠 출처·사고 공개처럼 생성형 AI에서 특히 챙길 일을 기능 계획에 넣을 수 있다"
+   ],
+   "prerequisites": [
+    "ax.governance.trustworthy-ai"
+   ],
+   "related": [
+    "ax.governance.rmf-core-functions",
+    "ax.governance.ai-act-risk-levels"
+   ],
+   "aliases": [
+    "NIST AI 600-1",
+    "생성형 AI 프로파일",
+    "Generative AI Profile",
+    "GAI 프로파일",
+    "생성형 AI 위험 12가지"
+   ],
+   "refs": [
+    "https://www.nist.gov/itl/ai-risk-management-framework",
+    "https://doi.org/10.6028/NIST.AI.600-1"
+   ],
+   "domain": "ax"
+  },
+  {
    "id": "ax.coding.slash-command",
    "title": "슬래시 명령(/이름)",
    "en": "Slash Command",
@@ -20022,6 +20790,71 @@
    "domain": "ax"
   },
   {
+   "id": "ax.coding.plugin-manifest",
+   "title": "플러그인 매니페스트(plugin.json)",
+   "en": "Plugin Manifest (plugin.json)",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": ".claude-plugin/plugin.json에 둔 파일로, 플러그인 이름을 정해 그 안의 스킬과 에이전트 이름 앞 접두사가 되게 하며, 없으면 폴더 이름이 플러그인 이름이 된다.",
+   "parent": "ax.coding.plugins",
+   "aliases": [
+    "plugin.json",
+    ".claude-plugin/plugin.json",
+    "Claude Code 플러그인 manifest",
+    "플러그인 접두사"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/plugins/create"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.plugin-marketplace",
+   "title": "플러그인 마켓플레이스(marketplace.json)",
+   "en": "Plugin Marketplace",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "플러그인 목록과 각 플러그인을 가져올 위치를 적은 카탈로그 저장소로, 한 번 추가하면 이름@마켓플레이스 형식으로 설치한다.",
+   "parent": "ax.coding.plugins",
+   "aliases": [
+    "marketplace.json",
+    "claude plugin marketplace add",
+    "/plugin marketplace add",
+    "claude-plugins-official"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/plugins/create-marketplace",
+    "https://code.claude.com/docs/en/plugins/security"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.ai-red-teaming",
+   "title": "AI 레드팀",
+   "en": "AI Red-Teaming",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "통제된 환경에서 공격자처럼 모델과 AI 기능을 시험해 안전장치가 뚫리는 입력과 해로운 출력을 배포 전에 찾는 활동이다.",
+   "parent": "ax.governance.genai-profile",
+   "aliases": [
+    "AI red teaming",
+    "AI 레드티밍",
+    "LLM 레드티밍"
+   ],
+   "refs": [
+    "https://doi.org/10.6028/NIST.AI.600-1"
+   ],
+   "domain": "ax"
+  },
+  {
    "id": "ax.governance.gpai-model",
    "title": "범용 AI 모델(GPAI)",
    "en": "General-Purpose AI Model",
@@ -20040,6 +20873,122 @@
    "refs": [
     "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-53",
     "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.plugin-dir",
+   "title": "--plugin-dir로 플러그인 시험 로드",
+   "en": "Loading a Plugin with --plugin-dir",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "설치하지 않고 폴더나 zip을 그 세션에만 불러와 만들던 플러그인을 시험하는 실행 옵션이다.",
+   "parent": "ax.coding.plugins",
+   "aliases": [
+    "--plugin-dir",
+    "claude --plugin-dir",
+    "플러그인 로컬 테스트",
+    "CLAUDE_CODE_PLUGIN_DIRS"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/plugins/create"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.managed-settings",
+   "title": "관리형 설정(managed-settings.json)",
+   "en": "Managed Settings",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "조직이 배포해 사용자·프로젝트 설정보다 앞서 적용되는 Claude Code 설정 파일로, 권한 우회 금지 같은 정책을 강제한다.",
+   "related": [
+    "ax.coding.settings-file",
+    "ax.coding.devcontainer"
+   ],
+   "aliases": [
+    "managed-settings.json",
+    "managed settings"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/devcontainer",
+    "https://code.claude.com/docs/en/settings"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.devcontainer-egress-firewall",
+   "title": "컨테이너 나가는 통신 제한(init-firewall.sh)",
+   "en": "Dev Container Egress Firewall",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "참조 dev container의 스크립트로, 허용한 목적지 말고는 컨테이너 밖으로 나가는 통신을 막아 우회된 세션이 닿을 곳을 줄인다.",
+   "parent": "ax.coding.devcontainer",
+   "related": [
+    "ax.coding.sandbox-proxy"
+   ],
+   "aliases": [
+    "init-firewall.sh",
+    "devcontainer 방화벽"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/devcontainer"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.ai-literacy",
+   "title": "AI 리터러시 의무(EU AI법 제4조)",
+   "en": "AI Literacy Obligation",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "AI 시스템을 만들거나 쓰는 조직이 그 시스템을 다루는 직원이 위험과 한계를 알도록 교육 같은 조치를 하게 한 EU AI법의 의무다.",
+   "related": [
+    "ax.governance.ai-act-risk-levels"
+   ],
+   "aliases": [
+    "AI Act Article 4",
+    "AI법 제4조",
+    "AI 리터러시 의무"
+   ],
+   "refs": [
+    "https://digital-strategy.ec.europa.eu/en/faqs/ai-literacy-questions-answers"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.public-code-match",
+   "title": "공개 코드 일치 확인(코드 참조)",
+   "en": "Public Code Matching (Code Referencing)",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "AI 코딩 도구의 제안이 공개 저장소 코드와 같을 때 막거나 출처와 라이선스를 보여 주는 기능으로, 라이선스 문제를 미리 살피게 한다.",
+   "related": [
+    "ax.coding.review-ai-code"
+   ],
+   "aliases": [
+    "Copilot code referencing",
+    "public code filter",
+    "공개 코드 필터",
+    "Copilot 코드 참조",
+    "suggestions matching public code"
+   ],
+   "refs": [
+    "https://docs.github.com/en/copilot/concepts/completions/code-referencing"
    ],
    "volatile": true,
    "checked_at": "2026-11-06",
@@ -21251,6 +22200,145 @@
    "domain": "ops"
   },
   {
+   "id": "ops.ci.workflow-basics",
+   "title": "GitHub Actions 워크플로 작성 기초: 트리거·잡·스텝",
+   "en": "Writing GitHub Actions Workflows: Triggers, Jobs, and Steps",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "CI/CD",
+   "summary": "on으로 언제 돌지 정하고, 잡마다 러너를 고르고, 스텝에 run 명령과 액션을 차례로 적어 push마다 테스트하는 워크플로를 직접 만든다.",
+   "objectives": [
+    "on에 push·pull_request와 브랜치·경로 필터를 걸어 원하는 때만 워크플로가 돌게 할 수 있다",
+    "잡과 스텝을 나눠 쓰고 스텝에서 run 명령과 uses 액션을 섞어 테스트 워크플로를 완성할 수 있다",
+    "잡은 기본으로 동시에 돌고 스텝은 한 러너에서 순서대로 돈다는 차이를 설명할 수 있다",
+    "여러 이벤트 중 일부에만 필터를 달 때 생기는 문법 오류나 필터가 맞지 않아 워크플로가 시작되지 않는 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "ops.linux.shell-script-basics"
+   ],
+   "related": [
+    "ops.ci.github-actions-workflow"
+   ],
+   "aliases": [
+    "워크플로 YAML 작성",
+    "workflow syntax",
+    "jobs와 steps",
+    "GitHub Actions 입문",
+    "워크플로 문법"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/concepts/workflows-and-actions/workflows",
+    "https://docs.github.com/en/actions/get-started/understand-github-actions",
+    "https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow",
+    "https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.ci.job-flow",
+   "title": "잡 순서와 조건 실행: needs·if·출력 넘기기",
+   "en": "Job Ordering and Conditions: needs, if, and Outputs",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "CI/CD",
+   "summary": "needs로 잡 순서를 묶고, if로 조건이 맞을 때만 잡과 스텝을 돌리며, 앞 잡이 만든 값을 출력으로 다음 잡에 넘긴다.",
+   "objectives": [
+    "needs로 빌드 뒤에만 배포 잡이 돌도록 순서를 정할 수 있다",
+    "if와 상태 확인 함수로 특정 브랜치나 실패했을 때만 도는 잡을 만들 수 있다",
+    "스텝 출력을 잡 출력으로 올려 needs 컨텍스트로 다음 잡에서 읽을 수 있다",
+    "앞 잡이 실패하거나 건너뛰어 뒤 잡이 모두 skipped가 된 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "ops.ci.workflow-basics"
+   ],
+   "aliases": [
+    "잡 의존성 설정",
+    "job if 조건",
+    "Actions 잡 순서",
+    "조건부 잡 실행"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-jobs",
+    "https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-jobs-with-conditions",
+    "https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/pass-job-outputs"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.ci.contexts-expressions",
+   "title": "컨텍스트와 표현식으로 워크플로 값 쓰기",
+   "en": "Using Contexts and Expressions in Workflows",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "CI/CD",
+   "summary": "${{ }} 안에서 github·vars·secrets·runner 같은 컨텍스트를 읽어 브랜치 이름이나 설정값을 워크플로에 넣고, 러너의 기본 환경 변수와 구분한다.",
+   "objectives": [
+    "${{ github.ref }}·${{ vars.NAME }}처럼 컨텍스트 값을 env와 조건식에 넣을 수 있다",
+    "잡이 러너에 가기 전에도 쓰는 컨텍스트와 러너 안에서만 있는 기본 환경 변수($GITHUB_REF)를 구분할 수 있다",
+    "이슈 제목 같은 신뢰할 수 없는 컨텍스트를 run 명령에 바로 넣지 않고 env로 넘겨 스크립트 주입을 피할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.ci.workflow-basics"
+   ],
+   "related": [
+    "ops.ci.environment-secrets"
+   ],
+   "aliases": [
+    "GitHub Actions 컨텍스트",
+    "github context",
+    "Actions 표현식",
+    "${{ }} 문법",
+    "github.ref",
+    "워크플로 변수"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/concepts/workflows-and-actions/contexts",
+    "https://docs.github.com/en/actions/concepts/workflows-and-actions/expressions",
+    "https://docs.github.com/en/actions/concepts/workflows-and-actions/variables",
+    "https://docs.github.com/en/actions/reference/workflows-and-actions/contexts"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.docker.build-tag-push",
+   "title": "이미지 이름 붙이고 레지스트리에 올리기",
+   "en": "Building, Tagging, and Pushing Images",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "Docker",
+   "summary": "docker build -t로 레지스트리·저장소·태그가 담긴 이름을 붙이고, docker login 뒤 docker push로 Docker Hub나 GHCR에 올려 다른 서버가 받게 한다.",
+   "objectives": [
+    "이미지 이름을 호스트·네임스페이스·저장소·태그로 나눠 읽고 생략된 부분의 기본값을 말할 수 있다",
+    "docker build -t와 docker image tag로 같은 이미지에 이름을 여럿 붙일 수 있다",
+    "docker login 뒤 docker push로 이미지를 올리고 access denied 오류의 원인을 찾을 수 있다",
+    "GitHub Actions에서 GITHUB_TOKEN으로 GHCR에 로그인해 릴리스 브랜치나 release 이벤트에 이미지를 올리는 워크플로를 만들 수 있다"
+   ],
+   "prerequisites": [
+    "ops.docker.first-container",
+    "ops.ci.workflow-basics"
+   ],
+   "related": [
+    "ops.docker.dockerfile",
+    "ops.container.image-layers"
+   ],
+   "aliases": [
+    "docker push",
+    "이미지 푸시",
+    "컨테이너 레지스트리",
+    "GHCR",
+    "Docker Hub 업로드"
+   ],
+   "refs": [
+    "https://docs.docker.com/get-started/docker-concepts/building-images/build-tag-and-publish-an-image/",
+    "https://docs.github.com/en/actions/tutorials/publish-packages/publish-docker-images"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.docker.compose",
    "title": "Docker Compose",
    "en": "Docker Compose",
@@ -21563,6 +22651,146 @@
    "domain": "ops"
   },
   {
+   "id": "ops.ci.workflow-trigger",
+   "title": "워크플로 트리거와 필터(on)",
+   "en": "Workflow Triggers and Filters",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "CI/CD",
+   "summary": "on 키에 적은 이벤트와 branches·paths 같은 필터가 모두 맞을 때만 워크플로 실행이 생긴다.",
+   "parent": "ops.ci.workflow-basics",
+   "aliases": [
+    "on: push",
+    "paths 필터",
+    "branches 필터",
+    "paths-ignore",
+    "이벤트 트리거"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow",
+    "https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.ci.runner",
+   "title": "러너와 runs-on",
+   "en": "Runners and runs-on",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "CI/CD",
+   "summary": "runs-on에 적은 라벨로 잡을 돌릴 기계를 고르며, GitHub가 실행마다 새로 주는 호스트 러너와 직접 띄우는 자체 호스트 러너가 있다.",
+   "parent": "ops.ci.workflow-basics",
+   "aliases": [
+    "runs-on",
+    "ubuntu-latest",
+    "GitHub 호스트 러너",
+    "self-hosted runner",
+    "자체 호스트 러너"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/how-tos/write-workflows/choose-where-workflows-run/choose-the-runner-for-a-job"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.ci.job-needs",
+   "title": "잡 의존(needs)",
+   "en": "Job Dependencies (needs)",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "CI/CD",
+   "summary": "needs에 적은 잡이 성공해야 이 잡이 시작되며, 앞 잡이 실패하거나 건너뛰면 뒤에 이어진 잡도 모두 건너뛴다.",
+   "parent": "ops.ci.job-flow",
+   "aliases": [
+    "jobs.needs",
+    "needs 키워드",
+    "잡 의존 관계",
+    "dependent jobs"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-jobs"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.ci.job-outputs",
+   "title": "잡 출력과 GITHUB_OUTPUT",
+   "en": "Job Outputs and GITHUB_OUTPUT",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "CI/CD",
+   "summary": "스텝이 $GITHUB_OUTPUT 파일에 이름=값을 쓰면 steps 컨텍스트로 읽히고, 잡의 outputs에 올리면 needs로 다음 잡이 받는다.",
+   "parent": "ops.ci.job-flow",
+   "aliases": [
+    "GITHUB_OUTPUT",
+    "steps outputs",
+    "jobs outputs",
+    "needs.outputs",
+    "스텝 출력"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/pass-job-outputs"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.ci.github-token",
+   "title": "GITHUB_TOKEN과 permissions",
+   "en": "GITHUB_TOKEN and Workflow Permissions",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "CI/CD",
+   "summary": "잡마다 자동으로 만들어져 그 저장소에만 쓸 수 있는 임시 토큰으로, permissions 키로 권한 범위를 정하며 이 토큰이 일으킨 이벤트는 대부분 새 워크플로를 시작하지 않는다.",
+   "related": [
+    "ops.ci.environment-secrets",
+    "ops.ci.contexts-expressions"
+   ],
+   "aliases": [
+    "GITHUB_TOKEN",
+    "permissions 키",
+    "github.token",
+    "워크플로 권한",
+    "contents: write",
+    "packages: write"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/concepts/security/github_token",
+    "https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.docker.image-tag",
+   "title": "이미지 태그와 latest",
+   "en": "Image Tags and latest",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Docker",
+   "summary": "이미지 이름 끝 콜론 뒤에 붙는 버전 이름표로, 생략하면 latest가 붙고 한 이미지에 태그를 여럿 달 수 있다.",
+   "parent": "ops.docker.build-tag-push",
+   "aliases": [
+    "도커 이미지 태그",
+    "image tag",
+    "latest 태그",
+    "docker image tag",
+    "이미지 버전 태그",
+    "docker tag"
+   ],
+   "refs": [
+    "https://docs.docker.com/get-started/docker-concepts/building-images/build-tag-and-publish-an-image/"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.deploy.rolling-update",
    "title": "롤링 업데이트",
    "en": "Rolling Update",
@@ -21609,6 +22837,73 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-05",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.ci.workflow-dispatch",
+   "title": "수동 실행(workflow_dispatch)",
+   "en": "Manual Workflow Run (workflow_dispatch)",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "CI/CD",
+   "summary": "Actions 화면이나 API에서 사람이 버튼을 눌러 워크플로를 돌리는 이벤트로, 입력값을 받을 수 있고 파일이 기본 브랜치에 있어야 나타난다.",
+   "parent": "ops.ci.workflow-basics",
+   "aliases": [
+    "workflow_dispatch",
+    "수동 트리거",
+    "Run workflow 버튼",
+    "manual trigger"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.ci.status-check-functions",
+   "title": "상태 확인 함수(success·failure·always)",
+   "en": "Status Check Functions",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "CI/CD",
+   "summary": "if에 상태 함수가 없으면 success()가 붙으므로, 실패 알림은 failure()로, 취소를 존중하며 늘 돌릴 정리 스텝은 !cancelled()로 건다.",
+   "parent": "ops.ci.job-flow",
+   "aliases": [
+    "if: always()",
+    "failure()",
+    "!cancelled()",
+    "success()",
+    "상태 확인 함수"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/reference/workflows-and-actions/expressions"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.ci.concurrency",
+   "title": "동시 실행 그룹(concurrency)",
+   "en": "Workflow Concurrency Groups",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "CI/CD",
+   "summary": "같은 concurrency 그룹에서는 실행이 하나씩만 돌고, cancel-in-progress를 켜면 새 실행이 진행 중인 앞 실행을 취소한다.",
+   "related": [
+    "ops.ci.job-flow"
+   ],
+   "aliases": [
+    "cancel-in-progress",
+    "concurrency group",
+    "Actions 동시 실행 제한",
+    "중복 배포 막기"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency",
+    "https://docs.github.com/en/actions/concepts/workflows-and-actions/concurrency"
+   ],
    "domain": "ops"
   },
   {
@@ -22808,6 +24103,43 @@
    "domain": "ml"
   },
   {
+   "id": "ml.data.missing-values",
+   "title": "결측값 처리: 삭제·대체·결측 표시",
+   "en": "Handling Missing Values",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "AI 기초",
+   "summary": "값이 빠진 예를 지울지 평균·최빈값으로 채울지 고르고, 채운 자리를 따로 표시해 모델이 빈칸 때문에 망가지지 않게 하는 일이다.",
+   "objectives": [
+    "데이터에서 결측값이 있는 열과 비율을 찾아낼 수 있다",
+    "결측값이 있는 예를 지울지 채울지 상황에 맞게 고를 수 있다",
+    "SimpleImputer로 숫자 열은 평균·중앙값, 범주 열은 최빈값으로 채울 수 있다",
+    "대체 규칙을 학습 데이터로만 맞추고 테스트 데이터에는 적용만 해야 하는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.train-inference"
+   ],
+   "related": [
+    "ml.data.first-look",
+    "ml.data.outlier",
+    "ml.basics.data-quality",
+    "ml.data.numeric-categorical-preprocessing"
+   ],
+   "aliases": [
+    "결측값 처리",
+    "missing values",
+    "결측치",
+    "NaN 처리",
+    "빠진 값 처리"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/overfitting/data-characteristics",
+    "https://scikit-learn.org/stable/modules/impute.html"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.unsupervised.kmeans-clustering",
    "title": "K-평균 군집화: 정답 없는 데이터 무리 짓기",
    "en": "K-Means Clustering",
@@ -22917,6 +24249,74 @@
    "domain": "ml"
   },
   {
+   "id": "ml.supervised.sklearn-pipeline",
+   "title": "scikit-learn 파이프라인: 전처리와 모델 묶기",
+   "en": "scikit-learn Pipelines",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "결측값 대체·스케일링·인코딩과 모델을 Pipeline 하나로 이어 fit과 predict를 한 번에 부르고, 전처리가 테스트 데이터를 미리 보는 실수를 막는다.",
+   "objectives": [
+    "make_pipeline으로 전처리 단계와 모델을 한 객체로 이어 학습하고 예측할 수 있다",
+    "ColumnTransformer로 숫자 열과 범주 열에 서로 다른 전처리를 붙일 수 있다",
+    "'단계이름__파라미터' 형식으로 파이프라인 안 단계의 설정을 바꿀 수 있다",
+    "전처리를 전체 데이터에 먼저 맞추면 평가 점수가 부풀려지는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.supervised.sklearn-first-model",
+    "ml.data.numeric-categorical-preprocessing"
+   ],
+   "related": [
+    "ml.eval.data-splitting-cv",
+    "ml.data.training-serving-skew"
+   ],
+   "aliases": [
+    "사이킷런 파이프라인",
+    "sklearn Pipeline",
+    "make_pipeline",
+    "전처리 파이프라인",
+    "scikit-learn pipeline"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/compose.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.save-load-model",
+   "title": "PyTorch 모델 저장과 불러오기",
+   "en": "Saving and Loading PyTorch Models",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "학습한 신경망의 가중치를 파일로 저장했다가 다시 불러와 예측하거나, 체크포인트로 멈춘 학습을 이어 가는 방법이다.",
+   "objectives": [
+    "torch.save와 load_state_dict로 학습한 가중치를 저장하고 같은 구조의 모델에 다시 넣을 수 있다",
+    "state_dict만 저장하는 방식과 모델 전체를 저장하는 방식의 차이를 설명할 수 있다",
+    "에폭·옵티마이저 상태·손실을 담은 체크포인트로 중단한 학습을 이어 갈 수 있다",
+    "불러온 모델로 예측하기 전에 model.eval()을 불러야 하는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.nn.first-neural-network"
+   ],
+   "related": [
+    "llm.basics.model-checkpoint",
+    "mlops.finetune.adapter-save-load"
+   ],
+   "aliases": [
+    "torch.save",
+    "PyTorch 모델 저장",
+    "PyTorch 모델 불러오기",
+    "torch.load"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/tutorials/beginner/saving_loading_models.html"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.training.learning-rate",
    "title": "학습률",
    "en": "Learning Rate",
@@ -22971,6 +24371,47 @@
     "z-score scaling",
     "min-max 스케일링",
     "선형 스케일링"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.imputation",
+   "title": "결측값 대체(imputation)",
+   "en": "Imputation",
+   "kind": "term",
+   "level": 3,
+   "importance": 1,
+   "group": "AI 기초",
+   "summary": "빠진 값을 그 열의 평균·중앙값·최빈값이나 정한 상수로 채워 넣는 처리로, scikit-learn에서는 SimpleImputer가 대표다.",
+   "parent": "ml.data.missing-values",
+   "aliases": [
+    "결측값 대체",
+    "imputation",
+    "SimpleImputer",
+    "평균 대체",
+    "KNNImputer"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.eval-train-mode",
+   "title": "model.eval()과 model.train()",
+   "en": "Evaluation and Training Modes",
+   "kind": "term",
+   "level": 3,
+   "importance": 1,
+   "group": "딥러닝",
+   "summary": "드롭아웃·배치 정규화 층의 동작을 예측용과 학습용으로 바꾸는 PyTorch 모드 전환으로, 예측 전에 eval()을 빼먹으면 결과가 들쭉날쭉해진다.",
+   "parent": "ml.nn.save-load-model",
+   "related": [
+    "ml.nn.dropout"
+   ],
+   "aliases": [
+    "model.eval()",
+    "model.train()",
+    "평가 모드",
+    "eval mode",
+    "train mode"
    ],
    "domain": "ml"
   },
@@ -23173,6 +24614,128 @@
     "분류 기준값",
     "best_threshold_",
     "임계값 조정"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.missing-indicator",
+   "title": "결측 표시 특성",
+   "en": "Missing Indicator",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "원래 값이 비어 있었는지를 0과 1로 적은 열을 따로 만들어, 채운 값과 진짜 값을 모델이 구분할 수 있게 하는 특성이다.",
+   "parent": "ml.data.missing-values",
+   "aliases": [
+    "missing indicator",
+    "MissingIndicator",
+    "add_indicator",
+    "결측 플래그",
+    "is_imputed 열"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.column-transformer",
+   "title": "ColumnTransformer(열별 전처리)",
+   "en": "ColumnTransformer",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "표의 열마다 다른 전처리를 붙이는 scikit-learn 도구로, 지정하지 않은 열은 기본으로 버리고 remainder로 그대로 넘길 수 있다.",
+   "parent": "ml.supervised.sklearn-pipeline",
+   "aliases": [
+    "ColumnTransformer",
+    "make_column_transformer",
+    "열별 전처리",
+    "make_column_selector"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.state-dict",
+   "title": "state_dict",
+   "en": "state_dict",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "PyTorch 모델의 층 이름마다 학습된 가중치 텐서를 짝지어 둔 파이썬 딕셔너리로, 저장과 복원의 기본 단위다.",
+   "parent": "ml.nn.save-load-model",
+   "aliases": [
+    "state_dict",
+    "load_state_dict",
+    "모델 상태 딕셔너리",
+    "optimizer state_dict"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.training-checkpoint",
+   "title": "학습 체크포인트",
+   "en": "Training Checkpoint",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "현재 에폭, 모델과 옵티마이저의 state_dict, 마지막 손실을 한 파일에 묶어 두어 멈춘 학습을 그 자리에서 다시 시작하게 하는 저장본이다.",
+   "parent": "ml.nn.save-load-model",
+   "related": [
+    "llm.basics.model-checkpoint"
+   ],
+   "aliases": [
+    "학습 체크포인트",
+    "training checkpoint",
+    "학습 재개",
+    "resume training"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.log-scaling",
+   "title": "로그 스케일링",
+   "en": "Log Scaling",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "판매량처럼 소수 값이 아주 크고 꼬리가 긴 숫자 특성에 로그를 씌워 범위를 좁히는 변환이다.",
+   "related": [
+    "ml.data.feature-normalization"
+   ],
+   "aliases": [
+    "로그 변환",
+    "log transform",
+    "log scaling",
+    "log1p"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/numerical-data/normalization"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.clipping",
+   "title": "특성 클리핑",
+   "en": "Feature Clipping",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "정한 최댓값이나 최솟값을 넘는 값을 그 경계값으로 잘라 극단적인 이상치가 학습을 휘두르지 못하게 하는 처리다.",
+   "related": [
+    "ml.data.outlier",
+    "ml.data.feature-normalization"
+   ],
+   "aliases": [
+    "특성 클리핑",
+    "feature clipping",
+    "이상치 클리핑"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/numerical-data/normalization"
    ],
    "domain": "ml"
   },

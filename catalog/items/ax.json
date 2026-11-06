@@ -722,6 +722,113 @@
     "checked_at": "2026-11-06"
   },
   {
+    "id": "ax.coding.plugins",
+    "title": "플러그인으로 스킬·훅·MCP 묶어 나누기",
+    "en": "Packaging Claude Code Plugins",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "흩어진 스킬·하위 에이전트·훅·MCP 설정을 한 폴더와 매니페스트로 묶어 여러 프로젝트와 동료에게 설치하게 하는 방법이다.",
+    "objectives": [
+      "독립 설정과 플러그인 중 무엇이 맞는지 공유 범위를 보고 고를 수 있다",
+      "plugin.json과 skills·hooks 폴더를 알맞은 자리에 두어 플러그인을 만들고 --plugin-dir로 시험할 수 있다",
+      "기존 .claude 폴더의 스킬과 훅을 플러그인으로 옮기고 이름 앞에 붙는 접두사와 훅 중복 실행을 확인할 수 있다",
+      "설치 전에 플러그인의 훅·MCP·bin 내용을 읽어 믿을 만한지 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.skills",
+      "ax.coding.mcp-servers"
+    ],
+    "related": [
+      "ax.coding.skills",
+      "ax.coding.mcp-scope"
+    ],
+    "aliases": [
+      "Claude Code 플러그인",
+      "Claude Code plugin",
+      "/plugin 명령",
+      "claude plugin install",
+      "/reload-plugins"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/plugins",
+      "https://code.claude.com/docs/en/plugins/create",
+      "https://code.claude.com/docs/en/plugins/security"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.coding.devcontainer",
+    "title": "개발 컨테이너에서 코딩 에이전트 돌리기",
+    "en": "Running a Coding Agent in a Dev Container",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "에이전트가 실행하는 명령을 호스트가 아닌 dev container 안에 가두고, 인증 유지·정책·나가는 통신 제한을 설정해 쓰는 방법이다.",
+    "objectives": [
+      "devcontainer.json에 Claude Code 기능을 넣고 컨테이너를 다시 빌드해 에이전트를 실행할 수 있다",
+      "볼륨과 CLAUDE_CONFIG_DIR로 다시 빌드해도 로그인과 설정이 남게 할 수 있다",
+      "권한 확인을 끄고 돌릴 때 컨테이너가 막아 주지 못하는 것(작업 폴더 수정, 컨테이너 안 자격 증명 유출)을 설명할 수 있다",
+      "호스트의 ~/.ssh나 클라우드 자격 증명을 마운트하지 않고 짧은 토큰으로 바꿀 수 있다"
+    ],
+    "prerequisites": [
+      "ops.docker.first-container",
+      "ax.coding.permission-rules"
+    ],
+    "related": [
+      "ax.coding.agent-sandbox",
+      "ax.coding.permission-mode"
+    ],
+    "aliases": [
+      "dev container",
+      "devcontainer.json",
+      "개발 컨테이너",
+      "Claude Code 컨테이너",
+      "Codespaces Claude Code"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/devcontainer"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.governance.genai-profile",
+    "title": "생성형 AI 위험 목록으로 기능 점검하기",
+    "en": "Using the NIST Generative AI Profile",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "NIST AI 600-1이 정리한 생성형 AI의 위험 12가지를 체크리스트로 삼아 만들려는 AI 기능에 해당하는 위험과 대응을 고르는 방법이다.",
+    "objectives": [
+      "생성형 AI 위험 12가지 이름을 보고 내 기능에 해당하는 것을 골라낼 수 있다",
+      "고른 위험마다 AI RMF 네 기능(Govern·Map·Measure·Manage)의 권장 조치를 찾아 연결할 수 있다",
+      "배포 전 시험·콘텐츠 출처·사고 공개처럼 생성형 AI에서 특히 챙길 일을 기능 계획에 넣을 수 있다"
+    ],
+    "prerequisites": [
+      "ax.governance.trustworthy-ai"
+    ],
+    "related": [
+      "ax.governance.rmf-core-functions",
+      "ax.governance.ai-act-risk-levels"
+    ],
+    "aliases": [
+      "NIST AI 600-1",
+      "생성형 AI 프로파일",
+      "Generative AI Profile",
+      "GAI 프로파일",
+      "생성형 AI 위험 12가지"
+    ],
+    "refs": [
+      "https://www.nist.gov/itl/ai-risk-management-framework",
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
     "id": "ax.coding.slash-command",
     "title": "슬래시 명령(/이름)",
     "en": "Slash Command",
@@ -1114,6 +1221,68 @@
     "checked_at": "2026-11-06"
   },
   {
+    "id": "ax.coding.plugin-manifest",
+    "title": "플러그인 매니페스트(plugin.json)",
+    "en": "Plugin Manifest (plugin.json)",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": ".claude-plugin/plugin.json에 둔 파일로, 플러그인 이름을 정해 그 안의 스킬과 에이전트 이름 앞 접두사가 되게 하며, 없으면 폴더 이름이 플러그인 이름이 된다.",
+    "parent": "ax.coding.plugins",
+    "aliases": [
+      "plugin.json",
+      ".claude-plugin/plugin.json",
+      "Claude Code 플러그인 manifest",
+      "플러그인 접두사"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/plugins/create"
+    ]
+  },
+  {
+    "id": "ax.coding.plugin-marketplace",
+    "title": "플러그인 마켓플레이스(marketplace.json)",
+    "en": "Plugin Marketplace",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "플러그인 목록과 각 플러그인을 가져올 위치를 적은 카탈로그 저장소로, 한 번 추가하면 이름@마켓플레이스 형식으로 설치한다.",
+    "parent": "ax.coding.plugins",
+    "aliases": [
+      "marketplace.json",
+      "claude plugin marketplace add",
+      "/plugin marketplace add",
+      "claude-plugins-official"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/plugins/create-marketplace",
+      "https://code.claude.com/docs/en/plugins/security"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.governance.ai-red-teaming",
+    "title": "AI 레드팀",
+    "en": "AI Red-Teaming",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "통제된 환경에서 공격자처럼 모델과 AI 기능을 시험해 안전장치가 뚫리는 입력과 해로운 출력을 배포 전에 찾는 활동이다.",
+    "parent": "ax.governance.genai-profile",
+    "aliases": [
+      "AI red teaming",
+      "AI 레드티밍",
+      "LLM 레드티밍"
+    ],
+    "refs": [
+      "https://doi.org/10.6028/NIST.AI.600-1"
+    ]
+  },
+  {
     "id": "ax.governance.gpai-model",
     "title": "범용 AI 모델(GPAI)",
     "en": "General-Purpose AI Model",
@@ -1132,6 +1301,117 @@
     "refs": [
       "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-53",
       "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.coding.plugin-dir",
+    "title": "--plugin-dir로 플러그인 시험 로드",
+    "en": "Loading a Plugin with --plugin-dir",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "설치하지 않고 폴더나 zip을 그 세션에만 불러와 만들던 플러그인을 시험하는 실행 옵션이다.",
+    "parent": "ax.coding.plugins",
+    "aliases": [
+      "--plugin-dir",
+      "claude --plugin-dir",
+      "플러그인 로컬 테스트",
+      "CLAUDE_CODE_PLUGIN_DIRS"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/plugins/create"
+    ]
+  },
+  {
+    "id": "ax.coding.managed-settings",
+    "title": "관리형 설정(managed-settings.json)",
+    "en": "Managed Settings",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "조직이 배포해 사용자·프로젝트 설정보다 앞서 적용되는 Claude Code 설정 파일로, 권한 우회 금지 같은 정책을 강제한다.",
+    "related": [
+      "ax.coding.settings-file",
+      "ax.coding.devcontainer"
+    ],
+    "aliases": [
+      "managed-settings.json",
+      "managed settings"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/devcontainer",
+      "https://code.claude.com/docs/en/settings"
+    ]
+  },
+  {
+    "id": "ax.coding.devcontainer-egress-firewall",
+    "title": "컨테이너 나가는 통신 제한(init-firewall.sh)",
+    "en": "Dev Container Egress Firewall",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "참조 dev container의 스크립트로, 허용한 목적지 말고는 컨테이너 밖으로 나가는 통신을 막아 우회된 세션이 닿을 곳을 줄인다.",
+    "parent": "ax.coding.devcontainer",
+    "related": [
+      "ax.coding.sandbox-proxy"
+    ],
+    "aliases": [
+      "init-firewall.sh",
+      "devcontainer 방화벽"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/devcontainer"
+    ]
+  },
+  {
+    "id": "ax.governance.ai-literacy",
+    "title": "AI 리터러시 의무(EU AI법 제4조)",
+    "en": "AI Literacy Obligation",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "AI 시스템을 만들거나 쓰는 조직이 그 시스템을 다루는 직원이 위험과 한계를 알도록 교육 같은 조치를 하게 한 EU AI법의 의무다.",
+    "related": [
+      "ax.governance.ai-act-risk-levels"
+    ],
+    "aliases": [
+      "AI Act Article 4",
+      "AI법 제4조",
+      "AI 리터러시 의무"
+    ],
+    "refs": [
+      "https://digital-strategy.ec.europa.eu/en/faqs/ai-literacy-questions-answers"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.coding.public-code-match",
+    "title": "공개 코드 일치 확인(코드 참조)",
+    "en": "Public Code Matching (Code Referencing)",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "AI 코딩 도구의 제안이 공개 저장소 코드와 같을 때 막거나 출처와 라이선스를 보여 주는 기능으로, 라이선스 문제를 미리 살피게 한다.",
+    "related": [
+      "ax.coding.review-ai-code"
+    ],
+    "aliases": [
+      "Copilot code referencing",
+      "public code filter",
+      "공개 코드 필터",
+      "Copilot 코드 참조",
+      "suggestions matching public code"
+    ],
+    "refs": [
+      "https://docs.github.com/en/copilot/concepts/completions/code-referencing"
     ],
     "volatile": true,
     "checked_at": "2026-11-06"

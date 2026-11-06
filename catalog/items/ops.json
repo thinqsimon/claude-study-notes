@@ -704,6 +704,141 @@
     ]
   },
   {
+    "id": "ops.ci.workflow-basics",
+    "title": "GitHub Actions 워크플로 작성 기초: 트리거·잡·스텝",
+    "en": "Writing GitHub Actions Workflows: Triggers, Jobs, and Steps",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "CI/CD",
+    "summary": "on으로 언제 돌지 정하고, 잡마다 러너를 고르고, 스텝에 run 명령과 액션을 차례로 적어 push마다 테스트하는 워크플로를 직접 만든다.",
+    "objectives": [
+      "on에 push·pull_request와 브랜치·경로 필터를 걸어 원하는 때만 워크플로가 돌게 할 수 있다",
+      "잡과 스텝을 나눠 쓰고 스텝에서 run 명령과 uses 액션을 섞어 테스트 워크플로를 완성할 수 있다",
+      "잡은 기본으로 동시에 돌고 스텝은 한 러너에서 순서대로 돈다는 차이를 설명할 수 있다",
+      "여러 이벤트 중 일부에만 필터를 달 때 생기는 문법 오류나 필터가 맞지 않아 워크플로가 시작되지 않는 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "ops.linux.shell-script-basics"
+    ],
+    "related": [
+      "ops.ci.github-actions-workflow"
+    ],
+    "aliases": [
+      "워크플로 YAML 작성",
+      "workflow syntax",
+      "jobs와 steps",
+      "GitHub Actions 입문",
+      "워크플로 문법"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/concepts/workflows-and-actions/workflows",
+      "https://docs.github.com/en/actions/get-started/understand-github-actions",
+      "https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow",
+      "https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax"
+    ]
+  },
+  {
+    "id": "ops.ci.job-flow",
+    "title": "잡 순서와 조건 실행: needs·if·출력 넘기기",
+    "en": "Job Ordering and Conditions: needs, if, and Outputs",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "CI/CD",
+    "summary": "needs로 잡 순서를 묶고, if로 조건이 맞을 때만 잡과 스텝을 돌리며, 앞 잡이 만든 값을 출력으로 다음 잡에 넘긴다.",
+    "objectives": [
+      "needs로 빌드 뒤에만 배포 잡이 돌도록 순서를 정할 수 있다",
+      "if와 상태 확인 함수로 특정 브랜치나 실패했을 때만 도는 잡을 만들 수 있다",
+      "스텝 출력을 잡 출력으로 올려 needs 컨텍스트로 다음 잡에서 읽을 수 있다",
+      "앞 잡이 실패하거나 건너뛰어 뒤 잡이 모두 skipped가 된 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "ops.ci.workflow-basics"
+    ],
+    "aliases": [
+      "잡 의존성 설정",
+      "job if 조건",
+      "Actions 잡 순서",
+      "조건부 잡 실행"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-jobs",
+      "https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-jobs-with-conditions",
+      "https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/pass-job-outputs"
+    ]
+  },
+  {
+    "id": "ops.ci.contexts-expressions",
+    "title": "컨텍스트와 표현식으로 워크플로 값 쓰기",
+    "en": "Using Contexts and Expressions in Workflows",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "CI/CD",
+    "summary": "${{ }} 안에서 github·vars·secrets·runner 같은 컨텍스트를 읽어 브랜치 이름이나 설정값을 워크플로에 넣고, 러너의 기본 환경 변수와 구분한다.",
+    "objectives": [
+      "${{ github.ref }}·${{ vars.NAME }}처럼 컨텍스트 값을 env와 조건식에 넣을 수 있다",
+      "잡이 러너에 가기 전에도 쓰는 컨텍스트와 러너 안에서만 있는 기본 환경 변수($GITHUB_REF)를 구분할 수 있다",
+      "이슈 제목 같은 신뢰할 수 없는 컨텍스트를 run 명령에 바로 넣지 않고 env로 넘겨 스크립트 주입을 피할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.ci.workflow-basics"
+    ],
+    "related": [
+      "ops.ci.environment-secrets"
+    ],
+    "aliases": [
+      "GitHub Actions 컨텍스트",
+      "github context",
+      "Actions 표현식",
+      "${{ }} 문법",
+      "github.ref",
+      "워크플로 변수"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/concepts/workflows-and-actions/contexts",
+      "https://docs.github.com/en/actions/concepts/workflows-and-actions/expressions",
+      "https://docs.github.com/en/actions/concepts/workflows-and-actions/variables",
+      "https://docs.github.com/en/actions/reference/workflows-and-actions/contexts"
+    ]
+  },
+  {
+    "id": "ops.docker.build-tag-push",
+    "title": "이미지 이름 붙이고 레지스트리에 올리기",
+    "en": "Building, Tagging, and Pushing Images",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "Docker",
+    "summary": "docker build -t로 레지스트리·저장소·태그가 담긴 이름을 붙이고, docker login 뒤 docker push로 Docker Hub나 GHCR에 올려 다른 서버가 받게 한다.",
+    "objectives": [
+      "이미지 이름을 호스트·네임스페이스·저장소·태그로 나눠 읽고 생략된 부분의 기본값을 말할 수 있다",
+      "docker build -t와 docker image tag로 같은 이미지에 이름을 여럿 붙일 수 있다",
+      "docker login 뒤 docker push로 이미지를 올리고 access denied 오류의 원인을 찾을 수 있다",
+      "GitHub Actions에서 GITHUB_TOKEN으로 GHCR에 로그인해 릴리스 브랜치나 release 이벤트에 이미지를 올리는 워크플로를 만들 수 있다"
+    ],
+    "prerequisites": [
+      "ops.docker.first-container",
+      "ops.ci.workflow-basics"
+    ],
+    "related": [
+      "ops.docker.dockerfile",
+      "ops.container.image-layers"
+    ],
+    "aliases": [
+      "docker push",
+      "이미지 푸시",
+      "컨테이너 레지스트리",
+      "GHCR",
+      "Docker Hub 업로드"
+    ],
+    "refs": [
+      "https://docs.docker.com/get-started/docker-concepts/building-images/build-tag-and-publish-an-image/",
+      "https://docs.github.com/en/actions/tutorials/publish-packages/publish-docker-images"
+    ]
+  },
+  {
     "id": "ops.docker.compose",
     "title": "Docker Compose",
     "en": "Docker Compose",
@@ -1003,6 +1138,140 @@
     ]
   },
   {
+    "id": "ops.ci.workflow-trigger",
+    "title": "워크플로 트리거와 필터(on)",
+    "en": "Workflow Triggers and Filters",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "CI/CD",
+    "summary": "on 키에 적은 이벤트와 branches·paths 같은 필터가 모두 맞을 때만 워크플로 실행이 생긴다.",
+    "parent": "ops.ci.workflow-basics",
+    "aliases": [
+      "on: push",
+      "paths 필터",
+      "branches 필터",
+      "paths-ignore",
+      "이벤트 트리거"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow",
+      "https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows"
+    ]
+  },
+  {
+    "id": "ops.ci.runner",
+    "title": "러너와 runs-on",
+    "en": "Runners and runs-on",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "CI/CD",
+    "summary": "runs-on에 적은 라벨로 잡을 돌릴 기계를 고르며, GitHub가 실행마다 새로 주는 호스트 러너와 직접 띄우는 자체 호스트 러너가 있다.",
+    "parent": "ops.ci.workflow-basics",
+    "aliases": [
+      "runs-on",
+      "ubuntu-latest",
+      "GitHub 호스트 러너",
+      "self-hosted runner",
+      "자체 호스트 러너"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/how-tos/write-workflows/choose-where-workflows-run/choose-the-runner-for-a-job"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ops.ci.job-needs",
+    "title": "잡 의존(needs)",
+    "en": "Job Dependencies (needs)",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "CI/CD",
+    "summary": "needs에 적은 잡이 성공해야 이 잡이 시작되며, 앞 잡이 실패하거나 건너뛰면 뒤에 이어진 잡도 모두 건너뛴다.",
+    "parent": "ops.ci.job-flow",
+    "aliases": [
+      "jobs.needs",
+      "needs 키워드",
+      "잡 의존 관계",
+      "dependent jobs"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-jobs"
+    ]
+  },
+  {
+    "id": "ops.ci.job-outputs",
+    "title": "잡 출력과 GITHUB_OUTPUT",
+    "en": "Job Outputs and GITHUB_OUTPUT",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "CI/CD",
+    "summary": "스텝이 $GITHUB_OUTPUT 파일에 이름=값을 쓰면 steps 컨텍스트로 읽히고, 잡의 outputs에 올리면 needs로 다음 잡이 받는다.",
+    "parent": "ops.ci.job-flow",
+    "aliases": [
+      "GITHUB_OUTPUT",
+      "steps outputs",
+      "jobs outputs",
+      "needs.outputs",
+      "스텝 출력"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/pass-job-outputs"
+    ]
+  },
+  {
+    "id": "ops.ci.github-token",
+    "title": "GITHUB_TOKEN과 permissions",
+    "en": "GITHUB_TOKEN and Workflow Permissions",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "CI/CD",
+    "summary": "잡마다 자동으로 만들어져 그 저장소에만 쓸 수 있는 임시 토큰으로, permissions 키로 권한 범위를 정하며 이 토큰이 일으킨 이벤트는 대부분 새 워크플로를 시작하지 않는다.",
+    "related": [
+      "ops.ci.environment-secrets",
+      "ops.ci.contexts-expressions"
+    ],
+    "aliases": [
+      "GITHUB_TOKEN",
+      "permissions 키",
+      "github.token",
+      "워크플로 권한",
+      "contents: write",
+      "packages: write"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/concepts/security/github_token",
+      "https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax"
+    ]
+  },
+  {
+    "id": "ops.docker.image-tag",
+    "title": "이미지 태그와 latest",
+    "en": "Image Tags and latest",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Docker",
+    "summary": "이미지 이름 끝 콜론 뒤에 붙는 버전 이름표로, 생략하면 latest가 붙고 한 이미지에 태그를 여럿 달 수 있다.",
+    "parent": "ops.docker.build-tag-push",
+    "aliases": [
+      "도커 이미지 태그",
+      "image tag",
+      "latest 태그",
+      "docker image tag",
+      "이미지 버전 태그",
+      "docker tag"
+    ],
+    "refs": [
+      "https://docs.docker.com/get-started/docker-concepts/building-images/build-tag-and-publish-an-image/"
+    ]
+  },
+  {
     "id": "ops.deploy.rolling-update",
     "title": "롤링 업데이트",
     "en": "Rolling Update",
@@ -1048,6 +1317,70 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-05"
+  },
+  {
+    "id": "ops.ci.workflow-dispatch",
+    "title": "수동 실행(workflow_dispatch)",
+    "en": "Manual Workflow Run (workflow_dispatch)",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "CI/CD",
+    "summary": "Actions 화면이나 API에서 사람이 버튼을 눌러 워크플로를 돌리는 이벤트로, 입력값을 받을 수 있고 파일이 기본 브랜치에 있어야 나타난다.",
+    "parent": "ops.ci.workflow-basics",
+    "aliases": [
+      "workflow_dispatch",
+      "수동 트리거",
+      "Run workflow 버튼",
+      "manual trigger"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow"
+    ]
+  },
+  {
+    "id": "ops.ci.status-check-functions",
+    "title": "상태 확인 함수(success·failure·always)",
+    "en": "Status Check Functions",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "CI/CD",
+    "summary": "if에 상태 함수가 없으면 success()가 붙으므로, 실패 알림은 failure()로, 취소를 존중하며 늘 돌릴 정리 스텝은 !cancelled()로 건다.",
+    "parent": "ops.ci.job-flow",
+    "aliases": [
+      "if: always()",
+      "failure()",
+      "!cancelled()",
+      "success()",
+      "상태 확인 함수"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/reference/workflows-and-actions/expressions"
+    ]
+  },
+  {
+    "id": "ops.ci.concurrency",
+    "title": "동시 실행 그룹(concurrency)",
+    "en": "Workflow Concurrency Groups",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "CI/CD",
+    "summary": "같은 concurrency 그룹에서는 실행이 하나씩만 돌고, cancel-in-progress를 켜면 새 실행이 진행 중인 앞 실행을 취소한다.",
+    "related": [
+      "ops.ci.job-flow"
+    ],
+    "aliases": [
+      "cancel-in-progress",
+      "concurrency group",
+      "Actions 동시 실행 제한",
+      "중복 배포 막기"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency",
+      "https://docs.github.com/en/actions/concepts/workflows-and-actions/concurrency"
+    ]
   },
   {
     "id": "ops.observe.metrics",

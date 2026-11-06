@@ -707,6 +707,69 @@
     ]
   },
   {
+    "id": "fe.react.immutable-updates",
+    "title": "상태 속 객체와 배열을 새로 만들어 바꾸기",
+    "en": "Updating Objects and Arrays in State",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "React",
+    "summary": "상태에 든 객체와 배열은 직접 고치지 않고 복사본을 만들어 setter에 넘겨야 화면이 다시 그려진다.",
+    "objectives": [
+      "상태 객체를 직접 고쳤을 때 화면이 바뀌지 않는 이유를 설명할 수 있다",
+      "전개 구문으로 중첩된 객체의 한 칸만 바꾼 새 객체를 만들 수 있다",
+      "push·splice 대신 filter·map·전개 구문으로 배열 상태를 추가·삭제·교체할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.react.state-first"
+    ],
+    "related": [
+      "fe.react.reducer"
+    ],
+    "aliases": [
+      "상태 불변성",
+      "state immutability",
+      "상태 직접 수정",
+      "배열 상태 업데이트",
+      "객체 상태 업데이트"
+    ],
+    "refs": [
+      "https://react.dev/learn/updating-objects-in-state",
+      "https://react.dev/learn/updating-arrays-in-state"
+    ]
+  },
+  {
+    "id": "fe.js.modules",
+    "title": "JavaScript 모듈로 코드 나누기",
+    "en": "JavaScript Modules",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "JavaScript",
+    "summary": "export와 import로 코드를 파일 단위 모듈로 나누고, 각 모듈은 자기만의 범위를 가져 이름이 섞이지 않는다.",
+    "objectives": [
+      "export와 import로 다른 파일의 함수와 값을 가져다 쓸 수 있다",
+      "이름이 겹칠 때 as나 네임스페이스 import로 피할 수 있다",
+      "script type=\"module\"과 로컬 서버가 필요한 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.js.basics"
+    ],
+    "related": [
+      "be.python.modules-import"
+    ],
+    "aliases": [
+      "ES 모듈",
+      "ES modules",
+      "ESM",
+      "import export",
+      "type=\"module\""
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
+    ]
+  },
+  {
     "id": "fe.internals.render-and-commit",
     "title": "React 렌더링 과정: 트리거·렌더·커밋",
     "en": "React Rendering: Trigger, Render, Commit",
@@ -768,6 +831,67 @@
     ],
     "refs": [
       "https://react.dev/learn/extracting-state-logic-into-a-reducer"
+    ]
+  },
+  {
+    "id": "fe.react.refs",
+    "title": "useRef로 값 기억하고 DOM 다루기",
+    "en": "Refs with useRef",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "React",
+    "summary": "useRef는 다시 그리지 않고도 렌더 사이에 값을 기억하며, ref 속성으로 실제 DOM 노드를 잡아 포커스나 스크롤을 줄 수 있다.",
+    "objectives": [
+      "화면에 보이는 값은 state, 보이지 않는 값은 ref에 두도록 고를 수 있다",
+      "ref로 입력 칸에 포커스를 주거나 요소로 스크롤할 수 있다",
+      "렌더 중에 ref.current를 읽고 쓰는 실수를 피할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.react.state-first",
+      "fe.js.dom-events"
+    ],
+    "related": [
+      "fe.react.state-first"
+    ],
+    "aliases": [
+      "useRef",
+      "리액트 ref",
+      "React ref",
+      "ref.current"
+    ],
+    "refs": [
+      "https://react.dev/learn/referencing-values-with-refs",
+      "https://react.dev/learn/manipulating-the-dom-with-refs"
+    ]
+  },
+  {
+    "id": "fe.html.form-validation",
+    "title": "브라우저에서 폼 입력 검사하기",
+    "en": "Client-side Form Validation",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "HTML",
+    "summary": "required·pattern 같은 HTML 속성과 Constraint Validation API로 잘못된 입력을 제출 전에 막고 알맞은 오류 메시지를 보여 준다.",
+    "objectives": [
+      "HTML 속성만으로 필수·길이·형식 검사를 걸 수 있다",
+      ":invalid 같은 의사 클래스로 잘못된 칸을 표시할 수 있다",
+      "setCustomValidity로 직접 정한 오류 메시지를 보여 줄 수 있다",
+      "브라우저 검사만으로는 안전하지 않아 서버에서도 다시 검사해야 하는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.html.forms",
+      "fe.js.dom-events"
+    ],
+    "aliases": [
+      "폼 검증",
+      "form validation",
+      "클라이언트 검증",
+      "HTML5 validation"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation"
     ]
   },
   {
@@ -920,6 +1044,26 @@
     ],
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Handling_conflicts"
+    ]
+  },
+  {
+    "id": "fe.js.spread-syntax",
+    "title": "전개 구문(...)",
+    "en": "Spread Syntax",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "JavaScript",
+    "summary": "...으로 배열이나 객체의 내용을 펼쳐 새 배열·객체를 만들며, 복사는 한 단계 깊이까지만 이루어진다.",
+    "parent": "fe.react.immutable-updates",
+    "aliases": [
+      "스프레드 문법",
+      "spread operator",
+      "객체 전개",
+      "배열 전개"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax"
     ]
   },
   {
@@ -1085,6 +1229,158 @@
     ],
     "refs": [
       "https://www.typescriptlang.org/docs/handbook/2/objects.html#optional-properties"
+    ]
+  },
+  {
+    "id": "fe.js.named-default-export",
+    "title": "이름 있는 내보내기와 기본 내보내기",
+    "en": "Named and Default Exports",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "JavaScript",
+    "summary": "named export는 여러 개를 중괄호로 같은 이름으로 가져오고, default export는 모듈에 하나뿐이며 가져오는 쪽이 이름을 정한다.",
+    "parent": "fe.js.modules",
+    "aliases": [
+      "export default",
+      "named export",
+      "default export",
+      "기본 내보내기"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
+    ]
+  },
+  {
+    "id": "fe.react.dom-ref",
+    "title": "ref 속성으로 DOM 노드 잡기",
+    "en": "Accessing DOM Nodes with ref",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "React",
+    "summary": "JSX 요소에 ref를 넘기면 커밋 뒤 ref.current에 실제 DOM 노드가 들어와 focus나 scrollIntoView를 부를 수 있다.",
+    "parent": "fe.react.refs",
+    "aliases": [
+      "DOM ref",
+      "inputRef",
+      "ref 콜백",
+      "ref callback"
+    ],
+    "refs": [
+      "https://react.dev/learn/manipulating-the-dom-with-refs"
+    ]
+  },
+  {
+    "id": "fe.react.custom-hook",
+    "title": "커스텀 훅",
+    "en": "Custom Hooks",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "React",
+    "summary": "use로 시작하고 다른 훅을 부르는 함수로 상태 로직을 꺼내 여러 컴포넌트가 함께 쓰며, 상태 자체는 부를 때마다 따로 생긴다.",
+    "related": [
+      "fe.react.lifting-state",
+      "fe.react.use-effect"
+    ],
+    "aliases": [
+      "custom hook",
+      "사용자 정의 훅",
+      "훅 추출"
+    ],
+    "refs": [
+      "https://react.dev/learn/reusing-logic-with-custom-hooks"
+    ]
+  },
+  {
+    "id": "fe.css.position",
+    "title": "CSS position 속성",
+    "en": "CSS Positioning",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "CSS",
+    "summary": "relative·absolute·fixed·sticky로 요소를 일반 흐름에서 옮기며, absolute는 가장 가까운 위치 지정 조상을 기준으로 놓인다.",
+    "related": [
+      "fe.css.box-flex"
+    ],
+    "aliases": [
+      "position absolute",
+      "position sticky",
+      "position relative",
+      "z-index",
+      "CSS 포지셔닝"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Positioning"
+    ]
+  },
+  {
+    "id": "fe.ts.utility-types",
+    "title": "TypeScript 유틸리티 타입",
+    "en": "Utility Types",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "TypeScript",
+    "summary": "Partial·Pick·Omit·Record처럼 이미 있는 타입을 바꿔 새 타입을 만드는 TypeScript 내장 제네릭 타입이다.",
+    "prerequisites": [
+      "fe.ts.object-types"
+    ],
+    "related": [
+      "fe.ts.generics"
+    ],
+    "aliases": [
+      "Partial<T>",
+      "Pick<T, K>",
+      "Omit<T, K>",
+      "Record 타입",
+      "utility type"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/utility-types.html"
+    ]
+  },
+  {
+    "id": "fe.next.image-component",
+    "title": "Next.js Image 컴포넌트",
+    "en": "Next.js Image Component",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Next.js",
+    "summary": "next/image의 Image는 기기에 맞는 크기로 이미지를 줄이고 지연 로딩하며, 원격 이미지는 width·height와 remotePatterns 설정이 필요하다.",
+    "related": [
+      "fe.next.link-component"
+    ],
+    "aliases": [
+      "next/image",
+      "Next.js 이미지 최적화",
+      "remotePatterns"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/getting-started/images"
+    ]
+  },
+  {
+    "id": "fe.html.constraint-validation",
+    "title": "Constraint Validation API",
+    "en": "Constraint Validation API",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "HTML",
+    "summary": "폼 요소의 validity·checkValidity·setCustomValidity로 JavaScript에서 입력이 올바른지 읽고 직접 오류를 정한다.",
+    "parent": "fe.html.form-validation",
+    "aliases": [
+      "setCustomValidity",
+      "checkValidity",
+      "reportValidity",
+      "ValidityState"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation"
     ]
   },
   {
