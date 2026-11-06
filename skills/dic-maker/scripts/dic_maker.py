@@ -12,7 +12,11 @@ python3 -I <스킬>/scripts/dic_maker.py check [--links] [--level N]  초안 검
 파일 잠금과 임시 파일 교체로 지킨다. 다른 단계가 아직 쓰는 중인(깨진) 초안은 --level 검사에서 건너뛴다.
 python3 -I <스킬>/scripts/dic_maker.py alias-audit [--all | --draft] 별칭이 실제 대화에서 얼마나 흔한지 잰다
 python3 -I <스킬>/scripts/dic_maker.py review-sheet                 사람이 볼 검토 표(md)를 만든다
-python3 -I <스킬>/scripts/dic_maker.py apply --note "변경 설명"     초안을 사전에 넣고 버전을 올린다
+python3 -I <스킬>/scripts/dic_maker.py apply [--auto] --note "변경 설명"  초안을 사전에 넣고 버전을 올린다. --auto는 검토 판정 파일로 걸러 사람 승인 없이 넣는다
+python3 -I <스킬>/scripts/dic_maker.py campaign --level N --total 240 [--round 60] [--over-target]  60개 회차를 이어 돌리는 캠페인을 열고 1회차를 계획한다
+
+캠페인은 사람 승인 대신 자동 문(review-verdicts.json)을 쓴다. 회차마다 apply --auto가 사전에 넣고 campaign.json에 기록하며, 다음 회차는 start가 캠페인 값으로 계획한다.
+목표 수에 닿거나, 단계 목표치에 닿거나, 두 회차 연속 산출이 몫의 절반 미만이면 멈춘다.
 python3 -I <스킬>/scripts/dic_maker.py refresh [--days 90] [--links] 빨리 바뀌는 항목과 죽은 링크를 찾는다
 python3 -I <스킬>/scripts/dic_maker.py mark-checked --ids <id>...   확인 날짜를 오늘로 바꾼다
 python3 -I <스킬>/scripts/dic_maker.py status | cancel
@@ -49,7 +53,18 @@ LINKS_FILE = "links.json"
 CORPUS_DIR = "corpus"
 CORPUS_INDEX = "corpus_index.json"
 REVIEW_FILE = "review.md"
+# 검토 에이전트가 쓰는 파일. 판정(JSON)은 자동 모드의 문이 읽는다.
+FINDINGS_PREFIX = "review-findings"
+VERDICTS_FILE = "review-verdicts.json"
 HISTORY_DIR = "history"
+# 캠페인(auto): 60개 회차를 사람 승인 없이 이어 돌린다. 회차 기록은 campaign.json, 뺀 항목은 campaign-dropped.json, 회차별 검토표는 campaign/ 폴더.
+CAMPAIGN_FILE = "campaign.json"
+CAMPAIGN_DIR = "campaign"
+DROPPED_FILE = "campaign-dropped.json"
+MAX_TOTAL = 1000
+# 두 회차 연속 산출이 몫의 절반 미만이면 좋은 항목이 고갈된 것으로 보고 멈춘다.
+LOW_YIELD_SHARE = 0.5
+LOW_YIELD_ROUNDS = 2
 DEFAULT_COUNT = 30
 MAX_COUNT = 60
 MAX_DOMAINS_PER_RUN = 5
@@ -343,6 +358,65 @@ def clear_drafts(repo: Repo) -> None:
             sub.rmdir()
 
 
+# ---------- 캠페인 (auto) ----------
+
+def read_campaign(repo: Repo) -> dict | None:
+    """진행 중인 캠페인. 끝났거나 취소된 기록은 None."""
+    campaign = repo.read_json(CAMPAIGN_FILE, None)
+    return campaign if campaign and campaign.get("status") == "running" else None
+
+
+def campaign_brief(campaign: dict, round_no: int | None = None) -> dict:
+    rounds = len(campaign["rounds"])
+    total, done, size = campaign["total"], campaign["done"], campaign["round_size"]
+    return {"level": campaign["level"], "total": total, "done": done, "remaining": max(0, total - done),
+            "round": round_no if round_no is not None else rounds, "rounds_done": rounds,
+            "rounds_planned": rounds + -(-max(0, total - done) // size), "status": campaign["status"],
+            "stop_reason": campaign.get("stop_reason")}
+
+
+def campaign_stop_reason(campaign: dict, catalog: dict) -> str | None:
+    """캠페인을 더 돌리지 말아야 할 이유. 없으면 None. 목표 수, 단계 목표치, 연속 저산출 순으로 본다."""
+    if campaign["done"] >= campaign["total"]:
+        return f"목표 {campaign['total']}개에 도달했다"
+    row = next((r for r in level_rows(catalog) if r["level"] == campaign["level"]), None)
+    if row and row["filled"] >= 1.0 and not campaign.get("over_target"):
+        return (f"{campaign['level']}단계가 목표치(주제 {row['topic_target']}개·용어 {row['term_target']}개)에 도달했다. "
+                "넘기려면 campaign --over-target")
+    recent = campaign["rounds"][-LOW_YIELD_ROUNDS:]
+    if len(recent) >= LOW_YIELD_ROUNDS and all(r["applied"] < r["planned"] * LOW_YIELD_SHARE for r in recent):
+        return f"{LOW_YIELD_ROUNDS}회차 연속 산출이 몫의 절반 미만이다. 좋은 항목이 고갈된 신호"
+    return None
+
+
+def finish_campaign(repo: Repo, campaign: dict, reason: str, status: str = "finished") -> None:
+    campaign.update({"status": status, "stop_reason": reason, "finished": today()})
+    repo.write_json(CAMPAIGN_FILE, campaign)
+
+
+def cmd_campaign(repo: Repo, args) -> int:
+    """캠페인을 열고 1회차를 계획한다. 이후 회차는 apply --auto 뒤에 start가 캠페인 값으로 연다."""
+    if read_campaign(repo):
+        raise SystemExit("진행 중인 캠페인이 있습니다. 이어 하려면 status를, 닫으려면 cancel을 쓰세요.")
+    if repo.read_json(RUN_FILE, None):
+        raise SystemExit("진행 중인 실행이 있습니다. 끝내거나 cancel로 버린 뒤 캠페인을 여세요.")
+    catalog = repo.catalog()
+    if args.level not in {l["level"] for l in catalog["levels"]}:
+        raise SystemExit(f"단계는 1~{len(catalog['levels'])} 중 하나입니다: {args.level}")
+    if not 1 <= args.total <= MAX_TOTAL:
+        raise SystemExit(f"목표 수는 1~{MAX_TOTAL}개입니다: {args.total}")
+    if not 1 <= args.round <= MAX_COUNT:
+        raise SystemExit(f"회차 크기는 1~{MAX_COUNT}개입니다: {args.round}")
+    campaign = {"started": today(), "status": "running", "level": args.level, "total": args.total, "round_size": args.round,
+                "over_target": bool(args.over_target), "done": 0, "rounds": [], "base_version": catalog["version"],
+                "stop_reason": None}
+    reason = campaign_stop_reason(campaign, catalog)
+    if reason:
+        raise SystemExit(f"캠페인을 열 수 없습니다: {reason}")
+    repo.write_json(CAMPAIGN_FILE, campaign)
+    return cmd_start(repo, argparse.Namespace(level=None, count=None, box=False, all=False, force=False))
+
+
 def cmd_start(repo: Repo, args) -> int:
     run = repo.read_json(RUN_FILE, None)
     if run and not args.force:
@@ -351,6 +425,22 @@ def cmd_start(repo: Repo, args) -> int:
         raise SystemExit("--all은 --box, --level과 함께 쓸 수 없습니다.")
     catalog = repo.catalog()
     count = min(args.count or DEFAULT_COUNT, MAX_COUNT)
+    campaign = read_campaign(repo)
+    round_no = None
+    if campaign and (args.all or args.box):
+        raise SystemExit(f"캠페인({campaign['level']}단계 {campaign['total']}개)이 진행 중이라 --all, --box를 쓸 수 없습니다. 먼저 cancel로 캠페인을 닫으세요.")
+    if campaign:
+        # 캠페인의 다음 회차. 단계와 개수는 캠페인이 정하고, 멈출 이유가 있으면 회차를 열지 않고 캠페인을 닫는다.
+        if args.level and args.level != campaign["level"]:
+            raise SystemExit(f"캠페인은 {campaign['level']}단계입니다. 다른 단계를 늘리려면 먼저 cancel로 캠페인을 닫으세요.")
+        reason = campaign_stop_reason(campaign, catalog)
+        if reason:
+            finish_campaign(repo, campaign, reason)
+            print(json.dumps({"campaign_finished": True, "stop_reason": reason, "campaign": campaign}, ensure_ascii=False, indent=2))
+            return 0
+        args.level = campaign["level"]
+        count = min(campaign["round_size"], campaign["total"] - campaign["done"])
+        round_no = len(campaign["rounds"]) + 1
     box = [b for b in box_covered(catalog, read_box()) if not b["covered_by"]]
     extra: dict = {}
     if args.box:
@@ -375,6 +465,9 @@ def cmd_start(repo: Repo, args) -> int:
         run = {"started": today(), "mode": "level", "level": level_no, "count": count, "topics": plan["topics"], "terms": plan["terms"],
                "quotas": plan["quotas"], "box": [b["name"] for b in box], "status": "drafting"}
         extra = {key: plan[key] for key in ("draft_files", "level_info", "ladder_gaps", "domains")}
+        if campaign:
+            run.update({"round": round_no, "auto": True})
+            extra["campaign"] = campaign_brief(campaign, round_no)
     (repo.work / DRAFT_DIR).mkdir(parents=True, exist_ok=True)
     clear_drafts(repo)
     if run["mode"] == "all":
@@ -768,7 +861,17 @@ def sheet_lines(repo: Repo, catalog: dict, heading: str, drafts: list[dict], err
 
 
 def review_files(repo: Repo) -> list[Path]:
-    return sorted(repo.work.glob("review*.md")) if repo.work.exists() else []
+    """검토표(review.md, review_<단계>.md). 검토 에이전트의 결과 파일(review-findings*.md)은 아니다."""
+    return sorted(p for p in repo.work.glob("review*.md") if not p.name.startswith(FINDINGS_PREFIX)) if repo.work.exists() else []
+
+
+def findings_files(repo: Repo) -> list[Path]:
+    """검토 에이전트가 쓴 결과 파일과 판정 파일."""
+    if not repo.work.exists():
+        return []
+    files = sorted(repo.work.glob(f"{FINDINGS_PREFIX}*.md"))
+    verdicts = repo.work / VERDICTS_FILE
+    return files + ([verdicts] if verdicts.exists() else [])
 
 
 def cmd_review_sheet(repo: Repo, args) -> int:
@@ -818,14 +921,153 @@ def bump_version(version: str) -> str:
     return f"{major}.{int(minor) + 1}.0"
 
 
+def remove_from_drafts(repo: Repo, ids: set[str]) -> None:
+    """초안 파일에서 그 id들을 지운다. 비는 파일은 없앤다."""
+    for path in repo.draft_files():
+        group = json.loads(path.read_text(encoding="utf-8"))
+        kept = [i for i in group if i.get("id") not in ids]
+        if len(kept) == len(group):
+            continue
+        if kept:
+            atomic_write(path, json.dumps(kept, ensure_ascii=False, indent=2) + "\n")
+        else:
+            path.unlink()
+
+
+def dropped_entry(item: dict, reason: str) -> dict:
+    return {"id": item.get("id"), "kind": item.get("kind"), "level": item.get("level"), "title": item.get("title"),
+            "basis": item.get("basis", ""), "refs": item.get("refs") or [], "reason": reason}
+
+
+def cascade_drop(drafts: list[dict], dropped: list[dict]) -> tuple[list[dict], list[dict]]:
+    """빠진 항목에 딸린 초안(부모나 선수가 빠진 것)도 뺀다. 빠진 뒤에 또 딸린 것이 생기면 반복한다."""
+    keep = list(drafts)
+    changed = True
+    while changed:
+        changed = False
+        gone = {d["id"] for d in dropped}
+        for item in list(keep):
+            needs = [item.get("parent")] + list(item.get("prerequisites") or [])
+            missing = next((n for n in needs if n and n in gone), None)
+            if missing:
+                keep.remove(item)
+                dropped.append(dropped_entry(item, f"딸린 항목 {missing}이(가) 빠졌다"))
+                changed = True
+    return keep, dropped
+
+
+def auto_gate(repo: Repo, drafts: list[dict]) -> tuple[list[dict], list[dict]]:
+    """자동 모드의 문. 검토가 '유지'로 판정했고 자료를 열어 확인한 항목만 남긴다.
+
+    판정이 없거나(검토가 건너뜀), 삭제이거나, 수정 요청이 해결되지 않았거나, 자료를 확인하지 못한 항목은 뺀다.
+    사람 모드에서는 사람이 판단하던 것을 기준으로 바꾼 것이라, 의심스러우면 넣지 않는 쪽이다.
+    """
+    verdicts = repo.read_json(VERDICTS_FILE, None)
+    if not isinstance(verdicts, dict):
+        raise SystemExit(f"{VERDICTS_FILE}이 없거나 객체가 아닙니다. 자동 적용은 검토 에이전트의 판정 파일이 있어야 합니다.")
+    keep, dropped = [], []
+    for item in drafts:
+        verdict = verdicts.get(item.get("id"))
+        note = (verdict or {}).get("note") or ""
+        if not isinstance(verdict, dict):
+            reason = "검토 판정이 없다"
+        elif verdict.get("verdict") == "drop":
+            reason = f"검토가 삭제로 판정했다: {note}".rstrip(": ")
+        elif verdict.get("verdict") == "fix":
+            reason = f"수정 요청이 해결되지 않았다: {note}".rstrip(": ")
+        elif verdict.get("verdict") != "keep":
+            reason = f"알 수 없는 판정이다: {verdict.get('verdict')}"
+        elif not verdict.get("verified"):
+            reason = "검토가 자료를 열어 확인하지 못했다"
+        else:
+            keep.append(item)
+            continue
+        dropped.append(dropped_entry(item, reason))
+    return cascade_drop(keep, dropped)
+
+
+def drop_erroneous(repo: Repo, dropped: list[dict], rounds: int = 3) -> dict:
+    """자동 모드에서 검사 오류가 남으면 그 오류에 이름이 든 초안을 뺀다. 빼서 생기는 오류(딸린 항목)까지 몇 번 반복한다."""
+    report = run_checks(repo, with_links=True)
+    for _ in range(rounds):
+        if not report["errors"]:
+            break
+        drafts = repo.drafts()
+        hit = [i for i in drafts if any(str(i.get("id")) in e for e in report["errors"])]
+        if not hit:
+            break
+        gone = [dropped_entry(i, "검사 오류: " + next(e for e in report["errors"] if str(i.get("id")) in e)) for i in hit]
+        _, gone = cascade_drop([i for i in drafts if i not in hit], gone)
+        dropped += gone
+        remove_from_drafts(repo, {d["id"] for d in gone})
+        report = run_checks(repo, with_links=True)
+    return report
+
+
+def record_dropped(repo: Repo, run: dict, dropped: list[dict]) -> None:
+    if not dropped:
+        return
+    log = repo.read_json(DROPPED_FILE, [])
+    log += [{"date": today(), "round": run.get("round"), "level": run.get("level"), **d} for d in dropped]
+    repo.write_json(DROPPED_FILE, log)
+
+
+def archive_round(repo: Repo, round_no: int | None) -> None:
+    """회차의 검토표·검토 결과·판정을 campaign/ 폴더로 옮겨 사람이 나중에 볼 수 있게 한다."""
+    folder = repo.work / CAMPAIGN_DIR
+    folder.mkdir(parents=True, exist_ok=True)
+    tag = f"round_{round_no}" if round_no else today()
+    for path in review_files(repo) + findings_files(repo):
+        path.replace(folder / f"{tag}_{path.name}")
+
+
 def cmd_apply(repo: Repo, args) -> int:
     drafts = repo.drafts()
     if not drafts:
         raise SystemExit("초안이 없습니다.")
-    report = run_checks(repo, with_links=True)
+    run = repo.read_json(RUN_FILE, {}) or {}
+    campaign = read_campaign(repo) if args.auto else None
+    dropped: list[dict] = []
+    if args.auto:
+        kept, dropped = auto_gate(repo, drafts)
+        remove_from_drafts(repo, {d["id"] for d in dropped})
+        report = drop_erroneous(repo, dropped) if kept else {"errors": []}
+        drafts = repo.drafts()
+    else:
+        report = run_checks(repo, with_links=True)
     if report["errors"]:
         print(json.dumps(report, ensure_ascii=False, indent=1))
         raise SystemExit("검사 오류가 있어 적용하지 않습니다.")
+    record_dropped(repo, run, dropped)
+    if drafts:
+        result = apply_drafts(repo, drafts, run, args.note)
+    else:
+        version = repo.catalog()["version"]
+        result = {"version": version, "previous": version, "added": {}, "topics": 0, "terms": 0, "box_covered": [],
+                  "note": "남은 항목이 없어 사전을 바꾸지 않았다"}
+    result["dropped"] = dropped
+    if args.auto:
+        archive_round(repo, run.get("round"))
+    clear_drafts(repo)
+    (repo.work / RUN_FILE).unlink(missing_ok=True)
+    if campaign:
+        campaign["rounds"].append({"round": run.get("round") or len(campaign["rounds"]) + 1, "date": today(), "version": result["version"],
+                                   "planned": run.get("count") or len(drafts) + len(dropped), "applied": len(drafts), "dropped": len(dropped)})
+        campaign["done"] += len(drafts)
+        reason = campaign_stop_reason(campaign, repo.catalog())
+        if reason:
+            finish_campaign(repo, campaign, reason)
+        else:
+            repo.write_json(CAMPAIGN_FILE, campaign)
+        result["campaign"] = {**campaign_brief(campaign), "next": "stop" if reason else "continue"}
+    result["next"] = ("python3 -I -m unittest discover -s tests 로 테스트한 뒤 커밋한다. " +
+                      ("캠페인이면 start로 다음 회차를 연다. 푸시는 캠페인이 끝날 때 사용자에게 묻는다." if args.auto else "푸시는 사용자에게 묻는다."))
+    print(json.dumps(result, ensure_ascii=False, indent=1))
+    return 0
+
+
+def apply_drafts(repo: Repo, drafts: list[dict], run: dict, note: str | None) -> dict:
+    """검사를 통과한 초안을 사전에 넣고 버전·변경 내역·빌드·기록을 처리한다. 초안과 실행 기록은 부른 쪽이 지운다."""
     catalog = repo.catalog()
     items_dir = repo.catalog_root / "items"
     added: dict[str, list[str]] = defaultdict(list)
@@ -849,12 +1091,11 @@ def cmd_apply(repo: Repo, args) -> int:
     changelog = repo.catalog_root / "CHANGELOG.md"
     topics = sum(1 for i in drafts if i.get("kind") == "topic")
     terms = len(drafts) - topics
-    run = repo.read_json(RUN_FILE, {}) or {}
     if run.get("mode") == "all":
         per_level = ", ".join(f"{k}단계 {sum(1 for i in drafts if i.get('_slot') == int(k))}개" for k in run["levels"])
-        note = args.note or f"dic-maker로 모든 단계에 주제 {topics}개, 용어 {terms}개를 더했다({per_level})."
+        note = note or f"dic-maker로 모든 단계에 주제 {topics}개, 용어 {terms}개를 더했다({per_level})."
     else:
-        note = args.note or f"dic-maker로 주제 {topics}개, 용어 {terms}개를 더했다."
+        note = note or f"dic-maker로 주제 {topics}개, 용어 {terms}개를 더했다."
     head, sep, rest = changelog.read_text(encoding="utf-8").partition("\n## ")
     changelog.write_text(f"{head}\n## {new_version}\n\n- {note}\n- 분야별: " +
                          ", ".join(f"{d} {len(ids)}개" for d, ids in added.items()) + f"\n{sep}{rest}", encoding="utf-8")
@@ -869,14 +1110,9 @@ def cmd_apply(repo: Repo, args) -> int:
     (history / f"{today()}_{new_version}.json").write_text(
         json.dumps({"run": run, "added": added, "items": [strip_draft_fields(i) for i in drafts]}, ensure_ascii=False, indent=1) + "\n",
         encoding="utf-8")
-    clear_drafts(repo)
-    (repo.work / RUN_FILE).unlink(missing_ok=True)
     covered = [b for b in box_covered(fresh, read_box()) if b["covered_by"] and b["covered_by"] in {i for ids in added.values() for i in ids}]
-    print(json.dumps({"version": new_version, "previous": old_version, "added": added, "topics": topics, "terms": terms,
-                      "box_covered": [b["name"] for b in covered],
-                      "next": "python3 -I -m unittest discover -s tests 로 테스트한 뒤 커밋한다. 푸시는 사용자에게 묻는다."},
-                     ensure_ascii=False, indent=1))
-    return 0
+    return {"version": new_version, "previous": old_version, "added": added, "topics": topics, "terms": terms,
+            "box_covered": [b["name"] for b in covered]}
 
 
 # ---------- 갱신 ----------
@@ -946,6 +1182,7 @@ def cmd_status(repo: Repo, args) -> int:
         "review": str(repo.work / REVIEW_FILE) if (repo.work / REVIEW_FILE).exists() else None,
         "reviews": [str(p) for p in review_files(repo)],
         "levels": level_rows(catalog),
+        "campaign": repo.read_json(CAMPAIGN_FILE, None),
     }
     if run and run.get("mode") == "all":
         # 단계마다 아직 없는 초안 파일. c로 이어 할 때 어느 단계 에이전트를 다시 띄울지 여기서 본다.
@@ -960,10 +1197,16 @@ def cmd_cancel(repo: Repo, args) -> int:
     removed = [repo.draft_label(p) for p in repo.draft_files()]
     clear_drafts(repo)
     (repo.work / RUN_FILE).unlink(missing_ok=True)
-    for path in review_files(repo):
+    for path in review_files(repo) + findings_files(repo):
         path.unlink()
-    print(json.dumps({"cancelled": bool(run), "removed_drafts": removed,
-                      "message": "실행을 취소했습니다. 사전 파일은 건드리지 않았습니다." if run else "진행 중인 실행이 없습니다."},
+    campaign = read_campaign(repo)
+    if campaign:
+        # 이미 커밋된 회차는 그대로 두고 캠페인만 닫는다.
+        finish_campaign(repo, campaign, "사용자가 취소했다", status="cancelled")
+    message = ("실행을 취소했습니다. 사전 파일은 건드리지 않았습니다." if run else "진행 중인 실행이 없습니다.")
+    if campaign:
+        message += f" 캠페인({campaign['level']}단계 {campaign['total']}개)도 닫았습니다. 끝난 {len(campaign['rounds'])}회차 {campaign['done']}개는 사전에 남아 있습니다."
+    print(json.dumps({"cancelled": bool(run), "removed_drafts": removed, "campaign_cancelled": bool(campaign), "message": message},
                      ensure_ascii=False))
     return 0
 
@@ -1001,6 +1244,7 @@ def main(argv: list[str] | None = None) -> int:
     p.set_defaults(fn=cmd_review_sheet)
     p = sub.add_parser("apply", help="초안을 사전에 넣기")
     p.add_argument("--note", help="CHANGELOG 한 줄")
+    p.add_argument("--auto", action="store_true", help=f"사람 승인 대신 {VERDICTS_FILE}로 걸러 넣는다 (캠페인)")
     p.set_defaults(fn=cmd_apply)
     p = sub.add_parser("refresh", help="오래된 volatile 항목과 죽은 링크")
     p.add_argument("--days", type=int, default=STALE_DAYS)
@@ -1009,6 +1253,12 @@ def main(argv: list[str] | None = None) -> int:
     p = sub.add_parser("mark-checked", help="확인 날짜 갱신")
     p.add_argument("--ids", nargs="+", required=True)
     p.set_defaults(fn=cmd_mark_checked)
+    p = sub.add_parser("campaign", help="60개 회차를 이어 돌리는 캠페인 열기 (사람 승인 대신 자동 문)")
+    p.add_argument("--level", type=int, required=True)
+    p.add_argument("--total", type=int, required=True, help=f"목표 수, 최대 {MAX_TOTAL}")
+    p.add_argument("--round", type=int, default=MAX_COUNT, help=f"회차 크기, 기본·최대 {MAX_COUNT}")
+    p.add_argument("--over-target", action="store_true", help="단계 목표치를 넘겨도 계속")
+    p.set_defaults(fn=cmd_campaign)
     sub.add_parser("status", help="상태").set_defaults(fn=cmd_status)
     sub.add_parser("cancel", help="실행 취소").set_defaults(fn=cmd_cancel)
     args = parser.parse_args(argv)

@@ -237,6 +237,156 @@ class DicMakerTest(unittest.TestCase):
         self.assertEqual(self.run_cmd("cancel")["cancelled"], False)
         self.assertEqual(self.run_cmd("status")["version"], (ROOT / "catalog" / "VERSION").read_text().strip())
 
+    # ----- 캠페인 (auto) -----
+
+    def verdicts(self, **by_id) -> None:
+        """검토 에이전트의 판정 파일. keep·fix·drop 또는 (판정, verified) 튀플."""
+        data = {}
+        for key, value in by_id.items():
+            item_id = key.replace("__", ".").replace("_", "-")   # 인자 이름에는 .과 -를 못 쓴다
+            verdict, verified = value if isinstance(value, tuple) else (value, True)
+            data[item_id] = {"verdict": verdict, "verified": verified, "note": "시험"}
+        (self.repo / dm.WORK_DIR / dm.VERDICTS_FILE).write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+
+    @staticmethod
+    def fixture(kind: str, item_id: str, title: str, en: str, summary: str, **extra) -> dict:
+        base = draft_topic(item_id) if kind == "topic" else draft_term(item_id)
+        base.update({"title": title, "en": en, "summary": summary, "aliases": [title, en.lower()], **extra})
+        if kind == "topic":
+            base["objectives"] = [f"{title}의 쓰임을 설명할 수 있다", f"{title}을 예제에 적용할 수 있다"]
+        return base
+
+    def test_campaign_opens_rounds_and_auto_apply_records_them(self):
+        out = self.run_cmd("campaign", "--level", "4", "--total", "5", "--round", "3")
+        self.assertEqual((out["level"], out["count"], out["round"], out["auto"]), (4, 3, 1, True))
+        self.assertEqual((out["campaign"]["remaining"], out["campaign"]["rounds_planned"]), (5, 2))
+        with self.assertRaises(SystemExit):   # 회차가 열려 있으면 또 열지 않는다
+            self.run_cmd("start")
+        with self.assertRaises(SystemExit):
+            self.run_cmd("campaign", "--level", "4", "--total", "5", ok=False)
+        self.write_draft("mlops", [draft_topic(), draft_term(),
+                                   draft_term("mlops.serve.test-fixture-throughput", title="시험용 처리량", en="Test Fixture Throughput", parent=None,
+                                              aliases=["시험용 처리량", "test fixture throughput"], refs=["https://example.com/tp"])])
+        self.verdicts(mlops__serve__test_fixture_serving="keep", mlops__serve__test_fixture_batch_inference="keep", mlops__serve__test_fixture_throughput="keep")
+        self.run_cmd("review-sheet")
+        (self.repo / dm.WORK_DIR / "review-findings.md").write_text("# 검토\n", encoding="utf-8")
+        out = self.run_cmd("apply", "--auto", "--note", "1회차")
+        self.assertEqual((out["topics"], out["terms"], out["dropped"]), (1, 2, []))
+        self.assertEqual((out["campaign"]["done"], out["campaign"]["rounds_done"], out["campaign"]["next"]), (3, 1, "continue"))
+        archived = sorted(p.name for p in (self.repo / dm.WORK_DIR / dm.CAMPAIGN_DIR).iterdir())
+        self.assertEqual(archived, ["round_1_review-findings.md", "round_1_review-verdicts.json", "round_1_review.md"])
+        self.assertIsNone(self.run_cmd("status")["run"])
+        out = self.run_cmd("start")   # 다음 회차는 남은 수만큼
+        self.assertEqual((out["round"], out["count"], out["campaign"]["remaining"]), (2, 2, 2))
+        status = self.run_cmd("status")["campaign"]
+        self.assertEqual((status["status"], len(status["rounds"]), status["rounds"][0]["applied"]), ("running", 1, 3))
+
+    def test_auto_gate_keeps_only_verified_keep_and_cascades(self):
+        self.run_cmd("start", "--level", "4")
+        kept_topic = draft_topic()
+        kept_term = draft_term()
+        unverified = self.fixture("term", "mlops.serve.test-fixture-warmup", "시험용 예열", "Test Fixture Warmup",
+                                  "첫 요청 전에 모델을 미리 불러 두어 첫 응답 지연을 줄이는 준비 단계다.", parent=None, refs=["https://example.com/warm"])
+        fix_topic = self.fixture("topic", "mlops.serve.test-fixture-canary", "시험용 카나리 배포", "Test Fixture Canary",
+                                 "새 모델을 일부 트래픽에만 먼저 내보내 문제를 확인한 뒤 전체로 넓히는 배포 방식이다.", refs=["https://example.com/canary"])
+        child_of_fix = self.fixture("term", "mlops.serve.test-fixture-traffic-split", "시험용 트래픽 분할", "Test Fixture Traffic Split",
+                                    "요청을 비율로 나눠 여러 모델 버전에 보내는 설정이다.", parent="mlops.serve.test-fixture-canary")
+        no_verdict = self.fixture("topic", "mlops.serve.test-fixture-shadow", "시험용 섀도 배포", "Test Fixture Shadow",
+                                  "새 모델에 실제 요청을 복사해 보내되 응답은 쓰지 않고 비교만 하는 방식이다.", refs=["https://example.com/shadow"])
+        self.write_draft("mlops", [kept_topic, kept_term, unverified, fix_topic, child_of_fix, no_verdict])
+        self.verdicts(mlops__serve__test_fixture_serving="keep", mlops__serve__test_fixture_batch_inference="keep",
+                      mlops__serve__test_fixture_warmup=("keep", False), mlops__serve__test_fixture_canary="fix",
+                      mlops__serve__test_fixture_traffic_split="keep")
+        out = self.run_cmd("apply", "--auto")
+        self.assertEqual(sorted(out["added"]["mlops"]), ["mlops.serve.test-fixture-batch-inference", "mlops.serve.test-fixture-serving"])
+        reasons = {d["id"]: d["reason"] for d in out["dropped"]}
+        self.assertEqual(set(reasons), {"mlops.serve.test-fixture-warmup", "mlops.serve.test-fixture-canary",
+                                        "mlops.serve.test-fixture-traffic-split", "mlops.serve.test-fixture-shadow"})
+        self.assertIn("확인하지 못했다", reasons["mlops.serve.test-fixture-warmup"])
+        self.assertIn("수정 요청", reasons["mlops.serve.test-fixture-canary"])
+        self.assertIn("test-fixture-canary", reasons["mlops.serve.test-fixture-traffic-split"])
+        self.assertIn("판정이 없다", reasons["mlops.serve.test-fixture-shadow"])
+        self.assertNotIn("campaign", out)   # 캠페인 없이도 auto는 된다
+        log = json.loads((self.repo / dm.WORK_DIR / dm.DROPPED_FILE).read_text(encoding="utf-8"))
+        self.assertEqual(len(log), 4)
+        self.assertTrue(all(entry["basis"] for entry in log))
+        items = (self.repo / "catalog" / "items" / "mlops.json").read_text(encoding="utf-8")
+        self.assertNotIn("test-fixture-canary", items)
+
+    def test_auto_apply_drops_items_with_check_errors_instead_of_failing(self):
+        self.run_cmd("start", "--level", "4")
+        clean = draft_term("mlops.serve.test-fixture-throughput", title="시험용 처리량", en="Test Fixture Throughput", parent=None,
+                           aliases=["시험용 처리량", "test fixture throughput"], refs=["https://example.com/tp"])
+        self.write_draft("mlops", [draft_topic(basis=""), draft_term(), clean])
+        self.verdicts(mlops__serve__test_fixture_serving="keep", mlops__serve__test_fixture_batch_inference="keep", mlops__serve__test_fixture_throughput="keep")
+        out = self.run_cmd("apply", "--auto")
+        self.assertEqual(out["added"]["mlops"], ["mlops.serve.test-fixture-throughput"])
+        reasons = {d["id"]: d["reason"] for d in out["dropped"]}
+        self.assertTrue(reasons["mlops.serve.test-fixture-serving"].startswith("검사 오류"))
+        self.assertIn("test-fixture-serving", reasons["mlops.serve.test-fixture-batch-inference"])
+
+    def test_auto_apply_needs_verdicts_and_zero_yield_keeps_version(self):
+        self.run_cmd("start", "--level", "4")
+        self.write_draft("mlops", [draft_topic()])
+        with self.assertRaises(SystemExit):
+            self.run_cmd("apply", "--auto", ok=False)
+        self.assertIsNotNone(self.run_cmd("status")["run"])   # 판정 파일이 없으면 아무것도 바꾸지 않는다
+        self.run_cmd("cancel")
+        self.run_cmd("campaign", "--level", "4", "--total", "10", "--round", "2")
+        before = (self.repo / "catalog" / "VERSION").read_text().strip()
+        for round_no in (1, 2):
+            self.write_draft("mlops", [draft_topic()])
+            self.verdicts(mlops__serve__test_fixture_serving="drop")
+            out = self.run_cmd("apply", "--auto")
+            self.assertEqual((out["version"], out["topics"], len(out["dropped"])), (before, 0, 1))
+            if round_no == 1:
+                self.assertEqual(out["campaign"]["next"], "continue")
+                self.assertEqual(self.run_cmd("start")["round"], 2)
+        self.assertEqual(out["campaign"]["next"], "stop")
+        self.assertIn("연속", out["campaign"]["stop_reason"])
+        self.assertEqual(self.run_cmd("status")["campaign"]["status"], "finished")
+        self.assertNotIn("round", self.run_cmd("start", "--level", "4"))   # 끝난 캠페인은 보통 실행을 막지 않는다
+
+    def test_campaign_stop_reasons_and_guards(self):
+        catalog = {"levels": [{"level": 4, "name": "실전", "targets": {"topic": 1, "term": 1}}],
+                   "items": [{"level": 4, "kind": "topic"}, {"level": 4, "kind": "term"}]}
+        base = {"level": 4, "total": 100, "done": 0, "rounds": [], "over_target": False}
+        self.assertIn("목표치", dm.campaign_stop_reason(base, catalog))
+        self.assertIsNone(dm.campaign_stop_reason({**base, "over_target": True}, catalog))
+        self.assertIn("목표 100개", dm.campaign_stop_reason({**base, "done": 100, "over_target": True}, catalog))
+        low = [{"planned": 60, "applied": 20}, {"planned": 60, "applied": 29}]
+        self.assertIn("연속", dm.campaign_stop_reason({**base, "over_target": True, "rounds": low}, catalog))
+        self.assertIsNone(dm.campaign_stop_reason({**base, "over_target": True, "rounds": low[:1]}, catalog))
+        self.assertIsNone(dm.campaign_stop_reason({**base, "over_target": True, "rounds": [low[0], {"planned": 60, "applied": 30}]}, catalog))
+        for argv in (("--level", "9", "--total", "10"), ("--level", "4", "--total", str(dm.MAX_TOTAL + 1)),
+                     ("--level", "4", "--total", "10", "--round", str(dm.MAX_COUNT + 1))):
+            with self.assertRaises(SystemExit):
+                self.run_cmd("campaign", *argv, ok=False)
+        self.run_cmd("start", "--level", "4")
+        with self.assertRaises(SystemExit):   # 실행이 열려 있으면 캠페인을 열지 않는다
+            self.run_cmd("campaign", "--level", "4", "--total", "10", ok=False)
+        self.run_cmd("cancel")
+        self.run_cmd("campaign", "--level", "4", "--total", "10")
+        self.run_cmd("cancel")   # cancel은 회차와 캠페인을 함께 닫는다
+        self.assertEqual(self.run_cmd("status")["campaign"]["status"], "cancelled")
+
+    def test_cancel_closes_campaign_but_keeps_applied_rounds(self):
+        self.run_cmd("campaign", "--level", "4", "--total", "10", "--round", "1")
+        self.write_draft("mlops", [draft_topic()])
+        self.verdicts(mlops__serve__test_fixture_serving="keep")
+        version = self.run_cmd("apply", "--auto")["version"]
+        self.run_cmd("start")
+        with self.assertRaises(SystemExit):
+            self.run_cmd("start", "--level", "2", "--force", ok=False)
+        with self.assertRaises(SystemExit):
+            self.run_cmd("start", "--all", "--force", ok=False)
+        out = self.run_cmd("cancel")
+        self.assertTrue(out["campaign_cancelled"])
+        self.assertIn("1회차 1개", out["message"])
+        self.assertEqual((self.repo / "catalog" / "VERSION").read_text().strip(), version)
+        self.assertIn("mlops.serve.test-fixture-serving", (self.repo / "catalog" / "items" / "mlops.json").read_text(encoding="utf-8"))
+        self.assertEqual(self.run_cmd("campaign", "--level", "2", "--total", "3")["level"], 2)   # 닫힌 뒤에는 새로 열 수 있다
+
     # ----- 전체 단계 (all) -----
 
     def write_level_draft(self, level: int, name: str, items: list[dict]) -> None:
@@ -371,7 +521,8 @@ class SkillDocsTest(unittest.TestCase):
         text = (SKILL_DIR / "SKILL.md").read_text(encoding="utf-8")
         for marker in ("/dic-maker box", "/dic-maker c", "/dic-maker apply", "/dic-maker refresh", "/dic-maker a 30", "review-sheet",
                        "apply를 스스로 실행하지 않는다", "푸시는 사용자에게 묻는다", "적대적 검토자", "guide --domain", "mark-checked",
-                       "start --all", "check --links --level", "review_1.md", "[단계 간]"):
+                       "start --all", "check --links --level", "review_1.md", "[단계 간]",
+                       "/dic-maker 3 240 auto", "campaign --level", "apply --auto", "review-verdicts.json", "campaign-dropped.json"):
             with self.subTest(marker=marker):
                 self.assertIn(marker, text)
 
