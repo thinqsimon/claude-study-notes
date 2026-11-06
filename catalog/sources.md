@@ -2,6 +2,14 @@
 
 사전의 **범위와 중요도를 대조**하는 데 쓴다. 문장은 옮기지 않고 사전에서 직접 쓴다. 항목별 공식 자료 링크는 각 항목의 `refs`에 있다.
 
+## refs로 쓰는 자료
+
+| 구분 | 예 | 쓰는가 |
+|---|---|---|
+| 공식 문서·표준·공신력 있는 기관 | 언어·프레임워크 문서, RFC·W3C, NIST·OWASP | 쓴다. 가장 먼저 찾는다 |
+| 대학이 자기 도메인에 공개한 강의 자료·교재 | MIT OCW, 대학 강의 페이지, OSTEP | **예외로 쓴다.** 같은 내용을 위 자료가 다루면 그쪽을 쓰고, 공식 문서가 없는 개념(자료구조·알고리즘·운영체제 원리 등)에만 쓴다. 영상만 있고 글이 없는 페이지는 쓰지 않는다 |
+| 블로그·개인 글, 상업·개인 강의, 위키, 요약 강좌 사이트 | Medium, velog, 인프런, 유데미, 코세라, 유튜브, 위키백과, GeeksforGeeks, roadmap.sh | 쓰지 않는다. `catalog.py check`가 막는다 |
+
 ## 범위 전체
 
 | 자료 | 쓰는 법 |
@@ -19,6 +27,7 @@
 |---|---|
 | AX 프로덕트 기획·설계 | [Figma 학습 자료](https://help.figma.com/hc/en-us) |
 | 개발 기초·협업 | [Pro Git](https://git-scm.com/book/en/v2), [Python 튜토리얼](https://docs.python.org/3/tutorial/) |
+| 컴퓨터 사이언스 기초 | [ACM/IEEE-CS/AAAI CS2023](https://csed.acm.org/)(범위), [NIST 알고리즘·자료구조 사전(DADS)](https://xlinux.nist.gov/dads/), [Python 자료구조](https://docs.python.org/3/tutorial/datastructures.html), [Python 연산 시간 복잡도](https://wiki.python.org/moin/TimeComplexity), [부동소수점 산술](https://docs.python.org/3/tutorial/floatingpoint.html), [유니코드 HOWTO](https://docs.python.org/3/howto/unicode.html), [Linux man-pages](https://man7.org/linux/man-pages/), [RFC Editor](https://www.rfc-editor.org/). 대학 공개 강의(예외): [MIT 6.006 알고리즘 입문](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/), [MIT 6.004 계산 구조](https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/), [MIT 6.033 컴퓨터 시스템 공학](https://ocw.mit.edu/courses/6-033-computer-system-engineering-spring-2018/), [OSTEP 운영체제 교재(위스콘신대)](https://pages.cs.wisc.edu/~remzi/OSTEP/) |
 | 웹 프론트엔드 | [MDN Curriculum](https://developer.mozilla.org/en-US/curriculum/), [MDN 웹 개발 학습](https://developer.mozilla.org/en-US/docs/Learn_web_development), [React 학습](https://react.dev/learn), [Next.js 문서](https://nextjs.org/docs), [TypeScript 핸드북](https://www.typescriptlang.org/docs/handbook/intro.html) |
 | 백엔드·API | [FastAPI 튜토리얼](https://fastapi.tiangolo.com/tutorial/), [MDN HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP), [OWASP Top 10](https://owasp.org/Top10/) |
 | 데이터베이스·데이터 | [PostgreSQL 튜토리얼](https://www.postgresql.org/docs/current/tutorial.html), [SQLAlchemy 튜토리얼](https://docs.sqlalchemy.org/en/20/tutorial/) |

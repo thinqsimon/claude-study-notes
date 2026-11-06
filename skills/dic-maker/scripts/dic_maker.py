@@ -334,6 +334,18 @@ def existing_brief(catalog: dict, domain: str, level: int | None) -> list[dict]:
     ]
 
 
+def neighbor_brief(catalog: dict, domain: dict, level: int | None) -> list[dict]:
+    """domains.json의 neighbors(분야 → 묶음 이름이나 항목 id)에 든 다른 분야의 항목.
+
+    경계가 겹치는 분야(cs와 be·ops·db·dev)의 조사 에이전트가 이미 있는 개념을 자기 분야에 다시 만들지 않게 보여 준다.
+    """
+    out = []
+    for prefix, wanted in (domain.get("neighbors") or {}).items():
+        out += [i for i in existing_brief(catalog, prefix, level)
+                if i["group"] in wanted or i["id"] in wanted]
+    return out
+
+
 def level_plan(repo: Repo, catalog: dict, level_no: int, count: int, folder: Path) -> dict:
     """한 단계의 몫과 초안 파일 자리. --all에서는 단계마다 하나씩 만든다."""
     level = next(l for l in catalog["levels"] if l["level"] == level_no)
@@ -480,7 +492,8 @@ def cmd_start(repo: Repo, args) -> int:
 
 RULES = """## 항목 작성 규칙 (dic-maker)
 
-- 자료가 먼저다. 공식 문서·표준·공신력 있는 기관의 페이지에서 그 단계에 맞는 주제를 고르고, 그 페이지를 refs에 넣는다. 블로그·강의·roadmap.sh는 쓰지 않는다. 자료의 문장은 옮기지 않고 요약·목표·별칭·링크만 쓴다.
+- 자료가 먼저다. 공식 문서·표준·공신력 있는 기관의 페이지에서 그 단계에 맞는 주제를 고르고, 그 페이지를 refs에 넣는다. 블로그·상업 강의·위키·roadmap.sh는 쓰지 않는다(검사가 막는다). 자료의 문장은 옮기지 않고 요약·목표·별칭·링크만 쓴다.
+- 예외: 대학이 자기 도메인에 공개한 강의 자료와 교재(MIT OCW, 대학 강의 페이지, OSTEP 같은 대학 공개 교재)는 refs로 쓸 수 있다. 같은 내용을 공식 문서·표준·NIST 같은 기관 자료가 다루면 그쪽을 먼저 쓰고, 대학 자료는 그런 자료가 없는 개념(자료구조·알고리즘·운영체제 원리 등)에만 쓴다. 영상만 있고 글이 없는 페이지는 쓰지 않는다. basis에 왜 대학 자료를 썼는지 적는다.
 - basis 칸(초안에만 있음)에 근거를 한 줄로 적는다: 어느 자료의 어느 절에서 왔는지, 왜 이 단계인지(levels의 includes·excludes 기준), 왜 이 중요도인지.
 - 단계는 자료의 종류가 아니라 **독자가 배우고 나서 할 수 있게 되는 일**(can_do)로 정한다. 표준 문서에서 왔다고 5단계가 아니고, 사용법 문서에서 왔다고 2단계가 아니다. 쓰는 법을 익히는 항목은 2~3단계, 설계를 고르고 오류 원인을 찾는 항목은 4단계, 내부 동작과 손익을 분석하는 항목만 5단계다.
 - 같은 자료의 같은 절로 분야가 다른 항목을 여럿 만들지 않는다. 다른 분야 에이전트가 같은 자료를 쓸 것 같으면 자기 분야에 더 가까운 쪽만 쓴다.
@@ -488,7 +501,7 @@ RULES = """## 항목 작성 규칙 (dic-maker)
 - title은 40자 이내의 이름이고 문장이 아니다. en은 영어 이름. summary는 15~120자 한 문장이고 마침표로 끝난다.
 - topic의 objectives는 2~4개, 모두 '~할 수 있다'로 끝난다. 그 단계의 can_do에 맞춘다. term에는 objectives를 쓰지 않는다.
 - term은 가르치는 주제가 있으면 parent에 그 주제 id(기존 또는 이번 초안)를 쓴다. 딸린 주제가 없는 독립 용어는 parent 없이 refs를 넣는다.
-- aliases는 대화에서 그 개념을 가리킬 때 실제로 쓰는 말 2~6개. 2자 이상, 한글과 영어를 함께. "세션", "토큰", "추론", "fetch", "state"처럼 다른 뜻으로도 흔히 쓰는 말은 넣지 않고 "세션 쿠키", "모델 추론"처럼 좁힌다. title과 en은 자동으로 대조하므로 다시 넣지 않아도 된다.
+- aliases는 대화에서 그 개념을 가리킬 때 실제로 쓰는 말 2~6개. 2자 이상, 한글과 영어를 함께. "세션", "토큰", "추론", "fetch", "state"처럼 다른 뜻으로도 흔히 쓰는 말은 넣지 않고 "세션 쿠키", "모델 추론"처럼 좁힌다. "큐", "스택", "트리", "그래프", "해시", "캐시"도 메시지 큐·기술 스택·React 트리·LangGraph처럼 다른 분야에서 흔하니 "큐 자료구조", "콜 스택", "이진 트리"처럼 좁힌다. title과 en은 자동으로 대조하므로 다시 넣지 않아도 된다.
 - prerequisites는 같거나 낮은 단계의 기존 주제 id만. ★★★ 항목의 선수는 ★★★이어야 한다. 4~5단계 주제는 그 아래 입문 주제가 사전에 있는지 보고, 없으면 그 입문 주제도 함께 제안한다.
 - 빨리 바뀌는 내용(모델 이름, 가격, 규격 개정)은 volatile: true와 checked_at(오늘 날짜)을 넣는다.
 - 기존 항목과 겹치지 않는다. 같은 내용을 더 넓게 또는 좁게 다시 쓰지 않는다. 겹치면 기존 항목을 고치자고 basis에 적고 새 항목은 만들지 않는다.
@@ -518,10 +531,16 @@ def cmd_guide(repo: Repo, args) -> int:
         domain = next((d for d in catalog["domains"] if d["prefix"] == prefix), None)
         if domain is None:
             raise SystemExit(f"없는 분야입니다: {prefix}. 분야: {[d['prefix'] for d in catalog['domains']]}")
-        parts.append(f"## 분야 {domain['prefix']} ({domain['name']})\n범위: {domain['covers']}\n기준 자료: {sources_for(repo, catalog, prefix)}")
+        boundary = f"\n경계: {domain['boundary']}" if domain.get("boundary") else ""
+        parts.append(f"## 분야 {domain['prefix']} ({domain['name']})\n범위: {domain['covers']}{boundary}\n기준 자료: {sources_for(repo, catalog, prefix)}")
         existing = existing_brief(catalog, prefix, args.level)
         parts.append(f"## {domain['prefix']}의 기존 항목 (근처 단계) — 겹치지 않게 보고, 묶음(group) 이름을 맞춘다\n" +
-                     "\n".join(f"- {i['id']} [{i['kind']} L{i['level']} {i['group']}] {i['title']}" for i in existing))
+                     ("\n".join(f"- {i['id']} [{i['kind']} L{i['level']} {i['group']}] {i['title']}" for i in existing)
+                      or "(아직 없음. 묶음 이름은 범위의 갈래를 따라 새로 정한다)"))
+        neighbors = neighbor_brief(catalog, domain, args.level)
+        if neighbors:
+            parts.append(f"## 다른 분야에 이미 있는 비슷한 항목 (근처 단계) — 같은 개념을 {prefix}에 다시 만들지 않는다\n" +
+                         "\n".join(f"- {i['id']} [{i['kind']} L{i['level']} {i['group']}] {i['title']}" for i in neighbors))
     parts.append("## 넓은 말 (별칭으로 쓰지 않는다)\n" + ", ".join(catalog.get("broad_names", [])))
     print("\n\n".join(p for p in parts if p))
     return 0

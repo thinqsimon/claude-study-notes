@@ -74,6 +74,20 @@ class RealCatalogTest(unittest.TestCase):
                 group = [tool.clean_item(item) for item in catalog["items"] if item["_domain"] == domain["prefix"]]
                 self.assertEqual(path.read_text(encoding="utf-8"), json.dumps(group, ensure_ascii=False, indent=2) + "\n", path.name)
 
+    def test_cs_domain_follows_dev_and_neighbors_point_to_real_groups_or_items(self) -> None:
+        catalog = tool.load_catalog(CATALOG)
+        prefixes = [domain["prefix"] for domain in catalog["domains"]]
+        self.assertEqual(prefixes.index("cs"), prefixes.index("dev") + 1)
+        self.assertTrue((CATALOG / "items" / "cs.json").exists())
+        for domain in catalog["domains"]:
+            for prefix, wanted in (domain.get("neighbors") or {}).items():
+                self.assertIn(prefix, prefixes)
+                mine = [item for item in catalog["items"] if item["_domain"] == prefix]
+                names = {item["group"] for item in mine} | {item["id"] for item in mine}
+                for name in wanted:
+                    with self.subTest(domain=domain["prefix"], neighbor=f"{prefix}:{name}"):
+                        self.assertIn(name, names)   # 묶음 이름이나 id가 바뀌면 이웃 목록도 고친다
+
     def test_dist_is_up_to_date(self) -> None:
         with contextlib.redirect_stdout(io.StringIO()):
             self.assertEqual(tool.cmd_build(CATALOG, check_only=True), 0)
@@ -88,6 +102,18 @@ class ItemRulesTest(CatalogTestCase):
 
     def test_id_prefix_must_match_file(self) -> None:
         self.assert_rejected("접두사", topic("fe.http.status"))
+
+    def test_blog_commercial_lecture_and_wiki_refs_are_rejected(self) -> None:
+        for url in ("https://ko.wikipedia.org/wiki/%ED%81%90", "https://www.youtube.com/watch?v=abc", "https://someone.tistory.com/12",
+                    "https://www.inflearn.com/course/algo", "https://www.geeksforgeeks.org/queue-data-structure/", "https://roadmap.sh/computer-science"):
+            with self.subTest(url=url):
+                self.assert_rejected("자료로 쓰지 않는다", topic("be.http.status", refs=[url]))
+        self.assertIsNone(tool.banned_host("https://notmedium.com/post"))   # 이름이 비슷한 다른 사이트는 막지 않는다
+
+    def test_university_open_courseware_is_allowed(self) -> None:
+        for url in ("https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/", "https://pages.cs.wisc.edu/~remzi/OSTEP/"):
+            with self.subTest(url=url):
+                self.assertEqual(self.errors(topic("be.http.status", refs=[url])), [])
 
     def test_id_format(self) -> None:
         self.assert_rejected("id 형식", topic("be.status"))

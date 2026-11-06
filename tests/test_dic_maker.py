@@ -129,6 +129,43 @@ class DicMakerTest(unittest.TestCase):
                 self.assertIn(marker, text)
         self.assertNotIn("## 절차", text)
 
+    def test_guide_for_new_cs_domain_shows_boundary_neighbors_and_lecture_exception(self):
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            self.assertEqual(dm.main(["--repo", str(self.repo), "guide", "--domain", "cs", "--level", "3"]), 0)
+        text = buf.getvalue()
+        for marker in ("## 분야 cs (컴퓨터 사이언스 기초)", "경계: 언어·도구에 매이지 않는 원리", "ocw.mit.edu", "(아직 없음",
+                       "## 다른 분야에 이미 있는 비슷한 항목", "be.async.concurrency-parallelism", "be.python.unicode",
+                       "dev.dsa.collections-choice", "예외: 대학이 자기 도메인에 공개한", "큐 자료구조"):
+            with self.subTest(marker=marker):
+                self.assertIn(marker, text)
+        neighbors = text.split("## 다른 분야에 이미 있는 비슷한 항목")[1].split("\n## ")[0]
+        self.assertNotIn("be.http.", neighbors)   # 이웃이 아닌 묶음은 보이지 않는다
+        self.assertNotIn("L5", neighbors)   # 근처 단계(3±1)만 보인다
+        with contextlib.redirect_stdout(io.StringIO()):
+            dm.main(["--repo", str(self.repo), "guide", "--domain", "mlops", "--level", "4"])
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            dm.main(["--repo", str(self.repo), "guide", "--domain", "ops", "--level", "4"])
+        self.assertIn("경계: 네트워크 계층·프로토콜", out.getvalue())
+        self.assertNotIn("## 다른 분야에 이미 있는 비슷한 항목", out.getvalue())
+
+    def test_start_gives_the_empty_cs_domain_a_share_and_check_rejects_wiki_refs(self):
+        out = self.run_cmd("start", "--level", "3", "--count", "30")
+        self.assertIn("cs", out["quotas"])
+        self.assertTrue(out["draft_files"]["cs"].endswith("cs.json"))
+        self.assertEqual(out["domains"]["cs"]["name"], "컴퓨터 사이언스 기초")
+        self.assertIn("pages.cs.wisc.edu", out["domains"]["cs"]["sources"])
+        wiki = draft_topic("cs.dsa.test-fixture-queue", title="시험용 큐 자료구조", en="Test Fixture Queue", group="자료구조", level=3,
+                           aliases=["시험용 큐 자료구조", "test fixture queue"], refs=["https://en.wikipedia.org/wiki/Queue_(abstract_data_type)"])
+        ocw = draft_topic("cs.algo.test-fixture-big-o", title="시험용 빅오 표기법", en="Test Fixture Big-O", group="알고리즘", level=3,
+                          summary="입력이 커질 때 실행 시간이 늘어나는 정도를 최고차항으로 나타내는 표기법이다.",
+                          aliases=["시험용 빅오", "test fixture big-o"], refs=["https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/"])
+        self.write_draft("cs", [wiki, ocw])
+        report = self.run_cmd("check", ok=False)
+        self.assertTrue(any("cs.dsa.test-fixture-queue" in e and "자료로 쓰지 않는다" in e for e in report["errors"]), report["errors"])
+        self.assertFalse(any("cs.algo.test-fixture-big-o" in e for e in report["errors"]), report["errors"])
+
     # ----- 검사 -----
 
     def test_check_catches_rule_overlap_basis_and_broad_alias(self):

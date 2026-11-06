@@ -18,6 +18,7 @@ import subprocess
 import sys
 from collections import Counter
 from pathlib import Path
+from urllib.parse import urlparse
 
 CATALOG_ROOT = Path(__file__).resolve().parents[1]
 SKILL_DIR = CATALOG_ROOT.parent / "skills" / "study-notes"
@@ -46,6 +47,13 @@ SUMMARY_MIN, SUMMARY_MAX = 15, 120
 OBJECTIVES_MIN, OBJECTIVES_MAX = 2, 4
 SHARED_ALIAS_LIMIT = 3
 UNDERRATED_DEPENDENTS = 3
+# refs로 쓰지 않는 곳: 블로그·개인 글, 상업·개인 강의, 위키, 요약 강좌 사이트. 하위 도메인도 막는다(ko.wikipedia.org, xxx.tistory.com).
+# 대학이 자기 도메인에 공개한 강의 자료·교재(ocw.mit.edu 등)는 공식 문서가 없는 CS 개념에 예외로 쓴다(sources.md).
+BANNED_REF_HOSTS = (
+    "roadmap.sh", "medium.com", "velog.io", "tistory.com", "brunch.co.kr", "dev.to", "substack.com", "hashnode.dev",
+    "youtube.com", "youtu.be", "inflearn.com", "udemy.com", "coursera.org", "edx.org", "fastcampus.co.kr", "codecademy.com",
+    "wikipedia.org", "namu.wiki", "geeksforgeeks.org", "w3schools.com", "tutorialspoint.com", "javatpoint.com", "programiz.com",
+)
 
 
 
@@ -88,6 +96,12 @@ def check_broad_names(catalog: dict) -> list[str]:
             errors += [f"{item['id']}: 제목이 넓은 이름 목록에 있다: {t}" for t in titles & set(catalog.get("broad_names", []))]
     errors += [f"넓은 이름 목록의 {name}은 어느 항목에도 없다" for name in catalog.get("broad_names", []) if name not in names]
     return errors
+
+
+def banned_host(url: str) -> str | None:
+    """refs로 쓰지 않는 사이트면 그 이름을 돌려준다."""
+    host = (urlparse(url).hostname or "").lower()
+    return next((name for name in BANNED_REF_HOSTS if host == name or host.endswith("." + name)), None)
 
 
 def clean_item(item: dict) -> dict:
@@ -140,6 +154,9 @@ def check_item(item: dict, known_levels: set[int]) -> list[str]:
     for ref in item.get("refs", []):
         if not ref.startswith("https://"):
             errors.append(f"{label}: 링크는 https로 시작한다: {ref}")
+        banned = banned_host(ref)
+        if banned:
+            errors.append(f"{label}: 블로그·상업 강의·위키는 자료로 쓰지 않는다({banned}). 공식 문서나 대학 공개 강의를 쓴다: {ref}")
     if item.get("volatile") and not DATE_RE.match(str(item.get("checked_at", ""))):
         errors.append(f"{label}: 빠르게 바뀌는 항목은 확인 날짜(checked_at, YYYY-MM-DD)가 필요하다")
     return errors
