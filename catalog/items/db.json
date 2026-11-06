@@ -1205,7 +1205,7 @@
       "numeric 타입",
       "NUMERIC(p, s)",
       "double precision",
-      "부동소수점 오차",
+      "SQL 부동소수점 오차",
       "decimal 타입"
     ],
     "refs": [

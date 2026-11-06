@@ -282,7 +282,8 @@
       "dev.git.github-role"
     ],
     "related": [
-      "dev.git.branch-pr"
+      "dev.git.branch-pr",
+      "dev.git.remote-tracking"
     ],
     "aliases": [
       "원격 저장소",

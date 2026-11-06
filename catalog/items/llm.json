@@ -440,8 +440,11 @@
     "summary": "모델의 역할과 규칙을 정해 주는 지시문이다.",
     "parent": "llm.api.first-call",
     "aliases": [
-      "시스템 프롬프트",
-      "System Prompt"
+      "system 파라미터",
+      "시스템 지시문"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role"
     ]
   },
   {

@@ -1161,8 +1161,6 @@
     "aliases": [
       "도커 볼륨",
       "named volume",
-      "바인드 마운트",
-      "bind mount",
       "컨테이너 데이터 유지"
     ],
     "refs": [

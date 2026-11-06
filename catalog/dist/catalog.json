@@ -1,5 +1,5 @@
 {
- "version": "0.22.0",
+ "version": "0.22.1",
  "domains": [
   {
    "prefix": "dev",
@@ -551,7 +551,8 @@
     "dev.git.github-role"
    ],
    "related": [
-    "dev.git.branch-pr"
+    "dev.git.branch-pr",
+    "dev.git.remote-tracking"
    ],
    "aliases": [
     "원격 저장소",
@@ -3319,6 +3320,7 @@
    "importance": 1,
    "group": "운영체제",
    "summary": "실행 중인 프로그램 하나로, 운영체제가 고유한 PID와 남과 분리된 메모리 공간을 준다.",
+   "parent": "cs.os.process-vs-thread",
    "related": [
     "cs.os.thread"
    ],
@@ -3344,6 +3346,7 @@
    "importance": 1,
    "group": "운영체제",
    "summary": "한 프로세스 안에서 메모리와 열린 파일을 함께 쓰면서 자기 스택을 따로 가지고 실행되는 흐름이다.",
+   "parent": "cs.os.process-vs-thread",
    "related": [
     "cs.os.process",
     "be.async.concurrency-parallelism"
@@ -15877,7 +15880,7 @@
     "numeric 타입",
     "NUMERIC(p, s)",
     "double precision",
-    "부동소수점 오차",
+    "SQL 부동소수점 오차",
     "decimal 타입"
    ],
    "refs": [
@@ -20304,8 +20307,11 @@
    "summary": "모델의 역할과 규칙을 정해 주는 지시문이다.",
    "parent": "llm.api.first-call",
    "aliases": [
-    "시스템 프롬프트",
-    "System Prompt"
+    "system 파라미터",
+    "시스템 지시문"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role"
    ],
    "domain": "llm"
   },
@@ -28720,8 +28726,6 @@
    "aliases": [
     "도커 볼륨",
     "named volume",
-    "바인드 마운트",
-    "bind mount",
     "컨테이너 데이터 유지"
    ],
    "refs": [

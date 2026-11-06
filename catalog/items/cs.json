@@ -541,6 +541,7 @@
     "importance": 1,
     "group": "운영체제",
     "summary": "실행 중인 프로그램 하나로, 운영체제가 고유한 PID와 남과 분리된 메모리 공간을 준다.",
+    "parent": "cs.os.process-vs-thread",
     "related": [
       "cs.os.thread"
     ],
@@ -565,6 +566,7 @@
     "importance": 1,
     "group": "운영체제",
     "summary": "한 프로세스 안에서 메모리와 열린 파일을 함께 쓰면서 자기 스택을 따로 가지고 실행되는 흐름이다.",
+    "parent": "cs.os.process-vs-thread",
     "related": [
       "cs.os.process",
       "be.async.concurrency-parallelism"

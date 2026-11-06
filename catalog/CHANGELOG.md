@@ -1,5 +1,11 @@
 # 개념사전 변경 내역
 
+## 0.22.1
+
+- 별칭을 정리했다. `db.sql.numeric-type`의 `부동소수점 오차`를 `SQL 부동소수점 오차`로 좁히고, `ops.docker.volume`에서 다른 저장 방식인 `바인드 마운트`·`bind mount`를 뺐다. `llm.api.system-prompt`는 제목을 되풀이하던 별칭을 바꾸고 자료 링크를 달았다.
+- `cs.os.process`·`cs.os.thread`를 `cs.os.process-vs-thread`에 딸렸고, `dev.git.remotes`의 관련 항목에 `dev.git.remote-tracking`을 더했다.
+- `cs` 분야 기준 자료의 Python 시간 복잡도 링크를 옮겨 간 주소(docs.python.org)로 바꿨다.
+
 ## 0.22.0
 
 - dic-maker 캠페인 6회차로 3단계에 주제 1개를 더했다
