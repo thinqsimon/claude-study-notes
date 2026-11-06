@@ -1,5 +1,10 @@
 # 개념사전 변경 내역
 
+## 0.11.0
+
+- dic-maker로 3단계에 주제 18개, 용어 42개를 더했다
+- 분야별: plan 13개, db 11개, llm 11개, rag 12개, mlops 13개
+
 ## 0.10.1
 
 - 기존 항목을 정리했다. 새 입문 주제를 선수로 이어 사다리를 잇고(`fe.next.server-data-fetching`, `fe.next.streaming-suspense`, `ops.deploy.zero-downtime`, `ops.container.isolation`, `db.internals.online-schema-change`, `mlops.eval.first-eval`, `dev.robust.atomic-replace`, `dev.robust.resumable-batch`), `ops.deploy.rolling-update`에 부모를 달았다.

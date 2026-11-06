@@ -470,6 +470,38 @@
     "checked_at": "2026-11-05"
   },
   {
+    "id": "plan.basics.success-metrics",
+    "title": "서비스 성공 지표 정하기",
+    "en": "Setting Success Metrics for a Service",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "기획 기초",
+    "summary": "서비스의 목적에서 기대 효과와 가설을 세우고, 그것을 확인할 KPI 서너 개와 데이터 출처, 기준선을 정하는 방법이다.",
+    "objectives": [
+      "서비스 목적을 한 줄로 쓰고 거기서 기대 효과 몇 가지를 끌어낼 수 있다",
+      "'무엇을 바꾸면 어떤 효과가 날 것이다'라는 가설을 세우고 그것을 확인할 KPI 서너 개를 고를 수 있다",
+      "지표마다 웹 분석·사용자 의견·문의 기록 같은 데이터 출처를 정하고 현재 기준선을 잴 수 있다",
+      "숫자만 보는 실수를 피하고 기기·신규 사용자 같은 구분과 사용자 조사로 지표의 뜻을 해석할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.problem-first"
+    ],
+    "related": [
+      "plan.basics.mvp-idea"
+    ],
+    "aliases": [
+      "성공 지표",
+      "success metrics",
+      "성과 지표",
+      "KPI 정하기",
+      "핵심 성과 지표"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/measuring-success/how-to-set-performance-metrics-for-your-service"
+    ]
+  },
+  {
     "id": "plan.figma.auto-layout",
     "title": "오토 레이아웃으로 늘어나고 줄어드는 화면 만들기",
     "en": "Building Responsive Screens with Auto Layout",
@@ -531,6 +563,115 @@
       "https://www.gov.uk/service-manual/agile-delivery/writing-user-stories",
       "https://www.agilealliance.org/glossary/user-stories/"
     ]
+  },
+  {
+    "id": "plan.figma.prototype-interactions",
+    "title": "Figma 프로토타입의 트리거·액션·애니메이션",
+    "en": "Prototype Triggers, Actions, and Animations in Figma",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "무엇이 일어나면(트리거) 무엇을 하고(액션) 어떻게 넘어갈지(애니메이션)를 골라 실제 앱처럼 움직이는 프로토타입을 만드는 방법이다.",
+    "objectives": [
+      "클릭·호버·드래그·지연 같은 트리거 중 상황에 맞는 것을 골라 인터랙션을 만들 수 있다",
+      "Navigate to·Back·Scroll to·Open overlay 같은 액션의 차이를 구분해 화면 이동을 설계할 수 있다",
+      "가입·결제처럼 여정마다 흐름과 시작점을 따로 두어 각 흐름을 미리 보고 공유할 수 있다",
+      "레이어 이름을 맞춰 Smart Animate가 의도대로 움직이게 하고 엉뚱하게 움직일 때 원인을 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.frames-and-components",
+      "plan.basics.service-flow"
+    ],
+    "related": [
+      "plan.figma.prototype-connection",
+      "plan.figma.prototype-overlay"
+    ],
+    "aliases": [
+      "프로토타입 인터랙션",
+      "prototype interactions",
+      "피그마 인터랙션",
+      "프로토타입 애니메이션",
+      "prototype actions"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360040314193-Guide-to-prototyping-in-Figma",
+      "https://help.figma.com/hc/en-us/articles/360040035834-Prototype-triggers",
+      "https://help.figma.com/hc/en-us/articles/360040035874-Prototype-actions",
+      "https://help.figma.com/hc/en-us/articles/360039823894-Create-and-manage-prototype-flows"
+    ]
+  },
+  {
+    "id": "plan.basics.usability-testing",
+    "title": "진행자가 있는 사용성 테스트",
+    "en": "Moderated Usability Testing",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "실제 사용자에게 정해 둔 과제를 시키고 생각을 말하게 하며 지켜봐서, 화면이나 프로토타입에서 막히는 곳을 찾는 조사 방법이다.",
+    "objectives": [
+      "확인할 질문을 정하고 소개 문구·과제·점검표가 담긴 진행 가이드를 쓸 수 있다",
+      "답을 흘리지 않으면서 현실적이고 직접 해 보게 하는 과제 시나리오를 쓸 수 있다",
+      "참가자에게 생각을 소리 내 말하게 하고 진행자는 끼어들지 않고 열린 질문만 던지며 세션을 진행할 수 있다",
+      "버튼 이름을 알려 주거나 유도 질문을 하는 실수를 알아채고 그 장면을 결과에서 걸러 낼 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.user-and-need"
+    ],
+    "related": [
+      "plan.basics.prototype"
+    ],
+    "aliases": [
+      "사용성 테스트",
+      "usability testing",
+      "유저 테스트",
+      "사용성 평가",
+      "usability test"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/user-research/using-moderated-usability-testing",
+      "https://www.nngroup.com/articles/thinking-aloud-the-1-usability-tool/"
+    ]
+  },
+  {
+    "id": "plan.figma.branch-and-publish",
+    "title": "Figma 브랜치에서 고치고 라이브러리 업데이트 게시하기",
+    "en": "Editing in a Figma Branch and Publishing Library Updates",
+    "kind": "topic",
+    "level": 3,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "라이브러리 파일을 브랜치에서 고친 뒤 검토받아 메인에 합치고, 바뀐 컴포넌트를 게시해 쓰는 파일이 업데이트를 받게 하는 한 바퀴의 작업 순서다.",
+    "objectives": [
+      "메인 파일에서 브랜치를 만들어 컴포넌트를 고치고 메인의 새 변경을 브랜치로 받아올 수 있다",
+      "브랜치 검토를 요청하고 받은 의견을 반영한 뒤 메인 파일에 병합할 수 있다",
+      "브랜치에서는 게시가 안 되는 이유를 알고 병합 후 변경 설명을 붙여 라이브러리 업데이트를 게시할 수 있다",
+      "라이브러리를 쓰는 파일에서 업데이트를 비교해 보고 골라서 적용할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.frames-and-components",
+      "plan.figma.styles"
+    ],
+    "related": [
+      "plan.figma.publish-library",
+      "plan.figma.branch-merge-governance",
+      "dev.git.branch-pr"
+    ],
+    "aliases": [
+      "피그마 브랜치 만들기",
+      "Create branch Figma",
+      "라이브러리 업데이트 게시",
+      "publish library updates",
+      "피그마 브랜치 병합"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360063144053-Create-branches-and-merge-changes",
+      "https://help.figma.com/hc/en-us/articles/360025508373-Publish-a-library",
+      "https://help.figma.com/hc/en-us/articles/360039234193-Review-and-accept-updates-from-a-library"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
   },
   {
     "id": "plan.figma.variants",
@@ -602,6 +743,131 @@
     ]
   },
   {
+    "id": "plan.figma.prototype-trigger",
+    "title": "프로토타입 트리거",
+    "en": "Prototype Trigger",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Figma 프로토타입에서 클릭, 마우스 올리기, 키 입력, 일정 시간 지남처럼 인터랙션을 시작하게 하는 사용자 행동이나 조건이다.",
+    "parent": "plan.figma.prototype-interactions",
+    "aliases": [
+      "Figma 트리거",
+      "피그마 트리거",
+      "While hovering",
+      "After delay",
+      "On click 트리거"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360040035834-Prototype-triggers"
+    ]
+  },
+  {
+    "id": "plan.basics.completion-rate",
+    "title": "작업 완료율(completion rate)",
+    "en": "Completion Rate",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "시작한 거래나 작업 가운데 확인 화면 같은 끝점까지 간 비율로, 시작점과 끝점을 어디로 정하고 테스트 계정을 빼는지에 따라 값이 달라진다.",
+    "parent": "plan.basics.success-metrics",
+    "aliases": [
+      "완료율",
+      "과업 완료율",
+      "전환 완료율",
+      "task completion rate"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/measuring-success/measuring-completion-rate"
+    ]
+  },
+  {
+    "id": "plan.basics.metric-baseline",
+    "title": "지표 기준선(baseline)",
+    "en": "Metric Baseline",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "바꾸기 전에 서비스가 지금 어느 수준인지 재어 둔 값으로, 개선 뒤의 숫자가 좋아졌는지 비교하는 출발점이다.",
+    "parent": "plan.basics.success-metrics",
+    "aliases": [
+      "성과 기준선",
+      "metric baseline",
+      "베이스라인 지표",
+      "지표 기준선"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/measuring-success/how-to-set-performance-metrics-for-your-service"
+    ]
+  },
+  {
+    "id": "plan.basics.think-aloud",
+    "title": "생각 말하기 기법(think-aloud)",
+    "en": "Think-Aloud Protocol",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "참가자가 제품을 쓰면서 떠오르는 생각을 계속 소리 내 말하게 해, 무엇을 오해하고 왜 막히는지 듣는 사용성 테스트 기법이다.",
+    "parent": "plan.basics.usability-testing",
+    "aliases": [
+      "생각 말하기",
+      "소리 내어 생각하기",
+      "think aloud",
+      "thinking aloud",
+      "발화 사고법"
+    ],
+    "refs": [
+      "https://www.nngroup.com/articles/thinking-aloud-the-1-usability-tool/"
+    ]
+  },
+  {
+    "id": "plan.basics.task-scenario",
+    "title": "사용성 테스트 과제 시나리오",
+    "en": "Usability Test Task Scenario",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "참가자가 실제로 할 법한 목표를 주되 메뉴 이름이나 순서는 알려 주지 않아, 스스로 해 보며 막히는 곳이 드러나게 쓴 테스트 과제다.",
+    "parent": "plan.basics.usability-testing",
+    "aliases": [
+      "과제 시나리오",
+      "task scenario",
+      "테스트 과제",
+      "usability task"
+    ],
+    "refs": [
+      "https://www.nngroup.com/articles/task-scenarios-usability-testing/"
+    ]
+  },
+  {
+    "id": "plan.basics.moscow",
+    "title": "MoSCoW 우선순위",
+    "en": "MoSCoW Prioritisation",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "요구사항을 꼭 필요한 것, 있어야 할 것, 있으면 좋은 것, 이번에는 안 할 것 네 칸으로 나눠 MVP 범위를 정하는 방법이다.",
+    "related": [
+      "plan.basics.mvp-idea",
+      "plan.basics.user-stories"
+    ],
+    "aliases": [
+      "MoSCoW",
+      "모스코우",
+      "Must Should Could Won't",
+      "MoSCoW prioritization"
+    ],
+    "refs": [
+      "https://www.agilebusiness.org/dsdm-project-framework/moscow-prioritisation.html"
+    ]
+  },
+  {
     "id": "plan.figma.constraints",
     "title": "제약(constraints)",
     "en": "Figma Constraints",
@@ -648,6 +914,71 @@
     ],
     "refs": [
       "https://help.figma.com/hc/en-us/articles/360039818254-Create-overlays-in-your-prototypes"
+    ]
+  },
+  {
+    "id": "plan.figma.branch-review",
+    "title": "Figma 브랜치 검토 요청과 승인",
+    "en": "Figma Branch Review",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "브랜치의 변경을 메인 파일과 페이지별로 나란히 또는 겹쳐 비교하게 하고, 검토자가 승인하거나 수정을 요청하는 Figma 절차다.",
+    "parent": "plan.figma.branch-and-publish",
+    "related": [
+      "dev.git.branch-pr"
+    ],
+    "aliases": [
+      "브랜치 리뷰",
+      "branch review",
+      "Request review Figma",
+      "브랜치 승인"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360063144053-Create-branches-and-merge-changes"
+    ]
+  },
+  {
+    "id": "plan.figma.library-update-review",
+    "title": "라이브러리 업데이트 검토와 적용",
+    "en": "Reviewing and Accepting Library Updates",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "게시된 라이브러리의 변경이 내 파일의 인스턴스와 스타일에 저절로 들어오지 않고, 내가 바뀐 모습을 비교해 본 뒤 하나씩 또는 한꺼번에 적용하는 방식이다.",
+    "parent": "plan.figma.branch-and-publish",
+    "related": [
+      "plan.figma.main-component-instance"
+    ],
+    "aliases": [
+      "라이브러리 업데이트 수락",
+      "accept library updates",
+      "Review library updates",
+      "라이브러리 업데이트 받기"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360039234193-Review-and-accept-updates-from-a-library"
+    ]
+  },
+  {
+    "id": "plan.figma.smart-animate",
+    "title": "스마트 애니메이트(Smart Animate)",
+    "en": "Smart Animate",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "두 프레임에서 이름과 계층 위치가 같은 레이어를 찾아 크기·위치·투명도·회전·채우기의 차이를 부드럽게 이어 주는 Figma 애니메이션이다.",
+    "parent": "plan.figma.prototype-interactions",
+    "aliases": [
+      "스마트 애니메이트",
+      "Smart animate matching layers",
+      "피그마 스마트 애니메이트"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360039818874-Create-advanced-animations-with-Smart-Animate"
     ]
   },
   {

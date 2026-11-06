@@ -1,5 +1,5 @@
 {
- "version": "0.10.1",
+ "version": "0.11.0",
  "domains": [
   {
    "prefix": "dev",
@@ -1955,6 +1955,39 @@
    "domain": "plan"
   },
   {
+   "id": "plan.basics.success-metrics",
+   "title": "서비스 성공 지표 정하기",
+   "en": "Setting Success Metrics for a Service",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "기획 기초",
+   "summary": "서비스의 목적에서 기대 효과와 가설을 세우고, 그것을 확인할 KPI 서너 개와 데이터 출처, 기준선을 정하는 방법이다.",
+   "objectives": [
+    "서비스 목적을 한 줄로 쓰고 거기서 기대 효과 몇 가지를 끌어낼 수 있다",
+    "'무엇을 바꾸면 어떤 효과가 날 것이다'라는 가설을 세우고 그것을 확인할 KPI 서너 개를 고를 수 있다",
+    "지표마다 웹 분석·사용자 의견·문의 기록 같은 데이터 출처를 정하고 현재 기준선을 잴 수 있다",
+    "숫자만 보는 실수를 피하고 기기·신규 사용자 같은 구분과 사용자 조사로 지표의 뜻을 해석할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.problem-first"
+   ],
+   "related": [
+    "plan.basics.mvp-idea"
+   ],
+   "aliases": [
+    "성공 지표",
+    "success metrics",
+    "성과 지표",
+    "KPI 정하기",
+    "핵심 성과 지표"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/measuring-success/how-to-set-performance-metrics-for-your-service"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.auto-layout",
    "title": "오토 레이아웃으로 늘어나고 줄어드는 화면 만들기",
    "en": "Building Responsive Screens with Auto Layout",
@@ -2017,6 +2050,118 @@
     "https://www.gov.uk/service-manual/agile-delivery/writing-user-stories",
     "https://www.agilealliance.org/glossary/user-stories/"
    ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.prototype-interactions",
+   "title": "Figma 프로토타입의 트리거·액션·애니메이션",
+   "en": "Prototype Triggers, Actions, and Animations in Figma",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "무엇이 일어나면(트리거) 무엇을 하고(액션) 어떻게 넘어갈지(애니메이션)를 골라 실제 앱처럼 움직이는 프로토타입을 만드는 방법이다.",
+   "objectives": [
+    "클릭·호버·드래그·지연 같은 트리거 중 상황에 맞는 것을 골라 인터랙션을 만들 수 있다",
+    "Navigate to·Back·Scroll to·Open overlay 같은 액션의 차이를 구분해 화면 이동을 설계할 수 있다",
+    "가입·결제처럼 여정마다 흐름과 시작점을 따로 두어 각 흐름을 미리 보고 공유할 수 있다",
+    "레이어 이름을 맞춰 Smart Animate가 의도대로 움직이게 하고 엉뚱하게 움직일 때 원인을 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.frames-and-components",
+    "plan.basics.service-flow"
+   ],
+   "related": [
+    "plan.figma.prototype-connection",
+    "plan.figma.prototype-overlay"
+   ],
+   "aliases": [
+    "프로토타입 인터랙션",
+    "prototype interactions",
+    "피그마 인터랙션",
+    "프로토타입 애니메이션",
+    "prototype actions"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360040314193-Guide-to-prototyping-in-Figma",
+    "https://help.figma.com/hc/en-us/articles/360040035834-Prototype-triggers",
+    "https://help.figma.com/hc/en-us/articles/360040035874-Prototype-actions",
+    "https://help.figma.com/hc/en-us/articles/360039823894-Create-and-manage-prototype-flows"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.usability-testing",
+   "title": "진행자가 있는 사용성 테스트",
+   "en": "Moderated Usability Testing",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "실제 사용자에게 정해 둔 과제를 시키고 생각을 말하게 하며 지켜봐서, 화면이나 프로토타입에서 막히는 곳을 찾는 조사 방법이다.",
+   "objectives": [
+    "확인할 질문을 정하고 소개 문구·과제·점검표가 담긴 진행 가이드를 쓸 수 있다",
+    "답을 흘리지 않으면서 현실적이고 직접 해 보게 하는 과제 시나리오를 쓸 수 있다",
+    "참가자에게 생각을 소리 내 말하게 하고 진행자는 끼어들지 않고 열린 질문만 던지며 세션을 진행할 수 있다",
+    "버튼 이름을 알려 주거나 유도 질문을 하는 실수를 알아채고 그 장면을 결과에서 걸러 낼 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.user-and-need"
+   ],
+   "related": [
+    "plan.basics.prototype"
+   ],
+   "aliases": [
+    "사용성 테스트",
+    "usability testing",
+    "유저 테스트",
+    "사용성 평가",
+    "usability test"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/user-research/using-moderated-usability-testing",
+    "https://www.nngroup.com/articles/thinking-aloud-the-1-usability-tool/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.branch-and-publish",
+   "title": "Figma 브랜치에서 고치고 라이브러리 업데이트 게시하기",
+   "en": "Editing in a Figma Branch and Publishing Library Updates",
+   "kind": "topic",
+   "level": 3,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "라이브러리 파일을 브랜치에서 고친 뒤 검토받아 메인에 합치고, 바뀐 컴포넌트를 게시해 쓰는 파일이 업데이트를 받게 하는 한 바퀴의 작업 순서다.",
+   "objectives": [
+    "메인 파일에서 브랜치를 만들어 컴포넌트를 고치고 메인의 새 변경을 브랜치로 받아올 수 있다",
+    "브랜치 검토를 요청하고 받은 의견을 반영한 뒤 메인 파일에 병합할 수 있다",
+    "브랜치에서는 게시가 안 되는 이유를 알고 병합 후 변경 설명을 붙여 라이브러리 업데이트를 게시할 수 있다",
+    "라이브러리를 쓰는 파일에서 업데이트를 비교해 보고 골라서 적용할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.frames-and-components",
+    "plan.figma.styles"
+   ],
+   "related": [
+    "plan.figma.publish-library",
+    "plan.figma.branch-merge-governance",
+    "dev.git.branch-pr"
+   ],
+   "aliases": [
+    "피그마 브랜치 만들기",
+    "Create branch Figma",
+    "라이브러리 업데이트 게시",
+    "publish library updates",
+    "피그마 브랜치 병합"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360063144053-Create-branches-and-merge-changes",
+    "https://help.figma.com/hc/en-us/articles/360025508373-Publish-a-library",
+    "https://help.figma.com/hc/en-us/articles/360039234193-Review-and-accept-updates-from-a-library"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
    "domain": "plan"
   },
   {
@@ -2092,6 +2237,137 @@
    "domain": "plan"
   },
   {
+   "id": "plan.figma.prototype-trigger",
+   "title": "프로토타입 트리거",
+   "en": "Prototype Trigger",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "Figma 프로토타입에서 클릭, 마우스 올리기, 키 입력, 일정 시간 지남처럼 인터랙션을 시작하게 하는 사용자 행동이나 조건이다.",
+   "parent": "plan.figma.prototype-interactions",
+   "aliases": [
+    "Figma 트리거",
+    "피그마 트리거",
+    "While hovering",
+    "After delay",
+    "On click 트리거"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360040035834-Prototype-triggers"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.completion-rate",
+   "title": "작업 완료율(completion rate)",
+   "en": "Completion Rate",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "시작한 거래나 작업 가운데 확인 화면 같은 끝점까지 간 비율로, 시작점과 끝점을 어디로 정하고 테스트 계정을 빼는지에 따라 값이 달라진다.",
+   "parent": "plan.basics.success-metrics",
+   "aliases": [
+    "완료율",
+    "과업 완료율",
+    "전환 완료율",
+    "task completion rate"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/measuring-success/measuring-completion-rate"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.metric-baseline",
+   "title": "지표 기준선(baseline)",
+   "en": "Metric Baseline",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "바꾸기 전에 서비스가 지금 어느 수준인지 재어 둔 값으로, 개선 뒤의 숫자가 좋아졌는지 비교하는 출발점이다.",
+   "parent": "plan.basics.success-metrics",
+   "aliases": [
+    "성과 기준선",
+    "metric baseline",
+    "베이스라인 지표",
+    "지표 기준선"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/measuring-success/how-to-set-performance-metrics-for-your-service"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.think-aloud",
+   "title": "생각 말하기 기법(think-aloud)",
+   "en": "Think-Aloud Protocol",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "참가자가 제품을 쓰면서 떠오르는 생각을 계속 소리 내 말하게 해, 무엇을 오해하고 왜 막히는지 듣는 사용성 테스트 기법이다.",
+   "parent": "plan.basics.usability-testing",
+   "aliases": [
+    "생각 말하기",
+    "소리 내어 생각하기",
+    "think aloud",
+    "thinking aloud",
+    "발화 사고법"
+   ],
+   "refs": [
+    "https://www.nngroup.com/articles/thinking-aloud-the-1-usability-tool/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.task-scenario",
+   "title": "사용성 테스트 과제 시나리오",
+   "en": "Usability Test Task Scenario",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "참가자가 실제로 할 법한 목표를 주되 메뉴 이름이나 순서는 알려 주지 않아, 스스로 해 보며 막히는 곳이 드러나게 쓴 테스트 과제다.",
+   "parent": "plan.basics.usability-testing",
+   "aliases": [
+    "과제 시나리오",
+    "task scenario",
+    "테스트 과제",
+    "usability task"
+   ],
+   "refs": [
+    "https://www.nngroup.com/articles/task-scenarios-usability-testing/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.moscow",
+   "title": "MoSCoW 우선순위",
+   "en": "MoSCoW Prioritisation",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "요구사항을 꼭 필요한 것, 있어야 할 것, 있으면 좋은 것, 이번에는 안 할 것 네 칸으로 나눠 MVP 범위를 정하는 방법이다.",
+   "related": [
+    "plan.basics.mvp-idea",
+    "plan.basics.user-stories"
+   ],
+   "aliases": [
+    "MoSCoW",
+    "모스코우",
+    "Must Should Could Won't",
+    "MoSCoW prioritization"
+   ],
+   "refs": [
+    "https://www.agilebusiness.org/dsdm-project-framework/moscow-prioritisation.html"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.constraints",
    "title": "제약(constraints)",
    "en": "Figma Constraints",
@@ -2139,6 +2415,74 @@
    ],
    "refs": [
     "https://help.figma.com/hc/en-us/articles/360039818254-Create-overlays-in-your-prototypes"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.branch-review",
+   "title": "Figma 브랜치 검토 요청과 승인",
+   "en": "Figma Branch Review",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "브랜치의 변경을 메인 파일과 페이지별로 나란히 또는 겹쳐 비교하게 하고, 검토자가 승인하거나 수정을 요청하는 Figma 절차다.",
+   "parent": "plan.figma.branch-and-publish",
+   "related": [
+    "dev.git.branch-pr"
+   ],
+   "aliases": [
+    "브랜치 리뷰",
+    "branch review",
+    "Request review Figma",
+    "브랜치 승인"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360063144053-Create-branches-and-merge-changes"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.library-update-review",
+   "title": "라이브러리 업데이트 검토와 적용",
+   "en": "Reviewing and Accepting Library Updates",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "게시된 라이브러리의 변경이 내 파일의 인스턴스와 스타일에 저절로 들어오지 않고, 내가 바뀐 모습을 비교해 본 뒤 하나씩 또는 한꺼번에 적용하는 방식이다.",
+   "parent": "plan.figma.branch-and-publish",
+   "related": [
+    "plan.figma.main-component-instance"
+   ],
+   "aliases": [
+    "라이브러리 업데이트 수락",
+    "accept library updates",
+    "Review library updates",
+    "라이브러리 업데이트 받기"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360039234193-Review-and-accept-updates-from-a-library"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.smart-animate",
+   "title": "스마트 애니메이트(Smart Animate)",
+   "en": "Smart Animate",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "두 프레임에서 이름과 계층 위치가 같은 레이어를 찾아 크기·위치·투명도·회전·채우기의 차이를 부드럽게 이어 주는 Figma 애니메이션이다.",
+   "parent": "plan.figma.prototype-interactions",
+   "aliases": [
+    "스마트 애니메이트",
+    "Smart animate matching layers",
+    "피그마 스마트 애니메이트"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360039818874-Create-advanced-animations-with-Smart-Animate"
    ],
    "domain": "plan"
   },
@@ -11296,6 +11640,113 @@
    "domain": "db"
   },
   {
+   "id": "db.sql.constraints",
+   "title": "제약 조건으로 잘못된 자료 막기",
+   "en": "Table Constraints",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "SQL",
+   "summary": "NOT NULL·UNIQUE·CHECK·외래 키를 표에 걸어 앱 코드가 놓친 잘못된 값도 데이터베이스가 넣기 전에 거절하게 만든다.",
+   "objectives": [
+    "NOT NULL·UNIQUE·CHECK 제약을 골라 CREATE TABLE에 걸 수 있다",
+    "제약 위반 오류 메시지를 읽고 어느 제약에 걸렸는지 찾아 고칠 수 있다",
+    "CHECK와 UNIQUE가 NULL을 통과시키는 이유를 알고 NOT NULL을 함께 걸 수 있다",
+    "외래 키의 ON DELETE 동작을 부모·자식 관계에 맞게 고를 수 있다"
+   ],
+   "prerequisites": [
+    "db.postgres.first-run",
+    "db.sql.write-rows"
+   ],
+   "related": [
+    "db.sql.primary-key",
+    "db.sql.foreign-key",
+    "db.sql.upsert-on-conflict"
+   ],
+   "aliases": [
+    "제약 조건",
+    "DB 제약 조건",
+    "테이블 제약",
+    "NOT NULL 제약",
+    "무결성 제약"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/ddl-constraints.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.subquery-cte",
+   "title": "서브쿼리와 WITH 절로 조회 나누기",
+   "en": "Subqueries and WITH Queries (CTE)",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "쿼리 안에 쿼리를 넣거나 WITH로 중간 결과에 이름을 붙여, 한 번에 쓰기 어려운 조회를 단계별로 나눠 쓰는 방법이다.",
+   "objectives": [
+    "WHERE·FROM 안에 서브쿼리를 넣어 다른 조회의 결과로 조건을 걸 수 있다",
+    "WITH 절로 중간 결과에 이름을 붙여 긴 쿼리를 읽기 쉽게 나눌 수 있다",
+    "서브쿼리·CTE·JOIN 중 같은 결과를 내는 쓰임을 비교해 고를 수 있다"
+   ],
+   "prerequisites": [
+    "db.sql.select-first"
+   ],
+   "related": [
+    "db.sql.join",
+    "db.sql.group-by"
+   ],
+   "aliases": [
+    "서브쿼리",
+    "subquery",
+    "하위 쿼리",
+    "CTE",
+    "WITH 절",
+    "공통 테이블 식"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/queries-with.html",
+    "https://www.postgresql.org/docs/current/functions-subquery.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.window-functions",
+   "title": "윈도 함수로 순위와 누계 구하기",
+   "en": "Window Functions",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "행을 하나로 줄이지 않고 각 행 옆에 묶음 안의 순위·평균·누계를 붙여 보여 주는 SQL 함수다.",
+   "objectives": [
+    "OVER와 PARTITION BY로 묶음마다 순위나 평균을 각 행에 붙일 수 있다",
+    "GROUP BY 집계와 윈도 함수의 결과 행 수가 왜 다른지 설명할 수 있다",
+    "ORDER BY를 넣은 OVER로 누계를 구하고 같은 값이 묶이는 이유를 알 수 있다",
+    "WHERE에 윈도 함수를 못 쓰는 오류를 서브쿼리로 감싸 해결할 수 있다"
+   ],
+   "prerequisites": [
+    "db.sql.select-first"
+   ],
+   "related": [
+    "db.sql.group-by",
+    "db.sql.subquery-cte"
+   ],
+   "aliases": [
+    "윈도 함수",
+    "윈도우 함수",
+    "window function",
+    "OVER 절",
+    "OVER (PARTITION BY)",
+    "분석 함수"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/tutorial-window.html",
+    "https://www.postgresql.org/docs/current/functions-window.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.sql.join",
    "title": "JOIN: 두 표 이어 붙이기",
    "en": "JOIN",
@@ -11366,6 +11817,32 @@
    ],
    "refs": [
     "https://www.postgresql.org/docs/current/functions-comparison.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.unique-constraint",
+   "title": "UNIQUE 제약",
+   "en": "UNIQUE Constraint",
+   "kind": "term",
+   "level": 3,
+   "importance": 1,
+   "group": "SQL",
+   "summary": "한 열이나 여러 열의 조합이 표 안에서 겹치지 않게 막는 제약으로, 기본값으로는 NULL끼리는 같다고 보지 않는다.",
+   "parent": "db.sql.constraints",
+   "related": [
+    "db.sql.primary-key",
+    "db.sql.upsert-on-conflict"
+   ],
+   "aliases": [
+    "UNIQUE 제약",
+    "unique constraint",
+    "유니크 제약",
+    "중복 금지 제약",
+    "NULLS NOT DISTINCT"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/ddl-constraints.html"
    ],
    "domain": "db"
   },
@@ -11443,6 +11920,175 @@
    ],
    "refs": [
     "https://www.postgresql.org/docs/current/sql-insert.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.check-constraint",
+   "title": "CHECK 제약",
+   "en": "CHECK Constraint",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "가격은 0보다 커야 한다처럼 행마다 참이어야 할 조건식을 걸어 두는 제약으로, 결과가 NULL이면 통과한다.",
+   "parent": "db.sql.constraints",
+   "related": [
+    "db.sql.null-comparison"
+   ],
+   "aliases": [
+    "CHECK 제약",
+    "check constraint",
+    "체크 제약",
+    "CHECK 조건"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/ddl-constraints.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.on-delete-cascade",
+   "title": "ON DELETE: 부모 행을 지울 때의 동작",
+   "en": "Foreign Key ON DELETE Actions",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "외래 키가 가리키는 부모 행을 지울 때 자식 행을 함께 지울지(CASCADE), 막을지(RESTRICT), 비울지(SET NULL) 정하는 설정이다.",
+   "parent": "db.sql.constraints",
+   "related": [
+    "db.sql.foreign-key"
+   ],
+   "aliases": [
+    "ON DELETE CASCADE",
+    "ON DELETE SET NULL",
+    "ON DELETE RESTRICT",
+    "연쇄 삭제",
+    "cascade delete"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/ddl-constraints.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.exists-in-subquery",
+   "title": "EXISTS와 IN 서브쿼리",
+   "en": "EXISTS and IN Subqueries",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "다른 표에 맞는 행이 있는지로 거르는 조건으로, 서브쿼리에 NULL이 하나라도 있으면 NOT IN은 아무 행도 돌려주지 않으므로 NOT EXISTS가 안전하다.",
+   "parent": "db.sql.subquery-cte",
+   "related": [
+    "db.sql.null-comparison",
+    "db.sql.join"
+   ],
+   "aliases": [
+    "NOT IN 서브쿼리",
+    "IN 서브쿼리",
+    "EXISTS 서브쿼리",
+    "NOT EXISTS 서브쿼리"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/functions-subquery.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.rank-functions",
+   "title": "순위 함수: ROW_NUMBER·RANK·DENSE_RANK",
+   "en": "Ranking Window Functions",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "윈도 안에서 행에 차례 번호를 매기는 함수들로, 동점일 때 ROW_NUMBER는 다른 번호를, RANK는 같은 번호 뒤 건너뛰기를, DENSE_RANK는 건너뛰지 않음을 준다.",
+   "parent": "db.sql.window-functions",
+   "aliases": [
+    "ROW_NUMBER",
+    "row_number()",
+    "RANK 함수",
+    "DENSE_RANK",
+    "순위 함수",
+    "동점 순위"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/functions-window.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.identity-column",
+   "title": "자동 번호 열: IDENTITY",
+   "en": "Identity Column",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "INSERT 때 값을 주지 않으면 시퀀스에서 다음 번호를 채우는 열로, ALWAYS는 직접 넣은 값을 거절하고 BY DEFAULT는 받아 준다.",
+   "related": [
+    "db.sql.primary-key",
+    "db.sql.unique-constraint"
+   ],
+   "aliases": [
+    "IDENTITY 열",
+    "identity column",
+    "GENERATED ALWAYS AS IDENTITY",
+    "GENERATED BY DEFAULT AS IDENTITY",
+    "자동 증가 열"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/ddl-identity-columns.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.timestamptz",
+   "title": "timestamptz: 시간대 있는 시각",
+   "en": "timestamp with time zone",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "입력한 시각을 UTC로 바꿔 저장하고 보여 줄 때 세션의 시간대로 바꾸는 자료형으로, 시간대 없는 timestamp는 입력의 시간대를 말없이 버린다.",
+   "related": [
+    "db.postgres.first-run"
+   ],
+   "aliases": [
+    "timestamptz",
+    "timestamp with time zone",
+    "AT TIME ZONE",
+    "시간대 자료형"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/datatype-datetime.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.view",
+   "title": "뷰: 쿼리에 이름 붙여 표처럼 쓰기",
+   "en": "View",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "SQL",
+   "summary": "자주 쓰는 SELECT를 CREATE VIEW로 저장해 표처럼 조회하는 것으로, 자료를 따로 담지 않고 부를 때마다 원래 쿼리를 실행한다.",
+   "related": [
+    "db.sql.subquery-cte",
+    "db.sql.join"
+   ],
+   "aliases": [
+    "SQL 뷰",
+    "CREATE VIEW",
+    "SQL view",
+    "데이터베이스 뷰"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/tutorial-views.html"
    ],
    "domain": "db"
   },
@@ -13930,6 +14576,40 @@
    "domain": "llm"
   },
   {
+   "id": "llm.prompt.grounded-answers",
+   "title": "환각 줄이는 프롬프트: 근거 인용과 모른다고 답하기",
+   "en": "Prompting to Reduce Hallucinations",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "프롬프트",
+   "summary": "모른다고 답해도 된다고 허락하고, 주어진 문서에서 인용을 먼저 뽑게 하고, 주장마다 근거를 달게 해 지어낸 답을 줄이는 작성법이다.",
+   "objectives": [
+    "모를 때 모른다고 답하도록 허락하는 문장을 프롬프트에 넣을 수 있다",
+    "긴 문서를 프롬프트 앞쪽에 두고 관련 인용을 먼저 뽑은 뒤 답하게 할 수 있다",
+    "주장마다 근거 인용을 달게 하고 근거가 없는 주장은 빼게 할 수 있다",
+    "같은 질문을 여러 번 돌려 답이 엇갈리는 곳을 찾아 다시 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.why-hallucinate",
+    "llm.prompt.first-good-prompt"
+   ],
+   "related": [
+    "llm.basics.hallucination"
+   ],
+   "aliases": [
+    "환각 줄이기",
+    "reduce hallucinations",
+    "근거 기반 답변",
+    "인용 기반 답변"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations",
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+   ],
+   "domain": "llm"
+  },
+  {
    "id": "llm.prompt.prompt-structure",
    "title": "프롬프트 구조 잡기: 지시·자료·예시 나누기",
    "en": "Structuring Prompts: Separating Instructions, Context, and Examples",
@@ -13962,6 +14642,83 @@
     "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
     "https://developers.openai.com/api/docs/guides/prompt-engineering"
    ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.vision-input",
+   "title": "이미지 넣어 질문하기: 비전 입력",
+   "en": "Image Input (Vision)",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "메시지에 이미지 블록을 텍스트와 함께 넣어 모델이 사진·스크린샷·도표를 읽고 답하게 하는 방법이다.",
+   "objectives": [
+    "base64·URL·파일 ID 중 하나로 이미지 블록을 만들어 질문과 함께 보낼 수 있다",
+    "지원 형식과 크기 제한을 확인하고 큰 이미지를 미리 줄여 보낼 수 있다",
+    "이미지 해상도로 입력 토큰 비용을 어림할 수 있다",
+    "흐리거나 작은 글자처럼 잘못 읽기 쉬운 경우를 알고 이미지를 고쳐 다시 시도할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.api.first-call",
+    "llm.basics.token-context"
+   ],
+   "related": [
+    "llm.basics.image-generation"
+   ],
+   "aliases": [
+    "비전 입력",
+    "이미지 입력",
+    "vision API",
+    "image input",
+    "멀티모달 입력",
+    "이미지 이해"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/vision",
+    "https://developers.openai.com/api/docs/guides/images-vision"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.thinking-effort",
+   "title": "생각하는 모델 쓰기: thinking과 effort 조절",
+   "en": "Using Thinking Models: Thinking and Effort",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "모델이 답하기 전에 생각하게 하는 설정을 켜고 effort로 깊이를 조절해 품질과 비용·속도를 맞춘다.",
+   "objectives": [
+    "thinking 설정을 켜고 응답에서 thinking 블록과 텍스트 블록을 나눠 읽을 수 있다",
+    "effort 값을 바꿔 가며 답의 품질과 출력 토큰 수를 비교할 수 있다",
+    "생각에 쓴 토큰도 max_tokens와 출력 요금에 들어간다는 점을 고려해 한도를 정할 수 있다",
+    "도구 호출 중에는 thinking 블록을 고치지 않고 그대로 돌려보낼 수 있다"
+   ],
+   "prerequisites": [
+    "llm.api.first-call",
+    "llm.internals.generation-settings"
+   ],
+   "related": [
+    "llm.prompt.prompt-chaining"
+   ],
+   "aliases": [
+    "확장 사고",
+    "extended thinking",
+    "adaptive thinking",
+    "추론 모델",
+    "reasoning model",
+    "thinking 모드"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/thinking",
+    "https://platform.claude.com/docs/en/build-with-claude/effort",
+    "https://developers.openai.com/api/docs/guides/reasoning"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
    "domain": "llm"
   },
   {
@@ -14081,6 +14838,217 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-05",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.visual-token",
+   "title": "이미지 토큰",
+   "en": "Visual Tokens",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "모델이 이미지를 작은 조각(패치) 단위로 나눠 세는 입력 토큰으로, 해상도가 클수록 많아져 요금과 컨텍스트를 더 쓴다.",
+   "parent": "llm.api.vision-input",
+   "related": [
+    "llm.basics.token"
+   ],
+   "aliases": [
+    "비전 토큰",
+    "visual token",
+    "이미지 토큰 비용",
+    "image tokens",
+    "이미지 패치"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/vision",
+    "https://developers.openai.com/api/docs/guides/images-vision"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.thinking-block",
+   "title": "thinking 블록",
+   "en": "Thinking Block",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "생각 기능을 켠 응답에서 최종 텍스트보다 앞에 오는 내용 블록으로, 추론 요약과 서명을 담고 다음 요청에 그대로 돌려보낸다.",
+   "parent": "llm.api.thinking-effort",
+   "aliases": [
+    "thinking block",
+    "사고 블록",
+    "thinking 요약",
+    "summarized thinking"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/thinking"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.effort",
+   "title": "effort(노력 수준)",
+   "en": "Effort",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "모델이 한 응답에 생각과 도구 호출, 글쓰기를 얼마나 깊게 할지 low부터 max까지 고르는 요청 설정이다.",
+   "parent": "llm.api.thinking-effort",
+   "related": [
+    "llm.internals.max-tokens"
+   ],
+   "aliases": [
+    "effort 설정",
+    "reasoning effort",
+    "reasoning.effort",
+    "output_config.effort",
+    "추론 강도"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/effort",
+    "https://developers.openai.com/api/docs/guides/reasoning"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.reasoning-tokens",
+   "title": "추론 토큰",
+   "en": "Reasoning Tokens",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "모델이 답을 쓰기 전에 생각하느라 만든 토큰으로, 화면에 다 보이지 않아도 출력 토큰으로 요금이 매겨지고 출력 한도를 차지한다.",
+   "parent": "llm.api.thinking-effort",
+   "related": [
+    "llm.internals.max-tokens",
+    "llm.api.stop-reason"
+   ],
+   "aliases": [
+    "reasoning tokens",
+    "thinking tokens",
+    "사고 토큰",
+    "thinking_tokens"
+   ],
+   "refs": [
+    "https://developers.openai.com/api/docs/guides/reasoning",
+    "https://platform.claude.com/docs/en/build-with-claude/thinking"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.prompt.citations",
+   "title": "인용(Citations) 기능",
+   "en": "Citations",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "프롬프트",
+   "summary": "요청에 넣은 문서마다 인용을 켜면 모델이 답의 각 주장에 문서의 어느 부분을 근거로 했는지 위치와 원문을 붙여 돌려주는 API 기능이다.",
+   "parent": "llm.prompt.grounded-answers",
+   "related": [
+    "llm.prompt.prompt-structure"
+   ],
+   "aliases": [
+    "citations",
+    "인용 기능",
+    "cited_text",
+    "문서 인용",
+    "Citations API"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/citations"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.token-counting",
+   "title": "토큰 수 세기 API",
+   "en": "Token Counting API",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "요청을 보내기 전에 같은 메시지·도구·이미지를 넣어 입력 토큰 수를 미리 받아 비용과 컨텍스트 창에 맞는지 확인하는 기능이다.",
+   "related": [
+    "llm.basics.token",
+    "llm.basics.context-window",
+    "llm.api.visual-token"
+   ],
+   "aliases": [
+    "토큰 카운팅",
+    "token counting",
+    "count_tokens",
+    "토큰 수 세기",
+    "입력 토큰 미리 세기"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/token-counting"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.tools.parallel-tool-calls",
+   "title": "병렬 도구 호출",
+   "en": "Parallel Tool Calls",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "도구 호출",
+   "summary": "모델이 한 응답에서 여러 도구 호출을 한꺼번에 요청하는 것으로, 다음 요청에 모든 호출의 결과를 함께 돌려줘야 하며 Claude API는 이를 한 user 메시지에 모은다.",
+   "parent": "llm.tools.function-calling",
+   "related": [
+    "llm.tools.tool-call"
+   ],
+   "aliases": [
+    "parallel tool use",
+    "parallel function calling",
+    "parallel_tool_calls",
+    "disable_parallel_tool_use",
+    "동시 도구 호출"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use",
+    "https://developers.openai.com/api/docs/guides/function-calling"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.files-api",
+   "title": "Files API",
+   "en": "Files API",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM API",
+   "summary": "파일을 한 번 올려 받은 file_id를 이후 요청에서 이미지·문서 블록에 넣어 다시 쓰게 하는 LLM API 기능이다.",
+   "related": [
+    "llm.api.vision-input"
+   ],
+   "aliases": [
+    "파일 API",
+    "file_id",
+    "파일 업로드 API",
+    "Files 엔드포인트"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/files"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
    "domain": "llm"
   },
   {
@@ -15034,6 +16002,48 @@
    "domain": "rag"
   },
   {
+   "id": "rag.retrieval.rag-architectures",
+   "title": "2단계 RAG와 에이전트형 RAG 만들기",
+   "en": "Building 2-Step RAG and Agentic RAG",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "RAG",
+   "summary": "검색을 항상 먼저 하고 답을 쓰는 2단계 RAG와 에이전트가 검색할지 스스로 정하는 에이전트형 RAG를 직접 만들어 보고 차이를 비교한다.",
+   "objectives": [
+    "벡터 저장소에서 찾은 조각을 질문과 함께 프롬프트에 넣어 답하는 2단계 RAG를 구현할 수 있다",
+    "검색 함수를 도구로 감싸 create_agent에 넘겨 에이전트가 필요할 때만 검색하게 만들 수 있다",
+    "두 방식의 모델 호출 횟수·응답 시간·통제 정도 차이를 실행 결과로 확인하고 설명할 수 있다",
+    "검색된 문서 안의 지시문을 그대로 따르거나 근거 없이 기억으로 답하는 실수를 알아채고 막을 수 있다"
+   ],
+   "prerequisites": [
+    "rag.vector-db.basics",
+    "rag.agent.first-agent",
+    "rag.basics.rag-big-picture"
+   ],
+   "related": [
+    "rag.retrieval.search-types",
+    "rag.retrieval.quality",
+    "llm.security.injection-basics"
+   ],
+   "aliases": [
+    "RAG 구현",
+    "RAG 파이프라인",
+    "검색 증강 생성 구현",
+    "2-step RAG",
+    "RAG chain",
+    "RAG 체인"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/retrieval",
+    "https://docs.langchain.com/oss/python/langchain/knowledge-base",
+    "https://genai.owasp.org/llmrisk/llm01-prompt-injection/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "rag"
+  },
+  {
    "id": "rag.retrieval.search-types",
    "title": "검색 방식 고르기: 유사도·MMR·점수 기준",
    "en": "Choosing a Search Type: Similarity, MMR, Score Threshold",
@@ -15072,6 +16082,123 @@
     "https://reference.langchain.com/python/langchain-core/vectorstores/base/VectorStore/as_retriever",
     "https://reference.langchain.com/python/langchain-core/vectorstores/base/VectorStore/similarity_search_with_relevance_scores"
    ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.graph-api",
+   "title": "LangGraph 그래프 만들기: 상태·노드·엣지",
+   "en": "Building a LangGraph Graph: State, Nodes and Edges",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "StateGraph에 상태 형식을 정하고 노드 함수와 엣지를 이어 compile한 뒤 invoke로 실행하는 LangGraph의 기본 작성법이다.",
+   "objectives": [
+    "TypedDict로 상태를 정의하고 노드가 바꿀 칸만 담은 dict를 돌려주게 작성할 수 있다",
+    "add_node·add_edge·START·END로 노드를 잇고 compile한 그래프를 invoke로 실행할 수 있다",
+    "리듀서가 없는 칸은 덮어쓰이고 리듀서가 있는 칸은 합쳐지는 차이를 알고 알맞게 고를 수 있다",
+    "조건부 엣지로 상태에 따라 다음 노드를 고르게 하고, 끝나지 않는 순환을 재귀 한도 오류로 알아챌 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.first-agent",
+    "be.python.type-hints"
+   ],
+   "related": [
+    "rag.agent.checkpoint-persistence",
+    "rag.basics.langgraph"
+   ],
+   "aliases": [
+    "StateGraph",
+    "LangGraph Graph API",
+    "add_node",
+    "add_edge",
+    "그래프 컴파일",
+    "랭그래프 그래프"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/graph-api"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.workflow-patterns",
+   "title": "LangGraph로 워크플로 패턴 만들기: 체이닝·병렬·라우팅",
+   "en": "Workflow Patterns in LangGraph: Chaining, Parallelization and Routing",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "정해진 순서로 LLM 호출을 잇는 워크플로 패턴들을 LangGraph 그래프로 구현하고, 모델이 흐름을 스스로 정하는 에이전트와 어떻게 다른지 비교한다.",
+   "objectives": [
+    "앞 호출의 결과를 다음 호출에 넘기고 중간 검사로 분기하는 체이닝 그래프를 만들 수 있다",
+    "START에서 여러 노드로 갈라져 동시에 돌고 한 노드에서 결과를 모으는 병렬 그래프를 만들 수 있다",
+    "구조화 출력으로 입력을 분류해 조건부 엣지로 알맞은 노드에 보내는 라우팅을 구현할 수 있다",
+    "같은 일을 워크플로와 에이전트로 각각 짰을 때 흐름을 누가 정하는지 차이를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.first-agent",
+    "rag.agent.graph-api"
+   ],
+   "related": [
+    "llm.prompt.prompt-chaining",
+    "rag.agent.reliability",
+    "rag.basics.langgraph",
+    "llm.api.structured-output"
+   ],
+   "aliases": [
+    "워크플로 패턴",
+    "workflow patterns",
+    "LangGraph 워크플로",
+    "병렬 노드",
+    "워크플로와 에이전트"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/workflows-agents"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-build-server",
+   "title": "파이썬으로 MCP 서버 만들기",
+   "en": "Building an MCP Server in Python",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "파이썬 MCP SDK로 함수에 데코레이터를 붙여 도구를 내주는 서버를 짜고, stdio로 띄워 호스트에 연결해 시험하는 과정이다.",
+   "objectives": [
+    "타입 힌트와 docstring을 단 함수에 @mcp.tool()을 붙여 모델이 부를 도구로 내줄 수 있다",
+    "mcp.run(transport=\"stdio\")로 서버를 띄우고 호스트 설정 파일에 절대 경로로 등록할 수 있다",
+    "stdio 서버에서 print가 표준 출력을 더럽혀 연결이 깨지는 실수를 알고 로그를 표준 오류로 보낼 수 있다",
+    "MCP Inspector로 도구 목록과 호출 결과를 확인해 서버가 제대로 동작하는지 시험할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.mcp-idea",
+    "llm.tools.function-calling",
+    "be.async.await-basics"
+   ],
+   "related": [
+    "rag.agent.mcp-connect",
+    "rag.agent.tool-decorator"
+   ],
+   "aliases": [
+    "MCP 서버 만들기",
+    "MCP 서버 개발",
+    "build MCP server",
+    "MCP Python SDK",
+    "@mcp.tool",
+    "MCPServer"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/docs/develop/build-server",
+    "https://modelcontextprotocol.io/docs/learn/server-concepts"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
    "domain": "rag"
   },
   {
@@ -15171,6 +16298,205 @@
     "https://docs.langchain.com/oss/python/langchain/knowledge-base",
     "https://github.com/pgvector/pgvector",
     "https://learn.microsoft.com/en-us/azure/search/vector-search-ranking"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.state-reducer",
+   "title": "상태 리듀서",
+   "en": "State Reducer",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "LangGraph 상태의 한 칸에 노드의 새 값이 들어올 때 덮어쓸지 기존 값에 덧붙일지 정하는 함수로, 메시지 목록에는 add_messages를 쓴다.",
+   "parent": "rag.agent.graph-api",
+   "related": [
+    "rag.agent.checkpointer"
+   ],
+   "aliases": [
+    "LangGraph 리듀서",
+    "state reducer",
+    "add_messages",
+    "operator.add",
+    "MessagesState",
+    "상태 합치기"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/graph-api#reducers"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.conditional-edge",
+   "title": "조건부 엣지",
+   "en": "Conditional Edge",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "라우팅 함수가 현재 상태를 보고 다음에 갈 노드 이름이나 END를 돌려주게 해 그래프의 흐름을 갈라지게 하는 연결이다.",
+   "parent": "rag.agent.graph-api",
+   "aliases": [
+    "add_conditional_edges",
+    "conditional edges",
+    "분기 엣지",
+    "라우팅 함수",
+    "should_continue"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/graph-api#conditional-edges"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.recursion-limit",
+   "title": "그래프 재귀 한도",
+   "en": "Graph Recursion Limit",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "그래프 한 번 실행에 허용되는 단계 수의 상한으로, 넘으면 GraphRecursionError가 나며 대개 끝나지 않는 순환이 원인이다.",
+   "parent": "rag.agent.graph-api",
+   "related": [
+    "rag.agent.reliability"
+   ],
+   "aliases": [
+    "recursion_limit",
+    "GraphRecursionError",
+    "GRAPH_RECURSION_LIMIT",
+    "재귀 제한",
+    "무한 루프 그래프"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/errors/GRAPH_RECURSION_LIMIT",
+    "https://docs.langchain.com/oss/python/langgraph/graph-api#recursion-limit"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.routing",
+   "title": "라우팅 워크플로",
+   "en": "Routing Workflow",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "입력을 먼저 LLM으로 분류한 뒤 그 종류에 맞게 따로 만든 처리 단계로 보내는 워크플로 패턴이다.",
+   "parent": "rag.agent.workflow-patterns",
+   "related": [
+    "rag.agent.conditional-edge"
+   ],
+   "aliases": [
+    "라우팅 패턴",
+    "routing pattern",
+    "질문 분류 라우팅"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/workflows-agents#routing"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.orchestrator-worker",
+   "title": "오케스트레이터-워커 패턴",
+   "en": "Orchestrator-Worker Pattern",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "오케스트레이터가 할 일을 실행 중에 나눠 워커들에게 맡기고 결과를 모아 합치는 패턴으로, LangGraph에서는 Send로 워커를 필요한 만큼 띄운다.",
+   "parent": "rag.agent.workflow-patterns",
+   "related": [
+    "rag.agent.state-reducer",
+    "ax.coding.subagent"
+   ],
+   "aliases": [
+    "orchestrator-worker",
+    "오케스트레이터 워커",
+    "Send API",
+    "map-reduce 그래프",
+    "작업 분배 패턴"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/workflows-agents#orchestrator-worker",
+    "https://docs.langchain.com/oss/python/langgraph/graph-api#send"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-resource",
+   "title": "MCP 리소스",
+   "en": "MCP Resource",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "MCP 서버가 URI로 내주는 읽기 전용 자료로, 모델이 스스로 부르는 도구와 달리 앱이 골라 맥락에 넣는다.",
+   "parent": "rag.agent.mcp-build-server",
+   "related": [
+    "rag.agent.mcp-protocol"
+   ],
+   "aliases": [
+    "MCP resources",
+    "MCP 리소스 템플릿",
+    "resources/read",
+    "MCP 자료 노출"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/docs/learn/server-concepts#resources"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-inspector",
+   "title": "MCP Inspector",
+   "en": "MCP Inspector",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "MCP 서버에 직접 붙어 도구·리소스·프롬프트 목록을 보고 호출해 보며 오가는 메시지를 확인하는 공식 시험 도구다.",
+   "parent": "rag.agent.mcp-build-server",
+   "related": [
+    "rag.agent.mcp-connect"
+   ],
+   "aliases": [
+    "MCP 인스펙터",
+    "@modelcontextprotocol/inspector",
+    "MCP 디버깅 도구",
+    "MCP 서버 테스트 도구"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/docs/tools/inspector"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.agentic-rag",
+   "title": "에이전트형 RAG",
+   "en": "Agentic RAG",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "RAG",
+   "summary": "검색을 도구로 쥔 에이전트가 언제 무엇을 몇 번 찾을지 스스로 정하는 RAG 방식으로, 유연하지만 호출 횟수와 응답 시간이 들쭉날쭉하다.",
+   "parent": "rag.retrieval.rag-architectures",
+   "related": [
+    "rag.agent.first-agent"
+   ],
+   "aliases": [
+    "agentic RAG",
+    "에이전틱 RAG",
+    "검색 도구 에이전트"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/retrieval#agentic-rag"
    ],
    "domain": "rag"
   },
@@ -20030,6 +21356,158 @@
    "domain": "mlops"
   },
   {
+   "id": "mlops.observe.manual-tracing",
+   "title": "트레이스 직접 남기기: 데코레이터와 스팬",
+   "en": "Manual Tracing with Decorators and Spans",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "자동 기록이 닿지 않는 내 함수와 코드 블록에 @mlflow.trace와 start_span을 붙여 단계별 입력·출력이 트레이스 트리에 남게 만든다.",
+   "objectives": [
+    "@mlflow.trace를 붙인 함수들이 부모·자식 스팬으로 묶여 하나의 트레이스가 되게 만들 수 있다",
+    "start_span으로 함수가 아닌 코드 블록을 스팬으로 감싸고 입력·출력·속성을 직접 넣을 수 있다",
+    "스팬 이름·유형과 트레이스 태그를 붙여 UI에서 원하는 호출을 골라 볼 수 있다",
+    "트레이스 함수 안의 log_metric, 데코레이터 순서, 스레드 문맥 유실 같은 흔한 실수를 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.observe.tracing-quickstart"
+   ],
+   "related": [
+    "mlops.observe.llm-tracing",
+    "ops.observe.tracing",
+    "mlops.observe.autolog"
+   ],
+   "aliases": [
+    "수동 트레이싱",
+    "manual tracing",
+    "@mlflow.trace",
+    "mlflow.start_span",
+    "MLflow 수동 트레이싱"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/tracing/app-instrumentation/manual-tracing/",
+    "https://mlflow.org/docs/latest/genai/concepts/span/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.eval.custom-scorer",
+   "title": "채점 기준 직접 만들기: 코드 기반 스코어러",
+   "en": "Building Code-Based Custom Scorers",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "@scorer 함수가 받는 inputs·outputs·expectations·trace를 골라 쓰고, 참·거짓이나 점수나 Feedback으로 돌려주는 나만의 채점기를 만든다.",
+   "objectives": [
+    "inputs·outputs·expectations·trace 가운데 필요한 인자만 받는 채점 함수를 쓸 수 있다",
+    "결과를 참·거짓, 숫자, 이유를 담은 Feedback 가운데 알맞은 형태로 돌려줄 수 있다",
+    "trace를 받는 스코어러에 정적 데이터를 넘기거나 Feedback 이름을 겹치게 쓰는 실수를 찾아 고칠 수 있다",
+    "코드 채점기와 LLM 심판이 각각 맞는 채점 기준을 예를 들어 구분할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.eval.first-eval"
+   ],
+   "related": [
+    "mlops.eval.llm-judge",
+    "mlops.eval.llm-regression"
+   ],
+   "aliases": [
+    "커스텀 스코어러",
+    "custom scorer",
+    "코드 기반 스코어러",
+    "code-based scorer",
+    "채점 함수 만들기"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/custom/",
+    "https://mlflow.org/docs/latest/genai/concepts/feedback/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.local-model-serving",
+   "title": "기록한 모델을 API로 띄우기: mlflow models serve",
+   "en": "Serving a Logged Model Locally with MLflow",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "run이나 레지스트리에 있는 모델을 mlflow models serve 한 줄로 로컬 REST 서버로 띄우고, JSON을 보내 예측을 받아 본다.",
+   "objectives": [
+    "runs:/·models:/ 주소로 모델을 골라 로컬 추론 서버를 띄울 수 있다",
+    "/invocations에 dataframe_split이나 inputs 형식의 JSON을 보내 예측을 받을 수 있다",
+    "/ping으로 서버가 살아 있는지 확인할 수 있다",
+    "JSON이 타입 정보를 잃어 생기는 입력 타입 오류를 모델 시그니처로 막을 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.track.experiment-tracking"
+   ],
+   "related": [
+    "mlops.serve.static-dynamic-inference",
+    "mlops.track.model-signature",
+    "mlops.track.model-registry",
+    "mlops.serve.model-serving"
+   ],
+   "aliases": [
+    "mlflow models serve",
+    "로컬 모델 서빙",
+    "local model serving",
+    "모델 REST API",
+    "추론 서버 띄우기"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/ml/deployment/deploy-model-locally/",
+    "https://mlflow.org/docs/latest/ml/deployment/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.guardrail.input-output-guardrails",
+   "title": "입력·출력 가드레일 붙이기",
+   "en": "Adding Input and Output Guardrails",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "에이전트가 일하기 전에 사용자 입력을, 답을 돌려주기 전에 최종 출력을 검사하는 함수를 붙이고, 걸리면 실행을 멈추게 만든다.",
+   "objectives": [
+    "입력 가드레일과 출력 가드레일이 각각 언제 실행되는지 구분하고 하나씩 붙일 수 있다",
+    "규칙 기반 검사와 모델 기반 검사의 속도·비용·놓치는 경우 차이를 예로 설명할 수 있다",
+    "가드레일이 막았을 때 생기는 예외를 잡아 사용자에게 안내 문구를 돌려줄 수 있다",
+    "병렬 입력 가드레일이 막기 전에 모델과 도구가 이미 돌았을 수 있다는 점을 알고 차단 방식으로 바꿀 수 있다"
+   ],
+   "prerequisites": [
+    "llm.api.first-call",
+    "llm.security.injection-basics"
+   ],
+   "related": [
+    "mlops.guardrail.guardrail",
+    "ax.security.pii-redaction",
+    "ax.security.model-output-handling",
+    "llm.security.prompt-injection"
+   ],
+   "aliases": [
+    "입력 가드레일",
+    "출력 가드레일",
+    "input guardrail",
+    "output guardrail",
+    "가드레일 구현"
+   ],
+   "refs": [
+    "https://openai.github.io/openai-agents-python/guardrails/",
+    "https://docs.langchain.com/oss/python/langchain/guardrails"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "mlops"
+  },
+  {
    "id": "mlops.track.experiment-tracking",
    "title": "실험 추적: 파라미터·지표·모델 기록하기",
    "en": "Experiment Tracking with MLflow",
@@ -20089,6 +21567,81 @@
    ],
    "refs": [
     "https://mlflow.org/docs/latest/ml/model-registry/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.user-feedback",
+   "title": "트레이스에 사용자 피드백 기록",
+   "en": "Logging User Feedback on Traces",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "사용자의 좋아요·싫어요나 검토자의 판정을 trace_id에 연결해 남겨, 어느 답이 왜 나빴는지 나중에 찾아 평가 자료로 쓰게 하는 기록이다.",
+   "related": [
+    "plan.ai-ux.implicit-explicit-feedback",
+    "mlops.eval.feedback-object",
+    "mlops.observe.llm-tracing"
+   ],
+   "aliases": [
+    "사용자 피드백 기록",
+    "log_feedback",
+    "mlflow.log_feedback",
+    "트레이스 피드백",
+    "MLflow 피드백 기록"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/tracing/collect-user-feedback/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.pre-serving-validation",
+   "title": "서빙 전 모델 품질 검사",
+   "en": "Validating Model Quality Before Serving",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "새 모델을 내보내기 전에 이전 버전과 점수를 비교하고 정해 둔 기준선을 넘는지 확인해, 갑작스러운 하락과 서서히 나빠지는 하락을 모두 막는 검사다.",
+   "related": [
+    "mlops.eval.llm-regression",
+    "mlops.track.model-registry"
+   ],
+   "aliases": [
+    "서빙 전 검증",
+    "배포 전 모델 검사",
+    "model validation before serving",
+    "모델 품질 게이트"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/production-ml-systems/deployment-testing"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.finetune.sft-chat-data",
+   "title": "파인튜닝 학습 데이터(대화 형식 예시)",
+   "en": "Fine-Tuning Training Data in JSONL",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "예시마다 messages 목록에 사용자 질문과 바라는 답을 역할별로 적은 대화 형식 자료로, 지도 파인튜닝(SFT)에서 모델이 따라 배울 답을 보여 준다.",
+   "related": [
+    "mlops.finetune.fine-tuning",
+    "mlops.eval.eval-dataset"
+   ],
+   "aliases": [
+    "파인튜닝 데이터셋",
+    "fine-tuning dataset",
+    "대화형 학습 데이터",
+    "conversational dataset",
+    "SFT 데이터"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/trl/dataset_formats"
    ],
    "domain": "mlops"
   },
@@ -20209,6 +21762,148 @@
    "refs": [
     "https://mlflow.org/docs/latest/ml/model/"
    ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.span-type",
+   "title": "스팬 유형(span type)",
+   "en": "Span Type",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "스팬이 LLM 호출인지, 검색인지, 도구 실행인지를 표시하는 분류 값으로, UI 표시와 스팬 검색에 쓰인다.",
+   "parent": "mlops.observe.manual-tracing",
+   "related": [
+    "ops.observe.span"
+   ],
+   "aliases": [
+    "스팬 유형",
+    "스팬 종류",
+    "span_type",
+    "SpanType",
+    "RETRIEVER 스팬"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/concepts/span/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.trace-tag",
+   "title": "트레이스 태그",
+   "en": "Trace Tags",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "트레이스에 붙이는 바꿀 수 있는 키·값 꼬리표로, 환경이나 요청 종류별로 트레이스를 묶고 걸러 찾는 데 쓴다.",
+   "parent": "mlops.observe.manual-tracing",
+   "aliases": [
+    "트레이스 태그",
+    "trace tag",
+    "update_current_trace",
+    "set_trace_tag",
+    "트레이스 꼬리표"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/tracing/attach-tags/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.eval.feedback-object",
+   "title": "Feedback 객체",
+   "en": "Feedback Object",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "채점 결과를 이름·값·판단 이유·출처·오류로 묶은 MLflow 객체로, 스코어러의 반환값이자 트레이스에 붙는 평가 기록이다.",
+   "parent": "mlops.eval.custom-scorer",
+   "related": [
+    "mlops.observe.user-feedback"
+   ],
+   "aliases": [
+    "Feedback 객체",
+    "Feedback object",
+    "mlflow.entities.Feedback",
+    "평가 결과 객체"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/concepts/feedback/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.invocations-endpoint",
+   "title": "/invocations 엔드포인트와 입력 형식",
+   "en": "The /invocations Endpoint and Input Formats",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "MLflow 추론 서버가 예측 요청을 받는 POST 주소로, JSON 본문은 dataframe_split·dataframe_records·instances·inputs 중 하나로 감싸 보낸다.",
+   "parent": "mlops.serve.local-model-serving",
+   "aliases": [
+    "/invocations",
+    "invocations 엔드포인트",
+    "dataframe_split",
+    "dataframe_records",
+    "MLflow 추론 요청 형식"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/ml/deployment/deploy-model-locally/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.track.reproducible-training",
+   "title": "학습 재현성(reproducible training)",
+   "en": "Reproducible Training",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "난수 시드 고정, 일정한 초기화 순서, 코드·데이터 버전 기록으로 같은 학습을 다시 돌렸을 때 비슷한 모델이 나오게 하는 습관이다.",
+   "related": [
+    "mlops.track.experiment-tracking",
+    "mlops.track.data-versioning"
+   ],
+   "aliases": [
+    "학습 재현성",
+    "reproducible training",
+    "재현 가능한 학습",
+    "random seed 고정",
+    "시드 고정"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/production-ml-systems/deployment-testing"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.guardrail.tripwire",
+   "title": "트립와이어(가드레일 차단 신호)",
+   "en": "Guardrail Tripwire",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "가드레일 검사가 실패했다고 알리는 신호로, 켜지면 러너가 실행을 멈추고 어느 가드레일이 막았는지 담은 예외를 던진다.",
+   "parent": "mlops.guardrail.input-output-guardrails",
+   "aliases": [
+    "트립와이어",
+    "tripwire",
+    "tripwire_triggered",
+    "InputGuardrailTripwireTriggered",
+    "가드레일 차단"
+   ],
+   "refs": [
+    "https://openai.github.io/openai-agents-python/guardrails/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
    "domain": "mlops"
   },
   {

@@ -545,6 +545,110 @@
     ]
   },
   {
+    "id": "db.sql.constraints",
+    "title": "제약 조건으로 잘못된 자료 막기",
+    "en": "Table Constraints",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "SQL",
+    "summary": "NOT NULL·UNIQUE·CHECK·외래 키를 표에 걸어 앱 코드가 놓친 잘못된 값도 데이터베이스가 넣기 전에 거절하게 만든다.",
+    "objectives": [
+      "NOT NULL·UNIQUE·CHECK 제약을 골라 CREATE TABLE에 걸 수 있다",
+      "제약 위반 오류 메시지를 읽고 어느 제약에 걸렸는지 찾아 고칠 수 있다",
+      "CHECK와 UNIQUE가 NULL을 통과시키는 이유를 알고 NOT NULL을 함께 걸 수 있다",
+      "외래 키의 ON DELETE 동작을 부모·자식 관계에 맞게 고를 수 있다"
+    ],
+    "prerequisites": [
+      "db.postgres.first-run",
+      "db.sql.write-rows"
+    ],
+    "related": [
+      "db.sql.primary-key",
+      "db.sql.foreign-key",
+      "db.sql.upsert-on-conflict"
+    ],
+    "aliases": [
+      "제약 조건",
+      "DB 제약 조건",
+      "테이블 제약",
+      "NOT NULL 제약",
+      "무결성 제약"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/ddl-constraints.html"
+    ]
+  },
+  {
+    "id": "db.sql.subquery-cte",
+    "title": "서브쿼리와 WITH 절로 조회 나누기",
+    "en": "Subqueries and WITH Queries (CTE)",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "쿼리 안에 쿼리를 넣거나 WITH로 중간 결과에 이름을 붙여, 한 번에 쓰기 어려운 조회를 단계별로 나눠 쓰는 방법이다.",
+    "objectives": [
+      "WHERE·FROM 안에 서브쿼리를 넣어 다른 조회의 결과로 조건을 걸 수 있다",
+      "WITH 절로 중간 결과에 이름을 붙여 긴 쿼리를 읽기 쉽게 나눌 수 있다",
+      "서브쿼리·CTE·JOIN 중 같은 결과를 내는 쓰임을 비교해 고를 수 있다"
+    ],
+    "prerequisites": [
+      "db.sql.select-first"
+    ],
+    "related": [
+      "db.sql.join",
+      "db.sql.group-by"
+    ],
+    "aliases": [
+      "서브쿼리",
+      "subquery",
+      "하위 쿼리",
+      "CTE",
+      "WITH 절",
+      "공통 테이블 식"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/queries-with.html",
+      "https://www.postgresql.org/docs/current/functions-subquery.html"
+    ]
+  },
+  {
+    "id": "db.sql.window-functions",
+    "title": "윈도 함수로 순위와 누계 구하기",
+    "en": "Window Functions",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "행을 하나로 줄이지 않고 각 행 옆에 묶음 안의 순위·평균·누계를 붙여 보여 주는 SQL 함수다.",
+    "objectives": [
+      "OVER와 PARTITION BY로 묶음마다 순위나 평균을 각 행에 붙일 수 있다",
+      "GROUP BY 집계와 윈도 함수의 결과 행 수가 왜 다른지 설명할 수 있다",
+      "ORDER BY를 넣은 OVER로 누계를 구하고 같은 값이 묶이는 이유를 알 수 있다",
+      "WHERE에 윈도 함수를 못 쓰는 오류를 서브쿼리로 감싸 해결할 수 있다"
+    ],
+    "prerequisites": [
+      "db.sql.select-first"
+    ],
+    "related": [
+      "db.sql.group-by",
+      "db.sql.subquery-cte"
+    ],
+    "aliases": [
+      "윈도 함수",
+      "윈도우 함수",
+      "window function",
+      "OVER 절",
+      "OVER (PARTITION BY)",
+      "분석 함수"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/tutorial-window.html",
+      "https://www.postgresql.org/docs/current/functions-window.html"
+    ]
+  },
+  {
     "id": "db.sql.join",
     "title": "JOIN: 두 표 이어 붙이기",
     "en": "JOIN",
@@ -613,6 +717,31 @@
     ],
     "refs": [
       "https://www.postgresql.org/docs/current/functions-comparison.html"
+    ]
+  },
+  {
+    "id": "db.sql.unique-constraint",
+    "title": "UNIQUE 제약",
+    "en": "UNIQUE Constraint",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "SQL",
+    "summary": "한 열이나 여러 열의 조합이 표 안에서 겹치지 않게 막는 제약으로, 기본값으로는 NULL끼리는 같다고 보지 않는다.",
+    "parent": "db.sql.constraints",
+    "related": [
+      "db.sql.primary-key",
+      "db.sql.upsert-on-conflict"
+    ],
+    "aliases": [
+      "UNIQUE 제약",
+      "unique constraint",
+      "유니크 제약",
+      "중복 금지 제약",
+      "NULLS NOT DISTINCT"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/ddl-constraints.html"
     ]
   },
   {
@@ -687,6 +816,168 @@
     ],
     "refs": [
       "https://www.postgresql.org/docs/current/sql-insert.html"
+    ]
+  },
+  {
+    "id": "db.sql.check-constraint",
+    "title": "CHECK 제약",
+    "en": "CHECK Constraint",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "가격은 0보다 커야 한다처럼 행마다 참이어야 할 조건식을 걸어 두는 제약으로, 결과가 NULL이면 통과한다.",
+    "parent": "db.sql.constraints",
+    "related": [
+      "db.sql.null-comparison"
+    ],
+    "aliases": [
+      "CHECK 제약",
+      "check constraint",
+      "체크 제약",
+      "CHECK 조건"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/ddl-constraints.html"
+    ]
+  },
+  {
+    "id": "db.sql.on-delete-cascade",
+    "title": "ON DELETE: 부모 행을 지울 때의 동작",
+    "en": "Foreign Key ON DELETE Actions",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "외래 키가 가리키는 부모 행을 지울 때 자식 행을 함께 지울지(CASCADE), 막을지(RESTRICT), 비울지(SET NULL) 정하는 설정이다.",
+    "parent": "db.sql.constraints",
+    "related": [
+      "db.sql.foreign-key"
+    ],
+    "aliases": [
+      "ON DELETE CASCADE",
+      "ON DELETE SET NULL",
+      "ON DELETE RESTRICT",
+      "연쇄 삭제",
+      "cascade delete"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/ddl-constraints.html"
+    ]
+  },
+  {
+    "id": "db.sql.exists-in-subquery",
+    "title": "EXISTS와 IN 서브쿼리",
+    "en": "EXISTS and IN Subqueries",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "다른 표에 맞는 행이 있는지로 거르는 조건으로, 서브쿼리에 NULL이 하나라도 있으면 NOT IN은 아무 행도 돌려주지 않으므로 NOT EXISTS가 안전하다.",
+    "parent": "db.sql.subquery-cte",
+    "related": [
+      "db.sql.null-comparison",
+      "db.sql.join"
+    ],
+    "aliases": [
+      "NOT IN 서브쿼리",
+      "IN 서브쿼리",
+      "EXISTS 서브쿼리",
+      "NOT EXISTS 서브쿼리"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/functions-subquery.html"
+    ]
+  },
+  {
+    "id": "db.sql.rank-functions",
+    "title": "순위 함수: ROW_NUMBER·RANK·DENSE_RANK",
+    "en": "Ranking Window Functions",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "윈도 안에서 행에 차례 번호를 매기는 함수들로, 동점일 때 ROW_NUMBER는 다른 번호를, RANK는 같은 번호 뒤 건너뛰기를, DENSE_RANK는 건너뛰지 않음을 준다.",
+    "parent": "db.sql.window-functions",
+    "aliases": [
+      "ROW_NUMBER",
+      "row_number()",
+      "RANK 함수",
+      "DENSE_RANK",
+      "순위 함수",
+      "동점 순위"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/functions-window.html"
+    ]
+  },
+  {
+    "id": "db.sql.identity-column",
+    "title": "자동 번호 열: IDENTITY",
+    "en": "Identity Column",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "INSERT 때 값을 주지 않으면 시퀀스에서 다음 번호를 채우는 열로, ALWAYS는 직접 넣은 값을 거절하고 BY DEFAULT는 받아 준다.",
+    "related": [
+      "db.sql.primary-key",
+      "db.sql.unique-constraint"
+    ],
+    "aliases": [
+      "IDENTITY 열",
+      "identity column",
+      "GENERATED ALWAYS AS IDENTITY",
+      "GENERATED BY DEFAULT AS IDENTITY",
+      "자동 증가 열"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/ddl-identity-columns.html"
+    ]
+  },
+  {
+    "id": "db.sql.timestamptz",
+    "title": "timestamptz: 시간대 있는 시각",
+    "en": "timestamp with time zone",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "입력한 시각을 UTC로 바꿔 저장하고 보여 줄 때 세션의 시간대로 바꾸는 자료형으로, 시간대 없는 timestamp는 입력의 시간대를 말없이 버린다.",
+    "related": [
+      "db.postgres.first-run"
+    ],
+    "aliases": [
+      "timestamptz",
+      "timestamp with time zone",
+      "AT TIME ZONE",
+      "시간대 자료형"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/datatype-datetime.html"
+    ]
+  },
+  {
+    "id": "db.sql.view",
+    "title": "뷰: 쿼리에 이름 붙여 표처럼 쓰기",
+    "en": "View",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "SQL",
+    "summary": "자주 쓰는 SELECT를 CREATE VIEW로 저장해 표처럼 조회하는 것으로, 자료를 따로 담지 않고 부를 때마다 원래 쿼리를 실행한다.",
+    "related": [
+      "db.sql.subquery-cte",
+      "db.sql.join"
+    ],
+    "aliases": [
+      "SQL 뷰",
+      "CREATE VIEW",
+      "SQL view",
+      "데이터베이스 뷰"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/tutorial-views.html"
     ]
   },
   {

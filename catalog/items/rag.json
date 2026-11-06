@@ -427,6 +427,47 @@
     ]
   },
   {
+    "id": "rag.retrieval.rag-architectures",
+    "title": "2단계 RAG와 에이전트형 RAG 만들기",
+    "en": "Building 2-Step RAG and Agentic RAG",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "RAG",
+    "summary": "검색을 항상 먼저 하고 답을 쓰는 2단계 RAG와 에이전트가 검색할지 스스로 정하는 에이전트형 RAG를 직접 만들어 보고 차이를 비교한다.",
+    "objectives": [
+      "벡터 저장소에서 찾은 조각을 질문과 함께 프롬프트에 넣어 답하는 2단계 RAG를 구현할 수 있다",
+      "검색 함수를 도구로 감싸 create_agent에 넘겨 에이전트가 필요할 때만 검색하게 만들 수 있다",
+      "두 방식의 모델 호출 횟수·응답 시간·통제 정도 차이를 실행 결과로 확인하고 설명할 수 있다",
+      "검색된 문서 안의 지시문을 그대로 따르거나 근거 없이 기억으로 답하는 실수를 알아채고 막을 수 있다"
+    ],
+    "prerequisites": [
+      "rag.vector-db.basics",
+      "rag.agent.first-agent",
+      "rag.basics.rag-big-picture"
+    ],
+    "related": [
+      "rag.retrieval.search-types",
+      "rag.retrieval.quality",
+      "llm.security.injection-basics"
+    ],
+    "aliases": [
+      "RAG 구현",
+      "RAG 파이프라인",
+      "검색 증강 생성 구현",
+      "2-step RAG",
+      "RAG chain",
+      "RAG 체인"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/retrieval",
+      "https://docs.langchain.com/oss/python/langchain/knowledge-base",
+      "https://genai.owasp.org/llmrisk/llm01-prompt-injection/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
     "id": "rag.retrieval.search-types",
     "title": "검색 방식 고르기: 유사도·MMR·점수 기준",
     "en": "Choosing a Search Type: Similarity, MMR, Score Threshold",
@@ -465,6 +506,120 @@
       "https://reference.langchain.com/python/langchain-core/vectorstores/base/VectorStore/as_retriever",
       "https://reference.langchain.com/python/langchain-core/vectorstores/base/VectorStore/similarity_search_with_relevance_scores"
     ]
+  },
+  {
+    "id": "rag.agent.graph-api",
+    "title": "LangGraph 그래프 만들기: 상태·노드·엣지",
+    "en": "Building a LangGraph Graph: State, Nodes and Edges",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "StateGraph에 상태 형식을 정하고 노드 함수와 엣지를 이어 compile한 뒤 invoke로 실행하는 LangGraph의 기본 작성법이다.",
+    "objectives": [
+      "TypedDict로 상태를 정의하고 노드가 바꿀 칸만 담은 dict를 돌려주게 작성할 수 있다",
+      "add_node·add_edge·START·END로 노드를 잇고 compile한 그래프를 invoke로 실행할 수 있다",
+      "리듀서가 없는 칸은 덮어쓰이고 리듀서가 있는 칸은 합쳐지는 차이를 알고 알맞게 고를 수 있다",
+      "조건부 엣지로 상태에 따라 다음 노드를 고르게 하고, 끝나지 않는 순환을 재귀 한도 오류로 알아챌 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.first-agent",
+      "be.python.type-hints"
+    ],
+    "related": [
+      "rag.agent.checkpoint-persistence",
+      "rag.basics.langgraph"
+    ],
+    "aliases": [
+      "StateGraph",
+      "LangGraph Graph API",
+      "add_node",
+      "add_edge",
+      "그래프 컴파일",
+      "랭그래프 그래프"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/graph-api"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "rag.agent.workflow-patterns",
+    "title": "LangGraph로 워크플로 패턴 만들기: 체이닝·병렬·라우팅",
+    "en": "Workflow Patterns in LangGraph: Chaining, Parallelization and Routing",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "정해진 순서로 LLM 호출을 잇는 워크플로 패턴들을 LangGraph 그래프로 구현하고, 모델이 흐름을 스스로 정하는 에이전트와 어떻게 다른지 비교한다.",
+    "objectives": [
+      "앞 호출의 결과를 다음 호출에 넘기고 중간 검사로 분기하는 체이닝 그래프를 만들 수 있다",
+      "START에서 여러 노드로 갈라져 동시에 돌고 한 노드에서 결과를 모으는 병렬 그래프를 만들 수 있다",
+      "구조화 출력으로 입력을 분류해 조건부 엣지로 알맞은 노드에 보내는 라우팅을 구현할 수 있다",
+      "같은 일을 워크플로와 에이전트로 각각 짰을 때 흐름을 누가 정하는지 차이를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.first-agent",
+      "rag.agent.graph-api"
+    ],
+    "related": [
+      "llm.prompt.prompt-chaining",
+      "rag.agent.reliability",
+      "rag.basics.langgraph",
+      "llm.api.structured-output"
+    ],
+    "aliases": [
+      "워크플로 패턴",
+      "workflow patterns",
+      "LangGraph 워크플로",
+      "병렬 노드",
+      "워크플로와 에이전트"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/workflows-agents"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "rag.agent.mcp-build-server",
+    "title": "파이썬으로 MCP 서버 만들기",
+    "en": "Building an MCP Server in Python",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "파이썬 MCP SDK로 함수에 데코레이터를 붙여 도구를 내주는 서버를 짜고, stdio로 띄워 호스트에 연결해 시험하는 과정이다.",
+    "objectives": [
+      "타입 힌트와 docstring을 단 함수에 @mcp.tool()을 붙여 모델이 부를 도구로 내줄 수 있다",
+      "mcp.run(transport=\"stdio\")로 서버를 띄우고 호스트 설정 파일에 절대 경로로 등록할 수 있다",
+      "stdio 서버에서 print가 표준 출력을 더럽혀 연결이 깨지는 실수를 알고 로그를 표준 오류로 보낼 수 있다",
+      "MCP Inspector로 도구 목록과 호출 결과를 확인해 서버가 제대로 동작하는지 시험할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.mcp-idea",
+      "llm.tools.function-calling",
+      "be.async.await-basics"
+    ],
+    "related": [
+      "rag.agent.mcp-connect",
+      "rag.agent.tool-decorator"
+    ],
+    "aliases": [
+      "MCP 서버 만들기",
+      "MCP 서버 개발",
+      "build MCP server",
+      "MCP Python SDK",
+      "@mcp.tool",
+      "MCPServer"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/docs/develop/build-server",
+      "https://modelcontextprotocol.io/docs/learn/server-concepts"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
   },
   {
     "id": "rag.vector-db.chunk",
@@ -560,6 +715,197 @@
       "https://docs.langchain.com/oss/python/langchain/knowledge-base",
       "https://github.com/pgvector/pgvector",
       "https://learn.microsoft.com/en-us/azure/search/vector-search-ranking"
+    ]
+  },
+  {
+    "id": "rag.agent.state-reducer",
+    "title": "상태 리듀서",
+    "en": "State Reducer",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "LangGraph 상태의 한 칸에 노드의 새 값이 들어올 때 덮어쓸지 기존 값에 덧붙일지 정하는 함수로, 메시지 목록에는 add_messages를 쓴다.",
+    "parent": "rag.agent.graph-api",
+    "related": [
+      "rag.agent.checkpointer"
+    ],
+    "aliases": [
+      "LangGraph 리듀서",
+      "state reducer",
+      "add_messages",
+      "operator.add",
+      "MessagesState",
+      "상태 합치기"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/graph-api#reducers"
+    ]
+  },
+  {
+    "id": "rag.agent.conditional-edge",
+    "title": "조건부 엣지",
+    "en": "Conditional Edge",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "라우팅 함수가 현재 상태를 보고 다음에 갈 노드 이름이나 END를 돌려주게 해 그래프의 흐름을 갈라지게 하는 연결이다.",
+    "parent": "rag.agent.graph-api",
+    "aliases": [
+      "add_conditional_edges",
+      "conditional edges",
+      "분기 엣지",
+      "라우팅 함수",
+      "should_continue"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/graph-api#conditional-edges"
+    ]
+  },
+  {
+    "id": "rag.agent.recursion-limit",
+    "title": "그래프 재귀 한도",
+    "en": "Graph Recursion Limit",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "그래프 한 번 실행에 허용되는 단계 수의 상한으로, 넘으면 GraphRecursionError가 나며 대개 끝나지 않는 순환이 원인이다.",
+    "parent": "rag.agent.graph-api",
+    "related": [
+      "rag.agent.reliability"
+    ],
+    "aliases": [
+      "recursion_limit",
+      "GraphRecursionError",
+      "GRAPH_RECURSION_LIMIT",
+      "재귀 제한",
+      "무한 루프 그래프"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/errors/GRAPH_RECURSION_LIMIT",
+      "https://docs.langchain.com/oss/python/langgraph/graph-api#recursion-limit"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "rag.agent.routing",
+    "title": "라우팅 워크플로",
+    "en": "Routing Workflow",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "입력을 먼저 LLM으로 분류한 뒤 그 종류에 맞게 따로 만든 처리 단계로 보내는 워크플로 패턴이다.",
+    "parent": "rag.agent.workflow-patterns",
+    "related": [
+      "rag.agent.conditional-edge"
+    ],
+    "aliases": [
+      "라우팅 패턴",
+      "routing pattern",
+      "질문 분류 라우팅"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/workflows-agents#routing"
+    ]
+  },
+  {
+    "id": "rag.agent.orchestrator-worker",
+    "title": "오케스트레이터-워커 패턴",
+    "en": "Orchestrator-Worker Pattern",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "오케스트레이터가 할 일을 실행 중에 나눠 워커들에게 맡기고 결과를 모아 합치는 패턴으로, LangGraph에서는 Send로 워커를 필요한 만큼 띄운다.",
+    "parent": "rag.agent.workflow-patterns",
+    "related": [
+      "rag.agent.state-reducer",
+      "ax.coding.subagent"
+    ],
+    "aliases": [
+      "orchestrator-worker",
+      "오케스트레이터 워커",
+      "Send API",
+      "map-reduce 그래프",
+      "작업 분배 패턴"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/workflows-agents#orchestrator-worker",
+      "https://docs.langchain.com/oss/python/langgraph/graph-api#send"
+    ]
+  },
+  {
+    "id": "rag.agent.mcp-resource",
+    "title": "MCP 리소스",
+    "en": "MCP Resource",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "MCP 서버가 URI로 내주는 읽기 전용 자료로, 모델이 스스로 부르는 도구와 달리 앱이 골라 맥락에 넣는다.",
+    "parent": "rag.agent.mcp-build-server",
+    "related": [
+      "rag.agent.mcp-protocol"
+    ],
+    "aliases": [
+      "MCP resources",
+      "MCP 리소스 템플릿",
+      "resources/read",
+      "MCP 자료 노출"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/docs/learn/server-concepts#resources"
+    ]
+  },
+  {
+    "id": "rag.agent.mcp-inspector",
+    "title": "MCP Inspector",
+    "en": "MCP Inspector",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "MCP 서버에 직접 붙어 도구·리소스·프롬프트 목록을 보고 호출해 보며 오가는 메시지를 확인하는 공식 시험 도구다.",
+    "parent": "rag.agent.mcp-build-server",
+    "related": [
+      "rag.agent.mcp-connect"
+    ],
+    "aliases": [
+      "MCP 인스펙터",
+      "@modelcontextprotocol/inspector",
+      "MCP 디버깅 도구",
+      "MCP 서버 테스트 도구"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/docs/tools/inspector"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "rag.retrieval.agentic-rag",
+    "title": "에이전트형 RAG",
+    "en": "Agentic RAG",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "RAG",
+    "summary": "검색을 도구로 쥔 에이전트가 언제 무엇을 몇 번 찾을지 스스로 정하는 RAG 방식으로, 유연하지만 호출 횟수와 응답 시간이 들쭉날쭉하다.",
+    "parent": "rag.retrieval.rag-architectures",
+    "related": [
+      "rag.agent.first-agent"
+    ],
+    "aliases": [
+      "agentic RAG",
+      "에이전틱 RAG",
+      "검색 도구 에이전트"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/retrieval#agentic-rag"
     ]
   },
   {

@@ -599,6 +599,39 @@
     "checked_at": "2026-11-05"
   },
   {
+    "id": "llm.prompt.grounded-answers",
+    "title": "환각 줄이는 프롬프트: 근거 인용과 모른다고 답하기",
+    "en": "Prompting to Reduce Hallucinations",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "프롬프트",
+    "summary": "모른다고 답해도 된다고 허락하고, 주어진 문서에서 인용을 먼저 뽑게 하고, 주장마다 근거를 달게 해 지어낸 답을 줄이는 작성법이다.",
+    "objectives": [
+      "모를 때 모른다고 답하도록 허락하는 문장을 프롬프트에 넣을 수 있다",
+      "긴 문서를 프롬프트 앞쪽에 두고 관련 인용을 먼저 뽑은 뒤 답하게 할 수 있다",
+      "주장마다 근거 인용을 달게 하고 근거가 없는 주장은 빼게 할 수 있다",
+      "같은 질문을 여러 번 돌려 답이 엇갈리는 곳을 찾아 다시 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.why-hallucinate",
+      "llm.prompt.first-good-prompt"
+    ],
+    "related": [
+      "llm.basics.hallucination"
+    ],
+    "aliases": [
+      "환각 줄이기",
+      "reduce hallucinations",
+      "근거 기반 답변",
+      "인용 기반 답변"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations",
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+    ]
+  },
+  {
     "id": "llm.prompt.prompt-structure",
     "title": "프롬프트 구조 잡기: 지시·자료·예시 나누기",
     "en": "Structuring Prompts: Separating Instructions, Context, and Examples",
@@ -631,6 +664,81 @@
       "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
       "https://developers.openai.com/api/docs/guides/prompt-engineering"
     ]
+  },
+  {
+    "id": "llm.api.vision-input",
+    "title": "이미지 넣어 질문하기: 비전 입력",
+    "en": "Image Input (Vision)",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "메시지에 이미지 블록을 텍스트와 함께 넣어 모델이 사진·스크린샷·도표를 읽고 답하게 하는 방법이다.",
+    "objectives": [
+      "base64·URL·파일 ID 중 하나로 이미지 블록을 만들어 질문과 함께 보낼 수 있다",
+      "지원 형식과 크기 제한을 확인하고 큰 이미지를 미리 줄여 보낼 수 있다",
+      "이미지 해상도로 입력 토큰 비용을 어림할 수 있다",
+      "흐리거나 작은 글자처럼 잘못 읽기 쉬운 경우를 알고 이미지를 고쳐 다시 시도할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.first-call",
+      "llm.basics.token-context"
+    ],
+    "related": [
+      "llm.basics.image-generation"
+    ],
+    "aliases": [
+      "비전 입력",
+      "이미지 입력",
+      "vision API",
+      "image input",
+      "멀티모달 입력",
+      "이미지 이해"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/vision",
+      "https://developers.openai.com/api/docs/guides/images-vision"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "llm.api.thinking-effort",
+    "title": "생각하는 모델 쓰기: thinking과 effort 조절",
+    "en": "Using Thinking Models: Thinking and Effort",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "모델이 답하기 전에 생각하게 하는 설정을 켜고 effort로 깊이를 조절해 품질과 비용·속도를 맞춘다.",
+    "objectives": [
+      "thinking 설정을 켜고 응답에서 thinking 블록과 텍스트 블록을 나눠 읽을 수 있다",
+      "effort 값을 바꿔 가며 답의 품질과 출력 토큰 수를 비교할 수 있다",
+      "생각에 쓴 토큰도 max_tokens와 출력 요금에 들어간다는 점을 고려해 한도를 정할 수 있다",
+      "도구 호출 중에는 thinking 블록을 고치지 않고 그대로 돌려보낼 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.first-call",
+      "llm.internals.generation-settings"
+    ],
+    "related": [
+      "llm.prompt.prompt-chaining"
+    ],
+    "aliases": [
+      "확장 사고",
+      "extended thinking",
+      "adaptive thinking",
+      "추론 모델",
+      "reasoning model",
+      "thinking 모드"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/thinking",
+      "https://platform.claude.com/docs/en/build-with-claude/effort",
+      "https://developers.openai.com/api/docs/guides/reasoning"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
   },
   {
     "id": "llm.tools.tool-schema",
@@ -745,6 +853,209 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-05"
+  },
+  {
+    "id": "llm.api.visual-token",
+    "title": "이미지 토큰",
+    "en": "Visual Tokens",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "모델이 이미지를 작은 조각(패치) 단위로 나눠 세는 입력 토큰으로, 해상도가 클수록 많아져 요금과 컨텍스트를 더 쓴다.",
+    "parent": "llm.api.vision-input",
+    "related": [
+      "llm.basics.token"
+    ],
+    "aliases": [
+      "비전 토큰",
+      "visual token",
+      "이미지 토큰 비용",
+      "image tokens",
+      "이미지 패치"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/vision",
+      "https://developers.openai.com/api/docs/guides/images-vision"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "llm.api.thinking-block",
+    "title": "thinking 블록",
+    "en": "Thinking Block",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "생각 기능을 켠 응답에서 최종 텍스트보다 앞에 오는 내용 블록으로, 추론 요약과 서명을 담고 다음 요청에 그대로 돌려보낸다.",
+    "parent": "llm.api.thinking-effort",
+    "aliases": [
+      "thinking block",
+      "사고 블록",
+      "thinking 요약",
+      "summarized thinking"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/thinking"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "llm.api.effort",
+    "title": "effort(노력 수준)",
+    "en": "Effort",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "모델이 한 응답에 생각과 도구 호출, 글쓰기를 얼마나 깊게 할지 low부터 max까지 고르는 요청 설정이다.",
+    "parent": "llm.api.thinking-effort",
+    "related": [
+      "llm.internals.max-tokens"
+    ],
+    "aliases": [
+      "effort 설정",
+      "reasoning effort",
+      "reasoning.effort",
+      "output_config.effort",
+      "추론 강도"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/effort",
+      "https://developers.openai.com/api/docs/guides/reasoning"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "llm.api.reasoning-tokens",
+    "title": "추론 토큰",
+    "en": "Reasoning Tokens",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "모델이 답을 쓰기 전에 생각하느라 만든 토큰으로, 화면에 다 보이지 않아도 출력 토큰으로 요금이 매겨지고 출력 한도를 차지한다.",
+    "parent": "llm.api.thinking-effort",
+    "related": [
+      "llm.internals.max-tokens",
+      "llm.api.stop-reason"
+    ],
+    "aliases": [
+      "reasoning tokens",
+      "thinking tokens",
+      "사고 토큰",
+      "thinking_tokens"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/reasoning",
+      "https://platform.claude.com/docs/en/build-with-claude/thinking"
+    ]
+  },
+  {
+    "id": "llm.prompt.citations",
+    "title": "인용(Citations) 기능",
+    "en": "Citations",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "프롬프트",
+    "summary": "요청에 넣은 문서마다 인용을 켜면 모델이 답의 각 주장에 문서의 어느 부분을 근거로 했는지 위치와 원문을 붙여 돌려주는 API 기능이다.",
+    "parent": "llm.prompt.grounded-answers",
+    "related": [
+      "llm.prompt.prompt-structure"
+    ],
+    "aliases": [
+      "citations",
+      "인용 기능",
+      "cited_text",
+      "문서 인용",
+      "Citations API"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/citations"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "llm.api.token-counting",
+    "title": "토큰 수 세기 API",
+    "en": "Token Counting API",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "요청을 보내기 전에 같은 메시지·도구·이미지를 넣어 입력 토큰 수를 미리 받아 비용과 컨텍스트 창에 맞는지 확인하는 기능이다.",
+    "related": [
+      "llm.basics.token",
+      "llm.basics.context-window",
+      "llm.api.visual-token"
+    ],
+    "aliases": [
+      "토큰 카운팅",
+      "token counting",
+      "count_tokens",
+      "토큰 수 세기",
+      "입력 토큰 미리 세기"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/token-counting"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "llm.tools.parallel-tool-calls",
+    "title": "병렬 도구 호출",
+    "en": "Parallel Tool Calls",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "도구 호출",
+    "summary": "모델이 한 응답에서 여러 도구 호출을 한꺼번에 요청하는 것으로, 다음 요청에 모든 호출의 결과를 함께 돌려줘야 하며 Claude API는 이를 한 user 메시지에 모은다.",
+    "parent": "llm.tools.function-calling",
+    "related": [
+      "llm.tools.tool-call"
+    ],
+    "aliases": [
+      "parallel tool use",
+      "parallel function calling",
+      "parallel_tool_calls",
+      "disable_parallel_tool_use",
+      "동시 도구 호출"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use",
+      "https://developers.openai.com/api/docs/guides/function-calling"
+    ]
+  },
+  {
+    "id": "llm.api.files-api",
+    "title": "Files API",
+    "en": "Files API",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "파일을 한 번 올려 받은 file_id를 이후 요청에서 이미지·문서 블록에 넣어 다시 쓰게 하는 LLM API 기능이다.",
+    "related": [
+      "llm.api.vision-input"
+    ],
+    "aliases": [
+      "파일 API",
+      "file_id",
+      "파일 업로드 API",
+      "Files 엔드포인트"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/files"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
   },
   {
     "id": "llm.security.prompt-injection",
