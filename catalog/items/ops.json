@@ -461,6 +461,65 @@
     ]
   },
   {
+    "id": "ops.linux.file-permissions",
+    "title": "리눅스 파일 권한과 소유자: chmod·chown",
+    "en": "Linux File Permissions and Ownership",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "리눅스",
+    "summary": "파일마다 소유자·그룹·나머지가 읽기·쓰기·실행을 할 수 있는지 정하고 chmod와 chown으로 바꾼다.",
+    "objectives": [
+      "ls -l 출력의 권한 문자열을 소유자·그룹·나머지로 나눠 읽을 수 있다",
+      "chmod의 기호 표기와 숫자 표기로 원하는 권한을 줄 수 있다",
+      "chown으로 파일의 소유자와 그룹을 바꿀 수 있다",
+      "Permission denied 오류가 실행 권한이나 디렉터리 권한 때문인지 찾아 고칠 수 있다"
+    ],
+    "aliases": [
+      "파일 권한",
+      "file permissions",
+      "chmod",
+      "chown",
+      "rwx"
+    ],
+    "refs": [
+      "https://www.gnu.org/software/coreutils/manual/html_node/File-permissions.html",
+      "https://www.gnu.org/software/coreutils/manual/html_node/chown-invocation.html"
+    ]
+  },
+  {
+    "id": "ops.linux.ssh-key-login",
+    "title": "SSH 키로 서버에 접속하기",
+    "en": "SSH Public Key Login",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "리눅스",
+    "summary": "ssh-keygen으로 키 쌍을 만들고 공개 키를 서버에 올려 비밀번호 없이 원격 서버에 로그인한다.",
+    "objectives": [
+      "ssh-keygen으로 Ed25519 키 쌍을 만들고 개인 키와 공개 키의 쓰임을 구분할 수 있다",
+      "공개 키를 서버의 authorized_keys에 넣어 키로 로그인할 수 있다",
+      "~/.ssh/config에 별칭을 적어 긴 접속 명령을 줄일 수 있다",
+      "키 파일이나 ~/.ssh 권한이 너무 넓어 키 로그인이 거부되는 문제를 고칠 수 있다"
+    ],
+    "related": [
+      "ops.linux.file-permissions"
+    ],
+    "aliases": [
+      "SSH 키",
+      "ssh key",
+      "ssh-keygen",
+      "공개 키 인증",
+      "public key authentication",
+      "키 로그인"
+    ],
+    "refs": [
+      "https://man.openbsd.org/ssh-keygen",
+      "https://man.openbsd.org/sshd#AUTHORIZED_KEYS_FILE_FORMAT",
+      "https://man.openbsd.org/ssh_config"
+    ]
+  },
+  {
     "id": "ops.observe.container-healthcheck",
     "title": "컨테이너 상태 보기: HEALTHCHECK와 docker logs",
     "en": "Container Health with Docker HEALTHCHECK and docker logs",
@@ -839,6 +898,40 @@
     "refs": [
       "https://docs.docker.com/get-started/docker-concepts/building-images/build-tag-and-publish-an-image/",
       "https://docs.github.com/en/actions/tutorials/publish-packages/publish-docker-images"
+    ]
+  },
+  {
+    "id": "ops.network.https-certificate",
+    "title": "Let's Encrypt로 HTTPS 인증서 붙이기",
+    "en": "Setting Up HTTPS with Let's Encrypt",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "네트워크와 앞단",
+    "summary": "ACME 클라이언트 Certbot으로 무료 인증서를 받아 웹 서버에 붙이고 만료 전에 자동으로 갱신되게 한다.",
+    "objectives": [
+      "Certbot의 webroot·nginx·standalone 방식 중 서버 상황에 맞는 것을 골라 인증서를 받을 수 있다",
+      "스테이징 서버와 --dry-run으로 발급과 갱신을 미리 시험할 수 있다",
+      "자동 갱신이 cron이나 systemd 타이머에 걸려 있는지 확인할 수 있다",
+      "80번 포트가 막히거나 DNS가 틀려 검증이 실패하는 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "ops.network.nginx-first-config"
+    ],
+    "related": [
+      "be.http.https-basics"
+    ],
+    "aliases": [
+      "Let's Encrypt",
+      "letsencrypt",
+      "Certbot",
+      "SSL 인증서 발급",
+      "HTTPS 인증서",
+      "무료 인증서"
+    ],
+    "refs": [
+      "https://letsencrypt.org/getting-started/",
+      "https://eff-certbot.readthedocs.io/en/stable/using.html"
     ]
   },
   {
@@ -1275,6 +1368,158 @@
     ]
   },
   {
+    "id": "ops.linux.numeric-mode",
+    "title": "숫자 권한 표기(755·644)",
+    "en": "Numeric (Octal) File Modes",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "읽기 4·쓰기 2·실행 1을 더한 숫자 세 자리로 소유자·그룹·나머지의 권한을 한 번에 적는 방법이다.",
+    "parent": "ops.linux.file-permissions",
+    "aliases": [
+      "chmod 755",
+      "chmod 644",
+      "8진수 권한",
+      "octal mode",
+      "numeric mode",
+      "권한 숫자"
+    ],
+    "refs": [
+      "https://www.gnu.org/software/coreutils/manual/html_node/Numeric-Modes.html"
+    ]
+  },
+  {
+    "id": "ops.linux.authorized-keys",
+    "title": "authorized_keys 파일",
+    "en": "authorized_keys File",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "서버 사용자 계정에 로그인을 허락할 공개 키를 한 줄에 하나씩 적어 두는 파일이다.",
+    "parent": "ops.linux.ssh-key-login",
+    "aliases": [
+      "authorized_keys",
+      "~/.ssh/authorized_keys",
+      "허용된 공개 키"
+    ],
+    "refs": [
+      "https://man.openbsd.org/sshd#AUTHORIZED_KEYS_FILE_FORMAT"
+    ]
+  },
+  {
+    "id": "ops.network.acme-challenge",
+    "title": "ACME 도메인 검증 방식(HTTP-01·DNS-01)",
+    "en": "ACME Challenge Types",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "네트워크와 앞단",
+    "summary": "인증서를 주기 전에 웹 서버의 파일이나 DNS TXT 레코드로 그 도메인을 정말 관리하는지 확인하는 방법이다.",
+    "parent": "ops.network.https-certificate",
+    "related": [
+      "ops.network.dns-records"
+    ],
+    "aliases": [
+      "HTTP-01",
+      "DNS-01",
+      "ACME challenge",
+      "acme-challenge"
+    ],
+    "refs": [
+      "https://letsencrypt.org/docs/challenge-types/"
+    ]
+  },
+  {
+    "id": "ops.network.cert-auto-renewal",
+    "title": "인증서 자동 갱신(certbot renew)",
+    "en": "Automated Certificate Renewal",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "네트워크와 앞단",
+    "summary": "남은 유효 기간이 줄어든 인증서를 스케줄러가 주기적으로 찾아 새로 받아 바꿔 끼우는 일이다.",
+    "parent": "ops.network.https-certificate",
+    "aliases": [
+      "certbot renew",
+      "인증서 갱신",
+      "certificate renewal",
+      "renew --dry-run",
+      "deploy-hook"
+    ],
+    "refs": [
+      "https://eff-certbot.readthedocs.io/en/stable/using.html#automated-renewals"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ops.linux.systemd-timer",
+    "title": "systemd 타이머(.timer)",
+    "en": "systemd Timer Units",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "OnCalendar 같은 일정에 맞춰 짝이 되는 서비스 유닛을 실행해 주는 systemd의 예약 실행 유닛이다.",
+    "parent": "ops.linux.systemd-service",
+    "aliases": [
+      "systemd timer",
+      "OnCalendar",
+      "systemctl list-timers",
+      "타이머 유닛",
+      "Persistent=true"
+    ],
+    "refs": [
+      "https://www.freedesktop.org/software/systemd/man/latest/systemd.timer.html"
+    ]
+  },
+  {
+    "id": "ops.ci.service-containers",
+    "title": "서비스 컨테이너(services)",
+    "en": "Service Containers in GitHub Actions",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "CI/CD",
+    "summary": "잡이 도는 동안 데이터베이스 같은 보조 서비스를 Docker 컨테이너로 띄워 테스트 스텝이 쓰게 하는 기능이다.",
+    "parent": "ops.ci.workflow-basics",
+    "related": [
+      "ops.docker.compose"
+    ],
+    "aliases": [
+      "service containers",
+      "jobs.services",
+      "CI 데이터베이스 컨테이너",
+      "Actions services"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/tutorials/use-containerized-services/use-docker-service-containers"
+    ]
+  },
+  {
+    "id": "ops.ci.reusable-workflow",
+    "title": "재사용 워크플로(workflow_call)",
+    "en": "Reusable Workflows",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "CI/CD",
+    "summary": "workflow_call로 열어 둔 워크플로를 다른 워크플로가 잡 단위로 불러 입력과 시크릿을 넘겨 쓰는 방식이다.",
+    "parent": "ops.ci.workflow-basics",
+    "aliases": [
+      "reusable workflow",
+      "workflow_call",
+      "secrets: inherit",
+      "워크플로 재사용"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/how-tos/reuse-automations/reuse-workflows",
+      "https://docs.github.com/en/actions/concepts/workflows-and-actions/reusing-workflow-configurations"
+    ]
+  },
+  {
     "id": "ops.deploy.rolling-update",
     "title": "롤링 업데이트",
     "en": "Rolling Update",
@@ -1383,6 +1628,27 @@
     "refs": [
       "https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency",
       "https://docs.github.com/en/actions/concepts/workflows-and-actions/concurrency"
+    ]
+  },
+  {
+    "id": "ops.linux.ssh-config",
+    "title": "SSH 클라이언트 설정 파일(~/.ssh/config)",
+    "en": "SSH Client Configuration File",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "리눅스",
+    "summary": "Host 별칭마다 접속 주소·사용자·포트·키 파일을 적어 두어 짧은 ssh 명령으로 접속하게 하는 설정 파일이다.",
+    "parent": "ops.linux.ssh-key-login",
+    "aliases": [
+      "ssh config",
+      "~/.ssh/config",
+      "ssh_config",
+      "IdentityFile",
+      "SSH 접속 별칭"
+    ],
+    "refs": [
+      "https://man.openbsd.org/ssh_config"
     ]
   },
   {

@@ -547,6 +547,43 @@
     ]
   },
   {
+    "id": "ax.coding.agent-data-usage",
+    "title": "코딩 에이전트에 보낸 코드의 학습 사용과 보존",
+    "en": "Data Training and Retention in Coding Agents",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "AI 보안과 윤리",
+    "summary": "코딩 에이전트에 보낸 코드와 대화가 계정 종류에 따라 학습에 쓰이는지, 얼마나 보관되는지, 어떤 부가 통신이 나가는지 확인하고 설정으로 줄인다.",
+    "objectives": [
+      "개인 요금제와 팀·API 같은 상업 계정의 학습 사용과 보존 기간 차이를 설명할 수 있다",
+      "개인 계정에서 학습 사용 설정을 확인하고 바꿀 수 있다",
+      "텔레메트리·오류 보고·피드백 전송을 환경 변수로 끄고 무엇이 꺼졌는지 확인할 수 있다",
+      "/feedback으로 보낸 대화가 일반 세션과 다르게 오래 보관된다는 점을 알고 민감한 저장소에서 피할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.basics.personal-data",
+      "ax.coding.agent-first"
+    ],
+    "related": [
+      "ax.security.sensitive-info-disclosure",
+      "ax.coding.managed-settings"
+    ],
+    "aliases": [
+      "Claude Code 데이터 보존",
+      "코드 학습 사용",
+      "Claude Code data retention",
+      "training opt-out",
+      "에이전트 데이터 정책"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/data-usage",
+      "https://code.claude.com/docs/en/security"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
     "id": "ax.coding.skills",
     "title": "반복 작업을 스킬로 만들기: SKILL.md",
     "en": "Packaging Repeated Work as Skills (SKILL.md)",
@@ -827,6 +864,117 @@
       "https://www.nist.gov/itl/ai-risk-management-framework",
       "https://doi.org/10.6028/NIST.AI.600-1"
     ]
+  },
+  {
+    "id": "ax.coding.worktree-sessions",
+    "title": "워크트리로 에이전트 세션 나눠 돌리기",
+    "en": "Parallel Agent Sessions with Worktrees",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "claude --worktree로 세션마다 따로 꺼낸 작업 폴더와 브랜치를 주어 여러 에이전트가 같은 저장소를 고쳐도 서로 덮어쓰지 않게 한다.",
+    "objectives": [
+      "claude --worktree <이름>으로 격리된 세션을 두 개 이상 띄우고 각 세션의 폴더와 브랜치를 확인할 수 있다",
+      "새 워크트리에 .env 같은 무시된 파일이 없어 실행이 실패할 때 .worktreeinclude로 복사되게 고칠 수 있다",
+      "세션을 끝낼 때 남길 워크트리와 지울 워크트리를 고르고, 남은 것을 git worktree remove로 정리할 수 있다",
+      "worktree.baseRef의 fresh와 head 중 작업에 맞는 출발점을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.agent-first",
+      "dev.git.worktree"
+    ],
+    "related": [
+      "ax.coding.subagents-permission-modes",
+      "ax.coding.checkpoints"
+    ],
+    "aliases": [
+      "claude --worktree",
+      "claude -w",
+      "에이전트 병렬 세션",
+      "워크트리 세션",
+      "worktree isolation"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/worktrees",
+      "https://code.claude.com/docs/en/common-workflows"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.coding.security-guidance",
+    "title": "에이전트가 쓴 코드에 보안 점검 겹겹이 걸기",
+    "en": "Layered Security Checks for Agent-Written Code",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "편집마다 위험 패턴을 찾는 보안 가이드 플러그인, 브랜치 변경을 훑는 /security-review, PR 리뷰와 CI 검사를 단계별로 겹쳐 에이전트가 만든 취약점을 일찍 잡는다.",
+    "objectives": [
+      "보안 가이드 플러그인을 설치하고 편집·턴 끝·커밋 시점에 어떤 검사가 도는지 설명할 수 있다",
+      "/security-review로 현재 브랜치 변경의 보안 점검을 돌리고 origin 원격이 없을 때의 실패를 고칠 수 있다",
+      "프로젝트 규칙을 .claude/claude-security-guidance.md와 security-patterns 파일에 더할 수 있다",
+      "이 검사들이 쓰기를 막지 않는다는 한계를 알고 막아야 할 것은 훅이나 CI로 옮길 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.review-ai-code",
+      "ax.coding.plugins"
+    ],
+    "related": [
+      "ax.coding.hook-gates",
+      "be.security.injection",
+      "ax.coding.hooks"
+    ],
+    "aliases": [
+      "security-guidance 플러그인",
+      "보안 가이드 플러그인",
+      "AI 코드 보안 점검",
+      "security guidance plugin"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/security-guidance",
+      "https://code.claude.com/docs/en/commands"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.governance.synthetic-content-provenance",
+    "title": "AI 생성물에 출처 남기기: 콘텐츠 자격 증명과 워터마크",
+    "en": "Provenance for AI-Generated Content",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "AI가 만든 이미지·글에 서명된 출처 기록과 워터마크를 붙여 누가 어떤 도구로 만들었는지 나중에 확인할 수 있게 하는 방법과 그 한계다.",
+    "objectives": [
+      "출처 기록(메타데이터 서명), 워터마크, 사후 탐지의 차이를 예를 들어 구분할 수 있다",
+      "생성 기능의 결과물에 붙은 C2PA 콘텐츠 자격 증명을 검사 도구로 확인할 수 있다",
+      "메타데이터가 지워지거나 호환되지 않는 도구로 편집되면 출처가 끊기는 실수를 알고 워터마크를 함께 쓸지 판단할 수 있다",
+      "출처 기록이 내용의 사실 여부까지 보증하지 않는다는 점을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.governance.trustworthy-ai"
+    ],
+    "related": [
+      "ax.governance.ai-disclosure-labelling",
+      "ax.governance.genai-profile",
+      "ax.security.misinformation"
+    ],
+    "aliases": [
+      "합성 콘텐츠 출처",
+      "AI 생성물 출처 표시",
+      "synthetic content provenance",
+      "content provenance",
+      "NIST AI 100-4"
+    ],
+    "refs": [
+      "https://www.nist.gov/publications/reducing-risks-posed-synthetic-content-overview-technical-approaches-digital-content",
+      "https://spec.c2pa.org/specifications/specifications/2.2/explainer/Explainer.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
   },
   {
     "id": "ax.coding.slash-command",
@@ -1283,6 +1431,74 @@
     ]
   },
   {
+    "id": "ax.coding.nonessential-traffic-optout",
+    "title": "부가 통신 끄기(텔레메트리 옵트아웃)",
+    "en": "Disabling Nonessential Traffic",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "사용 지표·오류 보고·피드백·설문처럼 모델 호출이 아닌 통신을 한 번에 끄는 환경 변수로, 하나씩 끄려면 DISABLE_TELEMETRY 같은 변수를 쓴다.",
+    "parent": "ax.coding.agent-data-usage",
+    "aliases": [
+      "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC",
+      "DISABLE_TELEMETRY",
+      "텔레메트리 끄기",
+      "telemetry opt-out"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/data-usage"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.coding.security-review-command",
+    "title": "/security-review 명령",
+    "en": "/security-review Command",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "현재 브랜치와 origin 기본 브랜치의 차이를 읽어 인젝션·인증 문제·데이터 노출 같은 보안 취약점을 한 번 점검하는 Claude Code 명령이다.",
+    "parent": "ax.coding.security-guidance",
+    "related": [
+      "ax.coding.slash-command"
+    ],
+    "aliases": [
+      "/security-review",
+      "security-review 명령",
+      "브랜치 보안 리뷰"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/commands"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.security.data-poisoning",
+    "title": "데이터·모델 오염(data poisoning)",
+    "en": "Data and Model Poisoning",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "학습·미세조정·임베딩에 쓰는 데이터를 공격자가 바꿔 모델에 편향이나 숨은 동작을 심는 위험으로, 출처를 모르는 외부 데이터에서 가장 크다.",
+    "related": [
+      "ax.security.backdoor-sleeper",
+      "ax.security.model-supply-chain"
+    ],
+    "aliases": [
+      "데이터 포이즈닝",
+      "data poisoning",
+      "LLM04:2025"
+    ],
+    "refs": [
+      "https://genai.owasp.org/llmrisk/llm042025-data-and-model-poisoning/"
+    ]
+  },
+  {
     "id": "ax.governance.gpai-model",
     "title": "범용 AI 모델(GPAI)",
     "en": "General-Purpose AI Model",
@@ -1412,6 +1628,120 @@
     ],
     "refs": [
       "https://docs.github.com/en/copilot/concepts/completions/code-referencing"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.coding.worktreeinclude",
+    "title": ".worktreeinclude 파일",
+    "en": ".worktreeinclude File",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "새 워크트리를 만들 때 .gitignore에 걸린 .env 같은 파일 중 어떤 것을 복사할지 .gitignore 문법으로 적는 프로젝트 루트 파일이다.",
+    "parent": "ax.coding.worktree-sessions",
+    "aliases": [
+      ".worktreeinclude",
+      "worktreeinclude",
+      "워크트리 파일 복사"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/worktrees"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.coding.subagent-worktree-isolation",
+    "title": "하위 에이전트 워크트리 격리(isolation: worktree)",
+    "en": "Subagent Worktree Isolation",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "하위 에이전트 정의에 isolation: worktree를 적으면 그 에이전트가 임시 워크트리에서 일해 다른 에이전트의 수정과 부딪히지 않는다.",
+    "parent": "ax.coding.worktree-sessions",
+    "related": [
+      "ax.coding.subagent"
+    ],
+    "aliases": [
+      "isolation: worktree",
+      "subagent worktree",
+      "하위 에이전트 워크트리"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/worktrees"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.coding.zero-data-retention",
+    "title": "무보존 처리(ZDR)",
+    "en": "Zero Data Retention (ZDR)",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "자격을 갖춘 기업 조직에 따로 켜 주는 방식으로, 응답이 끝나면 프롬프트와 응답을 서버에 남기지 않지만 클라우드 세션 같은 저장이 필요한 기능은 꺼진다.",
+    "parent": "ax.coding.agent-data-usage",
+    "aliases": [
+      "ZDR",
+      "zero data retention",
+      "제로 데이터 보존",
+      "데이터 무보존"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/zero-data-retention"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.governance.content-credentials",
+    "title": "콘텐츠 자격 증명(C2PA)",
+    "en": "Content Credentials (C2PA)",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "파일의 해시와 서명으로 묶인 출처 기록으로, 만든 도구·편집 이력·AI 사용 여부를 담고 내용이 바뀌면 불일치가 드러난다.",
+    "parent": "ax.governance.synthetic-content-provenance",
+    "aliases": [
+      "C2PA",
+      "Content Credentials",
+      "C2PA 매니페스트",
+      "C2PA manifest"
+    ],
+    "refs": [
+      "https://spec.c2pa.org/specifications/specifications/2.2/explainer/Explainer.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.governance.ai-watermarking",
+    "title": "AI 생성물 워터마크",
+    "en": "Watermarking AI-Generated Content",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "생성한 이미지·소리·글 안에 눈에 띄지 않는 신호를 심어 AI가 만들었음을 나중에 찾아내게 하는 표시 방법으로, 메타데이터가 지워져도 남도록 쓴다.",
+    "parent": "ax.governance.synthetic-content-provenance",
+    "related": [
+      "ax.governance.content-credentials"
+    ],
+    "aliases": [
+      "AI 워터마크",
+      "AI watermark",
+      "비가시 워터마크",
+      "invisible watermark"
+    ],
+    "refs": [
+      "https://www.nist.gov/publications/reducing-risks-posed-synthetic-content-overview-technical-approaches-digital-content"
     ],
     "volatile": true,
     "checked_at": "2026-11-06"

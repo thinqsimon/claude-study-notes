@@ -134,7 +134,7 @@ class DicMakerTest(unittest.TestCase):
         with contextlib.redirect_stdout(buf):
             self.assertEqual(dm.main(["--repo", str(self.repo), "guide", "--domain", "cs", "--level", "3"]), 0)
         text = buf.getvalue()
-        for marker in ("## 분야 cs (컴퓨터 사이언스 기초)", "경계: 언어·도구에 매이지 않는 원리", "ocw.mit.edu", "(아직 없음",
+        for marker in ("## 분야 cs (컴퓨터 사이언스 기초)", "경계: 언어·도구에 매이지 않는 원리", "ocw.mit.edu", "## cs의 기존 항목",
                        "## 다른 분야에 이미 있는 비슷한 항목", "be.async.concurrency-parallelism", "be.python.unicode",
                        "dev.dsa.collections-choice", "예외: 대학이 자기 도메인에 공개한", "큐 자료구조"):
             with self.subTest(marker=marker):

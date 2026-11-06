@@ -770,6 +770,39 @@
     ]
   },
   {
+    "id": "fe.next.server-actions",
+    "title": "Server Actions로 폼 데이터 저장하기",
+    "en": "Mutating Data with Server Actions",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "Next.js",
+    "summary": "'use server'로 표시한 비동기 함수를 폼의 action에 넘겨 서버에서 데이터를 바꾸고 화면을 새 데이터로 갱신한다.",
+    "objectives": [
+      "'use server' 함수를 만들어 form의 action에 연결하고 FormData에서 값을 꺼낼 수 있다",
+      "저장이 끝난 뒤 revalidatePath나 redirect로 바뀐 데이터를 화면에 보여 줄 수 있다",
+      "useActionState로 제출 중 상태와 오류 메시지를 화면에 표시할 수 있다",
+      "Server Action 안에서 로그인 여부를 다시 확인해야 하는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.next.async-server-data",
+      "fe.html.forms"
+    ],
+    "aliases": [
+      "서버 액션",
+      "Server Action",
+      "Server Functions",
+      "서버 함수",
+      "use server"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/getting-started/mutating-data",
+      "https://react.dev/reference/rsc/use-server"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
     "id": "fe.internals.render-and-commit",
     "title": "React 렌더링 과정: 트리거·렌더·커밋",
     "en": "React Rendering: Trigger, Render, Commit",
@@ -892,6 +925,71 @@
     ],
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation"
+    ]
+  },
+  {
+    "id": "fe.js.web-storage",
+    "title": "Web Storage로 브라우저에 데이터 남기기",
+    "en": "Using the Web Storage API",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "JavaScript",
+    "summary": "localStorage와 sessionStorage에 키와 글자 값을 넣고 꺼내 새로고침 뒤에도 화면 설정을 되살린다.",
+    "objectives": [
+      "localStorage와 sessionStorage가 언제까지 남는지 구분해 알맞은 쪽을 고를 수 있다",
+      "setItem·getItem·removeItem으로 사용자 설정을 저장하고 페이지를 열 때 되살릴 수 있다",
+      "객체를 그대로 넣어 [object Object]가 저장되는 실수를 JSON 변환으로 고칠 수 있다",
+      "저장소를 쓸 수 없는 환경을 미리 확인하고 그때의 대체 동작을 넣을 수 있다"
+    ],
+    "prerequisites": [
+      "fe.js.basics",
+      "fe.js.dom-events"
+    ],
+    "related": [
+      "be.auth.token-storage"
+    ],
+    "aliases": [
+      "웹 스토리지",
+      "로컬 스토리지",
+      "세션 스토리지",
+      "sessionStorage",
+      "Web Storage API"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API"
+    ]
+  },
+  {
+    "id": "fe.html.accessible-markup",
+    "title": "시맨틱 HTML과 ARIA로 접근성 고치기",
+    "en": "Accessible Markup with Semantic HTML and WAI-ARIA",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "HTML",
+    "summary": "알맞은 HTML 요소를 먼저 쓰고 모자란 곳만 ARIA 속성으로 채워 키보드와 스크린 리더로도 쓰이는 화면을 만든다.",
+    "objectives": [
+      "div로 만든 버튼을 button 요소로 바꿔 키보드 조작을 되살릴 수 있다",
+      "입력 칸에 label을 연결하고 뜻이 드러나는 링크 글을 쓸 수 있다",
+      "알맞은 HTML 요소가 없을 때만 role·aria-label 같은 ARIA 속성을 더할 수 있다",
+      "JavaScript로 바뀌는 오류 메시지를 스크린 리더가 읽도록 만들 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.accessibility-idea",
+      "fe.html.forms"
+    ],
+    "aliases": [
+      "시맨틱 HTML",
+      "semantic HTML",
+      "WAI-ARIA",
+      "ARIA 속성",
+      "aria-label",
+      "웹 접근성 개선"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/HTML",
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/WAI-ARIA_basics"
     ]
   },
   {
@@ -1364,6 +1462,126 @@
     ]
   },
   {
+    "id": "fe.js.json-stringify-parse",
+    "title": "JSON.stringify와 JSON.parse",
+    "en": "JSON.stringify and JSON.parse",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "JavaScript",
+    "summary": "JavaScript 값을 JSON 글자로 바꾸고 다시 값으로 되돌리는 짝 함수로, undefined·함수·Date는 그대로 돌아오지 않는다.",
+    "parent": "fe.js.web-storage",
+    "aliases": [
+      "JSON.stringify",
+      "JSON.parse",
+      "JSON 직렬화",
+      "제이슨 변환"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify"
+    ]
+  },
+  {
+    "id": "fe.next.revalidate-path",
+    "title": "revalidatePath",
+    "en": "revalidatePath",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Next.js",
+    "summary": "데이터를 바꾼 뒤 특정 경로의 캐시를 무효로 만들어 다음에 볼 때 새 데이터로 다시 그리게 하는 Next.js 함수다.",
+    "parent": "fe.next.server-actions",
+    "aliases": [
+      "경로 재검증",
+      "revalidate path",
+      "Next.js 캐시 재검증"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/api-reference/functions/revalidatePath"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "fe.react.use-action-state",
+    "title": "useActionState",
+    "en": "useActionState",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "React",
+    "summary": "폼 제출 같은 액션의 결과를 상태로 받고 진행 중인지도 알려 주는 React 훅이다.",
+    "parent": "fe.next.server-actions",
+    "aliases": [
+      "useActionState 훅",
+      "액션 상태 훅"
+    ],
+    "refs": [
+      "https://react.dev/reference/react/useActionState"
+    ]
+  },
+  {
+    "id": "fe.css.custom-properties",
+    "title": "CSS 사용자 정의 속성(CSS 변수)",
+    "en": "CSS Custom Properties",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "CSS",
+    "summary": "--이름으로 값을 정해 두고 var()로 불러 써서 색과 간격을 한곳에서 바꾸게 하는 CSS 기능이다.",
+    "aliases": [
+      "CSS 변수",
+      "CSS variables",
+      "var()",
+      "사용자 정의 속성"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties"
+    ]
+  },
+  {
+    "id": "fe.ts.type-assertion",
+    "title": "타입 단언(as와 !)",
+    "en": "Type Assertions",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "TypeScript",
+    "summary": "as나 뒤에 붙인 !로 TypeScript에 값의 타입을 알려 주는 문법으로, 실행할 때는 아무것도 확인하지 않는다.",
+    "related": [
+      "fe.ts.union-narrowing"
+    ],
+    "aliases": [
+      "타입 단언",
+      "type assertion",
+      "as 단언",
+      "non-null assertion",
+      "non-null 단언 연산자"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html"
+    ]
+  },
+  {
+    "id": "fe.js.optional-chaining",
+    "title": "옵셔널 체이닝(?.)",
+    "en": "Optional Chaining",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "JavaScript",
+    "summary": "?.로 속성을 읽거나 함수를 부를 때 앞의 값이 null이나 undefined면 오류 대신 undefined를 돌려준다.",
+    "aliases": [
+      "옵셔널 체이닝",
+      "optional chaining",
+      "?. 연산자",
+      "선택적 연결"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining"
+    ]
+  },
+  {
     "id": "fe.html.constraint-validation",
     "title": "Constraint Validation API",
     "en": "Constraint Validation API",
@@ -1381,6 +1599,46 @@
     ],
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation"
+    ]
+  },
+  {
+    "id": "fe.html.aria-live",
+    "title": "ARIA 라이브 영역",
+    "en": "ARIA Live Regions",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "HTML",
+    "summary": "aria-live나 role=\"alert\"를 단 영역의 내용이 바뀌면 스크린 리더가 그 변화를 소리 내어 알려 준다.",
+    "parent": "fe.html.accessible-markup",
+    "aliases": [
+      "aria-live",
+      "라이브 영역",
+      "live region",
+      "role=alert"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Guides/Live_regions"
+    ]
+  },
+  {
+    "id": "fe.html.tabindex",
+    "title": "tabindex 속성",
+    "en": "tabindex Attribute",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "HTML",
+    "summary": "요소가 Tab 키로 포커스를 받을지와 그 순서를 정하는 HTML 속성으로, 보통 0과 -1만 쓴다.",
+    "parent": "fe.html.accessible-markup",
+    "aliases": [
+      "탭 인덱스",
+      "tabindex=0",
+      "tabindex=-1",
+      "키보드 포커스 순서"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/tabindex"
     ]
   },
   {

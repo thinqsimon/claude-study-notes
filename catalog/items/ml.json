@@ -675,6 +675,72 @@
     ]
   },
   {
+    "id": "ml.nn.dataset-dataloader",
+    "title": "PyTorch Dataset과 DataLoader로 데이터 공급하기",
+    "en": "PyTorch Dataset and DataLoader",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "딥러닝",
+    "summary": "자기 파일을 Dataset 클래스로 감싸고 DataLoader로 미니배치를 섞어 꺼내 학습 루프에 넣는 PyTorch의 데이터 준비 방식이다.",
+    "objectives": [
+      "내 데이터 파일을 읽는 사용자 정의 Dataset 클래스를 만들 수 있다",
+      "DataLoader의 batch_size와 shuffle을 정해 미니배치를 반복해 꺼낼 수 있다",
+      "학습용과 테스트용 DataLoader를 따로 만들 수 있다"
+    ],
+    "prerequisites": [
+      "ml.nn.first-neural-network"
+    ],
+    "related": [
+      "ml.training.epoch-batch"
+    ],
+    "aliases": [
+      "torch.utils.data",
+      "PyTorch 데이터 로더",
+      "Dataset 클래스",
+      "PyTorch DataLoader"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/tutorials/beginner/basics/data_tutorial.html"
+    ]
+  },
+  {
+    "id": "ml.nn.training-loop",
+    "title": "PyTorch 학습 루프와 평가 루프 작성하기",
+    "en": "Writing PyTorch Training and Test Loops",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "딥러닝",
+    "summary": "배치마다 예측하고 손실을 구해 기울기로 가중치를 고치는 학습 루프와, 기울기 없이 성능만 재는 평가 루프를 직접 쓰는 법이다.",
+    "objectives": [
+      "순전파·손실 계산·backward·step·zero_grad 순서로 학습 루프를 직접 쓸 수 있다",
+      "torch.no_grad와 model.eval()을 써서 가중치를 건드리지 않는 평가 루프를 쓸 수 있다",
+      "zero_grad를 빼먹어 기울기가 쌓이는 실수를 알아보고 고칠 수 있다",
+      "에폭마다 학습 손실과 테스트 정확도를 출력해 학습이 잘 되는지 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.nn.first-neural-network",
+      "ml.supervised.linear-regression"
+    ],
+    "related": [
+      "ml.nn.eval-train-mode",
+      "ml.training.backprop"
+    ],
+    "aliases": [
+      "학습 루프",
+      "training loop",
+      "train loop",
+      "테스트 루프",
+      "test loop",
+      "최적화 루프"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/tutorials/beginner/basics/optimization_tutorial.html",
+      "https://docs.pytorch.org/docs/stable/optim.html"
+    ]
+  },
+  {
     "id": "ml.unsupervised.kmeans-clustering",
     "title": "K-평균 군집화: 정답 없는 데이터 무리 짓기",
     "en": "K-Means Clustering",
@@ -847,6 +913,73 @@
     ]
   },
   {
+    "id": "ml.nn.embedding-layer",
+    "title": "임베딩 층: 범주를 밀집 벡터로 학습하기",
+    "en": "Embedding Layers for Categorical Data",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "범주가 아주 많은 특성을 원-핫 대신 짧은 실수 벡터로 바꾸는 층을 신경망에 넣고, 학습하면서 그 벡터 값을 함께 익히게 하는 방법이다.",
+    "objectives": [
+      "범주가 많을 때 원-핫 벡터가 가중치·메모리·데이터를 많이 요구하는 문제를 설명할 수 있다",
+      "범주를 정수 번호로 바꾼 뒤 nn.Embedding 층에 넣어 모델 입력을 만들 수 있다",
+      "임베딩 차원을 정하고 학습된 벡터끼리의 거리로 비슷한 범주를 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "ml.data.numeric-categorical-preprocessing",
+      "ml.nn.first-neural-network"
+    ],
+    "related": [
+      "ml.data.one-hot-encoding",
+      "rag.embedding.meaning-as-numbers"
+    ],
+    "aliases": [
+      "임베딩 층",
+      "embedding layer",
+      "범주 임베딩",
+      "categorical embedding"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/embeddings",
+      "https://developers.google.com/machine-learning/crash-course/embeddings/embedding-space",
+      "https://developers.google.com/machine-learning/crash-course/embeddings/obtaining-embeddings"
+    ]
+  },
+  {
+    "id": "ml.eval.regression-metrics",
+    "title": "회귀 모델 평가: MAE·RMSE·R²",
+    "en": "Regression Evaluation Metrics",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "모델 평가",
+    "summary": "숫자를 예측하는 모델이 얼마나 빗나가는지를 평균 절대 오차·제곱근 오차·결정 계수로 재고, 이상치와 단위를 생각해 알맞은 지표를 고른다.",
+    "objectives": [
+      "scikit-learn으로 회귀 모델의 MAE·RMSE·R²를 계산할 수 있다",
+      "이상치가 있을 때 MAE와 RMSE가 다르게 움직이는 이유를 설명할 수 있다",
+      "R²가 0이나 음수로 나올 때 모델이 평균값 예측보다 나은지 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.linear-regression"
+    ],
+    "related": [
+      "ml.training.loss-function",
+      "ml.eval.accuracy-first-evaluation"
+    ],
+    "aliases": [
+      "회귀 평가 지표",
+      "regression metrics",
+      "회귀 지표",
+      "회귀 성능 평가",
+      "mean_absolute_error"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics",
+      "https://developers.google.com/machine-learning/crash-course/linear-regression/loss"
+    ]
+  },
+  {
     "id": "ml.training.learning-rate",
     "title": "학습률",
     "en": "Learning Rate",
@@ -938,6 +1071,68 @@
       "평가 모드",
       "eval mode",
       "train mode"
+    ]
+  },
+  {
+    "id": "ml.nn.optimizer",
+    "title": "옵티마이저",
+    "en": "Optimizer",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "딥러닝",
+    "summary": "모델의 파라미터와 학습률을 받아 두었다가 step()을 부를 때마다 계산된 기울기로 가중치를 고치는 객체로, SGD·Adam·AdamW가 대표다.",
+    "parent": "ml.nn.training-loop",
+    "related": [
+      "ml.training.learning-rate"
+    ],
+    "aliases": [
+      "옵티마이저",
+      "torch.optim",
+      "optimizer.step",
+      "Adam 옵티마이저",
+      "SGD 옵티마이저",
+      "AdamW"
+    ]
+  },
+  {
+    "id": "ml.nn.zero-grad",
+    "title": "기울기 초기화(zero_grad)",
+    "en": "Zeroing Gradients",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "딥러닝",
+    "summary": "PyTorch는 backward()마다 기울기를 더해 두므로, 배치마다 optimizer.zero_grad()로 지난 기울기를 지워야 업데이트가 틀어지지 않는다.",
+    "parent": "ml.nn.training-loop",
+    "aliases": [
+      "zero_grad",
+      "optimizer.zero_grad",
+      "gradient accumulation 실수",
+      "그래디언트 초기화"
+    ]
+  },
+  {
+    "id": "ml.nn.no-grad",
+    "title": "torch.no_grad",
+    "en": "torch.no_grad",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "딥러닝",
+    "summary": "블록 안의 계산에서 기울기 추적을 꺼 메모리와 시간을 아끼는 PyTorch 문맥 관리자로, 평가와 예측에 쓴다.",
+    "parent": "ml.nn.training-loop",
+    "related": [
+      "ml.nn.eval-train-mode"
+    ],
+    "aliases": [
+      "torch.no_grad",
+      "no_grad",
+      "기울기 추적 끄기",
+      "추론 시 기울기 끄기"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/stable/generated/torch.no_grad.html"
     ]
   },
   {
@@ -1249,6 +1444,130 @@
     ],
     "refs": [
       "https://developers.google.com/machine-learning/crash-course/numerical-data/normalization"
+    ]
+  },
+  {
+    "id": "ml.nn.custom-dataset",
+    "title": "사용자 정의 Dataset",
+    "en": "Custom Dataset",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "__init__에서 파일 위치를 잡고 __len__으로 샘플 수를, __getitem__으로 번호에 맞는 샘플과 레이블을 돌려주는 PyTorch 데이터 클래스다.",
+    "parent": "ml.nn.dataset-dataloader",
+    "aliases": [
+      "custom Dataset",
+      "커스텀 데이터셋",
+      "Dataset 상속"
+    ]
+  },
+  {
+    "id": "ml.nn.nn-embedding",
+    "title": "nn.Embedding",
+    "en": "nn.Embedding",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "정수 번호를 받아 그 번호 줄에 저장된 벡터를 돌려주는 PyTorch의 조회 표 층으로, 행 수와 벡터 길이를 정해 만든다.",
+    "parent": "ml.nn.embedding-layer",
+    "aliases": [
+      "nn.Embedding",
+      "num_embeddings",
+      "embedding_dim",
+      "padding_idx",
+      "임베딩 조회 표"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/stable/generated/torch.nn.Embedding.html"
+    ]
+  },
+  {
+    "id": "ml.eval.rmse",
+    "title": "RMSE(평균 제곱근 오차)",
+    "en": "Root Mean Squared Error",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "모델 평가",
+    "summary": "오차를 제곱해 평균 낸 값에 제곱근을 씌워 레이블과 같은 단위로 돌려 놓은 회귀 지표로, 큰 오차에 더 민감하다.",
+    "parent": "ml.eval.regression-metrics",
+    "aliases": [
+      "RMSE",
+      "root mean squared error",
+      "평균 제곱근 오차",
+      "root_mean_squared_error"
+    ]
+  },
+  {
+    "id": "ml.eval.r2-score",
+    "title": "결정 계수(R²)",
+    "en": "Coefficient of Determination",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "모델 평가",
+    "summary": "레이블의 흩어짐 가운데 모델이 설명한 비율로, 1이 최고이고 늘 평균만 예측하면 0, 그보다 못하면 음수가 된다.",
+    "parent": "ml.eval.regression-metrics",
+    "aliases": [
+      "R²",
+      "R2 score",
+      "r2_score",
+      "결정 계수",
+      "R 제곱",
+      "coefficient of determination"
+    ]
+  },
+  {
+    "id": "ml.supervised.log-loss",
+    "title": "로그 손실",
+    "en": "Log Loss",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "로지스틱 회귀처럼 확률을 내는 분류 모델에 쓰는 손실로, 정답에 낮은 확률을 줄수록 크게 벌점을 매긴다.",
+    "related": [
+      "ml.supervised.logistic-regression",
+      "ml.training.loss-function"
+    ],
+    "aliases": [
+      "로그 손실",
+      "log loss",
+      "이진 교차 엔트로피",
+      "binary cross-entropy",
+      "BCE 손실",
+      "BCELoss"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/logistic-regression/loss-regularization"
+    ]
+  },
+  {
+    "id": "ml.data.oov-category",
+    "title": "처음 보는 범주(OOV) 처리",
+    "en": "Out-of-Vocabulary Categories",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "학습 때 없던 범주나 드문 범주를 한 칸에 모아 두어, 예측 때 새 값이 들어와도 인코딩이 깨지지 않게 하는 처리다.",
+    "parent": "ml.data.numeric-categorical-preprocessing",
+    "related": [
+      "ml.data.one-hot-encoding"
+    ],
+    "aliases": [
+      "OOV",
+      "out-of-vocabulary",
+      "어휘 밖 범주",
+      "handle_unknown",
+      "드문 범주 묶기",
+      "infrequent categories"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/categorical-data/one-hot-encoding",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html"
     ]
   },
   {

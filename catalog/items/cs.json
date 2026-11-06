@@ -1,1 +1,302 @@
-[]
+[
+  {
+    "id": "cs.algo.big-o-estimate",
+    "title": "빅오로 코드 비용 어림하기",
+    "en": "Estimating Code Cost with Big-O",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "알고리즘과 복잡도",
+    "summary": "입력이 커질 때 연산 횟수가 얼마나 늘어나는지를 O(1)·O(n)·O(n²)으로 어림해 느린 코드를 미리 알아보는 방법이다.",
+    "objectives": [
+      "반복문이 겹친 코드의 시간 복잡도를 O 표기로 어림할 수 있다",
+      "리스트에서 찾기와 집합·딕셔너리에서 찾기의 비용 차이를 설명할 수 있다",
+      "맨 앞 삽입·삭제처럼 O(n)이 되는 흔한 실수를 찾아 다른 자료구조로 바꿀 수 있다"
+    ],
+    "aliases": [
+      "빅오",
+      "big-o",
+      "시간 복잡도",
+      "time complexity",
+      "O(n)"
+    ],
+    "refs": [
+      "https://docs.python.org/3/builtins/time-complexity.html",
+      "https://xlinux.nist.gov/dads/HTML/bigOnotation.html",
+      "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/pages/lecture-notes/"
+    ]
+  },
+  {
+    "id": "cs.data.float-error",
+    "title": "부동소수점 오차와 안전한 비교",
+    "en": "Floating-Point Error and Safe Comparison",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "데이터 표현",
+    "summary": "0.1처럼 2진수로 딱 떨어지지 않는 소수가 근삿값으로 저장되어 생기는 오차를 알고, ==가 아닌 허용 오차로 비교하는 법이다.",
+    "objectives": [
+      "0.1 + 0.2 == 0.3이 거짓이 되는 이유를 2진 소수로 설명할 수 있다",
+      "실수끼리 비교할 때 math.isclose 같은 허용 오차 비교를 쓸 수 있다",
+      "돈 계산처럼 정확해야 하는 값에 float 대신 decimal이나 정수를 고를 수 있다"
+    ],
+    "related": [
+      "db.sql.numeric-type"
+    ],
+    "aliases": [
+      "실수 계산 오차",
+      "floating point error",
+      "0.1 + 0.2",
+      "float 비교",
+      "math.isclose"
+    ],
+    "refs": [
+      "https://docs.python.org/3/tutorial/floatingpoint.html"
+    ]
+  },
+  {
+    "id": "cs.dsa.hash-table",
+    "title": "해시 테이블로 빠르게 찾기",
+    "en": "Fast Lookup with Hash Tables",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "자료구조",
+    "summary": "키를 해시 함수로 배열 위치로 바꿔 평균 O(1)에 넣고 찾는 자료구조로, 딕셔너리와 집합이 이 원리로 움직인다.",
+    "objectives": [
+      "키가 해시 함수로 배열 위치에 대응되는 과정을 그림으로 설명할 수 있다",
+      "중복 확인·개수 세기를 리스트 대신 해시 테이블로 바꿔 구현할 수 있다",
+      "평균 O(1)이 충돌이 몰리면 O(n)까지 느려질 수 있음을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.algo.big-o-estimate"
+    ],
+    "related": [
+      "be.auth.hash",
+      "dev.dsa.collections-choice"
+    ],
+    "aliases": [
+      "해시 테이블",
+      "hash map",
+      "해시맵",
+      "hashtable",
+      "해시 자료구조"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/hashtab.html",
+      "https://docs.python.org/3/tutorial/datastructures.html#dictionaries"
+    ]
+  },
+  {
+    "id": "cs.algo.recursion",
+    "title": "재귀 함수 작성하기",
+    "en": "Writing Recursive Functions",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "알고리즘과 복잡도",
+    "summary": "함수가 더 작은 같은 문제로 자기 자신을 부르고, 바로 답이 나오는 경우에서 멈추게 해 문제를 푸는 방법이다.",
+    "objectives": [
+      "기저 사례와 재귀 사례를 나누어 재귀 함수를 작성할 수 있다",
+      "같은 문제를 재귀와 반복문으로 각각 바꿔 쓸 수 있다",
+      "종료 조건이 빠져 생기는 무한 재귀와 깊이 제한 오류를 고칠 수 있다"
+    ],
+    "aliases": [
+      "재귀",
+      "재귀 함수",
+      "recursive function",
+      "재귀 호출"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/recursion.html",
+      "https://docs.python.org/3/library/exceptions.html#RecursionError"
+    ]
+  },
+  {
+    "id": "cs.os.process",
+    "title": "프로세스",
+    "en": "Process",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "운영체제",
+    "summary": "실행 중인 프로그램 하나로, 운영체제가 고유한 PID와 남과 분리된 메모리 공간을 준다.",
+    "related": [
+      "cs.os.thread"
+    ],
+    "aliases": [
+      "PID",
+      "자식 프로세스",
+      "child process",
+      "운영체제 프로세스",
+      "프로세스 ID"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man2/fork.2.html",
+      "https://pages.cs.wisc.edu/~remzi/OSTEP/"
+    ]
+  },
+  {
+    "id": "cs.os.thread",
+    "title": "스레드",
+    "en": "Thread",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "운영체제",
+    "summary": "한 프로세스 안에서 메모리와 열린 파일을 함께 쓰면서 자기 스택을 따로 가지고 실행되는 흐름이다.",
+    "related": [
+      "cs.os.process",
+      "be.async.concurrency-parallelism"
+    ],
+    "aliases": [
+      "multithreading",
+      "OS 스레드",
+      "pthread"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man7/pthreads.7.html",
+      "https://pages.cs.wisc.edu/~remzi/OSTEP/"
+    ]
+  },
+  {
+    "id": "cs.algo.binary-search",
+    "title": "이진 탐색",
+    "en": "Binary Search",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "알고리즘과 복잡도",
+    "summary": "정렬된 배열에서 가운데 값과 비교해 찾는 범위를 반씩 줄여 O(log n)에 값을 찾는 방법이다.",
+    "parent": "cs.algo.big-o-estimate",
+    "aliases": [
+      "이분 탐색",
+      "이진 검색",
+      "bisect 모듈"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/binarySearch.html"
+    ]
+  },
+  {
+    "id": "cs.data.representation-error",
+    "title": "표현 오차",
+    "en": "Representation Error",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "10진 소수를 유한한 2진 비트로 저장할 수 없어 가장 가까운 값으로 반올림되며 생기는 차이다.",
+    "parent": "cs.data.float-error",
+    "aliases": [
+      "0.1 표현",
+      "이진 소수",
+      "binary fraction"
+    ],
+    "refs": [
+      "https://docs.python.org/3/tutorial/floatingpoint.html#representation-error"
+    ]
+  },
+  {
+    "id": "cs.dsa.hash-collision",
+    "title": "해시 충돌",
+    "en": "Hash Collision",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "자료구조",
+    "summary": "서로 다른 두 키가 해시 테이블의 같은 자리로 대응되는 일로, 체이닝이나 개방 주소법으로 풀어 낸다.",
+    "parent": "cs.dsa.hash-table",
+    "aliases": [
+      "hash collision",
+      "해시 충돌 해결",
+      "분리 체이닝",
+      "open addressing"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/collision.html"
+    ]
+  },
+  {
+    "id": "cs.algo.base-case",
+    "title": "기저 사례",
+    "en": "Base Case",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "알고리즘과 복잡도",
+    "summary": "재귀 함수에서 더 쪼개지 않고 바로 답을 돌려주어 호출을 멈추게 하는 가장 단순한 입력이다.",
+    "parent": "cs.algo.recursion",
+    "aliases": [
+      "기본 사례",
+      "재귀 종료 조건",
+      "base condition"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/recursion.html"
+    ]
+  },
+  {
+    "id": "cs.algo.recursion-limit",
+    "title": "재귀 깊이 제한",
+    "en": "Recursion Depth Limit",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "알고리즘과 복잡도",
+    "summary": "호출이 너무 깊게 쌓여 스택이 넘치지 않도록 런타임이 재귀 깊이에 둔 상한으로, 넘으면 RecursionError가 난다.",
+    "parent": "cs.algo.recursion",
+    "aliases": [
+      "RecursionError",
+      "maximum recursion depth",
+      "recursionlimit"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/exceptions.html#RecursionError"
+    ]
+  },
+  {
+    "id": "cs.algo.memoization",
+    "title": "메모이제이션",
+    "en": "Memoization",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "알고리즘과 복잡도",
+    "summary": "한 번 계산한 함수 결과를 저장해 두고 같은 입력이 오면 다시 계산하지 않고 꺼내 쓰는 기법이다.",
+    "parent": "cs.algo.recursion",
+    "related": [
+      "cs.algo.big-o-estimate"
+    ],
+    "aliases": [
+      "memoize",
+      "lru_cache",
+      "함수 결과 캐싱",
+      "메모화"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/memoize.html"
+    ]
+  },
+  {
+    "id": "cs.os.file-descriptor",
+    "title": "파일 디스크립터",
+    "en": "File Descriptor",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "프로세스가 연 파일·소켓을 가리키는 작은 정수 번호로, 열 때 받고 다 쓰면 닫아 돌려준다.",
+    "related": [
+      "cs.os.process"
+    ],
+    "aliases": [
+      "file descriptor",
+      "파일 기술자",
+      "Too many open files"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man2/open.2.html"
+    ]
+  }
+]
