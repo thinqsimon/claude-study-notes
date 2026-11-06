@@ -14,8 +14,7 @@
     ],
     "aliases": [
       "문제 정의",
-      "problem statement",
-      "페인 포인트"
+      "problem statement"
     ],
     "refs": [
       "https://pair.withgoogle.com/chapter/user-needs/"
@@ -392,9 +391,7 @@
       "Figma 프로토타입",
       "피그마 프로토타입",
       "프로토타입 핫스팟",
-      "prototype hotspot",
-      "프로토타입 플로우",
-      "flow starting point"
+      "prototype hotspot"
     ],
     "refs": [
       "https://help.figma.com/hc/en-us/articles/360040314193-Guide-to-prototyping-in-Figma"
@@ -526,9 +523,7 @@
       "오토 레이아웃",
       "auto layout",
       "오토레이아웃",
-      "Figma auto layout",
-      "hug contents",
-      "fill container"
+      "Figma auto layout"
     ],
     "refs": [
       "https://help.figma.com/hc/en-us/articles/360040451373-Guide-to-auto-layout-in-Figma"
@@ -592,7 +587,9 @@
       "prototype interactions",
       "피그마 인터랙션",
       "프로토타입 애니메이션",
-      "prototype actions"
+      "prototype actions",
+      "프로토타입 플로우",
+      "flow starting point"
     ],
     "refs": [
       "https://help.figma.com/hc/en-us/articles/360040314193-Guide-to-prototyping-in-Figma",
@@ -1138,7 +1135,8 @@
     "aliases": [
       "pain point",
       "페인포인트",
-      "불편 요소"
+      "불편 요소",
+      "페인 포인트"
     ],
     "refs": [
       "https://www.gov.uk/service-manual/user-research/creating-an-experience-map"
@@ -1328,7 +1326,9 @@
       "Figma Fixed 크기",
       "오토 레이아웃 크기 조절",
       "Figma min/max 크기",
-      "Hug·Fill·Fixed"
+      "Hug·Fill·Fixed",
+      "hug contents",
+      "fill container"
     ],
     "refs": [
       "https://help.figma.com/hc/en-us/articles/360040451373-Guide-to-auto-layout-in-Figma"

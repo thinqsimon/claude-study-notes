@@ -1,5 +1,5 @@
 {
- "version": "0.15.0",
+ "version": "0.15.1",
  "domains": [
   {
    "prefix": "dev",
@@ -2128,8 +2128,7 @@
    ],
    "aliases": [
     "문제 정의",
-    "problem statement",
-    "페인 포인트"
+    "problem statement"
    ],
    "refs": [
     "https://pair.withgoogle.com/chapter/user-needs/"
@@ -2521,9 +2520,7 @@
     "Figma 프로토타입",
     "피그마 프로토타입",
     "프로토타입 핫스팟",
-    "prototype hotspot",
-    "프로토타입 플로우",
-    "flow starting point"
+    "prototype hotspot"
    ],
    "refs": [
     "https://help.figma.com/hc/en-us/articles/360040314193-Guide-to-prototyping-in-Figma"
@@ -2660,9 +2657,7 @@
     "오토 레이아웃",
     "auto layout",
     "오토레이아웃",
-    "Figma auto layout",
-    "hug contents",
-    "fill container"
+    "Figma auto layout"
    ],
    "refs": [
     "https://help.figma.com/hc/en-us/articles/360040451373-Guide-to-auto-layout-in-Figma"
@@ -2728,7 +2723,9 @@
     "prototype interactions",
     "피그마 인터랙션",
     "프로토타입 애니메이션",
-    "prototype actions"
+    "prototype actions",
+    "프로토타입 플로우",
+    "flow starting point"
    ],
    "refs": [
     "https://help.figma.com/hc/en-us/articles/360040314193-Guide-to-prototyping-in-Figma",
@@ -3295,7 +3292,8 @@
    "aliases": [
     "pain point",
     "페인포인트",
-    "불편 요소"
+    "불편 요소",
+    "페인 포인트"
    ],
    "refs": [
     "https://www.gov.uk/service-manual/user-research/creating-an-experience-map"
@@ -3494,7 +3492,9 @@
     "Figma Fixed 크기",
     "오토 레이아웃 크기 조절",
     "Figma min/max 크기",
-    "Hug·Fill·Fixed"
+    "Hug·Fill·Fixed",
+    "hug contents",
+    "fill container"
    ],
    "refs": [
     "https://help.figma.com/hc/en-us/articles/360040451373-Guide-to-auto-layout-in-Figma"
@@ -16774,7 +16774,8 @@
    "aliases": [
     "프롬프트 작성",
     "프롬프트 엔지니어링",
-    "시스템 프롬프트"
+    "시스템 프롬프트",
+    "역할 프롬프트"
    ],
    "refs": [
     "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview"
@@ -20365,8 +20366,7 @@
    "aliases": [
     "에이전트 루프",
     "에이전트 설계",
-    "멀티 에이전트",
-    "LangGraph"
+    "멀티 에이전트"
    ],
    "refs": [
     "https://www.anthropic.com/engineering/building-effective-agents",
@@ -20646,9 +20646,7 @@
     "llm.tools.function-calling"
    ],
    "aliases": [
-    "MCP",
-    "Model Context Protocol",
-    "MCP 서버"
+    "Model Context Protocol"
    ],
    "refs": [
     "https://modelcontextprotocol.io/docs/learn/architecture"
@@ -23348,6 +23346,9 @@
     "잠금 파일 해시로 캐시 키를 만들어 의존성 설치 시간을 줄일 수 있다",
     "빌드 잡의 결과물을 업로드하고 다음 잡에서 내려받아 쓸 수 있다"
    ],
+   "prerequisites": [
+    "ops.ci.workflow-basics"
+   ],
    "related": [
     "ops.ci.github-actions-workflow",
     "ops.container.image-layers"
@@ -25201,7 +25202,7 @@
    "group": "AI 기초",
    "summary": "숫자 특성은 비슷한 범위로 맞추고 범주 특성은 0과 1의 벡터로 바꿔 모델이 학습할 수 있는 숫자 표로 만드는 일이다.",
    "objectives": [
-    "숫자 특성을 선형 스케일링이나 Z-점수로 비슷한 범위에 맞출 수 있다",
+    "숫자 특성을 선형 스케일링·Z-점수·로그 스케일링·클리핑 중 분포에 맞는 방법으로 비슷한 범위에 맞출 수 있다",
     "범주 특성을 원-핫 벡터로 바꿔 모델에 넣을 수 있다",
     "우편번호처럼 숫자 모양이지만 범주인 특성을 알아보고 범주로 다룰 수 있다",
     "학습 때 쓴 변환을 예측 때 똑같이 적용해야 하는 이유를 설명할 수 있다"
@@ -25295,7 +25296,8 @@
     "confusion matrix",
     "결정 임계값",
     "decision threshold",
-    "TP FP FN TN"
+    "TP FP FN TN",
+    "혼동 행렬"
    ],
    "refs": [
     "https://developers.google.com/machine-learning/crash-course/classification/thresholding"
@@ -25902,6 +25904,7 @@
    "importance": 2,
    "group": "AI 기초",
    "summary": "판매량처럼 소수 값이 아주 크고 꼬리가 긴 숫자 특성에 로그를 씌워 범위를 좁히는 변환이다.",
+   "parent": "ml.data.numeric-categorical-preprocessing",
    "related": [
     "ml.data.feature-normalization"
    ],
@@ -25925,6 +25928,7 @@
    "importance": 2,
    "group": "AI 기초",
    "summary": "정한 최댓값이나 최솟값을 넘는 값을 그 경계값으로 잘라 극단적인 이상치가 학습을 휘두르지 못하게 하는 처리다.",
+   "parent": "ml.data.numeric-categorical-preprocessing",
    "related": [
     "ml.data.outlier",
     "ml.data.feature-normalization"
@@ -26035,11 +26039,13 @@
     "불균형 데이터에서 정확도가 속이는 이유를 보일 수 있다",
     "오류의 비용을 근거로 지표와 임계값을 고를 수 있다"
    ],
+   "prerequisites": [
+    "ml.eval.threshold-confusion-matrix"
+   ],
    "aliases": [
     "정밀도",
     "precision",
-    "F1 점수",
-    "혼동 행렬"
+    "F1 점수"
    ],
    "refs": [
     "https://developers.google.com/machine-learning/crash-course/classification/accuracy-precision-recall"
@@ -27343,7 +27349,8 @@
     "4-bit fine-tuning",
     "BitsAndBytesConfig",
     "bitsandbytes",
-    "load_in_4bit"
+    "load_in_4bit",
+    "QLoRA"
    ],
    "refs": [
     "https://huggingface.co/docs/transformers/main/en/quantization/bitsandbytes",
@@ -27546,6 +27553,7 @@
    "importance": 2,
    "group": "LLM 운영",
    "summary": "예시마다 messages 목록에 사용자 질문과 바라는 답을 역할별로 적은 대화 형식 자료로, 지도 파인튜닝(SFT)에서 모델이 따라 배울 답을 보여 준다.",
+   "parent": "mlops.finetune.sft-trainer",
    "related": [
     "mlops.finetune.fine-tuning",
     "mlops.eval.eval-dataset"
@@ -28545,7 +28553,6 @@
    ],
    "aliases": [
     "LoRA",
-    "QLoRA",
     "저랭크 어댑터",
     "어댑터 학습",
     "low-rank adaptation"

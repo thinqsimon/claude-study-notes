@@ -1640,8 +1640,7 @@
     "aliases": [
       "에이전트 루프",
       "에이전트 설계",
-      "멀티 에이전트",
-      "LangGraph"
+      "멀티 에이전트"
     ],
     "refs": [
       "https://www.anthropic.com/engineering/building-effective-agents",
@@ -1910,9 +1909,7 @@
       "llm.tools.function-calling"
     ],
     "aliases": [
-      "MCP",
-      "Model Context Protocol",
-      "MCP 서버"
+      "Model Context Protocol"
     ],
     "refs": [
       "https://modelcontextprotocol.io/docs/learn/architecture"

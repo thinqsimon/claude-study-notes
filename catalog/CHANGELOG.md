@@ -1,5 +1,11 @@
 # 개념사전 변경 내역
 
+## 0.15.1
+
+- 겹치거나 넓은 별칭을 정리했다. 입문 항목이 가진 `MCP`·`MCP 서버`·`LangGraph`를 상위 단계 항목에서 뺐고, `프로토타입 플로우`·`flow starting point`, `혼동 행렬`, `페인 포인트`, `QLoRA`, `hug contents`·`fill container`를 그 말을 직접 가르치는 항목으로 옮겼다. `llm.prompt.first-good-prompt`에 `역할 프롬프트`를 더했다.
+- 선수와 부모를 이었다(`ml.eval.metrics-tradeoffs`←`ml.eval.threshold-confusion-matrix`, `ops.ci.cache-and-artifacts`←`ops.ci.workflow-basics`, `mlops.finetune.sft-chat-data`의 부모 `mlops.finetune.sft-trainer`).
+- `ml.data.numeric-categorical-preprocessing`의 첫 목표에 로그 스케일링과 클리핑을 넣고 두 용어를 그 주제에 딸렸다.
+
 ## 0.15.0
 
 - dic-maker로 3단계에 주제 18개, 용어 40개를 더했다

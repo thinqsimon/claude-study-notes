@@ -654,6 +654,9 @@
       "잠금 파일 해시로 캐시 키를 만들어 의존성 설치 시간을 줄일 수 있다",
       "빌드 잡의 결과물을 업로드하고 다음 잡에서 내려받아 쓸 수 있다"
     ],
+    "prerequisites": [
+      "ops.ci.workflow-basics"
+    ],
     "related": [
       "ops.ci.github-actions-workflow",
       "ops.container.image-layers"

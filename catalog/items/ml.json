@@ -539,7 +539,7 @@
     "group": "AI 기초",
     "summary": "숫자 특성은 비슷한 범위로 맞추고 범주 특성은 0과 1의 벡터로 바꿔 모델이 학습할 수 있는 숫자 표로 만드는 일이다.",
     "objectives": [
-      "숫자 특성을 선형 스케일링이나 Z-점수로 비슷한 범위에 맞출 수 있다",
+      "숫자 특성을 선형 스케일링·Z-점수·로그 스케일링·클리핑 중 분포에 맞는 방법으로 비슷한 범위에 맞출 수 있다",
       "범주 특성을 원-핫 벡터로 바꿔 모델에 넣을 수 있다",
       "우편번호처럼 숫자 모양이지만 범주인 특성을 알아보고 범주로 다룰 수 있다",
       "학습 때 쓴 변환을 예측 때 똑같이 적용해야 하는 이유를 설명할 수 있다"
@@ -631,7 +631,8 @@
       "confusion matrix",
       "결정 임계값",
       "decision threshold",
-      "TP FP FN TN"
+      "TP FP FN TN",
+      "혼동 행렬"
     ],
     "refs": [
       "https://developers.google.com/machine-learning/crash-course/classification/thresholding"
@@ -1213,6 +1214,7 @@
     "importance": 2,
     "group": "AI 기초",
     "summary": "판매량처럼 소수 값이 아주 크고 꼬리가 긴 숫자 특성에 로그를 씌워 범위를 좁히는 변환이다.",
+    "parent": "ml.data.numeric-categorical-preprocessing",
     "related": [
       "ml.data.feature-normalization"
     ],
@@ -1235,6 +1237,7 @@
     "importance": 2,
     "group": "AI 기초",
     "summary": "정한 최댓값이나 최솟값을 넘는 값을 그 경계값으로 잘라 극단적인 이상치가 학습을 휘두르지 못하게 하는 처리다.",
+    "parent": "ml.data.numeric-categorical-preprocessing",
     "related": [
       "ml.data.outlier",
       "ml.data.feature-normalization"
@@ -1340,11 +1343,13 @@
       "불균형 데이터에서 정확도가 속이는 이유를 보일 수 있다",
       "오류의 비용을 근거로 지표와 임계값을 고를 수 있다"
     ],
+    "prerequisites": [
+      "ml.eval.threshold-confusion-matrix"
+    ],
     "aliases": [
       "정밀도",
       "precision",
-      "F1 점수",
-      "혼동 행렬"
+      "F1 점수"
     ],
     "refs": [
       "https://developers.google.com/machine-learning/crash-course/classification/accuracy-precision-recall"

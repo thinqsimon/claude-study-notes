@@ -813,7 +813,8 @@
       "4-bit fine-tuning",
       "BitsAndBytesConfig",
       "bitsandbytes",
-      "load_in_4bit"
+      "load_in_4bit",
+      "QLoRA"
     ],
     "refs": [
       "https://huggingface.co/docs/transformers/main/en/quantization/bitsandbytes",
@@ -1009,6 +1010,7 @@
     "importance": 2,
     "group": "LLM 운영",
     "summary": "예시마다 messages 목록에 사용자 질문과 바라는 답을 역할별로 적은 대화 형식 자료로, 지도 파인튜닝(SFT)에서 모델이 따라 배울 답을 보여 준다.",
+    "parent": "mlops.finetune.sft-trainer",
     "related": [
       "mlops.finetune.fine-tuning",
       "mlops.eval.eval-dataset"
@@ -1968,7 +1970,6 @@
     ],
     "aliases": [
       "LoRA",
-      "QLoRA",
       "저랭크 어댑터",
       "어댑터 학습",
       "low-rank adaptation"
