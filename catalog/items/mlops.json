@@ -1906,6 +1906,32 @@
     "checked_at": "2026-11-06"
   },
   {
+    "id": "mlops.observe.lightweight-tracing-sdk",
+    "title": "가벼운 트레이싱 패키지(mlflow-tracing)",
+    "en": "MLflow Production Tracing SDK (mlflow-tracing)",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "배포한 LLM 앱에 서버·UI·모델 기록 기능 없이 트레이스를 남기는 부분만 담아 설치 크기와 의존성을 줄인 MLflow 패키지다.",
+    "related": [
+      "mlops.observe.tracing-quickstart",
+      "mlops.observe.mlflow-server"
+    ],
+    "aliases": [
+      "mlflow-tracing",
+      "MLflow 경량 SDK",
+      "lightweight tracing SDK",
+      "프로덕션 트레이싱 SDK",
+      "production tracing SDK"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/tracing/lightweight-sdk/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
     "id": "mlops.eval.llm-regression",
     "title": "LLM 평가와 회귀 시험",
     "en": "LLM Evaluation and Regression Testing",

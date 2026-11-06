@@ -1,5 +1,5 @@
 {
- "version": "0.20.0",
+ "version": "0.21.0",
  "domains": [
   {
    "prefix": "dev",
@@ -3279,6 +3279,38 @@
    "domain": "cs"
   },
   {
+   "id": "cs.algo.greedy",
+   "title": "그리디 알고리즘과 반례 찾기",
+   "en": "Greedy Algorithms",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "알고리즘과 복잡도",
+   "summary": "매 단계에서 지금 가장 좋아 보이는 선택만 하는 방식으로, 빠르지만 문제에 따라 최적이 아닐 수 있다.",
+   "objectives": [
+    "거스름돈·회의실 배정 같은 문제를 그리디 방식으로 구현할 수 있다",
+    "작은 반례를 만들어 그리디 선택이 최적을 놓치는지 확인할 수 있다",
+    "그리디가 실패하는 문제에서 동적 계획법으로 바꿔 풀 수 있다"
+   ],
+   "prerequisites": [
+    "cs.algo.sorting",
+    "cs.algo.dynamic-programming"
+   ],
+   "related": [
+    "cs.algo.dynamic-programming",
+    "cs.algo.dijkstra"
+   ],
+   "aliases": [
+    "탐욕 알고리즘",
+    "greedy method",
+    "탐욕법"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/greedyalgo.html"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.os.process",
    "title": "프로세스",
    "en": "Process",
@@ -3985,6 +4017,32 @@
    ],
    "refs": [
     "https://www.rfc-editor.org/rfc/rfc9293.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.algo.divide-and-conquer",
+   "title": "분할 정복",
+   "en": "Divide and Conquer",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "알고리즘과 복잡도",
+   "summary": "문제를 더 작은 같은 꼴의 문제로 나눠 재귀로 풀고 그 답을 합치는 알고리즘 설계 방식이다.",
+   "related": [
+    "cs.algo.recursion",
+    "cs.algo.merge-sort",
+    "cs.algo.binary-search",
+    "cs.algo.dynamic-programming"
+   ],
+   "aliases": [
+    "분할정복",
+    "분할 정복 알고리즘",
+    "divide-and-conquer",
+    "D&C"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/divideAndConquer.html"
    ],
    "domain": "cs"
   },
@@ -34472,6 +34530,33 @@
    ],
    "refs": [
     "https://mlflow.org/docs/latest/genai/serving/agent-server/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.lightweight-tracing-sdk",
+   "title": "가벼운 트레이싱 패키지(mlflow-tracing)",
+   "en": "MLflow Production Tracing SDK (mlflow-tracing)",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "배포한 LLM 앱에 서버·UI·모델 기록 기능 없이 트레이스를 남기는 부분만 담아 설치 크기와 의존성을 줄인 MLflow 패키지다.",
+   "related": [
+    "mlops.observe.tracing-quickstart",
+    "mlops.observe.mlflow-server"
+   ],
+   "aliases": [
+    "mlflow-tracing",
+    "MLflow 경량 SDK",
+    "lightweight tracing SDK",
+    "프로덕션 트레이싱 SDK",
+    "production tracing SDK"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/tracing/lightweight-sdk/"
    ],
    "volatile": true,
    "checked_at": "2026-11-06",
