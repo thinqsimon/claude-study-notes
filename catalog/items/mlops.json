@@ -650,6 +650,108 @@
     "checked_at": "2026-11-06"
   },
   {
+    "id": "mlops.finetune.sft-trainer",
+    "title": "SFTTrainer로 작은 언어 모델 파인튜닝하기",
+    "en": "Supervised Fine-Tuning with TRL SFTTrainer",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "대화·프롬프트-완성 형식의 데이터를 SFTTrainer와 SFTConfig에 넣어 작은 모델을 지도 미세조정하고 저장하는 과정이다.",
+    "objectives": [
+      "SFTTrainer에 모델 이름과 데이터셋을 넣어 학습을 돌리고 결과를 저장할 수 있다",
+      "언어 모델링 형식과 프롬프트-완성 형식 데이터의 차이를 구분해 알맞게 변환할 수 있다",
+      "SFTConfig로 max_length·학습률 같은 설정을 바꾸고 로그의 loss를 읽을 수 있다",
+      "EOS 토큰이 맞지 않아 답이 끝나지 않는 실수를 알아보고 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.transformers-pipeline"
+    ],
+    "related": [
+      "mlops.finetune.lora-quickstart",
+      "mlops.finetune.sft-chat-data"
+    ],
+    "aliases": [
+      "SFTTrainer",
+      "SFTConfig",
+      "TRL 파인튜닝",
+      "지도 미세조정",
+      "supervised fine-tuning",
+      "SFT 학습"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/trl/sft_trainer"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "mlops.finetune.lora-quickstart",
+    "title": "LoRA 어댑터로 가볍게 파인튜닝하기: PEFT 시작",
+    "en": "Getting Started with LoRA Adapters in PEFT",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "LoraConfig와 get_peft_model로 기본 모델에 작은 어댑터만 붙여 학습하고, 어댑터를 저장했다가 다시 불러 쓰는 방법이다.",
+    "objectives": [
+      "LoraConfig를 만들고 get_peft_model로 기본 모델을 감쌀 수 있다",
+      "print_trainable_parameters로 학습되는 파라미터 비율을 확인할 수 있다",
+      "학습한 어댑터만 저장하고 기본 모델 위에 다시 불러와 추론할 수 있다",
+      "전체 파인튜닝과 어댑터 학습이 저장 크기에서 어떻게 다른지 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.transformers-pipeline"
+    ],
+    "related": [
+      "mlops.finetune.sft-trainer",
+      "mlops.finetune.lora-internals"
+    ],
+    "aliases": [
+      "PEFT",
+      "LoRA 학습",
+      "LoraConfig",
+      "get_peft_model",
+      "로라 파인튜닝",
+      "LoRA fine-tuning"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/peft/quicktour"
+    ]
+  },
+  {
+    "id": "mlops.observe.search-traces",
+    "title": "쌓인 트레이스 찾아보기: 필터로 검색하기",
+    "en": "Searching Traces with Filters",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "MLflow UI의 필터와 mlflow.search_traces로 상태·시간·태그·메타데이터 조건에 맞는 트레이스를 골라 표로 받아 보는 방법이다.",
+    "objectives": [
+      "UI 필터로 오류가 난 트레이스나 느린 트레이스만 골라 볼 수 있다",
+      "mlflow.search_traces에 filter_string과 order_by를 넣어 원하는 트레이스를 DataFrame으로 받을 수 있다",
+      "태그·메타데이터·피드백 조건을 AND로 묶어 범위를 좁힐 수 있다",
+      "OR를 쓰거나 문자열 따옴표를 빠뜨려 검색이 실패하는 실수를 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.observe.manual-tracing"
+    ],
+    "related": [
+      "mlops.observe.trace-tag"
+    ],
+    "aliases": [
+      "search_traces",
+      "트레이스 검색",
+      "trace search",
+      "트레이스 필터",
+      "트레이스 조회"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/tracing/search-traces/"
+    ]
+  },
+  {
     "id": "mlops.track.experiment-tracking",
     "title": "실험 추적: 파라미터·지표·모델 기록하기",
     "en": "Experiment Tracking with MLflow",
@@ -781,6 +883,94 @@
     "refs": [
       "https://huggingface.co/docs/trl/dataset_formats"
     ]
+  },
+  {
+    "id": "mlops.finetune.assistant-only-loss",
+    "title": "응답만 학습하는 손실(assistant only loss)",
+    "en": "Completion-Only and Assistant-Only Loss",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "파인튜닝할 때 프롬프트나 사용자 말은 손실에서 빼고 모델이 답한 부분에서만 손실을 계산하게 하는 설정이다.",
+    "parent": "mlops.finetune.sft-trainer",
+    "aliases": [
+      "assistant_only_loss",
+      "completion_only_loss",
+      "응답만 학습",
+      "completion only loss"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/trl/sft_trainer"
+    ]
+  },
+  {
+    "id": "mlops.finetune.chat-template",
+    "title": "채팅 템플릿(chat template)",
+    "en": "Chat Template",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "role·content로 된 대화 목록을 모델이 학습한 특수 토큰 형식의 문자열로 바꿔 주는 모델별 규칙이다.",
+    "parent": "mlops.finetune.sft-trainer",
+    "aliases": [
+      "apply_chat_template",
+      "add_generation_prompt",
+      "채팅 형식 템플릿",
+      "대화 템플릿"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/chat_templating"
+    ]
+  },
+  {
+    "id": "mlops.finetune.adapter-save-load",
+    "title": "어댑터 저장과 불러오기",
+    "en": "Saving and Loading PEFT Adapters",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "학습한 어댑터 가중치만 save_pretrained로 작게 저장하고, PeftModel.from_pretrained로 기본 모델 위에 다시 얹어 쓰는 방법이다.",
+    "parent": "mlops.finetune.lora-quickstart",
+    "related": [
+      "mlops.finetune.adapter-merge"
+    ],
+    "aliases": [
+      "adapter_model.safetensors",
+      "PeftModel.from_pretrained",
+      "AutoPeftModelForCausalLM",
+      "어댑터 로드"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/peft/quicktour"
+    ]
+  },
+  {
+    "id": "mlops.observe.session-user-tracking",
+    "title": "사용자·세션별로 트레이스 묶기",
+    "en": "Tracking Users and Sessions in Traces",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "트레이스에 사용자 ID와 대화 세션 ID를 달아 여러 번의 호출을 한 대화나 한 사용자 단위로 모아 보는 방법이다.",
+    "related": [
+      "mlops.observe.trace-tag"
+    ],
+    "aliases": [
+      "트레이스 session_id",
+      "mlflow.trace.session",
+      "mlflow.trace.user",
+      "대화 세션 추적",
+      "세션 ID 기록"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/tracing/track-users-sessions/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
   },
   {
     "id": "mlops.track.experiment-run",
@@ -1031,6 +1221,66 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-06"
+  },
+  {
+    "id": "mlops.finetune.packing",
+    "title": "예시 패킹(packing)",
+    "en": "Example Packing",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "짧은 학습 예시 여러 개를 max_length 길이의 한 시퀀스에 이어 붙여 패딩 낭비를 줄이는 학습 설정이다.",
+    "parent": "mlops.finetune.sft-trainer",
+    "aliases": [
+      "시퀀스 패킹",
+      "sequence packing",
+      "packing=True",
+      "예제 패킹"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/trl/sft_trainer"
+    ]
+  },
+  {
+    "id": "mlops.finetune.lora-target-modules",
+    "title": "LoRA 대상 모듈(target_modules)",
+    "en": "LoRA Target Modules",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "LoraConfig에서 어댑터를 붙일 기본 모델의 층 이름(q_proj 등)을 고르는 설정으로, 이름 끝부분이 맞는 층이 모두 대상이 된다.",
+    "parent": "mlops.finetune.lora-quickstart",
+    "aliases": [
+      "target_modules",
+      "q_proj",
+      "LoRA 적용 층",
+      "어댑터 대상 층"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/peft/quicktour"
+    ]
+  },
+  {
+    "id": "mlops.observe.trace-filter-syntax",
+    "title": "트레이스 검색 필터 문법",
+    "en": "Trace Search Filter Syntax",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "trace.status·tag.키·metadata.키 같은 필드에 비교 연산자와 LIKE를 써서 AND로만 묶는 SQL 비슷한 트레이스 검색식이다.",
+    "parent": "mlops.observe.search-traces",
+    "aliases": [
+      "트레이스 filter_string",
+      "트레이스 필터 문법",
+      "trace.status",
+      "trace filter"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/tracing/search-traces/"
+    ]
   },
   {
     "id": "mlops.eval.llm-regression",

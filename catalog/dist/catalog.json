@@ -1,5 +1,5 @@
 {
- "version": "0.12.0",
+ "version": "0.13.0",
  "domains": [
   {
    "prefix": "dev",
@@ -2423,6 +2423,98 @@
    "domain": "plan"
   },
   {
+   "id": "plan.figma.interactive-components",
+   "title": "Figma 인터랙티브 컴포넌트 만들기",
+   "en": "Interactive Components in Figma",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "변형끼리 프로토타입 연결을 미리 걸어 두어 버튼·체크박스 같은 부품이 인스턴스마다 저절로 반응하게 만든다.",
+   "objectives": [
+    "같은 컴포넌트 세트의 변형 사이에 Change to 액션을 걸어 호버·눌림 상태를 만들 수 있다",
+    "인스턴스에 일반 인터랙션을 더했을 때 트리거가 같으면 어느 쪽이 실행되는지 설명할 수 있다",
+    "중첩 인스턴스로 부모 컴포넌트의 변형을 바꾸는 펼침·접힘 부품을 만들 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.prototype-interactions"
+   ],
+   "related": [
+    "plan.figma.variants"
+   ],
+   "aliases": [
+    "인터랙티브 컴포넌트",
+    "interactive components",
+    "변형 인터랙션",
+    "variant interactions"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360061175334-Create-interactive-components-with-variants"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.experience-map",
+   "title": "경험 지도 만들기",
+   "en": "Creating an Experience Map",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "여러 사용자의 조사 결과를 단계별로 늘어놓아 서비스를 쓰는 동안 무엇을 하고 느끼는지, 어디서 막히는지 한 장에 그린다.",
+   "objectives": [
+    "여러 참여자의 사건을 줄 세워 공통 단계를 찾고 이름 붙일 수 있다",
+    "단계마다 감정의 높낮이·접점·사용자 니즈·불편 지점을 덧붙일 수 있다",
+    "여정이 크게 다른 사용자 집단은 지도를 나눠야 하는 이유를 설명할 수 있다",
+    "팀용 상세 지도와 바깥 사람용 요약 지도를 구분해 만들 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.usability-testing"
+   ],
+   "aliases": [
+    "경험 지도",
+    "experience map",
+    "experience mapping"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/user-research/creating-an-experience-map"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.research-analysis",
+   "title": "사용자 조사 세션 분석하기",
+   "en": "Analysing a User Research Session",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "조사를 지켜본 사람들이 함께 관찰을 메모로 뽑고 묶어 주제를 찾은 뒤 발견점과 다음 할 일로 정리한다.",
+   "objectives": [
+    "본 것과 들은 것만 담은 관찰 메모를 해석과 구분해 쓸 수 있다",
+    "어피니티 정렬로 메모를 묶어 주제 이름을 붙일 수 있다",
+    "묶음마다 발견점을 짧은 문장으로 쓰고 디자인 수정·백로그 같은 다음 행동으로 이을 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.usability-testing"
+   ],
+   "related": [
+    "plan.basics.experience-map"
+   ],
+   "aliases": [
+    "조사 분석",
+    "research analysis",
+    "인터뷰 분석",
+    "리서치 결과 정리",
+    "research synthesis",
+    "리서치 종합"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/user-research/analyse-a-research-session"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.branch-and-publish",
    "title": "Figma 브랜치에서 고치고 라이브러리 업데이트 게시하기",
    "en": "Editing in a Figma Branch and Publishing Library Updates",
@@ -2666,6 +2758,163 @@
    "domain": "plan"
   },
   {
+   "id": "plan.figma.change-to-action",
+   "title": "Change to 액션",
+   "en": "Change To Action",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "프로토타입에서 인스턴스를 같은 컴포넌트 세트의 다른 변형으로 바꾸는 Figma 액션이다.",
+   "parent": "plan.figma.interactive-components",
+   "related": [
+    "plan.figma.prototype-trigger"
+   ],
+   "aliases": [
+    "Change to",
+    "변형 전환 액션",
+    "change to 액션"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360061175334-Create-interactive-components-with-variants"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.touchpoint",
+   "title": "접점(터치포인트)",
+   "en": "Touchpoint",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "사용자가 서비스와 만나는 지점으로, 웹 화면·전화·편지·창구처럼 경로마다 따로 생긴다.",
+   "parent": "plan.basics.experience-map",
+   "aliases": [
+    "터치포인트",
+    "touchpoint",
+    "서비스 접점",
+    "고객 접점"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/user-research/creating-an-experience-map"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.pain-point",
+   "title": "불편 지점(페인 포인트)",
+   "en": "Pain Point",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "사용자가 서비스를 쓰다 막히거나 애를 먹는 곳으로, 개선할 기능을 고르는 출발점이 된다.",
+   "parent": "plan.basics.experience-map",
+   "related": [
+    "plan.basics.touchpoint"
+   ],
+   "aliases": [
+    "pain point",
+    "페인포인트",
+    "불편 요소"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/user-research/creating-an-experience-map"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.affinity-diagram",
+   "title": "어피니티 다이어그램",
+   "en": "Affinity Diagram",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "조사에서 나온 메모를 비슷한 것끼리 모아 묶음마다 이름을 붙여 주제를 찾는 정리 방법이다.",
+   "parent": "plan.basics.research-analysis",
+   "aliases": [
+    "어피니티 정렬",
+    "affinity sorting",
+    "친화도 다이어그램",
+    "affinity mapping",
+    "어피니티 맵"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/user-research/analyse-a-research-session"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.observation-vs-interpretation",
+   "title": "관찰과 해석의 구분",
+   "en": "Observation vs. Interpretation",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "조사 메모에는 실제로 보고 들은 말과 행동만 적고, 그것이 무슨 뜻인지는 나중에 함께 정하는 원칙이다.",
+   "parent": "plan.basics.research-analysis",
+   "aliases": [
+    "관찰 메모",
+    "observation note",
+    "관찰과 해석"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/user-research/analyse-a-research-session"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.discussion-guide",
+   "title": "인터뷰 진행 가이드",
+   "en": "Discussion Guide",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "심층 인터뷰에서 다룰 주제와 시작 질문·이어 묻는 질문을 순서대로 적고 동료에게 미리 시험해 보는 진행 대본으로, 사용성 테스트의 과제 대본과는 쓰임이 다르다.",
+   "related": [
+    "plan.basics.usability-testing"
+   ],
+   "aliases": [
+    "디스커션 가이드",
+    "discussion guide",
+    "인터뷰 가이드",
+    "인터뷰 질문지",
+    "interview guide"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/user-research/using-in-depth-interviews"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.open-question",
+   "title": "열린 질문",
+   "en": "Open Question",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "예·아니오로 끝나지 않고 '어떻게'·'무엇을'로 물어 참여자가 실제 경험을 자기 말로 이야기하게 하는 질문이다.",
+   "parent": "plan.basics.usability-testing",
+   "related": [
+    "plan.basics.discussion-guide"
+   ],
+   "aliases": [
+    "개방형 질문",
+    "open-ended question",
+    "열린 질문하기",
+    "중립 질문"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/user-research/using-in-depth-interviews"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.constraints",
    "title": "제약(constraints)",
    "en": "Figma Constraints",
@@ -2781,6 +3030,26 @@
    ],
    "refs": [
     "https://help.figma.com/hc/en-us/articles/360039818874-Create-advanced-animations-with-Smart-Animate"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.reset-component-state",
+   "title": "컴포넌트 상태 초기화",
+   "en": "Reset Component State",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "다른 프레임으로 넘어갈 때 인터랙티브 컴포넌트가 바뀐 상태를 기억하지 않고 기본 변형으로 되돌리게 하는 설정이다.",
+   "parent": "plan.figma.interactive-components",
+   "aliases": [
+    "Reset component state",
+    "Figma 컴포넌트 상태 초기화",
+    "변형 상태 기억"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360061175334-Create-interactive-components-with-variants"
    ],
    "domain": "plan"
   },
@@ -12045,6 +12314,145 @@
    "domain": "db"
   },
   {
+   "id": "db.orm.relationship-patterns",
+   "title": "SQLAlchemy 관계 패턴: 일대일과 다대다",
+   "en": "SQLAlchemy Relationship Patterns: One-to-One and Many-to-Many",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "ORM",
+   "summary": "일대다 말고도 일대일과 다대다 관계를 relationship()과 연결 표로 정의하고 객체를 이어 저장하는 방법이다.",
+   "objectives": [
+    "일대일과 다대다 중 어떤 관계가 필요한지 자료의 모양을 보고 정할 수 있다",
+    "외래 키에 UNIQUE를 걸고 단일 객체 주석을 써서 일대일 관계를 만들 수 있다",
+    "연결 표를 secondary로 넘겨 다대다 관계를 만들고 컬렉션에 넣고 빼서 연결 행을 바꿀 수 있다"
+   ],
+   "prerequisites": [
+    "db.orm.sqlalchemy-basics",
+    "db.sql.foreign-key"
+   ],
+   "related": [
+    "db.orm.n-plus-one",
+    "db.sql.join"
+   ],
+   "aliases": [
+    "다대다 관계",
+    "many-to-many",
+    "일대일 관계",
+    "one-to-one relationship",
+    "ORM 관계 매핑"
+   ],
+   "refs": [
+    "https://docs.sqlalchemy.org/en/20/orm/basic_relationships.html",
+    "https://docs.sqlalchemy.org/en/20/tutorial/orm_related_objects.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.jsonb",
+   "title": "JSONB 열에 문서 저장하고 꺼내 쓰기",
+   "en": "Storing and Querying JSONB Documents",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "PostgreSQL의 jsonb 열에 모양이 정해지지 않은 자료를 넣고 연산자로 필드를 꺼내거나 포함 여부로 행을 찾는 방법이다.",
+   "objectives": [
+    "json과 jsonb의 차이를 알고 대부분 jsonb를 고르는 이유를 말할 수 있다",
+    "->와 ->>로 필드를 꺼내고 결과가 jsonb인지 text인지 구분해 비교할 수 있다",
+    "@> 포함 연산자로 특정 키와 값을 가진 행을 찾을 수 있다",
+    "경로가 맞지 않을 때 오류 대신 NULL이 나오는 것을 알고 조건을 바르게 쓸 수 있다"
+   ],
+   "prerequisites": [
+    "db.sql.select-first",
+    "db.postgres.first-run"
+   ],
+   "related": [
+    "db.sql.null-comparison"
+   ],
+   "aliases": [
+    "jsonb 열",
+    "jsonb column",
+    "PostgreSQL JSON",
+    "JSON 열 조회",
+    "PostgreSQL json 타입"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/datatype-json.html",
+    "https://www.postgresql.org/docs/current/functions-json.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.cache.redis-data-types",
+   "title": "Redis 자료형: Hash·List·Set·Sorted Set",
+   "en": "Redis Data Types: Hashes, Lists, Sets and Sorted Sets",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "캐시",
+   "summary": "문자열 말고 Hash·List·Set·Sorted Set을 골라 객체, 대기열, 중복 없는 모음, 점수순 순위를 Redis에 담는 방법이다.",
+   "objectives": [
+    "해야 할 일에 맞춰 String·Hash·List·Set·Sorted Set 가운데 하나를 고를 수 있다",
+    "HSET·HGET으로 객체의 필드를 따로 읽고 쓸 수 있다",
+    "LPUSH·RPOP으로 간단한 대기열을, SADD·SISMEMBER로 중복 없는 모음을 만들 수 있다",
+    "ZADD·ZRANGE로 점수순 순위표를 만들 수 있다"
+   ],
+   "prerequisites": [
+    "db.cache.redis-first-run"
+   ],
+   "related": [
+    "db.cache.key-value-store"
+   ],
+   "aliases": [
+    "Redis 자료형",
+    "Redis data types",
+    "Redis 자료구조",
+    "redis list",
+    "Redis Set 자료형"
+   ],
+   "refs": [
+    "https://redis.io/docs/latest/develop/data-types/",
+    "https://redis.io/docs/latest/develop/data-types/compare-data-types/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.copy-csv",
+   "title": "COPY로 CSV 불러오고 내보내기",
+   "en": "Importing and Exporting CSV with COPY",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "COPY와 psql의 \\copy로 CSV 파일을 표에 한꺼번에 넣거나 조회 결과를 CSV로 내보내는 방법이다.",
+   "objectives": [
+    "COPY ... FROM으로 CSV 파일을 표에 넣고 COPY ... TO로 표나 조회 결과를 파일로 내보낼 수 있다",
+    "FORMAT csv와 HEADER 옵션으로 머리글 줄을 건너뛰거나 쓸 수 있다",
+    "빈 칸이 NULL로 들어가는지 빈 문자열로 들어가는지 구분해 옵션을 고를 수 있다",
+    "파일이 서버에 있는지 내 컴퓨터에 있는지에 따라 COPY와 \\copy 중 하나를 고를 수 있다"
+   ],
+   "prerequisites": [
+    "db.sql.write-rows",
+    "db.postgres.first-run"
+   ],
+   "related": [
+    "db.sql.upsert-on-conflict"
+   ],
+   "aliases": [
+    "COPY 명령",
+    "PostgreSQL CSV 가져오기",
+    "CSV import",
+    "CSV export",
+    "COPY 대량 적재"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/sql-copy.html",
+    "https://www.postgresql.org/docs/current/app-psql.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.sql.join",
    "title": "JOIN: 두 표 이어 붙이기",
    "en": "JOIN",
@@ -12141,6 +12549,29 @@
    ],
    "refs": [
     "https://www.postgresql.org/docs/current/ddl-constraints.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.case-expression",
+   "title": "CASE 식: SQL 안의 조건 분기",
+   "en": "CASE Expression",
+   "kind": "term",
+   "level": 3,
+   "importance": 1,
+   "group": "SQL",
+   "summary": "WHEN 조건에 따라 다른 값을 돌려주는 SQL의 if·else 식으로, SELECT 목록이나 WHERE·ORDER BY 어디에든 쓸 수 있다.",
+   "related": [
+    "db.sql.coalesce"
+   ],
+   "aliases": [
+    "CASE WHEN",
+    "SQL 조건식",
+    "case expression",
+    "CASE 문"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/functions-conditional.html"
    ],
    "domain": "db"
   },
@@ -12367,6 +12798,166 @@
    "domain": "db"
   },
   {
+   "id": "db.orm.back-populates",
+   "title": "back_populates: 양쪽 관계 맞추기",
+   "en": "back_populates",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "ORM",
+   "summary": "두 클래스의 relationship()을 서로 짝지어 한쪽에 객체를 넣으면 반대쪽 속성도 함께 바뀌게 하는 SQLAlchemy 설정으로, 옛 방식인 backref와는 다른 인자다.",
+   "parent": "db.orm.sqlalchemy-basics",
+   "related": [
+    "db.orm.relationship-patterns"
+   ],
+   "aliases": [
+    "back_populates",
+    "양방향 관계",
+    "bidirectional relationship"
+   ],
+   "refs": [
+    "https://docs.sqlalchemy.org/en/20/tutorial/orm_related_objects.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.orm.association-table",
+   "title": "연결 표(association table)",
+   "en": "Association Table",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "ORM",
+   "summary": "다대다 관계에서 양쪽 표의 외래 키 두 개만 담아 둘을 잇는 표로, SQLAlchemy에서는 relationship()의 secondary로 넘긴다.",
+   "parent": "db.orm.relationship-patterns",
+   "related": [
+    "db.sql.foreign-key"
+   ],
+   "aliases": [
+    "연결 표",
+    "association table",
+    "중간 테이블",
+    "조인 테이블",
+    "secondary 테이블"
+   ],
+   "refs": [
+    "https://docs.sqlalchemy.org/en/20/orm/basic_relationships.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.jsonb-operators",
+   "title": "JSON 연산자: ->·->>·@>",
+   "en": "JSON Operators: ->, ->> and @>",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "->는 jsonb 그대로, ->>는 text로 필드를 꺼내고, #>는 경로를 따라 꺼내며, @>는 왼쪽 문서가 오른쪽 문서를 품는지 참·거짓으로 알려 주는 PostgreSQL 연산자다.",
+   "parent": "db.sql.jsonb",
+   "aliases": [
+    "->> 연산자",
+    "jsonb 연산자",
+    "JSON operators",
+    "jsonb 포함 연산자",
+    "#> 연산자"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/functions-json.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.cache.redis-hash",
+   "title": "Redis Hash",
+   "en": "Redis Hash",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "캐시",
+   "summary": "키 하나 아래에 필드와 값의 쌍을 여러 개 두어 객체 하나를 담는 Redis 자료형으로, HSET·HGET·HINCRBY로 다룬다.",
+   "parent": "db.cache.redis-data-types",
+   "aliases": [
+    "Redis 해시",
+    "redis hash",
+    "HSET",
+    "HGETALL",
+    "HINCRBY"
+   ],
+   "refs": [
+    "https://redis.io/docs/latest/develop/data-types/hashes/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.cache.redis-sorted-set",
+   "title": "Redis Sorted Set",
+   "en": "Redis Sorted Set",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "캐시",
+   "summary": "겹치지 않는 값마다 점수를 붙여 점수순으로 늘 정돈해 두는 Redis 자료형으로, 순위표를 ZADD·ZRANGE·ZINCRBY로 만든다.",
+   "parent": "db.cache.redis-data-types",
+   "aliases": [
+    "정렬 집합",
+    "sorted set",
+    "ZSET",
+    "ZADD",
+    "ZRANGE",
+    "Redis 리더보드"
+   ],
+   "refs": [
+    "https://redis.io/docs/latest/develop/data-types/sorted-sets/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.coalesce",
+   "title": "COALESCE와 NULLIF: NULL 대신 기본값",
+   "en": "COALESCE and NULLIF",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "COALESCE는 처음으로 NULL이 아닌 값을 돌려줘 빈 값에 기본값을 채우고, NULLIF는 두 값이 같으면 NULL로 바꾼다.",
+   "related": [
+    "db.sql.null-comparison",
+    "db.sql.case-expression"
+   ],
+   "aliases": [
+    "COALESCE",
+    "NULLIF",
+    "NULL 기본값",
+    "IFNULL"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/functions-conditional.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.like-ilike",
+   "title": "LIKE와 ILIKE: 패턴으로 글자 찾기",
+   "en": "LIKE and ILIKE Pattern Matching",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "%는 여러 글자, _는 한 글자를 뜻하는 패턴으로 문자열을 찾는 연산자로, ILIKE는 대소문자를 가리지 않는다.",
+   "aliases": [
+    "LIKE 검색",
+    "ILIKE",
+    "SQL 패턴 매칭",
+    "like 연산자",
+    "와일드카드 검색"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/functions-matching.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.sql.view",
    "title": "뷰: 쿼리에 이름 붙여 표처럼 쓰기",
    "en": "View",
@@ -12387,6 +12978,27 @@
    ],
    "refs": [
     "https://www.postgresql.org/docs/current/tutorial-views.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.psql-copy",
+   "title": "\\copy: 내 컴퓨터 파일로 COPY 하기",
+   "en": "psql \\copy",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "SQL",
+   "summary": "psql이 클라이언트 쪽 파일을 읽고 써서 서버 권한 없이도 COPY와 같은 일을 하게 해 주는 메타 명령이다.",
+   "parent": "db.sql.copy-csv",
+   "aliases": [
+    "\\copy",
+    "psql copy",
+    "클라이언트 COPY"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/app-psql.html",
+    "https://www.postgresql.org/docs/current/sql-copy.html"
    ],
    "domain": "db"
   },
@@ -15330,6 +15942,155 @@
    "domain": "llm"
   },
   {
+   "id": "llm.basics.model-selection",
+   "title": "기능에 맞는 모델 고르기: 성능·속도·비용 저울질",
+   "en": "Choosing a Model for Your Feature",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "만들 기능의 품질 기준과 응답 속도, 예산을 정해 놓고 작은 모델부터 또는 큰 모델부터 시험해 가며 알맞은 모델과 설정을 고른다.",
+   "objectives": [
+    "기능에 필요한 성능·속도·비용 기준을 먼저 적어 둘 수 있다",
+    "효율 우선과 성능 우선 두 출발 방식 중 기능에 맞는 쪽을 고를 수 있다",
+    "같은 프롬프트와 데이터로 모델 몇 개를 돌려 결과와 비용을 비교할 수 있다",
+    "모델을 바꾸기 전에 effort 같은 설정으로 먼저 맞춰 볼 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.model-choices",
+    "llm.api.first-call"
+   ],
+   "related": [
+    "llm.api.thinking-effort",
+    "llm.api.model-snapshot"
+   ],
+   "aliases": [
+    "모델 고르기",
+    "model selection",
+    "choosing a model",
+    "모델 비교 테스트",
+    "어떤 모델을 쓸까"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/about-claude/models/choosing-a-model",
+    "https://developers.openai.com/api/docs/guides/model-selection"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.transformers-pipeline",
+   "title": "Transformers pipeline으로 오픈 모델 돌려 보기",
+   "en": "Running Open Models with the Transformers pipeline()",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "Hugging Face Transformers의 pipeline()에 작업 이름과 Hub 모델 이름을 넣어 오픈 모델을 내 컴퓨터에서 바로 돌리고, 안에서 토크나이저와 모델이 하는 일을 나눠 본다.",
+   "objectives": [
+    "pipeline()에 작업 이름을 넣어 생성·요약·분류 같은 일을 실행할 수 있다",
+    "Hub에서 작업 태그와 모델 카드를 보고 쓸 모델을 골라 model 인자로 바꿔 넣을 수 있다",
+    "pipeline을 토크나이저·AutoModelForSequenceClassification 같은 작업별 모델·후처리 단계로 풀어 같은 결과를 낼 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.token-context"
+   ],
+   "related": [
+    "llm.basics.open-model",
+    "llm.api.first-call"
+   ],
+   "aliases": [
+    "transformers pipeline",
+    "pipeline()",
+    "허깅페이스 파이프라인",
+    "Hugging Face Transformers",
+    "트랜스포머스 라이브러리"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter1/3",
+    "https://huggingface.co/learn/llm-course/chapter2/2"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.pdf-long-documents",
+   "title": "PDF와 긴 문서 넣고 질문하기",
+   "en": "Asking Questions over PDFs and Long Documents",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "PDF를 URL·base64·file_id로 요청에 넣어 표와 그림까지 읽게 하고, 긴 문서는 질문보다 위에 두고 태그로 나눠 답의 품질과 비용을 맞춘다.",
+   "objectives": [
+    "PDF를 URL·base64·file_id 세 방식 중 하나로 요청에 넣을 수 있다",
+    "페이지마다 텍스트와 이미지 토큰이 함께 든다는 점을 알고 토큰 수를 미리 셀 수 있다",
+    "긴 문서를 프롬프트 위쪽에 두고 문서마다 태그와 출처를 붙여 배치할 수 있다",
+    "페이지·크기 한도에 걸리면 문서를 나누거나 Files API로 바꿔 보낼 수 있다"
+   ],
+   "prerequisites": [
+    "llm.api.first-call",
+    "llm.basics.token-context"
+   ],
+   "related": [
+    "llm.api.vision-input",
+    "llm.api.files-api",
+    "llm.prompt.prompt-structure",
+    "llm.api.token-counting"
+   ],
+   "aliases": [
+    "PDF 입력",
+    "PDF support",
+    "PDF 질문하기",
+    "file inputs",
+    "긴 문서 프롬프트",
+    "long context prompting"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/pdf-support",
+    "https://developers.openai.com/api/docs/guides/file-inputs",
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.image-generation-api",
+   "title": "이미지 생성 API로 그림 만들고 고치기",
+   "en": "Generating and Editing Images with an API",
+   "kind": "topic",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM API",
+   "summary": "이미지 생성 API에 프롬프트와 크기·품질 옵션을 보내 그림을 받고, 참고 이미지나 마스크를 넣어 일부만 고치며, 메타프롬프트로 만들 수 있는 범위를 정한다.",
+   "objectives": [
+    "프롬프트와 크기·품질 옵션을 넣어 이미지를 생성하고 파일로 저장할 수 있다",
+    "참고 이미지와 마스크를 넣어 그림의 일부만 고칠 수 있다",
+    "한 번에 만드는 Image API와 대화로 고쳐 가는 Responses API의 쓰임을 구분할 수 있다",
+    "메타프롬프트로 만들면 안 되는 그림의 경계를 정할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.image-generation",
+    "llm.api.first-call"
+   ],
+   "related": [
+    "llm.api.vision-input"
+   ],
+   "aliases": [
+    "이미지 생성 API",
+    "image generation API",
+    "images.generate",
+    "gpt-image API",
+    "이미지 생성 도구"
+   ],
+   "refs": [
+    "https://developers.openai.com/api/docs/guides/image-generation",
+    "https://github.com/microsoft/generative-ai-for-beginners/blob/main/09-building-image-applications/README.md"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "llm"
+  },
+  {
    "id": "llm.tools.tool-schema",
    "title": "도구 스키마",
    "en": "Tool Schema",
@@ -15635,6 +16396,158 @@
    "domain": "llm"
   },
   {
+   "id": "llm.basics.response-latency",
+   "title": "LLM 응답 지연 시간",
+   "en": "LLM Response Latency",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "요청을 보낸 뒤 모델이 답을 내놓기까지 걸리는 시간으로, 모델 크기와 입력·출력 토큰 수에 따라 늘고 스트리밍으로 체감을 줄인다.",
+   "parent": "llm.basics.model-selection",
+   "related": [
+    "llm.internals.ttft-tpot",
+    "llm.api.response-streaming"
+   ],
+   "aliases": [
+    "LLM 지연 시간",
+    "LLM latency",
+    "모델 응답 속도",
+    "LLM 지연 줄이기"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-latency"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.model-checkpoint",
+   "title": "모델 체크포인트와 from_pretrained",
+   "en": "Model Checkpoint and from_pretrained",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "모델 구조와 학습된 가중치를 한 이름으로 묶은 저장본으로, from_pretrained에 그 이름을 넘기면 Hub에서 내려받아 불러온다.",
+   "parent": "llm.basics.transformers-pipeline",
+   "related": [
+    "llm.basics.model-card"
+   ],
+   "aliases": [
+    "모델 체크포인트",
+    "model checkpoint",
+    "from_pretrained",
+    "AutoModel",
+    "save_pretrained"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter2/3"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.model-card",
+   "title": "모델 카드",
+   "en": "Model Card",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "모델 저장소의 README로, 용도와 한계, 학습 데이터, 평가 결과, 라이선스를 적어 두어 쓸 모델을 고를 때 읽는 문서다.",
+   "parent": "llm.basics.transformers-pipeline",
+   "related": [
+    "llm.basics.open-model"
+   ],
+   "aliases": [
+    "모델 카드",
+    "model card",
+    "모델 카드 메타데이터",
+    "model card metadata"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/hub/model-cards"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.document-block",
+   "title": "document 블록",
+   "en": "Document Content Block",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "메시지 content에 PDF나 텍스트 문서를 넣는 블록으로, source에 url·base64·file 중 하나를 적고 인용 기능을 켤 수도 있다.",
+   "parent": "llm.api.pdf-long-documents",
+   "related": [
+    "llm.prompt.citations",
+    "llm.api.files-api"
+   ],
+   "aliases": [
+    "document 블록",
+    "document content block",
+    "문서 블록",
+    "input_file 블록"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/pdf-support"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.prompt.chain-of-thought",
+   "title": "생각의 사슬(CoT) 프롬프팅",
+   "en": "Chain-of-Thought Prompting",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "프롬프트",
+   "summary": "생각 기능을 끈 모델에게 답하기 전에 풀이 과정을 먼저 쓰게 하고 최종 답만 태그로 감싸 뽑는 기법으로, 생각 기능이 있는 최신 모델에서는 그 기능을 대신 쓴다.",
+   "related": [
+    "llm.api.thinking-effort",
+    "llm.prompt.prompt-structure"
+   ],
+   "aliases": [
+    "CoT",
+    "chain-of-thought",
+    "생각의 사슬",
+    "단계별로 생각하기 프롬프트",
+    "manual CoT"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.tools.web-search-tool",
+   "title": "웹 검색 도구",
+   "en": "Web Search Tool",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "도구 호출",
+   "summary": "요청의 tools에 넣으면 API 쪽이 직접 검색을 실행해 결과를 모델에 주고 답에 출처 인용을 붙이는 서버 도구로, 검색 횟수와 도메인을 제한할 수 있다.",
+   "related": [
+    "llm.tools.function-calling",
+    "llm.prompt.citations"
+   ],
+   "aliases": [
+    "web search tool",
+    "web_search 도구",
+    "웹 검색 툴",
+    "web_search_tool_result",
+    "url_citation"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool",
+    "https://developers.openai.com/api/docs/guides/tools-web-search"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "llm"
+  },
+  {
    "id": "llm.api.files-api",
    "title": "Files API",
    "en": "Files API",
@@ -15657,6 +16570,80 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-06",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.inference-providers",
+   "title": "Hugging Face Inference Providers",
+   "en": "Hugging Face Inference Providers",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "Hub의 오픈 모델을 내 컴퓨터에 받지 않고 HF 토큰 하나로 여러 추론 업체의 서버에서 부르게 해 주는 서비스로, OpenAI 호환 주소도 준다.",
+   "parent": "llm.basics.transformers-pipeline",
+   "related": [
+    "llm.api.first-call"
+   ],
+   "aliases": [
+    "HF Inference Providers",
+    "허깅페이스 추론 공급자",
+    "InferenceClient",
+    "router.huggingface.co"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/inference-providers/index"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.image-mask-edit",
+   "title": "마스크로 이미지 일부 고치기",
+   "en": "Mask-Based Image Editing",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM API",
+   "summary": "원본 이미지와 같은 크기의 투명 영역 마스크를 함께 보내 그 부분을 프롬프트대로 고치게 하는 이미지 편집 방식으로, 프롬프트 기반이라 마스크 모양을 정확히 따르지 않을 수 있다.",
+   "parent": "llm.api.image-generation-api",
+   "aliases": [
+    "마스크 편집",
+    "inpainting",
+    "인페인팅",
+    "images.edit",
+    "이미지 마스크"
+   ],
+   "refs": [
+    "https://developers.openai.com/api/docs/guides/image-generation"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.stop-sequences",
+   "title": "stop_sequences(중단 시퀀스)",
+   "en": "Stop Sequences",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM API",
+   "summary": "모델이 지정한 문자열을 쓰는 순간 생성을 멈추게 하는 요청 설정으로, 멈춘 이유와 맞은 문자열이 응답에 함께 온다.",
+   "related": [
+    "llm.api.stop-reason",
+    "llm.internals.max-tokens"
+   ],
+   "aliases": [
+    "stop_sequences",
+    "stop sequence",
+    "중단 시퀀스",
+    "정지 문자열",
+    "stop 파라미터"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/api/messages/create",
+    "https://developers.openai.com/api/reference/resources/chat/subresources/completions/methods/create"
+   ],
    "domain": "llm"
   },
   {
@@ -16810,6 +17797,151 @@
    "domain": "rag"
   },
   {
+   "id": "rag.agent.messages",
+   "title": "LangChain 메시지 다루기: 역할별 메시지와 도구 호출",
+   "en": "Working with LangChain Messages",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "시스템·사람·AI·도구 메시지가 대화 기록을 이루는 방식을 익히고, AI 메시지의 도구 호출과 도구 메시지의 결과를 짝지어 읽고 만드는 법이다.",
+   "objectives": [
+    "SystemMessage·HumanMessage·AIMessage·ToolMessage가 각각 누구의 말인지 구분해 대화 기록을 직접 꾸밀 수 있다",
+    "AIMessage의 tool_calls에서 도구 이름·인자·id를 꺼내 도구를 실행할 수 있다",
+    "도구 결과를 원래 호출의 id와 같은 tool_call_id를 단 ToolMessage로 돌려줄 수 있다",
+    "content_blocks로 텍스트·추론·이미지 같은 내용을 제공자와 상관없이 같은 모양으로 읽을 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.first-agent",
+    "llm.tools.function-calling"
+   ],
+   "related": [
+    "rag.agent.short-term-memory"
+   ],
+   "aliases": [
+    "LangChain 메시지",
+    "AIMessage",
+    "HumanMessage",
+    "SystemMessage",
+    "메시지 타입",
+    "message types"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/messages"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.structured-output",
+   "title": "에이전트 구조화된 출력: response_format",
+   "en": "Structured Output for Agents with response_format",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "create_agent에 응답 스키마를 넘겨 자유 글 대신 검증된 객체로 답을 받고, 검증 실패 때 다시 시도하게 하는 방법이다.",
+   "objectives": [
+    "Pydantic 모델이나 TypedDict로 응답 스키마를 정해 response_format에 넘길 수 있다",
+    "실행 결과의 structured_response에서 검증된 값을 꺼내 다음 코드에 쓸 수 있다",
+    "ToolStrategy와 ProviderStrategy 가운데 모델이 지원하는 쪽을 고를 수 있다",
+    "handle_errors로 스키마 검증 실패를 모델에게 돌려 다시 답하게 하거나 오류로 올릴 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.first-agent",
+    "be.python.type-hints"
+   ],
+   "related": [
+    "rag.agent.messages",
+    "llm.api.structured-output"
+   ],
+   "aliases": [
+    "response_format",
+    "structured_response",
+    "에이전트 구조화 출력",
+    "agent structured output",
+    "에이전트 구조화 응답"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/structured-output"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.streaming",
+   "title": "에이전트 스트리밍: 진행 상황과 토큰 받기",
+   "en": "Streaming Agent Progress and Tokens",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "에이전트를 stream으로 돌려 단계별 진행·모델 토큰·직접 보낸 진행 알림을 끝나기 전에 받아 화면에 보여 주는 방법이다.",
+   "objectives": [
+    "stream_mode를 updates로 두고 도구 호출 요청·도구 결과·최종 답을 단계마다 받아 출력할 수 있다",
+    "stream_mode를 messages로 두고 모델이 만드는 토큰을 바로바로 화면에 보여 줄 수 있다",
+    "도구 안에서 get_stream_writer로 진행 알림을 보내고 custom 모드로 받을 수 있다",
+    "여러 모드를 함께 받을 때 조각마다 어느 모드에서 왔는지 구분해 처리할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.first-agent"
+   ],
+   "related": [
+    "rag.agent.messages",
+    "llm.api.response-streaming"
+   ],
+   "aliases": [
+    "에이전트 스트리밍",
+    "agent streaming",
+    "에이전트 토큰 스트리밍",
+    "agent.stream"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/streaming"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.short-term-memory",
+   "title": "에이전트 대화 기록 관리: 자르기·지우기·요약",
+   "en": "Managing Agent Short-Term Memory",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "한 대화 안에서 쌓이는 메시지가 컨텍스트 창을 넘지 않도록 오래된 메시지를 자르거나 지우거나 요약해 줄이는 방법이다.",
+   "objectives": [
+    "checkpointer를 단 에이전트에 thread_id를 config로 넣어 같은 대화의 메시지가 이어지게 할 수 있다",
+    "모델 호출 직전에 오래된 메시지를 잘라 컨텍스트 창 안에 맞출 수 있다",
+    "RemoveMessage로 메시지를 지울 때 도구 호출과 결과의 짝이 깨지지 않게 남길 수 있다",
+    "SummarizationMiddleware로 앞선 대화를 요약으로 바꾸고 자르기와의 차이를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.first-agent",
+    "rag.agent.messages"
+   ],
+   "related": [
+    "rag.agent.checkpoint-persistence",
+    "rag.agent.memory-store"
+   ],
+   "aliases": [
+    "단기 기억",
+    "short-term memory",
+    "대화 기록 관리",
+    "에이전트 대화 요약"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/short-term-memory"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "rag"
+  },
+  {
    "id": "rag.vector-db.chunk",
    "title": "청크",
    "en": "Chunk",
@@ -17109,6 +18241,77 @@
    "domain": "rag"
   },
   {
+   "id": "rag.agent.tool-call-id",
+   "title": "도구 호출 id와 ToolMessage",
+   "en": "Tool Call ID and ToolMessage",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "모델이 낸 도구 호출마다 붙는 id로, 도구 결과를 담은 ToolMessage가 같은 id를 달아야 어느 호출의 답인지 이어진다.",
+   "parent": "rag.agent.messages",
+   "related": [
+    "llm.tools.function-calling"
+   ],
+   "aliases": [
+    "tool_call_id",
+    "ToolMessage",
+    "도구 메시지",
+    "도구 호출 id"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/messages"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.stream-mode",
+   "title": "스트림 모드(updates·messages·custom)",
+   "en": "Stream Modes",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "stream에서 무엇을 받을지 고르는 값으로, updates는 단계별 상태 변화, messages는 모델 토큰, custom은 직접 보낸 데이터를 준다.",
+   "parent": "rag.agent.streaming",
+   "aliases": [
+    "stream_mode",
+    "스트림 모드",
+    "stream mode",
+    "updates 모드"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/streaming"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.trim-messages",
+   "title": "메시지 자르기",
+   "en": "Trimming Messages",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "모델을 부르기 전에 오래된 메시지를 빼서 대화 기록이 컨텍스트 창을 넘지 않게 하는 방법이다.",
+   "parent": "rag.agent.short-term-memory",
+   "related": [
+    "rag.agent.summarization-middleware"
+   ],
+   "aliases": [
+    "trim messages",
+    "trim_messages",
+    "메시지 트리밍",
+    "대화 자르기"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/short-term-memory"
+   ],
+   "domain": "rag"
+  },
+  {
    "id": "rag.retrieval.mmr",
    "title": "MMR(최대 한계 관련성)",
    "en": "Maximum Marginal Relevance",
@@ -17133,6 +18336,125 @@
     "https://reference.langchain.com/python/langchain-core/vectorstores/base/VectorStore/as_retriever",
     "https://www.elastic.co/docs/reference/elasticsearch/rest-apis/retrievers/diversify-retriever"
    ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.content-blocks",
+   "title": "표준 콘텐츠 블록",
+   "en": "Standard Content Blocks",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "메시지 내용을 텍스트·추론·이미지·도구 호출 같은 형식 있는 조각 목록으로 바꿔 제공자마다 다른 응답을 같은 모양으로 읽게 하는 속성이다.",
+   "parent": "rag.agent.messages",
+   "aliases": [
+    "content_blocks",
+    "LangChain content_blocks",
+    "표준 콘텐츠 블록"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/messages"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.output-strategy",
+   "title": "ToolStrategy와 ProviderStrategy",
+   "en": "ToolStrategy vs ProviderStrategy",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "구조화된 출력을 모델 제공자의 기본 기능으로 받을지, 도구 호출을 빌려 받을지 정하는 두 방식이다.",
+   "parent": "rag.agent.structured-output",
+   "aliases": [
+    "ToolStrategy",
+    "ProviderStrategy",
+    "출력 전략"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/structured-output"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.stream-writer",
+   "title": "스트림 작성기(get_stream_writer)",
+   "en": "Stream Writer",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "도구나 노드 안에서 불러 진행 알림 같은 임의의 데이터를 custom 스트림으로 내보내는 함수다.",
+   "parent": "rag.agent.streaming",
+   "aliases": [
+    "get_stream_writer",
+    "스트림 작성기",
+    "stream writer",
+    "custom 스트림"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/streaming"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.summarization-middleware",
+   "title": "요약 미들웨어",
+   "en": "SummarizationMiddleware",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "대화가 길어지면 앞선 메시지들을 모델이 쓴 요약 하나로 바꿔 기록을 줄이는 LangChain 내장 미들웨어다.",
+   "parent": "rag.agent.short-term-memory",
+   "related": [
+    "rag.agent.trim-messages"
+   ],
+   "aliases": [
+    "SummarizationMiddleware",
+    "요약 미들웨어",
+    "대화 요약 미들웨어"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/short-term-memory"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-prompt",
+   "title": "MCP 프롬프트",
+   "en": "MCP Prompts",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "MCP 서버가 인자를 받는 프롬프트 틀을 내주고 사용자가 슬래시 명령처럼 골라 쓰게 하는 기능으로, 모델이 고르는 도구와 다르다.",
+   "related": [
+    "rag.agent.mcp-resource",
+    "rag.agent.mcp-build-server"
+   ],
+   "aliases": [
+    "MCP prompt",
+    "prompts/get",
+    "prompts/list",
+    "MCP 프롬프트 템플릿"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/specification/2026-07-28/server/prompts",
+    "https://modelcontextprotocol.io/docs/learn/server-concepts"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
    "domain": "rag"
   },
   {
@@ -23091,6 +24413,111 @@
    "domain": "mlops"
   },
   {
+   "id": "mlops.finetune.sft-trainer",
+   "title": "SFTTrainer로 작은 언어 모델 파인튜닝하기",
+   "en": "Supervised Fine-Tuning with TRL SFTTrainer",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "대화·프롬프트-완성 형식의 데이터를 SFTTrainer와 SFTConfig에 넣어 작은 모델을 지도 미세조정하고 저장하는 과정이다.",
+   "objectives": [
+    "SFTTrainer에 모델 이름과 데이터셋을 넣어 학습을 돌리고 결과를 저장할 수 있다",
+    "언어 모델링 형식과 프롬프트-완성 형식 데이터의 차이를 구분해 알맞게 변환할 수 있다",
+    "SFTConfig로 max_length·학습률 같은 설정을 바꾸고 로그의 loss를 읽을 수 있다",
+    "EOS 토큰이 맞지 않아 답이 끝나지 않는 실수를 알아보고 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.transformers-pipeline"
+   ],
+   "related": [
+    "mlops.finetune.lora-quickstart",
+    "mlops.finetune.sft-chat-data"
+   ],
+   "aliases": [
+    "SFTTrainer",
+    "SFTConfig",
+    "TRL 파인튜닝",
+    "지도 미세조정",
+    "supervised fine-tuning",
+    "SFT 학습"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/trl/sft_trainer"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.finetune.lora-quickstart",
+   "title": "LoRA 어댑터로 가볍게 파인튜닝하기: PEFT 시작",
+   "en": "Getting Started with LoRA Adapters in PEFT",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "LoraConfig와 get_peft_model로 기본 모델에 작은 어댑터만 붙여 학습하고, 어댑터를 저장했다가 다시 불러 쓰는 방법이다.",
+   "objectives": [
+    "LoraConfig를 만들고 get_peft_model로 기본 모델을 감쌀 수 있다",
+    "print_trainable_parameters로 학습되는 파라미터 비율을 확인할 수 있다",
+    "학습한 어댑터만 저장하고 기본 모델 위에 다시 불러와 추론할 수 있다",
+    "전체 파인튜닝과 어댑터 학습이 저장 크기에서 어떻게 다른지 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.transformers-pipeline"
+   ],
+   "related": [
+    "mlops.finetune.sft-trainer",
+    "mlops.finetune.lora-internals"
+   ],
+   "aliases": [
+    "PEFT",
+    "LoRA 학습",
+    "LoraConfig",
+    "get_peft_model",
+    "로라 파인튜닝",
+    "LoRA fine-tuning"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/peft/quicktour"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.search-traces",
+   "title": "쌓인 트레이스 찾아보기: 필터로 검색하기",
+   "en": "Searching Traces with Filters",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "MLflow UI의 필터와 mlflow.search_traces로 상태·시간·태그·메타데이터 조건에 맞는 트레이스를 골라 표로 받아 보는 방법이다.",
+   "objectives": [
+    "UI 필터로 오류가 난 트레이스나 느린 트레이스만 골라 볼 수 있다",
+    "mlflow.search_traces에 filter_string과 order_by를 넣어 원하는 트레이스를 DataFrame으로 받을 수 있다",
+    "태그·메타데이터·피드백 조건을 AND로 묶어 범위를 좁힐 수 있다",
+    "OR를 쓰거나 문자열 따옴표를 빠뜨려 검색이 실패하는 실수를 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.observe.manual-tracing"
+   ],
+   "related": [
+    "mlops.observe.trace-tag"
+   ],
+   "aliases": [
+    "search_traces",
+    "트레이스 검색",
+    "trace search",
+    "트레이스 필터",
+    "트레이스 조회"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/tracing/search-traces/"
+   ],
+   "domain": "mlops"
+  },
+  {
    "id": "mlops.track.experiment-tracking",
    "title": "실험 추적: 파라미터·지표·모델 기록하기",
    "en": "Experiment Tracking with MLflow",
@@ -23226,6 +24653,98 @@
    "refs": [
     "https://huggingface.co/docs/trl/dataset_formats"
    ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.finetune.assistant-only-loss",
+   "title": "응답만 학습하는 손실(assistant only loss)",
+   "en": "Completion-Only and Assistant-Only Loss",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "파인튜닝할 때 프롬프트나 사용자 말은 손실에서 빼고 모델이 답한 부분에서만 손실을 계산하게 하는 설정이다.",
+   "parent": "mlops.finetune.sft-trainer",
+   "aliases": [
+    "assistant_only_loss",
+    "completion_only_loss",
+    "응답만 학습",
+    "completion only loss"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/trl/sft_trainer"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.finetune.chat-template",
+   "title": "채팅 템플릿(chat template)",
+   "en": "Chat Template",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "role·content로 된 대화 목록을 모델이 학습한 특수 토큰 형식의 문자열로 바꿔 주는 모델별 규칙이다.",
+   "parent": "mlops.finetune.sft-trainer",
+   "aliases": [
+    "apply_chat_template",
+    "add_generation_prompt",
+    "채팅 형식 템플릿",
+    "대화 템플릿"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/chat_templating"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.finetune.adapter-save-load",
+   "title": "어댑터 저장과 불러오기",
+   "en": "Saving and Loading PEFT Adapters",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "학습한 어댑터 가중치만 save_pretrained로 작게 저장하고, PeftModel.from_pretrained로 기본 모델 위에 다시 얹어 쓰는 방법이다.",
+   "parent": "mlops.finetune.lora-quickstart",
+   "related": [
+    "mlops.finetune.adapter-merge"
+   ],
+   "aliases": [
+    "adapter_model.safetensors",
+    "PeftModel.from_pretrained",
+    "AutoPeftModelForCausalLM",
+    "어댑터 로드"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/peft/quicktour"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.session-user-tracking",
+   "title": "사용자·세션별로 트레이스 묶기",
+   "en": "Tracking Users and Sessions in Traces",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "트레이스에 사용자 ID와 대화 세션 ID를 달아 여러 번의 호출을 한 대화나 한 사용자 단위로 모아 보는 방법이다.",
+   "related": [
+    "mlops.observe.trace-tag"
+   ],
+   "aliases": [
+    "트레이스 session_id",
+    "mlflow.trace.session",
+    "mlflow.trace.user",
+    "대화 세션 추적",
+    "세션 ID 기록"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/tracing/track-users-sessions/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-06",
    "domain": "mlops"
   },
   {
@@ -23487,6 +25006,69 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-06",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.finetune.packing",
+   "title": "예시 패킹(packing)",
+   "en": "Example Packing",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "짧은 학습 예시 여러 개를 max_length 길이의 한 시퀀스에 이어 붙여 패딩 낭비를 줄이는 학습 설정이다.",
+   "parent": "mlops.finetune.sft-trainer",
+   "aliases": [
+    "시퀀스 패킹",
+    "sequence packing",
+    "packing=True",
+    "예제 패킹"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/trl/sft_trainer"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.finetune.lora-target-modules",
+   "title": "LoRA 대상 모듈(target_modules)",
+   "en": "LoRA Target Modules",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "LoraConfig에서 어댑터를 붙일 기본 모델의 층 이름(q_proj 등)을 고르는 설정으로, 이름 끝부분이 맞는 층이 모두 대상이 된다.",
+   "parent": "mlops.finetune.lora-quickstart",
+   "aliases": [
+    "target_modules",
+    "q_proj",
+    "LoRA 적용 층",
+    "어댑터 대상 층"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/peft/quicktour"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.trace-filter-syntax",
+   "title": "트레이스 검색 필터 문법",
+   "en": "Trace Search Filter Syntax",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "trace.status·tag.키·metadata.키 같은 필드에 비교 연산자와 LIKE를 써서 AND로만 묶는 SQL 비슷한 트레이스 검색식이다.",
+   "parent": "mlops.observe.search-traces",
+   "aliases": [
+    "트레이스 filter_string",
+    "트레이스 필터 문법",
+    "trace.status",
+    "trace filter"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/tracing/search-traces/"
+   ],
    "domain": "mlops"
   },
   {

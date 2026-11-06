@@ -635,6 +635,95 @@
     ]
   },
   {
+    "id": "plan.figma.interactive-components",
+    "title": "Figma 인터랙티브 컴포넌트 만들기",
+    "en": "Interactive Components in Figma",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "변형끼리 프로토타입 연결을 미리 걸어 두어 버튼·체크박스 같은 부품이 인스턴스마다 저절로 반응하게 만든다.",
+    "objectives": [
+      "같은 컴포넌트 세트의 변형 사이에 Change to 액션을 걸어 호버·눌림 상태를 만들 수 있다",
+      "인스턴스에 일반 인터랙션을 더했을 때 트리거가 같으면 어느 쪽이 실행되는지 설명할 수 있다",
+      "중첩 인스턴스로 부모 컴포넌트의 변형을 바꾸는 펼침·접힘 부품을 만들 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.prototype-interactions"
+    ],
+    "related": [
+      "plan.figma.variants"
+    ],
+    "aliases": [
+      "인터랙티브 컴포넌트",
+      "interactive components",
+      "변형 인터랙션",
+      "variant interactions"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360061175334-Create-interactive-components-with-variants"
+    ]
+  },
+  {
+    "id": "plan.basics.experience-map",
+    "title": "경험 지도 만들기",
+    "en": "Creating an Experience Map",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "여러 사용자의 조사 결과를 단계별로 늘어놓아 서비스를 쓰는 동안 무엇을 하고 느끼는지, 어디서 막히는지 한 장에 그린다.",
+    "objectives": [
+      "여러 참여자의 사건을 줄 세워 공통 단계를 찾고 이름 붙일 수 있다",
+      "단계마다 감정의 높낮이·접점·사용자 니즈·불편 지점을 덧붙일 수 있다",
+      "여정이 크게 다른 사용자 집단은 지도를 나눠야 하는 이유를 설명할 수 있다",
+      "팀용 상세 지도와 바깥 사람용 요약 지도를 구분해 만들 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.usability-testing"
+    ],
+    "aliases": [
+      "경험 지도",
+      "experience map",
+      "experience mapping"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/user-research/creating-an-experience-map"
+    ]
+  },
+  {
+    "id": "plan.basics.research-analysis",
+    "title": "사용자 조사 세션 분석하기",
+    "en": "Analysing a User Research Session",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "조사를 지켜본 사람들이 함께 관찰을 메모로 뽑고 묶어 주제를 찾은 뒤 발견점과 다음 할 일로 정리한다.",
+    "objectives": [
+      "본 것과 들은 것만 담은 관찰 메모를 해석과 구분해 쓸 수 있다",
+      "어피니티 정렬로 메모를 묶어 주제 이름을 붙일 수 있다",
+      "묶음마다 발견점을 짧은 문장으로 쓰고 디자인 수정·백로그 같은 다음 행동으로 이을 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.usability-testing"
+    ],
+    "related": [
+      "plan.basics.experience-map"
+    ],
+    "aliases": [
+      "조사 분석",
+      "research analysis",
+      "인터뷰 분석",
+      "리서치 결과 정리",
+      "research synthesis",
+      "리서치 종합"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/user-research/analyse-a-research-session"
+    ]
+  },
+  {
     "id": "plan.figma.branch-and-publish",
     "title": "Figma 브랜치에서 고치고 라이브러리 업데이트 게시하기",
     "en": "Editing in a Figma Branch and Publishing Library Updates",
@@ -868,6 +957,156 @@
     ]
   },
   {
+    "id": "plan.figma.change-to-action",
+    "title": "Change to 액션",
+    "en": "Change To Action",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "프로토타입에서 인스턴스를 같은 컴포넌트 세트의 다른 변형으로 바꾸는 Figma 액션이다.",
+    "parent": "plan.figma.interactive-components",
+    "related": [
+      "plan.figma.prototype-trigger"
+    ],
+    "aliases": [
+      "Change to",
+      "변형 전환 액션",
+      "change to 액션"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360061175334-Create-interactive-components-with-variants"
+    ]
+  },
+  {
+    "id": "plan.basics.touchpoint",
+    "title": "접점(터치포인트)",
+    "en": "Touchpoint",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "사용자가 서비스와 만나는 지점으로, 웹 화면·전화·편지·창구처럼 경로마다 따로 생긴다.",
+    "parent": "plan.basics.experience-map",
+    "aliases": [
+      "터치포인트",
+      "touchpoint",
+      "서비스 접점",
+      "고객 접점"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/user-research/creating-an-experience-map"
+    ]
+  },
+  {
+    "id": "plan.basics.pain-point",
+    "title": "불편 지점(페인 포인트)",
+    "en": "Pain Point",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "사용자가 서비스를 쓰다 막히거나 애를 먹는 곳으로, 개선할 기능을 고르는 출발점이 된다.",
+    "parent": "plan.basics.experience-map",
+    "related": [
+      "plan.basics.touchpoint"
+    ],
+    "aliases": [
+      "pain point",
+      "페인포인트",
+      "불편 요소"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/user-research/creating-an-experience-map"
+    ]
+  },
+  {
+    "id": "plan.basics.affinity-diagram",
+    "title": "어피니티 다이어그램",
+    "en": "Affinity Diagram",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "조사에서 나온 메모를 비슷한 것끼리 모아 묶음마다 이름을 붙여 주제를 찾는 정리 방법이다.",
+    "parent": "plan.basics.research-analysis",
+    "aliases": [
+      "어피니티 정렬",
+      "affinity sorting",
+      "친화도 다이어그램",
+      "affinity mapping",
+      "어피니티 맵"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/user-research/analyse-a-research-session"
+    ]
+  },
+  {
+    "id": "plan.basics.observation-vs-interpretation",
+    "title": "관찰과 해석의 구분",
+    "en": "Observation vs. Interpretation",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "조사 메모에는 실제로 보고 들은 말과 행동만 적고, 그것이 무슨 뜻인지는 나중에 함께 정하는 원칙이다.",
+    "parent": "plan.basics.research-analysis",
+    "aliases": [
+      "관찰 메모",
+      "observation note",
+      "관찰과 해석"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/user-research/analyse-a-research-session"
+    ]
+  },
+  {
+    "id": "plan.basics.discussion-guide",
+    "title": "인터뷰 진행 가이드",
+    "en": "Discussion Guide",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "심층 인터뷰에서 다룰 주제와 시작 질문·이어 묻는 질문을 순서대로 적고 동료에게 미리 시험해 보는 진행 대본으로, 사용성 테스트의 과제 대본과는 쓰임이 다르다.",
+    "related": [
+      "plan.basics.usability-testing"
+    ],
+    "aliases": [
+      "디스커션 가이드",
+      "discussion guide",
+      "인터뷰 가이드",
+      "인터뷰 질문지",
+      "interview guide"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/user-research/using-in-depth-interviews"
+    ]
+  },
+  {
+    "id": "plan.basics.open-question",
+    "title": "열린 질문",
+    "en": "Open Question",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "예·아니오로 끝나지 않고 '어떻게'·'무엇을'로 물어 참여자가 실제 경험을 자기 말로 이야기하게 하는 질문이다.",
+    "parent": "plan.basics.usability-testing",
+    "related": [
+      "plan.basics.discussion-guide"
+    ],
+    "aliases": [
+      "개방형 질문",
+      "open-ended question",
+      "열린 질문하기",
+      "중립 질문"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/user-research/using-in-depth-interviews"
+    ]
+  },
+  {
     "id": "plan.figma.constraints",
     "title": "제약(constraints)",
     "en": "Figma Constraints",
@@ -979,6 +1218,25 @@
     ],
     "refs": [
       "https://help.figma.com/hc/en-us/articles/360039818874-Create-advanced-animations-with-Smart-Animate"
+    ]
+  },
+  {
+    "id": "plan.figma.reset-component-state",
+    "title": "컴포넌트 상태 초기화",
+    "en": "Reset Component State",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "다른 프레임으로 넘어갈 때 인터랙티브 컴포넌트가 바뀐 상태를 기억하지 않고 기본 변형으로 되돌리게 하는 설정이다.",
+    "parent": "plan.figma.interactive-components",
+    "aliases": [
+      "Reset component state",
+      "Figma 컴포넌트 상태 초기화",
+      "변형 상태 기억"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360061175334-Create-interactive-components-with-variants"
     ]
   },
   {

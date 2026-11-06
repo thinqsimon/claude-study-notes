@@ -622,6 +622,147 @@
     "checked_at": "2026-11-06"
   },
   {
+    "id": "rag.agent.messages",
+    "title": "LangChain 메시지 다루기: 역할별 메시지와 도구 호출",
+    "en": "Working with LangChain Messages",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "시스템·사람·AI·도구 메시지가 대화 기록을 이루는 방식을 익히고, AI 메시지의 도구 호출과 도구 메시지의 결과를 짝지어 읽고 만드는 법이다.",
+    "objectives": [
+      "SystemMessage·HumanMessage·AIMessage·ToolMessage가 각각 누구의 말인지 구분해 대화 기록을 직접 꾸밀 수 있다",
+      "AIMessage의 tool_calls에서 도구 이름·인자·id를 꺼내 도구를 실행할 수 있다",
+      "도구 결과를 원래 호출의 id와 같은 tool_call_id를 단 ToolMessage로 돌려줄 수 있다",
+      "content_blocks로 텍스트·추론·이미지 같은 내용을 제공자와 상관없이 같은 모양으로 읽을 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.first-agent",
+      "llm.tools.function-calling"
+    ],
+    "related": [
+      "rag.agent.short-term-memory"
+    ],
+    "aliases": [
+      "LangChain 메시지",
+      "AIMessage",
+      "HumanMessage",
+      "SystemMessage",
+      "메시지 타입",
+      "message types"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/messages"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "rag.agent.structured-output",
+    "title": "에이전트 구조화된 출력: response_format",
+    "en": "Structured Output for Agents with response_format",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "create_agent에 응답 스키마를 넘겨 자유 글 대신 검증된 객체로 답을 받고, 검증 실패 때 다시 시도하게 하는 방법이다.",
+    "objectives": [
+      "Pydantic 모델이나 TypedDict로 응답 스키마를 정해 response_format에 넘길 수 있다",
+      "실행 결과의 structured_response에서 검증된 값을 꺼내 다음 코드에 쓸 수 있다",
+      "ToolStrategy와 ProviderStrategy 가운데 모델이 지원하는 쪽을 고를 수 있다",
+      "handle_errors로 스키마 검증 실패를 모델에게 돌려 다시 답하게 하거나 오류로 올릴 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.first-agent",
+      "be.python.type-hints"
+    ],
+    "related": [
+      "rag.agent.messages",
+      "llm.api.structured-output"
+    ],
+    "aliases": [
+      "response_format",
+      "structured_response",
+      "에이전트 구조화 출력",
+      "agent structured output",
+      "에이전트 구조화 응답"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/structured-output"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "rag.agent.streaming",
+    "title": "에이전트 스트리밍: 진행 상황과 토큰 받기",
+    "en": "Streaming Agent Progress and Tokens",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "에이전트를 stream으로 돌려 단계별 진행·모델 토큰·직접 보낸 진행 알림을 끝나기 전에 받아 화면에 보여 주는 방법이다.",
+    "objectives": [
+      "stream_mode를 updates로 두고 도구 호출 요청·도구 결과·최종 답을 단계마다 받아 출력할 수 있다",
+      "stream_mode를 messages로 두고 모델이 만드는 토큰을 바로바로 화면에 보여 줄 수 있다",
+      "도구 안에서 get_stream_writer로 진행 알림을 보내고 custom 모드로 받을 수 있다",
+      "여러 모드를 함께 받을 때 조각마다 어느 모드에서 왔는지 구분해 처리할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.first-agent"
+    ],
+    "related": [
+      "rag.agent.messages",
+      "llm.api.response-streaming"
+    ],
+    "aliases": [
+      "에이전트 스트리밍",
+      "agent streaming",
+      "에이전트 토큰 스트리밍",
+      "agent.stream"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/streaming"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "rag.agent.short-term-memory",
+    "title": "에이전트 대화 기록 관리: 자르기·지우기·요약",
+    "en": "Managing Agent Short-Term Memory",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "한 대화 안에서 쌓이는 메시지가 컨텍스트 창을 넘지 않도록 오래된 메시지를 자르거나 지우거나 요약해 줄이는 방법이다.",
+    "objectives": [
+      "checkpointer를 단 에이전트에 thread_id를 config로 넣어 같은 대화의 메시지가 이어지게 할 수 있다",
+      "모델 호출 직전에 오래된 메시지를 잘라 컨텍스트 창 안에 맞출 수 있다",
+      "RemoveMessage로 메시지를 지울 때 도구 호출과 결과의 짝이 깨지지 않게 남길 수 있다",
+      "SummarizationMiddleware로 앞선 대화를 요약으로 바꾸고 자르기와의 차이를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.first-agent",
+      "rag.agent.messages"
+    ],
+    "related": [
+      "rag.agent.checkpoint-persistence",
+      "rag.agent.memory-store"
+    ],
+    "aliases": [
+      "단기 기억",
+      "short-term memory",
+      "대화 기록 관리",
+      "에이전트 대화 요약"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/short-term-memory"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
     "id": "rag.vector-db.chunk",
     "title": "청크",
     "en": "Chunk",
@@ -909,6 +1050,74 @@
     ]
   },
   {
+    "id": "rag.agent.tool-call-id",
+    "title": "도구 호출 id와 ToolMessage",
+    "en": "Tool Call ID and ToolMessage",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "모델이 낸 도구 호출마다 붙는 id로, 도구 결과를 담은 ToolMessage가 같은 id를 달아야 어느 호출의 답인지 이어진다.",
+    "parent": "rag.agent.messages",
+    "related": [
+      "llm.tools.function-calling"
+    ],
+    "aliases": [
+      "tool_call_id",
+      "ToolMessage",
+      "도구 메시지",
+      "도구 호출 id"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/messages"
+    ]
+  },
+  {
+    "id": "rag.agent.stream-mode",
+    "title": "스트림 모드(updates·messages·custom)",
+    "en": "Stream Modes",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "stream에서 무엇을 받을지 고르는 값으로, updates는 단계별 상태 변화, messages는 모델 토큰, custom은 직접 보낸 데이터를 준다.",
+    "parent": "rag.agent.streaming",
+    "aliases": [
+      "stream_mode",
+      "스트림 모드",
+      "stream mode",
+      "updates 모드"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/streaming"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "rag.agent.trim-messages",
+    "title": "메시지 자르기",
+    "en": "Trimming Messages",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "모델을 부르기 전에 오래된 메시지를 빼서 대화 기록이 컨텍스트 창을 넘지 않게 하는 방법이다.",
+    "parent": "rag.agent.short-term-memory",
+    "related": [
+      "rag.agent.summarization-middleware"
+    ],
+    "aliases": [
+      "trim messages",
+      "trim_messages",
+      "메시지 트리밍",
+      "대화 자르기"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/short-term-memory"
+    ]
+  },
+  {
     "id": "rag.retrieval.mmr",
     "title": "MMR(최대 한계 관련성)",
     "en": "Maximum Marginal Relevance",
@@ -933,6 +1142,120 @@
       "https://reference.langchain.com/python/langchain-core/vectorstores/base/VectorStore/as_retriever",
       "https://www.elastic.co/docs/reference/elasticsearch/rest-apis/retrievers/diversify-retriever"
     ]
+  },
+  {
+    "id": "rag.agent.content-blocks",
+    "title": "표준 콘텐츠 블록",
+    "en": "Standard Content Blocks",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "메시지 내용을 텍스트·추론·이미지·도구 호출 같은 형식 있는 조각 목록으로 바꿔 제공자마다 다른 응답을 같은 모양으로 읽게 하는 속성이다.",
+    "parent": "rag.agent.messages",
+    "aliases": [
+      "content_blocks",
+      "LangChain content_blocks",
+      "표준 콘텐츠 블록"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/messages"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "rag.agent.output-strategy",
+    "title": "ToolStrategy와 ProviderStrategy",
+    "en": "ToolStrategy vs ProviderStrategy",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "구조화된 출력을 모델 제공자의 기본 기능으로 받을지, 도구 호출을 빌려 받을지 정하는 두 방식이다.",
+    "parent": "rag.agent.structured-output",
+    "aliases": [
+      "ToolStrategy",
+      "ProviderStrategy",
+      "출력 전략"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/structured-output"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "rag.agent.stream-writer",
+    "title": "스트림 작성기(get_stream_writer)",
+    "en": "Stream Writer",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "도구나 노드 안에서 불러 진행 알림 같은 임의의 데이터를 custom 스트림으로 내보내는 함수다.",
+    "parent": "rag.agent.streaming",
+    "aliases": [
+      "get_stream_writer",
+      "스트림 작성기",
+      "stream writer",
+      "custom 스트림"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/streaming"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "rag.agent.summarization-middleware",
+    "title": "요약 미들웨어",
+    "en": "SummarizationMiddleware",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "대화가 길어지면 앞선 메시지들을 모델이 쓴 요약 하나로 바꿔 기록을 줄이는 LangChain 내장 미들웨어다.",
+    "parent": "rag.agent.short-term-memory",
+    "related": [
+      "rag.agent.trim-messages"
+    ],
+    "aliases": [
+      "SummarizationMiddleware",
+      "요약 미들웨어",
+      "대화 요약 미들웨어"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/short-term-memory"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "rag.agent.mcp-prompt",
+    "title": "MCP 프롬프트",
+    "en": "MCP Prompts",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "MCP 서버가 인자를 받는 프롬프트 틀을 내주고 사용자가 슬래시 명령처럼 골라 쓰게 하는 기능으로, 모델이 고르는 도구와 다르다.",
+    "related": [
+      "rag.agent.mcp-resource",
+      "rag.agent.mcp-build-server"
+    ],
+    "aliases": [
+      "MCP prompt",
+      "prompts/get",
+      "prompts/list",
+      "MCP 프롬프트 템플릿"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/specification/2026-07-28/server/prompts",
+      "https://modelcontextprotocol.io/docs/learn/server-concepts"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
   },
   {
     "id": "rag.retrieval.quality",

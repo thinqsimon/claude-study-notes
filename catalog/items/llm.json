@@ -741,6 +741,151 @@
     "checked_at": "2026-11-06"
   },
   {
+    "id": "llm.basics.model-selection",
+    "title": "기능에 맞는 모델 고르기: 성능·속도·비용 저울질",
+    "en": "Choosing a Model for Your Feature",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "만들 기능의 품질 기준과 응답 속도, 예산을 정해 놓고 작은 모델부터 또는 큰 모델부터 시험해 가며 알맞은 모델과 설정을 고른다.",
+    "objectives": [
+      "기능에 필요한 성능·속도·비용 기준을 먼저 적어 둘 수 있다",
+      "효율 우선과 성능 우선 두 출발 방식 중 기능에 맞는 쪽을 고를 수 있다",
+      "같은 프롬프트와 데이터로 모델 몇 개를 돌려 결과와 비용을 비교할 수 있다",
+      "모델을 바꾸기 전에 effort 같은 설정으로 먼저 맞춰 볼 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.model-choices",
+      "llm.api.first-call"
+    ],
+    "related": [
+      "llm.api.thinking-effort",
+      "llm.api.model-snapshot"
+    ],
+    "aliases": [
+      "모델 고르기",
+      "model selection",
+      "choosing a model",
+      "모델 비교 테스트",
+      "어떤 모델을 쓸까"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/about-claude/models/choosing-a-model",
+      "https://developers.openai.com/api/docs/guides/model-selection"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "llm.basics.transformers-pipeline",
+    "title": "Transformers pipeline으로 오픈 모델 돌려 보기",
+    "en": "Running Open Models with the Transformers pipeline()",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "Hugging Face Transformers의 pipeline()에 작업 이름과 Hub 모델 이름을 넣어 오픈 모델을 내 컴퓨터에서 바로 돌리고, 안에서 토크나이저와 모델이 하는 일을 나눠 본다.",
+    "objectives": [
+      "pipeline()에 작업 이름을 넣어 생성·요약·분류 같은 일을 실행할 수 있다",
+      "Hub에서 작업 태그와 모델 카드를 보고 쓸 모델을 골라 model 인자로 바꿔 넣을 수 있다",
+      "pipeline을 토크나이저·AutoModelForSequenceClassification 같은 작업별 모델·후처리 단계로 풀어 같은 결과를 낼 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.token-context"
+    ],
+    "related": [
+      "llm.basics.open-model",
+      "llm.api.first-call"
+    ],
+    "aliases": [
+      "transformers pipeline",
+      "pipeline()",
+      "허깅페이스 파이프라인",
+      "Hugging Face Transformers",
+      "트랜스포머스 라이브러리"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter1/3",
+      "https://huggingface.co/learn/llm-course/chapter2/2"
+    ]
+  },
+  {
+    "id": "llm.api.pdf-long-documents",
+    "title": "PDF와 긴 문서 넣고 질문하기",
+    "en": "Asking Questions over PDFs and Long Documents",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "PDF를 URL·base64·file_id로 요청에 넣어 표와 그림까지 읽게 하고, 긴 문서는 질문보다 위에 두고 태그로 나눠 답의 품질과 비용을 맞춘다.",
+    "objectives": [
+      "PDF를 URL·base64·file_id 세 방식 중 하나로 요청에 넣을 수 있다",
+      "페이지마다 텍스트와 이미지 토큰이 함께 든다는 점을 알고 토큰 수를 미리 셀 수 있다",
+      "긴 문서를 프롬프트 위쪽에 두고 문서마다 태그와 출처를 붙여 배치할 수 있다",
+      "페이지·크기 한도에 걸리면 문서를 나누거나 Files API로 바꿔 보낼 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.first-call",
+      "llm.basics.token-context"
+    ],
+    "related": [
+      "llm.api.vision-input",
+      "llm.api.files-api",
+      "llm.prompt.prompt-structure",
+      "llm.api.token-counting"
+    ],
+    "aliases": [
+      "PDF 입력",
+      "PDF support",
+      "PDF 질문하기",
+      "file inputs",
+      "긴 문서 프롬프트",
+      "long context prompting"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/pdf-support",
+      "https://developers.openai.com/api/docs/guides/file-inputs",
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+    ]
+  },
+  {
+    "id": "llm.api.image-generation-api",
+    "title": "이미지 생성 API로 그림 만들고 고치기",
+    "en": "Generating and Editing Images with an API",
+    "kind": "topic",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "이미지 생성 API에 프롬프트와 크기·품질 옵션을 보내 그림을 받고, 참고 이미지나 마스크를 넣어 일부만 고치며, 메타프롬프트로 만들 수 있는 범위를 정한다.",
+    "objectives": [
+      "프롬프트와 크기·품질 옵션을 넣어 이미지를 생성하고 파일로 저장할 수 있다",
+      "참고 이미지와 마스크를 넣어 그림의 일부만 고칠 수 있다",
+      "한 번에 만드는 Image API와 대화로 고쳐 가는 Responses API의 쓰임을 구분할 수 있다",
+      "메타프롬프트로 만들면 안 되는 그림의 경계를 정할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.image-generation",
+      "llm.api.first-call"
+    ],
+    "related": [
+      "llm.api.vision-input"
+    ],
+    "aliases": [
+      "이미지 생성 API",
+      "image generation API",
+      "images.generate",
+      "gpt-image API",
+      "이미지 생성 도구"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/image-generation",
+      "https://github.com/microsoft/generative-ai-for-beginners/blob/main/09-building-image-applications/README.md"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
     "id": "llm.tools.tool-schema",
     "title": "도구 스키마",
     "en": "Tool Schema",
@@ -1034,6 +1179,152 @@
     ]
   },
   {
+    "id": "llm.basics.response-latency",
+    "title": "LLM 응답 지연 시간",
+    "en": "LLM Response Latency",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "요청을 보낸 뒤 모델이 답을 내놓기까지 걸리는 시간으로, 모델 크기와 입력·출력 토큰 수에 따라 늘고 스트리밍으로 체감을 줄인다.",
+    "parent": "llm.basics.model-selection",
+    "related": [
+      "llm.internals.ttft-tpot",
+      "llm.api.response-streaming"
+    ],
+    "aliases": [
+      "LLM 지연 시간",
+      "LLM latency",
+      "모델 응답 속도",
+      "LLM 지연 줄이기"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-latency"
+    ]
+  },
+  {
+    "id": "llm.basics.model-checkpoint",
+    "title": "모델 체크포인트와 from_pretrained",
+    "en": "Model Checkpoint and from_pretrained",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "모델 구조와 학습된 가중치를 한 이름으로 묶은 저장본으로, from_pretrained에 그 이름을 넘기면 Hub에서 내려받아 불러온다.",
+    "parent": "llm.basics.transformers-pipeline",
+    "related": [
+      "llm.basics.model-card"
+    ],
+    "aliases": [
+      "모델 체크포인트",
+      "model checkpoint",
+      "from_pretrained",
+      "AutoModel",
+      "save_pretrained"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter2/3"
+    ]
+  },
+  {
+    "id": "llm.basics.model-card",
+    "title": "모델 카드",
+    "en": "Model Card",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "모델 저장소의 README로, 용도와 한계, 학습 데이터, 평가 결과, 라이선스를 적어 두어 쓸 모델을 고를 때 읽는 문서다.",
+    "parent": "llm.basics.transformers-pipeline",
+    "related": [
+      "llm.basics.open-model"
+    ],
+    "aliases": [
+      "모델 카드",
+      "model card",
+      "모델 카드 메타데이터",
+      "model card metadata"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/hub/model-cards"
+    ]
+  },
+  {
+    "id": "llm.api.document-block",
+    "title": "document 블록",
+    "en": "Document Content Block",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "메시지 content에 PDF나 텍스트 문서를 넣는 블록으로, source에 url·base64·file 중 하나를 적고 인용 기능을 켤 수도 있다.",
+    "parent": "llm.api.pdf-long-documents",
+    "related": [
+      "llm.prompt.citations",
+      "llm.api.files-api"
+    ],
+    "aliases": [
+      "document 블록",
+      "document content block",
+      "문서 블록",
+      "input_file 블록"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/pdf-support"
+    ]
+  },
+  {
+    "id": "llm.prompt.chain-of-thought",
+    "title": "생각의 사슬(CoT) 프롬프팅",
+    "en": "Chain-of-Thought Prompting",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "프롬프트",
+    "summary": "생각 기능을 끈 모델에게 답하기 전에 풀이 과정을 먼저 쓰게 하고 최종 답만 태그로 감싸 뽑는 기법으로, 생각 기능이 있는 최신 모델에서는 그 기능을 대신 쓴다.",
+    "related": [
+      "llm.api.thinking-effort",
+      "llm.prompt.prompt-structure"
+    ],
+    "aliases": [
+      "CoT",
+      "chain-of-thought",
+      "생각의 사슬",
+      "단계별로 생각하기 프롬프트",
+      "manual CoT"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+    ]
+  },
+  {
+    "id": "llm.tools.web-search-tool",
+    "title": "웹 검색 도구",
+    "en": "Web Search Tool",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "도구 호출",
+    "summary": "요청의 tools에 넣으면 API 쪽이 직접 검색을 실행해 결과를 모델에 주고 답에 출처 인용을 붙이는 서버 도구로, 검색 횟수와 도메인을 제한할 수 있다.",
+    "related": [
+      "llm.tools.function-calling",
+      "llm.prompt.citations"
+    ],
+    "aliases": [
+      "web search tool",
+      "web_search 도구",
+      "웹 검색 툴",
+      "web_search_tool_result",
+      "url_citation"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool",
+      "https://developers.openai.com/api/docs/guides/tools-web-search"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
     "id": "llm.api.files-api",
     "title": "Files API",
     "en": "Files API",
@@ -1056,6 +1347,77 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-06"
+  },
+  {
+    "id": "llm.basics.inference-providers",
+    "title": "Hugging Face Inference Providers",
+    "en": "Hugging Face Inference Providers",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "Hub의 오픈 모델을 내 컴퓨터에 받지 않고 HF 토큰 하나로 여러 추론 업체의 서버에서 부르게 해 주는 서비스로, OpenAI 호환 주소도 준다.",
+    "parent": "llm.basics.transformers-pipeline",
+    "related": [
+      "llm.api.first-call"
+    ],
+    "aliases": [
+      "HF Inference Providers",
+      "허깅페이스 추론 공급자",
+      "InferenceClient",
+      "router.huggingface.co"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/inference-providers/index"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "llm.api.image-mask-edit",
+    "title": "마스크로 이미지 일부 고치기",
+    "en": "Mask-Based Image Editing",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "원본 이미지와 같은 크기의 투명 영역 마스크를 함께 보내 그 부분을 프롬프트대로 고치게 하는 이미지 편집 방식으로, 프롬프트 기반이라 마스크 모양을 정확히 따르지 않을 수 있다.",
+    "parent": "llm.api.image-generation-api",
+    "aliases": [
+      "마스크 편집",
+      "inpainting",
+      "인페인팅",
+      "images.edit",
+      "이미지 마스크"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/image-generation"
+    ]
+  },
+  {
+    "id": "llm.api.stop-sequences",
+    "title": "stop_sequences(중단 시퀀스)",
+    "en": "Stop Sequences",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "모델이 지정한 문자열을 쓰는 순간 생성을 멈추게 하는 요청 설정으로, 멈춘 이유와 맞은 문자열이 응답에 함께 온다.",
+    "related": [
+      "llm.api.stop-reason",
+      "llm.internals.max-tokens"
+    ],
+    "aliases": [
+      "stop_sequences",
+      "stop sequence",
+      "중단 시퀀스",
+      "정지 문자열",
+      "stop 파라미터"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/api/messages/create",
+      "https://developers.openai.com/api/reference/resources/chat/subresources/completions/methods/create"
+    ]
   },
   {
     "id": "llm.security.prompt-injection",

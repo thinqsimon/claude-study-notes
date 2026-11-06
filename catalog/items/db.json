@@ -649,6 +649,141 @@
     ]
   },
   {
+    "id": "db.orm.relationship-patterns",
+    "title": "SQLAlchemy 관계 패턴: 일대일과 다대다",
+    "en": "SQLAlchemy Relationship Patterns: One-to-One and Many-to-Many",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "ORM",
+    "summary": "일대다 말고도 일대일과 다대다 관계를 relationship()과 연결 표로 정의하고 객체를 이어 저장하는 방법이다.",
+    "objectives": [
+      "일대일과 다대다 중 어떤 관계가 필요한지 자료의 모양을 보고 정할 수 있다",
+      "외래 키에 UNIQUE를 걸고 단일 객체 주석을 써서 일대일 관계를 만들 수 있다",
+      "연결 표를 secondary로 넘겨 다대다 관계를 만들고 컬렉션에 넣고 빼서 연결 행을 바꿀 수 있다"
+    ],
+    "prerequisites": [
+      "db.orm.sqlalchemy-basics",
+      "db.sql.foreign-key"
+    ],
+    "related": [
+      "db.orm.n-plus-one",
+      "db.sql.join"
+    ],
+    "aliases": [
+      "다대다 관계",
+      "many-to-many",
+      "일대일 관계",
+      "one-to-one relationship",
+      "ORM 관계 매핑"
+    ],
+    "refs": [
+      "https://docs.sqlalchemy.org/en/20/orm/basic_relationships.html",
+      "https://docs.sqlalchemy.org/en/20/tutorial/orm_related_objects.html"
+    ]
+  },
+  {
+    "id": "db.sql.jsonb",
+    "title": "JSONB 열에 문서 저장하고 꺼내 쓰기",
+    "en": "Storing and Querying JSONB Documents",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "PostgreSQL의 jsonb 열에 모양이 정해지지 않은 자료를 넣고 연산자로 필드를 꺼내거나 포함 여부로 행을 찾는 방법이다.",
+    "objectives": [
+      "json과 jsonb의 차이를 알고 대부분 jsonb를 고르는 이유를 말할 수 있다",
+      "->와 ->>로 필드를 꺼내고 결과가 jsonb인지 text인지 구분해 비교할 수 있다",
+      "@> 포함 연산자로 특정 키와 값을 가진 행을 찾을 수 있다",
+      "경로가 맞지 않을 때 오류 대신 NULL이 나오는 것을 알고 조건을 바르게 쓸 수 있다"
+    ],
+    "prerequisites": [
+      "db.sql.select-first",
+      "db.postgres.first-run"
+    ],
+    "related": [
+      "db.sql.null-comparison"
+    ],
+    "aliases": [
+      "jsonb 열",
+      "jsonb column",
+      "PostgreSQL JSON",
+      "JSON 열 조회",
+      "PostgreSQL json 타입"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/datatype-json.html",
+      "https://www.postgresql.org/docs/current/functions-json.html"
+    ]
+  },
+  {
+    "id": "db.cache.redis-data-types",
+    "title": "Redis 자료형: Hash·List·Set·Sorted Set",
+    "en": "Redis Data Types: Hashes, Lists, Sets and Sorted Sets",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "캐시",
+    "summary": "문자열 말고 Hash·List·Set·Sorted Set을 골라 객체, 대기열, 중복 없는 모음, 점수순 순위를 Redis에 담는 방법이다.",
+    "objectives": [
+      "해야 할 일에 맞춰 String·Hash·List·Set·Sorted Set 가운데 하나를 고를 수 있다",
+      "HSET·HGET으로 객체의 필드를 따로 읽고 쓸 수 있다",
+      "LPUSH·RPOP으로 간단한 대기열을, SADD·SISMEMBER로 중복 없는 모음을 만들 수 있다",
+      "ZADD·ZRANGE로 점수순 순위표를 만들 수 있다"
+    ],
+    "prerequisites": [
+      "db.cache.redis-first-run"
+    ],
+    "related": [
+      "db.cache.key-value-store"
+    ],
+    "aliases": [
+      "Redis 자료형",
+      "Redis data types",
+      "Redis 자료구조",
+      "redis list",
+      "Redis Set 자료형"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/develop/data-types/",
+      "https://redis.io/docs/latest/develop/data-types/compare-data-types/"
+    ]
+  },
+  {
+    "id": "db.sql.copy-csv",
+    "title": "COPY로 CSV 불러오고 내보내기",
+    "en": "Importing and Exporting CSV with COPY",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "COPY와 psql의 \\copy로 CSV 파일을 표에 한꺼번에 넣거나 조회 결과를 CSV로 내보내는 방법이다.",
+    "objectives": [
+      "COPY ... FROM으로 CSV 파일을 표에 넣고 COPY ... TO로 표나 조회 결과를 파일로 내보낼 수 있다",
+      "FORMAT csv와 HEADER 옵션으로 머리글 줄을 건너뛰거나 쓸 수 있다",
+      "빈 칸이 NULL로 들어가는지 빈 문자열로 들어가는지 구분해 옵션을 고를 수 있다",
+      "파일이 서버에 있는지 내 컴퓨터에 있는지에 따라 COPY와 \\copy 중 하나를 고를 수 있다"
+    ],
+    "prerequisites": [
+      "db.sql.write-rows",
+      "db.postgres.first-run"
+    ],
+    "related": [
+      "db.sql.upsert-on-conflict"
+    ],
+    "aliases": [
+      "COPY 명령",
+      "PostgreSQL CSV 가져오기",
+      "CSV import",
+      "CSV export",
+      "COPY 대량 적재"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/sql-copy.html",
+      "https://www.postgresql.org/docs/current/app-psql.html"
+    ]
+  },
+  {
     "id": "db.sql.join",
     "title": "JOIN: 두 표 이어 붙이기",
     "en": "JOIN",
@@ -742,6 +877,28 @@
     ],
     "refs": [
       "https://www.postgresql.org/docs/current/ddl-constraints.html"
+    ]
+  },
+  {
+    "id": "db.sql.case-expression",
+    "title": "CASE 식: SQL 안의 조건 분기",
+    "en": "CASE Expression",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "SQL",
+    "summary": "WHEN 조건에 따라 다른 값을 돌려주는 SQL의 if·else 식으로, SELECT 목록이나 WHERE·ORDER BY 어디에든 쓸 수 있다.",
+    "related": [
+      "db.sql.coalesce"
+    ],
+    "aliases": [
+      "CASE WHEN",
+      "SQL 조건식",
+      "case expression",
+      "CASE 문"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/functions-conditional.html"
     ]
   },
   {
@@ -958,6 +1115,159 @@
     ]
   },
   {
+    "id": "db.orm.back-populates",
+    "title": "back_populates: 양쪽 관계 맞추기",
+    "en": "back_populates",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "ORM",
+    "summary": "두 클래스의 relationship()을 서로 짝지어 한쪽에 객체를 넣으면 반대쪽 속성도 함께 바뀌게 하는 SQLAlchemy 설정으로, 옛 방식인 backref와는 다른 인자다.",
+    "parent": "db.orm.sqlalchemy-basics",
+    "related": [
+      "db.orm.relationship-patterns"
+    ],
+    "aliases": [
+      "back_populates",
+      "양방향 관계",
+      "bidirectional relationship"
+    ],
+    "refs": [
+      "https://docs.sqlalchemy.org/en/20/tutorial/orm_related_objects.html"
+    ]
+  },
+  {
+    "id": "db.orm.association-table",
+    "title": "연결 표(association table)",
+    "en": "Association Table",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "ORM",
+    "summary": "다대다 관계에서 양쪽 표의 외래 키 두 개만 담아 둘을 잇는 표로, SQLAlchemy에서는 relationship()의 secondary로 넘긴다.",
+    "parent": "db.orm.relationship-patterns",
+    "related": [
+      "db.sql.foreign-key"
+    ],
+    "aliases": [
+      "연결 표",
+      "association table",
+      "중간 테이블",
+      "조인 테이블",
+      "secondary 테이블"
+    ],
+    "refs": [
+      "https://docs.sqlalchemy.org/en/20/orm/basic_relationships.html"
+    ]
+  },
+  {
+    "id": "db.sql.jsonb-operators",
+    "title": "JSON 연산자: ->·->>·@>",
+    "en": "JSON Operators: ->, ->> and @>",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "->는 jsonb 그대로, ->>는 text로 필드를 꺼내고, #>는 경로를 따라 꺼내며, @>는 왼쪽 문서가 오른쪽 문서를 품는지 참·거짓으로 알려 주는 PostgreSQL 연산자다.",
+    "parent": "db.sql.jsonb",
+    "aliases": [
+      "->> 연산자",
+      "jsonb 연산자",
+      "JSON operators",
+      "jsonb 포함 연산자",
+      "#> 연산자"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/functions-json.html"
+    ]
+  },
+  {
+    "id": "db.cache.redis-hash",
+    "title": "Redis Hash",
+    "en": "Redis Hash",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "캐시",
+    "summary": "키 하나 아래에 필드와 값의 쌍을 여러 개 두어 객체 하나를 담는 Redis 자료형으로, HSET·HGET·HINCRBY로 다룬다.",
+    "parent": "db.cache.redis-data-types",
+    "aliases": [
+      "Redis 해시",
+      "redis hash",
+      "HSET",
+      "HGETALL",
+      "HINCRBY"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/develop/data-types/hashes/"
+    ]
+  },
+  {
+    "id": "db.cache.redis-sorted-set",
+    "title": "Redis Sorted Set",
+    "en": "Redis Sorted Set",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "캐시",
+    "summary": "겹치지 않는 값마다 점수를 붙여 점수순으로 늘 정돈해 두는 Redis 자료형으로, 순위표를 ZADD·ZRANGE·ZINCRBY로 만든다.",
+    "parent": "db.cache.redis-data-types",
+    "aliases": [
+      "정렬 집합",
+      "sorted set",
+      "ZSET",
+      "ZADD",
+      "ZRANGE",
+      "Redis 리더보드"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/develop/data-types/sorted-sets/"
+    ]
+  },
+  {
+    "id": "db.sql.coalesce",
+    "title": "COALESCE와 NULLIF: NULL 대신 기본값",
+    "en": "COALESCE and NULLIF",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "COALESCE는 처음으로 NULL이 아닌 값을 돌려줘 빈 값에 기본값을 채우고, NULLIF는 두 값이 같으면 NULL로 바꾼다.",
+    "related": [
+      "db.sql.null-comparison",
+      "db.sql.case-expression"
+    ],
+    "aliases": [
+      "COALESCE",
+      "NULLIF",
+      "NULL 기본값",
+      "IFNULL"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/functions-conditional.html"
+    ]
+  },
+  {
+    "id": "db.sql.like-ilike",
+    "title": "LIKE와 ILIKE: 패턴으로 글자 찾기",
+    "en": "LIKE and ILIKE Pattern Matching",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "%는 여러 글자, _는 한 글자를 뜻하는 패턴으로 문자열을 찾는 연산자로, ILIKE는 대소문자를 가리지 않는다.",
+    "aliases": [
+      "LIKE 검색",
+      "ILIKE",
+      "SQL 패턴 매칭",
+      "like 연산자",
+      "와일드카드 검색"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/functions-matching.html"
+    ]
+  },
+  {
     "id": "db.sql.view",
     "title": "뷰: 쿼리에 이름 붙여 표처럼 쓰기",
     "en": "View",
@@ -978,6 +1288,26 @@
     ],
     "refs": [
       "https://www.postgresql.org/docs/current/tutorial-views.html"
+    ]
+  },
+  {
+    "id": "db.sql.psql-copy",
+    "title": "\\copy: 내 컴퓨터 파일로 COPY 하기",
+    "en": "psql \\copy",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "SQL",
+    "summary": "psql이 클라이언트 쪽 파일을 읽고 써서 서버 권한 없이도 COPY와 같은 일을 하게 해 주는 메타 명령이다.",
+    "parent": "db.sql.copy-csv",
+    "aliases": [
+      "\\copy",
+      "psql copy",
+      "클라이언트 COPY"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/app-psql.html",
+      "https://www.postgresql.org/docs/current/sql-copy.html"
     ]
   },
   {
