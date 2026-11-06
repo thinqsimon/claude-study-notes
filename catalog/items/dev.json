@@ -552,6 +552,106 @@
     ]
   },
   {
+    "id": "dev.git.worktree",
+    "title": "git worktree로 폴더 나눠 동시에 작업하기",
+    "en": "Parallel Work with git worktree",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "Git",
+    "summary": "저장소 하나에 작업 폴더를 여러 개 붙여 브랜치마다 다른 폴더에서 동시에 작업하고, 다 쓴 폴더는 Git 명령으로 정리한다.",
+    "objectives": [
+      "git worktree add로 다른 브랜치를 새 폴더에 꺼내 두 작업을 동시에 진행할 수 있다",
+      "git worktree list·remove·prune으로 붙인 작업 폴더를 확인하고 정리할 수 있다",
+      "이미 다른 폴더에서 쓰는 브랜치를 꺼낼 수 없다는 오류를 이해하고 새 브랜치나 --detach로 피할 수 있다",
+      "작업 폴더를 rm이나 mv로 직접 지우거나 옮기면 생기는 문제를 prune·repair로 해결할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.branch-pr"
+    ],
+    "related": [
+      "dev.git.stash",
+      "dev.git.clone"
+    ],
+    "aliases": [
+      "worktree",
+      "워크트리",
+      "git worktree add",
+      "작업 트리 여러 개",
+      "linked worktree"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/git-worktree"
+    ]
+  },
+  {
+    "id": "dev.git.rebase",
+    "title": "리베이스로 브랜치 기록 다시 쌓기",
+    "en": "Rebasing a Branch",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "Git",
+    "summary": "내 브랜치의 커밋을 최신 기준 브랜치 위에 다시 적용해 기록을 한 줄로 만들고, 이미 공유한 커밋은 리베이스하지 않는다.",
+    "objectives": [
+      "git rebase로 내 브랜치를 최신 main 위로 옮기고 fast-forward로 합칠 수 있다",
+      "리베이스 중 충돌을 고친 뒤 --continue로 잇거나 --abort로 되돌릴 수 있다",
+      "병합과 리베이스가 남기는 기록의 차이를 비교해 상황에 맞게 고를 수 있다",
+      "이미 push한 커밋을 리베이스하면 생기는 중복 커밋 문제를 설명하고 피할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.merge-methods",
+      "dev.git.remotes"
+    ],
+    "related": [
+      "dev.git.merge-methods",
+      "dev.git.cherry-pick"
+    ],
+    "aliases": [
+      "리베이스",
+      "rebase",
+      "git rebase",
+      "브랜치 기록 정리"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Branching-Rebasing",
+      "https://git-scm.com/docs/git-rebase"
+    ]
+  },
+  {
+    "id": "dev.git.stash",
+    "title": "하던 작업 잠시 치워 두기: git stash",
+    "en": "Stashing Work in Progress",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "Git",
+    "summary": "커밋하지 않은 변경을 git stash로 잠시 보관해 작업 폴더를 깨끗하게 만들고, 다른 일을 마친 뒤 다시 꺼내 이어 간다.",
+    "objectives": [
+      "git stash push·list·pop·apply·drop으로 변경을 보관하고 다시 꺼낼 수 있다",
+      "-u 옵션으로 추적하지 않는 새 파일까지 보관할 수 있다",
+      "꺼낼 때 충돌이 날 만하면 git stash branch로 새 브랜치를 만들어 그 위에 다시 적용할 수 있다",
+      "git clean을 -n으로 먼저 확인한 뒤 써서 필요한 파일을 지우는 실수를 막을 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.first-commit",
+      "dev.git.branch-pr"
+    ],
+    "related": [
+      "dev.git.worktree"
+    ],
+    "aliases": [
+      "스태시",
+      "stash",
+      "git stash",
+      "git stash pop"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Tools-Stashing-and-Cleaning",
+      "https://git-scm.com/docs/git-stash"
+    ]
+  },
+  {
     "id": "dev.test.integration",
     "title": "통합 테스트",
     "en": "Integration Test",
@@ -717,6 +817,123 @@
     ]
   },
   {
+    "id": "dev.git.interactive-rebase",
+    "title": "대화형 리베이스(rebase -i)",
+    "en": "Interactive Rebase",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Git",
+    "summary": "git rebase -i로 최근 커밋 목록을 열어 pick·reword·squash·fixup·drop으로 메시지를 고치고 합치고 지우는 기능이다.",
+    "parent": "dev.git.rebase",
+    "related": [
+      "dev.git.merge-methods",
+      "dev.git.amend"
+    ],
+    "aliases": [
+      "rebase -i",
+      "git rebase -i",
+      "인터랙티브 리베이스",
+      "rebase -i로 커밋 합치기",
+      "fixup 커밋"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History"
+    ]
+  },
+  {
+    "id": "dev.git.force-with-lease",
+    "title": "git push --force-with-lease",
+    "en": "git push --force-with-lease",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Git",
+    "summary": "원격 브랜치가 내가 마지막으로 본 상태 그대로일 때만 강제 push를 허락해, 다른 사람이 그 사이 올린 커밋을 덮어쓰지 않게 하는 옵션이다.",
+    "parent": "dev.git.rebase",
+    "related": [
+      "dev.git.branch-protection"
+    ],
+    "aliases": [
+      "force-with-lease",
+      "안전한 강제 푸시",
+      "push --force-with-lease"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/git-push"
+    ]
+  },
+  {
+    "id": "dev.git.detached-head",
+    "title": "분리된 HEAD(detached HEAD)",
+    "en": "Detached HEAD",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Git",
+    "summary": "HEAD가 브랜치가 아닌 커밋을 직접 가리키는 상태로, 여기서 만든 커밋은 브랜치를 만들어 두지 않으면 다른 곳으로 옮길 때 잃기 쉽다.",
+    "related": [
+      "dev.git.worktree",
+      "dev.git.reflog"
+    ],
+    "aliases": [
+      "detached HEAD",
+      "HEAD 분리",
+      "분리된 헤드",
+      "detached HEAD state"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/git-checkout#_detached_head",
+      "https://git-scm.com/book/en/v2/Git-Basics-Tagging"
+    ]
+  },
+  {
+    "id": "dev.git.annotated-tag",
+    "title": "주석 태그와 경량 태그",
+    "en": "Annotated and Lightweight Tags",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Git",
+    "summary": "릴리스 지점에 이름을 붙이는 Git 태그는 작성자·날짜·메시지를 담는 주석 태그와 커밋만 가리키는 경량 태그로 나뉘고, push할 때 따로 올려야 한다.",
+    "related": [
+      "dev.git.semver"
+    ],
+    "aliases": [
+      "annotated tag",
+      "lightweight tag",
+      "git tag -a",
+      "주석 태그",
+      "릴리스 태그"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Basics-Tagging"
+    ]
+  },
+  {
+    "id": "dev.git.amend",
+    "title": "git commit --amend",
+    "en": "git commit --amend",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Git",
+    "summary": "마지막 커밋을 지금 스테이징한 내용과 새 메시지로 바꿔 끼우는 명령으로, 커밋 해시가 바뀌므로 push 전에만 쓴다.",
+    "related": [
+      "dev.git.interactive-rebase",
+      "dev.git.first-commit"
+    ],
+    "aliases": [
+      "amend",
+      "커밋 수정",
+      "--amend",
+      "마지막 커밋 고치기"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things"
+    ]
+  },
+  {
     "id": "dev.git.upstream-remote",
     "title": "업스트림 원격",
     "en": "Upstream Remote",
@@ -737,6 +954,76 @@
     "refs": [
       "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork",
       "https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project"
+    ]
+  },
+  {
+    "id": "dev.git.pull-rebase",
+    "title": "git pull --rebase",
+    "en": "git pull --rebase",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "Git",
+    "summary": "원격 변경을 받을 때 병합 커밋을 만들지 않고 내 로컬 커밋을 받은 기록 위에 다시 쌓는 pull 방식으로, pull.rebase 설정으로 기본값을 바꿀 수 있다.",
+    "parent": "dev.git.rebase",
+    "related": [
+      "dev.git.remotes"
+    ],
+    "aliases": [
+      "pull --rebase",
+      "pull.rebase",
+      "리베이스 풀"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Branching-Rebasing",
+      "https://git-scm.com/docs/git-pull"
+    ]
+  },
+  {
+    "id": "dev.git.clean",
+    "title": "git clean",
+    "en": "git clean",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "Git",
+    "summary": "Git이 추적하지 않는 파일을 작업 폴더에서 지우는 명령으로, 되살리기 어려우니 -n으로 지울 목록부터 확인한다.",
+    "parent": "dev.git.stash",
+    "related": [
+      "dev.git.gitignore"
+    ],
+    "aliases": [
+      "git clean -fd",
+      "git clean -n",
+      "추적 안 하는 파일 지우기",
+      "untracked 파일 삭제"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Tools-Stashing-and-Cleaning",
+      "https://git-scm.com/docs/git-clean"
+    ]
+  },
+  {
+    "id": "dev.git.blame",
+    "title": "git blame",
+    "en": "git blame",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "Git",
+    "summary": "파일의 줄마다 그 줄을 마지막으로 바꾼 커밋·작성자·날짜를 보여 주어, 코드가 언제 왜 들어왔는지 찾는 명령이다.",
+    "related": [
+      "dev.git.bisect"
+    ],
+    "aliases": [
+      "blame",
+      "git blame -L",
+      "줄별 변경 이력",
+      "파일 주석 보기"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Tools-Debugging-with-Git",
+      "https://git-scm.com/docs/git-blame"
     ]
   },
   {

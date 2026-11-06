@@ -583,6 +583,145 @@
     "checked_at": "2026-11-04"
   },
   {
+    "id": "ax.coding.headless-mode",
+    "title": "스크립트와 CI에서 에이전트 돌리기: claude -p",
+    "en": "Running Claude Code Non-Interactively",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "claude -p로 대화창 없이 에이전트를 한 번 실행해 결과를 받고, 허용 도구와 출력 형식을 정해 스크립트나 CI 단계에 넣는 방법이다.",
+    "objectives": [
+      "claude -p에 프롬프트와 파이프 입력을 넘겨 결과를 파일로 받을 수 있다",
+      "--allowedTools와 --permission-mode로 사람 없이 돌 때 쓸 수 있는 도구를 정할 수 있다",
+      "--output-format json 결과에서 jq로 필요한 칸을 꺼내 다음 단계에 넘길 수 있다",
+      "--continue·--resume으로 앞선 실행의 대화를 이어 갈 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.agent-first",
+      "ax.coding.permission-rules"
+    ],
+    "related": [
+      "ax.coding.permission-mode",
+      "ax.coding.hooks"
+    ],
+    "aliases": [
+      "claude -p",
+      "claude --print",
+      "Claude Code 헤드리스 모드",
+      "claude 비대화형 실행"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/headless"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.coding.checkpoints",
+    "title": "체크포인트로 에이전트 작업 되돌리기",
+    "en": "Checkpointing in Claude Code",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "Claude Code가 프롬프트마다 남기는 파일 스냅샷으로 코드와 대화를 원하는 지점까지 되돌리고, 스냅샷이 잡지 못하는 변경은 Git으로 되돌리는 방법이다.",
+    "objectives": [
+      "되감기 메뉴에서 코드만, 대화만, 둘 다 되돌리기를 상황에 맞게 고를 수 있다",
+      "Bash 명령이나 하위 에이전트가 바꾼 파일이 체크포인트로 복구되지 않는 경우를 알아채고 Git으로 되돌릴 수 있다",
+      "체크포인트와 Git 커밋이 각각 맡는 일을 구분해 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.agent-first",
+      "dev.git.first-commit"
+    ],
+    "related": [
+      "ax.coding.agent-token-usage",
+      "llm.internals.compaction"
+    ],
+    "aliases": [
+      "Claude Code 체크포인트",
+      "checkpointing",
+      "에이전트 변경 되돌리기"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/checkpointing"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.coding.mcp-servers",
+    "title": "Claude Code에 MCP 서버 연결하기: 범위와 신뢰",
+    "en": "Connecting MCP Servers to Claude Code",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "claude mcp add로 바깥 도구 서버를 붙이고 local·project·user 범위 중 알맞은 곳에 두며, 믿을 수 있는 서버만 연결해 비밀값을 설정 파일 밖에 두는 방법이다.",
+    "objectives": [
+      "claude mcp add로 http·stdio 서버를 추가하고 /mcp로 연결 상태를 확인할 수 있다",
+      "혼자 쓸 서버와 팀이 함께 쓸 서버를 local·project·user 범위로 나눠 둘 수 있다",
+      ".mcp.json에 키를 직접 쓰지 않고 환경 변수 확장으로 넘길 수 있다",
+      "바깥 내용을 읽는 서버가 프롬프트 인젝션 통로가 되는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.mcp-idea",
+      "ax.coding.permission-rules",
+      "llm.security.injection-basics"
+    ],
+    "related": [
+      "rag.agent.mcp-connect",
+      "be.security.secrets-handling"
+    ],
+    "aliases": [
+      "claude mcp add",
+      "MCP 서버 추가",
+      "Claude Code MCP",
+      "/mcp 명령"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/mcp"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.governance.ai-act-risk-levels",
+    "title": "AI 규제의 위험 등급 구분하기",
+    "en": "Risk Levels in AI Regulation",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "EU AI법이 AI를 금지·고위험·투명성·최소 위험의 네 등급으로 나누고 한국 AI 기본법이 고영향 AI를 따로 정하듯, 만들 기능이 어느 등급인지 보고 지켜야 할 일을 고르는 방법이다.",
+    "objectives": [
+      "EU AI법의 네 위험 등급을 예시 기능으로 구분할 수 있다",
+      "만들려는 AI 기능이 고위험 용도에 드는지 채용·신용 평가 같은 목록과 대조해 판단할 수 있다",
+      "AI 시스템 규칙과 범용 AI 모델 제공자 규칙이 다른 대상을 겨냥함을 설명할 수 있다",
+      "적용 날짜가 단계마다 다르다는 점을 알고 공식 일정에서 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.governance.trustworthy-ai"
+    ],
+    "related": [
+      "ax.governance.ai-disclosure-labelling",
+      "ax.governance.ai-risk"
+    ],
+    "aliases": [
+      "AI법 위험 등급",
+      "AI법 위험 기반 접근",
+      "AI Act risk categories"
+    ],
+    "refs": [
+      "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+      "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-6",
+      "https://www.korea.kr/news/policyNewsView.do?newsId=148958380"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
     "id": "ax.coding.slash-command",
     "title": "슬래시 명령(/이름)",
     "en": "Slash Command",
@@ -770,6 +909,232 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-05"
+  },
+  {
+    "id": "ax.coding.bare-mode",
+    "title": "bare 모드(--bare)",
+    "en": "Bare Mode",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "훅·스킬·MCP 서버·CLAUDE.md를 자동으로 읽지 않고 시작해 어느 기계에서나 같은 결과를 내게 하는 claude -p 실행 방식이다.",
+    "parent": "ax.coding.headless-mode",
+    "related": [
+      "ax.coding.workspace-trust",
+      "ax.coding.claude-md"
+    ],
+    "aliases": [
+      "--bare",
+      "claude --bare",
+      "베어 모드"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/headless"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.coding.headless-json-output",
+    "title": "JSON 출력과 --json-schema",
+    "en": "JSON Output and --json-schema",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "--output-format json으로 결과·세션 ID·비용을 JSON으로 받고, --json-schema를 더하면 정한 모양의 답을 structured_output 칸에 받는 기능이다.",
+    "parent": "ax.coding.headless-mode",
+    "related": [
+      "llm.api.structured-output"
+    ],
+    "aliases": [
+      "--output-format json",
+      "--json-schema",
+      "structured_output",
+      "stream-json"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/headless"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.coding.claude-code-action",
+    "title": "Claude Code GitHub Action(@claude)",
+    "en": "Claude Code GitHub Action",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "이슈나 PR 댓글에서 @claude를 부르거나 prompt를 정해 두면 GitHub Actions 러너에서 Claude Code가 돌아 코드를 고치고 댓글을 남기는 워크플로 부품이다.",
+    "parent": "ax.coding.headless-mode",
+    "related": [
+      "ops.ci.github-actions-workflow",
+      "be.security.secrets-handling"
+    ],
+    "aliases": [
+      "claude-code-action",
+      "@claude 멘션",
+      "Claude GitHub 액션",
+      "/install-github-app"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/github-actions"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.coding.rewind-menu",
+    "title": "되감기 메뉴(/rewind)",
+    "en": "Rewind Menu",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "/rewind나 빈 입력창에서 Esc 두 번으로 열어, 고른 프롬프트 지점으로 코드·대화를 되돌리거나 그 앞뒤 대화를 요약하는 메뉴다.",
+    "parent": "ax.coding.checkpoints",
+    "related": [
+      "ax.coding.agent-token-usage"
+    ],
+    "aliases": [
+      "/rewind",
+      "Esc Esc",
+      "되감기",
+      "Restore code",
+      "Summarize from here"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/checkpointing"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.coding.mcp-scope",
+    "title": "MCP 설치 범위(local·project·user)",
+    "en": "MCP Installation Scopes",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "MCP 서버 설정을 한 프로젝트에서 나만 쓸지, .mcp.json으로 팀과 나눌지, 내 모든 프로젝트에 쓸지 정하는 Claude Code의 세 범위다.",
+    "parent": "ax.coding.mcp-servers",
+    "related": [
+      "ax.coding.settings-file",
+      "ax.coding.workspace-trust"
+    ],
+    "aliases": [
+      ".mcp.json",
+      "--scope project",
+      "MCP 범위",
+      "프로젝트 MCP 설정"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/mcp"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.governance.high-risk-ai",
+    "title": "고위험 AI 시스템(EU AI법)",
+    "en": "High-Risk AI System",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "채용 서류 선별·신용 평가처럼 부속서 III 용도이거나 규제 제품의 안전 부품인 AI로, 위험 관리·기록·사람의 감독 같은 엄격한 의무가 붙는다.",
+    "parent": "ax.governance.ai-act-risk-levels",
+    "related": [
+      "ax.governance.korea-high-impact-ai"
+    ],
+    "aliases": [
+      "고위험 AI",
+      "high-risk AI",
+      "Annex III",
+      "부속서 III"
+    ],
+    "refs": [
+      "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-6",
+      "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.governance.prohibited-ai-practices",
+    "title": "금지된 AI 관행(EU AI법 제5조)",
+    "en": "Prohibited AI Practices",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "사회적 점수 매기기·직장과 학교의 감정 인식·얼굴 사진 무차별 수집처럼 EU AI법이 위험이 너무 커서 아예 쓰지 못하게 한 AI 용도다.",
+    "parent": "ax.governance.ai-act-risk-levels",
+    "aliases": [
+      "금지 AI",
+      "AI Act Article 5",
+      "용납할 수 없는 위험",
+      "unacceptable risk",
+      "사회적 점수"
+    ],
+    "refs": [
+      "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-5"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.governance.korea-high-impact-ai",
+    "title": "고영향 AI(한국 AI 기본법)",
+    "en": "High-Impact AI under the Korean AI Basic Act",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "AI 기본법이 정한 영역에서 쓰이며 위험이 중대한 AI로, 사람이 최종 결정을 하면 빠지고 사업자는 이용자에게 AI 사용을 미리 알려야 한다.",
+    "parent": "ax.governance.ai-act-risk-levels",
+    "related": [
+      "ax.governance.high-risk-ai",
+      "ax.governance.ai-disclosure-labelling"
+    ],
+    "aliases": [
+      "고영향 AI",
+      "고영향 인공지능",
+      "high-impact AI",
+      "AI 기본법 고영향"
+    ],
+    "refs": [
+      "https://www.korea.kr/news/policyNewsView.do?newsId=148958380"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.governance.gpai-model",
+    "title": "범용 AI 모델(GPAI)",
+    "en": "General-Purpose AI Model",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "여러 일에 두루 쓰이는 기반 모델로, EU AI법은 이를 만든 제공자에게 기술 문서·저작권 정책·학습 데이터 요약 공개 의무를 따로 지운다.",
+    "parent": "ax.governance.ai-act-risk-levels",
+    "aliases": [
+      "GPAI",
+      "general-purpose AI",
+      "범용 AI",
+      "AI Act Article 53"
+    ],
+    "refs": [
+      "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-53",
+      "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
   },
   {
     "id": "ax.security.model-output-handling",

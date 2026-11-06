@@ -611,6 +611,102 @@
     ]
   },
   {
+    "id": "fe.js.promises-async",
+    "title": "Promise와 async/await로 비동기 다루기",
+    "en": "Working with Promises and async/await",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "JavaScript",
+    "summary": "나중에 끝나는 작업을 Promise로 받아 then 체인이나 async/await로 이어 쓰고, 실패를 한곳에서 잡는 방법이다.",
+    "objectives": [
+      "then 체인과 async/await로 같은 비동기 흐름을 각각 쓸 수 있다",
+      "catch나 try...catch로 네트워크 오류와 HTTP 오류를 함께 처리할 수 있다",
+      "Promise를 결괏값처럼 바로 쓰거나 서로 무관한 요청을 하나씩 기다리는 실수를 찾아 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "fe.js.fetch-first"
+    ],
+    "related": [
+      "fe.internals.event-loop"
+    ],
+    "aliases": [
+      "프로미스",
+      "Promise 체이닝",
+      "then 체인",
+      "JS async/await",
+      "JavaScript 비동기 함수"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Async_JS/Promises"
+    ]
+  },
+  {
+    "id": "fe.next.routes-layouts",
+    "title": "Next.js 레이아웃과 동적 라우트",
+    "en": "Next.js Layouts and Dynamic Routes",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "Next.js",
+    "summary": "layout 파일로 여러 페이지가 함께 쓰는 틀을 겹쳐 두고 대괄호 폴더로 데이터마다 달라지는 주소를 만드는 Next.js 라우팅 방법이다.",
+    "objectives": [
+      "루트 레이아웃과 중첩 레이아웃으로 공통 화면 틀을 나눌 수 있다",
+      "대괄호 폴더와 params로 글마다 다른 상세 페이지를 만들 수 있다",
+      "Link 컴포넌트로 페이지 사이를 이동하게 할 수 있다",
+      "주소의 검색 매개변수를 searchParams로 읽어 목록을 거를 수 있다"
+    ],
+    "prerequisites": [
+      "fe.next.first-page"
+    ],
+    "aliases": [
+      "Next.js 라우팅",
+      "중첩 레이아웃",
+      "layout.js",
+      "root layout",
+      "파일 기반 라우팅"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/getting-started/layouts-and-pages"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "fe.ts.object-types",
+    "title": "TypeScript 객체 타입: interface와 type",
+    "en": "TypeScript Object Types: interface and type",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "TypeScript",
+    "summary": "선택·읽기 전용 속성과 extends·교차 타입으로 객체의 모양을 적고 interface와 type 별칭 중 맞는 쪽을 고르는 방법이다.",
+    "objectives": [
+      "선택 속성과 readonly 속성으로 객체 타입을 정확히 적을 수 있다",
+      "extends와 교차 타입(&)으로 기존 타입을 넓혀 새 타입을 만들 수 있다",
+      "interface와 type 별칭의 차이를 말하고 상황에 맞게 고를 수 있다",
+      "객체 리터럴의 남는 속성 오류를 읽고 오타나 타입 정의를 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "fe.ts.first-types"
+    ],
+    "related": [
+      "fe.ts.union-narrowing"
+    ],
+    "aliases": [
+      "객체 타입",
+      "type alias",
+      "타입 별칭",
+      "interface extends",
+      "교차 타입",
+      "intersection type"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/2/objects.html",
+      "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces"
+    ]
+  },
+  {
     "id": "fe.internals.render-and-commit",
     "title": "React 렌더링 과정: 트리거·렌더·커밋",
     "en": "React Rendering: Trigger, Render, Commit",
@@ -642,6 +738,36 @@
     ],
     "refs": [
       "https://react.dev/learn/render-and-commit"
+    ]
+  },
+  {
+    "id": "fe.react.reducer",
+    "title": "useReducer로 상태 로직 모으기",
+    "en": "Extracting State Logic into a Reducer",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "React",
+    "summary": "여러 이벤트 핸들러에 흩어진 state 변경을 reducer 함수 하나로 모으고 핸들러는 일어난 일만 알리게 하는 방법이다.",
+    "objectives": [
+      "useState로 쓴 컴포넌트를 useReducer와 dispatch로 바꿀 수 있다",
+      "현재 state와 action을 받아 다음 state를 돌려주는 순수한 reducer를 쓸 수 있다",
+      "useState와 useReducer 중 상황에 맞는 쪽을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "fe.react.state-first"
+    ],
+    "related": [
+      "fe.react.lifting-state"
+    ],
+    "aliases": [
+      "useReducer",
+      "리듀서",
+      "reducer 함수",
+      "React reducer"
+    ],
+    "refs": [
+      "https://react.dev/learn/extracting-state-logic-into-a-reducer"
     ]
   },
   {
@@ -728,6 +854,75 @@
     ]
   },
   {
+    "id": "fe.react.controlled-input",
+    "title": "제어 컴포넌트 입력 칸",
+    "en": "Controlled Input",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "React",
+    "summary": "입력 칸의 value를 state로 정하고 onChange에서 그 state를 바꿔 React가 입력값을 쥐게 하는 방식이다.",
+    "related": [
+      "fe.html.forms"
+    ],
+    "aliases": [
+      "controlled component",
+      "제어 컴포넌트",
+      "React 제어 입력"
+    ],
+    "refs": [
+      "https://react.dev/reference/react-dom/components/input#controlling-an-input-with-a-state-variable"
+    ]
+  },
+  {
+    "id": "fe.next.dynamic-segment",
+    "title": "동적 세그먼트와 params",
+    "en": "Dynamic Segments and params",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "Next.js",
+    "summary": "[slug]처럼 대괄호로 감싼 폴더가 주소의 한 조각을 받아 page에 params로 넘기는 Next.js 규칙이다.",
+    "parent": "fe.next.routes-layouts",
+    "aliases": [
+      "Next.js dynamic route",
+      "Next.js 동적 라우트",
+      "[slug]",
+      "Next.js params",
+      "catch-all segment"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/api-reference/file-conventions/dynamic-routes"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "fe.css.specificity",
+    "title": "CSS 명시도와 캐스케이드",
+    "en": "CSS Specificity and the Cascade",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "CSS",
+    "summary": "같은 요소에 규칙이 겹칠 때 중요도·명시도·선언 순서로 어느 스타일이 이길지 정하는 CSS의 규칙이다.",
+    "related": [
+      "fe.css.box-flex"
+    ],
+    "aliases": [
+      "specificity",
+      "명시도",
+      "선택자 우선순위",
+      "CSS cascade",
+      "!important",
+      "CSS 상속",
+      "CSS 캐스케이드"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Handling_conflicts"
+    ]
+  },
+  {
     "id": "fe.internals.rerender",
     "title": "리렌더링",
     "en": "Re-render",
@@ -787,6 +982,109 @@
     ],
     "refs": [
       "https://www.typescriptlang.org/docs/handbook/2/generics.html"
+    ]
+  },
+  {
+    "id": "fe.js.promise-all",
+    "title": "Promise.all로 여러 요청 함께 기다리기",
+    "en": "Promise.all",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "JavaScript",
+    "summary": "서로 무관한 여러 Promise를 한꺼번에 기다려 모두 성공하면 결과 배열을 주고 하나라도 실패하면 바로 실패하는 함수다.",
+    "parent": "fe.js.promises-async",
+    "aliases": [
+      "Promise.all",
+      "Promise.all 병렬 대기",
+      "여러 Promise 묶기"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Async_JS/Promises#combining_multiple_promises"
+    ]
+  },
+  {
+    "id": "fe.react.reducer-action",
+    "title": "액션 객체와 dispatch",
+    "en": "Actions and dispatch",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "React",
+    "summary": "사용자가 한 일을 type이 담긴 객체로 적어 dispatch에 넘기면 reducer가 그것을 보고 다음 state를 정하는 약속이다.",
+    "parent": "fe.react.reducer",
+    "aliases": [
+      "dispatch 함수",
+      "action 객체",
+      "action type",
+      "액션 타입"
+    ],
+    "refs": [
+      "https://react.dev/learn/extracting-state-logic-into-a-reducer#step-1-move-from-setting-state-to-dispatching-actions"
+    ]
+  },
+  {
+    "id": "fe.react.context",
+    "title": "Context와 useContext",
+    "en": "Context and useContext",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "React",
+    "summary": "중간 컴포넌트를 거치지 않고 위쪽 provider가 준 값을 아래 어디서든 읽게 해 props를 여러 층 넘기는 일을 줄이는 React 기능이다.",
+    "related": [
+      "fe.react.lifting-state"
+    ],
+    "aliases": [
+      "useContext",
+      "React Context",
+      "createContext",
+      "Context provider",
+      "prop drilling"
+    ],
+    "refs": [
+      "https://react.dev/learn/passing-data-deeply-with-context"
+    ]
+  },
+  {
+    "id": "fe.next.link-component",
+    "title": "Link 컴포넌트",
+    "en": "Next.js Link Component",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Next.js",
+    "summary": "a 태그를 넓혀 미리 불러오기와 새로고침 없는 화면 이동을 해 주는 Next.js의 기본 이동 컴포넌트다.",
+    "parent": "fe.next.routes-layouts",
+    "aliases": [
+      "next/link",
+      "Link href",
+      "Next.js 클라이언트 이동"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/api-reference/components/link"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-06"
+  },
+  {
+    "id": "fe.ts.optional-property",
+    "title": "선택 속성(?)",
+    "en": "Optional Properties",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "TypeScript",
+    "summary": "속성 이름 뒤에 ?를 붙여 없어도 되게 하되, 읽을 때는 undefined일 수 있어 확인하거나 기본값을 줘야 하는 객체 속성이다.",
+    "parent": "fe.ts.object-types",
+    "aliases": [
+      "optional property",
+      "물음표 속성",
+      "possibly undefined",
+      "선택적 속성"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/2/objects.html#optional-properties"
     ]
   },
   {

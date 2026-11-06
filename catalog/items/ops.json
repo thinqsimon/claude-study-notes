@@ -608,6 +608,102 @@
     ]
   },
   {
+    "id": "ops.docker.container-networking",
+    "title": "Docker 네트워크로 컨테이너끼리 연결하기",
+    "en": "Connecting Containers with Docker Networks",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "Docker",
+    "summary": "사용자 정의 네트워크에 컨테이너를 함께 붙이면 IP 대신 컨테이너 이름으로 서로 찾아 통신할 수 있다.",
+    "objectives": [
+      "docker network create로 네트워크를 만들고 컨테이너를 붙일 수 있다",
+      "기본 브리지와 사용자 정의 브리지에서 이름 해석이 어떻게 다른지 설명할 수 있다",
+      "앱 컨테이너가 DB 컨테이너에 localhost로 접속하지 못하는 실수를 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "ops.docker.first-container"
+    ],
+    "related": [
+      "ops.docker.port-publishing",
+      "ops.docker.compose"
+    ],
+    "aliases": [
+      "도커 네트워크",
+      "docker network",
+      "컨테이너 간 통신",
+      "docker network create"
+    ],
+    "refs": [
+      "https://docs.docker.com/engine/network/",
+      "https://docs.docker.com/engine/network/drivers/bridge/",
+      "https://docs.docker.com/compose/how-tos/networking/"
+    ]
+  },
+  {
+    "id": "ops.ci.cache-and-artifacts",
+    "title": "GitHub Actions 캐시와 아티팩트",
+    "en": "GitHub Actions Caching and Artifacts",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "CI/CD",
+    "summary": "실행마다 다시 받는 의존성은 캐시로 재사용하고, 잡이 만든 결과물은 아티팩트로 남기거나 다른 잡에 넘긴다.",
+    "objectives": [
+      "캐시와 아티팩트 중 무엇을 써야 하는지 상황에 맞게 고를 수 있다",
+      "잠금 파일 해시로 캐시 키를 만들어 의존성 설치 시간을 줄일 수 있다",
+      "빌드 잡의 결과물을 업로드하고 다음 잡에서 내려받아 쓸 수 있다"
+    ],
+    "related": [
+      "ops.ci.github-actions-workflow",
+      "ops.container.image-layers"
+    ],
+    "aliases": [
+      "actions cache",
+      "Actions 의존성 캐시",
+      "dependency caching",
+      "actions/cache"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/concepts/workflows-and-actions/dependency-caching",
+      "https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching",
+      "https://docs.github.com/en/actions/concepts/workflows-and-actions/workflow-artifacts"
+    ]
+  },
+  {
+    "id": "ops.linux.systemd-service",
+    "title": "systemd 서비스로 프로그램 상시 실행",
+    "en": "Running Programs as systemd Services",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "서비스 유닛 파일에 실행 명령과 재시작 규칙을 적어 두면 서버가 켜질 때 프로그램이 뜨고 죽어도 다시 살아난다.",
+    "objectives": [
+      "ExecStart와 Restart를 넣은 간단한 서비스 유닛 파일을 쓸 수 있다",
+      "systemctl로 서비스를 시작·중지하고 부팅 시 자동 시작을 켤 수 있다",
+      "유닛 파일을 고친 뒤 daemon-reload를 빠뜨려 변경이 반영되지 않는 실수를 고칠 수 있다",
+      "journalctl로 서비스 로그를 찾아 실패 원인을 읽을 수 있다"
+    ],
+    "prerequisites": [
+      "ops.linux.shell-script-basics"
+    ],
+    "related": [
+      "ops.docker.restart-policy"
+    ],
+    "aliases": [
+      "systemd",
+      "서비스 유닛",
+      "service unit",
+      ".service 파일",
+      "systemctl"
+    ],
+    "refs": [
+      "https://www.freedesktop.org/software/systemd/man/latest/systemd.service.html",
+      "https://www.freedesktop.org/software/systemd/man/latest/systemctl.html"
+    ]
+  },
+  {
     "id": "ops.docker.compose",
     "title": "Docker Compose",
     "en": "Docker Compose",
@@ -738,6 +834,172 @@
     "refs": [
       "https://docs.docker.com/get-started/docker-concepts/running-containers/persisting-container-data/",
       "https://docs.docker.com/engine/storage/volumes/"
+    ]
+  },
+  {
+    "id": "ops.docker.user-defined-bridge",
+    "title": "사용자 정의 브리지 네트워크",
+    "en": "User-defined Bridge Network",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Docker",
+    "summary": "직접 만든 브리지 네트워크로, 붙은 컨테이너끼리 내장 DNS로 이름을 찾고 다른 컨테이너와는 격리된다.",
+    "parent": "ops.docker.container-networking",
+    "related": [
+      "ops.docker.port-publishing"
+    ],
+    "aliases": [
+      "user-defined bridge",
+      "브리지 네트워크"
+    ],
+    "refs": [
+      "https://docs.docker.com/engine/network/drivers/bridge/"
+    ]
+  },
+  {
+    "id": "ops.docker.restart-policy",
+    "title": "컨테이너 재시작 정책",
+    "en": "Container Restart Policy",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Docker",
+    "summary": "--restart 값으로 컨테이너가 멈췄을 때나 Docker가 다시 켜졌을 때 자동으로 다시 띄울지를 정한다.",
+    "related": [
+      "ops.linux.systemd-service"
+    ],
+    "aliases": [
+      "restart policy",
+      "--restart",
+      "unless-stopped",
+      "restart: always"
+    ],
+    "refs": [
+      "https://docs.docker.com/engine/containers/start-containers-automatically/"
+    ]
+  },
+  {
+    "id": "ops.docker.compose-variable-interpolation",
+    "title": "Compose 변수 치환과 .env 파일",
+    "en": "Compose Variable Interpolation",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Docker",
+    "summary": "compose.yaml 안의 ${VAR}를 셸 환경이나 .env 파일의 값으로 채우고, 값이 없을 때의 기본값도 정할 수 있다.",
+    "related": [
+      "ops.docker.compose"
+    ],
+    "aliases": [
+      "Compose 변수 치환",
+      "Compose variable interpolation",
+      "compose .env",
+      "--env-file"
+    ],
+    "refs": [
+      "https://docs.docker.com/compose/how-tos/environment-variables/variable-interpolation/"
+    ]
+  },
+  {
+    "id": "ops.ci.cache-key",
+    "title": "캐시 키와 restore-keys",
+    "en": "Cache Key and Restore Keys",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "CI/CD",
+    "summary": "key가 정확히 맞으면 캐시 적중이고, 없으면 restore-keys의 앞부분 일치로 가장 최근 캐시를 대신 복원한다.",
+    "parent": "ops.ci.cache-and-artifacts",
+    "aliases": [
+      "restore-keys",
+      "Actions 캐시 키",
+      "actions/cache key"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching"
+    ]
+  },
+  {
+    "id": "ops.ci.workflow-artifact",
+    "title": "워크플로 아티팩트",
+    "en": "Workflow Artifact",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "CI/CD",
+    "summary": "워크플로 실행이 만든 로그·테스트 결과·빌드 파일을 실행이 끝난 뒤에도 보관하고 잡끼리 주고받게 하는 파일 묶음이다.",
+    "parent": "ops.ci.cache-and-artifacts",
+    "aliases": [
+      "actions artifact",
+      "빌드 아티팩트",
+      "download-artifact",
+      "upload-artifact"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/concepts/workflows-and-actions/workflow-artifacts"
+    ]
+  },
+  {
+    "id": "ops.ci.matrix-strategy",
+    "title": "매트릭스 전략",
+    "en": "Matrix Strategy",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "CI/CD",
+    "summary": "strategy.matrix에 운영체제·버전 목록을 주면 조합마다 같은 잡을 하나씩 만들어 함께 실행한다.",
+    "related": [
+      "ops.ci.github-actions-workflow"
+    ],
+    "aliases": [
+      "strategy.matrix",
+      "매트릭스 빌드",
+      "matrix build"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/run-job-variations"
+    ]
+  },
+  {
+    "id": "ops.linux.systemctl-enable",
+    "title": "부팅 시 자동 시작(systemctl enable)",
+    "en": "systemctl enable",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "enable은 부팅 때 서비스가 켜지도록 연결만 하고 지금 실행하지는 않으므로, 바로 띄우려면 start나 --now를 함께 쓴다.",
+    "parent": "ops.linux.systemd-service",
+    "aliases": [
+      "systemctl enable",
+      "enable --now"
+    ],
+    "refs": [
+      "https://www.freedesktop.org/software/systemd/man/latest/systemctl.html"
+    ]
+  },
+  {
+    "id": "ops.linux.journalctl",
+    "title": "journalctl로 서비스 로그 보기",
+    "en": "journalctl",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "systemd가 모은 로그를 -u로 서비스별로, -f로 실시간으로, --since로 시간 범위를 좁혀 읽는 명령이다.",
+    "parent": "ops.linux.systemd-service",
+    "related": [
+      "ops.observe.container-healthcheck"
+    ],
+    "aliases": [
+      "journalctl -u",
+      "journalctl -f",
+      "systemd 저널",
+      "systemd journal"
+    ],
+    "refs": [
+      "https://www.freedesktop.org/software/systemd/man/latest/journalctl.html"
     ]
   },
   {
