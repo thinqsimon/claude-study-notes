@@ -1072,6 +1072,145 @@
     "checked_at": "2026-11-10"
   },
   {
+    "id": "mlops.finetune.grpo-trainer",
+    "title": "GRPOTrainer로 보상 함수 강화학습하기",
+    "en": "Reinforcement Fine-Tuning with TRL GRPOTrainer",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "정답 쌍 대신 답에 점수를 매기는 보상 함수를 주고, 한 질문에 여러 답을 뽑아 서로 비교하며 모델을 다듬는 학습 방법이다.",
+    "objectives": [
+      "prompt 열을 갖춘 데이터셋과 보상 함수를 GRPOTrainer에 넣어 학습을 돌릴 수 있다",
+      "데이터셋의 정답 열이 같은 이름의 인자로 보상 함수에 넘어온다는 점을 알고 remove_unused_columns를 True로 바꾸면 그 열이 빠지는 실수를 피할 수 있다",
+      "num_generations와 배치 크기가 나누어떨어지지 않아 생기는 설정 오류를 고칠 수 있다",
+      "reward·frac_reward_zero_std 지표를 읽고 학습 신호가 없는 상황을 알아챌 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.finetune.sft-trainer"
+    ],
+    "related": [
+      "mlops.finetune.dpo-trainer",
+      "llm.internals.reward-model"
+    ],
+    "aliases": [
+      "GRPOTrainer",
+      "GRPOConfig",
+      "GRPO 학습",
+      "TRL GRPO",
+      "GRPO 파인튜닝"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/trl/grpo_trainer"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "mlops.prompt.optimize-prompts",
+    "title": "프롬프트 자동 개선: optimize_prompts",
+    "en": "Automatic Prompt Optimization with optimize_prompts",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "레지스트리에 올린 프롬프트와 평가 세트·스코어러를 주면 MLflow가 더 높은 점수를 내는 새 프롬프트 버전을 만들어 준다.",
+    "objectives": [
+      "등록한 프롬프트를 불러와 쓰는 predict_fn과 inputs·expectations 학습 데이터를 준비할 수 있다",
+      "optimize_prompts에 옵티마이저와 스코어러를 넣어 돌리고 결과의 새 템플릿과 점수 변화를 확인할 수 있다",
+      "predict_fn에 프롬프트를 직접 적어 최적화가 먹히지 않는 실수를 레지스트리 불러오기로 고칠 수 있다",
+      "예시 수와 max_metric_calls를 줄여 최적화 시간과 비용을 조절할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.prompt.register-load",
+      "mlops.eval.first-eval"
+    ],
+    "related": [
+      "mlops.prompt.registry",
+      "mlops.eval.builtin-judges"
+    ],
+    "aliases": [
+      "optimize_prompts",
+      "automatic prompt optimization",
+      "MLflow 프롬프트 최적화",
+      "프롬프트 자동 개선"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/prompt-registry/optimize-prompts/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "mlops.serve.vllm-tool-calling",
+    "title": "vLLM 서버에서 도구 호출 켜기",
+    "en": "Enabling Tool Calling in vLLM Serve",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "vllm serve에 자동 도구 선택과 모델에 맞는 파서를 켜서, 직접 띄운 모델도 OpenAI 형식의 tool_calls를 돌려주게 만든다.",
+    "objectives": [
+      "--enable-auto-tool-choice와 --tool-call-parser를 모델에 맞게 골라 서버를 띄울 수 있다",
+      "tool_choice의 auto·required·none·특정 함수 지정이 어떻게 다르게 동작하는지 구분할 수 있다",
+      "도구 호출이 나오지 않거나 인자가 깨지는 원인을 플래그 누락·채팅 템플릿·strict 설정에서 찾아 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.vllm-openai-server",
+      "llm.tools.tool-call"
+    ],
+    "related": [
+      "llm.tools.tool-choice",
+      "llm.tools.strict-tool-use"
+    ],
+    "aliases": [
+      "vLLM tool calling",
+      "vLLM 도구 호출",
+      "enable-auto-tool-choice",
+      "vLLM function calling",
+      "vLLM 함수 호출"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/features/tool_calling.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "mlops.observe.trace-redaction",
+    "title": "트레이스에 민감정보 남기지 않기: 스팬 처리기",
+    "en": "Redacting Sensitive Data in Traces",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "트레이스가 서버로 가기 전에 스팬마다 함수를 돌려 이메일·카드번호 같은 값을 지우거나 바꾸도록 MLflow 트레이싱을 설정한다.",
+    "objectives": [
+      "mlflow.tracing.configure에 스팬 처리기를 등록해 입력·출력의 민감정보를 가릴 수 있다",
+      "스팬 유형에 따라 처리 방식을 나눠 도구 결과와 메시지를 다르게 가릴 수 있다",
+      "입력 키가 없거나 문자열이 아닐 때 처리기가 터지는 실수와 출력을 빼먹는 실수를 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.observe.manual-tracing"
+    ],
+    "related": [
+      "ax.security.pii-redaction",
+      "mlops.observe.span-type"
+    ],
+    "aliases": [
+      "트레이스 마스킹",
+      "trace redaction",
+      "트레이스 PII 마스킹",
+      "mlflow.tracing.configure",
+      "trace masking"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/tracing/observe-with-traces/masking/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
     "id": "mlops.track.experiment-tracking",
     "title": "실험 추적: 파라미터·지표·모델 기록하기",
     "en": "Experiment Tracking with MLflow",
@@ -1553,6 +1692,80 @@
     ],
     "refs": [
       "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/llm-judge/custom-judges/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "mlops.finetune.grpo-reward-function",
+    "title": "보상 함수(GRPO reward function)",
+    "en": "Reward Function for GRPO",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "생성된 답 목록을 받아 답마다 점수 하나씩을 돌려주는 파이썬 함수로, 여러 개를 주면 점수가 합쳐지거나 가중치로 섞인다.",
+    "parent": "mlops.finetune.grpo-trainer",
+    "related": [
+      "llm.internals.reward-model"
+    ],
+    "aliases": [
+      "GRPO reward function",
+      "reward_funcs",
+      "GRPO 보상 함수",
+      "reward_weights",
+      "GRPO 보상"
+    ]
+  },
+  {
+    "id": "mlops.serve.vllm-structured-outputs",
+    "title": "vLLM 구조화 출력(structured_outputs)",
+    "en": "Structured Outputs in vLLM",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "직접 띄운 vLLM 서버에 선택지·정규식·JSON 스키마·문법을 넘겨 답이 그 모양을 벗어나지 않게 묶는 요청 옵션이다.",
+    "parent": "mlops.serve.vllm-openai-server",
+    "related": [
+      "llm.api.structured-output",
+      "llm.internals.structured-decoding"
+    ],
+    "aliases": [
+      "vLLM structured outputs",
+      "vLLM 구조화 출력",
+      "vLLM guided decoding",
+      "StructuredOutputsParams",
+      "vLLM JSON 스키마"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/features/structured_outputs.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "mlops.observe.trace-sampling",
+    "title": "트레이스 샘플링과 비동기 기록",
+    "en": "Trace Sampling and Async Trace Logging",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "운영 중 트레이스를 정한 비율만 남기고 백그라운드로 보내 앱을 느리게 하지 않게 하는 MLflow 설정으로, 샘플링은 트레이스 단위로 정해진다.",
+    "parent": "mlops.observe.manual-tracing",
+    "related": [
+      "mlops.observe.lightweight-tracing-sdk"
+    ],
+    "aliases": [
+      "trace sampling",
+      "MLFLOW_TRACE_SAMPLING_RATIO",
+      "트레이스 샘플링",
+      "sampling_ratio_override",
+      "async trace logging"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/tracing/prod-tracing/"
     ],
     "volatile": true,
     "checked_at": "2026-11-10"
@@ -2230,6 +2443,103 @@
     ],
     "refs": [
       "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/llm-judge/custom-judges/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "mlops.finetune.num-generations",
+    "title": "프롬프트당 생성 수(num_generations)",
+    "en": "Number of Generations per Prompt",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "GRPO가 한 프롬프트마다 뽑는 답의 개수로, 이 묶음 안에서 점수를 비교하므로 실제 배치 크기가 이 값으로 나누어떨어져야 한다.",
+    "parent": "mlops.finetune.grpo-trainer",
+    "aliases": [
+      "num_generations",
+      "생성 그룹 크기",
+      "GRPO group size",
+      "GRPO 그룹"
+    ]
+  },
+  {
+    "id": "mlops.prompt.gepa-optimizer",
+    "title": "GEPA 프롬프트 옵티마이저",
+    "en": "GEPA Prompt Optimizer",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "실패한 예시를 더 강한 모델이 되돌아보게 해 프롬프트를 여러 번 고쳐 쓰는 옵티마이저로, 평가 데이터가 넉넉할 때 잘 맞는다.",
+    "parent": "mlops.prompt.optimize-prompts",
+    "aliases": [
+      "GEPA",
+      "GepaPromptOptimizer",
+      "GEPA 옵티마이저"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "mlops.serve.tool-call-parser",
+    "title": "도구 호출 파서(--tool-call-parser)",
+    "en": "Tool Call Parser",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "모델이 글로 내놓은 도구 호출을 읽어 tool_calls 구조로 바꾸는 vLLM 부품으로, 모델 계열마다 맞는 이름을 골라야 한다.",
+    "parent": "mlops.serve.vllm-tool-calling",
+    "aliases": [
+      "tool-call-parser",
+      "tool call parser",
+      "도구 호출 파서",
+      "hermes 파서",
+      "llama3_json"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "mlops.observe.span-processor",
+    "title": "MLflow 스팬 처리기(span processor)",
+    "en": "Span Processor",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "새 스팬이 생길 때마다 차례로 불려 스팬 내용을 그 자리에서 고치는 함수로, 등록 목록을 비우면 원래대로 돌아간다.",
+    "parent": "mlops.observe.trace-redaction",
+    "aliases": [
+      "MLflow span processor",
+      "span_processors",
+      "MLflow 스팬 프로세서"
+    ]
+  },
+  {
+    "id": "mlops.observe.otlp-export",
+    "title": "OTLP로 트레이스 내보내기",
+    "en": "Exporting MLflow Traces via OTLP",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "MLflow 트레이스를 OpenTelemetry 수집기로 보내 기존 관측 도구에서 함께 보게 하는 설정으로, 이중 내보내기를 켜야 MLflow UI에도 남는다.",
+    "parent": "mlops.observe.manual-tracing",
+    "related": [
+      "ops.observe.tracing"
+    ],
+    "aliases": [
+      "MLflow OTLP export",
+      "OTEL_EXPORTER_OTLP_TRACES_ENDPOINT",
+      "MLflow OpenTelemetry",
+      "MLflow OTLP 내보내기",
+      "MLflow dual export"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/tracing/opentelemetry/export/"
     ],
     "volatile": true,
     "checked_at": "2026-11-10"

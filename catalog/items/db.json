@@ -644,6 +644,75 @@
     ]
   },
   {
+    "id": "db.sql.pg-dump-restore",
+    "title": "pg_dump와 pg_restore로 DB 백업하고 되살리기",
+    "en": "Backing Up and Restoring with pg_dump and pg_restore",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "SQL",
+    "summary": "pg_dump로 데이터베이스 하나를 파일로 떠 두고 psql이나 pg_restore로 다른 DB에 다시 살려 내는 방법이다.",
+    "objectives": [
+      "pg_dump로 데이터베이스 하나를 SQL 파일이나 custom 형식 파일로 저장할 수 있다",
+      "psql과 pg_restore 중 어느 쪽으로 되살려야 하는지 덤프 형식을 보고 고를 수 있다",
+      "ON_ERROR_STOP이나 --single-transaction으로 반쯤만 복원되는 실수를 막을 수 있다",
+      "역할이 없어 소유자·권한 복원이 실패할 때 원인을 찾고 해결할 수 있다"
+    ],
+    "prerequisites": [
+      "db.postgres.first-run"
+    ],
+    "related": [
+      "db.sql.copy-csv",
+      "db.sql.roles-privileges"
+    ],
+    "aliases": [
+      "pg_dump",
+      "pg_restore",
+      "DB 덤프",
+      "덤프 복원",
+      "PostgreSQL 백업"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/backup-dump.html",
+      "https://www.postgresql.org/docs/current/app-pgrestore.html"
+    ]
+  },
+  {
+    "id": "db.sql.psycopg-basics",
+    "title": "psycopg로 파이썬에서 PostgreSQL 쓰기",
+    "en": "Using PostgreSQL from Python with psycopg",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "SQL",
+    "summary": "psycopg 3로 PostgreSQL에 연결해 %s 자리표시자로 값을 넘겨 쿼리를 실행하고 결과를 파이썬 값으로 받는 방법이다.",
+    "objectives": [
+      "psycopg.connect()와 커서로 SELECT를 실행하고 fetchone·fetchall로 결과를 받을 수 있다",
+      "%s 자리표시자와 값 튜플로 INSERT를 실행하고 executemany로 여러 행을 넣을 수 있다",
+      "with 블록이 끝날 때 커밋·롤백·닫기가 어떻게 일어나는지 설명할 수 있다",
+      "commit을 빠뜨려 넣은 행이 사라지는 실수를 찾아 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "db.sql.select-first",
+      "db.sql.write-rows",
+      "db.internals.transaction-basics"
+    ],
+    "related": [
+      "db.sql.python-sqlite3",
+      "db.orm.core-connection"
+    ],
+    "aliases": [
+      "psycopg",
+      "psycopg3",
+      "psycopg.connect",
+      "파이썬 PostgreSQL 드라이버"
+    ],
+    "refs": [
+      "https://www.psycopg.org/psycopg3/docs/basic/usage.html",
+      "https://www.psycopg.org/psycopg3/docs/basic/transactions.html"
+    ]
+  },
+  {
     "id": "db.sql.subquery-cte",
     "title": "서브쿼리와 WITH 절로 조회 나누기",
     "en": "Subqueries and WITH Queries (CTE)",
@@ -1071,6 +1140,70 @@
     "refs": [
       "https://pandas.pydata.org/docs/reference/api/pandas.read_sql.html",
       "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_sql.html"
+    ]
+  },
+  {
+    "id": "db.orm.sqlalchemy-asyncio",
+    "title": "SQLAlchemy 비동기 세션: AsyncSession",
+    "en": "SQLAlchemy asyncio: AsyncEngine and AsyncSession",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "ORM",
+    "summary": "create_async_engine과 async_sessionmaker로 비동기 세션을 만들고 await로 쿼리를 실행하며 지연 로딩 대신 미리 불러오는 방법이다.",
+    "objectives": [
+      "create_async_engine과 async_sessionmaker로 AsyncSession을 만들어 await로 조회·저장할 수 있다",
+      "관계 속성을 그냥 읽으면 비동기에서 오류가 나는 이유를 설명하고 selectinload로 고칠 수 있다",
+      "AsyncSession 하나를 여러 태스크가 함께 쓰면 안 되는 이유를 말하고 태스크마다 세션을 나눌 수 있다"
+    ],
+    "prerequisites": [
+      "db.orm.sqlalchemy-basics",
+      "db.orm.relationship-patterns"
+    ],
+    "related": [
+      "db.orm.session",
+      "db.orm.n-plus-one"
+    ],
+    "aliases": [
+      "AsyncSession",
+      "create_async_engine",
+      "async_sessionmaker",
+      "비동기 SQLAlchemy",
+      "async SQLAlchemy"
+    ],
+    "refs": [
+      "https://docs.sqlalchemy.org/en/20/orm/extensions/asyncio.html"
+    ]
+  },
+  {
+    "id": "db.cache.redis-pubsub",
+    "title": "Redis Pub/Sub로 메시지 알리기",
+    "en": "Messaging with Redis Pub/Sub",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "캐시",
+    "summary": "PUBLISH로 채널에 메시지를 보내면 SUBSCRIBE 중인 연결 모두가 받는 Redis의 게시·구독 기능과 그 한계를 다룬다.",
+    "objectives": [
+      "SUBSCRIBE·PUBLISH로 두 연결 사이에 메시지를 주고받을 수 있다",
+      "PSUBSCRIBE 패턴으로 이름이 비슷한 여러 채널을 한 번에 구독할 수 있다",
+      "구독자가 끊겨 있던 동안의 메시지는 사라진다는 점을 설명하고 Streams가 필요한 경우를 고를 수 있다"
+    ],
+    "prerequisites": [
+      "db.cache.redis-first-run"
+    ],
+    "related": [
+      "db.cache.redis-data-types"
+    ],
+    "aliases": [
+      "Redis PUBLISH",
+      "Redis SUBSCRIBE",
+      "PSUBSCRIBE",
+      "Redis 게시 구독",
+      "Redis 채널 구독"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/develop/pubsub/"
     ]
   },
   {
@@ -1845,6 +1978,110 @@
     ]
   },
   {
+    "id": "db.sql.pg-dump-formats",
+    "title": "pg_dump 출력 형식: plain·custom·directory",
+    "en": "pg_dump Output Formats",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "pg_dump가 만드는 평문 SQL은 psql로, -Fc custom·-Fd directory·-Ft tar 보관 형식은 pg_restore로 되살리며 골라 복원하기는 보관 형식에서만 된다.",
+    "parent": "db.sql.pg-dump-restore",
+    "aliases": [
+      "pg_dump -Fc",
+      "custom 덤프 형식",
+      "평문 덤프"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/backup-dump.html"
+    ]
+  },
+  {
+    "id": "db.sql.psycopg-row-factory",
+    "title": "psycopg 행 팩토리: dict_row로 열 이름 받기",
+    "en": "psycopg Row Factories",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "튜플 대신 dict_row·namedtuple_row·class_row로 열 이름이 붙은 행을 받도록 연결이나 커서에 정해 두는 설정이다.",
+    "parent": "db.sql.psycopg-basics",
+    "aliases": [
+      "row_factory",
+      "dict_row",
+      "class_row",
+      "namedtuple_row"
+    ],
+    "refs": [
+      "https://www.psycopg.org/psycopg3/docs/advanced/rows.html"
+    ]
+  },
+  {
+    "id": "db.sql.psycopg-transaction-block",
+    "title": "psycopg의 conn.transaction() 블록",
+    "en": "psycopg Transaction Blocks",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "with conn.transaction(): 안의 문장을 한 묶음으로 커밋하거나 오류 때 되돌리며, 이미 열린 트랜잭션 안에서는 세이브포인트가 되는 블록이다.",
+    "parent": "db.sql.psycopg-basics",
+    "related": [
+      "db.internals.autocommit"
+    ],
+    "aliases": [
+      "conn.transaction",
+      "psycopg 트랜잭션",
+      "psycopg 세이브포인트"
+    ],
+    "refs": [
+      "https://www.psycopg.org/psycopg3/docs/basic/transactions.html"
+    ]
+  },
+  {
+    "id": "db.orm.async-expire-on-commit",
+    "title": "expire_on_commit=False와 비동기 지연 로딩 오류",
+    "en": "expire_on_commit and Implicit IO in asyncio",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "ORM",
+    "summary": "커밋 뒤 속성을 읽을 때 몰래 DB를 다시 부르지 않도록 비동기 세션에서 expire_on_commit=False를 주는 설정이다.",
+    "parent": "db.orm.sqlalchemy-asyncio",
+    "related": [
+      "db.orm.eager-loading"
+    ],
+    "aliases": [
+      "expire_on_commit",
+      "MissingGreenlet"
+    ],
+    "refs": [
+      "https://docs.sqlalchemy.org/en/20/orm/extensions/asyncio.html"
+    ]
+  },
+  {
+    "id": "db.sql.search-path",
+    "title": "스키마와 search_path",
+    "en": "Schemas and search_path",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "한 DB 안의 표를 이름 공간으로 나누는 스키마와, 스키마 이름 없이 쓴 표를 어느 스키마에서 찾을지 정하는 순서 목록이다.",
+    "related": [
+      "db.sql.roles-privileges"
+    ],
+    "aliases": [
+      "search_path",
+      "public 스키마",
+      "CREATE SCHEMA",
+      "스키마 한정 이름"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/ddl-schemas.html"
+    ]
+  },
+  {
     "id": "db.sql.view",
     "title": "뷰: 쿼리에 이름 붙여 표처럼 쓰기",
     "en": "View",
@@ -2103,6 +2340,89 @@
     ],
     "refs": [
       "https://www.postgresql.org/docs/current/sql-expressions.html"
+    ]
+  },
+  {
+    "id": "db.sql.pg-dumpall-globals",
+    "title": "pg_dumpall --globals-only: 역할 따로 떠 두기",
+    "en": "pg_dumpall --globals-only",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "SQL",
+    "summary": "pg_dump가 빼먹는 역할과 테이블스페이스 정의만 따로 저장해 새 서버에서 소유자·권한 복원이 실패하지 않게 하는 옵션이다.",
+    "parent": "db.sql.pg-dump-restore",
+    "aliases": [
+      "pg_dumpall -g",
+      "globals-only",
+      "역할 백업"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/backup-dump.html"
+    ]
+  },
+  {
+    "id": "db.sql.merge",
+    "title": "MERGE: 조건에 따라 넣고 고치고 지우기",
+    "en": "MERGE Statement",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "SQL",
+    "summary": "원본 표와 대상 표를 이어 맞는 행은 고치거나 지우고 없는 행은 넣는 일을 한 문장으로 하는 SQL 명령이다.",
+    "related": [
+      "db.sql.upsert-on-conflict"
+    ],
+    "aliases": [
+      "MERGE INTO",
+      "WHEN MATCHED",
+      "WHEN NOT MATCHED"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/sql-merge.html"
+    ]
+  },
+  {
+    "id": "db.sql.listen-notify",
+    "title": "LISTEN과 NOTIFY: PostgreSQL 알림",
+    "en": "LISTEN and NOTIFY",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "SQL",
+    "summary": "NOTIFY로 채널에 짧은 글을 보내면 그 채널을 LISTEN 중인 다른 연결이 커밋 뒤에 받는 PostgreSQL의 알림 기능이다.",
+    "related": [
+      "db.cache.redis-pubsub"
+    ],
+    "aliases": [
+      "LISTEN NOTIFY",
+      "pg_notify",
+      "PostgreSQL 알림 채널"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/sql-notify.html"
+    ]
+  },
+  {
+    "id": "db.sql.lateral-join",
+    "title": "LATERAL: 앞 행을 보고 도는 서브쿼리",
+    "en": "LATERAL Subqueries",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "SQL",
+    "summary": "FROM 절의 서브쿼리가 앞에 나온 표의 열을 쓸 수 있게 해 행마다 따로 계산한 결과를 붙이는 키워드다.",
+    "related": [
+      "db.sql.subquery-cte",
+      "db.sql.join"
+    ],
+    "aliases": [
+      "JOIN LATERAL",
+      "LEFT JOIN LATERAL",
+      "래터럴 조인"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/queries-table-expressions.html"
     ]
   },
   {

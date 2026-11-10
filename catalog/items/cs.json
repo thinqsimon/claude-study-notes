@@ -662,6 +662,97 @@
     ]
   },
   {
+    "id": "cs.lang.compile-vs-interpret",
+    "title": "컴파일과 인터프리트: 코드가 실행되기까지",
+    "en": "Compilation vs Interpretation",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "언어의 실행",
+    "summary": "소스 코드를 미리 기계어로 바꾸는 방식과 실행하면서 해석하는 방식, 그 사이의 바이트코드를 비교한다.",
+    "objectives": [
+      "컴파일 방식과 인터프리트 방식이 언제 무엇을 번역하는지 구분할 수 있다",
+      "파이썬 코드가 바이트코드로 바뀐 뒤 가상 머신에서 실행되는 흐름을 설명할 수 있다",
+      "dis 모듈로 함수의 바이트코드를 직접 확인할 수 있다"
+    ],
+    "related": [
+      "cs.lang.garbage-collection"
+    ],
+    "aliases": [
+      "컴파일 언어",
+      "인터프리터 언어",
+      "compiled language",
+      "interpreted language",
+      "컴파일러와 인터프리터"
+    ],
+    "refs": [
+      "https://docs.python.org/3/glossary.html",
+      "https://docs.python.org/3/library/dis.html"
+    ]
+  },
+  {
+    "id": "cs.os.hard-vs-symbolic-link",
+    "title": "하드 링크와 심볼릭 링크",
+    "en": "Hard Links vs Symbolic Links",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "같은 파일에 이름을 하나 더 붙이는 하드 링크와 다른 경로를 가리키는 심볼릭 링크가 어떻게 다른지 익힌다.",
+    "objectives": [
+      "하드 링크와 심볼릭 링크가 각각 무엇을 가리키는지 아이노드로 설명할 수 있다",
+      "원본을 지우거나 옮겼을 때 두 링크가 어떻게 되는지 예측할 수 있다",
+      "디렉터리나 다른 파일 시스템을 가리킬 때 어느 링크를 써야 하는지 고를 수 있다"
+    ],
+    "aliases": [
+      "심링크",
+      "symlink",
+      "hard link",
+      "소프트 링크",
+      "symbolic link",
+      "ln -s"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man7/symlink.7.html",
+      "https://man7.org/linux/man-pages/man2/link.2.html",
+      "https://man7.org/linux/man-pages/man7/inode.7.html"
+    ]
+  },
+  {
+    "id": "cs.os.condition-variable",
+    "title": "조건 변수로 스레드 기다리게 하기",
+    "en": "Condition Variables",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "잠금과 함께 쓰는 조건 변수로 원하는 상태가 될 때까지 스레드를 재우고 깨우는 방법을 익힌다.",
+    "objectives": [
+      "조건 변수의 wait가 잠금을 풀고 잠든 뒤 다시 잡는 순서를 설명할 수 있다",
+      "조건을 while 반복문으로 다시 확인해야 하는 까닭을 설명할 수 있다",
+      "조건 변수로 생산자-소비자 코드를 작성할 수 있다",
+      "notify와 notify_all 중 상황에 맞는 것을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "cs.os.mutex-lock"
+    ],
+    "related": [
+      "cs.os.mutex-lock",
+      "be.async.semaphore"
+    ],
+    "aliases": [
+      "조건 변수",
+      "condition variable",
+      "threading.Condition",
+      "pthread_cond_wait",
+      "cond_wait"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/threading.html",
+      "https://man7.org/linux/man-pages/man3/pthread_cond_wait.3p.html"
+    ]
+  },
+  {
     "id": "cs.os.process",
     "title": "프로세스",
     "en": "Process",
@@ -1478,6 +1569,65 @@
     ]
   },
   {
+    "id": "cs.lang.bytecode",
+    "title": "바이트코드",
+    "en": "Bytecode",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "언어의 실행",
+    "summary": "소스 코드를 가상 머신이 실행하기 쉬운 명령으로 바꾼 중간 표현으로, 파이썬은 .pyc 파일에 저장해 둔다.",
+    "parent": "cs.lang.compile-vs-interpret",
+    "aliases": [
+      "byte code",
+      "pyc 파일",
+      ".pyc"
+    ],
+    "refs": [
+      "https://docs.python.org/3/glossary.html"
+    ]
+  },
+  {
+    "id": "cs.os.inode",
+    "title": "아이노드",
+    "en": "Inode",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "파일의 크기·소유자·권한·시각·링크 수 같은 정보를 담는 파일 시스템의 기록으로, 파일 이름은 따로 둔다.",
+    "parent": "cs.os.hard-vs-symbolic-link",
+    "aliases": [
+      "inode",
+      "아이노드 번호",
+      "inode number",
+      "하드 링크 수"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man7/inode.7.html"
+    ]
+  },
+  {
+    "id": "cs.os.producer-consumer",
+    "title": "생산자-소비자 문제",
+    "en": "Producer-Consumer Problem",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "한쪽 스레드가 넣고 다른 쪽이 꺼내는 공유 버퍼를 비었을 때와 찼을 때 안전하게 기다리게 하는 문제다.",
+    "parent": "cs.os.condition-variable",
+    "aliases": [
+      "producer consumer",
+      "생산자 소비자",
+      "bounded buffer",
+      "유한 버퍼 문제"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/threading.html"
+    ]
+  },
+  {
     "id": "cs.algo.inorder-traversal",
     "title": "중위 순회",
     "en": "In-order Traversal",
@@ -1600,6 +1750,111 @@
       "RLock",
       "재귀 잠금",
       "recursive mutex"
+    ]
+  },
+  {
+    "id": "cs.lang.virtual-machine",
+    "title": "언어 가상 머신",
+    "en": "Language Virtual Machine",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "언어의 실행",
+    "summary": "바이트코드를 한 명령씩 읽어 실행하는 소프트웨어로 만든 컴퓨터로, CPython과 JVM이 대표적이다.",
+    "parent": "cs.lang.compile-vs-interpret",
+    "aliases": [
+      "파이썬 가상 머신",
+      "Python VM",
+      "process virtual machine",
+      "바이트코드 인터프리터"
+    ],
+    "refs": [
+      "https://docs.python.org/3/glossary.html"
+    ]
+  },
+  {
+    "id": "cs.lang.jit-compiler",
+    "title": "JIT 컴파일러",
+    "en": "Just-In-Time Compiler",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "언어의 실행",
+    "summary": "실행 중에 자주 쓰이는 코드를 그 자리에서 기계어로 바꿔 인터프리트보다 빠르게 돌리는 컴파일러다.",
+    "parent": "cs.lang.compile-vs-interpret",
+    "aliases": [
+      "JIT 컴파일",
+      "just-in-time compilation",
+      "저스트 인 타임 컴파일"
+    ],
+    "refs": [
+      "https://peps.python.org/pep-0744/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "cs.os.dangling-symlink",
+    "title": "깨진 심볼릭 링크",
+    "en": "Dangling Symbolic Link",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "가리키던 경로가 지워지거나 옮겨져 열 수 없게 된 심볼릭 링크다.",
+    "parent": "cs.os.hard-vs-symbolic-link",
+    "aliases": [
+      "dangling link",
+      "끊어진 심링크",
+      "broken symlink",
+      "댕글링 링크"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man7/symlink.7.html"
+    ]
+  },
+  {
+    "id": "cs.os.spurious-wakeup",
+    "title": "가짜 깨움",
+    "en": "Spurious Wakeup",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "알림을 받지 않았거나 조건이 아직 참이 아닌데도 조건 변수에서 기다리던 스레드가 깨어나는 일이다.",
+    "parent": "cs.os.condition-variable",
+    "aliases": [
+      "spurious wake-up",
+      "허위 깨움",
+      "가짜 웨이크업"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man3/pthread_cond_wait.3p.html"
+    ]
+  },
+  {
+    "id": "cs.data.endianness",
+    "title": "엔디언과 네트워크 바이트 순서",
+    "en": "Endianness and Network Byte Order",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "여러 바이트 수를 메모리에 놓는 순서로, 큰 쪽부터 놓는 빅 엔디언이 네트워크 표준이다.",
+    "related": [
+      "cs.data.binary-bitwise"
+    ],
+    "aliases": [
+      "엔디안",
+      "byte order",
+      "big-endian",
+      "little-endian",
+      "바이트 순서",
+      "htonl"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man3/byteorder.3.html",
+      "https://man7.org/linux/man-pages/man3/endian.3.html"
     ]
   }
 ]

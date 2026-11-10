@@ -1,5 +1,5 @@
 {
- "version": "0.24.0",
+ "version": "0.25.0",
  "domains": [
   {
    "prefix": "dev",
@@ -3723,6 +3723,100 @@
    "domain": "cs"
   },
   {
+   "id": "cs.lang.compile-vs-interpret",
+   "title": "컴파일과 인터프리트: 코드가 실행되기까지",
+   "en": "Compilation vs Interpretation",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "언어의 실행",
+   "summary": "소스 코드를 미리 기계어로 바꾸는 방식과 실행하면서 해석하는 방식, 그 사이의 바이트코드를 비교한다.",
+   "objectives": [
+    "컴파일 방식과 인터프리트 방식이 언제 무엇을 번역하는지 구분할 수 있다",
+    "파이썬 코드가 바이트코드로 바뀐 뒤 가상 머신에서 실행되는 흐름을 설명할 수 있다",
+    "dis 모듈로 함수의 바이트코드를 직접 확인할 수 있다"
+   ],
+   "related": [
+    "cs.lang.garbage-collection"
+   ],
+   "aliases": [
+    "컴파일 언어",
+    "인터프리터 언어",
+    "compiled language",
+    "interpreted language",
+    "컴파일러와 인터프리터"
+   ],
+   "refs": [
+    "https://docs.python.org/3/glossary.html",
+    "https://docs.python.org/3/library/dis.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.hard-vs-symbolic-link",
+   "title": "하드 링크와 심볼릭 링크",
+   "en": "Hard Links vs Symbolic Links",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "같은 파일에 이름을 하나 더 붙이는 하드 링크와 다른 경로를 가리키는 심볼릭 링크가 어떻게 다른지 익힌다.",
+   "objectives": [
+    "하드 링크와 심볼릭 링크가 각각 무엇을 가리키는지 아이노드로 설명할 수 있다",
+    "원본을 지우거나 옮겼을 때 두 링크가 어떻게 되는지 예측할 수 있다",
+    "디렉터리나 다른 파일 시스템을 가리킬 때 어느 링크를 써야 하는지 고를 수 있다"
+   ],
+   "aliases": [
+    "심링크",
+    "symlink",
+    "hard link",
+    "소프트 링크",
+    "symbolic link",
+    "ln -s"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man7/symlink.7.html",
+    "https://man7.org/linux/man-pages/man2/link.2.html",
+    "https://man7.org/linux/man-pages/man7/inode.7.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.condition-variable",
+   "title": "조건 변수로 스레드 기다리게 하기",
+   "en": "Condition Variables",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "잠금과 함께 쓰는 조건 변수로 원하는 상태가 될 때까지 스레드를 재우고 깨우는 방법을 익힌다.",
+   "objectives": [
+    "조건 변수의 wait가 잠금을 풀고 잠든 뒤 다시 잡는 순서를 설명할 수 있다",
+    "조건을 while 반복문으로 다시 확인해야 하는 까닭을 설명할 수 있다",
+    "조건 변수로 생산자-소비자 코드를 작성할 수 있다",
+    "notify와 notify_all 중 상황에 맞는 것을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "cs.os.mutex-lock"
+   ],
+   "related": [
+    "cs.os.mutex-lock",
+    "be.async.semaphore"
+   ],
+   "aliases": [
+    "조건 변수",
+    "condition variable",
+    "threading.Condition",
+    "pthread_cond_wait",
+    "cond_wait"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/threading.html",
+    "https://man7.org/linux/man-pages/man3/pthread_cond_wait.3p.html"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.os.process",
    "title": "프로세스",
    "en": "Process",
@@ -4578,6 +4672,68 @@
    "domain": "cs"
   },
   {
+   "id": "cs.lang.bytecode",
+   "title": "바이트코드",
+   "en": "Bytecode",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "언어의 실행",
+   "summary": "소스 코드를 가상 머신이 실행하기 쉬운 명령으로 바꾼 중간 표현으로, 파이썬은 .pyc 파일에 저장해 둔다.",
+   "parent": "cs.lang.compile-vs-interpret",
+   "aliases": [
+    "byte code",
+    "pyc 파일",
+    ".pyc"
+   ],
+   "refs": [
+    "https://docs.python.org/3/glossary.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.inode",
+   "title": "아이노드",
+   "en": "Inode",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "파일의 크기·소유자·권한·시각·링크 수 같은 정보를 담는 파일 시스템의 기록으로, 파일 이름은 따로 둔다.",
+   "parent": "cs.os.hard-vs-symbolic-link",
+   "aliases": [
+    "inode",
+    "아이노드 번호",
+    "inode number",
+    "하드 링크 수"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man7/inode.7.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.producer-consumer",
+   "title": "생산자-소비자 문제",
+   "en": "Producer-Consumer Problem",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "한쪽 스레드가 넣고 다른 쪽이 꺼내는 공유 버퍼를 비었을 때와 찼을 때 안전하게 기다리게 하는 문제다.",
+   "parent": "cs.os.condition-variable",
+   "aliases": [
+    "producer consumer",
+    "생산자 소비자",
+    "bounded buffer",
+    "유한 버퍼 문제"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/threading.html"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.algo.inorder-traversal",
    "title": "중위 순회",
    "en": "In-order Traversal",
@@ -4705,6 +4861,116 @@
     "RLock",
     "재귀 잠금",
     "recursive mutex"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.lang.virtual-machine",
+   "title": "언어 가상 머신",
+   "en": "Language Virtual Machine",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "언어의 실행",
+   "summary": "바이트코드를 한 명령씩 읽어 실행하는 소프트웨어로 만든 컴퓨터로, CPython과 JVM이 대표적이다.",
+   "parent": "cs.lang.compile-vs-interpret",
+   "aliases": [
+    "파이썬 가상 머신",
+    "Python VM",
+    "process virtual machine",
+    "바이트코드 인터프리터"
+   ],
+   "refs": [
+    "https://docs.python.org/3/glossary.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.lang.jit-compiler",
+   "title": "JIT 컴파일러",
+   "en": "Just-In-Time Compiler",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "언어의 실행",
+   "summary": "실행 중에 자주 쓰이는 코드를 그 자리에서 기계어로 바꿔 인터프리트보다 빠르게 돌리는 컴파일러다.",
+   "parent": "cs.lang.compile-vs-interpret",
+   "aliases": [
+    "JIT 컴파일",
+    "just-in-time compilation",
+    "저스트 인 타임 컴파일"
+   ],
+   "refs": [
+    "https://peps.python.org/pep-0744/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.dangling-symlink",
+   "title": "깨진 심볼릭 링크",
+   "en": "Dangling Symbolic Link",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "가리키던 경로가 지워지거나 옮겨져 열 수 없게 된 심볼릭 링크다.",
+   "parent": "cs.os.hard-vs-symbolic-link",
+   "aliases": [
+    "dangling link",
+    "끊어진 심링크",
+    "broken symlink",
+    "댕글링 링크"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man7/symlink.7.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.spurious-wakeup",
+   "title": "가짜 깨움",
+   "en": "Spurious Wakeup",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "알림을 받지 않았거나 조건이 아직 참이 아닌데도 조건 변수에서 기다리던 스레드가 깨어나는 일이다.",
+   "parent": "cs.os.condition-variable",
+   "aliases": [
+    "spurious wake-up",
+    "허위 깨움",
+    "가짜 웨이크업"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man3/pthread_cond_wait.3p.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.data.endianness",
+   "title": "엔디언과 네트워크 바이트 순서",
+   "en": "Endianness and Network Byte Order",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "데이터 표현",
+   "summary": "여러 바이트 수를 메모리에 놓는 순서로, 큰 쪽부터 놓는 빅 엔디언이 네트워크 표준이다.",
+   "related": [
+    "cs.data.binary-bitwise"
+   ],
+   "aliases": [
+    "엔디안",
+    "byte order",
+    "big-endian",
+    "little-endian",
+    "바이트 순서",
+    "htonl"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man3/byteorder.3.html",
+    "https://man7.org/linux/man-pages/man3/endian.3.html"
    ],
    "domain": "cs"
   },
@@ -5224,6 +5490,68 @@
    ],
    "refs": [
     "https://www.gov.uk/service-manual/measuring-success/how-to-set-performance-metrics-for-your-service"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.form-error-messages",
+   "title": "폼 오류 메시지 쓰기와 배치하기",
+   "en": "Writing and Placing Form Error Messages",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "기획 기초",
+   "summary": "입력이 잘못됐을 때 무엇이 틀렸고 어떻게 고치는지를 질문 바로 아래에 구체적으로 알리고, 페이지 위에 모아 보여 주는 설계다.",
+   "objectives": [
+    "빈 칸·형식 오류·길이 초과마다 다른 오류 문구를 쓸 수 있다",
+    "\"잘못된 입력입니다\" 같은 뭉뚱그린 문구를 고칠 방법이 담긴 문구로 바꿀 수 있다",
+    "오류 메시지와 오류 요약을 같은 문구로 화면에 배치할 수 있다",
+    "자격 없음·서비스 장애처럼 오류 메시지로 다루면 안 되는 경우를 구분할 수 있다"
+   ],
+   "related": [
+    "fe.html.form-validation"
+   ],
+   "aliases": [
+    "폼 오류 메시지 문구",
+    "폼 에러 메시지 작성",
+    "error message design",
+    "폼 오류 표시",
+    "입력 오류 안내"
+   ],
+   "refs": [
+    "https://design-system.service.gov.uk/components/error-message/",
+    "https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.discovery-alpha",
+   "title": "디스커버리와 알파로 만들 것 정하기",
+   "en": "Discovery and Alpha Phases",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "기획 기초",
+   "summary": "만들기 전에 디스커버리에서 문제와 제약을 이해하고, 알파에서 버릴 프로토타입으로 가장 위험한 가정을 시험해 다음 단계로 갈지 정하는 진행 방식이다.",
+   "objectives": [
+    "정해진 해결책을 풀어야 할 문제로 다시 쓸 수 있다",
+    "디스커버리와 알파에서 할 일과 하지 않을 일을 구분할 수 있다",
+    "가장 위험한 가정을 골라 알파에서 시험할 순서를 정할 수 있다",
+    "각 단계 끝에 계속·중단·반복 중 무엇을 고를지 근거를 들어 말할 수 있다"
+   ],
+   "related": [
+    "plan.basics.mvp-idea",
+    "plan.basics.success-metrics"
+   ],
+   "aliases": [
+    "디스커버리 단계",
+    "discovery phase",
+    "서비스 알파 단계",
+    "alpha phase"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/agile-delivery/how-the-discovery-phase-works",
+    "https://www.gov.uk/service-manual/agile-delivery/how-the-alpha-phase-works"
    ],
    "domain": "plan"
   },
@@ -5813,6 +6141,37 @@
    ],
    "refs": [
     "https://www.gov.uk/service-manual/user-research/contextual-research-and-observation"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.question-pages",
+   "title": "질문 페이지로 입력 흐름 나누기",
+   "en": "Designing Question Pages",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "긴 신청 양식을 한 페이지에 질문 하나씩 나누고, 제목·힌트·뒤로 가기·계속 버튼을 정해 사용자가 막히지 않게 하는 서비스 흐름 설계다.",
+   "objectives": [
+    "긴 양식을 한 페이지에 질문 하나씩 나눈 흐름으로 바꿀 수 있다",
+    "질문을 페이지 제목으로 쓰고 힌트 텍스트를 짧게 붙일 수 있다",
+    "뒤로 가기와 계속 버튼이 이전 답을 잃지 않게 흐름을 정할 수 있다",
+    "제출 전 답 확인 페이지를 흐름 끝에 넣을 수 있다"
+   ],
+   "related": [
+    "plan.basics.form-error-messages"
+   ],
+   "aliases": [
+    "질문 페이지",
+    "question pages",
+    "신청서 흐름",
+    "양식 페이지 나누기",
+    "폼 흐름 설계"
+   ],
+   "refs": [
+    "https://design-system.service.gov.uk/patterns/question-pages/",
+    "https://design-system.service.gov.uk/patterns/check-answers/"
    ],
    "domain": "plan"
   },
@@ -6467,6 +6826,110 @@
    "domain": "plan"
   },
   {
+   "id": "plan.basics.error-summary",
+   "title": "오류 요약(error summary)",
+   "en": "Error Summary",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "페이지 맨 위에 그 페이지의 입력 오류를 모두 나열하고 각 항목을 해당 입력 칸으로 이어 주는 상자다.",
+   "parent": "plan.basics.form-error-messages",
+   "aliases": [
+    "오류 요약",
+    "에러 요약 박스",
+    "error summary component",
+    "There is a problem 박스"
+   ],
+   "refs": [
+    "https://design-system.service.gov.uk/components/error-summary/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.error-suggestion",
+   "title": "오류 수정 제안(Error Suggestion)",
+   "en": "Error Suggestion",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "입력 오류를 알아챘으면 무엇이 틀렸는지에 더해 어떻게 고치면 되는지도 알려 주라는 WCAG의 AA 기준이다.",
+   "parent": "plan.basics.form-error-messages",
+   "aliases": [
+    "WCAG 3.3.3",
+    "SC 3.3.3",
+    "오류 수정 안내",
+    "error correction hint"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/error-suggestion.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.one-thing-per-page",
+   "title": "한 페이지에 한 가지(one thing per page)",
+   "en": "One Thing per Page",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "사용자가 한 번에 하나에만 집중하도록 페이지마다 질문 하나만 묻고, 묶는 것은 조사로 효과가 보일 때만 하는 원칙이다.",
+   "parent": "plan.basics.question-pages",
+   "aliases": [
+    "한 페이지 한 질문",
+    "one question per page",
+    "one thing per page 원칙"
+   ],
+   "refs": [
+    "https://design-system.service.gov.uk/patterns/question-pages/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.check-answers-page",
+   "title": "답 확인 페이지(check answers)",
+   "en": "Check Answers Page",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "제출 직전에 지금까지의 답을 묶어 보여 주고 항목마다 고치기 링크를 달아, 고친 뒤 다시 이 페이지로 돌아오게 하는 화면이다.",
+   "parent": "plan.basics.question-pages",
+   "aliases": [
+    "답 확인 페이지",
+    "check your answers",
+    "제출 전 확인 화면",
+    "입력 내용 확인 페이지"
+   ],
+   "refs": [
+    "https://design-system.service.gov.uk/patterns/check-answers/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.riskiest-assumption",
+   "title": "가장 위험한 가정(riskiest assumption)",
+   "en": "Riskiest Assumption",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "틀리면 서비스가 실패할 가능성이 가장 큰 믿음으로, 알파에서 프로토타입과 조사로 먼저 시험할 대상이다.",
+   "parent": "plan.basics.discovery-alpha",
+   "aliases": [
+    "위험한 가정",
+    "riskiest assumption test",
+    "핵심 가정 검증",
+    "가정 시험"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/agile-delivery/how-the-alpha-phase-works"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.constraints",
    "title": "제약(constraints)",
    "en": "Figma Constraints",
@@ -6854,6 +7317,68 @@
    ],
    "refs": [
     "https://www.gov.uk/service-manual/user-research/taking-notes-and-recording-user-research-sessions"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.hint-text",
+   "title": "힌트 텍스트(hint text)",
+   "en": "Hint Text",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "질문 라벨 아래에 붙여 대부분의 사용자가 답하는 데 도움이 되는 짧은 한 문장 안내로, 긴 설명이나 링크는 넣지 않는다.",
+   "parent": "plan.basics.question-pages",
+   "aliases": [
+    "힌트 텍스트",
+    "입력 힌트",
+    "field hint"
+   ],
+   "refs": [
+    "https://design-system.service.gov.uk/patterns/question-pages/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.hard-soft-constraints",
+   "title": "강한 제약과 약한 제약",
+   "en": "Hard and Soft Constraints",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "법처럼 바꿀 수 없는 제약과 기존 절차처럼 바꿔야 할 수 있는 제약을 나눠, 후자는 피해 가지 말고 고칠 대상으로 보는 구분이다.",
+   "parent": "plan.basics.discovery-alpha",
+   "aliases": [
+    "서비스 하드 제약",
+    "서비스 소프트 제약"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/agile-delivery/how-the-discovery-phase-works"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.alpha-prototype",
+   "title": "알파 프로토타입(버리는 프로토타입)",
+   "en": "Alpha Prototype",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "여러 해결안을 시험할 만큼만 만들고 대부분 버리는 프로토타입으로, 전체 여정이 아니라 가장 어려운 부분에 집중하며 일반에 공개하지 않는다.",
+   "parent": "plan.basics.discovery-alpha",
+   "related": [
+    "plan.basics.prototype"
+   ],
+   "aliases": [
+    "버리는 프로토타입",
+    "throwaway prototype",
+    "알파 시제품"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/agile-delivery/how-the-alpha-phase-works"
    ],
    "domain": "plan"
   },
@@ -16113,6 +16638,77 @@
    "domain": "db"
   },
   {
+   "id": "db.sql.pg-dump-restore",
+   "title": "pg_dump와 pg_restore로 DB 백업하고 되살리기",
+   "en": "Backing Up and Restoring with pg_dump and pg_restore",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "SQL",
+   "summary": "pg_dump로 데이터베이스 하나를 파일로 떠 두고 psql이나 pg_restore로 다른 DB에 다시 살려 내는 방법이다.",
+   "objectives": [
+    "pg_dump로 데이터베이스 하나를 SQL 파일이나 custom 형식 파일로 저장할 수 있다",
+    "psql과 pg_restore 중 어느 쪽으로 되살려야 하는지 덤프 형식을 보고 고를 수 있다",
+    "ON_ERROR_STOP이나 --single-transaction으로 반쯤만 복원되는 실수를 막을 수 있다",
+    "역할이 없어 소유자·권한 복원이 실패할 때 원인을 찾고 해결할 수 있다"
+   ],
+   "prerequisites": [
+    "db.postgres.first-run"
+   ],
+   "related": [
+    "db.sql.copy-csv",
+    "db.sql.roles-privileges"
+   ],
+   "aliases": [
+    "pg_dump",
+    "pg_restore",
+    "DB 덤프",
+    "덤프 복원",
+    "PostgreSQL 백업"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/backup-dump.html",
+    "https://www.postgresql.org/docs/current/app-pgrestore.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.psycopg-basics",
+   "title": "psycopg로 파이썬에서 PostgreSQL 쓰기",
+   "en": "Using PostgreSQL from Python with psycopg",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "SQL",
+   "summary": "psycopg 3로 PostgreSQL에 연결해 %s 자리표시자로 값을 넘겨 쿼리를 실행하고 결과를 파이썬 값으로 받는 방법이다.",
+   "objectives": [
+    "psycopg.connect()와 커서로 SELECT를 실행하고 fetchone·fetchall로 결과를 받을 수 있다",
+    "%s 자리표시자와 값 튜플로 INSERT를 실행하고 executemany로 여러 행을 넣을 수 있다",
+    "with 블록이 끝날 때 커밋·롤백·닫기가 어떻게 일어나는지 설명할 수 있다",
+    "commit을 빠뜨려 넣은 행이 사라지는 실수를 찾아 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "db.sql.select-first",
+    "db.sql.write-rows",
+    "db.internals.transaction-basics"
+   ],
+   "related": [
+    "db.sql.python-sqlite3",
+    "db.orm.core-connection"
+   ],
+   "aliases": [
+    "psycopg",
+    "psycopg3",
+    "psycopg.connect",
+    "파이썬 PostgreSQL 드라이버"
+   ],
+   "refs": [
+    "https://www.psycopg.org/psycopg3/docs/basic/usage.html",
+    "https://www.psycopg.org/psycopg3/docs/basic/transactions.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.sql.subquery-cte",
    "title": "서브쿼리와 WITH 절로 조회 나누기",
    "en": "Subqueries and WITH Queries (CTE)",
@@ -16552,6 +17148,72 @@
    "refs": [
     "https://pandas.pydata.org/docs/reference/api/pandas.read_sql.html",
     "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_sql.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.orm.sqlalchemy-asyncio",
+   "title": "SQLAlchemy 비동기 세션: AsyncSession",
+   "en": "SQLAlchemy asyncio: AsyncEngine and AsyncSession",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "ORM",
+   "summary": "create_async_engine과 async_sessionmaker로 비동기 세션을 만들고 await로 쿼리를 실행하며 지연 로딩 대신 미리 불러오는 방법이다.",
+   "objectives": [
+    "create_async_engine과 async_sessionmaker로 AsyncSession을 만들어 await로 조회·저장할 수 있다",
+    "관계 속성을 그냥 읽으면 비동기에서 오류가 나는 이유를 설명하고 selectinload로 고칠 수 있다",
+    "AsyncSession 하나를 여러 태스크가 함께 쓰면 안 되는 이유를 말하고 태스크마다 세션을 나눌 수 있다"
+   ],
+   "prerequisites": [
+    "db.orm.sqlalchemy-basics",
+    "db.orm.relationship-patterns"
+   ],
+   "related": [
+    "db.orm.session",
+    "db.orm.n-plus-one"
+   ],
+   "aliases": [
+    "AsyncSession",
+    "create_async_engine",
+    "async_sessionmaker",
+    "비동기 SQLAlchemy",
+    "async SQLAlchemy"
+   ],
+   "refs": [
+    "https://docs.sqlalchemy.org/en/20/orm/extensions/asyncio.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.cache.redis-pubsub",
+   "title": "Redis Pub/Sub로 메시지 알리기",
+   "en": "Messaging with Redis Pub/Sub",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "캐시",
+   "summary": "PUBLISH로 채널에 메시지를 보내면 SUBSCRIBE 중인 연결 모두가 받는 Redis의 게시·구독 기능과 그 한계를 다룬다.",
+   "objectives": [
+    "SUBSCRIBE·PUBLISH로 두 연결 사이에 메시지를 주고받을 수 있다",
+    "PSUBSCRIBE 패턴으로 이름이 비슷한 여러 채널을 한 번에 구독할 수 있다",
+    "구독자가 끊겨 있던 동안의 메시지는 사라진다는 점을 설명하고 Streams가 필요한 경우를 고를 수 있다"
+   ],
+   "prerequisites": [
+    "db.cache.redis-first-run"
+   ],
+   "related": [
+    "db.cache.redis-data-types"
+   ],
+   "aliases": [
+    "Redis PUBLISH",
+    "Redis SUBSCRIBE",
+    "PSUBSCRIBE",
+    "Redis 게시 구독",
+    "Redis 채널 구독"
+   ],
+   "refs": [
+    "https://redis.io/docs/latest/develop/pubsub/"
    ],
    "domain": "db"
   },
@@ -17361,6 +18023,115 @@
    "domain": "db"
   },
   {
+   "id": "db.sql.pg-dump-formats",
+   "title": "pg_dump 출력 형식: plain·custom·directory",
+   "en": "pg_dump Output Formats",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "pg_dump가 만드는 평문 SQL은 psql로, -Fc custom·-Fd directory·-Ft tar 보관 형식은 pg_restore로 되살리며 골라 복원하기는 보관 형식에서만 된다.",
+   "parent": "db.sql.pg-dump-restore",
+   "aliases": [
+    "pg_dump -Fc",
+    "custom 덤프 형식",
+    "평문 덤프"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/backup-dump.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.psycopg-row-factory",
+   "title": "psycopg 행 팩토리: dict_row로 열 이름 받기",
+   "en": "psycopg Row Factories",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "튜플 대신 dict_row·namedtuple_row·class_row로 열 이름이 붙은 행을 받도록 연결이나 커서에 정해 두는 설정이다.",
+   "parent": "db.sql.psycopg-basics",
+   "aliases": [
+    "row_factory",
+    "dict_row",
+    "class_row",
+    "namedtuple_row"
+   ],
+   "refs": [
+    "https://www.psycopg.org/psycopg3/docs/advanced/rows.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.psycopg-transaction-block",
+   "title": "psycopg의 conn.transaction() 블록",
+   "en": "psycopg Transaction Blocks",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "with conn.transaction(): 안의 문장을 한 묶음으로 커밋하거나 오류 때 되돌리며, 이미 열린 트랜잭션 안에서는 세이브포인트가 되는 블록이다.",
+   "parent": "db.sql.psycopg-basics",
+   "related": [
+    "db.internals.autocommit"
+   ],
+   "aliases": [
+    "conn.transaction",
+    "psycopg 트랜잭션",
+    "psycopg 세이브포인트"
+   ],
+   "refs": [
+    "https://www.psycopg.org/psycopg3/docs/basic/transactions.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.orm.async-expire-on-commit",
+   "title": "expire_on_commit=False와 비동기 지연 로딩 오류",
+   "en": "expire_on_commit and Implicit IO in asyncio",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "ORM",
+   "summary": "커밋 뒤 속성을 읽을 때 몰래 DB를 다시 부르지 않도록 비동기 세션에서 expire_on_commit=False를 주는 설정이다.",
+   "parent": "db.orm.sqlalchemy-asyncio",
+   "related": [
+    "db.orm.eager-loading"
+   ],
+   "aliases": [
+    "expire_on_commit",
+    "MissingGreenlet"
+   ],
+   "refs": [
+    "https://docs.sqlalchemy.org/en/20/orm/extensions/asyncio.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.search-path",
+   "title": "스키마와 search_path",
+   "en": "Schemas and search_path",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "한 DB 안의 표를 이름 공간으로 나누는 스키마와, 스키마 이름 없이 쓴 표를 어느 스키마에서 찾을지 정하는 순서 목록이다.",
+   "related": [
+    "db.sql.roles-privileges"
+   ],
+   "aliases": [
+    "search_path",
+    "public 스키마",
+    "CREATE SCHEMA",
+    "스키마 한정 이름"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/ddl-schemas.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.sql.view",
    "title": "뷰: 쿼리에 이름 붙여 표처럼 쓰기",
    "en": "View",
@@ -17630,6 +18401,93 @@
    ],
    "refs": [
     "https://www.postgresql.org/docs/current/sql-expressions.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.pg-dumpall-globals",
+   "title": "pg_dumpall --globals-only: 역할 따로 떠 두기",
+   "en": "pg_dumpall --globals-only",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "SQL",
+   "summary": "pg_dump가 빼먹는 역할과 테이블스페이스 정의만 따로 저장해 새 서버에서 소유자·권한 복원이 실패하지 않게 하는 옵션이다.",
+   "parent": "db.sql.pg-dump-restore",
+   "aliases": [
+    "pg_dumpall -g",
+    "globals-only",
+    "역할 백업"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/backup-dump.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.merge",
+   "title": "MERGE: 조건에 따라 넣고 고치고 지우기",
+   "en": "MERGE Statement",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "SQL",
+   "summary": "원본 표와 대상 표를 이어 맞는 행은 고치거나 지우고 없는 행은 넣는 일을 한 문장으로 하는 SQL 명령이다.",
+   "related": [
+    "db.sql.upsert-on-conflict"
+   ],
+   "aliases": [
+    "MERGE INTO",
+    "WHEN MATCHED",
+    "WHEN NOT MATCHED"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/sql-merge.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.listen-notify",
+   "title": "LISTEN과 NOTIFY: PostgreSQL 알림",
+   "en": "LISTEN and NOTIFY",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "SQL",
+   "summary": "NOTIFY로 채널에 짧은 글을 보내면 그 채널을 LISTEN 중인 다른 연결이 커밋 뒤에 받는 PostgreSQL의 알림 기능이다.",
+   "related": [
+    "db.cache.redis-pubsub"
+   ],
+   "aliases": [
+    "LISTEN NOTIFY",
+    "pg_notify",
+    "PostgreSQL 알림 채널"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/sql-notify.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.lateral-join",
+   "title": "LATERAL: 앞 행을 보고 도는 서브쿼리",
+   "en": "LATERAL Subqueries",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "SQL",
+   "summary": "FROM 절의 서브쿼리가 앞에 나온 표의 열을 쓸 수 있게 해 행마다 따로 계산한 결과를 붙이는 키워드다.",
+   "related": [
+    "db.sql.subquery-cte",
+    "db.sql.join"
+   ],
+   "aliases": [
+    "JOIN LATERAL",
+    "LEFT JOIN LATERAL",
+    "래터럴 조인"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/queries-table-expressions.html"
    ],
    "domain": "db"
   },
@@ -22238,6 +23096,78 @@
    "domain": "llm"
   },
   {
+   "id": "llm.api.text-to-speech",
+   "title": "글을 음성으로 바꾸기: TTS API",
+   "en": "Text-to-Speech API",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "글과 음성 이름을 음성 생성 API에 보내 오디오 파일이나 스트림으로 받고, 말투 지시와 출력 형식으로 듣는 느낌과 지연을 맞춘다.",
+   "objectives": [
+    "글과 음성 이름을 음성 생성 API에 보내 오디오 파일로 저장할 수 있다",
+    "말투 지시를 넣어 같은 글을 다른 감정과 속도로 읽게 할 수 있다",
+    "스트리밍과 출력 형식을 골라 재생이 시작되기까지의 지연을 줄일 수 있다",
+    "모델마다 쓸 수 있는 음성이 달라 생기는 오류를 찾고 사용자에게 AI 음성임을 알릴 수 있다"
+   ],
+   "prerequisites": [
+    "llm.api.first-call"
+   ],
+   "related": [
+    "llm.api.speech-to-text",
+    "llm.api.response-streaming"
+   ],
+   "aliases": [
+    "음성 합성",
+    "TTS",
+    "text to speech",
+    "audio/speech",
+    "음성 생성 API",
+    "글 읽어 주기"
+   ],
+   "refs": [
+    "https://developers.openai.com/api/docs/guides/text-to-speech"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.token-classification",
+   "title": "토큰 분류 모델 미세 조정하기: 개체명 인식",
+   "en": "Fine-Tuning a Token Classification Model for NER",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "단어마다 달린 사람·기관·장소 라벨을 하위 토큰에 맞춰 정렬하고 토큰 분류 모델을 미세 조정해 문장에서 개체를 뽑는다.",
+   "objectives": [
+    "is_split_into_words로 토큰화한 뒤 word_ids로 단어 라벨을 하위 토큰에 맞출 수 있다",
+    "특수 토큰과 패딩 자리에 -100을 넣어 손실 계산에서 빼고 라벨 수 불일치 오류를 고칠 수 있다",
+    "DataCollatorForTokenClassification과 seqeval 지표로 학습하고 F1을 확인할 수 있다",
+    "학습한 모델을 token-classification pipeline에 넣어 개체 단위 결과를 받을 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.trainer-fine-tune"
+   ],
+   "related": [
+    "llm.basics.transformers-pipeline"
+   ],
+   "aliases": [
+    "개체명 인식",
+    "NER",
+    "token classification",
+    "토큰 분류",
+    "AutoModelForTokenClassification",
+    "IOB 태그"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter7/2",
+    "https://huggingface.co/learn/llm-course/chapter6/3"
+   ],
+   "domain": "llm"
+  },
+  {
    "id": "llm.api.image-generation-api",
    "title": "이미지 생성 API로 그림 만들고 고치기",
    "en": "Generating and Editing Images with an API",
@@ -22340,6 +23270,77 @@
     "https://huggingface.co/learn/llm-course/chapter9/2",
     "https://huggingface.co/learn/llm-course/chapter9/4"
    ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.train-new-tokenizer",
+   "title": "기존 토크나이저를 내 말뭉치로 다시 학습하기",
+   "en": "Training a New Tokenizer from an Existing One",
+   "kind": "topic",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "기존 토크나이저의 방식과 특수 토큰은 그대로 두고 코드나 다른 언어 같은 내 말뭉치로 어휘만 새로 학습해 더 짧은 토큰열을 얻는다.",
+   "objectives": [
+    "말뭉치를 묶음 단위로 내놓는 제너레이터를 만들어 메모리에 다 올리지 않고 넘길 수 있다",
+    "train_new_from_iterator로 어휘 크기를 정해 새 토크나이저를 학습할 수 있다",
+    "같은 글을 옛 토크나이저와 새 토크나이저로 나눠 토큰 수를 비교할 수 있다",
+    "학습한 토크나이저를 저장하거나 Hub에 올리고 다시 불러올 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.tokenizer-batching",
+    "llm.basics.datasets-library"
+   ],
+   "related": [
+    "llm.internals.tokenization-sampling"
+   ],
+   "aliases": [
+    "토크나이저 학습",
+    "train_new_from_iterator",
+    "tokenizer training",
+    "새 토크나이저 만들기",
+    "어휘 다시 학습"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter6/2"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.gradio-chatbot",
+   "title": "Gradio로 챗봇 화면 만들기: ChatInterface",
+   "en": "Building a Chatbot UI with Gradio ChatInterface",
+   "kind": "topic",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "메시지와 이력을 받는 함수 하나를 gr.ChatInterface로 감싸 대화 화면을 띄우고, yield로 답을 흘려 보내며 추가 입력을 붙인다.",
+   "objectives": [
+    "message와 history를 받는 함수를 gr.ChatInterface에 넣어 챗봇 화면을 띄울 수 있다",
+    "history의 role·content 형식을 LLM API 메시지 배열로 바꿔 여러 턴 대화를 이을 수 있다",
+    "함수에서 yield로 부분 답을 내보내 화면에 답이 흐르듯 나오게 할 수 있다",
+    "additional_inputs와 gr.Blocks 배치로 시스템 프롬프트·온도 같은 설정 칸을 붙일 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.gradio-demo",
+    "llm.api.multi-turn"
+   ],
+   "related": [
+    "llm.api.response-streaming"
+   ],
+   "aliases": [
+    "gr.ChatInterface",
+    "ChatInterface",
+    "Gradio 챗봇",
+    "챗봇 UI 만들기",
+    "chatbot demo"
+   ],
+   "refs": [
+    "https://www.gradio.app/guides/creating-a-chatbot-fast",
+    "https://huggingface.co/learn/llm-course/chapter9/7"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
    "domain": "llm"
   },
   {
@@ -23069,6 +24070,31 @@
    "domain": "llm"
   },
   {
+   "id": "llm.basics.label-alignment",
+   "title": "하위 토큰 라벨 정렬(word_ids와 -100)",
+   "en": "Aligning Labels with Subword Tokens",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "단어 하나가 여러 하위 토큰으로 쪼개질 때 word_ids로 각 토큰의 원래 단어를 찾아 라벨을 나눠 주고, 특수 토큰에는 -100을 넣어 손실에서 뺀다.",
+   "parent": "llm.basics.token-classification",
+   "related": [
+    "llm.basics.special-tokens"
+   ],
+   "aliases": [
+    "word_ids",
+    "라벨 정렬",
+    "label alignment",
+    "-100 라벨",
+    "is_split_into_words"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter7/2"
+   ],
+   "domain": "llm"
+  },
+  {
    "id": "llm.api.files-api",
    "title": "Files API",
    "en": "Files API",
@@ -23422,6 +24448,205 @@
    "refs": [
     "https://huggingface.co/docs/hub/spaces-sdks-gradio",
     "https://huggingface.co/learn/llm-course/chapter9/4"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.tts-audio-format",
+   "title": "TTS 출력 오디오 형식",
+   "en": "TTS Output Audio Format",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM API",
+   "summary": "음성 생성 API가 돌려줄 오디오를 mp3·opus·wav·pcm 등에서 고르는 값으로, 기본은 mp3이고 빠른 스트리밍에는 wav나 머리 정보 없는 pcm이 알맞다.",
+   "parent": "llm.api.text-to-speech",
+   "aliases": [
+    "response_format mp3",
+    "pcm 오디오",
+    "TTS 오디오 포맷",
+    "audio output format"
+   ],
+   "refs": [
+    "https://developers.openai.com/api/docs/guides/text-to-speech"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.fast-tokenizer",
+   "title": "빠른 토크나이저(fast tokenizer)",
+   "en": "Fast Tokenizer",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "Rust로 만든 Tokenizers 라이브러리 위에서 도는 토크나이저로, 묶음 처리가 빠르고 word_ids·오프셋 같은 위치 정보와 새 어휘 학습을 지원한다.",
+   "parent": "llm.basics.train-new-tokenizer",
+   "related": [
+    "llm.basics.offset-mapping"
+   ],
+   "aliases": [
+    "fast tokenizer",
+    "is_fast",
+    "Tokenizers 라이브러리",
+    "PreTrainedTokenizerFast",
+    "Rust 토크나이저"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter6/3"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.offset-mapping",
+   "title": "오프셋 매핑(offset mapping)",
+   "en": "Offset Mapping",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "토큰마다 원문에서 몇 번째 글자부터 몇 번째 글자까지인지 알려 주는 값으로, 예측한 토큰을 원문 조각으로 되돌릴 때 쓴다.",
+   "parent": "llm.basics.token-classification",
+   "related": [
+    "llm.basics.fast-tokenizer"
+   ],
+   "aliases": [
+    "return_offsets_mapping",
+    "오프셋 매핑",
+    "offsets mapping",
+    "문자 위치 매핑",
+    "token_to_chars"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter6/3"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.aggregation-strategy",
+   "title": "aggregation_strategy(개체 묶기 방식)",
+   "en": "aggregation_strategy",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "token-classification pipeline이 하위 토큰과 B·I 태그를 한 개체로 합치는 방식과 점수 계산을 simple·first·max·average 중에서 고르는 옵션이다.",
+   "parent": "llm.basics.token-classification",
+   "aliases": [
+    "aggregation_strategy",
+    "개체 묶기",
+    "grouped entities",
+    "NER 결과 합치기"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter6/3",
+    "https://huggingface.co/learn/llm-course/chapter7/2"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.gradio-blocks",
+   "title": "gr.Blocks(Gradio 블록)",
+   "en": "gr.Blocks",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "Row·Column·Tab으로 컴포넌트를 직접 배치하고 click·change 같은 이벤트마다 실행할 함수와 입력·출력을 이어 주는 Gradio의 자유 배치 방식이다.",
+   "parent": "llm.basics.gradio-chatbot",
+   "related": [
+    "llm.basics.gradio-interface"
+   ],
+   "aliases": [
+    "gr.Blocks",
+    "Gradio Blocks",
+    "Gradio 이벤트 리스너",
+    "gr.Row",
+    "Gradio 레이아웃"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter9/7"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.dataset-streaming",
+   "title": "데이터셋 스트리밍(streaming=True)",
+   "en": "Dataset Streaming",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "load_dataset에 streaming=True를 주어 전체를 내려받지 않고 IterableDataset으로 한 줄씩 읽으며, take·skip과 버퍼 섞기로 일부만 다룬다.",
+   "parent": "llm.basics.datasets-library",
+   "related": [
+    "llm.basics.dataset-map-batched"
+   ],
+   "aliases": [
+    "streaming=True",
+    "IterableDataset",
+    "데이터셋 스트리밍",
+    "dataset streaming",
+    "shuffle buffer_size"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter5/4"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.tools.web-fetch-tool",
+   "title": "웹 가져오기 도구(web fetch)",
+   "en": "Web Fetch Tool",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "도구 호출",
+   "summary": "대화에 이미 나온 URL의 웹 페이지나 PDF 전문을 API 쪽이 가져와 모델에 넣어 주는 서버 도구로, 횟수·도메인·내용 길이를 제한할 수 있다.",
+   "related": [
+    "llm.tools.web-search-tool",
+    "llm.tools.function-calling"
+   ],
+   "aliases": [
+    "web fetch tool",
+    "web_fetch 도구",
+    "웹 페치 도구",
+    "web_fetch_tool_result",
+    "url_not_in_prior_context"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.tools.code-execution-tool",
+   "title": "코드 실행 도구",
+   "en": "Code Execution Tool",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "도구 호출",
+   "summary": "모델이 API 쪽 격리 컨테이너에서 Bash와 파이썬을 직접 돌려 계산·파일 분석·파일 생성을 하는 서버 도구로, 올린 파일과 만든 파일은 Files API로 주고받는다.",
+   "related": [
+    "llm.tools.function-calling",
+    "llm.api.files-api"
+   ],
+   "aliases": [
+    "code execution tool",
+    "code_execution 도구",
+    "코드 실행 툴",
+    "container_upload",
+    "Claude 코드 실행 컨테이너"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool"
    ],
    "volatile": true,
    "checked_at": "2026-11-10",
@@ -36357,6 +37582,149 @@
    "domain": "mlops"
   },
   {
+   "id": "mlops.finetune.grpo-trainer",
+   "title": "GRPOTrainer로 보상 함수 강화학습하기",
+   "en": "Reinforcement Fine-Tuning with TRL GRPOTrainer",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "정답 쌍 대신 답에 점수를 매기는 보상 함수를 주고, 한 질문에 여러 답을 뽑아 서로 비교하며 모델을 다듬는 학습 방법이다.",
+   "objectives": [
+    "prompt 열을 갖춘 데이터셋과 보상 함수를 GRPOTrainer에 넣어 학습을 돌릴 수 있다",
+    "데이터셋의 정답 열이 같은 이름의 인자로 보상 함수에 넘어온다는 점을 알고 remove_unused_columns를 True로 바꾸면 그 열이 빠지는 실수를 피할 수 있다",
+    "num_generations와 배치 크기가 나누어떨어지지 않아 생기는 설정 오류를 고칠 수 있다",
+    "reward·frac_reward_zero_std 지표를 읽고 학습 신호가 없는 상황을 알아챌 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.finetune.sft-trainer"
+   ],
+   "related": [
+    "mlops.finetune.dpo-trainer",
+    "llm.internals.reward-model"
+   ],
+   "aliases": [
+    "GRPOTrainer",
+    "GRPOConfig",
+    "GRPO 학습",
+    "TRL GRPO",
+    "GRPO 파인튜닝"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/trl/grpo_trainer"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.prompt.optimize-prompts",
+   "title": "프롬프트 자동 개선: optimize_prompts",
+   "en": "Automatic Prompt Optimization with optimize_prompts",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "레지스트리에 올린 프롬프트와 평가 세트·스코어러를 주면 MLflow가 더 높은 점수를 내는 새 프롬프트 버전을 만들어 준다.",
+   "objectives": [
+    "등록한 프롬프트를 불러와 쓰는 predict_fn과 inputs·expectations 학습 데이터를 준비할 수 있다",
+    "optimize_prompts에 옵티마이저와 스코어러를 넣어 돌리고 결과의 새 템플릿과 점수 변화를 확인할 수 있다",
+    "predict_fn에 프롬프트를 직접 적어 최적화가 먹히지 않는 실수를 레지스트리 불러오기로 고칠 수 있다",
+    "예시 수와 max_metric_calls를 줄여 최적화 시간과 비용을 조절할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.prompt.register-load",
+    "mlops.eval.first-eval"
+   ],
+   "related": [
+    "mlops.prompt.registry",
+    "mlops.eval.builtin-judges"
+   ],
+   "aliases": [
+    "optimize_prompts",
+    "automatic prompt optimization",
+    "MLflow 프롬프트 최적화",
+    "프롬프트 자동 개선"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/prompt-registry/optimize-prompts/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.vllm-tool-calling",
+   "title": "vLLM 서버에서 도구 호출 켜기",
+   "en": "Enabling Tool Calling in vLLM Serve",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "vllm serve에 자동 도구 선택과 모델에 맞는 파서를 켜서, 직접 띄운 모델도 OpenAI 형식의 tool_calls를 돌려주게 만든다.",
+   "objectives": [
+    "--enable-auto-tool-choice와 --tool-call-parser를 모델에 맞게 골라 서버를 띄울 수 있다",
+    "tool_choice의 auto·required·none·특정 함수 지정이 어떻게 다르게 동작하는지 구분할 수 있다",
+    "도구 호출이 나오지 않거나 인자가 깨지는 원인을 플래그 누락·채팅 템플릿·strict 설정에서 찾아 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.serve.vllm-openai-server",
+    "llm.tools.tool-call"
+   ],
+   "related": [
+    "llm.tools.tool-choice",
+    "llm.tools.strict-tool-use"
+   ],
+   "aliases": [
+    "vLLM tool calling",
+    "vLLM 도구 호출",
+    "enable-auto-tool-choice",
+    "vLLM function calling",
+    "vLLM 함수 호출"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/features/tool_calling.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.trace-redaction",
+   "title": "트레이스에 민감정보 남기지 않기: 스팬 처리기",
+   "en": "Redacting Sensitive Data in Traces",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "트레이스가 서버로 가기 전에 스팬마다 함수를 돌려 이메일·카드번호 같은 값을 지우거나 바꾸도록 MLflow 트레이싱을 설정한다.",
+   "objectives": [
+    "mlflow.tracing.configure에 스팬 처리기를 등록해 입력·출력의 민감정보를 가릴 수 있다",
+    "스팬 유형에 따라 처리 방식을 나눠 도구 결과와 메시지를 다르게 가릴 수 있다",
+    "입력 키가 없거나 문자열이 아닐 때 처리기가 터지는 실수와 출력을 빼먹는 실수를 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.observe.manual-tracing"
+   ],
+   "related": [
+    "ax.security.pii-redaction",
+    "mlops.observe.span-type"
+   ],
+   "aliases": [
+    "트레이스 마스킹",
+    "trace redaction",
+    "트레이스 PII 마스킹",
+    "mlflow.tracing.configure",
+    "trace masking"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/tracing/observe-with-traces/masking/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "mlops"
+  },
+  {
    "id": "mlops.track.experiment-tracking",
    "title": "실험 추적: 파라미터·지표·모델 기록하기",
    "en": "Experiment Tracking with MLflow",
@@ -36856,6 +38224,83 @@
    ],
    "refs": [
     "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/llm-judge/custom-judges/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.finetune.grpo-reward-function",
+   "title": "보상 함수(GRPO reward function)",
+   "en": "Reward Function for GRPO",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "생성된 답 목록을 받아 답마다 점수 하나씩을 돌려주는 파이썬 함수로, 여러 개를 주면 점수가 합쳐지거나 가중치로 섞인다.",
+   "parent": "mlops.finetune.grpo-trainer",
+   "related": [
+    "llm.internals.reward-model"
+   ],
+   "aliases": [
+    "GRPO reward function",
+    "reward_funcs",
+    "GRPO 보상 함수",
+    "reward_weights",
+    "GRPO 보상"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.vllm-structured-outputs",
+   "title": "vLLM 구조화 출력(structured_outputs)",
+   "en": "Structured Outputs in vLLM",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "직접 띄운 vLLM 서버에 선택지·정규식·JSON 스키마·문법을 넘겨 답이 그 모양을 벗어나지 않게 묶는 요청 옵션이다.",
+   "parent": "mlops.serve.vllm-openai-server",
+   "related": [
+    "llm.api.structured-output",
+    "llm.internals.structured-decoding"
+   ],
+   "aliases": [
+    "vLLM structured outputs",
+    "vLLM 구조화 출력",
+    "vLLM guided decoding",
+    "StructuredOutputsParams",
+    "vLLM JSON 스키마"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/features/structured_outputs.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.trace-sampling",
+   "title": "트레이스 샘플링과 비동기 기록",
+   "en": "Trace Sampling and Async Trace Logging",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "운영 중 트레이스를 정한 비율만 남기고 백그라운드로 보내 앱을 느리게 하지 않게 하는 MLflow 설정으로, 샘플링은 트레이스 단위로 정해진다.",
+   "parent": "mlops.observe.manual-tracing",
+   "related": [
+    "mlops.observe.lightweight-tracing-sdk"
+   ],
+   "aliases": [
+    "trace sampling",
+    "MLFLOW_TRACE_SAMPLING_RATIO",
+    "트레이스 샘플링",
+    "sampling_ratio_override",
+    "async trace logging"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/tracing/prod-tracing/"
    ],
    "volatile": true,
    "checked_at": "2026-11-10",
@@ -37563,6 +39008,108 @@
    ],
    "refs": [
     "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/llm-judge/custom-judges/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.finetune.num-generations",
+   "title": "프롬프트당 생성 수(num_generations)",
+   "en": "Number of Generations per Prompt",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "GRPO가 한 프롬프트마다 뽑는 답의 개수로, 이 묶음 안에서 점수를 비교하므로 실제 배치 크기가 이 값으로 나누어떨어져야 한다.",
+   "parent": "mlops.finetune.grpo-trainer",
+   "aliases": [
+    "num_generations",
+    "생성 그룹 크기",
+    "GRPO group size",
+    "GRPO 그룹"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.prompt.gepa-optimizer",
+   "title": "GEPA 프롬프트 옵티마이저",
+   "en": "GEPA Prompt Optimizer",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "실패한 예시를 더 강한 모델이 되돌아보게 해 프롬프트를 여러 번 고쳐 쓰는 옵티마이저로, 평가 데이터가 넉넉할 때 잘 맞는다.",
+   "parent": "mlops.prompt.optimize-prompts",
+   "aliases": [
+    "GEPA",
+    "GepaPromptOptimizer",
+    "GEPA 옵티마이저"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.tool-call-parser",
+   "title": "도구 호출 파서(--tool-call-parser)",
+   "en": "Tool Call Parser",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "모델이 글로 내놓은 도구 호출을 읽어 tool_calls 구조로 바꾸는 vLLM 부품으로, 모델 계열마다 맞는 이름을 골라야 한다.",
+   "parent": "mlops.serve.vllm-tool-calling",
+   "aliases": [
+    "tool-call-parser",
+    "tool call parser",
+    "도구 호출 파서",
+    "hermes 파서",
+    "llama3_json"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.span-processor",
+   "title": "MLflow 스팬 처리기(span processor)",
+   "en": "Span Processor",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "새 스팬이 생길 때마다 차례로 불려 스팬 내용을 그 자리에서 고치는 함수로, 등록 목록을 비우면 원래대로 돌아간다.",
+   "parent": "mlops.observe.trace-redaction",
+   "aliases": [
+    "MLflow span processor",
+    "span_processors",
+    "MLflow 스팬 프로세서"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.otlp-export",
+   "title": "OTLP로 트레이스 내보내기",
+   "en": "Exporting MLflow Traces via OTLP",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "MLflow 트레이스를 OpenTelemetry 수집기로 보내 기존 관측 도구에서 함께 보게 하는 설정으로, 이중 내보내기를 켜야 MLflow UI에도 남는다.",
+   "parent": "mlops.observe.manual-tracing",
+   "related": [
+    "ops.observe.tracing"
+   ],
+   "aliases": [
+    "MLflow OTLP export",
+    "OTEL_EXPORTER_OTLP_TRACES_ENDPOINT",
+    "MLflow OpenTelemetry",
+    "MLflow OTLP 내보내기",
+    "MLflow dual export"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/tracing/opentelemetry/export/"
    ],
    "volatile": true,
    "checked_at": "2026-11-10",

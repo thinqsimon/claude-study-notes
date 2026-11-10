@@ -1171,6 +1171,76 @@
     "checked_at": "2026-11-10"
   },
   {
+    "id": "llm.api.text-to-speech",
+    "title": "글을 음성으로 바꾸기: TTS API",
+    "en": "Text-to-Speech API",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "글과 음성 이름을 음성 생성 API에 보내 오디오 파일이나 스트림으로 받고, 말투 지시와 출력 형식으로 듣는 느낌과 지연을 맞춘다.",
+    "objectives": [
+      "글과 음성 이름을 음성 생성 API에 보내 오디오 파일로 저장할 수 있다",
+      "말투 지시를 넣어 같은 글을 다른 감정과 속도로 읽게 할 수 있다",
+      "스트리밍과 출력 형식을 골라 재생이 시작되기까지의 지연을 줄일 수 있다",
+      "모델마다 쓸 수 있는 음성이 달라 생기는 오류를 찾고 사용자에게 AI 음성임을 알릴 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.first-call"
+    ],
+    "related": [
+      "llm.api.speech-to-text",
+      "llm.api.response-streaming"
+    ],
+    "aliases": [
+      "음성 합성",
+      "TTS",
+      "text to speech",
+      "audio/speech",
+      "음성 생성 API",
+      "글 읽어 주기"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/text-to-speech"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "llm.basics.token-classification",
+    "title": "토큰 분류 모델 미세 조정하기: 개체명 인식",
+    "en": "Fine-Tuning a Token Classification Model for NER",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "단어마다 달린 사람·기관·장소 라벨을 하위 토큰에 맞춰 정렬하고 토큰 분류 모델을 미세 조정해 문장에서 개체를 뽑는다.",
+    "objectives": [
+      "is_split_into_words로 토큰화한 뒤 word_ids로 단어 라벨을 하위 토큰에 맞출 수 있다",
+      "특수 토큰과 패딩 자리에 -100을 넣어 손실 계산에서 빼고 라벨 수 불일치 오류를 고칠 수 있다",
+      "DataCollatorForTokenClassification과 seqeval 지표로 학습하고 F1을 확인할 수 있다",
+      "학습한 모델을 token-classification pipeline에 넣어 개체 단위 결과를 받을 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.trainer-fine-tune"
+    ],
+    "related": [
+      "llm.basics.transformers-pipeline"
+    ],
+    "aliases": [
+      "개체명 인식",
+      "NER",
+      "token classification",
+      "토큰 분류",
+      "AutoModelForTokenClassification",
+      "IOB 태그"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter7/2",
+      "https://huggingface.co/learn/llm-course/chapter6/3"
+    ]
+  },
+  {
     "id": "llm.api.image-generation-api",
     "title": "이미지 생성 API로 그림 만들고 고치기",
     "en": "Generating and Editing Images with an API",
@@ -1271,6 +1341,75 @@
       "https://huggingface.co/learn/llm-course/chapter9/2",
       "https://huggingface.co/learn/llm-course/chapter9/4"
     ]
+  },
+  {
+    "id": "llm.basics.train-new-tokenizer",
+    "title": "기존 토크나이저를 내 말뭉치로 다시 학습하기",
+    "en": "Training a New Tokenizer from an Existing One",
+    "kind": "topic",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "기존 토크나이저의 방식과 특수 토큰은 그대로 두고 코드나 다른 언어 같은 내 말뭉치로 어휘만 새로 학습해 더 짧은 토큰열을 얻는다.",
+    "objectives": [
+      "말뭉치를 묶음 단위로 내놓는 제너레이터를 만들어 메모리에 다 올리지 않고 넘길 수 있다",
+      "train_new_from_iterator로 어휘 크기를 정해 새 토크나이저를 학습할 수 있다",
+      "같은 글을 옛 토크나이저와 새 토크나이저로 나눠 토큰 수를 비교할 수 있다",
+      "학습한 토크나이저를 저장하거나 Hub에 올리고 다시 불러올 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.tokenizer-batching",
+      "llm.basics.datasets-library"
+    ],
+    "related": [
+      "llm.internals.tokenization-sampling"
+    ],
+    "aliases": [
+      "토크나이저 학습",
+      "train_new_from_iterator",
+      "tokenizer training",
+      "새 토크나이저 만들기",
+      "어휘 다시 학습"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter6/2"
+    ]
+  },
+  {
+    "id": "llm.basics.gradio-chatbot",
+    "title": "Gradio로 챗봇 화면 만들기: ChatInterface",
+    "en": "Building a Chatbot UI with Gradio ChatInterface",
+    "kind": "topic",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "메시지와 이력을 받는 함수 하나를 gr.ChatInterface로 감싸 대화 화면을 띄우고, yield로 답을 흘려 보내며 추가 입력을 붙인다.",
+    "objectives": [
+      "message와 history를 받는 함수를 gr.ChatInterface에 넣어 챗봇 화면을 띄울 수 있다",
+      "history의 role·content 형식을 LLM API 메시지 배열로 바꿔 여러 턴 대화를 이을 수 있다",
+      "함수에서 yield로 부분 답을 내보내 화면에 답이 흐르듯 나오게 할 수 있다",
+      "additional_inputs와 gr.Blocks 배치로 시스템 프롬프트·온도 같은 설정 칸을 붙일 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.gradio-demo",
+      "llm.api.multi-turn"
+    ],
+    "related": [
+      "llm.api.response-streaming"
+    ],
+    "aliases": [
+      "gr.ChatInterface",
+      "ChatInterface",
+      "Gradio 챗봇",
+      "챗봇 UI 만들기",
+      "chatbot demo"
+    ],
+    "refs": [
+      "https://www.gradio.app/guides/creating-a-chatbot-fast",
+      "https://huggingface.co/learn/llm-course/chapter9/7"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
   },
   {
     "id": "llm.tools.tool-schema",
@@ -1970,6 +2109,30 @@
     ]
   },
   {
+    "id": "llm.basics.label-alignment",
+    "title": "하위 토큰 라벨 정렬(word_ids와 -100)",
+    "en": "Aligning Labels with Subword Tokens",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "단어 하나가 여러 하위 토큰으로 쪼개질 때 word_ids로 각 토큰의 원래 단어를 찾아 라벨을 나눠 주고, 특수 토큰에는 -100을 넣어 손실에서 뺀다.",
+    "parent": "llm.basics.token-classification",
+    "related": [
+      "llm.basics.special-tokens"
+    ],
+    "aliases": [
+      "word_ids",
+      "라벨 정렬",
+      "label alignment",
+      "-100 라벨",
+      "is_split_into_words"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter7/2"
+    ]
+  },
+  {
     "id": "llm.api.files-api",
     "title": "Files API",
     "en": "Files API",
@@ -2309,6 +2472,197 @@
     "refs": [
       "https://huggingface.co/docs/hub/spaces-sdks-gradio",
       "https://huggingface.co/learn/llm-course/chapter9/4"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "llm.api.tts-audio-format",
+    "title": "TTS 출력 오디오 형식",
+    "en": "TTS Output Audio Format",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "음성 생성 API가 돌려줄 오디오를 mp3·opus·wav·pcm 등에서 고르는 값으로, 기본은 mp3이고 빠른 스트리밍에는 wav나 머리 정보 없는 pcm이 알맞다.",
+    "parent": "llm.api.text-to-speech",
+    "aliases": [
+      "response_format mp3",
+      "pcm 오디오",
+      "TTS 오디오 포맷",
+      "audio output format"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/text-to-speech"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "llm.basics.fast-tokenizer",
+    "title": "빠른 토크나이저(fast tokenizer)",
+    "en": "Fast Tokenizer",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "Rust로 만든 Tokenizers 라이브러리 위에서 도는 토크나이저로, 묶음 처리가 빠르고 word_ids·오프셋 같은 위치 정보와 새 어휘 학습을 지원한다.",
+    "parent": "llm.basics.train-new-tokenizer",
+    "related": [
+      "llm.basics.offset-mapping"
+    ],
+    "aliases": [
+      "fast tokenizer",
+      "is_fast",
+      "Tokenizers 라이브러리",
+      "PreTrainedTokenizerFast",
+      "Rust 토크나이저"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter6/3"
+    ]
+  },
+  {
+    "id": "llm.basics.offset-mapping",
+    "title": "오프셋 매핑(offset mapping)",
+    "en": "Offset Mapping",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "토큰마다 원문에서 몇 번째 글자부터 몇 번째 글자까지인지 알려 주는 값으로, 예측한 토큰을 원문 조각으로 되돌릴 때 쓴다.",
+    "parent": "llm.basics.token-classification",
+    "related": [
+      "llm.basics.fast-tokenizer"
+    ],
+    "aliases": [
+      "return_offsets_mapping",
+      "오프셋 매핑",
+      "offsets mapping",
+      "문자 위치 매핑",
+      "token_to_chars"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter6/3"
+    ]
+  },
+  {
+    "id": "llm.basics.aggregation-strategy",
+    "title": "aggregation_strategy(개체 묶기 방식)",
+    "en": "aggregation_strategy",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "token-classification pipeline이 하위 토큰과 B·I 태그를 한 개체로 합치는 방식과 점수 계산을 simple·first·max·average 중에서 고르는 옵션이다.",
+    "parent": "llm.basics.token-classification",
+    "aliases": [
+      "aggregation_strategy",
+      "개체 묶기",
+      "grouped entities",
+      "NER 결과 합치기"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter6/3",
+      "https://huggingface.co/learn/llm-course/chapter7/2"
+    ]
+  },
+  {
+    "id": "llm.basics.gradio-blocks",
+    "title": "gr.Blocks(Gradio 블록)",
+    "en": "gr.Blocks",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "Row·Column·Tab으로 컴포넌트를 직접 배치하고 click·change 같은 이벤트마다 실행할 함수와 입력·출력을 이어 주는 Gradio의 자유 배치 방식이다.",
+    "parent": "llm.basics.gradio-chatbot",
+    "related": [
+      "llm.basics.gradio-interface"
+    ],
+    "aliases": [
+      "gr.Blocks",
+      "Gradio Blocks",
+      "Gradio 이벤트 리스너",
+      "gr.Row",
+      "Gradio 레이아웃"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter9/7"
+    ]
+  },
+  {
+    "id": "llm.basics.dataset-streaming",
+    "title": "데이터셋 스트리밍(streaming=True)",
+    "en": "Dataset Streaming",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "load_dataset에 streaming=True를 주어 전체를 내려받지 않고 IterableDataset으로 한 줄씩 읽으며, take·skip과 버퍼 섞기로 일부만 다룬다.",
+    "parent": "llm.basics.datasets-library",
+    "related": [
+      "llm.basics.dataset-map-batched"
+    ],
+    "aliases": [
+      "streaming=True",
+      "IterableDataset",
+      "데이터셋 스트리밍",
+      "dataset streaming",
+      "shuffle buffer_size"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter5/4"
+    ]
+  },
+  {
+    "id": "llm.tools.web-fetch-tool",
+    "title": "웹 가져오기 도구(web fetch)",
+    "en": "Web Fetch Tool",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "도구 호출",
+    "summary": "대화에 이미 나온 URL의 웹 페이지나 PDF 전문을 API 쪽이 가져와 모델에 넣어 주는 서버 도구로, 횟수·도메인·내용 길이를 제한할 수 있다.",
+    "related": [
+      "llm.tools.web-search-tool",
+      "llm.tools.function-calling"
+    ],
+    "aliases": [
+      "web fetch tool",
+      "web_fetch 도구",
+      "웹 페치 도구",
+      "web_fetch_tool_result",
+      "url_not_in_prior_context"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "llm.tools.code-execution-tool",
+    "title": "코드 실행 도구",
+    "en": "Code Execution Tool",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "도구 호출",
+    "summary": "모델이 API 쪽 격리 컨테이너에서 Bash와 파이썬을 직접 돌려 계산·파일 분석·파일 생성을 하는 서버 도구로, 올린 파일과 만든 파일은 Files API로 주고받는다.",
+    "related": [
+      "llm.tools.function-calling",
+      "llm.api.files-api"
+    ],
+    "aliases": [
+      "code execution tool",
+      "code_execution 도구",
+      "코드 실행 툴",
+      "container_upload",
+      "Claude 코드 실행 컨테이너"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool"
     ],
     "volatile": true,
     "checked_at": "2026-11-10"
