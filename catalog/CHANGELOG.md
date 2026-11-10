@@ -1,5 +1,10 @@
 # 개념사전 변경 내역
 
+## 0.23.0
+
+- dic-maker 캠페인 1회차로 3단계에 주제 17개, 용어 37개를 더했다
+- 분야별: cs 12개, plan 10개, llm 11개, rag 10개, mlops 11개
+
 ## 0.22.1
 
 - 별칭을 정리했다. `db.sql.numeric-type`의 `부동소수점 오차`를 `SQL 부동소수점 오차`로 좁히고, `ops.docker.volume`에서 다른 저장 방식인 `바인드 마운트`·`bind mount`를 뺐다. `llm.api.system-prompt`는 제목을 되풀이하던 별칭을 바꾸고 자료 링크를 달았다.

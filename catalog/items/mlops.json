@@ -968,6 +968,110 @@
     "checked_at": "2026-11-06"
   },
   {
+    "id": "mlops.finetune.dpo-trainer",
+    "title": "DPOTrainer로 선호 데이터 학습하기",
+    "en": "Preference Fine-Tuning with TRL DPOTrainer",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "같은 질문에 대한 좋은 답과 나쁜 답 쌍을 DPOTrainer에 넣어, 모델이 좋은 쪽 답을 더 내도록 다듬는 과정이다.",
+    "objectives": [
+      "prompt·chosen·rejected 열을 갖춘 선호 데이터셋을 만들어 DPOTrainer로 학습을 돌릴 수 있다",
+      "DPOConfig로 beta·학습률·max_length를 바꾸고 peft_config로 LoRA 어댑터만 학습시킬 수 있다",
+      "ref_model을 비워 두면 학습 전 모델이 기준이 된다는 점을 알고 기준 모델을 따로 줄지 정할 수 있다",
+      "SFT용 데이터를 그대로 넣거나 열 이름이 달라 생기는 오류를 데이터 변환으로 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.finetune.sft-trainer"
+    ],
+    "related": [
+      "llm.internals.preference-alignment",
+      "mlops.finetune.lora-quickstart"
+    ],
+    "aliases": [
+      "DPOTrainer",
+      "DPOConfig",
+      "DPO 파인튜닝",
+      "선호 학습",
+      "TRL DPO"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/trl/dpo_trainer"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "mlops.serve.vllm-offline-inference",
+    "title": "vLLM으로 여러 프롬프트 한꺼번에 생성하기",
+    "en": "Offline Batched Inference with vLLM",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "서버를 띄우지 않고 파이썬 코드 안에서 vLLM의 LLM 클래스로 여러 프롬프트의 답을 한 번에 만들어 받는 방법이다.",
+    "objectives": [
+      "LLM 객체를 만들고 generate로 프롬프트 목록의 답을 한 번에 받을 수 있다",
+      "SamplingParams로 temperature·top_p·max_tokens를 정해 답의 길이와 무작위성을 조절할 수 있다",
+      "generate는 채팅 템플릿을 자동으로 붙이지 않는다는 점을 알고 채팅 모델에는 chat을 쓸 수 있다",
+      "결과 RequestOutput에서 프롬프트와 생성된 글을 꺼내 저장할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.transformers-pipeline"
+    ],
+    "related": [
+      "mlops.serve.vllm-openai-server",
+      "mlops.serve.batch-inference"
+    ],
+    "aliases": [
+      "vLLM 오프라인 추론",
+      "LLM.generate",
+      "LLM.chat",
+      "vLLM 일괄 생성"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/stable/serving/offline_inference/",
+      "https://docs.vllm.ai/en/stable/getting_started/quickstart.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "mlops.eval.make-judge",
+    "title": "make_judge로 나만의 LLM 심판 만들기",
+    "en": "Creating Custom LLM Judges with make_judge",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "자연어 채점 지시문과 정해진 템플릿 변수로 MLflow의 make_judge에 맞춤 LLM 심판을 만들어, 내장 심판이 없는 기준으로 답을 채점한다.",
+    "objectives": [
+      "{{ inputs }}·{{ outputs }}·{{ expectations }} 변수를 넣은 지시문으로 make_judge 심판을 만들 수 있다",
+      "결과 값의 종류를 정해 심판이 정해진 라벨 중 하나로 답하게 할 수 있다",
+      "provider:/model 형식으로 심판 모델을 지정하고 평가에 스코어러로 넣을 수 있다",
+      "정해지지 않은 변수 이름을 써서 생기는 검증 오류를 찾아 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.eval.builtin-judges"
+    ],
+    "related": [
+      "mlops.eval.guidelines-judge",
+      "mlops.eval.custom-scorer"
+    ],
+    "aliases": [
+      "make_judge",
+      "custom judge",
+      "맞춤 심판",
+      "커스텀 LLM 심판"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/llm-judge/custom-judges/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
     "id": "mlops.track.experiment-tracking",
     "title": "실험 추적: 파라미터·지표·모델 기록하기",
     "en": "Experiment Tracking with MLflow",
@@ -1036,6 +1140,43 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-06"
+  },
+  {
+    "id": "mlops.serve.vllm-lora-serving",
+    "title": "vLLM에서 LoRA 어댑터 골라 서빙하기",
+    "en": "Serving LoRA Adapters with vLLM",
+    "kind": "topic",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "기본 모델 하나를 띄우고 그 위에 학습한 LoRA 어댑터를 여러 개 얹어, 요청마다 어떤 어댑터를 쓸지 이름으로 고르게 하는 방법이다.",
+    "objectives": [
+      "--enable-lora와 --lora-modules로 어댑터를 붙여 vLLM 서버를 띄울 수 있다",
+      "요청의 model 칸에 어댑터 이름을 넣어 원하는 어댑터로 답을 받고 /v1/models로 목록을 확인할 수 있다",
+      "오프라인 코드에서는 LoRARequest를 generate에 넘겨 어댑터를 적용할 수 있다",
+      "--max-lora-rank를 어댑터 가운데 가장 큰 랭크에 맞춰 메모리 낭비를 줄일 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.vllm-openai-server",
+      "mlops.finetune.lora-quickstart"
+    ],
+    "related": [
+      "mlops.finetune.adapter-save-load",
+      "mlops.finetune.adapter-merge"
+    ],
+    "aliases": [
+      "vLLM LoRA",
+      "multi-LoRA serving",
+      "멀티 LoRA 서빙",
+      "--enable-lora",
+      "--lora-modules",
+      "어댑터 서빙"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/features/lora.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
   },
   {
     "id": "mlops.track.model-registry",
@@ -1367,6 +1508,54 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-06"
+  },
+  {
+    "id": "mlops.serve.sampling-params",
+    "title": "SamplingParams(vLLM 생성 설정)",
+    "en": "vLLM SamplingParams",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "vLLM에서 답 개수·temperature·top_p·max_tokens·stop을 정하는 객체로, max_tokens 기본값이 작아 답이 짧게 잘리는 실수가 잦다.",
+    "parent": "mlops.serve.vllm-offline-inference",
+    "related": [
+      "mlops.serve.generation-config-default"
+    ],
+    "aliases": [
+      "SamplingParams",
+      "vLLM sampling params"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/stable/api/vllm/sampling_params.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "mlops.eval.judge-template-variables",
+    "title": "심판 템플릿 변수({{ inputs }}·{{ outputs }} 등)",
+    "en": "Judge Template Variables",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "make_judge 지시문에 넣을 수 있게 미리 정해 둔 inputs·outputs·expectations·trace·conversation 변수로, 다른 이름을 쓰면 오류가 난다.",
+    "parent": "mlops.eval.make-judge",
+    "related": [
+      "mlops.prompt.template-variable"
+    ],
+    "aliases": [
+      "심판 템플릿 변수",
+      "judge template variables",
+      "{{ inputs }}",
+      "{{ expectations }}"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/llm-judge/custom-judges/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
   },
   {
     "id": "mlops.track.experiment-run",
@@ -1930,6 +2119,120 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-06"
+  },
+  {
+    "id": "mlops.finetune.dpo-reward-metrics",
+    "title": "DPO 학습 지표(rewards/margins·accuracies)",
+    "en": "DPO Training Reward Metrics",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "DPO 학습 로그에서 좋은 답과 나쁜 답의 암묵 보상 차이와, 좋은 답 쪽 보상이 더 큰 예시의 비율을 보여 주는 값이다.",
+    "parent": "mlops.finetune.dpo-trainer",
+    "aliases": [
+      "rewards/margins",
+      "rewards/accuracies",
+      "DPO 보상 지표",
+      "implicit reward"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/trl/dpo_trainer"
+    ]
+  },
+  {
+    "id": "mlops.serve.lora-request",
+    "title": "LoRARequest(요청별 어댑터 지정)",
+    "en": "LoRARequest",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "vLLM 오프라인 생성에서 이름·고유 번호·경로로 어떤 LoRA 어댑터를 쓸지 정해 generate에 넘기는 객체다.",
+    "parent": "mlops.serve.vllm-lora-serving",
+    "aliases": [
+      "LoRARequest",
+      "lora_request",
+      "enable_lora"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/features/lora.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "mlops.serve.max-lora-rank",
+    "title": "max-lora-rank와 max-loras",
+    "en": "vLLM max_lora_rank and max_loras",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "vLLM이 받아 줄 어댑터의 최대 랭크와 한 번에 함께 돌릴 어댑터 수를 정하는 설정으로, 너무 크게 잡으면 메모리를 낭비한다.",
+    "parent": "mlops.serve.vllm-lora-serving",
+    "related": [
+      "mlops.finetune.lora-rank"
+    ],
+    "aliases": [
+      "max-lora-rank",
+      "max_lora_rank",
+      "max-loras",
+      "max_loras"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/features/lora.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "mlops.serve.runtime-lora-loading",
+    "title": "실행 중 LoRA 어댑터 불러오기",
+    "en": "Dynamic LoRA Adapter Loading",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "환경 변수를 켜면 서버를 다시 띄우지 않고 API로 어댑터를 올리고 내릴 수 있지만, 위험해서 믿을 수 있는 격리 환경에서만 쓴다.",
+    "parent": "mlops.serve.vllm-lora-serving",
+    "aliases": [
+      "load_lora_adapter",
+      "VLLM_ALLOW_RUNTIME_LORA_UPDATING",
+      "동적 LoRA 로드",
+      "runtime LoRA loading"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/features/lora.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "mlops.eval.trace-based-judge",
+    "title": "트레이스 기반 심판",
+    "en": "Trace-Based Judge",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "지시문에 {{ trace }}를 넣어 최종 답뿐 아니라 실행 과정 전체를 보고 도구 사용·실패 원인·여러 단계 흐름을 채점하는 맞춤 심판이다.",
+    "parent": "mlops.eval.make-judge",
+    "related": [
+      "mlops.eval.tool-call-judges",
+      "mlops.observe.trace"
+    ],
+    "aliases": [
+      "trace-based judge",
+      "트레이스 심판",
+      "{{ trace }}",
+      "에이전트 과정 채점"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/llm-judge/custom-judges/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
   },
   {
     "id": "mlops.eval.llm-regression",

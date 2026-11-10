@@ -1098,6 +1098,79 @@
     "checked_at": "2026-11-06"
   },
   {
+    "id": "llm.basics.trainer-fine-tune",
+    "title": "Trainer API로 분류 모델 미세 조정하기",
+    "en": "Fine-Tuning a Classifier with the Trainer API",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "사전 학습 모델과 토큰화한 데이터셋을 Trainer에 넣어 문장 분류 모델을 미세 조정하고, 지표 함수로 검증 점수를 확인한다.",
+    "objectives": [
+      "TrainingArguments와 Trainer를 만들어 사전 학습 모델을 내 데이터로 미세 조정할 수 있다",
+      "DataCollatorWithPadding으로 배치마다 패딩해 학습 데이터를 넣을 수 있다",
+      "compute_metrics 함수를 써서 에폭마다 정확도·F1을 출력할 수 있다",
+      "평가 지표가 찍히지 않거나 라벨 수가 맞지 않는 흔한 실수를 찾아 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.datasets-library",
+      "llm.basics.tokenizer-batching"
+    ],
+    "related": [
+      "mlops.finetune.sft-trainer",
+      "mlops.finetune.lora-quickstart"
+    ],
+    "aliases": [
+      "HF Trainer",
+      "Trainer API",
+      "trainer.train()",
+      "문장 분류 미세 조정",
+      "sequence classification fine-tuning"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter3/3",
+      "https://huggingface.co/learn/llm-course/chapter3/2"
+    ]
+  },
+  {
+    "id": "llm.basics.local-model-ollama",
+    "title": "Ollama로 내 컴퓨터에서 오픈 모델 돌리기",
+    "en": "Running Open Models Locally with Ollama",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "Ollama로 오픈 모델을 내려받아 터미널에서 대화하고, 로컬 서버의 OpenAI 호환 주소로 기존 API 코드를 그대로 붙여 쓴다.",
+    "objectives": [
+      "ollama pull과 ollama run으로 모델을 받아 터미널에서 대화할 수 있다",
+      "localhost:11434의 로컬 API에 요청을 보내 답을 받을 수 있다",
+      "OpenAI SDK의 base_url만 바꿔 같은 코드를 로컬 모델에 연결할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.first-call",
+      "llm.basics.model-selection"
+    ],
+    "related": [
+      "llm.basics.transformers-pipeline",
+      "mlops.serve.vllm-openai-server",
+      "llm.basics.open-model",
+      "mlops.serve.openai-compatible-endpoint"
+    ],
+    "aliases": [
+      "Ollama",
+      "올라마",
+      "ollama run",
+      "ollama pull",
+      "Ollama 로컬 서버"
+    ],
+    "refs": [
+      "https://docs.ollama.com/quickstart",
+      "https://docs.ollama.com/api/openai-compatibility"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
     "id": "llm.api.image-generation-api",
     "title": "이미지 생성 API로 그림 만들고 고치기",
     "en": "Generating and Editing Images with an API",
@@ -1167,6 +1240,37 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-06"
+  },
+  {
+    "id": "llm.basics.gradio-demo",
+    "title": "Gradio로 모델 데모 화면 만들기",
+    "en": "Building Model Demos with Gradio",
+    "kind": "topic",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "파이썬 함수 하나를 gr.Interface로 감싸 입력창과 출력창이 있는 웹 데모를 띄우고, 공유 링크나 Spaces로 남에게 보여 준다.",
+    "objectives": [
+      "gr.Interface에 함수와 입력·출력 컴포넌트를 넣어 모델 데모를 띄울 수 있다",
+      "Textbox·Image 같은 컴포넌트의 라벨과 옵션을 바꿔 화면을 다듬을 수 있다",
+      "share=True 임시 링크와 Spaces 상시 배포의 차이를 알고 알맞게 고를 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.transformers-pipeline"
+    ],
+    "related": [
+      "llm.basics.share-on-hub"
+    ],
+    "aliases": [
+      "Gradio",
+      "그라디오",
+      "gr.Interface",
+      "모델 데모 UI"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter9/2",
+      "https://huggingface.co/learn/llm-course/chapter9/4"
+    ]
   },
   {
     "id": "llm.tools.tool-schema",
@@ -1801,6 +1905,71 @@
     ]
   },
   {
+    "id": "llm.api.moderation-api",
+    "title": "모더레이션 API",
+    "en": "Moderation API",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "글이나 이미지가 혐오·폭력·자해 같은 유해 범주에 걸리는지 flagged와 범주별 점수로 알려 주는 분류 API다.",
+    "related": [
+      "mlops.guardrail.input-output-guardrails"
+    ],
+    "aliases": [
+      "moderation endpoint",
+      "유해 콘텐츠 분류",
+      "omni-moderation"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/moderation"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "llm.basics.training-arguments",
+    "title": "TrainingArguments(학습 설정)",
+    "en": "TrainingArguments",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "Trainer가 쓸 저장 폴더·평가 시점·학습률·배치 크기·혼합 정밀도 같은 학습 설정을 모아 두는 객체다.",
+    "parent": "llm.basics.trainer-fine-tune",
+    "aliases": [
+      "training_args",
+      "eval_strategy",
+      "학습 하이퍼파라미터 설정"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter3/3"
+    ]
+  },
+  {
+    "id": "llm.basics.logits",
+    "title": "로짓(logits)",
+    "en": "Logits",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "모델 마지막 층이 내놓는 정규화 전 점수로, 소프트맥스를 거쳐야 확률이 되고 id2label로 라벨 이름과 이어진다.",
+    "parent": "llm.basics.transformers-pipeline",
+    "related": [
+      "ml.nn.multiclass-softmax"
+    ],
+    "aliases": [
+      "logit",
+      "로짓 값",
+      "id2label",
+      "모델 출력 점수"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter2/2"
+    ]
+  },
+  {
     "id": "llm.api.files-api",
     "title": "Files API",
     "en": "Files API",
@@ -2028,6 +2197,121 @@
     "refs": [
       "https://huggingface.co/docs/transformers/generation_strategies"
     ]
+  },
+  {
+    "id": "llm.basics.dynamic-padding",
+    "title": "동적 패딩과 DataCollatorWithPadding",
+    "en": "Dynamic Padding with DataCollatorWithPadding",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "데이터셋 전체가 아니라 배치마다 가장 긴 문장 길이에 맞춰 패딩해 학습 속도를 높이는 방법과 이를 해 주는 콜레이터다.",
+    "parent": "llm.basics.trainer-fine-tune",
+    "related": [
+      "llm.basics.padding-truncation"
+    ],
+    "aliases": [
+      "dynamic padding",
+      "DataCollatorWithPadding",
+      "데이터 콜레이터",
+      "data collator"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter3/2"
+    ]
+  },
+  {
+    "id": "llm.basics.compute-metrics",
+    "title": "compute_metrics와 evaluate 지표",
+    "en": "compute_metrics and evaluate Metrics",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "Trainer가 넘겨준 로짓과 정답 라벨로 evaluate 라이브러리의 정확도·F1 같은 지표를 계산해 돌려주는 사용자 함수다.",
+    "parent": "llm.basics.trainer-fine-tune",
+    "related": [
+      "ml.eval.accuracy"
+    ],
+    "aliases": [
+      "compute_metrics",
+      "evaluate.load",
+      "evaluate 라이브러리",
+      "Trainer 평가 지표"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter3/3"
+    ]
+  },
+  {
+    "id": "llm.basics.gradio-interface",
+    "title": "gr.Interface(Gradio 인터페이스)",
+    "en": "gr.Interface",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "실행할 함수와 입력·출력 컴포넌트를 받아 웹 화면을 만들고 launch()로 띄우는 Gradio의 기본 클래스다.",
+    "parent": "llm.basics.gradio-demo",
+    "aliases": [
+      "Gradio Interface",
+      "gradio launch",
+      "Gradio 컴포넌트"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter9/2"
+    ]
+  },
+  {
+    "id": "llm.basics.gradio-share-link",
+    "title": "Gradio 공유 링크(share=True)",
+    "en": "Gradio Share Link",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "launch(share=True)로 내 컴퓨터에서 도는 데모에 잠시 쓰는 공개 주소를 붙여, 컴퓨터가 켜져 있는 동안 남이 접속하게 하는 기능이다.",
+    "parent": "llm.basics.gradio-demo",
+    "related": [
+      "llm.basics.hf-spaces"
+    ],
+    "aliases": [
+      "share=True",
+      "Gradio 임시 링크",
+      "gradio.live 링크"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter9/4"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "llm.basics.hf-spaces",
+    "title": "Hugging Face Spaces",
+    "en": "Hugging Face Spaces",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "app.py와 requirements.txt를 담은 git 저장소를 올리면 Gradio 같은 데모 앱을 Hub에서 상시 실행해 주는 호스팅 서비스다.",
+    "parent": "llm.basics.gradio-demo",
+    "related": [
+      "llm.basics.share-on-hub"
+    ],
+    "aliases": [
+      "HF Spaces",
+      "허깅페이스 스페이스",
+      "Gradio Space",
+      "Spaces 배포"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/hub/spaces-sdks-gradio",
+      "https://huggingface.co/learn/llm-course/chapter9/4"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
   },
   {
     "id": "llm.security.prompt-injection",
