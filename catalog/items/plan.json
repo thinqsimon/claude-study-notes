@@ -559,6 +559,72 @@
     ]
   },
   {
+    "id": "plan.basics.service-scope",
+    "title": "사용자 과제 단위로 서비스 범위 정하기",
+    "en": "Scoping a Service Around User Tasks",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "기획 기초",
+    "summary": "만들 서비스가 하는 일과 하지 않는 일을 사용자가 보는 과제 단위로 정해, 너무 넓거나 좁아 목표를 못 이루는 일을 막는다.",
+    "objectives": [
+      "범위가 너무 넓을 때와 너무 좁을 때 사용자에게 생기는 문제를 예로 들 수 있다",
+      "사용자의 더 큰 목표 안에서 이 서비스가 맡을 하위 과제를 골라 적을 수 있다",
+      "조직 구조나 기술 선택이 아니라 사용자가 하나로 보는 일인지를 근거로 과제를 합치거나 나눌 수 있다",
+      "서비스 안에 둘 안내와 바깥 안내 페이지로 뺄 정보를 구분할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.problem-first"
+    ],
+    "related": [
+      "plan.basics.experience-map",
+      "plan.basics.mvp-idea",
+      "plan.basics.discovery-alpha"
+    ],
+    "aliases": [
+      "서비스 범위 정하기",
+      "서비스 스코핑",
+      "service scoping"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/design/scoping-your-service",
+      "https://www.gov.uk/service-manual/design/map-a-users-whole-problem"
+    ]
+  },
+  {
+    "id": "plan.basics.in-depth-interviews",
+    "title": "심층 인터뷰 진행하기",
+    "en": "Conducting In-Depth Interviews",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "기획 기초",
+    "summary": "사용자 한 명과 30분에서 두 시간 동안 주제별 시작 질문과 이어 묻는 질문으로 실제 경험담을 끌어내 사용자와 필요를 깊이 이해하는 조사 방법이다.",
+    "objectives": [
+      "조사 질문에서 다룰 주제를 뽑아 자연스러운 순서로 인터뷰 구조를 짤 수 있다",
+      "동료에게 시험 인터뷰를 해 보고 헷갈리는 질문과 순서를 고칠 수 있다",
+      "일반론이나 '보통은 이래야 한다'는 답 대신 실제 사례를 이야기하도록 질문을 이어 갈 수 있다",
+      "말을 너무 많이 하거나 대본에만 매이는 진행 실수를 알아보고 피할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.user-and-need"
+    ],
+    "related": [
+      "plan.basics.research-plan",
+      "plan.basics.usability-testing",
+      "plan.basics.contextual-research",
+      "plan.basics.discussion-guide"
+    ],
+    "aliases": [
+      "심층 인터뷰",
+      "in-depth interview",
+      "뎁스 인터뷰"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/user-research/using-in-depth-interviews"
+    ]
+  },
+  {
     "id": "plan.figma.auto-layout",
     "title": "오토 레이아웃으로 늘어나고 줄어드는 화면 만들기",
     "en": "Building Responsive Screens with Auto Layout",
@@ -1157,6 +1223,74 @@
     "refs": [
       "https://design-system.service.gov.uk/patterns/question-pages/",
       "https://design-system.service.gov.uk/patterns/check-answers/"
+    ]
+  },
+  {
+    "id": "plan.basics.ui-writing",
+    "title": "화면 문구 짧고 분명하게 쓰기",
+    "en": "Writing for User Interfaces",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "버튼·링크·제목·도움말 같은 화면 문구를 짧고 직접적으로 쓰고, 색이나 위치에 기대지 않아 누구나 같은 뜻으로 읽게 하는 방법이다.",
+    "objectives": [
+      "문구를 더하기 전에 화면 구조를 바꿔 설명이 필요 없게 할 수 있는지 먼저 따질 수 있다",
+      "핵심어를 앞에 두고 한 문장에 한 생각만 담아 버튼·도움말·오류 문구를 고칠 수 있다",
+      "'여기를 누르세요'나 '초록 버튼'처럼 맥락이나 감각에 기대는 문구를 찾아 바꿀 수 있다",
+      "서비스와 사용자를 가리키는 말투와 대소문자·약어 규칙을 화면 전체에 일관되게 맞출 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.question-pages"
+    ],
+    "related": [
+      "plan.basics.form-error-messages",
+      "plan.basics.hint-text"
+    ],
+    "aliases": [
+      "UX 라이팅",
+      "UX writing",
+      "마이크로카피",
+      "microcopy",
+      "인터페이스 문구",
+      "화면 문구"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/design/writing-for-user-interfaces"
+    ]
+  },
+  {
+    "id": "plan.basics.question-protocol-design",
+    "title": "꼭 필요한 질문만 고르고 순서 정하기",
+    "en": "Choosing and Ordering Form Questions",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "입력 양식에 넣을 질문마다 왜 묻는지와 답을 어디에 쓸지 따져 빼고 남긴 뒤, 자격 질문을 앞에 두고 분기로 해당하는 질문만 보이게 배치한다.",
+    "objectives": [
+      "질문마다 쓰임·답할 사람·확인 방법을 적은 질문 목록을 만들어 쓸모없는 질문을 뺄 수 있다",
+      "자격이 없는 사용자가 일찍 알 수 있게 질문 순서를 정하고 분기를 넣을 수 있다",
+      "열린 질문을 닫힌 질문으로 바꾸거나 복잡한 질문을 나눠 답하기 쉽게 할 수 있다",
+      "개인정보를 묻는 질문은 필요한 만큼만 묻고 쓰임을 알리는 문구를 붙일 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.question-pages"
+    ],
+    "related": [
+      "plan.basics.user-stories",
+      "plan.basics.form-error-messages"
+    ],
+    "aliases": [
+      "질문 설계",
+      "form question design",
+      "양식 질문 정하기",
+      "form structure"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/design/form-structure",
+      "https://www.gov.uk/service-manual/design/designing-good-questions",
+      "https://www.gov.uk/service-manual/design/collecting-personal-information-from-users"
     ]
   },
   {
@@ -1881,6 +2015,168 @@
     ]
   },
   {
+    "id": "plan.basics.one-task-per-service",
+    "title": "서비스 하나에 과제 하나",
+    "en": "One Task per Transaction",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "서로 관계없는 일을 편하다는 이유로 한 서비스에 묶지 않고, 사용자가 하나로 여긴다는 조사 근거가 있을 때만 합치는 기본 원칙이다.",
+    "parent": "plan.basics.service-scope",
+    "related": [
+      "plan.basics.one-thing-per-page"
+    ],
+    "aliases": [
+      "과제당 서비스 하나",
+      "one task per transaction",
+      "단일 과제 원칙",
+      "한 서비스 한 과제"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/design/scoping-your-service"
+    ]
+  },
+  {
+    "id": "plan.basics.interview-probe",
+    "title": "후속 탐색 질문(프로브)",
+    "en": "Follow-up Probe",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "참여자가 한 말을 받아 '언제였나요', '더 이야기해 주시겠어요'처럼 다시 물어 구체적인 사례와 이유를 끌어내는 이어 묻는 질문이다.",
+    "parent": "plan.basics.in-depth-interviews",
+    "related": [
+      "plan.basics.open-question"
+    ],
+    "aliases": [
+      "프로빙 질문",
+      "probing question",
+      "꼬리 질문"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/user-research/using-in-depth-interviews"
+    ]
+  },
+  {
+    "id": "plan.basics.link-purpose",
+    "title": "링크 목적이 드러나는 링크 문구",
+    "en": "Link Purpose (In Context)",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "링크 문구만 듣거나 그 문장과 함께 읽어도 어디로 가는지 알 수 있게 써야 한다는 WCAG 2.4.4 기준으로, '여기를 클릭' 같은 문구는 이를 어긴다.",
+    "parent": "plan.basics.ui-writing",
+    "related": [
+      "plan.basics.non-text-contrast"
+    ],
+    "aliases": [
+      "링크 목적",
+      "link purpose",
+      "WCAG 2.4.4",
+      "링크 텍스트",
+      "descriptive link text"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context.html",
+      "https://www.gov.uk/service-manual/design/writing-for-user-interfaces"
+    ]
+  },
+  {
+    "id": "plan.basics.question-protocol",
+    "title": "질문 프로토콜(question protocol)",
+    "en": "Question Protocol",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "양식과 따로 두는 문서로, 받을 정보마다 왜 필요한지·누가 답해야 하는지·어떻게 확인하고 최신으로 둘지 적어 이유를 대지 못하는 질문을 걸러 낸다.",
+    "parent": "plan.basics.question-protocol-design",
+    "aliases": [
+      "질문 프로토콜",
+      "question protocol",
+      "질문 근거표",
+      "문항 근거 목록"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/design/form-structure"
+    ]
+  },
+  {
+    "id": "plan.basics.question-branching",
+    "title": "질문 분기(branching)",
+    "en": "Question Branching",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "앞 질문의 답에 따라 다음 질문을 바꿔 사용자가 자기에게 해당하는 질문만 보게 하는 입력 흐름 설계다.",
+    "parent": "plan.basics.question-protocol-design",
+    "related": [
+      "plan.basics.question-pages",
+      "plan.figma.prototype-conditional"
+    ],
+    "aliases": [
+      "조건 분기 질문",
+      "question branching",
+      "분기 질문",
+      "branching form",
+      "조건부 질문"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/design/form-structure"
+    ]
+  },
+  {
+    "id": "plan.basics.data-minimisation",
+    "title": "개인정보 최소 수집",
+    "en": "Data Minimisation",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "서비스에 꼭 필요한 개인정보만 묻고 필요한 기간만 보관하며, 가능하면 원래 답 대신 자격 여부 같은 결과만 남기는 원칙이다.",
+    "parent": "plan.basics.question-protocol-design",
+    "related": [
+      "plan.basics.informed-consent"
+    ],
+    "aliases": [
+      "데이터 최소화",
+      "data minimisation",
+      "data minimization",
+      "개인정보 최소화",
+      "최소 수집 원칙"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/design/collecting-personal-information-from-users"
+    ]
+  },
+  {
+    "id": "plan.figma.version-history",
+    "title": "Figma 버전 기록과 복원",
+    "en": "Figma Version History",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Figma 파일이 자동 저장 시점과 이름 붙인 버전을 시간순으로 남겨, 예전 상태를 미리 보고 되살리거나 새 파일로 복제할 수 있게 하는 기능이다.",
+    "related": [
+      "plan.figma.branch-and-publish"
+    ],
+    "aliases": [
+      "Figma 버전 기록",
+      "Figma version history",
+      "Figma 버전 복원",
+      "named version",
+      "이름 붙인 버전"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360038006754-View-a-file-s-version-history"
+    ]
+  },
+  {
     "id": "plan.figma.constraints",
     "title": "제약(constraints)",
     "en": "Figma Constraints",
@@ -2310,6 +2606,51 @@
     ],
     "refs": [
       "https://www.gov.uk/service-manual/agile-delivery/how-the-alpha-phase-works"
+    ]
+  },
+  {
+    "id": "plan.basics.service-landscape",
+    "title": "서비스 지형도",
+    "en": "Service Landscape",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "한 여정이 지금 어떻게 제공되는지 온라인·오프라인 접점, 뒤쪽 처리, 사용자가 내야 할 서류까지 조직 쪽에서 그린 그림으로, 사용자 쪽 경험 지도와 짝을 이룬다.",
+    "parent": "plan.basics.service-scope",
+    "related": [
+      "plan.basics.experience-map"
+    ],
+    "aliases": [
+      "서비스 지형도",
+      "service landscape map"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/design/map-a-users-whole-problem"
+    ]
+  },
+  {
+    "id": "plan.basics.sensory-characteristics",
+    "title": "감각 특성에 기대지 않는 안내",
+    "en": "Sensory Characteristics",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "'오른쪽 아래 초록 버튼'처럼 모양·크기·위치·소리만으로 안내하지 말고 버튼 이름 같은 다른 단서를 함께 주라는 WCAG 1.3.3 기준이다.",
+    "parent": "plan.basics.ui-writing",
+    "related": [
+      "plan.basics.color-contrast"
+    ],
+    "aliases": [
+      "감각적 특성",
+      "sensory characteristics",
+      "WCAG 1.3.3",
+      "색·위치 기반 안내"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/WCAG22/Understanding/sensory-characteristics.html",
+      "https://www.gov.uk/service-manual/design/writing-for-user-interfaces"
     ]
   },
   {

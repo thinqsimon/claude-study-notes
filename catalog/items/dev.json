@@ -1085,6 +1085,104 @@
     ]
   },
   {
+    "id": "dev.test.tmp-path-capsys",
+    "title": "파일과 출력을 쓰는 코드 테스트하기: tmp_path·capsys",
+    "en": "Testing File and Console Output with tmp_path and capsys",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "테스트",
+    "summary": "pytest가 주는 임시 폴더와 출력 가로채기로 파일을 만들거나 화면에 찍는 함수도 깨끗하게 검사한다.",
+    "objectives": [
+      "tmp_path로 테스트마다 따로 생기는 폴더에 파일을 만들고 결과를 확인할 수 있다",
+      "capsys.readouterr()로 print가 낸 표준 출력과 표준 오류를 나눠 검사할 수 있다",
+      "실제 작업 폴더에 파일을 남기는 테스트를 tmp_path를 쓰도록 고칠 수 있다",
+      "-s 옵션과 capsys의 차이를 알고 디버깅할 때 출력을 볼 수 있다"
+    ],
+    "prerequisites": [
+      "be.test.pytest-fixtures"
+    ],
+    "related": [
+      "be.test.mocking"
+    ],
+    "aliases": [
+      "pytest 임시 폴더",
+      "pytest 출력 캡처",
+      "pytest -s",
+      "capture stdout pytest"
+    ],
+    "refs": [
+      "https://docs.pytest.org/en/stable/how-to/tmp_path.html",
+      "https://docs.pytest.org/en/stable/how-to/capture-stdout-stderr.html"
+    ]
+  },
+  {
+    "id": "dev.test.pytest-raises-approx",
+    "title": "예외와 소수 비교 단언하기: pytest.raises·approx",
+    "en": "Asserting Exceptions and Approximate Values in pytest",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "테스트",
+    "summary": "오류가 나야 맞는 코드와 반올림 오차가 있는 계산을 assert만으로 검사할 때 생기는 실수를 pytest.raises와 approx로 피한다.",
+    "objectives": [
+      "pytest.raises와 match로 예외의 종류와 메시지를 함께 검사할 수 있다",
+      "excinfo로 일어난 예외의 값을 꺼내 더 자세히 확인할 수 있다",
+      "0.1 + 0.2 같은 소수 계산을 == 대신 pytest.approx로 비교할 수 있다",
+      "pytest.raises가 하위 예외까지 통과시킨다는 점을 알고 정확한 종류를 따로 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "be.test.pytest-first",
+      "be.python.exceptions"
+    ],
+    "related": [
+      "dev.test.skip-xfail",
+      "dev.test.unittest"
+    ],
+    "aliases": [
+      "pytest 예외 테스트",
+      "예외 단언",
+      "assert raises",
+      "부동소수점 비교 테스트"
+    ],
+    "refs": [
+      "https://docs.pytest.org/en/stable/how-to/assert.html"
+    ]
+  },
+  {
+    "id": "dev.git.branching-workflows",
+    "title": "브랜치 작업 흐름: 장기 브랜치와 토픽 브랜치",
+    "en": "Branching Workflows: Long-Running and Topic Branches",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "Git",
+    "summary": "안정된 코드를 담는 오래가는 브랜치와 기능 하나씩 잠깐 쓰는 토픽 브랜치를 나눠 작업을 섞이지 않게 진행하는 방식이다.",
+    "objectives": [
+      "main과 develop 같은 장기 브랜치가 안정도에 따라 나뉘는 이유를 설명할 수 있다",
+      "기능이나 실험마다 토픽 브랜치를 만들고 다 쓰면 합치거나 지울 수 있다",
+      "한 브랜치에 여러 기능을 섞어 리뷰가 어려워지는 실수를 피할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.branch-pr",
+      "dev.git.merge-conflict"
+    ],
+    "related": [
+      "dev.git.merge-methods",
+      "dev.git.rebase"
+    ],
+    "aliases": [
+      "브랜치 전략",
+      "branching strategy",
+      "장기 브랜치",
+      "long-running branch",
+      "develop 브랜치"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Branching-Branching-Workflows"
+    ]
+  },
+  {
     "id": "dev.git.submodules",
     "title": "Git 서브모듈로 다른 저장소 담기",
     "en": "Git Submodules",
@@ -1113,6 +1211,36 @@
     ],
     "refs": [
       "https://git-scm.com/book/en/v2/Git-Tools-Submodules"
+    ]
+  },
+  {
+    "id": "dev.debug.timeit",
+    "title": "timeit으로 코드 실행 시간 비교하기",
+    "en": "Measuring Execution Time with timeit",
+    "kind": "topic",
+    "level": 3,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "같은 일을 하는 두 코드 중 무엇이 빠른지 timeit으로 여러 번 돌려 재고 가장 짧은 값으로 비교한다.",
+    "objectives": [
+      "python -m timeit과 -s 옵션으로 준비 코드를 빼고 짧은 코드의 시간을 잴 수 있다",
+      "timeit.timeit과 repeat로 내 함수의 실행 시간을 코드 안에서 잴 수 있다",
+      "반복 결과의 평균보다 최솟값을 보고 비교해야 하는 이유를 설명할 수 있다",
+      "time.time() 대신 perf_counter로 걸린 시간을 재는 실수 없는 방법을 쓸 수 있다"
+    ],
+    "prerequisites": [
+      "be.python.functions",
+      "dev.terminal.basic-commands"
+    ],
+    "aliases": [
+      "실행 시간 측정",
+      "python -m timeit",
+      "코드 속도 비교",
+      "마이크로 벤치마크"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/timeit.html",
+      "https://docs.python.org/3/tutorial/stdlib.html#performance-measurement"
     ]
   },
   {
@@ -1864,6 +1992,93 @@
     ]
   },
   {
+    "id": "dev.test.tmp-path",
+    "title": "tmp_path 픽스처",
+    "en": "tmp_path Fixture",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "테스트",
+    "summary": "테스트 함수마다 새로 만들어 pathlib.Path로 건네주는 pytest의 임시 폴더이며 최근 몇 번의 실행분만 남긴다.",
+    "parent": "dev.test.tmp-path-capsys",
+    "aliases": [
+      "tmp_path",
+      "tmp_path_factory",
+      "pytest tmpdir"
+    ]
+  },
+  {
+    "id": "dev.test.capsys",
+    "title": "capsys 픽스처",
+    "en": "capsys Fixture",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "테스트",
+    "summary": "테스트 안에서 sys.stdout과 sys.stderr에 쓴 내용을 붙잡아 readouterr()로 꺼내 보게 하는 pytest 픽스처다.",
+    "parent": "dev.test.tmp-path-capsys",
+    "aliases": [
+      "capsys",
+      "capfd",
+      "readouterr"
+    ]
+  },
+  {
+    "id": "dev.test.pytest-raises",
+    "title": "pytest.raises",
+    "en": "pytest.raises",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "테스트",
+    "summary": "with 블록 안에서 정한 예외가 일어나야 테스트를 통과시키는 pytest의 컨텍스트 매니저이며 match로 메시지도 검사한다.",
+    "parent": "dev.test.pytest-raises-approx",
+    "aliases": [
+      "pytest.raises",
+      "excinfo",
+      "raises match"
+    ]
+  },
+  {
+    "id": "dev.git.topic-branch",
+    "title": "토픽 브랜치",
+    "en": "Topic Branch",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Git",
+    "summary": "기능 하나나 실험 하나만 담으려고 잠깐 만들었다가 합치거나 지우는 짧은 브랜치다.",
+    "parent": "dev.git.branching-workflows",
+    "aliases": [
+      "토픽 브랜치",
+      "topic branch",
+      "기능 브랜치",
+      "feature branch"
+    ]
+  },
+  {
+    "id": "dev.git.merge-abort",
+    "title": "git merge --abort",
+    "en": "git merge --abort",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Git",
+    "summary": "충돌이 난 병합을 그만두고 병합 직전 상태로 돌아가는 명령이며 시작 전에 커밋 안 한 변경이 있으면 완전히 돌아가지 못할 수 있다.",
+    "parent": "dev.git.merge-conflict",
+    "related": [
+      "dev.git.reset-modes"
+    ],
+    "aliases": [
+      "merge --abort",
+      "병합 취소",
+      "머지 취소"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging"
+    ]
+  },
+  {
     "id": "dev.git.upstream-remote",
     "title": "업스트림 원격",
     "en": "Upstream Remote",
@@ -2222,6 +2437,84 @@
     ],
     "refs": [
       "https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work"
+    ]
+  },
+  {
+    "id": "dev.test.pytest-approx",
+    "title": "pytest.approx",
+    "en": "pytest.approx",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "테스트",
+    "summary": "반올림 오차를 허용해 소수, 리스트, 딕셔너리의 값을 거의 같은지로 비교하게 해 주는 pytest 도구다.",
+    "parent": "dev.test.pytest-raises-approx",
+    "aliases": [
+      "pytest.approx",
+      "근삿값 비교",
+      "approximate equality"
+    ]
+  },
+  {
+    "id": "dev.debug.perf-counter",
+    "title": "time.perf_counter",
+    "en": "time.perf_counter",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "짧은 시간을 재려고 쓰는 가장 정밀한 시계로, 값 하나는 뜻이 없고 두 번 부른 값의 차이만 걸린 시간이 된다.",
+    "parent": "dev.debug.timeit",
+    "aliases": [
+      "perf_counter",
+      "perf_counter_ns",
+      "경과 시간 측정"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/time.html#time.perf_counter"
+    ]
+  },
+  {
+    "id": "dev.git.git-grep",
+    "title": "git grep",
+    "en": "git grep",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "Git",
+    "summary": "작업 폴더뿐 아니라 지난 커밋이나 태그의 파일에서도 글자나 정규식을 찾아 줄 번호와 함수 이름까지 보여 주는 Git 검색 명령이다.",
+    "related": [
+      "dev.git.history-search"
+    ],
+    "aliases": [
+      "git grep",
+      "저장소 코드 검색",
+      "git grep -n"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Tools-Searching"
+    ]
+  },
+  {
+    "id": "dev.git.rerere",
+    "title": "git rerere",
+    "en": "git rerere (Reuse Recorded Resolution)",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "Git",
+    "summary": "한 번 손으로 푼 충돌의 해결을 기억해 두었다가 같은 충돌이 다시 나면 자동으로 똑같이 풀어 주는 Git 기능이다.",
+    "related": [
+      "dev.git.rebase",
+      "dev.git.merge-conflict"
+    ],
+    "aliases": [
+      "rerere",
+      "rerere.enabled",
+      "충돌 해결 기억"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Tools-Rerere"
     ]
   },
   {

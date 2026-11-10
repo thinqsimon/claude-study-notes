@@ -1207,6 +1207,104 @@
     ]
   },
   {
+    "id": "db.sql.alter-table",
+    "title": "ALTER TABLE로 있는 표의 구조 바꾸기",
+    "en": "Modifying Tables with ALTER TABLE",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "자료가 든 표를 지우지 않고 ALTER TABLE로 열을 더하거나 빼고, 제약·기본값·자료형·이름을 바꾸는 방법이다.",
+    "objectives": [
+      "ADD COLUMN과 DROP COLUMN으로 열을 더하고 빼며 기본값이 기존 행에 어떻게 채워지는지 설명할 수 있다",
+      "ALTER COLUMN으로 기본값·NOT NULL·자료형을 바꾸고 변환이 안 될 때 USING 절을 쓸 수 있다",
+      "기존 자료가 새 제약을 어겨 ADD CONSTRAINT가 실패할 때 원인을 찾아 자료를 먼저 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "db.postgres.first-run",
+      "db.sql.constraints"
+    ],
+    "related": [
+      "db.orm.alembic-basics",
+      "db.internals.online-schema-change"
+    ],
+    "aliases": [
+      "ALTER TABLE",
+      "ADD COLUMN",
+      "DROP COLUMN",
+      "열 추가",
+      "컬럼 추가",
+      "RENAME COLUMN"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/ddl-alter.html",
+      "https://www.postgresql.org/docs/current/sql-altertable.html"
+    ]
+  },
+  {
+    "id": "db.cache.redis-streams",
+    "title": "Redis Streams로 이벤트 쌓고 나눠 읽기",
+    "en": "Redis Streams",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "캐시",
+    "summary": "XADD로 이벤트를 차례로 쌓고 XREAD나 소비자 그룹으로 읽어, 끊겼던 동안의 메시지도 놓치지 않는 Redis 로그 자료형이다.",
+    "objectives": [
+      "XADD로 항목을 넣고 시각-순번 꼴의 항목 ID가 어떻게 매겨지는지 설명할 수 있다",
+      "XRANGE와 XREAD BLOCK으로 지난 항목과 새 항목을 읽을 수 있다",
+      "Pub/Sub와 Streams의 차이를 들어 메시지를 잃으면 안 되는 기능에 Streams를 고를 수 있다"
+    ],
+    "prerequisites": [
+      "db.cache.redis-first-run"
+    ],
+    "related": [
+      "db.cache.redis-pubsub"
+    ],
+    "aliases": [
+      "Redis Stream",
+      "레디스 스트림",
+      "XADD",
+      "XREAD",
+      "XRANGE"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/develop/data-types/streams/"
+    ]
+  },
+  {
+    "id": "db.nosql.mongodb-crud",
+    "title": "MongoDB 문서 넣고 찾고 고치고 지우기",
+    "en": "MongoDB CRUD Operations",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "NoSQL",
+    "summary": "MongoDB 컬렉션에 JSON 같은 문서를 넣고, 필터 문서로 찾고, 갱신 연산자로 고치고 지우는 기본 사용법이다.",
+    "objectives": [
+      "PyMongo의 insert_one·find·update_one·delete_one으로 문서를 다룰 수 있다",
+      "필터 문서에 비교·논리 연산자를 써서 원하는 문서만 고를 수 있다",
+      "표와 행, 컬렉션과 문서를 대응시켜 관계형 DB와 무엇이 다른지 설명할 수 있다"
+    ],
+    "related": [
+      "db.sql.write-rows",
+      "db.sql.jsonb",
+      "db.nosql.what-is-nosql"
+    ],
+    "aliases": [
+      "MongoDB",
+      "몽고DB",
+      "PyMongo",
+      "insert_one",
+      "find_one",
+      "몽고디비"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/crud/",
+      "https://www.mongodb.com/docs/languages/python/pymongo-driver/current/crud/"
+    ]
+  },
+  {
     "id": "db.sql.join",
     "title": "JOIN: 두 표 이어 붙이기",
     "en": "JOIN",
@@ -2082,6 +2180,138 @@
     ]
   },
   {
+    "id": "db.sql.alter-column-type",
+    "title": "ALTER COLUMN TYPE과 USING: 열 자료형 바꾸기",
+    "en": "ALTER COLUMN TYPE with USING",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "열의 자료형을 바꾸되 기존 값이 저절로 바뀌지 않으면 USING 식으로 새 값을 계산해 주는 문법이다.",
+    "parent": "db.sql.alter-table",
+    "related": [
+      "db.sql.data-types"
+    ],
+    "aliases": [
+      "ALTER COLUMN TYPE",
+      "USING 절",
+      "열 타입 변경",
+      "컬럼 타입 변경",
+      "column type change"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/ddl-alter.html"
+    ]
+  },
+  {
+    "id": "db.cache.redis-consumer-group",
+    "title": "Redis 소비자 그룹: XREADGROUP과 XACK",
+    "en": "Redis Stream Consumer Groups",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "캐시",
+    "summary": "한 스트림의 메시지를 여러 소비자가 나눠 받고, 처리를 마치면 XACK로 알려 대기 목록에서 빼는 방식이다.",
+    "parent": "db.cache.redis-streams",
+    "aliases": [
+      "Redis consumer group",
+      "XREADGROUP",
+      "XACK",
+      "XGROUP CREATE",
+      "XPENDING"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/develop/data-types/streams/"
+    ]
+  },
+  {
+    "id": "db.cache.redis-scan",
+    "title": "SCAN: KEYS 대신 키를 나눠 훑기",
+    "en": "Redis SCAN",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "캐시",
+    "summary": "커서를 넘기며 키를 조금씩 돌려받아, KEYS처럼 서버를 오래 멈추지 않고 패턴에 맞는 키를 찾는 Redis 명령이다.",
+    "aliases": [
+      "Redis SCAN",
+      "SCAN 커서",
+      "Redis KEYS",
+      "HSCAN",
+      "SSCAN",
+      "키 패턴 검색"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/commands/scan/"
+    ]
+  },
+  {
+    "id": "db.nosql.mongodb-objectid",
+    "title": "_id와 ObjectId: MongoDB 문서의 기본 키",
+    "en": "MongoDB _id and ObjectId",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "NoSQL",
+    "summary": "모든 문서에 있어야 하는 고유한 _id 필드와, 비워 두면 드라이버가 채우는 만든 시각이 든 12바이트 ObjectId 값이다.",
+    "parent": "db.nosql.mongodb-crud",
+    "related": [
+      "db.sql.primary-key"
+    ],
+    "aliases": [
+      "ObjectId",
+      "MongoDB _id",
+      "몽고DB 아이디",
+      "inserted_id",
+      "bson ObjectId"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/core/document/",
+      "https://www.mongodb.com/docs/manual/reference/method/ObjectId/"
+    ]
+  },
+  {
+    "id": "db.nosql.mongodb-query-operators",
+    "title": "MongoDB 쿼리 연산자: $gt·$in·$or",
+    "en": "MongoDB Query Operators",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "NoSQL",
+    "summary": "필터 문서 안에 $gt·$in 같은 비교 연산자와 $and·$or 같은 논리 연산자를 넣어 조건을 거는 MongoDB 문법이다.",
+    "parent": "db.nosql.mongodb-crud",
+    "aliases": [
+      "MongoDB 쿼리 연산자",
+      "query operators",
+      "$gt",
+      "$in",
+      "$or",
+      "몽고DB 필터"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/reference/mql/query-predicates/"
+    ]
+  },
+  {
+    "id": "db.nosql.mongodb-set-operator",
+    "title": "$set 갱신 연산자: 필드만 바꾸기",
+    "en": "MongoDB $set Update Operator",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "NoSQL",
+    "summary": "update_one에 $set을 써서 지정한 필드만 바꾸고, 내장 문서를 통째로 넣어 다른 필드를 날리는 실수를 피하는 방법이다.",
+    "parent": "db.nosql.mongodb-crud",
+    "aliases": [
+      "$set",
+      "MongoDB update",
+      "$set 연산자"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/reference/operator/update/set/"
+    ]
+  },
+  {
     "id": "db.sql.view",
     "title": "뷰: 쿼리에 이름 붙여 표처럼 쓰기",
     "en": "View",
@@ -2423,6 +2653,52 @@
     ],
     "refs": [
       "https://www.postgresql.org/docs/current/queries-table-expressions.html"
+    ]
+  },
+  {
+    "id": "db.cache.redis-multi-exec",
+    "title": "Redis 트랜잭션: MULTI·EXEC·WATCH",
+    "en": "Redis Transactions (MULTI/EXEC)",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "캐시",
+    "summary": "MULTI 뒤에 쌓은 명령을 EXEC 때 한꺼번에 끼어듦 없이 실행하되, 실패한 명령이 있어도 되돌리지 않는 Redis의 묶음 실행이다.",
+    "related": [
+      "db.internals.transaction"
+    ],
+    "aliases": [
+      "MULTI EXEC",
+      "Redis 트랜잭션",
+      "Redis transaction",
+      "Redis WATCH",
+      "Redis DISCARD"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/develop/using-commands/transactions/"
+    ]
+  },
+  {
+    "id": "db.sql.regex-match",
+    "title": "정규식 매칭: ~ 연산자와 regexp_replace",
+    "en": "POSIX Regular Expressions in PostgreSQL",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "SQL",
+    "summary": "~·~* 연산자로 정규식에 맞는 행을 고르고 regexp_replace·regexp_matches로 글자를 바꾸거나 뽑는 PostgreSQL 기능이다.",
+    "related": [
+      "db.sql.like-ilike"
+    ],
+    "aliases": [
+      "regexp_replace",
+      "regexp_matches",
+      "SQL 정규식",
+      "PostgreSQL 정규표현식",
+      "SIMILAR TO"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/functions-matching.html"
     ]
   },
   {

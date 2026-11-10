@@ -1,5 +1,5 @@
 {
- "version": "0.26.0",
+ "version": "0.27.0",
  "domains": [
   {
    "prefix": "dev",
@@ -1381,6 +1381,107 @@
    "domain": "dev"
   },
   {
+   "id": "dev.test.tmp-path-capsys",
+   "title": "파일과 출력을 쓰는 코드 테스트하기: tmp_path·capsys",
+   "en": "Testing File and Console Output with tmp_path and capsys",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "테스트",
+   "summary": "pytest가 주는 임시 폴더와 출력 가로채기로 파일을 만들거나 화면에 찍는 함수도 깨끗하게 검사한다.",
+   "objectives": [
+    "tmp_path로 테스트마다 따로 생기는 폴더에 파일을 만들고 결과를 확인할 수 있다",
+    "capsys.readouterr()로 print가 낸 표준 출력과 표준 오류를 나눠 검사할 수 있다",
+    "실제 작업 폴더에 파일을 남기는 테스트를 tmp_path를 쓰도록 고칠 수 있다",
+    "-s 옵션과 capsys의 차이를 알고 디버깅할 때 출력을 볼 수 있다"
+   ],
+   "prerequisites": [
+    "be.test.pytest-fixtures"
+   ],
+   "related": [
+    "be.test.mocking"
+   ],
+   "aliases": [
+    "pytest 임시 폴더",
+    "pytest 출력 캡처",
+    "pytest -s",
+    "capture stdout pytest"
+   ],
+   "refs": [
+    "https://docs.pytest.org/en/stable/how-to/tmp_path.html",
+    "https://docs.pytest.org/en/stable/how-to/capture-stdout-stderr.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.test.pytest-raises-approx",
+   "title": "예외와 소수 비교 단언하기: pytest.raises·approx",
+   "en": "Asserting Exceptions and Approximate Values in pytest",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "테스트",
+   "summary": "오류가 나야 맞는 코드와 반올림 오차가 있는 계산을 assert만으로 검사할 때 생기는 실수를 pytest.raises와 approx로 피한다.",
+   "objectives": [
+    "pytest.raises와 match로 예외의 종류와 메시지를 함께 검사할 수 있다",
+    "excinfo로 일어난 예외의 값을 꺼내 더 자세히 확인할 수 있다",
+    "0.1 + 0.2 같은 소수 계산을 == 대신 pytest.approx로 비교할 수 있다",
+    "pytest.raises가 하위 예외까지 통과시킨다는 점을 알고 정확한 종류를 따로 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "be.test.pytest-first",
+    "be.python.exceptions"
+   ],
+   "related": [
+    "dev.test.skip-xfail",
+    "dev.test.unittest"
+   ],
+   "aliases": [
+    "pytest 예외 테스트",
+    "예외 단언",
+    "assert raises",
+    "부동소수점 비교 테스트"
+   ],
+   "refs": [
+    "https://docs.pytest.org/en/stable/how-to/assert.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.branching-workflows",
+   "title": "브랜치 작업 흐름: 장기 브랜치와 토픽 브랜치",
+   "en": "Branching Workflows: Long-Running and Topic Branches",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "안정된 코드를 담는 오래가는 브랜치와 기능 하나씩 잠깐 쓰는 토픽 브랜치를 나눠 작업을 섞이지 않게 진행하는 방식이다.",
+   "objectives": [
+    "main과 develop 같은 장기 브랜치가 안정도에 따라 나뉘는 이유를 설명할 수 있다",
+    "기능이나 실험마다 토픽 브랜치를 만들고 다 쓰면 합치거나 지울 수 있다",
+    "한 브랜치에 여러 기능을 섞어 리뷰가 어려워지는 실수를 피할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.branch-pr",
+    "dev.git.merge-conflict"
+   ],
+   "related": [
+    "dev.git.merge-methods",
+    "dev.git.rebase"
+   ],
+   "aliases": [
+    "브랜치 전략",
+    "branching strategy",
+    "장기 브랜치",
+    "long-running branch",
+    "develop 브랜치"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Branching-Branching-Workflows"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.git.submodules",
    "title": "Git 서브모듈로 다른 저장소 담기",
    "en": "Git Submodules",
@@ -1409,6 +1510,37 @@
    ],
    "refs": [
     "https://git-scm.com/book/en/v2/Git-Tools-Submodules"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.debug.timeit",
+   "title": "timeit으로 코드 실행 시간 비교하기",
+   "en": "Measuring Execution Time with timeit",
+   "kind": "topic",
+   "level": 3,
+   "importance": 3,
+   "group": "디버깅",
+   "summary": "같은 일을 하는 두 코드 중 무엇이 빠른지 timeit으로 여러 번 돌려 재고 가장 짧은 값으로 비교한다.",
+   "objectives": [
+    "python -m timeit과 -s 옵션으로 준비 코드를 빼고 짧은 코드의 시간을 잴 수 있다",
+    "timeit.timeit과 repeat로 내 함수의 실행 시간을 코드 안에서 잴 수 있다",
+    "반복 결과의 평균보다 최솟값을 보고 비교해야 하는 이유를 설명할 수 있다",
+    "time.time() 대신 perf_counter로 걸린 시간을 재는 실수 없는 방법을 쓸 수 있다"
+   ],
+   "prerequisites": [
+    "be.python.functions",
+    "dev.terminal.basic-commands"
+   ],
+   "aliases": [
+    "실행 시간 측정",
+    "python -m timeit",
+    "코드 속도 비교",
+    "마이크로 벤치마크"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/timeit.html",
+    "https://docs.python.org/3/tutorial/stdlib.html#performance-measurement"
    ],
    "domain": "dev"
   },
@@ -2194,6 +2326,98 @@
    "domain": "dev"
   },
   {
+   "id": "dev.test.tmp-path",
+   "title": "tmp_path 픽스처",
+   "en": "tmp_path Fixture",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "테스트",
+   "summary": "테스트 함수마다 새로 만들어 pathlib.Path로 건네주는 pytest의 임시 폴더이며 최근 몇 번의 실행분만 남긴다.",
+   "parent": "dev.test.tmp-path-capsys",
+   "aliases": [
+    "tmp_path",
+    "tmp_path_factory",
+    "pytest tmpdir"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.test.capsys",
+   "title": "capsys 픽스처",
+   "en": "capsys Fixture",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "테스트",
+   "summary": "테스트 안에서 sys.stdout과 sys.stderr에 쓴 내용을 붙잡아 readouterr()로 꺼내 보게 하는 pytest 픽스처다.",
+   "parent": "dev.test.tmp-path-capsys",
+   "aliases": [
+    "capsys",
+    "capfd",
+    "readouterr"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.test.pytest-raises",
+   "title": "pytest.raises",
+   "en": "pytest.raises",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "테스트",
+   "summary": "with 블록 안에서 정한 예외가 일어나야 테스트를 통과시키는 pytest의 컨텍스트 매니저이며 match로 메시지도 검사한다.",
+   "parent": "dev.test.pytest-raises-approx",
+   "aliases": [
+    "pytest.raises",
+    "excinfo",
+    "raises match"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.topic-branch",
+   "title": "토픽 브랜치",
+   "en": "Topic Branch",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "기능 하나나 실험 하나만 담으려고 잠깐 만들었다가 합치거나 지우는 짧은 브랜치다.",
+   "parent": "dev.git.branching-workflows",
+   "aliases": [
+    "토픽 브랜치",
+    "topic branch",
+    "기능 브랜치",
+    "feature branch"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.merge-abort",
+   "title": "git merge --abort",
+   "en": "git merge --abort",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "충돌이 난 병합을 그만두고 병합 직전 상태로 돌아가는 명령이며 시작 전에 커밋 안 한 변경이 있으면 완전히 돌아가지 못할 수 있다.",
+   "parent": "dev.git.merge-conflict",
+   "related": [
+    "dev.git.reset-modes"
+   ],
+   "aliases": [
+    "merge --abort",
+    "병합 취소",
+    "머지 취소"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.git.upstream-remote",
    "title": "업스트림 원격",
    "en": "Upstream Remote",
@@ -2568,6 +2792,88 @@
    ],
    "refs": [
     "https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.test.pytest-approx",
+   "title": "pytest.approx",
+   "en": "pytest.approx",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "테스트",
+   "summary": "반올림 오차를 허용해 소수, 리스트, 딕셔너리의 값을 거의 같은지로 비교하게 해 주는 pytest 도구다.",
+   "parent": "dev.test.pytest-raises-approx",
+   "aliases": [
+    "pytest.approx",
+    "근삿값 비교",
+    "approximate equality"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.debug.perf-counter",
+   "title": "time.perf_counter",
+   "en": "time.perf_counter",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "디버깅",
+   "summary": "짧은 시간을 재려고 쓰는 가장 정밀한 시계로, 값 하나는 뜻이 없고 두 번 부른 값의 차이만 걸린 시간이 된다.",
+   "parent": "dev.debug.timeit",
+   "aliases": [
+    "perf_counter",
+    "perf_counter_ns",
+    "경과 시간 측정"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/time.html#time.perf_counter"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.git-grep",
+   "title": "git grep",
+   "en": "git grep",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "Git",
+   "summary": "작업 폴더뿐 아니라 지난 커밋이나 태그의 파일에서도 글자나 정규식을 찾아 줄 번호와 함수 이름까지 보여 주는 Git 검색 명령이다.",
+   "related": [
+    "dev.git.history-search"
+   ],
+   "aliases": [
+    "git grep",
+    "저장소 코드 검색",
+    "git grep -n"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Tools-Searching"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.rerere",
+   "title": "git rerere",
+   "en": "git rerere (Reuse Recorded Resolution)",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "Git",
+   "summary": "한 번 손으로 푼 충돌의 해결을 기억해 두었다가 같은 충돌이 다시 나면 자동으로 똑같이 풀어 주는 Git 기능이다.",
+   "related": [
+    "dev.git.rebase",
+    "dev.git.merge-conflict"
+   ],
+   "aliases": [
+    "rerere",
+    "rerere.enabled",
+    "충돌 해결 기억"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Tools-Rerere"
    ],
    "domain": "dev"
   },
@@ -3817,6 +4123,126 @@
    "domain": "cs"
   },
   {
+   "id": "cs.os.signals",
+   "title": "시그널로 프로세스에 알리기: SIGINT·SIGTERM·SIGKILL",
+   "en": "Signals: SIGINT, SIGTERM, SIGKILL",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "운영체제가 프로세스에 보내는 짧은 알림인 시그널의 기본 동작과, 종료 요청을 받아 정리하고 끝나는 프로그램을 만드는 법이다.",
+   "objectives": [
+    "SIGINT·SIGTERM·SIGKILL이 각각 언제 보내지고 기본 동작이 무엇인지 구분할 수 있다",
+    "종료 시그널을 받으면 파일을 닫고 끝나는 핸들러를 작성할 수 있다",
+    "SIGKILL로 끝난 프로세스가 정리 작업을 못 하는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.os.process-vs-thread"
+   ],
+   "related": [
+    "ops.linux.process-signals"
+   ],
+   "aliases": [
+    "SIGINT",
+    "시그널 기본 동작",
+    "signal disposition",
+    "종료 시그널",
+    "Ctrl+C 시그널"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man7/signal.7.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.stdio-buffering",
+   "title": "출력 버퍼링: 줄 버퍼와 블록 버퍼",
+   "en": "Output Buffering: Line vs Block Buffered",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "프로그램의 출력은 버퍼에 모였다가 한꺼번에 나가므로, 터미널·파일·파이프에 따라 출력이 늦게 보이는 이유와 바로 내보내는 법을 익힌다.",
+   "objectives": [
+    "버퍼 없음·줄 버퍼·블록 버퍼의 차이를 설명할 수 있다",
+    "터미널에서는 바로 보이던 출력이 파일이나 파이프로 보내면 늦게 나오는 원인을 찾을 수 있다",
+    "flush나 버퍼 설정으로 로그가 제때 나오게 고칠 수 있다"
+   ],
+   "aliases": [
+    "출력 버퍼",
+    "stdout 버퍼링",
+    "output buffering",
+    "print가 늦게 나옴",
+    "버퍼링 모드"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man3/setvbuf.3.html",
+    "https://man7.org/linux/man-pages/man3/fflush.3.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.ip-cidr",
+   "title": "IP 주소와 CIDR 표기",
+   "en": "IP Addresses and CIDR Notation",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "네트워크",
+   "summary": "IPv4 주소를 네트워크 부분과 호스트 부분으로 나누는 /24 같은 접두사 길이를 읽고, 그 범위에 몇 개의 주소가 드는지 계산하는 법이다.",
+   "objectives": [
+    "10.0.0.0/16 같은 CIDR 표기에서 네트워크 범위와 주소 개수를 계산할 수 있다",
+    "어떤 IP 주소가 주어진 CIDR 범위에 드는지 판단할 수 있다",
+    "사설 주소와 공인 주소를 구분해 방화벽·접근 허용 목록을 쓸 수 있다"
+   ],
+   "prerequisites": [
+    "cs.data.binary-bitwise"
+   ],
+   "aliases": [
+    "CIDR",
+    "CIDR 표기",
+    "IP 대역",
+    "접두사 길이",
+    "prefix length",
+    "/24 대역"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc4632.html",
+    "https://www.rfc-editor.org/rfc/rfc1918.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dsa.trie",
+   "title": "트라이로 접두사 검색하기",
+   "en": "Prefix Search with Tries",
+   "kind": "topic",
+   "level": 3,
+   "importance": 3,
+   "group": "자료구조",
+   "summary": "문자열을 글자 하나씩 가지로 내려가며 저장해, 같은 접두사를 공유하는 낱말을 한꺼번에 찾는 트리 자료구조다.",
+   "objectives": [
+    "낱말 여러 개를 넣은 트라이를 그림으로 그릴 수 있다",
+    "딕셔너리를 이어 붙여 삽입·검색·접두사 확인을 구현할 수 있다",
+    "자동 완성에서 해시 테이블보다 트라이가 나은 경우를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.dsa.hash-table",
+    "cs.dsa.binary-search-tree"
+   ],
+   "aliases": [
+    "trie",
+    "트라이 자료구조",
+    "접두사 트리",
+    "prefix tree",
+    "자동 완성 자료구조"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/trie.html"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.os.process",
    "title": "프로세스",
    "en": "Process",
@@ -4734,6 +5160,137 @@
    "domain": "cs"
   },
   {
+   "id": "cs.os.signal-handler",
+   "title": "시그널 핸들러",
+   "en": "Signal Handler",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "시그널이 도착하면 운영체제가 대신 불러 주도록 프로그램이 미리 등록해 둔 함수로, 기본 동작 대신 정리 작업을 하게 한다.",
+   "parent": "cs.os.signals",
+   "aliases": [
+    "signal handler",
+    "시그널 처리 함수",
+    "sigaction",
+    "signal.signal"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man7/signal.7.html",
+    "https://man7.org/linux/man-pages/man2/sigaction.2.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.uncatchable-signals",
+   "title": "잡을 수 없는 시그널(SIGKILL·SIGSTOP)",
+   "en": "Uncatchable Signals (SIGKILL, SIGSTOP)",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "SIGKILL과 SIGSTOP은 핸들러로 잡거나 막거나 무시할 수 없어서, 받은 프로세스는 정리할 틈 없이 바로 끝나거나 멈춘다.",
+   "parent": "cs.os.signals",
+   "aliases": [
+    "kill -9",
+    "SIGSTOP",
+    "강제 종료 시그널",
+    "uncatchable signal"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man7/signal.7.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.line-buffering",
+   "title": "줄 버퍼링",
+   "en": "Line Buffering",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "줄바꿈이 나올 때마다 버퍼를 내보내는 방식으로, 표준 출력이 터미널에 이어져 있을 때 기본으로 쓰인다.",
+   "parent": "cs.os.stdio-buffering",
+   "aliases": [
+    "line buffered",
+    "줄 단위 버퍼",
+    "_IOLBF",
+    "line_buffering"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man3/setvbuf.3.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.flush",
+   "title": "버퍼 비우기(fflush)",
+   "en": "Flushing a Buffer (fflush)",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "프로그램 안 버퍼에 모인 출력을 지금 운영체제로 넘기는 일로, 디스크에 저장됐다는 보장까지는 하지 않는다.",
+   "parent": "cs.os.stdio-buffering",
+   "related": [
+    "dev.robust.fsync"
+   ],
+   "aliases": [
+    "fflush",
+    "flush=True",
+    "sys.stdout.flush",
+    "출력 비우기"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man3/fflush.3.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.subnet-mask",
+   "title": "서브넷 마스크",
+   "en": "Subnet Mask",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "네트워크",
+   "summary": "IP 주소에서 네트워크 부분을 1로 표시한 32비트 값으로, /24는 255.255.255.0처럼 접두사 길이와 같은 정보를 다른 모양으로 나타낸다.",
+   "parent": "cs.net.ip-cidr",
+   "aliases": [
+    "subnet mask",
+    "넷마스크",
+    "netmask",
+    "255.255.255.0"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc4632.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.private-ip-address",
+   "title": "사설 IP 주소",
+   "en": "Private IP Address",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "네트워크",
+   "summary": "10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16처럼 조직 내부에서만 쓰라고 남겨 둔 주소로, 인터넷에서 바로 찾아올 수 없다.",
+   "parent": "cs.net.ip-cidr",
+   "aliases": [
+    "private IP",
+    "사설 주소",
+    "내부 IP",
+    "RFC 1918",
+    "192.168 주소"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc1918.html"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.algo.inorder-traversal",
    "title": "중위 순회",
    "en": "In-order Traversal",
@@ -4971,6 +5528,27 @@
    "refs": [
     "https://man7.org/linux/man-pages/man3/byteorder.3.html",
     "https://man7.org/linux/man-pages/man3/endian.3.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.ipv6-notation",
+   "title": "IPv6 주소 표기",
+   "en": "IPv6 Address Text Representation",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "네트워크",
+   "summary": "16진수 여덟 묶음을 콜론으로 잇고 앞의 0과 이어진 0 묶음을 ::로 줄이며, 포트를 붙일 때는 [::1]:8080처럼 대괄호로 감싸는 표기 규칙이다.",
+   "parent": "cs.net.ip-cidr",
+   "aliases": [
+    "IPv6 표기",
+    "IPv6 address",
+    "::1",
+    "IPv6 대괄호 표기"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc5952.html"
    ],
    "domain": "cs"
   },
@@ -5552,6 +6130,74 @@
    "refs": [
     "https://www.gov.uk/service-manual/agile-delivery/how-the-discovery-phase-works",
     "https://www.gov.uk/service-manual/agile-delivery/how-the-alpha-phase-works"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.service-scope",
+   "title": "사용자 과제 단위로 서비스 범위 정하기",
+   "en": "Scoping a Service Around User Tasks",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "기획 기초",
+   "summary": "만들 서비스가 하는 일과 하지 않는 일을 사용자가 보는 과제 단위로 정해, 너무 넓거나 좁아 목표를 못 이루는 일을 막는다.",
+   "objectives": [
+    "범위가 너무 넓을 때와 너무 좁을 때 사용자에게 생기는 문제를 예로 들 수 있다",
+    "사용자의 더 큰 목표 안에서 이 서비스가 맡을 하위 과제를 골라 적을 수 있다",
+    "조직 구조나 기술 선택이 아니라 사용자가 하나로 보는 일인지를 근거로 과제를 합치거나 나눌 수 있다",
+    "서비스 안에 둘 안내와 바깥 안내 페이지로 뺄 정보를 구분할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.problem-first"
+   ],
+   "related": [
+    "plan.basics.experience-map",
+    "plan.basics.mvp-idea",
+    "plan.basics.discovery-alpha"
+   ],
+   "aliases": [
+    "서비스 범위 정하기",
+    "서비스 스코핑",
+    "service scoping"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/design/scoping-your-service",
+    "https://www.gov.uk/service-manual/design/map-a-users-whole-problem"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.in-depth-interviews",
+   "title": "심층 인터뷰 진행하기",
+   "en": "Conducting In-Depth Interviews",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "기획 기초",
+   "summary": "사용자 한 명과 30분에서 두 시간 동안 주제별 시작 질문과 이어 묻는 질문으로 실제 경험담을 끌어내 사용자와 필요를 깊이 이해하는 조사 방법이다.",
+   "objectives": [
+    "조사 질문에서 다룰 주제를 뽑아 자연스러운 순서로 인터뷰 구조를 짤 수 있다",
+    "동료에게 시험 인터뷰를 해 보고 헷갈리는 질문과 순서를 고칠 수 있다",
+    "일반론이나 '보통은 이래야 한다'는 답 대신 실제 사례를 이야기하도록 질문을 이어 갈 수 있다",
+    "말을 너무 많이 하거나 대본에만 매이는 진행 실수를 알아보고 피할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.user-and-need"
+   ],
+   "related": [
+    "plan.basics.research-plan",
+    "plan.basics.usability-testing",
+    "plan.basics.contextual-research",
+    "plan.basics.discussion-guide"
+   ],
+   "aliases": [
+    "심층 인터뷰",
+    "in-depth interview",
+    "뎁스 인터뷰"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/user-research/using-in-depth-interviews"
    ],
    "domain": "plan"
   },
@@ -6172,6 +6818,76 @@
    "refs": [
     "https://design-system.service.gov.uk/patterns/question-pages/",
     "https://design-system.service.gov.uk/patterns/check-answers/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.ui-writing",
+   "title": "화면 문구 짧고 분명하게 쓰기",
+   "en": "Writing for User Interfaces",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "버튼·링크·제목·도움말 같은 화면 문구를 짧고 직접적으로 쓰고, 색이나 위치에 기대지 않아 누구나 같은 뜻으로 읽게 하는 방법이다.",
+   "objectives": [
+    "문구를 더하기 전에 화면 구조를 바꿔 설명이 필요 없게 할 수 있는지 먼저 따질 수 있다",
+    "핵심어를 앞에 두고 한 문장에 한 생각만 담아 버튼·도움말·오류 문구를 고칠 수 있다",
+    "'여기를 누르세요'나 '초록 버튼'처럼 맥락이나 감각에 기대는 문구를 찾아 바꿀 수 있다",
+    "서비스와 사용자를 가리키는 말투와 대소문자·약어 규칙을 화면 전체에 일관되게 맞출 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.question-pages"
+   ],
+   "related": [
+    "plan.basics.form-error-messages",
+    "plan.basics.hint-text"
+   ],
+   "aliases": [
+    "UX 라이팅",
+    "UX writing",
+    "마이크로카피",
+    "microcopy",
+    "인터페이스 문구",
+    "화면 문구"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/design/writing-for-user-interfaces"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.question-protocol-design",
+   "title": "꼭 필요한 질문만 고르고 순서 정하기",
+   "en": "Choosing and Ordering Form Questions",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "입력 양식에 넣을 질문마다 왜 묻는지와 답을 어디에 쓸지 따져 빼고 남긴 뒤, 자격 질문을 앞에 두고 분기로 해당하는 질문만 보이게 배치한다.",
+   "objectives": [
+    "질문마다 쓰임·답할 사람·확인 방법을 적은 질문 목록을 만들어 쓸모없는 질문을 뺄 수 있다",
+    "자격이 없는 사용자가 일찍 알 수 있게 질문 순서를 정하고 분기를 넣을 수 있다",
+    "열린 질문을 닫힌 질문으로 바꾸거나 복잡한 질문을 나눠 답하기 쉽게 할 수 있다",
+    "개인정보를 묻는 질문은 필요한 만큼만 묻고 쓰임을 알리는 문구를 붙일 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.question-pages"
+   ],
+   "related": [
+    "plan.basics.user-stories",
+    "plan.basics.form-error-messages"
+   ],
+   "aliases": [
+    "질문 설계",
+    "form question design",
+    "양식 질문 정하기",
+    "form structure"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/design/form-structure",
+    "https://www.gov.uk/service-manual/design/designing-good-questions",
+    "https://www.gov.uk/service-manual/design/collecting-personal-information-from-users"
    ],
    "domain": "plan"
   },
@@ -6930,6 +7646,175 @@
    "domain": "plan"
   },
   {
+   "id": "plan.basics.one-task-per-service",
+   "title": "서비스 하나에 과제 하나",
+   "en": "One Task per Transaction",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "서로 관계없는 일을 편하다는 이유로 한 서비스에 묶지 않고, 사용자가 하나로 여긴다는 조사 근거가 있을 때만 합치는 기본 원칙이다.",
+   "parent": "plan.basics.service-scope",
+   "related": [
+    "plan.basics.one-thing-per-page"
+   ],
+   "aliases": [
+    "과제당 서비스 하나",
+    "one task per transaction",
+    "단일 과제 원칙",
+    "한 서비스 한 과제"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/design/scoping-your-service"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.interview-probe",
+   "title": "후속 탐색 질문(프로브)",
+   "en": "Follow-up Probe",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "참여자가 한 말을 받아 '언제였나요', '더 이야기해 주시겠어요'처럼 다시 물어 구체적인 사례와 이유를 끌어내는 이어 묻는 질문이다.",
+   "parent": "plan.basics.in-depth-interviews",
+   "related": [
+    "plan.basics.open-question"
+   ],
+   "aliases": [
+    "프로빙 질문",
+    "probing question",
+    "꼬리 질문"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/user-research/using-in-depth-interviews"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.link-purpose",
+   "title": "링크 목적이 드러나는 링크 문구",
+   "en": "Link Purpose (In Context)",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "링크 문구만 듣거나 그 문장과 함께 읽어도 어디로 가는지 알 수 있게 써야 한다는 WCAG 2.4.4 기준으로, '여기를 클릭' 같은 문구는 이를 어긴다.",
+   "parent": "plan.basics.ui-writing",
+   "related": [
+    "plan.basics.non-text-contrast"
+   ],
+   "aliases": [
+    "링크 목적",
+    "link purpose",
+    "WCAG 2.4.4",
+    "링크 텍스트",
+    "descriptive link text"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context.html",
+    "https://www.gov.uk/service-manual/design/writing-for-user-interfaces"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.question-protocol",
+   "title": "질문 프로토콜(question protocol)",
+   "en": "Question Protocol",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "양식과 따로 두는 문서로, 받을 정보마다 왜 필요한지·누가 답해야 하는지·어떻게 확인하고 최신으로 둘지 적어 이유를 대지 못하는 질문을 걸러 낸다.",
+   "parent": "plan.basics.question-protocol-design",
+   "aliases": [
+    "질문 프로토콜",
+    "question protocol",
+    "질문 근거표",
+    "문항 근거 목록"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/design/form-structure"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.question-branching",
+   "title": "질문 분기(branching)",
+   "en": "Question Branching",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "앞 질문의 답에 따라 다음 질문을 바꿔 사용자가 자기에게 해당하는 질문만 보게 하는 입력 흐름 설계다.",
+   "parent": "plan.basics.question-protocol-design",
+   "related": [
+    "plan.basics.question-pages",
+    "plan.figma.prototype-conditional"
+   ],
+   "aliases": [
+    "조건 분기 질문",
+    "question branching",
+    "분기 질문",
+    "branching form",
+    "조건부 질문"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/design/form-structure"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.data-minimisation",
+   "title": "개인정보 최소 수집",
+   "en": "Data Minimisation",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "서비스에 꼭 필요한 개인정보만 묻고 필요한 기간만 보관하며, 가능하면 원래 답 대신 자격 여부 같은 결과만 남기는 원칙이다.",
+   "parent": "plan.basics.question-protocol-design",
+   "related": [
+    "plan.basics.informed-consent"
+   ],
+   "aliases": [
+    "데이터 최소화",
+    "data minimisation",
+    "data minimization",
+    "개인정보 최소화",
+    "최소 수집 원칙"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/design/collecting-personal-information-from-users"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.version-history",
+   "title": "Figma 버전 기록과 복원",
+   "en": "Figma Version History",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "Figma 파일이 자동 저장 시점과 이름 붙인 버전을 시간순으로 남겨, 예전 상태를 미리 보고 되살리거나 새 파일로 복제할 수 있게 하는 기능이다.",
+   "related": [
+    "plan.figma.branch-and-publish"
+   ],
+   "aliases": [
+    "Figma 버전 기록",
+    "Figma version history",
+    "Figma 버전 복원",
+    "named version",
+    "이름 붙인 버전"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360038006754-View-a-file-s-version-history"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.constraints",
    "title": "제약(constraints)",
    "en": "Figma Constraints",
@@ -7379,6 +8264,53 @@
    ],
    "refs": [
     "https://www.gov.uk/service-manual/agile-delivery/how-the-alpha-phase-works"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.service-landscape",
+   "title": "서비스 지형도",
+   "en": "Service Landscape",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "한 여정이 지금 어떻게 제공되는지 온라인·오프라인 접점, 뒤쪽 처리, 사용자가 내야 할 서류까지 조직 쪽에서 그린 그림으로, 사용자 쪽 경험 지도와 짝을 이룬다.",
+   "parent": "plan.basics.service-scope",
+   "related": [
+    "plan.basics.experience-map"
+   ],
+   "aliases": [
+    "서비스 지형도",
+    "service landscape map"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/design/map-a-users-whole-problem"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.sensory-characteristics",
+   "title": "감각 특성에 기대지 않는 안내",
+   "en": "Sensory Characteristics",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "'오른쪽 아래 초록 버튼'처럼 모양·크기·위치·소리만으로 안내하지 말고 버튼 이름 같은 다른 단서를 함께 주라는 WCAG 1.3.3 기준이다.",
+   "parent": "plan.basics.ui-writing",
+   "related": [
+    "plan.basics.color-contrast"
+   ],
+   "aliases": [
+    "감각적 특성",
+    "sensory characteristics",
+    "WCAG 1.3.3",
+    "색·위치 기반 안내"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/sensory-characteristics.html",
+    "https://www.gov.uk/service-manual/design/writing-for-user-interfaces"
    ],
    "domain": "plan"
   },
@@ -17218,6 +18150,107 @@
    "domain": "db"
   },
   {
+   "id": "db.sql.alter-table",
+   "title": "ALTER TABLE로 있는 표의 구조 바꾸기",
+   "en": "Modifying Tables with ALTER TABLE",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "자료가 든 표를 지우지 않고 ALTER TABLE로 열을 더하거나 빼고, 제약·기본값·자료형·이름을 바꾸는 방법이다.",
+   "objectives": [
+    "ADD COLUMN과 DROP COLUMN으로 열을 더하고 빼며 기본값이 기존 행에 어떻게 채워지는지 설명할 수 있다",
+    "ALTER COLUMN으로 기본값·NOT NULL·자료형을 바꾸고 변환이 안 될 때 USING 절을 쓸 수 있다",
+    "기존 자료가 새 제약을 어겨 ADD CONSTRAINT가 실패할 때 원인을 찾아 자료를 먼저 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "db.postgres.first-run",
+    "db.sql.constraints"
+   ],
+   "related": [
+    "db.orm.alembic-basics",
+    "db.internals.online-schema-change"
+   ],
+   "aliases": [
+    "ALTER TABLE",
+    "ADD COLUMN",
+    "DROP COLUMN",
+    "열 추가",
+    "컬럼 추가",
+    "RENAME COLUMN"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/ddl-alter.html",
+    "https://www.postgresql.org/docs/current/sql-altertable.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.cache.redis-streams",
+   "title": "Redis Streams로 이벤트 쌓고 나눠 읽기",
+   "en": "Redis Streams",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "캐시",
+   "summary": "XADD로 이벤트를 차례로 쌓고 XREAD나 소비자 그룹으로 읽어, 끊겼던 동안의 메시지도 놓치지 않는 Redis 로그 자료형이다.",
+   "objectives": [
+    "XADD로 항목을 넣고 시각-순번 꼴의 항목 ID가 어떻게 매겨지는지 설명할 수 있다",
+    "XRANGE와 XREAD BLOCK으로 지난 항목과 새 항목을 읽을 수 있다",
+    "Pub/Sub와 Streams의 차이를 들어 메시지를 잃으면 안 되는 기능에 Streams를 고를 수 있다"
+   ],
+   "prerequisites": [
+    "db.cache.redis-first-run"
+   ],
+   "related": [
+    "db.cache.redis-pubsub"
+   ],
+   "aliases": [
+    "Redis Stream",
+    "레디스 스트림",
+    "XADD",
+    "XREAD",
+    "XRANGE"
+   ],
+   "refs": [
+    "https://redis.io/docs/latest/develop/data-types/streams/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.nosql.mongodb-crud",
+   "title": "MongoDB 문서 넣고 찾고 고치고 지우기",
+   "en": "MongoDB CRUD Operations",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "NoSQL",
+   "summary": "MongoDB 컬렉션에 JSON 같은 문서를 넣고, 필터 문서로 찾고, 갱신 연산자로 고치고 지우는 기본 사용법이다.",
+   "objectives": [
+    "PyMongo의 insert_one·find·update_one·delete_one으로 문서를 다룰 수 있다",
+    "필터 문서에 비교·논리 연산자를 써서 원하는 문서만 고를 수 있다",
+    "표와 행, 컬렉션과 문서를 대응시켜 관계형 DB와 무엇이 다른지 설명할 수 있다"
+   ],
+   "related": [
+    "db.sql.write-rows",
+    "db.sql.jsonb",
+    "db.nosql.what-is-nosql"
+   ],
+   "aliases": [
+    "MongoDB",
+    "몽고DB",
+    "PyMongo",
+    "insert_one",
+    "find_one",
+    "몽고디비"
+   ],
+   "refs": [
+    "https://www.mongodb.com/docs/manual/crud/",
+    "https://www.mongodb.com/docs/languages/python/pymongo-driver/current/crud/"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.sql.join",
    "title": "JOIN: 두 표 이어 붙이기",
    "en": "JOIN",
@@ -18132,6 +19165,144 @@
    "domain": "db"
   },
   {
+   "id": "db.sql.alter-column-type",
+   "title": "ALTER COLUMN TYPE과 USING: 열 자료형 바꾸기",
+   "en": "ALTER COLUMN TYPE with USING",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "열의 자료형을 바꾸되 기존 값이 저절로 바뀌지 않으면 USING 식으로 새 값을 계산해 주는 문법이다.",
+   "parent": "db.sql.alter-table",
+   "related": [
+    "db.sql.data-types"
+   ],
+   "aliases": [
+    "ALTER COLUMN TYPE",
+    "USING 절",
+    "열 타입 변경",
+    "컬럼 타입 변경",
+    "column type change"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/ddl-alter.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.cache.redis-consumer-group",
+   "title": "Redis 소비자 그룹: XREADGROUP과 XACK",
+   "en": "Redis Stream Consumer Groups",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "캐시",
+   "summary": "한 스트림의 메시지를 여러 소비자가 나눠 받고, 처리를 마치면 XACK로 알려 대기 목록에서 빼는 방식이다.",
+   "parent": "db.cache.redis-streams",
+   "aliases": [
+    "Redis consumer group",
+    "XREADGROUP",
+    "XACK",
+    "XGROUP CREATE",
+    "XPENDING"
+   ],
+   "refs": [
+    "https://redis.io/docs/latest/develop/data-types/streams/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.cache.redis-scan",
+   "title": "SCAN: KEYS 대신 키를 나눠 훑기",
+   "en": "Redis SCAN",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "캐시",
+   "summary": "커서를 넘기며 키를 조금씩 돌려받아, KEYS처럼 서버를 오래 멈추지 않고 패턴에 맞는 키를 찾는 Redis 명령이다.",
+   "aliases": [
+    "Redis SCAN",
+    "SCAN 커서",
+    "Redis KEYS",
+    "HSCAN",
+    "SSCAN",
+    "키 패턴 검색"
+   ],
+   "refs": [
+    "https://redis.io/docs/latest/commands/scan/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.nosql.mongodb-objectid",
+   "title": "_id와 ObjectId: MongoDB 문서의 기본 키",
+   "en": "MongoDB _id and ObjectId",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "NoSQL",
+   "summary": "모든 문서에 있어야 하는 고유한 _id 필드와, 비워 두면 드라이버가 채우는 만든 시각이 든 12바이트 ObjectId 값이다.",
+   "parent": "db.nosql.mongodb-crud",
+   "related": [
+    "db.sql.primary-key"
+   ],
+   "aliases": [
+    "ObjectId",
+    "MongoDB _id",
+    "몽고DB 아이디",
+    "inserted_id",
+    "bson ObjectId"
+   ],
+   "refs": [
+    "https://www.mongodb.com/docs/manual/core/document/",
+    "https://www.mongodb.com/docs/manual/reference/method/ObjectId/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.nosql.mongodb-query-operators",
+   "title": "MongoDB 쿼리 연산자: $gt·$in·$or",
+   "en": "MongoDB Query Operators",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "NoSQL",
+   "summary": "필터 문서 안에 $gt·$in 같은 비교 연산자와 $and·$or 같은 논리 연산자를 넣어 조건을 거는 MongoDB 문법이다.",
+   "parent": "db.nosql.mongodb-crud",
+   "aliases": [
+    "MongoDB 쿼리 연산자",
+    "query operators",
+    "$gt",
+    "$in",
+    "$or",
+    "몽고DB 필터"
+   ],
+   "refs": [
+    "https://www.mongodb.com/docs/manual/reference/mql/query-predicates/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.nosql.mongodb-set-operator",
+   "title": "$set 갱신 연산자: 필드만 바꾸기",
+   "en": "MongoDB $set Update Operator",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "NoSQL",
+   "summary": "update_one에 $set을 써서 지정한 필드만 바꾸고, 내장 문서를 통째로 넣어 다른 필드를 날리는 실수를 피하는 방법이다.",
+   "parent": "db.nosql.mongodb-crud",
+   "aliases": [
+    "$set",
+    "MongoDB update",
+    "$set 연산자"
+   ],
+   "refs": [
+    "https://www.mongodb.com/docs/manual/reference/operator/update/set/"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.sql.view",
    "title": "뷰: 쿼리에 이름 붙여 표처럼 쓰기",
    "en": "View",
@@ -18488,6 +19659,54 @@
    ],
    "refs": [
     "https://www.postgresql.org/docs/current/queries-table-expressions.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.cache.redis-multi-exec",
+   "title": "Redis 트랜잭션: MULTI·EXEC·WATCH",
+   "en": "Redis Transactions (MULTI/EXEC)",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "캐시",
+   "summary": "MULTI 뒤에 쌓은 명령을 EXEC 때 한꺼번에 끼어듦 없이 실행하되, 실패한 명령이 있어도 되돌리지 않는 Redis의 묶음 실행이다.",
+   "related": [
+    "db.internals.transaction"
+   ],
+   "aliases": [
+    "MULTI EXEC",
+    "Redis 트랜잭션",
+    "Redis transaction",
+    "Redis WATCH",
+    "Redis DISCARD"
+   ],
+   "refs": [
+    "https://redis.io/docs/latest/develop/using-commands/transactions/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.regex-match",
+   "title": "정규식 매칭: ~ 연산자와 regexp_replace",
+   "en": "POSIX Regular Expressions in PostgreSQL",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "SQL",
+   "summary": "~·~* 연산자로 정규식에 맞는 행을 고르고 regexp_replace·regexp_matches로 글자를 바꾸거나 뽑는 PostgreSQL 기능이다.",
+   "related": [
+    "db.sql.like-ilike"
+   ],
+   "aliases": [
+    "regexp_replace",
+    "regexp_matches",
+    "SQL 정규식",
+    "PostgreSQL 정규표현식",
+    "SIMILAR TO"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/functions-matching.html"
    ],
    "domain": "db"
   },
@@ -39347,6 +40566,74 @@
    "domain": "mlops"
   },
   {
+   "id": "mlops.observe.token-usage-cost",
+   "title": "트레이스로 토큰 사용량과 비용 확인하기",
+   "en": "Tracking Token Usage and Cost in Traces",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "MLflow 트레이스에 LLM 호출마다 입력·출력 토큰과 달러 비용을 남겨 스팬별·요청별로 합계를 보는 방법이다.",
+   "objectives": [
+    "트레이스와 스팬에서 input_tokens·output_tokens·total_tokens 값을 꺼내 볼 수 있다",
+    "자동 기록이 안 되는 호출에 토큰 사용량과 비용 속성을 직접 붙일 수 있다",
+    "비용이 0으로 나오거나 토큰 값이 비는 흔한 원인을 찾아 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.observe.tracing-quickstart"
+   ],
+   "related": [
+    "llm.api.token-counting",
+    "ax.coding.agent-token-usage"
+   ],
+   "aliases": [
+    "토큰 사용량 추적",
+    "LLM 비용 추적",
+    "token usage tracking",
+    "LLM cost tracking",
+    "mlflow.chat.tokenUsage"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/tracing/token-usage-cost/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.vllm-memory-tuning",
+   "title": "vLLM 메모리 부족 해결: 양자화와 컨텍스트 길이 줄이기",
+   "en": "Reducing vLLM Memory Usage",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "vLLM이 GPU 메모리 부족으로 뜨지 않을 때 양자화 모델, 짧은 컨텍스트, 작은 배치, eager 모드로 메모리를 줄이는 방법이다.",
+   "objectives": [
+    "AWQ·GPTQ·FP8처럼 미리 양자화된 모델을 vLLM으로 불러올 수 있다",
+    "max_model_len과 max_num_seqs를 낮춰 메모리 부족 오류를 피할 수 있다",
+    "enforce_eager와 텐서 병렬로 메모리를 아끼는 손익을 구분할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.serve.vllm-openai-server"
+   ],
+   "related": [
+    "mlops.finetune.qlora-quickstart"
+   ],
+   "aliases": [
+    "vLLM OOM",
+    "vLLM 메모리 부족",
+    "vLLM 양자화 모델",
+    "vLLM memory",
+    "conserving memory vLLM"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/configuration/conserving_memory/",
+    "https://docs.vllm.ai/en/latest/features/quantization/"
+   ],
+   "domain": "mlops"
+  },
+  {
    "id": "mlops.track.experiment-tracking",
    "title": "실험 추적: 파라미터·지표·모델 기록하기",
    "en": "Experiment Tracking with MLflow",
@@ -39454,6 +40741,37 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-10",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.track.hyperparameter-tuning-runs",
+   "title": "하이퍼파라미터 탐색을 중첩 런으로 기록하기",
+   "en": "Logging Hyperparameter Tuning with Nested Runs",
+   "kind": "topic",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "Optuna 시도마다 자식 런을 만들고 부모 런에 최고 결과를 남겨 탐색 과정을 한 실험에서 비교하는 방법이다.",
+   "objectives": [
+    "부모 런 안에서 시도마다 nested=True 자식 런을 열어 파라미터와 지표를 기록할 수 있다",
+    "Optuna 목적 함수 안에서 MLflow 기록 코드를 넣어 탐색을 실행할 수 있다",
+    "가장 좋은 시도의 런 id와 파라미터를 부모 런에 남기고 UI에서 시도들을 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.track.experiment-tracking"
+   ],
+   "related": [
+    "ml.supervised.hyperparameter-search"
+   ],
+   "aliases": [
+    "MLflow 하이퍼파라미터 튜닝",
+    "Optuna MLflow",
+    "hyperparameter tuning MLflow",
+    "튜닝 런 기록"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/ml/getting-started/hyperparameter-tuning/"
+   ],
    "domain": "mlops"
   },
   {
@@ -39926,6 +41244,66 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-10",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.max-model-len",
+   "title": "최대 컨텍스트 길이(--max-model-len)",
+   "en": "Max Model Length (--max-model-len)",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "vLLM이 받아 줄 프롬프트와 출력을 합친 최대 길이로, 비우면 모델 설정에서 가져오며 낮추면 메모리 부족으로 서버가 뜨지 않는 일을 피할 수 있다.",
+   "parent": "mlops.serve.vllm-memory-tuning",
+   "aliases": [
+    "max_model_len",
+    "vLLM 컨텍스트 길이",
+    "vLLM context length"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/configuration/engine_args/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.gpu-memory-utilization",
+   "title": "GPU 메모리 사용 비율(--gpu-memory-utilization)",
+   "en": "GPU Memory Utilization",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "vLLM 인스턴스 하나가 차지할 GPU 메모리 비율(0~1)로, 한 GPU에 서버 여럿을 띄울 때 나눠 정한다.",
+   "parent": "mlops.serve.vllm-memory-tuning",
+   "aliases": [
+    "gpu_memory_utilization",
+    "vLLM GPU 메모리 비율",
+    "vLLM memory fraction"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/configuration/engine_args/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.build-docker",
+   "title": "모델 도커 이미지 만들기(build-docker)",
+   "en": "mlflow models build-docker",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "기록한 모델을 넣어 8080 포트로 예측 API를 여는 도커 이미지를 만드는 MLflow 명령이다.",
+   "parent": "mlops.serve.local-model-serving",
+   "aliases": [
+    "build-docker",
+    "MLflow 도커 이미지",
+    "MLflow docker serving"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/api_reference/cli.html"
+   ],
    "domain": "mlops"
   },
   {
@@ -40735,6 +42113,130 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-10",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.track.nested-run",
+   "title": "중첩 런(부모·자식 런)",
+   "en": "Nested Run",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "start_run(nested=True)로 열린 런 아래에 자식 런을 만들어 여러 시도를 한 부모에 묶는 MLflow 기능이다.",
+   "parent": "mlops.track.hyperparameter-tuning-runs",
+   "related": [
+    "mlops.track.experiment-run"
+   ],
+   "aliases": [
+    "자식 런",
+    "child run",
+    "parent run",
+    "nested=True"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/ml/getting-started/hyperparameter-tuning/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.track.search-runs",
+   "title": "런 검색(search_runs)",
+   "en": "Searching Runs (search_runs)",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "metrics.·params.·tags. 조건과 정렬로 여러 런을 골라 DataFrame으로 받아 비교하는 MLflow 함수다.",
+   "parent": "mlops.track.experiment-tracking",
+   "related": [
+    "mlops.observe.trace-filter-syntax"
+   ],
+   "aliases": [
+    "mlflow.search_runs",
+    "런 필터",
+    "run search",
+    "filter_string"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/ml/search/search-runs/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.track.system-metrics",
+   "title": "시스템 지표 기록(CPU·GPU·메모리)",
+   "en": "System Metrics Logging",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "학습 런 동안 CPU·GPU 사용률과 메모리·디스크·네트워크 값을 일정 간격으로 system/ 지표로 남기는 MLflow 기능이다.",
+   "parent": "mlops.track.experiment-tracking",
+   "related": [
+    "mlops.track.params-metrics-artifacts"
+   ],
+   "aliases": [
+    "system metrics",
+    "log_system_metrics",
+    "GPU 사용률 기록",
+    "MLFLOW_ENABLE_SYSTEM_METRICS_LOGGING"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/ml/tracking/system-metrics/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.track.dataset-input",
+   "title": "런에 데이터셋 기록하기(log_input)",
+   "en": "Dataset Tracking with log_input",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "mlflow.data로 감싼 데이터셋을 이름·출처·digest·용도와 함께 런에 붙여 어떤 데이터로 학습했는지 남기는 방법이다.",
+   "parent": "mlops.track.experiment-tracking",
+   "related": [
+    "mlops.track.data-versioning"
+   ],
+   "aliases": [
+    "mlflow.log_input",
+    "mlflow.data",
+    "데이터셋 추적",
+    "dataset digest",
+    "dataset tracking"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/ml/dataset/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.vllm-quantization-option",
+   "title": "vLLM 양자화 옵션(--quantization)",
+   "en": "vLLM Quantization Option",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "vLLM에 가중치 양자화 방식을 알려 주는 옵션으로, 비우면 모델 설정의 quantization_config를 따른다.",
+   "parent": "mlops.serve.vllm-memory-tuning",
+   "related": [
+    "mlops.finetune.nf4"
+   ],
+   "aliases": [
+    "vLLM quantization",
+    "vLLM AWQ",
+    "vLLM GPTQ",
+    "quantization_config"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/configuration/engine_args/",
+    "https://docs.vllm.ai/en/latest/features/quantization/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
    "domain": "mlops"
   },
   {

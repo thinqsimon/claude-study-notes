@@ -753,6 +753,122 @@
     ]
   },
   {
+    "id": "cs.os.signals",
+    "title": "시그널로 프로세스에 알리기: SIGINT·SIGTERM·SIGKILL",
+    "en": "Signals: SIGINT, SIGTERM, SIGKILL",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "운영체제가 프로세스에 보내는 짧은 알림인 시그널의 기본 동작과, 종료 요청을 받아 정리하고 끝나는 프로그램을 만드는 법이다.",
+    "objectives": [
+      "SIGINT·SIGTERM·SIGKILL이 각각 언제 보내지고 기본 동작이 무엇인지 구분할 수 있다",
+      "종료 시그널을 받으면 파일을 닫고 끝나는 핸들러를 작성할 수 있다",
+      "SIGKILL로 끝난 프로세스가 정리 작업을 못 하는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.os.process-vs-thread"
+    ],
+    "related": [
+      "ops.linux.process-signals"
+    ],
+    "aliases": [
+      "SIGINT",
+      "시그널 기본 동작",
+      "signal disposition",
+      "종료 시그널",
+      "Ctrl+C 시그널"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man7/signal.7.html"
+    ]
+  },
+  {
+    "id": "cs.os.stdio-buffering",
+    "title": "출력 버퍼링: 줄 버퍼와 블록 버퍼",
+    "en": "Output Buffering: Line vs Block Buffered",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "프로그램의 출력은 버퍼에 모였다가 한꺼번에 나가므로, 터미널·파일·파이프에 따라 출력이 늦게 보이는 이유와 바로 내보내는 법을 익힌다.",
+    "objectives": [
+      "버퍼 없음·줄 버퍼·블록 버퍼의 차이를 설명할 수 있다",
+      "터미널에서는 바로 보이던 출력이 파일이나 파이프로 보내면 늦게 나오는 원인을 찾을 수 있다",
+      "flush나 버퍼 설정으로 로그가 제때 나오게 고칠 수 있다"
+    ],
+    "aliases": [
+      "출력 버퍼",
+      "stdout 버퍼링",
+      "output buffering",
+      "print가 늦게 나옴",
+      "버퍼링 모드"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man3/setvbuf.3.html",
+      "https://man7.org/linux/man-pages/man3/fflush.3.html"
+    ]
+  },
+  {
+    "id": "cs.net.ip-cidr",
+    "title": "IP 주소와 CIDR 표기",
+    "en": "IP Addresses and CIDR Notation",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "IPv4 주소를 네트워크 부분과 호스트 부분으로 나누는 /24 같은 접두사 길이를 읽고, 그 범위에 몇 개의 주소가 드는지 계산하는 법이다.",
+    "objectives": [
+      "10.0.0.0/16 같은 CIDR 표기에서 네트워크 범위와 주소 개수를 계산할 수 있다",
+      "어떤 IP 주소가 주어진 CIDR 범위에 드는지 판단할 수 있다",
+      "사설 주소와 공인 주소를 구분해 방화벽·접근 허용 목록을 쓸 수 있다"
+    ],
+    "prerequisites": [
+      "cs.data.binary-bitwise"
+    ],
+    "aliases": [
+      "CIDR",
+      "CIDR 표기",
+      "IP 대역",
+      "접두사 길이",
+      "prefix length",
+      "/24 대역"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc4632.html",
+      "https://www.rfc-editor.org/rfc/rfc1918.html"
+    ]
+  },
+  {
+    "id": "cs.dsa.trie",
+    "title": "트라이로 접두사 검색하기",
+    "en": "Prefix Search with Tries",
+    "kind": "topic",
+    "level": 3,
+    "importance": 3,
+    "group": "자료구조",
+    "summary": "문자열을 글자 하나씩 가지로 내려가며 저장해, 같은 접두사를 공유하는 낱말을 한꺼번에 찾는 트리 자료구조다.",
+    "objectives": [
+      "낱말 여러 개를 넣은 트라이를 그림으로 그릴 수 있다",
+      "딕셔너리를 이어 붙여 삽입·검색·접두사 확인을 구현할 수 있다",
+      "자동 완성에서 해시 테이블보다 트라이가 나은 경우를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.dsa.hash-table",
+      "cs.dsa.binary-search-tree"
+    ],
+    "aliases": [
+      "trie",
+      "트라이 자료구조",
+      "접두사 트리",
+      "prefix tree",
+      "자동 완성 자료구조"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/trie.html"
+    ]
+  },
+  {
     "id": "cs.os.process",
     "title": "프로세스",
     "en": "Process",
@@ -1628,6 +1744,131 @@
     ]
   },
   {
+    "id": "cs.os.signal-handler",
+    "title": "시그널 핸들러",
+    "en": "Signal Handler",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "시그널이 도착하면 운영체제가 대신 불러 주도록 프로그램이 미리 등록해 둔 함수로, 기본 동작 대신 정리 작업을 하게 한다.",
+    "parent": "cs.os.signals",
+    "aliases": [
+      "signal handler",
+      "시그널 처리 함수",
+      "sigaction",
+      "signal.signal"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man7/signal.7.html",
+      "https://man7.org/linux/man-pages/man2/sigaction.2.html"
+    ]
+  },
+  {
+    "id": "cs.os.uncatchable-signals",
+    "title": "잡을 수 없는 시그널(SIGKILL·SIGSTOP)",
+    "en": "Uncatchable Signals (SIGKILL, SIGSTOP)",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "SIGKILL과 SIGSTOP은 핸들러로 잡거나 막거나 무시할 수 없어서, 받은 프로세스는 정리할 틈 없이 바로 끝나거나 멈춘다.",
+    "parent": "cs.os.signals",
+    "aliases": [
+      "kill -9",
+      "SIGSTOP",
+      "강제 종료 시그널",
+      "uncatchable signal"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man7/signal.7.html"
+    ]
+  },
+  {
+    "id": "cs.os.line-buffering",
+    "title": "줄 버퍼링",
+    "en": "Line Buffering",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "줄바꿈이 나올 때마다 버퍼를 내보내는 방식으로, 표준 출력이 터미널에 이어져 있을 때 기본으로 쓰인다.",
+    "parent": "cs.os.stdio-buffering",
+    "aliases": [
+      "line buffered",
+      "줄 단위 버퍼",
+      "_IOLBF",
+      "line_buffering"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man3/setvbuf.3.html"
+    ]
+  },
+  {
+    "id": "cs.os.flush",
+    "title": "버퍼 비우기(fflush)",
+    "en": "Flushing a Buffer (fflush)",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "프로그램 안 버퍼에 모인 출력을 지금 운영체제로 넘기는 일로, 디스크에 저장됐다는 보장까지는 하지 않는다.",
+    "parent": "cs.os.stdio-buffering",
+    "related": [
+      "dev.robust.fsync"
+    ],
+    "aliases": [
+      "fflush",
+      "flush=True",
+      "sys.stdout.flush",
+      "출력 비우기"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man3/fflush.3.html"
+    ]
+  },
+  {
+    "id": "cs.net.subnet-mask",
+    "title": "서브넷 마스크",
+    "en": "Subnet Mask",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "IP 주소에서 네트워크 부분을 1로 표시한 32비트 값으로, /24는 255.255.255.0처럼 접두사 길이와 같은 정보를 다른 모양으로 나타낸다.",
+    "parent": "cs.net.ip-cidr",
+    "aliases": [
+      "subnet mask",
+      "넷마스크",
+      "netmask",
+      "255.255.255.0"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc4632.html"
+    ]
+  },
+  {
+    "id": "cs.net.private-ip-address",
+    "title": "사설 IP 주소",
+    "en": "Private IP Address",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16처럼 조직 내부에서만 쓰라고 남겨 둔 주소로, 인터넷에서 바로 찾아올 수 없다.",
+    "parent": "cs.net.ip-cidr",
+    "aliases": [
+      "private IP",
+      "사설 주소",
+      "내부 IP",
+      "RFC 1918",
+      "192.168 주소"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc1918.html"
+    ]
+  },
+  {
     "id": "cs.algo.inorder-traversal",
     "title": "중위 순회",
     "en": "In-order Traversal",
@@ -1855,6 +2096,26 @@
     "refs": [
       "https://man7.org/linux/man-pages/man3/byteorder.3.html",
       "https://man7.org/linux/man-pages/man3/endian.3.html"
+    ]
+  },
+  {
+    "id": "cs.net.ipv6-notation",
+    "title": "IPv6 주소 표기",
+    "en": "IPv6 Address Text Representation",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "16진수 여덟 묶음을 콜론으로 잇고 앞의 0과 이어진 0 묶음을 ::로 줄이며, 포트를 붙일 때는 [::1]:8080처럼 대괄호로 감싸는 표기 규칙이다.",
+    "parent": "cs.net.ip-cidr",
+    "aliases": [
+      "IPv6 표기",
+      "IPv6 address",
+      "::1",
+      "IPv6 대괄호 표기"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc5952.html"
     ]
   }
 ]

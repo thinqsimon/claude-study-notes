@@ -1211,6 +1211,72 @@
     "checked_at": "2026-11-10"
   },
   {
+    "id": "mlops.observe.token-usage-cost",
+    "title": "트레이스로 토큰 사용량과 비용 확인하기",
+    "en": "Tracking Token Usage and Cost in Traces",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "MLflow 트레이스에 LLM 호출마다 입력·출력 토큰과 달러 비용을 남겨 스팬별·요청별로 합계를 보는 방법이다.",
+    "objectives": [
+      "트레이스와 스팬에서 input_tokens·output_tokens·total_tokens 값을 꺼내 볼 수 있다",
+      "자동 기록이 안 되는 호출에 토큰 사용량과 비용 속성을 직접 붙일 수 있다",
+      "비용이 0으로 나오거나 토큰 값이 비는 흔한 원인을 찾아 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.observe.tracing-quickstart"
+    ],
+    "related": [
+      "llm.api.token-counting",
+      "ax.coding.agent-token-usage"
+    ],
+    "aliases": [
+      "토큰 사용량 추적",
+      "LLM 비용 추적",
+      "token usage tracking",
+      "LLM cost tracking",
+      "mlflow.chat.tokenUsage"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/tracing/token-usage-cost/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "mlops.serve.vllm-memory-tuning",
+    "title": "vLLM 메모리 부족 해결: 양자화와 컨텍스트 길이 줄이기",
+    "en": "Reducing vLLM Memory Usage",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "vLLM이 GPU 메모리 부족으로 뜨지 않을 때 양자화 모델, 짧은 컨텍스트, 작은 배치, eager 모드로 메모리를 줄이는 방법이다.",
+    "objectives": [
+      "AWQ·GPTQ·FP8처럼 미리 양자화된 모델을 vLLM으로 불러올 수 있다",
+      "max_model_len과 max_num_seqs를 낮춰 메모리 부족 오류를 피할 수 있다",
+      "enforce_eager와 텐서 병렬로 메모리를 아끼는 손익을 구분할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.vllm-openai-server"
+    ],
+    "related": [
+      "mlops.finetune.qlora-quickstart"
+    ],
+    "aliases": [
+      "vLLM OOM",
+      "vLLM 메모리 부족",
+      "vLLM 양자화 모델",
+      "vLLM memory",
+      "conserving memory vLLM"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/configuration/conserving_memory/",
+      "https://docs.vllm.ai/en/latest/features/quantization/"
+    ]
+  },
+  {
     "id": "mlops.track.experiment-tracking",
     "title": "실험 추적: 파라미터·지표·모델 기록하기",
     "en": "Experiment Tracking with MLflow",
@@ -1316,6 +1382,36 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-10"
+  },
+  {
+    "id": "mlops.track.hyperparameter-tuning-runs",
+    "title": "하이퍼파라미터 탐색을 중첩 런으로 기록하기",
+    "en": "Logging Hyperparameter Tuning with Nested Runs",
+    "kind": "topic",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Optuna 시도마다 자식 런을 만들고 부모 런에 최고 결과를 남겨 탐색 과정을 한 실험에서 비교하는 방법이다.",
+    "objectives": [
+      "부모 런 안에서 시도마다 nested=True 자식 런을 열어 파라미터와 지표를 기록할 수 있다",
+      "Optuna 목적 함수 안에서 MLflow 기록 코드를 넣어 탐색을 실행할 수 있다",
+      "가장 좋은 시도의 런 id와 파라미터를 부모 런에 남기고 UI에서 시도들을 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.track.experiment-tracking"
+    ],
+    "related": [
+      "ml.supervised.hyperparameter-search"
+    ],
+    "aliases": [
+      "MLflow 하이퍼파라미터 튜닝",
+      "Optuna MLflow",
+      "hyperparameter tuning MLflow",
+      "튜닝 런 기록"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/ml/getting-started/hyperparameter-tuning/"
+    ]
   },
   {
     "id": "mlops.track.model-registry",
@@ -1769,6 +1865,63 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-10"
+  },
+  {
+    "id": "mlops.serve.max-model-len",
+    "title": "최대 컨텍스트 길이(--max-model-len)",
+    "en": "Max Model Length (--max-model-len)",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "vLLM이 받아 줄 프롬프트와 출력을 합친 최대 길이로, 비우면 모델 설정에서 가져오며 낮추면 메모리 부족으로 서버가 뜨지 않는 일을 피할 수 있다.",
+    "parent": "mlops.serve.vllm-memory-tuning",
+    "aliases": [
+      "max_model_len",
+      "vLLM 컨텍스트 길이",
+      "vLLM context length"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/configuration/engine_args/"
+    ]
+  },
+  {
+    "id": "mlops.serve.gpu-memory-utilization",
+    "title": "GPU 메모리 사용 비율(--gpu-memory-utilization)",
+    "en": "GPU Memory Utilization",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "vLLM 인스턴스 하나가 차지할 GPU 메모리 비율(0~1)로, 한 GPU에 서버 여럿을 띄울 때 나눠 정한다.",
+    "parent": "mlops.serve.vllm-memory-tuning",
+    "aliases": [
+      "gpu_memory_utilization",
+      "vLLM GPU 메모리 비율",
+      "vLLM memory fraction"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/configuration/engine_args/"
+    ]
+  },
+  {
+    "id": "mlops.serve.build-docker",
+    "title": "모델 도커 이미지 만들기(build-docker)",
+    "en": "mlflow models build-docker",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "기록한 모델을 넣어 8080 포트로 예측 API를 여는 도커 이미지를 만드는 MLflow 명령이다.",
+    "parent": "mlops.serve.local-model-serving",
+    "aliases": [
+      "build-docker",
+      "MLflow 도커 이미지",
+      "MLflow docker serving"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/api_reference/cli.html"
+    ]
   },
   {
     "id": "mlops.track.experiment-run",
@@ -2543,6 +2696,125 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-10"
+  },
+  {
+    "id": "mlops.track.nested-run",
+    "title": "중첩 런(부모·자식 런)",
+    "en": "Nested Run",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "start_run(nested=True)로 열린 런 아래에 자식 런을 만들어 여러 시도를 한 부모에 묶는 MLflow 기능이다.",
+    "parent": "mlops.track.hyperparameter-tuning-runs",
+    "related": [
+      "mlops.track.experiment-run"
+    ],
+    "aliases": [
+      "자식 런",
+      "child run",
+      "parent run",
+      "nested=True"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/ml/getting-started/hyperparameter-tuning/"
+    ]
+  },
+  {
+    "id": "mlops.track.search-runs",
+    "title": "런 검색(search_runs)",
+    "en": "Searching Runs (search_runs)",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "metrics.·params.·tags. 조건과 정렬로 여러 런을 골라 DataFrame으로 받아 비교하는 MLflow 함수다.",
+    "parent": "mlops.track.experiment-tracking",
+    "related": [
+      "mlops.observe.trace-filter-syntax"
+    ],
+    "aliases": [
+      "mlflow.search_runs",
+      "런 필터",
+      "run search",
+      "filter_string"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/ml/search/search-runs/"
+    ]
+  },
+  {
+    "id": "mlops.track.system-metrics",
+    "title": "시스템 지표 기록(CPU·GPU·메모리)",
+    "en": "System Metrics Logging",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "학습 런 동안 CPU·GPU 사용률과 메모리·디스크·네트워크 값을 일정 간격으로 system/ 지표로 남기는 MLflow 기능이다.",
+    "parent": "mlops.track.experiment-tracking",
+    "related": [
+      "mlops.track.params-metrics-artifacts"
+    ],
+    "aliases": [
+      "system metrics",
+      "log_system_metrics",
+      "GPU 사용률 기록",
+      "MLFLOW_ENABLE_SYSTEM_METRICS_LOGGING"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/ml/tracking/system-metrics/"
+    ]
+  },
+  {
+    "id": "mlops.track.dataset-input",
+    "title": "런에 데이터셋 기록하기(log_input)",
+    "en": "Dataset Tracking with log_input",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "mlflow.data로 감싼 데이터셋을 이름·출처·digest·용도와 함께 런에 붙여 어떤 데이터로 학습했는지 남기는 방법이다.",
+    "parent": "mlops.track.experiment-tracking",
+    "related": [
+      "mlops.track.data-versioning"
+    ],
+    "aliases": [
+      "mlflow.log_input",
+      "mlflow.data",
+      "데이터셋 추적",
+      "dataset digest",
+      "dataset tracking"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/ml/dataset/"
+    ]
+  },
+  {
+    "id": "mlops.serve.vllm-quantization-option",
+    "title": "vLLM 양자화 옵션(--quantization)",
+    "en": "vLLM Quantization Option",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "vLLM에 가중치 양자화 방식을 알려 주는 옵션으로, 비우면 모델 설정의 quantization_config를 따른다.",
+    "parent": "mlops.serve.vllm-memory-tuning",
+    "related": [
+      "mlops.finetune.nf4"
+    ],
+    "aliases": [
+      "vLLM quantization",
+      "vLLM AWQ",
+      "vLLM GPTQ",
+      "quantization_config"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/configuration/engine_args/",
+      "https://docs.vllm.ai/en/latest/features/quantization/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
   },
   {
     "id": "mlops.eval.llm-regression",
