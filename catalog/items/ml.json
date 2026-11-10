@@ -741,6 +741,39 @@
     ]
   },
   {
+    "id": "ml.nn.tensor-basics",
+    "title": "PyTorch 텐서 다루기: 모양·자료형·장치",
+    "en": "PyTorch Tensor Basics: Shape, Dtype, and Device",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "딥러닝",
+    "summary": "PyTorch의 모든 입력과 가중치는 텐서이므로 모양·자료형·장치를 읽고 맞추는 법을 알아야 모델 코드를 직접 고칠 수 있다.",
+    "objectives": [
+      "리스트·NumPy 배열·무작위 값으로 텐서를 만들 수 있다",
+      "shape·dtype·device를 확인해 모양이나 장치가 맞지 않는 오류를 고칠 수 있다",
+      "인덱싱·torch.cat·행렬 곱으로 텐서를 원하는 형태로 바꿀 수 있다",
+      "텐서와 NumPy 배열을 오가며 메모리를 함께 쓰는 경우를 구분할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.nn.first-neural-network"
+    ],
+    "related": [
+      "ml.nn.dataset-dataloader"
+    ],
+    "aliases": [
+      "텐서",
+      "torch.Tensor",
+      "PyTorch 텐서",
+      "텐서 연산",
+      "tensor shape",
+      "텐서 모양"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/tutorials/beginner/basics/tensorqs_tutorial.html"
+    ]
+  },
+  {
     "id": "ml.unsupervised.kmeans-clustering",
     "title": "K-평균 군집화: 정답 없는 데이터 무리 짓기",
     "en": "K-Means Clustering",
@@ -1213,6 +1246,75 @@
     ]
   },
   {
+    "id": "ml.supervised.svm-classification",
+    "title": "서포트 벡터 머신으로 분류하기",
+    "en": "Classification with Support Vector Machines",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "SVC는 클래스 사이 경계를 최대한 넓게 긋는 분류기로, 커널과 C·gamma를 고르고 특성을 스케일링해야 제 성능이 난다.",
+    "objectives": [
+      "StandardScaler와 SVC를 파이프라인으로 묶어 분류 모델을 학습할 수 있다",
+      "linear·rbf 커널 중 데이터에 맞는 것을 골라 결과를 비교할 수 있다",
+      "C와 gamma를 바꾸며 과적합과 과소적합 쪽 변화를 설명할 수 있다",
+      "GridSearchCV로 C와 gamma를 지수 간격으로 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.sklearn-pipeline",
+      "ml.supervised.hyperparameter-search"
+    ],
+    "related": [
+      "ml.supervised.logistic-regression",
+      "ml.supervised.k-nearest-neighbors"
+    ],
+    "aliases": [
+      "SVM",
+      "서포트 벡터 머신",
+      "SVC",
+      "support vector machine",
+      "서포트 벡터",
+      "LinearSVC"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/svm.html"
+    ]
+  },
+  {
+    "id": "ml.data.feature-selection",
+    "title": "특성 선택: 쓸모없는 특성 걸러내기",
+    "en": "Feature Selection",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "분산·통계 점수·모델 중요도를 기준으로 예측에 도움이 안 되는 특성을 빼서 모델을 단순하고 빠르게 만드는 전처리다.",
+    "objectives": [
+      "VarianceThreshold로 값이 거의 변하지 않는 특성을 지울 수 있다",
+      "SelectKBest와 RFE로 남길 특성 개수를 정해 고를 수 있다",
+      "특성 선택을 파이프라인 안에 넣어 학습과 예측에 똑같이 적용할 수 있다",
+      "특성 선택과 PCA 같은 차원 축소의 차이를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.sklearn-pipeline"
+    ],
+    "related": [
+      "ml.unsupervised.pca-dimensionality-reduction",
+      "ml.eval.permutation-importance"
+    ],
+    "aliases": [
+      "특성 선택",
+      "feature selection",
+      "피처 선택",
+      "변수 선택",
+      "VarianceThreshold",
+      "SelectFromModel"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/feature_selection.html"
+    ]
+  },
+  {
     "id": "ml.training.learning-rate",
     "title": "학습률",
     "en": "Learning Rate",
@@ -1366,6 +1468,55 @@
     ],
     "refs": [
       "https://docs.pytorch.org/docs/stable/generated/torch.no_grad.html"
+    ]
+  },
+  {
+    "id": "ml.nn.tensor-device",
+    "title": "장치 지정(.to(device))",
+    "en": "Moving Tensors to a Device",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "딥러닝",
+    "summary": "텐서는 기본으로 CPU에 만들어지므로 모델과 데이터를 .to(device)로 같은 CPU나 GPU에 옮겨 함께 계산하게 하며, 큰 텐서를 장치 사이로 옮기면 시간과 메모리가 든다.",
+    "parent": "ml.nn.tensor-basics",
+    "aliases": [
+      ".to(device)",
+      "GPU로 옮기기",
+      "cuda 장치",
+      "torch.device",
+      "텐서 장치",
+      "가속기 장치"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/tutorials/beginner/basics/tensorqs_tutorial.html"
+    ]
+  },
+  {
+    "id": "ml.nn.autograd",
+    "title": "autograd(자동 미분)",
+    "en": "Autograd (Automatic Differentiation)",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "딥러닝",
+    "summary": "requires_grad가 켜진 텐서의 연산을 기록해 두었다가 손실에 backward()를 부르면 각 파라미터의 .grad에 기울기를 채워 주는 PyTorch 기능이다.",
+    "parent": "ml.nn.training-loop",
+    "related": [
+      "ml.nn.no-grad",
+      "ml.nn.zero-grad",
+      "ml.training.backprop"
+    ],
+    "aliases": [
+      "torch.autograd",
+      "자동 미분",
+      "automatic differentiation",
+      "loss.backward()",
+      "requires_grad",
+      "계산 그래프"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/tutorials/beginner/basics/autogradqs_tutorial.html"
     ]
   },
   {
@@ -1965,6 +2116,121 @@
     ]
   },
   {
+    "id": "ml.nn.tensor-reshape",
+    "title": "텐서 모양 바꾸기(reshape·view)",
+    "en": "Reshaping Tensors (reshape and view)",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "reshape는 원소 수를 유지한 채 텐서의 모양을 바꾸며, 한 차원에 -1을 주면 나머지로부터 크기를 계산해 준다.",
+    "parent": "ml.nn.tensor-basics",
+    "related": [
+      "ml.nn.conv2d"
+    ],
+    "aliases": [
+      "torch.reshape",
+      "tensor.view",
+      "텐서 reshape",
+      "텐서 평탄화"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/stable/generated/torch.reshape.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.svm-kernel",
+    "title": "SVM 커널(linear·rbf)",
+    "en": "SVM Kernel Functions",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "커널은 SVM이 데이터 사이 유사도를 재는 함수로, linear는 직선 경계를, rbf는 gamma에 따라 휘어진 경계를 만든다.",
+    "parent": "ml.supervised.svm-classification",
+    "aliases": [
+      "SVM 커널",
+      "SVM 커널 함수",
+      "SVM kernel function",
+      "RBF 커널",
+      "rbf kernel",
+      "커널 트릭"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/svm.html#kernel-functions"
+    ]
+  },
+  {
+    "id": "ml.data.select-k-best",
+    "title": "SelectKBest(단변량 특성 선택)",
+    "en": "SelectKBest (Univariate Feature Selection)",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "SelectKBest는 특성마다 레이블과의 통계 점수를 매겨 점수가 높은 k개만 남기는 scikit-learn 변환기다.",
+    "parent": "ml.data.feature-selection",
+    "related": [
+      "ml.data.recursive-feature-elimination"
+    ],
+    "aliases": [
+      "SelectKBest",
+      "단변량 특성 선택",
+      "univariate feature selection",
+      "f_classif",
+      "SelectPercentile"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/feature_selection.html#univariate-feature-selection"
+    ]
+  },
+  {
+    "id": "ml.supervised.naive-bayes",
+    "title": "나이브 베이즈 분류기",
+    "en": "Naive Bayes Classifier",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "특성들이 서로 독립이라고 가정하고 베이즈 정리로 클래스 확률을 계산하는 빠른 분류기로, 단어 개수를 쓰는 텍스트 분류에 자주 쓴다.",
+    "related": [
+      "ml.data.text-vectorization",
+      "ml.supervised.logistic-regression"
+    ],
+    "aliases": [
+      "나이브 베이즈",
+      "naive bayes",
+      "MultinomialNB",
+      "GaussianNB",
+      "ComplementNB"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/naive_bayes.html"
+    ]
+  },
+  {
+    "id": "ml.data.ordinal-encoding",
+    "title": "순서형 인코딩(OrdinalEncoder)",
+    "en": "Ordinal Encoding",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "범주마다 0부터 정수 하나를 붙이는 변환으로, 모델이 그 숫자를 순서로 읽기 때문에 순서가 없는 범주에는 원-핫 인코딩이 더 맞다.",
+    "parent": "ml.data.numeric-categorical-preprocessing",
+    "related": [
+      "ml.data.one-hot-encoding"
+    ],
+    "aliases": [
+      "OrdinalEncoder",
+      "순서형 인코딩",
+      "ordinal encoding"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/preprocessing.html#encoding-categorical-features"
+    ]
+  },
+  {
     "id": "ml.unsupervised.silhouette-score",
     "title": "실루엣 점수",
     "en": "Silhouette Score",
@@ -2236,6 +2502,29 @@
     ],
     "refs": [
       "https://scikit-learn.org/stable/modules/clustering.html#dbscan"
+    ]
+  },
+  {
+    "id": "ml.data.recursive-feature-elimination",
+    "title": "재귀적 특성 제거(RFE)",
+    "en": "Recursive Feature Elimination (RFE)",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "RFE는 모델을 반복해 학습하며 중요도가 가장 낮은 특성부터 하나씩 빼서 원하는 개수만 남기고, RFECV는 그 개수를 교차 검증으로 정한다.",
+    "parent": "ml.data.feature-selection",
+    "related": [
+      "ml.data.select-k-best"
+    ],
+    "aliases": [
+      "RFE",
+      "RFECV",
+      "재귀적 특성 제거",
+      "recursive feature elimination"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/feature_selection.html#recursive-feature-elimination"
     ]
   },
   {

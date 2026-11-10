@@ -1163,6 +1163,140 @@
     ]
   },
   {
+    "id": "ops.linux.cron-jobs",
+    "title": "cron으로 정해진 시간에 명령 돌리기",
+    "en": "Scheduling Commands with cron",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "crontab -e로 시간 표기와 명령을 한 줄씩 적어 두면 cron 데몬이 그 시각마다 명령을 실행해 준다.",
+    "objectives": [
+      "crontab -e·-l로 내 예약 작업을 등록하고 확인할 수 있다",
+      "사용자 crontab과 /etc/cron.d 파일의 줄 형식 차이를 구분할 수 있다",
+      "작업 출력이 메일이나 syslog로 가는 것을 알고 로그 파일로 돌려 결과를 확인할 수 있다",
+      "터미널에서는 되는데 cron에서만 실패하는 작업의 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "ops.linux.shell-script-basics"
+    ],
+    "related": [
+      "ops.linux.systemd-timer",
+      "be.async.scheduled-jobs"
+    ],
+    "aliases": [
+      "crontab",
+      "crontab -e",
+      "크론탭",
+      "cron job"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man1/crontab.1.html",
+      "https://man7.org/linux/man-pages/man5/crontab.5.html",
+      "https://man7.org/linux/man-pages/man8/cron.8.html"
+    ]
+  },
+  {
+    "id": "ops.linux.disk-space",
+    "title": "디스크 공간 확인과 정리: df·du",
+    "en": "Checking and Freeing Disk Space with df and du",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "df로 파일 시스템마다 남은 공간을, du로 디렉터리마다 쓴 공간을 보아 디스크를 채운 곳을 찾고 정리한다.",
+    "objectives": [
+      "df -h와 df -i로 공간이 모자란지 아이노드가 모자란지 구분할 수 있다",
+      "du -h -d 1과 -x로 큰 디렉터리를 한 단계씩 좁혀 찾을 수 있다",
+      "지운 로그 파일을 프로세스가 아직 열고 있어 df와 du의 값이 다른 상황을 알아챌 수 있다",
+      "로그 돌리기와 Docker 정리 명령으로 다시 차지 않게 할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.linux.shell-script-basics"
+    ],
+    "related": [
+      "ops.linux.journalctl",
+      "cs.os.file-descriptor"
+    ],
+    "aliases": [
+      "df -h",
+      "du -sh",
+      "디스크 용량 확인",
+      "No space left on device",
+      "디스크 가득 참",
+      "아이노드 부족"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man1/df.1.html",
+      "https://man7.org/linux/man-pages/man1/du.1.html"
+    ]
+  },
+  {
+    "id": "ops.docker.compose-multi-env",
+    "title": "Compose 설정을 환경별로 나누기: override와 프로필",
+    "en": "Splitting Compose Configuration with Overrides and Profiles",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "Docker",
+    "summary": "기본 compose.yaml에 개발·운영용 파일을 겹치거나 프로필로 서비스를 켜고 끄면 한 프로젝트를 여러 환경에서 쓸 수 있다.",
+    "objectives": [
+      "compose.override.yaml과 -f로 파일을 겹쳐 개발용 설정만 따로 둘 수 있다",
+      "값 하나짜리 옵션은 바뀌고 ports 같은 목록은 합쳐지는 병합 규칙을 예상할 수 있다",
+      "profiles로 디버그·관리용 서비스를 평소에는 꺼 둘 수 있다",
+      "docker compose config로 합쳐진 결과를 확인해 설정 실수를 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "ops.docker.first-container"
+    ],
+    "related": [
+      "ops.docker.compose-variable-interpolation",
+      "ops.docker.compose"
+    ],
+    "aliases": [
+      "docker compose -f",
+      "Compose 파일 병합",
+      "docker compose config",
+      "개발용 compose 파일"
+    ],
+    "refs": [
+      "https://docs.docker.com/compose/how-tos/multiple-compose-files/merge/",
+      "https://docs.docker.com/compose/how-tos/profiles/"
+    ]
+  },
+  {
+    "id": "ops.docker.build-secrets",
+    "title": "빌드 시크릿으로 비밀값 넘기기",
+    "en": "Passing Secrets to Docker Builds",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "Docker",
+    "summary": "빌드 중에 필요한 비밀값을 ARG·ENV 대신 --secret과 RUN --mount=type=secret으로 넘기면 이미지에 남지 않는다.",
+    "objectives": [
+      "ARG·ENV로 넘긴 비밀값이 이미지에 남는 이유를 설명할 수 있다",
+      "docker build --secret으로 파일이나 환경 변수를 넘기고 RUN --mount=type=secret으로 읽을 수 있다",
+      "비공개 Git 저장소를 받을 때 --ssh와 RUN --mount=type=ssh를 쓸 수 있다"
+    ],
+    "prerequisites": [
+      "ops.docker.dockerfile-instructions"
+    ],
+    "related": [
+      "ops.docker.arg-vs-env",
+      "ops.ci.environment-secrets"
+    ],
+    "aliases": [
+      "docker build --secret",
+      "RUN --mount=type=secret",
+      "Docker 빌드 시크릿",
+      "build secret",
+      "--mount=type=ssh"
+    ],
+    "refs": [
+      "https://docs.docker.com/build/building/secrets/"
+    ]
+  },
+  {
     "id": "ops.docker.compose",
     "title": "Docker Compose",
     "en": "Docker Compose",
@@ -2057,6 +2191,148 @@
     ]
   },
   {
+    "id": "ops.linux.cron-schedule-syntax",
+    "title": "cron 시간 표기",
+    "en": "cron Schedule Syntax",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "분·시·일·월·요일 다섯 칸에 *·범위·목록·*/n 간격을 써서 실행 시각을 정하고 @daily 같은 약칭도 쓸 수 있는 표기다.",
+    "parent": "ops.linux.cron-jobs",
+    "related": [
+      "ops.ci.schedule-trigger"
+    ],
+    "aliases": [
+      "cron 표현식",
+      "cron expression",
+      "*/5 * * * *",
+      "@reboot",
+      "크론 표현식"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man5/crontab.5.html"
+    ]
+  },
+  {
+    "id": "ops.linux.cron-environment",
+    "title": "cron 작업의 실행 환경",
+    "en": "cron Job Environment",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "cron은 로그인 셸 설정을 읽지 않고 /bin/sh와 적은 환경 변수로 명령을 돌리므로 PATH를 정하거나 절대 경로를 써야 하고 %는 \\%로 막아야 한다.",
+    "parent": "ops.linux.cron-jobs",
+    "related": [
+      "ops.linux.path-shell-startup",
+      "ops.linux.login-shell"
+    ],
+    "aliases": [
+      "cron PATH",
+      "MAILTO",
+      "cron 환경 변수",
+      "crontab 퍼센트"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man5/crontab.5.html",
+      "https://man7.org/linux/man-pages/man8/cron.8.html"
+    ]
+  },
+  {
+    "id": "ops.linux.logrotate",
+    "title": "logrotate로 로그 파일 돌리기",
+    "en": "Log Rotation with logrotate",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "로그 파일을 날짜나 크기마다 새 파일로 바꾸고 오래된 것은 압축하거나 지워 디스크가 차지 않게 하는 도구다.",
+    "parent": "ops.linux.disk-space",
+    "aliases": [
+      "logrotate",
+      "로그 로테이션",
+      "log rotation",
+      "copytruncate",
+      "/etc/logrotate.d"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man8/logrotate.8.html"
+    ]
+  },
+  {
+    "id": "ops.docker.system-prune",
+    "title": "안 쓰는 Docker 데이터 정리(prune)",
+    "en": "Pruning Unused Docker Objects",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Docker",
+    "summary": "docker system prune은 멈춘 컨테이너·안 쓰는 네트워크·이름 없는 이미지·빌드 캐시를 지우며, 볼륨과 태그 달린 이미지는 옵션을 줘야 지운다.",
+    "parent": "ops.linux.disk-space",
+    "related": [
+      "ops.docker.volume",
+      "ops.container.image-layers"
+    ],
+    "aliases": [
+      "docker system prune",
+      "docker image prune",
+      "docker volume prune",
+      "dangling image",
+      "Docker 디스크 정리"
+    ],
+    "refs": [
+      "https://docs.docker.com/engine/manage-resources/pruning/"
+    ]
+  },
+  {
+    "id": "ops.docker.compose-override-file",
+    "title": "compose.override.yaml",
+    "en": "Compose Override File",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Docker",
+    "summary": "compose.yaml 옆에 두면 -f 없이도 자동으로 겹쳐 읽혀, 개발할 때만 쓰는 포트·마운트·명령을 덧붙이는 파일이다.",
+    "parent": "ops.docker.compose-multi-env",
+    "aliases": [
+      "compose.override.yaml",
+      "docker-compose.override.yml",
+      "Compose override",
+      "오버라이드 파일"
+    ],
+    "refs": [
+      "https://docs.docker.com/compose/how-tos/multiple-compose-files/merge/"
+    ]
+  },
+  {
+    "id": "ops.ci.schedule-trigger",
+    "title": "예약 실행 트리거(schedule)",
+    "en": "Scheduled Workflow Trigger",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "CI/CD",
+    "summary": "on.schedule에 cron 표기를 적으면 기본적으로 UTC 기준 그 시각에 기본 브랜치의 최신 커밋으로 워크플로가 돌며, 몰리는 시간에는 늦어질 수 있다.",
+    "parent": "ops.ci.workflow-basics",
+    "related": [
+      "ops.linux.cron-schedule-syntax",
+      "ops.ci.workflow-trigger"
+    ],
+    "aliases": [
+      "on: schedule",
+      "schedule 이벤트",
+      "예약 워크플로",
+      "scheduled workflow",
+      "GitHub Actions cron"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
     "id": "ops.deploy.rolling-update",
     "title": "롤링 업데이트",
     "en": "Rolling Update",
@@ -2231,6 +2507,72 @@
     "refs": [
       "https://docs.github.com/en/actions/how-tos/monitor-workflows/enable-debug-logging"
     ]
+  },
+  {
+    "id": "ops.docker.compose-profiles",
+    "title": "Compose 프로필(profiles)",
+    "en": "Compose Profiles",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "Docker",
+    "summary": "서비스에 profiles를 달면 --profile이나 COMPOSE_PROFILES로 그 프로필을 켤 때만 시작되고, 프로필이 없는 서비스는 늘 시작된다.",
+    "parent": "ops.docker.compose-multi-env",
+    "aliases": [
+      "docker compose --profile",
+      "COMPOSE_PROFILES",
+      "Compose profiles",
+      "서비스 프로필"
+    ],
+    "refs": [
+      "https://docs.docker.com/compose/how-tos/profiles/"
+    ]
+  },
+  {
+    "id": "ops.ci.composite-action",
+    "title": "복합 액션(composite action)",
+    "en": "Composite Action",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "CI/CD",
+    "summary": "action.yml에 runs.using: composite와 여러 스텝을 적어, 반복되는 스텝 묶음을 잡 안의 스텝 하나처럼 uses로 불러 쓰게 만든 액션이다.",
+    "parent": "ops.ci.using-actions",
+    "related": [
+      "ops.ci.reusable-workflow"
+    ],
+    "aliases": [
+      "composite action",
+      "using: composite"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/tutorials/create-actions/create-a-composite-action"
+    ]
+  },
+  {
+    "id": "ops.ci.timeout-minutes",
+    "title": "잡·스텝 제한 시간(timeout-minutes)",
+    "en": "Job and Step Timeouts",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "CI/CD",
+    "summary": "timeout-minutes로 잡이나 스텝이 돌 수 있는 최대 시간을 정해, 멈춘 작업이 기본 360분 동안 러너를 붙잡지 않게 한다.",
+    "parent": "ops.ci.workflow-basics",
+    "related": [
+      "ops.ci.status-check-functions"
+    ],
+    "aliases": [
+      "timeout-minutes",
+      "잡 타임아웃",
+      "job timeout",
+      "continue-on-error"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idtimeout-minutes"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
   },
   {
     "id": "ops.observe.metrics",

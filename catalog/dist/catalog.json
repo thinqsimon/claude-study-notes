@@ -1,5 +1,5 @@
 {
- "version": "0.25.0",
+ "version": "0.26.0",
  "domains": [
   {
    "prefix": "dev",
@@ -20022,6 +20022,72 @@
    "domain": "fe"
   },
   {
+   "id": "fe.react.state-structure",
+   "title": "React 상태 구조 정하기",
+   "en": "Choosing the State Structure",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "React",
+   "summary": "어떤 값을 상태로 두고 어떤 값을 계산으로 얻을지 정해, 서로 어긋나거나 중복된 상태 때문에 생기는 버그를 막는 방법이다.",
+   "objectives": [
+    "함께 바뀌는 상태 변수를 하나로 묶거나 모순되는 불리언 여러 개를 status 값 하나로 바꿀 수 있다",
+    "props나 다른 상태로 계산할 수 있는 값을 상태에서 빼고 렌더링 중에 계산할 수 있다",
+    "선택한 객체를 통째로 복사해 두는 대신 id만 상태에 두어 중복을 없앨 수 있다"
+   ],
+   "prerequisites": [
+    "fe.react.state-first"
+   ],
+   "related": [
+    "fe.react.immutable-updates",
+    "fe.react.reducer"
+   ],
+   "aliases": [
+    "상태 구조",
+    "state structure",
+    "중복 상태",
+    "redundant state",
+    "상태 설계 원칙"
+   ],
+   "refs": [
+    "https://react.dev/learn/choosing-the-state-structure"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.js.error-handling",
+   "title": "JavaScript 예외 처리: throw와 try...catch",
+   "en": "JavaScript Exception Handling",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "JavaScript",
+   "summary": "throw로 오류를 알리고 try...catch...finally로 받아 처리해, 오류가 나도 프로그램이 멈추지 않고 뒷정리를 하게 만드는 방법이다.",
+   "objectives": [
+    "잘못된 입력을 만나면 Error 객체를 throw해 호출한 쪽에 알릴 수 있다",
+    "try...catch로 오류를 잡아 name과 message를 보고 사용자에게 알맞은 안내를 보여 줄 수 있다",
+    "finally로 성공과 실패 모두에서 실행할 뒷정리 코드를 둘 수 있다"
+   ],
+   "prerequisites": [
+    "fe.js.basics"
+   ],
+   "related": [
+    "fe.js.promises-async",
+    "fe.next.error-handling"
+   ],
+   "aliases": [
+    "JS 예외 처리",
+    "JavaScript exception handling",
+    "try catch",
+    "try...catch",
+    "throw 문"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.internals.render-and-commit",
    "title": "React 렌더링 과정: 트리거·렌더·커밋",
    "en": "React Rendering: Trigger, Render, Commit",
@@ -20287,6 +20353,40 @@
    "domain": "fe"
   },
   {
+   "id": "fe.react.preserve-reset-state",
+   "title": "React 상태 보존과 초기화",
+   "en": "Preserving and Resetting State",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "React",
+   "summary": "같은 자리에 같은 컴포넌트가 그려지면 상태가 남고 자리나 종류가 바뀌면 사라진다는 규칙을 알고, key로 원하는 때에 상태를 새로 시작하게 하는 방법이다.",
+   "objectives": [
+    "조건에 따라 컴포넌트를 바꿔 그릴 때 상태가 남는 경우와 사라지는 경우를 구분할 수 있다",
+    "받는 사람이 바뀔 때 입력 폼이 비워지도록 key를 달아 상태를 초기화할 수 있다",
+    "컴포넌트 안에서 다른 컴포넌트를 정의해 입력값이 계속 사라지는 실수를 찾아 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "fe.react.state-first",
+    "fe.react.conditional-list-rendering"
+   ],
+   "related": [
+    "fe.internals.react-reconciliation",
+    "fe.react.lifting-state"
+   ],
+   "aliases": [
+    "React 상태 초기화",
+    "React 상태 보존",
+    "React state reset",
+    "resetting state",
+    "컴포넌트 상태 유지"
+   ],
+   "refs": [
+    "https://react.dev/learn/preserving-and-resetting-state"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.react.dependency-array",
    "title": "의존성 배열",
    "en": "Dependency Array",
@@ -20534,6 +20634,29 @@
    ],
    "refs": [
     "https://nextjs.org/docs/app/guides/environment-variables"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.js.closures",
+   "title": "클로저",
+   "en": "Closures",
+   "kind": "term",
+   "level": 3,
+   "importance": 1,
+   "group": "JavaScript",
+   "summary": "함수가 만들어질 때 둘러싼 변수를 기억해, 바깥 함수가 끝난 뒤에도 그 변수를 읽고 바꿀 수 있는 성질이다.",
+   "related": [
+    "fe.react.effect-cleanup"
+   ],
+   "aliases": [
+    "클로저",
+    "closure",
+    "루프 클로저 실수",
+    "JS 클로저"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Closures"
    ],
    "domain": "fe"
   },
@@ -21262,6 +21385,149 @@
    "domain": "fe"
   },
   {
+   "id": "fe.react.derived-value",
+   "title": "렌더링 중 계산하는 파생 값",
+   "en": "Deriving Values During Render",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "React",
+   "summary": "다른 상태나 props로 계산할 수 있는 값은 상태로 따로 두지 않고 렌더링할 때마다 계산해 늘 맞는 값을 얻는 방식이다.",
+   "parent": "fe.react.state-structure",
+   "related": [
+    "fe.react.use-effect"
+   ],
+   "aliases": [
+    "파생 상태",
+    "derived state",
+    "props를 상태에 복사"
+   ],
+   "refs": [
+    "https://react.dev/learn/choosing-the-state-structure#avoid-redundant-state"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.react.key-reset",
+   "title": "key로 컴포넌트 상태 초기화하기",
+   "en": "Resetting State with a Key",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "React",
+   "summary": "컴포넌트에 다른 key를 주면 React가 새 컴포넌트로 보고 안쪽 상태를 모두 버린 뒤 처음부터 다시 만든다.",
+   "parent": "fe.react.preserve-reset-state",
+   "related": [
+    "fe.react.key-prop"
+   ],
+   "aliases": [
+    "key로 리셋",
+    "key reset",
+    "폼 초기화 key",
+    "reset state with key"
+   ],
+   "refs": [
+    "https://react.dev/learn/preserving-and-resetting-state#option-2-resetting-state-with-a-key"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.js.error-object",
+   "title": "Error 객체와 name·message",
+   "en": "Error Objects",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "JavaScript",
+   "summary": "오류의 종류를 name에, 사람이 읽을 설명을 message에 담아 던지고 받는 JavaScript 내장 객체다.",
+   "parent": "fe.js.error-handling",
+   "aliases": [
+    "Error 객체",
+    "new Error",
+    "error.message",
+    "JS TypeError",
+    "오류 객체"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.ts.keyof-operator",
+   "title": "keyof 타입 연산자",
+   "en": "The keyof Type Operator",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "TypeScript",
+   "summary": "객체 타입의 속성 이름들을 문자열 리터럴 유니언 타입으로 뽑아, 있는 키만 받도록 막아 주는 TypeScript 연산자다.",
+   "parent": "fe.ts.object-types",
+   "related": [
+    "fe.ts.generics",
+    "fe.ts.utility-types"
+   ],
+   "aliases": [
+    "keyof",
+    "keyof typeof",
+    "키 유니언 타입",
+    "keyof 연산자"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/docs/handbook/2/keyof-types.html"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.use-search-params",
+   "title": "useSearchParams 훅",
+   "en": "useSearchParams Hook",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Next.js",
+   "summary": "클라이언트 컴포넌트에서 현재 주소의 검색 매개변수를 읽기 전용 URLSearchParams로 읽는 Next.js 훅이다.",
+   "parent": "fe.next.routes-layouts",
+   "related": [
+    "fe.next.link-component",
+    "fe.react.suspense-boundary"
+   ],
+   "aliases": [
+    "useSearchParams",
+    "쿼리 문자열 읽기",
+    "검색 매개변수 훅"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/api-reference/functions/use-search-params"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.css-modules",
+   "title": "CSS Modules",
+   "en": "CSS Modules",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Next.js",
+   "summary": ".module.css 파일의 클래스 이름을 파일마다 고유하게 바꿔, 다른 컴포넌트와 이름이 겹쳐도 스타일이 섞이지 않게 하는 방식이다.",
+   "related": [
+    "fe.css.specificity"
+   ],
+   "aliases": [
+    "CSS 모듈",
+    ".module.css",
+    "module.css",
+    "지역 범위 CSS"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/getting-started/css#css-modules"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.html.constraint-validation",
    "title": "Constraint Validation API",
    "en": "Constraint Validation API",
@@ -21365,6 +21631,31 @@
    ],
    "refs": [
     "https://nextjs.org/docs/app/api-reference/functions/generate-metadata"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.font-optimization",
+   "title": "next/font로 글꼴 불러오기",
+   "en": "Font Optimization with next/font",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "Next.js",
+   "summary": "Google 글꼴이나 로컬 글꼴 파일을 빌드 때 내 사이트에 함께 담아, 외부 요청과 레이아웃 흔들림 없이 글꼴을 적용하는 Next.js 모듈이다.",
+   "related": [
+    "fe.next.image-component"
+   ],
+   "aliases": [
+    "next/font",
+    "next/font/google",
+    "localFont",
+    "Next.js 글꼴 최적화"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/getting-started/fonts"
    ],
    "volatile": true,
    "checked_at": "2026-11-10",
@@ -26331,6 +26622,150 @@
    "domain": "rag"
   },
   {
+   "id": "rag.agent.deep-agents",
+   "title": "Deep Agents로 계획·파일·서브에이전트 갖춘 에이전트 만들기",
+   "en": "Building Agents with Deep Agents",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "create_deep_agent 하나로 파일 시스템 도구와 task 서브에이전트가 붙은 에이전트를 만들고, 필요하면 할 일 목록을 켜고, 백엔드로 파일 저장 위치를 고르는 방법이다.",
+   "objectives": [
+    "create_deep_agent에 모델·도구·시스템 프롬프트를 넘겨 에이전트를 만들고 실행할 수 있다",
+    "기본으로 붙는 파일 시스템 도구와 task 도구가 각각 무슨 일을 하는지 구분할 수 있다",
+    "StateBackend·StoreBackend·FilesystemBackend 중 파일을 둘 곳을 골라 backend로 넘길 수 있다",
+    "FilesystemBackend에 root_dir과 virtual_mode를 주지 않아 아무 파일이나 읽히는 실수를 막을 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.first-agent",
+    "rag.agent.middleware"
+   ],
+   "related": [
+    "rag.agent.subagents",
+    "rag.agent.skills-pattern"
+   ],
+   "aliases": [
+    "deepagents",
+    "create_deep_agent",
+    "딥 에이전트",
+    "Deep Agents SDK"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/deepagents/overview",
+    "https://docs.langchain.com/oss/python/deepagents/backends"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.unit-testing",
+   "title": "에이전트 단위 테스트: 가짜 채팅 모델과 pytest",
+   "en": "Unit Testing Agents with Fake Chat Models",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "실제 모델 대신 정해 둔 답을 돌려주는 가짜 채팅 모델과 메모리 체크포인터로 에이전트와 LangGraph 그래프를 API 호출 없이 시험하는 방법이다.",
+   "objectives": [
+    "GenericFakeChatModel에 AIMessage 목록을 넣어 도구 호출 순서를 미리 정한 에이전트 테스트를 쓸 수 있다",
+    "가짜 모델이 bind_tools를 지원하지 않아 create_agent가 실패할 때 하위 클래스로 고칠 수 있다",
+    "가짜 모델과 체크포인터를 테스트마다 새로 만들어 상태가 테스트 사이에 새지 않게 할 수 있다",
+    "graph.nodes로 노드 하나만 실행하거나 update_state와 interrupt_after로 그래프 일부만 시험할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.first-agent",
+    "be.test.pytest-fixtures",
+    "rag.agent.graph-api"
+   ],
+   "related": [
+    "be.test.mocking",
+    "mlops.eval.first-eval"
+   ],
+   "aliases": [
+    "LangChain 에이전트 테스트",
+    "LangChain 단위 테스트",
+    "LangGraph 테스트",
+    "agent unit test",
+    "가짜 LLM 테스트"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/test/unit-testing",
+    "https://docs.langchain.com/oss/python/langgraph/test"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.sql-agent",
+   "title": "SQL 에이전트 만들기: 표 조회 도구와 쿼리 승인",
+   "en": "Building a SQL Agent",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "표 목록·스키마 조회·쿼리 검사·실행 도구를 에이전트에 주고 시스템 프롬프트로 순서와 금지 사항을 정해 자연어 질문을 SQL로 답하게 만드는 과정이다.",
+   "objectives": [
+    "표 목록·스키마·쿼리 실행 도구를 @tool로 만들어 create_agent에 넘길 수 있다",
+    "표를 먼저 보고 필요한 열만 고르며 결과 개수를 제한하라는 지침을 시스템 프롬프트에 적을 수 있다",
+    "INSERT·DELETE 같은 변경 문을 막고 DB 계정 권한을 좁혀 에이전트가 자료를 망가뜨리지 않게 할 수 있다",
+    "쿼리 실행 도구에 사람 승인 미들웨어를 붙여 실행 전에 쿼리를 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.first-agent",
+    "db.sql.python-sqlite3"
+   ],
+   "related": [
+    "db.sql.roles-privileges",
+    "ax.security.limit-agent-agency"
+   ],
+   "aliases": [
+    "SQL 에이전트",
+    "text-to-SQL 에이전트",
+    "자연어 SQL 질의",
+    "SQL agent",
+    "DB 질의 에이전트"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/sql-agent"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.node-config",
+   "title": "LangGraph 노드 설정: 시간 제한·오류 처리·캐시",
+   "en": "Configuring LangGraph Nodes: Timeouts, Error Handlers and Caching",
+   "kind": "topic",
+   "level": 3,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "add_node에 시간 제한·오류 처리기·캐시 정책을 붙이고 set_node_defaults로 모든 노드에 기본값을 주어 느리거나 실패하는 노드를 다루는 방법이다.",
+   "objectives": [
+    "add_node의 timeout으로 오래 걸리는 노드를 끊고 NodeTimeoutError를 잡을 수 있다",
+    "error_handler에서 Command로 상태를 고치고 다른 노드로 보낼 수 있다",
+    "CachePolicy와 compile(cache=...)로 같은 입력의 노드 결과를 다시 쓰게 할 수 있다",
+    "set_node_defaults로 공통 설정을 주고 노드별 값이 우선한다는 점을 알고 덮어쓸 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.graph-api"
+   ],
+   "related": [
+    "rag.agent.retry-policy",
+    "rag.agent.command"
+   ],
+   "aliases": [
+    "set_node_defaults",
+    "노드 설정",
+    "LangGraph 노드 옵션",
+    "add_node 옵션"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/graph-api-nodes"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "rag"
+  },
+  {
    "id": "rag.vector-db.chunk",
    "title": "청크",
    "en": "Chunk",
@@ -27065,6 +27500,31 @@
    "domain": "rag"
   },
   {
+   "id": "rag.agent.hitl-middleware",
+   "title": "사람 승인 미들웨어(HumanInTheLoopMiddleware)",
+   "en": "Human-in-the-Loop Middleware",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "interrupt_on에 적은 도구가 불리기 직전에 에이전트를 멈추고 사람이 승인·수정·거절·대답 중 하나를 고르면 이어 가게 하는 내장 미들웨어다.",
+   "parent": "rag.agent.sql-agent",
+   "related": [
+    "rag.agent.interrupt",
+    "ax.security.human-approval-step"
+   ],
+   "aliases": [
+    "HumanInTheLoopMiddleware",
+    "interrupt_on",
+    "LangChain 도구 호출 승인",
+    "allowed_decisions"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/human-in-the-loop"
+   ],
+   "domain": "rag"
+  },
+  {
    "id": "rag.retrieval.mmr",
    "title": "MMR(최대 한계 관련성)",
    "en": "Maximum Marginal Relevance",
@@ -27421,6 +27881,145 @@
    "refs": [
     "https://docs.langchain.com/oss/python/langchain/middleware/custom"
    ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.todo-list",
+   "title": "할 일 목록 도구(write_todos)",
+   "en": "To-do List Tool (write_todos)",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "TodoListMiddleware를 붙이면 생기는 도구로, 에이전트가 긴 작업을 단계로 적어 두고 진행 상태를 고쳐 가며 계획을 따르게 한다.",
+   "parent": "rag.agent.deep-agents",
+   "aliases": [
+    "write_todos",
+    "TodoListMiddleware",
+    "에이전트 할 일 목록",
+    "에이전트 계획 도구"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/deepagents/overview"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.deepagent-backend",
+   "title": "Deep Agents 백엔드",
+   "en": "Deep Agents Backend",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "에이전트의 파일 도구가 실제로 파일을 어디에 두는지 정하는 부품으로, 스레드 상태·스토어·로컬 디스크·경로별 조합 중에서 고른다.",
+   "parent": "rag.agent.deep-agents",
+   "aliases": [
+    "StateBackend",
+    "StoreBackend",
+    "FilesystemBackend",
+    "CompositeBackend"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/deepagents/backends"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.fake-chat-model",
+   "title": "가짜 채팅 모델(GenericFakeChatModel)",
+   "en": "Fake Chat Model (GenericFakeChatModel)",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "부를 때마다 미리 넣어 둔 메시지를 차례로 돌려주는 테스트용 채팅 모델로, 실제 API 없이 에이전트 흐름을 재현하게 해 준다.",
+   "parent": "rag.agent.unit-testing",
+   "aliases": [
+    "GenericFakeChatModel",
+    "FakeListChatModel",
+    "가짜 채팅 모델",
+    "fake chat model"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/test/unit-testing"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.node-timeout",
+   "title": "노드 시간 제한(TimeoutPolicy)",
+   "en": "Node Timeout (TimeoutPolicy)",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "비동기 노드의 실행 전체 시간이나 진행 없는 시간이 정한 값을 넘으면 노드를 멈추고 NodeTimeoutError를 내는 LangGraph 설정으로, 동기 노드에 걸면 컴파일 때 실패한다.",
+   "parent": "rag.agent.node-config",
+   "aliases": [
+    "TimeoutPolicy",
+    "NodeTimeoutError",
+    "run_timeout",
+    "idle_timeout",
+    "LangGraph 노드 타임아웃"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/graph-api-nodes"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.node-error-handler",
+   "title": "노드 오류 처리기(error_handler)",
+   "en": "Node Error Handler",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "노드가 재시도까지 실패했을 때 그 오류와 현재 상태를 받아 Command로 상태를 고치고 다음 노드를 정하는 함수다.",
+   "parent": "rag.agent.node-config",
+   "related": [
+    "rag.agent.retry-policy"
+   ],
+   "aliases": [
+    "error_handler",
+    "NodeError",
+    "LangGraph 오류 처리기",
+    "노드 실패 처리"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/graph-api-nodes"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.node-cache",
+   "title": "노드 캐시(CachePolicy)",
+   "en": "Node Caching (CachePolicy)",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "노드 입력으로 키를 만들어 유효 시간 동안 같은 입력이면 노드를 다시 실행하지 않고 저장해 둔 결과를 돌려주는 LangGraph 설정이다.",
+   "parent": "rag.agent.node-config",
+   "aliases": [
+    "CachePolicy",
+    "cache_policy",
+    "LangGraph 노드 캐시"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/graph-api-nodes"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
    "domain": "rag"
   },
   {
@@ -29140,6 +29739,160 @@
    "domain": "ax"
   },
   {
+   "id": "ax.coding.cloud-sessions",
+   "title": "클라우드에서 에이전트 세션 돌리기: --cloud와 --teleport",
+   "en": "Running Claude Code Sessions in the Cloud",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "노트북을 닫아도 계속 도는 클라우드 VM에 작업을 맡기고, 끝난 세션을 터미널로 끌어와 이어서 고치는 방법이다.",
+   "objectives": [
+    "claude --cloud로 현재 저장소의 작업을 클라우드 세션에 맡기고 웹이나 휴대폰에서 진행을 확인할 수 있다",
+    "클라우드 VM은 로컬 작업 폴더가 아니라 원격 브랜치를 복제한다는 점을 알고 먼저 push할 수 있다",
+    "claude --teleport로 클라우드 세션의 브랜치와 대화를 터미널로 가져와 이어 작업할 수 있다",
+    "환경의 네트워크 접근 수준과 설정 스크립트를 작업에 맞게 고를 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.agent-first",
+    "ax.coding.session-resume"
+   ],
+   "related": [
+    "ax.coding.devcontainer",
+    "ax.coding.worktree-sessions",
+    "ax.coding.headless-mode"
+   ],
+   "aliases": [
+    "Claude Code on the web",
+    "클라우드 세션",
+    "cloud session",
+    "claude --cloud",
+    "claude.ai/code",
+    "웹 Claude Code"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/claude-code-on-the-web",
+    "https://code.claude.com/docs/en/cloud-environments"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.custom-subagents",
+   "title": "작업별 하위 에이전트 만들기: .claude/agents 파일",
+   "en": "Creating Custom Subagents",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "이름·설명·도구·모델을 머리말에 적은 Markdown 파일로 리뷰어나 테스트 담당 같은 하위 에이전트를 정의해 팀과 나눠 쓰는 방법이다.",
+   "objectives": [
+    ".claude/agents와 ~/.claude/agents 중 어디에 둘지 정하고 name·description·본문 프롬프트를 갖춘 파일을 쓸 수 있다",
+    "description을 고쳐 Claude가 알아서 맡기게 하거나 @멘션으로 직접 부를 수 있다",
+    "tools와 model 칸으로 하위 에이전트가 쓸 도구와 모델을 정할 수 있다",
+    "필드 이름 오타나 빠진 description 때문에 파일이 조용히 무시되는 문제를 찾아 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.agent-first",
+    "ax.coding.skills"
+   ],
+   "related": [
+    "ax.coding.subagents-permission-modes",
+    "ax.coding.subagent",
+    "ax.coding.skill-description"
+   ],
+   "aliases": [
+    "커스텀 서브에이전트",
+    "custom subagent",
+    ".claude/agents",
+    "서브에이전트 정의 파일",
+    "agents 디렉터리"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/sub-agents"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.code-review-command",
+   "title": "에이전트에게 변경 리뷰 맡기기: /code-review",
+   "en": "Local Code Review with /code-review",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "브랜치·PR·경로를 대상으로 /code-review를 돌려 버그 후보를 받고, 노력 수준과 --fix·--comment로 범위와 처리 방식을 정하는 방법이다.",
+   "objectives": [
+    "/code-review에 PR 번호·브랜치 범위·경로를 주어 리뷰 대상을 바꿀 수 있다",
+    "노력 수준을 낮추면 확신 높은 지적만, 높이면 넓게 받는다는 차이로 수준을 고를 수 있다",
+    "--fix로 고친 내용이 /rewind로 다 되돌려지지 않을 수 있음을 알고 git으로 되돌릴 수 있다",
+    "/code-review·/security-review·관리형 Code Review가 각각 무엇을 보는지 구분할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.agent-first",
+    "ax.coding.review-ai-code"
+   ],
+   "related": [
+    "ax.coding.security-review-command",
+    "ax.coding.claude-code-action",
+    "ax.coding.rewind-menu"
+   ],
+   "aliases": [
+    "/code-review",
+    "/review 명령",
+    "Claude Code 코드 리뷰 명령",
+    "code-review --fix"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/code-review-local"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.scheduled-tasks",
+   "title": "에이전트 작업 예약하기: /loop와 클라우드 예약 작업",
+   "en": "Scheduling Agent Work with /loop and Cloud Scheduled Tasks",
+   "kind": "topic",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "열린 세션에서 /loop로 배포를 지켜보게 하거나, 컴퓨터가 꺼져도 도는 클라우드 예약 작업에 일정·API·GitHub 트리거를 거는 방법이다.",
+   "objectives": [
+    "/loop에 간격과 프롬프트를 주어 세션 안에서 반복 확인을 돌리고 멈출 수 있다",
+    "/loop·데스크톱 예약·클라우드 예약 작업 가운데 컴퓨터와 세션이 켜져 있어야 하는지로 알맞은 것을 고를 수 있다",
+    "/schedule로 클라우드 예약 작업을 만들고 일정·API·GitHub 이벤트 트리거를 붙일 수 있다",
+    "세션 예약이 7일 뒤 사라지고 놓친 실행을 몰아서 하지 않는다는 점을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.agent-first",
+    "ax.coding.headless-mode"
+   ],
+   "related": [
+    "be.async.scheduled-jobs",
+    "ax.coding.claude-code-action",
+    "ax.coding.cloud-sessions"
+   ],
+   "aliases": [
+    "Claude Code 예약 작업",
+    "Claude Code scheduled tasks",
+    "Claude Code routines",
+    "Claude Code 루틴",
+    "/schedule"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/scheduled-tasks",
+    "https://code.claude.com/docs/en/routines"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "ax"
+  },
+  {
    "id": "ax.coding.slash-command",
    "title": "슬래시 명령(/이름)",
    "en": "Slash Command",
@@ -29897,6 +30650,59 @@
    "domain": "ax"
   },
   {
+   "id": "ax.coding.cloud-network-access",
+   "title": "클라우드 환경 네트워크 접근 수준",
+   "en": "Cloud Environment Network Access Levels",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "클라우드 세션이 밖으로 나갈 수 있는 곳을 없음·허용 목록(Trusted)·전체·직접 지정 중 하나로 정하는 환경 설정이다.",
+   "parent": "ax.coding.cloud-sessions",
+   "related": [
+    "ax.coding.devcontainer-egress-firewall",
+    "ax.coding.network-command-approval"
+   ],
+   "aliases": [
+    "Trusted network access",
+    "클라우드 허용 도메인",
+    "클라우드 네트워크 접근"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/cloud-environments"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.subagent-tool-allowlist",
+   "title": "하위 에이전트 도구 목록(tools·disallowedTools)",
+   "en": "Subagent Tool Allowlist",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "하위 에이전트 파일의 tools에 쓸 도구만 적고 disallowedTools로 뺄 도구를 적어, 생략하면 모든 도구를 물려받는 기본값을 좁히는 칸이다.",
+   "parent": "ax.coding.custom-subagents",
+   "related": [
+    "ax.coding.permission-rules",
+    "ax.security.limit-agent-agency"
+   ],
+   "aliases": [
+    "subagent tools",
+    "disallowedTools",
+    "하위 에이전트 도구 제한",
+    "서브에이전트 tools 필드"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/sub-agents"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "ax"
+  },
+  {
    "id": "ax.governance.gpai-model",
    "title": "범용 AI 모델(GPAI)",
    "en": "General-Purpose AI Model",
@@ -30328,6 +31134,167 @@
    "refs": [
     "https://airc.nist.gov/airmf-resources/playbook/",
     "https://www.nist.gov/itl/ai-risk-management-framework"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.cloud-setup-script",
+   "title": "클라우드 환경 설정 스크립트",
+   "en": "Cloud Environment Setup Script",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "새 클라우드 세션에서 에이전트가 뜨기 전에 한 번 돌아 도구를 설치하고, 5분 안에 끝나면 결과가 캐시되는 Bash 스크립트다.",
+   "parent": "ax.coding.cloud-sessions",
+   "related": [
+    "ax.coding.hooks"
+   ],
+   "aliases": [
+    "클라우드 setup script",
+    "클라우드 환경 캐시",
+    "cloud environment caching",
+    "클라우드 setup.sh"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/cloud-environments"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.cloud-network-secret",
+   "title": "네트워크 비밀값(network secret)",
+   "en": "Network Secret",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "API 키를 클라우드 세션 안에 두지 않고, 정해진 호스트로 나가는 요청에만 프록시가 붙여 주게 하는 저장 방식이다.",
+   "parent": "ax.coding.cloud-sessions",
+   "related": [
+    "ax.security.sensitive-info-disclosure",
+    "ax.coding.agent-prompt-injection"
+   ],
+   "aliases": [
+    "network secrets",
+    "네트워크 시크릿",
+    "클라우드 환경 비밀값",
+    "agent proxy 비밀값"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/cloud-environments"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.teleport",
+   "title": "세션 끌어오기(--teleport)",
+   "en": "Teleporting a Cloud Session",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "클라우드 세션의 브랜치를 받아 체크아웃하고 대화를 터미널로 옮겨, 그 뒤 작업은 로컬 사본에서 이어 가는 명령이다.",
+   "parent": "ax.coding.cloud-sessions",
+   "related": [
+    "ax.coding.session-resume"
+   ],
+   "aliases": [
+    "claude --teleport",
+    "/teleport",
+    "/tp",
+    "teleport 명령",
+    "텔레포트"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/claude-code-on-the-web"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.pr-auto-fix",
+   "title": "PR 자동 수정(Auto-fix)",
+   "en": "Pull Request Auto-fix",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "클라우드 세션이 PR의 CI 실패와 리뷰 댓글을 지켜보다가 분명한 수정은 직접 push하고 애매한 요청은 사람에게 묻는 기능이다.",
+   "parent": "ax.coding.cloud-sessions",
+   "related": [
+    "ax.coding.claude-code-action",
+    "ax.security.human-approval-step"
+   ],
+   "aliases": [
+    "PR Auto-fix",
+    "/autofix-pr",
+    "PR 자동 수정",
+    "CI 실패 자동 수정"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/claude-code-on-the-web"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.loop-command",
+   "title": "/loop 반복 실행",
+   "en": "/loop Command",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "열린 세션 안에서 프롬프트를 정한 간격이나 Claude가 고른 간격으로 되풀이해, 빌드나 PR 상태를 지켜보게 하는 명령이다.",
+   "parent": "ax.coding.scheduled-tasks",
+   "related": [
+    "ax.coding.slash-command"
+   ],
+   "aliases": [
+    "/loop",
+    "loop 명령",
+    "loop.md",
+    "세션 예약 작업",
+    "CronCreate"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/scheduled-tasks"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.scheduled-task-api-trigger",
+   "title": "예약 작업 API 트리거(/fire)",
+   "en": "Scheduled Task API Trigger",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "클라우드 예약 작업마다 주어지는 주소에 bearer 토큰으로 POST해 실행을 시작하며, 함께 보낸 글은 믿지 않는 자료로 표시되어 들어간다.",
+   "parent": "ax.coding.scheduled-tasks",
+   "related": [
+    "ax.coding.agent-prompt-injection"
+   ],
+   "aliases": [
+    "Claude Code API trigger",
+    "fire endpoint",
+    "/fire 엔드포인트",
+    "routine fire",
+    "예약 작업 토큰"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/routines"
    ],
    "volatile": true,
    "checked_at": "2026-11-10",
@@ -32012,6 +32979,144 @@
    "domain": "ops"
   },
   {
+   "id": "ops.linux.cron-jobs",
+   "title": "cron으로 정해진 시간에 명령 돌리기",
+   "en": "Scheduling Commands with cron",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "리눅스",
+   "summary": "crontab -e로 시간 표기와 명령을 한 줄씩 적어 두면 cron 데몬이 그 시각마다 명령을 실행해 준다.",
+   "objectives": [
+    "crontab -e·-l로 내 예약 작업을 등록하고 확인할 수 있다",
+    "사용자 crontab과 /etc/cron.d 파일의 줄 형식 차이를 구분할 수 있다",
+    "작업 출력이 메일이나 syslog로 가는 것을 알고 로그 파일로 돌려 결과를 확인할 수 있다",
+    "터미널에서는 되는데 cron에서만 실패하는 작업의 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "ops.linux.shell-script-basics"
+   ],
+   "related": [
+    "ops.linux.systemd-timer",
+    "be.async.scheduled-jobs"
+   ],
+   "aliases": [
+    "crontab",
+    "crontab -e",
+    "크론탭",
+    "cron job"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man1/crontab.1.html",
+    "https://man7.org/linux/man-pages/man5/crontab.5.html",
+    "https://man7.org/linux/man-pages/man8/cron.8.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.linux.disk-space",
+   "title": "디스크 공간 확인과 정리: df·du",
+   "en": "Checking and Freeing Disk Space with df and du",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "리눅스",
+   "summary": "df로 파일 시스템마다 남은 공간을, du로 디렉터리마다 쓴 공간을 보아 디스크를 채운 곳을 찾고 정리한다.",
+   "objectives": [
+    "df -h와 df -i로 공간이 모자란지 아이노드가 모자란지 구분할 수 있다",
+    "du -h -d 1과 -x로 큰 디렉터리를 한 단계씩 좁혀 찾을 수 있다",
+    "지운 로그 파일을 프로세스가 아직 열고 있어 df와 du의 값이 다른 상황을 알아챌 수 있다",
+    "로그 돌리기와 Docker 정리 명령으로 다시 차지 않게 할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.linux.shell-script-basics"
+   ],
+   "related": [
+    "ops.linux.journalctl",
+    "cs.os.file-descriptor"
+   ],
+   "aliases": [
+    "df -h",
+    "du -sh",
+    "디스크 용량 확인",
+    "No space left on device",
+    "디스크 가득 참",
+    "아이노드 부족"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man1/df.1.html",
+    "https://man7.org/linux/man-pages/man1/du.1.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.docker.compose-multi-env",
+   "title": "Compose 설정을 환경별로 나누기: override와 프로필",
+   "en": "Splitting Compose Configuration with Overrides and Profiles",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "Docker",
+   "summary": "기본 compose.yaml에 개발·운영용 파일을 겹치거나 프로필로 서비스를 켜고 끄면 한 프로젝트를 여러 환경에서 쓸 수 있다.",
+   "objectives": [
+    "compose.override.yaml과 -f로 파일을 겹쳐 개발용 설정만 따로 둘 수 있다",
+    "값 하나짜리 옵션은 바뀌고 ports 같은 목록은 합쳐지는 병합 규칙을 예상할 수 있다",
+    "profiles로 디버그·관리용 서비스를 평소에는 꺼 둘 수 있다",
+    "docker compose config로 합쳐진 결과를 확인해 설정 실수를 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "ops.docker.first-container"
+   ],
+   "related": [
+    "ops.docker.compose-variable-interpolation",
+    "ops.docker.compose"
+   ],
+   "aliases": [
+    "docker compose -f",
+    "Compose 파일 병합",
+    "docker compose config",
+    "개발용 compose 파일"
+   ],
+   "refs": [
+    "https://docs.docker.com/compose/how-tos/multiple-compose-files/merge/",
+    "https://docs.docker.com/compose/how-tos/profiles/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.docker.build-secrets",
+   "title": "빌드 시크릿으로 비밀값 넘기기",
+   "en": "Passing Secrets to Docker Builds",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "Docker",
+   "summary": "빌드 중에 필요한 비밀값을 ARG·ENV 대신 --secret과 RUN --mount=type=secret으로 넘기면 이미지에 남지 않는다.",
+   "objectives": [
+    "ARG·ENV로 넘긴 비밀값이 이미지에 남는 이유를 설명할 수 있다",
+    "docker build --secret으로 파일이나 환경 변수를 넘기고 RUN --mount=type=secret으로 읽을 수 있다",
+    "비공개 Git 저장소를 받을 때 --ssh와 RUN --mount=type=ssh를 쓸 수 있다"
+   ],
+   "prerequisites": [
+    "ops.docker.dockerfile-instructions"
+   ],
+   "related": [
+    "ops.docker.arg-vs-env",
+    "ops.ci.environment-secrets"
+   ],
+   "aliases": [
+    "docker build --secret",
+    "RUN --mount=type=secret",
+    "Docker 빌드 시크릿",
+    "build secret",
+    "--mount=type=ssh"
+   ],
+   "refs": [
+    "https://docs.docker.com/build/building/secrets/"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.docker.compose",
    "title": "Docker Compose",
    "en": "Docker Compose",
@@ -32946,6 +34051,154 @@
    "domain": "ops"
   },
   {
+   "id": "ops.linux.cron-schedule-syntax",
+   "title": "cron 시간 표기",
+   "en": "cron Schedule Syntax",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "리눅스",
+   "summary": "분·시·일·월·요일 다섯 칸에 *·범위·목록·*/n 간격을 써서 실행 시각을 정하고 @daily 같은 약칭도 쓸 수 있는 표기다.",
+   "parent": "ops.linux.cron-jobs",
+   "related": [
+    "ops.ci.schedule-trigger"
+   ],
+   "aliases": [
+    "cron 표현식",
+    "cron expression",
+    "*/5 * * * *",
+    "@reboot",
+    "크론 표현식"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man5/crontab.5.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.linux.cron-environment",
+   "title": "cron 작업의 실행 환경",
+   "en": "cron Job Environment",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "리눅스",
+   "summary": "cron은 로그인 셸 설정을 읽지 않고 /bin/sh와 적은 환경 변수로 명령을 돌리므로 PATH를 정하거나 절대 경로를 써야 하고 %는 \\%로 막아야 한다.",
+   "parent": "ops.linux.cron-jobs",
+   "related": [
+    "ops.linux.path-shell-startup",
+    "ops.linux.login-shell"
+   ],
+   "aliases": [
+    "cron PATH",
+    "MAILTO",
+    "cron 환경 변수",
+    "crontab 퍼센트"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man5/crontab.5.html",
+    "https://man7.org/linux/man-pages/man8/cron.8.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.linux.logrotate",
+   "title": "logrotate로 로그 파일 돌리기",
+   "en": "Log Rotation with logrotate",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "리눅스",
+   "summary": "로그 파일을 날짜나 크기마다 새 파일로 바꾸고 오래된 것은 압축하거나 지워 디스크가 차지 않게 하는 도구다.",
+   "parent": "ops.linux.disk-space",
+   "aliases": [
+    "logrotate",
+    "로그 로테이션",
+    "log rotation",
+    "copytruncate",
+    "/etc/logrotate.d"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man8/logrotate.8.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.docker.system-prune",
+   "title": "안 쓰는 Docker 데이터 정리(prune)",
+   "en": "Pruning Unused Docker Objects",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Docker",
+   "summary": "docker system prune은 멈춘 컨테이너·안 쓰는 네트워크·이름 없는 이미지·빌드 캐시를 지우며, 볼륨과 태그 달린 이미지는 옵션을 줘야 지운다.",
+   "parent": "ops.linux.disk-space",
+   "related": [
+    "ops.docker.volume",
+    "ops.container.image-layers"
+   ],
+   "aliases": [
+    "docker system prune",
+    "docker image prune",
+    "docker volume prune",
+    "dangling image",
+    "Docker 디스크 정리"
+   ],
+   "refs": [
+    "https://docs.docker.com/engine/manage-resources/pruning/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.docker.compose-override-file",
+   "title": "compose.override.yaml",
+   "en": "Compose Override File",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Docker",
+   "summary": "compose.yaml 옆에 두면 -f 없이도 자동으로 겹쳐 읽혀, 개발할 때만 쓰는 포트·마운트·명령을 덧붙이는 파일이다.",
+   "parent": "ops.docker.compose-multi-env",
+   "aliases": [
+    "compose.override.yaml",
+    "docker-compose.override.yml",
+    "Compose override",
+    "오버라이드 파일"
+   ],
+   "refs": [
+    "https://docs.docker.com/compose/how-tos/multiple-compose-files/merge/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.ci.schedule-trigger",
+   "title": "예약 실행 트리거(schedule)",
+   "en": "Scheduled Workflow Trigger",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "CI/CD",
+   "summary": "on.schedule에 cron 표기를 적으면 기본적으로 UTC 기준 그 시각에 기본 브랜치의 최신 커밋으로 워크플로가 돌며, 몰리는 시간에는 늦어질 수 있다.",
+   "parent": "ops.ci.workflow-basics",
+   "related": [
+    "ops.linux.cron-schedule-syntax",
+    "ops.ci.workflow-trigger"
+   ],
+   "aliases": [
+    "on: schedule",
+    "schedule 이벤트",
+    "예약 워크플로",
+    "scheduled workflow",
+    "GitHub Actions cron"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "ops"
+  },
+  {
    "id": "ops.deploy.rolling-update",
    "title": "롤링 업데이트",
    "en": "Rolling Update",
@@ -33127,6 +34380,75 @@
    "refs": [
     "https://docs.github.com/en/actions/how-tos/monitor-workflows/enable-debug-logging"
    ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.docker.compose-profiles",
+   "title": "Compose 프로필(profiles)",
+   "en": "Compose Profiles",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "Docker",
+   "summary": "서비스에 profiles를 달면 --profile이나 COMPOSE_PROFILES로 그 프로필을 켤 때만 시작되고, 프로필이 없는 서비스는 늘 시작된다.",
+   "parent": "ops.docker.compose-multi-env",
+   "aliases": [
+    "docker compose --profile",
+    "COMPOSE_PROFILES",
+    "Compose profiles",
+    "서비스 프로필"
+   ],
+   "refs": [
+    "https://docs.docker.com/compose/how-tos/profiles/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.ci.composite-action",
+   "title": "복합 액션(composite action)",
+   "en": "Composite Action",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "CI/CD",
+   "summary": "action.yml에 runs.using: composite와 여러 스텝을 적어, 반복되는 스텝 묶음을 잡 안의 스텝 하나처럼 uses로 불러 쓰게 만든 액션이다.",
+   "parent": "ops.ci.using-actions",
+   "related": [
+    "ops.ci.reusable-workflow"
+   ],
+   "aliases": [
+    "composite action",
+    "using: composite"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/tutorials/create-actions/create-a-composite-action"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.ci.timeout-minutes",
+   "title": "잡·스텝 제한 시간(timeout-minutes)",
+   "en": "Job and Step Timeouts",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "CI/CD",
+   "summary": "timeout-minutes로 잡이나 스텝이 돌 수 있는 최대 시간을 정해, 멈춘 작업이 기본 360분 동안 러너를 붙잡지 않게 한다.",
+   "parent": "ops.ci.workflow-basics",
+   "related": [
+    "ops.ci.status-check-functions"
+   ],
+   "aliases": [
+    "timeout-minutes",
+    "잡 타임아웃",
+    "job timeout",
+    "continue-on-error"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idtimeout-minutes"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
    "domain": "ops"
   },
   {
@@ -34432,6 +35754,40 @@
    "domain": "ml"
   },
   {
+   "id": "ml.nn.tensor-basics",
+   "title": "PyTorch 텐서 다루기: 모양·자료형·장치",
+   "en": "PyTorch Tensor Basics: Shape, Dtype, and Device",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "딥러닝",
+   "summary": "PyTorch의 모든 입력과 가중치는 텐서이므로 모양·자료형·장치를 읽고 맞추는 법을 알아야 모델 코드를 직접 고칠 수 있다.",
+   "objectives": [
+    "리스트·NumPy 배열·무작위 값으로 텐서를 만들 수 있다",
+    "shape·dtype·device를 확인해 모양이나 장치가 맞지 않는 오류를 고칠 수 있다",
+    "인덱싱·torch.cat·행렬 곱으로 텐서를 원하는 형태로 바꿀 수 있다",
+    "텐서와 NumPy 배열을 오가며 메모리를 함께 쓰는 경우를 구분할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.nn.first-neural-network"
+   ],
+   "related": [
+    "ml.nn.dataset-dataloader"
+   ],
+   "aliases": [
+    "텐서",
+    "torch.Tensor",
+    "PyTorch 텐서",
+    "텐서 연산",
+    "tensor shape",
+    "텐서 모양"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/tutorials/beginner/basics/tensorqs_tutorial.html"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.unsupervised.kmeans-clustering",
    "title": "K-평균 군집화: 정답 없는 데이터 무리 짓기",
    "en": "K-Means Clustering",
@@ -34918,6 +36274,77 @@
    "domain": "ml"
   },
   {
+   "id": "ml.supervised.svm-classification",
+   "title": "서포트 벡터 머신으로 분류하기",
+   "en": "Classification with Support Vector Machines",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "SVC는 클래스 사이 경계를 최대한 넓게 긋는 분류기로, 커널과 C·gamma를 고르고 특성을 스케일링해야 제 성능이 난다.",
+   "objectives": [
+    "StandardScaler와 SVC를 파이프라인으로 묶어 분류 모델을 학습할 수 있다",
+    "linear·rbf 커널 중 데이터에 맞는 것을 골라 결과를 비교할 수 있다",
+    "C와 gamma를 바꾸며 과적합과 과소적합 쪽 변화를 설명할 수 있다",
+    "GridSearchCV로 C와 gamma를 지수 간격으로 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "ml.supervised.sklearn-pipeline",
+    "ml.supervised.hyperparameter-search"
+   ],
+   "related": [
+    "ml.supervised.logistic-regression",
+    "ml.supervised.k-nearest-neighbors"
+   ],
+   "aliases": [
+    "SVM",
+    "서포트 벡터 머신",
+    "SVC",
+    "support vector machine",
+    "서포트 벡터",
+    "LinearSVC"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/svm.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.feature-selection",
+   "title": "특성 선택: 쓸모없는 특성 걸러내기",
+   "en": "Feature Selection",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "분산·통계 점수·모델 중요도를 기준으로 예측에 도움이 안 되는 특성을 빼서 모델을 단순하고 빠르게 만드는 전처리다.",
+   "objectives": [
+    "VarianceThreshold로 값이 거의 변하지 않는 특성을 지울 수 있다",
+    "SelectKBest와 RFE로 남길 특성 개수를 정해 고를 수 있다",
+    "특성 선택을 파이프라인 안에 넣어 학습과 예측에 똑같이 적용할 수 있다",
+    "특성 선택과 PCA 같은 차원 축소의 차이를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.supervised.sklearn-pipeline"
+   ],
+   "related": [
+    "ml.unsupervised.pca-dimensionality-reduction",
+    "ml.eval.permutation-importance"
+   ],
+   "aliases": [
+    "특성 선택",
+    "feature selection",
+    "피처 선택",
+    "변수 선택",
+    "VarianceThreshold",
+    "SelectFromModel"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/feature_selection.html"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.training.learning-rate",
    "title": "학습률",
    "en": "Learning Rate",
@@ -35078,6 +36505,57 @@
    ],
    "refs": [
     "https://docs.pytorch.org/docs/stable/generated/torch.no_grad.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.tensor-device",
+   "title": "장치 지정(.to(device))",
+   "en": "Moving Tensors to a Device",
+   "kind": "term",
+   "level": 3,
+   "importance": 1,
+   "group": "딥러닝",
+   "summary": "텐서는 기본으로 CPU에 만들어지므로 모델과 데이터를 .to(device)로 같은 CPU나 GPU에 옮겨 함께 계산하게 하며, 큰 텐서를 장치 사이로 옮기면 시간과 메모리가 든다.",
+   "parent": "ml.nn.tensor-basics",
+   "aliases": [
+    ".to(device)",
+    "GPU로 옮기기",
+    "cuda 장치",
+    "torch.device",
+    "텐서 장치",
+    "가속기 장치"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/tutorials/beginner/basics/tensorqs_tutorial.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.autograd",
+   "title": "autograd(자동 미분)",
+   "en": "Autograd (Automatic Differentiation)",
+   "kind": "term",
+   "level": 3,
+   "importance": 1,
+   "group": "딥러닝",
+   "summary": "requires_grad가 켜진 텐서의 연산을 기록해 두었다가 손실에 backward()를 부르면 각 파라미터의 .grad에 기울기를 채워 주는 PyTorch 기능이다.",
+   "parent": "ml.nn.training-loop",
+   "related": [
+    "ml.nn.no-grad",
+    "ml.nn.zero-grad",
+    "ml.training.backprop"
+   ],
+   "aliases": [
+    "torch.autograd",
+    "자동 미분",
+    "automatic differentiation",
+    "loss.backward()",
+    "requires_grad",
+    "계산 그래프"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/tutorials/beginner/basics/autogradqs_tutorial.html"
    ],
    "domain": "ml"
   },
@@ -35706,6 +37184,126 @@
    "domain": "ml"
   },
   {
+   "id": "ml.nn.tensor-reshape",
+   "title": "텐서 모양 바꾸기(reshape·view)",
+   "en": "Reshaping Tensors (reshape and view)",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "reshape는 원소 수를 유지한 채 텐서의 모양을 바꾸며, 한 차원에 -1을 주면 나머지로부터 크기를 계산해 준다.",
+   "parent": "ml.nn.tensor-basics",
+   "related": [
+    "ml.nn.conv2d"
+   ],
+   "aliases": [
+    "torch.reshape",
+    "tensor.view",
+    "텐서 reshape",
+    "텐서 평탄화"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/stable/generated/torch.reshape.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.svm-kernel",
+   "title": "SVM 커널(linear·rbf)",
+   "en": "SVM Kernel Functions",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "커널은 SVM이 데이터 사이 유사도를 재는 함수로, linear는 직선 경계를, rbf는 gamma에 따라 휘어진 경계를 만든다.",
+   "parent": "ml.supervised.svm-classification",
+   "aliases": [
+    "SVM 커널",
+    "SVM 커널 함수",
+    "SVM kernel function",
+    "RBF 커널",
+    "rbf kernel",
+    "커널 트릭"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/svm.html#kernel-functions"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.select-k-best",
+   "title": "SelectKBest(단변량 특성 선택)",
+   "en": "SelectKBest (Univariate Feature Selection)",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "SelectKBest는 특성마다 레이블과의 통계 점수를 매겨 점수가 높은 k개만 남기는 scikit-learn 변환기다.",
+   "parent": "ml.data.feature-selection",
+   "related": [
+    "ml.data.recursive-feature-elimination"
+   ],
+   "aliases": [
+    "SelectKBest",
+    "단변량 특성 선택",
+    "univariate feature selection",
+    "f_classif",
+    "SelectPercentile"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/feature_selection.html#univariate-feature-selection"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.naive-bayes",
+   "title": "나이브 베이즈 분류기",
+   "en": "Naive Bayes Classifier",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "특성들이 서로 독립이라고 가정하고 베이즈 정리로 클래스 확률을 계산하는 빠른 분류기로, 단어 개수를 쓰는 텍스트 분류에 자주 쓴다.",
+   "related": [
+    "ml.data.text-vectorization",
+    "ml.supervised.logistic-regression"
+   ],
+   "aliases": [
+    "나이브 베이즈",
+    "naive bayes",
+    "MultinomialNB",
+    "GaussianNB",
+    "ComplementNB"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/naive_bayes.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.ordinal-encoding",
+   "title": "순서형 인코딩(OrdinalEncoder)",
+   "en": "Ordinal Encoding",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "범주마다 0부터 정수 하나를 붙이는 변환으로, 모델이 그 숫자를 순서로 읽기 때문에 순서가 없는 범주에는 원-핫 인코딩이 더 맞다.",
+   "parent": "ml.data.numeric-categorical-preprocessing",
+   "related": [
+    "ml.data.one-hot-encoding"
+   ],
+   "aliases": [
+    "OrdinalEncoder",
+    "순서형 인코딩",
+    "ordinal encoding"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/preprocessing.html#encoding-categorical-features"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.unsupervised.silhouette-score",
    "title": "실루엣 점수",
    "en": "Silhouette Score",
@@ -35989,6 +37587,30 @@
    ],
    "refs": [
     "https://scikit-learn.org/stable/modules/clustering.html#dbscan"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.recursive-feature-elimination",
+   "title": "재귀적 특성 제거(RFE)",
+   "en": "Recursive Feature Elimination (RFE)",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "RFE는 모델을 반복해 학습하며 중요도가 가장 낮은 특성부터 하나씩 빼서 원하는 개수만 남기고, RFECV는 그 개수를 교차 검증으로 정한다.",
+   "parent": "ml.data.feature-selection",
+   "related": [
+    "ml.data.select-k-best"
+   ],
+   "aliases": [
+    "RFE",
+    "RFECV",
+    "재귀적 특성 제거",
+    "recursive feature elimination"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/feature_selection.html#recursive-feature-elimination"
    ],
    "domain": "ml"
   },

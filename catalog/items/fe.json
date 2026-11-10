@@ -971,6 +971,70 @@
     "checked_at": "2026-11-10"
   },
   {
+    "id": "fe.react.state-structure",
+    "title": "React 상태 구조 정하기",
+    "en": "Choosing the State Structure",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "React",
+    "summary": "어떤 값을 상태로 두고 어떤 값을 계산으로 얻을지 정해, 서로 어긋나거나 중복된 상태 때문에 생기는 버그를 막는 방법이다.",
+    "objectives": [
+      "함께 바뀌는 상태 변수를 하나로 묶거나 모순되는 불리언 여러 개를 status 값 하나로 바꿀 수 있다",
+      "props나 다른 상태로 계산할 수 있는 값을 상태에서 빼고 렌더링 중에 계산할 수 있다",
+      "선택한 객체를 통째로 복사해 두는 대신 id만 상태에 두어 중복을 없앨 수 있다"
+    ],
+    "prerequisites": [
+      "fe.react.state-first"
+    ],
+    "related": [
+      "fe.react.immutable-updates",
+      "fe.react.reducer"
+    ],
+    "aliases": [
+      "상태 구조",
+      "state structure",
+      "중복 상태",
+      "redundant state",
+      "상태 설계 원칙"
+    ],
+    "refs": [
+      "https://react.dev/learn/choosing-the-state-structure"
+    ]
+  },
+  {
+    "id": "fe.js.error-handling",
+    "title": "JavaScript 예외 처리: throw와 try...catch",
+    "en": "JavaScript Exception Handling",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "JavaScript",
+    "summary": "throw로 오류를 알리고 try...catch...finally로 받아 처리해, 오류가 나도 프로그램이 멈추지 않고 뒷정리를 하게 만드는 방법이다.",
+    "objectives": [
+      "잘못된 입력을 만나면 Error 객체를 throw해 호출한 쪽에 알릴 수 있다",
+      "try...catch로 오류를 잡아 name과 message를 보고 사용자에게 알맞은 안내를 보여 줄 수 있다",
+      "finally로 성공과 실패 모두에서 실행할 뒷정리 코드를 둘 수 있다"
+    ],
+    "prerequisites": [
+      "fe.js.basics"
+    ],
+    "related": [
+      "fe.js.promises-async",
+      "fe.next.error-handling"
+    ],
+    "aliases": [
+      "JS 예외 처리",
+      "JavaScript exception handling",
+      "try catch",
+      "try...catch",
+      "throw 문"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling"
+    ]
+  },
+  {
     "id": "fe.internals.render-and-commit",
     "title": "React 렌더링 과정: 트리거·렌더·커밋",
     "en": "React Rendering: Trigger, Render, Commit",
@@ -1228,6 +1292,39 @@
     "checked_at": "2026-11-10"
   },
   {
+    "id": "fe.react.preserve-reset-state",
+    "title": "React 상태 보존과 초기화",
+    "en": "Preserving and Resetting State",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "React",
+    "summary": "같은 자리에 같은 컴포넌트가 그려지면 상태가 남고 자리나 종류가 바뀌면 사라진다는 규칙을 알고, key로 원하는 때에 상태를 새로 시작하게 하는 방법이다.",
+    "objectives": [
+      "조건에 따라 컴포넌트를 바꿔 그릴 때 상태가 남는 경우와 사라지는 경우를 구분할 수 있다",
+      "받는 사람이 바뀔 때 입력 폼이 비워지도록 key를 달아 상태를 초기화할 수 있다",
+      "컴포넌트 안에서 다른 컴포넌트를 정의해 입력값이 계속 사라지는 실수를 찾아 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "fe.react.state-first",
+      "fe.react.conditional-list-rendering"
+    ],
+    "related": [
+      "fe.internals.react-reconciliation",
+      "fe.react.lifting-state"
+    ],
+    "aliases": [
+      "React 상태 초기화",
+      "React 상태 보존",
+      "React state reset",
+      "resetting state",
+      "컴포넌트 상태 유지"
+    ],
+    "refs": [
+      "https://react.dev/learn/preserving-and-resetting-state"
+    ]
+  },
+  {
     "id": "fe.react.dependency-array",
     "title": "의존성 배열",
     "en": "Dependency Array",
@@ -1465,6 +1562,28 @@
     ],
     "refs": [
       "https://nextjs.org/docs/app/guides/environment-variables"
+    ]
+  },
+  {
+    "id": "fe.js.closures",
+    "title": "클로저",
+    "en": "Closures",
+    "kind": "term",
+    "level": 3,
+    "importance": 1,
+    "group": "JavaScript",
+    "summary": "함수가 만들어질 때 둘러싼 변수를 기억해, 바깥 함수가 끝난 뒤에도 그 변수를 읽고 바꿀 수 있는 성질이다.",
+    "related": [
+      "fe.react.effect-cleanup"
+    ],
+    "aliases": [
+      "클로저",
+      "closure",
+      "루프 클로저 실수",
+      "JS 클로저"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Closures"
     ]
   },
   {
@@ -2160,6 +2279,143 @@
     ]
   },
   {
+    "id": "fe.react.derived-value",
+    "title": "렌더링 중 계산하는 파생 값",
+    "en": "Deriving Values During Render",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "React",
+    "summary": "다른 상태나 props로 계산할 수 있는 값은 상태로 따로 두지 않고 렌더링할 때마다 계산해 늘 맞는 값을 얻는 방식이다.",
+    "parent": "fe.react.state-structure",
+    "related": [
+      "fe.react.use-effect"
+    ],
+    "aliases": [
+      "파생 상태",
+      "derived state",
+      "props를 상태에 복사"
+    ],
+    "refs": [
+      "https://react.dev/learn/choosing-the-state-structure#avoid-redundant-state"
+    ]
+  },
+  {
+    "id": "fe.react.key-reset",
+    "title": "key로 컴포넌트 상태 초기화하기",
+    "en": "Resetting State with a Key",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "React",
+    "summary": "컴포넌트에 다른 key를 주면 React가 새 컴포넌트로 보고 안쪽 상태를 모두 버린 뒤 처음부터 다시 만든다.",
+    "parent": "fe.react.preserve-reset-state",
+    "related": [
+      "fe.react.key-prop"
+    ],
+    "aliases": [
+      "key로 리셋",
+      "key reset",
+      "폼 초기화 key",
+      "reset state with key"
+    ],
+    "refs": [
+      "https://react.dev/learn/preserving-and-resetting-state#option-2-resetting-state-with-a-key"
+    ]
+  },
+  {
+    "id": "fe.js.error-object",
+    "title": "Error 객체와 name·message",
+    "en": "Error Objects",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "JavaScript",
+    "summary": "오류의 종류를 name에, 사람이 읽을 설명을 message에 담아 던지고 받는 JavaScript 내장 객체다.",
+    "parent": "fe.js.error-handling",
+    "aliases": [
+      "Error 객체",
+      "new Error",
+      "error.message",
+      "JS TypeError",
+      "오류 객체"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error"
+    ]
+  },
+  {
+    "id": "fe.ts.keyof-operator",
+    "title": "keyof 타입 연산자",
+    "en": "The keyof Type Operator",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "TypeScript",
+    "summary": "객체 타입의 속성 이름들을 문자열 리터럴 유니언 타입으로 뽑아, 있는 키만 받도록 막아 주는 TypeScript 연산자다.",
+    "parent": "fe.ts.object-types",
+    "related": [
+      "fe.ts.generics",
+      "fe.ts.utility-types"
+    ],
+    "aliases": [
+      "keyof",
+      "keyof typeof",
+      "키 유니언 타입",
+      "keyof 연산자"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/2/keyof-types.html"
+    ]
+  },
+  {
+    "id": "fe.next.use-search-params",
+    "title": "useSearchParams 훅",
+    "en": "useSearchParams Hook",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Next.js",
+    "summary": "클라이언트 컴포넌트에서 현재 주소의 검색 매개변수를 읽기 전용 URLSearchParams로 읽는 Next.js 훅이다.",
+    "parent": "fe.next.routes-layouts",
+    "related": [
+      "fe.next.link-component",
+      "fe.react.suspense-boundary"
+    ],
+    "aliases": [
+      "useSearchParams",
+      "쿼리 문자열 읽기",
+      "검색 매개변수 훅"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/api-reference/functions/use-search-params"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "fe.next.css-modules",
+    "title": "CSS Modules",
+    "en": "CSS Modules",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Next.js",
+    "summary": ".module.css 파일의 클래스 이름을 파일마다 고유하게 바꿔, 다른 컴포넌트와 이름이 겹쳐도 스타일이 섞이지 않게 하는 방식이다.",
+    "related": [
+      "fe.css.specificity"
+    ],
+    "aliases": [
+      "CSS 모듈",
+      ".module.css",
+      "module.css",
+      "지역 범위 CSS"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/getting-started/css#css-modules"
+    ]
+  },
+  {
     "id": "fe.html.constraint-validation",
     "title": "Constraint Validation API",
     "en": "Constraint Validation API",
@@ -2259,6 +2515,30 @@
     ],
     "refs": [
       "https://nextjs.org/docs/app/api-reference/functions/generate-metadata"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "fe.next.font-optimization",
+    "title": "next/font로 글꼴 불러오기",
+    "en": "Font Optimization with next/font",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "Next.js",
+    "summary": "Google 글꼴이나 로컬 글꼴 파일을 빌드 때 내 사이트에 함께 담아, 외부 요청과 레이아웃 흔들림 없이 글꼴을 적용하는 Next.js 모듈이다.",
+    "related": [
+      "fe.next.image-component"
+    ],
+    "aliases": [
+      "next/font",
+      "next/font/google",
+      "localFont",
+      "Next.js 글꼴 최적화"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/getting-started/fonts"
     ],
     "volatile": true,
     "checked_at": "2026-11-10"

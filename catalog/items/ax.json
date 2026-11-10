@@ -1270,6 +1270,156 @@
     "checked_at": "2026-11-10"
   },
   {
+    "id": "ax.coding.cloud-sessions",
+    "title": "클라우드에서 에이전트 세션 돌리기: --cloud와 --teleport",
+    "en": "Running Claude Code Sessions in the Cloud",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "노트북을 닫아도 계속 도는 클라우드 VM에 작업을 맡기고, 끝난 세션을 터미널로 끌어와 이어서 고치는 방법이다.",
+    "objectives": [
+      "claude --cloud로 현재 저장소의 작업을 클라우드 세션에 맡기고 웹이나 휴대폰에서 진행을 확인할 수 있다",
+      "클라우드 VM은 로컬 작업 폴더가 아니라 원격 브랜치를 복제한다는 점을 알고 먼저 push할 수 있다",
+      "claude --teleport로 클라우드 세션의 브랜치와 대화를 터미널로 가져와 이어 작업할 수 있다",
+      "환경의 네트워크 접근 수준과 설정 스크립트를 작업에 맞게 고를 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.agent-first",
+      "ax.coding.session-resume"
+    ],
+    "related": [
+      "ax.coding.devcontainer",
+      "ax.coding.worktree-sessions",
+      "ax.coding.headless-mode"
+    ],
+    "aliases": [
+      "Claude Code on the web",
+      "클라우드 세션",
+      "cloud session",
+      "claude --cloud",
+      "claude.ai/code",
+      "웹 Claude Code"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/claude-code-on-the-web",
+      "https://code.claude.com/docs/en/cloud-environments"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "ax.coding.custom-subagents",
+    "title": "작업별 하위 에이전트 만들기: .claude/agents 파일",
+    "en": "Creating Custom Subagents",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "이름·설명·도구·모델을 머리말에 적은 Markdown 파일로 리뷰어나 테스트 담당 같은 하위 에이전트를 정의해 팀과 나눠 쓰는 방법이다.",
+    "objectives": [
+      ".claude/agents와 ~/.claude/agents 중 어디에 둘지 정하고 name·description·본문 프롬프트를 갖춘 파일을 쓸 수 있다",
+      "description을 고쳐 Claude가 알아서 맡기게 하거나 @멘션으로 직접 부를 수 있다",
+      "tools와 model 칸으로 하위 에이전트가 쓸 도구와 모델을 정할 수 있다",
+      "필드 이름 오타나 빠진 description 때문에 파일이 조용히 무시되는 문제를 찾아 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.agent-first",
+      "ax.coding.skills"
+    ],
+    "related": [
+      "ax.coding.subagents-permission-modes",
+      "ax.coding.subagent",
+      "ax.coding.skill-description"
+    ],
+    "aliases": [
+      "커스텀 서브에이전트",
+      "custom subagent",
+      ".claude/agents",
+      "서브에이전트 정의 파일",
+      "agents 디렉터리"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/sub-agents"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "ax.coding.code-review-command",
+    "title": "에이전트에게 변경 리뷰 맡기기: /code-review",
+    "en": "Local Code Review with /code-review",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "브랜치·PR·경로를 대상으로 /code-review를 돌려 버그 후보를 받고, 노력 수준과 --fix·--comment로 범위와 처리 방식을 정하는 방법이다.",
+    "objectives": [
+      "/code-review에 PR 번호·브랜치 범위·경로를 주어 리뷰 대상을 바꿀 수 있다",
+      "노력 수준을 낮추면 확신 높은 지적만, 높이면 넓게 받는다는 차이로 수준을 고를 수 있다",
+      "--fix로 고친 내용이 /rewind로 다 되돌려지지 않을 수 있음을 알고 git으로 되돌릴 수 있다",
+      "/code-review·/security-review·관리형 Code Review가 각각 무엇을 보는지 구분할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.agent-first",
+      "ax.coding.review-ai-code"
+    ],
+    "related": [
+      "ax.coding.security-review-command",
+      "ax.coding.claude-code-action",
+      "ax.coding.rewind-menu"
+    ],
+    "aliases": [
+      "/code-review",
+      "/review 명령",
+      "Claude Code 코드 리뷰 명령",
+      "code-review --fix"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/code-review-local"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "ax.coding.scheduled-tasks",
+    "title": "에이전트 작업 예약하기: /loop와 클라우드 예약 작업",
+    "en": "Scheduling Agent Work with /loop and Cloud Scheduled Tasks",
+    "kind": "topic",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "열린 세션에서 /loop로 배포를 지켜보게 하거나, 컴퓨터가 꺼져도 도는 클라우드 예약 작업에 일정·API·GitHub 트리거를 거는 방법이다.",
+    "objectives": [
+      "/loop에 간격과 프롬프트를 주어 세션 안에서 반복 확인을 돌리고 멈출 수 있다",
+      "/loop·데스크톱 예약·클라우드 예약 작업 가운데 컴퓨터와 세션이 켜져 있어야 하는지로 알맞은 것을 고를 수 있다",
+      "/schedule로 클라우드 예약 작업을 만들고 일정·API·GitHub 이벤트 트리거를 붙일 수 있다",
+      "세션 예약이 7일 뒤 사라지고 놓친 실행을 몰아서 하지 않는다는 점을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.agent-first",
+      "ax.coding.headless-mode"
+    ],
+    "related": [
+      "be.async.scheduled-jobs",
+      "ax.coding.claude-code-action",
+      "ax.coding.cloud-sessions"
+    ],
+    "aliases": [
+      "Claude Code 예약 작업",
+      "Claude Code scheduled tasks",
+      "Claude Code routines",
+      "Claude Code 루틴",
+      "/schedule"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/scheduled-tasks",
+      "https://code.claude.com/docs/en/routines"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
     "id": "ax.coding.slash-command",
     "title": "슬래시 명령(/이름)",
     "en": "Slash Command",
@@ -1997,6 +2147,57 @@
     ]
   },
   {
+    "id": "ax.coding.cloud-network-access",
+    "title": "클라우드 환경 네트워크 접근 수준",
+    "en": "Cloud Environment Network Access Levels",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "클라우드 세션이 밖으로 나갈 수 있는 곳을 없음·허용 목록(Trusted)·전체·직접 지정 중 하나로 정하는 환경 설정이다.",
+    "parent": "ax.coding.cloud-sessions",
+    "related": [
+      "ax.coding.devcontainer-egress-firewall",
+      "ax.coding.network-command-approval"
+    ],
+    "aliases": [
+      "Trusted network access",
+      "클라우드 허용 도메인",
+      "클라우드 네트워크 접근"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/cloud-environments"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "ax.coding.subagent-tool-allowlist",
+    "title": "하위 에이전트 도구 목록(tools·disallowedTools)",
+    "en": "Subagent Tool Allowlist",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "하위 에이전트 파일의 tools에 쓸 도구만 적고 disallowedTools로 뺄 도구를 적어, 생략하면 모든 도구를 물려받는 기본값을 좁히는 칸이다.",
+    "parent": "ax.coding.custom-subagents",
+    "related": [
+      "ax.coding.permission-rules",
+      "ax.security.limit-agent-agency"
+    ],
+    "aliases": [
+      "subagent tools",
+      "disallowedTools",
+      "하위 에이전트 도구 제한",
+      "서브에이전트 tools 필드"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/sub-agents"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
     "id": "ax.governance.gpai-model",
     "title": "범용 AI 모델(GPAI)",
     "en": "General-Purpose AI Model",
@@ -2411,6 +2612,161 @@
     "refs": [
       "https://airc.nist.gov/airmf-resources/playbook/",
       "https://www.nist.gov/itl/ai-risk-management-framework"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "ax.coding.cloud-setup-script",
+    "title": "클라우드 환경 설정 스크립트",
+    "en": "Cloud Environment Setup Script",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "새 클라우드 세션에서 에이전트가 뜨기 전에 한 번 돌아 도구를 설치하고, 5분 안에 끝나면 결과가 캐시되는 Bash 스크립트다.",
+    "parent": "ax.coding.cloud-sessions",
+    "related": [
+      "ax.coding.hooks"
+    ],
+    "aliases": [
+      "클라우드 setup script",
+      "클라우드 환경 캐시",
+      "cloud environment caching",
+      "클라우드 setup.sh"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/cloud-environments"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "ax.coding.cloud-network-secret",
+    "title": "네트워크 비밀값(network secret)",
+    "en": "Network Secret",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "API 키를 클라우드 세션 안에 두지 않고, 정해진 호스트로 나가는 요청에만 프록시가 붙여 주게 하는 저장 방식이다.",
+    "parent": "ax.coding.cloud-sessions",
+    "related": [
+      "ax.security.sensitive-info-disclosure",
+      "ax.coding.agent-prompt-injection"
+    ],
+    "aliases": [
+      "network secrets",
+      "네트워크 시크릿",
+      "클라우드 환경 비밀값",
+      "agent proxy 비밀값"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/cloud-environments"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "ax.coding.teleport",
+    "title": "세션 끌어오기(--teleport)",
+    "en": "Teleporting a Cloud Session",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "클라우드 세션의 브랜치를 받아 체크아웃하고 대화를 터미널로 옮겨, 그 뒤 작업은 로컬 사본에서 이어 가는 명령이다.",
+    "parent": "ax.coding.cloud-sessions",
+    "related": [
+      "ax.coding.session-resume"
+    ],
+    "aliases": [
+      "claude --teleport",
+      "/teleport",
+      "/tp",
+      "teleport 명령",
+      "텔레포트"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/claude-code-on-the-web"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "ax.coding.pr-auto-fix",
+    "title": "PR 자동 수정(Auto-fix)",
+    "en": "Pull Request Auto-fix",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "클라우드 세션이 PR의 CI 실패와 리뷰 댓글을 지켜보다가 분명한 수정은 직접 push하고 애매한 요청은 사람에게 묻는 기능이다.",
+    "parent": "ax.coding.cloud-sessions",
+    "related": [
+      "ax.coding.claude-code-action",
+      "ax.security.human-approval-step"
+    ],
+    "aliases": [
+      "PR Auto-fix",
+      "/autofix-pr",
+      "PR 자동 수정",
+      "CI 실패 자동 수정"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/claude-code-on-the-web"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "ax.coding.loop-command",
+    "title": "/loop 반복 실행",
+    "en": "/loop Command",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "열린 세션 안에서 프롬프트를 정한 간격이나 Claude가 고른 간격으로 되풀이해, 빌드나 PR 상태를 지켜보게 하는 명령이다.",
+    "parent": "ax.coding.scheduled-tasks",
+    "related": [
+      "ax.coding.slash-command"
+    ],
+    "aliases": [
+      "/loop",
+      "loop 명령",
+      "loop.md",
+      "세션 예약 작업",
+      "CronCreate"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/scheduled-tasks"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "ax.coding.scheduled-task-api-trigger",
+    "title": "예약 작업 API 트리거(/fire)",
+    "en": "Scheduled Task API Trigger",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "클라우드 예약 작업마다 주어지는 주소에 bearer 토큰으로 POST해 실행을 시작하며, 함께 보낸 글은 믿지 않는 자료로 표시되어 들어간다.",
+    "parent": "ax.coding.scheduled-tasks",
+    "related": [
+      "ax.coding.agent-prompt-injection"
+    ],
+    "aliases": [
+      "Claude Code API trigger",
+      "fire endpoint",
+      "/fire 엔드포인트",
+      "routine fire",
+      "예약 작업 토큰"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/routines"
     ],
     "volatile": true,
     "checked_at": "2026-11-10"
