@@ -990,6 +990,101 @@
     ]
   },
   {
+    "id": "dev.debug.pdb",
+    "title": "pdb로 파이썬 프로그램 멈춰 살펴보기",
+    "en": "Debugging Python with pdb",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "디버깅",
+    "summary": "print를 여기저기 넣는 대신 원하는 줄에서 프로그램을 멈추고 변수와 호출 흐름을 한 줄씩 따라가는 표준 디버거 사용법이다.",
+    "objectives": [
+      "breakpoint()나 python -m pdb로 원하는 곳에서 프로그램을 멈출 수 있다",
+      "n·s·c·p·w 명령으로 한 줄씩 실행하며 변수 값을 확인할 수 있다",
+      "예외로 끝난 프로그램을 사후 디버깅으로 열어 실패한 줄의 상태를 볼 수 있다"
+    ],
+    "prerequisites": [
+      "be.python.exceptions"
+    ],
+    "related": [
+      "be.error.debugging-method"
+    ],
+    "aliases": [
+      "파이썬 디버거",
+      "pdb 디버깅",
+      "python -m pdb",
+      "Pdb 프롬프트"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/pdb.html"
+    ]
+  },
+  {
+    "id": "dev.robust.subprocess-run",
+    "title": "subprocess로 외부 명령 안전하게 실행하기",
+    "en": "Running External Commands with subprocess",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "견고한 스크립트",
+    "summary": "파이썬 스크립트에서 git·ls 같은 다른 프로그램을 subprocess.run으로 부르고, 결과와 실패를 놓치지 않게 받는 방법이다.",
+    "objectives": [
+      "명령을 리스트로 넘겨 subprocess.run으로 실행할 수 있다",
+      "capture_output과 text로 출력을 문자열로 받을 수 있다",
+      "check=True로 실패한 명령을 예외로 잡아 처리할 수 있다",
+      "shell=True가 필요한 경우와 위험을 구분할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.robust.report-failure"
+    ],
+    "related": [
+      "dev.robust.exit-code"
+    ],
+    "aliases": [
+      "subprocess.run",
+      "외부 명령 실행",
+      "capture_output",
+      "파이썬 subprocess"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/subprocess.html"
+    ]
+  },
+  {
+    "id": "dev.test.pytest-select",
+    "title": "pytest로 테스트 골라 돌리기: -k·마커·--lf",
+    "en": "Selecting Tests in pytest",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "테스트",
+    "summary": "테스트가 많아졌을 때 이름·마커·지난 실패 기록으로 필요한 테스트만 골라 돌리고, 일부러 건너뛸 테스트를 표시하는 방법이다.",
+    "objectives": [
+      "노드 ID와 -k 식으로 특정 테스트만 실행할 수 있다",
+      "사용자 마커를 등록하고 -m으로 골라 돌릴 수 있다",
+      "skip·skipif·xfail로 건너뛸 테스트와 실패가 예상되는 테스트를 구분해 표시할 수 있다",
+      "--lf와 --ff로 지난번에 실패한 테스트부터 다시 돌릴 수 있다"
+    ],
+    "prerequisites": [
+      "be.test.pytest-first"
+    ],
+    "related": [
+      "dev.test.test-discovery"
+    ],
+    "aliases": [
+      "pytest -k",
+      "pytest -m",
+      "테스트 선택 실행",
+      "pytest 노드 ID"
+    ],
+    "refs": [
+      "https://docs.pytest.org/en/stable/how-to/usage.html",
+      "https://docs.pytest.org/en/stable/how-to/mark.html",
+      "https://docs.pytest.org/en/stable/how-to/skipping.html",
+      "https://docs.pytest.org/en/stable/how-to/cache.html"
+    ]
+  },
+  {
     "id": "dev.git.submodules",
     "title": "Git 서브모듈로 다른 저장소 담기",
     "en": "Git Submodules",
@@ -1684,6 +1779,91 @@
     ]
   },
   {
+    "id": "dev.debug.breakpoint",
+    "title": "breakpoint() 내장 함수",
+    "en": "breakpoint() Built-in",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "디버깅",
+    "summary": "코드의 원하는 줄에 넣으면 그 자리에서 실행을 멈추고 디버거를 여는 파이썬 내장 함수다.",
+    "parent": "dev.debug.pdb",
+    "aliases": [
+      "breakpoint()",
+      "pdb.set_trace",
+      "set_trace"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/pdb.html"
+    ]
+  },
+  {
+    "id": "dev.robust.called-process-error",
+    "title": "CalledProcessError와 check=True",
+    "en": "CalledProcessError and check=True",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "견고한 스크립트",
+    "summary": "subprocess.run에 check=True를 주면 실행한 명령이 0이 아닌 종료 코드로 끝날 때 나는 예외다.",
+    "parent": "dev.robust.subprocess-run",
+    "aliases": [
+      "CalledProcessError",
+      "check=True",
+      "check_returncode"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/subprocess.html"
+    ]
+  },
+  {
+    "id": "dev.robust.shell-true-risk",
+    "title": "shell=True와 셸 주입 위험",
+    "en": "shell=True and Shell Injection",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "견고한 스크립트",
+    "summary": "subprocess에 shell=True를 주면 명령 문자열을 셸이 해석해서, 바깥에서 들어온 값이 다른 명령으로 실행될 수 있는 위험이다.",
+    "parent": "dev.robust.subprocess-run",
+    "related": [
+      "be.security.injection"
+    ],
+    "aliases": [
+      "shell=True",
+      "셸 주입",
+      "shell injection",
+      "shlex.quote"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/subprocess.html"
+    ]
+  },
+  {
+    "id": "dev.git.ours-theirs",
+    "title": "충돌에서 한쪽 고르기: --ours·--theirs",
+    "en": "Choosing a Side: --ours and --theirs",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Git",
+    "summary": "병합 충돌이 난 파일을 손으로 고치지 않고 내 쪽이나 상대 쪽 버전으로 통째로 정하거나, 충돌 부분만 한쪽으로 자동 결정하는 Git 옵션이다.",
+    "parent": "dev.git.merge-conflict",
+    "related": [
+      "dev.git.merge-methods"
+    ],
+    "aliases": [
+      "git checkout --ours",
+      "git checkout --theirs",
+      "-Xours",
+      "-Xtheirs",
+      "git merge -X ours"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging"
+    ]
+  },
+  {
     "id": "dev.git.upstream-remote",
     "title": "업스트림 원격",
     "en": "Upstream Remote",
@@ -1955,6 +2135,93 @@
     ],
     "refs": [
       "https://docs.python.org/3/library/unittest.html"
+    ]
+  },
+  {
+    "id": "dev.debug.post-mortem",
+    "title": "사후 디버깅(post-mortem)",
+    "en": "Post-mortem Debugging",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "예외로 프로그램이 멈춘 뒤 그 순간의 스택과 변수를 디버거로 열어 보는 방법이다.",
+    "parent": "dev.debug.pdb",
+    "aliases": [
+      "사후 디버깅",
+      "pdb.pm",
+      "pdb.post_mortem",
+      "pdb post-mortem"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/pdb.html"
+    ]
+  },
+  {
+    "id": "dev.test.pytest-marker",
+    "title": "pytest 마커 등록과 --strict-markers",
+    "en": "pytest Markers",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "테스트",
+    "summary": "@pytest.mark.이름으로 테스트에 꼬리표를 달고 설정 파일에 등록해 두며, --strict-markers를 켜면 등록하지 않은 마커가 경고 대신 오류가 되는 pytest 기능이다.",
+    "parent": "dev.test.pytest-select",
+    "aliases": [
+      "pytest.mark",
+      "pytest 마커",
+      "strict-markers",
+      "사용자 정의 마커"
+    ],
+    "refs": [
+      "https://docs.pytest.org/en/stable/how-to/mark.html"
+    ]
+  },
+  {
+    "id": "dev.test.skip-xfail",
+    "title": "skip과 xfail",
+    "en": "skip and xfail",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "테스트",
+    "summary": "조건이 맞지 않는 테스트는 건너뛰고(skip), 알려진 버그로 실패가 예상되는 테스트는 실패해도 결과를 따로 표시하는(xfail) pytest 표시다.",
+    "parent": "dev.test.pytest-select",
+    "related": [
+      "dev.test.flaky"
+    ],
+    "aliases": [
+      "pytest.mark.skip",
+      "skipif",
+      "xfail",
+      "XPASS",
+      "xfail_strict"
+    ],
+    "refs": [
+      "https://docs.pytest.org/en/stable/how-to/skipping.html"
+    ]
+  },
+  {
+    "id": "dev.git.signed-commit",
+    "title": "서명된 커밋과 태그",
+    "en": "Signed Commits and Tags",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "Git",
+    "summary": "GPG 같은 키로 커밋이나 태그에 서명해 정말 그 사람이 만든 기록인지 다른 사람이 확인할 수 있게 하는 Git 기능이다.",
+    "related": [
+      "dev.git.annotated-tag"
+    ],
+    "aliases": [
+      "커밋 서명",
+      "git commit -S",
+      "commit.gpgsign",
+      "verify-signatures",
+      "Git GPG 서명"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work"
     ]
   },
   {

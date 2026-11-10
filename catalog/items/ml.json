@@ -1113,6 +1113,106 @@
     ]
   },
   {
+    "id": "ml.supervised.hyperparameter-search",
+    "title": "GridSearchCV로 하이퍼파라미터 찾기",
+    "en": "Hyperparameter Search with GridSearchCV",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "후보 설정값의 조합을 교차 검증 점수로 하나씩 비교해 가장 좋은 조합과 그 조합으로 다시 학습한 모델을 얻는 scikit-learn 도구다.",
+    "objectives": [
+      "param_grid 사전으로 탐색할 하이퍼파라미터 후보를 적을 수 있다",
+      "GridSearchCV를 fit한 뒤 best_params_와 best_estimator_로 결과를 꺼낼 수 있다",
+      "scoring 인자로 어떤 지표를 기준으로 고를지 정할 수 있다",
+      "파이프라인을 통째로 탐색해 전처리 설정과 모델 설정을 함께 고를 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.sklearn-pipeline",
+      "ml.supervised.sklearn-first-model"
+    ],
+    "related": [
+      "ml.eval.data-splitting-cv"
+    ],
+    "aliases": [
+      "그리드 서치",
+      "grid search",
+      "GridSearchCV",
+      "하이퍼파라미터 탐색",
+      "hyperparameter tuning",
+      "best_params_"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/grid_search.html"
+    ]
+  },
+  {
+    "id": "ml.unsupervised.pca-dimensionality-reduction",
+    "title": "PCA로 특성 개수 줄이기",
+    "en": "Dimensionality Reduction with PCA",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "여러 특성을 분산이 큰 방향 몇 개로 투영해 적은 수의 새 특성으로 바꾸는 주성분 분석을 scikit-learn으로 쓰는 법이다.",
+    "objectives": [
+      "PCA의 n_components를 정해 fit_transform으로 데이터를 낮은 차원으로 바꿀 수 있다",
+      "explained_variance_ratio_를 보고 남길 성분 개수를 고를 수 있다",
+      "PCA 전에 특성 스케일을 맞추지 않으면 단위가 큰 특성이 결과를 좌우한다는 실수를 피할 수 있다",
+      "2차원으로 줄인 데이터를 산점도로 그려 무리를 살펴볼 수 있다"
+    ],
+    "prerequisites": [
+      "ml.data.numeric-categorical-preprocessing"
+    ],
+    "related": [
+      "ml.unsupervised.tsne"
+    ],
+    "aliases": [
+      "주성분 분석",
+      "PCA",
+      "principal component analysis",
+      "차원 축소",
+      "dimensionality reduction"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/decomposition.html",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html"
+    ]
+  },
+  {
+    "id": "ml.nn.transfer-learning",
+    "title": "사전 학습 모델로 전이 학습하기",
+    "en": "Transfer Learning with a Pretrained Model",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "큰 데이터로 미리 학습한 이미지 모델을 불러와 마지막 층만 내 클래스 수에 맞게 바꾸고 적은 데이터로 다시 학습시키는 방법이다.",
+    "objectives": [
+      "torchvision에서 사전 학습 가중치가 담긴 모델을 불러올 수 있다",
+      "마지막 완전 연결 층을 내 클래스 수에 맞는 새 층으로 바꿀 수 있다",
+      "모든 층을 다시 학습하는 미세 조정과 앞쪽 층을 고정하는 특성 추출을 골라 쓸 수 있다",
+      "고정한 층의 파라미터를 옵티마이저에 넘기지 않아 학습 시간을 줄일 수 있다"
+    ],
+    "prerequisites": [
+      "ml.nn.cnn-image-classifier",
+      "ml.nn.training-loop"
+    ],
+    "related": [
+      "mlops.finetune.fine-tuning"
+    ],
+    "aliases": [
+      "전이 학습",
+      "transfer learning",
+      "torchvision 사전 학습 모델",
+      "고정 특성 추출기",
+      "fixed feature extractor"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/tutorials/beginner/transfer_learning_tutorial.html"
+    ]
+  },
+  {
     "id": "ml.training.learning-rate",
     "title": "학습률",
     "en": "Learning Rate",
@@ -1775,6 +1875,96 @@
     ]
   },
   {
+    "id": "ml.unsupervised.explained-variance-ratio",
+    "title": "설명된 분산 비율",
+    "en": "Explained Variance Ratio",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "PCA의 각 성분이 원래 데이터의 흩어짐을 몇 퍼센트씩 담는지 보여 주는 값으로, 몇 개의 성분을 남길지 정할 때 본다.",
+    "parent": "ml.unsupervised.pca-dimensionality-reduction",
+    "aliases": [
+      "explained_variance_ratio_",
+      "분산 설명 비율",
+      "누적 설명 분산"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.k-nearest-neighbors",
+    "title": "k-최근접 이웃(k-NN)",
+    "en": "k-Nearest Neighbors",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "새 샘플과 가장 가까운 학습 샘플 k개를 찾아 그 이웃들의 다수결이나 평균으로 답을 정하는 지도 학습 모델이다.",
+    "related": [
+      "ml.supervised.decision-tree"
+    ],
+    "aliases": [
+      "kNN",
+      "k-NN",
+      "최근접 이웃",
+      "KNeighborsClassifier",
+      "KNeighborsRegressor"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/neighbors.html#nearest-neighbors-classification"
+    ]
+  },
+  {
+    "id": "ml.nn.lr-scheduler",
+    "title": "학습률 스케줄러",
+    "en": "Learning Rate Scheduler",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "학습이 진행되는 동안 에폭 수나 검증 손실에 맞춰 학습률을 줄여 주는 PyTorch 도구로, optimizer.step() 다음에 scheduler.step()을 부른다.",
+    "related": [
+      "ml.training.learning-rate",
+      "ml.nn.optimizer"
+    ],
+    "aliases": [
+      "lr_scheduler",
+      "LR 스케줄러",
+      "learning rate schedule",
+      "StepLR",
+      "ReduceLROnPlateau"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate"
+    ]
+  },
+  {
+    "id": "ml.nn.freeze-parameters",
+    "title": "파라미터 고정(requires_grad=False)",
+    "en": "Freezing Parameters",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "층의 파라미터에 requires_grad=False를 걸어 역전파 때 기울기를 계산하지 않게 해 그 층의 가중치를 그대로 두는 방법이다.",
+    "parent": "ml.nn.transfer-learning",
+    "related": [
+      "ml.nn.no-grad"
+    ],
+    "aliases": [
+      "층 고정",
+      "layer freezing",
+      "frozen parameters",
+      "가중치 고정",
+      "requires_grad = False"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/tutorials/beginner/transfer_learning_tutorial.html#convnet-as-fixed-feature-extractor"
+    ]
+  },
+  {
     "id": "ml.unsupervised.silhouette-score",
     "title": "실루엣 점수",
     "en": "Silhouette Score",
@@ -1961,6 +2151,91 @@
     ],
     "refs": [
       "https://scikit-learn.org/stable/modules/feature_extraction.html#the-bag-of-words-representation"
+    ]
+  },
+  {
+    "id": "ml.supervised.randomized-search",
+    "title": "RandomizedSearchCV(무작위 탐색)",
+    "en": "Randomized Parameter Search",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "모든 조합을 다 시험하지 않고 정해 둔 횟수만큼 후보를 무작위로 뽑아 비교하는 하이퍼파라미터 탐색 방법이다.",
+    "parent": "ml.supervised.hyperparameter-search",
+    "aliases": [
+      "랜덤 서치",
+      "random search",
+      "RandomizedSearchCV",
+      "무작위 탐색"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/grid_search.html#randomized-parameter-optimization"
+    ]
+  },
+  {
+    "id": "ml.unsupervised.tsne",
+    "title": "t-SNE 시각화",
+    "en": "t-SNE",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "고차원 데이터를 2차원이나 3차원으로 옮겨 가까운 샘플끼리 모여 보이게 그려 주는 시각화용 차원 축소 방법이다.",
+    "related": [
+      "ml.unsupervised.pca-dimensionality-reduction"
+    ],
+    "aliases": [
+      "티스니",
+      "TSNE",
+      "t-distributed stochastic neighbor embedding",
+      "t-SNE perplexity"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/manifold.html#t-distributed-stochastic-neighbor-embedding-t-sne"
+    ]
+  },
+  {
+    "id": "ml.data.curse-of-dimensionality",
+    "title": "차원의 저주",
+    "en": "Curse of Dimensionality",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "특성 수가 많아질수록 고정 반경 이웃 분류나 KD 트리 탐색 같은 거리 기반 방법이 효과와 속도를 잃는 현상이다.",
+    "related": [
+      "ml.supervised.k-nearest-neighbors",
+      "ml.unsupervised.pca-dimensionality-reduction"
+    ],
+    "aliases": [
+      "curse of dimensionality",
+      "차원 저주"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/neighbors.html#nearest-neighbor-algorithms"
+    ]
+  },
+  {
+    "id": "ml.unsupervised.dbscan",
+    "title": "DBSCAN(밀도 기반 군집화)",
+    "en": "DBSCAN",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "가까운 샘플이 촘촘히 모인 곳을 한 군집으로 묶고 외딴 샘플은 잡음(-1)으로 남기는 군집화 방법으로, 군집 수를 미리 정하지 않는다.",
+    "related": [
+      "ml.unsupervised.kmeans-clustering"
+    ],
+    "aliases": [
+      "밀도 기반 군집화",
+      "density-based clustering",
+      "DBSCAN eps",
+      "DBSCAN min_samples"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/clustering.html#dbscan"
     ]
   },
   {

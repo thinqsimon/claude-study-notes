@@ -621,6 +621,40 @@
     "checked_at": "2026-11-06"
   },
   {
+    "id": "ax.security.limit-agent-agency",
+    "title": "LLM 에이전트 기능의 권한 줄이기: 최소 도구와 사람 승인",
+    "en": "Limiting Excessive Agency in LLM Features",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "AI 보안과 윤리",
+    "summary": "LLM이 부르는 도구의 개수·기능·접근 범위를 줄이고 큰 영향을 주는 동작은 사람이 확인하게 해, 모델이 속거나 틀려도 피해가 커지지 않게 한다.",
+    "objectives": [
+      "에이전트 기능의 문제를 너무 많은 기능·너무 넓은 권한·너무 큰 자율성 셋 중 무엇인지 구분할 수 있다",
+      "필요한 동작만 하는 좁은 도구와 읽기 전용 자격 증명으로 도구 목록을 다시 짤 수 있다",
+      "메일 보내기·삭제·결제처럼 영향이 큰 동작 앞에 사용자 승인 단계를 넣을 수 있다",
+      "권한 확인을 모델에 맡기지 않고 도구 쪽 서버에서 하도록 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "llm.security.injection-basics"
+    ],
+    "related": [
+      "llm.security.agent-boundaries",
+      "mlops.guardrail.excessive-agency",
+      "ax.security.model-output-handling",
+      "rag.agent.interrupt"
+    ],
+    "aliases": [
+      "에이전트 권한 줄이기",
+      "최소 도구",
+      "LLM 에이전트 권한 축소",
+      "LLM 도구 최소화"
+    ],
+    "refs": [
+      "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/"
+    ]
+  },
+  {
     "id": "ax.coding.skills",
     "title": "반복 작업을 스킬로 만들기: SKILL.md",
     "en": "Packaging Repeated Work as Skills (SKILL.md)",
@@ -1124,6 +1158,116 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.coding.session-resume",
+    "title": "지난 에이전트 대화 이어가기: --continue와 --resume",
+    "en": "Resuming Coding Agent Sessions",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "코딩 에이전트가 로컬에 저장한 대화 기록을 다시 열어 설명을 되풀이하지 않고 여러 번에 걸쳐 같은 작업을 이어 가는 방법이다.",
+    "objectives": [
+      "claude --continue로 가장 최근 세션을, claude --resume과 /resume 선택 목록으로 원하는 세션을 골라 이어 갈 수 있다",
+      "세션에 이름을 붙여 두고 이름으로 바로 다시 열 수 있다",
+      "이어 간 세션에서 다시 넘겨야 하는 실행 옵션(--add-dir, --mcp-config 등)과 권한 모드가 어떻게 되는지 확인해 빠진 설정을 채울 수 있다",
+      "같은 세션을 두 터미널에서 동시에 열면 기록이 뒤섞인다는 점을 알고 갈래 내기로 피할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.agent-first"
+    ],
+    "related": [
+      "ax.coding.headless-mode",
+      "ax.coding.checkpoints",
+      "ax.coding.worktree-sessions"
+    ],
+    "aliases": [
+      "claude --continue",
+      "claude --resume",
+      "/resume",
+      "세션 이어가기",
+      "Claude Code 대화 이어가기",
+      "Claude Code resume"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/sessions",
+      "https://code.claude.com/docs/en/common-workflows"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "ax.coding.claude-code-context-window",
+    "title": "에이전트 대화의 컨텍스트 관리: /context와 /compact",
+    "en": "Managing the Context Window in Claude Code",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "코딩 에이전트의 컨텍스트 창이 무엇으로 채워지는지 보고, 요약·비우기·하위 에이전트 위임으로 필요한 내용만 남기는 방법이다.",
+    "objectives": [
+      "/context로 CLAUDE.md·도구·대화·파일 읽기가 컨텍스트를 얼마나 차지하는지 확인할 수 있다",
+      "/compact에 남길 내용을 지시해 긴 작업 전에 대화를 원하는 방향으로 요약할 수 있다",
+      "요약 뒤에 다시 읽히는 것(루트 CLAUDE.md 등)과 사라지는 것(paths 규칙, 대화 중 지시)을 구분해 꼭 지켜야 할 규칙을 옮겨 둘 수 있다",
+      "관계없는 일로 넘어갈 때 /clear를, 큰 조사는 하위 에이전트를 골라 컨텍스트를 아낄 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.token-context",
+      "ax.coding.claude-md"
+    ],
+    "related": [
+      "llm.internals.compaction",
+      "llm.internals.context-management",
+      "ax.coding.agent-token-usage"
+    ],
+    "aliases": [
+      "Claude Code 컨텍스트 창",
+      "에이전트 컨텍스트 관리",
+      "컨텍스트가 가득 참",
+      "Claude Code 자동 압축",
+      "Claude Code auto-compact"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/context-window"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "ax.coding.plan-mode",
+    "title": "계획 먼저 받고 고치게 하기: 플랜 모드",
+    "en": "Plan Before Editing with Plan Mode",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "에이전트가 파일을 읽고 계획만 내놓게 한 뒤, 사람이 계획을 고치고 승인해야 코드 수정이 시작되도록 하는 작업 방식이다.",
+    "objectives": [
+      "Shift+Tab, /plan 접두어, --permission-mode plan으로 플랜 모드에 들어가고 나올 수 있다",
+      "제안된 계획을 편집기로 열어 고친 뒤 승인 방식(편집 자동 허용·하나씩 승인·계속 계획)을 고를 수 있다",
+      "플랜 모드에서도 탐색용 셸 명령은 실행될 수 있다는 점을 알고 위험한 명령을 거부 규칙으로 막을 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.agent-first",
+      "ax.coding.permission-rules"
+    ],
+    "related": [
+      "ax.coding.permission-mode",
+      "ax.coding.checkpoints"
+    ],
+    "aliases": [
+      "플랜 모드",
+      "plan mode",
+      "--permission-mode plan",
+      "/plan",
+      "계획 후 실행"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/permission-modes"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
   },
   {
     "id": "ax.coding.slash-command",
@@ -1751,6 +1895,108 @@
     "checked_at": "2026-11-06"
   },
   {
+    "id": "ax.coding.fork-session",
+    "title": "세션 갈래 내기(/branch·--fork-session)",
+    "en": "Branching a Session",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "지금까지의 대화를 복사한 새 세션으로 옮겨 다른 방법을 시도하고, 원래 세션은 그대로 남겨 두는 기능이다.",
+    "parent": "ax.coding.session-resume",
+    "related": [
+      "ax.coding.rewind-menu"
+    ],
+    "aliases": [
+      "/branch",
+      "--fork-session",
+      "세션 분기",
+      "대화 갈래",
+      "fork session"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/sessions"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "ax.coding.session-transcript",
+    "title": "세션 기록 파일(transcript)과 보존 기간",
+    "en": "Session Transcript Files",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "코딩 에이전트가 대화를 프로젝트별 JSONL 파일로 로컬에 저장하고 정해진 기간이 지나면 지우는 기록으로, 이어가기의 바탕이 된다.",
+    "parent": "ax.coding.session-resume",
+    "related": [
+      "ax.coding.agent-data-usage"
+    ],
+    "aliases": [
+      "세션 트랜스크립트",
+      "대화 기록 파일",
+      "cleanupPeriodDays",
+      "~/.claude/projects",
+      "/export"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/sessions"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "ax.coding.compact-command",
+    "title": "대화 요약 명령(/compact)",
+    "en": "The /compact Command",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "코딩 에이전트의 지난 대화를 요약 하나로 바꿔 컨텍스트 자리를 비우는 명령으로, 뒤에 남길 내용을 지시할 수 있다.",
+    "parent": "ax.coding.claude-code-context-window",
+    "related": [
+      "llm.internals.compaction",
+      "ax.coding.agent-token-usage"
+    ],
+    "aliases": [
+      "/compact",
+      "/autocompact",
+      "Conversation compacted",
+      "컨텍스트 요약 명령"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/context-window"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "ax.security.human-approval-step",
+    "title": "사람 승인 단계(human-in-the-loop)",
+    "en": "Human Approval Step",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "LLM이 고른 동작 가운데 영향이 큰 것은 실행 전에 사용자가 확인하고 눌러야 진행되게 하는 안전장치다.",
+    "parent": "ax.security.limit-agent-agency",
+    "related": [
+      "rag.agent.interrupt",
+      "ax.coding.plan-mode"
+    ],
+    "aliases": [
+      "사용자 확인 단계",
+      "실행 전 승인",
+      "사람 확인 후 실행",
+      "user approval step"
+    ],
+    "refs": [
+      "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/"
+    ]
+  },
+  {
     "id": "ax.governance.gpai-model",
     "title": "범용 AI 모델(GPAI)",
     "en": "General-Purpose AI Model",
@@ -2095,6 +2341,79 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-06"
+  },
+  {
+    "id": "ax.coding.session-name",
+    "title": "세션 이름 붙이기(/rename·-n)",
+    "en": "Naming Sessions",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "세션에 알아보기 쉬운 이름을 붙여 선택 목록에서 찾고 claude --resume <이름>으로 바로 다시 여는 방법이다.",
+    "parent": "ax.coding.session-resume",
+    "aliases": [
+      "/rename",
+      "claude -n",
+      "세션 제목",
+      "session name",
+      "이름으로 이어가기"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/sessions"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "ax.coding.context-command",
+    "title": "컨텍스트 사용량 보기(/context)",
+    "en": "The /context Command",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "지금 컨텍스트 창을 무엇이 얼마나 차지하는지 항목별로 보여 주고 줄일 방법을 제안하는 Claude Code 명령이다.",
+    "parent": "ax.coding.claude-code-context-window",
+    "related": [
+      "ax.coding.agent-token-usage"
+    ],
+    "aliases": [
+      "/context",
+      "컨텍스트 사용량",
+      "context usage"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/context-window"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "ax.governance.rmf-playbook",
+    "title": "AI RMF 플레이북",
+    "en": "NIST AI RMF Playbook",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "NIST AI RMF의 Govern·Map·Measure·Manage 하위 항목마다 해 볼 만한 조치를 모아 둔 자발적 참고 자료로, 상황에 맞는 것만 골라 쓴다.",
+    "related": [
+      "ax.governance.rmf-core-functions",
+      "ax.governance.genai-profile"
+    ],
+    "aliases": [
+      "AI RMF Playbook",
+      "NIST 플레이북",
+      "RMF 플레이북",
+      "AI RMF 권장 조치"
+    ],
+    "refs": [
+      "https://airc.nist.gov/airmf-resources/playbook/",
+      "https://www.nist.gov/itl/ai-risk-management-framework"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-10"
   },
   {
     "id": "ax.security.model-output-handling",

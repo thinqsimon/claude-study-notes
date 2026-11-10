@@ -520,6 +520,43 @@
     ]
   },
   {
+    "id": "ops.linux.path-shell-startup",
+    "title": "PATH 환경 변수와 셸 설정 파일(.zprofile)",
+    "en": "PATH and Shell Startup Files",
+    "kind": "topic",
+    "level": 3,
+    "importance": 1,
+    "group": "리눅스",
+    "summary": "셸이 명령을 찾는 폴더 목록인 PATH를 어느 설정 파일에 적어야 새 터미널에서도 유지되는지 정하는 법이다.",
+    "objectives": [
+      "PATH에 폴더를 앞이나 뒤에 덧붙이는 줄을 직접 쓸 수 있다",
+      "로그인 셸과 대화형 셸이 읽는 파일(.zprofile·.zshrc·.bash_profile·.bashrc)을 구분해 알맞은 곳에 설정을 넣을 수 있다",
+      "설치한 명령이 'command not found'로 나올 때 PATH와 설정 파일을 차례로 확인해 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "dev.basics.terminal",
+      "dev.basics.files-paths",
+      "be.security.env-file"
+    ],
+    "related": [
+      "be.security.env-var",
+      "ops.linux.shell-script-basics"
+    ],
+    "aliases": [
+      "PATH 환경 변수",
+      "PATH 설정",
+      ".zprofile",
+      ".zshrc",
+      ".bashrc",
+      "command not found"
+    ],
+    "refs": [
+      "https://zsh.sourceforge.io/Doc/Release/Files.html",
+      "https://man7.org/linux/man-pages/man1/bash.1.html#INVOCATION",
+      "https://man7.org/linux/man-pages/man1/bash.1.html#COMMAND_EXECUTION"
+    ]
+  },
+  {
     "id": "ops.observe.container-healthcheck",
     "title": "컨테이너 상태 보기: HEALTHCHECK와 docker logs",
     "en": "Container Health with Docker HEALTHCHECK and docker logs",
@@ -1035,6 +1072,94 @@
       "https://manpages.ubuntu.com/manpages/noble/man8/ufw.8.html",
       "https://man7.org/linux/man-pages/man8/ss.8.html",
       "https://docs.docker.com/engine/network/packet-filtering-firewalls/"
+    ]
+  },
+  {
+    "id": "ops.docker.build-context",
+    "title": "빌드 컨텍스트와 .dockerignore",
+    "en": "Build Context and .dockerignore",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "Docker",
+    "summary": "docker build에 넘긴 폴더만 COPY할 수 있다는 규칙과, 필요 없는 파일을 .dockerignore로 빼서 빌드를 가볍게 하는 법이다.",
+    "objectives": [
+      "docker build의 마지막 인자로 알맞은 빌드 컨텍스트를 고를 수 있다",
+      "컨텍스트 밖 파일을 COPY해 생기는 not found 오류의 원인을 찾아 고칠 수 있다",
+      ".dockerignore에 node_modules·.env 같은 항목과 ! 예외를 순서에 맞게 쓸 수 있다"
+    ],
+    "prerequisites": [
+      "ops.docker.dockerfile-instructions"
+    ],
+    "related": [
+      "ops.container.image-layers"
+    ],
+    "aliases": [
+      "빌드 컨텍스트",
+      "build context",
+      "docker build .",
+      "컨텍스트 전송"
+    ],
+    "refs": [
+      "https://docs.docker.com/build/concepts/context/"
+    ]
+  },
+  {
+    "id": "ops.docker.compose-startup-order",
+    "title": "Compose 서비스 시작 순서 정하기",
+    "en": "Compose Startup Order",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "Docker",
+    "summary": "depends_on과 헬스체크로 DB가 준비된 뒤에 앱이 뜨게 해, 컨테이너는 떴는데 연결이 거부되는 문제를 막는 법이다.",
+    "objectives": [
+      "컨테이너가 실행 중인 것과 서비스가 준비된 것의 차이를 설명할 수 있다",
+      "depends_on에 service_healthy 조건과 healthcheck를 함께 써서 앱이 DB 준비 뒤에 시작하게 할 수 있다",
+      "마이그레이션 같은 한 번 실행 서비스를 service_completed_successfully로 앞에 둘 수 있다"
+    ],
+    "prerequisites": [
+      "ops.observe.container-healthcheck",
+      "ops.docker.container-networking"
+    ],
+    "aliases": [
+      "Compose 시작 순서",
+      "compose startup order",
+      "depends_on 순서",
+      "DB 준비 대기"
+    ],
+    "refs": [
+      "https://docs.docker.com/compose/how-tos/startup-order/"
+    ]
+  },
+  {
+    "id": "ops.ci.debug-workflow-runs",
+    "title": "실패한 워크플로 살펴보기: 로그·재실행·디버그 로깅",
+    "en": "Debugging Workflow Runs",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "CI/CD",
+    "summary": "실패한 Actions 실행의 로그를 찾아 읽고, 실패한 잡만 디버그 로깅을 켜서 다시 돌려 원인을 좁히는 법이다.",
+    "objectives": [
+      "실패한 스텝의 로그를 웹과 gh run view --log-failed로 찾아 읽을 수 있다",
+      "실패한 잡만 다시 실행하고 이전 시도의 결과와 비교할 수 있다",
+      "ACTIONS_STEP_DEBUG나 재실행 옵션으로 디버그 로그를 켜서 더 자세한 원인을 볼 수 있다"
+    ],
+    "prerequisites": [
+      "ops.ci.workflow-basics"
+    ],
+    "aliases": [
+      "워크플로 디버깅",
+      "Actions 로그 보기",
+      "gh run view",
+      "workflow run logs",
+      "CI 실패 원인 찾기"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/how-tos/monitor-workflows/use-workflow-run-logs",
+      "https://docs.github.com/en/actions/how-tos/manage-workflow-runs/re-run-workflows-and-jobs",
+      "https://docs.github.com/en/actions/how-tos/monitor-workflows/enable-debug-logging"
     ]
   },
   {
@@ -1783,6 +1908,155 @@
     ]
   },
   {
+    "id": "ops.linux.login-shell",
+    "title": "로그인 셸과 대화형 셸",
+    "en": "Login and Interactive Shells",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "셸이 로그인용인지 대화형인지에 따라 읽는 설정 파일이 달라져 같은 설정이 어떤 창에서는 안 먹는 이유가 된다.",
+    "parent": "ops.linux.path-shell-startup",
+    "aliases": [
+      "login shell",
+      "interactive shell",
+      "비로그인 셸",
+      "non-login shell"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man1/bash.1.html#INVOCATION",
+      "https://zsh.sourceforge.io/Doc/Release/Files.html"
+    ]
+  },
+  {
+    "id": "ops.linux.export-env",
+    "title": "export로 환경 변수 내보내기",
+    "en": "Exporting Shell Variables",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "셸 변수에 export를 붙여야 그 셸이 실행하는 프로그램에도 값이 전해진다.",
+    "parent": "ops.linux.path-shell-startup",
+    "related": [
+      "be.security.env-var"
+    ],
+    "aliases": [
+      "export 명령",
+      "export PATH",
+      "셸 변수 내보내기",
+      "export -p"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man1/bash.1.html#SHELL_BUILTIN_COMMANDS"
+    ]
+  },
+  {
+    "id": "ops.linux.command-lookup",
+    "title": "명령 위치 확인(type·command -v)",
+    "en": "Finding Which Command Runs",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "같은 이름의 명령이 여럿일 때 셸이 실제로 무엇을 실행할지 type과 command -v로 확인하고 hash로 기억된 경로를 비운다.",
+    "parent": "ops.linux.path-shell-startup",
+    "aliases": [
+      "command -v",
+      "type 명령",
+      "which 명령",
+      "hash -r",
+      "rehash",
+      "명령 해시 테이블"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man1/bash.1.html#SHELL_BUILTIN_COMMANDS",
+      "https://man7.org/linux/man-pages/man1/bash.1.html#COMMAND_EXECUTION"
+    ]
+  },
+  {
+    "id": "ops.linux.source-dot",
+    "title": "설정 파일 다시 읽기(source·.)",
+    "en": "Sourcing a File",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "파일을 새 프로세스가 아닌 지금 셸 안에서 실행해, 고친 설정이나 변수를 바로 현재 셸에 반영한다.",
+    "parent": "ops.linux.path-shell-startup",
+    "aliases": [
+      "source 명령",
+      "source ~/.zshrc",
+      "점 명령",
+      "dot command"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man1/bash.1.html#SHELL_BUILTIN_COMMANDS"
+    ]
+  },
+  {
+    "id": "ops.docker.bind-mount",
+    "title": "바인드 마운트",
+    "en": "Bind Mount",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Docker",
+    "summary": "호스트의 정해진 폴더나 파일을 컨테이너 안 경로에 그대로 연결해 양쪽이 같은 파일을 보게 하는 방식이다.",
+    "related": [
+      "ops.docker.volume"
+    ],
+    "aliases": [
+      "bind mount",
+      "호스트 폴더 마운트",
+      "--mount type=bind",
+      "docker -v 호스트 경로"
+    ],
+    "refs": [
+      "https://docs.docker.com/engine/storage/bind-mounts/"
+    ]
+  },
+  {
+    "id": "ops.docker.depends-on-condition",
+    "title": "depends_on 조건(service_healthy 등)",
+    "en": "depends_on Conditions",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "Docker",
+    "summary": "Compose에서 앞 서비스가 시작됨·건강함·성공 종료 중 어느 상태가 되어야 다음 서비스를 띄울지 고르는 설정이다.",
+    "parent": "ops.docker.compose-startup-order",
+    "aliases": [
+      "service_healthy",
+      "service_completed_successfully",
+      "Compose depends_on",
+      "condition: service_healthy"
+    ],
+    "refs": [
+      "https://docs.docker.com/compose/how-tos/startup-order/"
+    ]
+  },
+  {
+    "id": "ops.ci.rerun-jobs",
+    "title": "실패한 잡 다시 실행(re-run)",
+    "en": "Re-running Failed Jobs",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "CI/CD",
+    "summary": "워크플로 전체 대신 실패한 잡과 그에 기대는 잡만 같은 커밋으로 다시 돌리는 기능이다.",
+    "parent": "ops.ci.debug-workflow-runs",
+    "aliases": [
+      "re-run failed jobs",
+      "gh run rerun",
+      "워크플로 재실행",
+      "--failed 재실행"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/how-tos/manage-workflow-runs/re-run-workflows-and-jobs"
+    ]
+  },
+  {
     "id": "ops.deploy.rolling-update",
     "title": "롤링 업데이트",
     "en": "Rolling Update",
@@ -1936,6 +2210,26 @@
     ],
     "refs": [
       "https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-an-environment-variable"
+    ]
+  },
+  {
+    "id": "ops.ci.debug-logging",
+    "title": "Actions 디버그 로깅(ACTIONS_STEP_DEBUG)",
+    "en": "Actions Debug Logging",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "CI/CD",
+    "summary": "저장소 시크릿이나 변수에 ACTIONS_STEP_DEBUG·ACTIONS_RUNNER_DEBUG를 true로 두어 스텝과 러너 로그를 자세히 남기는 설정이다.",
+    "parent": "ops.ci.debug-workflow-runs",
+    "aliases": [
+      "ACTIONS_STEP_DEBUG",
+      "ACTIONS_RUNNER_DEBUG",
+      "step debug logging",
+      "runner.debug"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/how-tos/monitor-workflows/enable-debug-logging"
     ]
   },
   {

@@ -1,5 +1,5 @@
 {
- "version": "0.23.0",
+ "version": "0.24.0",
  "domains": [
   {
    "prefix": "dev",
@@ -1283,6 +1283,104 @@
    "domain": "dev"
   },
   {
+   "id": "dev.debug.pdb",
+   "title": "pdb로 파이썬 프로그램 멈춰 살펴보기",
+   "en": "Debugging Python with pdb",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "디버깅",
+   "summary": "print를 여기저기 넣는 대신 원하는 줄에서 프로그램을 멈추고 변수와 호출 흐름을 한 줄씩 따라가는 표준 디버거 사용법이다.",
+   "objectives": [
+    "breakpoint()나 python -m pdb로 원하는 곳에서 프로그램을 멈출 수 있다",
+    "n·s·c·p·w 명령으로 한 줄씩 실행하며 변수 값을 확인할 수 있다",
+    "예외로 끝난 프로그램을 사후 디버깅으로 열어 실패한 줄의 상태를 볼 수 있다"
+   ],
+   "prerequisites": [
+    "be.python.exceptions"
+   ],
+   "related": [
+    "be.error.debugging-method"
+   ],
+   "aliases": [
+    "파이썬 디버거",
+    "pdb 디버깅",
+    "python -m pdb",
+    "Pdb 프롬프트"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/pdb.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.robust.subprocess-run",
+   "title": "subprocess로 외부 명령 안전하게 실행하기",
+   "en": "Running External Commands with subprocess",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "견고한 스크립트",
+   "summary": "파이썬 스크립트에서 git·ls 같은 다른 프로그램을 subprocess.run으로 부르고, 결과와 실패를 놓치지 않게 받는 방법이다.",
+   "objectives": [
+    "명령을 리스트로 넘겨 subprocess.run으로 실행할 수 있다",
+    "capture_output과 text로 출력을 문자열로 받을 수 있다",
+    "check=True로 실패한 명령을 예외로 잡아 처리할 수 있다",
+    "shell=True가 필요한 경우와 위험을 구분할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.robust.report-failure"
+   ],
+   "related": [
+    "dev.robust.exit-code"
+   ],
+   "aliases": [
+    "subprocess.run",
+    "외부 명령 실행",
+    "capture_output",
+    "파이썬 subprocess"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/subprocess.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.test.pytest-select",
+   "title": "pytest로 테스트 골라 돌리기: -k·마커·--lf",
+   "en": "Selecting Tests in pytest",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "테스트",
+   "summary": "테스트가 많아졌을 때 이름·마커·지난 실패 기록으로 필요한 테스트만 골라 돌리고, 일부러 건너뛸 테스트를 표시하는 방법이다.",
+   "objectives": [
+    "노드 ID와 -k 식으로 특정 테스트만 실행할 수 있다",
+    "사용자 마커를 등록하고 -m으로 골라 돌릴 수 있다",
+    "skip·skipif·xfail로 건너뛸 테스트와 실패가 예상되는 테스트를 구분해 표시할 수 있다",
+    "--lf와 --ff로 지난번에 실패한 테스트부터 다시 돌릴 수 있다"
+   ],
+   "prerequisites": [
+    "be.test.pytest-first"
+   ],
+   "related": [
+    "dev.test.test-discovery"
+   ],
+   "aliases": [
+    "pytest -k",
+    "pytest -m",
+    "테스트 선택 실행",
+    "pytest 노드 ID"
+   ],
+   "refs": [
+    "https://docs.pytest.org/en/stable/how-to/usage.html",
+    "https://docs.pytest.org/en/stable/how-to/mark.html",
+    "https://docs.pytest.org/en/stable/how-to/skipping.html",
+    "https://docs.pytest.org/en/stable/how-to/cache.html"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.git.submodules",
    "title": "Git 서브모듈로 다른 저장소 담기",
    "en": "Git Submodules",
@@ -2007,6 +2105,95 @@
    "domain": "dev"
   },
   {
+   "id": "dev.debug.breakpoint",
+   "title": "breakpoint() 내장 함수",
+   "en": "breakpoint() Built-in",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "디버깅",
+   "summary": "코드의 원하는 줄에 넣으면 그 자리에서 실행을 멈추고 디버거를 여는 파이썬 내장 함수다.",
+   "parent": "dev.debug.pdb",
+   "aliases": [
+    "breakpoint()",
+    "pdb.set_trace",
+    "set_trace"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/pdb.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.robust.called-process-error",
+   "title": "CalledProcessError와 check=True",
+   "en": "CalledProcessError and check=True",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "견고한 스크립트",
+   "summary": "subprocess.run에 check=True를 주면 실행한 명령이 0이 아닌 종료 코드로 끝날 때 나는 예외다.",
+   "parent": "dev.robust.subprocess-run",
+   "aliases": [
+    "CalledProcessError",
+    "check=True",
+    "check_returncode"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/subprocess.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.robust.shell-true-risk",
+   "title": "shell=True와 셸 주입 위험",
+   "en": "shell=True and Shell Injection",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "견고한 스크립트",
+   "summary": "subprocess에 shell=True를 주면 명령 문자열을 셸이 해석해서, 바깥에서 들어온 값이 다른 명령으로 실행될 수 있는 위험이다.",
+   "parent": "dev.robust.subprocess-run",
+   "related": [
+    "be.security.injection"
+   ],
+   "aliases": [
+    "shell=True",
+    "셸 주입",
+    "shell injection",
+    "shlex.quote"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/subprocess.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.ours-theirs",
+   "title": "충돌에서 한쪽 고르기: --ours·--theirs",
+   "en": "Choosing a Side: --ours and --theirs",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Git",
+   "summary": "병합 충돌이 난 파일을 손으로 고치지 않고 내 쪽이나 상대 쪽 버전으로 통째로 정하거나, 충돌 부분만 한쪽으로 자동 결정하는 Git 옵션이다.",
+   "parent": "dev.git.merge-conflict",
+   "related": [
+    "dev.git.merge-methods"
+   ],
+   "aliases": [
+    "git checkout --ours",
+    "git checkout --theirs",
+    "-Xours",
+    "-Xtheirs",
+    "git merge -X ours"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.git.upstream-remote",
    "title": "업스트림 원격",
    "en": "Upstream Remote",
@@ -2290,6 +2477,97 @@
    ],
    "refs": [
     "https://docs.python.org/3/library/unittest.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.debug.post-mortem",
+   "title": "사후 디버깅(post-mortem)",
+   "en": "Post-mortem Debugging",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "디버깅",
+   "summary": "예외로 프로그램이 멈춘 뒤 그 순간의 스택과 변수를 디버거로 열어 보는 방법이다.",
+   "parent": "dev.debug.pdb",
+   "aliases": [
+    "사후 디버깅",
+    "pdb.pm",
+    "pdb.post_mortem",
+    "pdb post-mortem"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/pdb.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.test.pytest-marker",
+   "title": "pytest 마커 등록과 --strict-markers",
+   "en": "pytest Markers",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "테스트",
+   "summary": "@pytest.mark.이름으로 테스트에 꼬리표를 달고 설정 파일에 등록해 두며, --strict-markers를 켜면 등록하지 않은 마커가 경고 대신 오류가 되는 pytest 기능이다.",
+   "parent": "dev.test.pytest-select",
+   "aliases": [
+    "pytest.mark",
+    "pytest 마커",
+    "strict-markers",
+    "사용자 정의 마커"
+   ],
+   "refs": [
+    "https://docs.pytest.org/en/stable/how-to/mark.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.test.skip-xfail",
+   "title": "skip과 xfail",
+   "en": "skip and xfail",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "테스트",
+   "summary": "조건이 맞지 않는 테스트는 건너뛰고(skip), 알려진 버그로 실패가 예상되는 테스트는 실패해도 결과를 따로 표시하는(xfail) pytest 표시다.",
+   "parent": "dev.test.pytest-select",
+   "related": [
+    "dev.test.flaky"
+   ],
+   "aliases": [
+    "pytest.mark.skip",
+    "skipif",
+    "xfail",
+    "XPASS",
+    "xfail_strict"
+   ],
+   "refs": [
+    "https://docs.pytest.org/en/stable/how-to/skipping.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.signed-commit",
+   "title": "서명된 커밋과 태그",
+   "en": "Signed Commits and Tags",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "Git",
+   "summary": "GPG 같은 키로 커밋이나 태그에 서명해 정말 그 사람이 만든 기록인지 다른 사람이 확인할 수 있게 하는 Git 기능이다.",
+   "related": [
+    "dev.git.annotated-tag"
+   ],
+   "aliases": [
+    "커밋 서명",
+    "git commit -S",
+    "commit.gpgsign",
+    "verify-signatures",
+    "Git GPG 서명"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work"
    ],
    "domain": "dev"
   },
@@ -18777,6 +19055,115 @@
    "domain": "fe"
   },
   {
+   "id": "fe.js.array-methods",
+   "title": "배열 메서드로 목록 데이터 다루기",
+   "en": "Working with Array Methods",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "JavaScript",
+   "summary": "반복문 대신 map·filter·find 같은 배열 메서드로 목록을 바꾸고 거르고 찾아, 새 배열이나 값을 돌려받는 방법이다.",
+   "objectives": [
+    "map으로 배열의 각 항목을 다른 모양으로 바꾼 새 배열을 만들 수 있다",
+    "filter와 find의 반환값 차이를 알고 필요한 쪽을 골라 쓸 수 있다",
+    "push·splice처럼 원본을 바꾸는 메서드와 새 배열을 돌려주는 메서드를 구분할 수 있다",
+    "검색 결과가 없을 때 find가 돌려주는 undefined를 확인해 오류를 막을 수 있다"
+   ],
+   "prerequisites": [
+    "fe.js.basics"
+   ],
+   "related": [
+    "fe.react.immutable-updates",
+    "fe.js.spread-syntax"
+   ],
+   "aliases": [
+    "JS 배열 메서드",
+    "array methods",
+    "Array.prototype.map",
+    "Array.prototype.filter",
+    "배열 map filter"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Arrays",
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.react.conditional-list-rendering",
+   "title": "조건부 렌더링과 목록 렌더링",
+   "en": "Conditional and List Rendering",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "React",
+   "summary": "조건에 따라 다른 JSX를 보여 주거나 숨기고, 데이터 배열을 filter와 map으로 걸러 목록 화면으로 바꾸는 React의 기본 화면 구성법이다.",
+   "objectives": [
+    "if·삼항 연산자·&&로 조건에 따라 다른 JSX를 보여 주거나 null로 숨길 수 있다",
+    "배열을 filter로 거른 뒤 map으로 JSX 목록을 만들 수 있다",
+    "중괄호 본문 화살표 함수에서 return을 빠뜨려 목록이 비는 실수를 찾아 고칠 수 있다",
+    "데이터의 고유 id를 key로 붙여 key 경고를 없앨 수 있다"
+   ],
+   "prerequisites": [
+    "fe.react.first-component",
+    "fe.js.array-methods"
+   ],
+   "related": [
+    "fe.react.key-prop"
+   ],
+   "aliases": [
+    "조건부 렌더링",
+    "conditional rendering",
+    "리스트 렌더링",
+    "rendering lists",
+    "React 목록 렌더링"
+   ],
+   "refs": [
+    "https://react.dev/learn/conditional-rendering",
+    "https://react.dev/learn/rendering-lists"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.error-handling",
+   "title": "Next.js 오류 처리: error.js와 notFound",
+   "en": "Error Handling in Next.js",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "Next.js",
+   "summary": "예상한 실패는 반환값과 notFound로 화면에 보여 주고, 예상 못한 예외는 라우트 폴더의 error.js 경계가 받아 대체 화면과 다시 시도 버튼을 보여 주게 하는 방법이다.",
+   "objectives": [
+    "예상한 오류와 잡히지 않은 예외를 구분해 각각 반환값과 error.js로 처리할 수 있다",
+    "없는 글 주소에서 notFound를 불러 not-found 화면을 보여 줄 수 있다",
+    "라우트 폴더에 'use client'를 붙인 error.js를 두어 그 구간만 대체 화면으로 바꿀 수 있다",
+    "이벤트 핸들러 속 오류는 error.js가 잡지 못하므로 try...catch와 상태로 직접 보여 줄 수 있다"
+   ],
+   "prerequisites": [
+    "fe.next.routes-layouts",
+    "fe.next.async-server-data"
+   ],
+   "related": [
+    "fe.next.loading-file",
+    "fe.react.use-action-state"
+   ],
+   "aliases": [
+    "Next.js 오류 처리",
+    "Next.js error handling",
+    "error.js",
+    "error.tsx",
+    "Next.js 오류 경계",
+    "Next.js error boundary"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/getting-started/error-handling",
+    "https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "fe"
+  },
+  {
    "id": "fe.internals.render-and-commit",
    "title": "React 렌더링 과정: 트리거·렌더·커밋",
    "en": "React Rendering: Trigger, Render, Commit",
@@ -19005,6 +19392,43 @@
    "domain": "fe"
   },
   {
+   "id": "fe.next.metadata",
+   "title": "Next.js 메타데이터와 OG 이미지",
+   "en": "Next.js Metadata and OG Images",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "Next.js",
+   "summary": "metadata 객체나 generateMetadata 함수로 페이지 제목·설명을 정하고, favicon·opengraph-image 파일로 검색과 링크 공유에 보일 정보를 붙이는 방법이다.",
+   "objectives": [
+    "layout이나 page에서 metadata 객체를 내보내 페이지 제목과 설명을 정할 수 있다",
+    "동적 라우트에서 generateMetadata로 params에 맞는 글 제목을 head에 넣을 수 있다",
+    "app 폴더에 favicon.ico와 opengraph-image 파일을 두어 아이콘과 공유 이미지를 붙일 수 있다",
+    "클라이언트 컴포넌트에서 metadata를 내보내 생기는 오류를 서버 컴포넌트로 옮겨 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "fe.next.routes-layouts"
+   ],
+   "related": [
+    "fe.next.async-server-data"
+   ],
+   "aliases": [
+    "Next.js metadata",
+    "generateMetadata",
+    "Metadata API",
+    "OG 이미지",
+    "opengraph-image",
+    "페이지 메타 태그"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/getting-started/metadata-and-og-images",
+    "https://nextjs.org/docs/app/api-reference/functions/generate-metadata"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "fe"
+  },
+  {
    "id": "fe.react.dependency-array",
    "title": "의존성 배열",
    "en": "Dependency Array",
@@ -19227,6 +19651,31 @@
    ],
    "refs": [
     "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.env-variables",
+   "title": "Next.js 환경 변수와 NEXT_PUBLIC_",
+   "en": "Environment Variables in Next.js",
+   "kind": "term",
+   "level": 3,
+   "importance": 1,
+   "group": "Next.js",
+   "summary": "Next.js는 .env 파일의 값을 서버에서만 읽게 하고, NEXT_PUBLIC_으로 시작하는 값만 빌드 때 브라우저 코드에 박아 넣으므로 비밀값에는 이 접두사를 붙이지 않는다.",
+   "related": [
+    "be.security.env-var",
+    "fe.next.route-handlers"
+   ],
+   "aliases": [
+    "NEXT_PUBLIC_",
+    "NEXT_PUBLIC 접두사",
+    "Next.js 환경 변수",
+    "process.env Next.js",
+    "Next.js .env.local"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/guides/environment-variables"
    ],
    "domain": "fe"
   },
@@ -19784,6 +20233,177 @@
    "domain": "fe"
   },
   {
+   "id": "fe.js.array-reduce",
+   "title": "reduce로 배열을 값 하나로 모으기",
+   "en": "Array reduce()",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "JavaScript",
+   "summary": "배열을 돌며 누적값을 이어 받아 합계·개수·객체 같은 값 하나로 모으는 메서드로, 초깃값 없이 빈 배열에 쓰면 TypeError가 난다.",
+   "parent": "fe.js.array-methods",
+   "related": [
+    "fe.js.array-methods"
+   ],
+   "aliases": [
+    "Array reduce",
+    "Array.prototype.reduce",
+    "배열 reduce",
+    "reduce 누적값",
+    "reduce initialValue"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.js.array-sort",
+   "title": "sort와 비교 함수",
+   "en": "Array sort() and Compare Functions",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "JavaScript",
+   "summary": "sort는 원본 배열을 직접 바꾸고 기본으로 문자열 순서로 비교하므로, 숫자는 비교 함수를 넘기고 원본을 지키려면 toSorted나 복사본을 쓴다.",
+   "parent": "fe.js.array-methods",
+   "related": [
+    "fe.react.immutable-updates"
+   ],
+   "aliases": [
+    "Array sort",
+    "toSorted",
+    "sort 비교 함수",
+    "compareFn",
+    "JS 배열 정렬"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.react.and-operator-rendering",
+   "title": "&& 조건부 렌더링과 0 표시 실수",
+   "en": "Logical AND (&&) in JSX",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "React",
+   "summary": "JSX에서 조건 && 요소로 참일 때만 보여 주는 짧은 쓰기로, 왼쪽에 숫자 0이 오면 화면에 0이 찍히므로 count > 0처럼 참·거짓 값을 둔다.",
+   "parent": "fe.react.conditional-list-rendering",
+   "related": [
+    "fe.ts.union-narrowing"
+   ],
+   "aliases": [
+    "JSX && 연산자",
+    "논리 AND 렌더링",
+    "화면에 0 표시",
+    "short-circuit rendering"
+   ],
+   "refs": [
+    "https://react.dev/learn/conditional-rendering"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.not-found",
+   "title": "notFound와 not-found.js",
+   "en": "notFound() and not-found.js",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Next.js",
+   "summary": "notFound를 부르면 예외를 던져 렌더링을 멈추고 가장 가까운 not-found.js 화면을 보여 주므로, return 없이 부르되 try...catch로 감싸 삼키지 않아야 한다.",
+   "parent": "fe.next.error-handling",
+   "related": [
+    "fe.next.dynamic-segment"
+   ],
+   "aliases": [
+    "notFound()",
+    "not-found.js",
+    "not-found.tsx",
+    "Next.js 404 페이지"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/api-reference/functions/not-found"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.css.keyframes",
+   "title": "@keyframes와 CSS 애니메이션",
+   "en": "CSS Animations with @keyframes",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "CSS",
+   "summary": "@keyframes에 단계별 모습을 적고 animation 속성으로 길이·반복·방향을 정해, 상태 변화 없이도 요소가 스스로 움직이게 하는 CSS 기능이다.",
+   "related": [
+    "fe.css.transitions"
+   ],
+   "aliases": [
+    "CSS animation",
+    "CSS 애니메이션",
+    "animation 속성",
+    "animation-iteration-count",
+    "@keyframes"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Animations/Using"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.css.pseudo-classes",
+   "title": "의사 클래스와 의사 요소",
+   "en": "Pseudo-classes and Pseudo-elements",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "CSS",
+   "summary": ":hover·:focus·:first-child처럼 요소의 상태나 위치를 고르는 의사 클래스와, ::before·::first-line처럼 요소의 일부나 덧붙인 내용을 꾸미는 의사 요소다.",
+   "related": [
+    "fe.css.specificity"
+   ],
+   "aliases": [
+    "의사 클래스",
+    "pseudo-class",
+    "의사 요소",
+    "pseudo-element",
+    "::before",
+    ":hover"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Pseudo_classes_and_elements"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.ts.tsconfig",
+   "title": "tsconfig.json",
+   "en": "tsconfig.json",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "TypeScript",
+   "summary": "폴더를 TypeScript 프로젝트의 뿌리로 정하고 검사할 파일(include·files)과 컴파일러 옵션(compilerOptions)을 적는 설정 파일로, tsc에 파일 이름을 직접 주면 무시된다.",
+   "related": [
+    "fe.ts.first-types"
+   ],
+   "aliases": [
+    "tsconfig",
+    "TS 설정 파일",
+    "compilerOptions",
+    "jsconfig.json",
+    "TypeScript 컴파일러 옵션"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/docs/handbook/tsconfig-json.html"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.html.constraint-validation",
    "title": "Constraint Validation API",
    "en": "Constraint Validation API",
@@ -19867,6 +20487,29 @@
    "refs": [
     "https://www.typescriptlang.org/docs/handbook/2/functions.html#function-overloads"
    ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.title-template",
+   "title": "title.template로 페이지 제목 틀 만들기",
+   "en": "Metadata title.template",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "Next.js",
+   "summary": "루트 layout의 title.template에 '%s | 사이트명'처럼 틀을 두면 하위 페이지의 제목이 그 틀에 끼워지며, template에는 default가 함께 있어야 한다.",
+   "parent": "fe.next.metadata",
+   "aliases": [
+    "title template",
+    "제목 템플릿",
+    "title.default",
+    "title.absolute"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/api-reference/functions/generate-metadata"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
    "domain": "fe"
   },
   {
@@ -26605,6 +27248,41 @@
    "domain": "ax"
   },
   {
+   "id": "ax.security.limit-agent-agency",
+   "title": "LLM 에이전트 기능의 권한 줄이기: 최소 도구와 사람 승인",
+   "en": "Limiting Excessive Agency in LLM Features",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "AI 보안과 윤리",
+   "summary": "LLM이 부르는 도구의 개수·기능·접근 범위를 줄이고 큰 영향을 주는 동작은 사람이 확인하게 해, 모델이 속거나 틀려도 피해가 커지지 않게 한다.",
+   "objectives": [
+    "에이전트 기능의 문제를 너무 많은 기능·너무 넓은 권한·너무 큰 자율성 셋 중 무엇인지 구분할 수 있다",
+    "필요한 동작만 하는 좁은 도구와 읽기 전용 자격 증명으로 도구 목록을 다시 짤 수 있다",
+    "메일 보내기·삭제·결제처럼 영향이 큰 동작 앞에 사용자 승인 단계를 넣을 수 있다",
+    "권한 확인을 모델에 맡기지 않고 도구 쪽 서버에서 하도록 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "llm.security.injection-basics"
+   ],
+   "related": [
+    "llm.security.agent-boundaries",
+    "mlops.guardrail.excessive-agency",
+    "ax.security.model-output-handling",
+    "rag.agent.interrupt"
+   ],
+   "aliases": [
+    "에이전트 권한 줄이기",
+    "최소 도구",
+    "LLM 에이전트 권한 축소",
+    "LLM 도구 최소화"
+   ],
+   "refs": [
+    "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/"
+   ],
+   "domain": "ax"
+  },
+  {
    "id": "ax.coding.skills",
    "title": "반복 작업을 스킬로 만들기: SKILL.md",
    "en": "Packaging Repeated Work as Skills (SKILL.md)",
@@ -27121,6 +27799,119 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-06",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.session-resume",
+   "title": "지난 에이전트 대화 이어가기: --continue와 --resume",
+   "en": "Resuming Coding Agent Sessions",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "코딩 에이전트가 로컬에 저장한 대화 기록을 다시 열어 설명을 되풀이하지 않고 여러 번에 걸쳐 같은 작업을 이어 가는 방법이다.",
+   "objectives": [
+    "claude --continue로 가장 최근 세션을, claude --resume과 /resume 선택 목록으로 원하는 세션을 골라 이어 갈 수 있다",
+    "세션에 이름을 붙여 두고 이름으로 바로 다시 열 수 있다",
+    "이어 간 세션에서 다시 넘겨야 하는 실행 옵션(--add-dir, --mcp-config 등)과 권한 모드가 어떻게 되는지 확인해 빠진 설정을 채울 수 있다",
+    "같은 세션을 두 터미널에서 동시에 열면 기록이 뒤섞인다는 점을 알고 갈래 내기로 피할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.agent-first"
+   ],
+   "related": [
+    "ax.coding.headless-mode",
+    "ax.coding.checkpoints",
+    "ax.coding.worktree-sessions"
+   ],
+   "aliases": [
+    "claude --continue",
+    "claude --resume",
+    "/resume",
+    "세션 이어가기",
+    "Claude Code 대화 이어가기",
+    "Claude Code resume"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/sessions",
+    "https://code.claude.com/docs/en/common-workflows"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.claude-code-context-window",
+   "title": "에이전트 대화의 컨텍스트 관리: /context와 /compact",
+   "en": "Managing the Context Window in Claude Code",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "코딩 에이전트의 컨텍스트 창이 무엇으로 채워지는지 보고, 요약·비우기·하위 에이전트 위임으로 필요한 내용만 남기는 방법이다.",
+   "objectives": [
+    "/context로 CLAUDE.md·도구·대화·파일 읽기가 컨텍스트를 얼마나 차지하는지 확인할 수 있다",
+    "/compact에 남길 내용을 지시해 긴 작업 전에 대화를 원하는 방향으로 요약할 수 있다",
+    "요약 뒤에 다시 읽히는 것(루트 CLAUDE.md 등)과 사라지는 것(paths 규칙, 대화 중 지시)을 구분해 꼭 지켜야 할 규칙을 옮겨 둘 수 있다",
+    "관계없는 일로 넘어갈 때 /clear를, 큰 조사는 하위 에이전트를 골라 컨텍스트를 아낄 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.token-context",
+    "ax.coding.claude-md"
+   ],
+   "related": [
+    "llm.internals.compaction",
+    "llm.internals.context-management",
+    "ax.coding.agent-token-usage"
+   ],
+   "aliases": [
+    "Claude Code 컨텍스트 창",
+    "에이전트 컨텍스트 관리",
+    "컨텍스트가 가득 참",
+    "Claude Code 자동 압축",
+    "Claude Code auto-compact"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/context-window"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.plan-mode",
+   "title": "계획 먼저 받고 고치게 하기: 플랜 모드",
+   "en": "Plan Before Editing with Plan Mode",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "에이전트가 파일을 읽고 계획만 내놓게 한 뒤, 사람이 계획을 고치고 승인해야 코드 수정이 시작되도록 하는 작업 방식이다.",
+   "objectives": [
+    "Shift+Tab, /plan 접두어, --permission-mode plan으로 플랜 모드에 들어가고 나올 수 있다",
+    "제안된 계획을 편집기로 열어 고친 뒤 승인 방식(편집 자동 허용·하나씩 승인·계속 계획)을 고를 수 있다",
+    "플랜 모드에서도 탐색용 셸 명령은 실행될 수 있다는 점을 알고 위험한 명령을 거부 규칙으로 막을 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.agent-first",
+    "ax.coding.permission-rules"
+   ],
+   "related": [
+    "ax.coding.permission-mode",
+    "ax.coding.checkpoints"
+   ],
+   "aliases": [
+    "플랜 모드",
+    "plan mode",
+    "--permission-mode plan",
+    "/plan",
+    "계획 후 실행"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/permission-modes"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
    "domain": "ax"
   },
   {
@@ -27775,6 +28566,112 @@
    "domain": "ax"
   },
   {
+   "id": "ax.coding.fork-session",
+   "title": "세션 갈래 내기(/branch·--fork-session)",
+   "en": "Branching a Session",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "지금까지의 대화를 복사한 새 세션으로 옮겨 다른 방법을 시도하고, 원래 세션은 그대로 남겨 두는 기능이다.",
+   "parent": "ax.coding.session-resume",
+   "related": [
+    "ax.coding.rewind-menu"
+   ],
+   "aliases": [
+    "/branch",
+    "--fork-session",
+    "세션 분기",
+    "대화 갈래",
+    "fork session"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/sessions"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.session-transcript",
+   "title": "세션 기록 파일(transcript)과 보존 기간",
+   "en": "Session Transcript Files",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "코딩 에이전트가 대화를 프로젝트별 JSONL 파일로 로컬에 저장하고 정해진 기간이 지나면 지우는 기록으로, 이어가기의 바탕이 된다.",
+   "parent": "ax.coding.session-resume",
+   "related": [
+    "ax.coding.agent-data-usage"
+   ],
+   "aliases": [
+    "세션 트랜스크립트",
+    "대화 기록 파일",
+    "cleanupPeriodDays",
+    "~/.claude/projects",
+    "/export"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/sessions"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.compact-command",
+   "title": "대화 요약 명령(/compact)",
+   "en": "The /compact Command",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "코딩 에이전트의 지난 대화를 요약 하나로 바꿔 컨텍스트 자리를 비우는 명령으로, 뒤에 남길 내용을 지시할 수 있다.",
+   "parent": "ax.coding.claude-code-context-window",
+   "related": [
+    "llm.internals.compaction",
+    "ax.coding.agent-token-usage"
+   ],
+   "aliases": [
+    "/compact",
+    "/autocompact",
+    "Conversation compacted",
+    "컨텍스트 요약 명령"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/context-window"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.human-approval-step",
+   "title": "사람 승인 단계(human-in-the-loop)",
+   "en": "Human Approval Step",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "LLM이 고른 동작 가운데 영향이 큰 것은 실행 전에 사용자가 확인하고 눌러야 진행되게 하는 안전장치다.",
+   "parent": "ax.security.limit-agent-agency",
+   "related": [
+    "rag.agent.interrupt",
+    "ax.coding.plan-mode"
+   ],
+   "aliases": [
+    "사용자 확인 단계",
+    "실행 전 승인",
+    "사람 확인 후 실행",
+    "user approval step"
+   ],
+   "refs": [
+    "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/"
+   ],
+   "domain": "ax"
+  },
+  {
    "id": "ax.governance.gpai-model",
    "title": "범용 AI 모델(GPAI)",
    "en": "General-Purpose AI Model",
@@ -28133,6 +29030,82 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-06",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.session-name",
+   "title": "세션 이름 붙이기(/rename·-n)",
+   "en": "Naming Sessions",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "세션에 알아보기 쉬운 이름을 붙여 선택 목록에서 찾고 claude --resume <이름>으로 바로 다시 여는 방법이다.",
+   "parent": "ax.coding.session-resume",
+   "aliases": [
+    "/rename",
+    "claude -n",
+    "세션 제목",
+    "session name",
+    "이름으로 이어가기"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/sessions"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.context-command",
+   "title": "컨텍스트 사용량 보기(/context)",
+   "en": "The /context Command",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "지금 컨텍스트 창을 무엇이 얼마나 차지하는지 항목별로 보여 주고 줄일 방법을 제안하는 Claude Code 명령이다.",
+   "parent": "ax.coding.claude-code-context-window",
+   "related": [
+    "ax.coding.agent-token-usage"
+   ],
+   "aliases": [
+    "/context",
+    "컨텍스트 사용량",
+    "context usage"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/context-window"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.rmf-playbook",
+   "title": "AI RMF 플레이북",
+   "en": "NIST AI RMF Playbook",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "NIST AI RMF의 Govern·Map·Measure·Manage 하위 항목마다 해 볼 만한 조치를 모아 둔 자발적 참고 자료로, 상황에 맞는 것만 골라 쓴다.",
+   "related": [
+    "ax.governance.rmf-core-functions",
+    "ax.governance.genai-profile"
+   ],
+   "aliases": [
+    "AI RMF Playbook",
+    "NIST 플레이북",
+    "RMF 플레이북",
+    "AI RMF 권장 조치"
+   ],
+   "refs": [
+    "https://airc.nist.gov/airmf-resources/playbook/",
+    "https://www.nist.gov/itl/ai-risk-management-framework"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-10",
    "domain": "ax"
   },
   {
@@ -29152,6 +30125,44 @@
    "domain": "ops"
   },
   {
+   "id": "ops.linux.path-shell-startup",
+   "title": "PATH 환경 변수와 셸 설정 파일(.zprofile)",
+   "en": "PATH and Shell Startup Files",
+   "kind": "topic",
+   "level": 3,
+   "importance": 1,
+   "group": "리눅스",
+   "summary": "셸이 명령을 찾는 폴더 목록인 PATH를 어느 설정 파일에 적어야 새 터미널에서도 유지되는지 정하는 법이다.",
+   "objectives": [
+    "PATH에 폴더를 앞이나 뒤에 덧붙이는 줄을 직접 쓸 수 있다",
+    "로그인 셸과 대화형 셸이 읽는 파일(.zprofile·.zshrc·.bash_profile·.bashrc)을 구분해 알맞은 곳에 설정을 넣을 수 있다",
+    "설치한 명령이 'command not found'로 나올 때 PATH와 설정 파일을 차례로 확인해 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "dev.basics.terminal",
+    "dev.basics.files-paths",
+    "be.security.env-file"
+   ],
+   "related": [
+    "be.security.env-var",
+    "ops.linux.shell-script-basics"
+   ],
+   "aliases": [
+    "PATH 환경 변수",
+    "PATH 설정",
+    ".zprofile",
+    ".zshrc",
+    ".bashrc",
+    "command not found"
+   ],
+   "refs": [
+    "https://zsh.sourceforge.io/Doc/Release/Files.html",
+    "https://man7.org/linux/man-pages/man1/bash.1.html#INVOCATION",
+    "https://man7.org/linux/man-pages/man1/bash.1.html#COMMAND_EXECUTION"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.observe.container-healthcheck",
    "title": "컨테이너 상태 보기: HEALTHCHECK와 docker logs",
    "en": "Container Health with Docker HEALTHCHECK and docker logs",
@@ -29681,6 +30692,97 @@
     "https://manpages.ubuntu.com/manpages/noble/man8/ufw.8.html",
     "https://man7.org/linux/man-pages/man8/ss.8.html",
     "https://docs.docker.com/engine/network/packet-filtering-firewalls/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.docker.build-context",
+   "title": "빌드 컨텍스트와 .dockerignore",
+   "en": "Build Context and .dockerignore",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "Docker",
+   "summary": "docker build에 넘긴 폴더만 COPY할 수 있다는 규칙과, 필요 없는 파일을 .dockerignore로 빼서 빌드를 가볍게 하는 법이다.",
+   "objectives": [
+    "docker build의 마지막 인자로 알맞은 빌드 컨텍스트를 고를 수 있다",
+    "컨텍스트 밖 파일을 COPY해 생기는 not found 오류의 원인을 찾아 고칠 수 있다",
+    ".dockerignore에 node_modules·.env 같은 항목과 ! 예외를 순서에 맞게 쓸 수 있다"
+   ],
+   "prerequisites": [
+    "ops.docker.dockerfile-instructions"
+   ],
+   "related": [
+    "ops.container.image-layers"
+   ],
+   "aliases": [
+    "빌드 컨텍스트",
+    "build context",
+    "docker build .",
+    "컨텍스트 전송"
+   ],
+   "refs": [
+    "https://docs.docker.com/build/concepts/context/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.docker.compose-startup-order",
+   "title": "Compose 서비스 시작 순서 정하기",
+   "en": "Compose Startup Order",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "Docker",
+   "summary": "depends_on과 헬스체크로 DB가 준비된 뒤에 앱이 뜨게 해, 컨테이너는 떴는데 연결이 거부되는 문제를 막는 법이다.",
+   "objectives": [
+    "컨테이너가 실행 중인 것과 서비스가 준비된 것의 차이를 설명할 수 있다",
+    "depends_on에 service_healthy 조건과 healthcheck를 함께 써서 앱이 DB 준비 뒤에 시작하게 할 수 있다",
+    "마이그레이션 같은 한 번 실행 서비스를 service_completed_successfully로 앞에 둘 수 있다"
+   ],
+   "prerequisites": [
+    "ops.observe.container-healthcheck",
+    "ops.docker.container-networking"
+   ],
+   "aliases": [
+    "Compose 시작 순서",
+    "compose startup order",
+    "depends_on 순서",
+    "DB 준비 대기"
+   ],
+   "refs": [
+    "https://docs.docker.com/compose/how-tos/startup-order/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.ci.debug-workflow-runs",
+   "title": "실패한 워크플로 살펴보기: 로그·재실행·디버그 로깅",
+   "en": "Debugging Workflow Runs",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "CI/CD",
+   "summary": "실패한 Actions 실행의 로그를 찾아 읽고, 실패한 잡만 디버그 로깅을 켜서 다시 돌려 원인을 좁히는 법이다.",
+   "objectives": [
+    "실패한 스텝의 로그를 웹과 gh run view --log-failed로 찾아 읽을 수 있다",
+    "실패한 잡만 다시 실행하고 이전 시도의 결과와 비교할 수 있다",
+    "ACTIONS_STEP_DEBUG나 재실행 옵션으로 디버그 로그를 켜서 더 자세한 원인을 볼 수 있다"
+   ],
+   "prerequisites": [
+    "ops.ci.workflow-basics"
+   ],
+   "aliases": [
+    "워크플로 디버깅",
+    "Actions 로그 보기",
+    "gh run view",
+    "workflow run logs",
+    "CI 실패 원인 찾기"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/how-tos/monitor-workflows/use-workflow-run-logs",
+    "https://docs.github.com/en/actions/how-tos/manage-workflow-runs/re-run-workflows-and-jobs",
+    "https://docs.github.com/en/actions/how-tos/monitor-workflows/enable-debug-logging"
    ],
    "domain": "ops"
   },
@@ -30463,6 +31565,162 @@
    "domain": "ops"
   },
   {
+   "id": "ops.linux.login-shell",
+   "title": "로그인 셸과 대화형 셸",
+   "en": "Login and Interactive Shells",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "리눅스",
+   "summary": "셸이 로그인용인지 대화형인지에 따라 읽는 설정 파일이 달라져 같은 설정이 어떤 창에서는 안 먹는 이유가 된다.",
+   "parent": "ops.linux.path-shell-startup",
+   "aliases": [
+    "login shell",
+    "interactive shell",
+    "비로그인 셸",
+    "non-login shell"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man1/bash.1.html#INVOCATION",
+    "https://zsh.sourceforge.io/Doc/Release/Files.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.linux.export-env",
+   "title": "export로 환경 변수 내보내기",
+   "en": "Exporting Shell Variables",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "리눅스",
+   "summary": "셸 변수에 export를 붙여야 그 셸이 실행하는 프로그램에도 값이 전해진다.",
+   "parent": "ops.linux.path-shell-startup",
+   "related": [
+    "be.security.env-var"
+   ],
+   "aliases": [
+    "export 명령",
+    "export PATH",
+    "셸 변수 내보내기",
+    "export -p"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man1/bash.1.html#SHELL_BUILTIN_COMMANDS"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.linux.command-lookup",
+   "title": "명령 위치 확인(type·command -v)",
+   "en": "Finding Which Command Runs",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "리눅스",
+   "summary": "같은 이름의 명령이 여럿일 때 셸이 실제로 무엇을 실행할지 type과 command -v로 확인하고 hash로 기억된 경로를 비운다.",
+   "parent": "ops.linux.path-shell-startup",
+   "aliases": [
+    "command -v",
+    "type 명령",
+    "which 명령",
+    "hash -r",
+    "rehash",
+    "명령 해시 테이블"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man1/bash.1.html#SHELL_BUILTIN_COMMANDS",
+    "https://man7.org/linux/man-pages/man1/bash.1.html#COMMAND_EXECUTION"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.linux.source-dot",
+   "title": "설정 파일 다시 읽기(source·.)",
+   "en": "Sourcing a File",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "리눅스",
+   "summary": "파일을 새 프로세스가 아닌 지금 셸 안에서 실행해, 고친 설정이나 변수를 바로 현재 셸에 반영한다.",
+   "parent": "ops.linux.path-shell-startup",
+   "aliases": [
+    "source 명령",
+    "source ~/.zshrc",
+    "점 명령",
+    "dot command"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man1/bash.1.html#SHELL_BUILTIN_COMMANDS"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.docker.bind-mount",
+   "title": "바인드 마운트",
+   "en": "Bind Mount",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Docker",
+   "summary": "호스트의 정해진 폴더나 파일을 컨테이너 안 경로에 그대로 연결해 양쪽이 같은 파일을 보게 하는 방식이다.",
+   "related": [
+    "ops.docker.volume"
+   ],
+   "aliases": [
+    "bind mount",
+    "호스트 폴더 마운트",
+    "--mount type=bind",
+    "docker -v 호스트 경로"
+   ],
+   "refs": [
+    "https://docs.docker.com/engine/storage/bind-mounts/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.docker.depends-on-condition",
+   "title": "depends_on 조건(service_healthy 등)",
+   "en": "depends_on Conditions",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "Docker",
+   "summary": "Compose에서 앞 서비스가 시작됨·건강함·성공 종료 중 어느 상태가 되어야 다음 서비스를 띄울지 고르는 설정이다.",
+   "parent": "ops.docker.compose-startup-order",
+   "aliases": [
+    "service_healthy",
+    "service_completed_successfully",
+    "Compose depends_on",
+    "condition: service_healthy"
+   ],
+   "refs": [
+    "https://docs.docker.com/compose/how-tos/startup-order/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.ci.rerun-jobs",
+   "title": "실패한 잡 다시 실행(re-run)",
+   "en": "Re-running Failed Jobs",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "CI/CD",
+   "summary": "워크플로 전체 대신 실패한 잡과 그에 기대는 잡만 같은 커밋으로 다시 돌리는 기능이다.",
+   "parent": "ops.ci.debug-workflow-runs",
+   "aliases": [
+    "re-run failed jobs",
+    "gh run rerun",
+    "워크플로 재실행",
+    "--failed 재실행"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/how-tos/manage-workflow-runs/re-run-workflows-and-jobs"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.deploy.rolling-update",
    "title": "롤링 업데이트",
    "en": "Rolling Update",
@@ -30622,6 +31880,27 @@
    ],
    "refs": [
     "https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#setting-an-environment-variable"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.ci.debug-logging",
+   "title": "Actions 디버그 로깅(ACTIONS_STEP_DEBUG)",
+   "en": "Actions Debug Logging",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "CI/CD",
+   "summary": "저장소 시크릿이나 변수에 ACTIONS_STEP_DEBUG·ACTIONS_RUNNER_DEBUG를 true로 두어 스텝과 러너 로그를 자세히 남기는 설정이다.",
+   "parent": "ops.ci.debug-workflow-runs",
+   "aliases": [
+    "ACTIONS_STEP_DEBUG",
+    "ACTIONS_RUNNER_DEBUG",
+    "step debug logging",
+    "runner.debug"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/how-tos/monitor-workflows/enable-debug-logging"
    ],
    "domain": "ops"
   },
@@ -32311,6 +33590,109 @@
    "domain": "ml"
   },
   {
+   "id": "ml.supervised.hyperparameter-search",
+   "title": "GridSearchCV로 하이퍼파라미터 찾기",
+   "en": "Hyperparameter Search with GridSearchCV",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "후보 설정값의 조합을 교차 검증 점수로 하나씩 비교해 가장 좋은 조합과 그 조합으로 다시 학습한 모델을 얻는 scikit-learn 도구다.",
+   "objectives": [
+    "param_grid 사전으로 탐색할 하이퍼파라미터 후보를 적을 수 있다",
+    "GridSearchCV를 fit한 뒤 best_params_와 best_estimator_로 결과를 꺼낼 수 있다",
+    "scoring 인자로 어떤 지표를 기준으로 고를지 정할 수 있다",
+    "파이프라인을 통째로 탐색해 전처리 설정과 모델 설정을 함께 고를 수 있다"
+   ],
+   "prerequisites": [
+    "ml.supervised.sklearn-pipeline",
+    "ml.supervised.sklearn-first-model"
+   ],
+   "related": [
+    "ml.eval.data-splitting-cv"
+   ],
+   "aliases": [
+    "그리드 서치",
+    "grid search",
+    "GridSearchCV",
+    "하이퍼파라미터 탐색",
+    "hyperparameter tuning",
+    "best_params_"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/grid_search.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.unsupervised.pca-dimensionality-reduction",
+   "title": "PCA로 특성 개수 줄이기",
+   "en": "Dimensionality Reduction with PCA",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "여러 특성을 분산이 큰 방향 몇 개로 투영해 적은 수의 새 특성으로 바꾸는 주성분 분석을 scikit-learn으로 쓰는 법이다.",
+   "objectives": [
+    "PCA의 n_components를 정해 fit_transform으로 데이터를 낮은 차원으로 바꿀 수 있다",
+    "explained_variance_ratio_를 보고 남길 성분 개수를 고를 수 있다",
+    "PCA 전에 특성 스케일을 맞추지 않으면 단위가 큰 특성이 결과를 좌우한다는 실수를 피할 수 있다",
+    "2차원으로 줄인 데이터를 산점도로 그려 무리를 살펴볼 수 있다"
+   ],
+   "prerequisites": [
+    "ml.data.numeric-categorical-preprocessing"
+   ],
+   "related": [
+    "ml.unsupervised.tsne"
+   ],
+   "aliases": [
+    "주성분 분석",
+    "PCA",
+    "principal component analysis",
+    "차원 축소",
+    "dimensionality reduction"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/decomposition.html",
+    "https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.transfer-learning",
+   "title": "사전 학습 모델로 전이 학습하기",
+   "en": "Transfer Learning with a Pretrained Model",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "큰 데이터로 미리 학습한 이미지 모델을 불러와 마지막 층만 내 클래스 수에 맞게 바꾸고 적은 데이터로 다시 학습시키는 방법이다.",
+   "objectives": [
+    "torchvision에서 사전 학습 가중치가 담긴 모델을 불러올 수 있다",
+    "마지막 완전 연결 층을 내 클래스 수에 맞는 새 층으로 바꿀 수 있다",
+    "모든 층을 다시 학습하는 미세 조정과 앞쪽 층을 고정하는 특성 추출을 골라 쓸 수 있다",
+    "고정한 층의 파라미터를 옵티마이저에 넘기지 않아 학습 시간을 줄일 수 있다"
+   ],
+   "prerequisites": [
+    "ml.nn.cnn-image-classifier",
+    "ml.nn.training-loop"
+   ],
+   "related": [
+    "mlops.finetune.fine-tuning"
+   ],
+   "aliases": [
+    "전이 학습",
+    "transfer learning",
+    "torchvision 사전 학습 모델",
+    "고정 특성 추출기",
+    "fixed feature extractor"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/tutorials/beginner/transfer_learning_tutorial.html"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.training.learning-rate",
    "title": "학습률",
    "en": "Learning Rate",
@@ -33005,6 +34387,100 @@
    "domain": "ml"
   },
   {
+   "id": "ml.unsupervised.explained-variance-ratio",
+   "title": "설명된 분산 비율",
+   "en": "Explained Variance Ratio",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "PCA의 각 성분이 원래 데이터의 흩어짐을 몇 퍼센트씩 담는지 보여 주는 값으로, 몇 개의 성분을 남길지 정할 때 본다.",
+   "parent": "ml.unsupervised.pca-dimensionality-reduction",
+   "aliases": [
+    "explained_variance_ratio_",
+    "분산 설명 비율",
+    "누적 설명 분산"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.k-nearest-neighbors",
+   "title": "k-최근접 이웃(k-NN)",
+   "en": "k-Nearest Neighbors",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "새 샘플과 가장 가까운 학습 샘플 k개를 찾아 그 이웃들의 다수결이나 평균으로 답을 정하는 지도 학습 모델이다.",
+   "related": [
+    "ml.supervised.decision-tree"
+   ],
+   "aliases": [
+    "kNN",
+    "k-NN",
+    "최근접 이웃",
+    "KNeighborsClassifier",
+    "KNeighborsRegressor"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/neighbors.html#nearest-neighbors-classification"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.lr-scheduler",
+   "title": "학습률 스케줄러",
+   "en": "Learning Rate Scheduler",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "학습이 진행되는 동안 에폭 수나 검증 손실에 맞춰 학습률을 줄여 주는 PyTorch 도구로, optimizer.step() 다음에 scheduler.step()을 부른다.",
+   "related": [
+    "ml.training.learning-rate",
+    "ml.nn.optimizer"
+   ],
+   "aliases": [
+    "lr_scheduler",
+    "LR 스케줄러",
+    "learning rate schedule",
+    "StepLR",
+    "ReduceLROnPlateau"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.freeze-parameters",
+   "title": "파라미터 고정(requires_grad=False)",
+   "en": "Freezing Parameters",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "층의 파라미터에 requires_grad=False를 걸어 역전파 때 기울기를 계산하지 않게 해 그 층의 가중치를 그대로 두는 방법이다.",
+   "parent": "ml.nn.transfer-learning",
+   "related": [
+    "ml.nn.no-grad"
+   ],
+   "aliases": [
+    "층 고정",
+    "layer freezing",
+    "frozen parameters",
+    "가중치 고정",
+    "requires_grad = False"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/tutorials/beginner/transfer_learning_tutorial.html#convnet-as-fixed-feature-extractor"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.unsupervised.silhouette-score",
    "title": "실루엣 점수",
    "en": "Silhouette Score",
@@ -33199,6 +34675,95 @@
    ],
    "refs": [
     "https://scikit-learn.org/stable/modules/feature_extraction.html#the-bag-of-words-representation"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.randomized-search",
+   "title": "RandomizedSearchCV(무작위 탐색)",
+   "en": "Randomized Parameter Search",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "모든 조합을 다 시험하지 않고 정해 둔 횟수만큼 후보를 무작위로 뽑아 비교하는 하이퍼파라미터 탐색 방법이다.",
+   "parent": "ml.supervised.hyperparameter-search",
+   "aliases": [
+    "랜덤 서치",
+    "random search",
+    "RandomizedSearchCV",
+    "무작위 탐색"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/grid_search.html#randomized-parameter-optimization"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.unsupervised.tsne",
+   "title": "t-SNE 시각화",
+   "en": "t-SNE",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "고차원 데이터를 2차원이나 3차원으로 옮겨 가까운 샘플끼리 모여 보이게 그려 주는 시각화용 차원 축소 방법이다.",
+   "related": [
+    "ml.unsupervised.pca-dimensionality-reduction"
+   ],
+   "aliases": [
+    "티스니",
+    "TSNE",
+    "t-distributed stochastic neighbor embedding",
+    "t-SNE perplexity"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/manifold.html#t-distributed-stochastic-neighbor-embedding-t-sne"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.curse-of-dimensionality",
+   "title": "차원의 저주",
+   "en": "Curse of Dimensionality",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "특성 수가 많아질수록 고정 반경 이웃 분류나 KD 트리 탐색 같은 거리 기반 방법이 효과와 속도를 잃는 현상이다.",
+   "related": [
+    "ml.supervised.k-nearest-neighbors",
+    "ml.unsupervised.pca-dimensionality-reduction"
+   ],
+   "aliases": [
+    "curse of dimensionality",
+    "차원 저주"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/neighbors.html#nearest-neighbor-algorithms"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.unsupervised.dbscan",
+   "title": "DBSCAN(밀도 기반 군집화)",
+   "en": "DBSCAN",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "가까운 샘플이 촘촘히 모인 곳을 한 군집으로 묶고 외딴 샘플은 잡음(-1)으로 남기는 군집화 방법으로, 군집 수를 미리 정하지 않는다.",
+   "related": [
+    "ml.unsupervised.kmeans-clustering"
+   ],
+   "aliases": [
+    "밀도 기반 군집화",
+    "density-based clustering",
+    "DBSCAN eps",
+    "DBSCAN min_samples"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/clustering.html#dbscan"
    ],
    "domain": "ml"
   },
