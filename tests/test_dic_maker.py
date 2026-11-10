@@ -151,6 +151,8 @@ class DicMakerTest(unittest.TestCase):
         self.assertNotIn("## 다른 분야에 이미 있는 비슷한 항목", out.getvalue())
 
     def test_start_gives_the_empty_cs_domain_a_share_and_check_rejects_wiki_refs(self):
+        # 실제 사전의 cs 크기에 기대지 않도록 시험용 사본에서 cs를 비운다(빈 분야가 몫을 받는지 본다)
+        (self.repo / "catalog" / "items" / "cs.json").write_text("[]\n", encoding="utf-8")
         out = self.run_cmd("start", "--level", "3", "--count", "30")
         self.assertIn("cs", out["quotas"])
         self.assertTrue(out["draft_files"]["cs"].endswith("cs.json"))
