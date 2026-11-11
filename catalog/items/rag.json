@@ -234,6 +234,72 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "rag.basics.web-search-feature",
+    "title": "웹 검색 기능: AI가 인터넷에서 찾아 답하기",
+    "en": "Web Search in AI Chat Apps",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "RAG 기초",
+    "summary": "AI 채팅 앱이 학습 때 몰랐던 최신 정보를 인터넷에서 찾아 읽고, 찾은 곳의 링크를 붙여 답해 주는 기능이다.",
+    "objectives": [
+      "웹 검색 기능을 모르는 것을 그 자리에서 찾아보고 알려 주는 도우미에 빗대어 설명할 수 있다",
+      "웹 검색이 필요한 질문과 필요 없는 질문의 예를 하나씩 들 수 있다",
+      "답에 붙은 출처 링크를 열어 내용이 맞는지 확인해야 하는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.basics.rag-big-picture"
+    ],
+    "related": [
+      "llm.tools.web-search-tool",
+      "rag.basics.research-mode"
+    ],
+    "aliases": [
+      "AI 웹 검색 기능",
+      "챗봇 인터넷 검색",
+      "web search feature",
+      "AI 검색 켜기",
+      "실시간 웹 검색"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/10684626-enabling-and-using-web-search"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.basics.multi-agent-idea",
+    "title": "멀티 에이전트: 여러 AI가 일을 나눠 맡기",
+    "en": "Multi-Agent Systems at a Glance",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "에이전트 기초",
+    "summary": "하나의 AI 에이전트가 모든 일을 하지 않고, 맡은 분야가 다른 여러 에이전트가 일을 나눠 하거나 서로 넘겨 가며 처리하는 구성이다.",
+    "objectives": [
+      "멀티 에이전트를 팀장과 분야별 담당자가 일을 나누는 회사에 빗대어 설명할 수 있다",
+      "일을 나누면 각 에이전트가 볼 정보가 줄고 동시에 일할 수 있다는 장점을 말할 수 있다",
+      "에이전트 하나로 충분한 일에는 굳이 여럿을 쓰지 않아도 된다는 점을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.basics.agent-big-picture"
+    ],
+    "related": [
+      "rag.agent.subagents",
+      "rag.agent.a2a-idea"
+    ],
+    "aliases": [
+      "멀티 에이전트 시스템",
+      "multi-agent system",
+      "다중 에이전트",
+      "여러 에이전트 협업",
+      "멀티에이전트"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/multi-agent"
+    ]
+  },
+  {
     "id": "rag.agent.a2a-idea",
     "title": "A2A: 에이전트끼리 일을 맡기는 공용 규격",
     "en": "A2A at a Glance",
@@ -470,6 +536,29 @@
     ]
   },
   {
+    "id": "rag.basics.langsmith",
+    "title": "LangSmith",
+    "en": "LangSmith (LLM App Observability Platform)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "에이전트 기초",
+    "summary": "AI 앱과 에이전트가 실제로 어떤 단계를 거쳐 답했는지 기록해 보여 주고, 답의 품질을 평가하게 돕는 서비스다.",
+    "related": [
+      "rag.basics.langchain"
+    ],
+    "aliases": [
+      "랭스미스",
+      "LangSmith 플랫폼",
+      "LangSmith observability platform"
+    ],
+    "refs": [
+      "https://docs.langchain.com/langsmith/home"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "rag.basics.client-server-tools",
     "title": "클라이언트 도구와 서버 도구",
     "en": "Client Tools and Server Tools",
@@ -599,6 +688,149 @@
     ],
     "refs": [
       "https://modelcontextprotocol.io/extensions/apps/overview"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.basics.project-rag-mode",
+    "title": "프로젝트 RAG 모드",
+    "en": "RAG Mode for Chatbot Projects",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "RAG 기초",
+    "summary": "프로젝트에 올린 자료가 한 번에 읽을 수 있는 양을 넘으면, AI가 자료를 통째로 읽지 않고 질문에 맞는 부분만 찾아 읽도록 저절로 바뀌는 방식이다.",
+    "related": [
+      "llm.basics.chat-projects",
+      "rag.basics.rag-big-picture"
+    ],
+    "aliases": [
+      "프로젝트 RAG",
+      "project RAG",
+      "project knowledge search tool",
+      "프로젝트 지식 검색 도구",
+      "RAG for projects"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/11473015-retrieval-augmented-generation-rag-for-projects"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.basics.llamaindex",
+    "title": "LlamaIndex",
+    "en": "LlamaIndex (RAG and Agent Framework)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "RAG 기초",
+    "summary": "내 문서 같은 자료를 AI 모델이 찾아 쓸 수 있게 이어 주어 RAG 앱과 에이전트를 만들게 돕는 파이썬 도구 상자다.",
+    "related": [
+      "rag.basics.langchain"
+    ],
+    "aliases": [
+      "라마인덱스",
+      "llama_index",
+      "LlamaIndex framework"
+    ],
+    "refs": [
+      "https://developers.llamaindex.ai/python/framework/"
+    ]
+  },
+  {
+    "id": "rag.agent.a2a-message-part",
+    "title": "A2A 메시지와 파트(Message·Part)",
+    "en": "A2A Messages and Parts",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "A2A에서 에이전트끼리 주고받는 한 번의 말이 메시지이고, 그 안에 글·파일·데이터를 한 조각씩 담는 그릇이 파트다.",
+    "parent": "rag.agent.a2a-idea",
+    "related": [
+      "rag.agent.a2a-task"
+    ],
+    "aliases": [
+      "A2A 메시지",
+      "A2A Message",
+      "A2A 파트",
+      "A2A Part",
+      "A2A message parts"
+    ],
+    "refs": [
+      "https://a2a-protocol.org/latest/topics/key-concepts/"
+    ]
+  },
+  {
+    "id": "rag.embedding.embedding-dimension",
+    "title": "임베딩 차원",
+    "en": "Embedding Dimensions (Vector Length)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "임베딩",
+    "summary": "글 하나를 임베딩으로 바꿨을 때 나오는 숫자의 개수로, 같은 모델에서는 길수록 대체로 정확하지만 저장과 검색에 더 많은 자원이 든다.",
+    "parent": "rag.embedding.meaning-as-numbers",
+    "related": [
+      "rag.embedding.model-tradeoffs"
+    ],
+    "aliases": [
+      "embedding dimensions",
+      "벡터 차원 수",
+      "임베딩 길이",
+      "embedding length"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/embeddings"
+    ]
+  },
+  {
+    "id": "rag.retrieval.file-search-tool",
+    "title": "파일 검색 도구(file search)",
+    "en": "Hosted File Search Tool",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "RAG",
+    "summary": "파일을 미리 올려 두면 AI 회사 서버가 그 안에서 질문과 관련된 부분을 찾아 모델에게 건네주는, 만들어 둔 RAG 같은 도구다.",
+    "related": [
+      "rag.basics.client-server-tools",
+      "rag.basics.rag-big-picture"
+    ],
+    "aliases": [
+      "파일 검색 툴",
+      "file_search 도구",
+      "hosted file search",
+      "호스팅 파일 검색"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/tools-file-search"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.basics.browser-agent",
+    "title": "브라우저 에이전트",
+    "en": "Browser Agents (AI in the Web Browser)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "에이전트 기초",
+    "summary": "웹 브라우저 안에서 AI가 페이지를 읽고 클릭하거나 입력란을 채우며 사람 대신 웹 작업을 해 주는 에이전트다.",
+    "related": [
+      "rag.basics.computer-use-idea"
+    ],
+    "aliases": [
+      "browser agent",
+      "브라우저 확장 에이전트",
+      "브라우저 조작 AI",
+      "웹 브라우저 AI 에이전트"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/12012173-getting-started-with-claude-in-chrome"
     ],
     "volatile": true,
     "checked_at": "2026-11-11"

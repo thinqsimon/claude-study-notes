@@ -82,6 +82,31 @@
     ]
   },
   {
+    "id": "cs.os.multitasking",
+    "title": "멀티태스킹: CPU를 번갈아 나눠 쓰기",
+    "en": "Multitasking and CPU Time Sharing",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "운영체제",
+    "summary": "운영체제의 스케줄러가 실행할 준비가 된 프로그램 가운데 다음에 CPU를 쓸 것을 골라 짧게 번갈아 돌리기 때문에 여러 프로그램이 동시에 도는 것처럼 보인다.",
+    "objectives": [
+      "CPU 하나로 여러 프로그램이 동시에 도는 것처럼 보이는 까닭을 비유로 설명할 수 있다",
+      "스케줄러가 '다음에 누가 CPU를 쓸지' 정하는 역할이라는 것을 말할 수 있다",
+      "한 프로그램이 CPU를 오래 붙잡지 못하게 시간을 잘라 준다는 생각을 설명할 수 있다"
+    ],
+    "aliases": [
+      "멀티태스킹",
+      "multitasking",
+      "시분할",
+      "time sharing",
+      "CPU 시간 나눠 쓰기"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man7/sched.7.html"
+    ]
+  },
+  {
     "id": "cs.data.digital-information",
     "title": "디지털 정보: 글자와 그림을 숫자로 담기",
     "en": "Digital Information",
@@ -159,6 +184,62 @@
     ],
     "refs": [
       "https://man7.org/linux/man-pages/man7/boot.7.html"
+    ]
+  },
+  {
+    "id": "cs.net.clock-sync",
+    "title": "시간 동기화: 컴퓨터 시계 맞추기(NTP)",
+    "en": "Clock Synchronization with NTP (Network Time Protocol)",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "NTP는 UTC에 맞춘 기준 서버에서 다른 서버와 컴퓨터로 시각 정보를 전해 여러 컴퓨터의 시계를 서로 맞추는 프로토콜이다.",
+    "objectives": [
+      "컴퓨터마다 시계가 조금씩 어긋나는 이유와 맞춰야 하는 까닭을 비유로 설명할 수 있다",
+      "기준 시계에서 서버를 거쳐 내 컴퓨터까지 시각이 전해지는 흐름을 말할 수 있다",
+      "NTP가 네트워크 지연과 서버 고장으로 생기는 오차를 줄이려 한다는 점을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.data.utc-time-zones",
+      "cs.net.what-is-protocol"
+    ],
+    "aliases": [
+      "NTP",
+      "시간 동기화",
+      "시각 동기화",
+      "time synchronization",
+      "시계 동기화"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc5905"
+    ]
+  },
+  {
+    "id": "cs.data.uuid",
+    "title": "UUID: 겹치지 않는 이름표",
+    "en": "UUID (Universally Unique Identifier)",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "UUID는 중앙에서 번호를 나눠 주지 않아도 따로 만들어 서로 겹치지 않게 쓰려는 128비트 식별자로, 보통 8-4-4-4-12 자리의 16진수 글자로 적는다.",
+    "objectives": [
+      "UUID가 번호표를 나눠 주는 사람 없이도 겹치지 않는 이름표라는 것을 비유로 설명할 수 있다",
+      "8-4-4-4-12 모양의 글자를 보고 UUID인 줄 알아볼 수 있다",
+      "UUID가 추측하기 어려운 비밀번호 구실은 하지 못한다는 점을 말할 수 있다"
+    ],
+    "related": [
+      "db.sql.uuid-type"
+    ],
+    "aliases": [
+      "범용 고유 식별자",
+      "Universally Unique Identifier",
+      "GUID",
+      "UUID 문자열"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9562"
     ]
   },
   {
@@ -491,6 +572,89 @@
     ]
   },
   {
+    "id": "cs.os.cpu-scheduler",
+    "title": "CPU 스케줄러",
+    "en": "CPU Scheduler (Operating System)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "실행할 준비가 된 스레드 가운데 다음에 CPU에서 돌릴 것을 고르는 운영체제 커널의 부분이다.",
+    "parent": "cs.os.multitasking",
+    "aliases": [
+      "CPU 스케줄러",
+      "프로세스 스케줄러",
+      "process scheduler",
+      "OS 스케줄러",
+      "커널 스케줄러"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man7/sched.7.html"
+    ]
+  },
+  {
+    "id": "cs.data.uuid-v4",
+    "title": "UUID 버전 4(무작위 UUID)",
+    "en": "UUID Version 4 (Random UUID)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "버전과 변형을 나타내는 몇 비트를 빼고 나머지 122비트를 무작위 수로 채워 만드는 UUID다.",
+    "parent": "cs.data.uuid",
+    "aliases": [
+      "UUIDv4",
+      "UUID v4",
+      "random UUID",
+      "무작위 UUID",
+      "랜덤 UUID"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9562"
+    ]
+  },
+  {
+    "id": "cs.data.uuid-v7",
+    "title": "UUID 버전 7(시간순 UUID)",
+    "en": "UUID Version 7 (Time-Ordered UUID)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "앞 48비트에 유닉스 에포크 기준 밀리초 시각을 넣고 나머지를 무작위로 채워, 만든 시간 순서대로 늘어서는 UUID다.",
+    "parent": "cs.data.uuid",
+    "aliases": [
+      "UUID v7",
+      "시간순 UUID",
+      "time-ordered UUID",
+      "UUID 버전 7"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9562"
+    ]
+  },
+  {
+    "id": "cs.data.tz-database",
+    "title": "IANA 시간대 데이터베이스(tz)",
+    "en": "IANA Time Zone Database (tz database)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "세계 여러 지역의 현지 시각 역사와 UTC 오프셋·서머타임 규칙을 기록해 소프트웨어가 현지 시각을 계산하게 하는 공개 데이터로, 규칙이 바뀔 때마다 갱신된다.",
+    "parent": "cs.data.utc-time-zones",
+    "aliases": [
+      "tz database",
+      "tzdata",
+      "IANA 시간대",
+      "시간대 데이터베이스",
+      "Olson 데이터베이스"
+    ],
+    "refs": [
+      "https://www.iana.org/time-zones"
+    ]
+  },
+  {
     "id": "cs.net.robustness-principle",
     "title": "견고성 원칙(포스텔의 법칙)",
     "en": "Robustness Principle",
@@ -528,6 +692,106 @@
     ],
     "refs": [
       "https://www.w3.org/TR/png-3/"
+    ]
+  },
+  {
+    "id": "cs.net.ntp-stratum",
+    "title": "NTP 계층 번호(stratum)",
+    "en": "NTP Stratum (Clock Hierarchy Level)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "NTP에서 기준 시계에 바로 맞춘 주 서버를 1로 두고 한 단계 내려갈 때마다 1씩 늘리는 번호로, 커질수록 정확도가 낮아진다.",
+    "parent": "cs.net.clock-sync",
+    "aliases": [
+      "stratum",
+      "스트라텀",
+      "NTP stratum",
+      "시각 서버 계층"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc5905"
+    ]
+  },
+  {
+    "id": "cs.os.time-quantum",
+    "title": "타임 퀀텀(한 번에 받는 CPU 시간)",
+    "en": "Time Quantum (CPU Time Slice)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "한 스레드가 차례를 넘기기 전까지 CPU를 쓸 수 있는 최대 시간으로, 다 쓰면 같은 우선순위 줄의 맨 뒤로 간다.",
+    "parent": "cs.os.multitasking",
+    "aliases": [
+      "time quantum",
+      "타임 슬라이스",
+      "time slice",
+      "시간 할당량"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man7/sched.7.html"
+    ]
+  },
+  {
+    "id": "cs.data.leap-second",
+    "title": "윤초",
+    "en": "Leap Second (UTC Adjustment)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "UTC 하루의 끝에 1초를 더 넣는 조정으로, 그 순간은 23:59:60처럼 초가 60으로 적히며 모든 시간대에서 동시에 일어난다.",
+    "parent": "cs.data.utc-time-zones",
+    "aliases": [
+      "leap second",
+      "23:59:60",
+      "윤초 삽입",
+      "UTC 윤초"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc3339"
+    ]
+  },
+  {
+    "id": "cs.data.bit-depth",
+    "title": "비트 깊이(bit depth)",
+    "en": "Bit Depth (Bits per Image Sample)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "이미지에서 한 샘플 값을 나타내는 데 쓰는 비트 수로, 픽셀 전체의 비트 수가 아니라 채널 하나의 비트 수를 말한다.",
+    "parent": "cs.data.digital-information",
+    "aliases": [
+      "bit depth",
+      "16비트 이미지",
+      "PNG 비트 깊이",
+      "샘플당 비트 수"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/png-3/"
+    ]
+  },
+  {
+    "id": "cs.net.ietf",
+    "title": "IETF(국제 인터넷 표준화 기구)",
+    "en": "IETF (Internet Engineering Task Force)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "누구나 참여할 수 있는 자원봉사 중심 모임으로, 인터넷 기술의 자발적 표준을 RFC로 펴내며 인터넷을 통제하지는 않는다.",
+    "parent": "cs.net.what-is-protocol",
+    "aliases": [
+      "IETF",
+      "Internet Engineering Task Force",
+      "인터넷 엔지니어링 태스크 포스",
+      "IETF 워킹 그룹"
+    ],
+    "refs": [
+      "https://www.ietf.org/about/introduction/"
     ]
   },
   {

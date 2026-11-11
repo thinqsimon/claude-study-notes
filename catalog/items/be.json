@@ -268,6 +268,87 @@
     ]
   },
   {
+    "id": "be.basics.web-server-idea",
+    "title": "웹 서버: 웹 페이지를 내주는 곳",
+    "en": "What a Web Server Is",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "백엔드 기초",
+    "summary": "웹 서버는 사이트 파일을 보관하다가 브라우저가 부탁하면 찾아서 보내 주는 컴퓨터와 프로그램이다.",
+    "objectives": [
+      "도서관 사서에 빗대어 웹 서버가 하는 일을 설명할 수 있다",
+      "정적 웹사이트와 동적 웹사이트가 어떻게 다른지 예를 들어 말할 수 있다",
+      "사이트를 내 컴퓨터보다 호스팅 서버에 두는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "be.http.web-conversation"
+    ],
+    "aliases": [
+      "웹 서버란",
+      "web server basics",
+      "웹 서버 역할"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_web_server"
+    ]
+  },
+  {
+    "id": "be.security.web-security-idea",
+    "title": "웹 보안의 큰 그림: 무엇을 지키나",
+    "en": "Website Security Big Picture",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "웹 보안",
+    "summary": "웹 보안은 남이 허락 없이 데이터를 훔치거나 바꾸거나 서비스를 멈추지 못하게 막는 일이다.",
+    "objectives": [
+      "집 문단속에 빗대어 웹 보안이 지키는 것을 설명할 수 있다",
+      "개인정보 유출이나 서비스 중단처럼 공격이 일으키는 피해를 예로 들 수 있다",
+      "브라우저에서 온 데이터를 그대로 믿으면 안 되는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "be.basics.what-is-backend"
+    ],
+    "aliases": [
+      "웹 보안 기초",
+      "웹사이트 보안",
+      "website security",
+      "web security basics",
+      "보안의 큰 그림"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Website_security",
+      "https://top10.owasp.org/2025/"
+    ]
+  },
+  {
+    "id": "be.basics.web-framework-idea",
+    "title": "웹 프레임워크: 서버를 빨리 만드는 도구 상자",
+    "en": "What a Web Framework Does",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "백엔드 기초",
+    "summary": "웹 프레임워크는 요청 받기, 주소별로 나누기, 응답 보내기처럼 매번 하는 일을 미리 만들어 둔 도구 상자다.",
+    "objectives": [
+      "밀키트에 빗대어 웹 프레임워크를 쓰는 이유를 설명할 수 있다",
+      "웹 프레임워크가 대신해 주는 일을 두세 가지 말할 수 있다"
+    ],
+    "prerequisites": [
+      "be.basics.what-is-backend"
+    ],
+    "aliases": [
+      "서버 프레임워크",
+      "백엔드 프레임워크",
+      "server-side framework",
+      "backend framework"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Web_frameworks"
+    ]
+  },
+  {
     "id": "be.basics.server",
     "title": "서버",
     "en": "Server",
@@ -478,6 +559,189 @@
     "aliases": [
       "API 키",
       "API Key"
+    ]
+  },
+  {
+    "id": "be.http.http",
+    "title": "HTTP",
+    "en": "HyperText Transfer Protocol",
+    "kind": "term",
+    "level": 1,
+    "importance": 1,
+    "group": "HTTP",
+    "summary": "브라우저와 서버가 웹 문서를 주고받을 때 지키는 대화 규칙이다.",
+    "parent": "be.http.web-conversation",
+    "aliases": [
+      "에이치티티피",
+      "하이퍼텍스트 전송 프로토콜",
+      "HTTP 프로토콜",
+      "HTTP protocol"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/HTTP"
+    ]
+  },
+  {
+    "id": "be.basics.web-server",
+    "title": "웹 서버",
+    "en": "Web Server",
+    "kind": "term",
+    "level": 1,
+    "importance": 1,
+    "group": "백엔드 기초",
+    "summary": "웹사이트 파일을 보관하고 HTTP 요청이 오면 찾아서 보내 주는 컴퓨터나 프로그램이다.",
+    "parent": "be.basics.web-server-idea",
+    "aliases": [
+      "웹서버",
+      "HTTP 서버",
+      "HTTP server"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_web_server"
+    ]
+  },
+  {
+    "id": "be.security.vulnerability",
+    "title": "보안 취약점",
+    "en": "Security Vulnerability",
+    "kind": "term",
+    "level": 1,
+    "importance": 1,
+    "group": "웹 보안",
+    "summary": "설계나 코드의 실수로 생겨 공격자가 들어올 수 있게 되는 약한 틈이다.",
+    "parent": "be.security.web-security-idea",
+    "aliases": [
+      "취약점",
+      "vulnerability",
+      "보안 구멍",
+      "security hole"
+    ],
+    "refs": [
+      "https://community.owasp.org/vulnerabilities"
+    ]
+  },
+  {
+    "id": "be.error.syntax-error",
+    "title": "구문 오류",
+    "en": "Syntax Error (Python)",
+    "kind": "term",
+    "level": 1,
+    "importance": 1,
+    "group": "오류·로깅",
+    "summary": "코드가 파이썬 문법에 맞지 않아 실행되기 전에 멈추는 오류다.",
+    "parent": "be.error.what-errors-say",
+    "aliases": [
+      "문법 오류",
+      "SyntaxError",
+      "파이썬 문법 에러",
+      "parsing error"
+    ],
+    "refs": [
+      "https://docs.python.org/3/tutorial/errors.html"
+    ]
+  },
+  {
+    "id": "be.basics.url-scheme",
+    "title": "URL 스킴",
+    "en": "URL Scheme",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "백엔드 기초",
+    "summary": "주소 맨 앞의 https나 mailto처럼 어떤 방식으로 자료를 가져올지 알려 주는 부분이다.",
+    "parent": "be.basics.url-anatomy",
+    "aliases": [
+      "URL 프로토콜 부분",
+      "주소의 스킴",
+      "URI scheme"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL"
+    ]
+  },
+  {
+    "id": "be.basics.url-path",
+    "title": "URL 경로",
+    "en": "URL Path",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "백엔드 기초",
+    "summary": "도메인 뒤의 /로 시작하는 부분으로, 서버 안에서 어떤 자료를 원하는지 가리킨다.",
+    "parent": "be.basics.url-anatomy",
+    "aliases": [
+      "주소 경로",
+      "URL path",
+      "path to resource",
+      "자원 경로"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL"
+    ]
+  },
+  {
+    "id": "be.basics.static-website",
+    "title": "정적 웹사이트",
+    "en": "Static Website",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "백엔드 기초",
+    "summary": "미리 만들어 둔 파일을 누구에게나 그대로 보내 주는 웹사이트다.",
+    "parent": "be.basics.web-server-idea",
+    "related": [
+      "be.basics.dynamic-website"
+    ],
+    "aliases": [
+      "정적 사이트",
+      "static site",
+      "정적 웹 서버",
+      "static web server"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_web_server"
+    ]
+  },
+  {
+    "id": "be.basics.dynamic-website",
+    "title": "동적 웹사이트",
+    "en": "Dynamic Website",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "백엔드 기초",
+    "summary": "요청이 올 때마다 데이터베이스 내용 등을 채워 넣어 페이지를 새로 만들어 보내는 웹사이트다.",
+    "parent": "be.basics.web-server-idea",
+    "related": [
+      "be.basics.static-website"
+    ],
+    "aliases": [
+      "동적 사이트",
+      "dynamic site",
+      "동적 웹 서버",
+      "dynamic web server"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_web_server"
+    ]
+  },
+  {
+    "id": "be.basics.web-framework",
+    "title": "웹 프레임워크",
+    "en": "Web Framework",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "백엔드 기초",
+    "summary": "웹 서버 프로그램을 만들 때 자주 하는 일을 미리 갖춰 둔 뼈대 도구다.",
+    "parent": "be.basics.web-framework-idea",
+    "aliases": [
+      "웹 애플리케이션 프레임워크",
+      "web application framework",
+      "서버 측 프레임워크"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Web_frameworks"
     ]
   },
   {

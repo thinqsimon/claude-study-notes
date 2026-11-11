@@ -207,6 +207,108 @@
     ]
   },
   {
+    "id": "plan.figma.getting-started",
+    "title": "Figma 계정 만들고 첫 파일 열기",
+    "en": "Getting Started with Figma: Account and First File",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Figma에 가입해 브라우저나 데스크톱 앱으로 들어가고, 파일 브라우저에서 첫 디자인 파일을 만들어 여는 첫 실행 과정이다.",
+    "objectives": [
+      "이메일이나 Google 계정으로 Figma에 가입하는 순서를 말할 수 있다",
+      "브라우저로 쓰는 Figma와 데스크톱 앱이 기능이 같은 한 도구라는 점을 같은 신문을 종이로 보든 휴대폰으로 보든 내용이 같다는 데 빗대어 설명할 수 있다",
+      "파일 브라우저에서 새 디자인 파일을 만들어 초안에 둘 수 있다"
+    ],
+    "related": [
+      "plan.figma.what-is-figma",
+      "plan.figma.design-file-tour"
+    ],
+    "aliases": [
+      "Figma 가입",
+      "Figma 계정 만들기",
+      "Figma sign up",
+      "Figma 시작하기",
+      "피그마 가입"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360039811114-Create-a-Figma-account",
+      "https://help.figma.com/hc/en-us/articles/5601429983767-Guide-to-the-Figma-desktop-app",
+      "https://help.figma.com/hc/en-us/articles/14381406380183-Guide-to-the-file-browser",
+      "https://help.figma.com/hc/en-us/articles/360038511153-Create-a-new-file",
+      "https://help.figma.com/hc/en-us/articles/18409526530967-Updates-to-how-drafts-work"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "plan.basics.agile-iteration",
+    "title": "애자일: 조금씩 만들고 자주 고치기",
+    "en": "Agile Delivery: Build Small and Improve Often",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "처음부터 끝까지 한 번에 짓지 않고 작게 만들어 사용자에게 보여 주고 의견을 받아 되풀이해 고치는 일하는 방식이다.",
+    "objectives": [
+      "워터폴과 애자일의 차이를 다리 건설과 김치찌개 간 보기에 빗대어 설명할 수 있다",
+      "작게 만들고 사용자 의견을 받아 다시 고치는 반복이 왜 필요한지 말할 수 있다",
+      "스프린트와 회고가 무엇을 하는 시간인지 말할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.mvp-idea"
+    ],
+    "related": [
+      "plan.basics.double-diamond"
+    ],
+    "aliases": [
+      "애자일",
+      "agile",
+      "애자일 방법론",
+      "agile delivery",
+      "애자일 개발"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/agile-delivery/agile-government-services-introduction",
+      "https://www.gov.uk/service-manual/agile-delivery/core-principles-agile",
+      "https://www.gov.uk/service-manual/agile-delivery/agile-tools-techniques"
+    ]
+  },
+  {
+    "id": "plan.figma.design-system-idea",
+    "title": "디자인 시스템: 함께 쓰는 화면 부품 상자",
+    "en": "What a Design System Is",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "팀이 같은 색·글꼴·버튼·화면 짜임을 모아 두고 함께 꺼내 써서 여러 화면이 한 서비스처럼 보이게 하는 공용 부품 상자다.",
+    "objectives": [
+      "디자인 시스템을 레고 부품 상자와 조립 설명서에 빗대어 설명할 수 있다",
+      "스타일·컴포넌트·패턴이 각각 무엇을 모아 둔 것인지 예를 들어 말할 수 있다",
+      "같은 부품을 함께 쓰면 화면이 왜 일관되고 빨리 만들어지는지 말할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.design-file-tour"
+    ],
+    "related": [
+      "plan.figma.ui-kits",
+      "plan.figma.publish-library"
+    ],
+    "aliases": [
+      "디자인 시스템",
+      "design system",
+      "디자인 시스템이란",
+      "UI 디자인 시스템"
+    ],
+    "refs": [
+      "https://design-system.service.gov.uk/get-started/",
+      "https://design-system.service.gov.uk/components/",
+      "https://design-system.service.gov.uk/styles/",
+      "https://help.figma.com/hc/en-us/articles/360041051154-Guide-to-libraries-in-Figma"
+    ]
+  },
+  {
     "id": "plan.basics.wireframe",
     "title": "와이어프레임",
     "en": "Wireframe",
@@ -390,6 +492,97 @@
     ]
   },
   {
+    "id": "plan.figma.file-browser",
+    "title": "Figma 파일 브라우저",
+    "en": "Figma File Browser",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Figma에서 최근 파일·초안·팀 폴더를 둘러보고 파일을 찾거나 새로 만드는 책장 같은 관리 화면이다.",
+    "parent": "plan.figma.getting-started",
+    "aliases": [
+      "Figma file browser",
+      "피그마 파일 브라우저",
+      "Figma 홈 화면",
+      "피그마 파일 목록"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/14381406380183-Guide-to-the-file-browser"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "plan.basics.sprint",
+    "title": "스프린트(정해진 작업 기간)",
+    "en": "Sprint in Agile",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "팀이 1~2주처럼 정해 둔 짧은 기간 동안 고른 일만 해서 끝내고 다음 기간을 다시 계획하는 애자일의 작업 단위다.",
+    "parent": "plan.basics.agile-iteration",
+    "aliases": [
+      "스프린트",
+      "애자일 스프린트",
+      "agile sprint",
+      "스프린트 계획",
+      "sprint planning"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/agile-delivery/agile-methodologies",
+      "https://www.gov.uk/service-manual/agile-delivery/agile-tools-techniques"
+    ]
+  },
+  {
+    "id": "plan.basics.user-need-statement",
+    "title": "사용자 니즈 문장",
+    "en": "User Need Statement",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "사용자 입장에서 '무엇을 하고 싶다, 왜냐하면' 꼴로 쓴 한 문장으로, 해결책이 아니라 사용자의 문제를 적는다.",
+    "parent": "plan.basics.problem-first",
+    "related": [
+      "plan.basics.user-stories"
+    ],
+    "aliases": [
+      "사용자 니즈 쓰기",
+      "writing user needs",
+      "유저 니즈 문장",
+      "사용자 요구 문장"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+      "https://pair.withgoogle.com/chapter/user-needs/"
+    ]
+  },
+  {
+    "id": "plan.basics.user-journey",
+    "title": "사용자 여정(user journey)",
+    "en": "User Journey",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "사용자가 목표를 이루기까지 며칠이나 몇 달에 걸쳐 여러 채널을 오가며 겪는 큰 흐름으로, 한 화면 안의 흐름보다 넓다.",
+    "parent": "plan.basics.service-flow",
+    "related": [
+      "plan.basics.experience-map"
+    ],
+    "aliases": [
+      "사용자 여정",
+      "유저 저니",
+      "고객 여정",
+      "customer journey"
+    ],
+    "refs": [
+      "https://www.nngroup.com/articles/user-journeys-vs-user-flows/"
+    ]
+  },
+  {
     "id": "plan.figma.figjam",
     "title": "FigJam(온라인 화이트보드)",
     "en": "FigJam",
@@ -502,6 +695,115 @@
     ],
     "refs": [
       "https://www.gov.uk/service-manual/the-team/what-each-role-does-in-service-team"
+    ]
+  },
+  {
+    "id": "plan.figma.desktop-app",
+    "title": "Figma 데스크톱 앱",
+    "en": "Figma Desktop App",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "macOS와 Windows에 설치해 쓰는 Figma로, 브라우저판과 기능은 같고 내 컴퓨터 글꼴을 바로 쓰는 등 몇 가지 편의가 더해진다.",
+    "parent": "plan.figma.getting-started",
+    "aliases": [
+      "Figma desktop app",
+      "Figma 데스크톱",
+      "피그마 데스크톱 앱"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/5601429983767-Guide-to-the-Figma-desktop-app"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "plan.figma.drafts",
+    "title": "Figma 초안(Drafts)",
+    "en": "Figma Drafts",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "아직 팀 폴더에 넣지 않아 기본으로 나만 보는 Figma 파일 자리로, 혼자 연습하다가 여럿이 함께 편집할 때 폴더로 옮긴다.",
+    "parent": "plan.figma.getting-started",
+    "aliases": [
+      "Figma drafts",
+      "Figma 초안 파일",
+      "피그마 드래프트",
+      "Drafts 공간"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/18409526530967-Updates-to-how-drafts-work",
+      "https://help.figma.com/hc/en-us/articles/360038511153-Create-a-new-file"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "plan.basics.waterfall",
+    "title": "워터폴(폭포수 방식)",
+    "en": "Waterfall Project Management",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "요구사항·설계·개발·테스트·출시를 정해진 순서로 한 번씩만 지나가 사용자가 마지막에야 결과를 보는 전통적 진행 방식이다.",
+    "parent": "plan.basics.agile-iteration",
+    "related": [
+      "plan.basics.agile-iteration"
+    ],
+    "aliases": [
+      "워터폴 방식",
+      "폭포수 모델",
+      "waterfall model",
+      "폭포수 개발"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/agile-delivery/agile-government-services-introduction"
+    ]
+  },
+  {
+    "id": "plan.basics.sprint-retrospective",
+    "title": "스프린트 회고(레트로)",
+    "en": "Sprint Retrospective",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "한 작업 기간이 끝날 때 팀이 잘된 점, 안된 점, 다음에 바꿀 점을 이야기하고 할 일로 정리하는 모임이다.",
+    "parent": "plan.basics.agile-iteration",
+    "aliases": [
+      "스프린트 회고",
+      "sprint retrospective",
+      "스프린트 레트로",
+      "agile retro"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/agile-delivery/agile-tools-techniques",
+      "https://www.gov.uk/service-manual/agile-delivery/core-principles-agile"
+    ]
+  },
+  {
+    "id": "plan.figma.design-pattern",
+    "title": "디자인 시스템 패턴",
+    "en": "Design System Patterns",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "주소 묻기나 확인 화면처럼 사용자가 자주 하는 일 하나를 컴포넌트를 엮어 푸는 검증된 화면 짜임새다.",
+    "parent": "plan.figma.design-system-idea",
+    "aliases": [
+      "서비스 디자인 패턴",
+      "UX 디자인 패턴",
+      "GOV.UK 패턴",
+      "GOV.UK design patterns"
+    ],
+    "refs": [
+      "https://design-system.service.gov.uk/patterns/",
+      "https://design-system.service.gov.uk/components/"
     ]
   },
   {
