@@ -94,10 +94,17 @@ class DicMakerTest(unittest.TestCase):
 
     def test_gaps_reports_levels_ladder_and_box(self):
         self.box("원자적 파일 교체", "HTTP 메서드와 상태 코드")
+        # 실제 사전의 빈칸은 채워질 수 있으니, 4단계만 있는 묶음을 임시 사전에 직접 만든다
+        items_path = self.repo / "catalog" / "items" / "mlops.json"
+        items = json.loads(items_path.read_text(encoding="utf-8"))
+        deep = {k: v for k, v in draft_topic("mlops.serve.test-fixture-deep-only").items() if k != "basis"}
+        items.append({**deep, "group": "시험용 심화 묶음", "aliases": ["시험용 심화 묶음"]})
+        items_path.write_text(json.dumps(items, ensure_ascii=False), encoding="utf-8")
         out = self.run_cmd("gaps")
         self.assertEqual([r["level"] for r in out["levels"]], [1, 2, 3, 4, 5])
         self.assertIn(out["emptiest_level"], range(1, 6))
-        self.assertTrue(any(g["lowest_level"] >= 4 for g in out["ladder_gaps"]))
+        self.assertIn({"domain": "mlops", "group": "시험용 심화 묶음", "lowest_level": 4,
+                       "topics": ["mlops.serve.test-fixture-deep-only"]}, out["ladder_gaps"])
         self.assertEqual(out["box_open"], ["원자적 파일 교체"])   # HTTP 메서드는 이미 사전에 있다
 
     def test_start_splits_count_by_level_ratio_and_refuses_twice(self):
