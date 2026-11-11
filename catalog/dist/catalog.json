@@ -1,5 +1,5 @@
 {
- "version": "0.32.0",
+ "version": "0.33.0",
  "domains": [
   {
    "prefix": "dev",
@@ -4370,6 +4370,73 @@
    "domain": "cs"
   },
   {
+   "id": "cs.dsa.array-basics",
+   "title": "배열: 번호로 찾아가는 칸들",
+   "en": "Array Basics",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "자료구조",
+   "summary": "배열은 같은 종류의 값을 차례로 늘어놓고 0부터 매긴 번호(인덱스)로 어느 칸이든 곧바로 읽고 쓰게 하는 자료구조다.",
+   "objectives": [
+    "배열의 칸을 인덱스로 읽고 바꾸는 코드를 따라 쓸 수 있다",
+    "n개짜리 배열의 마지막 인덱스가 n-1인 까닭을 설명할 수 있다",
+    "인덱스로 칸을 찾는 시간이 배열 길이와 상관없다는 것을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.arch.computer-parts"
+   ],
+   "related": [
+    "cs.dsa.array-vs-linked-list",
+    "cs.dsa.data-structure"
+   ],
+   "aliases": [
+    "배열 자료구조",
+    "array data structure",
+    "배열 인덱스",
+    "array index"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/array.html",
+    "https://docs.python.org/3/builtins/time-complexity.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.arch.boolean-logic",
+   "title": "논리 연산과 진리표: AND·OR·NOT",
+   "en": "Boolean Logic and Truth Tables",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "컴퓨터 구조",
+   "summary": "참과 거짓 두 값을 AND·OR·NOT으로 묶어 계산하는 규칙이며, 프로그램의 조건문과 CPU 안의 논리 회로가 모두 이 규칙을 따른다.",
+   "objectives": [
+    "AND·OR·NOT의 진리표를 직접 채울 수 있다",
+    "두 조건을 and·or로 묶은 조건식의 결과를 진리표로 따져 볼 수 있다",
+    "같은 논리 연산이 코드의 조건식과 하드웨어의 논리 게이트에 함께 쓰인다는 것을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.data.bits-bytes"
+   ],
+   "related": [
+    "cs.data.binary-bitwise"
+   ],
+   "aliases": [
+    "불 논리",
+    "Boolean logic",
+    "논리 연산",
+    "logical operator",
+    "불 대수",
+    "Boolean algebra"
+   ],
+   "refs": [
+    "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c4/c4s1/",
+    "https://docs.python.org/3/library/stdtypes.html"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.net.protocol-layers",
    "title": "인터넷 통신의 네 계층",
    "en": "The Four Layers of the Internet Protocol Suite",
@@ -4455,6 +4522,41 @@
     "https://www.rfc-editor.org/rfc/rfc1122",
     "https://www.rfc-editor.org/rfc/rfc1812",
     "https://man7.org/linux/man-pages/man8/ip-route.8.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.data.text-binary-files",
+   "title": "텍스트 파일과 바이너리 파일",
+   "en": "Text Files and Binary Files",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "데이터 표현",
+   "summary": "텍스트 파일은 문자 인코딩으로 읽는 글자들이 줄바꿈 문자로 나뉜 줄의 모임이고, 바이너리 파일은 이미지처럼 글자로 읽지 않는 바이트 그대로의 파일이다.",
+   "objectives": [
+    "텍스트 파일과 바이너리 파일을 예를 들어 구분할 수 있다",
+    "파일을 텍스트 모드와 바이너리 모드로 여는 코드를 따라 쓸 수 있다",
+    "이미지 파일을 텍스트 모드로 다루면 안 되는 까닭을 줄바꿈 변환으로 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.data.character-codes",
+    "cs.os.files-directories"
+   ],
+   "related": [
+    "be.python.files"
+   ],
+   "aliases": [
+    "텍스트 파일",
+    "text file",
+    "바이너리 파일",
+    "binary file",
+    "이진 파일",
+    "바이너리 모드"
+   ],
+   "refs": [
+    "https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap03.html",
+    "https://docs.python.org/3/tutorial/inputoutput.html"
    ],
    "domain": "cs"
   },
@@ -4561,6 +4663,26 @@
    ],
    "refs": [
     "https://docs.python.org/3/library/stdtypes.html#bytes-objects"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dsa.zero-based-index",
+   "title": "0부터 세는 인덱스",
+   "en": "Zero-based Indexing",
+   "kind": "term",
+   "level": 2,
+   "importance": 1,
+   "group": "자료구조",
+   "summary": "배열의 첫 칸을 0번으로 세는 방식이라 n개짜리 배열의 칸 번호는 0부터 n-1까지다.",
+   "parent": "cs.dsa.array-basics",
+   "aliases": [
+    "0-based indexing",
+    "제로 베이스 인덱스",
+    "0번 인덱스"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/zeroBasedIndexing.html"
    ],
    "domain": "cs"
   },
@@ -4870,6 +4992,134 @@
    "domain": "cs"
   },
   {
+   "id": "cs.dsa.index-out-of-range",
+   "title": "범위를 벗어난 인덱스",
+   "en": "Index Out of Range",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "자료구조",
+   "summary": "배열에 없는 칸 번호를 가리켜 생기는 오류로, 파이썬에서는 IndexError로 나타난다.",
+   "parent": "cs.dsa.array-basics",
+   "aliases": [
+    "IndexError",
+    "index out of range",
+    "인덱스 범위 초과",
+    "out of bounds"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/stdtypes.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.arch.truth-table",
+   "title": "진리표",
+   "en": "Truth Table",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "컴퓨터 구조",
+   "summary": "논리식에 들어갈 수 있는 참·거짓 입력의 모든 조합과 그때의 출력을 한 표에 적은 것이다.",
+   "parent": "cs.arch.boolean-logic",
+   "aliases": [
+    "truth table",
+    "진리값 표"
+   ],
+   "refs": [
+    "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c4/c4s1/"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.arch.logic-gate",
+   "title": "논리 게이트",
+   "en": "Logic Gate",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "컴퓨터 구조",
+   "summary": "AND·OR·NOT 같은 논리 연산을 전기 신호로 해내는 회로 부품으로, CPU는 이런 게이트를 엄청나게 많이 이어 만든다.",
+   "parent": "cs.arch.boolean-logic",
+   "aliases": [
+    "logic gate",
+    "AND 게이트",
+    "NAND 게이트",
+    "NAND gate"
+   ],
+   "refs": [
+    "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c4/c4s1/"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.arch.short-circuit-evaluation",
+   "title": "단락 평가",
+   "en": "Short-circuit Evaluation",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "컴퓨터 구조",
+   "summary": "and는 앞이 거짓이면, or는 앞이 참이면 뒤쪽 식을 아예 계산하지 않고 결과를 정하는 방식이다.",
+   "parent": "cs.arch.boolean-logic",
+   "aliases": [
+    "short-circuit evaluation",
+    "단축 평가"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/stdtypes.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.data.newline-character",
+   "title": "줄바꿈 문자(LF·CRLF)",
+   "en": "Newline Character",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "데이터 표현",
+   "summary": "텍스트에서 줄이 끝났음을 알리는 문자로, 유닉스 계열은 LF(\\n) 하나를, 윈도는 CR과 LF 두 개(\\r\\n)를 쓴다.",
+   "parent": "cs.data.text-binary-files",
+   "related": [
+    "dev.git.line-endings"
+   ],
+   "aliases": [
+    "newline",
+    "개행 문자",
+    "LF",
+    "줄 끝 문자"
+   ],
+   "refs": [
+    "https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap03.html",
+    "https://docs.python.org/3/tutorial/inputoutput.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.unix-time",
+   "title": "유닉스 시간(에포크 초)",
+   "en": "Unix Time",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "1970년 1월 1일 0시(UTC)부터 지난 초를 하나의 정수로 세어 시각을 나타내는 방식이다.",
+   "aliases": [
+    "Unix time",
+    "유닉스 타임스탬프",
+    "Unix timestamp",
+    "에포크 시간",
+    "epoch time",
+    "POSIX time"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man2/time.2.html",
+    "https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap03.html"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.data.binary-prefix",
    "title": "이진 접두어(KiB·MiB·GiB)",
    "en": "Binary Prefixes",
@@ -4978,6 +5228,47 @@
    ],
    "refs": [
     "https://www.rfc-editor.org/rfc/rfc791"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.data.final-newline",
+   "title": "파일 끝 줄바꿈",
+   "en": "Newline at End of File",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "데이터 표현",
+   "summary": "표준에서 줄은 줄바꿈 문자로 끝나야 하므로, 텍스트 파일의 마지막 줄 끝에도 줄바꿈을 하나 두는 관례다.",
+   "parent": "cs.data.text-binary-files",
+   "aliases": [
+    "No newline at end of file",
+    "trailing newline",
+    "마지막 줄바꿈",
+    "EOF 개행"
+   ],
+   "refs": [
+    "https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap03.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.data.byte-order-mark",
+   "title": "바이트 순서 표시(BOM)",
+   "en": "Byte Order Mark",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "데이터 표현",
+   "summary": "파일 맨 앞에 붙는 U+FEFF 문자로, UTF-8에서는 EF BB BF 세 바이트가 되어 인코딩을 알리는 표시로만 쓰인다.",
+   "aliases": [
+    "byte order mark",
+    "utf-8-sig",
+    "UTF-8 BOM"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc3629",
+    "https://docs.python.org/3/howto/unicode.html"
    ],
    "domain": "cs"
   },
@@ -7477,6 +7768,39 @@
    "domain": "plan"
   },
   {
+   "id": "plan.figma.share-files",
+   "title": "Figma 파일 공유하고 보기·편집 권한 주기",
+   "en": "Sharing Figma Files and Setting Permissions",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "Figma와 디자인 시스템",
+   "summary": "Share 버튼으로 링크를 복사하거나 이메일로 초대해 Figma 파일을 함께 보고, 상대마다 보기나 편집 권한을 정하는 첫 사용법이다.",
+   "objectives": [
+    "Share 버튼에서 링크를 복사하거나 이메일로 초대해 파일을 공유할 수 있다",
+    "공유 링크로 들어올 수 있는 사람의 범위를 Anyone과 Only invited people 중에서 고를 수 있다",
+    "상대에게 can view와 can edit 중 어느 권한을 줄지 정하고 그 차이를 말할 수 있다",
+    "프레임을 선택한 채 링크를 복사하면 그 프레임으로 바로 열린다는 점을 활용할 수 있다"
+   ],
+   "related": [
+    "plan.figma.play-share-prototype",
+    "plan.figma.comments"
+   ],
+   "aliases": [
+    "Figma 파일 공유",
+    "Figma share",
+    "피그마 공유",
+    "Figma 권한",
+    "Figma permissions",
+    "피그마 초대"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/1500007609322-Guide-to-sharing-and-permissions",
+    "https://help.figma.com/hc/en-us/articles/360040531773-Share-files-and-prototypes"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.frames-and-components",
    "title": "Figma 프레임과 컴포넌트로 화면 만들기",
    "en": "Building Screens with Frames and Components in Figma",
@@ -7751,6 +8075,74 @@
    "domain": "plan"
   },
   {
+   "id": "plan.figma.shape-tools",
+   "title": "Figma 도형 도구로 기본 모양 그리기",
+   "en": "Drawing Basic Shapes with Figma Shape Tools",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "사각형·선·화살표·타원·다각형·별 도구와 단축키로 버튼 바탕이나 아이콘 같은 기본 모양을 그리고 모서리를 둥글게 다듬는 첫 사용법이다.",
+   "objectives": [
+    "R·L·O 단축키로 사각형·선·타원 도구를 골라 캔버스에 도형을 그릴 수 있다",
+    "Shift와 Option(Alt)을 누른 채 끌어 정사각형·정원을 그리거나 가운데에서부터 그릴 수 있다",
+    "별 도형의 꼭짓점 개수와 비율을 바꾸고 선의 굵기와 끝 모양을 정할 수 있다",
+    "Corner radius 칸이나 모서리 핸들로 사각형 모서리를 둥글게 만들 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.layers"
+   ],
+   "related": [
+    "plan.figma.frames-and-components"
+   ],
+   "aliases": [
+    "Figma 도형 도구",
+    "Figma shape tools",
+    "피그마 사각형 도구",
+    "Figma rectangle tool",
+    "피그마 도형 그리기"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360040450133-Using-Shape-Tools",
+    "https://help.figma.com/hc/en-us/articles/360050986854-Adjust-corner-radius-and-smoothing"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.align-distribute",
+   "title": "Figma 정렬과 분배로 요소 줄 맞추기",
+   "en": "Aligning and Distributing Layers in Figma",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "오른쪽 패널의 정렬·분배 버튼과 X·Y·W·H 칸으로 화면 요소의 위치와 크기, 간격을 숫자에 맞춰 가지런히 놓는 첫 사용법이다.",
+   "objectives": [
+    "여러 레이어를 골라 왼쪽·가운데·위쪽 기준으로 정렬할 수 있다",
+    "여러 레이어를 같은 간격으로 분배하거나 Tidy up으로 줄과 칸에 맞출 수 있다",
+    "X·Y·W·H 칸에 숫자를 넣어 위치와 크기를 정하고 화살표 키로 조금씩 옮길 수 있다",
+    "비율 고정을 켜서 가로세로 비율을 지킨 채 크기를 바꿀 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.layers"
+   ],
+   "related": [
+    "plan.figma.layout-guides",
+    "plan.figma.auto-layout"
+   ],
+   "aliases": [
+    "Figma 정렬",
+    "Figma align",
+    "Figma 분배",
+    "Figma distribute",
+    "피그마 줄 맞추기"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360039956914-Adjust-alignment-rotation-position-and-dimensions"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.frame",
    "title": "Figma 프레임",
    "en": "Figma Frame",
@@ -8002,6 +8394,69 @@
    ],
    "refs": [
     "https://help.figma.com/hc/en-us/articles/24037724065943-Start-designing-with-UI-kits"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.can-view-can-edit",
+   "title": "Figma 보기 권한과 편집 권한",
+   "en": "Figma Can View and Can Edit Permissions",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "Figma에서 파일을 보고 속성 확인과 댓글만 할 수 있는 can view와 내용을 고칠 수 있는 can edit의 두 권한 수준이다.",
+   "parent": "plan.figma.share-files",
+   "aliases": [
+    "Figma can view",
+    "Figma can edit",
+    "Figma 보기 권한",
+    "Figma 편집 권한",
+    "피그마 편집 권한"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/1500007609322-Guide-to-sharing-and-permissions"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.link-audience",
+   "title": "Figma 공유 링크 접근 범위",
+   "en": "Figma Link Audience Access",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "Figma 공유 링크를 누가 열 수 있는지 Anyone·조직·워크스페이스·Only invited people 가운데서 고르는 설정이다.",
+   "parent": "plan.figma.share-files",
+   "aliases": [
+    "Figma link access",
+    "Figma 링크 공유 설정",
+    "Only invited people"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360040531773-Share-files-and-prototypes"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.corner-radius",
+   "title": "Figma 모서리 둥글기(corner radius)",
+   "en": "Figma Corner Radius",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "두 선이 만나는 꼭짓점을 둥글게 깎는 값으로, Figma에서는 모양 전체나 모서리 하나씩 따로 정할 수 있다.",
+   "parent": "plan.figma.shape-tools",
+   "aliases": [
+    "corner radius",
+    "Figma 모서리 반경",
+    "Figma 라운드 값",
+    "independent corners"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360050986854-Adjust-corner-radius-and-smoothing"
    ],
    "domain": "plan"
   },
@@ -8259,6 +8714,112 @@
    ],
    "refs": [
     "https://help.figma.com/hc/en-us/articles/9359912208663-Run-voting-sessions-in-FigJam"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.seat",
+   "title": "Figma 좌석(seat)",
+   "en": "Figma Seat",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "유료 플랜에서 한 사람이 어떤 Figma 제품을 쓸 수 있는지 정하는 이용 자격으로, 편집하려면 편집 권한과 맞는 좌석이 함께 있어야 한다.",
+   "parent": "plan.figma.share-files",
+   "aliases": [
+    "Figma seat",
+    "피그마 좌석",
+    "Figma 좌석 요청",
+    "seat request"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/1500007609322-Guide-to-sharing-and-permissions"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.tidy-up",
+   "title": "Figma 정리(Tidy up)",
+   "en": "Figma Tidy Up",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "고른 레이어들을 선택 영역의 왼쪽 위를 기준으로 줄·칸·바둑판 모양에 맞춰 한 번에 가지런히 놓는 Figma 기능이다.",
+   "parent": "plan.figma.align-distribute",
+   "aliases": [
+    "Tidy up",
+    "Figma tidy up",
+    "피그마 정리 기능",
+    "Figma 바둑판 정렬"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360039956914-Adjust-alignment-rotation-position-and-dimensions"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.snapping",
+   "title": "Figma 스냅(snapping)",
+   "en": "Figma Snapping",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "레이어를 끌 때 다른 도형·객체·픽셀 격자에 자동으로 달라붙게 해 위치를 맞춰 주는 Figma 기능으로, Control을 누르면 잠시 끌 수 있다.",
+   "parent": "plan.figma.align-distribute",
+   "aliases": [
+    "Figma snapping",
+    "Figma 스냅",
+    "snap to pixel grid",
+    "픽셀 격자 스냅"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360039956914-Adjust-alignment-rotation-position-and-dimensions"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.aspect-ratio-lock",
+   "title": "Figma 비율 고정(aspect ratio lock)",
+   "en": "Figma Aspect Ratio Lock",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "Figma에서 너비나 높이 하나를 바꿀 때 다른 쪽도 같은 비율로 따라 바뀌게 묶어 두는 설정이다.",
+   "parent": "plan.figma.align-distribute",
+   "aliases": [
+    "aspect ratio lock",
+    "Figma 비율 고정",
+    "Figma 비율 잠금",
+    "피그마 종횡비 고정"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360039956914-Adjust-alignment-rotation-position-and-dimensions"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.corner-smoothing",
+   "title": "Figma 모서리 부드럽게(corner smoothing)",
+   "en": "Figma Corner Smoothing",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "모서리의 곡선을 이어지듯 부드럽게 만들어 사각형과 원 사이의 스퀴클 모양을 내는 Figma 설정으로, 모양 전체에만 적용된다.",
+   "parent": "plan.figma.shape-tools",
+   "aliases": [
+    "corner smoothing",
+    "Figma 스퀴클",
+    "Figma 모서리 스무딩"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360050986854-Adjust-corner-radius-and-smoothing"
    ],
    "domain": "plan"
   },
@@ -31304,6 +31865,146 @@
    "domain": "rag"
   },
   {
+   "id": "rag.agent.mcp-local-connect",
+   "title": "Claude Desktop에 로컬 MCP 서버 연결하기",
+   "en": "Connecting Local MCP Servers to Claude Desktop",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "설정 파일에 내 컴퓨터에서 띄울 MCP 서버의 실행 명령을 적고 앱을 다시 켜서, Claude가 허락을 받아 내 파일을 읽고 쓰게 만드는 첫 실습이다.",
+   "objectives": [
+    "Claude Desktop의 개발자 설정에서 claude_desktop_config.json을 열고 mcpServers 항목에 Filesystem 서버를 적을 수 있다",
+    "서버가 접근할 폴더를 절대 경로로 골라 넣고 앱을 완전히 다시 켜서 커넥터 목록에 도구가 보이는지 확인할 수 있다",
+    "Claude가 파일 작업 전에 묻는 승인 요청을 읽고 허락하거나 거절할 수 있다",
+    "서버가 안 보일 때 설정 문법·경로·로그 파일을 차례로 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.mcp-idea"
+   ],
+   "related": [
+    "rag.agent.mcp-remote-connect"
+   ],
+   "aliases": [
+    "로컬 MCP 연결",
+    "local MCP server 연결",
+    "Claude Desktop MCP 설정",
+    "connect local MCP",
+    "Claude Desktop 로컬 서버"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/docs/develop/connect-local-servers",
+    "https://modelcontextprotocol.io/examples"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.llamaindex-starter",
+   "title": "LlamaIndex로 첫 RAG 에이전트 만들기",
+   "en": "Building a First RAG Agent with LlamaIndex",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "RAG",
+   "summary": "폴더의 문서를 읽어 벡터 인덱스를 만들고 그 인덱스에 묻는 쿼리 엔진을 도구로 감싸 에이전트에 넘긴 뒤, 인덱스를 디스크에 저장해 다시 쓰는 튜토리얼이다.",
+   "objectives": [
+    "FunctionAgent에 파이썬 함수를 도구로 넘겨 질문에 답하는 에이전트를 돌릴 수 있다",
+    "SimpleDirectoryReader로 문서를 읽고 VectorStoreIndex.from_documents로 인덱스를 만들 수 있다",
+    "as_query_engine으로 만든 쿼리 엔진을 도구 함수 안에서 불러 문서 기반 답을 받을 수 있다",
+    "storage_context.persist로 인덱스를 저장하고 load_index_from_storage로 다시 불러올 수 있다"
+   ],
+   "prerequisites": [
+    "rag.retrieval.llamaindex-install",
+    "rag.basics.rag-big-picture",
+    "rag.embedding.meaning-as-numbers"
+   ],
+   "related": [
+    "rag.retrieval.load-split",
+    "rag.agent.first-agent"
+   ],
+   "aliases": [
+    "LlamaIndex 튜토리얼",
+    "LlamaIndex starter",
+    "LlamaIndex RAG",
+    "LlamaIndex 에이전트",
+    "llama_index 시작하기"
+   ],
+   "refs": [
+    "https://developers.llamaindex.ai/python/framework/getting_started/starter_example/"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.langsmith-playground",
+   "title": "LangSmith 플레이그라운드에서 프롬프트 시험하고 저장하기",
+   "en": "Testing and Saving Prompts in the LangSmith Playground",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "코드를 짜기 전에 LangSmith 화면에서 모델과 입력값을 바꿔 가며 프롬프트를 돌려 보고, 이름을 붙여 커밋한 뒤 코드에서 불러 쓰는 첫 실습이다.",
+   "objectives": [
+    "모델 제공사 키를 워크스페이스 비밀값으로 넣고 플레이그라운드에서 모델을 골라 프롬프트를 실행할 수 있다",
+    "입력 변수가 있는 프롬프트를 만들어 이름을 붙여 저장하고 고칠 때마다 커밋할 수 있다",
+    "pull_prompt로 저장한 프롬프트를 코드에서 불러와 입력값을 채울 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.langsmith-tracing"
+   ],
+   "related": [
+    "mlops.prompt.version"
+   ],
+   "aliases": [
+    "LangSmith Playground",
+    "LangSmith 프롬프트",
+    "LangSmith 프롬프트 저장",
+    "pull_prompt",
+    "push_prompt"
+   ],
+   "refs": [
+    "https://docs.langchain.com/langsmith/prompt-engineering-quickstart"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.llamaindex-install",
+   "title": "LlamaIndex 설치와 패키지 구성",
+   "en": "Installing LlamaIndex and Its Packages",
+   "kind": "topic",
+   "level": 2,
+   "importance": 3,
+   "group": "RAG",
+   "summary": "LlamaIndex를 스타터 묶음 한 번에 깔지, 핵심 패키지에 필요한 통합 패키지만 골라 깔지 정하고 API 키를 환경 변수로 넣는 시작 단계다.",
+   "objectives": [
+    "pip install llama-index가 핵심 패키지와 OpenAI·파일 리더 통합을 함께 설치한다는 것을 설명할 수 있다",
+    "llama-index-core에 필요한 통합 패키지만 골라 따로 설치할 수 있다",
+    "OPENAI_API_KEY를 환경 변수로 넣고 기본 모델과 임베딩 모델이 무엇인지 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.basics.rag-big-picture"
+   ],
+   "related": [
+    "rag.agent.install-setup"
+   ],
+   "aliases": [
+    "LlamaIndex 설치",
+    "llama-index 설치",
+    "pip install llama-index",
+    "llama-index-core",
+    "LlamaIndex 통합 패키지"
+   ],
+   "refs": [
+    "https://developers.llamaindex.ai/python/framework/getting_started/installation/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
    "id": "rag.embedding.vector",
    "title": "벡터",
    "en": "Vector",
@@ -31648,6 +32349,69 @@
    "domain": "rag"
   },
   {
+   "id": "rag.agent.claude-desktop-config",
+   "title": "claude_desktop_config.json",
+   "en": "Claude Desktop Configuration File",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "Claude Desktop이 켜질 때 띄울 로컬 MCP 서버의 이름·실행 명령·인자·환경 변수를 mcpServers 아래에 적어 두는 JSON 설정 파일이다.",
+   "parent": "rag.agent.mcp-local-connect",
+   "aliases": [
+    "Claude Desktop 설정 파일",
+    "claude desktop config",
+    "mcpServers 설정"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/docs/develop/connect-local-servers"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.vector-store-index",
+   "title": "VectorStoreIndex",
+   "en": "VectorStoreIndex",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "RAG",
+   "summary": "LlamaIndex에서 문서를 조각내 임베딩한 뒤 질문과 가까운 조각을 찾을 수 있게 담아 두는 기본 인덱스다.",
+   "parent": "rag.retrieval.llamaindex-starter",
+   "aliases": [
+    "LlamaIndex 벡터 인덱스",
+    "VectorStoreIndex.from_documents",
+    "LlamaIndex index"
+   ],
+   "refs": [
+    "https://developers.llamaindex.ai/python/framework/getting_started/starter_example/"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.llamaindex-query-engine",
+   "title": "LlamaIndex 쿼리 엔진",
+   "en": "LlamaIndex Query Engine",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "RAG",
+   "summary": "인덱스에서 as_query_engine으로 꺼내, 질문을 넣으면 관련 조각을 찾아 LLM 답까지 한 번에 돌려주는 LlamaIndex 객체다.",
+   "parent": "rag.retrieval.llamaindex-starter",
+   "related": [
+    "rag.retrieval.retriever"
+   ],
+   "aliases": [
+    "LlamaIndex query engine",
+    "as_query_engine",
+    "LlamaIndex 질의 엔진"
+   ],
+   "refs": [
+    "https://developers.llamaindex.ai/python/framework/getting_started/starter_example/"
+   ],
+   "domain": "rag"
+  },
+  {
    "id": "rag.agent.model-router",
    "title": "모델 라우터(OpenRouter·LiteLLM)",
    "en": "Model Router",
@@ -31794,6 +32558,135 @@
    "refs": [
     "https://llmstxt.org/",
     "https://docs.langchain.com/use-these-docs"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-filesystem-server",
+   "title": "Filesystem MCP 서버",
+   "en": "Filesystem MCP Server",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "인자로 받은 폴더 안에서만 파일 읽기·만들기·옮기기·찾기 도구를 내주는 공식 레퍼런스 MCP 서버다.",
+   "parent": "rag.agent.mcp-local-connect",
+   "aliases": [
+    "server-filesystem",
+    "MCP 파일 시스템 서버",
+    "@modelcontextprotocol/server-filesystem"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/examples"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-reference-servers",
+   "title": "MCP 레퍼런스 서버",
+   "en": "MCP Reference Servers",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "MCP 프로젝트가 기능과 SDK 쓰는 법을 보여 주려고 직접 관리하는 예제 서버 모음으로, npx나 uvx 한 줄로 띄워 볼 수 있다.",
+   "parent": "rag.agent.mcp-local-connect",
+   "related": [
+    "rag.agent.mcp-registry"
+   ],
+   "aliases": [
+    "MCP 예제 서버",
+    "MCP reference implementations",
+    "modelcontextprotocol/servers"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/examples"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.claude-desktop-mcp-log",
+   "title": "Claude Desktop MCP 로그(mcp.log)",
+   "en": "Claude Desktop MCP Logs",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "Claude Desktop이 MCP 연결 기록은 mcp.log에, 서버별 표준 오류 출력은 mcp-server-이름.log에 남겨 서버가 안 붙는 이유를 찾게 해 주는 로그 파일이다.",
+   "parent": "rag.agent.mcp-local-connect",
+   "aliases": [
+    "mcp.log",
+    "Claude Desktop MCP 서버 로그",
+    "Claude Desktop 로그"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/docs/develop/connect-local-servers"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.simple-directory-reader",
+   "title": "SimpleDirectoryReader",
+   "en": "SimpleDirectoryReader",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "RAG",
+   "summary": "폴더 하나를 가리키면 안의 파일을 형식에 맞게 읽어 LlamaIndex 문서 목록으로 돌려주는 기본 리더다.",
+   "parent": "rag.retrieval.llamaindex-starter",
+   "related": [
+    "rag.retrieval.document-loader"
+   ],
+   "aliases": [
+    "LlamaIndex 리더",
+    "LlamaIndex 문서 읽기",
+    "SimpleDirectoryReader.load_data"
+   ],
+   "refs": [
+    "https://developers.llamaindex.ai/python/framework/getting_started/starter_example/"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.llamaindex-persist",
+   "title": "LlamaIndex 인덱스 저장과 불러오기",
+   "en": "Persisting and Loading a LlamaIndex Index",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "RAG",
+   "summary": "만든 인덱스를 storage_context.persist로 폴더에 저장했다가 load_index_from_storage로 다시 불러와 임베딩을 매번 새로 만들지 않는 방법이다.",
+   "parent": "rag.retrieval.llamaindex-starter",
+   "aliases": [
+    "storage_context.persist",
+    "load_index_from_storage",
+    "LlamaIndex 인덱스 저장"
+   ],
+   "refs": [
+    "https://developers.llamaindex.ai/python/framework/getting_started/starter_example/"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.llamaindex-function-agent",
+   "title": "LlamaIndex FunctionAgent",
+   "en": "LlamaIndex FunctionAgent",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "LlamaIndex에서 파이썬 함수 목록과 LLM, 시스템 프롬프트를 받아 도구를 골라 부르며 답하는 에이전트 클래스다.",
+   "parent": "rag.retrieval.llamaindex-starter",
+   "related": [
+    "rag.agent.first-agent"
+   ],
+   "aliases": [
+    "FunctionAgent",
+    "LlamaIndex 에이전트 클래스",
+    "LlamaIndex FunctionAgent.run"
+   ],
+   "refs": [
+    "https://developers.llamaindex.ai/python/framework/getting_started/starter_example/"
    ],
    "domain": "rag"
   },
@@ -34762,6 +35655,74 @@
    "domain": "ax"
   },
   {
+   "id": "ax.coding.agent-fix-bug",
+   "title": "오류 메시지를 주고 에이전트에게 버그 고치게 하기",
+   "en": "Fixing Bugs with a Coding Agent",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "AI 네이티브 개발",
+   "summary": "오류가 난 명령과 메시지를 에이전트에게 보여 주고, 고칠 방법 몇 가지를 받은 뒤 하나를 골라 적용하고 다시 돌려 확인하는 순서다.",
+   "objectives": [
+    "오류를 다시 내는 명령과 오류 메시지·스택 트레이스를 함께 에이전트에게 알려 줄 수 있다",
+    "바로 고치게 하지 않고 고칠 방법을 여러 개 먼저 받아 고를 수 있다",
+    "고른 방법을 적용하게 한 뒤 같은 명령을 다시 돌려 오류가 사라졌는지 확인할 수 있다",
+    "오류가 매번 나는지 가끔 나는지와 재현 순서를 덧붙여 요청할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.claude-code-quickstart"
+   ],
+   "related": [
+    "ax.coding.explore-codebase",
+    "be.error.debugging-method"
+   ],
+   "aliases": [
+    "에이전트로 버그 수정",
+    "에이전트 디버깅",
+    "Claude Code 버그 수정",
+    "fix bugs with Claude Code",
+    "오류 메시지 붙여넣기"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/common-workflows#fix-bugs-efficiently"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.agent-write-tests",
+   "title": "에이전트에게 빠진 테스트 채우게 하기",
+   "en": "Adding Tests with a Coding Agent",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "AI 네이티브 개발",
+   "summary": "테스트가 없는 함수를 에이전트에게 찾게 하고, 기존 테스트 모양을 따라 테스트와 경계값 경우를 추가한 뒤 실제로 돌려 통과를 확인하는 순서다.",
+   "objectives": [
+    "에이전트에게 테스트가 닿지 않는 함수를 찾아 달라고 요청할 수 있다",
+    "확인하고 싶은 동작을 밝혀 테스트를 추가하게 하고 경계값·오류 경우를 더하게 할 수 있다",
+    "새 테스트를 실제로 돌리게 하고 실패를 고치게 한 뒤 결과를 직접 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.claude-code-quickstart",
+    "be.test.pytest-first"
+   ],
+   "related": [
+    "ax.coding.test-tampering",
+    "ax.coding.agent-fix-bug"
+   ],
+   "aliases": [
+    "에이전트로 테스트 작성",
+    "테스트 생성 요청",
+    "Claude Code 테스트 추가",
+    "AI 테스트 생성",
+    "generate tests with Claude Code"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/common-workflows#work-with-tests"
+   ],
+   "domain": "ax"
+  },
+  {
    "id": "ax.security.misinformation",
    "title": "AI의 잘못된 정보 알아채기: 환각 패키지와 가짜 근거",
    "en": "Spotting LLM Misinformation (LLM09)",
@@ -34893,6 +35854,74 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.copilot-inline-suggestions",
+   "title": "GitHub Copilot 인라인 코드 제안 받기",
+   "en": "Getting Inline Code Suggestions with GitHub Copilot",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "에디터에 Copilot 확장을 깔고 코드를 치면 흐린 글자로 다음 코드가 제안되고, Tab으로 받거나 Esc로 버리는 첫 사용법이다.",
+   "objectives": [
+    "Copilot 확장을 설치하고 GitHub 계정으로 로그인해 인라인 제안이 뜨게 할 수 있다",
+    "흐린 글자로 뜬 제안을 Tab으로 받고 Esc로 거절하고 단어 단위로 일부만 받을 수 있다",
+    "주석에 하려는 일을 적어 그에 맞는 코드 제안을 받아 볼 수 있다",
+    "다른 제안 후보를 넘겨 보며 마음에 드는 것을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "ax.basics.ai-coding-tools"
+   ],
+   "related": [
+    "ax.coding.vscode-extension",
+    "ax.coding.public-code-match"
+   ],
+   "aliases": [
+    "Copilot 코드 완성",
+    "Copilot 자동 완성",
+    "Copilot inline suggestions",
+    "Copilot code completion",
+    "고스트 텍스트",
+    "ghost text"
+   ],
+   "refs": [
+    "https://docs.github.com/en/copilot/how-tos/get-code-suggestions/get-ide-code-suggestions"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.copilot-chat-ide",
+   "title": "에디터에서 Copilot Chat에 묻기",
+   "en": "Asking GitHub Copilot Chat in Your IDE",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "VS Code의 채팅 창이나 인라인 채팅으로 Copilot에 코드를 묻고, 모드와 @·# 표시로 질문 범위와 참고할 내용을 정하는 방법이다.",
+   "objectives": [
+    "채팅 창·빠른 채팅·인라인 채팅(Ctrl+I) 중 하나를 열어 열린 파일에 대해 질문할 수 있다",
+    "묻기·에이전트·계획 모드를 바꿔 가며 답만 받을지 수정까지 맡길지 고를 수 있다",
+    "@ 참여자와 # 변수로 질문에 쓸 범위와 파일을 지정할 수 있다",
+    "답 위의 참조 목록을 펼쳐 Copilot이 어떤 파일을 보고 답했는지 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.basics.ai-coding-tools"
+   ],
+   "related": [
+    "ax.coding.vscode-extension",
+    "ax.coding.agent-first"
+   ],
+   "aliases": [
+    "Copilot Chat",
+    "코파일럿 채팅",
+    "Copilot 채팅",
+    "GitHub Copilot Chat"
+   ],
+   "refs": [
+    "https://docs.github.com/en/copilot/how-tos/chat-with-copilot/chat-in-ide"
+   ],
    "domain": "ax"
   },
   {
@@ -35182,6 +36211,124 @@
    "domain": "ax"
   },
   {
+   "id": "ax.coding.copilot-chat-modes",
+   "title": "Copilot Chat 모드(묻기·에이전트·계획)",
+   "en": "Copilot Chat Modes",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "Copilot Chat에서 답만 받을지, 계획을 세우게 할지, 파일 수정과 명령 실행까지 맡길지를 고르는 선택지다.",
+   "parent": "ax.coding.copilot-chat-ide",
+   "related": [
+    "ax.coding.plan-mode"
+   ],
+   "aliases": [
+    "Copilot ask mode",
+    "Copilot agent mode",
+    "Copilot 에이전트 모드",
+    "Copilot 채팅 모드"
+   ],
+   "refs": [
+    "https://docs.github.com/en/copilot/how-tos/chat-with-copilot/chat-in-ide"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.copilot-instructions",
+   "title": "Copilot 저장소 지시 파일",
+   "en": "Copilot Repository Custom Instructions",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "저장소의 .github/copilot-instructions.md에 프로젝트 규칙을 글로 적어 두면 Copilot이 채팅·리뷰 때마다 그 내용을 함께 읽는 파일이다.",
+   "parent": "ax.coding.copilot-chat-ide",
+   "related": [
+    "ax.coding.claude-md",
+    "ax.coding.rules-dir"
+   ],
+   "aliases": [
+    "copilot-instructions.md",
+    "Copilot custom instructions",
+    "Copilot 사용자 지정 지침",
+    ".instructions.md"
+   ],
+   "refs": [
+    "https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.copilot-code-review",
+   "title": "PR에 Copilot 리뷰 요청하기",
+   "en": "Requesting a Copilot Code Review",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "GitHub PR의 Reviewers에서 Copilot을 고르면 심각도가 붙은 의견과 수정 제안을 남기지만, 승인으로는 세지 않는 기본 리뷰다.",
+   "related": [
+    "ax.coding.code-review-command"
+   ],
+   "aliases": [
+    "Copilot code review",
+    "Copilot 코드 리뷰",
+    "Copilot 리뷰어",
+    "Copilot PR 리뷰"
+   ],
+   "refs": [
+    "https://docs.github.com/en/copilot/how-tos/use-copilot-agents/request-a-code-review/use-code-review"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.paste-image",
+   "title": "Claude Code에 스크린샷 붙여 넣기",
+   "en": "Adding Images to a Claude Code Conversation",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "오류 화면이나 디자인 시안을 끌어 놓기·Ctrl+V(Windows는 Alt+V)·파일 경로로 Claude Code 대화에 넣어 글로 설명하기 어려운 내용을 보여 주는 방법이다.",
+   "aliases": [
+    "Claude Code 이미지 붙여넣기",
+    "Claude Code 스크린샷",
+    "Claude Code 이미지 입력",
+    "Claude Code Ctrl+V"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/common-workflows#work-with-images"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.reproduce-command",
+   "title": "에이전트에게 알려 주는 재현 명령",
+   "en": "Reproduction Command for an Agent",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "에이전트가 같은 오류를 직접 다시 내 보고 고친 뒤에도 다시 돌려 볼 수 있도록 요청에 함께 적는 실행 명령이다.",
+   "parent": "ax.coding.agent-fix-bug",
+   "related": [
+    "ax.basics.verify-ai-output"
+   ],
+   "aliases": [
+    "오류 재현 명령",
+    "재현 방법 알려주기",
+    "repro command",
+    "reproduction steps"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/common-workflows#fix-bugs-efficiently"
+   ],
+   "domain": "ax"
+  },
+  {
    "id": "ax.coding.auto-memory",
    "title": "자동 메모리(auto memory)",
    "en": "Auto Memory",
@@ -35429,6 +36576,92 @@
    "refs": [
     "https://airc.nist.gov/airmf-resources/airmf/2-sec-audience/",
     "https://www.nist.gov/itl/ai-risk-management-framework"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.copilot-next-edit-suggestions",
+   "title": "Copilot 다음 편집 제안(NES)",
+   "en": "Copilot Next Edit Suggestions",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "Copilot이 커서 위치가 아니라 다음에 고칠 것 같은 곳을 짐작해 제안하고, 여백의 화살표를 따라 Tab으로 이동해 받는 기능이다.",
+   "parent": "ax.coding.copilot-inline-suggestions",
+   "aliases": [
+    "다음 편집 제안",
+    "next edit suggestions",
+    "Copilot NES",
+    "Copilot 다음 수정 제안"
+   ],
+   "refs": [
+    "https://docs.github.com/en/copilot/how-tos/get-code-suggestions/get-ide-code-suggestions"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.copilot-comment-to-code",
+   "title": "주석으로 Copilot 코드 제안 이끌기",
+   "en": "Prompting Copilot with Code Comments",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "만들려는 동작을 코드 주석으로 먼저 적어 두면 Copilot이 그 설명에 맞는 코드를 아래에 제안하는 사용법이다.",
+   "parent": "ax.coding.copilot-inline-suggestions",
+   "aliases": [
+    "주석으로 코드 생성",
+    "comment to code",
+    "Copilot 주석 프롬프트"
+   ],
+   "refs": [
+    "https://docs.github.com/en/copilot/how-tos/get-code-suggestions/get-ide-code-suggestions"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.copilot-inline-chat",
+   "title": "Copilot 인라인 채팅(Ctrl+I)",
+   "en": "Copilot Inline Chat",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "채팅 창을 따로 열지 않고 에디터의 코드 바로 위에서 Copilot에 묻거나 고치게 하는 작은 입력 칸이다.",
+   "parent": "ax.coding.copilot-chat-ide",
+   "aliases": [
+    "Copilot 인라인 채팅",
+    "Copilot inline chat",
+    "Copilot Ctrl+I"
+   ],
+   "refs": [
+    "https://docs.github.com/en/copilot/how-tos/chat-with-copilot/chat-in-ide"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.copilot-chat-participants",
+   "title": "Copilot Chat의 @ 참여자와 # 변수",
+   "en": "Copilot Chat Participants and Variables",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "Copilot Chat 입력 칸에 @로 질문을 맡을 분야를, #로 함께 볼 파일이나 웹 검색 같은 맥락을 붙이는 표시다.",
+   "parent": "ax.coding.copilot-chat-ide",
+   "related": [
+    "ax.coding.file-mention"
+   ],
+   "aliases": [
+    "chat participant",
+    "chat variable",
+    "Copilot @github",
+    "Copilot #web",
+    "Copilot 채팅 변수"
+   ],
+   "refs": [
+    "https://docs.github.com/en/copilot/how-tos/chat-with-copilot/chat-in-ide"
    ],
    "domain": "ax"
   },
@@ -42658,6 +43891,102 @@
    "domain": "ml"
   },
   {
+   "id": "ml.data.pandas-datetime",
+   "title": "pandas로 날짜·시간 열 다루기",
+   "en": "Working with Dates and Times in pandas",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "글자로 읽힌 날짜 열을 pandas 날짜 자료형으로 바꾸고 월·요일·시각을 꺼내 집계하는 첫 사용법이다.",
+   "objectives": [
+    "pd.to_datetime이나 read_csv의 parse_dates로 글자 날짜 열을 날짜 자료형으로 바꿀 수 있다",
+    ".dt로 연·월·요일·시각을 꺼내 새 열을 만들고 groupby에 쓸 수 있다",
+    "resample로 시간별 데이터를 일별·월별 평균으로 묶을 수 있다"
+   ],
+   "prerequisites": [
+    "ml.data.pandas-dataframe-basics",
+    "ml.data.pandas-groupby"
+   ],
+   "aliases": [
+    "pandas 날짜 처리",
+    "pandas 시계열 입문",
+    "pandas datetime",
+    "판다스 날짜 열"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/getting_started/intro_tutorials/09_timeseries.html",
+    "https://pandas.pydata.org/docs/user_guide/timeseries.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.pandas-text-str",
+   "title": "pandas .str로 글자 열 다듬기",
+   "en": "Manipulating Text Columns with pandas .str",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "글자가 든 열 전체에 소문자 바꾸기·나누기·포함 여부 확인 같은 문자열 작업을 한 번에 적용하는 pandas 사용법이다.",
+   "objectives": [
+    ".str.lower·.str.strip으로 열 전체의 대소문자와 공백을 정리할 수 있다",
+    ".str.split과 .str.get으로 글자 열의 일부를 꺼내 새 열을 만들 수 있다",
+    ".str.contains의 결과로 특정 글자가 든 행만 골라낼 수 있다"
+   ],
+   "prerequisites": [
+    "ml.data.pandas-dataframe-basics"
+   ],
+   "related": [
+    "ml.data.text-vectorization"
+   ],
+   "aliases": [
+    "pandas 문자열 처리",
+    "pandas 텍스트 열",
+    "판다스 문자열",
+    "pandas string methods"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/getting_started/intro_tutorials/10_text_data.html",
+    "https://pandas.pydata.org/docs/user_guide/text.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.pandas-pivot-melt",
+   "title": "pandas pivot_table과 melt로 표 모양 바꾸기",
+   "en": "Reshaping Tables with pandas pivot_table and melt",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "긴 표를 범주별 열이 있는 넓은 표로 펼치거나 넓은 표를 다시 긴 표로 접는 pandas의 표 모양 바꾸기다.",
+   "objectives": [
+    "긴 표와 넓은 표의 차이를 예시 표로 설명할 수 있다",
+    "pivot_table에 index·columns·values·aggfunc를 넣어 범주별 요약표를 만들 수 있다",
+    "melt로 여러 열을 변수 이름 열과 값 열 두 개로 접을 수 있다"
+   ],
+   "prerequisites": [
+    "ml.data.pandas-groupby"
+   ],
+   "related": [
+    "ml.data.pandas-groupby",
+    "ml.data.pandas-merge"
+   ],
+   "aliases": [
+    "pandas 피벗 테이블",
+    "pandas pivot",
+    "pivot_table",
+    "pandas 표 재구조화",
+    "판다스 피벗"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/getting_started/intro_tutorials/07_reshape_table_layout.html",
+    "https://pandas.pydata.org/docs/user_guide/reshaping.html"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.eval.accuracy",
    "title": "정확도",
    "en": "Accuracy",
@@ -43058,6 +44387,90 @@
    "domain": "ml"
   },
   {
+   "id": "ml.data.to-datetime",
+   "title": "날짜 변환(pd.to_datetime)",
+   "en": "pd.to_datetime",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "글자나 숫자로 된 날짜 값을 pandas가 계산할 수 있는 날짜 자료형으로 바꾸는 함수다.",
+   "parent": "ml.data.pandas-datetime",
+   "aliases": [
+    "to_datetime",
+    "parse_dates",
+    "날짜 형 변환"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/user_guide/timeseries.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.dt-accessor",
+   "title": ".dt 접근자",
+   "en": "pandas .dt Accessor",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "날짜 자료형 열에서 연·월·요일·시각 같은 부분 값을 열 전체에 대해 꺼내 주는 pandas 접근자다.",
+   "parent": "ml.data.pandas-datetime",
+   "aliases": [
+    ".dt.month",
+    ".dt.day_of_week",
+    "dt accessor",
+    "날짜 속성 꺼내기"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/getting_started/intro_tutorials/09_timeseries.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.str-accessor",
+   "title": ".str 접근자",
+   "en": "pandas .str Accessor",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "글자가 든 Series의 모든 값에 파이썬 문자열 메서드를 한꺼번에 적용하고 결측값은 건너뛰는 pandas 접근자다.",
+   "parent": "ml.data.pandas-text-str",
+   "aliases": [
+    "str accessor",
+    ".str.lower",
+    ".str.split",
+    "pandas 문자열 메서드"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/user_guide/text.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.long-wide-format",
+   "title": "긴 표와 넓은 표",
+   "en": "Long and Wide Table Formats",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "한 행에 관측값 하나를 두는 긴 표와 범주마다 열을 하나씩 두는 넓은 표라는 두 가지 표 모양이다.",
+   "parent": "ml.data.pandas-pivot-melt",
+   "aliases": [
+    "long format",
+    "wide format",
+    "긴 형식",
+    "넓은 형식",
+    "tidy data"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/getting_started/intro_tutorials/07_reshape_table_layout.html"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.supervised.bunch",
    "title": "Bunch(사이킷런 결과 묶음)",
    "en": "Bunch",
@@ -43183,6 +44596,94 @@
    ],
    "refs": [
     "https://pandas.pydata.org/docs/getting_started/intro_tutorials/05_add_columns.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.resample",
+   "title": "시간 간격으로 다시 묶기(resample)",
+   "en": "pandas resample",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "날짜 인덱스를 가진 데이터를 일·월 같은 새 시간 간격으로 묶어 평균·최댓값 등으로 요약하는 pandas 메서드다.",
+   "parent": "ml.data.pandas-datetime",
+   "aliases": [
+    "df.resample",
+    "pandas 리샘플"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/getting_started/intro_tutorials/09_timeseries.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.str-contains",
+   "title": "글자 포함 행 찾기(str.contains)",
+   "en": "pandas str.contains",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "각 값에 특정 글자나 패턴이 들어 있는지를 True·False로 돌려주어 행을 거르는 데 쓰는 pandas 문자열 메서드다.",
+   "parent": "ml.data.pandas-text-str",
+   "related": [
+    "ml.data.boolean-indexing"
+   ],
+   "aliases": [
+    "str.contains",
+    ".str.contains",
+    "문자열 포함 검사",
+    "글자로 행 거르기"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/getting_started/intro_tutorials/10_text_data.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.pandas-melt",
+   "title": "넓은 표 접기(melt)",
+   "en": "pandas melt",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "넓은 표의 여러 열을 변수 이름 열과 값 열 두 개로 모아 긴 표로 바꾸는 pandas 메서드다.",
+   "parent": "ml.data.pandas-pivot-melt",
+   "aliases": [
+    "pd.melt",
+    "df.melt",
+    "pandas 언피벗",
+    "id_vars"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/user_guide/reshaping.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.pandas-crosstab",
+   "title": "교차표(pd.crosstab)",
+   "en": "pandas crosstab",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "두 범주 열의 값 조합마다 행이 몇 개인지 세어 표로 보여 주는 pandas 함수다.",
+   "parent": "ml.data.pandas-pivot-melt",
+   "related": [
+    "ml.data.value-counts"
+   ],
+   "aliases": [
+    "crosstab",
+    "pd.crosstab",
+    "빈도 교차표",
+    "pandas 교차 집계"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/user_guide/reshaping.html"
    ],
    "domain": "ml"
   },

@@ -482,6 +482,142 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "rag.agent.mcp-local-connect",
+    "title": "Claude Desktop에 로컬 MCP 서버 연결하기",
+    "en": "Connecting Local MCP Servers to Claude Desktop",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "설정 파일에 내 컴퓨터에서 띄울 MCP 서버의 실행 명령을 적고 앱을 다시 켜서, Claude가 허락을 받아 내 파일을 읽고 쓰게 만드는 첫 실습이다.",
+    "objectives": [
+      "Claude Desktop의 개발자 설정에서 claude_desktop_config.json을 열고 mcpServers 항목에 Filesystem 서버를 적을 수 있다",
+      "서버가 접근할 폴더를 절대 경로로 골라 넣고 앱을 완전히 다시 켜서 커넥터 목록에 도구가 보이는지 확인할 수 있다",
+      "Claude가 파일 작업 전에 묻는 승인 요청을 읽고 허락하거나 거절할 수 있다",
+      "서버가 안 보일 때 설정 문법·경로·로그 파일을 차례로 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.mcp-idea"
+    ],
+    "related": [
+      "rag.agent.mcp-remote-connect"
+    ],
+    "aliases": [
+      "로컬 MCP 연결",
+      "local MCP server 연결",
+      "Claude Desktop MCP 설정",
+      "connect local MCP",
+      "Claude Desktop 로컬 서버"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/docs/develop/connect-local-servers",
+      "https://modelcontextprotocol.io/examples"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.retrieval.llamaindex-starter",
+    "title": "LlamaIndex로 첫 RAG 에이전트 만들기",
+    "en": "Building a First RAG Agent with LlamaIndex",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "RAG",
+    "summary": "폴더의 문서를 읽어 벡터 인덱스를 만들고 그 인덱스에 묻는 쿼리 엔진을 도구로 감싸 에이전트에 넘긴 뒤, 인덱스를 디스크에 저장해 다시 쓰는 튜토리얼이다.",
+    "objectives": [
+      "FunctionAgent에 파이썬 함수를 도구로 넘겨 질문에 답하는 에이전트를 돌릴 수 있다",
+      "SimpleDirectoryReader로 문서를 읽고 VectorStoreIndex.from_documents로 인덱스를 만들 수 있다",
+      "as_query_engine으로 만든 쿼리 엔진을 도구 함수 안에서 불러 문서 기반 답을 받을 수 있다",
+      "storage_context.persist로 인덱스를 저장하고 load_index_from_storage로 다시 불러올 수 있다"
+    ],
+    "prerequisites": [
+      "rag.retrieval.llamaindex-install",
+      "rag.basics.rag-big-picture",
+      "rag.embedding.meaning-as-numbers"
+    ],
+    "related": [
+      "rag.retrieval.load-split",
+      "rag.agent.first-agent"
+    ],
+    "aliases": [
+      "LlamaIndex 튜토리얼",
+      "LlamaIndex starter",
+      "LlamaIndex RAG",
+      "LlamaIndex 에이전트",
+      "llama_index 시작하기"
+    ],
+    "refs": [
+      "https://developers.llamaindex.ai/python/framework/getting_started/starter_example/"
+    ]
+  },
+  {
+    "id": "rag.agent.langsmith-playground",
+    "title": "LangSmith 플레이그라운드에서 프롬프트 시험하고 저장하기",
+    "en": "Testing and Saving Prompts in the LangSmith Playground",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "코드를 짜기 전에 LangSmith 화면에서 모델과 입력값을 바꿔 가며 프롬프트를 돌려 보고, 이름을 붙여 커밋한 뒤 코드에서 불러 쓰는 첫 실습이다.",
+    "objectives": [
+      "모델 제공사 키를 워크스페이스 비밀값으로 넣고 플레이그라운드에서 모델을 골라 프롬프트를 실행할 수 있다",
+      "입력 변수가 있는 프롬프트를 만들어 이름을 붙여 저장하고 고칠 때마다 커밋할 수 있다",
+      "pull_prompt로 저장한 프롬프트를 코드에서 불러와 입력값을 채울 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.langsmith-tracing"
+    ],
+    "related": [
+      "mlops.prompt.version"
+    ],
+    "aliases": [
+      "LangSmith Playground",
+      "LangSmith 프롬프트",
+      "LangSmith 프롬프트 저장",
+      "pull_prompt",
+      "push_prompt"
+    ],
+    "refs": [
+      "https://docs.langchain.com/langsmith/prompt-engineering-quickstart"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.retrieval.llamaindex-install",
+    "title": "LlamaIndex 설치와 패키지 구성",
+    "en": "Installing LlamaIndex and Its Packages",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "RAG",
+    "summary": "LlamaIndex를 스타터 묶음 한 번에 깔지, 핵심 패키지에 필요한 통합 패키지만 골라 깔지 정하고 API 키를 환경 변수로 넣는 시작 단계다.",
+    "objectives": [
+      "pip install llama-index가 핵심 패키지와 OpenAI·파일 리더 통합을 함께 설치한다는 것을 설명할 수 있다",
+      "llama-index-core에 필요한 통합 패키지만 골라 따로 설치할 수 있다",
+      "OPENAI_API_KEY를 환경 변수로 넣고 기본 모델과 임베딩 모델이 무엇인지 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.basics.rag-big-picture"
+    ],
+    "related": [
+      "rag.agent.install-setup"
+    ],
+    "aliases": [
+      "LlamaIndex 설치",
+      "llama-index 설치",
+      "pip install llama-index",
+      "llama-index-core",
+      "LlamaIndex 통합 패키지"
+    ],
+    "refs": [
+      "https://developers.llamaindex.ai/python/framework/getting_started/installation/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "rag.embedding.vector",
     "title": "벡터",
     "en": "Vector",
@@ -810,6 +946,66 @@
     ]
   },
   {
+    "id": "rag.agent.claude-desktop-config",
+    "title": "claude_desktop_config.json",
+    "en": "Claude Desktop Configuration File",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "Claude Desktop이 켜질 때 띄울 로컬 MCP 서버의 이름·실행 명령·인자·환경 변수를 mcpServers 아래에 적어 두는 JSON 설정 파일이다.",
+    "parent": "rag.agent.mcp-local-connect",
+    "aliases": [
+      "Claude Desktop 설정 파일",
+      "claude desktop config",
+      "mcpServers 설정"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/docs/develop/connect-local-servers"
+    ]
+  },
+  {
+    "id": "rag.retrieval.vector-store-index",
+    "title": "VectorStoreIndex",
+    "en": "VectorStoreIndex",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "RAG",
+    "summary": "LlamaIndex에서 문서를 조각내 임베딩한 뒤 질문과 가까운 조각을 찾을 수 있게 담아 두는 기본 인덱스다.",
+    "parent": "rag.retrieval.llamaindex-starter",
+    "aliases": [
+      "LlamaIndex 벡터 인덱스",
+      "VectorStoreIndex.from_documents",
+      "LlamaIndex index"
+    ],
+    "refs": [
+      "https://developers.llamaindex.ai/python/framework/getting_started/starter_example/"
+    ]
+  },
+  {
+    "id": "rag.retrieval.llamaindex-query-engine",
+    "title": "LlamaIndex 쿼리 엔진",
+    "en": "LlamaIndex Query Engine",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "RAG",
+    "summary": "인덱스에서 as_query_engine으로 꺼내, 질문을 넣으면 관련 조각을 찾아 LLM 답까지 한 번에 돌려주는 LlamaIndex 객체다.",
+    "parent": "rag.retrieval.llamaindex-starter",
+    "related": [
+      "rag.retrieval.retriever"
+    ],
+    "aliases": [
+      "LlamaIndex query engine",
+      "as_query_engine",
+      "LlamaIndex 질의 엔진"
+    ],
+    "refs": [
+      "https://developers.llamaindex.ai/python/framework/getting_started/starter_example/"
+    ]
+  },
+  {
     "id": "rag.agent.model-router",
     "title": "모델 라우터(OpenRouter·LiteLLM)",
     "en": "Model Router",
@@ -950,6 +1146,129 @@
     "refs": [
       "https://llmstxt.org/",
       "https://docs.langchain.com/use-these-docs"
+    ]
+  },
+  {
+    "id": "rag.agent.mcp-filesystem-server",
+    "title": "Filesystem MCP 서버",
+    "en": "Filesystem MCP Server",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "인자로 받은 폴더 안에서만 파일 읽기·만들기·옮기기·찾기 도구를 내주는 공식 레퍼런스 MCP 서버다.",
+    "parent": "rag.agent.mcp-local-connect",
+    "aliases": [
+      "server-filesystem",
+      "MCP 파일 시스템 서버",
+      "@modelcontextprotocol/server-filesystem"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/examples"
+    ]
+  },
+  {
+    "id": "rag.agent.mcp-reference-servers",
+    "title": "MCP 레퍼런스 서버",
+    "en": "MCP Reference Servers",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "MCP 프로젝트가 기능과 SDK 쓰는 법을 보여 주려고 직접 관리하는 예제 서버 모음으로, npx나 uvx 한 줄로 띄워 볼 수 있다.",
+    "parent": "rag.agent.mcp-local-connect",
+    "related": [
+      "rag.agent.mcp-registry"
+    ],
+    "aliases": [
+      "MCP 예제 서버",
+      "MCP reference implementations",
+      "modelcontextprotocol/servers"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/examples"
+    ]
+  },
+  {
+    "id": "rag.agent.claude-desktop-mcp-log",
+    "title": "Claude Desktop MCP 로그(mcp.log)",
+    "en": "Claude Desktop MCP Logs",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "Claude Desktop이 MCP 연결 기록은 mcp.log에, 서버별 표준 오류 출력은 mcp-server-이름.log에 남겨 서버가 안 붙는 이유를 찾게 해 주는 로그 파일이다.",
+    "parent": "rag.agent.mcp-local-connect",
+    "aliases": [
+      "mcp.log",
+      "Claude Desktop MCP 서버 로그",
+      "Claude Desktop 로그"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/docs/develop/connect-local-servers"
+    ]
+  },
+  {
+    "id": "rag.retrieval.simple-directory-reader",
+    "title": "SimpleDirectoryReader",
+    "en": "SimpleDirectoryReader",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "RAG",
+    "summary": "폴더 하나를 가리키면 안의 파일을 형식에 맞게 읽어 LlamaIndex 문서 목록으로 돌려주는 기본 리더다.",
+    "parent": "rag.retrieval.llamaindex-starter",
+    "related": [
+      "rag.retrieval.document-loader"
+    ],
+    "aliases": [
+      "LlamaIndex 리더",
+      "LlamaIndex 문서 읽기",
+      "SimpleDirectoryReader.load_data"
+    ],
+    "refs": [
+      "https://developers.llamaindex.ai/python/framework/getting_started/starter_example/"
+    ]
+  },
+  {
+    "id": "rag.retrieval.llamaindex-persist",
+    "title": "LlamaIndex 인덱스 저장과 불러오기",
+    "en": "Persisting and Loading a LlamaIndex Index",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "RAG",
+    "summary": "만든 인덱스를 storage_context.persist로 폴더에 저장했다가 load_index_from_storage로 다시 불러와 임베딩을 매번 새로 만들지 않는 방법이다.",
+    "parent": "rag.retrieval.llamaindex-starter",
+    "aliases": [
+      "storage_context.persist",
+      "load_index_from_storage",
+      "LlamaIndex 인덱스 저장"
+    ],
+    "refs": [
+      "https://developers.llamaindex.ai/python/framework/getting_started/starter_example/"
+    ]
+  },
+  {
+    "id": "rag.agent.llamaindex-function-agent",
+    "title": "LlamaIndex FunctionAgent",
+    "en": "LlamaIndex FunctionAgent",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "LlamaIndex에서 파이썬 함수 목록과 LLM, 시스템 프롬프트를 받아 도구를 골라 부르며 답하는 에이전트 클래스다.",
+    "parent": "rag.retrieval.llamaindex-starter",
+    "related": [
+      "rag.agent.first-agent"
+    ],
+    "aliases": [
+      "FunctionAgent",
+      "LlamaIndex 에이전트 클래스",
+      "LlamaIndex FunctionAgent.run"
+    ],
+    "refs": [
+      "https://developers.llamaindex.ai/python/framework/getting_started/starter_example/"
     ]
   },
   {

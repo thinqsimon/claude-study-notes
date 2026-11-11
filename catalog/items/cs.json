@@ -209,6 +209,71 @@
     ]
   },
   {
+    "id": "cs.dsa.array-basics",
+    "title": "배열: 번호로 찾아가는 칸들",
+    "en": "Array Basics",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "자료구조",
+    "summary": "배열은 같은 종류의 값을 차례로 늘어놓고 0부터 매긴 번호(인덱스)로 어느 칸이든 곧바로 읽고 쓰게 하는 자료구조다.",
+    "objectives": [
+      "배열의 칸을 인덱스로 읽고 바꾸는 코드를 따라 쓸 수 있다",
+      "n개짜리 배열의 마지막 인덱스가 n-1인 까닭을 설명할 수 있다",
+      "인덱스로 칸을 찾는 시간이 배열 길이와 상관없다는 것을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.arch.computer-parts"
+    ],
+    "related": [
+      "cs.dsa.array-vs-linked-list",
+      "cs.dsa.data-structure"
+    ],
+    "aliases": [
+      "배열 자료구조",
+      "array data structure",
+      "배열 인덱스",
+      "array index"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/array.html",
+      "https://docs.python.org/3/builtins/time-complexity.html"
+    ]
+  },
+  {
+    "id": "cs.arch.boolean-logic",
+    "title": "논리 연산과 진리표: AND·OR·NOT",
+    "en": "Boolean Logic and Truth Tables",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "컴퓨터 구조",
+    "summary": "참과 거짓 두 값을 AND·OR·NOT으로 묶어 계산하는 규칙이며, 프로그램의 조건문과 CPU 안의 논리 회로가 모두 이 규칙을 따른다.",
+    "objectives": [
+      "AND·OR·NOT의 진리표를 직접 채울 수 있다",
+      "두 조건을 and·or로 묶은 조건식의 결과를 진리표로 따져 볼 수 있다",
+      "같은 논리 연산이 코드의 조건식과 하드웨어의 논리 게이트에 함께 쓰인다는 것을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.data.bits-bytes"
+    ],
+    "related": [
+      "cs.data.binary-bitwise"
+    ],
+    "aliases": [
+      "불 논리",
+      "Boolean logic",
+      "논리 연산",
+      "logical operator",
+      "불 대수",
+      "Boolean algebra"
+    ],
+    "refs": [
+      "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c4/c4s1/",
+      "https://docs.python.org/3/library/stdtypes.html"
+    ]
+  },
+  {
     "id": "cs.net.protocol-layers",
     "title": "인터넷 통신의 네 계층",
     "en": "The Four Layers of the Internet Protocol Suite",
@@ -292,6 +357,40 @@
       "https://www.rfc-editor.org/rfc/rfc1122",
       "https://www.rfc-editor.org/rfc/rfc1812",
       "https://man7.org/linux/man-pages/man8/ip-route.8.html"
+    ]
+  },
+  {
+    "id": "cs.data.text-binary-files",
+    "title": "텍스트 파일과 바이너리 파일",
+    "en": "Text Files and Binary Files",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "텍스트 파일은 문자 인코딩으로 읽는 글자들이 줄바꿈 문자로 나뉜 줄의 모임이고, 바이너리 파일은 이미지처럼 글자로 읽지 않는 바이트 그대로의 파일이다.",
+    "objectives": [
+      "텍스트 파일과 바이너리 파일을 예를 들어 구분할 수 있다",
+      "파일을 텍스트 모드와 바이너리 모드로 여는 코드를 따라 쓸 수 있다",
+      "이미지 파일을 텍스트 모드로 다루면 안 되는 까닭을 줄바꿈 변환으로 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.data.character-codes",
+      "cs.os.files-directories"
+    ],
+    "related": [
+      "be.python.files"
+    ],
+    "aliases": [
+      "텍스트 파일",
+      "text file",
+      "바이너리 파일",
+      "binary file",
+      "이진 파일",
+      "바이너리 모드"
+    ],
+    "refs": [
+      "https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap03.html",
+      "https://docs.python.org/3/tutorial/inputoutput.html"
     ]
   },
   {
@@ -393,6 +492,25 @@
     ],
     "refs": [
       "https://docs.python.org/3/library/stdtypes.html#bytes-objects"
+    ]
+  },
+  {
+    "id": "cs.dsa.zero-based-index",
+    "title": "0부터 세는 인덱스",
+    "en": "Zero-based Indexing",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "자료구조",
+    "summary": "배열의 첫 칸을 0번으로 세는 방식이라 n개짜리 배열의 칸 번호는 0부터 n-1까지다.",
+    "parent": "cs.dsa.array-basics",
+    "aliases": [
+      "0-based indexing",
+      "제로 베이스 인덱스",
+      "0번 인덱스"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/zeroBasedIndexing.html"
     ]
   },
   {
@@ -687,6 +805,128 @@
     ]
   },
   {
+    "id": "cs.dsa.index-out-of-range",
+    "title": "범위를 벗어난 인덱스",
+    "en": "Index Out of Range",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "자료구조",
+    "summary": "배열에 없는 칸 번호를 가리켜 생기는 오류로, 파이썬에서는 IndexError로 나타난다.",
+    "parent": "cs.dsa.array-basics",
+    "aliases": [
+      "IndexError",
+      "index out of range",
+      "인덱스 범위 초과",
+      "out of bounds"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/stdtypes.html"
+    ]
+  },
+  {
+    "id": "cs.arch.truth-table",
+    "title": "진리표",
+    "en": "Truth Table",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "컴퓨터 구조",
+    "summary": "논리식에 들어갈 수 있는 참·거짓 입력의 모든 조합과 그때의 출력을 한 표에 적은 것이다.",
+    "parent": "cs.arch.boolean-logic",
+    "aliases": [
+      "truth table",
+      "진리값 표"
+    ],
+    "refs": [
+      "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c4/c4s1/"
+    ]
+  },
+  {
+    "id": "cs.arch.logic-gate",
+    "title": "논리 게이트",
+    "en": "Logic Gate",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "컴퓨터 구조",
+    "summary": "AND·OR·NOT 같은 논리 연산을 전기 신호로 해내는 회로 부품으로, CPU는 이런 게이트를 엄청나게 많이 이어 만든다.",
+    "parent": "cs.arch.boolean-logic",
+    "aliases": [
+      "logic gate",
+      "AND 게이트",
+      "NAND 게이트",
+      "NAND gate"
+    ],
+    "refs": [
+      "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c4/c4s1/"
+    ]
+  },
+  {
+    "id": "cs.arch.short-circuit-evaluation",
+    "title": "단락 평가",
+    "en": "Short-circuit Evaluation",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "컴퓨터 구조",
+    "summary": "and는 앞이 거짓이면, or는 앞이 참이면 뒤쪽 식을 아예 계산하지 않고 결과를 정하는 방식이다.",
+    "parent": "cs.arch.boolean-logic",
+    "aliases": [
+      "short-circuit evaluation",
+      "단축 평가"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/stdtypes.html"
+    ]
+  },
+  {
+    "id": "cs.data.newline-character",
+    "title": "줄바꿈 문자(LF·CRLF)",
+    "en": "Newline Character",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "텍스트에서 줄이 끝났음을 알리는 문자로, 유닉스 계열은 LF(\\n) 하나를, 윈도는 CR과 LF 두 개(\\r\\n)를 쓴다.",
+    "parent": "cs.data.text-binary-files",
+    "related": [
+      "dev.git.line-endings"
+    ],
+    "aliases": [
+      "newline",
+      "개행 문자",
+      "LF",
+      "줄 끝 문자"
+    ],
+    "refs": [
+      "https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap03.html",
+      "https://docs.python.org/3/tutorial/inputoutput.html"
+    ]
+  },
+  {
+    "id": "cs.os.unix-time",
+    "title": "유닉스 시간(에포크 초)",
+    "en": "Unix Time",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "1970년 1월 1일 0시(UTC)부터 지난 초를 하나의 정수로 세어 시각을 나타내는 방식이다.",
+    "aliases": [
+      "Unix time",
+      "유닉스 타임스탬프",
+      "Unix timestamp",
+      "에포크 시간",
+      "epoch time",
+      "POSIX time"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man2/time.2.html",
+      "https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap03.html"
+    ]
+  },
+  {
     "id": "cs.data.binary-prefix",
     "title": "이진 접두어(KiB·MiB·GiB)",
     "en": "Binary Prefixes",
@@ -791,6 +1031,45 @@
     ],
     "refs": [
       "https://www.rfc-editor.org/rfc/rfc791"
+    ]
+  },
+  {
+    "id": "cs.data.final-newline",
+    "title": "파일 끝 줄바꿈",
+    "en": "Newline at End of File",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "표준에서 줄은 줄바꿈 문자로 끝나야 하므로, 텍스트 파일의 마지막 줄 끝에도 줄바꿈을 하나 두는 관례다.",
+    "parent": "cs.data.text-binary-files",
+    "aliases": [
+      "No newline at end of file",
+      "trailing newline",
+      "마지막 줄바꿈",
+      "EOF 개행"
+    ],
+    "refs": [
+      "https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap03.html"
+    ]
+  },
+  {
+    "id": "cs.data.byte-order-mark",
+    "title": "바이트 순서 표시(BOM)",
+    "en": "Byte Order Mark",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "파일 맨 앞에 붙는 U+FEFF 문자로, UTF-8에서는 EF BB BF 세 바이트가 되어 인코딩을 알리는 표시로만 쓰인다.",
+    "aliases": [
+      "byte order mark",
+      "utf-8-sig",
+      "UTF-8 BOM"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc3629",
+      "https://docs.python.org/3/howto/unicode.html"
     ]
   },
   {

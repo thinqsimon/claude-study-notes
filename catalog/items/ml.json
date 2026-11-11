@@ -538,6 +538,99 @@
     ]
   },
   {
+    "id": "ml.data.pandas-datetime",
+    "title": "pandas로 날짜·시간 열 다루기",
+    "en": "Working with Dates and Times in pandas",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "글자로 읽힌 날짜 열을 pandas 날짜 자료형으로 바꾸고 월·요일·시각을 꺼내 집계하는 첫 사용법이다.",
+    "objectives": [
+      "pd.to_datetime이나 read_csv의 parse_dates로 글자 날짜 열을 날짜 자료형으로 바꿀 수 있다",
+      ".dt로 연·월·요일·시각을 꺼내 새 열을 만들고 groupby에 쓸 수 있다",
+      "resample로 시간별 데이터를 일별·월별 평균으로 묶을 수 있다"
+    ],
+    "prerequisites": [
+      "ml.data.pandas-dataframe-basics",
+      "ml.data.pandas-groupby"
+    ],
+    "aliases": [
+      "pandas 날짜 처리",
+      "pandas 시계열 입문",
+      "pandas datetime",
+      "판다스 날짜 열"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/getting_started/intro_tutorials/09_timeseries.html",
+      "https://pandas.pydata.org/docs/user_guide/timeseries.html"
+    ]
+  },
+  {
+    "id": "ml.data.pandas-text-str",
+    "title": "pandas .str로 글자 열 다듬기",
+    "en": "Manipulating Text Columns with pandas .str",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "글자가 든 열 전체에 소문자 바꾸기·나누기·포함 여부 확인 같은 문자열 작업을 한 번에 적용하는 pandas 사용법이다.",
+    "objectives": [
+      ".str.lower·.str.strip으로 열 전체의 대소문자와 공백을 정리할 수 있다",
+      ".str.split과 .str.get으로 글자 열의 일부를 꺼내 새 열을 만들 수 있다",
+      ".str.contains의 결과로 특정 글자가 든 행만 골라낼 수 있다"
+    ],
+    "prerequisites": [
+      "ml.data.pandas-dataframe-basics"
+    ],
+    "related": [
+      "ml.data.text-vectorization"
+    ],
+    "aliases": [
+      "pandas 문자열 처리",
+      "pandas 텍스트 열",
+      "판다스 문자열",
+      "pandas string methods"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/getting_started/intro_tutorials/10_text_data.html",
+      "https://pandas.pydata.org/docs/user_guide/text.html"
+    ]
+  },
+  {
+    "id": "ml.data.pandas-pivot-melt",
+    "title": "pandas pivot_table과 melt로 표 모양 바꾸기",
+    "en": "Reshaping Tables with pandas pivot_table and melt",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "긴 표를 범주별 열이 있는 넓은 표로 펼치거나 넓은 표를 다시 긴 표로 접는 pandas의 표 모양 바꾸기다.",
+    "objectives": [
+      "긴 표와 넓은 표의 차이를 예시 표로 설명할 수 있다",
+      "pivot_table에 index·columns·values·aggfunc를 넣어 범주별 요약표를 만들 수 있다",
+      "melt로 여러 열을 변수 이름 열과 값 열 두 개로 접을 수 있다"
+    ],
+    "prerequisites": [
+      "ml.data.pandas-groupby"
+    ],
+    "related": [
+      "ml.data.pandas-groupby",
+      "ml.data.pandas-merge"
+    ],
+    "aliases": [
+      "pandas 피벗 테이블",
+      "pandas pivot",
+      "pivot_table",
+      "pandas 표 재구조화",
+      "판다스 피벗"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/getting_started/intro_tutorials/07_reshape_table_layout.html",
+      "https://pandas.pydata.org/docs/user_guide/reshaping.html"
+    ]
+  },
+  {
     "id": "ml.eval.accuracy",
     "title": "정확도",
     "en": "Accuracy",
@@ -920,6 +1013,86 @@
     ]
   },
   {
+    "id": "ml.data.to-datetime",
+    "title": "날짜 변환(pd.to_datetime)",
+    "en": "pd.to_datetime",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "글자나 숫자로 된 날짜 값을 pandas가 계산할 수 있는 날짜 자료형으로 바꾸는 함수다.",
+    "parent": "ml.data.pandas-datetime",
+    "aliases": [
+      "to_datetime",
+      "parse_dates",
+      "날짜 형 변환"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/user_guide/timeseries.html"
+    ]
+  },
+  {
+    "id": "ml.data.dt-accessor",
+    "title": ".dt 접근자",
+    "en": "pandas .dt Accessor",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "날짜 자료형 열에서 연·월·요일·시각 같은 부분 값을 열 전체에 대해 꺼내 주는 pandas 접근자다.",
+    "parent": "ml.data.pandas-datetime",
+    "aliases": [
+      ".dt.month",
+      ".dt.day_of_week",
+      "dt accessor",
+      "날짜 속성 꺼내기"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/getting_started/intro_tutorials/09_timeseries.html"
+    ]
+  },
+  {
+    "id": "ml.data.str-accessor",
+    "title": ".str 접근자",
+    "en": "pandas .str Accessor",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "글자가 든 Series의 모든 값에 파이썬 문자열 메서드를 한꺼번에 적용하고 결측값은 건너뛰는 pandas 접근자다.",
+    "parent": "ml.data.pandas-text-str",
+    "aliases": [
+      "str accessor",
+      ".str.lower",
+      ".str.split",
+      "pandas 문자열 메서드"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/user_guide/text.html"
+    ]
+  },
+  {
+    "id": "ml.data.long-wide-format",
+    "title": "긴 표와 넓은 표",
+    "en": "Long and Wide Table Formats",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "한 행에 관측값 하나를 두는 긴 표와 범주마다 열을 하나씩 두는 넓은 표라는 두 가지 표 모양이다.",
+    "parent": "ml.data.pandas-pivot-melt",
+    "aliases": [
+      "long format",
+      "wide format",
+      "긴 형식",
+      "넓은 형식",
+      "tidy data"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/getting_started/intro_tutorials/07_reshape_table_layout.html"
+    ]
+  },
+  {
     "id": "ml.supervised.bunch",
     "title": "Bunch(사이킷런 결과 묶음)",
     "en": "Bunch",
@@ -1040,6 +1213,90 @@
     ],
     "refs": [
       "https://pandas.pydata.org/docs/getting_started/intro_tutorials/05_add_columns.html"
+    ]
+  },
+  {
+    "id": "ml.data.resample",
+    "title": "시간 간격으로 다시 묶기(resample)",
+    "en": "pandas resample",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "날짜 인덱스를 가진 데이터를 일·월 같은 새 시간 간격으로 묶어 평균·최댓값 등으로 요약하는 pandas 메서드다.",
+    "parent": "ml.data.pandas-datetime",
+    "aliases": [
+      "df.resample",
+      "pandas 리샘플"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/getting_started/intro_tutorials/09_timeseries.html"
+    ]
+  },
+  {
+    "id": "ml.data.str-contains",
+    "title": "글자 포함 행 찾기(str.contains)",
+    "en": "pandas str.contains",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "각 값에 특정 글자나 패턴이 들어 있는지를 True·False로 돌려주어 행을 거르는 데 쓰는 pandas 문자열 메서드다.",
+    "parent": "ml.data.pandas-text-str",
+    "related": [
+      "ml.data.boolean-indexing"
+    ],
+    "aliases": [
+      "str.contains",
+      ".str.contains",
+      "문자열 포함 검사",
+      "글자로 행 거르기"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/getting_started/intro_tutorials/10_text_data.html"
+    ]
+  },
+  {
+    "id": "ml.data.pandas-melt",
+    "title": "넓은 표 접기(melt)",
+    "en": "pandas melt",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "넓은 표의 여러 열을 변수 이름 열과 값 열 두 개로 모아 긴 표로 바꾸는 pandas 메서드다.",
+    "parent": "ml.data.pandas-pivot-melt",
+    "aliases": [
+      "pd.melt",
+      "df.melt",
+      "pandas 언피벗",
+      "id_vars"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/user_guide/reshaping.html"
+    ]
+  },
+  {
+    "id": "ml.data.pandas-crosstab",
+    "title": "교차표(pd.crosstab)",
+    "en": "pandas crosstab",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "두 범주 열의 값 조합마다 행이 몇 개인지 세어 표로 보여 주는 pandas 함수다.",
+    "parent": "ml.data.pandas-pivot-melt",
+    "related": [
+      "ml.data.value-counts"
+    ],
+    "aliases": [
+      "crosstab",
+      "pd.crosstab",
+      "빈도 교차표",
+      "pandas 교차 집계"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/user_guide/reshaping.html"
     ]
   },
   {

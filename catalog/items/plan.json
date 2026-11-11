@@ -277,6 +277,38 @@
     ]
   },
   {
+    "id": "plan.figma.share-files",
+    "title": "Figma 파일 공유하고 보기·편집 권한 주기",
+    "en": "Sharing Figma Files and Setting Permissions",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Share 버튼으로 링크를 복사하거나 이메일로 초대해 Figma 파일을 함께 보고, 상대마다 보기나 편집 권한을 정하는 첫 사용법이다.",
+    "objectives": [
+      "Share 버튼에서 링크를 복사하거나 이메일로 초대해 파일을 공유할 수 있다",
+      "공유 링크로 들어올 수 있는 사람의 범위를 Anyone과 Only invited people 중에서 고를 수 있다",
+      "상대에게 can view와 can edit 중 어느 권한을 줄지 정하고 그 차이를 말할 수 있다",
+      "프레임을 선택한 채 링크를 복사하면 그 프레임으로 바로 열린다는 점을 활용할 수 있다"
+    ],
+    "related": [
+      "plan.figma.play-share-prototype",
+      "plan.figma.comments"
+    ],
+    "aliases": [
+      "Figma 파일 공유",
+      "Figma share",
+      "피그마 공유",
+      "Figma 권한",
+      "Figma permissions",
+      "피그마 초대"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/1500007609322-Guide-to-sharing-and-permissions",
+      "https://help.figma.com/hc/en-us/articles/360040531773-Share-files-and-prototypes"
+    ]
+  },
+  {
     "id": "plan.figma.frames-and-components",
     "title": "Figma 프레임과 컴포넌트로 화면 만들기",
     "en": "Building Screens with Frames and Components in Figma",
@@ -543,6 +575,72 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "plan.figma.shape-tools",
+    "title": "Figma 도형 도구로 기본 모양 그리기",
+    "en": "Drawing Basic Shapes with Figma Shape Tools",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "사각형·선·화살표·타원·다각형·별 도구와 단축키로 버튼 바탕이나 아이콘 같은 기본 모양을 그리고 모서리를 둥글게 다듬는 첫 사용법이다.",
+    "objectives": [
+      "R·L·O 단축키로 사각형·선·타원 도구를 골라 캔버스에 도형을 그릴 수 있다",
+      "Shift와 Option(Alt)을 누른 채 끌어 정사각형·정원을 그리거나 가운데에서부터 그릴 수 있다",
+      "별 도형의 꼭짓점 개수와 비율을 바꾸고 선의 굵기와 끝 모양을 정할 수 있다",
+      "Corner radius 칸이나 모서리 핸들로 사각형 모서리를 둥글게 만들 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.layers"
+    ],
+    "related": [
+      "plan.figma.frames-and-components"
+    ],
+    "aliases": [
+      "Figma 도형 도구",
+      "Figma shape tools",
+      "피그마 사각형 도구",
+      "Figma rectangle tool",
+      "피그마 도형 그리기"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360040450133-Using-Shape-Tools",
+      "https://help.figma.com/hc/en-us/articles/360050986854-Adjust-corner-radius-and-smoothing"
+    ]
+  },
+  {
+    "id": "plan.figma.align-distribute",
+    "title": "Figma 정렬과 분배로 요소 줄 맞추기",
+    "en": "Aligning and Distributing Layers in Figma",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "오른쪽 패널의 정렬·분배 버튼과 X·Y·W·H 칸으로 화면 요소의 위치와 크기, 간격을 숫자에 맞춰 가지런히 놓는 첫 사용법이다.",
+    "objectives": [
+      "여러 레이어를 골라 왼쪽·가운데·위쪽 기준으로 정렬할 수 있다",
+      "여러 레이어를 같은 간격으로 분배하거나 Tidy up으로 줄과 칸에 맞출 수 있다",
+      "X·Y·W·H 칸에 숫자를 넣어 위치와 크기를 정하고 화살표 키로 조금씩 옮길 수 있다",
+      "비율 고정을 켜서 가로세로 비율을 지킨 채 크기를 바꿀 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.layers"
+    ],
+    "related": [
+      "plan.figma.layout-guides",
+      "plan.figma.auto-layout"
+    ],
+    "aliases": [
+      "Figma 정렬",
+      "Figma align",
+      "Figma 분배",
+      "Figma distribute",
+      "피그마 줄 맞추기"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360039956914-Adjust-alignment-rotation-position-and-dimensions"
+    ]
+  },
+  {
     "id": "plan.figma.frame",
     "title": "Figma 프레임",
     "en": "Figma Frame",
@@ -783,6 +881,66 @@
     ],
     "refs": [
       "https://help.figma.com/hc/en-us/articles/24037724065943-Start-designing-with-UI-kits"
+    ]
+  },
+  {
+    "id": "plan.figma.can-view-can-edit",
+    "title": "Figma 보기 권한과 편집 권한",
+    "en": "Figma Can View and Can Edit Permissions",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Figma에서 파일을 보고 속성 확인과 댓글만 할 수 있는 can view와 내용을 고칠 수 있는 can edit의 두 권한 수준이다.",
+    "parent": "plan.figma.share-files",
+    "aliases": [
+      "Figma can view",
+      "Figma can edit",
+      "Figma 보기 권한",
+      "Figma 편집 권한",
+      "피그마 편집 권한"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/1500007609322-Guide-to-sharing-and-permissions"
+    ]
+  },
+  {
+    "id": "plan.figma.link-audience",
+    "title": "Figma 공유 링크 접근 범위",
+    "en": "Figma Link Audience Access",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Figma 공유 링크를 누가 열 수 있는지 Anyone·조직·워크스페이스·Only invited people 가운데서 고르는 설정이다.",
+    "parent": "plan.figma.share-files",
+    "aliases": [
+      "Figma link access",
+      "Figma 링크 공유 설정",
+      "Only invited people"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360040531773-Share-files-and-prototypes"
+    ]
+  },
+  {
+    "id": "plan.figma.corner-radius",
+    "title": "Figma 모서리 둥글기(corner radius)",
+    "en": "Figma Corner Radius",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "두 선이 만나는 꼭짓점을 둥글게 깎는 값으로, Figma에서는 모양 전체나 모서리 하나씩 따로 정할 수 있다.",
+    "parent": "plan.figma.shape-tools",
+    "aliases": [
+      "corner radius",
+      "Figma 모서리 반경",
+      "Figma 라운드 값",
+      "independent corners"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360050986854-Adjust-corner-radius-and-smoothing"
     ]
   },
   {
@@ -1028,6 +1186,107 @@
     ],
     "refs": [
       "https://help.figma.com/hc/en-us/articles/9359912208663-Run-voting-sessions-in-FigJam"
+    ]
+  },
+  {
+    "id": "plan.figma.seat",
+    "title": "Figma 좌석(seat)",
+    "en": "Figma Seat",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "유료 플랜에서 한 사람이 어떤 Figma 제품을 쓸 수 있는지 정하는 이용 자격으로, 편집하려면 편집 권한과 맞는 좌석이 함께 있어야 한다.",
+    "parent": "plan.figma.share-files",
+    "aliases": [
+      "Figma seat",
+      "피그마 좌석",
+      "Figma 좌석 요청",
+      "seat request"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/1500007609322-Guide-to-sharing-and-permissions"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "plan.figma.tidy-up",
+    "title": "Figma 정리(Tidy up)",
+    "en": "Figma Tidy Up",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "고른 레이어들을 선택 영역의 왼쪽 위를 기준으로 줄·칸·바둑판 모양에 맞춰 한 번에 가지런히 놓는 Figma 기능이다.",
+    "parent": "plan.figma.align-distribute",
+    "aliases": [
+      "Tidy up",
+      "Figma tidy up",
+      "피그마 정리 기능",
+      "Figma 바둑판 정렬"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360039956914-Adjust-alignment-rotation-position-and-dimensions"
+    ]
+  },
+  {
+    "id": "plan.figma.snapping",
+    "title": "Figma 스냅(snapping)",
+    "en": "Figma Snapping",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "레이어를 끌 때 다른 도형·객체·픽셀 격자에 자동으로 달라붙게 해 위치를 맞춰 주는 Figma 기능으로, Control을 누르면 잠시 끌 수 있다.",
+    "parent": "plan.figma.align-distribute",
+    "aliases": [
+      "Figma snapping",
+      "Figma 스냅",
+      "snap to pixel grid",
+      "픽셀 격자 스냅"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360039956914-Adjust-alignment-rotation-position-and-dimensions"
+    ]
+  },
+  {
+    "id": "plan.figma.aspect-ratio-lock",
+    "title": "Figma 비율 고정(aspect ratio lock)",
+    "en": "Figma Aspect Ratio Lock",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Figma에서 너비나 높이 하나를 바꿀 때 다른 쪽도 같은 비율로 따라 바뀌게 묶어 두는 설정이다.",
+    "parent": "plan.figma.align-distribute",
+    "aliases": [
+      "aspect ratio lock",
+      "Figma 비율 고정",
+      "Figma 비율 잠금",
+      "피그마 종횡비 고정"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360039956914-Adjust-alignment-rotation-position-and-dimensions"
+    ]
+  },
+  {
+    "id": "plan.figma.corner-smoothing",
+    "title": "Figma 모서리 부드럽게(corner smoothing)",
+    "en": "Figma Corner Smoothing",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "모서리의 곡선을 이어지듯 부드럽게 만들어 사각형과 원 사이의 스퀴클 모양을 내는 Figma 설정으로, 모양 전체에만 적용된다.",
+    "parent": "plan.figma.shape-tools",
+    "aliases": [
+      "corner smoothing",
+      "Figma 스퀴클",
+      "Figma 모서리 스무딩"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360050986854-Adjust-corner-radius-and-smoothing"
     ]
   },
   {

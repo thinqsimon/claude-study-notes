@@ -385,6 +385,72 @@
     ]
   },
   {
+    "id": "ax.coding.agent-fix-bug",
+    "title": "오류 메시지를 주고 에이전트에게 버그 고치게 하기",
+    "en": "Fixing Bugs with a Coding Agent",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "AI 네이티브 개발",
+    "summary": "오류가 난 명령과 메시지를 에이전트에게 보여 주고, 고칠 방법 몇 가지를 받은 뒤 하나를 골라 적용하고 다시 돌려 확인하는 순서다.",
+    "objectives": [
+      "오류를 다시 내는 명령과 오류 메시지·스택 트레이스를 함께 에이전트에게 알려 줄 수 있다",
+      "바로 고치게 하지 않고 고칠 방법을 여러 개 먼저 받아 고를 수 있다",
+      "고른 방법을 적용하게 한 뒤 같은 명령을 다시 돌려 오류가 사라졌는지 확인할 수 있다",
+      "오류가 매번 나는지 가끔 나는지와 재현 순서를 덧붙여 요청할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.claude-code-quickstart"
+    ],
+    "related": [
+      "ax.coding.explore-codebase",
+      "be.error.debugging-method"
+    ],
+    "aliases": [
+      "에이전트로 버그 수정",
+      "에이전트 디버깅",
+      "Claude Code 버그 수정",
+      "fix bugs with Claude Code",
+      "오류 메시지 붙여넣기"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/common-workflows#fix-bugs-efficiently"
+    ]
+  },
+  {
+    "id": "ax.coding.agent-write-tests",
+    "title": "에이전트에게 빠진 테스트 채우게 하기",
+    "en": "Adding Tests with a Coding Agent",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "AI 네이티브 개발",
+    "summary": "테스트가 없는 함수를 에이전트에게 찾게 하고, 기존 테스트 모양을 따라 테스트와 경계값 경우를 추가한 뒤 실제로 돌려 통과를 확인하는 순서다.",
+    "objectives": [
+      "에이전트에게 테스트가 닿지 않는 함수를 찾아 달라고 요청할 수 있다",
+      "확인하고 싶은 동작을 밝혀 테스트를 추가하게 하고 경계값·오류 경우를 더하게 할 수 있다",
+      "새 테스트를 실제로 돌리게 하고 실패를 고치게 한 뒤 결과를 직접 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.claude-code-quickstart",
+      "be.test.pytest-first"
+    ],
+    "related": [
+      "ax.coding.test-tampering",
+      "ax.coding.agent-fix-bug"
+    ],
+    "aliases": [
+      "에이전트로 테스트 작성",
+      "테스트 생성 요청",
+      "Claude Code 테스트 추가",
+      "AI 테스트 생성",
+      "generate tests with Claude Code"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/common-workflows#work-with-tests"
+    ]
+  },
+  {
     "id": "ax.security.misinformation",
     "title": "AI의 잘못된 정보 알아채기: 환각 패키지와 가짜 근거",
     "en": "Spotting LLM Misinformation (LLM09)",
@@ -513,6 +579,72 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.coding.copilot-inline-suggestions",
+    "title": "GitHub Copilot 인라인 코드 제안 받기",
+    "en": "Getting Inline Code Suggestions with GitHub Copilot",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "에디터에 Copilot 확장을 깔고 코드를 치면 흐린 글자로 다음 코드가 제안되고, Tab으로 받거나 Esc로 버리는 첫 사용법이다.",
+    "objectives": [
+      "Copilot 확장을 설치하고 GitHub 계정으로 로그인해 인라인 제안이 뜨게 할 수 있다",
+      "흐린 글자로 뜬 제안을 Tab으로 받고 Esc로 거절하고 단어 단위로 일부만 받을 수 있다",
+      "주석에 하려는 일을 적어 그에 맞는 코드 제안을 받아 볼 수 있다",
+      "다른 제안 후보를 넘겨 보며 마음에 드는 것을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "ax.basics.ai-coding-tools"
+    ],
+    "related": [
+      "ax.coding.vscode-extension",
+      "ax.coding.public-code-match"
+    ],
+    "aliases": [
+      "Copilot 코드 완성",
+      "Copilot 자동 완성",
+      "Copilot inline suggestions",
+      "Copilot code completion",
+      "고스트 텍스트",
+      "ghost text"
+    ],
+    "refs": [
+      "https://docs.github.com/en/copilot/how-tos/get-code-suggestions/get-ide-code-suggestions"
+    ]
+  },
+  {
+    "id": "ax.coding.copilot-chat-ide",
+    "title": "에디터에서 Copilot Chat에 묻기",
+    "en": "Asking GitHub Copilot Chat in Your IDE",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "VS Code의 채팅 창이나 인라인 채팅으로 Copilot에 코드를 묻고, 모드와 @·# 표시로 질문 범위와 참고할 내용을 정하는 방법이다.",
+    "objectives": [
+      "채팅 창·빠른 채팅·인라인 채팅(Ctrl+I) 중 하나를 열어 열린 파일에 대해 질문할 수 있다",
+      "묻기·에이전트·계획 모드를 바꿔 가며 답만 받을지 수정까지 맡길지 고를 수 있다",
+      "@ 참여자와 # 변수로 질문에 쓸 범위와 파일을 지정할 수 있다",
+      "답 위의 참조 목록을 펼쳐 Copilot이 어떤 파일을 보고 답했는지 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.basics.ai-coding-tools"
+    ],
+    "related": [
+      "ax.coding.vscode-extension",
+      "ax.coding.agent-first"
+    ],
+    "aliases": [
+      "Copilot Chat",
+      "코파일럿 채팅",
+      "Copilot 채팅",
+      "GitHub Copilot Chat"
+    ],
+    "refs": [
+      "https://docs.github.com/en/copilot/how-tos/chat-with-copilot/chat-in-ide"
+    ]
   },
   {
     "id": "ax.coding.esc-interrupt",
@@ -788,6 +920,119 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "ax.coding.copilot-chat-modes",
+    "title": "Copilot Chat 모드(묻기·에이전트·계획)",
+    "en": "Copilot Chat Modes",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "Copilot Chat에서 답만 받을지, 계획을 세우게 할지, 파일 수정과 명령 실행까지 맡길지를 고르는 선택지다.",
+    "parent": "ax.coding.copilot-chat-ide",
+    "related": [
+      "ax.coding.plan-mode"
+    ],
+    "aliases": [
+      "Copilot ask mode",
+      "Copilot agent mode",
+      "Copilot 에이전트 모드",
+      "Copilot 채팅 모드"
+    ],
+    "refs": [
+      "https://docs.github.com/en/copilot/how-tos/chat-with-copilot/chat-in-ide"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.coding.copilot-instructions",
+    "title": "Copilot 저장소 지시 파일",
+    "en": "Copilot Repository Custom Instructions",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "저장소의 .github/copilot-instructions.md에 프로젝트 규칙을 글로 적어 두면 Copilot이 채팅·리뷰 때마다 그 내용을 함께 읽는 파일이다.",
+    "parent": "ax.coding.copilot-chat-ide",
+    "related": [
+      "ax.coding.claude-md",
+      "ax.coding.rules-dir"
+    ],
+    "aliases": [
+      "copilot-instructions.md",
+      "Copilot custom instructions",
+      "Copilot 사용자 지정 지침",
+      ".instructions.md"
+    ],
+    "refs": [
+      "https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions"
+    ]
+  },
+  {
+    "id": "ax.coding.copilot-code-review",
+    "title": "PR에 Copilot 리뷰 요청하기",
+    "en": "Requesting a Copilot Code Review",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "GitHub PR의 Reviewers에서 Copilot을 고르면 심각도가 붙은 의견과 수정 제안을 남기지만, 승인으로는 세지 않는 기본 리뷰다.",
+    "related": [
+      "ax.coding.code-review-command"
+    ],
+    "aliases": [
+      "Copilot code review",
+      "Copilot 코드 리뷰",
+      "Copilot 리뷰어",
+      "Copilot PR 리뷰"
+    ],
+    "refs": [
+      "https://docs.github.com/en/copilot/how-tos/use-copilot-agents/request-a-code-review/use-code-review"
+    ]
+  },
+  {
+    "id": "ax.coding.paste-image",
+    "title": "Claude Code에 스크린샷 붙여 넣기",
+    "en": "Adding Images to a Claude Code Conversation",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "오류 화면이나 디자인 시안을 끌어 놓기·Ctrl+V(Windows는 Alt+V)·파일 경로로 Claude Code 대화에 넣어 글로 설명하기 어려운 내용을 보여 주는 방법이다.",
+    "aliases": [
+      "Claude Code 이미지 붙여넣기",
+      "Claude Code 스크린샷",
+      "Claude Code 이미지 입력",
+      "Claude Code Ctrl+V"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/common-workflows#work-with-images"
+    ]
+  },
+  {
+    "id": "ax.coding.reproduce-command",
+    "title": "에이전트에게 알려 주는 재현 명령",
+    "en": "Reproduction Command for an Agent",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "에이전트가 같은 오류를 직접 다시 내 보고 고친 뒤에도 다시 돌려 볼 수 있도록 요청에 함께 적는 실행 명령이다.",
+    "parent": "ax.coding.agent-fix-bug",
+    "related": [
+      "ax.basics.verify-ai-output"
+    ],
+    "aliases": [
+      "오류 재현 명령",
+      "재현 방법 알려주기",
+      "repro command",
+      "reproduction steps"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/common-workflows#fix-bugs-efficiently"
+    ]
+  },
+  {
     "id": "ax.coding.auto-memory",
     "title": "자동 메모리(auto memory)",
     "en": "Auto Memory",
@@ -1025,6 +1270,88 @@
     "refs": [
       "https://airc.nist.gov/airmf-resources/airmf/2-sec-audience/",
       "https://www.nist.gov/itl/ai-risk-management-framework"
+    ]
+  },
+  {
+    "id": "ax.coding.copilot-next-edit-suggestions",
+    "title": "Copilot 다음 편집 제안(NES)",
+    "en": "Copilot Next Edit Suggestions",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "Copilot이 커서 위치가 아니라 다음에 고칠 것 같은 곳을 짐작해 제안하고, 여백의 화살표를 따라 Tab으로 이동해 받는 기능이다.",
+    "parent": "ax.coding.copilot-inline-suggestions",
+    "aliases": [
+      "다음 편집 제안",
+      "next edit suggestions",
+      "Copilot NES",
+      "Copilot 다음 수정 제안"
+    ],
+    "refs": [
+      "https://docs.github.com/en/copilot/how-tos/get-code-suggestions/get-ide-code-suggestions"
+    ]
+  },
+  {
+    "id": "ax.coding.copilot-comment-to-code",
+    "title": "주석으로 Copilot 코드 제안 이끌기",
+    "en": "Prompting Copilot with Code Comments",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "만들려는 동작을 코드 주석으로 먼저 적어 두면 Copilot이 그 설명에 맞는 코드를 아래에 제안하는 사용법이다.",
+    "parent": "ax.coding.copilot-inline-suggestions",
+    "aliases": [
+      "주석으로 코드 생성",
+      "comment to code",
+      "Copilot 주석 프롬프트"
+    ],
+    "refs": [
+      "https://docs.github.com/en/copilot/how-tos/get-code-suggestions/get-ide-code-suggestions"
+    ]
+  },
+  {
+    "id": "ax.coding.copilot-inline-chat",
+    "title": "Copilot 인라인 채팅(Ctrl+I)",
+    "en": "Copilot Inline Chat",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "채팅 창을 따로 열지 않고 에디터의 코드 바로 위에서 Copilot에 묻거나 고치게 하는 작은 입력 칸이다.",
+    "parent": "ax.coding.copilot-chat-ide",
+    "aliases": [
+      "Copilot 인라인 채팅",
+      "Copilot inline chat",
+      "Copilot Ctrl+I"
+    ],
+    "refs": [
+      "https://docs.github.com/en/copilot/how-tos/chat-with-copilot/chat-in-ide"
+    ]
+  },
+  {
+    "id": "ax.coding.copilot-chat-participants",
+    "title": "Copilot Chat의 @ 참여자와 # 변수",
+    "en": "Copilot Chat Participants and Variables",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "Copilot Chat 입력 칸에 @로 질문을 맡을 분야를, #로 함께 볼 파일이나 웹 검색 같은 맥락을 붙이는 표시다.",
+    "parent": "ax.coding.copilot-chat-ide",
+    "related": [
+      "ax.coding.file-mention"
+    ],
+    "aliases": [
+      "chat participant",
+      "chat variable",
+      "Copilot @github",
+      "Copilot #web",
+      "Copilot 채팅 변수"
+    ],
+    "refs": [
+      "https://docs.github.com/en/copilot/how-tos/chat-with-copilot/chat-in-ide"
     ]
   },
   {
