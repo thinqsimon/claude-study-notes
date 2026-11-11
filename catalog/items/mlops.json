@@ -338,6 +338,105 @@
     ]
   },
   {
+    "id": "mlops.eval.human-annotation",
+    "title": "사람이 트레이스 채점하기: 피드백과 정답 달기",
+    "en": "Human Annotation on Traces: Feedback and Expectations",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "MLflow 화면에서 기록된 트레이스를 열어 사람이 직접 잘됐는지 판정하고 원래 나왔어야 할 답을 적어 두는 첫 실습이다.",
+    "objectives": [
+      "트레이스 상세 화면에서 통과·실패 같은 피드백을 직접 달 수 있다",
+      "피드백과 정답 기대값이 각각 무엇을 기록하는지 구분할 수 있다",
+      "이미 달린 피드백을 고치거나 다른 검토자의 판정을 덧붙일 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.observe.tracing-quickstart"
+    ],
+    "related": [
+      "mlops.observe.user-feedback",
+      "mlops.eval.first-eval"
+    ],
+    "aliases": [
+      "LLM 사람 평가",
+      "MLflow human feedback",
+      "트레이스 주석",
+      "trace annotation",
+      "사람 채점"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/assessments/feedback/",
+      "https://mlflow.org/docs/latest/genai/assessments/expectations/"
+    ]
+  },
+  {
+    "id": "mlops.observe.ai-assistant",
+    "title": "MLflow AI 어시스턴트에게 트레이스 물어보기",
+    "en": "Using the MLflow AI Assistant",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "MLflow 화면 옆 패널에서 코딩 에이전트를 연결해 쌓인 트레이스와 실험 결과를 말로 물어보고 설정 도움을 받는 기능이다.",
+    "objectives": [
+      "로컬 MLflow 서버에서 어시스턴트 패널을 열고 설정 마법사로 쓸 백엔드를 고를 수 있다",
+      "실험을 고른 뒤 실패한 트레이스의 원인을 어시스턴트에게 물어볼 수 있다",
+      "어시스턴트가 내 코드를 고치게 할지 권한을 정할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.observe.tracing-quickstart"
+    ],
+    "related": [
+      "mlops.observe.issue-detection"
+    ],
+    "aliases": [
+      "MLflow 어시스턴트",
+      "MLflow AI Assistant",
+      "MLflow 도우미",
+      "Assistant 패널"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/getting-started/try-assistant/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "mlops.observe.issue-detection",
+    "title": "트레이스 속 문제 자동 찾기: Issues 탭",
+    "en": "Automatic Issue Detection",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "쌓인 트레이스를 AI 모델에게 훑게 해 자주 되풀이되는 품질·속도·비용 문제를 이슈로 묶어 보여 주는 MLflow 기능이다.",
+    "objectives": [
+      "실험의 Issues 탭에서 모델과 대상 트레이스를 골라 문제 찾기를 돌릴 수 있다",
+      "찾은 이슈의 설명·심각도·근거 트레이스를 열어 볼 수 있다",
+      "이슈를 해결됨이나 문제 아님으로 표시해 정리할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.observe.tracing-quickstart"
+    ],
+    "related": [
+      "mlops.observe.ai-assistant",
+      "mlops.eval.human-annotation"
+    ],
+    "aliases": [
+      "자동 이슈 탐지",
+      "issue detection",
+      "Issues 탭",
+      "AI Insights",
+      "트레이스 문제 찾기"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/eval-monitor/ai-insights/detect-issues/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "mlops.eval.eval-dataset",
     "title": "평가 세트(evaluation dataset)",
     "en": "Evaluation Dataset",
@@ -500,6 +599,165 @@
       "이중 중괄호 변수",
       "prompt variable"
     ]
+  },
+  {
+    "id": "mlops.eval.expectation",
+    "title": "정답 기대값(expectation)",
+    "en": "Ground Truth Expectation",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "어떤 입력에 앱이 원래 내놓았어야 할 답이나 행동을 전문가가 트레이스에 적어 둔 기록으로, 채점의 기준 답이 된다.",
+    "parent": "mlops.eval.human-annotation",
+    "related": [
+      "mlops.eval.eval-dataset",
+      "mlops.eval.expectations-guidelines"
+    ],
+    "aliases": [
+      "정답 기대값",
+      "MLflow expectation",
+      "기대 답",
+      "log_expectation"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/assessments/expectations/"
+    ]
+  },
+  {
+    "id": "mlops.eval.predict-fn",
+    "title": "predict_fn(평가할 앱 함수)",
+    "en": "predict_fn",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "평가를 돌릴 때 평가 세트의 inputs를 하나씩 받아 앱의 답을 돌려주는 함수로, 매개변수 이름이 inputs의 키와 같아야 한다.",
+    "parent": "mlops.eval.first-eval",
+    "related": [
+      "mlops.eval.eval-dataset"
+    ],
+    "aliases": [
+      "predict_fn",
+      "평가 대상 함수"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/eval-monitor/quickstart/"
+    ]
+  },
+  {
+    "id": "mlops.observe.tracking-uri",
+    "title": "추적 URI(set_tracking_uri)",
+    "en": "Tracking URI",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "코드가 트레이스와 평가 결과를 어느 MLflow 서버로 보낼지 가리키는 주소로, 로컬이라면 보통 http://localhost:5000을 넣는다.",
+    "parent": "mlops.observe.tracing-quickstart",
+    "related": [
+      "mlops.observe.mlflow-server"
+    ],
+    "aliases": [
+      "추적 URI",
+      "tracking URI",
+      "set_tracking_uri",
+      "MLFLOW_TRACKING_URI"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/tracing/quickstart/"
+    ]
+  },
+  {
+    "id": "mlops.eval.assessment-source",
+    "title": "평가 출처(사람·코드·LLM 심판)",
+    "en": "Assessment Source",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "트레이스에 달린 판정을 사람이 했는지, 코드 검사가 했는지, LLM 심판이 했는지 표시하는 꼬리표로 누가 채점했는지 가려 보게 한다.",
+    "parent": "mlops.eval.human-annotation",
+    "related": [
+      "mlops.eval.feedback-object"
+    ],
+    "aliases": [
+      "평가 출처",
+      "assessment source",
+      "AssessmentSource",
+      "HUMAN·CODE·LLM_JUDGE"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/concepts/feedback/"
+    ]
+  },
+  {
+    "id": "mlops.eval.review-queue",
+    "title": "리뷰 큐(Review Queue)",
+    "en": "Review Queue",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "검토할 트레이스를 모아 여러 검토자에게 나눠 주고 같은 질문에 답하게 해, 그 답을 트레이스에 판정으로 남기는 MLflow 작업 목록이다.",
+    "parent": "mlops.eval.human-annotation",
+    "aliases": [
+      "리뷰 큐",
+      "review queue",
+      "검토 대기열",
+      "Flag for review"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/assessments/review-queues/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "mlops.eval.label-schema",
+    "title": "라벨 스키마(검토 질문)",
+    "en": "Label Schema",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "검토자가 트레이스마다 답할 질문과 답의 형식(통과·실패, 보기 고르기, 숫자, 자유 글)을 실험 단위로 한 번 정해 두는 틀이다.",
+    "parent": "mlops.eval.human-annotation",
+    "related": [
+      "mlops.eval.review-queue"
+    ],
+    "aliases": [
+      "라벨 스키마",
+      "label schema",
+      "create_label_schema"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/assessments/review-queues/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "mlops.observe.detected-issue",
+    "title": "이슈(자동으로 묶인 문제와 근거 트레이스)",
+    "en": "Detected Issue",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "문제 찾기 분석이 비슷한 실패를 하나로 묶어 이름·원인·심각도·범주와 근거 트레이스를 붙인 결과물로, 상태를 바꿔 가며 정리한다.",
+    "parent": "mlops.observe.issue-detection",
+    "aliases": [
+      "MLflow 탐지 이슈",
+      "detected issue",
+      "이슈 심각도",
+      "이슈 범주"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/eval-monitor/ai-insights/detect-issues/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
   },
   {
     "id": "mlops.observe.manual-tracing",

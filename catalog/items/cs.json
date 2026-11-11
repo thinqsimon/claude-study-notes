@@ -51,6 +51,96 @@
     ]
   },
   {
+    "id": "cs.arch.computer-parts",
+    "title": "컴퓨터의 기본 부품: CPU·메모리·저장장치",
+    "en": "Basic Parts of a Computer: CPU, Memory, Storage",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "컴퓨터 구조",
+    "summary": "CPU는 메모리에서 명령과 데이터를 꺼내 계산하고, 전원을 꺼도 남아야 할 것은 디스크 같은 저장장치에 둔다.",
+    "objectives": [
+      "CPU·메인 메모리·저장장치·입출력 장치가 각각 맡는 일을 설명할 수 있다",
+      "CPU가 메모리에서 명령과 데이터를 주소로 읽고 쓴다는 것을 그림으로 설명할 수 있다",
+      "메모리와 저장장치를 속도·용량·전원을 껐을 때의 차이로 구분할 수 있다"
+    ],
+    "related": [
+      "cs.arch.memory-hierarchy"
+    ],
+    "aliases": [
+      "컴퓨터 구성 요소",
+      "폰 노이만 구조",
+      "von Neumann architecture",
+      "컴퓨터 부품",
+      "computer components"
+    ],
+    "refs": [
+      "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c9/c9s1/",
+      "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c14/c14s1/"
+    ]
+  },
+  {
+    "id": "cs.data.bits-bytes",
+    "title": "비트와 바이트: 정보의 기본 단위",
+    "en": "Bits and Bytes",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "데이터 표현",
+    "summary": "컴퓨터는 모든 정보를 0과 1인 비트로 담고, 비트 8개를 묶은 바이트를 파일 크기와 데이터 처리의 단위로 쓴다.",
+    "objectives": [
+      "비트 n개로 서로 다른 값 2의 n제곱 가지를 나타낼 수 있다는 것을 예로 보일 수 있다",
+      "한 바이트가 0부터 255까지의 값을 담는다는 것을 설명할 수 있다",
+      "파일 크기가 바이트 단위로 표시된다는 것을 예로 들어 말할 수 있다"
+    ],
+    "related": [
+      "cs.data.binary-bitwise",
+      "cs.data.binary-prefix"
+    ],
+    "aliases": [
+      "비트와 바이트",
+      "bits and bytes",
+      "정보 단위"
+    ],
+    "refs": [
+      "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c1/c1s1/",
+      "https://docs.python.org/3/library/stdtypes.html#bytes-objects"
+    ]
+  },
+  {
+    "id": "cs.os.standard-streams",
+    "title": "표준 스트림: 표준 입력·출력·오류",
+    "en": "Standard Streams: stdin, stdout, stderr",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "운영체제",
+    "summary": "프로그램은 시작할 때 입력을 받는 통로, 결과를 내는 통로, 오류를 알리는 통로 세 개를 열린 채로 받는다.",
+    "objectives": [
+      "표준 입력·표준 출력·표준 오류가 각각 무엇을 주고받는 통로인지 말할 수 있다",
+      "세 통로가 파일 디스크립터 0·1·2에 대응한다는 것을 설명할 수 있다",
+      "결과는 표준 출력에, 오류 메시지는 표준 오류에 쓰는 프로그램을 따라 만들 수 있다"
+    ],
+    "prerequisites": [
+      "cs.os.what-os-does"
+    ],
+    "related": [
+      "ops.linux.stdout-stderr-redirection",
+      "cs.os.stdio-buffering"
+    ],
+    "aliases": [
+      "표준 스트림",
+      "standard streams",
+      "표준 입력",
+      "stdin",
+      "STDIN_FILENO",
+      "표준 입출력"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man3/stdin.3.html"
+    ]
+  },
+  {
     "id": "cs.net.protocol-layers",
     "title": "인터넷 통신의 네 계층",
     "en": "The Four Layers of the Internet Protocol Suite",
@@ -78,6 +168,32 @@
     ]
   },
   {
+    "id": "cs.data.character-codes",
+    "title": "문자 코드: 글자에 번호 붙이기",
+    "en": "Character Codes and Code Points",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "컴퓨터는 글자마다 정해진 번호를 붙여 숫자로 저장하며, 영문용 ASCII와 세계 문자를 모두 담는 유니코드가 대표적인 번호표다.",
+    "objectives": [
+      "글자와 그 글자의 번호(코드 포인트)를 서로 바꿔 볼 수 있다",
+      "ASCII와 유니코드가 담는 글자의 범위 차이를 설명할 수 있다",
+      "U+AC00 같은 표기가 어떤 글자의 번호를 뜻하는지 읽을 수 있다"
+    ],
+    "related": [
+      "be.python.unicode"
+    ],
+    "aliases": [
+      "문자 코드",
+      "글자 번호"
+    ],
+    "refs": [
+      "https://www.unicode.org/standard/WhatIsUnicode.html",
+      "https://docs.python.org/3/howto/unicode.html"
+    ]
+  },
+  {
     "id": "cs.dsa.data-structure",
     "title": "자료구조",
     "en": "Data Structure",
@@ -94,6 +210,88 @@
     "refs": [
       "https://xlinux.nist.gov/dads/HTML/datastructur.html",
       "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec1/"
+    ]
+  },
+  {
+    "id": "cs.arch.cpu",
+    "title": "CPU(중앙 처리 장치)",
+    "en": "Central Processing Unit",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "컴퓨터 구조",
+    "summary": "메모리에서 명령을 하나씩 꺼내 계산·비교·이동을 실제로 해내는 컴퓨터의 계산 부품이다.",
+    "parent": "cs.arch.computer-parts",
+    "aliases": [
+      "중앙 처리 장치",
+      "CPU 코어"
+    ],
+    "refs": [
+      "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c9/c9s1/"
+    ]
+  },
+  {
+    "id": "cs.arch.main-memory",
+    "title": "메인 메모리(RAM)",
+    "en": "Main Memory (RAM)",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "컴퓨터 구조",
+    "summary": "실행 중인 프로그램의 명령과 데이터를 주소로 찾아 읽고 쓰는 작업 공간으로, 전원이 꺼지면 내용이 사라진다.",
+    "parent": "cs.arch.computer-parts",
+    "related": [
+      "cs.arch.storage-device"
+    ],
+    "aliases": [
+      "RAM",
+      "주기억장치",
+      "DRAM",
+      "main memory"
+    ],
+    "refs": [
+      "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c14/c14s1/"
+    ]
+  },
+  {
+    "id": "cs.data.bit",
+    "title": "비트",
+    "en": "Bit",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "데이터 표현",
+    "summary": "0과 1 둘 중 하나의 값만 갖는 정보의 가장 작은 단위다.",
+    "parent": "cs.data.bits-bytes",
+    "aliases": [
+      "binary digit",
+      "이진 숫자",
+      "비트 수"
+    ],
+    "refs": [
+      "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c1/c1s1/"
+    ]
+  },
+  {
+    "id": "cs.data.byte",
+    "title": "바이트",
+    "en": "Byte",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "데이터 표현",
+    "summary": "비트 8개를 묶은 단위로 0부터 255까지의 값 하나를 담으며, 파일과 메모리 크기를 셀 때 쓴다.",
+    "parent": "cs.data.bits-bytes",
+    "related": [
+      "cs.data.binary-prefix"
+    ],
+    "aliases": [
+      "byte 단위",
+      "8비트 묶음",
+      "octet"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/stdtypes.html#bytes-objects"
     ]
   },
   {
@@ -198,6 +396,89 @@
     ]
   },
   {
+    "id": "cs.arch.storage-device",
+    "title": "저장장치(SSD·하드 디스크)",
+    "en": "Storage Device",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "컴퓨터 구조",
+    "summary": "전원을 꺼도 파일이 남는 크고 느린 기억 장치로, 플래시 기반 SSD와 회전하는 하드 디스크가 대표다.",
+    "parent": "cs.arch.computer-parts",
+    "related": [
+      "cs.arch.main-memory"
+    ],
+    "aliases": [
+      "보조기억장치",
+      "SSD",
+      "하드 디스크",
+      "HDD",
+      "비휘발성 저장장치"
+    ],
+    "refs": [
+      "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c14/c14s1/"
+    ]
+  },
+  {
+    "id": "cs.data.code-point",
+    "title": "코드 포인트",
+    "en": "Code Point",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "유니코드가 글자 하나하나에 붙인 고유 번호로, U+ 뒤에 16진수를 써서 나타낸다.",
+    "parent": "cs.data.character-codes",
+    "aliases": [
+      "code point",
+      "유니코드 코드 포인트",
+      "U+ 표기"
+    ],
+    "refs": [
+      "https://docs.python.org/3/howto/unicode.html"
+    ]
+  },
+  {
+    "id": "cs.data.ascii",
+    "title": "ASCII",
+    "en": "ASCII",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "영문자·숫자·기호에 0부터 127까지 번호를 붙인 오래된 문자 코드로, 유니코드의 앞부분과 번호가 같다.",
+    "parent": "cs.data.character-codes",
+    "aliases": [
+      "아스키",
+      "아스키 코드",
+      "ASCII 코드",
+      "US-ASCII"
+    ],
+    "refs": [
+      "https://docs.python.org/3/howto/unicode.html",
+      "https://www.rfc-editor.org/rfc/rfc20"
+    ]
+  },
+  {
+    "id": "cs.os.eof",
+    "title": "파일 끝(EOF)",
+    "en": "End of File",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "더 읽을 데이터가 없다는 신호로, 읽기 호출이 0바이트를 돌려주면 입력이 끝났다고 보고 반복을 멈춘다.",
+    "parent": "cs.os.standard-streams",
+    "aliases": [
+      "EOF",
+      "end of file",
+      "파일의 끝"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man2/read.2.html"
+    ]
+  },
+  {
     "id": "cs.data.binary-prefix",
     "title": "이진 접두어(KiB·MiB·GiB)",
     "en": "Binary Prefixes",
@@ -215,6 +496,25 @@
     ],
     "refs": [
       "https://physics.nist.gov/cuu/Units/binary.html"
+    ]
+  },
+  {
+    "id": "cs.arch.fetch-execute",
+    "title": "명령어 인출-실행 주기",
+    "en": "Fetch-Execute Cycle",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "컴퓨터 구조",
+    "summary": "CPU가 프로그램 카운터가 가리키는 명령을 메모리에서 꺼내 실행하고 다음 명령으로 넘어가기를 되풀이하는 흐름이다.",
+    "parent": "cs.arch.computer-parts",
+    "aliases": [
+      "fetch-execute",
+      "명령어 사이클",
+      "instruction cycle"
+    ],
+    "refs": [
+      "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c9/c9s1/"
     ]
   },
   {
