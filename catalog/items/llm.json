@@ -97,6 +97,35 @@
     ]
   },
   {
+    "id": "llm.basics.first-chat",
+    "title": "AI 챗봇 처음 써 보기: 묻고 이어 묻기",
+    "en": "Getting Started with an AI Chatbot",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "LLM 기초",
+    "summary": "웹이나 앱에서 챗봇을 열어 사람에게 말하듯 묻고, 답을 보고 다시 물으며 원하는 결과로 다듬어 간다.",
+    "objectives": [
+      "웹이나 휴대폰 앱에서 AI 챗봇을 열어 첫 질문을 보낼 수 있다",
+      "한 번에 끝내지 않고 후속 질문으로 답을 다듬는 흐름을 동료와의 대화에 빗대어 설명할 수 있다",
+      "대화가 길고 첨부가 클수록 사용량이 더 빨리 줄어드는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.what-is-prompt"
+    ],
+    "aliases": [
+      "챗봇 첫 사용",
+      "AI 채팅 시작하기",
+      "채팅 AI 쓰는 법",
+      "AI 챗봇 사용법",
+      "chatbot getting started"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/8114491-getting-started-with-claude",
+      "https://support.claude.com/en/articles/9797557-usage-limit-best-practices"
+    ]
+  },
+  {
     "id": "llm.basics.model-choices",
     "title": "AI 모델의 종류와 요금의 큰 그림",
     "en": "AI Models and Pricing at a Glance",
@@ -119,6 +148,40 @@
     "refs": [
       "https://platform.claude.com/docs/en/about-claude/models/overview"
     ]
+  },
+  {
+    "id": "llm.basics.chat-memory",
+    "title": "AI 챗봇의 기억: 대화 기록과 메모리",
+    "en": "How AI Chatbots Remember: Chat History and Memory",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "챗봇은 원래 지금 대화만 기억하지만, 메모리 기능이 켜져 있으면 지난 대화에서 알게 된 내용을 다음 대화에도 가져온다.",
+    "objectives": [
+      "한 대화 안에서 기억하는 것과 대화를 넘어 기억하는 것을 수첩에 빗대어 구분할 수 있다",
+      "메모리를 끄거나 시크릿 채팅을 써야 할 때를 예를 들어 고를 수 있다",
+      "대화를 지워도 그 대화로 만든 메모리는 따로 지워야 한다는 점을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.first-chat"
+    ],
+    "related": [
+      "rag.agent.memory-overview",
+      "ax.basics.personal-data"
+    ],
+    "aliases": [
+      "챗봇 메모리",
+      "AI 기억 기능",
+      "대화 기억",
+      "chat memory",
+      "ChatGPT 메모리"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/11817273-using-claude-s-chat-search-and-memory-to-build-on-previous-context"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
   },
   {
     "id": "llm.basics.image-generation",
@@ -149,6 +212,38 @@
     "refs": [
       "https://github.com/microsoft/generative-ai-for-beginners/blob/main/09-building-image-applications/README.md",
       "https://developers.openai.com/api/docs/guides/image-generation"
+    ]
+  },
+  {
+    "id": "llm.basics.genai-history",
+    "title": "생성형 AI가 오기까지: 규칙 챗봇에서 트랜스포머로",
+    "en": "How We Got Generative AI",
+    "kind": "topic",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "정해진 답을 고르던 규칙 챗봇에서 데이터로 배우는 머신러닝과 신경망을 거쳐, 긴 글을 한꺼번에 보는 트랜스포머가 오늘의 LLM을 만들었다.",
+    "objectives": [
+      "규칙 챗봇·머신러닝·신경망·트랜스포머로 이어지는 흐름을 순서대로 말할 수 있다",
+      "규칙 챗봇이 넓게 쓰이지 못한 이유를 말할 수 있다",
+      "트랜스포머의 어텐션이 문장에서 중요한 단어에 더 집중하는 일임을 비유로 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.what-is-llm"
+    ],
+    "related": [
+      "ml.basics.ai-ml-dl"
+    ],
+    "aliases": [
+      "생성형 AI의 역사",
+      "AI 챗봇의 역사",
+      "LLM의 역사",
+      "history of generative AI",
+      "생성형 AI 발전 과정"
+    ],
+    "refs": [
+      "https://github.com/microsoft/generative-ai-for-beginners/blob/main/01-introduction-to-genai/README.md",
+      "https://huggingface.co/learn/llm-course/chapter1/2"
     ]
   },
   {
@@ -183,6 +278,30 @@
     ]
   },
   {
+    "id": "llm.basics.chatbot",
+    "title": "AI 챗봇",
+    "en": "AI Chatbot",
+    "kind": "term",
+    "level": 1,
+    "importance": 1,
+    "group": "LLM 기초",
+    "summary": "사람이 글이나 말로 물으면 LLM이 대화하듯 답해 주는 프로그램이다.",
+    "parent": "llm.basics.first-chat",
+    "related": [
+      "llm.basics.rule-based-chatbot"
+    ],
+    "aliases": [
+      "챗봇",
+      "chatbot",
+      "대화형 AI",
+      "AI 어시스턴트",
+      "AI assistant"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/8114491-getting-started-with-claude"
+    ]
+  },
+  {
     "id": "llm.basics.open-model",
     "title": "오픈 모델",
     "en": "Open Model",
@@ -209,6 +328,152 @@
     ]
   },
   {
+    "id": "llm.basics.chat-usage-limit",
+    "title": "채팅 사용량 한도",
+    "en": "Chat Usage Limit",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "요금제마다 정해진 시간 동안 보낼 수 있는 대화량의 상한으로, 긴 대화와 큰 첨부일수록 빨리 닿는다.",
+    "parent": "llm.basics.first-chat",
+    "related": [
+      "llm.api.usage-tier"
+    ],
+    "aliases": [
+      "챗봇 사용량 한도",
+      "chat usage limit",
+      "메시지 한도",
+      "채팅 한도"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/9797557-usage-limit-best-practices"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.custom-instructions",
+    "title": "맞춤 지시(custom instructions)",
+    "en": "Custom Instructions",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "말투나 선호를 설정에 한 번 적어 두면 챗봇이 모든 대화에서 그 내용을 참고하게 하는 기능이다.",
+    "related": [
+      "llm.api.system-prompt",
+      "llm.basics.chat-memory-feature"
+    ],
+    "aliases": [
+      "맞춤 지시",
+      "사용자 지정 지침",
+      "개인 맞춤 지시",
+      "profile instructions",
+      "Instructions for Claude"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/10185728-understanding-claude-s-personalization-features"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.chat-memory-feature",
+    "title": "챗봇 메모리 기능",
+    "en": "Chatbot Memory Feature",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "챗봇이 대화 중에 알게 된 내 정보와 선호를 따로 적어 두었다가 다음 대화에서 꺼내 쓰는 기능이다.",
+    "parent": "llm.basics.chat-memory",
+    "related": [
+      "llm.basics.custom-instructions"
+    ],
+    "aliases": [
+      "메모리 기능",
+      "memory feature",
+      "장기 기억 기능"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/11817273-using-claude-s-chat-search-and-memory-to-build-on-previous-context"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.incognito-chat",
+    "title": "시크릿 채팅(임시 채팅)",
+    "en": "Incognito Chat",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "대화 기록에 남지 않고 메모리와 과거 대화 검색에도 쓰이지 않는 일회용 대화다.",
+    "parent": "llm.basics.chat-memory",
+    "related": [
+      "llm.basics.chat-memory-feature"
+    ],
+    "aliases": [
+      "시크릿 채팅",
+      "임시 채팅",
+      "incognito chat",
+      "temporary chat",
+      "기록 안 남는 대화"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/11817273-using-claude-s-chat-search-and-memory-to-build-on-previous-context"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.nlp",
+    "title": "자연어 처리(NLP)",
+    "en": "Natural Language Processing",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "컴퓨터가 사람의 말과 글을 알아듣고 다루게 하는 연구 분야로, LLM도 이 분야에서 나왔다.",
+    "parent": "llm.basics.genai-history",
+    "related": [
+      "llm.basics.nlp-tasks"
+    ],
+    "aliases": [
+      "NLP",
+      "자연어 처리",
+      "Natural Language Processing",
+      "자연 언어 처리"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter1/2"
+    ]
+  },
+  {
+    "id": "llm.basics.completion",
+    "title": "완성 응답(completion)",
+    "en": "LLM Completion",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "프롬프트를 받은 LLM이 그 뒤를 이어 만들어 낸 글로, 모델이 내놓는 답 자체를 가리킨다.",
+    "parent": "llm.basics.what-is-llm",
+    "related": [
+      "llm.basics.what-is-prompt"
+    ],
+    "aliases": [
+      "LLM completion",
+      "컴플리션",
+      "모델 출력"
+    ],
+    "refs": [
+      "https://github.com/microsoft/generative-ai-for-beginners/blob/main/01-introduction-to-genai/README.md"
+    ]
+  },
+  {
     "id": "llm.basics.small-language-model",
     "title": "소형 언어 모델(SLM)",
     "en": "Small Language Model",
@@ -230,6 +495,53 @@
     "refs": [
       "https://github.com/microsoft/generative-ai-for-beginners/blob/main/19-slm/README.md",
       "https://learn.microsoft.com/en-us/azure/azure-sovereign-clouds/private/foundry-local/concept-models"
+    ]
+  },
+  {
+    "id": "llm.basics.chat-search",
+    "title": "과거 대화 검색",
+    "en": "Chat Search",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "챗봇이 내 예전 대화를 찾아 읽고 그 내용을 이어서 답에 쓰는 기능이다.",
+    "parent": "llm.basics.chat-memory",
+    "related": [
+      "llm.basics.chat-memory-feature"
+    ],
+    "aliases": [
+      "chat search",
+      "이전 대화 참조",
+      "대화 기록 참조"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/11817273-using-claude-s-chat-search-and-memory-to-build-on-previous-context"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.rule-based-chatbot",
+    "title": "규칙 기반 챗봇",
+    "en": "Rule-Based Chatbot",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "사람이 미리 적어 둔 낱말과 답의 짝을 찾아 정해진 답만 돌려주는 옛 방식의 챗봇이다.",
+    "parent": "llm.basics.genai-history",
+    "related": [
+      "llm.basics.chatbot"
+    ],
+    "aliases": [
+      "규칙형 챗봇",
+      "rule-based chatbot",
+      "키워드 챗봇",
+      "시나리오 챗봇"
+    ],
+    "refs": [
+      "https://github.com/microsoft/generative-ai-for-beginners/blob/main/01-introduction-to-genai/README.md"
     ]
   },
   {

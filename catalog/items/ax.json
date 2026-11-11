@@ -162,6 +162,107 @@
     "checked_at": "2026-11-05"
   },
   {
+    "id": "ax.governance.ai-regulation-big-picture",
+    "title": "AI 규제의 큰 그림: AI에도 법이 생긴 이유",
+    "en": "AI Regulation at a Glance",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "AI가 사람을 불공정하게 대하거나 속이는 일을 막으려고 나라마다 위험한 쓰임일수록 더 엄한 규칙을 두는 법을 만들고 있다.",
+    "objectives": [
+      "AI에 따로 법이 생긴 까닭을 일상 예로 설명할 수 있다",
+      "위험이 큰 쓰임일수록 규칙이 엄해진다는 생각을 신호등 같은 비유로 말할 수 있다",
+      "AI 서비스를 쓰거나 만들 때 법이 요구하는 알림의 예를 들 수 있다",
+      "EU AI법과 한국 인공지능기본법이 어느 나라의 법이고 언제부터 시행되는지 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.governance.trustworthy-ai"
+    ],
+    "related": [
+      "ax.governance.ai-act-risk-levels",
+      "ax.governance.ai-risk"
+    ],
+    "aliases": [
+      "AI 규제",
+      "AI 법규",
+      "AI regulation",
+      "인공지능 규제"
+    ],
+    "refs": [
+      "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+      "https://www.korea.kr/news/policyNewsView.do?newsId=148958380"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.governance.ai-copyright",
+    "title": "AI가 만든 결과물과 저작권",
+    "en": "AI Outputs and Copyright",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "AI가 혼자 만든 결과물은 저작권을 받기 어렵고, 남의 작품을 닮은 결과물을 퍼뜨리면 쓴 사람이 책임질 수 있다.",
+    "objectives": [
+      "AI 결과물에 저작권이 생기기 어려운 까닭을 비유로 설명할 수 있다",
+      "AI 결과물을 밖에 올리기 전에 살필 점을 두 가지 이상 말할 수 있다",
+      "AI 학습에 남의 작품을 쓰는 일이 왜 다툼이 되는지 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.generative-ai"
+    ],
+    "related": [
+      "ax.governance.synthetic-content-provenance"
+    ],
+    "aliases": [
+      "AI 저작권",
+      "AI 생성물 저작권",
+      "AI copyright",
+      "생성형 AI 저작권"
+    ],
+    "refs": [
+      "https://www.mcst.go.kr/english/policy/pressView.jsp?pSeq=391",
+      "https://www.copyright.gov/ai/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.governance.deepfake",
+    "title": "딥페이크: AI로 만든 진짜 같은 가짜",
+    "en": "Deepfakes",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "AI로 실제 사람의 얼굴·목소리를 흉내 내 진짜처럼 만든 영상·음성으로, 사기와 명예 훼손에 쓰일 수 있어 표시 의무가 생기고 있다.",
+    "objectives": [
+      "딥페이크가 무엇인지 일상 예로 설명할 수 있다",
+      "딥페이크가 쓰이는 사기 수법을 예를 들어 말할 수 있다",
+      "AI로 만든 영상·음성에 표시를 하라는 법의 뜻을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.generative-ai"
+    ],
+    "related": [
+      "ax.governance.synthetic-content-provenance",
+      "ax.governance.ai-disclosure-labelling"
+    ],
+    "aliases": [
+      "deepfake",
+      "딥페이크 영상",
+      "AI 합성 영상"
+    ],
+    "refs": [
+      "https://www.korea.kr/news/policyNewsView.do?newsId=148958380",
+      "https://www.ic3.gov/PSA/2024/PSA241203"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "ax.governance.harmful-bias",
     "title": "AI 편향(harmful bias)",
     "en": "Harmful Bias in AI",
@@ -229,6 +330,214 @@
     ],
     "refs": [
       "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+    ]
+  },
+  {
+    "id": "ax.governance.eu-ai-act",
+    "title": "EU 인공지능법(AI Act)",
+    "en": "EU Artificial Intelligence Act",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "유럽연합이 2024년에 만든 세계 첫 포괄적 AI 법으로, 쓰임의 위험 정도에 따라 금지·엄격 관리·투명성 의무·별도 규칙 없음의 네 단계로 나눈다.",
+    "parent": "ax.governance.ai-regulation-big-picture",
+    "related": [
+      "ax.governance.ai-act-risk-levels",
+      "ax.governance.korea-ai-basic-act"
+    ],
+    "aliases": [
+      "EU AI법",
+      "유럽 AI법",
+      "유럽연합 인공지능법",
+      "Regulation (EU) 2024/1689"
+    ],
+    "refs": [
+      "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.governance.korea-ai-basic-act",
+    "title": "한국 인공지능기본법",
+    "en": "Korea Framework Act on AI",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "2026년 1월 시행된 한국의 AI 법으로, AI 산업 지원과 함께 생성형 AI 사용 사전 고지와 딥페이크 표시 같은 신뢰 의무를 정한다.",
+    "parent": "ax.governance.ai-regulation-big-picture",
+    "related": [
+      "ax.governance.korea-high-impact-ai",
+      "ax.governance.eu-ai-act"
+    ],
+    "aliases": [
+      "인공지능기본법",
+      "인공지능 발전과 신뢰 기반 조성 등에 관한 기본법",
+      "Korean AI Framework Act",
+      "한국 AI법"
+    ],
+    "refs": [
+      "https://www.korea.kr/news/policyNewsView.do?newsId=148958380"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.governance.human-authorship",
+    "title": "인간 저작자 요건(human authorship)",
+    "en": "Human Authorship Requirement",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "저작권은 사람의 생각이나 감정이 담긴 표현에만 주어지므로, 사람의 창작적 손길이 들어간 부분만 보호받는다는 원칙이다.",
+    "parent": "ax.governance.ai-copyright",
+    "aliases": [
+      "인간 저작자",
+      "인간의 창작적 기여",
+      "human author"
+    ],
+    "refs": [
+      "https://www.mcst.go.kr/english/policy/pressView.jsp?pSeq=391",
+      "https://www.copyright.gov/ai/"
+    ]
+  },
+  {
+    "id": "ax.governance.ai-output-rights",
+    "title": "AI 결과물의 권리와 책임(이용 약관)",
+    "en": "Rights and Responsibility for AI Outputs",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "AI 서비스 약관은 보통 결과물의 권리를 이용자에게 넘기지만, 결과가 틀릴 수 있으니 확인하고 쓸 책임도 이용자에게 둔다.",
+    "parent": "ax.governance.ai-copyright",
+    "related": [
+      "ax.basics.verify-ai-output"
+    ],
+    "aliases": [
+      "AI 결과물 권리",
+      "AI 출력물 소유권",
+      "output ownership"
+    ],
+    "refs": [
+      "https://www.anthropic.com/legal/consumer-terms"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.governance.voice-cloning",
+    "title": "음성 복제(voice cloning)",
+    "en": "Voice Cloning",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "AI가 짧은 녹음만으로 특정 사람의 목소리를 흉내 내는 기술로, 가족을 사칭한 돈 요구 사기에 악용된다.",
+    "parent": "ax.governance.deepfake",
+    "related": [
+      "llm.api.text-to-speech"
+    ],
+    "aliases": [
+      "목소리 복제",
+      "AI 음성 복제",
+      "보이스 클로닝",
+      "AI 목소리 사기"
+    ],
+    "refs": [
+      "https://www.ic3.gov/PSA/2024/PSA241203"
+    ]
+  },
+  {
+    "id": "ax.governance.usage-policy",
+    "title": "AI 사용 정책(usage policy)",
+    "en": "AI Usage Policy",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "AI 회사가 자기 서비스로 하면 안 되는 일과 위험한 쓰임에 붙는 조건을 정해 둔 규칙으로, 어기면 이용이 막힐 수 있다.",
+    "related": [
+      "ax.governance.ai-output-rights"
+    ],
+    "aliases": [
+      "AI 이용 정책",
+      "허용되지 않는 사용",
+      "acceptable use policy",
+      "AUP"
+    ],
+    "refs": [
+      "https://www.anthropic.com/legal/aup"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.governance.oecd-ai-principles",
+    "title": "OECD AI 원칙",
+    "en": "OECD AI Principles",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "여러 나라가 함께 동의한 믿을 수 있는 AI의 기본 가치로, 인권 존중·투명성·안전·책임 같은 다섯 원칙을 담는다.",
+    "related": [
+      "ax.governance.trustworthy-ai"
+    ],
+    "aliases": [
+      "OECD 인공지능 원칙",
+      "OECD AI 권고",
+      "OECD AI Recommendation"
+    ],
+    "refs": [
+      "https://oecd.ai/en/ai-principles"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.governance.ai-training-opt-out",
+    "title": "AI 학습 거부 표시(opt-out)",
+    "en": "AI Training Opt-out",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "자기 작품이 AI 학습에 쓰이길 원하지 않는 권리자가 계약 조건이나 로봇 배제 같은 기술 수단으로 그 뜻을 밝혀 두는 일이다.",
+    "parent": "ax.governance.ai-copyright",
+    "aliases": [
+      "AI 학습 거부",
+      "학습 opt-out",
+      "AI training opt-out",
+      "학습 이용 거부"
+    ],
+    "refs": [
+      "https://www.mcst.go.kr/english/policy/pressView.jsp?pSeq=391"
+    ]
+  },
+  {
+    "id": "ax.governance.ai-incident",
+    "title": "AI 사고와 AI 위해 징후",
+    "en": "AI Incident and AI Hazard",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "AI 시스템 때문에 실제 피해가 난 일을 AI 사고, 아직 피해는 없지만 생길 만한 위험을 AI 위해 징후라 부른다.",
+    "related": [
+      "ax.governance.ai-risk-framing"
+    ],
+    "aliases": [
+      "AI incident",
+      "AI hazard",
+      "AI 위해 징후",
+      "AI 사고 사례"
+    ],
+    "refs": [
+      "https://oecd.ai/en/incidents"
     ]
   },
   {

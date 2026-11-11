@@ -99,6 +99,63 @@
     ]
   },
   {
+    "id": "db.basics.client-server",
+    "title": "DB 서버와 클라이언트: 주방과 주문",
+    "en": "Database Client and Server",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "DB 기초",
+    "summary": "데이터베이스는 자료를 맡아 일하는 서버 프로그램과 그 서버에 일을 부탁하는 클라이언트 프로그램이 나뉘어 함께 움직인다.",
+    "objectives": [
+      "DB 서버와 클라이언트의 관계를 식당 주방과 주문하는 손님에 빗대어 설명할 수 있다",
+      "서버와 클라이언트가 다른 컴퓨터에 있어도 네트워크로 이어질 수 있음을 말할 수 있다",
+      "여러 손님이 한꺼번에 접속해도 서버가 각자를 따로 상대한다는 것을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "db.basics.what-is-database"
+    ],
+    "related": [
+      "be.basics.server",
+      "be.basics.client"
+    ],
+    "aliases": [
+      "DB 클라이언트 서버 구조",
+      "DB client/server model",
+      "DB 접속 구조"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/tutorial-arch.html"
+    ]
+  },
+  {
+    "id": "db.basics.crud-idea",
+    "title": "CRUD: 자료를 다루는 네 가지 일",
+    "en": "The Idea of CRUD",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "DB 기초",
+    "summary": "자료를 새로 넣기·찾아 읽기·고치기·지우기의 네 가지 일로 데이터베이스에서 하는 거의 모든 작업을 나누어 보는 생각이다.",
+    "objectives": [
+      "CRUD의 네 글자가 각각 어떤 일인지 주소록에 빗대어 설명할 수 있다",
+      "앱의 버튼(가입·검색·수정·탈퇴)이 CRUD의 어느 일에 해당하는지 짝지을 수 있다",
+      "고치기와 지우기 전에 대상을 먼저 골라야 하는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "db.basics.table-row-column"
+    ],
+    "aliases": [
+      "크루드",
+      "create read update delete",
+      "CRUD 작업"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/crud/",
+      "https://www.postgresql.org/docs/current/tutorial-populate.html"
+    ]
+  },
+  {
     "id": "db.cache.cache-idea",
     "title": "캐시: 자주 찾는 자료를 손 닿는 곳에 두기",
     "en": "The Idea of Caching",
@@ -127,6 +184,37 @@
     ]
   },
   {
+    "id": "db.basics.embedded-database",
+    "title": "서버 없는 데이터베이스: 파일 하나에 담기",
+    "en": "Embedded Single-File Database",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "DB 기초",
+    "summary": "따로 서버를 띄우지 않고 앱 안에 들어가 파일 하나에 표와 자료를 모두 담는 데이터베이스도 있다.",
+    "objectives": [
+      "서버형 데이터베이스와 파일 하나에 담기는 데이터베이스의 차이를 은행 금고와 개인 수첩에 빗대어 설명할 수 있다",
+      "휴대폰 앱·브라우저처럼 이런 데이터베이스가 쓰이는 곳을 예로 들 수 있다",
+      "DB 파일을 복사하면 데이터베이스 전체가 옮겨진다는 것을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "db.basics.client-server"
+    ],
+    "related": [
+      "db.sql.sqlite-cli"
+    ],
+    "aliases": [
+      "임베디드 데이터베이스",
+      "embedded database",
+      "내장형 DB",
+      "파일 기반 DB"
+    ],
+    "refs": [
+      "https://www.sqlite.org/about.html",
+      "https://www.sqlite.org/serverless.html"
+    ]
+  },
+  {
     "id": "db.basics.relational-database",
     "title": "관계형 데이터베이스",
     "en": "Relational Database",
@@ -149,6 +237,49 @@
     "refs": [
       "https://www.postgresql.org/docs/current/tutorial-concepts.html",
       "https://www.postgresql.org/docs/current/tutorial-join.html"
+    ]
+  },
+  {
+    "id": "db.basics.db-server",
+    "title": "데이터베이스 서버",
+    "en": "Database Server",
+    "kind": "term",
+    "level": 1,
+    "importance": 1,
+    "group": "DB 기초",
+    "summary": "자료 파일을 맡아 지키면서 접속한 프로그램들의 부탁을 대신 처리해 주는 늘 켜져 있는 프로그램이다.",
+    "parent": "db.basics.client-server",
+    "related": [
+      "be.basics.server"
+    ],
+    "aliases": [
+      "DB 서버",
+      "database server",
+      "DB 서버 프로그램",
+      "데이터베이스 서버 프로세스"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/tutorial-arch.html"
+    ]
+  },
+  {
+    "id": "db.basics.query",
+    "title": "쿼리(질의)",
+    "en": "Database Query",
+    "kind": "term",
+    "level": 1,
+    "importance": 1,
+    "group": "DB 기초",
+    "summary": "데이터베이스에 원하는 자료를 골라 보여 달라고 보내는 질문으로, 흔히 SQL 문장 하나를 가리킨다.",
+    "parent": "db.basics.what-is-sql",
+    "aliases": [
+      "DB 쿼리",
+      "database query",
+      "SQL 쿼리",
+      "쿼리문"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/tutorial-select.html"
     ]
   },
   {
@@ -195,6 +326,98 @@
     ]
   },
   {
+    "id": "db.basics.db-client",
+    "title": "데이터베이스 클라이언트",
+    "en": "Database Client",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "DB 기초",
+    "summary": "DB 서버에 접속해 자료를 찾거나 바꿔 달라고 부탁하는 쪽 프로그램으로, 명령 창 도구·화면 도구·웹 서버 등이 모두 해당한다.",
+    "parent": "db.basics.client-server",
+    "related": [
+      "be.basics.client"
+    ],
+    "aliases": [
+      "DB 클라이언트",
+      "database client",
+      "DB 클라이언트 프로그램",
+      "DB 접속 도구"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/tutorial-arch.html"
+    ]
+  },
+  {
+    "id": "db.basics.data-type",
+    "title": "열의 자료형: 칸에 넣을 값의 종류",
+    "en": "Column Data Types",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "DB 기초",
+    "summary": "표의 열마다 숫자·글자·날짜처럼 넣을 수 있는 값의 종류를 미리 정해 두는 약속이다.",
+    "related": [
+      "db.sql.data-types",
+      "be.python.data-type"
+    ],
+    "aliases": [
+      "DB 데이터 타입",
+      "DB 자료형",
+      "열 타입",
+      "칸의 자료형"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/tutorial-table.html"
+    ]
+  },
+  {
+    "id": "db.basics.null-value",
+    "title": "NULL: 아직 모르는 값",
+    "en": "NULL Value",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "DB 기초",
+    "summary": "칸에 값이 없거나 아직 모른다는 표시로, 0이나 빈 글자와는 다른 특별한 값이다.",
+    "related": [
+      "db.sql.null-comparison"
+    ],
+    "aliases": [
+      "NULL 값",
+      "널 값",
+      "null value",
+      "값 없음"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/functions-comparison.html",
+      "https://www.postgresql.org/docs/current/tutorial-populate.html"
+    ]
+  },
+  {
+    "id": "db.nosql.document",
+    "title": "문서(도큐먼트): 이름표 붙은 값 묶음",
+    "en": "Document (Document Database)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "NoSQL",
+    "summary": "문서형 데이터베이스에서 자료 한 건을 이름과 값의 쌍 여러 개로 묶어 JSON처럼 적어 둔 단위다.",
+    "related": [
+      "db.nosql.what-is-nosql",
+      "be.basics.json"
+    ],
+    "aliases": [
+      "문서형 DB 도큐먼트",
+      "MongoDB 문서",
+      "document model",
+      "문서 데이터 모델"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/introduction/"
+    ]
+  },
+  {
     "id": "db.nosql.what-is-nosql",
     "title": "NoSQL",
     "en": "NoSQL Databases",
@@ -211,6 +434,72 @@
     ],
     "refs": [
       "https://aws.amazon.com/nosql/"
+    ]
+  },
+  {
+    "id": "db.basics.database-file",
+    "title": "DB 파일",
+    "en": "Database File",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "DB 기초",
+    "summary": "표·자료·색인까지 데이터베이스 하나를 통째로 담고 있는 디스크의 파일 하나다.",
+    "parent": "db.basics.embedded-database",
+    "aliases": [
+      "데이터베이스 파일",
+      "database file",
+      ".db 파일",
+      "단일 파일 DB"
+    ],
+    "refs": [
+      "https://www.sqlite.org/about.html"
+    ]
+  },
+  {
+    "id": "db.nosql.collection",
+    "title": "컬렉션: 문서를 모아 두는 상자",
+    "en": "Collection (Document Database)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "NoSQL",
+    "summary": "문서형 데이터베이스에서 문서들을 모아 두는 곳으로, 표와 비슷하지만 문서마다 모양이 달라도 된다.",
+    "related": [
+      "db.basics.table-row-column",
+      "db.nosql.firestore-collection-document"
+    ],
+    "aliases": [
+      "문서 컬렉션",
+      "document collection",
+      "MongoDB 컬렉션"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/introduction/"
+    ]
+  },
+  {
+    "id": "db.cache.in-memory-database",
+    "title": "인메모리 데이터베이스",
+    "en": "In-Memory Database",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "캐시",
+    "summary": "자료를 디스크가 아니라 컴퓨터 메모리에 두고 다루어 아주 빠르게 읽고 쓰는 데이터베이스다.",
+    "related": [
+      "db.cache.cache-idea",
+      "db.cache.key-value-store"
+    ],
+    "aliases": [
+      "인메모리 DB",
+      "in-memory database",
+      "in-memory data store",
+      "메모리 데이터베이스"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/get-started/",
+      "https://redis.io/docs/latest/develop/get-started/data-store/"
     ]
   },
   {
