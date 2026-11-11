@@ -510,6 +510,72 @@
     ]
   },
   {
+    "id": "fe.basics.client-storage-idea",
+    "title": "브라우저 저장 공간: 웹사이트가 남기는 메모",
+    "en": "Client-side Storage in the Browser",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "웹사이트는 화면 설정·장바구니·오프라인용 파일을 사용자 컴퓨터의 브라우저 안에 적어 두었다가 다음 방문 때 다시 꺼내 쓴다.",
+    "objectives": [
+      "브라우저 저장 공간을 사이트마다 따로 주어지는 서랍에 빗대어 설명할 수 있다",
+      "테마 기억·장바구니 유지·오프라인 사용처럼 사이트가 브라우저에 무엇을 남기는지 예를 들 수 있다",
+      "짧은 글자 값을 담는 Web Storage와 큰 자료를 담는 IndexedDB, 파일을 담는 Cache API를 크기와 용도로 나눠 말할 수 있다",
+      "시크릿 창을 닫거나 브라우저 설정에서 사이트 데이터를 지우면 저장한 내용이 사라지는 까닭을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.web-apis-idea"
+    ],
+    "related": [
+      "fe.js.web-storage",
+      "be.http.cookie-basics"
+    ],
+    "aliases": [
+      "클라이언트 측 저장소",
+      "client-side storage",
+      "브라우저 저장소",
+      "browser storage",
+      "사이트 데이터 저장"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Client-side_APIs/Client-side_storage",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria"
+    ]
+  },
+  {
+    "id": "fe.basics.embedding-idea",
+    "title": "남의 콘텐츠를 내 페이지에 끼워 넣기: iframe",
+    "en": "Embedding Third-party Content with iframe",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "유튜브 영상이나 지도처럼 다른 사이트의 화면을 내 페이지 안의 창(iframe)에 띄우는 일과, 그 창이 위험할 수 있는 까닭을 다룬다.",
+    "objectives": [
+      "iframe을 내 집 벽에 낸 창으로 남의 집 안을 보여 주는 일에 빗대어 설명할 수 있다",
+      "유튜브·지도의 공유 메뉴에서 받은 삽입 코드가 iframe이라는 것을 알아볼 수 있다",
+      "남의 콘텐츠를 끼워 넣을 때 보안과 저작권을 조심해야 하는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.web-page-parts"
+    ],
+    "related": [
+      "fe.basics.third-party-api"
+    ],
+    "aliases": [
+      "iframe 임베드",
+      "웹 콘텐츠 삽입",
+      "embedded content",
+      "인라인 프레임",
+      "inline frame",
+      "유튜브 삽입 코드"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/General_embedding_technologies"
+    ]
+  },
+  {
     "id": "fe.basics.pwa-idea",
     "title": "PWA: 앱처럼 설치해 쓰는 웹사이트",
     "en": "Progressive Web Apps",
@@ -593,6 +659,36 @@
       "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/What_are_WebExtensions",
       "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Anatomy_of_a_WebExtension",
       "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/permissions"
+    ]
+  },
+  {
+    "id": "fe.basics.web-graphics-idea",
+    "title": "웹 도화지 canvas: 브라우저에서 그림 그리기",
+    "en": "Drawing Graphics with the HTML Canvas",
+    "kind": "topic",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 기초",
+    "summary": "canvas는 웹 페이지에 놓인 빈 도화지로, 스크립트가 그 위에 도형·그림·애니메이션을 그리고 게임·차트·3D 화면에 쓰인다.",
+    "objectives": [
+      "canvas를 그리고 나면 낱낱이 옮길 수 없는 도화지에, SVG를 하나씩 움직일 수 있는 스티커에 빗대어 차이를 설명할 수 있다",
+      "그림을 지우고 다시 그리기를 빠르게 되풀이해 움직임을 만드는 원리를 플립북에 빗대어 말할 수 있다",
+      "웹 게임·3D 화면이 canvas와 WebGL 같은 그래픽 기술로 만들어진다는 것을 예로 들 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.web-image-formats",
+      "fe.basics.web-apis-idea"
+    ],
+    "aliases": [
+      "HTML canvas",
+      "canvas 요소",
+      "캔버스 요소",
+      "Canvas API",
+      "웹 그래픽",
+      "web graphics"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Client-side_APIs/Drawing_graphics"
     ]
   },
   {
@@ -1086,6 +1182,103 @@
     ],
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Glossary/SPA"
+    ]
+  },
+  {
+    "id": "fe.basics.indexeddb",
+    "title": "IndexedDB",
+    "en": "IndexedDB API",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "사진·영상·많은 기록처럼 큰 자료를 사이트별로 브라우저 안에 담아 두는 작은 데이터베이스다.",
+    "parent": "fe.basics.client-storage-idea",
+    "related": [
+      "fe.js.web-storage",
+      "db.basics.what-is-database"
+    ],
+    "aliases": [
+      "인덱스드 DB",
+      "브라우저 데이터베이스",
+      "browser database",
+      "IDB 저장소"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API",
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Client-side_APIs/Client-side_storage"
+    ]
+  },
+  {
+    "id": "fe.basics.service-worker",
+    "title": "서비스 워커",
+    "en": "Service Worker",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "페이지와 인터넷 사이에 서서 요청을 가로채고 보관해 둔 파일로 대신 답해, 인터넷이 끊겨도 웹 앱이 열리게 하는 브라우저 속 대리인이다.",
+    "parent": "fe.basics.client-storage-idea",
+    "related": [
+      "fe.basics.pwa-idea"
+    ],
+    "aliases": [
+      "service worker",
+      "서비스워커",
+      "Service Worker API",
+      "오프라인 프록시 스크립트"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API",
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Client-side_APIs/Client-side_storage"
+    ]
+  },
+  {
+    "id": "fe.basics.clickjacking",
+    "title": "클릭재킹",
+    "en": "Clickjacking Attack",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "투명하게 숨긴 iframe을 미끼 버튼 위에 겹쳐 사용자가 모르는 사이 진짜 사이트의 버튼을 누르게 만드는 공격이다.",
+    "parent": "fe.basics.embedding-idea",
+    "related": [
+      "be.security.web-security-idea"
+    ],
+    "aliases": [
+      "clickjacking",
+      "클릭 하이재킹",
+      "UI 덮어씌우기 공격",
+      "UI redressing"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/Clickjacking",
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/General_embedding_technologies"
+    ]
+  },
+  {
+    "id": "fe.basics.prefers-reduced-motion",
+    "title": "동작 줄이기 선호(prefers-reduced-motion)",
+    "en": "prefers-reduced-motion Media Feature",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "기기 설정에서 '동작 줄이기'를 켠 사람에게 웹 페이지가 크게 움직이는 애니메이션을 줄이거나 부드러운 효과로 바꿔 보여 주게 하는 신호다.",
+    "related": [
+      "fe.basics.prefers-color-scheme",
+      "fe.css.keyframes",
+      "fe.basics.accessibility-idea"
+    ],
+    "aliases": [
+      "동작 줄이기",
+      "reduce motion",
+      "애니메이션 줄이기 설정",
+      "reduced motion"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion"
     ]
   },
   {
@@ -1600,6 +1793,113 @@
     ],
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Glossary/Baseline/Compatibility"
+    ]
+  },
+  {
+    "id": "fe.basics.cache-api",
+    "title": "Cache API(브라우저 파일 보관함)",
+    "en": "Cache API for Offline Assets",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 기초",
+    "summary": "사이트의 HTML·CSS·그림 파일을 요청과 응답 짝으로 브라우저에 보관해 두었다가 인터넷이 끊겨도 꺼내 보여 주게 하는 저장 공간이다.",
+    "parent": "fe.basics.client-storage-idea",
+    "related": [
+      "db.cache.cache-idea"
+    ],
+    "aliases": [
+      "Cache Storage",
+      "캐시 스토리지",
+      "브라우저 Cache API",
+      "오프라인 파일 보관"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Client-side_APIs/Client-side_storage",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria"
+    ]
+  },
+  {
+    "id": "fe.basics.iframe-sandbox",
+    "title": "iframe sandbox 속성",
+    "en": "iframe sandbox Attribute",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 기초",
+    "summary": "끼워 넣은 남의 화면이 스크립트 실행·폼 보내기·팝업 열기 같은 일을 못 하게 막고 필요한 것만 골라 풀어 주는 iframe의 안전장치다.",
+    "parent": "fe.basics.embedding-idea",
+    "aliases": [
+      "iframe sandbox",
+      "샌드박스 속성",
+      "sandbox attribute",
+      "allow-scripts"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/iframe",
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/General_embedding_technologies"
+    ]
+  },
+  {
+    "id": "fe.basics.webgl",
+    "title": "WebGL",
+    "en": "WebGL (Web Graphics Library)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 기초",
+    "summary": "플러그인 없이 그래픽 카드(GPU)의 힘을 빌려 canvas 위에 빠른 2D·3D 그림을 그리는 브라우저 기능이다.",
+    "parent": "fe.basics.web-graphics-idea",
+    "aliases": [
+      "웹지엘",
+      "WebGL 2",
+      "웹 3D 그래픽",
+      "Web Graphics Library"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API",
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Client-side_APIs/Drawing_graphics"
+    ]
+  },
+  {
+    "id": "fe.basics.sprite-sheet",
+    "title": "스프라이트 시트",
+    "en": "Sprite Sheet",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 기초",
+    "summary": "캐릭터의 여러 동작 그림을 한 장에 나란히 모아 두고 한 칸씩 바꿔 보여 주어 움직이는 것처럼 만드는 그림 묶음이다.",
+    "parent": "fe.basics.web-graphics-idea",
+    "aliases": [
+      "sprite sheet",
+      "스프라이트 이미지",
+      "캐릭터 스프라이트",
+      "애니메이션 프레임 시트"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Client-side_APIs/Drawing_graphics"
+    ]
+  },
+  {
+    "id": "fe.basics.storage-quota",
+    "title": "브라우저 저장 한도와 자동 삭제",
+    "en": "Browser Storage Quotas and Eviction",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 기초",
+    "summary": "브라우저는 사이트마다 저장할 수 있는 양에 한도를 두고, 기기 공간이 모자라면 오래 안 쓴 사이트의 저장 내용부터 통째로 지운다.",
+    "parent": "fe.basics.client-storage-idea",
+    "aliases": [
+      "저장 용량 한도",
+      "storage quota",
+      "저장소 할당량",
+      "QuotaExceededError",
+      "storage eviction"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria"
     ]
   },
   {

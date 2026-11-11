@@ -1,5 +1,5 @@
 {
- "version": "0.50.0",
+ "version": "0.51.0",
  "domains": [
   {
    "prefix": "dev",
@@ -12181,6 +12181,104 @@
    "domain": "plan"
   },
   {
+   "id": "plan.basics.performance-data-idea",
+   "title": "성과 데이터: 서비스가 잘 되는지 숫자로 보기",
+   "en": "Using Performance Data to Improve a Service",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "시작한 사람·끝낸 사람·만족한 사람 같은 숫자를 모아 서비스가 사용자에게 제 몫을 하는지 살피고 고칠 곳을 찾는 일이다.",
+   "objectives": [
+    "성과 데이터가 서비스의 건강검진 기록 같은 것이라고 비유로 설명할 수 있다",
+    "GOV.UK 서비스 매뉴얼이 정부 서비스마다 재라고 정한 네 가지 기본 지표(거래당 비용·사용자 만족도·완료율·디지털 이용률)의 뜻을 한 줄씩 말할 수 있다",
+    "숫자로 사람들이 많이 그만두는 곳을 찾고, 그 이유는 사용자 조사로 알아본다는 흐름을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.user-and-need"
+   ],
+   "related": [
+    "plan.basics.success-metrics"
+   ],
+   "aliases": [
+    "성과 데이터",
+    "performance data",
+    "서비스 성과 측정",
+    "서비스 데이터로 개선하기"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/measuring-success/using-data-to-improve-your-service-an-introduction"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.content-design-idea",
+   "title": "콘텐츠 디자인: 필요한 말을 알맞은 곳에",
+   "en": "Content Design",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "사용자가 알아야 할 것이나 해야 할 일을 빨리 찾도록, 니즈에서 출발해 글의 양·형식·자리를 정하고 쉬운 말로 쓰는 일이다.",
+   "objectives": [
+    "콘텐츠 디자인이 '글을 예쁘게 쓰기'가 아니라 사용자가 할 일을 돕도록 내용을 고르는 일임을 비유로 설명할 수 있다",
+    "글을 줄이기·나누기·형식 바꾸기·다른 곳에 싣기 같은 선택지가 있다는 것을 말할 수 있다",
+    "사람들이 웹 글을 다 읽지 않고 훑어본다는 점과 그래서 중요한 내용을 앞에 둔다는 점을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.user-and-need"
+   ],
+   "related": [
+    "plan.basics.ui-writing",
+    "plan.basics.content-designer"
+   ],
+   "aliases": [
+    "콘텐츠 디자인",
+    "content design",
+    "콘텐츠 설계"
+   ],
+   "refs": [
+    "https://guidance.publishing.service.gov.uk/writing-to-gov-uk-standards/plan-manage-content/understand-content-design/",
+    "https://guidance.publishing.service.gov.uk/writing-to-gov-uk-standards/writing-guidelines/clear-structure/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.teams-folders",
+   "title": "Figma 팀·폴더·파일로 작업 정리하기",
+   "en": "Organizing Work with Figma Teams, Folders, and Files",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "Figma에서 팀은 여럿이 함께 쓰는 공간, 폴더는 관련 파일을 모은 서랍, 파일은 실제 작업물이며 초안은 폴더로 옮기기 전 개인 자리다.",
+   "objectives": [
+    "팀·폴더·파일·초안의 관계를 회사·서랍장·서류에 빗대어 설명할 수 있다",
+    "Figma 디자인·FigJam·Slides 파일이 모두 같은 폴더에 들어갈 수 있음을 말할 수 있다",
+    "혼자 만든 초안을 팀 폴더로 옮겨야 동료와 함께 쓸 수 있다는 흐름을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.getting-started"
+   ],
+   "related": [
+    "plan.figma.file-browser",
+    "plan.figma.drafts"
+   ],
+   "aliases": [
+    "Figma teams and folders",
+    "피그마 팀과 폴더",
+    "Figma 파일 정리",
+    "피그마 폴더 구조"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/1500005554982-Guide-to-files-and-folders",
+    "https://help.figma.com/hc/en-us/articles/360039480614-Guide-to-teams"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "plan"
+  },
+  {
    "id": "plan.basics.wireframe",
    "title": "와이어프레임",
    "en": "Wireframe",
@@ -12723,6 +12821,69 @@
    "refs": [
     "https://www.agilealliance.org/glossary/kanban-board/",
     "https://www.agilealliance.org/glossary/kanban/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.measurement-vs-metric",
+   "title": "측정값과 지표",
+   "en": "Measurements and Metrics",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "시도한 사람 수처럼 그대로 센 숫자는 측정값이고, 측정값을 묶어 완료 비율처럼 얼마나 잘 되는지 보여 주는 숫자는 지표다.",
+   "parent": "plan.basics.performance-data-idea",
+   "aliases": [
+    "측정값과 지표",
+    "measurements and metrics",
+    "원시 수치와 지표"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/measuring-success/using-data-to-improve-your-service-an-introduction"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.user-satisfaction",
+   "title": "사용자 만족도(user satisfaction)",
+   "en": "User Satisfaction",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "서비스를 마치거나 중간에 그만둘 때 의견을 물어, 사용자가 서비스를 어떻게 느끼고 어디서 힘들어하는지 알아보는 지표다.",
+   "parent": "plan.basics.performance-data-idea",
+   "aliases": [
+    "사용자 만족도",
+    "user satisfaction",
+    "만족도 조사",
+    "사용자 만족도 점수"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/measuring-success/measuring-user-satisfaction"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.plain-english",
+   "title": "쉬운 말로 쓰기(plain English)",
+   "en": "Plain English",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "짧고 익숙한 낱말과 능동문을 쓰고 전문 용어는 처음 나올 때 풀어 써서, 읽기에 서툰 사람도 바로 알아듣게 하는 글쓰기 원칙이다.",
+   "parent": "plan.basics.content-design-idea",
+   "aliases": [
+    "plain English",
+    "plain language",
+    "쉬운 언어",
+    "쉬운 글쓰기",
+    "평이한 언어"
+   ],
+   "refs": [
+    "https://guidance.publishing.service.gov.uk/writing-to-gov-uk-standards/writing-guidelines/clear-language/"
    ],
    "domain": "plan"
   },
@@ -13321,6 +13482,135 @@
    "refs": [
     "https://help.figma.com/hc/en-us/articles/31194937548951-Explore-Figma-Buzz",
     "https://help.figma.com/hc/en-us/articles/14563969806359"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.digital-take-up",
+   "title": "디지털 이용률(digital take-up)",
+   "en": "Digital Take-up",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "전화·종이·방문을 포함한 전체 이용 가운데 온라인으로 끝낸 이용이 몇 퍼센트인지 나타내는 지표다.",
+   "parent": "plan.basics.performance-data-idea",
+   "related": [
+    "plan.basics.assisted-digital"
+   ],
+   "aliases": [
+    "디지털 이용률",
+    "digital take-up",
+    "온라인 이용 비율"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/measuring-success/measuring-digital-take-up"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.cost-per-transaction",
+   "title": "거래당 비용(cost per transaction)",
+   "en": "Cost per Transaction",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "서비스 운영에 든 전체 비용을 끝까지 마친 이용 건수로 나눠, 한 번 처리할 때마다 드는 돈을 보는 지표다.",
+   "parent": "plan.basics.performance-data-idea",
+   "aliases": [
+    "거래당 비용",
+    "cost per transaction",
+    "건당 처리 비용"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/measuring-success/measuring-cost-per-transaction"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.inverted-pyramid",
+   "title": "역피라미드 글 구조",
+   "en": "Inverted Pyramid",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "가장 중요한 내용을 맨 앞에 두고 뒤로 갈수록 덜 중요한 세부를 놓아, 앞부분만 읽어도 핵심을 얻게 하는 글 배치 방식이다.",
+   "parent": "plan.basics.content-design-idea",
+   "aliases": [
+    "inverted pyramid",
+    "역피라미드 구조",
+    "결론 먼저 쓰기"
+   ],
+   "refs": [
+    "https://guidance.publishing.service.gov.uk/writing-to-gov-uk-standards/writing-guidelines/clear-structure/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.f-pattern-scanning",
+   "title": "F자 훑어 읽기",
+   "en": "F-shaped Scanning Pattern",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "웹 글을 읽을 때 위쪽을 가로로, 왼쪽을 세로로 훑다가 필요한 것이 보일 때만 더 읽는 F자 모양의 눈길 흐름이다.",
+   "parent": "plan.basics.content-design-idea",
+   "aliases": [
+    "F-pattern",
+    "F 패턴",
+    "F자 패턴",
+    "F-shaped pattern"
+   ],
+   "refs": [
+    "https://guidance.publishing.service.gov.uk/writing-to-gov-uk-standards/writing-guidelines/clear-structure/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.team",
+   "title": "Figma 팀(team)",
+   "en": "Figma Team",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "조직 안에서 사람들이 함께 쓸 폴더와 파일을 모아 두는 공간으로, 팀 관리자가 구성원과 접근을 관리한다.",
+   "parent": "plan.figma.teams-folders",
+   "aliases": [
+    "Figma team",
+    "피그마 팀",
+    "Figma 팀 공간"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360039480614-Guide-to-teams"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.folder",
+   "title": "Figma 폴더(folder)",
+   "en": "Figma Folder",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "관련된 Figma 파일을 컴퓨터 폴더처럼 묶어 두는 자리로, 예전에는 프로젝트라고 불렀고 여러 제품의 파일을 함께 담을 수 있다.",
+   "parent": "plan.figma.teams-folders",
+   "aliases": [
+    "Figma folder",
+    "피그마 폴더",
+    "Figma 프로젝트",
+    "Figma project"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/1500005554982-Guide-to-files-and-folders"
    ],
    "volatile": true,
    "checked_at": "2026-11-11",
@@ -27521,6 +27811,71 @@
    "domain": "db"
   },
   {
+   "id": "db.basics.ddl-dml-idea",
+   "title": "표의 틀 짜기와 내용 채우기: DDL과 DML",
+   "en": "Data Definition vs Data Manipulation in SQL",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "DB 기초",
+   "summary": "SQL 문장은 표의 모양을 만들고 바꾸는 쪽과 그 표에 행을 넣고 고치고 지우는 쪽으로 나뉜다.",
+   "objectives": [
+    "책장을 짜는 일과 책을 꽂는 일에 빗대어 DDL과 DML을 구분할 수 있다",
+    "표를 만들거나 열을 더하는 일이 어느 쪽인지 예를 들어 말할 수 있다",
+    "ORM이 표를 만들 때 DDL을 대신 보낸다는 것을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "db.basics.what-is-sql",
+    "db.basics.table-row-column"
+   ],
+   "aliases": [
+    "DDL과 DML",
+    "DDL vs DML",
+    "데이터 정의와 데이터 조작",
+    "SQL 문장 종류"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/ddl.html",
+    "https://www.postgresql.org/docs/current/dml.html",
+    "https://docs.sqlalchemy.org/en/20/tutorial/metadata.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.basics.db-roles-idea",
+   "title": "DB 계정과 권한: 누가 무엇을 만질 수 있나",
+   "en": "Database Roles, Ownership and Privileges",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "DB 기초",
+   "summary": "DB에 접속하는 계정마다 볼 수 있는 표와 할 수 있는 일을 따로 정해, 아무나 자료를 바꾸지 못하게 하는 장치다.",
+   "objectives": [
+    "건물 출입 카드에 빗대어 DB 계정과 권한을 설명할 수 있다",
+    "표를 만든 계정이 그 표의 주인이 된다는 것을 말할 수 있다",
+    "모든 검사를 건너뛰는 슈퍼유저로 평소 일을 하면 왜 위험한지 말할 수 있다"
+   ],
+   "prerequisites": [
+    "db.basics.client-server"
+   ],
+   "related": [
+    "db.sql.roles-privileges",
+    "be.auth.least-privilege"
+   ],
+   "aliases": [
+    "DB 계정",
+    "데이터베이스 계정",
+    "DB 사용자 계정",
+    "database user account",
+    "DB 접근 권한 개념"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/user-manag.html",
+    "https://www.postgresql.org/docs/current/ddl-priv.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.data.etl-idea",
    "title": "ETL: 모으고 다듬어 한곳에 싣기",
    "en": "ETL: Extract, Transform, Load",
@@ -27582,6 +27937,35 @@
    "refs": [
     "https://learn.microsoft.com/en-us/azure/architecture/data-guide/relational-data/online-transaction-processing",
     "https://learn.microsoft.com/en-us/azure/architecture/data-guide/relational-data/online-analytical-processing"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.nosql.time-series-idea",
+   "title": "시계열 데이터: 시간 순서로 쌓이는 기록",
+   "en": "Time Series Data and Time Series Collections",
+   "kind": "topic",
+   "level": 1,
+   "importance": 3,
+   "group": "NoSQL",
+   "summary": "온도 센서 값이나 주가처럼 같은 대상을 시간마다 재어 쌓은 기록으로, 이런 자료만 따로 담는 저장 방식이 있다.",
+   "objectives": [
+    "체온 기록표에 빗대어 시계열 데이터가 무엇인지 설명할 수 있다",
+    "시각·어느 대상의 기록인지(센서 번호·주식 종목)·잰 값이라는 세 부분을 예에서 찾을 수 있다",
+    "센서 기록과 앱 로그가 시계열 데이터의 예라는 것을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "db.nosql.nosql-types-idea"
+   ],
+   "aliases": [
+    "시계열 DB",
+    "시계열 데이터베이스",
+    "time series database",
+    "시계열 컬렉션",
+    "time series collection"
+   ],
+   "refs": [
+    "https://www.mongodb.com/docs/manual/core/timeseries-collections/"
    ],
    "domain": "db"
   },
@@ -28097,6 +28481,158 @@
    ],
    "refs": [
     "https://learn.microsoft.com/en-us/previous-versions/troubleshoot/microsoft-365/microsoft-365-apps/access/database-normalization-description"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.basics.ddl",
+   "title": "DDL(데이터 정의어)",
+   "en": "Data Definition Language (DDL)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "DB 기초",
+   "summary": "표를 새로 만들거나 열을 더하고 지우는 것처럼 자료를 담을 틀을 정하는 SQL 문장을 묶어 부르는 이름이다.",
+   "parent": "db.basics.ddl-dml-idea",
+   "related": [
+    "db.basics.dml",
+    "db.orm.migration-idea"
+   ],
+   "aliases": [
+    "데이터 정의어",
+    "Data Definition Language",
+    "DDL 문",
+    "DDL statement"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/ddl.html",
+    "https://docs.sqlalchemy.org/en/20/tutorial/metadata.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.basics.dml",
+   "title": "DML(데이터 조작어)",
+   "en": "Data Manipulation Language (DML)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "DB 기초",
+   "summary": "이미 만든 표에 행을 넣고, 들어 있는 값을 고치고, 행을 지우는 SQL 문장을 묶어 부르는 이름이다.",
+   "parent": "db.basics.ddl-dml-idea",
+   "related": [
+    "db.basics.ddl",
+    "db.basics.crud-idea"
+   ],
+   "aliases": [
+    "데이터 조작어",
+    "Data Manipulation Language",
+    "DML 문",
+    "DML statement"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/dml.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.basics.db-role",
+   "title": "역할(role): PostgreSQL의 사용자이자 그룹",
+   "en": "PostgreSQL Database Role",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "DB 기초",
+   "summary": "PostgreSQL에서 사용자와 사용자 묶음을 한 가지로 다루는 이름표로, 접속과 권한이 모두 이것에 달린다.",
+   "parent": "db.basics.db-roles-idea",
+   "related": [
+    "db.basics.superuser"
+   ],
+   "aliases": [
+    "PostgreSQL 역할",
+    "PostgreSQL role",
+    "DB role",
+    "Postgres 역할"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/user-manag.html",
+    "https://www.postgresql.org/docs/current/database-roles.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.basics.superuser",
+   "title": "DB 슈퍼유저: 모든 검사를 건너뛰는 계정",
+   "en": "Database Superuser",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "DB 기초",
+   "summary": "로그인 검사 말고는 모든 권한 검사를 건너뛰는 계정으로, DB 서버를 처음 설치해 초기화하면 흔히 postgres라는 이름으로 하나 생긴다.",
+   "parent": "db.basics.db-roles-idea",
+   "related": [
+    "db.basics.db-role",
+    "ops.linux.sudo"
+   ],
+   "aliases": [
+    "DB 슈퍼유저",
+    "database superuser",
+    "postgres 슈퍼유저",
+    "superuser 역할"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/role-attributes.html",
+    "https://www.postgresql.org/docs/current/database-roles.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.acid",
+   "title": "ACID: 트랜잭션이 지키는 네 가지 약속",
+   "en": "ACID Properties of Transactions",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "트랜잭션이 원자성·일관성·격리성·지속성을 지켜, 오류나 정전이 나도 자료가 믿을 만하게 남도록 하는 성질을 묶은 말이다.",
+   "parent": "db.internals.transaction-idea",
+   "related": [
+    "db.internals.isolation-levels"
+   ],
+   "aliases": [
+    "ACID 성질",
+    "ACID properties",
+    "ACID 속성",
+    "원자성 일관성 격리성 지속성"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/glossary.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.basics.sequence",
+   "title": "시퀀스: 번호를 하나씩 뽑아 주는 DB 객체",
+   "en": "Sequence Generator",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "DB 기초",
+   "summary": "번호표 기계처럼 부를 때마다 겹치지 않는 다음 번호를 내주어, 행의 아이디를 자동으로 매기는 데 쓰는 DB 객체다.",
+   "related": [
+    "db.sql.primary-key",
+    "db.sql.identity-column"
+   ],
+   "aliases": [
+    "시퀀스 객체",
+    "sequence generator",
+    "DB 시퀀스",
+    "일련번호 생성기",
+    "자동 증가 번호"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/sql-createsequence.html",
+    "https://www.postgresql.org/docs/current/glossary.html"
    ],
    "domain": "db"
   },
@@ -28663,6 +29199,77 @@
    ],
    "refs": [
     "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/columnstore-indexes-overview"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.basics.object-owner",
+   "title": "객체 소유자: 표를 만든 계정",
+   "en": "Database Object Owner",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "DB 기초",
+   "summary": "표 같은 DB 객체를 만든 계정이 그 주인이 되어, 처음에는 주인과 슈퍼유저만 그것을 다룰 수 있다.",
+   "parent": "db.basics.db-roles-idea",
+   "related": [
+    "db.basics.db-role"
+   ],
+   "aliases": [
+    "객체 소유자",
+    "테이블 소유자",
+    "table owner",
+    "object owner",
+    "표 주인"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/ddl-priv.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.nosql.time-series-measurement",
+   "title": "측정값: 한 시점의 기록 한 건",
+   "en": "Time Series Measurement",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "NoSQL",
+   "summary": "시계열 데이터에서 한 시각에 잰 값들을 그 시각과 대상 정보와 함께 묶은 기록 한 건이다.",
+   "parent": "db.nosql.time-series-idea",
+   "aliases": [
+    "시계열 측정값",
+    "time series measurement",
+    "측정값 문서",
+    "measurement 문서"
+   ],
+   "refs": [
+    "https://www.mongodb.com/docs/manual/core/timeseries-collections/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.basics.system-catalog",
+   "title": "시스템 카탈로그: DB가 스스로를 적어 둔 표",
+   "en": "PostgreSQL System Catalog",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "DB 기초",
+   "summary": "어떤 표와 열이 있는지 같은 DB 자신의 구조 정보를 담아 두는 내부 표 묶음으로, 사람이 손으로 고치지 않고 CREATE 같은 SQL 명령이 대신 채운다.",
+   "related": [
+    "db.basics.db-hierarchy-idea"
+   ],
+   "aliases": [
+    "시스템 카탈로그",
+    "system catalogs",
+    "pg_catalog",
+    "PostgreSQL 카탈로그",
+    "DB 메타데이터 표"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/catalogs.html",
+    "https://www.postgresql.org/docs/current/glossary.html"
    ],
    "domain": "db"
   },
@@ -33538,6 +34145,74 @@
    "domain": "fe"
   },
   {
+   "id": "fe.basics.client-storage-idea",
+   "title": "브라우저 저장 공간: 웹사이트가 남기는 메모",
+   "en": "Client-side Storage in the Browser",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 기초",
+   "summary": "웹사이트는 화면 설정·장바구니·오프라인용 파일을 사용자 컴퓨터의 브라우저 안에 적어 두었다가 다음 방문 때 다시 꺼내 쓴다.",
+   "objectives": [
+    "브라우저 저장 공간을 사이트마다 따로 주어지는 서랍에 빗대어 설명할 수 있다",
+    "테마 기억·장바구니 유지·오프라인 사용처럼 사이트가 브라우저에 무엇을 남기는지 예를 들 수 있다",
+    "짧은 글자 값을 담는 Web Storage와 큰 자료를 담는 IndexedDB, 파일을 담는 Cache API를 크기와 용도로 나눠 말할 수 있다",
+    "시크릿 창을 닫거나 브라우저 설정에서 사이트 데이터를 지우면 저장한 내용이 사라지는 까닭을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.basics.web-apis-idea"
+   ],
+   "related": [
+    "fe.js.web-storage",
+    "be.http.cookie-basics"
+   ],
+   "aliases": [
+    "클라이언트 측 저장소",
+    "client-side storage",
+    "브라우저 저장소",
+    "browser storage",
+    "사이트 데이터 저장"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Client-side_APIs/Client-side_storage",
+    "https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.embedding-idea",
+   "title": "남의 콘텐츠를 내 페이지에 끼워 넣기: iframe",
+   "en": "Embedding Third-party Content with iframe",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 기초",
+   "summary": "유튜브 영상이나 지도처럼 다른 사이트의 화면을 내 페이지 안의 창(iframe)에 띄우는 일과, 그 창이 위험할 수 있는 까닭을 다룬다.",
+   "objectives": [
+    "iframe을 내 집 벽에 낸 창으로 남의 집 안을 보여 주는 일에 빗대어 설명할 수 있다",
+    "유튜브·지도의 공유 메뉴에서 받은 삽입 코드가 iframe이라는 것을 알아볼 수 있다",
+    "남의 콘텐츠를 끼워 넣을 때 보안과 저작권을 조심해야 하는 이유를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.basics.web-page-parts"
+   ],
+   "related": [
+    "fe.basics.third-party-api"
+   ],
+   "aliases": [
+    "iframe 임베드",
+    "웹 콘텐츠 삽입",
+    "embedded content",
+    "인라인 프레임",
+    "inline frame",
+    "유튜브 삽입 코드"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/General_embedding_technologies"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.basics.pwa-idea",
    "title": "PWA: 앱처럼 설치해 쓰는 웹사이트",
    "en": "Progressive Web Apps",
@@ -33623,6 +34298,37 @@
     "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/What_are_WebExtensions",
     "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Anatomy_of_a_WebExtension",
     "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/permissions"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.web-graphics-idea",
+   "title": "웹 도화지 canvas: 브라우저에서 그림 그리기",
+   "en": "Drawing Graphics with the HTML Canvas",
+   "kind": "topic",
+   "level": 1,
+   "importance": 3,
+   "group": "웹 기초",
+   "summary": "canvas는 웹 페이지에 놓인 빈 도화지로, 스크립트가 그 위에 도형·그림·애니메이션을 그리고 게임·차트·3D 화면에 쓰인다.",
+   "objectives": [
+    "canvas를 그리고 나면 낱낱이 옮길 수 없는 도화지에, SVG를 하나씩 움직일 수 있는 스티커에 빗대어 차이를 설명할 수 있다",
+    "그림을 지우고 다시 그리기를 빠르게 되풀이해 움직임을 만드는 원리를 플립북에 빗대어 말할 수 있다",
+    "웹 게임·3D 화면이 canvas와 WebGL 같은 그래픽 기술로 만들어진다는 것을 예로 들 수 있다"
+   ],
+   "prerequisites": [
+    "fe.basics.web-image-formats",
+    "fe.basics.web-apis-idea"
+   ],
+   "aliases": [
+    "HTML canvas",
+    "canvas 요소",
+    "캔버스 요소",
+    "Canvas API",
+    "웹 그래픽",
+    "web graphics"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Client-side_APIs/Drawing_graphics"
    ],
    "domain": "fe"
   },
@@ -34139,6 +34845,107 @@
    ],
    "refs": [
     "https://developer.mozilla.org/en-US/docs/Glossary/SPA"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.indexeddb",
+   "title": "IndexedDB",
+   "en": "IndexedDB API",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 기초",
+   "summary": "사진·영상·많은 기록처럼 큰 자료를 사이트별로 브라우저 안에 담아 두는 작은 데이터베이스다.",
+   "parent": "fe.basics.client-storage-idea",
+   "related": [
+    "fe.js.web-storage",
+    "db.basics.what-is-database"
+   ],
+   "aliases": [
+    "인덱스드 DB",
+    "브라우저 데이터베이스",
+    "browser database",
+    "IDB 저장소"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API",
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Client-side_APIs/Client-side_storage"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.service-worker",
+   "title": "서비스 워커",
+   "en": "Service Worker",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 기초",
+   "summary": "페이지와 인터넷 사이에 서서 요청을 가로채고 보관해 둔 파일로 대신 답해, 인터넷이 끊겨도 웹 앱이 열리게 하는 브라우저 속 대리인이다.",
+   "parent": "fe.basics.client-storage-idea",
+   "related": [
+    "fe.basics.pwa-idea"
+   ],
+   "aliases": [
+    "service worker",
+    "서비스워커",
+    "Service Worker API",
+    "오프라인 프록시 스크립트"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API",
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Client-side_APIs/Client-side_storage"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.clickjacking",
+   "title": "클릭재킹",
+   "en": "Clickjacking Attack",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 기초",
+   "summary": "투명하게 숨긴 iframe을 미끼 버튼 위에 겹쳐 사용자가 모르는 사이 진짜 사이트의 버튼을 누르게 만드는 공격이다.",
+   "parent": "fe.basics.embedding-idea",
+   "related": [
+    "be.security.web-security-idea"
+   ],
+   "aliases": [
+    "clickjacking",
+    "클릭 하이재킹",
+    "UI 덮어씌우기 공격",
+    "UI redressing"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/Clickjacking",
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/General_embedding_technologies"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.prefers-reduced-motion",
+   "title": "동작 줄이기 선호(prefers-reduced-motion)",
+   "en": "prefers-reduced-motion Media Feature",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 기초",
+   "summary": "기기 설정에서 '동작 줄이기'를 켠 사람에게 웹 페이지가 크게 움직이는 애니메이션을 줄이거나 부드러운 효과로 바꿔 보여 주게 하는 신호다.",
+   "related": [
+    "fe.basics.prefers-color-scheme",
+    "fe.css.keyframes",
+    "fe.basics.accessibility-idea"
+   ],
+   "aliases": [
+    "동작 줄이기",
+    "reduce motion",
+    "애니메이션 줄이기 설정",
+    "reduced motion"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion"
    ],
    "domain": "fe"
   },
@@ -34677,6 +35484,118 @@
    ],
    "refs": [
     "https://developer.mozilla.org/en-US/docs/Glossary/Baseline/Compatibility"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.cache-api",
+   "title": "Cache API(브라우저 파일 보관함)",
+   "en": "Cache API for Offline Assets",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "웹 기초",
+   "summary": "사이트의 HTML·CSS·그림 파일을 요청과 응답 짝으로 브라우저에 보관해 두었다가 인터넷이 끊겨도 꺼내 보여 주게 하는 저장 공간이다.",
+   "parent": "fe.basics.client-storage-idea",
+   "related": [
+    "db.cache.cache-idea"
+   ],
+   "aliases": [
+    "Cache Storage",
+    "캐시 스토리지",
+    "브라우저 Cache API",
+    "오프라인 파일 보관"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Client-side_APIs/Client-side_storage",
+    "https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.iframe-sandbox",
+   "title": "iframe sandbox 속성",
+   "en": "iframe sandbox Attribute",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "웹 기초",
+   "summary": "끼워 넣은 남의 화면이 스크립트 실행·폼 보내기·팝업 열기 같은 일을 못 하게 막고 필요한 것만 골라 풀어 주는 iframe의 안전장치다.",
+   "parent": "fe.basics.embedding-idea",
+   "aliases": [
+    "iframe sandbox",
+    "샌드박스 속성",
+    "sandbox attribute",
+    "allow-scripts"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/iframe",
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/General_embedding_technologies"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.webgl",
+   "title": "WebGL",
+   "en": "WebGL (Web Graphics Library)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "웹 기초",
+   "summary": "플러그인 없이 그래픽 카드(GPU)의 힘을 빌려 canvas 위에 빠른 2D·3D 그림을 그리는 브라우저 기능이다.",
+   "parent": "fe.basics.web-graphics-idea",
+   "aliases": [
+    "웹지엘",
+    "WebGL 2",
+    "웹 3D 그래픽",
+    "Web Graphics Library"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API",
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Client-side_APIs/Drawing_graphics"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.sprite-sheet",
+   "title": "스프라이트 시트",
+   "en": "Sprite Sheet",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "웹 기초",
+   "summary": "캐릭터의 여러 동작 그림을 한 장에 나란히 모아 두고 한 칸씩 바꿔 보여 주어 움직이는 것처럼 만드는 그림 묶음이다.",
+   "parent": "fe.basics.web-graphics-idea",
+   "aliases": [
+    "sprite sheet",
+    "스프라이트 이미지",
+    "캐릭터 스프라이트",
+    "애니메이션 프레임 시트"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Client-side_APIs/Drawing_graphics"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.storage-quota",
+   "title": "브라우저 저장 한도와 자동 삭제",
+   "en": "Browser Storage Quotas and Eviction",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "웹 기초",
+   "summary": "브라우저는 사이트마다 저장할 수 있는 양에 한도를 두고, 기기 공간이 모자라면 오래 안 쓴 사이트의 저장 내용부터 통째로 지운다.",
+   "parent": "fe.basics.client-storage-idea",
+   "aliases": [
+    "저장 용량 한도",
+    "storage quota",
+    "저장소 할당량",
+    "QuotaExceededError",
+    "storage eviction"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria"
    ],
    "domain": "fe"
   },
@@ -51841,6 +52760,117 @@
    "domain": "ax"
   },
   {
+   "id": "ax.basics.browser-agent-safety",
+   "title": "브라우저 에이전트 안전하게 쓰기",
+   "en": "Using Browser Agents Safely",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "웹페이지를 대신 읽고 누르는 AI는 페이지에 숨은 지시에 속을 수 있으니 맡길 사이트와 승인 방식을 사람이 정하고 결과를 지켜본다.",
+   "objectives": [
+    "웹페이지·메일에 숨은 지시가 브라우저 에이전트를 속이는 일을 심부름꾼이 가짜 쪽지에 속는 일에 빗대어 설명할 수 있다",
+    "은행·병원·정부 계정처럼 에이전트에게 맡기지 말아야 할 사이트를 예로 들 수 있다",
+    "에이전트가 엉뚱한 사이트에 가거나 민감한 정보를 물을 때 작업을 멈춰야 한다는 점을 말할 수 있다",
+    "에이전트가 대신 한 구매·메시지 전송의 책임이 사용자에게 있다는 점을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.basics.computer-use-idea"
+   ],
+   "related": [
+    "rag.basics.agent-big-picture",
+    "rag.basics.browser-agent",
+    "llm.security.indirect-injection",
+    "mlops.guardrail.excessive-agency"
+   ],
+   "aliases": [
+    "브라우저 에이전트 안전 수칙",
+    "browser agent safety",
+    "Claude in Chrome 안전하게 쓰기",
+    "브라우저 AI 안전 사용"
+   ],
+   "refs": [
+    "https://support.claude.com/en/articles/12902428-using-claude-in-chrome-safely",
+    "https://claude.com/blog/claude-for-chrome",
+    "https://genai.owasp.org/llm-top-10/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.ai-text-detection-limits",
+   "title": "AI가 쓴 글 판별기의 한계",
+   "en": "Limits of AI-Generated Text Detectors",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "AI가 쓴 글을 가려낸다는 판별기는 짧은 글이나 바꿔 쓴 글에서 자주 틀리고 사람의 글을 AI 글로 잘못 짚기도 하므로 판정을 증거로 쓰면 안 된다.",
+   "objectives": [
+    "AI 글 판별기가 '확률이 높다'는 짐작을 내놓을 뿐 확실한 판정이 아니라는 점을 날씨 예보에 빗대어 설명할 수 있다",
+    "짧은 글, 바꿔 쓴 글, 사람과 AI가 섞어 쓴 글에서 판별이 특히 어려운 이유를 말할 수 있다",
+    "판별기가 사람의 글을 AI 글로 잘못 짚을 때 생기는 피해를 예를 들어 말할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.generative-ai"
+   ],
+   "related": [
+    "ax.governance.synthetic-content-provenance",
+    "ax.governance.deepfake",
+    "ml.eval.false-positive"
+   ],
+   "aliases": [
+    "AI 글 판별기",
+    "AI text detector",
+    "AI 작성 판별",
+    "AI 텍스트 탐지",
+    "AI 생성 글 탐지"
+   ],
+   "refs": [
+    "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-4.pdf"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.basics.automation-vs-augmentation",
+   "title": "AI에게 맡기기와 AI와 함께하기: 자동화와 증강",
+   "en": "Automation vs Augmentation in AI Use",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "AX 기초",
+   "summary": "AI 사용은 일을 통째로 맡기는 자동화와 사람이 AI와 주고받으며 일하는 증강으로 나뉘고, 어느 쪽이냐에 따라 사람이 확인하고 배우는 몫이 달라진다.",
+   "objectives": [
+    "자동화와 증강의 차이를 심부름을 통째로 맡기는 일과 함께 요리하는 일에 빗대어 설명할 수 있다",
+    "AI와 일하는 다섯 가지 방식(지시형, 피드백 루프, 작업 반복, 검토 요청, 배우기)을 예를 들어 말할 수 있다",
+    "AI가 직업 전체가 아니라 직업 안의 작업 단위로 쓰인다는 점을 설명할 수 있다",
+    "내가 AI를 쓰는 방식이 맡기기에 가까운지 함께하기에 가까운지 짚어 볼 수 있다"
+   ],
+   "prerequisites": [
+    "ax.basics.what-is-ax"
+   ],
+   "related": [
+    "ax.governance.automation-bias",
+    "ax.governance.human-oversight",
+    "plan.ai-ux.automation-vs-augmentation"
+   ],
+   "aliases": [
+    "자동화와 증강",
+    "AI 업무 증강",
+    "AI 협업 방식",
+    "AI 협업 패턴"
+   ],
+   "refs": [
+    "https://www.anthropic.com/research/the-anthropic-economic-index",
+    "https://www.anthropic.com/research/anthropic-economic-index-september-2025-report",
+    "https://www.anthropic.com/research/economic-index-june-2026-report"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
    "id": "ax.governance.ai-value-chain",
    "title": "AI 가치사슬: 남이 만든 부품으로 짓는 AI",
    "en": "The AI Value Chain and Third-Party Components",
@@ -52477,6 +53507,54 @@
    "domain": "ax"
   },
   {
+   "id": "ax.basics.agent-action-confirmation",
+   "title": "위험한 동작 전 확인 요청",
+   "en": "Confirmation Before High-Risk Agent Actions",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "에이전트가 구매·게시·파일 내려받기·개인정보 입력처럼 되돌리기 어려운 일을 하기 직전에 멈추고 사람에게 묻는 안전 장치다.",
+   "parent": "ax.basics.browser-agent-safety",
+   "related": [
+    "ax.governance.override-ai-output",
+    "ax.governance.ai-stop-button"
+   ],
+   "aliases": [
+    "고위험 동작 확인",
+    "high-risk action confirmation",
+    "행동 전 확인 요청",
+    "에이전트 실행 전 확인"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.ai-detection-false-accusation",
+   "title": "사람이 쓴 글을 AI 글로 잘못 짚기",
+   "en": "False Positives in AI Text Detection",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "판별기가 사람이 직접 쓴 글을 AI가 쓴 글로 판정하는 오류로, 영어가 모국어가 아닌 사람의 글에서 더 자주 일어나 억울한 의심을 낳는다.",
+   "parent": "ax.governance.ai-text-detection-limits",
+   "related": [
+    "ml.eval.false-positive"
+   ],
+   "aliases": [
+    "AI 판별 오탐",
+    "AI detector false positive",
+    "AI 사용 누명",
+    "억울한 AI 판정"
+   ],
+   "refs": [
+    "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-4.pdf"
+   ],
+   "domain": "ax"
+  },
+  {
    "id": "ax.governance.oecd-ai-principles",
    "title": "OECD AI 원칙",
    "en": "OECD AI Principles",
@@ -53006,6 +54084,145 @@
    ],
    "refs": [
     "https://www.anthropic.com/constitution"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.basics.agent-site-permissions",
+   "title": "브라우저 에이전트의 사이트별 접근 허용",
+   "en": "Per-Site Access Permissions for Browser Agents",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "브라우저 에이전트가 들어갈 수 있는 웹사이트를 사용자가 하나씩 허용하거나 거둘 수 있게 한 설정이다.",
+   "parent": "ax.basics.browser-agent-safety",
+   "aliases": [
+    "사이트별 접근 허용",
+    "browser agent site permissions",
+    "Claude in Chrome 사이트 권한",
+    "에이전트 사이트 허용 목록"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.basics.agent-manual-approval",
+   "title": "에이전트 동작 하나하나 승인하기(수동 승인)",
+   "en": "Manual Approval Mode for Browser Agent Actions",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "에이전트가 하려는 동작을 하나씩 보여 주고 사람이 허락해야 실행되게 하는 방식으로, 처음 가는 사이트나 민감한 일에 쓴다.",
+   "parent": "ax.basics.browser-agent-safety",
+   "aliases": [
+    "수동 승인 모드",
+    "Manually approve 모드",
+    "manual approval mode",
+    "에이전트 동작 수동 승인"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.paraphrasing-attack",
+   "title": "바꿔 쓰기로 AI 판별 피하기(패러프레이즈 공격)",
+   "en": "Paraphrasing Attack on AI Text Detection",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "AI가 쓴 글을 다른 모델로 표현만 바꿔 다시 써서 판별기와 글 워터마크를 무력하게 만드는 수법이다.",
+   "parent": "ax.governance.ai-text-detection-limits",
+   "related": [
+    "ax.governance.ai-watermarking"
+   ],
+   "aliases": [
+    "패러프레이즈 공격",
+    "paraphrasing attack",
+    "바꿔 쓰기 회피",
+    "재작성 우회"
+   ],
+   "refs": [
+    "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-4.pdf"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.partially-synthetic-content",
+   "title": "일부만 AI로 만든 콘텐츠(부분 합성)",
+   "en": "Partially Synthetic Content",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "사진의 한 부분만 AI로 지우거나 채우고 글의 몇 문장만 AI로 쓴 것처럼, 진짜 위에 AI 손질이 섞인 콘텐츠라 'AI가 만들었나'를 예·아니요로 가르기 어렵다.",
+   "parent": "ax.governance.ai-text-detection-limits",
+   "aliases": [
+    "부분 합성 콘텐츠",
+    "partially synthetic content",
+    "일부 AI 편집 콘텐츠",
+    "AI 부분 편집"
+   ],
+   "refs": [
+    "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-4.pdf"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.basics.directive-collaboration",
+   "title": "지시형 사용(directive): 한 번에 맡기기",
+   "en": "Directive Collaboration Pattern",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "AX 기초",
+   "summary": "할 일을 한 번 말하면 AI가 주고받음 없이 끝내는 사용 방식으로, 자동화에 속하며 결과 확인은 사람 몫으로 남는다.",
+   "parent": "ax.basics.automation-vs-augmentation",
+   "aliases": [
+    "지시형 협업",
+    "directive pattern",
+    "지시형 위임",
+    "통째로 맡기기"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.basics.task-iteration-pattern",
+   "title": "작업 반복(task iteration): 함께 다듬기",
+   "en": "Task Iteration Collaboration Pattern",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "AX 기초",
+   "summary": "사람과 AI가 초안을 주고받으며 여러 번 고쳐 결과를 함께 다듬는 사용 방식으로, 증강에 속한다.",
+   "parent": "ax.basics.automation-vs-augmentation",
+   "aliases": [
+    "작업 반복 협업",
+    "task iteration pattern",
+    "함께 다듬기",
+    "AI와 주고받으며 다듬기"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.basics.validation-pattern",
+   "title": "검토 요청(validation): 내 작업 봐 달라고 하기",
+   "en": "Validation Collaboration Pattern",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "AX 기초",
+   "summary": "사람이 직접 만든 글이나 코드를 AI에게 보여 주고 고칠 점을 묻는 사용 방식으로, 일의 주인은 사람으로 남는 증강에 속한다.",
+   "parent": "ax.basics.automation-vs-augmentation",
+   "aliases": [
+    "검토 요청형 사용",
+    "validation pattern",
+    "내 작업 검토 부탁",
+    "AI에게 피드백 받기"
    ],
    "domain": "ax"
   },
@@ -57911,6 +59128,108 @@
    "domain": "ops"
   },
   {
+   "id": "ops.observe.disaster-recovery-idea",
+   "title": "재해 복구: 큰 사고 뒤 서비스 되살리기",
+   "en": "Disaster Recovery Basics",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "관측",
+   "summary": "데이터센터나 지역 전체가 멈추는 큰 사고에도 미리 둔 사본과 절차로 서비스와 데이터를 다시 살려 내는 준비다.",
+   "objectives": [
+    "재해 복구를 집에 불이 났을 때를 대비해 다른 곳에 둔 비상 짐과 대피 계획에 빗대어 설명할 수 있다",
+    "얼마나 빨리 되살릴지와 데이터를 얼마나 잃어도 되는지가 서로 다른 질문임을 예로 말할 수 있다",
+    "복구 계획은 실제로 연습해 봐야 믿을 수 있다는 이유를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.observe.availability-idea"
+   ],
+   "related": [
+    "ops.observe.incident-response-idea",
+    "db.basics.backup",
+    "ops.basics.region-zone"
+   ],
+   "aliases": [
+    "재해 복구",
+    "disaster recovery",
+    "DR 계획",
+    "재해 복구 계획",
+    "DR 전략"
+   ],
+   "refs": [
+    "https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/business-continuity-plan-bcp.html",
+    "https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.autoscaling-idea",
+   "title": "오토스케일링: 손님 수에 맞춰 서버 수 바꾸기",
+   "en": "Autoscaling Basics in the Cloud",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "배포 기초",
+   "summary": "요청이 몰리면 서버를 자동으로 더 띄우고 한가해지면 줄여서, 사람이 지켜보지 않아도 용량과 비용을 맞추는 클라우드 기능이다.",
+   "objectives": [
+    "오토스케일링을 손님 수에 따라 계산대를 열고 닫는 마트에 빗대어 설명할 수 있다",
+    "최소 대수와 최대 대수를 정해 두는 이유를 말할 수 있다",
+    "정해진 시간에 늘리는 방식과 부하를 보고 늘리는 방식의 차이를 예로 말할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.basics.cloud"
+   ],
+   "related": [
+    "be.run.scaling-idea",
+    "ops.k8s.idea",
+    "ops.basics.pay-as-you-go"
+   ],
+   "aliases": [
+    "오토스케일링",
+    "자동 스케일링",
+    "서버 자동 확장",
+    "클라우드 오토스케일링"
+   ],
+   "refs": [
+    "https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html",
+    "https://kubernetes.io/docs/concepts/workloads/autoscaling/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.cloud-cost-idea",
+   "title": "클라우드 비용 관리: 요금이 새지 않게 지키기",
+   "en": "Cloud Cost Management Basics",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "배포 기초",
+   "summary": "쓴 만큼 내는 클라우드에서 예산과 알림을 걸고 자원에 이름표를 붙여, 뜻밖의 큰 청구서를 미리 막는 습관이다.",
+   "objectives": [
+    "클라우드 비용 관리를 휴대폰 데이터 요금 알림에 빗대어 설명할 수 있다",
+    "예산 알림은 알려 줄 뿐 쓰는 것을 자동으로 멈추지 않는다는 점을 말할 수 있다",
+    "켜 두고 잊은 서버가 요금을 계속 쌓는 이유를 예로 들어 말할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.basics.cloud"
+   ],
+   "related": [
+    "ops.basics.pay-as-you-go"
+   ],
+   "aliases": [
+    "클라우드 비용 관리",
+    "cloud cost management",
+    "클라우드 요금 관리",
+    "AWS 비용 관리",
+    "클라우드 비용 절감"
+   ],
+   "refs": [
+    "https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html",
+    "https://docs.cloud.google.com/billing/docs/how-to/budgets"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.linux.multipass-first-vm",
    "title": "Multipass로 Ubuntu 가상 머신 처음 띄우기",
    "en": "Launching a First Ubuntu VM with Multipass",
@@ -58781,6 +60100,154 @@
    "domain": "ops"
   },
   {
+   "id": "ops.observe.rto",
+   "title": "RTO(목표 복구 시간)",
+   "en": "Recovery Time Objective (RTO)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "관측",
+   "summary": "서비스가 멈춘 뒤 다시 쓸 수 있게 될 때까지 견딜 수 있는 가장 긴 시간을 조직이 미리 정해 둔 목표다.",
+   "parent": "ops.observe.disaster-recovery-idea",
+   "related": [
+    "ops.observe.rpo",
+    "ops.observe.mttr"
+   ],
+   "aliases": [
+    "목표 복구 시간",
+    "복구 시간 목표",
+    "recovery time objective",
+    "RTO 목표"
+   ],
+   "refs": [
+    "https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/business-continuity-plan-bcp.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.observe.rpo",
+   "title": "RPO(목표 복구 시점)",
+   "en": "Recovery Point Objective (RPO)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "관측",
+   "summary": "사고가 났을 때 마지막 백업 이후 잃어도 되는 데이터가 몇 분·몇 시간 분량까지인지 미리 정한 목표다.",
+   "parent": "ops.observe.disaster-recovery-idea",
+   "related": [
+    "ops.observe.rto",
+    "db.basics.backup"
+   ],
+   "aliases": [
+    "목표 복구 시점",
+    "복구 시점 목표",
+    "recovery point objective",
+    "허용 데이터 손실"
+   ],
+   "refs": [
+    "https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/business-continuity-plan-bcp.html",
+    "https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.observe.dr-testing",
+   "title": "재해 복구 훈련(DR 테스트)",
+   "en": "Disaster Recovery Testing",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "관측",
+   "summary": "복구 절차와 백업이 정말 목표 시간 안에 서비스를 되살리는지 평소에 일부러 실행해 확인하는 연습이다.",
+   "parent": "ops.observe.disaster-recovery-idea",
+   "related": [
+    "ops.observe.playbook"
+   ],
+   "aliases": [
+    "DR 훈련",
+    "DR 테스트",
+    "disaster recovery drill",
+    "복구 훈련",
+    "백업 복원 시험"
+   ],
+   "refs": [
+    "https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/testing-disaster-recovery.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.horizontal-pod-autoscaler",
+   "title": "Kubernetes HPA(수평 파드 오토스케일러)",
+   "en": "Kubernetes HorizontalPodAutoscaler (HPA)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "Kubernetes에서 CPU 사용량 같은 지표를 보고 앱의 파드 개수를 자동으로 늘리고 줄이는 기본 기능이다.",
+   "parent": "ops.basics.autoscaling-idea",
+   "related": [
+    "ops.k8s.kubectl-scale"
+   ],
+   "aliases": [
+    "HPA",
+    "HorizontalPodAutoscaler",
+    "수평 파드 오토스케일러",
+    "쿠버네티스 HPA",
+    "파드 자동 확장"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/workloads/autoscaling/horizontal-pod-autoscale/",
+    "https://kubernetes.io/docs/concepts/workloads/autoscaling/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.aws-budgets",
+   "title": "AWS Budgets 예산 알림",
+   "en": "AWS Budgets Alerts",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "배포 기초",
+   "summary": "AWS에서 한 달 예산을 정해 두고 실제 지출이나 예상 지출이 기준을 넘으면 이메일 등으로 알려 주는 기능이다.",
+   "parent": "ops.basics.cloud-cost-idea",
+   "aliases": [
+    "AWS Budgets",
+    "AWS 예산",
+    "AWS 예산 알림",
+    "AWS budget alert",
+    "비용 예산 알림"
+   ],
+   "refs": [
+    "https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.aws-free-tier",
+   "title": "AWS 프리 티어(무료 사용 혜택)",
+   "en": "AWS Free Tier",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "배포 기초",
+   "summary": "새 AWS 계정에 주는 크레딧과 늘 무료인 월 사용량으로, 정해진 한도와 기간 안에서 돈 없이 서비스를 써 볼 수 있게 한다.",
+   "parent": "ops.basics.cloud-cost-idea",
+   "aliases": [
+    "AWS Free Tier",
+    "AWS 무료 티어",
+    "AWS 프리티어",
+    "AWS 무료 크레딧",
+    "AWS free plan"
+   ],
+   "refs": [
+    "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ops"
+  },
+  {
    "id": "ops.basics.cloud-service-models",
    "title": "클라우드 서비스 모델(IaaS·PaaS·SaaS)",
    "en": "Cloud Service Models",
@@ -59061,6 +60528,67 @@
    ],
    "refs": [
     "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.aws-auto-scaling-group",
+   "title": "AWS Auto Scaling 그룹",
+   "en": "Amazon EC2 Auto Scaling Group",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "배포 기초",
+   "summary": "AWS에서 EC2 서버들을 한 묶음으로 보고 최소·원하는·최대 대수 안에서 개수를 자동으로 맞춰 주는 단위다.",
+   "parent": "ops.basics.autoscaling-idea",
+   "aliases": [
+    "Auto Scaling group",
+    "ASG",
+    "EC2 오토스케일링 그룹",
+    "오토스케일링 그룹"
+   ],
+   "refs": [
+    "https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.scheduled-scaling",
+   "title": "예약 스케일링(정해진 시간에 늘리고 줄이기)",
+   "en": "Scheduled Scaling (Amazon EC2 Auto Scaling)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "배포 기초",
+   "summary": "점심시간이나 주중처럼 붐빌 때를 미리 알 때, 정해 둔 시각에 서버 대수를 늘리고 줄이도록 예약하는 방식이다.",
+   "parent": "ops.basics.autoscaling-idea",
+   "aliases": [
+    "scheduled scaling",
+    "예약 확장",
+    "시간 기반 스케일링"
+   ],
+   "refs": [
+    "https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-scheduled-scaling.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.cost-allocation-tags",
+   "title": "AWS 비용 할당 태그",
+   "en": "AWS Cost Allocation Tags",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "배포 기초",
+   "summary": "AWS 자원에 '앱 이름'이나 '담당 팀' 같은 키와 값의 이름표를 붙여, 청구서에서 비용을 그 이름표별로 나눠 보게 하는 기능이다.",
+   "parent": "ops.basics.cloud-cost-idea",
+   "aliases": [
+    "cost allocation tags",
+    "비용 할당 태그",
+    "AWS 비용 태그"
+   ],
+   "refs": [
+    "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html"
    ],
    "domain": "ops"
   },

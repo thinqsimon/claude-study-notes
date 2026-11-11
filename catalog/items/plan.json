@@ -558,6 +558,101 @@
     ]
   },
   {
+    "id": "plan.basics.performance-data-idea",
+    "title": "성과 데이터: 서비스가 잘 되는지 숫자로 보기",
+    "en": "Using Performance Data to Improve a Service",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "시작한 사람·끝낸 사람·만족한 사람 같은 숫자를 모아 서비스가 사용자에게 제 몫을 하는지 살피고 고칠 곳을 찾는 일이다.",
+    "objectives": [
+      "성과 데이터가 서비스의 건강검진 기록 같은 것이라고 비유로 설명할 수 있다",
+      "GOV.UK 서비스 매뉴얼이 정부 서비스마다 재라고 정한 네 가지 기본 지표(거래당 비용·사용자 만족도·완료율·디지털 이용률)의 뜻을 한 줄씩 말할 수 있다",
+      "숫자로 사람들이 많이 그만두는 곳을 찾고, 그 이유는 사용자 조사로 알아본다는 흐름을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.user-and-need"
+    ],
+    "related": [
+      "plan.basics.success-metrics"
+    ],
+    "aliases": [
+      "성과 데이터",
+      "performance data",
+      "서비스 성과 측정",
+      "서비스 데이터로 개선하기"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/measuring-success/using-data-to-improve-your-service-an-introduction"
+    ]
+  },
+  {
+    "id": "plan.basics.content-design-idea",
+    "title": "콘텐츠 디자인: 필요한 말을 알맞은 곳에",
+    "en": "Content Design",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "사용자가 알아야 할 것이나 해야 할 일을 빨리 찾도록, 니즈에서 출발해 글의 양·형식·자리를 정하고 쉬운 말로 쓰는 일이다.",
+    "objectives": [
+      "콘텐츠 디자인이 '글을 예쁘게 쓰기'가 아니라 사용자가 할 일을 돕도록 내용을 고르는 일임을 비유로 설명할 수 있다",
+      "글을 줄이기·나누기·형식 바꾸기·다른 곳에 싣기 같은 선택지가 있다는 것을 말할 수 있다",
+      "사람들이 웹 글을 다 읽지 않고 훑어본다는 점과 그래서 중요한 내용을 앞에 둔다는 점을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.user-and-need"
+    ],
+    "related": [
+      "plan.basics.ui-writing",
+      "plan.basics.content-designer"
+    ],
+    "aliases": [
+      "콘텐츠 디자인",
+      "content design",
+      "콘텐츠 설계"
+    ],
+    "refs": [
+      "https://guidance.publishing.service.gov.uk/writing-to-gov-uk-standards/plan-manage-content/understand-content-design/",
+      "https://guidance.publishing.service.gov.uk/writing-to-gov-uk-standards/writing-guidelines/clear-structure/"
+    ]
+  },
+  {
+    "id": "plan.figma.teams-folders",
+    "title": "Figma 팀·폴더·파일로 작업 정리하기",
+    "en": "Organizing Work with Figma Teams, Folders, and Files",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Figma에서 팀은 여럿이 함께 쓰는 공간, 폴더는 관련 파일을 모은 서랍, 파일은 실제 작업물이며 초안은 폴더로 옮기기 전 개인 자리다.",
+    "objectives": [
+      "팀·폴더·파일·초안의 관계를 회사·서랍장·서류에 빗대어 설명할 수 있다",
+      "Figma 디자인·FigJam·Slides 파일이 모두 같은 폴더에 들어갈 수 있음을 말할 수 있다",
+      "혼자 만든 초안을 팀 폴더로 옮겨야 동료와 함께 쓸 수 있다는 흐름을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.getting-started"
+    ],
+    "related": [
+      "plan.figma.file-browser",
+      "plan.figma.drafts"
+    ],
+    "aliases": [
+      "Figma teams and folders",
+      "피그마 팀과 폴더",
+      "Figma 파일 정리",
+      "피그마 폴더 구조"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/1500005554982-Guide-to-files-and-folders",
+      "https://help.figma.com/hc/en-us/articles/360039480614-Guide-to-teams"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "plan.basics.wireframe",
     "title": "와이어프레임",
     "en": "Wireframe",
@@ -1078,6 +1173,66 @@
     "refs": [
       "https://www.agilealliance.org/glossary/kanban-board/",
       "https://www.agilealliance.org/glossary/kanban/"
+    ]
+  },
+  {
+    "id": "plan.basics.measurement-vs-metric",
+    "title": "측정값과 지표",
+    "en": "Measurements and Metrics",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "시도한 사람 수처럼 그대로 센 숫자는 측정값이고, 측정값을 묶어 완료 비율처럼 얼마나 잘 되는지 보여 주는 숫자는 지표다.",
+    "parent": "plan.basics.performance-data-idea",
+    "aliases": [
+      "측정값과 지표",
+      "measurements and metrics",
+      "원시 수치와 지표"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/measuring-success/using-data-to-improve-your-service-an-introduction"
+    ]
+  },
+  {
+    "id": "plan.basics.user-satisfaction",
+    "title": "사용자 만족도(user satisfaction)",
+    "en": "User Satisfaction",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "서비스를 마치거나 중간에 그만둘 때 의견을 물어, 사용자가 서비스를 어떻게 느끼고 어디서 힘들어하는지 알아보는 지표다.",
+    "parent": "plan.basics.performance-data-idea",
+    "aliases": [
+      "사용자 만족도",
+      "user satisfaction",
+      "만족도 조사",
+      "사용자 만족도 점수"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/measuring-success/measuring-user-satisfaction"
+    ]
+  },
+  {
+    "id": "plan.basics.plain-english",
+    "title": "쉬운 말로 쓰기(plain English)",
+    "en": "Plain English",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "짧고 익숙한 낱말과 능동문을 쓰고 전문 용어는 처음 나올 때 풀어 써서, 읽기에 서툰 사람도 바로 알아듣게 하는 글쓰기 원칙이다.",
+    "parent": "plan.basics.content-design-idea",
+    "aliases": [
+      "plain English",
+      "plain language",
+      "쉬운 언어",
+      "쉬운 글쓰기",
+      "평이한 언어"
+    ],
+    "refs": [
+      "https://guidance.publishing.service.gov.uk/writing-to-gov-uk-standards/writing-guidelines/clear-language/"
     ]
   },
   {
@@ -1650,6 +1805,129 @@
     "refs": [
       "https://help.figma.com/hc/en-us/articles/31194937548951-Explore-Figma-Buzz",
       "https://help.figma.com/hc/en-us/articles/14563969806359"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "plan.basics.digital-take-up",
+    "title": "디지털 이용률(digital take-up)",
+    "en": "Digital Take-up",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "전화·종이·방문을 포함한 전체 이용 가운데 온라인으로 끝낸 이용이 몇 퍼센트인지 나타내는 지표다.",
+    "parent": "plan.basics.performance-data-idea",
+    "related": [
+      "plan.basics.assisted-digital"
+    ],
+    "aliases": [
+      "디지털 이용률",
+      "digital take-up",
+      "온라인 이용 비율"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/measuring-success/measuring-digital-take-up"
+    ]
+  },
+  {
+    "id": "plan.basics.cost-per-transaction",
+    "title": "거래당 비용(cost per transaction)",
+    "en": "Cost per Transaction",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "서비스 운영에 든 전체 비용을 끝까지 마친 이용 건수로 나눠, 한 번 처리할 때마다 드는 돈을 보는 지표다.",
+    "parent": "plan.basics.performance-data-idea",
+    "aliases": [
+      "거래당 비용",
+      "cost per transaction",
+      "건당 처리 비용"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/measuring-success/measuring-cost-per-transaction"
+    ]
+  },
+  {
+    "id": "plan.basics.inverted-pyramid",
+    "title": "역피라미드 글 구조",
+    "en": "Inverted Pyramid",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "가장 중요한 내용을 맨 앞에 두고 뒤로 갈수록 덜 중요한 세부를 놓아, 앞부분만 읽어도 핵심을 얻게 하는 글 배치 방식이다.",
+    "parent": "plan.basics.content-design-idea",
+    "aliases": [
+      "inverted pyramid",
+      "역피라미드 구조",
+      "결론 먼저 쓰기"
+    ],
+    "refs": [
+      "https://guidance.publishing.service.gov.uk/writing-to-gov-uk-standards/writing-guidelines/clear-structure/"
+    ]
+  },
+  {
+    "id": "plan.basics.f-pattern-scanning",
+    "title": "F자 훑어 읽기",
+    "en": "F-shaped Scanning Pattern",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "웹 글을 읽을 때 위쪽을 가로로, 왼쪽을 세로로 훑다가 필요한 것이 보일 때만 더 읽는 F자 모양의 눈길 흐름이다.",
+    "parent": "plan.basics.content-design-idea",
+    "aliases": [
+      "F-pattern",
+      "F 패턴",
+      "F자 패턴",
+      "F-shaped pattern"
+    ],
+    "refs": [
+      "https://guidance.publishing.service.gov.uk/writing-to-gov-uk-standards/writing-guidelines/clear-structure/"
+    ]
+  },
+  {
+    "id": "plan.figma.team",
+    "title": "Figma 팀(team)",
+    "en": "Figma Team",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "조직 안에서 사람들이 함께 쓸 폴더와 파일을 모아 두는 공간으로, 팀 관리자가 구성원과 접근을 관리한다.",
+    "parent": "plan.figma.teams-folders",
+    "aliases": [
+      "Figma team",
+      "피그마 팀",
+      "Figma 팀 공간"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360039480614-Guide-to-teams"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "plan.figma.folder",
+    "title": "Figma 폴더(folder)",
+    "en": "Figma Folder",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "관련된 Figma 파일을 컴퓨터 폴더처럼 묶어 두는 자리로, 예전에는 프로젝트라고 불렀고 여러 제품의 파일을 함께 담을 수 있다.",
+    "parent": "plan.figma.teams-folders",
+    "aliases": [
+      "Figma folder",
+      "피그마 폴더",
+      "Figma 프로젝트",
+      "Figma project"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/1500005554982-Guide-to-files-and-folders"
     ],
     "volatile": true,
     "checked_at": "2026-11-11"

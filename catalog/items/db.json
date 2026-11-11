@@ -520,6 +520,69 @@
     ]
   },
   {
+    "id": "db.basics.ddl-dml-idea",
+    "title": "표의 틀 짜기와 내용 채우기: DDL과 DML",
+    "en": "Data Definition vs Data Manipulation in SQL",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "DB 기초",
+    "summary": "SQL 문장은 표의 모양을 만들고 바꾸는 쪽과 그 표에 행을 넣고 고치고 지우는 쪽으로 나뉜다.",
+    "objectives": [
+      "책장을 짜는 일과 책을 꽂는 일에 빗대어 DDL과 DML을 구분할 수 있다",
+      "표를 만들거나 열을 더하는 일이 어느 쪽인지 예를 들어 말할 수 있다",
+      "ORM이 표를 만들 때 DDL을 대신 보낸다는 것을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "db.basics.what-is-sql",
+      "db.basics.table-row-column"
+    ],
+    "aliases": [
+      "DDL과 DML",
+      "DDL vs DML",
+      "데이터 정의와 데이터 조작",
+      "SQL 문장 종류"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/ddl.html",
+      "https://www.postgresql.org/docs/current/dml.html",
+      "https://docs.sqlalchemy.org/en/20/tutorial/metadata.html"
+    ]
+  },
+  {
+    "id": "db.basics.db-roles-idea",
+    "title": "DB 계정과 권한: 누가 무엇을 만질 수 있나",
+    "en": "Database Roles, Ownership and Privileges",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "DB 기초",
+    "summary": "DB에 접속하는 계정마다 볼 수 있는 표와 할 수 있는 일을 따로 정해, 아무나 자료를 바꾸지 못하게 하는 장치다.",
+    "objectives": [
+      "건물 출입 카드에 빗대어 DB 계정과 권한을 설명할 수 있다",
+      "표를 만든 계정이 그 표의 주인이 된다는 것을 말할 수 있다",
+      "모든 검사를 건너뛰는 슈퍼유저로 평소 일을 하면 왜 위험한지 말할 수 있다"
+    ],
+    "prerequisites": [
+      "db.basics.client-server"
+    ],
+    "related": [
+      "db.sql.roles-privileges",
+      "be.auth.least-privilege"
+    ],
+    "aliases": [
+      "DB 계정",
+      "데이터베이스 계정",
+      "DB 사용자 계정",
+      "database user account",
+      "DB 접근 권한 개념"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/user-manag.html",
+      "https://www.postgresql.org/docs/current/ddl-priv.html"
+    ]
+  },
+  {
     "id": "db.data.etl-idea",
     "title": "ETL: 모으고 다듬어 한곳에 싣기",
     "en": "ETL: Extract, Transform, Load",
@@ -580,6 +643,34 @@
     "refs": [
       "https://learn.microsoft.com/en-us/azure/architecture/data-guide/relational-data/online-transaction-processing",
       "https://learn.microsoft.com/en-us/azure/architecture/data-guide/relational-data/online-analytical-processing"
+    ]
+  },
+  {
+    "id": "db.nosql.time-series-idea",
+    "title": "시계열 데이터: 시간 순서로 쌓이는 기록",
+    "en": "Time Series Data and Time Series Collections",
+    "kind": "topic",
+    "level": 1,
+    "importance": 3,
+    "group": "NoSQL",
+    "summary": "온도 센서 값이나 주가처럼 같은 대상을 시간마다 재어 쌓은 기록으로, 이런 자료만 따로 담는 저장 방식이 있다.",
+    "objectives": [
+      "체온 기록표에 빗대어 시계열 데이터가 무엇인지 설명할 수 있다",
+      "시각·어느 대상의 기록인지(센서 번호·주식 종목)·잰 값이라는 세 부분을 예에서 찾을 수 있다",
+      "센서 기록과 앱 로그가 시계열 데이터의 예라는 것을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "db.nosql.nosql-types-idea"
+    ],
+    "aliases": [
+      "시계열 DB",
+      "시계열 데이터베이스",
+      "time series database",
+      "시계열 컬렉션",
+      "time series collection"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/core/timeseries-collections/"
     ]
   },
   {
@@ -1073,6 +1164,152 @@
     ],
     "refs": [
       "https://learn.microsoft.com/en-us/previous-versions/troubleshoot/microsoft-365/microsoft-365-apps/access/database-normalization-description"
+    ]
+  },
+  {
+    "id": "db.basics.ddl",
+    "title": "DDL(데이터 정의어)",
+    "en": "Data Definition Language (DDL)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "DB 기초",
+    "summary": "표를 새로 만들거나 열을 더하고 지우는 것처럼 자료를 담을 틀을 정하는 SQL 문장을 묶어 부르는 이름이다.",
+    "parent": "db.basics.ddl-dml-idea",
+    "related": [
+      "db.basics.dml",
+      "db.orm.migration-idea"
+    ],
+    "aliases": [
+      "데이터 정의어",
+      "Data Definition Language",
+      "DDL 문",
+      "DDL statement"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/ddl.html",
+      "https://docs.sqlalchemy.org/en/20/tutorial/metadata.html"
+    ]
+  },
+  {
+    "id": "db.basics.dml",
+    "title": "DML(데이터 조작어)",
+    "en": "Data Manipulation Language (DML)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "DB 기초",
+    "summary": "이미 만든 표에 행을 넣고, 들어 있는 값을 고치고, 행을 지우는 SQL 문장을 묶어 부르는 이름이다.",
+    "parent": "db.basics.ddl-dml-idea",
+    "related": [
+      "db.basics.ddl",
+      "db.basics.crud-idea"
+    ],
+    "aliases": [
+      "데이터 조작어",
+      "Data Manipulation Language",
+      "DML 문",
+      "DML statement"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/dml.html"
+    ]
+  },
+  {
+    "id": "db.basics.db-role",
+    "title": "역할(role): PostgreSQL의 사용자이자 그룹",
+    "en": "PostgreSQL Database Role",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "DB 기초",
+    "summary": "PostgreSQL에서 사용자와 사용자 묶음을 한 가지로 다루는 이름표로, 접속과 권한이 모두 이것에 달린다.",
+    "parent": "db.basics.db-roles-idea",
+    "related": [
+      "db.basics.superuser"
+    ],
+    "aliases": [
+      "PostgreSQL 역할",
+      "PostgreSQL role",
+      "DB role",
+      "Postgres 역할"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/user-manag.html",
+      "https://www.postgresql.org/docs/current/database-roles.html"
+    ]
+  },
+  {
+    "id": "db.basics.superuser",
+    "title": "DB 슈퍼유저: 모든 검사를 건너뛰는 계정",
+    "en": "Database Superuser",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "DB 기초",
+    "summary": "로그인 검사 말고는 모든 권한 검사를 건너뛰는 계정으로, DB 서버를 처음 설치해 초기화하면 흔히 postgres라는 이름으로 하나 생긴다.",
+    "parent": "db.basics.db-roles-idea",
+    "related": [
+      "db.basics.db-role",
+      "ops.linux.sudo"
+    ],
+    "aliases": [
+      "DB 슈퍼유저",
+      "database superuser",
+      "postgres 슈퍼유저",
+      "superuser 역할"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/role-attributes.html",
+      "https://www.postgresql.org/docs/current/database-roles.html"
+    ]
+  },
+  {
+    "id": "db.internals.acid",
+    "title": "ACID: 트랜잭션이 지키는 네 가지 약속",
+    "en": "ACID Properties of Transactions",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "DB 내부",
+    "summary": "트랜잭션이 원자성·일관성·격리성·지속성을 지켜, 오류나 정전이 나도 자료가 믿을 만하게 남도록 하는 성질을 묶은 말이다.",
+    "parent": "db.internals.transaction-idea",
+    "related": [
+      "db.internals.isolation-levels"
+    ],
+    "aliases": [
+      "ACID 성질",
+      "ACID properties",
+      "ACID 속성",
+      "원자성 일관성 격리성 지속성"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/glossary.html"
+    ]
+  },
+  {
+    "id": "db.basics.sequence",
+    "title": "시퀀스: 번호를 하나씩 뽑아 주는 DB 객체",
+    "en": "Sequence Generator",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "DB 기초",
+    "summary": "번호표 기계처럼 부를 때마다 겹치지 않는 다음 번호를 내주어, 행의 아이디를 자동으로 매기는 데 쓰는 DB 객체다.",
+    "related": [
+      "db.sql.primary-key",
+      "db.sql.identity-column"
+    ],
+    "aliases": [
+      "시퀀스 객체",
+      "sequence generator",
+      "DB 시퀀스",
+      "일련번호 생성기",
+      "자동 증가 번호"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/sql-createsequence.html",
+      "https://www.postgresql.org/docs/current/glossary.html"
     ]
   },
   {
@@ -1614,6 +1851,74 @@
     ],
     "refs": [
       "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/columnstore-indexes-overview"
+    ]
+  },
+  {
+    "id": "db.basics.object-owner",
+    "title": "객체 소유자: 표를 만든 계정",
+    "en": "Database Object Owner",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "DB 기초",
+    "summary": "표 같은 DB 객체를 만든 계정이 그 주인이 되어, 처음에는 주인과 슈퍼유저만 그것을 다룰 수 있다.",
+    "parent": "db.basics.db-roles-idea",
+    "related": [
+      "db.basics.db-role"
+    ],
+    "aliases": [
+      "객체 소유자",
+      "테이블 소유자",
+      "table owner",
+      "object owner",
+      "표 주인"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/ddl-priv.html"
+    ]
+  },
+  {
+    "id": "db.nosql.time-series-measurement",
+    "title": "측정값: 한 시점의 기록 한 건",
+    "en": "Time Series Measurement",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "NoSQL",
+    "summary": "시계열 데이터에서 한 시각에 잰 값들을 그 시각과 대상 정보와 함께 묶은 기록 한 건이다.",
+    "parent": "db.nosql.time-series-idea",
+    "aliases": [
+      "시계열 측정값",
+      "time series measurement",
+      "측정값 문서",
+      "measurement 문서"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/core/timeseries-collections/"
+    ]
+  },
+  {
+    "id": "db.basics.system-catalog",
+    "title": "시스템 카탈로그: DB가 스스로를 적어 둔 표",
+    "en": "PostgreSQL System Catalog",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "DB 기초",
+    "summary": "어떤 표와 열이 있는지 같은 DB 자신의 구조 정보를 담아 두는 내부 표 묶음으로, 사람이 손으로 고치지 않고 CREATE 같은 SQL 명령이 대신 채운다.",
+    "related": [
+      "db.basics.db-hierarchy-idea"
+    ],
+    "aliases": [
+      "시스템 카탈로그",
+      "system catalogs",
+      "pg_catalog",
+      "PostgreSQL 카탈로그",
+      "DB 메타데이터 표"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/catalogs.html",
+      "https://www.postgresql.org/docs/current/glossary.html"
     ]
   },
   {

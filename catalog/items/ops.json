@@ -521,6 +521,105 @@
     ]
   },
   {
+    "id": "ops.observe.disaster-recovery-idea",
+    "title": "재해 복구: 큰 사고 뒤 서비스 되살리기",
+    "en": "Disaster Recovery Basics",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "관측",
+    "summary": "데이터센터나 지역 전체가 멈추는 큰 사고에도 미리 둔 사본과 절차로 서비스와 데이터를 다시 살려 내는 준비다.",
+    "objectives": [
+      "재해 복구를 집에 불이 났을 때를 대비해 다른 곳에 둔 비상 짐과 대피 계획에 빗대어 설명할 수 있다",
+      "얼마나 빨리 되살릴지와 데이터를 얼마나 잃어도 되는지가 서로 다른 질문임을 예로 말할 수 있다",
+      "복구 계획은 실제로 연습해 봐야 믿을 수 있다는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.observe.availability-idea"
+    ],
+    "related": [
+      "ops.observe.incident-response-idea",
+      "db.basics.backup",
+      "ops.basics.region-zone"
+    ],
+    "aliases": [
+      "재해 복구",
+      "disaster recovery",
+      "DR 계획",
+      "재해 복구 계획",
+      "DR 전략"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/business-continuity-plan-bcp.html",
+      "https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html"
+    ]
+  },
+  {
+    "id": "ops.basics.autoscaling-idea",
+    "title": "오토스케일링: 손님 수에 맞춰 서버 수 바꾸기",
+    "en": "Autoscaling Basics in the Cloud",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "배포 기초",
+    "summary": "요청이 몰리면 서버를 자동으로 더 띄우고 한가해지면 줄여서, 사람이 지켜보지 않아도 용량과 비용을 맞추는 클라우드 기능이다.",
+    "objectives": [
+      "오토스케일링을 손님 수에 따라 계산대를 열고 닫는 마트에 빗대어 설명할 수 있다",
+      "최소 대수와 최대 대수를 정해 두는 이유를 말할 수 있다",
+      "정해진 시간에 늘리는 방식과 부하를 보고 늘리는 방식의 차이를 예로 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.basics.cloud"
+    ],
+    "related": [
+      "be.run.scaling-idea",
+      "ops.k8s.idea",
+      "ops.basics.pay-as-you-go"
+    ],
+    "aliases": [
+      "오토스케일링",
+      "자동 스케일링",
+      "서버 자동 확장",
+      "클라우드 오토스케일링"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html",
+      "https://kubernetes.io/docs/concepts/workloads/autoscaling/"
+    ]
+  },
+  {
+    "id": "ops.basics.cloud-cost-idea",
+    "title": "클라우드 비용 관리: 요금이 새지 않게 지키기",
+    "en": "Cloud Cost Management Basics",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "배포 기초",
+    "summary": "쓴 만큼 내는 클라우드에서 예산과 알림을 걸고 자원에 이름표를 붙여, 뜻밖의 큰 청구서를 미리 막는 습관이다.",
+    "objectives": [
+      "클라우드 비용 관리를 휴대폰 데이터 요금 알림에 빗대어 설명할 수 있다",
+      "예산 알림은 알려 줄 뿐 쓰는 것을 자동으로 멈추지 않는다는 점을 말할 수 있다",
+      "켜 두고 잊은 서버가 요금을 계속 쌓는 이유를 예로 들어 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.basics.cloud"
+    ],
+    "related": [
+      "ops.basics.pay-as-you-go"
+    ],
+    "aliases": [
+      "클라우드 비용 관리",
+      "cloud cost management",
+      "클라우드 요금 관리",
+      "AWS 비용 관리",
+      "클라우드 비용 절감"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html",
+      "https://docs.cloud.google.com/billing/docs/how-to/budgets"
+    ]
+  },
+  {
     "id": "ops.linux.multipass-first-vm",
     "title": "Multipass로 Ubuntu 가상 머신 처음 띄우기",
     "en": "Launching a First Ubuntu VM with Multipass",
@@ -1353,6 +1452,148 @@
     ]
   },
   {
+    "id": "ops.observe.rto",
+    "title": "RTO(목표 복구 시간)",
+    "en": "Recovery Time Objective (RTO)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "관측",
+    "summary": "서비스가 멈춘 뒤 다시 쓸 수 있게 될 때까지 견딜 수 있는 가장 긴 시간을 조직이 미리 정해 둔 목표다.",
+    "parent": "ops.observe.disaster-recovery-idea",
+    "related": [
+      "ops.observe.rpo",
+      "ops.observe.mttr"
+    ],
+    "aliases": [
+      "목표 복구 시간",
+      "복구 시간 목표",
+      "recovery time objective",
+      "RTO 목표"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/business-continuity-plan-bcp.html"
+    ]
+  },
+  {
+    "id": "ops.observe.rpo",
+    "title": "RPO(목표 복구 시점)",
+    "en": "Recovery Point Objective (RPO)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "관측",
+    "summary": "사고가 났을 때 마지막 백업 이후 잃어도 되는 데이터가 몇 분·몇 시간 분량까지인지 미리 정한 목표다.",
+    "parent": "ops.observe.disaster-recovery-idea",
+    "related": [
+      "ops.observe.rto",
+      "db.basics.backup"
+    ],
+    "aliases": [
+      "목표 복구 시점",
+      "복구 시점 목표",
+      "recovery point objective",
+      "허용 데이터 손실"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/business-continuity-plan-bcp.html",
+      "https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html"
+    ]
+  },
+  {
+    "id": "ops.observe.dr-testing",
+    "title": "재해 복구 훈련(DR 테스트)",
+    "en": "Disaster Recovery Testing",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "관측",
+    "summary": "복구 절차와 백업이 정말 목표 시간 안에 서비스를 되살리는지 평소에 일부러 실행해 확인하는 연습이다.",
+    "parent": "ops.observe.disaster-recovery-idea",
+    "related": [
+      "ops.observe.playbook"
+    ],
+    "aliases": [
+      "DR 훈련",
+      "DR 테스트",
+      "disaster recovery drill",
+      "복구 훈련",
+      "백업 복원 시험"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/testing-disaster-recovery.html"
+    ]
+  },
+  {
+    "id": "ops.k8s.horizontal-pod-autoscaler",
+    "title": "Kubernetes HPA(수평 파드 오토스케일러)",
+    "en": "Kubernetes HorizontalPodAutoscaler (HPA)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "Kubernetes에서 CPU 사용량 같은 지표를 보고 앱의 파드 개수를 자동으로 늘리고 줄이는 기본 기능이다.",
+    "parent": "ops.basics.autoscaling-idea",
+    "related": [
+      "ops.k8s.kubectl-scale"
+    ],
+    "aliases": [
+      "HPA",
+      "HorizontalPodAutoscaler",
+      "수평 파드 오토스케일러",
+      "쿠버네티스 HPA",
+      "파드 자동 확장"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/workloads/autoscaling/horizontal-pod-autoscale/",
+      "https://kubernetes.io/docs/concepts/workloads/autoscaling/"
+    ]
+  },
+  {
+    "id": "ops.basics.aws-budgets",
+    "title": "AWS Budgets 예산 알림",
+    "en": "AWS Budgets Alerts",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "배포 기초",
+    "summary": "AWS에서 한 달 예산을 정해 두고 실제 지출이나 예상 지출이 기준을 넘으면 이메일 등으로 알려 주는 기능이다.",
+    "parent": "ops.basics.cloud-cost-idea",
+    "aliases": [
+      "AWS Budgets",
+      "AWS 예산",
+      "AWS 예산 알림",
+      "AWS budget alert",
+      "비용 예산 알림"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html"
+    ]
+  },
+  {
+    "id": "ops.basics.aws-free-tier",
+    "title": "AWS 프리 티어(무료 사용 혜택)",
+    "en": "AWS Free Tier",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "배포 기초",
+    "summary": "새 AWS 계정에 주는 크레딧과 늘 무료인 월 사용량으로, 정해진 한도와 기간 안에서 돈 없이 서비스를 써 볼 수 있게 한다.",
+    "parent": "ops.basics.cloud-cost-idea",
+    "aliases": [
+      "AWS Free Tier",
+      "AWS 무료 티어",
+      "AWS 프리티어",
+      "AWS 무료 크레딧",
+      "AWS free plan"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "ops.basics.cloud-service-models",
     "title": "클라우드 서비스 모델(IaaS·PaaS·SaaS)",
     "en": "Cloud Service Models",
@@ -1621,6 +1862,64 @@
     ],
     "refs": [
       "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html"
+    ]
+  },
+  {
+    "id": "ops.basics.aws-auto-scaling-group",
+    "title": "AWS Auto Scaling 그룹",
+    "en": "Amazon EC2 Auto Scaling Group",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "배포 기초",
+    "summary": "AWS에서 EC2 서버들을 한 묶음으로 보고 최소·원하는·최대 대수 안에서 개수를 자동으로 맞춰 주는 단위다.",
+    "parent": "ops.basics.autoscaling-idea",
+    "aliases": [
+      "Auto Scaling group",
+      "ASG",
+      "EC2 오토스케일링 그룹",
+      "오토스케일링 그룹"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html"
+    ]
+  },
+  {
+    "id": "ops.basics.scheduled-scaling",
+    "title": "예약 스케일링(정해진 시간에 늘리고 줄이기)",
+    "en": "Scheduled Scaling (Amazon EC2 Auto Scaling)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "배포 기초",
+    "summary": "점심시간이나 주중처럼 붐빌 때를 미리 알 때, 정해 둔 시각에 서버 대수를 늘리고 줄이도록 예약하는 방식이다.",
+    "parent": "ops.basics.autoscaling-idea",
+    "aliases": [
+      "scheduled scaling",
+      "예약 확장",
+      "시간 기반 스케일링"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-scheduled-scaling.html"
+    ]
+  },
+  {
+    "id": "ops.basics.cost-allocation-tags",
+    "title": "AWS 비용 할당 태그",
+    "en": "AWS Cost Allocation Tags",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "배포 기초",
+    "summary": "AWS 자원에 '앱 이름'이나 '담당 팀' 같은 키와 값의 이름표를 붙여, 청구서에서 비용을 그 이름표별로 나눠 보게 하는 기능이다.",
+    "parent": "ops.basics.cloud-cost-idea",
+    "aliases": [
+      "cost allocation tags",
+      "비용 할당 태그",
+      "AWS 비용 태그"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html"
     ]
   },
   {
