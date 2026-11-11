@@ -388,6 +388,71 @@
     ]
   },
   {
+    "id": "be.auth.access-control-idea",
+    "title": "접근 제어의 큰 그림: 들어갈 수 있는 방 정하기",
+    "en": "Access Control Big Picture",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "인증·인가",
+    "summary": "로그인한 사람이라도 정해진 방에만 들어가게 막는 일이 접근 제어이고, 이것이 무너지면 남의 자료를 보거나 고칠 수 있다.",
+    "objectives": [
+      "접근 제어를 건물 출입증과 열쇠 비유로 설명할 수 있다",
+      "로그인과 접근 제어가 서로 다른 일임을 말할 수 있다",
+      "접근 제어가 무너졌을 때 생기는 일(남의 자료 보기·고치기)을 예로 들 수 있다"
+    ],
+    "prerequisites": [
+      "be.auth.login-big-picture",
+      "be.security.web-security-idea"
+    ],
+    "related": [
+      "be.auth.role-check",
+      "be.auth.object-level"
+    ],
+    "aliases": [
+      "접근 제어 실패",
+      "access control failure",
+      "권한 밖 접근",
+      "A01:2025"
+    ],
+    "refs": [
+      "https://top10.owasp.org/2025/A01_2025-Broken_Access_Control/",
+      "https://csrc.nist.gov/glossary/term/access_control"
+    ]
+  },
+  {
+    "id": "be.security.encryption-idea",
+    "title": "암호화의 큰 그림: 남이 못 읽게 잠그기",
+    "en": "Encryption Big Picture",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "웹 보안",
+    "summary": "읽을 수 있는 자료를 열쇠로 잠가 알아볼 수 없게 바꾸고, 열쇠가 있는 사람만 다시 풀어 읽게 하는 것이 암호화다.",
+    "objectives": [
+      "암호화와 복호화를 자물쇠와 열쇠 비유로 설명할 수 있다",
+      "평문과 암호문의 차이를 말할 수 있다",
+      "보내는 중인 자료와 저장된 자료를 모두 잠가야 하는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "be.security.web-security-idea"
+    ],
+    "related": [
+      "be.auth.password-hash-why",
+      "be.http.https-basics",
+      "be.security.crypto-basics"
+    ],
+    "aliases": [
+      "암호화 입문",
+      "encryption basics",
+      "데이터 암호화"
+    ],
+    "refs": [
+      "https://csrc.nist.gov/glossary/term/encryption",
+      "https://top10.owasp.org/2025/A04_2025-Cryptographic_Failures/"
+    ]
+  },
+  {
     "id": "be.basics.web-framework-idea",
     "title": "웹 프레임워크: 서버를 빨리 만드는 도구 상자",
     "en": "What a Web Framework Does",
@@ -444,6 +509,36 @@
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/429",
       "https://api-security.owasp.org/editions/2023/en/0xa4-unrestricted-resource-consumption"
+    ]
+  },
+  {
+    "id": "be.http.proxy-idea",
+    "title": "프록시: 중간에서 대신 전해 주는 서버",
+    "en": "Proxy Servers Big Picture",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "HTTP",
+    "summary": "프록시는 브라우저와 목적지 서버 사이에 서서 요청과 응답을 대신 받아 전해 주는 중간 서버다.",
+    "objectives": [
+      "프록시를 심부름을 대신 해 주는 사람 비유로 설명할 수 있다",
+      "손님 편에 선 프록시와 서버 편에 선 프록시를 구분해 말할 수 있다",
+      "프록시가 하는 일(보관해 두기, 신원 숨기기, 일 나누기)을 예로 들 수 있다"
+    ],
+    "prerequisites": [
+      "be.http.web-conversation"
+    ],
+    "related": [
+      "be.http.reverse-proxy",
+      "be.http.proxy-headers"
+    ],
+    "aliases": [
+      "프록시 서버",
+      "proxy server",
+      "중계 서버"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Proxy_servers_and_tunneling"
     ]
   },
   {
@@ -801,6 +896,64 @@
     ]
   },
   {
+    "id": "be.auth.access-control",
+    "title": "접근 제어",
+    "en": "Access Control",
+    "kind": "term",
+    "level": 1,
+    "importance": 1,
+    "group": "인증·인가",
+    "summary": "누가 어떤 자료나 기능을 쓸 수 있는지 정하고, 그 밖의 요청은 허락하지 않는 일이다.",
+    "parent": "be.auth.access-control-idea",
+    "aliases": [
+      "접근 통제",
+      "출입 통제"
+    ],
+    "refs": [
+      "https://csrc.nist.gov/glossary/term/access_control"
+    ]
+  },
+  {
+    "id": "be.security.encryption",
+    "title": "암호화",
+    "en": "Encryption",
+    "kind": "term",
+    "level": 1,
+    "importance": 1,
+    "group": "웹 보안",
+    "summary": "알고리즘과 키를 써서 읽을 수 있는 자료를 남이 알아볼 수 없는 모양으로 바꾸는 일이다.",
+    "parent": "be.security.encryption-idea",
+    "aliases": [
+      "데이터 암호화하기",
+      "암호화하기"
+    ],
+    "refs": [
+      "https://csrc.nist.gov/glossary/term/encryption"
+    ]
+  },
+  {
+    "id": "be.security.decryption",
+    "title": "복호화",
+    "en": "Decryption",
+    "kind": "term",
+    "level": 1,
+    "importance": 1,
+    "group": "웹 보안",
+    "summary": "암호화된 자료를 키로 풀어 원래의 읽을 수 있는 모양으로 되돌리는 일이다.",
+    "parent": "be.security.encryption-idea",
+    "related": [
+      "be.security.encryption"
+    ],
+    "aliases": [
+      "복호화하기",
+      "decrypt",
+      "암호 풀기"
+    ],
+    "refs": [
+      "https://csrc.nist.gov/glossary/term/decryption"
+    ]
+  },
+  {
     "id": "be.basics.url-scheme",
     "title": "URL 스킴",
     "en": "URL Scheme",
@@ -1004,6 +1157,110 @@
     ]
   },
   {
+    "id": "be.auth.least-privilege",
+    "title": "최소 권한 원칙",
+    "en": "Principle of Least Privilege",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "인증·인가",
+    "summary": "사람과 프로그램에게 맡은 일에 꼭 필요한 만큼의 권한만 주자는 보안 원칙이다.",
+    "parent": "be.auth.access-control-idea",
+    "aliases": [
+      "least privilege principle",
+      "PoLP",
+      "최소 권한 부여"
+    ],
+    "refs": [
+      "https://csrc.nist.gov/glossary/term/least_privilege"
+    ]
+  },
+  {
+    "id": "be.auth.deny-by-default",
+    "title": "기본 거부",
+    "en": "Deny by Default",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "인증·인가",
+    "summary": "공개하기로 한 것만 빼고 모든 접근을 처음부터 막아 두고, 필요한 경우에만 하나씩 허락하는 방식이다.",
+    "parent": "be.auth.access-control-idea",
+    "related": [
+      "be.auth.least-privilege"
+    ],
+    "aliases": [
+      "default deny",
+      "기본값 거부",
+      "기본 차단 정책"
+    ],
+    "refs": [
+      "https://top10.owasp.org/2025/A01_2025-Broken_Access_Control/"
+    ]
+  },
+  {
+    "id": "be.security.plaintext",
+    "title": "평문",
+    "en": "Plaintext",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 보안",
+    "summary": "암호화되지 않아 누구나 그대로 읽을 수 있는 자료다.",
+    "parent": "be.security.encryption-idea",
+    "related": [
+      "be.security.ciphertext"
+    ],
+    "aliases": [
+      "cleartext",
+      "암호화 전 데이터",
+      "평문 전송"
+    ],
+    "refs": [
+      "https://csrc.nist.gov/glossary/term/plaintext"
+    ]
+  },
+  {
+    "id": "be.security.ciphertext",
+    "title": "암호문",
+    "en": "Ciphertext",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 보안",
+    "summary": "암호화를 거쳐 키 없이는 뜻을 알아볼 수 없게 된 자료다.",
+    "parent": "be.security.encryption-idea",
+    "aliases": [
+      "암호화된 데이터",
+      "encrypted data"
+    ],
+    "refs": [
+      "https://csrc.nist.gov/glossary/term/ciphertext"
+    ]
+  },
+  {
+    "id": "be.security.encryption-key",
+    "title": "암호화 키",
+    "en": "Encryption Key",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 보안",
+    "summary": "암호화와 복호화를 할 때 알고리즘과 함께 쓰는 값으로, 비밀로 지켜야 할 키가 새면 잠근 자료를 누구나 풀 수 있다.",
+    "parent": "be.security.encryption-idea",
+    "related": [
+      "be.security.api-key"
+    ],
+    "aliases": [
+      "cryptographic key",
+      "암호 키",
+      "암호화 열쇠"
+    ],
+    "refs": [
+      "https://csrc.nist.gov/glossary/term/cryptographic_key",
+      "https://top10.owasp.org/2025/A04_2025-Cryptographic_Failures/"
+    ]
+  },
+  {
     "id": "be.run.capacity-buffer",
     "title": "여유 용량",
     "en": "Capacity Buffer (Headroom)",
@@ -1020,6 +1277,28 @@
     ],
     "refs": [
       "https://learn.microsoft.com/en-us/azure/well-architected/performance-efficiency/scale-partition"
+    ]
+  },
+  {
+    "id": "be.http.forward-proxy",
+    "title": "포워드 프록시",
+    "en": "Forward Proxy",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "HTTP",
+    "summary": "사용자 쪽에 서서 여러 사용자의 요청을 대신 내보내고, 받은 결과를 보관하거나 사용자의 주소를 숨겨 주는 프록시다.",
+    "parent": "be.http.proxy-idea",
+    "related": [
+      "be.http.reverse-proxy"
+    ],
+    "aliases": [
+      "forward proxy",
+      "정방향 프록시",
+      "클라이언트 쪽 프록시"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Proxy_servers_and_tunneling"
     ]
   },
   {

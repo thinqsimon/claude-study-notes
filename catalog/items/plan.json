@@ -406,6 +406,93 @@
     ]
   },
   {
+    "id": "plan.basics.design-principles",
+    "title": "정부 디자인 원칙: 좋은 서비스를 만드는 약속",
+    "en": "Government Design Principles",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "사용자 필요에서 출발하고, 덜 만들고, 근거로 정하고, 모두가 쓸 수 있게 하자는 서비스 팀의 공통 약속이다.",
+    "objectives": [
+      "디자인 원칙이 팀이 결정을 내릴 때 기준이 되는 약속임을 비유로 설명할 수 있다",
+      "'사용자 필요에서 시작하기'와 '덜 만들기' 같은 대표 원칙의 뜻을 일상 예로 말할 수 있다",
+      "'모두를 위한 서비스' 원칙이 가장 쓰기 어려운 사람부터 생각하자는 뜻임을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.user-and-need"
+    ],
+    "aliases": [
+      "GOV.UK 디자인 원칙",
+      "government design principles",
+      "공공 서비스 디자인 원칙",
+      "서비스 디자인 원칙"
+    ],
+    "refs": [
+      "https://www.gov.uk/guidance/government-design-principles"
+    ]
+  },
+  {
+    "id": "plan.figma.product-family",
+    "title": "Figma 제품군: 디자인·보드·발표·AI 앱",
+    "en": "Figma Product Family",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Figma는 화면 디자인, 화이트보드, 발표 자료, 웹사이트, AI로 만드는 앱처럼 일마다 다른 파일 종류를 한 계정에서 함께 쓴다.",
+    "objectives": [
+      "Figma Design·FigJam·Figma Slides·Figma Make가 각각 어떤 일에 쓰이는지 구분해 말할 수 있다",
+      "만들려는 결과물(화면, 회의 메모, 발표, 작동하는 시안)에 맞는 Figma 파일 종류를 고를 수 있다",
+      "Figma Make가 말로 요청해 작동하는 시안을 만드는 AI 도구라는 점을 비유로 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.getting-started"
+    ],
+    "aliases": [
+      "Figma 제품군",
+      "Figma products",
+      "피그마 제품군",
+      "Figma 파일 종류",
+      "Figma 도구 종류"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/14563969806359"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "plan.figma.realtime-collab",
+    "title": "Figma에서 여럿이 동시에 작업하기",
+    "en": "Real-time Collaboration in Figma",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "한 Figma 파일에 여러 사람이 함께 들어와 서로의 커서를 보고, 따라가고, 짧게 말을 주고받으며 같이 일한다.",
+    "objectives": [
+      "한 파일을 여럿이 동시에 여는 방식을 함께 쓰는 화이트보드에 빗대어 설명할 수 있다",
+      "다른 사람의 아바타를 눌러 그 사람 화면을 따라가고 멈출 수 있다",
+      "오래 남길 의견은 댓글로, 순간의 대화는 커서 채팅으로 나눠 쓸 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.design-file-tour"
+    ],
+    "aliases": [
+      "Figma 실시간 협업",
+      "Figma 동시 편집",
+      "Figma multiplayer",
+      "피그마 멀티플레이어",
+      "Figma 공동 작업"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360040322673-Present-to-collaborators-using-spotlight",
+      "https://help.figma.com/hc/en-us/articles/1500006775761",
+      "https://help.figma.com/hc/en-us/articles/1500004414842"
+    ]
+  },
+  {
     "id": "plan.basics.wireframe",
     "title": "와이어프레임",
     "en": "Wireframe",
@@ -700,6 +787,78 @@
     ],
     "refs": [
       "https://scrumguides.org/scrum-guide.html"
+    ]
+  },
+  {
+    "id": "plan.basics.inclusive-design",
+    "title": "포용적 디자인(inclusive design)",
+    "en": "Inclusive Service Design",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "장애뿐 아니라 시간·돈·디지털 기술·언어 같은 여러 장벽까지 살펴 필요한 사람 누구나 쉽게 쓰도록 서비스를 만드는 방식이다.",
+    "parent": "plan.basics.design-principles",
+    "related": [
+      "fe.basics.accessibility-idea"
+    ],
+    "aliases": [
+      "포용적 디자인",
+      "inclusive design",
+      "포용 디자인",
+      "인클루시브 디자인",
+      "포용적 서비스 디자인"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/design/making-your-service-more-inclusive"
+    ]
+  },
+  {
+    "id": "plan.figma.make",
+    "title": "Figma Make(말로 만드는 시안과 앱)",
+    "en": "Figma Make",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "채팅으로 AI 에이전트에게 요청하거나 기존 디자인을 넣어 작동하는 프로토타입과 웹 앱을 만드는 Figma 도구이다.",
+    "parent": "plan.figma.product-family",
+    "related": [
+      "plan.basics.prototype"
+    ],
+    "aliases": [
+      "피그마 메이크",
+      "Figma Make 파일",
+      "Figma AI 앱 만들기",
+      "prompt to app Figma"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/31304412302231-Explore-Figma-Make"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "plan.figma.spotlight",
+    "title": "Figma 스포트라이트와 따라가기",
+    "en": "Figma Spotlight and Follow",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "발표자가 자기 캔버스 화면을 다른 사람에게 보여 주거나, 다른 사람의 아바타를 눌러 그 화면을 그대로 따라가는 기능이다.",
+    "parent": "plan.figma.realtime-collab",
+    "related": [
+      "plan.figma.presentation-view"
+    ],
+    "aliases": [
+      "Figma spotlight",
+      "Spotlight me",
+      "Figma 따라가기",
+      "Figma follow"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360040322673-Present-to-collaborators-using-spotlight"
     ]
   },
   {
@@ -1095,6 +1254,139 @@
     ],
     "refs": [
       "https://www.gov.uk/service-manual/agile-delivery/developing-a-roadmap"
+    ]
+  },
+  {
+    "id": "plan.basics.assisted-digital",
+    "title": "도움 받는 디지털 이용(assisted digital)",
+    "en": "Assisted Digital Support",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "온라인 서비스를 혼자 쓰기 어려운 사람에게 전화·대면·채팅으로 이용을 돕는 지원을 함께 마련하는 일이다.",
+    "related": [
+      "plan.basics.inclusive-design"
+    ],
+    "aliases": [
+      "assisted digital",
+      "어시스티드 디지털",
+      "디지털 이용 지원",
+      "오프라인 이용 지원",
+      "assisted digital support"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/helping-people-to-use-your-service/assisted-digital-support-introduction"
+    ]
+  },
+  {
+    "id": "plan.basics.service-standard",
+    "title": "서비스 표준(Service Standard)",
+    "en": "GOV.UK Service Standard",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "사용자 이해부터 안정적 운영까지 좋은 공공 서비스가 갖출 점을 14개 항목으로 정리한 영국 정부의 점검 기준이다.",
+    "related": [
+      "plan.basics.design-principles",
+      "plan.basics.service-phases"
+    ],
+    "aliases": [
+      "GOV.UK Service Standard",
+      "서비스 표준 14개 항목",
+      "정부 서비스 표준",
+      "GDS 서비스 표준"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/service-standard"
+    ]
+  },
+  {
+    "id": "plan.figma.slides",
+    "title": "Figma Slides(발표 자료 만들기)",
+    "en": "Figma Slides",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "여러 사람이 한 덱을 동시에 고치고 발표자 노트와 템플릿을 쓰는 Figma의 발표 자료 도구이다.",
+    "parent": "plan.figma.product-family",
+    "aliases": [
+      "피그마 슬라이드",
+      "Figma 슬라이드",
+      "Figma 발표 자료",
+      "Figma presentation deck"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/articles/24170630629911"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "plan.figma.sites",
+    "title": "Figma Sites(웹사이트 만들고 게시하기)",
+    "en": "Figma Sites",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Figma 디자인 도구로 화면 크기별 웹페이지를 만들고 미리 본 뒤 바로 웹사이트로 게시하는 Figma 도구이다.",
+    "parent": "plan.figma.product-family",
+    "aliases": [
+      "피그마 사이트",
+      "Figma 웹사이트 빌더",
+      "Figma website builder",
+      "Figma 사이트 게시"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/31230436657815-Explore-Figma-Sites"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "plan.figma.multiplayer-cursor",
+    "title": "멀티플레이어 커서",
+    "en": "Figma Multiplayer Cursors",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "같은 Figma 파일에 들어온 다른 사람이 지금 어디를 보고 있는지 이름표 달린 색깔 커서로 보여 주는 표시이다.",
+    "parent": "plan.figma.realtime-collab",
+    "aliases": [
+      "multiplayer cursors",
+      "멀티플레이어 커서 표시",
+      "다른 사람 커서",
+      "Figma 협업 커서"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/1500006775761"
+    ]
+  },
+  {
+    "id": "plan.figma.cursor-chat",
+    "title": "커서 채팅(cursor chat)",
+    "en": "Figma Cursor Chat",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "커서 옆 말풍선에 글을 쓰면 다른 사람이 바로 보고 잠시 뒤 사라지는, 기록이 남지 않는 실시간 짧은 대화이다.",
+    "parent": "plan.figma.realtime-collab",
+    "related": [
+      "plan.figma.comments"
+    ],
+    "aliases": [
+      "cursor chat",
+      "커서 챗",
+      "FigJam 커서 채팅",
+      "Figma 커서 대화"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/1500004414842"
     ]
   },
   {

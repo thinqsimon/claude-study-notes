@@ -369,6 +369,64 @@
     ]
   },
   {
+    "id": "dev.git.github-notifications",
+    "title": "GitHub 알림: 관심 있는 소식 받아 보기",
+    "en": "GitHub Notifications",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "Git",
+    "summary": "내가 지켜보거나 참여한 저장소·이슈·풀 리퀘스트에 새 소식이 생기면 GitHub가 받은 편지함이나 이메일로 알려 주는 기능이다.",
+    "objectives": [
+      "GitHub 알림을 신문 구독에 빗대어 설명할 수 있다",
+      "댓글을 달거나 이름이 불리면 그 대화의 알림을 저절로 받게 된다는 것을 말할 수 있다",
+      "필요 없는 대화나 저장소의 알림을 끊을 수 있다는 것을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.github-role"
+    ],
+    "aliases": [
+      "GitHub notifications",
+      "깃허브 알림",
+      "GitHub 알림 받은 편지함",
+      "notification inbox",
+      "GitHub 구독 해제"
+    ],
+    "refs": [
+      "https://docs.github.com/en/subscriptions-and-notifications/concepts/about-notifications"
+    ]
+  },
+  {
+    "id": "dev.terminal.history-completion",
+    "title": "터미널 편하게 쓰기: 자동 완성과 명령 기록",
+    "en": "Tab Completion and Command History in the Shell",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "터미널",
+    "summary": "Tab 키로 긴 이름을 대신 채우고 위 화살표로 전에 친 명령을 다시 불러와 타자와 오타를 줄이는 셸의 기본 편의 기능이다.",
+    "objectives": [
+      "Tab 자동 완성을 휴대폰 자판의 단어 추천에 빗대어 설명할 수 있다",
+      "위·아래 화살표로 전에 실행한 명령을 다시 불러올 수 있다",
+      "끝나지 않는 명령을 Ctrl+C로 멈출 수 있다"
+    ],
+    "prerequisites": [
+      "dev.basics.terminal"
+    ],
+    "related": [
+      "dev.basics.shell"
+    ],
+    "aliases": [
+      "터미널 단축키",
+      "셸 편의 기능",
+      "터미널 자동 완성",
+      "명령 다시 불러오기"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man1/bash.1.html"
+    ]
+  },
+  {
     "id": "dev.git.open-source-contribute",
     "title": "오픈소스 프로젝트에 참여하는 큰 그림",
     "en": "Contributing to Open Source",
@@ -393,6 +451,36 @@
     "refs": [
       "https://docs.github.com/en/get-started/exploring-projects-on-github/finding-ways-to-contribute-to-open-source-on-github",
       "https://docs.github.com/en/get-started/learning-about-github/github-glossary"
+    ]
+  },
+  {
+    "id": "dev.git.github-discussions",
+    "title": "GitHub 토론(Discussions): 묻고 의견 나누는 게시판",
+    "en": "GitHub Discussions",
+    "kind": "topic",
+    "level": 1,
+    "importance": 3,
+    "group": "Git",
+    "summary": "할 일로 정해지기 전의 질문·아이디어·공지를 저장소 곁의 열린 게시판에 올려 프로젝트 사람들과 함께 이야기하는 기능이다.",
+    "objectives": [
+      "토론과 이슈의 쓰임새 차이를 동네 게시판과 할 일 목록에 빗대어 설명할 수 있다",
+      "토론이 카테고리별로 나뉘어 올라간다는 것을 말할 수 있다",
+      "질문 카테고리에서 답이 된 댓글을 표시해 두면 좋은 점을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.github-role"
+    ],
+    "related": [
+      "dev.git.github-issues"
+    ],
+    "aliases": [
+      "GitHub Discussions",
+      "깃허브 디스커션",
+      "저장소 토론 게시판",
+      "GitHub 토론 기능"
+    ],
+    "refs": [
+      "https://docs.github.com/en/discussions/collaborating-with-your-community-using-discussions/about-discussions"
     ]
   },
   {
@@ -432,6 +520,30 @@
     ],
     "refs": [
       "https://docs.python.org/3/bugs.html"
+    ]
+  },
+  {
+    "id": "dev.terminal.ctrl-c-interrupt",
+    "title": "Ctrl+C로 실행 중인 명령 멈추기",
+    "en": "Interrupting a Running Command with Ctrl+C",
+    "kind": "term",
+    "level": 1,
+    "importance": 1,
+    "group": "터미널",
+    "summary": "터미널에서 끝나지 않거나 잘못 띄운 명령을 Ctrl+C 키로 중단 신호를 보내 멈추는 방법이다.",
+    "parent": "dev.terminal.history-completion",
+    "related": [
+      "cs.os.signals"
+    ],
+    "aliases": [
+      "Ctrl+C로 중단",
+      "명령 강제 중단",
+      "실행 중인 명령 멈추기",
+      "터미널 중단 키",
+      "^C"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man1/bash.1.html"
     ]
   },
   {
@@ -776,6 +888,121 @@
     ]
   },
   {
+    "id": "dev.git.mention",
+    "title": "GitHub @멘션",
+    "en": "Mentioning People and Teams on GitHub",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "Git",
+    "summary": "댓글에 @와 사용자 이름이나 팀 이름을 붙여 적어 그 사람이나 팀에게 알림을 보내는 방법이다.",
+    "parent": "dev.git.github-notifications",
+    "related": [
+      "ax.coding.file-mention"
+    ],
+    "aliases": [
+      "GitHub 멘션",
+      "GitHub @mention",
+      "GitHub 팀 멘션",
+      "깃허브 멘션"
+    ],
+    "refs": [
+      "https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax",
+      "https://docs.github.com/en/subscriptions-and-notifications/concepts/about-notifications"
+    ]
+  },
+  {
+    "id": "dev.terminal.tab-completion",
+    "title": "Tab 자동 완성",
+    "en": "Tab Completion",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "터미널",
+    "summary": "명령이나 파일 이름을 몇 글자만 치고 Tab 키를 누르면 셸이 나머지를 알아서 채워 주는 기능이다.",
+    "parent": "dev.terminal.history-completion",
+    "aliases": [
+      "탭 완성",
+      "탭 자동 완성",
+      "tab completion",
+      "Tab 키 완성",
+      "명령어 자동 완성"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man1/bash.1.html"
+    ]
+  },
+  {
+    "id": "dev.terminal.command-history",
+    "title": "셸 명령 기록(history)",
+    "en": "Shell Command History",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "터미널",
+    "summary": "셸이 전에 입력한 명령을 목록으로 기억해 두어 위 화살표로 다시 불러오거나 history 명령으로 볼 수 있게 한 것이다.",
+    "parent": "dev.terminal.history-completion",
+    "aliases": [
+      "명령 기록",
+      "명령어 기록",
+      "command history",
+      "history 명령",
+      ".bash_history",
+      "이전 명령 불러오기"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man1/bash.1.html"
+    ]
+  },
+  {
+    "id": "dev.git.collaborator",
+    "title": "협업자(collaborator)",
+    "en": "Repository Collaborator",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "Git",
+    "summary": "저장소 주인이 초대해 그 저장소에 직접 변경을 올릴 수 있게 된 다른 GitHub 사용자다.",
+    "related": [
+      "dev.git.contributor",
+      "dev.git.repo-visibility"
+    ],
+    "aliases": [
+      "저장소 협업자",
+      "repository collaborator",
+      "협업자 초대",
+      "공동 작업자 초대"
+    ],
+    "refs": [
+      "https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository",
+      "https://docs.github.com/en/get-started/learning-about-github/github-glossary"
+    ]
+  },
+  {
+    "id": "dev.git.github-organization",
+    "title": "GitHub 조직(organization)",
+    "en": "GitHub Organization",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "Git",
+    "summary": "회사나 오픈소스 프로젝트처럼 여러 사람이 저장소와 팀을 함께 소유하고 관리하려고 만드는 공유 계정이다.",
+    "related": [
+      "dev.git.github-role"
+    ],
+    "aliases": [
+      "GitHub organization",
+      "깃허브 조직",
+      "GitHub 조직 계정",
+      "GitHub org",
+      "GitHub 조직 소유자"
+    ],
+    "refs": [
+      "https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/about-organizations",
+      "https://docs.github.com/en/get-started/learning-about-github/github-glossary"
+    ]
+  },
+  {
     "id": "dev.git.dvcs",
     "title": "분산 버전 관리",
     "en": "Distributed Version Control",
@@ -1077,6 +1304,74 @@
     ],
     "refs": [
       "https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars"
+    ]
+  },
+  {
+    "id": "dev.git.discussion-answer",
+    "title": "토론의 답변 표시(Mark as answer)",
+    "en": "Marking a Discussion Comment as the Answer",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "Git",
+    "summary": "질문 카테고리의 토론에서 문제를 풀어 준 댓글에 답이라고 표시해 뒤에 온 사람이 바로 찾게 하는 기능이다.",
+    "parent": "dev.git.github-discussions",
+    "aliases": [
+      "Mark as answer",
+      "답변으로 표시",
+      "토론 답변 채택",
+      "discussion answer"
+    ],
+    "refs": [
+      "https://docs.github.com/en/discussions/collaborating-with-your-community-using-discussions/about-discussions"
+    ]
+  },
+  {
+    "id": "dev.git.watch-repo",
+    "title": "저장소 지켜보기(Watch)",
+    "en": "Watching a GitHub Repository",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "Git",
+    "summary": "저장소의 Watch 단추를 눌러 그 저장소에서 일어나는 활동을 알림으로 받아 보도록 구독하는 일이다.",
+    "parent": "dev.git.github-notifications",
+    "related": [
+      "dev.git.github-star"
+    ],
+    "aliases": [
+      "저장소 watch",
+      "watch repository",
+      "Unwatch",
+      "저장소 구독",
+      "깃허브 워치"
+    ],
+    "refs": [
+      "https://docs.github.com/en/subscriptions-and-notifications/concepts/about-notifications",
+      "https://docs.github.com/en/get-started/learning-about-github/github-glossary"
+    ]
+  },
+  {
+    "id": "dev.git.gist",
+    "title": "Gist: 코드 조각 나누기",
+    "en": "GitHub Gist",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "Git",
+    "summary": "짧은 코드나 메모 파일을 저장소를 따로 만들지 않고 링크 하나로 남과 나누는 GitHub의 작은 공유 공간이다.",
+    "related": [
+      "dev.git.repository"
+    ],
+    "aliases": [
+      "GitHub Gist",
+      "깃허브 기스트",
+      "secret gist",
+      "비밀 gist",
+      "gh gist create"
+    ],
+    "refs": [
+      "https://docs.github.com/en/get-started/writing-on-github/editing-and-sharing-content-with-gists/creating-gists"
     ]
   },
   {

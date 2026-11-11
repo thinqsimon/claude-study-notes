@@ -390,6 +390,112 @@
     ]
   },
   {
+    "id": "llm.basics.chat-app-vs-api",
+    "title": "AI를 쓰는 두 길: 챗봇 앱과 API",
+    "en": "Chat Apps vs the Model API",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "같은 AI 모델도 사람이 대화하는 챗봇 앱과 프로그램이 부르는 API라는 두 문으로 쓰며, 둘은 들어가는 곳과 요금 계산이 따로다.",
+    "objectives": [
+      "챗봇 앱과 API의 차이를 식당에서 먹기와 식재료 도매로 받아 직접 요리하기에 빗대어 설명할 수 있다",
+      "챗봇 유료 요금제와 API 사용료는 따로 계산되고, 일부 상위 요금제에만 매달 API 크레딧이 딸려 온다는 점을 말할 수 있다",
+      "자기 앱이나 업무 자동화에 AI를 붙이려면 API 쪽 길을 골라야 하는 경우를 예로 들 수 있다"
+    ],
+    "prerequisites": [
+      "be.basics.what-is-api",
+      "llm.basics.model-choices"
+    ],
+    "related": [
+      "llm.api.first-call",
+      "llm.basics.first-chat"
+    ],
+    "aliases": [
+      "챗봇 앱과 API 차이",
+      "chat app vs API",
+      "구독과 API 차이",
+      "AI 앱과 API",
+      "claude.ai와 API 차이"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/9876003",
+      "https://platform.claude.com/docs/en/intro"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.model-leaderboards",
+    "title": "AI 모델 순위표 읽기: 리더보드",
+    "en": "Reading AI Model Leaderboards",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "리더보드는 같은 시험 문제나 사람들의 투표로 여러 AI 모델을 줄 세운 순위표로, 무엇으로 쟀는지에 따라 순서가 달라진다.",
+    "objectives": [
+      "리더보드를 같은 시험을 친 학생들의 성적 순위표에 빗대어 설명할 수 있다",
+      "시험 문제로 매긴 순위와 사람들의 투표로 매긴 순위가 서로 다를 수 있는 이유를 말할 수 있다",
+      "순위표의 점수가 누가 쟀는지 확인된 것인지 살펴봐야 하는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.model-choices"
+    ],
+    "related": [
+      "mlops.eval.llm-benchmark",
+      "mlops.eval.why-evaluate"
+    ],
+    "aliases": [
+      "AI 리더보드",
+      "LLM 리더보드",
+      "AI 모델 순위",
+      "모델 순위표",
+      "model leaderboard"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/leaderboards/index",
+      "https://huggingface.co/docs/hub/eval-results",
+      "https://arena.ai/how-it-works"
+    ]
+  },
+  {
+    "id": "llm.basics.how-llm-is-built",
+    "title": "LLM이 만들어지는 단계: 사전 학습에서 다듬기까지",
+    "en": "How an LLM Is Built: Pretraining to Fine-Tuning",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "LLM은 엄청난 양의 글로 다음 말을 맞히며 먼저 배우고, 그 뒤 예시 답과 사람의 평가로 다듬어져 쓸모 있는 대화 상대가 된다.",
+    "objectives": [
+      "사전 학습과 그 뒤의 다듬기를 책을 많이 읽은 뒤 직업 훈련을 받는 일에 빗대어 설명할 수 있다",
+      "사전 학습만 마친 모델이 글은 매끄러워도 부탁을 잘 들어주지 않을 수 있는 이유를 말할 수 있다",
+      "사람이 두 답 중 나은 쪽을 고른 평가가 모델을 더 도움 되고 덜 해롭게 다듬는 데 쓰인다는 점을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.what-is-llm"
+    ],
+    "related": [
+      "llm.basics.pretraining",
+      "llm.basics.instruction-tuned-model",
+      "llm.internals.preference-alignment",
+      "mlops.finetune.fine-tuning"
+    ],
+    "aliases": [
+      "LLM 학습 과정",
+      "LLM 만드는 과정",
+      "how LLMs are trained",
+      "LLM 훈련 단계",
+      "언어 모델 학습 단계"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter1/4",
+      "https://huggingface.co/learn/llm-course/chapter12/2",
+      "https://huggingface.co/learn/llm-course/chapter11/1"
+    ]
+  },
+  {
     "id": "llm.basics.image-generation",
     "title": "이미지 생성 AI: 글로 주문하는 그림",
     "en": "Image Generation from Text",
@@ -953,6 +1059,111 @@
     ]
   },
   {
+    "id": "llm.basics.developer-console",
+    "title": "API 개발자 콘솔",
+    "en": "API Developer Console",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "API 키를 만들고 모델을 시험해 보며 사용량과 결제를 관리하는, 개발자용 웹 관리 화면이다.",
+    "parent": "llm.basics.chat-app-vs-api",
+    "related": [
+      "llm.prompt.llm-playground",
+      "be.security.api-key"
+    ],
+    "aliases": [
+      "Claude Console",
+      "API 콘솔",
+      "개발자 플랫폼 콘솔",
+      "API 관리 화면"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/intro",
+      "https://support.claude.com/en/articles/9876003"
+    ]
+  },
+  {
+    "id": "llm.basics.api-prepaid-credits",
+    "title": "API 선불 크레딧",
+    "en": "Prepaid API Credits",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "API 사용료를 미리 사 둔 잔액에서 쓴 만큼 깎는 방식으로, 잔액이 바닥나면 API 호출이 멈춘다.",
+    "parent": "llm.basics.chat-app-vs-api",
+    "related": [
+      "llm.basics.mtok-price",
+      "llm.basics.chat-usage-limit"
+    ],
+    "aliases": [
+      "API 크레딧",
+      "API credits",
+      "선불 충전 크레딧",
+      "prepaid credits",
+      "크레딧 자동 충전"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/8977456-how-do-i-pay-for-my-api-usage"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.chat-paid-plan",
+    "title": "챗봇 유료 요금제",
+    "en": "Paid Chat Subscription Plan",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "매달 정해진 돈을 내고 챗봇 앱을 더 많이 쓰고 더 좋은 모델과 기능을 여는 구독으로, API 사용료와는 따로 계산하며 일부 상위 요금제에는 API 크레딧이 딸려 온다.",
+    "parent": "llm.basics.chat-app-vs-api",
+    "related": [
+      "llm.basics.chat-usage-limit",
+      "llm.basics.api-prepaid-credits"
+    ],
+    "aliases": [
+      "AI 구독 요금제",
+      "챗봇 구독",
+      "Claude Pro",
+      "Claude Max",
+      "chat subscription plan"
+    ],
+    "refs": [
+      "https://claude.com/pricing",
+      "https://support.claude.com/en/articles/9876003"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.ai-alignment",
+    "title": "AI 정렬(alignment)",
+    "en": "AI Alignment",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "AI가 그럴듯한 글을 넘어 사람이 원하는 대로 도움 되고 해롭지 않게 행동하도록 맞춰 가는 일이다.",
+    "parent": "llm.basics.how-llm-is-built",
+    "related": [
+      "llm.internals.preference-alignment",
+      "llm.basics.hhh"
+    ],
+    "aliases": [
+      "AI 얼라인먼트",
+      "LLM 정렬",
+      "인간 가치 정렬",
+      "모델 정렬",
+      "AI 가치 맞추기"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter12/2"
+    ]
+  },
+  {
     "id": "llm.basics.small-language-model",
     "title": "소형 언어 모델(SLM)",
     "en": "Small Language Model",
@@ -1315,6 +1526,56 @@
     "refs": [
       "https://learn.microsoft.com/en-us/windows/ai/npu-devices/"
     ]
+  },
+  {
+    "id": "llm.basics.blind-vote-leaderboard",
+    "title": "블라인드 투표 순위표",
+    "en": "Blind Pairwise Voting Leaderboard",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "이름을 가린 두 모델의 답을 나란히 보고 사람이 더 나은 쪽을 고른 표를 모아 만든 모델 순위표다.",
+    "parent": "llm.basics.model-leaderboards",
+    "related": [
+      "rag.agent.pairwise-annotation-queue"
+    ],
+    "aliases": [
+      "AI 블라인드 테스트",
+      "익명 모델 대결",
+      "사람 투표 리더보드",
+      "human vote leaderboard",
+      "모델 대결 투표"
+    ],
+    "refs": [
+      "https://arena.ai/how-it-works"
+    ]
+  },
+  {
+    "id": "llm.basics.verified-eval-score",
+    "title": "검증된 점수와 자체 보고 점수",
+    "en": "Verified vs Self-Reported Eval Scores",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "순위표 점수 가운데 정해진 방식으로 다시 돌려 확인한 점수와, 만든 쪽이나 누군가가 직접 올린 점수를 나눠 보는 구분이다.",
+    "parent": "llm.basics.model-leaderboards",
+    "related": [
+      "mlops.eval.llm-benchmark"
+    ],
+    "aliases": [
+      "검증된 벤치마크 점수",
+      "verified score",
+      "자체 보고 점수",
+      "self-reported score",
+      "커뮤니티 제공 점수"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/hub/eval-results"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
   },
   {
     "id": "llm.basics.token-context",
