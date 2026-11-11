@@ -215,6 +215,68 @@
     ]
   },
   {
+    "id": "plan.figma.layers",
+    "title": "Figma 레이어 패널로 화면 요소 정리하기",
+    "en": "Organizing Layers in the Figma Layers Panel",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "Figma와 디자인 시스템",
+    "summary": "도형·글자·사진 같은 화면 요소를 레이어로 보고, 레이어 패널에서 쌓는 순서와 이름, 숨김과 잠금을 다루는 Figma의 기본 작업이다.",
+    "objectives": [
+      "레이어 패널의 위아래 순서를 바꿔 어떤 요소가 위에 보일지 정할 수 있다",
+      "프레임 안에 들어간 요소를 부모와 자식 관계로 읽을 수 있다",
+      "레이어 이름을 바꾸고 숨기거나 잠가서 실수로 고치는 일을 막을 수 있다"
+    ],
+    "related": [
+      "plan.figma.frames-and-components"
+    ],
+    "aliases": [
+      "Figma 레이어",
+      "Figma layers",
+      "레이어 패널",
+      "layers panel"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/26584819173271-Layers-101-Get-started-with-layers",
+      "https://help.figma.com/hc/en-us/articles/26620239826199-Layers-101-Explore-layer-types",
+      "https://help.figma.com/hc/en-us/articles/360039959014-Parent-child-and-sibling-relationships",
+      "https://help.figma.com/hc/en-us/articles/360039958934-Rename-Layers"
+    ]
+  },
+  {
+    "id": "plan.figma.text",
+    "title": "Figma 텍스트 넣고 글꼴 바꾸기",
+    "en": "Adding Text and Fonts in Figma",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "Figma와 디자인 시스템",
+    "summary": "텍스트 도구로 글자 레이어를 만들고, 글꼴·크기·굵기·줄 간격과 상자 크기 방식을 골라 화면 문구를 배치하는 Figma 사용법이다.",
+    "objectives": [
+      "텍스트 도구로 클릭하거나 끌어서 글자 레이어를 만들 수 있다",
+      "글꼴 선택기에서 글꼴을 찾아 레이어 전체나 일부 글자에 적용할 수 있다",
+      "글자 크기·굵기·줄 높이·정렬을 바꿔 제목과 본문을 구분할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.layers"
+    ],
+    "related": [
+      "plan.figma.styles"
+    ],
+    "aliases": [
+      "Figma 텍스트 도구",
+      "Figma text tool",
+      "Figma 글꼴",
+      "Figma fonts"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360039956434-Guide-to-text-in-Figma-Design",
+      "https://help.figma.com/hc/en-us/articles/360039956634-Explore-text-properties",
+      "https://help.figma.com/hc/en-us/articles/360041308034-Browse-and-apply-fonts"
+    ]
+  },
+  {
     "id": "plan.figma.frames-and-components",
     "title": "Figma 프레임과 컴포넌트로 화면 만들기",
     "en": "Building Screens with Frames and Components in Figma",
@@ -419,6 +481,68 @@
     ]
   },
   {
+    "id": "plan.figma.figjam-board",
+    "title": "FigJam 보드에 스티키와 커넥터로 아이디어 모으기",
+    "en": "Brainstorming on a FigJam Board",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "FigJam 보드에 스티키 노트로 생각을 적고, 도형과 커넥터로 흐름을 잇고, 섹션과 투표로 정리해 팀이 함께 아이디어를 고르는 사용법이다.",
+    "objectives": [
+      "스티키 노트와 도형을 보드에 올려 아이디어를 적을 수 있다",
+      "커넥터로 도형을 이어 간단한 흐름도를 그릴 수 있다",
+      "섹션으로 보드를 나누고 투표로 아이디어를 좁힐 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.service-flow"
+    ],
+    "related": [
+      "plan.figma.figjam"
+    ],
+    "aliases": [
+      "FigJam board",
+      "FigJam 브레인스토밍"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/1500004362321-Guide-to-FigJam",
+      "https://help.figma.com/hc/en-us/articles/4939765379351-Organize-your-FigJam-board-with-sections",
+      "https://help.figma.com/hc/en-us/articles/9359912208663-Run-voting-sessions-in-FigJam"
+    ]
+  },
+  {
+    "id": "plan.figma.ui-kits",
+    "title": "Figma UI 키트로 화면 빨리 시작하기",
+    "en": "Starting Designs with Figma UI Kits",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Material 3나 Apple iOS 같은 공식 UI 키트를 파일에 추가해, 이미 만들어진 버튼·입력창 컴포넌트를 끌어와 화면을 빨리 짜는 방법이다.",
+    "objectives": [
+      "에셋 패널의 라이브러리 창에서 UI 키트를 파일에 추가하고 뺄 수 있다",
+      "UI 키트의 컴포넌트를 찾아 화면에 넣을 수 있다",
+      "커뮤니티 복사본이 아니라 키트에서 직접 넣어야 업데이트를 받는다는 점을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.frames-and-components"
+    ],
+    "related": [
+      "plan.figma.publish-library"
+    ],
+    "aliases": [
+      "Figma UI kit",
+      "Figma UI 키트",
+      "Material 3 Design Kit",
+      "Simple Design System"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/24037724065943-Start-designing-with-UI-kits"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "plan.figma.frame",
     "title": "Figma 프레임",
     "en": "Figma Frame",
@@ -556,6 +680,109 @@
     ],
     "refs": [
       "https://help.figma.com/hc/en-us/articles/13402894554519-Export-formats-and-settings"
+    ]
+  },
+  {
+    "id": "plan.figma.layer-order",
+    "title": "레이어 순서(쌓임 순서)",
+    "en": "Layer Order",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "레이어 패널에서 위에 있는 레이어가 캔버스에서도 아래 레이어를 덮어 보이게 하는 Figma의 쌓는 순서다.",
+    "parent": "plan.figma.layers",
+    "aliases": [
+      "Figma 레이어 순서",
+      "layer stacking order"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/26584819173271-Layers-101-Get-started-with-layers"
+    ]
+  },
+  {
+    "id": "plan.figma.parent-child-layer",
+    "title": "부모·자식·형제 레이어",
+    "en": "Parent, Child, and Sibling Layers",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "프레임·그룹·컴포넌트가 다른 레이어를 담으면 부모, 담긴 레이어는 자식, 같은 부모를 둔 자식끼리는 형제라고 부르는 Figma의 포함 관계다.",
+    "parent": "plan.figma.layers",
+    "related": [
+      "plan.figma.frame"
+    ],
+    "aliases": [
+      "Figma 부모 레이어",
+      "Figma 자식 레이어",
+      "parent layer",
+      "child layer"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360039959014-Parent-child-and-sibling-relationships"
+    ]
+  },
+  {
+    "id": "plan.figma.text-resizing",
+    "title": "텍스트 상자 크기 방식(Auto width·Fixed)",
+    "en": "Text Resizing Modes",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Figma 글자 상자가 내용에 따라 옆으로 늘어날지, 아래로 늘어날지, 정한 크기에서 줄바꿈할지를 고르는 설정이다.",
+    "parent": "plan.figma.text",
+    "related": [
+      "plan.figma.hug-fill-fixed"
+    ],
+    "aliases": [
+      "Figma text resizing",
+      "auto width text",
+      "auto height text",
+      "텍스트 자동 너비"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360039956434-Guide-to-text-in-Figma-Design",
+      "https://help.figma.com/hc/en-us/articles/360039956634-Explore-text-properties"
+    ]
+  },
+  {
+    "id": "plan.figma.figjam-sticky",
+    "title": "FigJam 스티키 노트",
+    "en": "FigJam Sticky Note",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "FigJam 보드에 붙여 짧은 생각을 적는 디지털 포스트잇으로, 작성자 이름을 함께 보이거나 끌 수 있다.",
+    "parent": "plan.figma.figjam-board",
+    "aliases": [
+      "FigJam 스티키",
+      "FigJam sticky",
+      "FigJam 포스트잇"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/1500004362321-Guide-to-FigJam"
+    ]
+  },
+  {
+    "id": "plan.figma.assets-panel",
+    "title": "Figma 에셋 패널(Assets)",
+    "en": "Figma Assets Panel",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "왼쪽 사이드바의 Assets 탭으로, 파일과 추가한 라이브러리에 있는 컴포넌트를 찾아 캔버스로 끌어 넣는 곳이다.",
+    "parent": "plan.figma.frames-and-components",
+    "aliases": [
+      "Figma Assets 탭",
+      "Figma assets panel",
+      "에셋 탭"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/24037724065943-Start-designing-with-UI-kits"
     ]
   },
   {
@@ -725,6 +952,82 @@
     ],
     "refs": [
       "https://help.figma.com/hc/en-us/articles/360040028114-Export-static-designs-from-Figma"
+    ]
+  },
+  {
+    "id": "plan.figma.lock-hide-layer",
+    "title": "레이어 잠금과 숨기기",
+    "en": "Locking and Hiding Layers",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "레이어를 잠가 캔버스에서 실수로 움직이지 않게 하거나, 숨겨서 지우지 않고 잠시 안 보이게 하는 Figma 레이어 패널의 기능이다.",
+    "parent": "plan.figma.layers",
+    "aliases": [
+      "Figma 레이어 잠금",
+      "lock layer",
+      "Figma 레이어 숨기기",
+      "hide layer"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360041596573-Lock-and-unlock-layers",
+      "https://help.figma.com/hc/en-us/articles/360041112614-Toggle-visibility-to-hide-layers"
+    ]
+  },
+  {
+    "id": "plan.figma.figjam-connector",
+    "title": "FigJam 커넥터",
+    "en": "FigJam Connector",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "FigJam에서 스티키나 도형 사이를 직선이나 꺾인 선으로 이어 순서와 관계를 보여 주는 선이다.",
+    "parent": "plan.figma.figjam-board",
+    "aliases": [
+      "FigJam connector",
+      "FigJam 연결선"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/1500004362321-Guide-to-FigJam"
+    ]
+  },
+  {
+    "id": "plan.figma.figjam-section",
+    "title": "FigJam 섹션",
+    "en": "FigJam Section",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "FigJam 보드의 스티키와 도형을 이름 붙은 칸에 묶어 함께 옮기고 숨길 수 있게 하는 보드 정리용 상자다.",
+    "parent": "plan.figma.figjam-board",
+    "aliases": [
+      "FigJam sections",
+      "FigJam 섹션 나누기"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/4939765379351-Organize-your-FigJam-board-with-sections"
+    ]
+  },
+  {
+    "id": "plan.figma.figjam-voting",
+    "title": "FigJam 투표 세션",
+    "en": "FigJam Voting Session",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "FigJam 보드의 스티키나 도형에 참여자가 정해진 수만큼 표를 던지고, 끝나면 결과를 한꺼번에 공개해 아이디어를 고르는 기능이다.",
+    "parent": "plan.figma.figjam-board",
+    "aliases": [
+      "FigJam voting",
+      "FigJam 투표",
+      "점 투표 FigJam"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/9359912208663-Run-voting-sessions-in-FigJam"
     ]
   },
   {

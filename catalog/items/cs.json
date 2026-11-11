@@ -141,6 +141,74 @@
     ]
   },
   {
+    "id": "cs.os.files-directories",
+    "title": "파일 시스템: 파일과 디렉터리",
+    "en": "Files and Directories",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "운영체제",
+    "summary": "운영체제는 데이터를 이름 붙은 파일에 담고, 파일을 디렉터리 안에 넣어 뿌리(/)에서 갈라지는 나무 모양으로 정리한다.",
+    "objectives": [
+      "일반 파일과 디렉터리가 각각 무엇을 담는지 구분할 수 있다",
+      "디렉터리 안의 .과 ..이 가리키는 곳을 말할 수 있다",
+      "ls -l 출력에서 파일 종류·크기·수정 시각을 찾아 읽을 수 있다"
+    ],
+    "prerequisites": [
+      "cs.os.what-os-does"
+    ],
+    "related": [
+      "cs.os.hard-vs-symbolic-link",
+      "cs.os.inode"
+    ],
+    "aliases": [
+      "파일 시스템 기초",
+      "file system basics",
+      "디렉터리 구조",
+      "directory tree",
+      "파일과 폴더"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man7/inode.7.html",
+      "https://man7.org/linux/man-pages/man7/path_resolution.7.html",
+      "https://man7.org/linux/man-pages/man1/ls.1.html"
+    ]
+  },
+  {
+    "id": "cs.data.integer-float",
+    "title": "정수와 부동소수점 수",
+    "en": "Integers and Floating-Point Numbers",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "데이터 표현",
+    "summary": "컴퓨터는 정수는 정확한 값으로, 소수점이 있는 수는 2진 분수로 어림한 부동소수점 수로 저장해 두 수를 다르게 다룬다.",
+    "objectives": [
+      "정수와 부동소수점 수가 각각 어떤 값을 담는 데 쓰이는지 예를 들 수 있다",
+      "type()으로 값이 int인지 float인지 확인하고, 정수와 실수를 섞어 계산하면 결과가 float가 된다는 것을 말할 수 있다",
+      "//가 내림 나눗셈이며 int끼리면 int를 돌려준다는 것을 예로 보일 수 있다"
+    ],
+    "prerequisites": [
+      "cs.data.bits-bytes"
+    ],
+    "related": [
+      "cs.data.float-error",
+      "cs.data.twos-complement"
+    ],
+    "aliases": [
+      "정수와 실수",
+      "int와 float",
+      "integer and float",
+      "부동소수점 수",
+      "floating-point number",
+      "실수 표현"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex",
+      "https://docs.python.org/3/tutorial/floatingpoint.html"
+    ]
+  },
+  {
     "id": "cs.net.protocol-layers",
     "title": "인터넷 통신의 네 계층",
     "en": "The Four Layers of the Internet Protocol Suite",
@@ -191,6 +259,39 @@
     "refs": [
       "https://www.unicode.org/standard/WhatIsUnicode.html",
       "https://docs.python.org/3/howto/unicode.html"
+    ]
+  },
+  {
+    "id": "cs.net.routing",
+    "title": "라우팅: 패킷이 길을 찾는 법",
+    "en": "IP Routing Basics",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "패킷은 라우터들이 라우팅 테이블을 보고 다음 갈 곳을 정해 넘겨 주는 일을 거듭하며 목적지 네트워크까지 간다.",
+    "objectives": [
+      "패킷이 목적지까지 라우터 여러 대를 한 홉씩 거쳐 전달된다는 것을 설명할 수 있다",
+      "라우터가 라우팅 테이블에서 다음 홉을 고르는 흐름을 말할 수 있다",
+      "ip route 출력에서 기본 경로(default)를 찾아 읽을 수 있다"
+    ],
+    "prerequisites": [
+      "cs.net.protocol-layers"
+    ],
+    "related": [
+      "cs.net.ip-cidr"
+    ],
+    "aliases": [
+      "IP 라우팅",
+      "IP routing",
+      "패킷 전달",
+      "packet forwarding",
+      "다음 홉"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc1122",
+      "https://www.rfc-editor.org/rfc/rfc1812",
+      "https://man7.org/linux/man-pages/man8/ip-route.8.html"
     ]
   },
   {
@@ -479,6 +580,113 @@
     ]
   },
   {
+    "id": "cs.os.file-metadata",
+    "title": "파일 메타데이터",
+    "en": "File Metadata",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "파일 내용과 따로 저장되는 크기·종류·소유자·권한·수정 시각 같은 파일에 대한 정보다.",
+    "parent": "cs.os.files-directories",
+    "related": [
+      "cs.os.inode"
+    ],
+    "aliases": [
+      "파일 속성",
+      "file attributes",
+      "stat 정보",
+      "수정 시각(mtime)",
+      "struct stat"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man2/stat.2.html"
+    ]
+  },
+  {
+    "id": "cs.os.hidden-file",
+    "title": "숨김 파일(점 파일)",
+    "en": "Hidden Files (Dotfiles)",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "이름이 점(.)으로 시작해 ls가 기본으로 보여 주지 않는 파일로, .gitignore·.env처럼 설정 파일에 흔히 쓴다.",
+    "parent": "cs.os.files-directories",
+    "aliases": [
+      "점 파일",
+      "dotfile",
+      "dot file",
+      "ls -a",
+      "숨김 폴더"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man1/ls.1.html"
+    ]
+  },
+  {
+    "id": "cs.net.router",
+    "title": "네트워크 라우터",
+    "en": "Network Router",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "여러 네트워크 사이에 서서 받은 패킷을 목적지 쪽 다음 장비로 넘겨 주는 장비다.",
+    "parent": "cs.net.routing",
+    "aliases": [
+      "IP 라우터",
+      "IP router",
+      "공유기 라우터"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc1812"
+    ]
+  },
+  {
+    "id": "cs.net.routing-table",
+    "title": "라우팅 테이블",
+    "en": "Routing Table",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "목적지 주소 범위마다 패킷을 어느 다음 홉과 인터페이스로 보낼지 적어 둔 표다.",
+    "parent": "cs.net.routing",
+    "aliases": [
+      "경로 표",
+      "route table",
+      "forwarding table",
+      "ip route show",
+      "포워딩 테이블"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man8/ip-route.8.html",
+      "https://www.rfc-editor.org/rfc/rfc1812"
+    ]
+  },
+  {
+    "id": "cs.net.default-gateway",
+    "title": "기본 게이트웨이",
+    "en": "Default Gateway",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "라우팅 테이블에 맞는 경로가 없는 목적지로 갈 패킷을 모두 넘기는 첫 라우터로, 기본 경로(default)가 가리키는 곳이다.",
+    "parent": "cs.net.routing",
+    "aliases": [
+      "default gateway",
+      "기본 경로",
+      "default route",
+      "0.0.0.0/0 경로"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc1122",
+      "https://man7.org/linux/man-pages/man8/ip-route.8.html"
+    ]
+  },
+  {
     "id": "cs.data.binary-prefix",
     "title": "이진 접두어(KiB·MiB·GiB)",
     "en": "Binary Prefixes",
@@ -515,6 +723,74 @@
     ],
     "refs": [
       "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c9/c9s1/"
+    ]
+  },
+  {
+    "id": "cs.data.binary64",
+    "title": "배정밀도 부동소수점(IEEE 754 binary64)",
+    "en": "IEEE 754 Double Precision",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "대부분의 컴퓨터가 실수에 쓰는 64비트 부동소수점 형식으로, 유효 자릿수 53비트만큼만 정확하다.",
+    "parent": "cs.data.integer-float",
+    "related": [
+      "cs.data.representation-error"
+    ],
+    "aliases": [
+      "배정밀도",
+      "binary64",
+      "IEEE 754 배정밀도",
+      "64비트 부동소수점",
+      "C double"
+    ],
+    "refs": [
+      "https://docs.python.org/3/tutorial/floatingpoint.html"
+    ]
+  },
+  {
+    "id": "cs.data.arbitrary-precision-int",
+    "title": "임의 정밀도 정수",
+    "en": "Arbitrary-Precision Integer",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "메모리가 허락하는 만큼 자릿수를 늘려 아주 큰 정수도 넘침 없이 정확히 담는 정수 표현이다.",
+    "parent": "cs.data.integer-float",
+    "aliases": [
+      "큰 정수",
+      "bignum",
+      "arbitrary precision integer",
+      "big integer"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex"
+    ]
+  },
+  {
+    "id": "cs.net.ip-ttl",
+    "title": "IP TTL(홉 제한)",
+    "en": "IP Time to Live",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "IP 패킷 머리에 든 수로, 라우터를 지날 때마다 줄어 0이 되면 패킷을 버려 길 잃은 패킷이 끝없이 돌지 않게 한다.",
+    "parent": "cs.net.routing",
+    "related": [
+      "ops.network.dns-records"
+    ],
+    "aliases": [
+      "IP TTL",
+      "홉 제한",
+      "hop limit",
+      "패킷 TTL",
+      "Time to Live 필드"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc791"
     ]
   },
   {

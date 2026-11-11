@@ -441,6 +441,103 @@
     ]
   },
   {
+    "id": "ml.data.pandas-groupby",
+    "title": "pandas groupby로 범주별 통계 내기",
+    "en": "Group Statistics with pandas groupby",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "성별·등급 같은 범주 열로 행을 묶고 묶음마다 평균이나 개수를 구해 데이터의 차이를 한눈에 본다.",
+    "objectives": [
+      "agg에 사전을 넘겨 열마다 다른 통계를 한 표로 구할 수 있다",
+      "groupby로 범주 열 하나나 여러 개를 기준으로 묶어 평균을 낼 수 있다",
+      "groupby 뒤에 count와 size로 묶음별 행 개수를 셀 수 있다"
+    ],
+    "prerequisites": [
+      "ml.data.pandas-dataframe-basics"
+    ],
+    "related": [
+      "db.sql.group-by",
+      "ml.data.first-look"
+    ],
+    "aliases": [
+      "판다스 groupby",
+      "pandas 그룹별 집계",
+      "df.groupby",
+      "그룹별 평균",
+      "split-apply-combine"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/getting_started/intro_tutorials/06_calculate_statistics.html"
+    ]
+  },
+  {
+    "id": "ml.data.matplotlib-first-plot",
+    "title": "matplotlib으로 첫 그래프 그리기",
+    "en": "First Plots with Matplotlib",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "Figure와 Axes를 만들고 선 그래프와 산점도를 그린 뒤 제목·축 이름·범례를 달아 데이터와 학습 결과를 그림으로 본다.",
+    "objectives": [
+      "plt.subplots로 Figure와 Axes를 만들고 plot·scatter로 그래프를 그릴 수 있다",
+      "set_title·set_xlabel·legend로 제목과 축 이름, 범례를 달 수 있다",
+      "pandas의 plot으로 DataFrame 열을 바로 그리고 savefig로 파일에 저장할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.data.pandas-dataframe-basics"
+    ],
+    "related": [
+      "ml.data.first-look",
+      "ml.training.loss-curve"
+    ],
+    "aliases": [
+      "맷플롯립",
+      "matplotlib 입문",
+      "plt.plot",
+      "pyplot 그래프",
+      "matplotlib 그래프"
+    ],
+    "refs": [
+      "https://matplotlib.org/stable/users/explain/quick_start.html",
+      "https://pandas.pydata.org/docs/getting_started/intro_tutorials/04_plotting.html",
+      "https://developers.google.com/machine-learning/crash-course/numerical-data/first-steps"
+    ]
+  },
+  {
+    "id": "ml.data.pandas-derived-columns",
+    "title": "pandas로 기존 열에서 새 열 만들기",
+    "en": "Creating Derived Columns in pandas",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "기존 열끼리 더하고 나눠 새 열을 반복문 없이 한 번에 만들고, 열 이름을 알아보기 쉽게 바꿔 학습에 쓸 특성을 준비한다.",
+    "objectives": [
+      "대괄호에 새 열 이름을 넣고 기존 열의 계산 결과를 대입할 수 있다",
+      "두 열을 사칙연산이나 비교 연산으로 묶어 새 열을 만들 수 있다",
+      "rename으로 열 이름을 사전이나 함수로 바꿀 수 있다"
+    ],
+    "prerequisites": [
+      "ml.data.pandas-dataframe-basics"
+    ],
+    "related": [
+      "ml.data.feature-cross"
+    ],
+    "aliases": [
+      "판다스 새 열 추가",
+      "pandas 열 추가",
+      "파생 열",
+      "derived column",
+      "파생 변수 만들기"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/getting_started/intro_tutorials/05_add_columns.html"
+    ]
+  },
+  {
     "id": "ml.eval.accuracy",
     "title": "정확도",
     "en": "Accuracy",
@@ -719,6 +816,110 @@
     ]
   },
   {
+    "id": "ml.data.sort-values",
+    "title": "행 정렬(sort_values)",
+    "en": "sort_values",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "한 열이나 여러 열의 값을 기준으로 DataFrame의 행을 오름차순이나 내림차순으로 늘어놓는 pandas 메서드다.",
+    "aliases": [
+      "df.sort_values",
+      "판다스 정렬",
+      "pandas 행 정렬"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/getting_started/intro_tutorials/07_reshape_table_layout.html"
+    ]
+  },
+  {
+    "id": "ml.data.figure-axes",
+    "title": "Figure와 Axes",
+    "en": "Figure and Axes",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "Figure는 matplotlib 그림 전체이고, Axes는 그 안에서 실제로 그래프가 그려지는 칸 하나다.",
+    "parent": "ml.data.matplotlib-first-plot",
+    "aliases": [
+      "plt.subplots",
+      "matplotlib Figure",
+      "matplotlib Axes",
+      "fig, ax"
+    ],
+    "refs": [
+      "https://matplotlib.org/stable/users/explain/quick_start.html"
+    ]
+  },
+  {
+    "id": "ml.data.scatter-plot",
+    "title": "산점도",
+    "en": "Scatter Plot",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "두 열의 값을 가로·세로 좌표로 삼아 점을 찍어 두 값이 함께 어떻게 움직이는지 보는 그래프다.",
+    "parent": "ml.data.matplotlib-first-plot",
+    "aliases": [
+      "scatter plot",
+      "ax.scatter",
+      "plot.scatter",
+      "산포도"
+    ],
+    "refs": [
+      "https://matplotlib.org/stable/users/explain/quick_start.html",
+      "https://developers.google.com/machine-learning/crash-course/numerical-data/first-steps"
+    ]
+  },
+  {
+    "id": "ml.data.pandas-concat",
+    "title": "표 이어 붙이기(pd.concat)",
+    "en": "pandas concat",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "여러 DataFrame을 위아래나 옆으로 이어 붙여 표 하나로 만들며, 서로 없는 열은 빈 값(NaN)으로 채우는 pandas 함수다.",
+    "related": [
+      "ml.data.pandas-merge"
+    ],
+    "aliases": [
+      "pd.concat",
+      "판다스 concat",
+      "pandas 표 이어 붙이기",
+      "DataFrame 이어 붙이기"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/getting_started/intro_tutorials/08_combine_dataframes.html"
+    ]
+  },
+  {
+    "id": "ml.data.pandas-merge",
+    "title": "공통 열로 표 합치기(pd.merge)",
+    "en": "pandas merge",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "두 DataFrame에 함께 있는 열 값을 기준으로 행을 짝지어 옆으로 붙이는 pandas 함수로, SQL 조인과 비슷하다.",
+    "related": [
+      "db.sql.join",
+      "ml.data.pandas-concat"
+    ],
+    "aliases": [
+      "pd.merge",
+      "판다스 merge",
+      "pandas 조인",
+      "DataFrame 조인"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/getting_started/intro_tutorials/08_combine_dataframes.html"
+    ]
+  },
+  {
     "id": "ml.supervised.bunch",
     "title": "Bunch(사이킷런 결과 묶음)",
     "en": "Bunch",
@@ -779,6 +980,66 @@
     ],
     "refs": [
       "https://scikit-learn.org/stable/glossary.html"
+    ]
+  },
+  {
+    "id": "ml.data.pandas-agg",
+    "title": "agg로 여러 통계 한꺼번에 구하기",
+    "en": "DataFrame.agg",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "열마다 원하는 통계(최소·최대·중앙값 등)를 사전으로 지정해 한 표로 받아 보는 pandas 메서드다.",
+    "parent": "ml.data.pandas-groupby",
+    "aliases": [
+      "df.agg",
+      "pandas agg",
+      "판다스 agg",
+      "aggregate 메서드"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/getting_started/intro_tutorials/06_calculate_statistics.html"
+    ]
+  },
+  {
+    "id": "ml.data.pandas-plot",
+    "title": "pandas plot 메서드",
+    "en": "DataFrame.plot",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "DataFrame이나 Series에서 바로 선·막대·상자·산점도 그래프를 그려 주는 pandas 기능으로, 속은 matplotlib이다.",
+    "parent": "ml.data.matplotlib-first-plot",
+    "aliases": [
+      "df.plot",
+      "판다스 그래프",
+      "pandas 시각화",
+      "plot.box"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/getting_started/intro_tutorials/04_plotting.html"
+    ]
+  },
+  {
+    "id": "ml.data.pandas-rename",
+    "title": "열 이름 바꾸기(rename)",
+    "en": "rename",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "옛 이름과 새 이름을 짝지은 사전이나 함수를 넘겨 DataFrame의 열·행 이름을 바꾸는 pandas 메서드다.",
+    "parent": "ml.data.pandas-derived-columns",
+    "aliases": [
+      "df.rename",
+      "판다스 열 이름 변경",
+      "pandas 열 이름 바꾸기",
+      "rename columns"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/getting_started/intro_tutorials/05_add_columns.html"
     ]
   },
   {

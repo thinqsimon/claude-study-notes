@@ -411,6 +411,77 @@
     ]
   },
   {
+    "id": "rag.agent.langsmith-tracing",
+    "title": "LangSmith로 에이전트 실행 추적 보기",
+    "en": "Tracing Agents with LangSmith",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "환경 변수 몇 개만 넣어 LangChain 에이전트가 거친 모델 호출과 도구 호출을 LangSmith 화면에서 한 단계씩 들여다보는 첫 실습이다.",
+    "objectives": [
+      "LangSmith API 키를 만들고 추적을 켜는 환경 변수를 넣을 수 있다",
+      "create_agent로 만든 에이전트를 실행한 뒤 LangSmith 화면에서 입력·도구 호출·최종 답을 찾아볼 수 있다",
+      "프로젝트형 작업 공간에서는 LANGSMITH_PROJECT로, 에이전트형 작업 공간에서는 LANGSMITH_AGENT_ID로 실행 기록이 모일 곳을 정할 수 있다",
+      "tracing_context로 원하는 호출만 골라 기록할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.first-agent",
+      "be.security.env-file"
+    ],
+    "related": [
+      "mlops.observe.tracing-quickstart",
+      "rag.agent.local-server-studio"
+    ],
+    "aliases": [
+      "LangSmith 추적",
+      "LangSmith tracing",
+      "LangSmith 트레이싱",
+      "LangSmith observability"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/observability",
+      "https://docs.langchain.com/oss/python/langgraph/observability"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.embedding.sentence-transformers",
+    "title": "Sentence Transformers로 내 컴퓨터에서 임베딩 만들기",
+    "en": "Local Embeddings with Sentence Transformers",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "임베딩",
+    "summary": "Hugging Face에 공개된 임베딩 모델을 이름으로 불러와 API 키 없이 내 컴퓨터에서 문장을 벡터로 바꾸고 서로 얼마나 비슷한지 점수로 확인하는 첫 실습이다.",
+    "objectives": [
+      "sentence-transformers를 설치하고 모델 이름으로 SentenceTransformer를 불러올 수 있다",
+      "encode_query와 encode_document로 질문과 문서를 벡터로 바꿀 수 있다",
+      "similarity로 질문과 문서들 사이의 점수표를 만들어 가장 가까운 문서를 고를 수 있다"
+    ],
+    "prerequisites": [
+      "rag.embedding.meaning-as-numbers"
+    ],
+    "related": [
+      "rag.embedding.similarity-search",
+      "rag.embedding.embeddings-interface"
+    ],
+    "aliases": [
+      "Sentence Transformers",
+      "sentence-transformers",
+      "SBERT",
+      "SentenceTransformer 모델",
+      "로컬 임베딩 모델"
+    ],
+    "refs": [
+      "https://sbert.net/docs/quickstart.html",
+      "https://sbert.net/docs/sentence_transformer/usage/semantic_textual_similarity.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "rag.embedding.vector",
     "title": "벡터",
     "en": "Vector",
@@ -679,6 +750,66 @@
     ]
   },
   {
+    "id": "rag.agent.langsmith-tracing-env",
+    "title": "LangSmith 추적 환경 변수",
+    "en": "LangSmith Tracing Environment Variables",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "LANGSMITH_TRACING을 true로 두고 LANGSMITH_API_KEY에 키를 넣으면 코드를 고치지 않아도 LangChain 에이전트 실행이 LangSmith에 기록된다.",
+    "parent": "rag.agent.langsmith-tracing",
+    "aliases": [
+      "LANGSMITH_TRACING",
+      "LANGSMITH_API_KEY",
+      "LangSmith API 키",
+      "LangSmith 환경 변수"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/observability"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.embedding.encode-query-document",
+    "title": "encode_query와 encode_document",
+    "en": "encode_query and encode_document",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "임베딩",
+    "summary": "Sentence Transformers에서 검색 질문은 encode_query로, 찾을 대상 글은 encode_document로 벡터로 바꿔 모델이 정한 질문용·문서용 처리를 따로 적용한다.",
+    "parent": "rag.embedding.sentence-transformers",
+    "aliases": [
+      "encode_query",
+      "encode_document",
+      "SentenceTransformer encode"
+    ],
+    "refs": [
+      "https://sbert.net/docs/quickstart.html"
+    ]
+  },
+  {
+    "id": "rag.embedding.st-similarity",
+    "title": "SentenceTransformer.similarity 점수표",
+    "en": "SentenceTransformer.similarity",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "임베딩",
+    "summary": "두 벡터 목록을 넣으면 모든 짝의 유사도를 행렬로 돌려줘 질문마다 어느 문서가 가장 가까운지 한눈에 보게 해 준다.",
+    "parent": "rag.embedding.sentence-transformers",
+    "aliases": [
+      "model.similarity",
+      "SentenceTransformer similarity",
+      "Sentence Transformers 유사도 점수표"
+    ],
+    "refs": [
+      "https://sbert.net/docs/sentence_transformer/usage/semantic_textual_similarity.html"
+    ]
+  },
+  {
     "id": "rag.agent.model-router",
     "title": "모델 라우터(OpenRouter·LiteLLM)",
     "en": "Model Router",
@@ -720,6 +851,106 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.agent.langsmith-project",
+    "title": "LangSmith 추적 프로젝트(LANGSMITH_PROJECT)",
+    "en": "LangSmith Tracing Project",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "프로젝트형 작업 공간이나 자체 호스팅 LangSmith에서 LANGSMITH_PROJECT에 이름을 적으면 그 이름의 프로젝트 아래에 실행 기록이 모인다.",
+    "parent": "rag.agent.langsmith-tracing",
+    "aliases": [
+      "LANGSMITH_PROJECT",
+      "LangSmith 프로젝트",
+      "LangSmith project"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/observability"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.agent.tracing-context",
+    "title": "선택 추적(tracing_context)",
+    "en": "Selective Tracing with tracing_context",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "langsmith의 tracing_context로 감싼 호출만 기록하게 해서 전체 추적을 켜지 않고도 보고 싶은 실행만 LangSmith에 남긴다.",
+    "parent": "rag.agent.langsmith-tracing",
+    "aliases": [
+      "tracing_context",
+      "LangSmith 선택 추적",
+      "selective tracing",
+      "ls.tracing_context"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/observability"
+    ]
+  },
+  {
+    "id": "rag.agent.langsmith-tags-metadata",
+    "title": "LangSmith 실행 태그와 메타데이터",
+    "en": "LangSmith Run Tags and Metadata",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "invoke의 config나 tracing_context에 tags와 metadata를 넘기면 그 값이 실행 기록에 붙어 나중에 사용자·실험별로 골라 볼 수 있다.",
+    "parent": "rag.agent.langsmith-tracing",
+    "aliases": [
+      "LangSmith 태그",
+      "LangSmith metadata",
+      "LangSmith tags",
+      "LangSmith 실행 메타데이터"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/observability"
+    ]
+  },
+  {
+    "id": "rag.embedding.similarity-fn-name",
+    "title": "유사도 함수 설정(similarity_fn_name)",
+    "en": "Similarity Function Setting (similarity_fn_name)",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "임베딩",
+    "summary": "Sentence Transformers 모델이 점수를 낼 때 쓰는 계산법을 코사인·내적·유클리드·맨해튼 가운데서 고르는 설정으로, 기본은 코사인이다.",
+    "parent": "rag.embedding.sentence-transformers",
+    "aliases": [
+      "similarity_fn_name",
+      "SimilarityFunction",
+      "유사도 함수 바꾸기"
+    ],
+    "refs": [
+      "https://sbert.net/docs/sentence_transformer/usage/semantic_textual_similarity.html"
+    ]
+  },
+  {
+    "id": "rag.agent.llms-txt",
+    "title": "llms.txt",
+    "en": "llms.txt",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "사이트가 AI에게 읽힐 문서 목록을 마크다운 링크로 정리해 /llms.txt에 두는 제안 규격으로, 에이전트가 복잡한 HTML 대신 이 목록부터 보게 한다.",
+    "aliases": [
+      "llms txt",
+      "llms.txt 파일",
+      "/llms.txt",
+      "LLM용 문서 목록"
+    ],
+    "refs": [
+      "https://llmstxt.org/",
+      "https://docs.langchain.com/use-these-docs"
+    ]
   },
   {
     "id": "rag.vector-db.basics",

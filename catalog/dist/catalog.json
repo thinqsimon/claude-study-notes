@@ -1,5 +1,5 @@
 {
- "version": "0.30.0",
+ "version": "0.31.0",
  "domains": [
   {
    "prefix": "dev",
@@ -4031,6 +4031,76 @@
    "domain": "cs"
   },
   {
+   "id": "cs.os.files-directories",
+   "title": "파일 시스템: 파일과 디렉터리",
+   "en": "Files and Directories",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "운영체제",
+   "summary": "운영체제는 데이터를 이름 붙은 파일에 담고, 파일을 디렉터리 안에 넣어 뿌리(/)에서 갈라지는 나무 모양으로 정리한다.",
+   "objectives": [
+    "일반 파일과 디렉터리가 각각 무엇을 담는지 구분할 수 있다",
+    "디렉터리 안의 .과 ..이 가리키는 곳을 말할 수 있다",
+    "ls -l 출력에서 파일 종류·크기·수정 시각을 찾아 읽을 수 있다"
+   ],
+   "prerequisites": [
+    "cs.os.what-os-does"
+   ],
+   "related": [
+    "cs.os.hard-vs-symbolic-link",
+    "cs.os.inode"
+   ],
+   "aliases": [
+    "파일 시스템 기초",
+    "file system basics",
+    "디렉터리 구조",
+    "directory tree",
+    "파일과 폴더"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man7/inode.7.html",
+    "https://man7.org/linux/man-pages/man7/path_resolution.7.html",
+    "https://man7.org/linux/man-pages/man1/ls.1.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.data.integer-float",
+   "title": "정수와 부동소수점 수",
+   "en": "Integers and Floating-Point Numbers",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "데이터 표현",
+   "summary": "컴퓨터는 정수는 정확한 값으로, 소수점이 있는 수는 2진 분수로 어림한 부동소수점 수로 저장해 두 수를 다르게 다룬다.",
+   "objectives": [
+    "정수와 부동소수점 수가 각각 어떤 값을 담는 데 쓰이는지 예를 들 수 있다",
+    "type()으로 값이 int인지 float인지 확인하고, 정수와 실수를 섞어 계산하면 결과가 float가 된다는 것을 말할 수 있다",
+    "//가 내림 나눗셈이며 int끼리면 int를 돌려준다는 것을 예로 보일 수 있다"
+   ],
+   "prerequisites": [
+    "cs.data.bits-bytes"
+   ],
+   "related": [
+    "cs.data.float-error",
+    "cs.data.twos-complement"
+   ],
+   "aliases": [
+    "정수와 실수",
+    "int와 float",
+    "integer and float",
+    "부동소수점 수",
+    "floating-point number",
+    "실수 표현"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex",
+    "https://docs.python.org/3/tutorial/floatingpoint.html"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.net.protocol-layers",
    "title": "인터넷 통신의 네 계층",
    "en": "The Four Layers of the Internet Protocol Suite",
@@ -4082,6 +4152,40 @@
    "refs": [
     "https://www.unicode.org/standard/WhatIsUnicode.html",
     "https://docs.python.org/3/howto/unicode.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.routing",
+   "title": "라우팅: 패킷이 길을 찾는 법",
+   "en": "IP Routing Basics",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "네트워크",
+   "summary": "패킷은 라우터들이 라우팅 테이블을 보고 다음 갈 곳을 정해 넘겨 주는 일을 거듭하며 목적지 네트워크까지 간다.",
+   "objectives": [
+    "패킷이 목적지까지 라우터 여러 대를 한 홉씩 거쳐 전달된다는 것을 설명할 수 있다",
+    "라우터가 라우팅 테이블에서 다음 홉을 고르는 흐름을 말할 수 있다",
+    "ip route 출력에서 기본 경로(default)를 찾아 읽을 수 있다"
+   ],
+   "prerequisites": [
+    "cs.net.protocol-layers"
+   ],
+   "related": [
+    "cs.net.ip-cidr"
+   ],
+   "aliases": [
+    "IP 라우팅",
+    "IP routing",
+    "패킷 전달",
+    "packet forwarding",
+    "다음 홉"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc1122",
+    "https://www.rfc-editor.org/rfc/rfc1812",
+    "https://man7.org/linux/man-pages/man8/ip-route.8.html"
    ],
    "domain": "cs"
   },
@@ -4385,6 +4489,118 @@
    "domain": "cs"
   },
   {
+   "id": "cs.os.file-metadata",
+   "title": "파일 메타데이터",
+   "en": "File Metadata",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "파일 내용과 따로 저장되는 크기·종류·소유자·권한·수정 시각 같은 파일에 대한 정보다.",
+   "parent": "cs.os.files-directories",
+   "related": [
+    "cs.os.inode"
+   ],
+   "aliases": [
+    "파일 속성",
+    "file attributes",
+    "stat 정보",
+    "수정 시각(mtime)",
+    "struct stat"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man2/stat.2.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.hidden-file",
+   "title": "숨김 파일(점 파일)",
+   "en": "Hidden Files (Dotfiles)",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "이름이 점(.)으로 시작해 ls가 기본으로 보여 주지 않는 파일로, .gitignore·.env처럼 설정 파일에 흔히 쓴다.",
+   "parent": "cs.os.files-directories",
+   "aliases": [
+    "점 파일",
+    "dotfile",
+    "dot file",
+    "ls -a",
+    "숨김 폴더"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man1/ls.1.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.router",
+   "title": "네트워크 라우터",
+   "en": "Network Router",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "네트워크",
+   "summary": "여러 네트워크 사이에 서서 받은 패킷을 목적지 쪽 다음 장비로 넘겨 주는 장비다.",
+   "parent": "cs.net.routing",
+   "aliases": [
+    "IP 라우터",
+    "IP router",
+    "공유기 라우터"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc1812"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.routing-table",
+   "title": "라우팅 테이블",
+   "en": "Routing Table",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "네트워크",
+   "summary": "목적지 주소 범위마다 패킷을 어느 다음 홉과 인터페이스로 보낼지 적어 둔 표다.",
+   "parent": "cs.net.routing",
+   "aliases": [
+    "경로 표",
+    "route table",
+    "forwarding table",
+    "ip route show",
+    "포워딩 테이블"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man8/ip-route.8.html",
+    "https://www.rfc-editor.org/rfc/rfc1812"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.default-gateway",
+   "title": "기본 게이트웨이",
+   "en": "Default Gateway",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "네트워크",
+   "summary": "라우팅 테이블에 맞는 경로가 없는 목적지로 갈 패킷을 모두 넘기는 첫 라우터로, 기본 경로(default)가 가리키는 곳이다.",
+   "parent": "cs.net.routing",
+   "aliases": [
+    "default gateway",
+    "기본 경로",
+    "default route",
+    "0.0.0.0/0 경로"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc1122",
+    "https://man7.org/linux/man-pages/man8/ip-route.8.html"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.data.binary-prefix",
    "title": "이진 접두어(KiB·MiB·GiB)",
    "en": "Binary Prefixes",
@@ -4422,6 +4638,77 @@
    ],
    "refs": [
     "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c9/c9s1/"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.data.binary64",
+   "title": "배정밀도 부동소수점(IEEE 754 binary64)",
+   "en": "IEEE 754 Double Precision",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "데이터 표현",
+   "summary": "대부분의 컴퓨터가 실수에 쓰는 64비트 부동소수점 형식으로, 유효 자릿수 53비트만큼만 정확하다.",
+   "parent": "cs.data.integer-float",
+   "related": [
+    "cs.data.representation-error"
+   ],
+   "aliases": [
+    "배정밀도",
+    "binary64",
+    "IEEE 754 배정밀도",
+    "64비트 부동소수점",
+    "C double"
+   ],
+   "refs": [
+    "https://docs.python.org/3/tutorial/floatingpoint.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.data.arbitrary-precision-int",
+   "title": "임의 정밀도 정수",
+   "en": "Arbitrary-Precision Integer",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "데이터 표현",
+   "summary": "메모리가 허락하는 만큼 자릿수를 늘려 아주 큰 정수도 넘침 없이 정확히 담는 정수 표현이다.",
+   "parent": "cs.data.integer-float",
+   "aliases": [
+    "큰 정수",
+    "bignum",
+    "arbitrary precision integer",
+    "big integer"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.ip-ttl",
+   "title": "IP TTL(홉 제한)",
+   "en": "IP Time to Live",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "네트워크",
+   "summary": "IP 패킷 머리에 든 수로, 라우터를 지날 때마다 줄어 0이 되면 패킷을 버려 길 잃은 패킷이 끝없이 돌지 않게 한다.",
+   "parent": "cs.net.routing",
+   "related": [
+    "ops.network.dns-records"
+   ],
+   "aliases": [
+    "IP TTL",
+    "홉 제한",
+    "hop limit",
+    "패킷 TTL",
+    "Time to Live 필드"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc791"
    ],
    "domain": "cs"
   },
@@ -6857,6 +7144,70 @@
    "domain": "plan"
   },
   {
+   "id": "plan.figma.layers",
+   "title": "Figma 레이어 패널로 화면 요소 정리하기",
+   "en": "Organizing Layers in the Figma Layers Panel",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "Figma와 디자인 시스템",
+   "summary": "도형·글자·사진 같은 화면 요소를 레이어로 보고, 레이어 패널에서 쌓는 순서와 이름, 숨김과 잠금을 다루는 Figma의 기본 작업이다.",
+   "objectives": [
+    "레이어 패널의 위아래 순서를 바꿔 어떤 요소가 위에 보일지 정할 수 있다",
+    "프레임 안에 들어간 요소를 부모와 자식 관계로 읽을 수 있다",
+    "레이어 이름을 바꾸고 숨기거나 잠가서 실수로 고치는 일을 막을 수 있다"
+   ],
+   "related": [
+    "plan.figma.frames-and-components"
+   ],
+   "aliases": [
+    "Figma 레이어",
+    "Figma layers",
+    "레이어 패널",
+    "layers panel"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/26584819173271-Layers-101-Get-started-with-layers",
+    "https://help.figma.com/hc/en-us/articles/26620239826199-Layers-101-Explore-layer-types",
+    "https://help.figma.com/hc/en-us/articles/360039959014-Parent-child-and-sibling-relationships",
+    "https://help.figma.com/hc/en-us/articles/360039958934-Rename-Layers"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.text",
+   "title": "Figma 텍스트 넣고 글꼴 바꾸기",
+   "en": "Adding Text and Fonts in Figma",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "Figma와 디자인 시스템",
+   "summary": "텍스트 도구로 글자 레이어를 만들고, 글꼴·크기·굵기·줄 간격과 상자 크기 방식을 골라 화면 문구를 배치하는 Figma 사용법이다.",
+   "objectives": [
+    "텍스트 도구로 클릭하거나 끌어서 글자 레이어를 만들 수 있다",
+    "글꼴 선택기에서 글꼴을 찾아 레이어 전체나 일부 글자에 적용할 수 있다",
+    "글자 크기·굵기·줄 높이·정렬을 바꿔 제목과 본문을 구분할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.layers"
+   ],
+   "related": [
+    "plan.figma.styles"
+   ],
+   "aliases": [
+    "Figma 텍스트 도구",
+    "Figma text tool",
+    "Figma 글꼴",
+    "Figma fonts"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360039956434-Guide-to-text-in-Figma-Design",
+    "https://help.figma.com/hc/en-us/articles/360039956634-Explore-text-properties",
+    "https://help.figma.com/hc/en-us/articles/360041308034-Browse-and-apply-fonts"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.frames-and-components",
    "title": "Figma 프레임과 컴포넌트로 화면 만들기",
    "en": "Building Screens with Frames and Components in Figma",
@@ -7067,6 +7418,70 @@
    "domain": "plan"
   },
   {
+   "id": "plan.figma.figjam-board",
+   "title": "FigJam 보드에 스티키와 커넥터로 아이디어 모으기",
+   "en": "Brainstorming on a FigJam Board",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "FigJam 보드에 스티키 노트로 생각을 적고, 도형과 커넥터로 흐름을 잇고, 섹션과 투표로 정리해 팀이 함께 아이디어를 고르는 사용법이다.",
+   "objectives": [
+    "스티키 노트와 도형을 보드에 올려 아이디어를 적을 수 있다",
+    "커넥터로 도형을 이어 간단한 흐름도를 그릴 수 있다",
+    "섹션으로 보드를 나누고 투표로 아이디어를 좁힐 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.service-flow"
+   ],
+   "related": [
+    "plan.figma.figjam"
+   ],
+   "aliases": [
+    "FigJam board",
+    "FigJam 브레인스토밍"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/1500004362321-Guide-to-FigJam",
+    "https://help.figma.com/hc/en-us/articles/4939765379351-Organize-your-FigJam-board-with-sections",
+    "https://help.figma.com/hc/en-us/articles/9359912208663-Run-voting-sessions-in-FigJam"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.ui-kits",
+   "title": "Figma UI 키트로 화면 빨리 시작하기",
+   "en": "Starting Designs with Figma UI Kits",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "Material 3나 Apple iOS 같은 공식 UI 키트를 파일에 추가해, 이미 만들어진 버튼·입력창 컴포넌트를 끌어와 화면을 빨리 짜는 방법이다.",
+   "objectives": [
+    "에셋 패널의 라이브러리 창에서 UI 키트를 파일에 추가하고 뺄 수 있다",
+    "UI 키트의 컴포넌트를 찾아 화면에 넣을 수 있다",
+    "커뮤니티 복사본이 아니라 키트에서 직접 넣어야 업데이트를 받는다는 점을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.frames-and-components"
+   ],
+   "related": [
+    "plan.figma.publish-library"
+   ],
+   "aliases": [
+    "Figma UI kit",
+    "Figma UI 키트",
+    "Material 3 Design Kit",
+    "Simple Design System"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/24037724065943-Start-designing-with-UI-kits"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.frame",
    "title": "Figma 프레임",
    "en": "Figma Frame",
@@ -7210,6 +7625,114 @@
    ],
    "refs": [
     "https://help.figma.com/hc/en-us/articles/13402894554519-Export-formats-and-settings"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.layer-order",
+   "title": "레이어 순서(쌓임 순서)",
+   "en": "Layer Order",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "레이어 패널에서 위에 있는 레이어가 캔버스에서도 아래 레이어를 덮어 보이게 하는 Figma의 쌓는 순서다.",
+   "parent": "plan.figma.layers",
+   "aliases": [
+    "Figma 레이어 순서",
+    "layer stacking order"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/26584819173271-Layers-101-Get-started-with-layers"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.parent-child-layer",
+   "title": "부모·자식·형제 레이어",
+   "en": "Parent, Child, and Sibling Layers",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "프레임·그룹·컴포넌트가 다른 레이어를 담으면 부모, 담긴 레이어는 자식, 같은 부모를 둔 자식끼리는 형제라고 부르는 Figma의 포함 관계다.",
+   "parent": "plan.figma.layers",
+   "related": [
+    "plan.figma.frame"
+   ],
+   "aliases": [
+    "Figma 부모 레이어",
+    "Figma 자식 레이어",
+    "parent layer",
+    "child layer"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360039959014-Parent-child-and-sibling-relationships"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.text-resizing",
+   "title": "텍스트 상자 크기 방식(Auto width·Fixed)",
+   "en": "Text Resizing Modes",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "Figma 글자 상자가 내용에 따라 옆으로 늘어날지, 아래로 늘어날지, 정한 크기에서 줄바꿈할지를 고르는 설정이다.",
+   "parent": "plan.figma.text",
+   "related": [
+    "plan.figma.hug-fill-fixed"
+   ],
+   "aliases": [
+    "Figma text resizing",
+    "auto width text",
+    "auto height text",
+    "텍스트 자동 너비"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360039956434-Guide-to-text-in-Figma-Design",
+    "https://help.figma.com/hc/en-us/articles/360039956634-Explore-text-properties"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.figjam-sticky",
+   "title": "FigJam 스티키 노트",
+   "en": "FigJam Sticky Note",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "FigJam 보드에 붙여 짧은 생각을 적는 디지털 포스트잇으로, 작성자 이름을 함께 보이거나 끌 수 있다.",
+   "parent": "plan.figma.figjam-board",
+   "aliases": [
+    "FigJam 스티키",
+    "FigJam sticky",
+    "FigJam 포스트잇"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/1500004362321-Guide-to-FigJam"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.assets-panel",
+   "title": "Figma 에셋 패널(Assets)",
+   "en": "Figma Assets Panel",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "왼쪽 사이드바의 Assets 탭으로, 파일과 추가한 라이브러리에 있는 컴포넌트를 찾아 캔버스로 끌어 넣는 곳이다.",
+   "parent": "plan.figma.frames-and-components",
+   "aliases": [
+    "Figma Assets 탭",
+    "Figma assets panel",
+    "에셋 탭"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/24037724065943-Start-designing-with-UI-kits"
    ],
    "domain": "plan"
   },
@@ -7387,6 +7910,86 @@
    ],
    "refs": [
     "https://help.figma.com/hc/en-us/articles/360040028114-Export-static-designs-from-Figma"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.lock-hide-layer",
+   "title": "레이어 잠금과 숨기기",
+   "en": "Locking and Hiding Layers",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "레이어를 잠가 캔버스에서 실수로 움직이지 않게 하거나, 숨겨서 지우지 않고 잠시 안 보이게 하는 Figma 레이어 패널의 기능이다.",
+   "parent": "plan.figma.layers",
+   "aliases": [
+    "Figma 레이어 잠금",
+    "lock layer",
+    "Figma 레이어 숨기기",
+    "hide layer"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360041596573-Lock-and-unlock-layers",
+    "https://help.figma.com/hc/en-us/articles/360041112614-Toggle-visibility-to-hide-layers"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.figjam-connector",
+   "title": "FigJam 커넥터",
+   "en": "FigJam Connector",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "FigJam에서 스티키나 도형 사이를 직선이나 꺾인 선으로 이어 순서와 관계를 보여 주는 선이다.",
+   "parent": "plan.figma.figjam-board",
+   "aliases": [
+    "FigJam connector",
+    "FigJam 연결선"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/1500004362321-Guide-to-FigJam"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.figjam-section",
+   "title": "FigJam 섹션",
+   "en": "FigJam Section",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "FigJam 보드의 스티키와 도형을 이름 붙은 칸에 묶어 함께 옮기고 숨길 수 있게 하는 보드 정리용 상자다.",
+   "parent": "plan.figma.figjam-board",
+   "aliases": [
+    "FigJam sections",
+    "FigJam 섹션 나누기"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/4939765379351-Organize-your-FigJam-board-with-sections"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.figjam-voting",
+   "title": "FigJam 투표 세션",
+   "en": "FigJam Voting Session",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "FigJam 보드의 스티키나 도형에 참여자가 정해진 수만큼 표를 던지고, 끝나면 결과를 한꺼번에 공개해 아이디어를 고르는 기능이다.",
+   "parent": "plan.figma.figjam-board",
+   "aliases": [
+    "FigJam voting",
+    "FigJam 투표",
+    "점 투표 FigJam"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/9359912208663-Run-voting-sessions-in-FigJam"
    ],
    "domain": "plan"
   },
@@ -29443,6 +30046,79 @@
    "domain": "rag"
   },
   {
+   "id": "rag.agent.langsmith-tracing",
+   "title": "LangSmith로 에이전트 실행 추적 보기",
+   "en": "Tracing Agents with LangSmith",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "환경 변수 몇 개만 넣어 LangChain 에이전트가 거친 모델 호출과 도구 호출을 LangSmith 화면에서 한 단계씩 들여다보는 첫 실습이다.",
+   "objectives": [
+    "LangSmith API 키를 만들고 추적을 켜는 환경 변수를 넣을 수 있다",
+    "create_agent로 만든 에이전트를 실행한 뒤 LangSmith 화면에서 입력·도구 호출·최종 답을 찾아볼 수 있다",
+    "프로젝트형 작업 공간에서는 LANGSMITH_PROJECT로, 에이전트형 작업 공간에서는 LANGSMITH_AGENT_ID로 실행 기록이 모일 곳을 정할 수 있다",
+    "tracing_context로 원하는 호출만 골라 기록할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.first-agent",
+    "be.security.env-file"
+   ],
+   "related": [
+    "mlops.observe.tracing-quickstart",
+    "rag.agent.local-server-studio"
+   ],
+   "aliases": [
+    "LangSmith 추적",
+    "LangSmith tracing",
+    "LangSmith 트레이싱",
+    "LangSmith observability"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/observability",
+    "https://docs.langchain.com/oss/python/langgraph/observability"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.embedding.sentence-transformers",
+   "title": "Sentence Transformers로 내 컴퓨터에서 임베딩 만들기",
+   "en": "Local Embeddings with Sentence Transformers",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "임베딩",
+   "summary": "Hugging Face에 공개된 임베딩 모델을 이름으로 불러와 API 키 없이 내 컴퓨터에서 문장을 벡터로 바꾸고 서로 얼마나 비슷한지 점수로 확인하는 첫 실습이다.",
+   "objectives": [
+    "sentence-transformers를 설치하고 모델 이름으로 SentenceTransformer를 불러올 수 있다",
+    "encode_query와 encode_document로 질문과 문서를 벡터로 바꿀 수 있다",
+    "similarity로 질문과 문서들 사이의 점수표를 만들어 가장 가까운 문서를 고를 수 있다"
+   ],
+   "prerequisites": [
+    "rag.embedding.meaning-as-numbers"
+   ],
+   "related": [
+    "rag.embedding.similarity-search",
+    "rag.embedding.embeddings-interface"
+   ],
+   "aliases": [
+    "Sentence Transformers",
+    "sentence-transformers",
+    "SBERT",
+    "SentenceTransformer 모델",
+    "로컬 임베딩 모델"
+   ],
+   "refs": [
+    "https://sbert.net/docs/quickstart.html",
+    "https://sbert.net/docs/sentence_transformer/usage/semantic_textual_similarity.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
    "id": "rag.embedding.vector",
    "title": "벡터",
    "en": "Vector",
@@ -29724,6 +30400,69 @@
    "domain": "rag"
   },
   {
+   "id": "rag.agent.langsmith-tracing-env",
+   "title": "LangSmith 추적 환경 변수",
+   "en": "LangSmith Tracing Environment Variables",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "LANGSMITH_TRACING을 true로 두고 LANGSMITH_API_KEY에 키를 넣으면 코드를 고치지 않아도 LangChain 에이전트 실행이 LangSmith에 기록된다.",
+   "parent": "rag.agent.langsmith-tracing",
+   "aliases": [
+    "LANGSMITH_TRACING",
+    "LANGSMITH_API_KEY",
+    "LangSmith API 키",
+    "LangSmith 환경 변수"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/observability"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.embedding.encode-query-document",
+   "title": "encode_query와 encode_document",
+   "en": "encode_query and encode_document",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "임베딩",
+   "summary": "Sentence Transformers에서 검색 질문은 encode_query로, 찾을 대상 글은 encode_document로 벡터로 바꿔 모델이 정한 질문용·문서용 처리를 따로 적용한다.",
+   "parent": "rag.embedding.sentence-transformers",
+   "aliases": [
+    "encode_query",
+    "encode_document",
+    "SentenceTransformer encode"
+   ],
+   "refs": [
+    "https://sbert.net/docs/quickstart.html"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.embedding.st-similarity",
+   "title": "SentenceTransformer.similarity 점수표",
+   "en": "SentenceTransformer.similarity",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "임베딩",
+   "summary": "두 벡터 목록을 넣으면 모든 짝의 유사도를 행렬로 돌려줘 질문마다 어느 문서가 가장 가까운지 한눈에 보게 해 준다.",
+   "parent": "rag.embedding.sentence-transformers",
+   "aliases": [
+    "model.similarity",
+    "SentenceTransformer similarity",
+    "Sentence Transformers 유사도 점수표"
+   ],
+   "refs": [
+    "https://sbert.net/docs/sentence_transformer/usage/semantic_textual_similarity.html"
+   ],
+   "domain": "rag"
+  },
+  {
    "id": "rag.agent.model-router",
    "title": "모델 라우터(OpenRouter·LiteLLM)",
    "en": "Model Router",
@@ -29766,6 +30505,111 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.langsmith-project",
+   "title": "LangSmith 추적 프로젝트(LANGSMITH_PROJECT)",
+   "en": "LangSmith Tracing Project",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "프로젝트형 작업 공간이나 자체 호스팅 LangSmith에서 LANGSMITH_PROJECT에 이름을 적으면 그 이름의 프로젝트 아래에 실행 기록이 모인다.",
+   "parent": "rag.agent.langsmith-tracing",
+   "aliases": [
+    "LANGSMITH_PROJECT",
+    "LangSmith 프로젝트",
+    "LangSmith project"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/observability"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.tracing-context",
+   "title": "선택 추적(tracing_context)",
+   "en": "Selective Tracing with tracing_context",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "langsmith의 tracing_context로 감싼 호출만 기록하게 해서 전체 추적을 켜지 않고도 보고 싶은 실행만 LangSmith에 남긴다.",
+   "parent": "rag.agent.langsmith-tracing",
+   "aliases": [
+    "tracing_context",
+    "LangSmith 선택 추적",
+    "selective tracing",
+    "ls.tracing_context"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/observability"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.langsmith-tags-metadata",
+   "title": "LangSmith 실행 태그와 메타데이터",
+   "en": "LangSmith Run Tags and Metadata",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "invoke의 config나 tracing_context에 tags와 metadata를 넘기면 그 값이 실행 기록에 붙어 나중에 사용자·실험별로 골라 볼 수 있다.",
+   "parent": "rag.agent.langsmith-tracing",
+   "aliases": [
+    "LangSmith 태그",
+    "LangSmith metadata",
+    "LangSmith tags",
+    "LangSmith 실행 메타데이터"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/observability"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.embedding.similarity-fn-name",
+   "title": "유사도 함수 설정(similarity_fn_name)",
+   "en": "Similarity Function Setting (similarity_fn_name)",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "임베딩",
+   "summary": "Sentence Transformers 모델이 점수를 낼 때 쓰는 계산법을 코사인·내적·유클리드·맨해튼 가운데서 고르는 설정으로, 기본은 코사인이다.",
+   "parent": "rag.embedding.sentence-transformers",
+   "aliases": [
+    "similarity_fn_name",
+    "SimilarityFunction",
+    "유사도 함수 바꾸기"
+   ],
+   "refs": [
+    "https://sbert.net/docs/sentence_transformer/usage/semantic_textual_similarity.html"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.llms-txt",
+   "title": "llms.txt",
+   "en": "llms.txt",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "사이트가 AI에게 읽힐 문서 목록을 마크다운 링크로 정리해 /llms.txt에 두는 제안 규격으로, 에이전트가 복잡한 HTML 대신 이 목록부터 보게 한다.",
+   "aliases": [
+    "llms txt",
+    "llms.txt 파일",
+    "/llms.txt",
+    "LLM용 문서 목록"
+   ],
+   "refs": [
+    "https://llmstxt.org/",
+    "https://docs.langchain.com/use-these-docs"
+   ],
    "domain": "rag"
   },
   {
@@ -36640,6 +37484,100 @@
    "domain": "ops"
   },
   {
+   "id": "ops.linux.process-list-kill",
+   "title": "실행 중인 프로세스 보고 끝내기: ps·top·kill",
+   "en": "Viewing and Stopping Processes: ps, top, kill",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "리눅스",
+   "summary": "서버에서 지금 돌고 있는 프로그램을 ps와 top으로 찾아보고 멈춘 프로그램을 kill로 끝낸다.",
+   "objectives": [
+    "ps aux로 프로세스 목록을 보고 원하는 프로그램의 PID를 찾을 수 있다",
+    "top으로 CPU와 메모리를 많이 쓰는 프로세스를 확인할 수 있다",
+    "kill PID로 프로세스에 종료를 요청하고 끝났는지 다시 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.terminal.basic-commands"
+   ],
+   "related": [
+    "cs.os.signals",
+    "ops.linux.process-signals"
+   ],
+   "aliases": [
+    "프로세스 목록 보기",
+    "프로세스 종료하기"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man1/ps.1.html",
+    "https://man7.org/linux/man-pages/man1/top.1.html",
+    "https://man7.org/linux/man-pages/man1/kill.1.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.docker.docker-hub-pull",
+   "title": "Docker Hub에서 이미지 골라 받기",
+   "en": "Finding and Pulling Images from Docker Hub",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "Docker",
+   "summary": "레지스트리인 Docker Hub에서 믿을 만한 이미지를 찾아 docker pull로 받고 docker images로 내려받은 것을 확인한다.",
+   "objectives": [
+    "레지스트리와 저장소(repository)가 무엇인지 말할 수 있다",
+    "Docker Hub에서 공식 이미지 배지가 붙은 이미지를 고를 수 있다",
+    "docker pull로 이미지를 받고 docker images로 목록을 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.docker.first-container"
+   ],
+   "related": [
+    "ops.docker.build-tag-push",
+    "ops.docker.image-tag"
+   ],
+   "aliases": [
+    "Docker Hub",
+    "도커 허브",
+    "docker images"
+   ],
+   "refs": [
+    "https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-a-registry/",
+    "https://docs.docker.com/docker-hub/image-library/trusted-content/",
+    "https://docs.docker.com/reference/cli/docker/image/pull/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.linux.tar-archive",
+   "title": "tar로 파일 묶고 풀기",
+   "en": "Archiving Files with tar",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "리눅스",
+   "summary": "여러 파일과 폴더를 tar로 한 파일에 묶어 옮기고 받은 묶음의 내용을 보고 풀어낸다.",
+   "objectives": [
+    "tar -cf로 폴더를 하나의 묶음 파일로 만들 수 있다",
+    "tar -tf로 묶음 안의 파일 목록을 볼 수 있다",
+    "tar -xf로 받은 묶음을 풀 수 있다"
+   ],
+   "prerequisites": [
+    "dev.terminal.basic-commands"
+   ],
+   "aliases": [
+    "tar 명령",
+    "tar 묶기",
+    "tar 풀기",
+    "tar -xf",
+    "타르 파일"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man1/tar.1.html"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.k8s.minikube-first-cluster",
    "title": "minikube로 내 컴퓨터에 첫 클러스터 띄우기",
    "en": "Your First Local Cluster with minikube",
@@ -36670,6 +37608,39 @@
    "refs": [
     "https://kubernetes.io/docs/tutorials/hello-minikube/",
     "https://minikube.sigs.k8s.io/docs/start/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.kubectl-inspect",
+   "title": "kubectl로 앱 살펴보기: get·describe·logs",
+   "en": "Exploring Your App with kubectl",
+   "kind": "topic",
+   "level": 2,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "클러스터에 올린 앱이 잘 도는지 kubectl get으로 목록을, describe로 상세와 이벤트를, logs로 출력을 확인한다.",
+   "objectives": [
+    "kubectl get pods로 파드가 Running인지 확인할 수 있다",
+    "kubectl describe로 파드의 이벤트를 읽어 멈춘 단계를 찾아볼 수 있다",
+    "kubectl logs와 kubectl exec로 컨테이너의 출력과 안쪽을 들여다볼 수 있다"
+   ],
+   "prerequisites": [
+    "ops.k8s.minikube-first-cluster"
+   ],
+   "related": [
+    "ops.docker.exec",
+    "ops.k8s.basics"
+   ],
+   "aliases": [
+    "kubectl get pods",
+    "kubectl exec",
+    "kubectl 기본 명령",
+    "파드 상태 확인"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/tutorials/kubernetes-basics/explore/explore-intro/",
+    "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_get/"
    ],
    "domain": "ops"
   },
@@ -36952,6 +37923,113 @@
    "domain": "ops"
   },
   {
+   "id": "ops.linux.ps-aux",
+   "title": "ps aux와 ps -ef로 모든 프로세스 보기",
+   "en": "ps aux and ps -ef",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "리눅스",
+   "summary": "ps에 aux나 -ef를 붙이면 내 터미널 밖의 프로세스까지 사용자·PID·명령과 함께 한 번에 보여 준다.",
+   "parent": "ops.linux.process-list-kill",
+   "aliases": [
+    "ps aux",
+    "ps -ef",
+    "ps axu",
+    "전체 프로세스 목록"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man1/ps.1.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.linux.kill-command",
+   "title": "kill 명령으로 프로세스 끝내기",
+   "en": "kill Command",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "리눅스",
+   "summary": "kill PID는 신호를 따로 정하지 않으면 TERM을 보내 프로세스가 정리하고 끝나게 하며 버틸 때만 -9를 쓴다.",
+   "parent": "ops.linux.process-list-kill",
+   "related": [
+    "cs.os.uncatchable-signals"
+   ],
+   "aliases": [
+    "kill PID",
+    "kill -l",
+    "kill 명령어"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man1/kill.1.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.docker.docker-pull",
+   "title": "docker pull로 이미지 내려받기",
+   "en": "docker pull",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "Docker",
+   "summary": "docker pull 이름:태그는 레지스트리에서 이미지를 받아 오며 태그를 빼면 latest를 받는다.",
+   "parent": "ops.docker.docker-hub-pull",
+   "aliases": [
+    "docker pull",
+    "docker image pull",
+    "이미지 내려받기",
+    "도커 이미지 받기"
+   ],
+   "refs": [
+    "https://docs.docker.com/reference/cli/docker/image/pull/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.docker.official-images",
+   "title": "Docker 공식 이미지(Docker Official Images)",
+   "en": "Docker Official Images",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "Docker",
+   "summary": "Docker Hub가 엄선해 문서와 보안 갱신이 꾸준한 이미지 묶음으로 ubuntu·python·node처럼 공식 배지가 붙어 있다.",
+   "parent": "ops.docker.docker-hub-pull",
+   "aliases": [
+    "Docker 공식 이미지",
+    "Docker Official Image",
+    "도커 공식 이미지",
+    "공식 이미지 배지"
+   ],
+   "refs": [
+    "https://docs.docker.com/docker-hub/image-library/trusted-content/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.linux.tar-gzip",
+   "title": "tar.gz: gzip으로 줄인 tar 묶음",
+   "en": "Gzipped Tarball (tar.gz)",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "리눅스",
+   "summary": "tar에 -z를 붙이면 묶음을 gzip으로 줄이거나 풀며 그렇게 만든 파일은 보통 .tar.gz나 .tgz로 끝난다.",
+   "parent": "ops.linux.tar-archive",
+   "aliases": [
+    "tar.gz",
+    "tgz",
+    "tar -czf",
+    "tar -xzf"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man1/tar.1.html"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.k8s.kubeconfig-context",
    "title": "kubeconfig와 kubectl 컨텍스트",
    "en": "kubeconfig and kubectl Contexts",
@@ -37017,6 +38095,93 @@
    "refs": [
     "https://kubernetes.io/docs/tutorials/hello-minikube/",
     "https://minikube.sigs.k8s.io/docs/start/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.linux.top-monitor",
+   "title": "top으로 프로세스 실시간 보기",
+   "en": "top Process Monitor",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "리눅스",
+   "summary": "top은 부하·메모리 요약과 프로세스 목록을 몇 초마다 새로 그려 주며 q로 끝내고 P·M으로 정렬을 바꾼다.",
+   "parent": "ops.linux.process-list-kill",
+   "aliases": [
+    "top 명령어",
+    "리눅스 top",
+    "실시간 프로세스 보기"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man1/top.1.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.kubectl-describe",
+   "title": "kubectl describe로 리소스 상세 보기",
+   "en": "kubectl describe",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "kubectl describe는 파드나 노드 하나의 설정과 관련 이벤트를 사람이 읽기 좋게 모아 보여 준다.",
+   "parent": "ops.k8s.kubectl-inspect",
+   "aliases": [
+    "kubectl describe",
+    "kubectl describe pod",
+    "파드 이벤트 보기"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_describe/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.kubectl-logs",
+   "title": "kubectl logs로 컨테이너 로그 보기",
+   "en": "kubectl logs",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "kubectl logs는 파드 속 컨테이너의 출력을 보여 주며 -f로 따라 보고 --tail로 마지막 몇 줄만 본다.",
+   "parent": "ops.k8s.kubectl-inspect",
+   "related": [
+    "ops.linux.tail-follow"
+   ],
+   "aliases": [
+    "kubectl logs",
+    "kubectl logs -f",
+    "파드 로그 보기",
+    "kubectl 로그 보기"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_logs/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.kubectl-scale",
+   "title": "kubectl scale로 파드 개수 바꾸기",
+   "en": "kubectl scale",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "kubectl scale에 --replicas 수를 주면 디플로이먼트가 그 수에 맞춰 파드를 늘리거나 줄인다.",
+   "related": [
+    "ops.deploy.rolling-update"
+   ],
+   "aliases": [
+    "kubectl scale",
+    "kubectl scale --replicas",
+    "레플리카 수 바꾸기",
+    "파드 늘리기"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/tutorials/kubernetes-basics/scale/scale-intro/"
    ],
    "domain": "ops"
   },
@@ -40208,6 +41373,106 @@
    "domain": "ml"
   },
   {
+   "id": "ml.data.pandas-groupby",
+   "title": "pandas groupby로 범주별 통계 내기",
+   "en": "Group Statistics with pandas groupby",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "성별·등급 같은 범주 열로 행을 묶고 묶음마다 평균이나 개수를 구해 데이터의 차이를 한눈에 본다.",
+   "objectives": [
+    "agg에 사전을 넘겨 열마다 다른 통계를 한 표로 구할 수 있다",
+    "groupby로 범주 열 하나나 여러 개를 기준으로 묶어 평균을 낼 수 있다",
+    "groupby 뒤에 count와 size로 묶음별 행 개수를 셀 수 있다"
+   ],
+   "prerequisites": [
+    "ml.data.pandas-dataframe-basics"
+   ],
+   "related": [
+    "db.sql.group-by",
+    "ml.data.first-look"
+   ],
+   "aliases": [
+    "판다스 groupby",
+    "pandas 그룹별 집계",
+    "df.groupby",
+    "그룹별 평균",
+    "split-apply-combine"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/getting_started/intro_tutorials/06_calculate_statistics.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.matplotlib-first-plot",
+   "title": "matplotlib으로 첫 그래프 그리기",
+   "en": "First Plots with Matplotlib",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "Figure와 Axes를 만들고 선 그래프와 산점도를 그린 뒤 제목·축 이름·범례를 달아 데이터와 학습 결과를 그림으로 본다.",
+   "objectives": [
+    "plt.subplots로 Figure와 Axes를 만들고 plot·scatter로 그래프를 그릴 수 있다",
+    "set_title·set_xlabel·legend로 제목과 축 이름, 범례를 달 수 있다",
+    "pandas의 plot으로 DataFrame 열을 바로 그리고 savefig로 파일에 저장할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.data.pandas-dataframe-basics"
+   ],
+   "related": [
+    "ml.data.first-look",
+    "ml.training.loss-curve"
+   ],
+   "aliases": [
+    "맷플롯립",
+    "matplotlib 입문",
+    "plt.plot",
+    "pyplot 그래프",
+    "matplotlib 그래프"
+   ],
+   "refs": [
+    "https://matplotlib.org/stable/users/explain/quick_start.html",
+    "https://pandas.pydata.org/docs/getting_started/intro_tutorials/04_plotting.html",
+    "https://developers.google.com/machine-learning/crash-course/numerical-data/first-steps"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.pandas-derived-columns",
+   "title": "pandas로 기존 열에서 새 열 만들기",
+   "en": "Creating Derived Columns in pandas",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "기존 열끼리 더하고 나눠 새 열을 반복문 없이 한 번에 만들고, 열 이름을 알아보기 쉽게 바꿔 학습에 쓸 특성을 준비한다.",
+   "objectives": [
+    "대괄호에 새 열 이름을 넣고 기존 열의 계산 결과를 대입할 수 있다",
+    "두 열을 사칙연산이나 비교 연산으로 묶어 새 열을 만들 수 있다",
+    "rename으로 열 이름을 사전이나 함수로 바꿀 수 있다"
+   ],
+   "prerequisites": [
+    "ml.data.pandas-dataframe-basics"
+   ],
+   "related": [
+    "ml.data.feature-cross"
+   ],
+   "aliases": [
+    "판다스 새 열 추가",
+    "pandas 열 추가",
+    "파생 열",
+    "derived column",
+    "파생 변수 만들기"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/getting_started/intro_tutorials/05_add_columns.html"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.eval.accuracy",
    "title": "정확도",
    "en": "Accuracy",
@@ -40499,6 +41764,115 @@
    "domain": "ml"
   },
   {
+   "id": "ml.data.sort-values",
+   "title": "행 정렬(sort_values)",
+   "en": "sort_values",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "한 열이나 여러 열의 값을 기준으로 DataFrame의 행을 오름차순이나 내림차순으로 늘어놓는 pandas 메서드다.",
+   "aliases": [
+    "df.sort_values",
+    "판다스 정렬",
+    "pandas 행 정렬"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/getting_started/intro_tutorials/07_reshape_table_layout.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.figure-axes",
+   "title": "Figure와 Axes",
+   "en": "Figure and Axes",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "Figure는 matplotlib 그림 전체이고, Axes는 그 안에서 실제로 그래프가 그려지는 칸 하나다.",
+   "parent": "ml.data.matplotlib-first-plot",
+   "aliases": [
+    "plt.subplots",
+    "matplotlib Figure",
+    "matplotlib Axes",
+    "fig, ax"
+   ],
+   "refs": [
+    "https://matplotlib.org/stable/users/explain/quick_start.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.scatter-plot",
+   "title": "산점도",
+   "en": "Scatter Plot",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "두 열의 값을 가로·세로 좌표로 삼아 점을 찍어 두 값이 함께 어떻게 움직이는지 보는 그래프다.",
+   "parent": "ml.data.matplotlib-first-plot",
+   "aliases": [
+    "scatter plot",
+    "ax.scatter",
+    "plot.scatter",
+    "산포도"
+   ],
+   "refs": [
+    "https://matplotlib.org/stable/users/explain/quick_start.html",
+    "https://developers.google.com/machine-learning/crash-course/numerical-data/first-steps"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.pandas-concat",
+   "title": "표 이어 붙이기(pd.concat)",
+   "en": "pandas concat",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "여러 DataFrame을 위아래나 옆으로 이어 붙여 표 하나로 만들며, 서로 없는 열은 빈 값(NaN)으로 채우는 pandas 함수다.",
+   "related": [
+    "ml.data.pandas-merge"
+   ],
+   "aliases": [
+    "pd.concat",
+    "판다스 concat",
+    "pandas 표 이어 붙이기",
+    "DataFrame 이어 붙이기"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/getting_started/intro_tutorials/08_combine_dataframes.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.pandas-merge",
+   "title": "공통 열로 표 합치기(pd.merge)",
+   "en": "pandas merge",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "두 DataFrame에 함께 있는 열 값을 기준으로 행을 짝지어 옆으로 붙이는 pandas 함수로, SQL 조인과 비슷하다.",
+   "related": [
+    "db.sql.join",
+    "ml.data.pandas-concat"
+   ],
+   "aliases": [
+    "pd.merge",
+    "판다스 merge",
+    "pandas 조인",
+    "DataFrame 조인"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/getting_started/intro_tutorials/08_combine_dataframes.html"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.supervised.bunch",
    "title": "Bunch(사이킷런 결과 묶음)",
    "en": "Bunch",
@@ -40561,6 +41935,69 @@
    ],
    "refs": [
     "https://scikit-learn.org/stable/glossary.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.pandas-agg",
+   "title": "agg로 여러 통계 한꺼번에 구하기",
+   "en": "DataFrame.agg",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "열마다 원하는 통계(최소·최대·중앙값 등)를 사전으로 지정해 한 표로 받아 보는 pandas 메서드다.",
+   "parent": "ml.data.pandas-groupby",
+   "aliases": [
+    "df.agg",
+    "pandas agg",
+    "판다스 agg",
+    "aggregate 메서드"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/getting_started/intro_tutorials/06_calculate_statistics.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.pandas-plot",
+   "title": "pandas plot 메서드",
+   "en": "DataFrame.plot",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "DataFrame이나 Series에서 바로 선·막대·상자·산점도 그래프를 그려 주는 pandas 기능으로, 속은 matplotlib이다.",
+   "parent": "ml.data.matplotlib-first-plot",
+   "aliases": [
+    "df.plot",
+    "판다스 그래프",
+    "pandas 시각화",
+    "plot.box"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/getting_started/intro_tutorials/04_plotting.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.pandas-rename",
+   "title": "열 이름 바꾸기(rename)",
+   "en": "rename",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "옛 이름과 새 이름을 짝지은 사전이나 함수를 넘겨 DataFrame의 열·행 이름을 바꾸는 pandas 메서드다.",
+   "parent": "ml.data.pandas-derived-columns",
+   "aliases": [
+    "df.rename",
+    "판다스 열 이름 변경",
+    "pandas 열 이름 바꾸기",
+    "rename columns"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/getting_started/intro_tutorials/05_add_columns.html"
    ],
    "domain": "ml"
   },
