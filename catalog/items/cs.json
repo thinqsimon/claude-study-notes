@@ -2558,6 +2558,138 @@
     ]
   },
   {
+    "id": "cs.data.utf8-encoding",
+    "title": "UTF-8: 글자 번호를 1~4바이트로 옮기기",
+    "en": "UTF-8 Encoding of Unicode Code Points",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "UTF-8은 유니코드 코드 포인트를 크기에 따라 1~4바이트로 바꾸는 인코딩이며, ASCII 글자는 예전과 같은 1바이트로 남는다.",
+    "objectives": [
+      "코드 포인트 범위에 따라 UTF-8이 몇 바이트를 쓰는지 표를 보고 읽을 수 있다",
+      "문자열을 UTF-8 바이트로 인코딩하고 다시 디코딩하는 코드를 따라 쓸 수 있다",
+      "ASCII만으로 된 글이 그대로 올바른 UTF-8이 되는 까닭을 설명할 수 있다",
+      "UTF-8이 아닌 바이트를 디코딩하면 오류가 나거나 U+FFFD로 바뀌는 것을 직접 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.data.character-codes",
+      "cs.data.bits-bytes"
+    ],
+    "related": [
+      "be.python.unicode",
+      "cs.data.byte-order-mark"
+    ],
+    "aliases": [
+      "utf8 인코딩",
+      "UTF-8 바이트 길이",
+      "UTF-8 encoding form",
+      "유니코드 UTF-8 변환"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc3629",
+      "https://docs.python.org/3/howto/unicode.html"
+    ]
+  },
+  {
+    "id": "cs.net.port-numbers",
+    "title": "포트 번호의 세 범위: 시스템·사용자·동적",
+    "en": "Transport Port Number Ranges",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "포트 번호는 한 컴퓨터에 도착한 통신을 어느 서비스로 넘길지 가르는 16비트 번호이며, 0~1023·1024~49151·49152~65535 세 범위로 나뉜다.",
+    "objectives": [
+      "포트 번호가 같은 컴퓨터 안의 여러 서비스를 가르는 데 쓰인다는 것을 설명할 수 있다",
+      "주어진 번호가 시스템 포트·사용자 포트·동적 포트 중 어디에 드는지 구분할 수 있다",
+      "telnet 23처럼 서비스 이름과 포트 번호가 짝지어 등록된다는 것을 예로 들 수 있다",
+      "동적 포트 범위의 번호를 서비스 번호로 정해 쓰면 안 되는 까닭을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "be.basics.localhost-port",
+      "cs.net.protocol-layers"
+    ],
+    "related": [
+      "cs.net.socket",
+      "cs.net.tcp-vs-udp"
+    ],
+    "aliases": [
+      "포트 범위",
+      "port number range",
+      "IANA 포트 번호"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc6335"
+    ]
+  },
+  {
+    "id": "cs.net.domain-name-structure",
+    "title": "도메인 이름의 구조: 점으로 나눈 라벨",
+    "en": "Structure of Domain Names and Labels",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "도메인 이름은 점으로 나눈 라벨들을 오른쪽 뿌리부터 왼쪽으로 내려가며 읽는 나무 모양 이름이고, 라벨 하나는 63바이트까지 쓸 수 있다.",
+    "objectives": [
+      "www.example.com을 라벨로 나누고 오른쪽으로 갈수록 상위라는 것을 읽을 수 있다",
+      "어떤 이름이 다른 도메인의 하위 도메인인지 라벨 단위로 끝부분을 맞대어 판단할 수 있다",
+      "도메인 이름을 비교할 때 대소문자를 가리지 않는다는 것을 설명할 수 있다",
+      "라벨 63옥텟, 이름 전체 255옥텟이라는 길이 한도를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.basics.domain-dns"
+    ],
+    "related": [
+      "ops.network.dns-records"
+    ],
+    "aliases": [
+      "도메인 이름 구조",
+      "도메인 라벨",
+      "domain label",
+      "도메인 이름 공간",
+      "domain name space"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc1034",
+      "https://www.rfc-editor.org/rfc/rfc9499"
+    ]
+  },
+  {
+    "id": "cs.data.float-special-values",
+    "title": "부동소수점의 특수값: 무한대와 NaN",
+    "en": "Floating-Point Infinity and NaN",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "부동소수점 수에는 보통 수 말고도 무한대와 '숫자가 아님'을 뜻하는 NaN이 있고, NaN은 자기 자신과도 같지 않다.",
+    "objectives": [
+      "float('inf')와 float('nan')으로 무한대와 NaN을 만들어 출력해 볼 수 있다",
+      "NaN == NaN이 False가 되는 것을 확인하고 isnan()으로 NaN을 검사할 수 있다",
+      "isinf()·isfinite()로 값이 무한대인지, 보통의 유한한 수인지 가려낼 수 있다",
+      "JSON 표준이 NaN과 Infinity를 숫자로 허용하지 않는다는 것을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.data.integer-float"
+    ],
+    "related": [
+      "cs.data.float-error",
+      "ml.data.missing-values"
+    ],
+    "aliases": [
+      "부동소수점 특수값",
+      "inf와 nan",
+      "float inf nan",
+      "special floating-point values"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/math.html",
+      "https://www.rfc-editor.org/rfc/rfc8259"
+    ]
+  },
+  {
     "id": "cs.dsa.data-structure",
     "title": "자료구조",
     "en": "Data Structure",
@@ -3212,6 +3344,128 @@
     ]
   },
   {
+    "id": "cs.data.variable-length-encoding",
+    "title": "가변 길이 문자 인코딩",
+    "en": "Variable-Length Character Encoding",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "글자마다 차지하는 바이트 수가 달라서, UTF-8처럼 영문은 1바이트·한글은 3바이트를 쓰는 인코딩 방식이다.",
+    "parent": "cs.data.utf8-encoding",
+    "aliases": [
+      "가변 폭 인코딩",
+      "variable-width encoding",
+      "멀티바이트 인코딩",
+      "multibyte encoding"
+    ],
+    "refs": [
+      "https://docs.python.org/3/howto/unicode.html",
+      "https://www.rfc-editor.org/rfc/rfc3629"
+    ]
+  },
+  {
+    "id": "cs.data.replacement-character",
+    "title": "대체 문자(U+FFFD)",
+    "en": "Unicode Replacement Character (U+FFFD)",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "디코딩할 수 없는 바이트 자리에 대신 넣는 물음표 모양의 유니코드 글자 U+FFFD이다.",
+    "parent": "cs.data.utf8-encoding",
+    "aliases": [
+      "U+FFFD",
+      "REPLACEMENT CHARACTER",
+      "물음표 마름모 글자",
+      "errors='replace' 대체 문자"
+    ],
+    "refs": [
+      "https://docs.python.org/3/howto/unicode.html"
+    ]
+  },
+  {
+    "id": "cs.net.system-ports",
+    "title": "시스템 포트(잘 알려진 포트, 0~1023)",
+    "en": "System Ports (Well-Known Ports 0-1023)",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "IANA가 가장 엄격한 심사를 거쳐 표준 서비스에 배정하는 0부터 1023까지의 포트 번호다.",
+    "parent": "cs.net.port-numbers",
+    "aliases": [
+      "잘 알려진 포트",
+      "well-known ports",
+      "웰노운 포트",
+      "0~1023번 포트"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc6335"
+    ]
+  },
+  {
+    "id": "cs.net.top-level-domain",
+    "title": "최상위 도메인(TLD)",
+    "en": "Top-Level Domain (TLD)",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "도메인 이름 나무에서 뿌리 바로 아래 한 층에 있는 com·jp 같은 맨 오른쪽 라벨의 영역이다.",
+    "parent": "cs.net.domain-name-structure",
+    "aliases": [
+      "최상위 도메인 이름",
+      "top level domain name",
+      "닷컴 같은 최상위 도메인",
+      "도메인 확장자"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9499"
+    ]
+  },
+  {
+    "id": "cs.net.subdomain",
+    "title": "하위 도메인(서브도메인)",
+    "en": "Subdomain",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "다른 도메인 안에 들어 있는 도메인으로, api.example.com처럼 이름 끝이 상위 도메인의 라벨들과 똑같이 끝난다.",
+    "parent": "cs.net.domain-name-structure",
+    "aliases": [
+      "서브도메인",
+      "하위 도메인 이름",
+      "sub-domain",
+      "서브 도메인"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9499",
+      "https://www.rfc-editor.org/rfc/rfc1034"
+    ]
+  },
+  {
+    "id": "cs.data.nan",
+    "title": "NaN(숫자가 아닌 값)",
+    "en": "NaN (Not a Number)",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "부동소수점에서 정의되지 않은 결과를 나타내는 특수값으로, 어떤 수와도, 자기 자신과도 같다고 비교되지 않는다.",
+    "parent": "cs.data.float-special-values",
+    "aliases": [
+      "not a number",
+      "float('nan')",
+      "math.nan",
+      "부동소수점 NaN"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/math.html"
+    ]
+  },
+  {
     "id": "cs.data.binary-prefix",
     "title": "이진 접두어(KiB·MiB·GiB)",
     "en": "Binary Prefixes",
@@ -3579,6 +3833,70 @@
     ],
     "refs": [
       "https://xlinux.nist.gov/dads/HTML/sparsematrix.html"
+    ]
+  },
+  {
+    "id": "cs.net.dynamic-ports",
+    "title": "동적 포트(임시 포트, 49152~65535)",
+    "en": "Dynamic Ports (Ephemeral Ports 49152-65535)",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "누구에게도 배정되지 않고 프로그램이 그때그때 비어 있는 번호를 골라 쓰도록 남겨 둔 49152부터 65535까지의 포트 번호다.",
+    "parent": "cs.net.port-numbers",
+    "aliases": [
+      "임시 포트",
+      "ephemeral ports",
+      "사설 포트 범위",
+      "private ports",
+      "에페메랄 포트"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc6335"
+    ]
+  },
+  {
+    "id": "cs.net.fqdn",
+    "title": "완전한 도메인 이름(FQDN)",
+    "en": "Fully Qualified Domain Name (FQDN)",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "뿌리까지 모든 라벨을 다 적어 다른 맥락 없이도 뜻이 정해지는 도메인 이름으로, 엄밀히는 www.example.net.처럼 끝에 점이 붙는다.",
+    "parent": "cs.net.domain-name-structure",
+    "aliases": [
+      "fully qualified domain name",
+      "정규화된 도메인 이름",
+      "절대 도메인 이름",
+      "absolute domain name",
+      "끝 점 도메인 이름"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9499",
+      "https://www.rfc-editor.org/rfc/rfc1034"
+    ]
+  },
+  {
+    "id": "cs.data.float-infinity",
+    "title": "부동소수점 무한대(inf)",
+    "en": "Floating-Point Infinity",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "부동소수점 수가 가질 수 있는 양의 무한대와 음의 무한대 값으로, 보통 수가 아니어서 isfinite()가 False를 돌려준다.",
+    "parent": "cs.data.float-special-values",
+    "aliases": [
+      "float('inf')",
+      "math.inf",
+      "양의 무한대",
+      "음의 무한대",
+      "floating-point infinity value"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/math.html"
     ]
   },
   {

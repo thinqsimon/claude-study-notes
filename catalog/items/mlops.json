@@ -2355,6 +2355,96 @@
     ]
   },
   {
+    "id": "mlops.observe.evidently-drift-report",
+    "title": "Evidently로 첫 데이터 드리프트 리포트 만들기",
+    "en": "First Data Drift Report with Evidently",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "기준 데이터와 지금 들어오는 데이터를 Evidently 리포트에 넣어 열마다 분포가 달라졌는지 표로 확인해 보는 실습이다.",
+    "objectives": [
+      "pip로 Evidently를 설치하고 판다스 데이터프레임을 Dataset으로 감쌀 수 있다",
+      "DataDriftPreset으로 리포트를 만들어 기준 데이터와 현재 데이터를 비교해 돌릴 수 있다",
+      "리포트 결과를 노트북에서 보고 HTML이나 JSON으로 저장할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.observe.why-monitor"
+    ],
+    "aliases": [
+      "Evidently 리포트",
+      "Evidently report",
+      "Evidently 드리프트 리포트",
+      "evidently quickstart"
+    ],
+    "refs": [
+      "https://docs.evidentlyai.com/quickstart_ml",
+      "https://docs.evidentlyai.com/docs/library/report"
+    ]
+  },
+  {
+    "id": "mlops.observe.langfuse-tracing-quickstart",
+    "title": "Langfuse로 LLM 호출 추적 시작하기",
+    "en": "Getting Started with Langfuse Tracing",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "Langfuse 키를 환경 변수에 넣고 OpenAI 호출을 감싸 첫 트레이스를 Langfuse 화면에서 확인해 보는 실습이다.",
+    "objectives": [
+      "Langfuse 프로젝트의 공개 키·비밀 키와 접속 주소를 환경 변수로 설정할 수 있다",
+      "langfuse.openai 연동이나 컨텍스트 매니저로 LLM 호출을 기록할 수 있다",
+      "짧게 끝나는 스크립트에서 flush를 불러 기록을 보내고 화면에서 트레이스를 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.observe.trace-picture",
+      "llm.api.first-call"
+    ],
+    "related": [
+      "mlops.observe.tracing-quickstart",
+      "mlops.observe.weave-tracing-quickstart"
+    ],
+    "aliases": [
+      "Langfuse 트레이싱",
+      "Langfuse tracing",
+      "Langfuse 시작하기",
+      "Langfuse quickstart"
+    ],
+    "refs": [
+      "https://langfuse.com/docs/observability/get-started"
+    ]
+  },
+  {
+    "id": "mlops.guardrail.guardrails-ai-first-guard",
+    "title": "Guardrails AI로 첫 검증 가드 만들기",
+    "en": "First Guard with Guardrails AI",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "Guardrails AI를 설치하고 Hub의 검증기 하나를 Guard에 붙여 LLM 출력 글이 규칙을 지키는지 검사해 보는 실습이다.",
+    "objectives": [
+      "guardrails-ai를 설치하고 guardrails configure로 Hub 사용을 준비할 수 있다",
+      "Hub에서 검증기를 설치해 Guard().use로 붙일 수 있다",
+      "guard.validate로 글을 검사하고 실패할 때 나는 예외를 잡아 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.guardrail.llm-top10-overview"
+    ],
+    "related": [
+      "mlops.guardrail.input-output-guardrails"
+    ],
+    "aliases": [
+      "Guardrails AI",
+      "guardrails-ai",
+      "Guardrails AI 가드",
+      "Guardrails Guard"
+    ],
+    "refs": [
+      "https://github.com/guardrails-ai/guardrails"
+    ]
+  },
+  {
     "id": "mlops.observe.ai-assistant",
     "title": "MLflow AI 어시스턴트에게 트레이스 물어보기",
     "en": "Using the MLflow AI Assistant",
@@ -3209,6 +3299,106 @@
     ]
   },
   {
+    "id": "mlops.observe.evidently-reference-current",
+    "title": "기준 데이터와 현재 데이터(Evidently)",
+    "en": "Evidently Reference and Current Data",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "Evidently 리포트를 돌릴 때 비교의 바탕이 되는 기준 데이터와 지금 살펴볼 현재 데이터를 나눠 넘기는 두 입력이다.",
+    "parent": "mlops.observe.evidently-drift-report",
+    "aliases": [
+      "reference_data",
+      "current_data",
+      "Evidently 기준 데이터",
+      "Evidently 현재 데이터"
+    ],
+    "refs": [
+      "https://docs.evidentlyai.com/docs/library/report"
+    ]
+  },
+  {
+    "id": "mlops.observe.evidently-data-drift-preset",
+    "title": "DataDriftPreset(Evidently 드리프트 프리셋)",
+    "en": "Evidently DataDriftPreset",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "두 데이터의 모든 열에 기본 통계 검사를 한꺼번에 걸어 분포가 달라졌는지 알려 주는 Evidently의 미리 만든 리포트 묶음이다.",
+    "parent": "mlops.observe.evidently-drift-report",
+    "aliases": [
+      "DataDriftPreset",
+      "Evidently 드리프트 프리셋",
+      "Evidently data drift preset"
+    ],
+    "refs": [
+      "https://docs.evidentlyai.com/quickstart_ml",
+      "https://docs.evidentlyai.com/docs/library/report"
+    ]
+  },
+  {
+    "id": "mlops.observe.langfuse-observation",
+    "title": "Langfuse 관측 단위(span·generation)",
+    "en": "Langfuse Observations: Span and Generation",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "Langfuse 트레이스 안에 쌓이는 작업 기록 한 칸으로, 일반 단계는 span, LLM 호출은 generation 유형으로 남긴다.",
+    "parent": "mlops.observe.langfuse-tracing-quickstart",
+    "aliases": [
+      "Langfuse observation",
+      "Langfuse generation",
+      "start_as_current_observation",
+      "Langfuse 관측 기록"
+    ],
+    "refs": [
+      "https://langfuse.com/docs/observability/get-started"
+    ]
+  },
+  {
+    "id": "mlops.observe.langfuse-openai-dropin",
+    "title": "langfuse.openai 드롭인 연동",
+    "en": "Langfuse OpenAI Drop-in Integration",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "openai 대신 langfuse.openai에서 불러오기만 바꿔 OpenAI 호출이 자동으로 Langfuse 트레이스로 남게 하는 연동 방식이다.",
+    "parent": "mlops.observe.langfuse-tracing-quickstart",
+    "aliases": [
+      "langfuse.openai",
+      "observeOpenAI",
+      "Langfuse OpenAI 연동",
+      "Langfuse OpenAI integration"
+    ],
+    "refs": [
+      "https://langfuse.com/docs/observability/get-started"
+    ]
+  },
+  {
+    "id": "mlops.guardrail.guardrails-hub-validator",
+    "title": "Guardrails Hub 검증기(validator)",
+    "en": "Guardrails Hub Validator",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "정규식 일치·경쟁사 언급·유해 표현처럼 한 가지 규칙을 검사하도록 미리 만들어 Hub에서 내려받아 Guard에 붙이는 부품이다.",
+    "parent": "mlops.guardrail.guardrails-ai-first-guard",
+    "aliases": [
+      "Guardrails Hub",
+      "Guardrails validator",
+      "RegexMatch 검증기",
+      "Guardrails 검증기"
+    ],
+    "refs": [
+      "https://github.com/guardrails-ai/guardrails"
+    ]
+  },
+  {
     "id": "mlops.eval.assessment-source",
     "title": "평가 출처(사람·코드·LLM 심판)",
     "en": "Assessment Source",
@@ -4011,6 +4201,64 @@
     ],
     "refs": [
       "https://www.kubeflow.org/docs/components/pipelines/user-guides/core-functions/run-a-pipeline/"
+    ]
+  },
+  {
+    "id": "mlops.observe.evidently-data-definition",
+    "title": "DataDefinition(Evidently 열 유형 지정)",
+    "en": "Evidently DataDefinition",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "데이터프레임의 어느 열이 숫자형이고 어느 열이 범주형인지 Evidently에 알려 주는 설정 객체다.",
+    "parent": "mlops.observe.evidently-drift-report",
+    "aliases": [
+      "DataDefinition",
+      "numerical_columns",
+      "categorical_columns"
+    ],
+    "refs": [
+      "https://docs.evidentlyai.com/quickstart_ml"
+    ]
+  },
+  {
+    "id": "mlops.observe.langfuse-flush",
+    "title": "Langfuse flush(남은 기록 보내기)",
+    "en": "Langfuse Flush for Short-lived Scripts",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Langfuse SDK가 모아 두었다가 보내는 기록을 짧은 스크립트가 끝나기 전에 서버로 바로 보내게 하는 호출이다.",
+    "parent": "mlops.observe.langfuse-tracing-quickstart",
+    "aliases": [
+      "langfuse.flush",
+      "Langfuse 플러시",
+      "Langfuse 기록 전송"
+    ],
+    "refs": [
+      "https://langfuse.com/docs/observability/get-started"
+    ]
+  },
+  {
+    "id": "mlops.guardrail.guardrails-on-fail-action",
+    "title": "on_fail 동작(Guardrails OnFailAction)",
+    "en": "Guardrails AI OnFailAction",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "검증기가 규칙 위반을 찾았을 때 예외를 낼지 등 Guard가 어떻게 반응할지 정하는 Guardrails AI의 설정값이다.",
+    "parent": "mlops.guardrail.guardrails-ai-first-guard",
+    "aliases": [
+      "OnFailAction",
+      "on_fail",
+      "OnFailAction.EXCEPTION",
+      "Guardrails 실패 동작"
+    ],
+    "refs": [
+      "https://github.com/guardrails-ai/guardrails"
     ]
   },
   {

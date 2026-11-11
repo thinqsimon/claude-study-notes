@@ -2819,6 +2819,79 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "llm.api.api-key-create",
+    "title": "Claude API 키 만들기: 키 종류와 만료 고르기",
+    "en": "Creating a Claude API Key: Key Types and Expiration",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "Claude Console의 API 키 화면에서 개인 키와 서비스 계정 키 중 하나를 고르고 만료 기간을 정해 키를 만든 뒤, 한 번만 보이는 키를 안전한 곳에 옮겨 둔다.",
+    "objectives": [
+      "Console의 API 키 화면에서 이름·만료·연결 계정을 골라 새 키를 만들 수 있다",
+      "내 개발용에는 개인 키, CI나 운영 서비스에는 서비스 계정 키를 쓰는 이유를 말할 수 있다",
+      "만든 키를 ANTHROPIC_API_KEY 환경 변수에 넣고, 잃어버리면 새로 만들어야 한다는 점을 설명할 수 있다",
+      "키를 브라우저 코드에 넣지 않고 백엔드에서만 써야 하는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.chat-app-vs-api",
+      "be.security.why-secrets"
+    ],
+    "related": [
+      "llm.api.first-call",
+      "llm.basics.developer-console"
+    ],
+    "aliases": [
+      "Claude API 키 발급",
+      "Anthropic API 키 만들기",
+      "create Claude API key",
+      "API 키 종류",
+      "sk-ant 키"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/get-api-key",
+      "https://platform.claude.com/docs/en/manage-claude/authentication"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.prompt.classification-prompt",
+    "title": "LLM으로 문의 글 분류하기: 범주 목록 주고 하나 고르게 하기",
+    "en": "Classifying Support Tickets with an LLM Prompt",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "프롬프트",
+    "summary": "고객 문의 같은 글을 정해 둔 범주 목록과 함께 보내 가장 맞는 범주 하나와 그 이유를 정해진 태그 안에 쓰게 해, 많은 학습 데이터 없이 작은 분류기를 만든다.",
+    "objectives": [
+      "문의 유형을 겹치지 않는 범주 목록으로 정리해 프롬프트에 넣을 수 있다",
+      "범주 하나만 고르고 이유와 범주를 각각 정해진 태그에 쓰라는 지시를 쓸 수 있다",
+      "문의 글을 함수 인자로 받아 프롬프트에 끼워 API로 보내고 답에서 범주를 꺼낼 수 있다",
+      "적은 예시로도 시작할 수 있고 범주가 바뀌어도 프롬프트만 고치면 된다는 점을 전통 ML 분류와 비교해 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.prompt-template-app",
+      "llm.prompt.first-good-prompt"
+    ],
+    "related": [
+      "llm.basics.nlp-tasks",
+      "llm.prompt.prompt-structure",
+      "llm.basics.sentiment-analysis"
+    ],
+    "aliases": [
+      "LLM 분류",
+      "LLM text classification",
+      "티켓 분류",
+      "ticket routing",
+      "문의 분류 프롬프트",
+      "프롬프트 분류기"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/about-claude/use-case-guides/ticket-routing"
+    ]
+  },
+  {
     "id": "llm.prompt.metaprompt",
     "title": "메타프롬프트로 프롬프트 첫 초안 만들기",
     "en": "Drafting a First Prompt with a Metaprompt",
@@ -2952,6 +3025,42 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.api.subscriber-api-credits",
+    "title": "구독 요금제에 딸린 Claude API 크레딧 받아 쓰기",
+    "en": "Claiming Claude API Credits Included with Max, Ultra, and Team Plans",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "Claude Max·Ultra·Team 구독에 매달 딸려 오는 API 크레딧을 Console 조직과 연결해 받고, 어디에 쓸 수 있으며 언제 사라지는지 확인한다.",
+    "objectives": [
+      "claude.ai 결제 설정에서 Console 조직을 연결해 크레딧을 받을 수 있다",
+      "Console 결제 화면에서 받은 크레딧의 금액과 만료일을 확인할 수 있다",
+      "크레딧이 API와 Agent SDK에는 쓰이고 Claude Code와 앱 추가 사용량에는 쓰이지 않는다는 점을 말할 수 있다",
+      "남은 크레딧이 다음 달로 넘어가지 않고 산 크레딧보다 먼저 쓰인다는 점을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.chat-app-vs-api"
+    ],
+    "related": [
+      "llm.basics.api-prepaid-credits",
+      "llm.basics.chat-paid-plan",
+      "llm.api.spend-limit"
+    ],
+    "aliases": [
+      "구독자 API 크레딧",
+      "subscriber API credits",
+      "Max 요금제 API 크레딧",
+      "Team 요금제 API 크레딧",
+      "월간 포함 API 크레딧"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/about-claude/api-credits-for-subscribers"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "llm.basics.token",
@@ -3601,6 +3710,119 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "llm.api.service-account-key",
+    "title": "서비스 계정 API 키",
+    "en": "Claude Service Account API Key",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "사람이 아니라 CI나 운영 서비스용으로 만든 서비스 계정에 묶인 Claude API 키로, 그 계정이 보관 처리되면 함께 멈춘다.",
+    "parent": "llm.api.api-key-create",
+    "related": [
+      "llm.api.api-key-expiration"
+    ],
+    "aliases": [
+      "Claude 서비스 계정 키",
+      "Anthropic service account key",
+      "개인 키와 서비스 계정 키"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/manage-claude/authentication"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.api.api-key-expiration",
+    "title": "API 키 만료 기간",
+    "en": "Claude API Key Expiration",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "Claude API 키를 만들 때 3시간·1일·7일·30일·직접 정한 기간·만료 없음 중에서 고르는 수명으로, 나중에 바꿀 수 없고 지나면 401 오류가 난다.",
+    "parent": "llm.api.api-key-create",
+    "aliases": [
+      "Claude API 키 만료",
+      "API key expiration",
+      "키 만료 401",
+      "expires_at"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/manage-claude/authentication"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.api.browser-direct-access",
+    "title": "브라우저에서 Claude API 직접 부르기",
+    "en": "Direct Browser Access to the Claude API",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "웹 페이지 코드에서 Claude API를 바로 부르는 일로, 키가 누구에게나 보이기 때문에 기본으로 막혀 있고 특별한 헤더를 붙여야만 허용된다.",
+    "parent": "llm.api.api-key-create",
+    "related": [
+      "be.security.api-key"
+    ],
+    "aliases": [
+      "dangerouslyAllowBrowser",
+      "anthropic-dangerous-direct-browser-access",
+      "브라우저 API 키 노출",
+      "프런트엔드에서 LLM API 호출"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/manage-claude/authentication"
+    ]
+  },
+  {
+    "id": "llm.prompt.colleague-test",
+    "title": "동료 테스트: 맥락 없는 사람에게 프롬프트 보여 주기",
+    "en": "Colleague Test for Prompt Clarity",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "프롬프트",
+    "summary": "할 일을 잘 모르는 동료가 내 프롬프트만 보고 따라 할 수 있는지 떠올려 보고, 헷갈릴 곳이 있으면 모델도 헷갈린다고 보고 고치는 점검법이다.",
+    "related": [
+      "llm.prompt.first-good-prompt",
+      "llm.prompt.instruction-motivation"
+    ],
+    "aliases": [
+      "프롬프트 동료 테스트",
+      "colleague test",
+      "명확하고 직접적인 프롬프트",
+      "be clear and direct"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+    ]
+  },
+  {
+    "id": "llm.prompt.instruction-motivation",
+    "title": "지시에 이유 붙이기",
+    "en": "Adding Motivation to Prompt Instructions",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "프롬프트",
+    "summary": "'말줄임표를 쓰지 마라'처럼 규칙만 주지 않고 '음성으로 읽힐 글이라서'처럼 왜 필요한지 함께 적어, 모델이 목적을 알고 비슷한 경우에도 알맞게 행동하게 하는 방법이다.",
+    "related": [
+      "llm.prompt.colleague-test"
+    ],
+    "aliases": [
+      "add context to instructions",
+      "지시 이유 설명",
+      "prompt motivation"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+    ]
+  },
+  {
     "id": "llm.basics.encoder-decoder-model",
     "title": "인코더-디코더 모델(seq2seq)",
     "en": "Encoder-Decoder Model",
@@ -4092,6 +4314,73 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.api.workspace-id-header",
+    "title": "anthropic-workspace-id 헤더",
+    "en": "anthropic-workspace-id Header",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "특정 워크스페이스에 묶지 않은 Claude API 키로 요청할 때 어느 워크스페이스에서 실행할지 알려 주려고 매 요청에 붙이는 헤더다.",
+    "parent": "llm.api.api-key-create",
+    "related": [
+      "llm.api.anthropic-version-header"
+    ],
+    "aliases": [
+      "워크스페이스 ID 헤더",
+      "workspace ID header",
+      "Claude Console 워크스페이스 ID"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/manage-claude/authentication"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.prompt.intent-categories",
+    "title": "분류 범주 목록(intent categories)",
+    "en": "Intent Categories for LLM Classification",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "프롬프트",
+    "summary": "LLM에게 글을 나누게 할 때 프롬프트에 미리 적어 주는 고를 수 있는 범주들로, 범주 정의가 분명할수록 분류가 정확해진다.",
+    "parent": "llm.prompt.classification-prompt",
+    "aliases": [
+      "의도 범주",
+      "intent category",
+      "분류 라벨 목록",
+      "문의 유형 목록"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/about-claude/use-case-guides/ticket-routing"
+    ]
+  },
+  {
+    "id": "llm.basics.claude-text-watermark",
+    "title": "Claude 텍스트 워터마크",
+    "en": "Claude Text Watermark",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "지원되는 Claude 모델이 만든 글에 붙는 Anthropic의 표시로, 글의 뜻·품질이나 토큰 수를 바꾸지 않고 요청 방식도 바꿀 필요가 없다.",
+    "related": [
+      "ax.governance.ai-watermarking"
+    ],
+    "aliases": [
+      "Claude text watermark",
+      "Claude 글 워터마크",
+      "Anthropic 텍스트 워터마크"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/text-watermark"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "llm.tools.function-calling",

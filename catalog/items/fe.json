@@ -2622,6 +2622,40 @@
     ]
   },
   {
+    "id": "fe.js.troubleshooting",
+    "title": "JavaScript 오류 찾아 고치기",
+    "en": "Troubleshooting JavaScript Errors",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "JavaScript",
+    "summary": "콘솔의 오류 메시지와 줄 번호, console.log로 찍은 값을 따라가며 문법 오류와 논리 오류를 하나씩 고치는 법이다.",
+    "objectives": [
+      "콘솔 오류 메시지의 파일·줄 번호를 보고 문제가 난 코드를 찾아갈 수 있다",
+      "문법 오류와 논리 오류가 어떻게 다르게 드러나는지 예를 들어 구분할 수 있다",
+      "console.log로 변수 값을 찍어 보며 틀린 결과의 원인을 좁힐 수 있다",
+      "모르는 오류 메시지를 MDN에서 찾아 고치는 방법을 따라 할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.js.basics",
+      "fe.basics.browser-devtools"
+    ],
+    "related": [
+      "fe.js.error-handling",
+      "fe.css.debugging"
+    ],
+    "aliases": [
+      "JavaScript 디버깅",
+      "JS 디버깅",
+      "JS 오류 고치기",
+      "JavaScript troubleshooting",
+      "콘솔 오류 메시지"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/What_went_wrong"
+    ]
+  },
+  {
     "id": "fe.css.text-styling",
     "title": "CSS로 글꼴과 글자 꾸미기",
     "en": "Fundamental Text and Font Styling",
@@ -2891,6 +2925,103 @@
     ],
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Tables"
+    ]
+  },
+  {
+    "id": "fe.css.web-fonts",
+    "title": "@font-face로 웹 글꼴 적용하기",
+    "en": "Applying Web Fonts with @font-face",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "CSS",
+    "summary": "글꼴 파일을 프로젝트에 두고 @font-face로 이름을 붙인 뒤 font-family에 대체 글꼴과 함께 써서 페이지에 웹 글꼴을 입히는 방법이다.",
+    "objectives": [
+      "@font-face 규칙에 font-family 이름과 src의 url()·format()을 적어 글꼴 파일을 연결할 수 있다",
+      "만든 글꼴 이름을 font-family 목록 맨 앞에 두고 serif 같은 일반 글꼴로 대체를 남길 수 있다",
+      "온라인 글꼴 서비스가 주는 link 요소를 head에 넣어 글꼴을 쓸 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.web-fonts-idea",
+      "fe.css.text-styling"
+    ],
+    "related": [
+      "fe.next.font-optimization"
+    ],
+    "aliases": [
+      "@font-face",
+      "font-face 규칙",
+      "웹 폰트 적용",
+      "웹 글꼴 넣기",
+      "custom font CSS"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Text_styling/Web_fonts",
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@font-face"
+    ]
+  },
+  {
+    "id": "fe.html.debugging",
+    "title": "HTML 오류 찾기: DOM 검사기와 검사 서비스",
+    "en": "Debugging HTML",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "HTML",
+    "summary": "브라우저가 잘못된 HTML을 조용히 고쳐 보여 주므로 DOM 검사기와 마크업 검사 서비스로 닫히지 않은 요소와 어긋난 중첩을 찾아 고친다.",
+    "objectives": [
+      "닫는 태그가 빠지거나 요소가 엇갈려 중첩된 HTML이 화면에서 어떻게 달라지는지 예로 보일 수 있다",
+      "개발자 도구의 DOM 검사기에서 브라우저가 고쳐 만든 구조를 소스와 비교할 수 있다",
+      "마크업 검사 서비스에 문서를 넣고 줄 번호가 붙은 오류를 몇 개씩 고쳐 다시 검사할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.html.first-page",
+      "fe.basics.browser-devtools"
+    ],
+    "related": [
+      "fe.css.debugging"
+    ],
+    "aliases": [
+      "HTML 디버깅",
+      "HTML debugging",
+      "HTML 문법 오류",
+      "잘못된 마크업",
+      "닫는 태그 누락"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Debugging_HTML"
+    ]
+  },
+  {
+    "id": "fe.html.text-semantics",
+    "title": "HTML 글자에 의미 붙이기: 강조·인용·약어·코드",
+    "en": "HTML Text Semantics: Emphasis, Quotes, Abbreviations and Code",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "HTML",
+    "summary": "em·strong·blockquote·abbr·code·time처럼 글자의 뜻을 알려 주는 요소를 골라 써서 모양이 아니라 의미로 문장을 표시하는 법이다.",
+    "objectives": [
+      "강조할 말은 em, 중요한 말은 strong으로 감싸고 i·b와의 차이를 말할 수 있다",
+      "긴 인용은 blockquote, 짧은 인용은 q로 쓰고 출처를 cite로 남길 수 있다",
+      "abbr·code·pre·kbd·time 요소를 보고 따라 써서 약어·코드·키 입력·날짜를 표시할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.html.first-page",
+      "fe.basics.semantic-html-idea"
+    ],
+    "related": [
+      "fe.html.accessible-markup"
+    ],
+    "aliases": [
+      "텍스트 시맨틱",
+      "HTML 텍스트 요소",
+      "인라인 시맨틱 요소",
+      "inline text semantics"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Emphasis_and_importance",
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Advanced_text_features"
     ]
   },
   {
@@ -3652,6 +3783,123 @@
     ]
   },
   {
+    "id": "fe.js.logic-error",
+    "title": "논리 오류: 실행되지만 결과가 틀린 코드",
+    "en": "Logic Errors in JavaScript",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "JavaScript",
+    "summary": "문법은 맞아 오류 메시지 없이 실행되지만 계산이나 조건을 잘못 써서 기대와 다른 결과가 나오는 JavaScript 오류다.",
+    "parent": "fe.js.troubleshooting",
+    "related": [
+      "fe.js.syntax-error"
+    ],
+    "aliases": [
+      "JS 논리 오류",
+      "JavaScript logic error",
+      "로직 에러",
+      "버그 있는 계산"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/What_went_wrong"
+    ]
+  },
+  {
+    "id": "fe.js.syntax-error",
+    "title": "JavaScript 문법 오류(SyntaxError)",
+    "en": "JavaScript SyntaxError",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "JavaScript",
+    "summary": "괄호나 따옴표가 빠지는 등 언어 문법에 맞지 않는 코드를 엔진이 읽다가 멈추며 내는 JavaScript 오류다.",
+    "parent": "fe.js.troubleshooting",
+    "related": [
+      "be.error.syntax-error",
+      "fe.js.logic-error"
+    ],
+    "aliases": [
+      "JS SyntaxError",
+      "JS 구문 오류",
+      "JavaScript 문법 에러",
+      "missing ) after argument list"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/What_went_wrong"
+    ]
+  },
+  {
+    "id": "fe.js.not-a-function",
+    "title": "TypeError: x is not a function",
+    "en": "JavaScript TypeError: x is not a function",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "JavaScript",
+    "summary": "함수가 아닌 값을 함수처럼 부를 때 나는 오류로, 메서드 이름의 대소문자 오타나 그 객체에 없는 메서드 호출이 흔한 원인이다.",
+    "parent": "fe.js.troubleshooting",
+    "related": [
+      "fe.js.error-object"
+    ],
+    "aliases": [
+      "is not a function",
+      "함수가 아닙니다 오류",
+      "not a function 에러",
+      "addEventListener is not a function"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Not_a_function",
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/What_went_wrong"
+    ]
+  },
+  {
+    "id": "fe.html.dom-inspector",
+    "title": "DOM 검사기(Elements 패널)",
+    "en": "DevTools DOM Inspector",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "HTML",
+    "summary": "개발자 도구의 첫 탭으로, 소스가 아니라 브라우저가 실제로 만든 DOM 구조를 펼쳐 보며 요소를 화면에서 짚어 볼 수 있는 패널이다.",
+    "parent": "fe.html.debugging",
+    "related": [
+      "fe.basics.devtools-console"
+    ],
+    "aliases": [
+      "Elements 패널",
+      "Elements panel",
+      "DOM inspector",
+      "요소 검사기",
+      "Inspector 패널"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Debugging_HTML"
+    ]
+  },
+  {
+    "id": "fe.html.em-strong",
+    "title": "em과 strong: 강조와 중요 표시",
+    "en": "HTML em and strong Elements",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "HTML",
+    "summary": "em은 말의 강세를, strong은 중요함을 뜻으로 표시하는 HTML 요소로, 기울임이나 굵게 보이려는 목적만으로 쓰지 않는다.",
+    "parent": "fe.html.text-semantics",
+    "aliases": [
+      "em 요소",
+      "strong 요소",
+      "em 태그",
+      "strong 태그",
+      "강조 태그"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Emphasis_and_importance"
+    ]
+  },
+  {
     "id": "fe.html.track-captions",
     "title": "track 요소와 WebVTT 자막",
     "en": "Text Tracks and WebVTT",
@@ -3846,6 +4094,89 @@
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Tables",
       "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/table-layout"
+    ]
+  },
+  {
+    "id": "fe.css.font-display",
+    "title": "font-display: 글꼴을 받는 동안 글자 보이기",
+    "en": "The font-display Descriptor",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "CSS",
+    "summary": "@font-face 안에 적어 웹 글꼴을 내려받는 동안 글자를 숨길지 대체 글꼴로 먼저 보여 줄지 정하는 설정으로, swap이 흔히 쓰인다.",
+    "parent": "fe.css.web-fonts",
+    "aliases": [
+      "font-display: swap",
+      "font-display swap",
+      "글꼴 표시 방식",
+      "글꼴 로딩 중 표시"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@font-face/font-display",
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Text_styling/Web_fonts"
+    ]
+  },
+  {
+    "id": "fe.html.markup-validator",
+    "title": "W3C 마크업 검사 서비스",
+    "en": "W3C Markup Validation Service",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "HTML",
+    "summary": "HTML 문서를 붙여 넣어 검사하면 문법 오류를 줄과 열 번호와 함께 알려 주는 W3C의 온라인 검사 도구다.",
+    "parent": "fe.html.debugging",
+    "aliases": [
+      "HTML validator",
+      "HTML 유효성 검사기",
+      "Markup Validation Service",
+      "W3C validator",
+      "마크업 검사기"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Debugging_HTML"
+    ]
+  },
+  {
+    "id": "fe.html.quotations",
+    "title": "blockquote·q·cite로 인용 표시하기",
+    "en": "HTML Quotation Elements: blockquote, q and cite",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "HTML",
+    "summary": "긴 인용은 blockquote, 문장 속 짧은 인용은 q로 감싸고 인용한 작품 제목은 cite 요소로 표시하는 HTML 요소 묶음이다.",
+    "parent": "fe.html.text-semantics",
+    "aliases": [
+      "blockquote 요소",
+      "q 요소",
+      "cite 요소",
+      "HTML 인용문",
+      "인용 태그"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Advanced_text_features"
+    ]
+  },
+  {
+    "id": "fe.html.time-element",
+    "title": "time 요소: 기계가 읽는 날짜와 시간",
+    "en": "HTML time Element",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "HTML",
+    "summary": "사람이 읽는 날짜 글자를 time으로 감싸고 datetime 속성에 정해진 형식의 값을 적어 프로그램도 날짜를 알아보게 하는 HTML 요소다.",
+    "parent": "fe.html.text-semantics",
+    "aliases": [
+      "time 요소",
+      "time 태그",
+      "datetime 속성",
+      "HTML 날짜 표시"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Advanced_text_features"
     ]
   },
   {
