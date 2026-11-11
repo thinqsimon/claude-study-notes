@@ -390,6 +390,99 @@
     ]
   },
   {
+    "id": "mlops.finetune.peft-picture",
+    "title": "가벼운 파인튜닝의 큰 그림: 작은 부품만 학습하기",
+    "en": "The Big Picture of Parameter-Efficient Fine-Tuning",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "큰 모델의 원래 가중치는 그대로 두고 덧붙인 작은 부품만 학습해, 적은 비용과 저장 공간으로 모델을 특정 일에 맞추는 방법이다.",
+    "objectives": [
+      "모든 가중치를 고치는 파인튜닝과 작은 부품만 학습하는 방식을 옷을 새로 짓기와 덧단 붙이기에 빗대어 설명할 수 있다",
+      "기반 모델 하나에 일마다 다른 어댑터를 바꿔 끼워 쓰는 흐름을 그림으로 그릴 수 있다",
+      "어댑터 파일이 원래 모델 파일보다 훨씬 작아 보관하고 주고받기 쉬운 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.how-llm-is-built"
+    ],
+    "related": [
+      "mlops.finetune.fine-tuning",
+      "mlops.finetune.lora-quickstart"
+    ],
+    "aliases": [
+      "파라미터 효율 파인튜닝",
+      "parameter-efficient fine-tuning",
+      "가벼운 파인튜닝",
+      "효율적 미세 조정"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/peft/index",
+      "https://huggingface.co/docs/peft/quicktour"
+    ]
+  },
+  {
+    "id": "mlops.observe.trace-picture",
+    "title": "트레이스의 큰 그림: AI 앱 한 번 실행의 작업 일지",
+    "en": "The Big Picture of LLM App Traces",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "AI 앱이 요청 하나를 처리하며 거친 모델 호출·도구 실행·검색 단계를 나무 모양 기록으로 남겨, 어디서 느리고 틀렸는지 나중에 찾게 하는 일이다.",
+    "objectives": [
+      "트레이스를 택배 배송 조회처럼 요청 하나가 거친 단계를 차례로 적은 일지에 빗대어 설명할 수 있다",
+      "트레이스와 스팬의 관계를 요청 한 번과 그 안의 단계 하나로 구분해 말할 수 있다",
+      "트레이스를 보면 느린 단계와 실패한 단계를 찾을 수 있는 이유를 예를 들어 말할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.observe.why-monitor"
+    ],
+    "related": [
+      "mlops.observe.trace",
+      "mlops.observe.llm-observability"
+    ],
+    "aliases": [
+      "AI 앱 실행 일지",
+      "에이전트 실행 기록",
+      "agent execution trace"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/concepts/trace/",
+      "https://mlflow.org/docs/latest/genai/concepts/span/"
+    ]
+  },
+  {
+    "id": "mlops.prompt.optimization-picture",
+    "title": "프롬프트 최적화의 큰 그림: 채점하며 고쳐 쓰기",
+    "en": "The Big Picture of Prompt Optimization",
+    "kind": "topic",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "예시 문제와 채점 기준을 주면 AI가 프롬프트를 고쳐 쓰고 점수를 다시 재기를 되풀이해 더 나은 프롬프트 판을 찾아 주는 일이다.",
+    "objectives": [
+      "프롬프트 최적화를 모의고사를 보고 오답 노트로 답안 요령을 고치는 일에 빗대어 설명할 수 있다",
+      "자동 개선에 예시 데이터, 채점 기준, 고쳐 쓰는 AI가 함께 필요한 이유를 말할 수 있다",
+      "자동으로 고친 프롬프트도 새 판으로 남기고 내놓기 전에 다시 평가해야 하는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.eval.why-evaluate",
+      "mlops.track.versioning-picture"
+    ],
+    "related": [
+      "mlops.prompt.optimize-prompts"
+    ],
+    "aliases": [
+      "프롬프트 최적화",
+      "prompt optimization",
+      "프롬프트 개선 자동화"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/prompt-registry/optimize-prompts/"
+    ]
+  },
+  {
     "id": "mlops.guardrail.guardrail",
     "title": "가드레일",
     "en": "Guardrails",
@@ -840,6 +933,51 @@
     "refs": [
       "https://huggingface.co/docs/hub/gguf",
       "https://huggingface.co/docs/transformers/main/en/quantization/overview"
+    ]
+  },
+  {
+    "id": "mlops.finetune.lora-adapter",
+    "title": "LoRA 어댑터",
+    "en": "LoRA Adapter",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "기반 모델의 가중치는 얼려 둔 채 옆에 붙인 작은 행렬 두 개만 학습하고 그 결과를 원래 출력에 더해 쓰는, 가장 흔한 가벼운 파인튜닝 부품이다.",
+    "parent": "mlops.finetune.peft-picture",
+    "related": [
+      "mlops.finetune.lora-internals"
+    ],
+    "aliases": [
+      "로라 어댑터",
+      "LoRA 모듈",
+      "LoRA 가중치 파일"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/peft/conceptual_guides/adapter"
+    ]
+  },
+  {
+    "id": "mlops.finetune.full-fine-tuning",
+    "title": "전체 파인튜닝(모든 가중치 학습)",
+    "en": "Full Fine-Tuning",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "모델이 가진 모든 가중치를 새 데이터로 다시 고치는 파인튜닝으로, 큰 모델일수록 계산과 저장 비용이 매우 커진다.",
+    "parent": "mlops.finetune.peft-picture",
+    "related": [
+      "mlops.finetune.fine-tuning"
+    ],
+    "aliases": [
+      "풀 파인튜닝",
+      "full fine-tuning",
+      "전체 미세 조정",
+      "full parameter fine-tuning"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/peft/quicktour"
     ]
   },
   {
@@ -1297,6 +1435,135 @@
     ],
     "refs": [
       "https://huggingface.co/docs/transformers/main/en/quantization/concept_guide"
+    ]
+  },
+  {
+    "id": "mlops.finetune.adapter-swap",
+    "title": "어댑터 바꿔 끼우기(여러 어댑터 전환)",
+    "en": "Switching Between Multiple Adapters",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "기반 모델 하나에 일마다 학습한 어댑터 여러 개를 올려 두고 필요한 것만 켜서, 모델을 여러 벌 두지 않고 여러 용도로 쓰는 방식이다.",
+    "parent": "mlops.finetune.peft-picture",
+    "related": [
+      "mlops.serve.vllm-lora-serving"
+    ],
+    "aliases": [
+      "어댑터 전환",
+      "adapter switching",
+      "멀티 어댑터",
+      "multiple adapters"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/peft/quicktour"
+    ]
+  },
+  {
+    "id": "mlops.finetune.trainable-parameters",
+    "title": "학습되는 파라미터 비율(trainable%)",
+    "en": "Trainable Parameter Ratio",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "모델의 전체 가중치 가운데 학습 때 실제로 바뀌는 몫으로, 가벼운 파인튜닝에서는 보통 1%에도 못 미쳐 비용이 크게 준다.",
+    "parent": "mlops.finetune.peft-picture",
+    "aliases": [
+      "trainable parameters",
+      "trainable params",
+      "학습 가능 파라미터 수",
+      "학습 대상 파라미터"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/peft/quicktour"
+    ]
+  },
+  {
+    "id": "mlops.observe.root-span",
+    "title": "루트 스팬(맨 위 단계 기록)",
+    "en": "Root Span",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "트레이스 나무의 맨 꼭대기 스팬으로, 요청 전체의 입력과 최종 출력을 담고 그 아래에 세부 단계 기록이 매달린다.",
+    "parent": "mlops.observe.trace-picture",
+    "aliases": [
+      "root span",
+      "최상위 스팬",
+      "top-level span"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/concepts/span/",
+      "https://mlflow.org/docs/latest/genai/concepts/trace/"
+    ]
+  },
+  {
+    "id": "mlops.observe.child-span",
+    "title": "부모 스팬과 자식 스팬",
+    "en": "Parent and Child Spans",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "한 단계 안에서 다시 일어난 모델 호출이나 도구 실행을 그 단계 아래 칸으로 매단 기록으로, 부모를 가리키는 번호로 나무 모양이 이어진다.",
+    "parent": "mlops.observe.trace-picture",
+    "related": [
+      "mlops.observe.root-span"
+    ],
+    "aliases": [
+      "parent span",
+      "child span",
+      "스팬 계층",
+      "span hierarchy"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/concepts/span/",
+      "https://mlflow.org/docs/latest/genai/concepts/trace/"
+    ]
+  },
+  {
+    "id": "mlops.prompt.model-migration-rewrite",
+    "title": "모델 교체 때 프롬프트 다시 맞추기",
+    "en": "Prompt Rewriting for Model Migration",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "더 싸거나 빠른 모델로 바꿀 때 예전 모델의 답을 본보기로 삼아 새 모델도 비슷하게 답하도록 프롬프트를 고쳐 쓰는 일이다.",
+    "parent": "mlops.prompt.optimization-picture",
+    "aliases": [
+      "프롬프트 마이그레이션",
+      "prompt migration",
+      "모델 교체 프롬프트 재작성"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/prompt-registry/rewrite-prompts/"
+    ]
+  },
+  {
+    "id": "mlops.prompt.reflection-model",
+    "title": "리플렉션 모델(프롬프트 고칠 점 짚는 AI)",
+    "en": "Reflection Model in Prompt Optimization",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "프롬프트 최적화에서 틀린 답들을 읽고 원인을 짚어 프롬프트를 어떻게 고칠지 제안하는 역할을 맡은 별도의 AI 모델이다.",
+    "parent": "mlops.prompt.optimization-picture",
+    "related": [
+      "mlops.prompt.gepa-optimizer"
+    ],
+    "aliases": [
+      "reflection model",
+      "reflection_model",
+      "프롬프트 리플렉션 모델"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/prompt-registry/optimize-prompts/",
+      "https://mlflow.org/docs/latest/genai/prompt-registry/rewrite-prompts/"
     ]
   },
   {

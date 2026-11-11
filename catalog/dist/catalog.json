@@ -1,5 +1,5 @@
 {
- "version": "0.47.0",
+ "version": "0.48.0",
  "domains": [
   {
    "prefix": "dev",
@@ -26313,6 +26313,68 @@
    "domain": "db"
   },
   {
+   "id": "db.basics.db-hierarchy-idea",
+   "title": "DB의 층: 클러스터·데이터베이스·스키마·표",
+   "en": "PostgreSQL Object Hierarchy: Cluster, Database, Schema, Table",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "DB 기초",
+   "summary": "DB 서버 하나가 여러 데이터베이스를 맡고, 데이터베이스 안의 스키마가 표를 칸칸이 나눠 담는 겹겹의 구조다.",
+   "objectives": [
+    "클러스터·데이터베이스·스키마·표의 포함 관계를 건물·층·방·서랍에 빗대어 설명할 수 있다",
+    "연결 하나로는 데이터베이스 한 곳만 다룬다는 것을 말할 수 있다",
+    "스키마 이름을 따로 쓰지 않으면 표가 public 칸에 들어간다는 것을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "db.basics.what-is-database",
+    "db.basics.client-server"
+   ],
+   "aliases": [
+    "DB 계층 구조",
+    "데이터베이스 계층",
+    "database hierarchy",
+    "클러스터 데이터베이스 스키마"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/tutorial-concepts.html",
+    "https://www.postgresql.org/docs/current/manage-ag-overview.html",
+    "https://www.postgresql.org/docs/current/ddl-schemas.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.basics.normalization-idea",
+   "title": "정규화: 같은 자료는 한곳에만",
+   "en": "Database Normalization",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "DB 기초",
+   "summary": "같은 자료가 여러 표에 흩어지지 않게 표를 나누고 키로 이어, 한 곳만 고치면 되도록 정리하는 일이다.",
+   "objectives": [
+    "주소를 여러 장부에 따로 적을 때 생기는 문제를 예로 들어 설명할 수 있다",
+    "자료를 성격별로 다른 표에 나누고 키로 잇는 까닭을 말할 수 있다",
+    "표를 너무 잘게 나누면 불편해질 수도 있다는 것을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "db.basics.data-modeling-idea"
+   ],
+   "related": [
+    "db.basics.join-idea"
+   ],
+   "aliases": [
+    "DB 정규화",
+    "database normalization",
+    "데이터베이스 정규화",
+    "테이블 정규화"
+   ],
+   "refs": [
+    "https://learn.microsoft.com/en-us/previous-versions/troubleshoot/microsoft-365/microsoft-365-apps/access/database-normalization-description"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.data.etl-idea",
    "title": "ETL: 모으고 다듬어 한곳에 싣기",
    "en": "ETL: Extract, Transform, Load",
@@ -26341,6 +26403,39 @@
    ],
    "refs": [
     "https://aws.amazon.com/what-is/etl/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.data.oltp-olap-idea",
+   "title": "운영 DB와 분석 DB: OLTP와 OLAP",
+   "en": "Transactional vs Analytical Databases (OLTP vs OLAP)",
+   "kind": "topic",
+   "level": 1,
+   "importance": 3,
+   "group": "데이터 수집과 가공",
+   "summary": "주문·결제를 그때그때 적는 운영용 DB와, 쌓인 자료를 모아 크게 계산하는 분석용 DB는 하는 일이 달라 따로 둔다.",
+   "objectives": [
+    "가게 계산대 장부와 월말 매출 보고서에 빗대어 두 DB의 차이를 설명할 수 있다",
+    "운영 DB에서 큰 집계를 돌리면 다른 작업이 느려질 수 있다는 것을 말할 수 있다",
+    "분석용 DB의 자료는 운영 DB보다 늦게 채워진다는 것을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "db.internals.transaction-idea",
+    "db.data.etl-idea"
+   ],
+   "related": [
+    "db.data.data-warehouse"
+   ],
+   "aliases": [
+    "운영 DB와 분석 DB",
+    "OLTP vs OLAP",
+    "트랜잭션 처리와 분석 처리",
+    "transactional vs analytical"
+   ],
+   "refs": [
+    "https://learn.microsoft.com/en-us/azure/architecture/data-guide/relational-data/online-transaction-processing",
+    "https://learn.microsoft.com/en-us/azure/architecture/data-guide/relational-data/online-analytical-processing"
    ],
    "domain": "db"
   },
@@ -26840,6 +26935,26 @@
    "domain": "db"
   },
   {
+   "id": "db.basics.data-redundancy",
+   "title": "데이터 중복: 같은 자료를 여러 곳에",
+   "en": "Data Redundancy in Databases",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "DB 기초",
+   "summary": "같은 내용이 여러 표에 따로 적혀 있는 상태로, 자리를 더 차지하고 바꿀 때 모든 곳을 똑같이 고쳐야 한다.",
+   "parent": "db.basics.normalization-idea",
+   "aliases": [
+    "데이터 중복",
+    "중복 저장",
+    "redundant data"
+   ],
+   "refs": [
+    "https://learn.microsoft.com/en-us/previous-versions/troubleshoot/microsoft-365/microsoft-365-apps/access/database-normalization-description"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.nosql.what-is-nosql",
    "title": "NoSQL",
    "en": "NoSQL Databases",
@@ -27227,6 +27342,181 @@
    ],
    "refs": [
     "https://www.prisma.io/docs/orm/prisma-migrate/workflows/seeding"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.basics.database-cluster",
+   "title": "PostgreSQL 데이터베이스 클러스터",
+   "en": "PostgreSQL Database Cluster",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "DB 기초",
+   "summary": "PostgreSQL 서버 하나가 돌보는 데이터베이스들의 묶음으로, 서버 여러 대를 엮은 무리라는 뜻이 아니다.",
+   "parent": "db.basics.db-hierarchy-idea",
+   "aliases": [
+    "PostgreSQL 클러스터",
+    "Postgres cluster",
+    "PostgreSQL database cluster",
+    "catalog cluster"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/tutorial-concepts.html",
+    "https://www.postgresql.org/docs/current/creating-cluster.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.basics.data-directory",
+   "title": "데이터 디렉터리: DB 자료가 사는 폴더",
+   "en": "PostgreSQL Data Directory (PGDATA)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "DB 기초",
+   "summary": "PostgreSQL 클러스터의 모든 자료가 저장되는 컴퓨터 안의 폴더 하나로, 처음 쓰기 전에 initdb로 준비해야 한다.",
+   "parent": "db.basics.db-hierarchy-idea",
+   "aliases": [
+    "PostgreSQL 데이터 디렉터리",
+    "PostgreSQL data directory",
+    "PGDATA",
+    "Postgres 데이터 폴더"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/creating-cluster.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.basics.relation",
+   "title": "릴레이션: 표를 부르는 다른 이름",
+   "en": "Relation (Table in Relational Terms)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "DB 기초",
+   "summary": "관계형 데이터베이스에서 표를 수학 용어로 부르는 이름으로, 표와 표 사이의 관계라는 뜻이 아니다.",
+   "parent": "db.basics.db-hierarchy-idea",
+   "related": [
+    "db.basics.relational-database"
+   ],
+   "aliases": [
+    "릴레이션",
+    "relation table",
+    "DB relation"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/tutorial-concepts.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.basics.repeating-group",
+   "title": "반복 그룹: 열1·열2·열3으로 늘린 칸",
+   "en": "Repeating Groups in a Table",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "DB 기초",
+   "summary": "수업1·수업2·수업3처럼 같은 종류의 값을 열 여러 개로 늘려 담은 모양으로, 정규화에서 따로 표로 빼낸다.",
+   "parent": "db.basics.normalization-idea",
+   "aliases": [
+    "반복 그룹",
+    "repeating group",
+    "반복되는 열",
+    "번호 붙은 열"
+   ],
+   "refs": [
+    "https://learn.microsoft.com/en-us/previous-versions/troubleshoot/microsoft-365/microsoft-365-apps/access/database-normalization-description"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.basics.normal-form",
+   "title": "정규형: 정규화 규칙의 단계",
+   "en": "Normal Forms (1NF, 2NF, 3NF)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "DB 기초",
+   "summary": "정규화 규칙 하나하나를 부르는 이름으로, 첫 규칙을 지키면 제1정규형, 셋째까지 지키면 제3정규형이라 한다.",
+   "parent": "db.basics.normalization-idea",
+   "aliases": [
+    "정규형",
+    "normal form",
+    "제1정규형",
+    "제3정규형",
+    "1NF",
+    "3NF"
+   ],
+   "refs": [
+    "https://learn.microsoft.com/en-us/previous-versions/troubleshoot/microsoft-365/microsoft-365-apps/access/database-normalization-description"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.data.oltp",
+   "title": "OLTP(온라인 트랜잭션 처리)",
+   "en": "Online Transaction Processing (OLTP)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "데이터 수집과 가공",
+   "summary": "주문·결제·재고 변화처럼 일이 생길 때마다 작은 기록을 빠르고 정확하게 적고 바로 꺼내 쓰게 하는 처리 방식이다.",
+   "parent": "db.data.oltp-olap-idea",
+   "aliases": [
+    "OLTP",
+    "온라인 트랜잭션 처리",
+    "트랜잭션 처리 시스템",
+    "online transaction processing"
+   ],
+   "refs": [
+    "https://learn.microsoft.com/en-us/azure/architecture/data-guide/relational-data/online-transaction-processing"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.data.olap",
+   "title": "OLAP(온라인 분석 처리)",
+   "en": "Online Analytical Processing (OLAP)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "데이터 수집과 가공",
+   "summary": "쌓인 업무 기록을 모아 추세와 합계를 계산하도록 읽기 위주로 짠 처리 방식으로, 운영 DB를 건드리지 않고 분석한다.",
+   "parent": "db.data.oltp-olap-idea",
+   "aliases": [
+    "OLAP",
+    "온라인 분석 처리",
+    "분석 처리 시스템",
+    "online analytical processing"
+   ],
+   "refs": [
+    "https://learn.microsoft.com/en-us/azure/architecture/data-guide/relational-data/online-analytical-processing"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.data.columnar-storage",
+   "title": "열 지향 저장: 같은 열끼리 모아 담기",
+   "en": "Columnar Storage (Columnstore vs Rowstore)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "데이터 수집과 가공",
+   "summary": "표를 행 단위가 아니라 열 단위로 모아 저장하는 방식으로, 비슷한 값끼리 잘 압축되고 필요한 열만 읽어 분석이 빠르다.",
+   "parent": "db.data.oltp-olap-idea",
+   "aliases": [
+    "열 지향 저장",
+    "컬럼형 저장",
+    "columnar storage",
+    "columnstore",
+    "열 저장 방식",
+    "column-oriented storage"
+   ],
+   "refs": [
+    "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/columnstore-indexes-overview"
    ],
    "domain": "db"
   },
@@ -43412,6 +43702,76 @@
    "domain": "rag"
   },
   {
+   "id": "rag.basics.agent-skills-idea",
+   "title": "에이전트 스킬: 필요할 때 펼쳐 보는 업무 설명서",
+   "en": "Agent Skills Open Format",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "에이전트 기초",
+   "summary": "할 일의 순서와 참고 자료를 폴더 하나에 담아 두고, 에이전트가 그 일이 생겼을 때만 꺼내 읽게 하는 공개 형식이다.",
+   "objectives": [
+    "스킬을 새 직원에게 건네는 업무 안내서에 빗대어 설명할 수 있다",
+    "스킬이 이름·설명만 먼저 보이고 본문과 자료는 필요할 때 읽힌다는 흐름을 말할 수 있다",
+    "스킬과 한 번만 쓰는 프롬프트가 어떻게 다른지 말할 수 있다",
+    "출처를 모르는 스킬을 설치하기 전에 조심해야 하는 까닭을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.basics.agent-big-picture",
+    "rag.basics.context-engineering"
+   ],
+   "related": [
+    "ax.coding.skills",
+    "rag.agent.progressive-disclosure",
+    "rag.agent.skills-pattern"
+   ],
+   "aliases": [
+    "에이전트 스킬",
+    "스킬 폴더 형식",
+    "Agent Skills 표준",
+    "agentskills.io",
+    "스킬 공개 규격"
+   ],
+   "refs": [
+    "https://agentskills.io/",
+    "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-authorization-idea",
+   "title": "MCP 인가: 원격 서버에 내 계정 쓰게 허락하기",
+   "en": "MCP Authorization with OAuth",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "인터넷 너머의 MCP 서버가 내 메일·문서를 다룰 때, 내가 로그인해 동의하면 AI 앱이 그 서버 전용 출입증을 받아 쓰는 약속이다.",
+   "objectives": [
+    "MCP 인가를 호텔 프런트에서 방 전용 카드 키를 받는 일에 빗대어 설명할 수 있다",
+    "MCP 클라이언트·MCP 서버·인가 서버가 각각 무엇을 맡는지 구분할 수 있다",
+    "내 컴퓨터에서 도는 로컬 서버와 원격 서버가 로그인 방식이 다른 까닭을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.mcp-idea"
+   ],
+   "related": [
+    "be.auth.oauth2-social",
+    "rag.agent.mcp-remote-connect"
+   ],
+   "aliases": [
+    "MCP 인가",
+    "MCP 인증",
+    "MCP authorization",
+    "MCP OAuth",
+    "MCP 로그인 흐름"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/docs/tutorials/security/authorization"
+   ],
+   "domain": "rag"
+  },
+  {
    "id": "rag.agent.a2a-idea",
    "title": "A2A: 에이전트끼리 일을 맡기는 공용 규격",
    "en": "A2A at a Glance",
@@ -43573,6 +43933,39 @@
     "https://agentclientprotocol.com/overview/introduction",
     "https://agentclientprotocol.com/overview/architecture",
     "https://docs.langchain.com/oss/python/deepagents/acp"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-extensions-idea",
+   "title": "MCP 확장: 기본 규격에 덧붙이는 선택 기능",
+   "en": "MCP Extensions",
+   "kind": "topic",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "MCP 기본 규격 밖의 기능을 따로 정해 두고, 클라이언트와 서버가 둘 다 쓰겠다고 밝힐 때만 켜지는 덧붙임 기능이다.",
+   "objectives": [
+    "MCP 확장을 휴대폰에 골라 까는 추가 앱에 빗대어 설명할 수 있다",
+    "양쪽이 모두 지원해야 확장이 켜지고, 한쪽이 모르면 기본 기능으로 물러난다는 점을 말할 수 있다",
+    "MCP 앱·작업(Tasks)·스킬처럼 공식 확장의 예를 들 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.mcp-idea"
+   ],
+   "related": [
+    "rag.agent.mcp-apps"
+   ],
+   "aliases": [
+    "MCP 확장",
+    "MCP extension",
+    "MCP 공식 확장",
+    "io.modelcontextprotocol 확장"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/extensions/overview"
    ],
    "volatile": true,
    "checked_at": "2026-11-11",
@@ -43885,6 +44278,31 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.basics.untrusted-skill-risk",
+   "title": "출처 모를 스킬의 위험",
+   "en": "Risks of Untrusted Agent Skills",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "에이전트 기초",
+   "summary": "스킬은 지시문과 실행 코드를 함께 담을 수 있어서, 남이 만든 스킬을 그대로 쓰면 에이전트가 자료를 빼돌리거나 엉뚱한 명령을 실행할 수 있다.",
+   "parent": "rag.basics.agent-skills-idea",
+   "related": [
+    "ax.security.tool-poisoning"
+   ],
+   "aliases": [
+    "악성 스킬",
+    "malicious skill",
+    "스킬 보안",
+    "skill security",
+    "신뢰할 수 없는 스킬"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview"
+   ],
    "domain": "rag"
   },
   {
@@ -44409,6 +44827,184 @@
    "refs": [
     "https://docs.ag-ui.com/introduction",
     "https://docs.langchain.com/oss/python/deepagents/ag-ui"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.basics.prebuilt-document-skills",
+   "title": "기본 제공 문서 스킬(pptx·xlsx·docx·pdf)",
+   "en": "Anthropic Pre-built Document Skills",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트 기초",
+   "summary": "Anthropic이 미리 만들어 둔 스킬로, claude.ai에서는 Claude가 따로 설정 없이 발표 자료·표·문서·PDF 파일을 만들고 고칠 때 쓴다.",
+   "parent": "rag.basics.agent-skills-idea",
+   "aliases": [
+    "Claude 문서 스킬",
+    "pre-built Agent Skills",
+    "pptx 스킬",
+    "xlsx 스킬",
+    "docx 스킬",
+    "Anthropic 기본 스킬"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-authorization-server",
+   "title": "MCP 인가 서버(authorization server)",
+   "en": "MCP Authorization Server",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "사용자가 로그인하고 동의하면 특정 MCP 서버에만 쓸 수 있는 액세스 토큰을 내주는 쪽으로, MCP 서버는 그 토큰을 확인만 한다.",
+   "parent": "rag.agent.mcp-authorization-idea",
+   "aliases": [
+    "MCP 인가 서버",
+    "MCP 토큰 발급 서버",
+    "MCP OAuth 서버",
+    "MCP authorization server"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/docs/tutorials/security/authorization"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-tasks",
+   "title": "MCP Tasks 확장: 오래 걸리는 일의 번호표",
+   "en": "MCP Tasks Extension",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "오래 걸리는 도구 호출에 MCP 서버가 바로 결과 대신 작업 번호를 돌려주고, 클라이언트가 그 번호로 진행 상황과 결과를 나중에 받아 가는 확장이다.",
+   "parent": "rag.agent.mcp-extensions-idea",
+   "related": [
+    "rag.agent.a2a-task"
+   ],
+   "aliases": [
+    "MCP 작업 확장",
+    "MCP tasks extension",
+    "MCP 비동기 작업",
+    "MCP 장기 실행 작업",
+    "tasks/get"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/extensions/tasks/overview"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-skills-extension",
+   "title": "MCP 스킬 확장(Skills over MCP)",
+   "en": "Skills over MCP Extension",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "MCP 서버가 자기 서비스를 쓰는 업무 설명서인 에이전트 스킬을 목록으로 보여 주고, 클라이언트가 필요할 때 읽어 가게 하는 확장이다.",
+   "parent": "rag.agent.mcp-extensions-idea",
+   "related": [
+    "rag.basics.agent-skills-idea"
+   ],
+   "aliases": [
+    "Skills over MCP",
+    "MCP 스킬 확장",
+    "MCP skills extension",
+    "skills/list",
+    "skill:// URI"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/extensions/skills/overview"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-protocol-version",
+   "title": "MCP 규격 버전(날짜 버전)",
+   "en": "MCP Protocol Version (YYYY-MM-DD)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "MCP 규격은 호환이 깨지는 변경이 마지막으로 들어간 날짜로 버전 이름을 붙이고, 클라이언트와 서버는 서로 맞는 버전으로 대화한다.",
+   "related": [
+    "rag.agent.mcp-idea"
+   ],
+   "aliases": [
+    "MCP 버전",
+    "MCP protocol version",
+    "MCP 규격 개정판",
+    "MCP-Protocol-Version",
+    "MCP 날짜 버전"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/docs/learn/versioning"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.basics.claude-agent-sdk",
+   "title": "Claude Agent SDK",
+   "en": "Claude Agent SDK",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트 기초",
+   "summary": "Claude Code가 쓰는 도구·에이전트 루프·권한·세션을 파이썬과 타입스크립트 프로그램 안에서 불러 쓰게 해 주는 Anthropic의 라이브러리다.",
+   "related": [
+    "rag.basics.openai-agents-sdk",
+    "rag.basics.agent-harness"
+   ],
+   "aliases": [
+    "Claude 에이전트 SDK",
+    "claude-agent-sdk",
+    "Anthropic Agent SDK",
+    "Claude Code SDK"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/agent-sdk/overview"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.basics.openai-agents-sdk",
+   "title": "OpenAI Agents SDK",
+   "en": "OpenAI Agents SDK",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트 기초",
+   "summary": "지시와 도구를 가진 에이전트, 다른 에이전트에게 일 넘기기, 입력·출력 검사를 적은 개념으로 묶어 둔 OpenAI의 파이썬 에이전트 라이브러리다.",
+   "related": [
+    "rag.basics.claude-agent-sdk",
+    "rag.basics.langchain"
+   ],
+   "aliases": [
+    "OpenAI 에이전트 SDK",
+    "openai-agents",
+    "OpenAI Agents 파이썬 SDK",
+    "Swarm 후속 SDK"
+   ],
+   "refs": [
+    "https://openai.github.io/openai-agents-python/"
    ],
    "volatile": true,
    "checked_at": "2026-11-11",
@@ -49106,6 +49702,113 @@
    "domain": "ax"
   },
   {
+   "id": "ax.governance.frontier-safety-policy",
+   "title": "AI 회사의 안전 약속: 위험한 능력에 미리 선 긋기",
+   "en": "Frontier AI Safety Frameworks",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "큰 AI를 만드는 회사들은 모델이 위험한 능력의 선에 가까워질 때 어떤 보호 조치와 안전 검토를 거칠지 미리 정해 공개한다.",
+   "objectives": [
+    "AI 회사가 위험한 능력의 선을 미리 정해 두는 까닭을 실험실 안전 등급 같은 비유로 설명할 수 있다",
+    "모델이 그 선에 닿으면 회사가 하기로 한 일을 예를 들어 말할 수 있다",
+    "회사가 모델마다 공개하는 안전 시험 문서를 찾아 무엇이 적혀 있는지 말할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.governance.genai-risks-overview"
+   ],
+   "related": [
+    "ax.governance.cbrn-information-risk",
+    "ax.governance.ai-red-teaming"
+   ],
+   "aliases": [
+    "프런티어 AI 안전 정책",
+    "frontier safety framework",
+    "AI 안전 프레임워크",
+    "frontier AI safety policy"
+   ],
+   "refs": [
+    "https://www.anthropic.com/news/anthropics-responsible-scaling-policy",
+    "https://www.anthropic.com/responsible-scaling-policy",
+    "https://deepmind.google/discover/blog/strengthening-our-frontier-safety-framework/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.kids-and-ai-chatbots",
+   "title": "아이와 청소년의 AI 챗봇 사용: 나이와 보호 장치",
+   "en": "Children, Teens, and AI Chatbots",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "AI 챗봇은 친구처럼 말해 아이가 쉽게 믿고 기댈 수 있어, 서비스마다 이용 나이를 정하고 나이를 확인하거나 보호자가 켜고 끄는 장치를 둔다.",
+   "objectives": [
+    "AI 챗봇이 아이와 청소년에게 왜 더 조심스러운지 일상 예로 설명할 수 있다",
+    "AI 서비스의 이용 나이와 나이 확인 방법을 찾아 말할 수 있다",
+    "아이에게 AI 챗봇을 쓰게 할 때 보호자가 켜 둘 설정과 알려 줄 약속을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.first-chat"
+   ],
+   "related": [
+    "ax.governance.ai-emotional-reliance",
+    "ax.basics.personal-data",
+    "ax.governance.ai-companionship"
+   ],
+   "aliases": [
+    "어린이 AI 챗봇",
+    "청소년 AI 이용",
+    "kids and AI",
+    "teens and AI chatbots",
+    "미성년자 AI 사용"
+   ],
+   "refs": [
+    "https://support.google.com/gemini/answer/16109150",
+    "https://support.claude.com/en/articles/15171100-age-assurance-on-claude"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.why-ai-refuses",
+   "title": "AI가 답을 거절하는 이유: 원칙과 감시",
+   "en": "Why AI Chatbots Refuse: Principles and Safeguards",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "AI 회사는 지켜야 할 원칙을 모델에 가르치고 대화를 지켜보는 장치를 겹겹이 두어 해로운 부탁은 거절하게 하되, 괜한 거절도 손해로 보고 줄이려 한다.",
+   "objectives": [
+    "AI가 어떤 부탁을 거절하는 까닭을 회사 원칙과 이용 규칙으로 설명할 수 있다",
+    "AI 회사가 해로운 쓰임을 막으려고 두는 장치를 원칙 가르치기·대화 감시·계정 제재로 나눠 말할 수 있다",
+    "거절이 늘 안전한 선택은 아니라는 말의 뜻을 예를 들어 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.how-llm-is-built"
+   ],
+   "related": [
+    "ax.governance.usage-policy",
+    "mlops.guardrail.guardrail",
+    "llm.basics.ai-alignment",
+    "llm.api.refusal-response"
+   ],
+   "aliases": [
+    "AI 거절 이유",
+    "챗봇이 거절하는 이유",
+    "AI refusals"
+   ],
+   "refs": [
+    "https://www.anthropic.com/news/building-safeguards-for-claude",
+    "https://www.anthropic.com/constitution"
+   ],
+   "domain": "ax"
+  },
+  {
    "id": "ax.governance.ai-value-chain",
    "title": "AI 가치사슬: 남이 만든 부품으로 짓는 AI",
    "en": "The AI Value Chain and Third-Party Components",
@@ -49719,6 +50422,29 @@
    "domain": "ax"
   },
   {
+   "id": "ax.governance.system-card",
+   "title": "시스템 카드(system card)",
+   "en": "AI Model System Card",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "AI 회사가 새 모델을 내놓을 때 그 모델이 무엇을 잘하는지, 어떤 안전 시험을 거쳤는지, 왜 그렇게 내놓기로 했는지 적어 공개하는 문서다.",
+   "parent": "ax.governance.frontier-safety-policy",
+   "related": [
+    "llm.basics.model-card"
+   ],
+   "aliases": [
+    "모델 시스템 카드",
+    "system cards",
+    "Claude 시스템 카드"
+   ],
+   "refs": [
+    "https://www.anthropic.com/system-cards"
+   ],
+   "domain": "ax"
+  },
+  {
    "id": "ax.governance.oecd-ai-principles",
    "title": "OECD AI 원칙",
    "en": "OECD AI Principles",
@@ -50061,6 +50787,193 @@
    ],
    "refs": [
     "https://genai.owasp.org/llmrisk/llm032025-supply-chain/"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.responsible-scaling-policy",
+   "title": "책임 있는 확장 정책(RSP)",
+   "en": "Anthropic Responsible Scaling Policy (RSP)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "Anthropic이 2023년부터 공개해 고쳐 온 위험 관리 규칙으로, 2026년 3판부터는 회사가 스스로 지킬 계획과 업계 전체에 권하는 기준을 나누고 위험 보고서를 정기적으로 낸다.",
+   "parent": "ax.governance.frontier-safety-policy",
+   "aliases": [
+    "책임 있는 스케일링 정책",
+    "Anthropic RSP",
+    "Responsible Scaling Policy"
+   ],
+   "refs": [
+    "https://www.anthropic.com/responsible-scaling-policy"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.ai-safety-level",
+   "title": "AI 안전 수준(ASL)",
+   "en": "AI Safety Levels (ASL)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "위험한 병균을 다루는 실험실 안전 등급처럼, Anthropic이 모델에 거는 보안과 사용 제한 조치를 단계로 묶어 부르는 이름으로, ASL-3처럼 숫자가 클수록 엄하다.",
+   "parent": "ax.governance.frontier-safety-policy",
+   "aliases": [
+    "AI Safety Level",
+    "ASL-3",
+    "ASL 등급",
+    "AI 안전 등급"
+   ],
+   "refs": [
+    "https://www.anthropic.com/news/anthropics-responsible-scaling-policy",
+    "https://www.anthropic.com/responsible-scaling-policy"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.capability-threshold",
+   "title": "위험 능력 기준선(capability threshold)",
+   "en": "Dangerous Capability Threshold",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "무기 개발을 돕거나 AI 연구를 스스로 해내는 것처럼, 모델이 그만큼 할 수 있게 되면 보호 조치를 더 세게 해야 한다고 미리 정해 둔 능력의 선이다.",
+   "parent": "ax.governance.frontier-safety-policy",
+   "aliases": [
+    "능력 임계값",
+    "Critical Capability Level",
+    "위험 능력 임계점"
+   ],
+   "refs": [
+    "https://www.anthropic.com/responsible-scaling-policy",
+    "https://deepmind.google/discover/blog/strengthening-our-frontier-safety-framework/"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.ai-security-institute",
+   "title": "정부의 AI 안전 평가 기관(AISI·CAISI)",
+   "en": "Government AI Safety and Security Institutes",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "영국 AI 보안 연구소나 미국 NIST 안의 센터처럼, 나라가 세워 앞선 AI 모델의 사이버·생물 무기 같은 위험을 시험하고 기준을 만드는 기관이다.",
+   "aliases": [
+    "AI Security Institute",
+    "영국 AI 보안 연구소",
+    "CAISI",
+    "CAISSI",
+    "AI 안전 연구소",
+    "AI Safety Institute"
+   ],
+   "refs": [
+    "https://www.aisi.gov.uk/",
+    "https://www.nist.gov/caisi"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.age-assurance",
+   "title": "AI 서비스의 연령 확인(age assurance)",
+   "en": "Age Assurance for AI Services",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "이용 나이에 못 미치는 사람을 막으려고 가입 때 나이를 묻고, 의심되는 계정은 얼굴 사진이나 신분증으로 나이를 다시 확인하게 하는 절차다.",
+   "parent": "ax.governance.kids-and-ai-chatbots",
+   "aliases": [
+    "나이 확인",
+    "연령 인증",
+    "age verification",
+    "AI 최소 이용 나이"
+   ],
+   "refs": [
+    "https://support.claude.com/en/articles/15171100-age-assurance-on-claude",
+    "https://support.claude.com/en/articles/13117299-minimum-age-requirement-access-restriction"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.parental-controls",
+   "title": "AI 챗봇 보호자 관리 기능",
+   "en": "Parental Controls for AI Chatbots",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "보호자가 가족 계정으로 아이의 AI 챗봇 사용을 켜고 끌 수 있게 하는 기능으로, 거름 장치가 완벽하지 않아 함께 써 보고 약속을 정하는 일이 같이 필요하다.",
+   "parent": "ax.governance.kids-and-ai-chatbots",
+   "aliases": [
+    "parental controls",
+    "자녀 보호 기능",
+    "Family Link Gemini",
+    "AI 자녀 관리"
+   ],
+   "refs": [
+    "https://support.google.com/gemini/answer/16109150"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.ai-constitution",
+   "title": "AI 헌법(Claude의 constitution)",
+   "en": "Claude's Constitution",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "Anthropic이 Claude가 지닐 가치와 행동을 적어 공개한 문서로, 넓은 안전·윤리·회사 지침·실제 도움의 순서로 무게를 두라고 학습에 쓴다.",
+   "parent": "ax.governance.why-ai-refuses",
+   "related": [
+    "llm.basics.ai-alignment"
+   ],
+   "aliases": [
+    "Claude constitution",
+    "Claude 헌법",
+    "Anthropic 헌법",
+    "AI 행동 원칙 문서"
+   ],
+   "refs": [
+    "https://www.anthropic.com/constitution"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.overcautious-refusal",
+   "title": "지나친 거절(overcautious refusal)",
+   "en": "Overcautious Refusal",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "일어날 가능성이 아주 낮은 해를 핑계로 멀쩡한 부탁을 거절하거나 쓸데없는 경고를 잔뜩 붙이는 일로, 도움을 못 받는 것도 실제 손해로 본다.",
+   "parent": "ax.governance.why-ai-refuses",
+   "aliases": [
+    "과잉 거절",
+    "over-refusal",
+    "지나친 조심",
+    "AI 과잉 경고",
+    "overcautious AI"
+   ],
+   "refs": [
+    "https://www.anthropic.com/constitution"
    ],
    "domain": "ax"
   },
@@ -60173,6 +61086,39 @@
    "domain": "ml"
   },
   {
+   "id": "ml.supervised.linear-regression-idea",
+   "title": "선형 회귀 맛보기: 점들 사이에 직선 하나 긋기",
+   "en": "Linear Regression Intuition: Fitting a Best-Fit Line",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "AI 기초",
+   "summary": "자동차 무게와 연비처럼 두 값 사이의 경향을 직선 하나로 나타내고, 그 직선으로 새 값의 숫자를 예측하는 모델의 큰 그림이다.",
+   "objectives": [
+    "흩어진 점들 사이에 가장 잘 맞는 직선을 긋는 일을 그림으로 설명할 수 있다",
+    "직선의 기울기(가중치)와 시작 높이(편향)가 학습으로 정해진다는 것을 말할 수 있다",
+    "특성이 여러 개면 특성마다 가중치가 하나씩 붙는다는 것을 예로 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.types-of-ml"
+   ],
+   "related": [
+    "ml.basics.regression",
+    "ml.supervised.linear-regression"
+   ],
+   "aliases": [
+    "선형 회귀 입문",
+    "linear regression intuition",
+    "최적 직선",
+    "line of best fit",
+    "추세선 모델"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/linear-regression"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.basics.data-quality",
    "title": "AI에게 데이터가 중요한 이유",
    "en": "Why Data Matters to AI",
@@ -60421,6 +61367,73 @@
     "https://developers.google.com/machine-learning/crash-course/numerical-data",
     "https://developers.google.com/machine-learning/crash-course/categorical-data",
     "https://developers.google.com/machine-learning/crash-course/numerical-data/feature-vectors"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.training.gradient-descent-idea",
+   "title": "경사 하강법 맛보기: 비탈을 따라 한 걸음씩",
+   "en": "Gradient Descent Intuition: Stepping Downhill on the Loss",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "틀린 정도를 재고 그 정도가 줄어드는 쪽으로 가중치와 편향을 조금씩 옮기기를 되풀이해 모델이 배우는 방법의 큰 그림이다.",
+   "objectives": [
+    "경사 하강법을 안개 낀 산에서 발밑 비탈만 보고 내려가는 일에 빗대어 설명할 수 있다",
+    "손실 재기, 방향 정하기, 조금 옮기기, 되풀이하기의 네 단계를 차례로 말할 수 있다",
+    "손실이 더 줄지 않고 평평해지면 학습을 멈춘다는 것을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.train-inference",
+    "ml.supervised.linear-regression-idea"
+   ],
+   "related": [
+    "ml.training.loss-curve",
+    "ml.training.learning-rate",
+    "ml.training.backprop"
+   ],
+   "aliases": [
+    "경사하강법 원리",
+    "gradient descent intuition",
+    "기울기 따라 내려가기",
+    "손실 줄이기 원리"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/linear-regression/gradient-descent"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.logistic-regression-idea",
+   "title": "로지스틱 회귀 맛보기: 확률로 답하는 모델",
+   "en": "Logistic Regression Intuition: Predicting a Probability",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "숫자 대신 '비가 올 확률 70%'처럼 0과 1 사이의 확률을 내놓고, 그 확률로 예·아니요를 가를 수 있게 하는 모델의 큰 그림이다.",
+   "objectives": [
+    "선형 회귀는 숫자를, 로지스틱 회귀는 확률을 내놓는다는 차이를 예로 설명할 수 있다",
+    "어떤 계산 결과든 0과 1 사이로 눌러 담는 S자 곡선의 역할을 비유로 말할 수 있다",
+    "나온 확률을 그대로 쓰는 경우와 예·아니요로 바꿔 쓰는 경우를 구분할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.supervised.linear-regression-idea"
+   ],
+   "related": [
+    "ml.basics.classification",
+    "ml.supervised.logistic-regression"
+   ],
+   "aliases": [
+    "로지스틱 회귀 입문",
+    "logistic regression intuition",
+    "확률 예측 모델",
+    "확률을 내는 분류 모델"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/logistic-regression",
+    "https://developers.google.com/machine-learning/crash-course/logistic-regression/sigmoid-function"
    ],
    "domain": "ml"
   },
@@ -61124,6 +62137,152 @@
    "domain": "ml"
   },
   {
+   "id": "ml.training.gradient",
+   "title": "기울기(손실이 변하는 방향)",
+   "en": "Gradient of the Loss",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "가중치를 조금 바꿀 때 손실이 어느 쪽으로 얼마나 가파르게 변하는지 알려 주는 값으로, 경사 하강법은 그 반대쪽으로 움직인다.",
+   "parent": "ml.training.gradient-descent-idea",
+   "related": [
+    "ml.nn.zero-grad"
+   ],
+   "aliases": [
+    "손실 기울기",
+    "loss gradient",
+    "그래디언트 벡터",
+    "loss slope"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/glossary#gradient"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.training.iteration",
+   "title": "반복(학습 한 번의 갱신)",
+   "en": "Training Iteration",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "학습 중에 모델의 가중치와 편향을 한 번 고치는 단위로, 학습은 이 반복을 수없이 되풀이하는 일이다.",
+   "parent": "ml.training.gradient-descent-idea",
+   "related": [
+    "ml.training.epoch-batch"
+   ],
+   "aliases": [
+    "학습 반복",
+    "학습 스텝",
+    "training step",
+    "training iteration",
+    "갱신 한 번"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/glossary#iteration"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.linear-model",
+   "title": "선형 모델",
+   "en": "Linear Model",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "특성마다 가중치를 하나씩 곱해 더하고 편향을 얹어 답을 내는 모델로, 깊은 신경망보다 학습과 해석이 쉽다.",
+   "parent": "ml.supervised.linear-regression-idea",
+   "related": [
+    "ml.nn.nonlinear-relationship"
+   ],
+   "aliases": [
+    "linear models",
+    "선형 모형",
+    "가중합 모델",
+    "일차 모델"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/glossary#linear-model"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.nonlinear-relationship",
+   "title": "비선형 관계",
+   "en": "Nonlinear Relationship",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "직선 하나로는 나눌 수도 그릴 수도 없는 데이터 사이의 관계로, 신경망이 필요한 큰 이유다.",
+   "parent": "ml.nn.neural-network-idea",
+   "related": [
+    "ml.supervised.linear-model"
+   ],
+   "aliases": [
+    "비선형성",
+    "nonlinear data",
+    "비선형 데이터",
+    "직선으로 못 나누는 데이터"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/glossary#nonlinear",
+    "https://developers.google.com/machine-learning/crash-course/neural-networks"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.basics.ground-truth",
+   "title": "실제 정답(ground truth)",
+   "en": "Ground Truth",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "현실에서 실제로 일어난 결과로, 모델의 예측이 맞았는지 견주는 기준이 되지만 그 자체에도 실수가 섞일 수 있다.",
+   "related": [
+    "ml.basics.labeled-example",
+    "ml.basics.proxy-label"
+   ],
+   "aliases": [
+    "그라운드 트루스",
+    "참값 레이블",
+    "실측 정답",
+    "ground-truth label"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/glossary#ground-truth"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.feature-engineering",
+   "title": "특성 공학(원재료 손질하기)",
+   "en": "Feature Engineering",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "날것의 데이터 값을 모델이 배우기 좋은 숫자 묶음으로 어떻게 바꿀지 정하고 다듬는 일이다.",
+   "related": [
+    "ml.data.feature-vector",
+    "ml.data.numerical-vs-categorical"
+   ],
+   "aliases": [
+    "특성 공학",
+    "피처 엔지니어링",
+    "featurization"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/numerical-data/feature-vectors",
+    "https://developers.google.com/machine-learning/glossary#feature-engineering"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.basics.reinforcement-learning",
    "title": "강화 학습",
    "en": "Reinforcement Learning",
@@ -61347,6 +62506,30 @@
    "refs": [
     "https://developers.google.com/machine-learning/decision-forests/intro-to-decision-forests",
     "https://developers.google.com/machine-learning/glossary/df"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.basics.feedback-loop",
+   "title": "피드백 루프(예측이 다음 데이터를 바꿈)",
+   "en": "ML Feedback Loop",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "모델의 예측이 사람들의 행동을 바꾸고, 그렇게 생긴 데이터가 다시 그 모델의 학습 재료가 되는 순환이다.",
+   "related": [
+    "ml.basics.recommendation-systems",
+    "ml.basics.data-bias-types"
+   ],
+   "aliases": [
+    "ML 피드백 루프",
+    "machine learning feedback loop",
+    "예측 되먹임",
+    "추천 피드백 루프"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/glossary#feedback-loop"
    ],
    "domain": "ml"
   },
@@ -65810,6 +66993,102 @@
    "domain": "mlops"
   },
   {
+   "id": "mlops.finetune.peft-picture",
+   "title": "가벼운 파인튜닝의 큰 그림: 작은 부품만 학습하기",
+   "en": "The Big Picture of Parameter-Efficient Fine-Tuning",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "큰 모델의 원래 가중치는 그대로 두고 덧붙인 작은 부품만 학습해, 적은 비용과 저장 공간으로 모델을 특정 일에 맞추는 방법이다.",
+   "objectives": [
+    "모든 가중치를 고치는 파인튜닝과 작은 부품만 학습하는 방식을 옷을 새로 짓기와 덧단 붙이기에 빗대어 설명할 수 있다",
+    "기반 모델 하나에 일마다 다른 어댑터를 바꿔 끼워 쓰는 흐름을 그림으로 그릴 수 있다",
+    "어댑터 파일이 원래 모델 파일보다 훨씬 작아 보관하고 주고받기 쉬운 이유를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.how-llm-is-built"
+   ],
+   "related": [
+    "mlops.finetune.fine-tuning",
+    "mlops.finetune.lora-quickstart"
+   ],
+   "aliases": [
+    "파라미터 효율 파인튜닝",
+    "parameter-efficient fine-tuning",
+    "가벼운 파인튜닝",
+    "효율적 미세 조정"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/peft/index",
+    "https://huggingface.co/docs/peft/quicktour"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.trace-picture",
+   "title": "트레이스의 큰 그림: AI 앱 한 번 실행의 작업 일지",
+   "en": "The Big Picture of LLM App Traces",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "AI 앱이 요청 하나를 처리하며 거친 모델 호출·도구 실행·검색 단계를 나무 모양 기록으로 남겨, 어디서 느리고 틀렸는지 나중에 찾게 하는 일이다.",
+   "objectives": [
+    "트레이스를 택배 배송 조회처럼 요청 하나가 거친 단계를 차례로 적은 일지에 빗대어 설명할 수 있다",
+    "트레이스와 스팬의 관계를 요청 한 번과 그 안의 단계 하나로 구분해 말할 수 있다",
+    "트레이스를 보면 느린 단계와 실패한 단계를 찾을 수 있는 이유를 예를 들어 말할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.observe.why-monitor"
+   ],
+   "related": [
+    "mlops.observe.trace",
+    "mlops.observe.llm-observability"
+   ],
+   "aliases": [
+    "AI 앱 실행 일지",
+    "에이전트 실행 기록",
+    "agent execution trace"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/concepts/trace/",
+    "https://mlflow.org/docs/latest/genai/concepts/span/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.prompt.optimization-picture",
+   "title": "프롬프트 최적화의 큰 그림: 채점하며 고쳐 쓰기",
+   "en": "The Big Picture of Prompt Optimization",
+   "kind": "topic",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "예시 문제와 채점 기준을 주면 AI가 프롬프트를 고쳐 쓰고 점수를 다시 재기를 되풀이해 더 나은 프롬프트 판을 찾아 주는 일이다.",
+   "objectives": [
+    "프롬프트 최적화를 모의고사를 보고 오답 노트로 답안 요령을 고치는 일에 빗대어 설명할 수 있다",
+    "자동 개선에 예시 데이터, 채점 기준, 고쳐 쓰는 AI가 함께 필요한 이유를 말할 수 있다",
+    "자동으로 고친 프롬프트도 새 판으로 남기고 내놓기 전에 다시 평가해야 하는 이유를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.eval.why-evaluate",
+    "mlops.track.versioning-picture"
+   ],
+   "related": [
+    "mlops.prompt.optimize-prompts"
+   ],
+   "aliases": [
+    "프롬프트 최적화",
+    "prompt optimization",
+    "프롬프트 개선 자동화"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/prompt-registry/optimize-prompts/"
+   ],
+   "domain": "mlops"
+  },
+  {
    "id": "mlops.guardrail.guardrail",
    "title": "가드레일",
    "en": "Guardrails",
@@ -66279,6 +67558,53 @@
    "refs": [
     "https://huggingface.co/docs/hub/gguf",
     "https://huggingface.co/docs/transformers/main/en/quantization/overview"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.finetune.lora-adapter",
+   "title": "LoRA 어댑터",
+   "en": "LoRA Adapter",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "기반 모델의 가중치는 얼려 둔 채 옆에 붙인 작은 행렬 두 개만 학습하고 그 결과를 원래 출력에 더해 쓰는, 가장 흔한 가벼운 파인튜닝 부품이다.",
+   "parent": "mlops.finetune.peft-picture",
+   "related": [
+    "mlops.finetune.lora-internals"
+   ],
+   "aliases": [
+    "로라 어댑터",
+    "LoRA 모듈",
+    "LoRA 가중치 파일"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/peft/conceptual_guides/adapter"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.finetune.full-fine-tuning",
+   "title": "전체 파인튜닝(모든 가중치 학습)",
+   "en": "Full Fine-Tuning",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "모델이 가진 모든 가중치를 새 데이터로 다시 고치는 파인튜닝으로, 큰 모델일수록 계산과 저장 비용이 매우 커진다.",
+   "parent": "mlops.finetune.peft-picture",
+   "related": [
+    "mlops.finetune.fine-tuning"
+   ],
+   "aliases": [
+    "풀 파인튜닝",
+    "full fine-tuning",
+    "전체 미세 조정",
+    "full parameter fine-tuning"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/peft/quicktour"
    ],
    "domain": "mlops"
   },
@@ -66756,6 +68082,141 @@
    ],
    "refs": [
     "https://huggingface.co/docs/transformers/main/en/quantization/concept_guide"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.finetune.adapter-swap",
+   "title": "어댑터 바꿔 끼우기(여러 어댑터 전환)",
+   "en": "Switching Between Multiple Adapters",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "기반 모델 하나에 일마다 학습한 어댑터 여러 개를 올려 두고 필요한 것만 켜서, 모델을 여러 벌 두지 않고 여러 용도로 쓰는 방식이다.",
+   "parent": "mlops.finetune.peft-picture",
+   "related": [
+    "mlops.serve.vllm-lora-serving"
+   ],
+   "aliases": [
+    "어댑터 전환",
+    "adapter switching",
+    "멀티 어댑터",
+    "multiple adapters"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/peft/quicktour"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.finetune.trainable-parameters",
+   "title": "학습되는 파라미터 비율(trainable%)",
+   "en": "Trainable Parameter Ratio",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "모델의 전체 가중치 가운데 학습 때 실제로 바뀌는 몫으로, 가벼운 파인튜닝에서는 보통 1%에도 못 미쳐 비용이 크게 준다.",
+   "parent": "mlops.finetune.peft-picture",
+   "aliases": [
+    "trainable parameters",
+    "trainable params",
+    "학습 가능 파라미터 수",
+    "학습 대상 파라미터"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/peft/quicktour"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.root-span",
+   "title": "루트 스팬(맨 위 단계 기록)",
+   "en": "Root Span",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "트레이스 나무의 맨 꼭대기 스팬으로, 요청 전체의 입력과 최종 출력을 담고 그 아래에 세부 단계 기록이 매달린다.",
+   "parent": "mlops.observe.trace-picture",
+   "aliases": [
+    "root span",
+    "최상위 스팬",
+    "top-level span"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/concepts/span/",
+    "https://mlflow.org/docs/latest/genai/concepts/trace/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.child-span",
+   "title": "부모 스팬과 자식 스팬",
+   "en": "Parent and Child Spans",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "한 단계 안에서 다시 일어난 모델 호출이나 도구 실행을 그 단계 아래 칸으로 매단 기록으로, 부모를 가리키는 번호로 나무 모양이 이어진다.",
+   "parent": "mlops.observe.trace-picture",
+   "related": [
+    "mlops.observe.root-span"
+   ],
+   "aliases": [
+    "parent span",
+    "child span",
+    "스팬 계층",
+    "span hierarchy"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/concepts/span/",
+    "https://mlflow.org/docs/latest/genai/concepts/trace/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.prompt.model-migration-rewrite",
+   "title": "모델 교체 때 프롬프트 다시 맞추기",
+   "en": "Prompt Rewriting for Model Migration",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "더 싸거나 빠른 모델로 바꿀 때 예전 모델의 답을 본보기로 삼아 새 모델도 비슷하게 답하도록 프롬프트를 고쳐 쓰는 일이다.",
+   "parent": "mlops.prompt.optimization-picture",
+   "aliases": [
+    "프롬프트 마이그레이션",
+    "prompt migration",
+    "모델 교체 프롬프트 재작성"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/prompt-registry/rewrite-prompts/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.prompt.reflection-model",
+   "title": "리플렉션 모델(프롬프트 고칠 점 짚는 AI)",
+   "en": "Reflection Model in Prompt Optimization",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "프롬프트 최적화에서 틀린 답들을 읽고 원인을 짚어 프롬프트를 어떻게 고칠지 제안하는 역할을 맡은 별도의 AI 모델이다.",
+   "parent": "mlops.prompt.optimization-picture",
+   "related": [
+    "mlops.prompt.gepa-optimizer"
+   ],
+   "aliases": [
+    "reflection model",
+    "reflection_model",
+    "프롬프트 리플렉션 모델"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/prompt-registry/optimize-prompts/",
+    "https://mlflow.org/docs/latest/genai/prompt-registry/rewrite-prompts/"
    ],
    "domain": "mlops"
   },

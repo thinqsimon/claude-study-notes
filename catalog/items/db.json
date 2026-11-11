@@ -460,6 +460,66 @@
     ]
   },
   {
+    "id": "db.basics.db-hierarchy-idea",
+    "title": "DB의 층: 클러스터·데이터베이스·스키마·표",
+    "en": "PostgreSQL Object Hierarchy: Cluster, Database, Schema, Table",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "DB 기초",
+    "summary": "DB 서버 하나가 여러 데이터베이스를 맡고, 데이터베이스 안의 스키마가 표를 칸칸이 나눠 담는 겹겹의 구조다.",
+    "objectives": [
+      "클러스터·데이터베이스·스키마·표의 포함 관계를 건물·층·방·서랍에 빗대어 설명할 수 있다",
+      "연결 하나로는 데이터베이스 한 곳만 다룬다는 것을 말할 수 있다",
+      "스키마 이름을 따로 쓰지 않으면 표가 public 칸에 들어간다는 것을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "db.basics.what-is-database",
+      "db.basics.client-server"
+    ],
+    "aliases": [
+      "DB 계층 구조",
+      "데이터베이스 계층",
+      "database hierarchy",
+      "클러스터 데이터베이스 스키마"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/tutorial-concepts.html",
+      "https://www.postgresql.org/docs/current/manage-ag-overview.html",
+      "https://www.postgresql.org/docs/current/ddl-schemas.html"
+    ]
+  },
+  {
+    "id": "db.basics.normalization-idea",
+    "title": "정규화: 같은 자료는 한곳에만",
+    "en": "Database Normalization",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "DB 기초",
+    "summary": "같은 자료가 여러 표에 흩어지지 않게 표를 나누고 키로 이어, 한 곳만 고치면 되도록 정리하는 일이다.",
+    "objectives": [
+      "주소를 여러 장부에 따로 적을 때 생기는 문제를 예로 들어 설명할 수 있다",
+      "자료를 성격별로 다른 표에 나누고 키로 잇는 까닭을 말할 수 있다",
+      "표를 너무 잘게 나누면 불편해질 수도 있다는 것을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "db.basics.data-modeling-idea"
+    ],
+    "related": [
+      "db.basics.join-idea"
+    ],
+    "aliases": [
+      "DB 정규화",
+      "database normalization",
+      "데이터베이스 정규화",
+      "테이블 정규화"
+    ],
+    "refs": [
+      "https://learn.microsoft.com/en-us/previous-versions/troubleshoot/microsoft-365/microsoft-365-apps/access/database-normalization-description"
+    ]
+  },
+  {
     "id": "db.data.etl-idea",
     "title": "ETL: 모으고 다듬어 한곳에 싣기",
     "en": "ETL: Extract, Transform, Load",
@@ -488,6 +548,38 @@
     ],
     "refs": [
       "https://aws.amazon.com/what-is/etl/"
+    ]
+  },
+  {
+    "id": "db.data.oltp-olap-idea",
+    "title": "운영 DB와 분석 DB: OLTP와 OLAP",
+    "en": "Transactional vs Analytical Databases (OLTP vs OLAP)",
+    "kind": "topic",
+    "level": 1,
+    "importance": 3,
+    "group": "데이터 수집과 가공",
+    "summary": "주문·결제를 그때그때 적는 운영용 DB와, 쌓인 자료를 모아 크게 계산하는 분석용 DB는 하는 일이 달라 따로 둔다.",
+    "objectives": [
+      "가게 계산대 장부와 월말 매출 보고서에 빗대어 두 DB의 차이를 설명할 수 있다",
+      "운영 DB에서 큰 집계를 돌리면 다른 작업이 느려질 수 있다는 것을 말할 수 있다",
+      "분석용 DB의 자료는 운영 DB보다 늦게 채워진다는 것을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "db.internals.transaction-idea",
+      "db.data.etl-idea"
+    ],
+    "related": [
+      "db.data.data-warehouse"
+    ],
+    "aliases": [
+      "운영 DB와 분석 DB",
+      "OLTP vs OLAP",
+      "트랜잭션 처리와 분석 처리",
+      "transactional vs analytical"
+    ],
+    "refs": [
+      "https://learn.microsoft.com/en-us/azure/architecture/data-guide/relational-data/online-transaction-processing",
+      "https://learn.microsoft.com/en-us/azure/architecture/data-guide/relational-data/online-analytical-processing"
     ]
   },
   {
@@ -965,6 +1057,25 @@
     ]
   },
   {
+    "id": "db.basics.data-redundancy",
+    "title": "데이터 중복: 같은 자료를 여러 곳에",
+    "en": "Data Redundancy in Databases",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "DB 기초",
+    "summary": "같은 내용이 여러 표에 따로 적혀 있는 상태로, 자리를 더 차지하고 바꿀 때 모든 곳을 똑같이 고쳐야 한다.",
+    "parent": "db.basics.normalization-idea",
+    "aliases": [
+      "데이터 중복",
+      "중복 저장",
+      "redundant data"
+    ],
+    "refs": [
+      "https://learn.microsoft.com/en-us/previous-versions/troubleshoot/microsoft-365/microsoft-365-apps/access/database-normalization-description"
+    ]
+  },
+  {
     "id": "db.nosql.what-is-nosql",
     "title": "NoSQL",
     "en": "NoSQL Databases",
@@ -1336,6 +1447,173 @@
     ],
     "refs": [
       "https://www.prisma.io/docs/orm/prisma-migrate/workflows/seeding"
+    ]
+  },
+  {
+    "id": "db.basics.database-cluster",
+    "title": "PostgreSQL 데이터베이스 클러스터",
+    "en": "PostgreSQL Database Cluster",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "DB 기초",
+    "summary": "PostgreSQL 서버 하나가 돌보는 데이터베이스들의 묶음으로, 서버 여러 대를 엮은 무리라는 뜻이 아니다.",
+    "parent": "db.basics.db-hierarchy-idea",
+    "aliases": [
+      "PostgreSQL 클러스터",
+      "Postgres cluster",
+      "PostgreSQL database cluster",
+      "catalog cluster"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/tutorial-concepts.html",
+      "https://www.postgresql.org/docs/current/creating-cluster.html"
+    ]
+  },
+  {
+    "id": "db.basics.data-directory",
+    "title": "데이터 디렉터리: DB 자료가 사는 폴더",
+    "en": "PostgreSQL Data Directory (PGDATA)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "DB 기초",
+    "summary": "PostgreSQL 클러스터의 모든 자료가 저장되는 컴퓨터 안의 폴더 하나로, 처음 쓰기 전에 initdb로 준비해야 한다.",
+    "parent": "db.basics.db-hierarchy-idea",
+    "aliases": [
+      "PostgreSQL 데이터 디렉터리",
+      "PostgreSQL data directory",
+      "PGDATA",
+      "Postgres 데이터 폴더"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/creating-cluster.html"
+    ]
+  },
+  {
+    "id": "db.basics.relation",
+    "title": "릴레이션: 표를 부르는 다른 이름",
+    "en": "Relation (Table in Relational Terms)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "DB 기초",
+    "summary": "관계형 데이터베이스에서 표를 수학 용어로 부르는 이름으로, 표와 표 사이의 관계라는 뜻이 아니다.",
+    "parent": "db.basics.db-hierarchy-idea",
+    "related": [
+      "db.basics.relational-database"
+    ],
+    "aliases": [
+      "릴레이션",
+      "relation table",
+      "DB relation"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/tutorial-concepts.html"
+    ]
+  },
+  {
+    "id": "db.basics.repeating-group",
+    "title": "반복 그룹: 열1·열2·열3으로 늘린 칸",
+    "en": "Repeating Groups in a Table",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "DB 기초",
+    "summary": "수업1·수업2·수업3처럼 같은 종류의 값을 열 여러 개로 늘려 담은 모양으로, 정규화에서 따로 표로 빼낸다.",
+    "parent": "db.basics.normalization-idea",
+    "aliases": [
+      "반복 그룹",
+      "repeating group",
+      "반복되는 열",
+      "번호 붙은 열"
+    ],
+    "refs": [
+      "https://learn.microsoft.com/en-us/previous-versions/troubleshoot/microsoft-365/microsoft-365-apps/access/database-normalization-description"
+    ]
+  },
+  {
+    "id": "db.basics.normal-form",
+    "title": "정규형: 정규화 규칙의 단계",
+    "en": "Normal Forms (1NF, 2NF, 3NF)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "DB 기초",
+    "summary": "정규화 규칙 하나하나를 부르는 이름으로, 첫 규칙을 지키면 제1정규형, 셋째까지 지키면 제3정규형이라 한다.",
+    "parent": "db.basics.normalization-idea",
+    "aliases": [
+      "정규형",
+      "normal form",
+      "제1정규형",
+      "제3정규형",
+      "1NF",
+      "3NF"
+    ],
+    "refs": [
+      "https://learn.microsoft.com/en-us/previous-versions/troubleshoot/microsoft-365/microsoft-365-apps/access/database-normalization-description"
+    ]
+  },
+  {
+    "id": "db.data.oltp",
+    "title": "OLTP(온라인 트랜잭션 처리)",
+    "en": "Online Transaction Processing (OLTP)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "데이터 수집과 가공",
+    "summary": "주문·결제·재고 변화처럼 일이 생길 때마다 작은 기록을 빠르고 정확하게 적고 바로 꺼내 쓰게 하는 처리 방식이다.",
+    "parent": "db.data.oltp-olap-idea",
+    "aliases": [
+      "OLTP",
+      "온라인 트랜잭션 처리",
+      "트랜잭션 처리 시스템",
+      "online transaction processing"
+    ],
+    "refs": [
+      "https://learn.microsoft.com/en-us/azure/architecture/data-guide/relational-data/online-transaction-processing"
+    ]
+  },
+  {
+    "id": "db.data.olap",
+    "title": "OLAP(온라인 분석 처리)",
+    "en": "Online Analytical Processing (OLAP)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "데이터 수집과 가공",
+    "summary": "쌓인 업무 기록을 모아 추세와 합계를 계산하도록 읽기 위주로 짠 처리 방식으로, 운영 DB를 건드리지 않고 분석한다.",
+    "parent": "db.data.oltp-olap-idea",
+    "aliases": [
+      "OLAP",
+      "온라인 분석 처리",
+      "분석 처리 시스템",
+      "online analytical processing"
+    ],
+    "refs": [
+      "https://learn.microsoft.com/en-us/azure/architecture/data-guide/relational-data/online-analytical-processing"
+    ]
+  },
+  {
+    "id": "db.data.columnar-storage",
+    "title": "열 지향 저장: 같은 열끼리 모아 담기",
+    "en": "Columnar Storage (Columnstore vs Rowstore)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "데이터 수집과 가공",
+    "summary": "표를 행 단위가 아니라 열 단위로 모아 저장하는 방식으로, 비슷한 값끼리 잘 압축되고 필요한 열만 읽어 분석이 빠르다.",
+    "parent": "db.data.oltp-olap-idea",
+    "aliases": [
+      "열 지향 저장",
+      "컬럼형 저장",
+      "columnar storage",
+      "columnstore",
+      "열 저장 방식",
+      "column-oriented storage"
+    ],
+    "refs": [
+      "https://learn.microsoft.com/en-us/sql/relational-databases/indexes/columnstore-indexes-overview"
     ]
   },
   {

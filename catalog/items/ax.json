@@ -444,6 +444,110 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "ax.governance.frontier-safety-policy",
+    "title": "AI 회사의 안전 약속: 위험한 능력에 미리 선 긋기",
+    "en": "Frontier AI Safety Frameworks",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "큰 AI를 만드는 회사들은 모델이 위험한 능력의 선에 가까워질 때 어떤 보호 조치와 안전 검토를 거칠지 미리 정해 공개한다.",
+    "objectives": [
+      "AI 회사가 위험한 능력의 선을 미리 정해 두는 까닭을 실험실 안전 등급 같은 비유로 설명할 수 있다",
+      "모델이 그 선에 닿으면 회사가 하기로 한 일을 예를 들어 말할 수 있다",
+      "회사가 모델마다 공개하는 안전 시험 문서를 찾아 무엇이 적혀 있는지 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.governance.genai-risks-overview"
+    ],
+    "related": [
+      "ax.governance.cbrn-information-risk",
+      "ax.governance.ai-red-teaming"
+    ],
+    "aliases": [
+      "프런티어 AI 안전 정책",
+      "frontier safety framework",
+      "AI 안전 프레임워크",
+      "frontier AI safety policy"
+    ],
+    "refs": [
+      "https://www.anthropic.com/news/anthropics-responsible-scaling-policy",
+      "https://www.anthropic.com/responsible-scaling-policy",
+      "https://deepmind.google/discover/blog/strengthening-our-frontier-safety-framework/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.governance.kids-and-ai-chatbots",
+    "title": "아이와 청소년의 AI 챗봇 사용: 나이와 보호 장치",
+    "en": "Children, Teens, and AI Chatbots",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "AI 챗봇은 친구처럼 말해 아이가 쉽게 믿고 기댈 수 있어, 서비스마다 이용 나이를 정하고 나이를 확인하거나 보호자가 켜고 끄는 장치를 둔다.",
+    "objectives": [
+      "AI 챗봇이 아이와 청소년에게 왜 더 조심스러운지 일상 예로 설명할 수 있다",
+      "AI 서비스의 이용 나이와 나이 확인 방법을 찾아 말할 수 있다",
+      "아이에게 AI 챗봇을 쓰게 할 때 보호자가 켜 둘 설정과 알려 줄 약속을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.first-chat"
+    ],
+    "related": [
+      "ax.governance.ai-emotional-reliance",
+      "ax.basics.personal-data",
+      "ax.governance.ai-companionship"
+    ],
+    "aliases": [
+      "어린이 AI 챗봇",
+      "청소년 AI 이용",
+      "kids and AI",
+      "teens and AI chatbots",
+      "미성년자 AI 사용"
+    ],
+    "refs": [
+      "https://support.google.com/gemini/answer/16109150",
+      "https://support.claude.com/en/articles/15171100-age-assurance-on-claude"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.governance.why-ai-refuses",
+    "title": "AI가 답을 거절하는 이유: 원칙과 감시",
+    "en": "Why AI Chatbots Refuse: Principles and Safeguards",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "AI 회사는 지켜야 할 원칙을 모델에 가르치고 대화를 지켜보는 장치를 겹겹이 두어 해로운 부탁은 거절하게 하되, 괜한 거절도 손해로 보고 줄이려 한다.",
+    "objectives": [
+      "AI가 어떤 부탁을 거절하는 까닭을 회사 원칙과 이용 규칙으로 설명할 수 있다",
+      "AI 회사가 해로운 쓰임을 막으려고 두는 장치를 원칙 가르치기·대화 감시·계정 제재로 나눠 말할 수 있다",
+      "거절이 늘 안전한 선택은 아니라는 말의 뜻을 예를 들어 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.how-llm-is-built"
+    ],
+    "related": [
+      "ax.governance.usage-policy",
+      "mlops.guardrail.guardrail",
+      "llm.basics.ai-alignment",
+      "llm.api.refusal-response"
+    ],
+    "aliases": [
+      "AI 거절 이유",
+      "챗봇이 거절하는 이유",
+      "AI refusals"
+    ],
+    "refs": [
+      "https://www.anthropic.com/news/building-safeguards-for-claude",
+      "https://www.anthropic.com/constitution"
+    ]
+  },
+  {
     "id": "ax.governance.ai-value-chain",
     "title": "AI 가치사슬: 남이 만든 부품으로 짓는 AI",
     "en": "The AI Value Chain and Third-Party Components",
@@ -1032,6 +1136,28 @@
     ]
   },
   {
+    "id": "ax.governance.system-card",
+    "title": "시스템 카드(system card)",
+    "en": "AI Model System Card",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "AI 회사가 새 모델을 내놓을 때 그 모델이 무엇을 잘하는지, 어떤 안전 시험을 거쳤는지, 왜 그렇게 내놓기로 했는지 적어 공개하는 문서다.",
+    "parent": "ax.governance.frontier-safety-policy",
+    "related": [
+      "llm.basics.model-card"
+    ],
+    "aliases": [
+      "모델 시스템 카드",
+      "system cards",
+      "Claude 시스템 카드"
+    ],
+    "refs": [
+      "https://www.anthropic.com/system-cards"
+    ]
+  },
+  {
     "id": "ax.governance.oecd-ai-principles",
     "title": "OECD AI 원칙",
     "en": "OECD AI Principles",
@@ -1360,6 +1486,185 @@
     ],
     "refs": [
       "https://genai.owasp.org/llmrisk/llm032025-supply-chain/"
+    ]
+  },
+  {
+    "id": "ax.governance.responsible-scaling-policy",
+    "title": "책임 있는 확장 정책(RSP)",
+    "en": "Anthropic Responsible Scaling Policy (RSP)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "Anthropic이 2023년부터 공개해 고쳐 온 위험 관리 규칙으로, 2026년 3판부터는 회사가 스스로 지킬 계획과 업계 전체에 권하는 기준을 나누고 위험 보고서를 정기적으로 낸다.",
+    "parent": "ax.governance.frontier-safety-policy",
+    "aliases": [
+      "책임 있는 스케일링 정책",
+      "Anthropic RSP",
+      "Responsible Scaling Policy"
+    ],
+    "refs": [
+      "https://www.anthropic.com/responsible-scaling-policy"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.governance.ai-safety-level",
+    "title": "AI 안전 수준(ASL)",
+    "en": "AI Safety Levels (ASL)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "위험한 병균을 다루는 실험실 안전 등급처럼, Anthropic이 모델에 거는 보안과 사용 제한 조치를 단계로 묶어 부르는 이름으로, ASL-3처럼 숫자가 클수록 엄하다.",
+    "parent": "ax.governance.frontier-safety-policy",
+    "aliases": [
+      "AI Safety Level",
+      "ASL-3",
+      "ASL 등급",
+      "AI 안전 등급"
+    ],
+    "refs": [
+      "https://www.anthropic.com/news/anthropics-responsible-scaling-policy",
+      "https://www.anthropic.com/responsible-scaling-policy"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.governance.capability-threshold",
+    "title": "위험 능력 기준선(capability threshold)",
+    "en": "Dangerous Capability Threshold",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "무기 개발을 돕거나 AI 연구를 스스로 해내는 것처럼, 모델이 그만큼 할 수 있게 되면 보호 조치를 더 세게 해야 한다고 미리 정해 둔 능력의 선이다.",
+    "parent": "ax.governance.frontier-safety-policy",
+    "aliases": [
+      "능력 임계값",
+      "Critical Capability Level",
+      "위험 능력 임계점"
+    ],
+    "refs": [
+      "https://www.anthropic.com/responsible-scaling-policy",
+      "https://deepmind.google/discover/blog/strengthening-our-frontier-safety-framework/"
+    ]
+  },
+  {
+    "id": "ax.governance.ai-security-institute",
+    "title": "정부의 AI 안전 평가 기관(AISI·CAISI)",
+    "en": "Government AI Safety and Security Institutes",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "영국 AI 보안 연구소나 미국 NIST 안의 센터처럼, 나라가 세워 앞선 AI 모델의 사이버·생물 무기 같은 위험을 시험하고 기준을 만드는 기관이다.",
+    "aliases": [
+      "AI Security Institute",
+      "영국 AI 보안 연구소",
+      "CAISI",
+      "CAISSI",
+      "AI 안전 연구소",
+      "AI Safety Institute"
+    ],
+    "refs": [
+      "https://www.aisi.gov.uk/",
+      "https://www.nist.gov/caisi"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.governance.age-assurance",
+    "title": "AI 서비스의 연령 확인(age assurance)",
+    "en": "Age Assurance for AI Services",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "이용 나이에 못 미치는 사람을 막으려고 가입 때 나이를 묻고, 의심되는 계정은 얼굴 사진이나 신분증으로 나이를 다시 확인하게 하는 절차다.",
+    "parent": "ax.governance.kids-and-ai-chatbots",
+    "aliases": [
+      "나이 확인",
+      "연령 인증",
+      "age verification",
+      "AI 최소 이용 나이"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/15171100-age-assurance-on-claude",
+      "https://support.claude.com/en/articles/13117299-minimum-age-requirement-access-restriction"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.governance.parental-controls",
+    "title": "AI 챗봇 보호자 관리 기능",
+    "en": "Parental Controls for AI Chatbots",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "보호자가 가족 계정으로 아이의 AI 챗봇 사용을 켜고 끌 수 있게 하는 기능으로, 거름 장치가 완벽하지 않아 함께 써 보고 약속을 정하는 일이 같이 필요하다.",
+    "parent": "ax.governance.kids-and-ai-chatbots",
+    "aliases": [
+      "parental controls",
+      "자녀 보호 기능",
+      "Family Link Gemini",
+      "AI 자녀 관리"
+    ],
+    "refs": [
+      "https://support.google.com/gemini/answer/16109150"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.governance.ai-constitution",
+    "title": "AI 헌법(Claude의 constitution)",
+    "en": "Claude's Constitution",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "Anthropic이 Claude가 지닐 가치와 행동을 적어 공개한 문서로, 넓은 안전·윤리·회사 지침·실제 도움의 순서로 무게를 두라고 학습에 쓴다.",
+    "parent": "ax.governance.why-ai-refuses",
+    "related": [
+      "llm.basics.ai-alignment"
+    ],
+    "aliases": [
+      "Claude constitution",
+      "Claude 헌법",
+      "Anthropic 헌법",
+      "AI 행동 원칙 문서"
+    ],
+    "refs": [
+      "https://www.anthropic.com/constitution"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.governance.overcautious-refusal",
+    "title": "지나친 거절(overcautious refusal)",
+    "en": "Overcautious Refusal",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "일어날 가능성이 아주 낮은 해를 핑계로 멀쩡한 부탁을 거절하거나 쓸데없는 경고를 잔뜩 붙이는 일로, 도움을 못 받는 것도 실제 손해로 본다.",
+    "parent": "ax.governance.why-ai-refuses",
+    "aliases": [
+      "과잉 거절",
+      "over-refusal",
+      "지나친 조심",
+      "AI 과잉 경고",
+      "overcautious AI"
+    ],
+    "refs": [
+      "https://www.anthropic.com/constitution"
     ]
   },
   {

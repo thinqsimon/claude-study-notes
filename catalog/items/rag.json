@@ -366,6 +366,74 @@
     ]
   },
   {
+    "id": "rag.basics.agent-skills-idea",
+    "title": "에이전트 스킬: 필요할 때 펼쳐 보는 업무 설명서",
+    "en": "Agent Skills Open Format",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "에이전트 기초",
+    "summary": "할 일의 순서와 참고 자료를 폴더 하나에 담아 두고, 에이전트가 그 일이 생겼을 때만 꺼내 읽게 하는 공개 형식이다.",
+    "objectives": [
+      "스킬을 새 직원에게 건네는 업무 안내서에 빗대어 설명할 수 있다",
+      "스킬이 이름·설명만 먼저 보이고 본문과 자료는 필요할 때 읽힌다는 흐름을 말할 수 있다",
+      "스킬과 한 번만 쓰는 프롬프트가 어떻게 다른지 말할 수 있다",
+      "출처를 모르는 스킬을 설치하기 전에 조심해야 하는 까닭을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.basics.agent-big-picture",
+      "rag.basics.context-engineering"
+    ],
+    "related": [
+      "ax.coding.skills",
+      "rag.agent.progressive-disclosure",
+      "rag.agent.skills-pattern"
+    ],
+    "aliases": [
+      "에이전트 스킬",
+      "스킬 폴더 형식",
+      "Agent Skills 표준",
+      "agentskills.io",
+      "스킬 공개 규격"
+    ],
+    "refs": [
+      "https://agentskills.io/",
+      "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview"
+    ]
+  },
+  {
+    "id": "rag.agent.mcp-authorization-idea",
+    "title": "MCP 인가: 원격 서버에 내 계정 쓰게 허락하기",
+    "en": "MCP Authorization with OAuth",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "인터넷 너머의 MCP 서버가 내 메일·문서를 다룰 때, 내가 로그인해 동의하면 AI 앱이 그 서버 전용 출입증을 받아 쓰는 약속이다.",
+    "objectives": [
+      "MCP 인가를 호텔 프런트에서 방 전용 카드 키를 받는 일에 빗대어 설명할 수 있다",
+      "MCP 클라이언트·MCP 서버·인가 서버가 각각 무엇을 맡는지 구분할 수 있다",
+      "내 컴퓨터에서 도는 로컬 서버와 원격 서버가 로그인 방식이 다른 까닭을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.mcp-idea"
+    ],
+    "related": [
+      "be.auth.oauth2-social",
+      "rag.agent.mcp-remote-connect"
+    ],
+    "aliases": [
+      "MCP 인가",
+      "MCP 인증",
+      "MCP authorization",
+      "MCP OAuth",
+      "MCP 로그인 흐름"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/docs/tutorials/security/authorization"
+    ]
+  },
+  {
     "id": "rag.agent.a2a-idea",
     "title": "A2A: 에이전트끼리 일을 맡기는 공용 규격",
     "en": "A2A at a Glance",
@@ -523,6 +591,38 @@
       "https://agentclientprotocol.com/overview/introduction",
       "https://agentclientprotocol.com/overview/architecture",
       "https://docs.langchain.com/oss/python/deepagents/acp"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.agent.mcp-extensions-idea",
+    "title": "MCP 확장: 기본 규격에 덧붙이는 선택 기능",
+    "en": "MCP Extensions",
+    "kind": "topic",
+    "level": 1,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "MCP 기본 규격 밖의 기능을 따로 정해 두고, 클라이언트와 서버가 둘 다 쓰겠다고 밝힐 때만 켜지는 덧붙임 기능이다.",
+    "objectives": [
+      "MCP 확장을 휴대폰에 골라 까는 추가 앱에 빗대어 설명할 수 있다",
+      "양쪽이 모두 지원해야 확장이 켜지고, 한쪽이 모르면 기본 기능으로 물러난다는 점을 말할 수 있다",
+      "MCP 앱·작업(Tasks)·스킬처럼 공식 확장의 예를 들 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.mcp-idea"
+    ],
+    "related": [
+      "rag.agent.mcp-apps"
+    ],
+    "aliases": [
+      "MCP 확장",
+      "MCP extension",
+      "MCP 공식 확장",
+      "io.modelcontextprotocol 확장"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/extensions/overview"
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
@@ -821,6 +921,30 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.basics.untrusted-skill-risk",
+    "title": "출처 모를 스킬의 위험",
+    "en": "Risks of Untrusted Agent Skills",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "에이전트 기초",
+    "summary": "스킬은 지시문과 실행 코드를 함께 담을 수 있어서, 남이 만든 스킬을 그대로 쓰면 에이전트가 자료를 빼돌리거나 엉뚱한 명령을 실행할 수 있다.",
+    "parent": "rag.basics.agent-skills-idea",
+    "related": [
+      "ax.security.tool-poisoning"
+    ],
+    "aliases": [
+      "악성 스킬",
+      "malicious skill",
+      "스킬 보안",
+      "skill security",
+      "신뢰할 수 없는 스킬"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview"
+    ]
   },
   {
     "id": "rag.basics.client-server-tools",
@@ -1322,6 +1446,177 @@
     "refs": [
       "https://docs.ag-ui.com/introduction",
       "https://docs.langchain.com/oss/python/deepagents/ag-ui"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.basics.prebuilt-document-skills",
+    "title": "기본 제공 문서 스킬(pptx·xlsx·docx·pdf)",
+    "en": "Anthropic Pre-built Document Skills",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "에이전트 기초",
+    "summary": "Anthropic이 미리 만들어 둔 스킬로, claude.ai에서는 Claude가 따로 설정 없이 발표 자료·표·문서·PDF 파일을 만들고 고칠 때 쓴다.",
+    "parent": "rag.basics.agent-skills-idea",
+    "aliases": [
+      "Claude 문서 스킬",
+      "pre-built Agent Skills",
+      "pptx 스킬",
+      "xlsx 스킬",
+      "docx 스킬",
+      "Anthropic 기본 스킬"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.agent.mcp-authorization-server",
+    "title": "MCP 인가 서버(authorization server)",
+    "en": "MCP Authorization Server",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "사용자가 로그인하고 동의하면 특정 MCP 서버에만 쓸 수 있는 액세스 토큰을 내주는 쪽으로, MCP 서버는 그 토큰을 확인만 한다.",
+    "parent": "rag.agent.mcp-authorization-idea",
+    "aliases": [
+      "MCP 인가 서버",
+      "MCP 토큰 발급 서버",
+      "MCP OAuth 서버",
+      "MCP authorization server"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/docs/tutorials/security/authorization"
+    ]
+  },
+  {
+    "id": "rag.agent.mcp-tasks",
+    "title": "MCP Tasks 확장: 오래 걸리는 일의 번호표",
+    "en": "MCP Tasks Extension",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "오래 걸리는 도구 호출에 MCP 서버가 바로 결과 대신 작업 번호를 돌려주고, 클라이언트가 그 번호로 진행 상황과 결과를 나중에 받아 가는 확장이다.",
+    "parent": "rag.agent.mcp-extensions-idea",
+    "related": [
+      "rag.agent.a2a-task"
+    ],
+    "aliases": [
+      "MCP 작업 확장",
+      "MCP tasks extension",
+      "MCP 비동기 작업",
+      "MCP 장기 실행 작업",
+      "tasks/get"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/extensions/tasks/overview"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.agent.mcp-skills-extension",
+    "title": "MCP 스킬 확장(Skills over MCP)",
+    "en": "Skills over MCP Extension",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "MCP 서버가 자기 서비스를 쓰는 업무 설명서인 에이전트 스킬을 목록으로 보여 주고, 클라이언트가 필요할 때 읽어 가게 하는 확장이다.",
+    "parent": "rag.agent.mcp-extensions-idea",
+    "related": [
+      "rag.basics.agent-skills-idea"
+    ],
+    "aliases": [
+      "Skills over MCP",
+      "MCP 스킬 확장",
+      "MCP skills extension",
+      "skills/list",
+      "skill:// URI"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/extensions/skills/overview"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.agent.mcp-protocol-version",
+    "title": "MCP 규격 버전(날짜 버전)",
+    "en": "MCP Protocol Version (YYYY-MM-DD)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "MCP 규격은 호환이 깨지는 변경이 마지막으로 들어간 날짜로 버전 이름을 붙이고, 클라이언트와 서버는 서로 맞는 버전으로 대화한다.",
+    "related": [
+      "rag.agent.mcp-idea"
+    ],
+    "aliases": [
+      "MCP 버전",
+      "MCP protocol version",
+      "MCP 규격 개정판",
+      "MCP-Protocol-Version",
+      "MCP 날짜 버전"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/docs/learn/versioning"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.basics.claude-agent-sdk",
+    "title": "Claude Agent SDK",
+    "en": "Claude Agent SDK",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "에이전트 기초",
+    "summary": "Claude Code가 쓰는 도구·에이전트 루프·권한·세션을 파이썬과 타입스크립트 프로그램 안에서 불러 쓰게 해 주는 Anthropic의 라이브러리다.",
+    "related": [
+      "rag.basics.openai-agents-sdk",
+      "rag.basics.agent-harness"
+    ],
+    "aliases": [
+      "Claude 에이전트 SDK",
+      "claude-agent-sdk",
+      "Anthropic Agent SDK",
+      "Claude Code SDK"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/agent-sdk/overview"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.basics.openai-agents-sdk",
+    "title": "OpenAI Agents SDK",
+    "en": "OpenAI Agents SDK",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "에이전트 기초",
+    "summary": "지시와 도구를 가진 에이전트, 다른 에이전트에게 일 넘기기, 입력·출력 검사를 적은 개념으로 묶어 둔 OpenAI의 파이썬 에이전트 라이브러리다.",
+    "related": [
+      "rag.basics.claude-agent-sdk",
+      "rag.basics.langchain"
+    ],
+    "aliases": [
+      "OpenAI 에이전트 SDK",
+      "openai-agents",
+      "OpenAI Agents 파이썬 SDK",
+      "Swarm 후속 SDK"
+    ],
+    "refs": [
+      "https://openai.github.io/openai-agents-python/"
     ],
     "volatile": true,
     "checked_at": "2026-11-11"

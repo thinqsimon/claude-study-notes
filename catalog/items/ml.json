@@ -168,6 +168,38 @@
     ]
   },
   {
+    "id": "ml.supervised.linear-regression-idea",
+    "title": "선형 회귀 맛보기: 점들 사이에 직선 하나 긋기",
+    "en": "Linear Regression Intuition: Fitting a Best-Fit Line",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "AI 기초",
+    "summary": "자동차 무게와 연비처럼 두 값 사이의 경향을 직선 하나로 나타내고, 그 직선으로 새 값의 숫자를 예측하는 모델의 큰 그림이다.",
+    "objectives": [
+      "흩어진 점들 사이에 가장 잘 맞는 직선을 긋는 일을 그림으로 설명할 수 있다",
+      "직선의 기울기(가중치)와 시작 높이(편향)가 학습으로 정해진다는 것을 말할 수 있다",
+      "특성이 여러 개면 특성마다 가중치가 하나씩 붙는다는 것을 예로 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.types-of-ml"
+    ],
+    "related": [
+      "ml.basics.regression",
+      "ml.supervised.linear-regression"
+    ],
+    "aliases": [
+      "선형 회귀 입문",
+      "linear regression intuition",
+      "최적 직선",
+      "line of best fit",
+      "추세선 모델"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/linear-regression"
+    ]
+  },
+  {
     "id": "ml.basics.data-quality",
     "title": "AI에게 데이터가 중요한 이유",
     "en": "Why Data Matters to AI",
@@ -409,6 +441,71 @@
       "https://developers.google.com/machine-learning/crash-course/numerical-data",
       "https://developers.google.com/machine-learning/crash-course/categorical-data",
       "https://developers.google.com/machine-learning/crash-course/numerical-data/feature-vectors"
+    ]
+  },
+  {
+    "id": "ml.training.gradient-descent-idea",
+    "title": "경사 하강법 맛보기: 비탈을 따라 한 걸음씩",
+    "en": "Gradient Descent Intuition: Stepping Downhill on the Loss",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "틀린 정도를 재고 그 정도가 줄어드는 쪽으로 가중치와 편향을 조금씩 옮기기를 되풀이해 모델이 배우는 방법의 큰 그림이다.",
+    "objectives": [
+      "경사 하강법을 안개 낀 산에서 발밑 비탈만 보고 내려가는 일에 빗대어 설명할 수 있다",
+      "손실 재기, 방향 정하기, 조금 옮기기, 되풀이하기의 네 단계를 차례로 말할 수 있다",
+      "손실이 더 줄지 않고 평평해지면 학습을 멈춘다는 것을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.train-inference",
+      "ml.supervised.linear-regression-idea"
+    ],
+    "related": [
+      "ml.training.loss-curve",
+      "ml.training.learning-rate",
+      "ml.training.backprop"
+    ],
+    "aliases": [
+      "경사하강법 원리",
+      "gradient descent intuition",
+      "기울기 따라 내려가기",
+      "손실 줄이기 원리"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/linear-regression/gradient-descent"
+    ]
+  },
+  {
+    "id": "ml.supervised.logistic-regression-idea",
+    "title": "로지스틱 회귀 맛보기: 확률로 답하는 모델",
+    "en": "Logistic Regression Intuition: Predicting a Probability",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "숫자 대신 '비가 올 확률 70%'처럼 0과 1 사이의 확률을 내놓고, 그 확률로 예·아니요를 가를 수 있게 하는 모델의 큰 그림이다.",
+    "objectives": [
+      "선형 회귀는 숫자를, 로지스틱 회귀는 확률을 내놓는다는 차이를 예로 설명할 수 있다",
+      "어떤 계산 결과든 0과 1 사이로 눌러 담는 S자 곡선의 역할을 비유로 말할 수 있다",
+      "나온 확률을 그대로 쓰는 경우와 예·아니요로 바꿔 쓰는 경우를 구분할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.linear-regression-idea"
+    ],
+    "related": [
+      "ml.basics.classification",
+      "ml.supervised.logistic-regression"
+    ],
+    "aliases": [
+      "로지스틱 회귀 입문",
+      "logistic regression intuition",
+      "확률 예측 모델",
+      "확률을 내는 분류 모델"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/logistic-regression",
+      "https://developers.google.com/machine-learning/crash-course/logistic-regression/sigmoid-function"
     ]
   },
   {
@@ -1081,6 +1178,146 @@
     ]
   },
   {
+    "id": "ml.training.gradient",
+    "title": "기울기(손실이 변하는 방향)",
+    "en": "Gradient of the Loss",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "가중치를 조금 바꿀 때 손실이 어느 쪽으로 얼마나 가파르게 변하는지 알려 주는 값으로, 경사 하강법은 그 반대쪽으로 움직인다.",
+    "parent": "ml.training.gradient-descent-idea",
+    "related": [
+      "ml.nn.zero-grad"
+    ],
+    "aliases": [
+      "손실 기울기",
+      "loss gradient",
+      "그래디언트 벡터",
+      "loss slope"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/glossary#gradient"
+    ]
+  },
+  {
+    "id": "ml.training.iteration",
+    "title": "반복(학습 한 번의 갱신)",
+    "en": "Training Iteration",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "학습 중에 모델의 가중치와 편향을 한 번 고치는 단위로, 학습은 이 반복을 수없이 되풀이하는 일이다.",
+    "parent": "ml.training.gradient-descent-idea",
+    "related": [
+      "ml.training.epoch-batch"
+    ],
+    "aliases": [
+      "학습 반복",
+      "학습 스텝",
+      "training step",
+      "training iteration",
+      "갱신 한 번"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/glossary#iteration"
+    ]
+  },
+  {
+    "id": "ml.supervised.linear-model",
+    "title": "선형 모델",
+    "en": "Linear Model",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "특성마다 가중치를 하나씩 곱해 더하고 편향을 얹어 답을 내는 모델로, 깊은 신경망보다 학습과 해석이 쉽다.",
+    "parent": "ml.supervised.linear-regression-idea",
+    "related": [
+      "ml.nn.nonlinear-relationship"
+    ],
+    "aliases": [
+      "linear models",
+      "선형 모형",
+      "가중합 모델",
+      "일차 모델"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/glossary#linear-model"
+    ]
+  },
+  {
+    "id": "ml.nn.nonlinear-relationship",
+    "title": "비선형 관계",
+    "en": "Nonlinear Relationship",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "직선 하나로는 나눌 수도 그릴 수도 없는 데이터 사이의 관계로, 신경망이 필요한 큰 이유다.",
+    "parent": "ml.nn.neural-network-idea",
+    "related": [
+      "ml.supervised.linear-model"
+    ],
+    "aliases": [
+      "비선형성",
+      "nonlinear data",
+      "비선형 데이터",
+      "직선으로 못 나누는 데이터"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/glossary#nonlinear",
+      "https://developers.google.com/machine-learning/crash-course/neural-networks"
+    ]
+  },
+  {
+    "id": "ml.basics.ground-truth",
+    "title": "실제 정답(ground truth)",
+    "en": "Ground Truth",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "현실에서 실제로 일어난 결과로, 모델의 예측이 맞았는지 견주는 기준이 되지만 그 자체에도 실수가 섞일 수 있다.",
+    "related": [
+      "ml.basics.labeled-example",
+      "ml.basics.proxy-label"
+    ],
+    "aliases": [
+      "그라운드 트루스",
+      "참값 레이블",
+      "실측 정답",
+      "ground-truth label"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/glossary#ground-truth"
+    ]
+  },
+  {
+    "id": "ml.data.feature-engineering",
+    "title": "특성 공학(원재료 손질하기)",
+    "en": "Feature Engineering",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "날것의 데이터 값을 모델이 배우기 좋은 숫자 묶음으로 어떻게 바꿀지 정하고 다듬는 일이다.",
+    "related": [
+      "ml.data.feature-vector",
+      "ml.data.numerical-vs-categorical"
+    ],
+    "aliases": [
+      "특성 공학",
+      "피처 엔지니어링",
+      "featurization"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/numerical-data/feature-vectors",
+      "https://developers.google.com/machine-learning/glossary#feature-engineering"
+    ]
+  },
+  {
     "id": "ml.basics.reinforcement-learning",
     "title": "강화 학습",
     "en": "Reinforcement Learning",
@@ -1295,6 +1532,29 @@
     "refs": [
       "https://developers.google.com/machine-learning/decision-forests/intro-to-decision-forests",
       "https://developers.google.com/machine-learning/glossary/df"
+    ]
+  },
+  {
+    "id": "ml.basics.feedback-loop",
+    "title": "피드백 루프(예측이 다음 데이터를 바꿈)",
+    "en": "ML Feedback Loop",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "모델의 예측이 사람들의 행동을 바꾸고, 그렇게 생긴 데이터가 다시 그 모델의 학습 재료가 되는 순환이다.",
+    "related": [
+      "ml.basics.recommendation-systems",
+      "ml.basics.data-bias-types"
+    ],
+    "aliases": [
+      "ML 피드백 루프",
+      "machine learning feedback loop",
+      "예측 되먹임",
+      "추천 피드백 루프"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/glossary#feedback-loop"
     ]
   },
   {
