@@ -372,6 +372,110 @@
     ]
   },
   {
+    "id": "ax.governance.ai-emotional-reliance",
+    "title": "AI를 친구처럼 느낄 때: 의인화와 감정적 의존",
+    "en": "Anthropomorphism and Emotional Reliance on AI",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "AI 챗봇이 사람처럼 말하고 맞장구를 잘 치면 사람으로 여기고 마음을 기대기 쉬운데, 이런 감정적 얽힘이 마음에 해가 될 수 있다는 우려가 있다.",
+    "objectives": [
+      "AI를 사람처럼 느끼게 되는 까닭을 일상 비유로 설명할 수 있다",
+      "AI에게 위로·상담·친구 역할을 기대할 때 생길 수 있는 위험을 예를 들어 말할 수 있다",
+      "듣기 좋은 말만 하는 AI의 답이 왜 위험한지 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.governance.genai-risks-overview"
+    ],
+    "related": [
+      "ax.governance.automation-bias",
+      "ax.governance.human-oversight",
+      "llm.basics.sycophancy"
+    ],
+    "aliases": [
+      "AI 정서적 의존",
+      "AI 감정적 의존",
+      "emotional reliance on AI",
+      "AI 정서적 사용",
+      "affective use"
+    ],
+    "refs": [
+      "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf",
+      "https://www.anthropic.com/news/how-people-use-claude-for-support-advice-and-companionship"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.governance.ai-misuse-overview",
+    "title": "나쁜 사람도 AI를 쓴다: AI 악용의 큰 그림",
+    "en": "Malicious Use of AI at a Glance",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "AI는 해킹·악성 프로그램·사기의 문턱도 낮춰, 실력 없는 공격자가 AI에게 공격 단계를 시키는 일까지 실제로 일어나고 있다.",
+    "objectives": [
+      "AI가 공격자의 문턱을 낮춘다는 말을 일상 비유로 설명할 수 있다",
+      "AI 악용 사례를 해킹·위장 취업·악성 프로그램 판매처럼 두세 가지 예로 말할 수 있다",
+      "AI 회사가 악용을 찾아 막으려고 하는 일을 예를 들어 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.governance.genai-risks-overview"
+    ],
+    "related": [
+      "ax.governance.deepfake",
+      "ax.governance.usage-policy",
+      "ax.governance.secure-resilient"
+    ],
+    "aliases": [
+      "AI 악용",
+      "AI misuse",
+      "AI 오남용 공격",
+      "malicious use of AI",
+      "AI 범죄 악용"
+    ],
+    "refs": [
+      "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf",
+      "https://www.anthropic.com/news/detecting-countering-misuse-aug-2025"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.governance.ai-value-chain",
+    "title": "AI 가치사슬: 남이 만든 부품으로 짓는 AI",
+    "en": "The AI Value Chain and Third-Party Components",
+    "kind": "topic",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "AI 서비스는 남이 모은 데이터, 남이 학습한 모델, 남이 만든 라이브러리를 조립해 만들어서, 한 부품의 문제가 서비스 전체로 번지고 원인을 찾기도 어렵다.",
+    "objectives": [
+      "AI 서비스가 어떤 남의 부품으로 이루어지는지 식당 재료 같은 비유로 설명할 수 있다",
+      "부품 하나의 문제가 왜 서비스 전체의 문제로 번지는지 예를 들어 말할 수 있다",
+      "믿을 만한 곳에서 받은 부품인지 확인해야 하는 까닭을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.governance.genai-risks-overview"
+    ],
+    "related": [
+      "ax.security.model-supply-chain"
+    ],
+    "aliases": [
+      "AI 가치사슬",
+      "AI value chain",
+      "제3자 AI 부품",
+      "third-party AI components",
+      "AI 부품 조립"
+    ],
+    "refs": [
+      "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf",
+      "https://genai.owasp.org/llmrisk/llm032025-supply-chain/"
+    ]
+  },
+  {
     "id": "ax.governance.harmful-bias",
     "title": "AI 편향(harmful bias)",
     "en": "Harmful Bias in AI",
@@ -865,6 +969,69 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "ax.governance.anthropomorphism",
+    "title": "AI 의인화(anthropomorphism)",
+    "en": "Anthropomorphizing AI",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "사람이 아닌 AI에 감정·의도·마음 같은 사람의 성질이 있다고 여기는 일로, AI를 지나치게 믿거나 기대게 만든다.",
+    "parent": "ax.governance.ai-emotional-reliance",
+    "aliases": [
+      "AI 의인화",
+      "AI anthropomorphism",
+      "AI를 사람처럼 여기기",
+      "의인화 위험"
+    ],
+    "refs": [
+      "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+    ]
+  },
+  {
+    "id": "ax.governance.ai-offensive-cyber",
+    "title": "AI가 낮추는 공격 문턱(offensive cyber)",
+    "en": "AI-Enabled Offensive Cyber Capabilities",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "AI가 취약점 찾기·공격 코드 쓰기·피싱 같은 공격을 쉽게 만들어, 예전보다 적은 실력과 노력으로 사이버 공격을 할 수 있게 되는 위험이다.",
+    "parent": "ax.governance.ai-misuse-overview",
+    "aliases": [
+      "AI 사이버 공격 능력",
+      "AI 공격 능력",
+      "offensive cyber capabilities",
+      "AI 해킹 도구화"
+    ],
+    "refs": [
+      "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+    ]
+  },
+  {
+    "id": "ax.governance.ncii",
+    "title": "비동의 성적 합성물(NCII)",
+    "en": "Non-Consensual Intimate Imagery",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "본인 동의 없이 만들거나 퍼뜨린 성적 이미지로, 생성형 AI가 실제 사람의 진짜 같은 가짜를 쉽게 만들어 큰 피해와 불법 문제를 낳는다.",
+    "related": [
+      "ax.governance.deepfake"
+    ],
+    "aliases": [
+      "NCII",
+      "non-consensual intimate imagery",
+      "딥페이크 성범죄물",
+      "불법 합성 성적 이미지",
+      "비동의 성적 이미지"
+    ],
+    "refs": [
+      "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+    ]
+  },
+  {
     "id": "ax.governance.oecd-ai-principles",
     "title": "OECD AI 원칙",
     "en": "OECD AI Principles",
@@ -1086,6 +1253,113 @@
     ],
     "refs": [
       "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+    ]
+  },
+  {
+    "id": "ax.governance.ai-companionship",
+    "title": "AI 동반자 대화(companionship)",
+    "en": "AI Companionship Use",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "AI를 친구처럼 대화 상대로 삼는 쓰임으로, 외로움이나 관계의 어려움을 겪는 사람이 찾기 쉬워 정서적 의존이 걱정된다.",
+    "parent": "ax.governance.ai-emotional-reliance",
+    "aliases": [
+      "AI 동반자",
+      "AI companion",
+      "컴패니언 챗봇",
+      "AI 친구 챗봇",
+      "동반자 챗봇"
+    ],
+    "refs": [
+      "https://www.anthropic.com/news/how-people-use-claude-for-support-advice-and-companionship"
+    ]
+  },
+  {
+    "id": "ax.governance.algorithm-aversion",
+    "title": "알고리즘 회피(algorithm aversion)",
+    "en": "Algorithm Aversion",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "AI가 실제로 도움이 되는 일에도 괜히 믿지 못해 쓰지 않는 태도로, 지나치게 믿는 자동화 편향과 반대쪽 잘못이다.",
+    "related": [
+      "ax.governance.automation-bias"
+    ],
+    "aliases": [
+      "알고리즘 기피",
+      "algorithmic aversion",
+      "AI 불신",
+      "AI 거부감"
+    ],
+    "refs": [
+      "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+    ]
+  },
+  {
+    "id": "ax.governance.vibe-hacking",
+    "title": "바이브 해킹(vibe hacking)",
+    "en": "Vibe Hacking",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "공격자가 코딩 에이전트에게 정찰·침입·협박문 작성 같은 공격 단계까지 맡겨 혼자서도 큰 규모의 해킹과 갈취를 벌이는 AI 악용 방식이다.",
+    "parent": "ax.governance.ai-misuse-overview",
+    "aliases": [
+      "바이브해킹",
+      "vibe-hacking",
+      "에이전트 악용 해킹"
+    ],
+    "refs": [
+      "https://www.anthropic.com/news/detecting-countering-misuse-aug-2025"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.governance.ai-remote-worker-fraud",
+    "title": "AI를 이용한 위장 원격 취업",
+    "en": "AI-Assisted Fraudulent Remote Employment",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "가짜 경력을 AI로 꾸미고 코딩 시험과 실제 업무까지 AI로 해내며 원격 개발자로 위장 취업하는 사기다.",
+    "parent": "ax.governance.ai-misuse-overview",
+    "aliases": [
+      "위장 원격 취업",
+      "가짜 원격 개발자",
+      "fraudulent remote worker",
+      "AI 위장 취업",
+      "북한 IT 위장 취업"
+    ],
+    "refs": [
+      "https://www.anthropic.com/news/detecting-countering-misuse-aug-2025"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.governance.lookalike-model-repo",
+    "title": "가짜 모델 저장소(lookalike repository)",
+    "en": "Lookalike Model Repository",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "유명한 모델 저장소와 이름·모양을 비슷하게 꾸며 변조된 모델을 내려받게 하는 수법으로, 짝퉁 가게에 속는 것과 같다.",
+    "parent": "ax.governance.ai-value-chain",
+    "aliases": [
+      "가짜 모델 저장소",
+      "사칭 모델 저장소",
+      "lookalike model repo",
+      "모델 사칭"
+    ],
+    "refs": [
+      "https://genai.owasp.org/llmrisk/llm032025-supply-chain/"
     ]
   },
   {

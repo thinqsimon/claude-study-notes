@@ -290,6 +290,106 @@
     ]
   },
   {
+    "id": "mlops.eval.grading-methods-picture",
+    "title": "AI 답 채점 방법 세 가지: 코드·사람·AI 채점관",
+    "en": "Three Ways to Grade AI Answers: Code, Human, and LLM Graders",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "AI 답을 프로그램이 규칙대로 재는 법, 사람이 읽고 매기는 법, 다른 AI에게 기준표를 주어 매기게 하는 법의 장단점을 보는 큰 그림이다.",
+    "objectives": [
+      "세 가지 채점 방법을 객관식 자동 채점기·선생님·채점 조교에 빗대어 설명할 수 있다",
+      "정답이 하나인 문제는 정답과 똑같은지나 꼭 들어갈 말이 있는지 프로그램으로 매길 수 있다는 것을 예로 들어 말할 수 있다",
+      "사람 채점이 가장 꼼꼼하지만 느리고 비싸 자주 쓰기 어려운 이유를 말할 수 있다",
+      "AI 채점관에게 자세한 채점 기준표를 주고 먼저 믿을 만한지 확인해야 하는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.eval.why-evaluate"
+    ],
+    "related": [
+      "mlops.eval.llm-judge",
+      "mlops.eval.scorer"
+    ],
+    "aliases": [
+      "AI 답 채점 방법",
+      "eval grading methods",
+      "LLM-based grading",
+      "코드 채점과 LLM 채점"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests",
+      "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/"
+    ]
+  },
+  {
+    "id": "mlops.serve.ai-gateway-picture",
+    "title": "AI 게이트웨이의 큰 그림: LLM 호출의 관문",
+    "en": "The Big Picture of an AI Gateway",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "앱이 여러 회사의 AI 모델에 따로 연결하지 않고 한 관문을 거치게 해, 열쇠 보관·모델 바꾸기·비용 살피기를 한곳에서 하는 방식이다.",
+    "objectives": [
+      "AI 게이트웨이를 회사의 대표 전화 교환대에 빗대어 설명할 수 있다",
+      "앱은 이름 하나만 부르고 뒤의 모델은 게이트웨이에서 바꾸는 흐름을 그림으로 그릴 수 있다",
+      "쓰던 모델이 멈췄을 때 다른 모델로 넘기는 일이 왜 필요한지 예를 들어 말할 수 있다",
+      "사용량을 한곳에서 보고 비용 한도를 걸어 두는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.model-choices"
+    ],
+    "related": [
+      "mlops.serve.ai-gateway-quickstart",
+      "be.arch.api-gateway"
+    ],
+    "aliases": [
+      "AI 게이트웨이 입문",
+      "모델 게이트웨이",
+      "model gateway",
+      "LLM 호출 관문"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/governance/ai-gateway/",
+      "https://mlflow.org/docs/latest/genai/governance/ai-gateway/endpoints/create-and-manage/"
+    ]
+  },
+  {
+    "id": "mlops.serve.quantization-picture",
+    "title": "양자화의 큰 그림: 모델을 가볍게 줄이기",
+    "en": "The Big Picture of Model Quantization",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "AI 모델 속 숫자를 더 적은 비트로 줄여 저장해, 정확도를 조금 내주는 대신 메모리를 훨씬 덜 쓰고 작은 컴퓨터에서도 돌리게 하는 방법이다.",
+    "objectives": [
+      "양자화를 고화질 사진을 작은 용량으로 줄여 저장하는 일에 빗대어 설명할 수 있다",
+      "숫자 하나에 쓰는 비트 수를 절반으로 줄이면 모델이 차지하는 메모리도 대략 절반이 된다는 관계를 예로 말할 수 있다",
+      "비트를 너무 많이 줄이면 반올림 오차가 커져 답의 질이 떨어질 수 있는 이유를 말할 수 있다",
+      "이미 줄여 둔 모델을 GGUF 같은 파일로 내려받아 내 컴퓨터에서 쓰는 경우가 많다는 것을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.train-inference"
+    ],
+    "related": [
+      "mlops.serve.inference-optimization",
+      "llm.basics.local-ai",
+      "llm.basics.model-memory"
+    ],
+    "aliases": [
+      "모델 양자화",
+      "model quantization",
+      "LLM 양자화",
+      "양자화 입문"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/main/en/quantization/overview",
+      "https://huggingface.co/docs/transformers/main/en/quantization/concept_guide"
+    ]
+  },
+  {
     "id": "mlops.guardrail.guardrail",
     "title": "가드레일",
     "en": "Guardrails",
@@ -627,6 +727,119 @@
     ],
     "refs": [
       "https://docs.cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning"
+    ]
+  },
+  {
+    "id": "mlops.eval.exact-match-grading",
+    "title": "정확 일치 채점",
+    "en": "Exact Match Grading",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "AI 답이 미리 적어 둔 정답과 글자 그대로 같은지 프로그램이 비교해 맞고 틀림을 매기는 가장 단순하고 빠른 채점이다.",
+    "parent": "mlops.eval.grading-methods-picture",
+    "related": [
+      "mlops.eval.key-phrase-match"
+    ],
+    "aliases": [
+      "exact match",
+      "exact match grading",
+      "정답 일치 채점",
+      "완전 일치 채점"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests"
+    ]
+  },
+  {
+    "id": "mlops.eval.grading-rubric",
+    "title": "채점 기준표(루브릭)",
+    "en": "Grading Rubric for LLM Graders",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "AI 채점관이 매번 같은 잣대로 매기도록 무엇이 있으면 맞고 없으면 틀린지를 자세하고 분명하게 적어 둔 채점 기준표다.",
+    "parent": "mlops.eval.grading-methods-picture",
+    "related": [
+      "mlops.eval.success-criteria"
+    ],
+    "aliases": [
+      "루브릭",
+      "grading rubric",
+      "채점 루브릭",
+      "평가 루브릭"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests"
+    ]
+  },
+  {
+    "id": "mlops.serve.gateway-endpoint",
+    "title": "게이트웨이 엔드포인트(모델 연결 이름)",
+    "en": "AI Gateway Endpoint",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "앱이 부르는 이름 하나 뒤에 어느 회사의 어떤 모델과 열쇠를 쓸지 묶어 둔 연결로, 뒤의 모델을 바꿔도 앱은 같은 이름을 부른다.",
+    "parent": "mlops.serve.ai-gateway-picture",
+    "aliases": [
+      "AI Gateway endpoint",
+      "LLM 게이트웨이 엔드포인트"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/governance/ai-gateway/endpoints/create-and-manage/"
+    ]
+  },
+  {
+    "id": "mlops.serve.model-fallback",
+    "title": "대체 모델 전환(모델 폴백)",
+    "en": "LLM Model Fallback",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "먼저 쓰던 AI 모델이 오류를 내거나 사용 한도에 걸리면 미리 정해 둔 다른 모델에게 차례로 요청을 넘겨 서비스가 멈추지 않게 하는 장치다.",
+    "parent": "mlops.serve.ai-gateway-picture",
+    "related": [
+      "be.integrate.fallback-term",
+      "rag.agent.model-fallback",
+      "mlops.serve.traffic-split"
+    ],
+    "aliases": [
+      "모델 폴백",
+      "model fallback",
+      "LLM fallback",
+      "LLM 대체 모델"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/governance/ai-gateway/traffic-routing-fallbacks/"
+    ]
+  },
+  {
+    "id": "mlops.serve.gguf",
+    "title": "GGUF 모델 파일",
+    "en": "GGUF Model File Format",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "모델의 숫자와 설정 정보를 한 파일에 담아 빨리 불러오게 만든 형식으로, 내 컴퓨터에서 AI 모델을 돌리는 도구들이 흔히 쓴다.",
+    "parent": "mlops.serve.quantization-picture",
+    "related": [
+      "llm.basics.local-ai"
+    ],
+    "aliases": [
+      "GGUF",
+      "GGUF 파일",
+      "GGUF format",
+      ".gguf 파일"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/hub/gguf",
+      "https://huggingface.co/docs/transformers/main/en/quantization/overview"
     ]
   },
   {
@@ -1018,6 +1231,72 @@
     ],
     "refs": [
       "https://docs.cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning"
+    ]
+  },
+  {
+    "id": "mlops.eval.key-phrase-match",
+    "title": "핵심어 포함 채점(문자열 일치)",
+    "en": "Key Phrase String Match Grading",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "AI 답 전체가 아니라 꼭 들어가야 할 낱말이나 문구가 답 안에 있는지만 프로그램이 찾아 맞고 틀림을 매기는 채점이다.",
+    "parent": "mlops.eval.grading-methods-picture",
+    "related": [
+      "mlops.eval.exact-match-grading"
+    ],
+    "aliases": [
+      "string match grading",
+      "문자열 일치 채점",
+      "핵심어 채점",
+      "키워드 포함 채점"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests"
+    ]
+  },
+  {
+    "id": "mlops.serve.gateway-budget-policy",
+    "title": "게이트웨이 예산 한도(budget policy)",
+    "en": "AI Gateway Budget Policy",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "게이트웨이로 AI를 부르는 데 하루·한 주·한 달 동안 쓸 돈의 선을 정해 두고, 넘으면 알림을 보내거나 새 요청을 막는 규칙이다.",
+    "parent": "mlops.serve.ai-gateway-picture",
+    "related": [
+      "llm.api.spend-limit"
+    ],
+    "aliases": [
+      "AI Gateway budget policy",
+      "게이트웨이 예산 정책",
+      "LLM 예산 한도",
+      "AI 사용 예산 알림"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/governance/ai-gateway/budget-alerts-limits/"
+    ]
+  },
+  {
+    "id": "mlops.serve.quantization-error",
+    "title": "양자화 오차(반올림 오차)",
+    "en": "Quantization Rounding Error",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "숫자를 적은 비트로 줄일 때 가까운 값으로 반올림하면서 원래 값과 조금씩 달라지는 차이로, 쓸 수 있는 값이 적을수록 커진다.",
+    "parent": "mlops.serve.quantization-picture",
+    "aliases": [
+      "양자화 오차",
+      "quantization error",
+      "양자화 반올림 오차",
+      "양자화 손실"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/main/en/quantization/concept_guide"
     ]
   },
   {

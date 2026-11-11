@@ -243,6 +243,101 @@
     ]
   },
   {
+    "id": "cs.os.race-condition-idea",
+    "title": "동시에 고치면 생기는 문제: 경쟁 상태 입문",
+    "en": "Race Conditions for Beginners",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "여러 일꾼이 같은 것을 동시에 고칠 때 누가 먼저 하느냐에 따라 결과가 달라지는 문제와 차례를 정해 막는 잠금의 큰 그림이다.",
+    "objectives": [
+      "같은 장부를 두 사람이 동시에 고치는 비유로 경쟁 상태를 설명할 수 있다",
+      "마이크 하나를 돌려 쓰는 토론회에 빗대어 잠금이 하는 일을 말할 수 있다",
+      "잠금을 풀지 않으면 다른 쪽이 계속 기다리게 되는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.os.multitasking"
+    ],
+    "related": [
+      "cs.os.mutex-lock",
+      "be.async.race-condition"
+    ],
+    "aliases": [
+      "동시 수정 문제",
+      "동시에 고치기 충돌",
+      "concurrent update problem",
+      "경쟁 조건 입문"
+    ],
+    "refs": [
+      "https://doc.rust-lang.org/book/ch16-01-threads.html",
+      "https://doc.rust-lang.org/book/ch16-03-shared-state.html"
+    ]
+  },
+  {
+    "id": "cs.data.integer-overflow",
+    "title": "정수 오버플로: 칸이 모자라 수가 넘칠 때",
+    "en": "Integer Overflow",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "정해진 자릿수로만 수를 담는 칸에 그보다 큰 수를 넣으면 넘쳐서 프로그램이 오류로 멈추거나 엉뚱한 값이 되는 현상이다.",
+    "objectives": [
+      "자동차 주행 거리계가 999999 다음에 000000이 되는 비유로 오버플로를 설명할 수 있다",
+      "칸의 크기(비트 수)가 담을 수 있는 수의 범위를 정한다는 것을 말할 수 있다",
+      "날짜를 초로 세는 시계가 언젠가 넘칠 수 있다는 2038년 문제의 뜻을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.data.digital-information"
+    ],
+    "related": [
+      "cs.data.integer-float",
+      "cs.data.arbitrary-precision-int"
+    ],
+    "aliases": [
+      "integer overflow",
+      "정수 넘침",
+      "숫자 넘침",
+      "오버플로 오류"
+    ],
+    "refs": [
+      "https://doc.rust-lang.org/book/ch03-02-data-types.html",
+      "https://man7.org/linux/man-pages/man2/time.2.html"
+    ]
+  },
+  {
+    "id": "cs.net.reliable-delivery",
+    "title": "믿을 수 있는 전달: 확인 응답과 재전송",
+    "en": "Reliable Delivery with Acknowledgment and Retransmission",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "받는 쪽이 잘 받았다고 답하고 답이 없으면 다시 보내는 방식으로, 잃어버리기 쉬운 길에서도 빠짐없이 순서대로 전하는 원리다.",
+    "objectives": [
+      "등기 우편의 수령 확인에 빗대어 확인 응답과 재전송을 설명할 수 있다",
+      "조각마다 번호를 붙이면 빠진 것과 겹친 것을 알아챌 수 있는 이유를 말할 수 있다",
+      "TCP가 이 방식으로 데이터를 빠짐없이 전한다는 것을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.net.what-is-protocol"
+    ],
+    "related": [
+      "cs.net.tcp-vs-udp",
+      "ops.network.tcp-internals"
+    ],
+    "aliases": [
+      "신뢰성 있는 전송",
+      "reliable delivery",
+      "TCP 신뢰성",
+      "TCP reliability"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9293.html"
+    ]
+  },
+  {
     "id": "cs.data.utc",
     "title": "협정 세계시(UTC)",
     "en": "Coordinated Universal Time (UTC)",
@@ -655,6 +750,49 @@
     ]
   },
   {
+    "id": "cs.os.lock-idea",
+    "title": "잠금(락): 한 번에 한 쪽만 쓰게 하기",
+    "en": "Lock as Exclusive Access",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "공유하는 것을 쓰기 전에 먼저 차지하고 다 쓰면 놓아 주어, 한 번에 한 쪽만 만지게 하는 차례표다.",
+    "parent": "cs.os.race-condition-idea",
+    "related": [
+      "cs.os.mutex-lock"
+    ],
+    "aliases": [
+      "락 걸기",
+      "lock 개념",
+      "공유 자원 잠금",
+      "배타적 접근"
+    ],
+    "refs": [
+      "https://doc.rust-lang.org/book/ch16-03-shared-state.html"
+    ]
+  },
+  {
+    "id": "cs.net.acknowledgment",
+    "title": "확인 응답(ACK)",
+    "en": "TCP Acknowledgment (ACK)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "받는 쪽이 어디까지 잘 받았는지 보내는 쪽에 알려 주는 답장이다.",
+    "parent": "cs.net.reliable-delivery",
+    "aliases": [
+      "TCP 확인 응답",
+      "ACK 신호",
+      "TCP ACK",
+      "ACK 번호"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9293.html"
+    ]
+  },
+  {
     "id": "cs.net.robustness-principle",
     "title": "견고성 원칙(포스텔의 법칙)",
     "en": "Robustness Principle",
@@ -792,6 +930,134 @@
     ],
     "refs": [
       "https://www.ietf.org/about/introduction/"
+    ]
+  },
+  {
+    "id": "cs.os.data-race",
+    "title": "데이터 경쟁(data race)",
+    "en": "Data Race",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "둘 이상의 실행 흐름이 같은 메모리 칸을 차례 약속 없이 동시에 만지고 그중 하나는 쓰기인 상황이다.",
+    "parent": "cs.os.race-condition-idea",
+    "related": [
+      "cs.os.critical-section"
+    ],
+    "aliases": [
+      "데이터 레이스",
+      "데이터 경합",
+      "data races"
+    ],
+    "refs": [
+      "https://doc.rust-lang.org/nomicon/races.html"
+    ]
+  },
+  {
+    "id": "cs.data.integer-wraparound",
+    "title": "값 되감김(wraparound)",
+    "en": "Integer Wraparound",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "정수 칸이 넘쳤을 때 값이 가장 큰 수 다음에 가장 작은 수로 돌아가 다시 세어지는 현상이다.",
+    "parent": "cs.data.integer-overflow",
+    "aliases": [
+      "wraparound",
+      "랩어라운드",
+      "wrapping arithmetic",
+      "정수 되감김"
+    ],
+    "refs": [
+      "https://doc.rust-lang.org/book/ch03-02-data-types.html"
+    ]
+  },
+  {
+    "id": "cs.data.year-2038-problem",
+    "title": "2038년 문제",
+    "en": "Year 2038 Problem",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "1970년부터 센 초를 32비트 칸에 담는 시스템이 2038년 1월 19일에 칸이 넘쳐 날짜를 잘못 다루게 되는 문제다.",
+    "parent": "cs.data.integer-overflow",
+    "related": [
+      "cs.os.unix-time"
+    ],
+    "aliases": [
+      "Y2038",
+      "Y2K38",
+      "2038 problem",
+      "32비트 time_t 오버플로"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man2/time.2.html"
+    ]
+  },
+  {
+    "id": "cs.data.unsigned-integer",
+    "title": "부호 없는 정수",
+    "en": "Unsigned Integer",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "음수를 담지 않는 대신 같은 칸 크기로 0부터 더 큰 양수까지 담는 정수 종류다.",
+    "parent": "cs.data.integer-overflow",
+    "related": [
+      "cs.data.twos-complement"
+    ],
+    "aliases": [
+      "unsigned int",
+      "unsigned integer",
+      "부호 없는 정수형",
+      "uint 정수"
+    ],
+    "refs": [
+      "https://doc.rust-lang.org/book/ch03-02-data-types.html"
+    ]
+  },
+  {
+    "id": "cs.net.retransmission",
+    "title": "재전송(retransmission)",
+    "en": "TCP Retransmission",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "정해진 시간 안에 확인 응답이 오지 않으면 잃어버린 것으로 보고 같은 데이터를 다시 보내는 일이다.",
+    "parent": "cs.net.reliable-delivery",
+    "aliases": [
+      "TCP 재전송",
+      "패킷 재전송",
+      "retransmission timeout",
+      "RTO 재전송"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9293.html"
+    ]
+  },
+  {
+    "id": "cs.net.sequence-number",
+    "title": "순서 번호(sequence number)",
+    "en": "TCP Sequence Number",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "보내는 데이터에 차례대로 붙인 번호로, 받는 쪽이 빠진 조각과 겹친 조각을 알아채고 순서를 맞추게 한다.",
+    "parent": "cs.net.reliable-delivery",
+    "aliases": [
+      "순서 번호",
+      "TCP 시퀀스 번호",
+      "sequence number",
+      "seq 번호"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9293.html"
     ]
   },
   {

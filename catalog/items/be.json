@@ -323,6 +323,71 @@
     ]
   },
   {
+    "id": "be.run.busy-server-idea",
+    "title": "서버가 바빠진다는 것: 손님과 처리 능력",
+    "en": "When a Server Gets Busy: Demand and Capacity",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "실행·성능",
+    "summary": "가게에 손님이 한꺼번에 몰리면 줄이 길어지듯, 서버도 요청이 처리 능력을 넘으면 느려지거나 요청을 거절한다.",
+    "objectives": [
+      "트래픽을 가게에 들어오는 손님 수에 빗대어 설명할 수 있다",
+      "서버가 꽉 차면 응답이 느려지거나 거절되는 이유를 비유로 말할 수 있다",
+      "지연·트래픽·오류·포화 네 가지 신호가 각각 무엇을 보는지 말할 수 있다"
+    ],
+    "prerequisites": [
+      "be.basics.web-server-idea",
+      "be.http.web-conversation"
+    ],
+    "related": [
+      "be.run.performance",
+      "cs.net.latency-bandwidth"
+    ],
+    "aliases": [
+      "서버가 바쁘다",
+      "서버 부하",
+      "server load",
+      "골든 시그널",
+      "golden signals"
+    ],
+    "refs": [
+      "https://sre.google/sre-book/monitoring-distributed-systems/",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/503"
+    ]
+  },
+  {
+    "id": "be.run.scaling-idea",
+    "title": "늘려서 버티기: 서버 확장의 큰 그림",
+    "en": "Scaling Basics: Bigger Servers or More Servers",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "실행·성능",
+    "summary": "손님이 늘면 가게를 넓히거나 지점을 더 내듯, 서버도 한 대를 키우거나 대수를 늘려 더 많은 요청을 받는다.",
+    "objectives": [
+      "더 큰 서버로 바꾸는 방법과 서버 대수를 늘리는 방법을 비유로 구분할 수 있다",
+      "수요가 줄면 서버를 다시 줄여 비용을 아끼는 이유를 말할 수 있다",
+      "갑자기 몰리는 요청에 대비해 여유를 남겨 두는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "be.run.busy-server-idea"
+    ],
+    "related": [
+      "be.run.scaling",
+      "ops.network.load-balancer"
+    ],
+    "aliases": [
+      "서버 늘리기",
+      "서버 증설",
+      "서버 스케일링",
+      "scaling strategy"
+    ],
+    "refs": [
+      "https://learn.microsoft.com/en-us/azure/well-architected/performance-efficiency/scale-partition"
+    ]
+  },
+  {
     "id": "be.basics.web-framework-idea",
     "title": "웹 프레임워크: 서버를 빨리 만드는 도구 상자",
     "en": "What a Web Framework Does",
@@ -346,6 +411,39 @@
     ],
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Web_frameworks"
+    ]
+  },
+  {
+    "id": "be.run.request-limit-idea",
+    "title": "요청 수 제한의 큰 그림: 입장 제한",
+    "en": "Why APIs Limit Requests",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "실행·성능",
+    "summary": "놀이기구가 한 번에 태울 사람 수를 정하듯, 서버도 한 사용자가 짧은 시간에 보낼 수 있는 요청 수를 정해 모두를 지킨다.",
+    "objectives": [
+      "놀이공원 입장 제한에 빗대어 서버가 요청 수를 제한하는 이유를 설명할 수 있다",
+      "너무 자주 요청하면 '잠시 뒤에 다시 오라'는 응답을 받는다는 것을 말할 수 있다",
+      "제한이 없을 때 생기는 서비스 마비와 비용 증가를 예로 들 수 있다"
+    ],
+    "prerequisites": [
+      "be.run.busy-server-idea",
+      "be.basics.what-is-api"
+    ],
+    "related": [
+      "be.rest.rate-limit",
+      "be.run.rate-limit-algorithms"
+    ],
+    "aliases": [
+      "요청 제한",
+      "호출 횟수 제한",
+      "API 호출 제한",
+      "자원 소모 제한"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/429",
+      "https://api-security.owasp.org/editions/2023/en/0xa4-unrestricted-resource-consumption"
     ]
   },
   {
@@ -641,6 +739,68 @@
     ]
   },
   {
+    "id": "be.run.traffic",
+    "title": "트래픽(서버 요청량)",
+    "en": "Server Traffic (Request Volume)",
+    "kind": "term",
+    "level": 1,
+    "importance": 1,
+    "group": "실행·성능",
+    "summary": "서비스에 몰려드는 요청의 양으로, 웹 서비스에서는 흔히 초당 요청 수로 센다.",
+    "parent": "be.run.busy-server-idea",
+    "aliases": [
+      "웹 트래픽",
+      "web traffic",
+      "요청량",
+      "초당 요청 수",
+      "requests per second"
+    ],
+    "refs": [
+      "https://sre.google/sre-book/monitoring-distributed-systems/"
+    ]
+  },
+  {
+    "id": "be.run.overload",
+    "title": "과부하",
+    "en": "Server Overload",
+    "kind": "term",
+    "level": 1,
+    "importance": 1,
+    "group": "실행·성능",
+    "summary": "요청이 서버의 메모리·CPU·연결 한도를 넘어서 제대로 처리하지 못하는 상태다.",
+    "parent": "be.run.busy-server-idea",
+    "related": [
+      "be.run.load-control"
+    ],
+    "aliases": [
+      "서버 과부하",
+      "server overload",
+      "서버 터짐"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/503"
+    ]
+  },
+  {
+    "id": "be.run.scalability",
+    "title": "확장성",
+    "en": "Scalability",
+    "kind": "term",
+    "level": 1,
+    "importance": 1,
+    "group": "실행·성능",
+    "summary": "수요가 늘거나 줄 때 서비스가 처리할 수 있는 한도를 그에 맞춰 바꿀 수 있는 능력이다.",
+    "parent": "be.run.scaling-idea",
+    "aliases": [
+      "확장 가능성",
+      "스케일러블",
+      "scalable"
+    ],
+    "refs": [
+      "https://learn.microsoft.com/en-us/azure/well-architected/performance-efficiency/scale-partition"
+    ]
+  },
+  {
     "id": "be.basics.url-scheme",
     "title": "URL 스킴",
     "en": "URL Scheme",
@@ -742,6 +902,124 @@
     ],
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Web_frameworks"
+    ]
+  },
+  {
+    "id": "be.run.saturation",
+    "title": "포화도",
+    "en": "Saturation (How Full a Service Is)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "실행·성능",
+    "summary": "서버의 메모리·CPU처럼 가장 빠듯한 자원이 얼마나 꽉 찼는지를 나타내며, 다 차기 전부터 느려지기 시작한다.",
+    "parent": "be.run.busy-server-idea",
+    "aliases": [
+      "서버 포화",
+      "resource saturation"
+    ],
+    "refs": [
+      "https://sre.google/sre-book/monitoring-distributed-systems/"
+    ]
+  },
+  {
+    "id": "be.http.service-unavailable",
+    "title": "503 Service Unavailable",
+    "en": "503 Service Unavailable",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "HTTP",
+    "summary": "서버가 살아 있지만 점검이나 과부하로 지금은 요청을 받을 수 없다는 일시적 응답이다.",
+    "parent": "be.run.busy-server-idea",
+    "aliases": [
+      "503",
+      "503 에러",
+      "503 error",
+      "서비스 이용 불가"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/503"
+    ]
+  },
+  {
+    "id": "be.run.vertical-scaling",
+    "title": "수직 확장",
+    "en": "Vertical Scaling (Scale Up)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "실행·성능",
+    "summary": "서버 대수는 그대로 두고 한 대의 CPU·메모리를 더 큰 것으로 바꿔 처리 능력을 키우는 방식이다.",
+    "parent": "be.run.scaling-idea",
+    "related": [
+      "be.run.horizontal-scaling"
+    ],
+    "aliases": [
+      "스케일 업",
+      "scale up",
+      "서버 사양 올리기"
+    ],
+    "refs": [
+      "https://learn.microsoft.com/en-us/azure/well-architected/performance-efficiency/scale-partition"
+    ]
+  },
+  {
+    "id": "be.run.capacity",
+    "title": "처리 용량",
+    "en": "Service Capacity",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "실행·성능",
+    "summary": "서비스나 서버 한 대가 감당할 수 있는 일의 최대치로, 이를 넘으면 느려지거나 요청을 놓친다.",
+    "parent": "be.run.scaling-idea",
+    "aliases": [
+      "서버 용량",
+      "server capacity",
+      "수용 한계"
+    ],
+    "refs": [
+      "https://learn.microsoft.com/en-us/azure/well-architected/performance-efficiency/scale-partition"
+    ]
+  },
+  {
+    "id": "be.security.dos",
+    "title": "서비스 거부 공격",
+    "en": "Denial of Service (DoS) Attack",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 보안",
+    "summary": "감당 못 할 만큼 요청을 쏟아붓거나 약점을 노려 서비스를 정상 사용자가 쓸 수 없게 만드는 공격이다.",
+    "parent": "be.run.request-limit-idea",
+    "aliases": [
+      "DoS attack",
+      "DoS 공격",
+      "denial of service"
+    ],
+    "refs": [
+      "https://community.owasp.org/attacks/Denial_of_Service",
+      "https://api-security.owasp.org/editions/2023/en/0xa4-unrestricted-resource-consumption"
+    ]
+  },
+  {
+    "id": "be.run.capacity-buffer",
+    "title": "여유 용량",
+    "en": "Capacity Buffer (Headroom)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "실행·성능",
+    "summary": "갑자기 요청이 몰릴 때를 대비해 평소에 쓰지 않고 남겨 두는 처리 능력이다.",
+    "parent": "be.run.scaling-idea",
+    "aliases": [
+      "headroom",
+      "헤드룸",
+      "예비 용량"
+    ],
+    "refs": [
+      "https://learn.microsoft.com/en-us/azure/well-architected/performance-efficiency/scale-partition"
     ]
   },
   {
