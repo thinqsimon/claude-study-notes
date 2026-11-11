@@ -722,6 +722,100 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "mlops.guardrail.modelaudit-scan",
+    "title": "ModelAudit로 내려받은 모델 파일 검사하기",
+    "en": "Scanning Model Files with ModelAudit",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "남이 올린 모델 파일을 불러오기 전에 promptfoo scan-model로 숨은 코드나 위험 신호를 찾아보는 첫 보안 검사다.",
+    "objectives": [
+      "pip로 modelaudit을 설치하고 promptfoo scan-model로 로컬 폴더나 hf:// 주소의 모델을 검사할 수 있다",
+      "결과의 CRITICAL·WARNING 같은 심각도와 종료 코드로 문제가 있는지 판단할 수 있다",
+      "--format json이나 sarif로 검사 결과를 파일로 남길 수 있다",
+      "외부 모델 파일을 그냥 불러오면 왜 위험한지 공급망 위험과 연결해 말할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.guardrail.llm-top10-overview"
+    ],
+    "related": [
+      "ax.security.model-supply-chain"
+    ],
+    "aliases": [
+      "ModelAudit",
+      "modelaudit",
+      "promptfoo scan-model",
+      "모델 파일 보안 검사",
+      "모델 보안 스캔"
+    ],
+    "refs": [
+      "https://www.promptfoo.dev/docs/model-audit/",
+      "https://www.promptfoo.dev/docs/model-audit/scanners/"
+    ]
+  },
+  {
+    "id": "mlops.eval.inspect-builtin-scorers",
+    "title": "Inspect 내장 스코어러 골라 채점하기",
+    "en": "Choosing Inspect Built-in Scorers",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "정답 형태에 따라 match·includes·choice·model_graded_qa 같은 Inspect 내장 채점기를 골라 끼우는 방법이다.",
+    "objectives": [
+      "짧은 정답에는 match나 includes, 정확히 같아야 하면 exact를 골라 Task에 넣을 수 있다",
+      "객관식 문제를 multiple_choice 솔버와 choice 스코어러로 채점할 수 있다",
+      "정답이 열린 서술형이면 model_graded_qa로 다른 모델에게 채점을 맡길 수 있다",
+      "결과의 accuracy와 stderr 값을 읽을 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.eval.inspect-quickstart"
+    ],
+    "related": [
+      "mlops.eval.scorer",
+      "mlops.eval.builtin-judges"
+    ],
+    "aliases": [
+      "Inspect scorer",
+      "Inspect 스코어러",
+      "inspect_ai.scorer",
+      "match 스코어러",
+      "includes 스코어러"
+    ],
+    "refs": [
+      "https://inspect.aisi.org.uk/scorers.html",
+      "https://inspect.aisi.org.uk/solvers.html"
+    ]
+  },
+  {
+    "id": "mlops.eval.lighteval-results",
+    "title": "LightEval 평가 결과 저장하고 읽기",
+    "en": "Saving and Reading LightEval Results",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "LightEval이 남긴 결과 JSON과 문제별 상세 파일을 찾아 열고, 필요하면 Hugging Face Hub에 올려 두는 방법이다.",
+    "objectives": [
+      "--output-dir로 결과를 남기고 results 폴더의 JSON에서 태스크별 점수를 찾을 수 있다",
+      "--save-details로 남긴 parquet 파일을 datasets로 불러와 문제별 모델 답을 볼 수 있다",
+      "--push-to-hub와 --results-org로 결과를 비공개 데이터셋으로 올릴 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.eval.lighteval-quickstart"
+    ],
+    "aliases": [
+      "LightEval 결과 파일",
+      "lighteval output-dir",
+      "LightEval 결과 읽기",
+      "EvaluationTracker"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/lighteval/saving-and-reading-results"
+    ]
+  },
+  {
     "id": "mlops.eval.eval-dataset",
     "title": "평가 세트(evaluation dataset)",
     "en": "Evaluation Dataset",
@@ -1360,6 +1454,150 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
+  },
+  {
+    "id": "mlops.eval.inspect-multiple-choice",
+    "title": "Inspect 객관식 채점(multiple_choice·choice)",
+    "en": "Inspect Multiple Choice Solver and choice Scorer",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Sample의 choices를 A·B·C 보기로 보여 주는 multiple_choice 솔버와 고른 글자를 정답과 맞춰 보는 choice 스코어러 짝이다.",
+    "parent": "mlops.eval.inspect-builtin-scorers",
+    "aliases": [
+      "multiple_choice 솔버",
+      "choice 스코어러",
+      "Inspect 객관식",
+      "shuffle_choices"
+    ],
+    "refs": [
+      "https://inspect.aisi.org.uk/solvers.html"
+    ]
+  },
+  {
+    "id": "mlops.eval.inspect-model-graded",
+    "title": "Inspect 모델 채점(model_graded_qa)",
+    "en": "Inspect Model-Graded Scorers",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "target에 적은 채점 기준을 보고 다른 모델이 답의 옳고 그름을 판정하게 하는 Inspect 내장 스코어러다.",
+    "parent": "mlops.eval.inspect-builtin-scorers",
+    "related": [
+      "mlops.eval.llm-judge"
+    ],
+    "aliases": [
+      "model_graded_qa",
+      "model_graded_fact",
+      "Inspect 모델 채점기"
+    ],
+    "refs": [
+      "https://inspect.aisi.org.uk/scorers.html"
+    ]
+  },
+  {
+    "id": "mlops.eval.inspect-accuracy-stderr",
+    "title": "Inspect 지표 accuracy와 stderr",
+    "en": "Inspect accuracy and stderr Metrics",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "맞힌 문제의 비율인 accuracy와 그 값이 얼마나 흔들릴 수 있는지 보여 주는 표준 오차 stderr이다.",
+    "parent": "mlops.eval.inspect-builtin-scorers",
+    "aliases": [
+      "Inspect accuracy",
+      "Inspect stderr",
+      "표준 오차 지표",
+      "평가 표준 오차"
+    ],
+    "refs": [
+      "https://inspect.aisi.org.uk/scorers.html"
+    ]
+  },
+  {
+    "id": "mlops.eval.lighteval-details",
+    "title": "LightEval 상세 파일(details parquet)",
+    "en": "LightEval Details Files",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "문제마다 넣은 입력·모델 생성·지표 값을 담아 --save-details로 남기는 parquet 파일이다.",
+    "parent": "mlops.eval.lighteval-results",
+    "aliases": [
+      "lighteval save-details",
+      "LightEval details",
+      "__model_response__",
+      "details parquet"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/lighteval/saving-and-reading-results"
+    ]
+  },
+  {
+    "id": "mlops.eval.inspect-eval-log",
+    "title": "Inspect 평가 로그 파일(.eval)",
+    "en": "Inspect Eval Log Files",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Inspect가 평가마다 ./logs 폴더에 남기는 기록 파일로, inspect view로 보거나 inspect log 명령과 read_eval_log로 읽는다.",
+    "related": [
+      "mlops.eval.inspect-view"
+    ],
+    "aliases": [
+      "Inspect 로그",
+      "INSPECT_LOG_DIR",
+      "inspect log dump",
+      "read_eval_log",
+      ".eval 로그 파일"
+    ],
+    "refs": [
+      "https://inspect.aisi.org.uk/eval-logs.html"
+    ]
+  },
+  {
+    "id": "mlops.eval.promptfoo-cache",
+    "title": "promptfoo 응답 캐시(--no-cache)",
+    "en": "promptfoo Response Cache",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "promptfoo가 같은 요청의 모델 응답을 디스크에 저장해 다시 쓰는 기능으로, 새 답이 필요하면 --no-cache나 cache clear를 쓴다.",
+    "aliases": [
+      "promptfoo 캐시",
+      "promptfoo cache clear",
+      "PROMPTFOO_CACHE_ENABLED",
+      "eval --no-cache"
+    ],
+    "refs": [
+      "https://www.promptfoo.dev/docs/configuration/caching/"
+    ]
+  },
+  {
+    "id": "mlops.eval.promptfoo-output-file",
+    "title": "promptfoo 결과 파일 내보내기(--output)",
+    "en": "promptfoo Output Files",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "promptfoo eval 결과를 확장자에 따라 HTML·CSV·JSON 같은 파일로 저장해 공유하거나 다른 도구로 넘기는 옵션이다.",
+    "aliases": [
+      "promptfoo -o",
+      "promptfoo outputPath",
+      "promptfoo 결과 내보내기",
+      "promptfoo HTML 보고서"
+    ],
+    "refs": [
+      "https://www.promptfoo.dev/docs/configuration/outputs/",
+      "https://www.promptfoo.dev/docs/usage/command-line/"
+    ]
   },
   {
     "id": "mlops.observe.manual-tracing",

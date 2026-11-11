@@ -601,6 +601,117 @@
     ]
   },
   {
+    "id": "dev.basics.vscode-extensions",
+    "title": "VS Code 확장 찾아 설치하고 관리하기",
+    "en": "Installing and Managing VS Code Extensions",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "개발 환경",
+    "summary": "확장 보기에서 마켓플레이스를 검색해 언어 지원 같은 기능을 더하고, 필요 없으면 끄거나 지운다.",
+    "objectives": [
+      "확장 보기에서 확장을 검색해 설치할 수 있다",
+      "확장을 전체 또는 작업 영역에서만 사용 중지하고 제거할 수 있다",
+      "믿을 만한 게시자의 확장인지 확인하고 설치할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.basics.code-editor"
+    ],
+    "aliases": [
+      "VS Code 확장",
+      "VS Code extension",
+      "확장 마켓플레이스",
+      "Extensions view",
+      "VS Code Marketplace"
+    ],
+    "refs": [
+      "https://code.visualstudio.com/docs/getstarted/extensions",
+      "https://code.visualstudio.com/docs/configure/extensions/extension-marketplace"
+    ]
+  },
+  {
+    "id": "dev.basics.vscode-search",
+    "title": "VS Code에서 찾아 바꾸기: 파일 안과 여러 파일",
+    "en": "Find and Replace Across Files in VS Code",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "개발 환경",
+    "summary": "한 파일 안에서 찾기·바꾸기를 하고, 검색 보기로 프로젝트 전체에서 같은 글자를 찾아 한꺼번에 고친다.",
+    "objectives": [
+      "대소문자 구분·단어 단위 옵션을 켜고 파일 안에서 찾아 바꿀 수 있다",
+      "검색 보기로 여러 파일에서 찾고 미리 보기를 확인한 뒤 바꿀 수 있다",
+      "포함·제외할 파일 패턴을 넣어 검색 범위를 좁힐 수 있다"
+    ],
+    "prerequisites": [
+      "dev.basics.code-editor"
+    ],
+    "aliases": [
+      "VS Code 검색",
+      "VS Code 전체 파일 검색",
+      "search across files",
+      "VS Code find and replace",
+      "VS Code 찾기 바꾸기"
+    ],
+    "refs": [
+      "https://code.visualstudio.com/docs/editing/codebasics"
+    ]
+  },
+  {
+    "id": "dev.basics.vscode-code-navigation",
+    "title": "VS Code에서 코드 따라가기: 정의와 참조",
+    "en": "Code Navigation in VS Code",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "개발 환경",
+    "summary": "파일 이름으로 바로 열고, 함수 이름에서 정의로 건너뛰거나 쓰인 곳을 모아 보며 남의 코드를 읽는다.",
+    "objectives": [
+      "빠른 열기로 파일 이름만 쳐서 파일을 열 수 있다",
+      "정의로 이동한 뒤 뒤로 가기로 원래 자리에 돌아올 수 있다",
+      "참조 찾기로 함수가 쓰인 곳을 모아 볼 수 있다"
+    ],
+    "prerequisites": [
+      "dev.basics.code-editor"
+    ],
+    "aliases": [
+      "VS Code 코드 탐색",
+      "VS Code code navigation",
+      "Go to Symbol"
+    ],
+    "refs": [
+      "https://code.visualstudio.com/docs/editing/editingevolved"
+    ]
+  },
+  {
+    "id": "dev.git.branch-management",
+    "title": "브랜치 목록 보고 정리하기",
+    "en": "Git Branch Management",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "Git",
+    "summary": "git branch로 브랜치 목록과 마지막 커밋을 보고, 합쳐진 브랜치를 골라 지우거나 이름을 바꾼다.",
+    "objectives": [
+      "git branch -v로 지금 브랜치와 각 브랜치의 마지막 커밋을 볼 수 있다",
+      "--merged와 --no-merged로 지워도 되는 브랜치를 고를 수 있다",
+      "git branch -d로 다 쓴 브랜치를 지우고 git branch --move(-m)로 이름을 바꿀 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.branch-pr"
+    ],
+    "aliases": [
+      "git branch -v",
+      "git branch -m",
+      "브랜치 정리",
+      "브랜치 이름 바꾸기",
+      "branch management"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Branching-Branch-Management"
+    ]
+  },
+  {
     "id": "dev.test.unit",
     "title": "단위 테스트",
     "en": "Unit Test",
@@ -1021,6 +1132,65 @@
     ]
   },
   {
+    "id": "dev.basics.vscode-quick-open",
+    "title": "빠른 열기(Ctrl+P)",
+    "en": "Quick Open",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "개발 환경",
+    "summary": "파일 이름 일부만 입력해 폴더를 뒤지지 않고 원하는 파일을 바로 여는 VS Code 기능이다.",
+    "parent": "dev.basics.vscode-code-navigation",
+    "aliases": [
+      "VS Code Quick Open",
+      "VS Code Ctrl+P",
+      "Cmd+P 빠른 열기",
+      "Go to File"
+    ],
+    "refs": [
+      "https://code.visualstudio.com/docs/editing/editingevolved"
+    ]
+  },
+  {
+    "id": "dev.basics.vscode-go-to-definition",
+    "title": "정의로 이동(F12)",
+    "en": "Go to Definition",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "개발 환경",
+    "summary": "함수나 변수 이름에서 그것을 만든 곳으로 건너뛰는 기능으로, Ctrl을 누르고 클릭해도 된다.",
+    "parent": "dev.basics.vscode-code-navigation",
+    "aliases": [
+      "Go to Definition",
+      "VS Code F12",
+      "Ctrl+클릭 정의 이동"
+    ],
+    "refs": [
+      "https://code.visualstudio.com/docs/editing/editingevolved"
+    ]
+  },
+  {
+    "id": "dev.git.branch-delete",
+    "title": "git branch -d와 -D로 브랜치 지우기",
+    "en": "Deleting Local Branches with git branch -d and -D",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Git",
+    "summary": "-d는 다 합쳐진 브랜치만 지워 실수를 막고, -D는 합치지 않은 작업이 있어도 강제로 지운다.",
+    "parent": "dev.git.branch-management",
+    "aliases": [
+      "git branch -d",
+      "git branch -D",
+      "로컬 브랜치 삭제",
+      "delete local branch"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Branching-Branch-Management"
+    ]
+  },
+  {
     "id": "dev.debug.launch-json",
     "title": "launch.json 디버그 구성",
     "en": "launch.json Debug Configuration",
@@ -1185,6 +1355,123 @@
     ],
     "refs": [
       "https://code.visualstudio.com/docs/configure/settings"
+    ]
+  },
+  {
+    "id": "dev.basics.vscode-extension-recommendations",
+    "title": "권장 확장 목록(.vscode/extensions.json)",
+    "en": "Workspace Recommended Extensions",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "개발 환경",
+    "summary": "프로젝트 폴더에 확장 ID 목록을 적어 두면 처음 연 사람에게 VS Code가 그 확장을 설치하라고 권한다.",
+    "aliases": [
+      ".vscode/extensions.json",
+      "extensions.json",
+      "권장 확장",
+      "recommended extensions"
+    ],
+    "refs": [
+      "https://code.visualstudio.com/docs/configure/extensions/extension-marketplace"
+    ]
+  },
+  {
+    "id": "dev.basics.vscode-peek-references",
+    "title": "참조 찾기와 피크(Shift+F12)",
+    "en": "Peek and Go to References",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "개발 환경",
+    "summary": "함수가 쓰인 곳을 현재 파일을 떠나지 않고 작은 창에 모아 보여 주는 VS Code 기능이다.",
+    "parent": "dev.basics.vscode-code-navigation",
+    "aliases": [
+      "Go to References",
+      "Find All References",
+      "VS Code Shift+F12",
+      "VS Code 피크"
+    ],
+    "refs": [
+      "https://code.visualstudio.com/docs/editing/editingevolved"
+    ]
+  },
+  {
+    "id": "dev.basics.vscode-search-include-exclude",
+    "title": "검색할 파일과 제외할 파일 패턴",
+    "en": "Files to Include and Exclude in VS Code Search",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "개발 환경",
+    "summary": "검색 보기에 *·** 같은 글롭 패턴을 넣어 찾을 폴더를 정하거나 node_modules 같은 곳을 뺀다.",
+    "parent": "dev.basics.vscode-search",
+    "aliases": [
+      "files to include",
+      "files to exclude",
+      "search.exclude",
+      "VS Code 검색 제외"
+    ],
+    "refs": [
+      "https://code.visualstudio.com/docs/editing/codebasics"
+    ]
+  },
+  {
+    "id": "dev.basics.vscode-multi-cursor",
+    "title": "VS Code 다중 커서",
+    "en": "Multi-Cursor Editing in VS Code",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "개발 환경",
+    "summary": "Alt+클릭이나 같은 단어 다음 것 선택으로 커서를 여러 개 두고 여러 줄을 한 번에 고치는 편집 방식이다.",
+    "aliases": [
+      "다중 커서",
+      "multi-cursor",
+      "멀티 커서",
+      "multiple selections",
+      "Ctrl+D 다음 항목 선택"
+    ],
+    "refs": [
+      "https://code.visualstudio.com/docs/editing/codebasics"
+    ]
+  },
+  {
+    "id": "dev.git.branch-merged",
+    "title": "git branch --merged와 --no-merged",
+    "en": "git branch --merged and --no-merged",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Git",
+    "summary": "지금 브랜치에 이미 합쳐진 브랜치와 아직 안 합쳐진 브랜치를 나눠 보여 주는 git branch 옵션이다.",
+    "parent": "dev.git.branch-management",
+    "aliases": [
+      "git branch --merged",
+      "git branch --no-merged",
+      "합쳐진 브랜치 목록"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Branching-Branch-Management"
+    ]
+  },
+  {
+    "id": "dev.git.github-dev",
+    "title": "github.dev 웹 편집기",
+    "en": "github.dev Web-Based Editor",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Git",
+    "summary": "GitHub 저장소 화면에서 . 키를 누르면 브라우저에 VS Code가 열려 파일을 고치고 커밋할 수 있지만 터미널과 실행은 없다.",
+    "aliases": [
+      "github.dev",
+      "GitHub 웹 편집기",
+      "VS Code for the Web",
+      "GitHub 점 키 편집기"
+    ],
+    "refs": [
+      "https://docs.github.com/en/codespaces/the-githubdev-web-based-editor"
     ]
   },
   {

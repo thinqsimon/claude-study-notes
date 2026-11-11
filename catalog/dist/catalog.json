@@ -1,5 +1,5 @@
 {
- "version": "0.34.0",
+ "version": "0.35.0",
  "domains": [
   {
    "prefix": "dev",
@@ -881,6 +881,121 @@
    "domain": "dev"
   },
   {
+   "id": "dev.basics.vscode-extensions",
+   "title": "VS Code 확장 찾아 설치하고 관리하기",
+   "en": "Installing and Managing VS Code Extensions",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "개발 환경",
+   "summary": "확장 보기에서 마켓플레이스를 검색해 언어 지원 같은 기능을 더하고, 필요 없으면 끄거나 지운다.",
+   "objectives": [
+    "확장 보기에서 확장을 검색해 설치할 수 있다",
+    "확장을 전체 또는 작업 영역에서만 사용 중지하고 제거할 수 있다",
+    "믿을 만한 게시자의 확장인지 확인하고 설치할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.basics.code-editor"
+   ],
+   "aliases": [
+    "VS Code 확장",
+    "VS Code extension",
+    "확장 마켓플레이스",
+    "Extensions view",
+    "VS Code Marketplace"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/getstarted/extensions",
+    "https://code.visualstudio.com/docs/configure/extensions/extension-marketplace"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.vscode-search",
+   "title": "VS Code에서 찾아 바꾸기: 파일 안과 여러 파일",
+   "en": "Find and Replace Across Files in VS Code",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "개발 환경",
+   "summary": "한 파일 안에서 찾기·바꾸기를 하고, 검색 보기로 프로젝트 전체에서 같은 글자를 찾아 한꺼번에 고친다.",
+   "objectives": [
+    "대소문자 구분·단어 단위 옵션을 켜고 파일 안에서 찾아 바꿀 수 있다",
+    "검색 보기로 여러 파일에서 찾고 미리 보기를 확인한 뒤 바꿀 수 있다",
+    "포함·제외할 파일 패턴을 넣어 검색 범위를 좁힐 수 있다"
+   ],
+   "prerequisites": [
+    "dev.basics.code-editor"
+   ],
+   "aliases": [
+    "VS Code 검색",
+    "VS Code 전체 파일 검색",
+    "search across files",
+    "VS Code find and replace",
+    "VS Code 찾기 바꾸기"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/editing/codebasics"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.vscode-code-navigation",
+   "title": "VS Code에서 코드 따라가기: 정의와 참조",
+   "en": "Code Navigation in VS Code",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "개발 환경",
+   "summary": "파일 이름으로 바로 열고, 함수 이름에서 정의로 건너뛰거나 쓰인 곳을 모아 보며 남의 코드를 읽는다.",
+   "objectives": [
+    "빠른 열기로 파일 이름만 쳐서 파일을 열 수 있다",
+    "정의로 이동한 뒤 뒤로 가기로 원래 자리에 돌아올 수 있다",
+    "참조 찾기로 함수가 쓰인 곳을 모아 볼 수 있다"
+   ],
+   "prerequisites": [
+    "dev.basics.code-editor"
+   ],
+   "aliases": [
+    "VS Code 코드 탐색",
+    "VS Code code navigation",
+    "Go to Symbol"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/editing/editingevolved"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.branch-management",
+   "title": "브랜치 목록 보고 정리하기",
+   "en": "Git Branch Management",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "Git",
+   "summary": "git branch로 브랜치 목록과 마지막 커밋을 보고, 합쳐진 브랜치를 골라 지우거나 이름을 바꾼다.",
+   "objectives": [
+    "git branch -v로 지금 브랜치와 각 브랜치의 마지막 커밋을 볼 수 있다",
+    "--merged와 --no-merged로 지워도 되는 브랜치를 고를 수 있다",
+    "git branch -d로 다 쓴 브랜치를 지우고 git branch --move(-m)로 이름을 바꿀 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.branch-pr"
+   ],
+   "aliases": [
+    "git branch -v",
+    "git branch -m",
+    "브랜치 정리",
+    "브랜치 이름 바꾸기",
+    "branch management"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Branching-Branch-Management"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.test.unit",
    "title": "단위 테스트",
    "en": "Unit Test",
@@ -1322,6 +1437,68 @@
    "domain": "dev"
   },
   {
+   "id": "dev.basics.vscode-quick-open",
+   "title": "빠른 열기(Ctrl+P)",
+   "en": "Quick Open",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "개발 환경",
+   "summary": "파일 이름 일부만 입력해 폴더를 뒤지지 않고 원하는 파일을 바로 여는 VS Code 기능이다.",
+   "parent": "dev.basics.vscode-code-navigation",
+   "aliases": [
+    "VS Code Quick Open",
+    "VS Code Ctrl+P",
+    "Cmd+P 빠른 열기",
+    "Go to File"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/editing/editingevolved"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.vscode-go-to-definition",
+   "title": "정의로 이동(F12)",
+   "en": "Go to Definition",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "개발 환경",
+   "summary": "함수나 변수 이름에서 그것을 만든 곳으로 건너뛰는 기능으로, Ctrl을 누르고 클릭해도 된다.",
+   "parent": "dev.basics.vscode-code-navigation",
+   "aliases": [
+    "Go to Definition",
+    "VS Code F12",
+    "Ctrl+클릭 정의 이동"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/editing/editingevolved"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.branch-delete",
+   "title": "git branch -d와 -D로 브랜치 지우기",
+   "en": "Deleting Local Branches with git branch -d and -D",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "Git",
+   "summary": "-d는 다 합쳐진 브랜치만 지워 실수를 막고, -D는 합치지 않은 작업이 있어도 강제로 지운다.",
+   "parent": "dev.git.branch-management",
+   "aliases": [
+    "git branch -d",
+    "git branch -D",
+    "로컬 브랜치 삭제",
+    "delete local branch"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Branching-Branch-Management"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.debug.launch-json",
    "title": "launch.json 디버그 구성",
    "en": "launch.json Debug Configuration",
@@ -1493,6 +1670,129 @@
    ],
    "refs": [
     "https://code.visualstudio.com/docs/configure/settings"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.vscode-extension-recommendations",
+   "title": "권장 확장 목록(.vscode/extensions.json)",
+   "en": "Workspace Recommended Extensions",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "개발 환경",
+   "summary": "프로젝트 폴더에 확장 ID 목록을 적어 두면 처음 연 사람에게 VS Code가 그 확장을 설치하라고 권한다.",
+   "aliases": [
+    ".vscode/extensions.json",
+    "extensions.json",
+    "권장 확장",
+    "recommended extensions"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/configure/extensions/extension-marketplace"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.vscode-peek-references",
+   "title": "참조 찾기와 피크(Shift+F12)",
+   "en": "Peek and Go to References",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "개발 환경",
+   "summary": "함수가 쓰인 곳을 현재 파일을 떠나지 않고 작은 창에 모아 보여 주는 VS Code 기능이다.",
+   "parent": "dev.basics.vscode-code-navigation",
+   "aliases": [
+    "Go to References",
+    "Find All References",
+    "VS Code Shift+F12",
+    "VS Code 피크"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/editing/editingevolved"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.vscode-search-include-exclude",
+   "title": "검색할 파일과 제외할 파일 패턴",
+   "en": "Files to Include and Exclude in VS Code Search",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "개발 환경",
+   "summary": "검색 보기에 *·** 같은 글롭 패턴을 넣어 찾을 폴더를 정하거나 node_modules 같은 곳을 뺀다.",
+   "parent": "dev.basics.vscode-search",
+   "aliases": [
+    "files to include",
+    "files to exclude",
+    "search.exclude",
+    "VS Code 검색 제외"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/editing/codebasics"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.vscode-multi-cursor",
+   "title": "VS Code 다중 커서",
+   "en": "Multi-Cursor Editing in VS Code",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "개발 환경",
+   "summary": "Alt+클릭이나 같은 단어 다음 것 선택으로 커서를 여러 개 두고 여러 줄을 한 번에 고치는 편집 방식이다.",
+   "aliases": [
+    "다중 커서",
+    "multi-cursor",
+    "멀티 커서",
+    "multiple selections",
+    "Ctrl+D 다음 항목 선택"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/editing/codebasics"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.branch-merged",
+   "title": "git branch --merged와 --no-merged",
+   "en": "git branch --merged and --no-merged",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "Git",
+   "summary": "지금 브랜치에 이미 합쳐진 브랜치와 아직 안 합쳐진 브랜치를 나눠 보여 주는 git branch 옵션이다.",
+   "parent": "dev.git.branch-management",
+   "aliases": [
+    "git branch --merged",
+    "git branch --no-merged",
+    "합쳐진 브랜치 목록"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Branching-Branch-Management"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.github-dev",
+   "title": "github.dev 웹 편집기",
+   "en": "github.dev Web-Based Editor",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "Git",
+   "summary": "GitHub 저장소 화면에서 . 키를 누르면 브라우저에 VS Code가 열려 파일을 고치고 커밋할 수 있지만 터미널과 실행은 없다.",
+   "aliases": [
+    "github.dev",
+    "GitHub 웹 편집기",
+    "VS Code for the Web",
+    "GitHub 점 키 편집기"
+   ],
+   "refs": [
+    "https://docs.github.com/en/codespaces/the-githubdev-web-based-editor"
    ],
    "domain": "dev"
   },
@@ -7801,6 +8101,40 @@
    "domain": "plan"
   },
   {
+   "id": "plan.figma.fills-color-picker",
+   "title": "Figma 채우기와 색상 선택기로 색 칠하기",
+   "en": "Coloring Layers with Figma Fills and the Color Picker",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "Figma와 디자인 시스템",
+   "summary": "도형·프레임·글자에 단색·그라디언트·이미지 같은 채우기를 넣고 색상 선택기로 색과 불투명도를 고르는 Figma의 기본 색칠 방법이다.",
+   "objectives": [
+    "오른쪽 사이드바의 Fill 칸에서 채우기를 더하고 빼고 숨길 수 있다",
+    "색상 선택기에서 HEX·RGB 같은 표기를 바꿔 가며 색 값을 넣을 수 있다",
+    "레이어 안쪽을 칠하는 채우기와 테두리를 칠하는 선 채우기를 구분해 적용할 수 있다",
+    "한 레이어에 채우기를 여러 개 겹치고 각 채우기의 불투명도와 순서를 바꿀 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.layers"
+   ],
+   "related": [
+    "plan.figma.styles"
+   ],
+   "aliases": [
+    "Figma 채우기",
+    "Figma fill",
+    "Figma 색상 선택기",
+    "Figma color picker",
+    "피그마 색 바꾸기"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360041003694-Guide-to-fills",
+    "https://help.figma.com/hc/en-us/articles/360041003774-Update-fills-using-the-color-picker"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.frames-and-components",
    "title": "Figma 프레임과 컴포넌트로 화면 만들기",
    "en": "Building Screens with Frames and Components in Figma",
@@ -8143,6 +8477,73 @@
    "domain": "plan"
   },
   {
+   "id": "plan.figma.add-images",
+   "title": "Figma 디자인에 이미지 넣고 자르기",
+   "en": "Adding and Cropping Images in Figma Designs",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "사진을 끌어다 놓거나 Place image 도구로 불러와 레이어의 채우기로 넣고, 자르기 도구로 보이는 부분을 고르는 Figma의 이미지 첫 사용법이다.",
+   "objectives": [
+    "끌어다 놓기·붙여넣기·Place image 도구로 이미지를 캔버스에 넣을 수 있다",
+    "Figma에서 이미지가 별도 레이어가 아니라 채우기라는 점을 말하고 기존 도형에 이미지를 채울 수 있다",
+    "자르기 도구로 이미지의 보이는 영역을 바꾸고 나중에 다시 고칠 수 있다",
+    "넣을 수 있는 이미지 형식을 확인하고 4096픽셀보다 큰 이미지는 자동으로 줄어든다는 점을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.fills-color-picker"
+   ],
+   "related": [
+    "plan.figma.export"
+   ],
+   "aliases": [
+    "Figma 이미지 넣기",
+    "Figma add images",
+    "Place image Figma",
+    "피그마 사진 넣기",
+    "Figma image fill"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360040028034-Add-images-and-videos-to-designs",
+    "https://help.figma.com/hc/en-us/articles/360040675194-Crop-an-image"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.pages",
+   "title": "Figma 페이지로 파일 나누어 정리하기",
+   "en": "Organizing a Figma File with Pages",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "한 디자인 파일 안에 캔버스가 따로 있는 페이지를 여러 개 만들고 이름·순서·구분선으로 정리하는 Figma의 파일 정리 방법이다.",
+   "objectives": [
+    "레이어 패널의 페이지 목록에서 페이지를 만들고 복제하고 지울 수 있다",
+    "페이지 이름을 바꾸고 끌어서 순서를 바꿀 수 있다",
+    "이름 앞에 하이픈을 넣어 빈 페이지를 구분선으로 만들 수 있다",
+    "Move to page로 레이어를 다른 페이지로 옮길 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.layers"
+   ],
+   "related": [
+    "plan.figma.figjam-section"
+   ],
+   "aliases": [
+    "Figma 페이지",
+    "Figma pages",
+    "피그마 페이지 추가",
+    "Figma 페이지 목록",
+    "Move to page"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360038511293-Create-and-manage-pages"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.frame",
    "title": "Figma 프레임",
    "en": "Figma Frame",
@@ -8457,6 +8858,74 @@
    ],
    "refs": [
     "https://help.figma.com/hc/en-us/articles/360050986854-Adjust-corner-radius-and-smoothing"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.stroke-position",
+   "title": "Figma 선 위치와 변별 선(stroke)",
+   "en": "Figma Stroke Position and Individual Strokes",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "Figma에서 레이어 테두리 선을 안쪽·가운데·바깥쪽 중 어디에 그릴지 정하고, 위·아래·왼쪽·오른쪽 한 변에만 줄 수도 있는 설정이다.",
+   "related": [
+    "plan.figma.shape-tools"
+   ],
+   "aliases": [
+    "Figma stroke",
+    "Figma 선 위치",
+    "stroke position",
+    "inside stroke"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360049283914-Apply-and-adjust-stroke-properties"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.image-crop",
+   "title": "Figma 이미지 자르기(Crop)",
+   "en": "Figma Image Crop",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "Figma에서 이미지의 보이는 부분만 남기는 기능으로, 잘린 부분이 지워지지 않아 나중에 다시 넓히거나 옮길 수 있다.",
+   "parent": "plan.figma.add-images",
+   "aliases": [
+    "Figma crop",
+    "Figma 이미지 자르기",
+    "피그마 크롭",
+    "crop image Figma"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360040675194-Crop-an-image"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.group",
+   "title": "Figma 그룹(group)",
+   "en": "Figma Group",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "여러 레이어를 Cmd·Ctrl+G로 묶어 한 덩어리로 다루는 Figma 레이어로, 크기가 안에 든 요소에 맞춰 저절로 바뀐다는 점이 프레임과 다르다.",
+   "related": [
+    "plan.figma.frame"
+   ],
+   "aliases": [
+    "Figma 그룹",
+    "Figma group",
+    "피그마 그룹 묶기",
+    "Figma 그룹 해제",
+    "ungroup Figma"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360039832054-The-difference-between-frames-and-groups"
    ],
    "domain": "plan"
   },
@@ -8820,6 +9289,115 @@
    ],
    "refs": [
     "https://help.figma.com/hc/en-us/articles/360050986854-Adjust-corner-radius-and-smoothing"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.gradient-fill",
+   "title": "Figma 그라디언트 채우기",
+   "en": "Figma Gradient Fill",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "두 가지 이상의 색이 이어지도록 칠하는 Figma 채우기로, 선형·방사형·각도형·다이아몬드형이 있고 색 정지점으로 색이 바뀌는 위치를 정한다.",
+   "parent": "plan.figma.fills-color-picker",
+   "aliases": [
+    "Figma gradient",
+    "피그마 그라디언트",
+    "Figma 그라데이션",
+    "Figma color stop",
+    "linear gradient Figma"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/34208860210199-Use-gradients-as-a-fill-or-stroke"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.eyedropper",
+   "title": "Figma 스포이드(eyedropper)",
+   "en": "Figma Eyedropper",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "Figma 색상 선택기 안의 도구로, 캔버스의 다른 레이어를 눌러 그 색을 그대로 가져와 지금 채우기에 넣는다.",
+   "parent": "plan.figma.fills-color-picker",
+   "aliases": [
+    "Figma 스포이드",
+    "Figma eyedropper",
+    "피그마 색 따오기"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360041003774-Update-fills-using-the-color-picker"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.page-divider",
+   "title": "Figma 페이지 구분선",
+   "en": "Figma Page Divider",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "Figma 페이지 목록에서 빈 페이지 이름을 하이픈으로 시작해 만든 줄로, 여러 페이지를 묶음별로 나누어 보이게 한다.",
+   "parent": "plan.figma.pages",
+   "aliases": [
+    "Figma page divider",
+    "Figma 페이지 구분",
+    "피그마 페이지 구분선"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360038511293-Create-and-manage-pages"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.mask",
+   "title": "Figma 마스크(mask)",
+   "en": "Figma Mask",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "아래에 둔 레이어의 모양대로 그 위 레이어의 일부만 보이게 하는 Figma 기능으로, 가려진 부분은 지워지지 않고 남는다.",
+   "related": [
+    "plan.figma.image-crop"
+   ],
+   "aliases": [
+    "Figma 마스크",
+    "Figma mask",
+    "Use as mask",
+    "피그마 마스크",
+    "alpha mask Figma"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360040450253-Masks"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.boolean-operations",
+   "title": "Figma 불리언 연산(boolean operations)",
+   "en": "Figma Boolean Operations",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "도형 여러 개를 합치기·빼기·교차·제외 중 하나로 묶어 새 모양 하나를 만드는 Figma 기능으로, 안의 도형은 나중에도 옮기고 고칠 수 있다.",
+   "related": [
+    "plan.figma.shape-tools"
+   ],
+   "aliases": [
+    "Figma boolean",
+    "boolean group",
+    "Figma union subtract",
+    "피그마 도형 합치기"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/360039957534-Boolean-operations"
    ],
    "domain": "plan"
   },
@@ -32875,6 +33453,101 @@
    "domain": "rag"
   },
   {
+   "id": "rag.agent.langsmith-first-eval",
+   "title": "LangSmith로 첫 평가 돌려 보기",
+   "en": "Running a First Evaluation in LangSmith",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "질문과 기대 답을 담은 데이터셋을 만들고 평가자를 붙여 앱을 돌린 뒤 LangSmith 화면에서 점수표를 보는 첫 실습이다.",
+   "objectives": [
+    "질문과 기대 답 두세 쌍으로 LangSmith 데이터셋을 만들 수 있다",
+    "정답 비교 평가자를 붙여 화면이나 SDK의 evaluate로 평가를 실행할 수 있다",
+    "실행 결과로 생긴 실험을 열어 입력·기대 답·실제 답·점수를 나란히 볼 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.langsmith-tracing"
+   ],
+   "related": [
+    "rag.agent.langsmith-playground",
+    "mlops.eval.scorer"
+   ],
+   "aliases": [
+    "LangSmith 평가",
+    "LangSmith evaluation",
+    "LangSmith 평가 빠른 시작",
+    "LangSmith evaluate"
+   ],
+   "refs": [
+    "https://docs.langchain.com/langsmith/evaluation-quickstart",
+    "https://docs.langchain.com/langsmith/evaluation-concepts"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.llamaindex-chat-engine",
+   "title": "LlamaIndex 챗 엔진으로 문서와 대화하기",
+   "en": "Chatting with Documents Using LlamaIndex Chat Engines",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "RAG",
+   "summary": "인덱스에서 챗 엔진을 만들어 앞 대화를 기억한 채 문서에 대해 이어 묻고, 답을 흘려 받거나 대화를 새로 시작하는 방법이다.",
+   "objectives": [
+    "as_chat_engine으로 인덱스에서 챗 엔진을 만들고 chat으로 이어지는 질문을 할 수 있다",
+    "질문 하나에 답하는 쿼리 엔진과 대화 기록을 쓰는 챗 엔진의 차이를 설명할 수 있다",
+    "stream_chat으로 답을 조금씩 받아 출력하고 reset으로 대화를 새로 시작할 수 있다",
+    "chat_mode를 바꿔 대화 방식을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "rag.retrieval.llamaindex-starter"
+   ],
+   "related": [
+    "rag.retrieval.llamaindex-query-engine"
+   ],
+   "aliases": [
+    "LlamaIndex 챗 엔진",
+    "LlamaIndex chat engine",
+    "as_chat_engine",
+    "chat_repl"
+   ],
+   "refs": [
+    "https://developers.llamaindex.ai/python/framework/module_guides/deploying/chat_engines/",
+    "https://developers.llamaindex.ai/python/framework/module_guides/deploying/chat_engines/usage_pattern/"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.llamaindex-settings-tuning",
+   "title": "LlamaIndex 기본값 바꾸기: 청크·모델·검색 수",
+   "en": "Customizing LlamaIndex Defaults",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "RAG",
+   "summary": "시작 예제를 고쳐 청크 크기, 쓰는 모델, 가져올 조각 수, 답을 만드는 방식을 바꿔 보며 결과가 어떻게 달라지는지 확인하는 실습이다.",
+   "objectives": [
+    "Settings에 llm·embed_model·chunk_size를 넣어 앱 전체의 기본값을 바꿀 수 있다",
+    "as_query_engine에 similarity_top_k를 넘겨 가져오는 조각 수를 늘릴 수 있다",
+    "전역 설정과 한 인덱스·한 엔진에만 넘기는 설정 중 어느 쪽이 먼저 쓰이는지 말할 수 있다",
+    "응답 모드와 스트리밍 옵션을 바꿔 답이 나오는 방식을 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.retrieval.llamaindex-starter"
+   ],
+   "aliases": [
+    "LlamaIndex 설정 바꾸기",
+    "LlamaIndex customization",
+    "LlamaIndex 청크 크기"
+   ],
+   "refs": [
+    "https://developers.llamaindex.ai/python/framework/getting_started/faq/",
+    "https://developers.llamaindex.ai/python/framework/module_guides/supporting_modules/settings/"
+   ],
+   "domain": "rag"
+  },
+  {
    "id": "rag.retrieval.llamaindex-install",
    "title": "LlamaIndex 설치와 패키지 구성",
    "en": "Installing LlamaIndex and Its Packages",
@@ -33316,6 +33989,94 @@
    "domain": "rag"
   },
   {
+   "id": "rag.agent.langsmith-dataset",
+   "title": "LangSmith 데이터셋과 예제",
+   "en": "LangSmith Datasets and Examples",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "평가에 쓸 입력과 기대 답(참조 출력) 한 쌍을 예제라 하고, 예제를 모은 묶음을 데이터셋이라 부른다.",
+   "parent": "rag.agent.langsmith-first-eval",
+   "related": [
+    "mlops.eval.eval-dataset"
+   ],
+   "aliases": [
+    "LangSmith 데이터셋",
+    "LangSmith dataset",
+    "create_examples",
+    "LangSmith 참조 출력"
+   ],
+   "refs": [
+    "https://docs.langchain.com/langsmith/evaluation-concepts"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.langsmith-experiment",
+   "title": "LangSmith 실험(experiment)",
+   "en": "LangSmith Experiment",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "앱 한 버전을 데이터셋 전체에 돌린 결과로, 예제마다 출력·점수·실행 기록이 남아 다른 실험과 비교할 수 있다.",
+   "parent": "rag.agent.langsmith-first-eval",
+   "related": [
+    "mlops.observe.experiment"
+   ],
+   "aliases": [
+    "LangSmith 실험",
+    "LangSmith experiment",
+    "experiment_prefix"
+   ],
+   "refs": [
+    "https://docs.langchain.com/langsmith/evaluation-concepts"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.offline-online-eval",
+   "title": "오프라인 평가와 온라인 평가",
+   "en": "Offline and Online Evaluation",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "배포 전에 기대 답이 있는 데이터셋으로 시험하는 것이 오프라인 평가이고, 배포 뒤 실제 실행 기록을 기대 답 없이 살피는 것이 온라인 평가다.",
+   "aliases": [
+    "오프라인 평가",
+    "온라인 평가",
+    "offline evaluation",
+    "online evaluation"
+   ],
+   "refs": [
+    "https://docs.langchain.com/langsmith/evaluation-concepts"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.llamaindex-settings",
+   "title": "LlamaIndex Settings",
+   "en": "LlamaIndex Settings",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "RAG",
+   "summary": "LLM·임베딩 모델·청크 크기 같은 기본 부품을 앱 전체에 한 번에 정해 두는 LlamaIndex의 전역 설정 객체다.",
+   "parent": "rag.retrieval.llamaindex-settings-tuning",
+   "aliases": [
+    "Settings.llm",
+    "Settings.embed_model",
+    "Settings.chunk_size",
+    "LlamaIndex 전역 설정"
+   ],
+   "refs": [
+    "https://developers.llamaindex.ai/python/framework/module_guides/supporting_modules/settings/"
+   ],
+   "domain": "rag"
+  },
+  {
    "id": "rag.agent.model-router",
    "title": "모델 라우터(OpenRouter·LiteLLM)",
    "en": "Model Router",
@@ -33591,6 +34352,93 @@
    ],
    "refs": [
     "https://developers.llamaindex.ai/python/framework/getting_started/starter_example/"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.openevals",
+   "title": "openevals 평가자 패키지",
+   "en": "openevals",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "LLM에게 채점 기준 프롬프트를 주어 정답과 비교하게 하는 평가자를 몇 줄로 만들어 주는 LangChain의 오픈소스 패키지다.",
+   "parent": "rag.agent.langsmith-first-eval",
+   "related": [
+    "mlops.eval.llm-judge"
+   ],
+   "aliases": [
+    "openevals",
+    "create_llm_as_judge",
+    "CORRECTNESS_PROMPT"
+   ],
+   "refs": [
+    "https://docs.langchain.com/langsmith/evaluation-quickstart"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.llamaindex-chat-mode",
+   "title": "LlamaIndex 챗 모드(chat_mode)",
+   "en": "LlamaIndex Chat Modes",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "RAG",
+   "summary": "챗 엔진이 매 질문마다 문서를 찾아 넣을지, 대화를 검색용 질문으로 다시 쓸지, 에이전트에게 맡길지를 고르는 옵션이다.",
+   "parent": "rag.retrieval.llamaindex-chat-engine",
+   "aliases": [
+    "LlamaIndex chat_mode",
+    "condense_question",
+    "condense_plus_context",
+    "LlamaIndex 대화 모드"
+   ],
+   "refs": [
+    "https://developers.llamaindex.ai/python/framework/module_guides/deploying/chat_engines/usage_pattern/"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.llamaindex-response-mode",
+   "title": "LlamaIndex 응답 모드(response_mode)",
+   "en": "LlamaIndex Response Modes",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "RAG",
+   "summary": "찾아온 조각들을 LLM에 어떻게 넘겨 답을 만들지 정하는 옵션으로, 기본값 compact와 요약에 맞는 tree_summarize 등이 있다.",
+   "parent": "rag.retrieval.llamaindex-settings-tuning",
+   "aliases": [
+    "LlamaIndex response_mode",
+    "tree_summarize",
+    "get_response_synthesizer",
+    "LlamaIndex 응답 합성기"
+   ],
+   "refs": [
+    "https://developers.llamaindex.ai/python/framework/module_guides/querying/response_synthesizers/"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.embedding.st-semantic-search",
+   "title": "util.semantic_search로 문서 모음 검색",
+   "en": "Sentence Transformers util.semantic_search",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "임베딩",
+   "summary": "질문 벡터와 문서 벡터 묶음을 넘기면 질문마다 가장 가까운 문서 번호와 점수를 상위 k개만 골라 주는 Sentence Transformers 함수다.",
+   "related": [
+    "rag.embedding.st-similarity"
+   ],
+   "aliases": [
+    "util.semantic_search",
+    "sentence_transformers semantic_search",
+    "SBERT 의미 검색"
+   ],
+   "refs": [
+    "https://sbert.net/examples/sentence_transformer/applications/semantic-search/README.html"
    ],
    "domain": "rag"
   },
@@ -44842,6 +45690,38 @@
    "domain": "ml"
   },
   {
+   "id": "ml.data.pandas-dtypes-astype",
+   "title": "pandas 열 자료형 확인하고 바꾸기",
+   "en": "Checking and Converting Column dtypes in pandas",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "AI 기초",
+   "summary": "숫자여야 할 열이 글자로 읽히는 일을 dtypes로 찾아 astype·to_numeric으로 맞는 자료형으로 고치는 법이다.",
+   "objectives": [
+    "dtypes로 열마다 int64·float64·object·category 같은 자료형을 확인할 수 있다",
+    "astype에 자료형이나 열별 사전을 넘겨 열의 자료형을 바꿀 수 있다",
+    "pd.to_numeric에 errors='coerce'를 주어 숫자로 못 바꾸는 값을 NaN으로 만들 수 있다",
+    "select_dtypes로 숫자 열이나 글자 열만 골라낼 수 있다"
+   ],
+   "prerequisites": [
+    "ml.data.pandas-dataframe-basics"
+   ],
+   "aliases": [
+    "pandas dtype",
+    "판다스 자료형",
+    "df.dtypes",
+    "pandas 형 변환",
+    "to_numeric",
+    "select_dtypes"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/user_guide/basics.html#dtypes",
+    "https://pandas.pydata.org/docs/user_guide/categorical.html"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.data.first-look",
    "title": "데이터 처음 살펴보기: 요약 통계와 히스토그램",
    "en": "First Look at Data: Summary Statistics and Histograms",
@@ -45179,6 +46059,101 @@
    "domain": "ml"
   },
   {
+   "id": "ml.data.seaborn-first-plot",
+   "title": "seaborn으로 통계 그래프 그리기",
+   "en": "First Statistical Plots with seaborn",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "DataFrame의 열 이름만 넘겨 분포·관계·범주 비교 그래프를 한 줄로 그려 주는 matplotlib 기반 도구다.",
+   "objectives": [
+    "load_dataset으로 예제 데이터를 불러오고 set_theme로 기본 스타일을 켤 수 있다",
+    "relplot·displot·catplot에 x·y 열 이름을 넣어 관계·분포·범주 그래프를 그릴 수 있다",
+    "hue에 범주 열을 넣어 그룹마다 색을 나눈 그래프를 만들 수 있다",
+    "histplot처럼 Axes 하나에 그리는 함수와 displot처럼 그림 전체를 만드는 함수를 구분해 고를 수 있다"
+   ],
+   "prerequisites": [
+    "ml.data.matplotlib-first-plot",
+    "ml.data.pandas-dataframe-basics"
+   ],
+   "aliases": [
+    "시본",
+    "seaborn 입문",
+    "sns.relplot",
+    "sns.displot",
+    "seaborn 시각화"
+   ],
+   "refs": [
+    "https://seaborn.pydata.org/tutorial/introduction.html",
+    "https://seaborn.pydata.org/tutorial/function_overview.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.pandas-apply-map",
+   "title": "pandas apply와 map으로 함수 적용하기",
+   "en": "Applying Functions with pandas apply and map",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "직접 만든 함수를 열·행·값마다 실행하거나 사전으로 값을 바꿔 새 열을 만드는 pandas의 함수 적용 방법이다.",
+   "objectives": [
+    "Series.map에 사전을 넘겨 코드 값을 이름으로 바꾸고, 사전에 없는 값이 NaN이 되는 것을 확인할 수 있다",
+    "DataFrame.apply로 열마다, axis=1로 행마다 함수를 실행할 수 있다",
+    "lambda 함수를 apply·map에 넘겨 새 열을 만들 수 있다",
+    "같은 일을 열 연산으로 할 수 있으면 apply보다 그쪽이 빠르다는 것을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.data.pandas-derived-columns"
+   ],
+   "aliases": [
+    "pandas apply",
+    "판다스 apply",
+    "pandas 함수 적용",
+    "pandas lambda"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/user_guide/basics.html#function-application",
+    "https://pandas.pydata.org/docs/reference/api/pandas.Series.map.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.pandas-corr-heatmap",
+   "title": "pandas corr와 히트맵으로 상관관계 보기",
+   "en": "Exploring Correlation with pandas corr and Heatmaps",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "숫자 열끼리 함께 오르내리는 정도를 corr로 표로 구하고 seaborn heatmap 색으로 한눈에 보는 탐색 방법이다.",
+   "objectives": [
+    "df.corr(numeric_only=True)로 숫자 열끼리의 상관 행렬을 구할 수 있다",
+    "상관계수가 1·0·-1에 가까울 때 두 열의 관계를 말로 설명할 수 있다",
+    "sns.heatmap에 상관 행렬을 넣고 annot·cmap·center로 읽기 쉬운 그림을 만들 수 있다",
+    "pairplot으로 여러 열의 산점도를 한꺼번에 그려 상관 행렬과 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.data.first-look",
+    "ml.data.seaborn-first-plot"
+   ],
+   "aliases": [
+    "상관 행렬",
+    "correlation matrix",
+    "df.corr",
+    "상관 분석 입문",
+    "상관 히트맵"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html",
+    "https://seaborn.pydata.org/generated/seaborn.heatmap.html",
+    "https://seaborn.pydata.org/generated/seaborn.pairplot.html"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.eval.accuracy",
    "title": "정확도",
    "en": "Accuracy",
@@ -45312,6 +46287,27 @@
    ],
    "refs": [
     "https://numpy.org/doc/stable/user/absolute_beginners.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.astype",
+   "title": "자료형 바꾸기(astype)",
+   "en": "pandas astype",
+   "kind": "term",
+   "level": 2,
+   "importance": 1,
+   "group": "AI 기초",
+   "summary": "Series나 DataFrame의 값을 지정한 자료형으로 바꾼 복사본을 돌려주는 pandas 메서드다.",
+   "parent": "ml.data.pandas-dtypes-astype",
+   "aliases": [
+    "df.astype",
+    "pandas astype",
+    "판다스 astype",
+    "열 자료형 변경"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/user_guide/basics.html#dtypes"
    ],
    "domain": "ml"
   },
@@ -45663,6 +46659,152 @@
    "domain": "ml"
   },
   {
+   "id": "ml.data.seaborn-hue",
+   "title": "hue로 그룹별 색 나누기(seaborn)",
+   "en": "seaborn hue Parameter",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "seaborn 그래프에서 범주 열을 지정해 그룹마다 다른 색으로 겹쳐 그리게 하는 인자다.",
+   "parent": "ml.data.seaborn-first-plot",
+   "aliases": [
+    "seaborn hue",
+    "hue 인자",
+    "hue 매개변수",
+    "그룹별 색상"
+   ],
+   "refs": [
+    "https://seaborn.pydata.org/tutorial/function_overview.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.category-dtype",
+   "title": "범주형 자료형(category dtype)",
+   "en": "pandas Categorical dtype",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "값의 종류가 몇 개로 정해진 열을 범주 목록과 번호로 저장해 메모리를 아끼고 순서를 줄 수 있는 pandas 자료형이다.",
+   "parent": "ml.data.pandas-dtypes-astype",
+   "aliases": [
+    "category dtype",
+    "pandas category",
+    "astype('category')",
+    "pandas Categorical",
+    "범주형 dtype"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/user_guide/categorical.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.series-map",
+   "title": "값 바꾸기(Series.map)",
+   "en": "pandas Series.map",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "Series의 값 하나하나를 함수나 사전에 넣어 바꾼 새 Series를 돌려주는 메서드로, 사전에 없는 값은 NaN이 된다.",
+   "parent": "ml.data.pandas-apply-map",
+   "aliases": [
+    "Series.map",
+    "pandas map",
+    "s.map",
+    "사전으로 값 매핑"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/reference/api/pandas.Series.map.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.dataframe-apply",
+   "title": "열·행마다 함수 실행(DataFrame.apply)",
+   "en": "pandas DataFrame.apply",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "DataFrame의 열마다, axis=1이면 행마다 함수를 한 번씩 실행해 결과를 모으는 pandas 메서드다.",
+   "parent": "ml.data.pandas-apply-map",
+   "aliases": [
+    "df.apply",
+    "DataFrame apply",
+    "apply axis=1",
+    "행별 함수 적용"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/user_guide/basics.html#function-application"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.correlation-coefficient",
+   "title": "상관계수",
+   "en": "Correlation Coefficient",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "두 숫자 열이 함께 늘거나 반대로 움직이는 정도를 -1부터 1 사이 값으로 나타낸 수다.",
+   "parent": "ml.data.pandas-corr-heatmap",
+   "aliases": [
+    "correlation coefficient",
+    "피어슨 상관계수",
+    "Pearson correlation",
+    "스피어만 상관계수"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.seaborn-heatmap",
+   "title": "히트맵(sns.heatmap)",
+   "en": "seaborn heatmap",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "행과 열로 된 숫자 표를 칸마다 색으로 칠해 큰 값과 작은 값을 한눈에 보이게 하는 seaborn 그래프다.",
+   "parent": "ml.data.pandas-corr-heatmap",
+   "aliases": [
+    "sns.heatmap",
+    "seaborn heatmap",
+    "seaborn 히트맵",
+    "annot=True"
+   ],
+   "refs": [
+    "https://seaborn.pydata.org/generated/seaborn.heatmap.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.drop-duplicates",
+   "title": "중복 행 지우기(drop_duplicates)",
+   "en": "pandas drop_duplicates",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "모든 열이나 subset으로 고른 열의 값이 같은 행을 찾아 keep에 따라 하나만 남기거나 모두 지우는 pandas 메서드다.",
+   "aliases": [
+    "df.drop_duplicates",
+    "pandas 중복 제거",
+    "판다스 중복 행"
+   ],
+   "refs": [
+    "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop_duplicates.html"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.supervised.bunch",
    "title": "Bunch(사이킷런 결과 묶음)",
    "en": "Bunch",
@@ -45876,6 +47018,27 @@
    ],
    "refs": [
     "https://pandas.pydata.org/docs/user_guide/reshaping.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.seaborn-pairplot",
+   "title": "pairplot(열 쌍 산점도 격자)",
+   "en": "seaborn pairplot",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "숫자 열의 모든 쌍을 산점도 격자로 그리고 대각선에 각 열의 분포를 그리는 seaborn 함수다.",
+   "parent": "ml.data.pandas-corr-heatmap",
+   "aliases": [
+    "sns.pairplot",
+    "seaborn pairplot",
+    "페어플롯",
+    "산점도 행렬"
+   ],
+   "refs": [
+    "https://seaborn.pydata.org/generated/seaborn.pairplot.html"
    ],
    "domain": "ml"
   },
@@ -49221,6 +50384,103 @@
    "domain": "mlops"
   },
   {
+   "id": "mlops.guardrail.modelaudit-scan",
+   "title": "ModelAudit로 내려받은 모델 파일 검사하기",
+   "en": "Scanning Model Files with ModelAudit",
+   "kind": "topic",
+   "level": 2,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "남이 올린 모델 파일을 불러오기 전에 promptfoo scan-model로 숨은 코드나 위험 신호를 찾아보는 첫 보안 검사다.",
+   "objectives": [
+    "pip로 modelaudit을 설치하고 promptfoo scan-model로 로컬 폴더나 hf:// 주소의 모델을 검사할 수 있다",
+    "결과의 CRITICAL·WARNING 같은 심각도와 종료 코드로 문제가 있는지 판단할 수 있다",
+    "--format json이나 sarif로 검사 결과를 파일로 남길 수 있다",
+    "외부 모델 파일을 그냥 불러오면 왜 위험한지 공급망 위험과 연결해 말할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.guardrail.llm-top10-overview"
+   ],
+   "related": [
+    "ax.security.model-supply-chain"
+   ],
+   "aliases": [
+    "ModelAudit",
+    "modelaudit",
+    "promptfoo scan-model",
+    "모델 파일 보안 검사",
+    "모델 보안 스캔"
+   ],
+   "refs": [
+    "https://www.promptfoo.dev/docs/model-audit/",
+    "https://www.promptfoo.dev/docs/model-audit/scanners/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.eval.inspect-builtin-scorers",
+   "title": "Inspect 내장 스코어러 골라 채점하기",
+   "en": "Choosing Inspect Built-in Scorers",
+   "kind": "topic",
+   "level": 2,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "정답 형태에 따라 match·includes·choice·model_graded_qa 같은 Inspect 내장 채점기를 골라 끼우는 방법이다.",
+   "objectives": [
+    "짧은 정답에는 match나 includes, 정확히 같아야 하면 exact를 골라 Task에 넣을 수 있다",
+    "객관식 문제를 multiple_choice 솔버와 choice 스코어러로 채점할 수 있다",
+    "정답이 열린 서술형이면 model_graded_qa로 다른 모델에게 채점을 맡길 수 있다",
+    "결과의 accuracy와 stderr 값을 읽을 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.eval.inspect-quickstart"
+   ],
+   "related": [
+    "mlops.eval.scorer",
+    "mlops.eval.builtin-judges"
+   ],
+   "aliases": [
+    "Inspect scorer",
+    "Inspect 스코어러",
+    "inspect_ai.scorer",
+    "match 스코어러",
+    "includes 스코어러"
+   ],
+   "refs": [
+    "https://inspect.aisi.org.uk/scorers.html",
+    "https://inspect.aisi.org.uk/solvers.html"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.eval.lighteval-results",
+   "title": "LightEval 평가 결과 저장하고 읽기",
+   "en": "Saving and Reading LightEval Results",
+   "kind": "topic",
+   "level": 2,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "LightEval이 남긴 결과 JSON과 문제별 상세 파일을 찾아 열고, 필요하면 Hugging Face Hub에 올려 두는 방법이다.",
+   "objectives": [
+    "--output-dir로 결과를 남기고 results 폴더의 JSON에서 태스크별 점수를 찾을 수 있다",
+    "--save-details로 남긴 parquet 파일을 datasets로 불러와 문제별 모델 답을 볼 수 있다",
+    "--push-to-hub와 --results-org로 결과를 비공개 데이터셋으로 올릴 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.eval.lighteval-quickstart"
+   ],
+   "aliases": [
+    "LightEval 결과 파일",
+    "lighteval output-dir",
+    "LightEval 결과 읽기",
+    "EvaluationTracker"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/lighteval/saving-and-reading-results"
+   ],
+   "domain": "mlops"
+  },
+  {
    "id": "mlops.eval.eval-dataset",
    "title": "평가 세트(evaluation dataset)",
    "en": "Evaluation Dataset",
@@ -49888,6 +51148,157 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-11",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.eval.inspect-multiple-choice",
+   "title": "Inspect 객관식 채점(multiple_choice·choice)",
+   "en": "Inspect Multiple Choice Solver and choice Scorer",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "Sample의 choices를 A·B·C 보기로 보여 주는 multiple_choice 솔버와 고른 글자를 정답과 맞춰 보는 choice 스코어러 짝이다.",
+   "parent": "mlops.eval.inspect-builtin-scorers",
+   "aliases": [
+    "multiple_choice 솔버",
+    "choice 스코어러",
+    "Inspect 객관식",
+    "shuffle_choices"
+   ],
+   "refs": [
+    "https://inspect.aisi.org.uk/solvers.html"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.eval.inspect-model-graded",
+   "title": "Inspect 모델 채점(model_graded_qa)",
+   "en": "Inspect Model-Graded Scorers",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "target에 적은 채점 기준을 보고 다른 모델이 답의 옳고 그름을 판정하게 하는 Inspect 내장 스코어러다.",
+   "parent": "mlops.eval.inspect-builtin-scorers",
+   "related": [
+    "mlops.eval.llm-judge"
+   ],
+   "aliases": [
+    "model_graded_qa",
+    "model_graded_fact",
+    "Inspect 모델 채점기"
+   ],
+   "refs": [
+    "https://inspect.aisi.org.uk/scorers.html"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.eval.inspect-accuracy-stderr",
+   "title": "Inspect 지표 accuracy와 stderr",
+   "en": "Inspect accuracy and stderr Metrics",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "맞힌 문제의 비율인 accuracy와 그 값이 얼마나 흔들릴 수 있는지 보여 주는 표준 오차 stderr이다.",
+   "parent": "mlops.eval.inspect-builtin-scorers",
+   "aliases": [
+    "Inspect accuracy",
+    "Inspect stderr",
+    "표준 오차 지표",
+    "평가 표준 오차"
+   ],
+   "refs": [
+    "https://inspect.aisi.org.uk/scorers.html"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.eval.lighteval-details",
+   "title": "LightEval 상세 파일(details parquet)",
+   "en": "LightEval Details Files",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "문제마다 넣은 입력·모델 생성·지표 값을 담아 --save-details로 남기는 parquet 파일이다.",
+   "parent": "mlops.eval.lighteval-results",
+   "aliases": [
+    "lighteval save-details",
+    "LightEval details",
+    "__model_response__",
+    "details parquet"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/lighteval/saving-and-reading-results"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.eval.inspect-eval-log",
+   "title": "Inspect 평가 로그 파일(.eval)",
+   "en": "Inspect Eval Log Files",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "Inspect가 평가마다 ./logs 폴더에 남기는 기록 파일로, inspect view로 보거나 inspect log 명령과 read_eval_log로 읽는다.",
+   "related": [
+    "mlops.eval.inspect-view"
+   ],
+   "aliases": [
+    "Inspect 로그",
+    "INSPECT_LOG_DIR",
+    "inspect log dump",
+    "read_eval_log",
+    ".eval 로그 파일"
+   ],
+   "refs": [
+    "https://inspect.aisi.org.uk/eval-logs.html"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.eval.promptfoo-cache",
+   "title": "promptfoo 응답 캐시(--no-cache)",
+   "en": "promptfoo Response Cache",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "promptfoo가 같은 요청의 모델 응답을 디스크에 저장해 다시 쓰는 기능으로, 새 답이 필요하면 --no-cache나 cache clear를 쓴다.",
+   "aliases": [
+    "promptfoo 캐시",
+    "promptfoo cache clear",
+    "PROMPTFOO_CACHE_ENABLED",
+    "eval --no-cache"
+   ],
+   "refs": [
+    "https://www.promptfoo.dev/docs/configuration/caching/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.eval.promptfoo-output-file",
+   "title": "promptfoo 결과 파일 내보내기(--output)",
+   "en": "promptfoo Output Files",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "promptfoo eval 결과를 확장자에 따라 HTML·CSV·JSON 같은 파일로 저장해 공유하거나 다른 도구로 넘기는 옵션이다.",
+   "aliases": [
+    "promptfoo -o",
+    "promptfoo outputPath",
+    "promptfoo 결과 내보내기",
+    "promptfoo HTML 보고서"
+   ],
+   "refs": [
+    "https://www.promptfoo.dev/docs/configuration/outputs/",
+    "https://www.promptfoo.dev/docs/usage/command-line/"
+   ],
    "domain": "mlops"
   },
   {

@@ -585,6 +585,98 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "rag.agent.langsmith-first-eval",
+    "title": "LangSmith로 첫 평가 돌려 보기",
+    "en": "Running a First Evaluation in LangSmith",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "질문과 기대 답을 담은 데이터셋을 만들고 평가자를 붙여 앱을 돌린 뒤 LangSmith 화면에서 점수표를 보는 첫 실습이다.",
+    "objectives": [
+      "질문과 기대 답 두세 쌍으로 LangSmith 데이터셋을 만들 수 있다",
+      "정답 비교 평가자를 붙여 화면이나 SDK의 evaluate로 평가를 실행할 수 있다",
+      "실행 결과로 생긴 실험을 열어 입력·기대 답·실제 답·점수를 나란히 볼 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.langsmith-tracing"
+    ],
+    "related": [
+      "rag.agent.langsmith-playground",
+      "mlops.eval.scorer"
+    ],
+    "aliases": [
+      "LangSmith 평가",
+      "LangSmith evaluation",
+      "LangSmith 평가 빠른 시작",
+      "LangSmith evaluate"
+    ],
+    "refs": [
+      "https://docs.langchain.com/langsmith/evaluation-quickstart",
+      "https://docs.langchain.com/langsmith/evaluation-concepts"
+    ]
+  },
+  {
+    "id": "rag.retrieval.llamaindex-chat-engine",
+    "title": "LlamaIndex 챗 엔진으로 문서와 대화하기",
+    "en": "Chatting with Documents Using LlamaIndex Chat Engines",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "RAG",
+    "summary": "인덱스에서 챗 엔진을 만들어 앞 대화를 기억한 채 문서에 대해 이어 묻고, 답을 흘려 받거나 대화를 새로 시작하는 방법이다.",
+    "objectives": [
+      "as_chat_engine으로 인덱스에서 챗 엔진을 만들고 chat으로 이어지는 질문을 할 수 있다",
+      "질문 하나에 답하는 쿼리 엔진과 대화 기록을 쓰는 챗 엔진의 차이를 설명할 수 있다",
+      "stream_chat으로 답을 조금씩 받아 출력하고 reset으로 대화를 새로 시작할 수 있다",
+      "chat_mode를 바꿔 대화 방식을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "rag.retrieval.llamaindex-starter"
+    ],
+    "related": [
+      "rag.retrieval.llamaindex-query-engine"
+    ],
+    "aliases": [
+      "LlamaIndex 챗 엔진",
+      "LlamaIndex chat engine",
+      "as_chat_engine",
+      "chat_repl"
+    ],
+    "refs": [
+      "https://developers.llamaindex.ai/python/framework/module_guides/deploying/chat_engines/",
+      "https://developers.llamaindex.ai/python/framework/module_guides/deploying/chat_engines/usage_pattern/"
+    ]
+  },
+  {
+    "id": "rag.retrieval.llamaindex-settings-tuning",
+    "title": "LlamaIndex 기본값 바꾸기: 청크·모델·검색 수",
+    "en": "Customizing LlamaIndex Defaults",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "RAG",
+    "summary": "시작 예제를 고쳐 청크 크기, 쓰는 모델, 가져올 조각 수, 답을 만드는 방식을 바꿔 보며 결과가 어떻게 달라지는지 확인하는 실습이다.",
+    "objectives": [
+      "Settings에 llm·embed_model·chunk_size를 넣어 앱 전체의 기본값을 바꿀 수 있다",
+      "as_query_engine에 similarity_top_k를 넘겨 가져오는 조각 수를 늘릴 수 있다",
+      "전역 설정과 한 인덱스·한 엔진에만 넘기는 설정 중 어느 쪽이 먼저 쓰이는지 말할 수 있다",
+      "응답 모드와 스트리밍 옵션을 바꿔 답이 나오는 방식을 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.retrieval.llamaindex-starter"
+    ],
+    "aliases": [
+      "LlamaIndex 설정 바꾸기",
+      "LlamaIndex customization",
+      "LlamaIndex 청크 크기"
+    ],
+    "refs": [
+      "https://developers.llamaindex.ai/python/framework/getting_started/faq/",
+      "https://developers.llamaindex.ai/python/framework/module_guides/supporting_modules/settings/"
+    ]
+  },
+  {
     "id": "rag.retrieval.llamaindex-install",
     "title": "LlamaIndex 설치와 패키지 구성",
     "en": "Installing LlamaIndex and Its Packages",
@@ -1006,6 +1098,90 @@
     ]
   },
   {
+    "id": "rag.agent.langsmith-dataset",
+    "title": "LangSmith 데이터셋과 예제",
+    "en": "LangSmith Datasets and Examples",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "평가에 쓸 입력과 기대 답(참조 출력) 한 쌍을 예제라 하고, 예제를 모은 묶음을 데이터셋이라 부른다.",
+    "parent": "rag.agent.langsmith-first-eval",
+    "related": [
+      "mlops.eval.eval-dataset"
+    ],
+    "aliases": [
+      "LangSmith 데이터셋",
+      "LangSmith dataset",
+      "create_examples",
+      "LangSmith 참조 출력"
+    ],
+    "refs": [
+      "https://docs.langchain.com/langsmith/evaluation-concepts"
+    ]
+  },
+  {
+    "id": "rag.agent.langsmith-experiment",
+    "title": "LangSmith 실험(experiment)",
+    "en": "LangSmith Experiment",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "앱 한 버전을 데이터셋 전체에 돌린 결과로, 예제마다 출력·점수·실행 기록이 남아 다른 실험과 비교할 수 있다.",
+    "parent": "rag.agent.langsmith-first-eval",
+    "related": [
+      "mlops.observe.experiment"
+    ],
+    "aliases": [
+      "LangSmith 실험",
+      "LangSmith experiment",
+      "experiment_prefix"
+    ],
+    "refs": [
+      "https://docs.langchain.com/langsmith/evaluation-concepts"
+    ]
+  },
+  {
+    "id": "rag.agent.offline-online-eval",
+    "title": "오프라인 평가와 온라인 평가",
+    "en": "Offline and Online Evaluation",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "배포 전에 기대 답이 있는 데이터셋으로 시험하는 것이 오프라인 평가이고, 배포 뒤 실제 실행 기록을 기대 답 없이 살피는 것이 온라인 평가다.",
+    "aliases": [
+      "오프라인 평가",
+      "온라인 평가",
+      "offline evaluation",
+      "online evaluation"
+    ],
+    "refs": [
+      "https://docs.langchain.com/langsmith/evaluation-concepts"
+    ]
+  },
+  {
+    "id": "rag.retrieval.llamaindex-settings",
+    "title": "LlamaIndex Settings",
+    "en": "LlamaIndex Settings",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "RAG",
+    "summary": "LLM·임베딩 모델·청크 크기 같은 기본 부품을 앱 전체에 한 번에 정해 두는 LlamaIndex의 전역 설정 객체다.",
+    "parent": "rag.retrieval.llamaindex-settings-tuning",
+    "aliases": [
+      "Settings.llm",
+      "Settings.embed_model",
+      "Settings.chunk_size",
+      "LlamaIndex 전역 설정"
+    ],
+    "refs": [
+      "https://developers.llamaindex.ai/python/framework/module_guides/supporting_modules/settings/"
+    ]
+  },
+  {
     "id": "rag.agent.model-router",
     "title": "모델 라우터(OpenRouter·LiteLLM)",
     "en": "Model Router",
@@ -1269,6 +1445,89 @@
     ],
     "refs": [
       "https://developers.llamaindex.ai/python/framework/getting_started/starter_example/"
+    ]
+  },
+  {
+    "id": "rag.agent.openevals",
+    "title": "openevals 평가자 패키지",
+    "en": "openevals",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "LLM에게 채점 기준 프롬프트를 주어 정답과 비교하게 하는 평가자를 몇 줄로 만들어 주는 LangChain의 오픈소스 패키지다.",
+    "parent": "rag.agent.langsmith-first-eval",
+    "related": [
+      "mlops.eval.llm-judge"
+    ],
+    "aliases": [
+      "openevals",
+      "create_llm_as_judge",
+      "CORRECTNESS_PROMPT"
+    ],
+    "refs": [
+      "https://docs.langchain.com/langsmith/evaluation-quickstart"
+    ]
+  },
+  {
+    "id": "rag.retrieval.llamaindex-chat-mode",
+    "title": "LlamaIndex 챗 모드(chat_mode)",
+    "en": "LlamaIndex Chat Modes",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "RAG",
+    "summary": "챗 엔진이 매 질문마다 문서를 찾아 넣을지, 대화를 검색용 질문으로 다시 쓸지, 에이전트에게 맡길지를 고르는 옵션이다.",
+    "parent": "rag.retrieval.llamaindex-chat-engine",
+    "aliases": [
+      "LlamaIndex chat_mode",
+      "condense_question",
+      "condense_plus_context",
+      "LlamaIndex 대화 모드"
+    ],
+    "refs": [
+      "https://developers.llamaindex.ai/python/framework/module_guides/deploying/chat_engines/usage_pattern/"
+    ]
+  },
+  {
+    "id": "rag.retrieval.llamaindex-response-mode",
+    "title": "LlamaIndex 응답 모드(response_mode)",
+    "en": "LlamaIndex Response Modes",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "RAG",
+    "summary": "찾아온 조각들을 LLM에 어떻게 넘겨 답을 만들지 정하는 옵션으로, 기본값 compact와 요약에 맞는 tree_summarize 등이 있다.",
+    "parent": "rag.retrieval.llamaindex-settings-tuning",
+    "aliases": [
+      "LlamaIndex response_mode",
+      "tree_summarize",
+      "get_response_synthesizer",
+      "LlamaIndex 응답 합성기"
+    ],
+    "refs": [
+      "https://developers.llamaindex.ai/python/framework/module_guides/querying/response_synthesizers/"
+    ]
+  },
+  {
+    "id": "rag.embedding.st-semantic-search",
+    "title": "util.semantic_search로 문서 모음 검색",
+    "en": "Sentence Transformers util.semantic_search",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "임베딩",
+    "summary": "질문 벡터와 문서 벡터 묶음을 넘기면 질문마다 가장 가까운 문서 번호와 점수를 상위 k개만 골라 주는 Sentence Transformers 함수다.",
+    "related": [
+      "rag.embedding.st-similarity"
+    ],
+    "aliases": [
+      "util.semantic_search",
+      "sentence_transformers semantic_search",
+      "SBERT 의미 검색"
+    ],
+    "refs": [
+      "https://sbert.net/examples/sentence_transformer/applications/semantic-search/README.html"
     ]
   },
   {

@@ -309,6 +309,39 @@
     ]
   },
   {
+    "id": "plan.figma.fills-color-picker",
+    "title": "Figma 채우기와 색상 선택기로 색 칠하기",
+    "en": "Coloring Layers with Figma Fills and the Color Picker",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "Figma와 디자인 시스템",
+    "summary": "도형·프레임·글자에 단색·그라디언트·이미지 같은 채우기를 넣고 색상 선택기로 색과 불투명도를 고르는 Figma의 기본 색칠 방법이다.",
+    "objectives": [
+      "오른쪽 사이드바의 Fill 칸에서 채우기를 더하고 빼고 숨길 수 있다",
+      "색상 선택기에서 HEX·RGB 같은 표기를 바꿔 가며 색 값을 넣을 수 있다",
+      "레이어 안쪽을 칠하는 채우기와 테두리를 칠하는 선 채우기를 구분해 적용할 수 있다",
+      "한 레이어에 채우기를 여러 개 겹치고 각 채우기의 불투명도와 순서를 바꿀 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.layers"
+    ],
+    "related": [
+      "plan.figma.styles"
+    ],
+    "aliases": [
+      "Figma 채우기",
+      "Figma fill",
+      "Figma 색상 선택기",
+      "Figma color picker",
+      "피그마 색 바꾸기"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360041003694-Guide-to-fills",
+      "https://help.figma.com/hc/en-us/articles/360041003774-Update-fills-using-the-color-picker"
+    ]
+  },
+  {
     "id": "plan.figma.frames-and-components",
     "title": "Figma 프레임과 컴포넌트로 화면 만들기",
     "en": "Building Screens with Frames and Components in Figma",
@@ -641,6 +674,71 @@
     ]
   },
   {
+    "id": "plan.figma.add-images",
+    "title": "Figma 디자인에 이미지 넣고 자르기",
+    "en": "Adding and Cropping Images in Figma Designs",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "사진을 끌어다 놓거나 Place image 도구로 불러와 레이어의 채우기로 넣고, 자르기 도구로 보이는 부분을 고르는 Figma의 이미지 첫 사용법이다.",
+    "objectives": [
+      "끌어다 놓기·붙여넣기·Place image 도구로 이미지를 캔버스에 넣을 수 있다",
+      "Figma에서 이미지가 별도 레이어가 아니라 채우기라는 점을 말하고 기존 도형에 이미지를 채울 수 있다",
+      "자르기 도구로 이미지의 보이는 영역을 바꾸고 나중에 다시 고칠 수 있다",
+      "넣을 수 있는 이미지 형식을 확인하고 4096픽셀보다 큰 이미지는 자동으로 줄어든다는 점을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.fills-color-picker"
+    ],
+    "related": [
+      "plan.figma.export"
+    ],
+    "aliases": [
+      "Figma 이미지 넣기",
+      "Figma add images",
+      "Place image Figma",
+      "피그마 사진 넣기",
+      "Figma image fill"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360040028034-Add-images-and-videos-to-designs",
+      "https://help.figma.com/hc/en-us/articles/360040675194-Crop-an-image"
+    ]
+  },
+  {
+    "id": "plan.figma.pages",
+    "title": "Figma 페이지로 파일 나누어 정리하기",
+    "en": "Organizing a Figma File with Pages",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "한 디자인 파일 안에 캔버스가 따로 있는 페이지를 여러 개 만들고 이름·순서·구분선으로 정리하는 Figma의 파일 정리 방법이다.",
+    "objectives": [
+      "레이어 패널의 페이지 목록에서 페이지를 만들고 복제하고 지울 수 있다",
+      "페이지 이름을 바꾸고 끌어서 순서를 바꿀 수 있다",
+      "이름 앞에 하이픈을 넣어 빈 페이지를 구분선으로 만들 수 있다",
+      "Move to page로 레이어를 다른 페이지로 옮길 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.layers"
+    ],
+    "related": [
+      "plan.figma.figjam-section"
+    ],
+    "aliases": [
+      "Figma 페이지",
+      "Figma pages",
+      "피그마 페이지 추가",
+      "Figma 페이지 목록",
+      "Move to page"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360038511293-Create-and-manage-pages"
+    ]
+  },
+  {
     "id": "plan.figma.frame",
     "title": "Figma 프레임",
     "en": "Figma Frame",
@@ -941,6 +1039,71 @@
     ],
     "refs": [
       "https://help.figma.com/hc/en-us/articles/360050986854-Adjust-corner-radius-and-smoothing"
+    ]
+  },
+  {
+    "id": "plan.figma.stroke-position",
+    "title": "Figma 선 위치와 변별 선(stroke)",
+    "en": "Figma Stroke Position and Individual Strokes",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Figma에서 레이어 테두리 선을 안쪽·가운데·바깥쪽 중 어디에 그릴지 정하고, 위·아래·왼쪽·오른쪽 한 변에만 줄 수도 있는 설정이다.",
+    "related": [
+      "plan.figma.shape-tools"
+    ],
+    "aliases": [
+      "Figma stroke",
+      "Figma 선 위치",
+      "stroke position",
+      "inside stroke"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360049283914-Apply-and-adjust-stroke-properties"
+    ]
+  },
+  {
+    "id": "plan.figma.image-crop",
+    "title": "Figma 이미지 자르기(Crop)",
+    "en": "Figma Image Crop",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Figma에서 이미지의 보이는 부분만 남기는 기능으로, 잘린 부분이 지워지지 않아 나중에 다시 넓히거나 옮길 수 있다.",
+    "parent": "plan.figma.add-images",
+    "aliases": [
+      "Figma crop",
+      "Figma 이미지 자르기",
+      "피그마 크롭",
+      "crop image Figma"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360040675194-Crop-an-image"
+    ]
+  },
+  {
+    "id": "plan.figma.group",
+    "title": "Figma 그룹(group)",
+    "en": "Figma Group",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "여러 레이어를 Cmd·Ctrl+G로 묶어 한 덩어리로 다루는 Figma 레이어로, 크기가 안에 든 요소에 맞춰 저절로 바뀐다는 점이 프레임과 다르다.",
+    "related": [
+      "plan.figma.frame"
+    ],
+    "aliases": [
+      "Figma 그룹",
+      "Figma group",
+      "피그마 그룹 묶기",
+      "Figma 그룹 해제",
+      "ungroup Figma"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360039832054-The-difference-between-frames-and-groups"
     ]
   },
   {
@@ -1287,6 +1450,110 @@
     ],
     "refs": [
       "https://help.figma.com/hc/en-us/articles/360050986854-Adjust-corner-radius-and-smoothing"
+    ]
+  },
+  {
+    "id": "plan.figma.gradient-fill",
+    "title": "Figma 그라디언트 채우기",
+    "en": "Figma Gradient Fill",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "두 가지 이상의 색이 이어지도록 칠하는 Figma 채우기로, 선형·방사형·각도형·다이아몬드형이 있고 색 정지점으로 색이 바뀌는 위치를 정한다.",
+    "parent": "plan.figma.fills-color-picker",
+    "aliases": [
+      "Figma gradient",
+      "피그마 그라디언트",
+      "Figma 그라데이션",
+      "Figma color stop",
+      "linear gradient Figma"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/34208860210199-Use-gradients-as-a-fill-or-stroke"
+    ]
+  },
+  {
+    "id": "plan.figma.eyedropper",
+    "title": "Figma 스포이드(eyedropper)",
+    "en": "Figma Eyedropper",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Figma 색상 선택기 안의 도구로, 캔버스의 다른 레이어를 눌러 그 색을 그대로 가져와 지금 채우기에 넣는다.",
+    "parent": "plan.figma.fills-color-picker",
+    "aliases": [
+      "Figma 스포이드",
+      "Figma eyedropper",
+      "피그마 색 따오기"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360041003774-Update-fills-using-the-color-picker"
+    ]
+  },
+  {
+    "id": "plan.figma.page-divider",
+    "title": "Figma 페이지 구분선",
+    "en": "Figma Page Divider",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Figma 페이지 목록에서 빈 페이지 이름을 하이픈으로 시작해 만든 줄로, 여러 페이지를 묶음별로 나누어 보이게 한다.",
+    "parent": "plan.figma.pages",
+    "aliases": [
+      "Figma page divider",
+      "Figma 페이지 구분",
+      "피그마 페이지 구분선"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360038511293-Create-and-manage-pages"
+    ]
+  },
+  {
+    "id": "plan.figma.mask",
+    "title": "Figma 마스크(mask)",
+    "en": "Figma Mask",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "아래에 둔 레이어의 모양대로 그 위 레이어의 일부만 보이게 하는 Figma 기능으로, 가려진 부분은 지워지지 않고 남는다.",
+    "related": [
+      "plan.figma.image-crop"
+    ],
+    "aliases": [
+      "Figma 마스크",
+      "Figma mask",
+      "Use as mask",
+      "피그마 마스크",
+      "alpha mask Figma"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360040450253-Masks"
+    ]
+  },
+  {
+    "id": "plan.figma.boolean-operations",
+    "title": "Figma 불리언 연산(boolean operations)",
+    "en": "Figma Boolean Operations",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "도형 여러 개를 합치기·빼기·교차·제외 중 하나로 묶어 새 모양 하나를 만드는 Figma 기능으로, 안의 도형은 나중에도 옮기고 고칠 수 있다.",
+    "related": [
+      "plan.figma.shape-tools"
+    ],
+    "aliases": [
+      "Figma boolean",
+      "boolean group",
+      "Figma union subtract",
+      "피그마 도형 합치기"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360039957534-Boolean-operations"
     ]
   },
   {

@@ -304,6 +304,37 @@
     ]
   },
   {
+    "id": "ml.data.pandas-dtypes-astype",
+    "title": "pandas 열 자료형 확인하고 바꾸기",
+    "en": "Checking and Converting Column dtypes in pandas",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "AI 기초",
+    "summary": "숫자여야 할 열이 글자로 읽히는 일을 dtypes로 찾아 astype·to_numeric으로 맞는 자료형으로 고치는 법이다.",
+    "objectives": [
+      "dtypes로 열마다 int64·float64·object·category 같은 자료형을 확인할 수 있다",
+      "astype에 자료형이나 열별 사전을 넘겨 열의 자료형을 바꿀 수 있다",
+      "pd.to_numeric에 errors='coerce'를 주어 숫자로 못 바꾸는 값을 NaN으로 만들 수 있다",
+      "select_dtypes로 숫자 열이나 글자 열만 골라낼 수 있다"
+    ],
+    "prerequisites": [
+      "ml.data.pandas-dataframe-basics"
+    ],
+    "aliases": [
+      "pandas dtype",
+      "판다스 자료형",
+      "df.dtypes",
+      "pandas 형 변환",
+      "to_numeric",
+      "select_dtypes"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/user_guide/basics.html#dtypes",
+      "https://pandas.pydata.org/docs/user_guide/categorical.html"
+    ]
+  },
+  {
     "id": "ml.data.first-look",
     "title": "데이터 처음 살펴보기: 요약 통계와 히스토그램",
     "en": "First Look at Data: Summary Statistics and Histograms",
@@ -631,6 +662,98 @@
     ]
   },
   {
+    "id": "ml.data.seaborn-first-plot",
+    "title": "seaborn으로 통계 그래프 그리기",
+    "en": "First Statistical Plots with seaborn",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "DataFrame의 열 이름만 넘겨 분포·관계·범주 비교 그래프를 한 줄로 그려 주는 matplotlib 기반 도구다.",
+    "objectives": [
+      "load_dataset으로 예제 데이터를 불러오고 set_theme로 기본 스타일을 켤 수 있다",
+      "relplot·displot·catplot에 x·y 열 이름을 넣어 관계·분포·범주 그래프를 그릴 수 있다",
+      "hue에 범주 열을 넣어 그룹마다 색을 나눈 그래프를 만들 수 있다",
+      "histplot처럼 Axes 하나에 그리는 함수와 displot처럼 그림 전체를 만드는 함수를 구분해 고를 수 있다"
+    ],
+    "prerequisites": [
+      "ml.data.matplotlib-first-plot",
+      "ml.data.pandas-dataframe-basics"
+    ],
+    "aliases": [
+      "시본",
+      "seaborn 입문",
+      "sns.relplot",
+      "sns.displot",
+      "seaborn 시각화"
+    ],
+    "refs": [
+      "https://seaborn.pydata.org/tutorial/introduction.html",
+      "https://seaborn.pydata.org/tutorial/function_overview.html"
+    ]
+  },
+  {
+    "id": "ml.data.pandas-apply-map",
+    "title": "pandas apply와 map으로 함수 적용하기",
+    "en": "Applying Functions with pandas apply and map",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "직접 만든 함수를 열·행·값마다 실행하거나 사전으로 값을 바꿔 새 열을 만드는 pandas의 함수 적용 방법이다.",
+    "objectives": [
+      "Series.map에 사전을 넘겨 코드 값을 이름으로 바꾸고, 사전에 없는 값이 NaN이 되는 것을 확인할 수 있다",
+      "DataFrame.apply로 열마다, axis=1로 행마다 함수를 실행할 수 있다",
+      "lambda 함수를 apply·map에 넘겨 새 열을 만들 수 있다",
+      "같은 일을 열 연산으로 할 수 있으면 apply보다 그쪽이 빠르다는 것을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.data.pandas-derived-columns"
+    ],
+    "aliases": [
+      "pandas apply",
+      "판다스 apply",
+      "pandas 함수 적용",
+      "pandas lambda"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/user_guide/basics.html#function-application",
+      "https://pandas.pydata.org/docs/reference/api/pandas.Series.map.html"
+    ]
+  },
+  {
+    "id": "ml.data.pandas-corr-heatmap",
+    "title": "pandas corr와 히트맵으로 상관관계 보기",
+    "en": "Exploring Correlation with pandas corr and Heatmaps",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "숫자 열끼리 함께 오르내리는 정도를 corr로 표로 구하고 seaborn heatmap 색으로 한눈에 보는 탐색 방법이다.",
+    "objectives": [
+      "df.corr(numeric_only=True)로 숫자 열끼리의 상관 행렬을 구할 수 있다",
+      "상관계수가 1·0·-1에 가까울 때 두 열의 관계를 말로 설명할 수 있다",
+      "sns.heatmap에 상관 행렬을 넣고 annot·cmap·center로 읽기 쉬운 그림을 만들 수 있다",
+      "pairplot으로 여러 열의 산점도를 한꺼번에 그려 상관 행렬과 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.data.first-look",
+      "ml.data.seaborn-first-plot"
+    ],
+    "aliases": [
+      "상관 행렬",
+      "correlation matrix",
+      "df.corr",
+      "상관 분석 입문",
+      "상관 히트맵"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html",
+      "https://seaborn.pydata.org/generated/seaborn.heatmap.html",
+      "https://seaborn.pydata.org/generated/seaborn.pairplot.html"
+    ]
+  },
+  {
     "id": "ml.eval.accuracy",
     "title": "정확도",
     "en": "Accuracy",
@@ -759,6 +882,26 @@
     ],
     "refs": [
       "https://numpy.org/doc/stable/user/absolute_beginners.html"
+    ]
+  },
+  {
+    "id": "ml.data.astype",
+    "title": "자료형 바꾸기(astype)",
+    "en": "pandas astype",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "AI 기초",
+    "summary": "Series나 DataFrame의 값을 지정한 자료형으로 바꾼 복사본을 돌려주는 pandas 메서드다.",
+    "parent": "ml.data.pandas-dtypes-astype",
+    "aliases": [
+      "df.astype",
+      "pandas astype",
+      "판다스 astype",
+      "열 자료형 변경"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/user_guide/basics.html#dtypes"
     ]
   },
   {
@@ -1093,6 +1236,145 @@
     ]
   },
   {
+    "id": "ml.data.seaborn-hue",
+    "title": "hue로 그룹별 색 나누기(seaborn)",
+    "en": "seaborn hue Parameter",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "seaborn 그래프에서 범주 열을 지정해 그룹마다 다른 색으로 겹쳐 그리게 하는 인자다.",
+    "parent": "ml.data.seaborn-first-plot",
+    "aliases": [
+      "seaborn hue",
+      "hue 인자",
+      "hue 매개변수",
+      "그룹별 색상"
+    ],
+    "refs": [
+      "https://seaborn.pydata.org/tutorial/function_overview.html"
+    ]
+  },
+  {
+    "id": "ml.data.category-dtype",
+    "title": "범주형 자료형(category dtype)",
+    "en": "pandas Categorical dtype",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "값의 종류가 몇 개로 정해진 열을 범주 목록과 번호로 저장해 메모리를 아끼고 순서를 줄 수 있는 pandas 자료형이다.",
+    "parent": "ml.data.pandas-dtypes-astype",
+    "aliases": [
+      "category dtype",
+      "pandas category",
+      "astype('category')",
+      "pandas Categorical",
+      "범주형 dtype"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/user_guide/categorical.html"
+    ]
+  },
+  {
+    "id": "ml.data.series-map",
+    "title": "값 바꾸기(Series.map)",
+    "en": "pandas Series.map",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "Series의 값 하나하나를 함수나 사전에 넣어 바꾼 새 Series를 돌려주는 메서드로, 사전에 없는 값은 NaN이 된다.",
+    "parent": "ml.data.pandas-apply-map",
+    "aliases": [
+      "Series.map",
+      "pandas map",
+      "s.map",
+      "사전으로 값 매핑"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/reference/api/pandas.Series.map.html"
+    ]
+  },
+  {
+    "id": "ml.data.dataframe-apply",
+    "title": "열·행마다 함수 실행(DataFrame.apply)",
+    "en": "pandas DataFrame.apply",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "DataFrame의 열마다, axis=1이면 행마다 함수를 한 번씩 실행해 결과를 모으는 pandas 메서드다.",
+    "parent": "ml.data.pandas-apply-map",
+    "aliases": [
+      "df.apply",
+      "DataFrame apply",
+      "apply axis=1",
+      "행별 함수 적용"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/user_guide/basics.html#function-application"
+    ]
+  },
+  {
+    "id": "ml.data.correlation-coefficient",
+    "title": "상관계수",
+    "en": "Correlation Coefficient",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "두 숫자 열이 함께 늘거나 반대로 움직이는 정도를 -1부터 1 사이 값으로 나타낸 수다.",
+    "parent": "ml.data.pandas-corr-heatmap",
+    "aliases": [
+      "correlation coefficient",
+      "피어슨 상관계수",
+      "Pearson correlation",
+      "스피어만 상관계수"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html"
+    ]
+  },
+  {
+    "id": "ml.data.seaborn-heatmap",
+    "title": "히트맵(sns.heatmap)",
+    "en": "seaborn heatmap",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "행과 열로 된 숫자 표를 칸마다 색으로 칠해 큰 값과 작은 값을 한눈에 보이게 하는 seaborn 그래프다.",
+    "parent": "ml.data.pandas-corr-heatmap",
+    "aliases": [
+      "sns.heatmap",
+      "seaborn heatmap",
+      "seaborn 히트맵",
+      "annot=True"
+    ],
+    "refs": [
+      "https://seaborn.pydata.org/generated/seaborn.heatmap.html"
+    ]
+  },
+  {
+    "id": "ml.data.drop-duplicates",
+    "title": "중복 행 지우기(drop_duplicates)",
+    "en": "pandas drop_duplicates",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "모든 열이나 subset으로 고른 열의 값이 같은 행을 찾아 keep에 따라 하나만 남기거나 모두 지우는 pandas 메서드다.",
+    "aliases": [
+      "df.drop_duplicates",
+      "pandas 중복 제거",
+      "판다스 중복 행"
+    ],
+    "refs": [
+      "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop_duplicates.html"
+    ]
+  },
+  {
     "id": "ml.supervised.bunch",
     "title": "Bunch(사이킷런 결과 묶음)",
     "en": "Bunch",
@@ -1297,6 +1579,26 @@
     ],
     "refs": [
       "https://pandas.pydata.org/docs/user_guide/reshaping.html"
+    ]
+  },
+  {
+    "id": "ml.data.seaborn-pairplot",
+    "title": "pairplot(열 쌍 산점도 격자)",
+    "en": "seaborn pairplot",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "숫자 열의 모든 쌍을 산점도 격자로 그리고 대각선에 각 열의 분포를 그리는 seaborn 함수다.",
+    "parent": "ml.data.pandas-corr-heatmap",
+    "aliases": [
+      "sns.pairplot",
+      "seaborn pairplot",
+      "페어플롯",
+      "산점도 행렬"
+    ],
+    "refs": [
+      "https://seaborn.pydata.org/generated/seaborn.pairplot.html"
     ]
   },
   {
