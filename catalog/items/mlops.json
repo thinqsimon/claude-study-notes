@@ -371,6 +371,41 @@
     ]
   },
   {
+    "id": "mlops.eval.promptfoo-quickstart",
+    "title": "promptfoo로 프롬프트와 모델 나란히 비교하기",
+    "en": "Comparing Prompts and Models with promptfoo",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "YAML 설정 하나에 프롬프트·모델·시험 입력을 적고 명령 한 번으로 모든 조합의 답을 표로 비교해 보는 오픈소스 평가 도구의 첫 실습이다.",
+    "objectives": [
+      "promptfoo init으로 예제 설정을 만들고 promptfoo eval로 평가를 돌릴 수 있다",
+      "프롬프트에 {{변수}}를 넣고 시험 입력마다 값을 채워 넣을 수 있다",
+      "contains·llm-rubric 같은 어서션을 붙여 통과·실패를 자동으로 가를 수 있다",
+      "promptfoo view 화면에서 프롬프트·모델별 결과를 나란히 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.eval.why-evaluate",
+      "llm.api.first-call"
+    ],
+    "related": [
+      "mlops.eval.first-eval",
+      "mlops.eval.scorer"
+    ],
+    "aliases": [
+      "promptfoo",
+      "프롬프트푸",
+      "promptfoo eval",
+      "프롬프트 비교 평가",
+      "모델 비교 평가"
+    ],
+    "refs": [
+      "https://www.promptfoo.dev/docs/getting-started/",
+      "https://www.promptfoo.dev/docs/configuration/guide/"
+    ]
+  },
+  {
     "id": "mlops.observe.ai-assistant",
     "title": "MLflow AI 어시스턴트에게 트레이스 물어보기",
     "en": "Using the MLflow AI Assistant",
@@ -469,6 +504,108 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
+  },
+  {
+    "id": "mlops.observe.claude-code-tracing",
+    "title": "Claude Code 작업을 MLflow 트레이스로 남기기",
+    "en": "Tracing Claude Code Sessions with MLflow",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "명령 한 줄로 Claude Code의 질문·답·도구 호출·토큰 사용량을 MLflow에 기록하고 세션이 끝난 뒤 화면에서 되짚어 보는 실습이다.",
+    "objectives": [
+      "mlflow autolog claude로 현재 폴더에서 Claude Code 트레이싱을 켜고 상태를 확인할 수 있다",
+      "세션을 마친 뒤 MLflow 화면에서 프롬프트·도구 호출·토큰 비용을 찾아볼 수 있다",
+      "트레이싱을 끄는 방법을 명령이나 환경 변수로 실행할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.observe.tracing-quickstart",
+      "ax.coding.agent-first"
+    ],
+    "related": [
+      "mlops.observe.autolog",
+      "mlops.observe.token-usage-cost"
+    ],
+    "aliases": [
+      "Claude Code 트레이싱",
+      "Claude Code tracing",
+      "Claude Code MLflow",
+      "코딩 에이전트 트레이싱",
+      "MLflow Claude Code 연동"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/tracing/integrations/listing/claude_code/",
+      "https://mlflow.org/docs/latest/genai/tracing/integrations/"
+    ]
+  },
+  {
+    "id": "mlops.eval.inspect-quickstart",
+    "title": "Inspect로 첫 모델 평가 돌리기: Task·Solver·Scorer",
+    "en": "Running a First Evaluation with Inspect",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "영국 AI 보안연구소의 Inspect로 문제 묶음과 답 만드는 방법, 채점 방법을 한 Task로 묶어 모델 점수를 내고 로그 화면에서 문제별 답을 살펴보는 실습이다.",
+    "objectives": [
+      "예제 Task 파일을 inspect eval 명령과 --model로 실행할 수 있다",
+      "Task가 데이터셋·솔버·스코어러 세 부분으로 이루어짐을 예제 코드에서 짚을 수 있다",
+      "--limit로 문제 수를 줄여 빠르게 시험 실행할 수 있다",
+      "inspect view로 문제별 입력·정답·모델 답·점수를 찾아볼 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.eval.why-evaluate",
+      "llm.api.first-call"
+    ],
+    "related": [
+      "mlops.eval.first-eval",
+      "mlops.eval.scorer"
+    ],
+    "aliases": [
+      "Inspect AI",
+      "inspect-ai",
+      "inspect eval",
+      "UK AISI Inspect",
+      "Inspect 평가 프레임워크"
+    ],
+    "refs": [
+      "https://inspect.aisi.org.uk/",
+      "https://inspect.aisi.org.uk/tutorial.html",
+      "https://inspect.aisi.org.uk/options.html"
+    ]
+  },
+  {
+    "id": "mlops.guardrail.promptfoo-redteam",
+    "title": "promptfoo로 LLM 앱 레드팀 첫 실행하기",
+    "en": "Getting Started with promptfoo Red Teaming",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "설정 화면에서 앱의 목적과 시험 대상을 적고 공격 질문을 자동으로 만들어 던진 뒤 어떤 취약점이 드러났는지 보고서로 확인하는 첫 실습이다.",
+    "objectives": [
+      "promptfoo redteam setup 화면에서 목적·대상·플러그인·전략을 골라 설정을 저장할 수 있다",
+      "promptfoo redteam run으로 공격 입력을 만들고 대상에 보내 볼 수 있다",
+      "redteam report에서 취약점 분류와 문제를 일으킨 입력을 찾아 읽을 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.guardrail.llm-top10-overview",
+      "mlops.eval.promptfoo-quickstart"
+    ],
+    "related": [
+      "ax.governance.ai-red-teaming",
+      "mlops.guardrail.input-output-guardrails"
+    ],
+    "aliases": [
+      "promptfoo 레드팀",
+      "promptfoo redteam",
+      "promptfoo red teaming",
+      "LLM 레드팀 자동화"
+    ],
+    "refs": [
+      "https://www.promptfoo.dev/docs/red-team/quickstart/"
+    ]
   },
   {
     "id": "mlops.eval.eval-dataset",
@@ -703,6 +840,74 @@
     ]
   },
   {
+    "id": "mlops.eval.promptfoo-config",
+    "title": "promptfooconfig.yaml(프롬프트·프로바이더·테스트)",
+    "en": "promptfooconfig.yaml",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "시험할 프롬프트 목록, 답할 모델 목록, 변수 값과 검사 조건을 담은 테스트 목록을 한곳에 적는 promptfoo의 설정 파일이다.",
+    "parent": "mlops.eval.promptfoo-quickstart",
+    "aliases": [
+      "promptfooconfig.yaml",
+      "promptfoo 설정 파일",
+      "promptfoo config",
+      "promptfoo defaultTest"
+    ],
+    "refs": [
+      "https://www.promptfoo.dev/docs/configuration/guide/"
+    ]
+  },
+  {
+    "id": "mlops.eval.promptfoo-assert",
+    "title": "promptfoo 어서션(assert)",
+    "en": "promptfoo Assertions",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "모델 답이 특정 글자를 담았는지 같은 코드 검사나 다른 모델이 기준표로 매기는 채점으로 테스트마다 통과 여부를 정하는 promptfoo의 검사 조건이다.",
+    "parent": "mlops.eval.promptfoo-quickstart",
+    "related": [
+      "mlops.eval.scorer"
+    ],
+    "aliases": [
+      "promptfoo assert",
+      "promptfoo 어서션",
+      "llm-rubric",
+      "promptfoo assertion",
+      "not-contains"
+    ],
+    "refs": [
+      "https://www.promptfoo.dev/docs/configuration/expected-outputs/"
+    ]
+  },
+  {
+    "id": "mlops.eval.llm-benchmark",
+    "title": "LLM 벤치마크",
+    "en": "LLM Benchmark",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "수학·지식·코딩처럼 정해진 분야의 공개 문제 묶음과 채점 방법을 정해 두어 여러 모델의 실력을 같은 잣대로 재는 시험이다.",
+    "parent": "mlops.eval.inspect-quickstart",
+    "related": [
+      "mlops.eval.eval-dataset"
+    ],
+    "aliases": [
+      "LLM 벤치마크",
+      "LLM benchmark",
+      "모델 벤치마크",
+      "벤치마크 점수"
+    ],
+    "refs": [
+      "https://inspect.aisi.org.uk/tutorial.html",
+      "https://ukgovernmentbeis.github.io/inspect_evals/"
+    ]
+  },
+  {
     "id": "mlops.eval.assessment-source",
     "title": "평가 출처(사람·코드·LLM 심판)",
     "en": "Assessment Source",
@@ -815,6 +1020,109 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
+  },
+  {
+    "id": "mlops.observe.mlflow-autolog-claude",
+    "title": "mlflow autolog claude 명령",
+    "en": "mlflow autolog claude Command",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "현재 프로젝트의 Claude Code 설정에 기록 장치를 써 넣어 세션을 MLflow 트레이스로 남기게 하는 MLflow 명령으로, --status로 확인하고 --disable로 끈다.",
+    "parent": "mlops.observe.claude-code-tracing",
+    "related": [
+      "mlops.observe.autolog"
+    ],
+    "aliases": [
+      "mlflow autolog claude",
+      "autolog claude",
+      "Claude Code 자동 트레이싱 명령"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/tracing/integrations/listing/claude_code/"
+    ]
+  },
+  {
+    "id": "mlops.eval.promptfoo-provider",
+    "title": "promptfoo 프로바이더(providers)",
+    "en": "promptfoo Providers",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "openai:모델이름처럼 적어 promptfoo가 어느 회사의 어느 모델이나 어느 HTTP 주소에 질문을 보낼지 정하는 설정 항목이다.",
+    "parent": "mlops.eval.promptfoo-quickstart",
+    "aliases": [
+      "promptfoo provider",
+      "promptfoo 프로바이더",
+      "promptfoo providers",
+      "promptfoo targets"
+    ],
+    "refs": [
+      "https://www.promptfoo.dev/docs/providers/"
+    ]
+  },
+  {
+    "id": "mlops.eval.inspect-solver",
+    "title": "Inspect 솔버(solver)",
+    "en": "Inspect Solver",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Inspect 평가에서 문제를 받아 시스템 메시지를 붙이거나 모델을 부르는 등 답을 만들어 내는 단계로, 여러 개를 차례로 이어 쓸 수 있다.",
+    "parent": "mlops.eval.inspect-quickstart",
+    "aliases": [
+      "Inspect solver",
+      "Inspect 솔버",
+      "generate() 솔버",
+      "chain_of_thought 솔버"
+    ],
+    "refs": [
+      "https://inspect.aisi.org.uk/solvers.html"
+    ]
+  },
+  {
+    "id": "mlops.eval.inspect-view",
+    "title": "Inspect View(평가 로그 뷰어)",
+    "en": "Inspect View",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "inspect view 명령이나 VS Code 확장으로 열어 평가 로그 폴더의 문제별 대화·정답·채점 이유·토큰 사용량을 브라우저에서 보는 화면이다.",
+    "parent": "mlops.eval.inspect-quickstart",
+    "aliases": [
+      "Inspect View",
+      "inspect view",
+      "Inspect 로그 뷰어",
+      "Inspect log viewer"
+    ],
+    "refs": [
+      "https://inspect.aisi.org.uk/log-viewer.html"
+    ]
+  },
+  {
+    "id": "mlops.guardrail.redteam-plugins-strategies",
+    "title": "레드팀 플러그인과 전략(promptfoo)",
+    "en": "promptfoo Red Team Plugins and Strategies",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "promptfoo 레드팀에서 개인정보 유출·해로운 답 같은 공격 주제별 질문을 만드는 쪽이 플러그인이고, 그 질문을 인코딩·탈옥 같은 수법으로 감싸는 쪽이 전략이다.",
+    "parent": "mlops.guardrail.promptfoo-redteam",
+    "aliases": [
+      "promptfoo plugins",
+      "promptfoo strategies",
+      "promptfoo 레드팀 플러그인",
+      "promptfoo 레드팀 전략",
+      "promptfoo jailbreak strategy"
+    ],
+    "refs": [
+      "https://www.promptfoo.dev/docs/red-team/configuration/"
+    ]
   },
   {
     "id": "mlops.observe.manual-tracing",

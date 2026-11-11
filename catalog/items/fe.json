@@ -531,6 +531,34 @@
     ]
   },
   {
+    "id": "fe.js.objects-first",
+    "title": "JavaScript 객체 기초",
+    "en": "JavaScript Object Basics",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "JavaScript",
+    "summary": "이름과 값의 짝을 중괄호로 묶은 객체를 만들고, 그 안의 속성과 메서드를 읽고 바꾸는 JavaScript의 첫 사용법이다.",
+    "objectives": [
+      "객체 리터럴로 속성과 메서드를 가진 객체를 만들 수 있다",
+      "점 표기법과 대괄호 표기법으로 속성을 읽고 새 값을 넣을 수 있다",
+      "메서드 안의 this가 그 메서드를 부른 객체를 가리킨다는 것을 예제로 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.js.basics"
+    ],
+    "aliases": [
+      "JS 객체",
+      "JavaScript 객체",
+      "객체 리터럴",
+      "object literal",
+      "JS 객체 속성"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Object_basics"
+    ]
+  },
+  {
     "id": "fe.css.text-styling",
     "title": "CSS로 글꼴과 글자 꾸미기",
     "en": "Fundamental Text and Font Styling",
@@ -589,6 +617,67 @@
     ],
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/HTML_table_basics"
+    ]
+  },
+  {
+    "id": "fe.js.strings-first",
+    "title": "JavaScript 문자열 다루기",
+    "en": "Handling Text with JavaScript Strings",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "JavaScript",
+    "summary": "따옴표로 문자열을 만들고 이어 붙이며, 따옴표 겹침과 숫자·문자열 섞임 같은 첫 실수를 피하는 법을 익힌다.",
+    "objectives": [
+      "작은따옴표·큰따옴표·백틱으로 문자열을 만들고 짝을 맞출 수 있다",
+      "역슬래시로 문자열 안에 따옴표와 줄바꿈을 넣을 수 있다",
+      "+ 연산자로 문자열을 이어 붙이고 숫자가 섞일 때 결과를 예상할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.js.basics"
+    ],
+    "related": [
+      "fe.js.template-literals"
+    ],
+    "aliases": [
+      "JS 문자열",
+      "JavaScript 문자열",
+      "JS 문자열 연결",
+      "JS string concatenation",
+      "JS 이스케이프 문자"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Strings"
+    ]
+  },
+  {
+    "id": "fe.css.backgrounds-borders",
+    "title": "CSS 배경과 테두리",
+    "en": "CSS Backgrounds and Borders",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "CSS",
+    "summary": "background 속성으로 요소 뒤에 색·이미지·그라디언트를 깔고 border로 테두리를 그려 상자의 겉모습을 꾸민다.",
+    "objectives": [
+      "background-color와 background-image로 요소의 배경을 칠할 수 있다",
+      "background-repeat·background-size·background-position으로 배경 이미지의 반복과 크기, 위치를 정할 수 있다",
+      "border 단축 속성으로 테두리의 두께·모양·색을 한 줄로 정할 수 있다",
+      "배경 위 글자의 명암 대비를 확인하고 배경 이미지가 안 보일 때를 대비해 배경색을 함께 줄 수 있다"
+    ],
+    "prerequisites": [
+      "fe.css.selectors-first"
+    ],
+    "aliases": [
+      "CSS 배경",
+      "background-image",
+      "background-size",
+      "CSS 테두리",
+      "border 속성",
+      "linear-gradient"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Backgrounds_and_borders"
     ]
   },
   {
@@ -693,6 +782,50 @@
     ],
     "refs": [
       "https://react.dev/learn/javascript-in-jsx-with-curly-braces"
+    ]
+  },
+  {
+    "id": "fe.js.strict-equality",
+    "title": "일치 연산자 ===와 동등 연산자 ==",
+    "en": "Strict Equality (===) vs Loose Equality (==)",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "JavaScript",
+    "summary": "===는 값과 자료형이 모두 같아야 참이고 ==는 자료형을 바꿔서 비교하므로, JavaScript에서는 실수를 줄이려고 ===와 !==를 쓴다.",
+    "parent": "fe.js.basics",
+    "aliases": [
+      "JS 일치 연산자",
+      "strict equality",
+      "삼중 등호",
+      "triple equals"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Math",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Strict_equality"
+    ]
+  },
+  {
+    "id": "fe.react.pure-components",
+    "title": "React 컴포넌트를 순수하게 유지하기",
+    "en": "Keeping React Components Pure",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "React",
+    "summary": "React 컴포넌트는 같은 props·state·context를 받으면 늘 같은 JSX를 돌려주고 렌더링 중에 바깥 변수나 받은 값을 바꾸지 않아야 한다.",
+    "parent": "fe.react.first-component",
+    "related": [
+      "fe.internals.strict-mode"
+    ],
+    "aliases": [
+      "React 순수 함수",
+      "렌더링 부수 효과",
+      "React 컴포넌트 순수성",
+      "React purity"
+    ],
+    "refs": [
+      "https://react.dev/learn/keeping-components-pure"
     ]
   },
   {
@@ -823,6 +956,135 @@
     ],
     "refs": [
       "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html"
+    ]
+  },
+  {
+    "id": "fe.js.dot-bracket-notation",
+    "title": "점 표기법과 대괄호 표기법",
+    "en": "Dot Notation and Bracket Notation",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "JavaScript",
+    "summary": "객체 속성은 obj.name처럼 점으로 읽거나 obj[\"name\"]처럼 대괄호로 읽으며, 속성 이름이 변수에 들어 있을 때는 대괄호만 쓸 수 있다.",
+    "parent": "fe.js.objects-first",
+    "aliases": [
+      "JS 점 표기법",
+      "JS dot notation",
+      "JS 대괄호 표기법",
+      "JS bracket notation",
+      "JS 속성 접근자",
+      "JS property accessor"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Object_basics",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors"
+    ]
+  },
+  {
+    "id": "fe.js.number-string-conversion",
+    "title": "Number()와 String()으로 값 바꾸기",
+    "en": "Converting Between Numbers and Strings",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "JavaScript",
+    "summary": "입력 칸에서 받은 \"5\" 같은 문자열은 Number()로 숫자로 바꾸고, 숫자는 String()으로 문자열로 바꿔야 더하기와 이어 붙이기가 뜻대로 된다.",
+    "parent": "fe.js.strings-first",
+    "aliases": [
+      "JS 형 변환",
+      "JS Number 변환",
+      "JS 문자열을 숫자로",
+      "JS type conversion",
+      "Number()"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Strings",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/Number"
+    ]
+  },
+  {
+    "id": "fe.css.box-sizing",
+    "title": "box-sizing: border-box",
+    "en": "box-sizing: border-box",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "CSS",
+    "summary": "box-sizing을 border-box로 두면 width에 안쪽 여백과 테두리가 포함되어 정한 너비 그대로 상자가 그려진다.",
+    "parent": "fe.css.box-flex",
+    "aliases": [
+      "box-sizing",
+      "border-box",
+      "content-box",
+      "대체 박스 모델",
+      "alternative box model"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Box_model",
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing"
+    ]
+  },
+  {
+    "id": "fe.css.color-values",
+    "title": "CSS 색 값: 키워드·hex·rgb()·hsl()",
+    "en": "CSS Color Values",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "CSS",
+    "summary": "CSS에서 색은 red 같은 키워드, #c55da1 같은 16진수, rgb()의 빨강·초록·파랑 값, hsl()의 색상·채도·명도로 적는다.",
+    "aliases": [
+      "CSS 색상 값",
+      "hex 색상",
+      "16진수 색상",
+      "rgb()",
+      "hsl()",
+      "CSS color"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units",
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/color_value"
+    ]
+  },
+  {
+    "id": "fe.ts.array-type",
+    "title": "TypeScript 배열 타입: number[]와 Array<T>",
+    "en": "TypeScript Array Types",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "TypeScript",
+    "summary": "TypeScript에서 숫자 배열은 number[]나 Array<number>로 적으며, [number]는 배열이 아니라 길이가 정해진 튜플이라 다르다.",
+    "parent": "fe.ts.first-types",
+    "aliases": [
+      "TS 배열 타입",
+      "TypeScript array type",
+      "number[]",
+      "string[]",
+      "Array<number>"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html"
+    ]
+  },
+  {
+    "id": "fe.next.public-folder",
+    "title": "Next.js public 폴더",
+    "en": "Next.js public Folder",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Next.js",
+    "summary": "Next.js 프로젝트 맨 위의 public 폴더에 넣은 이미지 같은 정적 파일은 /부터 시작하는 주소로 바로 불러 쓸 수 있다.",
+    "parent": "fe.next.first-page",
+    "aliases": [
+      "Next.js 정적 파일",
+      "Next.js static assets",
+      "Next.js public 디렉터리"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/api-reference/file-conventions/public-folder"
     ]
   },
   {

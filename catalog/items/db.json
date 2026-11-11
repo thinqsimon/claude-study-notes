@@ -455,6 +455,71 @@
     ]
   },
   {
+    "id": "db.postgres.pgadmin-first-run",
+    "title": "pgAdmin으로 PostgreSQL 둘러보기",
+    "en": "Getting Started with pgAdmin",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "명령줄 대신 화면에서 PostgreSQL 서버를 등록하고 표를 살펴보며 쿼리 도구로 SQL을 실행해 보는 첫 실습이다.",
+    "objectives": [
+      "pgAdmin에 서버를 등록하고 접속할 수 있다",
+      "왼쪽 트리에서 데이터베이스와 표를 찾아 열 구조와 자료를 볼 수 있다",
+      "쿼리 도구에서 SQL을 실행하고 결과 표를 CSV로 저장할 수 있다"
+    ],
+    "prerequisites": [
+      "db.postgres.first-run"
+    ],
+    "related": [
+      "db.postgres.psql-basics"
+    ],
+    "aliases": [
+      "pgAdmin 4",
+      "pgadmin4",
+      "피지어드민",
+      "PostgreSQL GUI 도구"
+    ],
+    "refs": [
+      "https://www.pgadmin.org/docs/pgadmin4/latest/getting_started.html",
+      "https://www.pgadmin.org/docs/pgadmin4/latest/connecting.html",
+      "https://www.pgadmin.org/docs/pgadmin4/latest/query_tool.html"
+    ]
+  },
+  {
+    "id": "db.sql.builtin-functions-first",
+    "title": "SQL 내장 함수 첫걸음: 글자와 숫자 다루기",
+    "en": "First Steps with SQL String and Math Functions",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "SELECT 안에서 upper·length·replace로 글자를 고치고 round·abs로 숫자를 다듬어 결과를 보기 좋게 바꾸는 방법이다.",
+    "objectives": [
+      "upper·lower·length·trim·replace로 조회한 글자를 바꿔 보일 수 있다",
+      "round·ceil·floor·abs로 숫자 결과를 다듬을 수 있다",
+      "정수끼리 나누면 소수점이 버려진다는 것을 알고 결과를 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "db.sql.select-first"
+    ],
+    "related": [
+      "db.sql.date-time-functions",
+      "db.sql.like-ilike"
+    ],
+    "aliases": [
+      "SQL 문자열 함수",
+      "SQL 수학 함수",
+      "PostgreSQL 내장 함수",
+      "upper lower length",
+      "SQL round 함수"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/functions-string.html",
+      "https://www.postgresql.org/docs/current/functions-math.html"
+    ]
+  },
+  {
     "id": "db.nosql.mongosh-first-run",
     "title": "MongoDB 셸 mongosh로 첫 문서 넣기",
     "en": "Getting Started with the MongoDB Shell (mongosh)",
@@ -489,6 +554,70 @@
       "https://www.mongodb.com/docs/mongodb-shell/",
       "https://www.mongodb.com/docs/mongodb-shell/connect/",
       "https://www.mongodb.com/docs/mongodb-shell/run-commands/"
+    ]
+  },
+  {
+    "id": "db.nosql.compass-first-run",
+    "title": "MongoDB Compass로 문서 보고 찾기",
+    "en": "Getting Started with MongoDB Compass",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "NoSQL",
+    "summary": "MongoDB 화면 도구 Compass로 로컬 DB에 접속해 컬렉션의 문서를 훑고 필터를 넣어 찾고 새 문서를 넣어 보는 첫 실습이다.",
+    "objectives": [
+      "연결 문자열로 Compass를 로컬 MongoDB에 접속할 수 있다",
+      "필터 칸에 중괄호 조건을 넣어 원하는 문서만 찾을 수 있다",
+      "JSON 보기나 필드 편집기로 문서를 하나 넣을 수 있다"
+    ],
+    "prerequisites": [
+      "db.basics.what-is-database",
+      "db.nosql.mongosh-first-run"
+    ],
+    "related": [
+      "db.nosql.mongosh-first-run",
+      "db.nosql.mongodb-crud"
+    ],
+    "aliases": [
+      "MongoDB Compass",
+      "몽고DB 컴패스",
+      "Compass GUI",
+      "몽고 컴패스"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/compass/",
+      "https://www.mongodb.com/docs/compass/connect/",
+      "https://www.mongodb.com/docs/compass/query/filter/",
+      "https://www.mongodb.com/docs/compass/documents/insert/"
+    ]
+  },
+  {
+    "id": "db.cache.redis-insight-first-run",
+    "title": "Redis Insight로 키 둘러보기",
+    "en": "Getting Started with Redis Insight",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "캐시",
+    "summary": "Redis 화면 도구 Redis Insight에 로컬 Redis를 붙여 키와 값을 눈으로 확인하고 내장 CLI로 명령을 쳐 보는 첫 실습이다.",
+    "objectives": [
+      "Redis Insight에 로컬 Redis 데이터베이스를 추가하고 접속할 수 있다",
+      "Browser 화면에서 키 목록과 값을 확인할 수 있다",
+      "내장 CLI 창에서 SET·GET 같은 명령을 실행하고 결과를 볼 수 있다"
+    ],
+    "prerequisites": [
+      "db.cache.redis-first-run"
+    ],
+    "related": [
+      "db.cache.redis-scan"
+    ],
+    "aliases": [
+      "RedisInsight",
+      "레디스 인사이트",
+      "Redis GUI 도구"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/develop/tools/insight/"
     ]
   },
   {
@@ -741,6 +870,96 @@
     ]
   },
   {
+    "id": "db.sql.offset",
+    "title": "OFFSET: 앞 행 건너뛰고 가져오기",
+    "en": "OFFSET Clause",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "정렬한 결과에서 앞쪽 몇 행을 건너뛴 뒤 LIMIT만큼 가져오는 절로, 목록을 쪽으로 나눠 보여 줄 때 쓴다.",
+    "parent": "db.sql.select-first",
+    "aliases": [
+      "LIMIT OFFSET",
+      "OFFSET 절",
+      "SQL 페이지 나누기"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/queries-limit.html"
+    ]
+  },
+  {
+    "id": "db.postgres.createdb",
+    "title": "createdb와 dropdb: DB 새로 만들고 지우기",
+    "en": "createdb and dropdb",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "터미널에서 PostgreSQL 안에 새 데이터베이스를 만들거나 통째로 지우는 명령으로, 지운 DB는 되돌릴 수 없다.",
+    "parent": "db.postgres.first-run",
+    "related": [
+      "db.sql.drop-table"
+    ],
+    "aliases": [
+      "createdb 명령",
+      "dropdb 명령",
+      "CREATE DATABASE",
+      "PostgreSQL DB 만들기"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/tutorial-createdb.html",
+      "https://www.postgresql.org/docs/current/app-createdb.html"
+    ]
+  },
+  {
+    "id": "db.sql.type-cast",
+    "title": "형 변환: CAST와 ::",
+    "en": "Type Casts",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "값을 다른 자료형으로 바꾸는 표기로, 표준 CAST(값 AS 형)과 PostgreSQL식 값::형이 같은 일을 한다.",
+    "parent": "db.sql.builtin-functions-first",
+    "related": [
+      "db.sql.alter-column-type"
+    ],
+    "aliases": [
+      "CAST 함수",
+      "PostgreSQL ::",
+      "더블 콜론 캐스트",
+      "SQL type cast",
+      "SQL 형 변환"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/sql-expressions.html#SQL-SYNTAX-TYPE-CASTS"
+    ]
+  },
+  {
+    "id": "db.cache.redis-incr",
+    "title": "INCR: Redis 숫자 하나씩 올리기",
+    "en": "Redis INCR",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "캐시",
+    "summary": "키에 담긴 숫자를 1 올리고 새 값을 돌려주는 Redis 명령으로, 키가 없으면 0에서 시작해 조회수 같은 카운터에 쓴다.",
+    "parent": "db.cache.redis-first-run",
+    "related": [
+      "db.cache.redis-hash"
+    ],
+    "aliases": [
+      "Redis INCR",
+      "INCRBY",
+      "DECR",
+      "Redis 카운터"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/commands/incr/"
+    ]
+  },
+  {
     "id": "db.sql.sqlite-dot-commands",
     "title": "SQLite 점 명령: .tables·.schema·.mode",
     "en": "SQLite Dot-Commands",
@@ -804,6 +1023,115 @@
     ],
     "refs": [
       "https://www.postgresql.org/docs/current/libpq-envars.html"
+    ]
+  },
+  {
+    "id": "db.sql.comments",
+    "title": "SQL 주석: --와 /* */",
+    "en": "SQL Comments",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "SQL",
+    "summary": "두 줄표 뒤 줄 끝까지, 또는 /*와 */ 사이를 실행에서 빼는 SQL의 메모 표기다.",
+    "aliases": [
+      "SQL 주석",
+      "-- 주석",
+      "블록 주석 /* */",
+      "SQL comment"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/sql-syntax-lexical.html#SQL-SYNTAX-COMMENTS"
+    ]
+  },
+  {
+    "id": "db.sql.truncate",
+    "title": "TRUNCATE: 표 안의 행 한꺼번에 비우기",
+    "en": "TRUNCATE",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "SQL",
+    "summary": "표 구조는 두고 모든 행을 한 번에 지우는 명령으로, 조건 없는 DELETE보다 빠르고 번호를 처음부터 다시 매기게 할 수도 있다.",
+    "parent": "db.sql.write-rows",
+    "related": [
+      "db.sql.drop-table",
+      "db.sql.write-rows"
+    ],
+    "aliases": [
+      "TRUNCATE TABLE",
+      "RESTART IDENTITY",
+      "표 비우기",
+      "테이블 비우기"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/sql-truncate.html"
+    ]
+  },
+  {
+    "id": "db.sql.string-concat",
+    "title": "SQL || 연산자: 글자 이어 붙이기",
+    "en": "String Concatenation Operator",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "SQL",
+    "summary": "두 값을 하나의 글자로 이어 붙이는 SQL 연산자로, 한쪽이 글자면 숫자도 함께 붙는다.",
+    "parent": "db.sql.builtin-functions-first",
+    "aliases": [
+      "SQL 문자열 연결",
+      "SQL || 연산자",
+      "string concatenation SQL"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/functions-string.html"
+    ]
+  },
+  {
+    "id": "db.cache.redis-del-exists",
+    "title": "DEL과 EXISTS: Redis 키 지우고 있는지 보기",
+    "en": "Redis DEL and EXISTS",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "캐시",
+    "summary": "DEL은 키를 지우고 EXISTS는 키가 있는지 보며, 둘 다 해당하는 키의 개수를 숫자로 돌려준다.",
+    "parent": "db.cache.redis-first-run",
+    "related": [
+      "db.cache.redis-scan"
+    ],
+    "aliases": [
+      "Redis DEL",
+      "Redis EXISTS",
+      "Redis 키 삭제",
+      "redis delete key"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/commands/del/",
+      "https://redis.io/docs/latest/commands/exists/"
+    ]
+  },
+  {
+    "id": "db.sql.sqlite-memory-db",
+    "title": "SQLite 메모리 DB: :memory:",
+    "en": "SQLite In-Memory Database",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "SQL",
+    "summary": "파일 대신 :memory:라는 이름으로 여는 SQLite DB로, 연결을 닫으면 사라지고 연결마다 따로 생겨 연습이나 테스트에 쓴다.",
+    "parent": "db.sql.sqlite-cli",
+    "related": [
+      "db.sql.python-sqlite3"
+    ],
+    "aliases": [
+      ":memory:",
+      "SQLite in-memory",
+      "SQLite 인메모리",
+      "sqlite3 메모리 데이터베이스"
+    ],
+    "refs": [
+      "https://sqlite.org/inmemorydb.html"
     ]
   },
   {

@@ -499,6 +499,111 @@
     ]
   },
   {
+    "id": "llm.prompt.multilingual",
+    "title": "여러 언어로 LLM 쓰기: 응답 언어 정하기",
+    "en": "Using LLMs in Multiple Languages",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "프롬프트",
+    "summary": "LLM은 영어가 아닌 언어로도 잘 답하지만, 답할 언어를 시스템 프롬프트에 분명히 적어야 매번 같은 언어로 안정되게 답한다.",
+    "objectives": [
+      "시스템 프롬프트에 응답 언어를 적어 사용자가 어떤 언어로 물어도 정한 언어로 답하게 할 수 있다",
+      "번역을 맡길 때 원문 언어와 목표 언어를 둘 다 적은 프롬프트를 쓸 수 있다",
+      "같은 내용을 한국어와 영어로 넣어 토큰 수를 세어 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.first-call",
+      "llm.basics.token-context"
+    ],
+    "related": [
+      "llm.api.system-prompt"
+    ],
+    "aliases": [
+      "LLM 다국어 지원",
+      "multilingual support",
+      "응답 언어 지정",
+      "한국어 프롬프트",
+      "LLM 번역 프롬프트"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/multilingual-support",
+      "https://platform.claude.com/docs/en/about-claude/glossary"
+    ]
+  },
+  {
+    "id": "llm.basics.hub-download",
+    "title": "Hugging Face Hub에서 오픈 모델 내려받기",
+    "en": "Downloading Open Models from the Hugging Face Hub",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "토큰으로 내 컴퓨터를 Hub에 로그인하고 hf download나 라이브러리로 모델 파일을 받으며, 접근 요청이 걸린 모델은 먼저 승인을 받는다.",
+    "objectives": [
+      "읽기 권한 사용자 토큰을 만들고 hf auth login으로 내 컴퓨터를 로그인할 수 있다",
+      "hf download 명령으로 모델 저장소의 파일을 내려받을 수 있다",
+      "게이트 모델에 브라우저로 접근을 요청하고 승인 뒤 같은 토큰으로 파일을 받을 수 있다",
+      "모델 카드의 라이선스 표시를 보고 내 용도에 써도 되는지 먼저 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.model-choices"
+    ],
+    "related": [
+      "llm.basics.share-on-hub",
+      "llm.basics.transformers-pipeline",
+      "llm.basics.model-card",
+      "llm.basics.open-model"
+    ],
+    "aliases": [
+      "허깅페이스 모델 다운로드",
+      "Hub 모델 내려받기",
+      "Hugging Face 모델 받기",
+      "hf auth login"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/hub/models-downloading",
+      "https://huggingface.co/docs/hub/models-gated",
+      "https://huggingface.co/docs/hub/security-tokens",
+      "https://huggingface.co/docs/hub/models-the-hub"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.prompt.metaprompt",
+    "title": "메타프롬프트로 프롬프트 첫 초안 만들기",
+    "en": "Drafting a First Prompt with a Metaprompt",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "프롬프트",
+    "summary": "할 일을 한 줄로 넣으면 모델이 변수 자리가 있는 프롬프트 틀을 대신 써 주는 메타프롬프트 노트북으로, 빈 화면에서 프롬프트를 시작하는 부담을 던다.",
+    "objectives": [
+      "메타프롬프트 노트북에 할 일과 변수 이름을 넣어 프롬프트 틀을 받아 낼 수 있다",
+      "받은 틀의 변수에 예시 값을 채워 실행하고 답을 확인할 수 있다",
+      "생성된 초안이 최선이 아니라는 점을 알고 직접 고쳐 다시 시험할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.prompt.first-good-prompt",
+      "llm.api.prompt-template-app"
+    ],
+    "related": [
+      "mlops.prompt.template-variable"
+    ],
+    "aliases": [
+      "메타프롬프트",
+      "metaprompt",
+      "프롬프트 생성기",
+      "prompt generator",
+      "프롬프트 초안 생성"
+    ],
+    "refs": [
+      "https://github.com/anthropics/claude-cookbooks/blob/main/misc/metaprompt.ipynb",
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview"
+    ]
+  },
+  {
     "id": "llm.basics.token",
     "title": "토큰",
     "en": "Token",
@@ -771,6 +876,127 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "llm.basics.gated-model",
+    "title": "게이트 모델(접근 요청 모델)",
+    "en": "Gated Model",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "작성자가 접근 요청을 켜 둔 Hub 모델로, 로그인해 내 정보를 공유하고 승인을 받아야 파일을 받을 수 있다.",
+    "parent": "llm.basics.hub-download",
+    "aliases": [
+      "gated model",
+      "게이티드 모델",
+      "접근 요청 모델",
+      "gated repo"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/hub/models-gated"
+    ]
+  },
+  {
+    "id": "llm.basics.hf-user-token",
+    "title": "Hugging Face 사용자 액세스 토큰",
+    "en": "Hugging Face User Access Token",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "스크립트나 노트북이 내 계정으로 Hub에 접근하게 해 주는 비밀 값으로, 읽기·쓰기·세분화 권한 중 하나를 골라 만든다.",
+    "parent": "llm.basics.hub-download",
+    "related": [
+      "be.security.api-key"
+    ],
+    "aliases": [
+      "HF 토큰",
+      "HF_TOKEN",
+      "허깅페이스 토큰",
+      "Hugging Face access token",
+      "hf_ 토큰"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/hub/security-tokens"
+    ]
+  },
+  {
+    "id": "llm.basics.hub-license",
+    "title": "Hub 모델 라이선스 표시",
+    "en": "Model License on the Hugging Face Hub",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "모델 카드 메타데이터의 license 값으로 그 모델을 어디까지 써도 되는지 알려 주는 표시로, apache-2.0·mit·llama3 같은 식별자로 적는다.",
+    "parent": "llm.basics.hub-download",
+    "related": [
+      "llm.basics.model-card",
+      "llm.basics.open-model"
+    ],
+    "aliases": [
+      "모델 라이선스",
+      "model license",
+      "license 메타데이터",
+      "오픈 모델 라이선스"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/hub/repositories-licenses"
+    ]
+  },
+  {
+    "id": "llm.basics.mtok-price",
+    "title": "백만 토큰당 가격(MTok)",
+    "en": "Price per Million Tokens (MTok)",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "LLM API 요금표가 쓰는 단위로, 입력 토큰과 출력 토큰 백만 개마다 값을 따로 매기며 보통 출력 쪽이 더 비싸다.",
+    "parent": "llm.basics.token-context",
+    "related": [
+      "llm.basics.model-choices"
+    ],
+    "aliases": [
+      "MTok",
+      "per MTok",
+      "백만 토큰당 요금",
+      "토큰 단가",
+      "1M 토큰 가격"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/about-claude/pricing"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.internals.nondeterminism",
+    "title": "LLM 응답의 비결정성",
+    "en": "Non-deterministic LLM Output",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 내부",
+    "summary": "같은 프롬프트를 보내도 답이 매번 조금씩 달라지는 성질로, temperature를 0으로 낮춰도 완전히 같아지지는 않는다.",
+    "parent": "llm.internals.generation-settings",
+    "related": [
+      "llm.internals.temperature",
+      "llm.api.model-snapshot"
+    ],
+    "aliases": [
+      "LLM 비결정성",
+      "non-deterministic output",
+      "확률적 응답",
+      "stochastic response",
+      "같은 질문 다른 답"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/about-claude/glossary",
+      "https://github.com/microsoft/generative-ai-for-beginners/blob/main/04-prompt-engineering-fundamentals/README.md",
+      "https://developers.openai.com/api/docs/guides/text"
+    ]
+  },
+  {
     "id": "llm.basics.encoder-decoder-model",
     "title": "인코더-디코더 모델(seq2seq)",
     "en": "Encoder-Decoder Model",
@@ -836,6 +1062,71 @@
     "refs": [
       "https://huggingface.co/learn/llm-course/chapter1/4",
       "https://huggingface.co/learn/llm-course/chapter1/9"
+    ]
+  },
+  {
+    "id": "llm.basics.hf-download-cli",
+    "title": "hf download 명령",
+    "en": "hf download Command",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "huggingface_hub에 들어 있는 명령줄 도구로, 저장소 이름만 주면 그 모델의 파일을 내 컴퓨터로 받아 준다.",
+    "parent": "llm.basics.hub-download",
+    "aliases": [
+      "hf download",
+      "huggingface-cli download",
+      "Hub 파일 내려받기"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/hub/models-downloading"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.hhh",
+    "title": "HHH(도움·정직·무해)",
+    "en": "HHH (Helpful, Honest, Harmless)",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "AI 비서가 갖출 세 성질인 도움이 되고, 정직하고, 해롭지 않음을 묶어 부르는 말로, 모델을 어떤 방향으로 학습시킬지 정하는 틀이다.",
+    "related": [
+      "llm.basics.bias-limitations",
+      "llm.basics.instruction-tuned-model"
+    ],
+    "aliases": [
+      "helpful honest harmless",
+      "도움·정직·무해",
+      "HHH 원칙"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/about-claude/glossary"
+    ]
+  },
+  {
+    "id": "llm.prompt.prompt-cue",
+    "title": "프롬프트 큐(cue)",
+    "en": "Prompt Cue",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "프롬프트",
+    "summary": "프롬프트 끝에 '요약:'이나 목록의 첫 항목처럼 답의 첫머리를 적어 두어 모델이 그 모양으로 이어 쓰게 이끄는 짧은 문구다.",
+    "related": [
+      "llm.prompt.prefill",
+      "llm.prompt.first-good-prompt"
+    ],
+    "aliases": [
+      "prompt cue",
+      "출력 유도 문구",
+      "답 첫머리 유도"
+    ],
+    "refs": [
+      "https://github.com/microsoft/generative-ai-for-beginners/blob/main/04-prompt-engineering-fundamentals/README.md"
     ]
   },
   {
