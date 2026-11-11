@@ -317,6 +317,108 @@
     ]
   },
   {
+    "id": "plan.figma.play-share-prototype",
+    "title": "Figma 프로토타입 재생하고 링크로 공유하기",
+    "en": "Playing and Sharing Figma Prototypes",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "연결해 둔 프로토타입을 미리보기와 프레젠테이션 뷰로 눌러 보고, 링크와 휴대폰으로 다른 사람에게 보여 주는 첫 사용법이다.",
+    "objectives": [
+      "캔버스 위 미리보기와 새 탭의 프레젠테이션 뷰로 프로토타입을 재생하고 처음 화면으로 되돌릴 수 있다",
+      "프레젠테이션 뷰에서 공유 링크를 복사해 팀원이나 사용자에게 보낼 수 있다",
+      "Figma 모바일 앱이나 휴대폰 브라우저로 프로토타입을 열어 실제 기기에서 눌러 볼 수 있다",
+      "연결이 없는 프레임은 재생할 때 보이지 않는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.frames-and-components"
+    ],
+    "related": [
+      "plan.figma.prototype-connection",
+      "plan.figma.prototype-interactions"
+    ],
+    "aliases": [
+      "프로토타입 재생",
+      "프로토타입 공유",
+      "prototype present",
+      "프로토타입 링크",
+      "피그마 프로토타입 보기",
+      "play prototype"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360040318013-Play-your-prototypes",
+      "https://help.figma.com/hc/en-us/articles/360040321093-View-prototypes-on-a-mobile-device"
+    ]
+  },
+  {
+    "id": "plan.figma.comments",
+    "title": "Figma 댓글로 화면 피드백 주고받기",
+    "en": "Giving Feedback with Figma Comments",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "댓글 모드에서 화면 위 원하는 자리에 의견을 남기고 사람을 불러 답을 받은 뒤 처리한 의견을 해결로 닫는 Figma의 협업 기본기다.",
+    "objectives": [
+      "댓글 모드로 바꿔 프레임 위 특정 자리에 댓글을 남기고 답글을 달 수 있다",
+      "@로 동료를 불러 댓글을 확인하게 할 수 있다",
+      "오른쪽 사이드바에서 댓글을 정렬·필터하고 처리한 댓글을 해결로 닫을 수 있다",
+      "말이나 메신저 대신 화면 위 댓글로 피드백을 남기면 좋은 점을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.what-is-figma"
+    ],
+    "related": [
+      "plan.figma.branch-review"
+    ],
+    "aliases": [
+      "Figma 댓글",
+      "피그마 댓글",
+      "Figma comments",
+      "피그마 코멘트",
+      "디자인 피드백 댓글"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360039825314-Guide-to-comments-in-Figma",
+      "https://help.figma.com/hc/en-us/articles/360041068574-Add-comments-to-files",
+      "https://help.figma.com/hc/en-us/articles/360041547593-View-and-manage-comments"
+    ]
+  },
+  {
+    "id": "plan.figma.export",
+    "title": "Figma에서 화면과 아이콘 내보내기",
+    "en": "Exporting Designs from Figma",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "프레임이나 아이콘을 골라 내보내기 설정을 붙이고 PNG·JPG·SVG·PDF 중 알맞은 형식과 배율로 파일을 받는 첫 사용법이다.",
+    "objectives": [
+      "선택한 레이어에 오른쪽 사이드바의 Export 설정을 더해 이미지 파일로 받을 수 있다",
+      "사진·아이콘·문서 같은 쓰임에 맞춰 PNG·JPG·SVG·PDF 중 하나를 고를 수 있다",
+      "고해상도 화면용으로 2x 배율을 넣어 내보낼 수 있다",
+      "File > Export로 설정을 붙인 여러 레이어를 한 번에 내보낼 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.frames-and-components"
+    ],
+    "related": [
+      "plan.figma.dev-mode-handoff"
+    ],
+    "aliases": [
+      "Figma 내보내기",
+      "피그마 내보내기",
+      "Figma export",
+      "피그마 이미지 저장",
+      "Figma 에셋 내보내기"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360040028114-Export-static-designs-from-Figma",
+      "https://help.figma.com/hc/en-us/articles/13402894554519-Export-formats-and-settings"
+    ]
+  },
+  {
     "id": "plan.figma.frame",
     "title": "Figma 프레임",
     "en": "Figma Frame",
@@ -416,6 +518,47 @@
     ]
   },
   {
+    "id": "plan.figma.presentation-view",
+    "title": "프레젠테이션 뷰(presentation view)",
+    "en": "Presentation View",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "프로토타입을 새 탭에서 기기 화면처럼 띄워 흐름 목록·공유·다시 시작 버튼과 함께 보여 주는 Figma의 재생 화면이다.",
+    "parent": "plan.figma.play-share-prototype",
+    "aliases": [
+      "프레젠테이션 뷰",
+      "presentation view",
+      "프로토타입 프레젠테이션",
+      "Present 모드"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360040318013-Play-your-prototypes"
+    ]
+  },
+  {
+    "id": "plan.figma.export-format",
+    "title": "내보내기 형식(PNG·JPG·SVG·PDF)",
+    "en": "Export Formats",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "투명 배경은 PNG, 작은 사진은 JPG, 늘려도 깨지지 않는 아이콘은 SVG, 글꼴을 지키는 문서는 PDF처럼 쓰임에 따라 고르는 파일 형식이다.",
+    "parent": "plan.figma.export",
+    "aliases": [
+      "내보내기 형식",
+      "Figma export format",
+      "PNG SVG 차이",
+      "Figma SVG 내보내기",
+      "Figma PDF 내보내기"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/13402894554519-Export-formats-and-settings"
+    ]
+  },
+  {
     "id": "plan.figma.layout-guides",
     "title": "레이아웃 가이드(레이아웃 그리드)",
     "en": "Layout Guides (Layout Grids)",
@@ -465,6 +608,124 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-05"
+  },
+  {
+    "id": "plan.figma.prototype-device",
+    "title": "프로토타입 기기 설정",
+    "en": "Prototype Device Settings",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "아무것도 고르지 않은 상태의 Prototype 탭에서 휴대폰 모델·방향·배경색을 골라 프레젠테이션 뷰에 기기 테두리를 씌우는 설정이다.",
+    "parent": "plan.figma.play-share-prototype",
+    "aliases": [
+      "기기 프레임",
+      "device frame",
+      "프로토타입 기기",
+      "prototype device",
+      "프로토타입 배경색"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/21158597546391-Set-prototype-device-and-background-settings"
+    ]
+  },
+  {
+    "id": "plan.figma.mirror",
+    "title": "Figma 미러(Mirror)",
+    "en": "Figma Mirror",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "데스크톱에서 고른 프레임을 같은 계정으로 로그인한 휴대폰에 실시간으로 띄워 실제 기기 크기로 확인하는 기능이다.",
+    "parent": "plan.figma.play-share-prototype",
+    "aliases": [
+      "피그마 미러",
+      "Figma Mirror",
+      "미러 보기",
+      "mirror view"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360040321093-View-prototypes-on-a-mobile-device"
+    ]
+  },
+  {
+    "id": "plan.figma.comment-mention",
+    "title": "Figma 댓글 멘션",
+    "en": "Comment Mention",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "댓글에 @와 이름을 써서 특정 동료에게 알림을 보내고 그 댓글을 보게 하는 Figma 기능이다.",
+    "parent": "plan.figma.comments",
+    "aliases": [
+      "Figma 멘션",
+      "피그마 멘션",
+      "Figma comment mention"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360041068574-Add-comments-to-files"
+    ]
+  },
+  {
+    "id": "plan.figma.resolve-comment",
+    "title": "Figma 댓글 해결",
+    "en": "Resolving Comments",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "처리한 댓글을 해결로 표시해 캔버스와 사이드바에서 숨기고, 필요하면 해결된 댓글 보기로 다시 꺼내는 Figma 기능이다.",
+    "parent": "plan.figma.comments",
+    "aliases": [
+      "Figma resolve comment",
+      "해결된 댓글",
+      "show resolved comments"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360041547593-View-and-manage-comments"
+    ]
+  },
+  {
+    "id": "plan.figma.export-scale",
+    "title": "내보내기 배율(1x·2x)",
+    "en": "Export Scale",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "2x처럼 배수를 적거나 너비·높이를 정해 같은 화면을 더 큰 픽셀로 내보내는 설정으로, 고해상도 화면에서 흐려지지 않게 하며, SVG·PDF는 1x만 된다.",
+    "parent": "plan.figma.export",
+    "aliases": [
+      "내보내기 배율",
+      "export scale",
+      "2x 내보내기"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/13402894554519-Export-formats-and-settings"
+    ]
+  },
+  {
+    "id": "plan.figma.slice-tool",
+    "title": "슬라이스 도구(slice)",
+    "en": "Slice Tool",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "캔버스에서 내보낼 영역을 네모로 따로 정해 그 안의 내용만 이미지로 받게 하는 Figma 도구다.",
+    "parent": "plan.figma.export",
+    "aliases": [
+      "슬라이스 도구",
+      "slice tool",
+      "피그마 슬라이스",
+      "영역 내보내기"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360040028114-Export-static-designs-from-Figma"
+    ]
   },
   {
     "id": "plan.basics.success-metrics",

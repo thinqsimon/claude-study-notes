@@ -280,6 +280,137 @@
     "checked_at": "2026-11-04"
   },
   {
+    "id": "rag.agent.install-setup",
+    "title": "LangChain 설치와 제공사 패키지 고르기",
+    "en": "Installing LangChain and Provider Packages",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "에이전트",
+    "summary": "pip나 uv로 langchain을 깔고 쓰려는 모델 회사의 통합 패키지를 함께 깔아 첫 모델을 부를 준비를 하는 과정이다.",
+    "objectives": [
+      "파이썬 3.10 이상에서 pip나 uv로 langchain 패키지를 설치할 수 있다",
+      "쓰려는 모델 제공사에 맞는 통합 패키지를 찾아 함께 설치할 수 있다",
+      "제공사 API 키를 환경 변수로 넣고 \"제공사:모델\" 문자열로 모델을 지정할 수 있다"
+    ],
+    "related": [
+      "rag.agent.chat-models"
+    ],
+    "aliases": [
+      "LangChain 설치",
+      "pip install langchain",
+      "uv add langchain",
+      "install langchain",
+      "LangChain 시작 준비"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/install",
+      "https://docs.langchain.com/oss/python/concepts/providers-and-models"
+    ]
+  },
+  {
+    "id": "rag.basics.framework-choice",
+    "title": "LangChain·LangGraph·Deep Agents 구분하기",
+    "en": "LangChain vs LangGraph vs Deep Agents",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트 기초",
+    "summary": "LangGraph는 실행 기반인 런타임, LangChain은 빨리 만드는 프레임워크, Deep Agents는 기능을 미리 갖춘 하네스라는 차이를 알고 첫 도구를 고르는 법이다.",
+    "objectives": [
+      "런타임·프레임워크·하네스가 각각 무엇을 맡는지 말할 수 있다",
+      "LangChain이 LangGraph 위에, Deep Agents가 LangGraph 위에 만들어졌다는 관계를 그림으로 그릴 수 있다",
+      "만들려는 에이전트의 성격을 보고 셋 가운데 어디서 시작할지 고를 수 있다"
+    ],
+    "prerequisites": [
+      "rag.basics.agent-big-picture"
+    ],
+    "related": [
+      "rag.agent.deep-agents",
+      "rag.agent.graph-api",
+      "rag.agent.first-agent"
+    ],
+    "aliases": [
+      "LangChain vs LangGraph",
+      "LangGraph vs LangChain",
+      "에이전트 프레임워크 비교",
+      "Deep Agents 차이",
+      "랭체인 랭그래프 차이"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/concepts/products"
+    ]
+  },
+  {
+    "id": "rag.agent.mcp-remote-connect",
+    "title": "Claude에 원격 MCP 서버 연결하기",
+    "en": "Connecting Claude to Remote MCP Servers",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "인터넷에 떠 있는 MCP 서버의 주소를 Claude 설정의 커스텀 커넥터로 추가하고 로그인한 뒤 대화에서 그 서버의 도구와 자료를 써 보는 첫 실습이다.",
+    "objectives": [
+      "Claude 설정의 커넥터 화면에서 원격 MCP 서버 주소를 커스텀 커넥터로 추가할 수 있다",
+      "서버가 요구하는 로그인을 마치고 대화 입력창에서 서버의 리소스와 프롬프트를 골라 넣을 수 있다",
+      "커넥터 설정에서 Claude가 쓸 수 있는 도구를 켜고 끌 수 있다",
+      "로컬 서버와 원격 서버가 설치 방식에서 어떻게 다른지 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.mcp-idea"
+    ],
+    "related": [
+      "rag.agent.mcp-connect",
+      "ax.coding.mcp-servers"
+    ],
+    "aliases": [
+      "원격 MCP 연결",
+      "remote MCP server 연결",
+      "Claude 커넥터 추가",
+      "MCP 커넥터 추가",
+      "connect remote MCP"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/docs/develop/connect-remote-servers"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.agent.memory-overview",
+    "title": "에이전트 메모리 이해하기: 단기와 장기",
+    "en": "Agent Memory Overview: Short-Term and Long-Term",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "한 대화 안에서만 이어지는 단기 기억과 여러 대화를 넘어 남는 장기 기억이 왜 따로 필요한지, 장기 기억에 어떤 종류가 있는지 알아보는 입문이다.",
+    "objectives": [
+      "단기 기억은 한 스레드 안에, 장기 기억은 여러 스레드에 걸쳐 남는다는 차이를 예로 설명할 수 있다",
+      "장기 기억의 세 종류인 의미 기억·일화 기억·절차 기억에 각각 무엇을 담는지 말할 수 있다",
+      "기억을 대화 도중에 쓰는 방식과 뒤에서 따로 쓰는 방식의 장단점을 한 가지씩 들 수 있다"
+    ],
+    "prerequisites": [
+      "rag.basics.agent-big-picture"
+    ],
+    "related": [
+      "rag.agent.short-term-memory",
+      "rag.agent.memory-store",
+      "rag.agent.checkpoint-persistence"
+    ],
+    "aliases": [
+      "에이전트 메모리",
+      "agent memory",
+      "에이전트 기억 종류",
+      "의미 기억",
+      "일화 기억",
+      "절차 기억"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/concepts/memory"
+    ]
+  },
+  {
     "id": "rag.embedding.vector",
     "title": "벡터",
     "en": "Vector",
@@ -292,6 +423,50 @@
     "aliases": [
       "벡터",
       "vector"
+    ]
+  },
+  {
+    "id": "rag.agent.integration-package",
+    "title": "통합 패키지",
+    "en": "Integration Package",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "에이전트",
+    "summary": "langchain-openai·langchain-anthropic처럼 한 모델 제공사의 기능을 LangChain 표준 모양으로 쓰게 해 주는 따로 설치하는 패키지다.",
+    "parent": "rag.agent.install-setup",
+    "aliases": [
+      "langchain-openai",
+      "langchain-anthropic",
+      "LangChain 통합 패키지",
+      "provider integration package",
+      "제공사 패키지"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/concepts/providers-and-models"
+    ]
+  },
+  {
+    "id": "rag.retrieval.document-object",
+    "title": "Document 객체",
+    "en": "LangChain Document",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "RAG",
+    "summary": "LangChain에서 글 한 덩어리를 담는 기본 단위로, 본문 page_content와 출처 같은 정보를 담는 metadata, 선택 칸 id를 가진다.",
+    "parent": "rag.retrieval.load-split",
+    "related": [
+      "rag.retrieval.document-loader",
+      "rag.vector-db.chunk"
+    ],
+    "aliases": [
+      "LangChain Document",
+      "page_content",
+      "Document metadata"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/knowledge-base"
     ]
   },
   {
@@ -395,6 +570,156 @@
     "refs": [
       "https://docs.langchain.com/oss/python/integrations/text_embedding"
     ]
+  },
+  {
+    "id": "rag.basics.agent-runtime",
+    "title": "에이전트 런타임",
+    "en": "Agent Runtime",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트 기초",
+    "summary": "에이전트를 실제로 돌리면서 상태 저장·이어 하기·스트리밍·사람 개입 같은 실행 바탕을 맡는 층으로, LangGraph가 여기에 든다.",
+    "parent": "rag.basics.framework-choice",
+    "aliases": [
+      "agent runtime",
+      "에이전트 실행 기반",
+      "LangGraph 런타임",
+      "agent orchestration runtime"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/concepts/products"
+    ]
+  },
+  {
+    "id": "rag.basics.agent-harness",
+    "title": "에이전트 하네스",
+    "en": "Agent Harness",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트 기초",
+    "summary": "계획 세우기·파일 다루기·서브에이전트 맡기기 같은 기능을 미리 넣어 두어 긴 일을 바로 시킬 수 있게 만든 완성형 에이전트 틀로, Deep Agents가 여기에 든다.",
+    "parent": "rag.basics.framework-choice",
+    "aliases": [
+      "agent harness",
+      "Deep Agents 하네스",
+      "하네스 에이전트"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/concepts/products"
+    ]
+  },
+  {
+    "id": "rag.agent.custom-connector",
+    "title": "커스텀 커넥터",
+    "en": "Custom Connector",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "Claude 설정에서 원격 MCP 서버 주소를 직접 넣어 Claude와 그 서버를 이어 주는 연결 항목이다.",
+    "parent": "rag.agent.mcp-remote-connect",
+    "aliases": [
+      "custom connector",
+      "Claude 커스텀 커넥터",
+      "Add custom connector",
+      "Claude connectors"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/docs/develop/connect-remote-servers"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.agent.mcp-host",
+    "title": "MCP 호스트",
+    "en": "MCP Host",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "Claude Desktop·Claude Code·VS Code처럼 사용자가 쓰는 AI 앱으로, MCP 서버마다 클라이언트를 하나씩 만들어 여러 서버와의 연결을 묶어 관리한다.",
+    "parent": "rag.agent.mcp-idea",
+    "related": [
+      "rag.agent.mcp-client",
+      "rag.agent.mcp-server"
+    ],
+    "aliases": [
+      "MCP host",
+      "MCP 호스트 앱",
+      "MCP host application"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/docs/learn/architecture"
+    ]
+  },
+  {
+    "id": "rag.agent.mcp-client",
+    "title": "MCP 클라이언트",
+    "en": "MCP Client",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "호스트 안에서 MCP 서버 하나와 전용 연결을 맺고 그 서버의 도구·자료를 받아 호스트에 넘기는 부품이다.",
+    "parent": "rag.agent.mcp-idea",
+    "related": [
+      "rag.agent.mcp-host",
+      "rag.agent.mcp-build-client"
+    ],
+    "aliases": [
+      "MCP client",
+      "MCP 클라이언트 연결",
+      "MCP client connection"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/docs/learn/architecture"
+    ]
+  },
+  {
+    "id": "rag.agent.model-router",
+    "title": "모델 라우터(OpenRouter·LiteLLM)",
+    "en": "Model Router",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "API 키 하나와 결제 계정 하나로 여러 제공사의 모델을 골라 부를 수 있게 중간에서 이어 주는 서비스다.",
+    "parent": "rag.agent.install-setup",
+    "aliases": [
+      "OpenRouter",
+      "LiteLLM",
+      "LLM 라우터",
+      "model router"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/concepts/providers-and-models"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.agent.mcp-registry",
+    "title": "MCP 레지스트리",
+    "en": "MCP Registry",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "공개된 MCP 서버들의 이름·설치 위치·실행 방법을 server.json 형식으로 모아 둔 공식 목록으로, 마켓플레이스 같은 곳이 이를 가져다 서버 찾기 화면을 만든다.",
+    "aliases": [
+      "MCP Registry",
+      "공식 MCP 레지스트리",
+      "server.json",
+      "MCP 서버 목록"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/registry/about"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
   },
   {
     "id": "rag.vector-db.basics",

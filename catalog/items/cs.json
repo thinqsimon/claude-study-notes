@@ -1,5 +1,223 @@
 [
   {
+    "id": "cs.os.what-os-does",
+    "title": "운영체제가 하는 일",
+    "en": "What an Operating System Does",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "운영체제",
+    "summary": "운영체제는 CPU·메모리·디스크를 여러 프로그램이 나눠 쓰게 하고, 프로그램이 시스템 호출로 이 기능을 부탁하게 하는 소프트웨어다.",
+    "objectives": [
+      "운영체제의 세 가지 일인 가상화·동시성·영속성을 예를 들어 설명할 수 있다",
+      "프로그램이 파일을 열 때 운영체제에 일을 부탁한다는 흐름을 말할 수 있다",
+      "사용자 모드와 커널 모드를 나누는 까닭을 설명할 수 있다"
+    ],
+    "aliases": [
+      "운영체제 역할",
+      "operating system basics",
+      "OS 입문",
+      "운영체제란"
+    ],
+    "refs": [
+      "https://pages.cs.wisc.edu/~remzi/OSTEP/intro.pdf"
+    ]
+  },
+  {
+    "id": "cs.algo.what-is-algorithm",
+    "title": "알고리즘: 정확하고 효율적인 풀이 절차",
+    "en": "What Is an Algorithm",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "알고리즘과 복잡도",
+    "summary": "알고리즘은 모든 입력에 맞는 답을 내는 절차이고, 입력이 커질 때 연산을 몇 번 하는지로 빠르기를 잰다.",
+    "objectives": [
+      "문제를 입력과 올바른 출력의 관계로 바꿔 적을 수 있다",
+      "같은 문제를 푸는 두 절차의 단계 수를 입력 크기 n으로 비교할 수 있다",
+      "알고리즘이 맞다는 것과 빠르다는 것을 구분해 말할 수 있다"
+    ],
+    "related": [
+      "cs.algo.big-o-estimate"
+    ],
+    "aliases": [
+      "알고리즘이란",
+      "algorithm basics",
+      "알고리즘 입문",
+      "풀이 절차"
+    ],
+    "refs": [
+      "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec1/"
+    ]
+  },
+  {
+    "id": "cs.net.protocol-layers",
+    "title": "인터넷 통신의 네 계층",
+    "en": "The Four Layers of the Internet Protocol Suite",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "인터넷 통신은 응용·전송·인터넷·링크 네 계층이 일을 나눠 맡고, 데이터는 패킷에 담겨 계층을 차례로 지난다.",
+    "objectives": [
+      "응용·전송·인터넷·링크 계층이 각각 맡는 일을 설명할 수 있다",
+      "HTTP·TCP·IP가 어느 계층에 속하는지 짚을 수 있다",
+      "웹 요청 하나가 패킷으로 나뉘어 목적지까지 가는 흐름을 말할 수 있다"
+    ],
+    "related": [
+      "cs.net.tcp-vs-udp"
+    ],
+    "aliases": [
+      "TCP/IP 계층",
+      "TCP/IP layers",
+      "인터넷 프로토콜 스택",
+      "TCP/IP 모델"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc1122"
+    ]
+  },
+  {
+    "id": "cs.dsa.data-structure",
+    "title": "자료구조",
+    "en": "Data Structure",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "자료구조",
+    "summary": "데이터를 담는 방식과 그 위에서 할 수 있는 연산을 함께 정해, 같은 일을 더 빠르게 하도록 돕는 틀이다.",
+    "parent": "cs.algo.what-is-algorithm",
+    "aliases": [
+      "data structures",
+      "자료 구조"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/datastructur.html",
+      "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec1/"
+    ]
+  },
+  {
+    "id": "cs.os.system-call",
+    "title": "시스템 호출",
+    "en": "System Call",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "프로그램이 파일 열기·메모리 받기처럼 운영체제 커널만 할 수 있는 일을 부탁하는 창구다.",
+    "parent": "cs.os.what-os-does",
+    "aliases": [
+      "syscall",
+      "시스콜",
+      "system calls"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man2/syscalls.2.html"
+    ]
+  },
+  {
+    "id": "cs.os.user-kernel-mode",
+    "title": "사용자 모드와 커널 모드",
+    "en": "User Mode and Kernel Mode",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "일반 프로그램은 하드웨어 접근이 제한된 사용자 모드로, 운영체제는 모든 권한을 가진 커널 모드로 실행되는 구분이다.",
+    "parent": "cs.os.what-os-does",
+    "aliases": [
+      "커널 모드",
+      "user mode",
+      "kernel mode",
+      "특권 모드"
+    ],
+    "refs": [
+      "https://pages.cs.wisc.edu/~remzi/OSTEP/intro.pdf"
+    ]
+  },
+  {
+    "id": "cs.algo.linear-search",
+    "title": "선형 탐색",
+    "en": "Linear Search",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "알고리즘과 복잡도",
+    "summary": "목록의 처음부터 하나씩 비교해 원하는 값을 찾는 가장 단순한 탐색 방법이다.",
+    "parent": "cs.algo.what-is-algorithm",
+    "related": [
+      "cs.algo.binary-search"
+    ],
+    "aliases": [
+      "순차 탐색",
+      "sequential search",
+      "선형 검색"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/linearSearch.html"
+    ]
+  },
+  {
+    "id": "cs.net.packet",
+    "title": "패킷",
+    "en": "Packet",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "네트워크로 보낼 데이터를 잘게 나눈 덩어리로, 받는 곳 주소 같은 정보를 앞에 붙여 따로따로 전달된다.",
+    "parent": "cs.net.protocol-layers",
+    "aliases": [
+      "네트워크 패킷",
+      "network packet"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc1122"
+    ]
+  },
+  {
+    "id": "cs.net.internet-protocol",
+    "title": "인터넷 프로토콜(IP)",
+    "en": "Internet Protocol",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "주소를 보고 패킷을 목적지 방향으로 넘겨 주는 인터넷 계층의 규약으로, 도착을 보장하지는 않는다.",
+    "parent": "cs.net.protocol-layers",
+    "related": [
+      "cs.net.ip-cidr"
+    ],
+    "aliases": [
+      "IP 프로토콜",
+      "internet protocol",
+      "IPv4 프로토콜"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc791"
+    ]
+  },
+  {
+    "id": "cs.data.binary-prefix",
+    "title": "이진 접두어(KiB·MiB·GiB)",
+    "en": "Binary Prefixes",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "1KiB는 1,024바이트, 1kB는 1,000바이트처럼 2의 거듭제곱 단위와 10의 거듭제곱 단위를 구분하는 표기다.",
+    "aliases": [
+      "KiB",
+      "MiB",
+      "GiB",
+      "키비바이트",
+      "메비바이트"
+    ],
+    "refs": [
+      "https://physics.nist.gov/cuu/Units/binary.html"
+    ]
+  },
+  {
     "id": "cs.algo.big-o-estimate",
     "title": "빅오로 코드 비용 어림하기",
     "en": "Estimating Code Cost with Big-O",
