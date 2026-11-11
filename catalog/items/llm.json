@@ -496,6 +496,40 @@
     ]
   },
   {
+    "id": "llm.basics.redo-response",
+    "title": "답이 마음에 안 들 때: 다시 생성과 질문 고치기",
+    "en": "Regenerating Responses and Editing Prompts in a Chatbot",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "챗봇의 답이 아쉬우면 같은 질문으로 답을 새로 받거나, 보냈던 질문을 고쳐 다시 보내거나, 이어서 말로 고쳐 달라고 할 수 있다.",
+    "objectives": [
+      "마지막 답 아래의 다시 생성 버튼으로 새 답을 받고 화살표로 이전 답과 번갈아 볼 수 있다",
+      "보낸 질문을 고쳐 다시 보내면 그 자리부터 답이 새로 만들어진다는 점을 주문서를 고쳐 다시 내는 일에 빗대어 설명할 수 있다",
+      "답을 통째로 다시 받는 대신 더 쉽게, 더 짧게처럼 이어서 고쳐 달라고 하는 편이 나은 경우를 예로 들 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.first-chat"
+    ],
+    "related": [
+      "llm.internals.nondeterminism"
+    ],
+    "aliases": [
+      "답 다시 받기",
+      "응답 고치기",
+      "AI 답 수정",
+      "regenerate and edit",
+      "챗봇 답 다시 만들기"
+    ],
+    "refs": [
+      "https://support.google.com/gemini/answer/14262426",
+      "https://support.google.com/gemini/answer/13275745"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "llm.basics.image-generation",
     "title": "이미지 생성 AI: 글로 주문하는 그림",
     "en": "Image Generation from Text",
@@ -656,6 +690,77 @@
     ],
     "refs": [
       "https://aistudio.google.com/docs/music-generation"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.source-notebook",
+    "title": "내 자료로 답하는 AI 노트: Gemini Notebook",
+    "en": "Source-Grounded AI Notebooks (Gemini Notebook, formerly NotebookLM)",
+    "kind": "topic",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "노트북에 PDF·웹페이지·영상 같은 자료를 넣으면 AI가 그 자료를 근거로 답하고 인용을 달며, 요약 음성이나 마인드맵 같은 결과물도 만들어 준다.",
+    "objectives": [
+      "노트북에 자료를 올리고 그 자료에 대해 질문할 수 있다",
+      "자료 기반 노트북을 내가 고른 책만 꽂힌 책장에서 찾아 답하는 사서에 빗대어 설명할 수 있다",
+      "답에 붙은 인용을 눌러 원래 자료의 어느 부분에서 왔는지 확인할 수 있다",
+      "자료에 없는 내용은 답하지 않을 수 있고 답이 틀릴 수도 있다는 점을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.first-chat",
+      "llm.basics.chat-file-upload"
+    ],
+    "related": [
+      "llm.basics.chat-projects",
+      "rag.basics.rag-big-picture"
+    ],
+    "aliases": [
+      "Gemini Notebook",
+      "NotebookLM",
+      "노트북LM",
+      "제미나이 노트북",
+      "자료 기반 AI 노트"
+    ],
+    "refs": [
+      "https://support.google.com/notebooklm/answer/16164461",
+      "https://support.google.com/notebooklm/answer/16212283"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.desktop-app",
+    "title": "AI 챗봇 데스크톱 앱 설치하고 첫 실행하기",
+    "en": "Installing and Launching an AI Chatbot Desktop App",
+    "kind": "topic",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "챗봇은 웹브라우저 말고도 컴퓨터에 설치하는 데스크톱 앱으로 쓸 수 있고, 앱에서는 단축키로 바로 부르거나 내 컴퓨터의 파일·프로그램과 잇는 기능이 더해진다.",
+    "objectives": [
+      "공식 다운로드 페이지에서 내 운영체제에 맞는 데스크톱 앱을 받아 설치하고 로그인할 수 있다",
+      "웹 버전과 데스크톱 앱의 차이를 가게 방문과 집에 둔 전용 단말기에 빗대어 설명할 수 있다",
+      "빠른 입력이나 데스크톱 확장처럼 앱에서만 쓰는 기능을 예로 들 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.first-chat"
+    ],
+    "related": [
+      "llm.basics.chat-app-vs-api"
+    ],
+    "aliases": [
+      "Claude 데스크톱 앱",
+      "Claude Desktop 설치",
+      "챗봇 데스크톱 앱",
+      "AI 데스크톱 앱 설치",
+      "claude desktop app"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/10065433-install-claude-desktop",
+      "https://claude.com/download"
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
@@ -1164,6 +1269,81 @@
     ]
   },
   {
+    "id": "llm.basics.regenerate-response",
+    "title": "응답 다시 생성(regenerate)",
+    "en": "Regenerate Response",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "같은 질문에 대한 답을 새로 만들게 하는 버튼으로, 이전 답과 새 답을 화살표로 넘겨 보며 고를 수 있다.",
+    "parent": "llm.basics.redo-response",
+    "related": [
+      "llm.internals.nondeterminism"
+    ],
+    "aliases": [
+      "답 다시 생성",
+      "응답 재생성",
+      "regenerate response",
+      "다시 시도 버튼",
+      "챗봇 답 재생성"
+    ],
+    "refs": [
+      "https://support.google.com/gemini/answer/14262426"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.edit-prompt",
+    "title": "보낸 질문 고쳐 다시 보내기",
+    "en": "Editing a Sent Prompt",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "이미 보낸 질문을 고쳐 다시 보내면 챗봇이 고친 질문을 기준으로 답을 새로 만들어 주는 기능이다.",
+    "parent": "llm.basics.redo-response",
+    "aliases": [
+      "보낸 질문 수정",
+      "보낸 프롬프트 수정",
+      "보낸 메시지 편집",
+      "edit sent prompt",
+      "질문 고쳐 보내기"
+    ],
+    "refs": [
+      "https://support.google.com/gemini/answer/13275745"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.response-sources",
+    "title": "챗봇 답의 출처 보기(Sources)",
+    "en": "Viewing Sources for a Chatbot Response",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "답 아래나 문장 안의 출처 버튼을 누르면 답을 만들 때 참고한 웹페이지·올린 파일 링크가 옆 창에 열리며, 출처가 없는 답도 있다.",
+    "related": [
+      "rag.basics.web-search-feature",
+      "ax.basics.verify-ai-output"
+    ],
+    "aliases": [
+      "출처 버튼",
+      "답 출처 확인",
+      "Gemini sources",
+      "응답 출처",
+      "관련 링크 보기"
+    ],
+    "refs": [
+      "https://support.google.com/gemini/answer/14143489"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "llm.basics.small-language-model",
     "title": "소형 언어 모델(SLM)",
     "en": "Small Language Model",
@@ -1573,6 +1753,146 @@
     ],
     "refs": [
       "https://huggingface.co/docs/hub/eval-results"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.notebook-source",
+    "title": "노트북 소스(자료)",
+    "en": "Notebook Sources in Gemini Notebook",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "AI 노트북에 넣어 두는 PDF·웹사이트·유튜브 영상·오디오·구글 문서 같은 자료로, 채팅 답과 결과물이 모두 이 자료를 근거로 만들어진다.",
+    "parent": "llm.basics.source-notebook",
+    "aliases": [
+      "Gemini Notebook 소스",
+      "NotebookLM 소스",
+      "NotebookLM sources",
+      "Gemini Notebook 자료"
+    ],
+    "refs": [
+      "https://support.google.com/notebooklm/answer/16164461"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.audio-overview",
+    "title": "오디오 개요(Audio Overview)",
+    "en": "Audio Overview in Gemini Notebook",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "노트북에 넣은 자료의 핵심을 AI 진행자가 대담이나 짧은 요약 같은 형식의 말로 풀어 주는 음성 요약으로, 길이와 언어를 고를 수 있다.",
+    "parent": "llm.basics.source-notebook",
+    "aliases": [
+      "오디오 오버뷰",
+      "NotebookLM 오디오 개요",
+      "Gemini Notebook 오디오 개요",
+      "Audio Overviews",
+      "AI 팟캐스트 요약"
+    ],
+    "refs": [
+      "https://support.google.com/notebooklm/answer/16212820"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.notebook-mind-map",
+    "title": "AI 노트북 마인드맵",
+    "en": "Mind Maps in Gemini Notebook",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "노트북 자료의 주요 주제와 관련 생각을 가지가 뻗는 그림으로 정리해 주는 기능으로, 가지를 펼치거나 접고 한 가지를 눌러 질문할 수 있다.",
+    "parent": "llm.basics.source-notebook",
+    "aliases": [
+      "NotebookLM 마인드맵",
+      "Gemini Notebook 마인드맵",
+      "NotebookLM mind map",
+      "자료 마인드맵"
+    ],
+    "refs": [
+      "https://support.google.com/notebooklm/answer/16212283"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.quick-entry",
+    "title": "빠른 입력(Quick Entry)",
+    "en": "Quick Entry in Claude Desktop",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "Mac용 Claude 데스크톱 앱에서 Option 키를 두 번 눌러 어느 프로그램에서든 바로 질문 창을 띄우고 화면 캡처나 창 내용을 붙여 보내는 기능이다.",
+    "parent": "llm.basics.desktop-app",
+    "aliases": [
+      "Claude Quick Entry",
+      "Claude 빠른 입력",
+      "퀵 엔트리",
+      "Claude 전역 단축키"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/12626668-use-quick-entry-with-claude-desktop-on-mac"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.desktop-extensions",
+    "title": "데스크톱 확장(desktop extensions)",
+    "en": "Claude Desktop Extensions",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "Claude 데스크톱 앱 설정에서 골라 설치하면 클릭 한 번으로 내 컴퓨터의 파일이나 앱을 Claude와 이어 주는 추가 기능이다.",
+    "parent": "llm.basics.desktop-app",
+    "related": [
+      "rag.agent.mcp-local-connect",
+      "rag.agent.mcp-idea"
+    ],
+    "aliases": [
+      "Claude 데스크톱 확장",
+      "Claude Desktop extensions",
+      "desktop extensions",
+      "Claude 확장 기능"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/10065433-install-claude-desktop"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.claude-cowork",
+    "title": "Claude Cowork",
+    "en": "Claude Cowork",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "원하는 결과를 말하면 Claude가 문서 작성·파일 정리 같은 여러 단계 일을 스스로 계획해 끝내 주는 유료 요금제용 작업 모드다.",
+    "related": [
+      "rag.basics.agent-big-picture",
+      "llm.basics.desktop-app"
+    ],
+    "aliases": [
+      "Cowork",
+      "코워크",
+      "Claude 코워크",
+      "Cowork 모드"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork"
     ],
     "volatile": true,
     "checked_at": "2026-11-11"

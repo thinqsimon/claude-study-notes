@@ -453,6 +453,73 @@
     ]
   },
   {
+    "id": "mlops.eval.automatic-eval-picture",
+    "title": "자동 평가의 큰 그림: 쌓이는 기록을 AI가 계속 채점",
+    "en": "The Big Picture of Automatic Evaluation on Logged Traces",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "AI 앱이 실행 기록을 남길 때마다 미리 정해 둔 AI 채점관이 뒤에서 알아서 점수를 매겨, 평가 코드를 따로 돌리지 않아도 품질 문제를 알아채게 하는 방식이다.",
+    "objectives": [
+      "자동 평가를 가게에서 손님이 나갈 때마다 점검원이 몇 장씩 영수증을 골라 확인하는 일에 빗대어 설명할 수 있다",
+      "자동 평가가 개발 중 품질 확인과 운영 중 문제 감시 두 곳에 쓰인다는 것을 예로 들어 말할 수 있다",
+      "모든 기록을 채점하면 비용이 커져 운영에서는 일부만 골라 채점하는 이유를 말할 수 있다",
+      "AI 채점관을 사람 채점에 맞춰 다듬어야 믿을 수 있는 점수가 나오는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.eval.grading-methods-picture",
+      "mlops.observe.trace-picture"
+    ],
+    "related": [
+      "rag.agent.offline-online-eval",
+      "mlops.observe.why-monitor"
+    ],
+    "aliases": [
+      "트레이스 자동 채점",
+      "MLflow automatic evaluation",
+      "운영 중 자동 채점",
+      "온라인 자동 채점"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/eval-monitor/automatic-evaluations/"
+    ]
+  },
+  {
+    "id": "mlops.eval.agent-eval-picture",
+    "title": "에이전트 평가의 큰 그림: 답과 거쳐 간 길 함께 보기",
+    "en": "The Big Picture of Evaluating AI Agents and Conversations",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "도구를 쓰며 여러 단계로 일하는 AI 에이전트는 마지막 답뿐 아니라 어떤 도구를 어떤 순서로 썼는지와 대화 전체가 목표에 닿았는지까지 보아야 제대로 평가할 수 있다는 큰 그림이다.",
+    "objectives": [
+      "에이전트 평가를 수학 시험에서 답만이 아니라 풀이 과정까지 채점하는 일에 빗대어 설명할 수 있다",
+      "답은 맞았지만 쓸데없이 돌아간 경우를 예로 들어 과정을 보아야 하는 이유를 말할 수 있다",
+      "질문 하나씩 채점하는 것과 대화 전체를 채점하는 것이 어떻게 다른지 예를 들어 말할 수 있다",
+      "가상의 사용자로 대화를 만들어 새 에이전트를 같은 조건에서 시험할 수 있다는 것을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.eval.why-evaluate",
+      "mlops.observe.trace-picture",
+      "rag.basics.agent-big-picture"
+    ],
+    "related": [
+      "mlops.eval.tool-call-judges"
+    ],
+    "aliases": [
+      "에이전트 평가",
+      "agent evaluation",
+      "AI 에이전트 평가",
+      "evaluating agents"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/eval-monitor/running-evaluation/agents/",
+      "https://mlflow.org/docs/latest/genai/eval-monitor/running-evaluation/multi-turn/"
+    ]
+  },
+  {
     "id": "mlops.prompt.optimization-picture",
     "title": "프롬프트 최적화의 큰 그림: 채점하며 고쳐 쓰기",
     "en": "The Big Picture of Prompt Optimization",
@@ -480,6 +547,39 @@
     ],
     "refs": [
       "https://mlflow.org/docs/latest/genai/prompt-registry/optimize-prompts/"
+    ]
+  },
+  {
+    "id": "mlops.serve.llm-server-speedups-picture",
+    "title": "LLM 서버가 빨리 답하는 요령의 큰 그림",
+    "en": "How LLM Inference Servers Speed Up Responses",
+    "kind": "topic",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "LLM 서버가 여러 손님의 요청을 한꺼번에 처리하고, 이미 계산한 앞부분을 다시 쓰고, 작은 도우미가 미리 짐작한 답을 확인하는 식으로 같은 GPU에서 더 많이 더 빨리 답하는 요령들의 큰 그림이다.",
+    "objectives": [
+      "요청을 끝나는 대로 빼고 새로 태우는 처리를 정류장마다 손님을 태우는 버스에 빗대어 설명할 수 있다",
+      "여러 요청이 같은 긴 시스템 프롬프트로 시작하면 앞부분 계산을 다시 쓸 수 있다는 것을 예로 들어 말할 수 있다",
+      "작은 도우미가 먼저 써 보고 큰 모델이 확인하는 방식을 견습생과 주방장에 빗대어 설명할 수 있다",
+      "이 요령들이 답의 내용을 바꾸려는 것이 아니라 속도와 처리량을 늘리려는 것임을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.train-inference"
+    ],
+    "related": [
+      "mlops.serve.inference-optimization",
+      "llm.internals.inference-phases"
+    ],
+    "aliases": [
+      "LLM 추론 서버 최적화",
+      "LLM serving optimization",
+      "추론 서버 속도 높이기",
+      "LLM 서빙 성능"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/",
+      "https://huggingface.co/docs/transformers/main/en/continuous_batching"
     ]
   },
   {
@@ -978,6 +1078,105 @@
     ],
     "refs": [
       "https://huggingface.co/docs/peft/quicktour"
+    ]
+  },
+  {
+    "id": "mlops.eval.judge-alignment",
+    "title": "AI 채점관 맞추기(심판 정렬)",
+    "en": "LLM Judge Alignment with Human Feedback",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "같은 기록에 사람이 매긴 점수와 AI 채점관의 점수를 함께 모아, AI 채점관이 사람의 기준대로 채점하도록 다듬는 일이다.",
+    "parent": "mlops.eval.automatic-eval-picture",
+    "related": [
+      "mlops.eval.llm-judge",
+      "mlops.eval.grading-rubric"
+    ],
+    "aliases": [
+      "judge alignment",
+      "심판 정렬",
+      "LLM 심판 맞추기",
+      "채점관 보정",
+      "LLM judge calibration"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/llm-judge/alignment/"
+    ]
+  },
+  {
+    "id": "mlops.serve.llm-throughput",
+    "title": "LLM 서버 처리량(throughput)",
+    "en": "LLM Serving Throughput",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "LLM 서버가 같은 시간에 얼마나 많은 요청이나 토큰을 처리해 내는지를 나타내는 양으로, 한 사람이 기다리는 시간과는 다른 잣대다.",
+    "parent": "mlops.serve.llm-server-speedups-picture",
+    "related": [
+      "llm.basics.response-latency"
+    ],
+    "aliases": [
+      "LLM 처리량",
+      "LLM throughput",
+      "서빙 처리량",
+      "serving throughput",
+      "초당 토큰 처리량"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/main/en/continuous_batching"
+    ]
+  },
+  {
+    "id": "mlops.eval.agent-trajectory",
+    "title": "에이전트 궤적(trajectory)",
+    "en": "Agent Trajectory in Evaluation",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "에이전트가 답에 이르기까지 거친 생각·도구 호출·중간 결과를 순서대로 이은 경로로, 답이 맞아도 길이 비효율적이었는지 평가할 때 본다.",
+    "parent": "mlops.eval.agent-eval-picture",
+    "related": [
+      "mlops.observe.trace"
+    ],
+    "aliases": [
+      "에이전트 궤적",
+      "agent trajectory",
+      "에이전트 실행 경로",
+      "tool call trajectory",
+      "궤적 평가"
+    ],
+    "refs": [
+      "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/models/evaluation-agents",
+      "https://mlflow.org/docs/latest/genai/eval-monitor/running-evaluation/agents/"
+    ]
+  },
+  {
+    "id": "mlops.eval.conversation-level-eval",
+    "title": "대화 전체 채점(여러 턴 평가)",
+    "en": "Conversation-Level Multi-Turn Evaluation",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "답 하나씩이 아니라 한 사용자와 주고받은 대화 전체를 묶어, 목표를 끝까지 이뤘는지·앞에서 한 말을 기억했는지·사용자가 답답해했는지를 채점하는 평가다.",
+    "parent": "mlops.eval.agent-eval-picture",
+    "related": [
+      "mlops.observe.session-user-tracking",
+      "llm.api.multi-turn"
+    ],
+    "aliases": [
+      "대화 단위 평가",
+      "multi-turn evaluation",
+      "멀티턴 평가",
+      "conversation evaluation",
+      "세션 단위 채점"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/eval-monitor/running-evaluation/multi-turn/"
     ]
   },
   {
@@ -1564,6 +1763,117 @@
     "refs": [
       "https://mlflow.org/docs/latest/genai/prompt-registry/optimize-prompts/",
       "https://mlflow.org/docs/latest/genai/prompt-registry/rewrite-prompts/"
+    ]
+  },
+  {
+    "id": "mlops.eval.eval-sampling-rate",
+    "title": "일부만 골라 채점하기(평가 표본 비율)",
+    "en": "Evaluation Sampling Rate for Automatic Judges",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "쌓이는 실행 기록 가운데 몇 퍼센트만 AI 채점관에게 보낼지 정해, 넓게 살피는 것과 채점 비용 사이에서 균형을 잡는 값이다.",
+    "parent": "mlops.eval.automatic-eval-picture",
+    "related": [
+      "mlops.observe.trace-sampling"
+    ],
+    "aliases": [
+      "평가 표본 비율",
+      "evaluation sampling rate",
+      "채점 샘플링 비율",
+      "judge sampling rate"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/eval-monitor/automatic-evaluations/"
+    ]
+  },
+  {
+    "id": "mlops.serve.continuous-batching",
+    "title": "연속 배칭(continuous batching)",
+    "en": "Continuous Batching for LLM Inference",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "생성 한 걸음마다 다 끝난 요청은 빼고 기다리던 요청을 바로 끼워 넣어, GPU가 쉬지 않고 여러 요청을 함께 처리하게 하는 방식이다.",
+    "parent": "mlops.serve.llm-server-speedups-picture",
+    "related": [
+      "mlops.serve.batch-inference"
+    ],
+    "aliases": [
+      "연속 배칭",
+      "continuous batching",
+      "in-flight batching",
+      "iteration-level batching"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/main/en/continuous_batching"
+    ]
+  },
+  {
+    "id": "mlops.serve.prefix-caching",
+    "title": "접두사 캐싱(앞부분 계산 다시 쓰기)",
+    "en": "Automatic Prefix Caching in LLM Servers",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "여러 요청이 같은 시스템 프롬프트나 같은 문서로 시작하면 그 앞부분을 처리한 결과를 저장해 두었다가 다시 써서 입력 처리 시간을 줄이는 서버 기능이다.",
+    "parent": "mlops.serve.llm-server-speedups-picture",
+    "related": [
+      "llm.internals.prompt-caching",
+      "llm.internals.kv-cache"
+    ],
+    "aliases": [
+      "접두사 캐싱",
+      "prefix caching",
+      "automatic prefix caching",
+      "프리픽스 캐시"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/features/automatic_prefix_caching/"
+    ]
+  },
+  {
+    "id": "mlops.serve.speculative-decoding",
+    "title": "추측 디코딩(speculative decoding)",
+    "en": "Speculative Decoding",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "가볍고 빠른 방법으로 다음 토큰 여러 개를 먼저 짐작해 두고 큰 모델이 한 번에 확인해 맞는 것만 받아들여, 답의 내용은 그대로 두고 생성 속도를 높이는 방법이다.",
+    "parent": "mlops.serve.llm-server-speedups-picture",
+    "aliases": [
+      "추측 디코딩",
+      "speculative decoding",
+      "투기적 디코딩",
+      "draft model decoding",
+      "초안 모델 디코딩"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/features/speculative_decoding/"
+    ]
+  },
+  {
+    "id": "mlops.eval.conversation-simulation",
+    "title": "대화 시뮬레이션(가상 사용자로 시험하기)",
+    "en": "Conversation Simulation with Simulated Users",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "목표와 성격을 정해 준 가상의 사용자가 AI 에이전트와 정해진 턴만큼 대화하게 해, 새 버전을 같은 장면으로 반복 시험하는 방법이다.",
+    "parent": "mlops.eval.agent-eval-picture",
+    "aliases": [
+      "대화 시뮬레이션",
+      "conversation simulation",
+      "가상 사용자 대화 시험",
+      "simulated user"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/eval-monitor/running-evaluation/multi-turn/"
     ]
   },
   {

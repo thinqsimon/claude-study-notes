@@ -509,6 +509,106 @@
     ]
   },
   {
+    "id": "ml.basics.human-cognitive-bias",
+    "title": "사람의 생각 습관이 만드는 편향",
+    "en": "Human Cognitive Biases in Building ML Models",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "모델을 만드는 사람의 믿음과 소속감, 익숙한 경험이 데이터 수집과 해석에 스며들어 모델을 한쪽으로 기울게 하는 경우들이다.",
+    "objectives": [
+      "보고 싶은 결과만 남기는 확증 편향을 일상 예로 설명할 수 있다",
+      "내 편을 좋게 보는 마음과 남의 편을 다 비슷하게 보는 마음이 데이터에 남는 과정을 비유로 말할 수 있다",
+      "내 경험에서 나온 당연함이 다른 문화나 지역에서는 틀릴 수 있다는 것을 예로 들 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.data-bias-types"
+    ],
+    "related": [
+      "ml.basics.data-bias-types",
+      "ax.governance.automation-bias"
+    ],
+    "aliases": [
+      "인지 편향",
+      "cognitive bias in ML",
+      "사람이 만드는 편향",
+      "개발자 편향",
+      "human bias in ML"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/fairness/types-of-bias",
+      "https://developers.google.com/machine-learning/glossary#implicit-bias"
+    ]
+  },
+  {
+    "id": "ml.basics.fairness-idea",
+    "title": "AI 공정성 맛보기: 집단별로 결과 견주기",
+    "en": "ML Fairness Intuition: Checking Results Across Groups",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "전체 점수가 좋아도 어떤 집단에는 자주 틀리거나 불리할 수 있으므로 집단별로 나눠 결과를 견줘 보는 생각이다.",
+    "objectives": [
+      "전체 정확도가 높아도 작은 집단에서는 모델이 나쁠 수 있는 이유를 비유로 설명할 수 있다",
+      "빠진 값이나 이상한 값, 한쪽에 쏠린 데이터가 불공평의 신호가 될 수 있다는 것을 예로 말할 수 있다",
+      "입학 예에서 집단별 합격률을 같게 맞추는 기준과 그 기준이 놓치는 점을 쉬운 말로 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.data-bias-types",
+      "ml.eval.classification-outcomes"
+    ],
+    "related": [
+      "ml.eval.fairness-evaluation",
+      "ax.governance.trustworthy-ai"
+    ],
+    "aliases": [
+      "AI 공정성 입문",
+      "ML 공정성 맛보기",
+      "fairness intuition",
+      "공평한 AI",
+      "집단별 성능 비교"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/fairness",
+      "https://developers.google.com/machine-learning/crash-course/fairness/identifying-bias",
+      "https://developers.google.com/machine-learning/crash-course/fairness/evaluating-for-bias",
+      "https://developers.google.com/machine-learning/crash-course/fairness/demographic-parity"
+    ]
+  },
+  {
+    "id": "ml.data.normalization-idea",
+    "title": "정규화 맛보기: 숫자 특성의 눈금 맞추기",
+    "en": "Feature Normalization Intuition: Putting Numbers on a Similar Scale",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "나이처럼 작은 수와 연봉처럼 큰 수가 섞이면 모델이 큰 수에만 끌리므로 특성들을 비슷한 크기의 눈금으로 옮겨 주는 일의 큰 그림이다.",
+    "objectives": [
+      "범위가 크게 다른 숫자 특성을 그대로 넣으면 큰 수 쪽에 무게가 쏠린다는 것을 비유로 설명할 수 있다",
+      "눈금을 맞추면 학습이 빨라지고 예측이 나아진다는 이점을 두 가지 이상 말할 수 있다",
+      "0~1로 줄이기, 평균에서 얼마나 떨어졌는지로 바꾸기, 너무 큰 값 자르기의 차이를 일상 말로 구분할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.data.numerical-vs-categorical"
+    ],
+    "related": [
+      "ml.data.feature-normalization",
+      "ml.data.numeric-categorical-preprocessing"
+    ],
+    "aliases": [
+      "특성 정규화 입문",
+      "feature scaling intuition",
+      "숫자 범위 맞추기",
+      "특성 눈금 맞추기"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/numerical-data/normalization"
+    ]
+  },
+  {
     "id": "ml.basics.automl",
     "title": "AutoML: 모델 만들기를 자동으로 맡기기",
     "en": "AutoML",
@@ -1318,6 +1418,74 @@
     ]
   },
   {
+    "id": "ml.basics.confirmation-bias",
+    "title": "확증 편향",
+    "en": "Confirmation Bias in ML Data and Labeling",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "이미 믿고 있는 생각에 맞는 정보만 찾고 해석해서 데이터를 모으거나 정답을 다는 방식이 그 믿음 쪽으로 기우는 편향이다.",
+    "parent": "ml.basics.human-cognitive-bias",
+    "related": [
+      "ml.basics.experimenters-bias"
+    ],
+    "aliases": [
+      "confirmation bias",
+      "확인 편향",
+      "확증 바이어스"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/glossary#confirmation-bias"
+    ]
+  },
+  {
+    "id": "ml.basics.implicit-bias",
+    "title": "암묵적 편향",
+    "en": "Implicit Bias in ML System Design",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "자기 경험과 기억에서 나온 당연함을 의식하지 못한 채 데이터 분류나 특성 선택에 끌어와, 다른 문화나 상황에서는 맞지 않게 되는 편향이다.",
+    "parent": "ml.basics.human-cognitive-bias",
+    "related": [
+      "ml.basics.confirmation-bias"
+    ],
+    "aliases": [
+      "implicit bias",
+      "무의식적 편향",
+      "unconscious bias",
+      "암묵 편향"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/glossary#implicit-bias"
+    ]
+  },
+  {
+    "id": "ml.basics.sensitive-attribute",
+    "title": "민감한 속성",
+    "en": "Sensitive Attribute (ML Fairness)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "법이나 윤리, 사회적 이유로 모델이 사람을 다룰 때 특별히 조심해서 살펴야 하는 사람의 특성이다.",
+    "parent": "ml.basics.fairness-idea",
+    "related": [
+      "ml.basics.demographic-parity"
+    ],
+    "aliases": [
+      "sensitive attribute",
+      "민감 속성",
+      "보호 속성",
+      "protected attribute"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/glossary#sensitive-attribute"
+    ]
+  },
+  {
     "id": "ml.basics.reinforcement-learning",
     "title": "강화 학습",
     "en": "Reinforcement Learning",
@@ -1555,6 +1723,148 @@
     ],
     "refs": [
       "https://developers.google.com/machine-learning/glossary#feedback-loop"
+    ]
+  },
+  {
+    "id": "ml.basics.experimenters-bias",
+    "title": "실험자 편향",
+    "en": "Experimenter's Bias in Model Training",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "기대한 결과가 나올 때까지 모델을 다시 학습시키기를 되풀이해 원하는 답을 억지로 얻어 내는, 확증 편향의 한 갈래다.",
+    "parent": "ml.basics.human-cognitive-bias",
+    "related": [
+      "ml.basics.confirmation-bias"
+    ],
+    "aliases": [
+      "experimenter's bias",
+      "experimenter bias",
+      "실험자 바이어스"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/glossary#experimenters-bias",
+      "https://developers.google.com/machine-learning/crash-course/fairness/types-of-bias"
+    ]
+  },
+  {
+    "id": "ml.basics.in-group-bias",
+    "title": "내집단 편향",
+    "en": "In-Group Bias (ML Fairness)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "나와 같은 집단이나 나와 닮은 특징을 가진 사람을 더 좋게 보는 마음이 평가자 구성이나 데이터에 스며드는 편향이다.",
+    "parent": "ml.basics.human-cognitive-bias",
+    "related": [
+      "ml.basics.out-group-homogeneity-bias"
+    ],
+    "aliases": [
+      "in-group bias",
+      "내집단 편애",
+      "내 편 편향",
+      "in-group favoritism"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/glossary#in-group-bias"
+    ]
+  },
+  {
+    "id": "ml.basics.out-group-homogeneity-bias",
+    "title": "외집단 동질성 편향",
+    "en": "Out-Group Homogeneity Bias",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "내가 속하지 않은 집단 사람들은 서로 다 비슷하다고 여겨 그들에 대한 데이터가 덜 섬세하고 고정관념에 가까워지는 편향이다.",
+    "parent": "ml.basics.human-cognitive-bias",
+    "related": [
+      "ml.basics.in-group-bias"
+    ],
+    "aliases": [
+      "out-group homogeneity bias",
+      "외집단 동질성 효과",
+      "외집단 획일화 편향"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/glossary#out-group-homogeneity-bias"
+    ]
+  },
+  {
+    "id": "ml.basics.coverage-bias",
+    "title": "포함 범위 편향(coverage bias)",
+    "en": "Coverage Bias (Selection Bias in ML Data)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "데이터를 모은 대상이 모델이 실제로 예측할 대상 전체를 고르게 담지 못해 일부 집단이 빠지는 선택 편향의 한 형태다.",
+    "parent": "ml.basics.data-bias-types",
+    "related": [
+      "ml.basics.selection-bias",
+      "ml.basics.non-response-bias"
+    ],
+    "aliases": [
+      "coverage bias",
+      "커버리지 편향",
+      "표본 포함 범위 편향"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/glossary#selection-bias",
+      "https://developers.google.com/machine-learning/crash-course/fairness/types-of-bias"
+    ]
+  },
+  {
+    "id": "ml.basics.non-response-bias",
+    "title": "무응답 편향",
+    "en": "Non-Response Bias (Participation Bias)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "설문 같은 데이터 모으기에 집단마다 참여하는 비율이 달라 응답하지 않은 쪽이 데이터에서 적게 담기는 선택 편향의 한 형태다.",
+    "parent": "ml.basics.data-bias-types",
+    "related": [
+      "ml.basics.selection-bias",
+      "ml.basics.coverage-bias"
+    ],
+    "aliases": [
+      "non-response bias",
+      "participation bias",
+      "참여 편향",
+      "응답 거부 편향"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/glossary#selection-bias",
+      "https://developers.google.com/machine-learning/glossary#participation-bias"
+    ]
+  },
+  {
+    "id": "ml.basics.demographic-parity",
+    "title": "인구통계 동등성",
+    "en": "Demographic Parity (Fairness Metric)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "민감한 속성으로 나눈 집단마다 합격 같은 좋은 결과를 받는 비율이 같으면 공정하다고 보는 공정성 기준이다.",
+    "parent": "ml.basics.fairness-idea",
+    "related": [
+      "ml.eval.equality-of-opportunity",
+      "ml.basics.sensitive-attribute"
+    ],
+    "aliases": [
+      "demographic parity",
+      "인구 통계적 동등성",
+      "집단별 합격률 동등",
+      "statistical parity"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/glossary#demographic-parity",
+      "https://developers.google.com/machine-learning/crash-course/fairness/demographic-parity"
     ]
   },
   {
