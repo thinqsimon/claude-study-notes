@@ -406,6 +406,34 @@
     ]
   },
   {
+    "id": "mlops.eval.promptfoo-test-files",
+    "title": "promptfoo 테스트를 CSV·YAML 파일로 따로 두기",
+    "en": "promptfoo External Test Files",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "promptfoo 설정의 tests를 CSV·YAML·JSON 파일로 빼서 표 한 줄을 테스트 한 건으로 늘려 가는 방법이다.",
+    "objectives": [
+      "tests에 file:// 경로를 써서 바깥 테스트 파일을 불러올 수 있다",
+      "CSV 열 이름을 프롬프트 변수(vars)로 쓰는 표를 만들 수 있다",
+      "__expected 열로 행마다 확인할 어서션을 적을 수 있다",
+      "JSON·JSONL 파일이나 file://경로/*.yaml 같은 glob으로 여러 테스트 파일을 한 번에 불러올 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.eval.promptfoo-quickstart"
+    ],
+    "aliases": [
+      "promptfoo CSV 테스트",
+      "promptfoo test cases",
+      "promptfoo tests 파일",
+      "tests.csv"
+    ],
+    "refs": [
+      "https://www.promptfoo.dev/docs/configuration/test-cases/"
+    ]
+  },
+  {
     "id": "mlops.observe.ai-assistant",
     "title": "MLflow AI 어시스턴트에게 트레이스 물어보기",
     "en": "Using the MLflow AI Assistant",
@@ -606,6 +634,92 @@
     "refs": [
       "https://www.promptfoo.dev/docs/red-team/quickstart/"
     ]
+  },
+  {
+    "id": "mlops.eval.inspect-datasets",
+    "title": "Inspect에 평가 문제 불러오기: Sample과 데이터셋",
+    "en": "Loading Datasets into Inspect",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "CSV·JSON 파일이나 Hugging Face 데이터셋을 Inspect의 Sample 묶음으로 읽어 평가 Task에 넣는 방법이다.",
+    "objectives": [
+      "csv_dataset·json_dataset으로 평가 문제 파일을 불러올 수 있다",
+      "Sample의 input과 target에 질문과 정답을 나눠 담을 수 있다",
+      "열 이름이 다른 파일을 FieldSpec으로 Sample 칸에 맞출 수 있다",
+      "자르기와 filter로 일부 문제만 골라 평가를 돌릴 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.eval.inspect-quickstart"
+    ],
+    "aliases": [
+      "Inspect 데이터셋",
+      "Inspect dataset",
+      "csv_dataset",
+      "json_dataset",
+      "hf_dataset"
+    ],
+    "refs": [
+      "https://inspect.aisi.org.uk/datasets.html"
+    ]
+  },
+  {
+    "id": "mlops.eval.lighteval-quickstart",
+    "title": "LightEval로 오픈 모델 벤치마크 돌려 보기",
+    "en": "Running Benchmarks with LightEval",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Hugging Face의 LightEval 명령 한 줄로 공개 모델을 TruthfulQA·GSM8K 같은 벤치마크에 풀게 하고 점수를 받는 방법이다.",
+    "objectives": [
+      "lighteval accelerate 명령으로 작은 모델을 벤치마크 하나에 평가할 수 있다",
+      "태스크 이름과 퓨샷 개수를 지정하는 문법을 읽고 쓸 수 있다",
+      "lighteval tasks list로 쓸 수 있는 벤치마크를 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.eval.why-evaluate"
+    ],
+    "aliases": [
+      "LightEval",
+      "lighteval",
+      "lighteval accelerate",
+      "허깅페이스 벤치마크 평가"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/lighteval/quicktour"
+    ]
+  },
+  {
+    "id": "mlops.serve.hf-inference-endpoints",
+    "title": "Inference Endpoints로 모델 배포하기",
+    "en": "Deploying a Model with Hugging Face Inference Endpoints",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Hugging Face 화면에서 카탈로그 모델과 GPU를 고르면 서버 관리 없이 호출 주소가 생기는 관리형 모델 배포 서비스다.",
+    "objectives": [
+      "카탈로그에서 모델과 하드웨어를 골라 엔드포인트를 만들 수 있다",
+      "Playground 탭과 엔드포인트 URL로 배포한 모델을 호출해 볼 수 있다",
+      "다 쓴 엔드포인트를 일시 정지하거나 지워 비용을 막을 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.basics.what-is-mlops"
+    ],
+    "aliases": [
+      "Inference Endpoints",
+      "HF 인퍼런스 엔드포인트",
+      "허깅페이스 엔드포인트 배포",
+      "Hugging Face Endpoints"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/inference-endpoints/index",
+      "https://huggingface.co/docs/inference-endpoints/quick_start"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
   },
   {
     "id": "mlops.eval.eval-dataset",
@@ -908,6 +1022,28 @@
     ]
   },
   {
+    "id": "mlops.eval.inspect-sample",
+    "title": "Inspect Sample(input·target)",
+    "en": "Inspect Sample",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "Inspect 평가 문제 한 건으로, 모델에 줄 input과 채점에 쓸 target을 담고 id·metadata를 덧붙인다.",
+    "parent": "mlops.eval.inspect-datasets",
+    "related": [
+      "mlops.eval.eval-dataset"
+    ],
+    "aliases": [
+      "Inspect Sample",
+      "Sample 객체",
+      "샘플 input target"
+    ],
+    "refs": [
+      "https://inspect.aisi.org.uk/datasets.html"
+    ]
+  },
+  {
     "id": "mlops.eval.assessment-source",
     "title": "평가 출처(사람·코드·LLM 심판)",
     "en": "Assessment Source",
@@ -1123,6 +1259,107 @@
     "refs": [
       "https://www.promptfoo.dev/docs/red-team/configuration/"
     ]
+  },
+  {
+    "id": "mlops.eval.inspect-fieldspec",
+    "title": "FieldSpec(Inspect 열 매핑)",
+    "en": "Inspect FieldSpec",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "데이터 파일의 열 이름을 Inspect Sample의 input·target·id·metadata 칸에 이어 주는 설정이다.",
+    "parent": "mlops.eval.inspect-datasets",
+    "aliases": [
+      "FieldSpec",
+      "sample_fields",
+      "Inspect 필드 매핑"
+    ],
+    "refs": [
+      "https://inspect.aisi.org.uk/datasets.html"
+    ]
+  },
+  {
+    "id": "mlops.eval.promptfoo-expected-column",
+    "title": "__expected 열(promptfoo CSV 어서션)",
+    "en": "promptfoo __expected Column",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "promptfoo CSV 테스트에서 행마다 기대하는 결과를 적는 특별한 열로, contains: 같은 접두어가 없으면 그대로 같은지 본다.",
+    "parent": "mlops.eval.promptfoo-test-files",
+    "related": [
+      "mlops.eval.promptfoo-assert"
+    ],
+    "aliases": [
+      "__expected",
+      "__expected1",
+      "promptfoo expected 열"
+    ],
+    "refs": [
+      "https://www.promptfoo.dev/docs/configuration/test-cases/"
+    ]
+  },
+  {
+    "id": "mlops.eval.lighteval-task-spec",
+    "title": "LightEval 태스크 지정 문법(task|퓨샷 수)",
+    "en": "LightEval Task Specification",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "LightEval 명령에 벤치마크 이름 뒤 | 와 숫자로 퓨샷 예시 개수를 붙이고 쉼표나 파일로 여러 태스크를 한 번에 지정하는 문법이다.",
+    "parent": "mlops.eval.lighteval-quickstart",
+    "aliases": [
+      "gsm8k|3",
+      "LightEval task spec"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/lighteval/quicktour"
+    ]
+  },
+  {
+    "id": "mlops.eval.lighteval-backend",
+    "title": "LightEval 백엔드 명령(eval·accelerate·vllm)",
+    "en": "LightEval Backends",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "LightEval이 모델을 어디서 돌릴지 고르는 하위 명령으로, 권장하는 eval(inspect-ai), 내 GPU의 accelerate·vllm, 원격 API의 endpoint 등이 있다.",
+    "parent": "mlops.eval.lighteval-quickstart",
+    "aliases": [
+      "lighteval vllm",
+      "lighteval endpoint",
+      "lighteval eval",
+      "LightEval backend"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/lighteval/quicktour"
+    ]
+  },
+  {
+    "id": "mlops.serve.scale-to-zero",
+    "title": "스케일 투 제로(Inference Endpoints 유휴 정지)",
+    "en": "Scale to Zero",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "요청이 한동안 없으면 엔드포인트 복제본을 0개로 줄여 비용을 아끼되, 다음 요청 때는 다시 켜지는 동안 503으로 기다리게 되는 설정이다.",
+    "parent": "mlops.serve.hf-inference-endpoints",
+    "aliases": [
+      "scale to zero",
+      "스케일 투 제로",
+      "엔드포인트 유휴 정지",
+      "X-Scale-Up-Timeout"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/inference-endpoints/guides/autoscaling"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
   },
   {
     "id": "mlops.observe.manual-tracing",

@@ -559,6 +559,39 @@
     ]
   },
   {
+    "id": "fe.js.functions-first",
+    "title": "JavaScript 함수 기초",
+    "en": "JavaScript Functions Basics",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "JavaScript",
+    "summary": "반복해 쓸 코드를 function으로 묶고 매개변수로 값을 받아 필요할 때마다 불러 쓰는 법이다.",
+    "objectives": [
+      "function 선언으로 이름 있는 함수를 만들고 호출할 수 있다",
+      "매개변수와 인수의 차이를 예제로 설명할 수 있다",
+      "익명 함수와 화살표 함수를 이벤트 처리 코드에 따라 쓸 수 있다",
+      "return으로 결과를 돌려받고, 함수 안에서 선언한 변수가 밖에서 보이지 않는 까닭을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.js.basics"
+    ],
+    "related": [
+      "fe.ts.function-types"
+    ],
+    "aliases": [
+      "JS 함수",
+      "자바스크립트 함수",
+      "JS 함수 선언",
+      "JS function declaration",
+      "JS 매개변수와 인수"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Functions",
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Return_values"
+    ]
+  },
+  {
     "id": "fe.css.text-styling",
     "title": "CSS로 글꼴과 글자 꾸미기",
     "en": "Fundamental Text and Font Styling",
@@ -678,6 +711,65 @@
     ],
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Backgrounds_and_borders"
+    ]
+  },
+  {
+    "id": "fe.html.video-audio",
+    "title": "HTML 비디오와 오디오 넣기",
+    "en": "HTML Video and Audio",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "HTML",
+    "summary": "video·audio 요소와 source로 동영상과 소리를 페이지에 넣고 재생 버튼과 자막을 붙인다.",
+    "objectives": [
+      "controls 속성을 단 video·audio 요소로 미디어를 페이지에 넣을 수 있다",
+      "source 요소를 여러 개 두어 브라우저가 재생할 수 있는 형식을 고르게 할 수 있다",
+      "지원하지 않는 브라우저를 위한 대체 내용을 넣을 수 있다"
+    ],
+    "prerequisites": [
+      "fe.html.first-page"
+    ],
+    "aliases": [
+      "video 요소",
+      "audio 요소",
+      "HTML5 비디오",
+      "<video>",
+      "<audio>"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/HTML_video_and_audio"
+    ]
+  },
+  {
+    "id": "fe.css.debugging",
+    "title": "개발자 도구로 CSS 문제 찾기",
+    "en": "Debugging CSS",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "CSS",
+    "summary": "개발자 도구에서 요소에 걸린 규칙을 보고 값을 바꿔 보며 스타일이 안 먹는 까닭을 찾는 법이다.",
+    "objectives": [
+      "요소를 검사해 적용된 CSS 규칙과 줄 그어진 선언을 찾을 수 있다",
+      "개발자 도구에서 값을 바꾸거나 속성을 더해 결과를 미리 볼 수 있다",
+      "문제를 가장 작은 예제로 줄여 원인을 좁힐 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.browser-devtools",
+      "fe.css.selectors-first"
+    ],
+    "related": [
+      "fe.css.specificity"
+    ],
+    "aliases": [
+      "CSS 디버깅",
+      "CSS debugging",
+      "스타일 안 먹음",
+      "규칙 보기 패널"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Debugging_CSS"
     ]
   },
   {
@@ -826,6 +918,71 @@
     ],
     "refs": [
       "https://react.dev/learn/keeping-components-pure"
+    ]
+  },
+  {
+    "id": "fe.js.return-value",
+    "title": "함수의 반환값과 return",
+    "en": "Function Return Values",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "JavaScript",
+    "summary": "return으로 함수가 계산한 결과를 부른 쪽에 돌려주며, return이 없으면 undefined가 돌아온다.",
+    "parent": "fe.js.functions-first",
+    "aliases": [
+      "JS 반환값",
+      "JavaScript return value",
+      "JS return 문",
+      "JS 함수 return"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Return_values"
+    ]
+  },
+  {
+    "id": "fe.html.relative-path",
+    "title": "상대 경로와 절대 경로 링크",
+    "en": "Relative and Absolute Link Paths",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "HTML",
+    "summary": "href에 현재 파일 기준 경로, 사이트 루트 기준 경로, 전체 URL, #id 조각 중 무엇을 쓰는지에 따라 이동할 곳이 달라진다.",
+    "parent": "fe.html.first-page",
+    "related": [
+      "dev.basics.files-paths"
+    ],
+    "aliases": [
+      "HTML 상대 경로",
+      "HTML 절대 경로",
+      "href 상대 경로",
+      "href 경로",
+      "문서 조각 링크",
+      "../ 경로"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Creating_links"
+    ]
+  },
+  {
+    "id": "fe.react.children-prop",
+    "title": "React children prop",
+    "en": "The children Prop",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "React",
+    "summary": "컴포넌트 태그 사이에 넣은 JSX가 children이라는 prop으로 전달되어, 감싸는 부품이 안의 내용을 몰라도 보여 줄 수 있다.",
+    "parent": "fe.react.first-component",
+    "aliases": [
+      "children prop",
+      "props.children",
+      "React children",
+      "JSX 자식 전달"
+    ],
+    "refs": [
+      "https://react.dev/learn/passing-props-to-a-component"
     ]
   },
   {
@@ -1085,6 +1242,120 @@
     ],
     "refs": [
       "https://nextjs.org/docs/app/api-reference/file-conventions/public-folder"
+    ]
+  },
+  {
+    "id": "fe.js.default-parameters",
+    "title": "JavaScript 기본 매개변수",
+    "en": "Default Parameters",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "JavaScript",
+    "summary": "매개변수에 =로 기본값을 적어 두면 인수를 빼먹거나 undefined를 넘겼을 때 그 값이 쓰인다.",
+    "parent": "fe.js.functions-first",
+    "aliases": [
+      "JS 기본 매개변수",
+      "JS default parameters",
+      "JS 매개변수 기본값"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Functions",
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Return_values"
+    ]
+  },
+  {
+    "id": "fe.js.function-scope",
+    "title": "JavaScript 함수 스코프와 전역 스코프",
+    "en": "Function Scope and Global Scope",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "JavaScript",
+    "summary": "함수 안에서 선언한 변수는 그 함수 안에서만 보이고, 맨 바깥에서 선언한 변수는 어디서나 보인다.",
+    "parent": "fe.js.functions-first",
+    "related": [
+      "fe.js.closures"
+    ],
+    "aliases": [
+      "JS 함수 스코프",
+      "JS 전역 스코프",
+      "JS function scope",
+      "JS global scope",
+      "JS 블록 스코프"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Functions"
+    ]
+  },
+  {
+    "id": "fe.css.overflow",
+    "title": "CSS overflow 속성",
+    "en": "CSS overflow",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "CSS",
+    "summary": "크기가 정해진 상자를 내용이 넘칠 때 그대로 보일지, 잘라낼지, 스크롤로 볼지를 overflow 값으로 정한다.",
+    "related": [
+      "fe.css.box-flex"
+    ],
+    "aliases": [
+      "overflow 속성",
+      "CSS overflow",
+      "overflow hidden",
+      "overflow auto",
+      "내용 넘침"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Overflow"
+    ]
+  },
+  {
+    "id": "fe.css.combinators",
+    "title": "CSS 결합자: 자손·자식·형제 선택자",
+    "en": "CSS Combinators",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "CSS",
+    "summary": "선택자 둘을 공백·>·+·~로 이어 어떤 요소 안에 있거나 바로 뒤에 오는 요소만 고른다.",
+    "related": [
+      "fe.css.selectors-first"
+    ],
+    "aliases": [
+      "CSS 결합자",
+      "자손 선택자",
+      "자식 선택자",
+      "형제 선택자",
+      "CSS combinator"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Combinators"
+    ]
+  },
+  {
+    "id": "fe.html.track-captions",
+    "title": "track 요소와 WebVTT 자막",
+    "en": "Text Tracks and WebVTT",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "HTML",
+    "summary": "video 안에 track 요소로 .vtt 자막 파일을 연결해 자막이나 설명 글을 함께 보여 준다.",
+    "parent": "fe.html.video-audio",
+    "related": [
+      "fe.basics.accessibility-idea"
+    ],
+    "aliases": [
+      "track 요소",
+      "WebVTT",
+      "vtt 자막",
+      "<track>",
+      "HTML 자막"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/HTML_video_and_audio"
     ]
   },
   {

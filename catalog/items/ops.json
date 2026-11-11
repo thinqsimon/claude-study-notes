@@ -457,6 +457,71 @@
     ]
   },
   {
+    "id": "ops.network.ping-tracepath",
+    "title": "ping과 tracepath로 서버 연결 확인하기",
+    "en": "Checking Connectivity with ping and tracepath",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "네트워크와 앞단",
+    "summary": "ping으로 상대가 응답하는지와 왕복 시간을, tracepath로 가는 길의 중간 지점을 보고 연결이 어디서 끊기는지 짐작한다.",
+    "objectives": [
+      "ping -c로 정해진 횟수만 보내고 패킷 손실률과 왕복 시간을 읽을 수 있다",
+      "tracepath -n으로 목적지까지 거치는 홉을 차례로 확인할 수 있다",
+      "응답이 없을 때 이름 풀이 실패와 경로 중간의 끊김을 나눠 볼 수 있다"
+    ],
+    "prerequisites": [
+      "ops.basics.domain-dns",
+      "dev.terminal.basic-commands"
+    ],
+    "related": [
+      "ops.network.ufw-open-ports",
+      "be.http.curl"
+    ],
+    "aliases": [
+      "ping 명령",
+      "ping -c",
+      "tracepath",
+      "traceroute",
+      "연결 확인 명령"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man8/ping.8.html",
+      "https://man7.org/linux/man-pages/man8/tracepath.8.html"
+    ]
+  },
+  {
+    "id": "ops.ci.actions-quickstart",
+    "title": "GitHub Actions 빠른 시작: 첫 워크플로 돌려 보기",
+    "en": "GitHub Actions Quickstart",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "CI/CD",
+    "summary": "예제 워크플로 파일을 .github/workflows에 커밋해 돌려 보고 Actions 탭에서 잡과 스텝의 로그를 열어 본다.",
+    "objectives": [
+      "예제 YAML을 .github/workflows에 넣고 커밋해 워크플로를 실행할 수 있다",
+      "Actions 탭에서 실행 기록을 골라 잡과 스텝의 로그를 펼쳐 볼 수 있다",
+      "워크플로 템플릿을 골라 내 저장소에 맞는 첫 워크플로를 시작할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.github-role"
+    ],
+    "related": [
+      "ops.ci.github-actions-workflow",
+      "ops.ci.workflow-basics"
+    ],
+    "aliases": [
+      "Actions 빠른 시작",
+      "GitHub Actions quickstart",
+      "첫 워크플로 실행",
+      "Actions 탭"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/get-started/quickstart"
+    ]
+  },
+  {
     "id": "ops.k8s.minikube-first-cluster",
     "title": "minikube로 내 컴퓨터에 첫 클러스터 띄우기",
     "en": "Your First Local Cluster with minikube",
@@ -519,6 +584,39 @@
     "refs": [
       "https://kubernetes.io/docs/tutorials/kubernetes-basics/explore/explore-intro/",
       "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_get/"
+    ]
+  },
+  {
+    "id": "ops.k8s.apply-manifest",
+    "title": "YAML 매니페스트로 앱 올리기: kubectl apply",
+    "en": "Deploying from YAML Manifests with kubectl apply",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "원하는 상태를 YAML 파일에 적고 kubectl apply -f로 클러스터에 넘겨 오브젝트를 만들고 고친다.",
+    "objectives": [
+      "예제 Deployment 매니페스트를 kubectl apply -f로 적용해 파드가 뜨는 것을 확인할 수 있다",
+      "파일의 replicas나 이미지를 고친 뒤 다시 apply해 변경을 반영할 수 있다",
+      "kubectl delete -f로 파일에 적은 오브젝트를 지울 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.minikube-first-cluster"
+    ],
+    "related": [
+      "ops.k8s.kubectl-inspect",
+      "ops.k8s.basics"
+    ],
+    "aliases": [
+      "kubectl apply",
+      "kubectl apply -f",
+      "쿠버네티스 매니페스트",
+      "Kubernetes manifest",
+      "Kubernetes 선언형 설정"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/overview/working-with-objects/",
+      "https://kubernetes.io/docs/tasks/manage-kubernetes-objects/declarative-config/"
     ]
   },
   {
@@ -890,6 +988,76 @@
     ]
   },
   {
+    "id": "ops.network.ping-statistics",
+    "title": "ping 통계: 패킷 손실과 왕복 시간",
+    "en": "ping Statistics: Packet Loss and RTT",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "네트워크와 앞단",
+    "summary": "ping이 끝날 때 보여 주는 손실 비율과 rtt min/avg/max/mdev로 연결이 끊기는지, 느리거나 들쭉날쭉한지 본다.",
+    "parent": "ops.network.ping-tracepath",
+    "aliases": [
+      "패킷 손실",
+      "packet loss",
+      "ping rtt",
+      "왕복 시간",
+      "rtt min/avg/max"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man8/ping.8.html"
+    ]
+  },
+  {
+    "id": "ops.docker.detached-mode",
+    "title": "컨테이너 백그라운드 실행(docker run -d)",
+    "en": "Detached Mode (docker run -d)",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Docker",
+    "summary": "docker run -d는 컨테이너를 뒤에서 돌리고 ID만 찍은 뒤 터미널을 돌려주며, --name으로 붙인 이름으로 나중에 멈추거나 지운다.",
+    "parent": "ops.docker.first-container",
+    "related": [
+      "ops.docker.exec"
+    ],
+    "aliases": [
+      "docker run -d",
+      "--detach",
+      "detached mode",
+      "백그라운드 컨테이너",
+      "docker run --name"
+    ],
+    "refs": [
+      "https://docs.docker.com/reference/cli/docker/container/run/"
+    ]
+  },
+  {
+    "id": "ops.docker.run-env",
+    "title": "컨테이너에 환경 변수 넘기기(docker run -e)",
+    "en": "Passing Environment Variables (docker run -e)",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Docker",
+    "summary": "docker run -e KEY=값이나 --env-file 파일로 컨테이너 안 프로그램이 읽을 환경 변수를 넣는다.",
+    "parent": "ops.docker.first-container",
+    "related": [
+      "be.security.env-file",
+      "ops.docker.arg-vs-env",
+      "ops.docker.compose-variable-interpolation"
+    ],
+    "aliases": [
+      "docker run -e",
+      "docker run --env",
+      "docker run --env-file",
+      "컨테이너 환경 변수"
+    ],
+    "refs": [
+      "https://docs.docker.com/reference/cli/docker/container/run/"
+    ]
+  },
+  {
     "id": "ops.k8s.kubeconfig-context",
     "title": "kubeconfig와 kubectl 컨텍스트",
     "en": "kubeconfig and kubectl Contexts",
@@ -1036,6 +1204,115 @@
     ],
     "refs": [
       "https://kubernetes.io/docs/tutorials/kubernetes-basics/scale/scale-intro/"
+    ]
+  },
+  {
+    "id": "ops.k8s.labels",
+    "title": "Kubernetes 레이블과 -l 선택",
+    "en": "Kubernetes Labels and Label Selectors",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "오브젝트에 app=nginx 같은 키·값 꼬리표를 달고 kubectl get -l로 그 꼬리표가 붙은 것만 골라 본다.",
+    "parent": "ops.k8s.apply-manifest",
+    "related": [
+      "ops.k8s.kubectl-inspect"
+    ],
+    "aliases": [
+      "Kubernetes labels",
+      "쿠버네티스 레이블",
+      "레이블 셀렉터",
+      "label selector",
+      "kubectl get -l",
+      "matchLabels"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/"
+    ]
+  },
+  {
+    "id": "ops.k8s.kubectl-diff",
+    "title": "kubectl diff로 적용 전 변경 미리 보기",
+    "en": "Previewing Changes with kubectl diff",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "kubectl diff -f는 파일을 apply하면 클러스터의 오브젝트가 어떻게 바뀔지 실제로 바꾸지 않고 보여 준다.",
+    "parent": "ops.k8s.apply-manifest",
+    "aliases": [
+      "kubectl diff",
+      "kubectl diff -f",
+      "apply 전 미리 보기",
+      "매니페스트 변경 비교"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/tasks/manage-kubernetes-objects/declarative-config/"
+    ]
+  },
+  {
+    "id": "ops.network.tracepath-hops",
+    "title": "tracepath 출력의 홉과 경로 MTU",
+    "en": "Hops and Path MTU in tracepath Output",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "네트워크와 앞단",
+    "summary": "tracepath는 줄마다 몇 번째 홉에서 누가 응답했는지와 왕복 시간을 보여 주고, 끝에 경로 MTU와 전체 홉 수를 적는다.",
+    "parent": "ops.network.ping-tracepath",
+    "aliases": [
+      "pmtu",
+      "경로 MTU",
+      "path MTU",
+      "tracepath 출력"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man8/tracepath.8.html"
+    ]
+  },
+  {
+    "id": "ops.docker.run-rm",
+    "title": "끝나면 지워지는 컨테이너(docker run --rm)",
+    "en": "Auto-removing Containers (docker run --rm)",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Docker",
+    "summary": "docker run --rm으로 띄운 컨테이너는 끝나는 순간 자기와 익명 볼륨을 지워 멈춘 컨테이너가 쌓이지 않는다.",
+    "parent": "ops.docker.first-container",
+    "related": [
+      "ops.docker.system-prune"
+    ],
+    "aliases": [
+      "docker run --rm",
+      "--rm 옵션",
+      "일회용 컨테이너",
+      "컨테이너 자동 삭제"
+    ],
+    "refs": [
+      "https://docs.docker.com/reference/cli/docker/container/run/"
+    ]
+  },
+  {
+    "id": "ops.ci.workflow-templates",
+    "title": "GitHub Actions 워크플로 템플릿",
+    "en": "GitHub Actions Workflow Templates",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "CI/CD",
+    "summary": "Actions 탭의 New workflow에서 언어나 용도에 맞게 미리 짜 둔 워크플로를 골라 Configure로 저장소에 넣는 시작점이다.",
+    "parent": "ops.ci.actions-quickstart",
+    "aliases": [
+      "워크플로 템플릿",
+      "workflow templates",
+      "starter workflows",
+      "Actions New workflow"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/how-tos/write-workflows/use-workflow-templates",
+      "https://docs.github.com/en/actions/get-started/quickstart"
     ]
   },
   {

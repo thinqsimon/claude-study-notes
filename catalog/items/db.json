@@ -520,6 +520,71 @@
     ]
   },
   {
+    "id": "db.postgres.docker-first-run",
+    "title": "Docker 공식 이미지로 PostgreSQL 띄우기",
+    "en": "Running PostgreSQL with the Docker Official Image",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "직접 설치하지 않고 postgres 공식 이미지로 컨테이너를 띄워 비밀번호를 정하고, 볼륨으로 자료를 남기고, psql로 접속해 보는 첫 실습이다.",
+    "objectives": [
+      "docker run에 POSTGRES_PASSWORD를 넣어 PostgreSQL 컨테이너를 띄울 수 있다",
+      "POSTGRES_USER·POSTGRES_DB로 처음 만들어질 사용자와 DB 이름을 정할 수 있다",
+      "데이터 폴더에 볼륨을 붙여 컨테이너를 다시 만들어도 자료가 남게 할 수 있다",
+      "psql 컨테이너로 띄운 PostgreSQL에 접속할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.docker.first-container"
+    ],
+    "related": [
+      "ops.docker.official-images",
+      "db.postgres.first-run"
+    ],
+    "aliases": [
+      "postgres 도커",
+      "PostgreSQL 컨테이너",
+      "docker run postgres",
+      "postgres docker image"
+    ],
+    "refs": [
+      "https://hub.docker.com/_/postgres"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "db.sql.sqlite-csv",
+    "title": "SQLite 셸로 CSV 불러오고 내보내기",
+    "en": "Importing and Exporting CSV in the SQLite Shell",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "sqlite3 셸의 점 명령으로 CSV 파일을 표로 불러와 SQL로 살펴보고, 조회 결과를 다시 CSV 파일이나 스프레드시트로 내보내는 방법이다.",
+    "objectives": [
+      ".import --csv로 CSV 파일을 새 표로 불러올 수 있다",
+      "표가 없으면 첫 줄이 열 이름이 되고 표가 있으면 --skip 1로 머리글을 건너뛰어야 한다는 것을 구분할 수 있다",
+      ".mode csv와 .once로 조회 결과를 CSV 파일로 저장할 수 있다",
+      ".excel로 조회 결과를 스프레드시트 프로그램에서 바로 열 수 있다"
+    ],
+    "prerequisites": [
+      "db.sql.sqlite-cli"
+    ],
+    "related": [
+      "db.sql.copy-csv"
+    ],
+    "aliases": [
+      "SQLite CSV 가져오기",
+      "SQLite CSV 내보내기",
+      "sqlite3 csv import",
+      "sqlite csv export"
+    ],
+    "refs": [
+      "https://sqlite.org/cli.html"
+    ]
+  },
+  {
     "id": "db.nosql.mongosh-first-run",
     "title": "MongoDB 셸 mongosh로 첫 문서 넣기",
     "en": "Getting Started with the MongoDB Shell (mongosh)",
@@ -619,6 +684,37 @@
     "refs": [
       "https://redis.io/docs/latest/develop/tools/insight/"
     ]
+  },
+  {
+    "id": "db.nosql.atlas-free-cluster",
+    "title": "MongoDB Atlas 무료 클러스터 만들고 접속하기",
+    "en": "Deploying a Free MongoDB Atlas Cluster",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "NoSQL",
+    "summary": "MongoDB 클라우드 서비스 Atlas에서 무료 클러스터를 하나 만들고 DB 사용자와 접속 허용 IP를 정한 뒤 연결 문자열로 mongosh에서 접속해 보는 첫 실습이다.",
+    "objectives": [
+      "Atlas 화면이나 atlas setup 명령으로 무료(M0) 클러스터를 만들 수 있다",
+      "보안 빠른 시작에서 DB 사용자를 만들고 내 IP를 접근 목록에 넣을 수 있다",
+      "받은 연결 문자열로 mongosh에서 클러스터에 접속해 show dbs를 실행할 수 있다",
+      "무료 클러스터는 프로젝트마다 하나이고 기능 일부만 쓸 수 있다는 것을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "db.nosql.mongosh-first-run"
+    ],
+    "aliases": [
+      "Atlas 무료 클러스터",
+      "MongoDB Atlas M0",
+      "Atlas Free",
+      "몽고DB 아틀라스"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/atlas/tutorial/deploy-free-tier-cluster/",
+      "https://www.mongodb.com/docs/atlas/getting-started/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
   },
   {
     "id": "db.internals.transaction",
@@ -960,6 +1056,129 @@
     ]
   },
   {
+    "id": "db.postgres.docker-env-vars",
+    "title": "postgres 이미지 환경 변수: POSTGRES_PASSWORD",
+    "en": "PostgreSQL Docker Image Environment Variables",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "postgres 이미지가 처음 뜰 때 슈퍼유저 비밀번호와 이름, 기본 DB 이름을 정하는 환경 변수로, 데이터 폴더가 비어 있을 때만 적용된다.",
+    "parent": "db.postgres.docker-first-run",
+    "related": [
+      "db.postgres.pg-env-vars"
+    ],
+    "aliases": [
+      "POSTGRES_PASSWORD",
+      "POSTGRES_USER",
+      "POSTGRES_DB",
+      "postgres 이미지 환경 변수"
+    ],
+    "refs": [
+      "https://hub.docker.com/_/postgres"
+    ]
+  },
+  {
+    "id": "db.sql.sqlite-import",
+    "title": ".import: SQLite로 CSV 파일 불러오기",
+    "en": "SQLite .import Command",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "sqlite3 셸에서 CSV 같은 구분자 파일을 표에 넣는 점 명령으로, 표가 없으면 첫 줄을 열 이름 삼아 새로 만들고 있으면 모든 줄을 자료로 넣는다.",
+    "parent": "db.sql.sqlite-csv",
+    "aliases": [
+      "sqlite .import",
+      ".import --csv"
+    ],
+    "refs": [
+      "https://sqlite.org/cli.html"
+    ]
+  },
+  {
+    "id": "db.nosql.atlas-ip-access-list",
+    "title": "Atlas IP 접근 목록",
+    "en": "Atlas IP Access List",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "NoSQL",
+    "summary": "Atlas 프로젝트의 클러스터에 접속을 허락할 IP 주소나 CIDR 범위의 목록으로, 여기에 없는 주소에서는 연결이 받아들여지지 않는다.",
+    "parent": "db.nosql.atlas-free-cluster",
+    "aliases": [
+      "Atlas IP Access List",
+      "Atlas 접근 허용 IP",
+      "Add My Current IP Address",
+      "Atlas 네트워크 접근"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/atlas/security/ip-access-list/"
+    ]
+  },
+  {
+    "id": "db.nosql.atlas-database-user",
+    "title": "Atlas 데이터베이스 사용자",
+    "en": "Atlas Database User",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "NoSQL",
+    "summary": "Atlas 클러스터의 데이터에 접속할 때 쓰는 계정으로, Atlas 웹 화면에 로그인하는 Atlas 계정과는 따로 만든다.",
+    "parent": "db.nosql.atlas-free-cluster",
+    "aliases": [
+      "Atlas DB 사용자",
+      "Atlas database user",
+      "Atlas Database Access"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/atlas/security-add-mongodb-users/"
+    ]
+  },
+  {
+    "id": "db.postgres.psql-run-file",
+    "title": "\\i와 psql -f: SQL 파일 실행하기",
+    "en": "Running SQL Files with psql",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "미리 써 둔 .sql 파일을 psql 안에서는 \\i로, 셸에서는 psql -f로 실행하는 방법으로, -f를 쓰면 오류가 난 줄 번호도 알려 준다.",
+    "related": [
+      "db.postgres.psql-basics"
+    ],
+    "aliases": [
+      "psql -f",
+      "psql \\i",
+      "\\include",
+      "psql SQL 파일 실행"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/app-psql.html"
+    ]
+  },
+  {
+    "id": "db.postgres.psql-continuation-prompt",
+    "title": "psql 이어 쓰기 프롬프트: =>와 ->",
+    "en": "psql Continuation Prompt",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "psql 프롬프트의 = 자리가 -나 ' 같은 글자로 바뀌면 세미콜론이나 닫는 따옴표·괄호가 빠져 문장이 아직 끝나지 않았다는 뜻이다.",
+    "related": [
+      "db.postgres.psql-basics"
+    ],
+    "aliases": [
+      "PROMPT2",
+      "psql 세미콜론",
+      "postgres-#"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/app-psql.html"
+    ]
+  },
+  {
     "id": "db.sql.sqlite-dot-commands",
     "title": "SQLite 점 명령: .tables·.schema·.mode",
     "en": "SQLite Dot-Commands",
@@ -1132,6 +1351,44 @@
     ],
     "refs": [
       "https://sqlite.org/inmemorydb.html"
+    ]
+  },
+  {
+    "id": "db.postgres.docker-initdb-scripts",
+    "title": "/docker-entrypoint-initdb.d 초기화 스크립트",
+    "en": "PostgreSQL Docker Init Scripts",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "SQL",
+    "summary": "postgres 컨테이너가 빈 데이터 폴더로 처음 뜰 때 이 폴더의 .sql·.sh 파일을 이름 순서대로 실행해 표와 자료를 미리 채우는 자리다.",
+    "parent": "db.postgres.docker-first-run",
+    "aliases": [
+      "docker-entrypoint-initdb.d",
+      "postgres 초기화 스크립트",
+      "initdb.d"
+    ],
+    "refs": [
+      "https://hub.docker.com/_/postgres"
+    ]
+  },
+  {
+    "id": "db.sql.sqlite-once-output",
+    "title": ".once와 .output: SQLite 결과를 파일로 보내기",
+    "en": "SQLite .once and .output",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "SQL",
+    "summary": "sqlite3 셸의 출력을 화면 대신 파일로 보내는 점 명령으로, .once는 다음 명령 하나만, .output은 되돌릴 때까지 모든 출력을 보낸다.",
+    "parent": "db.sql.sqlite-csv",
+    "aliases": [
+      "sqlite .once",
+      "sqlite .output",
+      "SQLite 결과 파일 저장"
+    ],
+    "refs": [
+      "https://sqlite.org/cli.html"
     ]
   },
   {
