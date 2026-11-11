@@ -522,6 +522,100 @@
     ]
   },
   {
+    "id": "ops.k8s.namespaces-intro",
+    "title": "Kubernetes 네임스페이스로 앱 나눠 보기",
+    "en": "Getting Started with Kubernetes Namespaces",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "한 클러스터 안의 오브젝트를 이름 칸막이로 나눠 두고, kubectl로 어느 칸을 볼지 골라 명령한다.",
+    "objectives": [
+      "kubectl get namespace로 클러스터에 있는 네임스페이스 목록을 볼 수 있다",
+      "새 네임스페이스를 만들고 그 안에 파드를 띄워 kubectl get pods로 확인할 수 있다",
+      "같은 이름의 오브젝트가 다른 네임스페이스에는 함께 있을 수 있는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.kubectl-inspect"
+    ],
+    "related": [
+      "ops.k8s.labels",
+      "ops.container.isolation"
+    ],
+    "aliases": [
+      "Kubernetes 네임스페이스",
+      "k8s namespace",
+      "쿠버네티스 네임스페이스",
+      "kubectl get namespace"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/"
+    ]
+  },
+  {
+    "id": "ops.linux.find-files",
+    "title": "find로 서버에서 파일 찾기",
+    "en": "Finding Files with find",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "어디서부터 찾을지와 이름·종류·날짜·크기 조건을 적어 find로 디렉터리 아래의 파일을 골라낸다.",
+    "objectives": [
+      "find에 시작 디렉터리와 이름 조건을 주어 원하는 파일의 경로를 찾을 수 있다",
+      "-type f와 -type d로 파일과 디렉터리를 나눠 찾을 수 있다",
+      "찾은 목록을 먼저 출력해 확인한 뒤 그 파일들에 명령을 실행할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.terminal.basic-commands"
+    ],
+    "related": [
+      "ops.linux.grep-lines",
+      "ops.linux.disk-space"
+    ],
+    "aliases": [
+      "find 명령",
+      "find command",
+      "리눅스 파일 찾기",
+      "find -type"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man1/find.1.html"
+    ]
+  },
+  {
+    "id": "ops.linux.user-accounts",
+    "title": "서버 사용자 계정과 그룹 만들기",
+    "en": "Managing Server User Accounts and Groups",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "Ubuntu 서버에서 사람마다 계정을 따로 만들고 그룹에 넣거나 빼며, 쓰지 않는 계정은 잠그거나 지운다.",
+    "objectives": [
+      "새 사용자 계정을 만들고 그 계정으로 로그인해 볼 수 있다",
+      "그룹을 만들고 사용자를 그 그룹에 넣을 수 있다",
+      "계정을 지울 때 홈 디렉터리가 남는다는 것을 알고 처리할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.terminal.basic-commands"
+    ],
+    "related": [
+      "ops.linux.sudo",
+      "ops.linux.file-permissions"
+    ],
+    "aliases": [
+      "리눅스 사용자 관리",
+      "Linux user management",
+      "addgroup",
+      "리눅스 그룹 만들기",
+      "Ubuntu 사용자 추가"
+    ],
+    "refs": [
+      "https://ubuntu.com/server/docs/how-to/security/user-management/"
+    ]
+  },
+  {
     "id": "ops.k8s.minikube-first-cluster",
     "title": "minikube로 내 컴퓨터에 첫 클러스터 띄우기",
     "en": "Your First Local Cluster with minikube",
@@ -1058,6 +1152,93 @@
     ]
   },
   {
+    "id": "ops.k8s.namespace-flag",
+    "title": "kubectl -n과 -A로 네임스페이스 고르기",
+    "en": "Choosing Namespaces with kubectl -n and -A",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "kubectl 명령에 -n을 붙이면 그 네임스페이스만, -A를 붙이면 모든 네임스페이스를 대상으로 하고, 둘 다 없으면 현재 컨텍스트의 네임스페이스를 쓴다.",
+    "parent": "ops.k8s.namespaces-intro",
+    "related": [
+      "ops.k8s.kubeconfig-context"
+    ],
+    "aliases": [
+      "kubectl -n",
+      "kubectl --namespace",
+      "kubectl --all-namespaces",
+      "kubectl get pods -A",
+      "kubectl config set-context --current --namespace"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/",
+      "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_get/"
+    ]
+  },
+  {
+    "id": "ops.linux.find-name",
+    "title": "find -name과 -iname으로 이름 찾기",
+    "en": "Matching Names with find -name and -iname",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "find -name은 파일 이름을 *.log 같은 셸 패턴과 맞춰 보고, -iname은 대소문자를 가리지 않으며, 패턴은 셸이 먼저 풀지 않도록 따옴표로 감싼다.",
+    "parent": "ops.linux.find-files",
+    "aliases": [
+      "find -name",
+      "find -iname",
+      "find 이름 패턴"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man1/find.1.html"
+    ]
+  },
+  {
+    "id": "ops.linux.adduser-deluser",
+    "title": "adduser와 deluser로 계정 만들고 지우기",
+    "en": "Creating and Removing Accounts with adduser and deluser",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "Ubuntu에서 sudo adduser 이름은 묻는 대로 답하며 계정과 홈 디렉터리를 만들고, deluser는 계정을 지우지만 홈 디렉터리는 남겨 둔다.",
+    "parent": "ops.linux.user-accounts",
+    "aliases": [
+      "adduser 명령",
+      "deluser",
+      "sudo adduser",
+      "리눅스 계정 삭제"
+    ],
+    "refs": [
+      "https://ubuntu.com/server/docs/how-to/security/user-management/"
+    ]
+  },
+  {
+    "id": "ops.linux.sudo-group",
+    "title": "sudo 그룹에 사용자 넣기",
+    "en": "Adding a User to the sudo Group",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "Ubuntu에서는 sudo 그룹에 든 계정이 sudo를 쓸 수 있어, sudo adduser 이름 sudo로 새 계정에 관리 명령을 허락한다.",
+    "parent": "ops.linux.user-accounts",
+    "related": [
+      "ops.linux.sudo"
+    ],
+    "aliases": [
+      "sudo 그룹",
+      "adduser 이름 sudo",
+      "sudo group",
+      "리눅스 그룹에 사용자 추가"
+    ],
+    "refs": [
+      "https://ubuntu.com/server/docs/how-to/security/user-management/"
+    ]
+  },
+  {
     "id": "ops.k8s.kubeconfig-context",
     "title": "kubeconfig와 kubectl 컨텍스트",
     "en": "kubeconfig and kubectl Contexts",
@@ -1313,6 +1494,111 @@
     "refs": [
       "https://docs.github.com/en/actions/how-tos/write-workflows/use-workflow-templates",
       "https://docs.github.com/en/actions/get-started/quickstart"
+    ]
+  },
+  {
+    "id": "ops.k8s.initial-namespaces",
+    "title": "처음부터 있는 네임스페이스(default·kube-system)",
+    "en": "Initial Namespaces (default, kube-system)",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "새 클러스터에는 따로 고르지 않을 때 쓰는 default와 시스템 오브젝트가 사는 kube-system 같은 네임스페이스가 미리 있다.",
+    "parent": "ops.k8s.namespaces-intro",
+    "aliases": [
+      "default 네임스페이스",
+      "kube-system",
+      "kube-public",
+      "kube-node-lease"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/"
+    ]
+  },
+  {
+    "id": "ops.k8s.namespaced-resources",
+    "title": "네임스페이스 범위와 클러스터 범위 오브젝트",
+    "en": "Namespaced vs Cluster-scoped Objects",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "파드·서비스·디플로이먼트는 네임스페이스 안에 들고, 노드나 네임스페이스 자신 같은 것은 클러스터 전체에 하나씩만 있다.",
+    "parent": "ops.k8s.namespaces-intro",
+    "aliases": [
+      "kubectl api-resources --namespaced",
+      "cluster-scoped",
+      "클러스터 범위 오브젝트",
+      "namespaced resource"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/"
+    ]
+  },
+  {
+    "id": "ops.linux.find-mtime-size",
+    "title": "find -mtime·-size로 날짜와 크기 조건 걸기",
+    "en": "Filtering by Age and Size with find -mtime and -size",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "리눅스",
+    "summary": "find -mtime +7은 7일보다 오래 전에 바뀐 파일을, -size +100M은 100MiB보다 큰 파일을 고르며 +는 넘음, -는 못 미침을 뜻한다.",
+    "parent": "ops.linux.find-files",
+    "related": [
+      "ops.linux.disk-space"
+    ],
+    "aliases": [
+      "find -mtime",
+      "find -size",
+      "오래된 파일 찾기",
+      "큰 파일 찾기"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man1/find.1.html"
+    ]
+  },
+  {
+    "id": "ops.linux.find-exec",
+    "title": "find -exec로 찾은 파일에 명령 실행",
+    "en": "Running Commands on Matches with find -exec",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "리눅스",
+    "summary": "find -exec는 찾은 파일 이름을 {} 자리에 넣어 명령을 돌리는데 \\;로 끝내면 하나씩, +로 끝내면 여러 개를 한 번에 넘기며, 지우기 전에는 출력으로 먼저 확인한다.",
+    "parent": "ops.linux.find-files",
+    "aliases": [
+      "find -exec",
+      "find -delete",
+      "find -exec {} +"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man1/find.1.html"
+    ]
+  },
+  {
+    "id": "ops.linux.passwd-lock",
+    "title": "passwd -l로 계정 비밀번호 잠그기",
+    "en": "Locking Account Passwords with passwd -l",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "리눅스",
+    "summary": "sudo passwd -l 이름은 그 계정의 비밀번호 로그인을 막고 -u로 다시 풀지만, SSH 키 로그인은 막지 못하므로 authorized_keys도 함께 본다.",
+    "parent": "ops.linux.user-accounts",
+    "related": [
+      "ops.linux.authorized-keys"
+    ],
+    "aliases": [
+      "passwd -l",
+      "passwd -u",
+      "리눅스 계정 잠금",
+      "비밀번호 잠금"
+    ],
+    "refs": [
+      "https://ubuntu.com/server/docs/how-to/security/user-management/"
     ]
   },
   {

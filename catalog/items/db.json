@@ -585,6 +585,66 @@
     ]
   },
   {
+    "id": "db.postgres.supabase-table-editor",
+    "title": "Supabase 대시보드로 첫 표 만들기",
+    "en": "Creating a First Table in the Supabase Dashboard",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "Supabase 대시보드의 Table Editor로 SQL 없이 PostgreSQL 표를 만들고 행을 넣어 보는 첫걸음이다.",
+    "objectives": [
+      "Table Editor에서 New table로 표 이름과 열 자료형을 정해 표를 만들 수 있다",
+      "자동으로 생기는 id와 created_at 열이 무엇인지 말할 수 있다",
+      "SQL Editor에서 같은 표를 create table 문으로 만들어 볼 수 있다"
+    ],
+    "prerequisites": [
+      "db.basics.table-row-column",
+      "db.basics.what-is-sql"
+    ],
+    "aliases": [
+      "Supabase Table Editor",
+      "수파베이스 테이블 에디터",
+      "Supabase 표 만들기",
+      "Supabase 대시보드"
+    ],
+    "refs": [
+      "https://supabase.com/docs/guides/database/overview",
+      "https://supabase.com/docs/guides/database/tables"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "db.orm.prisma-quickstart",
+    "title": "Prisma 빠른 시작: SQLite로 첫 모델 만들기",
+    "en": "Prisma ORM Quickstart with SQLite",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "ORM",
+    "summary": "Node.js 프로젝트에 Prisma를 깔고 모델을 적어 SQLite 표를 만든 뒤 첫 쿼리를 실행해 보는 따라 하기다.",
+    "objectives": [
+      "prisma init으로 schema.prisma와 .env 파일을 만들 수 있다",
+      "User·Post 모델을 schema.prisma에 따라 적을 수 있다",
+      "prisma migrate dev로 표를 만들고 Prisma Client로 행을 넣고 읽을 수 있다"
+    ],
+    "prerequisites": [
+      "db.basics.table-row-column"
+    ],
+    "aliases": [
+      "Prisma ORM",
+      "프리즈마",
+      "Prisma 시작하기",
+      "Prisma quickstart"
+    ],
+    "refs": [
+      "https://www.prisma.io/docs/getting-started/quickstart-sqlite"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "db.nosql.mongosh-first-run",
     "title": "MongoDB 셸 mongosh로 첫 문서 넣기",
     "en": "Getting Started with the MongoDB Shell (mongosh)",
@@ -712,6 +772,36 @@
     "refs": [
       "https://www.mongodb.com/docs/atlas/tutorial/deploy-free-tier-cluster/",
       "https://www.mongodb.com/docs/atlas/getting-started/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "db.nosql.firestore-quickstart",
+    "title": "Cloud Firestore 시작하기: 첫 문서 넣고 읽기",
+    "en": "Getting Started with Cloud Firestore",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "NoSQL",
+    "summary": "Firebase 콘솔에서 Firestore 데이터베이스를 만들고 SDK로 컬렉션에 문서를 넣고 읽어 보는 따라 하기다.",
+    "objectives": [
+      "Firebase 콘솔에서 Firestore 데이터베이스를 만들고 위치와 시작 규칙을 고를 수 있다",
+      "SDK로 users 컬렉션에 문서를 넣고 콘솔 데이터 보기에서 확인할 수 있다",
+      "컬렉션 전체를 읽어 문서 ID와 필드를 출력할 수 있다"
+    ],
+    "prerequisites": [
+      "db.basics.what-is-database"
+    ],
+    "aliases": [
+      "Firestore",
+      "파이어스토어",
+      "Cloud Firestore",
+      "Firebase Firestore"
+    ],
+    "refs": [
+      "https://firebase.google.com/docs/firestore/quickstart",
+      "https://firebase.google.com/docs/firestore/data-model"
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
@@ -1179,6 +1269,117 @@
     ]
   },
   {
+    "id": "db.postgres.supabase-sql-editor",
+    "title": "Supabase SQL Editor",
+    "en": "Supabase SQL Editor",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "Supabase 대시보드 안에서 SQL 문을 바로 써서 실행하고 자주 쓰는 쿼리를 저장해 두는 화면이다.",
+    "parent": "db.postgres.supabase-table-editor",
+    "related": [
+      "db.postgres.psql-basics"
+    ],
+    "aliases": [
+      "수파베이스 SQL 에디터",
+      "Supabase SQL 편집기",
+      "Supabase 쿼리 창"
+    ],
+    "refs": [
+      "https://supabase.com/docs/guides/database/overview"
+    ]
+  },
+  {
+    "id": "db.orm.prisma-schema-file",
+    "title": "schema.prisma: Prisma 모델 파일",
+    "en": "Prisma Schema File",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "ORM",
+    "summary": "데이터베이스 종류(provider)와 model 블록으로 표의 열과 관계를 한 파일에 적어 두는 Prisma의 설계도다.",
+    "parent": "db.orm.prisma-quickstart",
+    "aliases": [
+      "schema.prisma",
+      "Prisma schema",
+      "프리즈마 스키마",
+      "Prisma model"
+    ],
+    "refs": [
+      "https://www.prisma.io/docs/getting-started/quickstart-sqlite"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "db.orm.prisma-migrate-dev",
+    "title": "prisma migrate dev: 모델대로 표 만들기",
+    "en": "prisma migrate dev",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "ORM",
+    "summary": "schema.prisma의 바뀐 내용을 마이그레이션 파일로 남기고 개발용 DB에 바로 적용하는 Prisma 명령이다.",
+    "parent": "db.orm.prisma-quickstart",
+    "related": [
+      "db.orm.alembic-basics"
+    ],
+    "aliases": [
+      "prisma migrate dev",
+      "Prisma 마이그레이션",
+      "프리즈마 마이그레이트"
+    ],
+    "refs": [
+      "https://www.prisma.io/docs/getting-started/quickstart-sqlite"
+    ]
+  },
+  {
+    "id": "db.sql.default-value",
+    "title": "DEFAULT: 열의 기본값",
+    "en": "Column Default Values",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "INSERT에서 값을 빼먹은 열에 대신 들어갈 값을 표를 만들 때 정해 두는 SQL 문법이다.",
+    "parent": "db.postgres.first-run",
+    "related": [
+      "db.sql.identity-column"
+    ],
+    "aliases": [
+      "DEFAULT 절",
+      "SQL 기본값",
+      "열 기본값",
+      "DEFAULT CURRENT_TIMESTAMP",
+      "column default"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/ddl-default.html"
+    ]
+  },
+  {
+    "id": "db.sql.if-not-exists",
+    "title": "IF NOT EXISTS: 이미 있으면 건너뛰기",
+    "en": "IF NOT EXISTS",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "같은 이름의 표가 이미 있으면 CREATE TABLE이 오류 대신 알림만 내고 넘어가게 하는 문구로, 기존 표가 같은 구조라는 보장은 없다.",
+    "parent": "db.postgres.first-run",
+    "related": [
+      "db.sql.drop-table"
+    ],
+    "aliases": [
+      "CREATE TABLE IF NOT EXISTS",
+      "IF NOT EXISTS 절"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/sql-createtable.html"
+    ]
+  },
+  {
     "id": "db.sql.sqlite-dot-commands",
     "title": "SQLite 점 명령: .tables·.schema·.mode",
     "en": "SQLite Dot-Commands",
@@ -1389,6 +1590,70 @@
     ],
     "refs": [
       "https://sqlite.org/cli.html"
+    ]
+  },
+  {
+    "id": "db.orm.prisma-studio",
+    "title": "Prisma Studio로 표 내용 보기",
+    "en": "Prisma Studio",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "ORM",
+    "summary": "prisma studio 명령으로 브라우저에 띄워 Prisma 모델의 행을 보고 고치는 화면 도구다.",
+    "parent": "db.orm.prisma-quickstart",
+    "related": [
+      "db.postgres.pgadmin-first-run"
+    ],
+    "aliases": [
+      "prisma studio",
+      "프리즈마 스튜디오"
+    ],
+    "refs": [
+      "https://www.prisma.io/docs/getting-started/quickstart-sqlite"
+    ]
+  },
+  {
+    "id": "db.nosql.firestore-collection-document",
+    "title": "Firestore 컬렉션과 문서",
+    "en": "Firestore Collections and Documents",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "NoSQL",
+    "summary": "필드를 담은 문서를 컬렉션이 묶고, 첫 문서를 넣을 때 컬렉션이 저절로 생기는 Firestore의 자료 구조다.",
+    "parent": "db.nosql.firestore-quickstart",
+    "related": [
+      "db.nosql.mongosh-first-run"
+    ],
+    "aliases": [
+      "Firestore 컬렉션",
+      "Firestore 문서",
+      "Firestore 하위 컬렉션",
+      "Firestore subcollection"
+    ],
+    "refs": [
+      "https://firebase.google.com/docs/firestore/data-model"
+    ]
+  },
+  {
+    "id": "db.nosql.firestore-test-mode",
+    "title": "Firestore 테스트 모드와 프로덕션 모드",
+    "en": "Firestore Test Mode and Production Mode",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "NoSQL",
+    "summary": "Firestore를 만들 때 고르는 시작 보안 규칙으로, 테스트 모드는 누구나 읽고 쓰게 열어 두므로 공개 전에 바꿔야 한다.",
+    "parent": "db.nosql.firestore-quickstart",
+    "aliases": [
+      "Firestore 테스트 모드",
+      "Firestore test mode",
+      "Firestore 보안 규칙 시작 모드",
+      "Firestore production mode"
+    ],
+    "refs": [
+      "https://firebase.google.com/docs/firestore/quickstart"
     ]
   },
   {
