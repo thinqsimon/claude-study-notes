@@ -6628,6 +6628,81 @@
     "checked_at": "2026-11-04"
   },
   {
+    "id": "llm.api.model-migration",
+    "title": "모델 은퇴와 API 버전 이전 대응",
+    "en": "Migrating Through Model Retirements and API Versions",
+    "kind": "topic",
+    "level": 4,
+    "importance": 1,
+    "group": "LLM API",
+    "summary": "쓰던 모델이 은퇴하거나 API 버전이 바뀔 때 영향받는 호출을 찾고, 대체 모델과 새 버전을 미리 시험해 장애 없이 옮기는 운영 절차다.",
+    "objectives": [
+      "은퇴한 모델 호출과 새 API 버전에서 빠진 매개변수 때문에 나는 오류를 구분해 원인을 찾을 수 있다",
+      "사용량 내보내기로 아직 지원 종료 예정 모델을 부르는 키와 기능을 찾아 이전 순서를 정할 수 있다",
+      "은퇴일 전에 대체 모델을 평가해 바로 바꿀지 스냅샷을 유지할지 근거를 들어 고를 수 있다",
+      "SDK 메이저 버전 올리기와 코드 수정을 한 번에 배포해야 하는 이유를 설명하고 배포 계획을 세울 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.model-ids"
+    ],
+    "related": [
+      "llm.api.model-snapshot",
+      "llm.api.model-lifecycle",
+      "llm.api.anthropic-version-header",
+      "mlops.eval.llm-regression"
+    ],
+    "aliases": [
+      "모델 이전",
+      "model migration",
+      "모델 교체 계획",
+      "Claude API 버전 업그레이드",
+      "은퇴 모델 대응"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/about-claude/model-deprecations",
+      "https://platform.claude.com/docs/en/api/versioning",
+      "https://platform.claude.com/docs/en/api/migration-2026-10-21"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.tools.tool-loop-stop-handling",
+    "title": "도구 호출 루프의 멈춤 원인 진단",
+    "en": "Diagnosing Stops in Tool-Use Loops",
+    "kind": "topic",
+    "level": 4,
+    "importance": 1,
+    "group": "도구 호출",
+    "summary": "도구 호출 루프가 빈 답·잘린 도구 입력·서버 도구 일시 중지로 멈출 때 stop_reason과 마지막 블록을 보고 원인을 찾아 이어 가는 방법이다.",
+    "objectives": [
+      "성공 응답의 stop_reason과 4xx·5xx 오류를 구분해 어느 쪽 처리 코드가 맡아야 하는지 고를 수 있다",
+      "tool_result 뒤에 글을 덧붙여 생기는 빈 end_turn 응답의 원인을 찾아 메시지 구성을 고칠 수 있다",
+      "max_tokens로 잘린 tool_use와 pause_turn을 구분해 각각 한도를 올릴지 같은 내용으로 다시 보낼지 고를 수 있다",
+      "거절로 멈춘 턴을 다른 모델로 넘길지 판단하는 기준을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.tools.function-calling"
+    ],
+    "related": [
+      "llm.api.stop-reason",
+      "llm.api.refusal-response",
+      "rag.agent.reliability"
+    ],
+    "aliases": [
+      "도구 루프 디버깅",
+      "tool use loop debugging",
+      "에이전트 루프 멈춤",
+      "stop reason handling",
+      "도구 호출 루프 오류"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "llm.internals.prompt-caching",
     "title": "프롬프트 캐싱과 비용 구조",
     "en": "Prompt Caching and Cost Structure",
@@ -6654,6 +6729,79 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-04"
+  },
+  {
+    "id": "llm.api.latency-design",
+    "title": "LLM 기능의 응답 지연 줄이기 설계",
+    "en": "Designing LLM Features for Lower Latency",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "모델 크기·입출력 토큰 수·요청 횟수·스트리밍 중 어디서 시간이 새는지 찾아, 품질을 지키며 지연을 줄일 방법을 고르는 설계다.",
+    "objectives": [
+      "느린 응답의 원인이 모델 선택·긴 입력·긴 출력·연속 호출 중 어디에 있는지 측정값으로 찾을 수 있다",
+      "작은 모델과 낮은 effort, 출력 길이 줄이기, 요청 합치기와 병렬화 중에서 기능에 맞는 방법을 근거를 들어 고를 수 있다",
+      "전체 시간과 첫 토큰까지 시간을 구분해 스트리밍이 실제 지연을 줄이는지 체감만 줄이는지 판단할 수 있다",
+      "max_tokens를 낮춰 지연을 줄일 때 답이 잘리는 손익을 따져 값을 정할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.model-selection"
+    ],
+    "related": [
+      "llm.basics.response-latency",
+      "llm.internals.ttft-tpot",
+      "llm.internals.prompt-caching",
+      "llm.api.response-streaming"
+    ],
+    "aliases": [
+      "LLM 지연 최적화",
+      "LLM latency optimization",
+      "LLM 응답 속도 개선",
+      "LLM 지연 설계"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-latency",
+      "https://developers.openai.com/api/docs/guides/latency-optimization"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.security.data-residency-retention",
+    "title": "LLM API 데이터 처리 위치와 보존 정책 고르기",
+    "en": "Choosing Data Residency and Retention for LLM APIs",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 보안",
+    "summary": "추론이 도는 지역과 프롬프트·응답의 보존 기간을 요청·작업 공간·조직 단위로 정해, 규정 요구와 비용·가용성의 손익을 맞추는 설계다.",
+    "objectives": [
+      "추론 지역 지정과 작업 공간 저장 지역이 각각 무엇을 통제하는지 구분해 요구 사항에 맞는 설정을 고를 수 있다",
+      "미국 내 추론을 고를 때 늘어나는 비용과 줄어드는 가용성을 근거로 들어 판단할 수 있다",
+      "무보존(ZDR) 조직에서 특정 기능이나 30일 보존 필수 모델을 쓰면 보존 범위가 어떻게 바뀌는지 설명할 수 있다",
+      "inference_geo나 보존 설정 때문에 나는 400 오류의 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.errors-rate-limits"
+    ],
+    "related": [
+      "ax.coding.zero-data-retention",
+      "llm.security.prompt-injection"
+    ],
+    "aliases": [
+      "데이터 레지던시",
+      "data residency",
+      "추론 지역 선택",
+      "LLM 데이터 보존 정책",
+      "API data retention"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/manage-claude/data-residency",
+      "https://platform.claude.com/docs/en/manage-claude/api-and-data-retention"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "llm.api.spend-limit",
@@ -6747,6 +6895,103 @@
     "checked_at": "2026-11-05"
   },
   {
+    "id": "llm.api.sampling-params-removal",
+    "title": "temperature·top_p·top_k 제거",
+    "en": "Removal of Sampling Parameters in API 2026-10-21",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "Claude API 2026-10-21 버전부터 temperature·top_p·top_k를 보내면 기본값이어도 400이 나므로, 빼거나 그 값이 꼭 필요한 요청만 2023-06-01 버전에 남긴다.",
+    "parent": "llm.api.model-migration",
+    "related": [
+      "llm.internals.temperature"
+    ],
+    "aliases": [
+      "샘플링 매개변수 제거",
+      "sampling parameters removed",
+      "temperature 400 오류",
+      "temperature 제거"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/api/migration-2026-10-21",
+      "https://platform.claude.com/docs/en/about-claude/model-deprecations"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.api.inference-geo",
+    "title": "inference_geo(추론 지역 지정)",
+    "en": "inference_geo Request Parameter",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 보안",
+    "summary": "Claude 요청마다 추론을 미국에서만 돌릴지 전 세계 어디서나 돌릴지 정하는 값으로, 미국만 고르면 요금이 1.1배가 되고 응답 usage에 실제 지역이 찍힌다.",
+    "parent": "llm.security.data-residency-retention",
+    "aliases": [
+      "inference_geo",
+      "추론 지역",
+      "US-only inference",
+      "미국 내 추론"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/manage-claude/data-residency"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.tools.pause-turn",
+    "title": "pause_turn(서버 도구 턴 일시 중지)",
+    "en": "pause_turn Stop Reason",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "도구 호출",
+    "summary": "서버 도구 반복이 한도에 닿아 턴이 잠시 멈췄다는 종료 사유로, 받은 assistant 내용과 컨테이너 ID를 그대로 붙여 다시 보내면 이어진다.",
+    "parent": "llm.tools.tool-loop-stop-handling",
+    "related": [
+      "llm.tools.web-search-tool",
+      "llm.tools.code-execution-tool"
+    ],
+    "aliases": [
+      "pause_turn",
+      "서버 도구 일시 중지",
+      "server tool pause",
+      "턴 일시 중지"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.tools.truncated-tool-use",
+    "title": "잘린 tool_use 블록",
+    "en": "Truncated tool_use Block",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "도구 호출",
+    "summary": "max_tokens에 걸려 도구 입력이 끝나지 않은 채 끊긴 tool_use 블록으로, 입력을 쓸 수 없으니 한도를 올려 같은 요청을 다시 보낸다.",
+    "parent": "llm.tools.tool-loop-stop-handling",
+    "related": [
+      "llm.internals.max-tokens"
+    ],
+    "aliases": [
+      "잘린 도구 호출",
+      "truncated tool call",
+      "불완전한 tool_use",
+      "incomplete tool_use"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons"
+    ]
+  },
+  {
     "id": "llm.api.usage-tier",
     "title": "사용 등급(usage tier)",
     "en": "Usage Tier",
@@ -6787,6 +7032,92 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-04"
+  },
+  {
+    "id": "llm.api.usage-export-audit",
+    "title": "모델별 사용량 내보내기 감사",
+    "en": "Auditing Model Usage via Console Export",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "Claude Console 사용량 화면에서 CSV를 내려받아 API 키·모델별 호출을 보고, 은퇴 예정 모델을 아직 쓰는 곳을 찾는 방법이다.",
+    "parent": "llm.api.model-migration",
+    "aliases": [
+      "Claude 사용량 감사",
+      "Claude Console usage export",
+      "Console 사용량 내보내기",
+      "모델 사용 감사"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/about-claude/model-deprecations"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.api.workspace-geo-controls",
+    "title": "작업 공간 지역 설정(workspace geo)",
+    "en": "Workspace Geo and Allowed Inference Geos",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 보안",
+    "summary": "Claude 작업 공간 단위로 저장 지역과 허용할 추론 지역·기본 추론 지역을 정하는 설정으로, 저장 지역은 만들 때 정하면 바꿀 수 없다.",
+    "parent": "llm.security.data-residency-retention",
+    "aliases": [
+      "workspace geo",
+      "allowed_inference_geos",
+      "default_inference_geo",
+      "작업 공간 저장 지역"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/manage-claude/data-residency"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.api.covered-models-retention",
+    "title": "30일 보존이 필요한 모델(Covered Models)",
+    "en": "Covered Models with 30-Day Retention",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 보안",
+    "summary": "Claude Fable 5 계열처럼 30일 데이터 보존을 켜야만 부를 수 있는 모델로, 무보존 조직은 따로 작업 공간에 보존을 켜야 쓸 수 있다.",
+    "parent": "llm.security.data-residency-retention",
+    "aliases": [
+      "Covered Models",
+      "30일 보존 필수 모델",
+      "30-day retention models",
+      "보존 필수 모델"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/manage-claude/api-and-data-retention"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.tools.empty-end-turn",
+    "title": "빈 end_turn 응답",
+    "en": "Empty end_turn Response",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "도구 호출",
+    "summary": "정상 종료로 표시되지만 내용이 거의 없는 응답으로, tool_result 뒤에 글을 덧붙인 메시지가 흔한 원인이라 결과 블록만 따로 보내 고친다.",
+    "parent": "llm.tools.tool-loop-stop-handling",
+    "aliases": [
+      "LLM 빈 응답",
+      "empty model response",
+      "내용 없는 응답",
+      "empty end_turn"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons"
+    ]
   },
   {
     "id": "llm.internals.tokenization-sampling",

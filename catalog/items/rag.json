@@ -6477,6 +6477,152 @@
     "checked_at": "2026-11-04"
   },
   {
+    "id": "rag.agent.multi-agent-choice",
+    "title": "멀티 에이전트 구조 고르기: 호출 수·토큰·문맥의 손익",
+    "en": "Choosing a Multi-Agent Pattern: Subagents, Handoffs, Skills and Router",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "서브에이전트·핸드오프·스킬·라우터 가운데 요청 모양에 맞는 구조를 모델 호출 수, 토큰, 문맥 격리를 기준으로 고르는 설계다.",
+    "objectives": [
+      "에이전트 하나에 도구와 프롬프트를 잘 고르는 것으로 충분한지, 여러 에이전트로 나눠야 하는지 근거를 들어 고를 수 있다",
+      "같은 요청이 반복되는 대화와 여러 분야를 한꺼번에 묻는 요청에서 각 패턴의 호출 수와 토큰이 어떻게 달라지는지 따져 구조를 고를 수 있다",
+      "스킬 내용이 대화에 쌓이거나 핸드오프 기록이 길어져 비용이 늘어나는 원인을 찾을 수 있다",
+      "무상태 라우터를 대화형 에이전트의 도구로 감쌀지, 라우터에 대화 기록을 저장할지 근거를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.basics.multi-agent-idea",
+      "rag.agent.subagents",
+      "rag.agent.handoffs",
+      "rag.agent.skills-pattern"
+    ],
+    "related": [
+      "rag.agent.reliability",
+      "rag.agent.orchestrator-worker"
+    ],
+    "aliases": [
+      "멀티 에이전트 패턴 선택",
+      "multi-agent pattern",
+      "멀티 에이전트 구조",
+      "multi-agent architecture",
+      "에이전트 패턴 비교"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/multi-agent",
+      "https://docs.langchain.com/oss/python/langchain/multi-agent/router"
+    ]
+  },
+  {
+    "id": "rag.agent.fault-tolerance-design",
+    "title": "LangGraph 실패 복구 설계: 재실행과 멱등성",
+    "en": "Designing Fault-Tolerant LangGraph Agents: Re-execution and Idempotency",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "재시도·재개 때 노드가 처음부터 다시 돌아 외부 호출이 두 번 나는 것을 막으려고 체크포인트 경계, 멱등성 키, 내구성 모드를 정하는 설계다.",
+    "objectives": [
+      "재시도와 인터럽트 재개가 노드를 처음부터 다시 실행한다는 점에서 결제·메일 같은 외부 호출이 두 번 일어난 원인을 찾을 수 있다",
+      "체크포인트된 상태에서 멱등성 키를 만들어 외부 서비스가 중복 호출을 걸러 내게 설계할 수 있다",
+      "exit·async·sync 내구성 모드 가운데 속도와 크래시 뒤 복구 범위를 따져 맞는 것을 고를 수 있다",
+      "노드 하나에 몰린 여러 작업을 태스크로 나눠 재개할 때 끝난 일을 건너뛰게 할지 근거를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.checkpoint-persistence",
+      "rag.agent.node-config"
+    ],
+    "related": [
+      "be.rest.idempotency-key",
+      "rag.agent.retry-policy"
+    ],
+    "aliases": [
+      "LangGraph 실패 복구",
+      "LangGraph fault tolerance",
+      "노드 재실행",
+      "에이전트 중복 실행",
+      "LangGraph 멱등성"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/fault-tolerance",
+      "https://docs.langchain.com/oss/python/langgraph/checkpointers"
+    ]
+  },
+  {
+    "id": "rag.agent.mcp-auth-design",
+    "title": "원격 MCP 서버 인가 설계: 토큰 검증·스코프·문제 찾기",
+    "en": "Designing Authorization for Remote MCP Servers",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "HTTP로 여는 MCP 서버가 자기 앞으로 발급된 토큰만 받고 필요한 만큼의 스코프만 요구하도록 OAuth 흐름을 짜고, 401·403 응답으로 인가 실패의 원인을 찾는 방법이다.",
+    "objectives": [
+      "stdio 서버는 환경 변수 자격 증명, HTTP 서버는 OAuth 인가를 쓰는 까닭을 들어 인가 방식을 고를 수 있다",
+      "클라이언트가 401의 WWW-Authenticate에서 메타데이터를 찾아 인가 서버로 가는 흐름 가운데 어디서 끊겼는지 원인을 찾을 수 있다",
+      "토큰의 대상(audience) 검증을 빠뜨리거나 받은 토큰을 다른 API에 그대로 넘길 때 생기는 위험을 근거로 서버 설계를 고칠 수 있다",
+      "처음에는 최소 스코프만 주고 403 insufficient_scope로 필요한 권한을 더 받게 할지 사용자 경험과 피해 범위를 따져 정할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.mcp-authorization-idea",
+      "rag.agent.mcp-connect",
+      "be.auth.oauth2-social"
+    ],
+    "related": [
+      "ax.security.third-party-mcp-risks",
+      "rag.agent.mcp-protocol"
+    ],
+    "aliases": [
+      "MCP 서버 인가 설계",
+      "MCP OAuth 설계",
+      "MCP 토큰 검증",
+      "MCP 401 오류",
+      "MCP 스코프 설계"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/specification/latest/basic/authorization",
+      "https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.tool-design",
+    "title": "에이전트용 도구 설계: 개수·이름·응답 크기",
+    "en": "Designing Tools for Agents",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "API를 하나씩 감싸지 않고 에이전트가 고르기 쉽고 문맥을 덜 쓰는 도구 묶음을 정해, 이름 접두어·설명·응답 크기를 맞추는 설계다.",
+    "objectives": [
+      "엔드포인트마다 도구를 만들지, 자주 이어 부르는 작업을 도구 하나로 합칠지 근거를 들어 고를 수 있다",
+      "에이전트가 엉뚱한 도구를 고르거나 같은 호출을 되풀이하는 원인을 대화 기록에서 찾아 설명·이름·인자 이름 가운데 무엇을 고칠지 정할 수 있다",
+      "결과가 큰 도구에 페이지 나누기·자르기·간단·자세히 응답을 둬 문맥 낭비를 줄이는 설계를 고를 수 있다",
+      "불투명한 내부 ID 대신 의미 있는 식별자와 고칠 방법을 알려 주는 오류 메시지를 돌려줘야 하는 까닭을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.tools.function-calling",
+      "rag.agent.reliability"
+    ],
+    "related": [
+      "rag.agent.dynamic-tool-selection",
+      "rag.agent.tool-discovery-idea",
+      "ax.security.limit-agent-agency"
+    ],
+    "aliases": [
+      "에이전트 도구 설계",
+      "tool design for agents",
+      "도구 설명 쓰기",
+      "writing tools for agents",
+      "도구 통합 설계"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools",
+      "https://www.anthropic.com/engineering/writing-tools-for-agents"
+    ]
+  },
+  {
     "id": "rag.retrieval.reranking",
     "title": "재순위",
     "en": "Reranking",
@@ -6533,6 +6679,28 @@
     ]
   },
   {
+    "id": "rag.agent.mcp-token-passthrough",
+    "title": "MCP 토큰 패스스루(금지된 토큰 전달)",
+    "en": "MCP Token Passthrough Anti-Pattern",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "MCP 서버가 자기 앞으로 발급됐는지 확인하지 않은 토큰을 받아 뒤쪽 API에 그대로 넘기는 금지된 방식으로, 감사 기록과 보안 통제를 우회하게 만든다.",
+    "parent": "rag.agent.mcp-auth-design",
+    "aliases": [
+      "token passthrough",
+      "토큰 패스스루",
+      "토큰 그대로 넘기기",
+      "MCP 토큰 대상 검증"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "rag.agent.memory-store",
     "title": "장기 기억 스토어",
     "en": "Memory Store",
@@ -6564,6 +6732,155 @@
       "MCP transport",
       "stdio transport",
       "streamable http"
+    ]
+  },
+  {
+    "id": "rag.agent.router-pattern",
+    "title": "라우터 패턴(멀티 에이전트)",
+    "en": "Router Pattern for Multi-Agent Systems",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "입력을 먼저 분류해 맡을 전문 에이전트를 하나 이상 고르고, Send로 병렬 실행한 결과를 합쳐 답하는 멀티 에이전트 구조다.",
+    "parent": "rag.agent.multi-agent-choice",
+    "related": [
+      "rag.agent.routing",
+      "rag.agent.subagents"
+    ],
+    "aliases": [
+      "라우터 에이전트",
+      "router agent",
+      "멀티 에이전트 라우터",
+      "분류 후 분배"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/multi-agent/router"
+    ]
+  },
+  {
+    "id": "rag.agent.durability-mode",
+    "title": "LangGraph 내구성 모드(exit·async·sync)",
+    "en": "LangGraph Durability Modes",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "체크포인트를 실행이 끝날 때만, 다음 단계와 함께 백그라운드로, 다음 단계 전에 반드시 쓸지 정하는 설정으로 뒤로 갈수록 느리지만 크래시에 강하다.",
+    "parent": "rag.agent.fault-tolerance-design",
+    "aliases": [
+      "LangGraph durability",
+      "LangGraph 내구성 모드",
+      "durability=\"sync\"",
+      "체크포인트 쓰기 시점"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/checkpointers"
+    ]
+  },
+  {
+    "id": "rag.agent.pending-writes",
+    "title": "보류 쓰기(pending writes)",
+    "en": "Pending Writes in LangGraph Checkpoints",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "한 슈퍼스텝에서 다른 노드가 실패해도 이미 끝난 노드의 출력을 따로 저장해 두어, 재개할 때 그 노드를 다시 돌리지 않게 하는 장치다.",
+    "parent": "rag.agent.fault-tolerance-design",
+    "aliases": [
+      "checkpoint pending writes",
+      "LangGraph 보류 쓰기",
+      "슈퍼스텝 중간 저장"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/checkpointers"
+    ]
+  },
+  {
+    "id": "rag.agent.protected-resource-metadata",
+    "title": "보호된 리소스 메타데이터(RFC 9728)",
+    "en": "OAuth 2.0 Protected Resource Metadata",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "MCP 서버가 자기를 지키는 인가 서버 주소와 지원 스코프를 알리는 문서로, 401 응답의 WWW-Authenticate가 그 위치를 가리킨다.",
+    "parent": "rag.agent.mcp-auth-design",
+    "aliases": [
+      "Protected Resource Metadata",
+      "RFC 9728",
+      "oauth-protected-resource",
+      "resource_metadata",
+      "MCP 리소스 메타데이터"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/specification/latest/basic/authorization"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.mcp-step-up-authorization",
+    "title": "MCP 스코프 단계 상승 인가(step-up)",
+    "en": "MCP Step-Up Authorization",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "토큰의 스코프가 모자라 403 insufficient_scope를 받으면 클라이언트가 기존 스코프에 필요한 스코프를 더해 다시 인가받는 흐름이다.",
+    "parent": "rag.agent.mcp-auth-design",
+    "aliases": [
+      "MCP step-up authorization",
+      "MCP insufficient_scope",
+      "스코프 상승",
+      "점진적 스코프 요청",
+      "MCP 403 오류"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/specification/latest/basic/authorization"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.tool-namespacing",
+    "title": "도구 이름 접두어(네임스페이싱)",
+    "en": "Tool Name Namespacing",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "github_list_prs·slack_send_message처럼 서비스나 리소스 이름을 도구 이름 앞에 붙여, 도구가 많아져도 에이전트가 헷갈리지 않고 고르게 하는 이름 규칙이다.",
+    "parent": "rag.agent.tool-design",
+    "aliases": [
+      "tool namespacing",
+      "도구 네임스페이스",
+      "도구 이름 규칙",
+      "도구 이름 접두사"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools"
+    ]
+  },
+  {
+    "id": "rag.agent.tool-response-verbosity",
+    "title": "도구 응답 상세도 선택(간단·자세히)",
+    "en": "Concise and Detailed Tool Responses",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "도구에 간단·자세히를 고르는 인자를 두어, 다음 호출에 ID가 필요할 때만 자세한 결과를 받고 평소에는 핵심만 받아 토큰을 아끼게 하는 응답 설계다.",
+    "parent": "rag.agent.tool-design",
+    "aliases": [
+      "concise tool response",
+      "detailed tool response",
+      "도구 응답 크기",
+      "도구 출력 줄이기"
+    ],
+    "refs": [
+      "https://www.anthropic.com/engineering/writing-tools-for-agents"
     ]
   },
   {

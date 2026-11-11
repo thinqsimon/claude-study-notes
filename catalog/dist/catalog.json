@@ -1,5 +1,5 @@
 {
- "version": "0.58.0",
+ "version": "0.59.0",
  "domains": [
   {
    "prefix": "dev",
@@ -13250,6 +13250,325 @@
    ],
    "refs": [
     "https://www.rfc-editor.org/rfc/rfc5952.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dsa.hash-flooding",
+   "title": "해시 충돌 공격과 해시 무작위화",
+   "en": "Hash-Flooding Attacks and Hash Randomization",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "자료구조",
+   "summary": "같은 칸으로 몰리는 키를 대량으로 보내 해시 테이블 삽입을 최악 비용으로 떨어뜨리는 공격과, 해시 시드를 무작위로 두는 방어다.",
+   "objectives": [
+    "적은 요청으로 서버 CPU가 오래 묶이는 증상을 보고 충돌하는 키 때문에 해시 테이블 삽입이 O(n²)로 떨어진 것인지 원인을 찾을 수 있다",
+    "해시 무작위화와 요청당 매개변수 개수 제한이 각각 공격의 어느 조건을 없애는지 근거를 말할 수 있다",
+    "해시 시드를 고정할지 기본값인 무작위로 둘지 재현 가능한 해시·여러 프로세스 간 해시 공유와 방어 사이의 손익을 따져 고를 수 있다",
+    "집합 순회 순서가 실행마다 달라지는 현상을 보고 보장되지 않는 순서에 기댄 코드를 원인으로 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "cs.dsa.hash-table"
+   ],
+   "related": [
+    "cs.dsa.hash-collision",
+    "be.rest.rate-limit"
+   ],
+   "aliases": [
+    "해시 플러딩",
+    "hash flooding",
+    "HashDoS",
+    "해시 충돌 서비스 거부"
+   ],
+   "refs": [
+    "https://docs.python.org/3/reference/datamodel.html#object.__hash__",
+    "https://docs.python.org/3/using/cmdline.html#envvar-PYTHONHASHSEED",
+    "https://ocert.org/advisories/ocert-2011-003.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.algo.redos",
+   "title": "정규식 역추적 폭발과 ReDoS",
+   "en": "Catastrophic Regex Backtracking and ReDoS",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "알고리즘과 복잡도",
+   "summary": "역추적 방식 정규식 엔진이 중첩된 반복 패턴에서 입력 길이에 지수적으로 느려지는 현상과, 이를 노린 서비스 거부 공격이다.",
+   "objectives": [
+    "반복되는 그룹 안에 다시 반복이나 겹치는 선택지가 있는 패턴을 찾아 ReDoS 위험의 원인으로 짚을 수 있다",
+    "일치하지 않는 입력에서만 응답이 급격히 느려지는 증상을 보고 역추적할 경로 수가 입력 길이에 따라 불어난 것인지 진단할 수 있다",
+    "신뢰할 수 없는 입력이나 패턴을 다룰 때 최악 선형 시간을 보장하는 엔진과 역추적 엔진 중 무엇을 쓸지, 역참조·전후방 탐색을 잃는 손익을 따져 고를 수 있다",
+    "원자 그룹이나 소유 수량자로 역추적 지점을 없애면 일치 결과도 달라질 수 있다는 근거로 패턴 수정안을 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.algo.big-o-estimate",
+    "be.python.regex"
+   ],
+   "related": [
+    "cs.algo.algorithmic-complexity-attack",
+    "be.security.input-output"
+   ],
+   "aliases": [
+    "ReDoS",
+    "정규식 서비스 거부",
+    "regex denial of service",
+    "정규식 DoS"
+   ],
+   "refs": [
+    "https://community.owasp.org/attacks/Regular_expression_Denial_of_Service_-_ReDoS",
+    "https://docs.rs/regex/latest/regex/",
+    "https://docs.python.org/3/library/re.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.wall-vs-monotonic-clock",
+   "title": "경과 시간 재기: 벽시계와 단조 시계",
+   "en": "Measuring Elapsed Time: Wall Clock vs Monotonic Clock",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "시스템 시각 조정으로 뒤로 갈 수도 있는 벽시계와 뒤로 가지 않는 단조 시계를 구분해 시간 초과와 소요 시간을 바르게 재는 법이다.",
+   "objectives": [
+    "시스템 시각이 바뀐 뒤 시간 초과가 엉뚱하게 나거나 소요 시간이 음수로 찍히는 원인을 벽시계로 간격을 잰 코드에서 찾을 수 있다",
+    "기록에 남길 시각에는 벽시계를, 간격과 시간 초과에는 기준점이 정해지지 않은 단조 시계를 고르는 근거를 말할 수 있다",
+    "절전 중 흐른 시간을 셀지에 따라 CLOCK_MONOTONIC과 CLOCK_BOOTTIME 중 무엇을 쓸지 고를 수 있다",
+    "경과 시간과 CPU 시간이 크게 다른 측정을 보고 느림이 대기 때문인지 계산 때문인지 원인을 가를 수 있다"
+   ],
+   "prerequisites": [
+    "cs.net.clock-sync"
+   ],
+   "aliases": [
+    "벽시계와 단조 시계",
+    "wall clock vs monotonic clock",
+    "시간 초과 계산",
+    "timeout clock"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man2/clock_gettime.2.html",
+    "https://docs.python.org/3/library/time.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.connection-errors",
+   "title": "연결 실패 원인 가르기: 거부·시간 초과·재설정",
+   "en": "Diagnosing TCP Connection Failures: Refused, Timed Out, Reset",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "네트워크",
+   "summary": "ECONNREFUSED·ETIMEDOUT·ECONNRESET이 TCP의 어떤 상황에서 생기는지 알고 서버가 안 떠 있는지, 답이 없는지, 끊었는지 가려낸다.",
+   "objectives": [
+    "연결 거부가 상대 주소에 수신 중인 소켓이 없어 재설정 응답이 돌아온 경우라는 근거로 서버 프로세스와 수신 주소·포트부터 확인할 수 있다",
+    "연결 시간 초과는 거부와 달리 응답이 오지 않거나 서버가 새 연결을 받지 못할 만큼 바쁠 때 생긴다는 점으로 원인 범위를 좁힐 수 있다",
+    "이미 맺은 연결에서 재설정이 나면 상대 쪽이 연결을 중단한 것이라는 근거로 상대의 로그와 시간 제한 설정을 살필 수 있다",
+    "임시 포트 범위가 바닥나 생기는 EADDRNOTAVAIL을 상대 쪽 문제인 다른 연결 오류와 구분할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.net.tcp-vs-udp"
+   ],
+   "related": [
+    "be.integrate.http-client",
+    "ops.network.ss-listening"
+   ],
+   "aliases": [
+    "소켓 연결 오류",
+    "socket connection error",
+    "connect 오류",
+    "TCP 연결 실패"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man2/connect.2.html",
+    "https://man7.org/linux/man-pages/man3/errno.3.html",
+    "https://www.rfc-editor.org/rfc/rfc9293"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dsa.hash-randomization",
+   "title": "해시 무작위화",
+   "en": "Hash Randomization",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "자료구조",
+   "summary": "문자열·바이트의 해시값에 실행마다 바뀌는 무작위 값을 섞어 공격자가 충돌하는 키를 미리 만들지 못하게 하는 방어다.",
+   "parent": "cs.dsa.hash-flooding",
+   "aliases": [
+    "해시 시드 무작위화",
+    "hash seed randomization",
+    "PYTHONHASHSEED",
+    "파이썬 해시 시드"
+   ],
+   "refs": [
+    "https://docs.python.org/3/using/cmdline.html#envvar-PYTHONHASHSEED"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.algo.algorithmic-complexity-attack",
+   "title": "알고리즘 복잡도 공격",
+   "en": "Algorithmic Complexity Attack",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "알고리즘과 복잡도",
+   "summary": "자료구조나 알고리즘이 최악의 경우에 느려지는 입력을 골라 보내 적은 대역폭으로 서버 CPU를 소진시키는 서비스 거부 공격이다.",
+   "parent": "cs.dsa.hash-flooding",
+   "related": [
+    "cs.algo.redos"
+   ],
+   "aliases": [
+    "복잡도 공격",
+    "complexity attack",
+    "최악 입력 공격",
+    "알고리즘 DoS"
+   ],
+   "refs": [
+    "https://ocert.org/advisories/ocert-2011-003.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.algo.catastrophic-backtracking",
+   "title": "정규식 역추적 폭발",
+   "en": "Catastrophic Backtracking",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "알고리즘과 복잡도",
+   "summary": "일치에 실패한 정규식 엔진이 되돌아가 다른 경로를 시도하는 횟수가 입력 길이에 따라 지수적으로 늘어나 멈춘 듯 느려지는 현상이다.",
+   "parent": "cs.algo.redos",
+   "aliases": [
+    "지수 시간 역추적",
+    "exponential backtracking",
+    "정규식 백트래킹 폭발",
+    "regex backtracking blowup"
+   ],
+   "refs": [
+    "https://community.owasp.org/attacks/Regular_expression_Denial_of_Service_-_ReDoS"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.monotonic-clock",
+   "title": "단조 시계",
+   "en": "Monotonic Clock",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "시스템 시각을 바꿔도 뒤로 가지 않는 시계로, 기준점이 정해져 있지 않아 두 값의 차이로 간격을 잴 때만 쓴다.",
+   "parent": "cs.os.wall-vs-monotonic-clock",
+   "related": [
+    "cs.os.wall-clock-time"
+   ],
+   "aliases": [
+    "CLOCK_MONOTONIC",
+    "time.monotonic",
+    "monotonic time",
+    "단조 증가 시계"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man2/clock_gettime.2.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.wall-clock-time",
+   "title": "벽시계 시각(CLOCK_REALTIME)",
+   "en": "Wall-Clock Time (CLOCK_REALTIME)",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "에포크부터 센 실제 시각을 주는 시계로, 관리자나 시간 동기화가 시각을 바꾸면 앞뒤로 건너뛸 수 있다.",
+   "parent": "cs.os.wall-vs-monotonic-clock",
+   "related": [
+    "cs.os.monotonic-clock"
+   ],
+   "aliases": [
+    "wall-clock time",
+    "벽시계 시간",
+    "시스템 시각",
+    "CLOCK_REALTIME"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man2/clock_gettime.2.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.connection-refused",
+   "title": "연결 거부(ECONNREFUSED)",
+   "en": "Connection Refused (ECONNREFUSED)",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "네트워크",
+   "summary": "연결하려는 주소와 포트에 수신 중인 소켓이 없어 상대가 재설정으로 답했을 때 connect가 돌려주는 오류다.",
+   "parent": "cs.net.connection-errors",
+   "related": [
+    "cs.net.tcp-reset"
+   ],
+   "aliases": [
+    "connection refused",
+    "연결이 거부됨",
+    "Connection refused 오류"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man2/connect.2.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.tcp-reset",
+   "title": "TCP 재설정(RST)과 ECONNRESET",
+   "en": "TCP Reset (RST) and ECONNRESET",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "네트워크",
+   "summary": "연결이 없거나 한쪽이 연결을 중단할 때 보내는 TCP 재설정 세그먼트로, 받은 쪽은 연결을 바로 닫고 응용에 재설정 오류를 알린다.",
+   "parent": "cs.net.connection-errors",
+   "related": [
+    "cs.net.connection-refused",
+    "cs.net.three-way-handshake"
+   ],
+   "aliases": [
+    "TCP RST",
+    "RST 세그먼트",
+    "connection reset by peer",
+    "연결 재설정"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9293"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.algo.atomic-group-possessive",
+   "title": "원자 그룹과 소유 수량자",
+   "en": "Atomic Groups and Possessive Quantifiers",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "알고리즘과 복잡도",
+   "summary": "한 번 일치한 부분으로는 되돌아가지 않게 역추적 지점을 버리는 정규식 문법으로, 역추적 폭발을 줄이지만 일치 결과가 바뀔 수 있다.",
+   "parent": "cs.algo.redos",
+   "aliases": [
+    "atomic group",
+    "possessive quantifier",
+    "원자적 그룹",
+    "소유 수량자"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/re.html"
    ],
    "domain": "cs"
   },
@@ -50998,6 +51317,83 @@
    "domain": "llm"
   },
   {
+   "id": "llm.api.model-migration",
+   "title": "모델 은퇴와 API 버전 이전 대응",
+   "en": "Migrating Through Model Retirements and API Versions",
+   "kind": "topic",
+   "level": 4,
+   "importance": 1,
+   "group": "LLM API",
+   "summary": "쓰던 모델이 은퇴하거나 API 버전이 바뀔 때 영향받는 호출을 찾고, 대체 모델과 새 버전을 미리 시험해 장애 없이 옮기는 운영 절차다.",
+   "objectives": [
+    "은퇴한 모델 호출과 새 API 버전에서 빠진 매개변수 때문에 나는 오류를 구분해 원인을 찾을 수 있다",
+    "사용량 내보내기로 아직 지원 종료 예정 모델을 부르는 키와 기능을 찾아 이전 순서를 정할 수 있다",
+    "은퇴일 전에 대체 모델을 평가해 바로 바꿀지 스냅샷을 유지할지 근거를 들어 고를 수 있다",
+    "SDK 메이저 버전 올리기와 코드 수정을 한 번에 배포해야 하는 이유를 설명하고 배포 계획을 세울 수 있다"
+   ],
+   "prerequisites": [
+    "llm.api.model-ids"
+   ],
+   "related": [
+    "llm.api.model-snapshot",
+    "llm.api.model-lifecycle",
+    "llm.api.anthropic-version-header",
+    "mlops.eval.llm-regression"
+   ],
+   "aliases": [
+    "모델 이전",
+    "model migration",
+    "모델 교체 계획",
+    "Claude API 버전 업그레이드",
+    "은퇴 모델 대응"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/about-claude/model-deprecations",
+    "https://platform.claude.com/docs/en/api/versioning",
+    "https://platform.claude.com/docs/en/api/migration-2026-10-21"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.tools.tool-loop-stop-handling",
+   "title": "도구 호출 루프의 멈춤 원인 진단",
+   "en": "Diagnosing Stops in Tool-Use Loops",
+   "kind": "topic",
+   "level": 4,
+   "importance": 1,
+   "group": "도구 호출",
+   "summary": "도구 호출 루프가 빈 답·잘린 도구 입력·서버 도구 일시 중지로 멈출 때 stop_reason과 마지막 블록을 보고 원인을 찾아 이어 가는 방법이다.",
+   "objectives": [
+    "성공 응답의 stop_reason과 4xx·5xx 오류를 구분해 어느 쪽 처리 코드가 맡아야 하는지 고를 수 있다",
+    "tool_result 뒤에 글을 덧붙여 생기는 빈 end_turn 응답의 원인을 찾아 메시지 구성을 고칠 수 있다",
+    "max_tokens로 잘린 tool_use와 pause_turn을 구분해 각각 한도를 올릴지 같은 내용으로 다시 보낼지 고를 수 있다",
+    "거절로 멈춘 턴을 다른 모델로 넘길지 판단하는 기준을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.tools.function-calling"
+   ],
+   "related": [
+    "llm.api.stop-reason",
+    "llm.api.refusal-response",
+    "rag.agent.reliability"
+   ],
+   "aliases": [
+    "도구 루프 디버깅",
+    "tool use loop debugging",
+    "에이전트 루프 멈춤",
+    "stop reason handling",
+    "도구 호출 루프 오류"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
    "id": "llm.internals.prompt-caching",
    "title": "프롬프트 캐싱과 비용 구조",
    "en": "Prompt Caching and Cost Structure",
@@ -51024,6 +51420,81 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-04",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.latency-design",
+   "title": "LLM 기능의 응답 지연 줄이기 설계",
+   "en": "Designing LLM Features for Lower Latency",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "모델 크기·입출력 토큰 수·요청 횟수·스트리밍 중 어디서 시간이 새는지 찾아, 품질을 지키며 지연을 줄일 방법을 고르는 설계다.",
+   "objectives": [
+    "느린 응답의 원인이 모델 선택·긴 입력·긴 출력·연속 호출 중 어디에 있는지 측정값으로 찾을 수 있다",
+    "작은 모델과 낮은 effort, 출력 길이 줄이기, 요청 합치기와 병렬화 중에서 기능에 맞는 방법을 근거를 들어 고를 수 있다",
+    "전체 시간과 첫 토큰까지 시간을 구분해 스트리밍이 실제 지연을 줄이는지 체감만 줄이는지 판단할 수 있다",
+    "max_tokens를 낮춰 지연을 줄일 때 답이 잘리는 손익을 따져 값을 정할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.model-selection"
+   ],
+   "related": [
+    "llm.basics.response-latency",
+    "llm.internals.ttft-tpot",
+    "llm.internals.prompt-caching",
+    "llm.api.response-streaming"
+   ],
+   "aliases": [
+    "LLM 지연 최적화",
+    "LLM latency optimization",
+    "LLM 응답 속도 개선",
+    "LLM 지연 설계"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-latency",
+    "https://developers.openai.com/api/docs/guides/latency-optimization"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.security.data-residency-retention",
+   "title": "LLM API 데이터 처리 위치와 보존 정책 고르기",
+   "en": "Choosing Data Residency and Retention for LLM APIs",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 보안",
+   "summary": "추론이 도는 지역과 프롬프트·응답의 보존 기간을 요청·작업 공간·조직 단위로 정해, 규정 요구와 비용·가용성의 손익을 맞추는 설계다.",
+   "objectives": [
+    "추론 지역 지정과 작업 공간 저장 지역이 각각 무엇을 통제하는지 구분해 요구 사항에 맞는 설정을 고를 수 있다",
+    "미국 내 추론을 고를 때 늘어나는 비용과 줄어드는 가용성을 근거로 들어 판단할 수 있다",
+    "무보존(ZDR) 조직에서 특정 기능이나 30일 보존 필수 모델을 쓰면 보존 범위가 어떻게 바뀌는지 설명할 수 있다",
+    "inference_geo나 보존 설정 때문에 나는 400 오류의 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "llm.api.errors-rate-limits"
+   ],
+   "related": [
+    "ax.coding.zero-data-retention",
+    "llm.security.prompt-injection"
+   ],
+   "aliases": [
+    "데이터 레지던시",
+    "data residency",
+    "추론 지역 선택",
+    "LLM 데이터 보존 정책",
+    "API data retention"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/manage-claude/data-residency",
+    "https://platform.claude.com/docs/en/manage-claude/api-and-data-retention"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "llm"
   },
   {
@@ -51122,6 +51593,107 @@
    "domain": "llm"
   },
   {
+   "id": "llm.api.sampling-params-removal",
+   "title": "temperature·top_p·top_k 제거",
+   "en": "Removal of Sampling Parameters in API 2026-10-21",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "Claude API 2026-10-21 버전부터 temperature·top_p·top_k를 보내면 기본값이어도 400이 나므로, 빼거나 그 값이 꼭 필요한 요청만 2023-06-01 버전에 남긴다.",
+   "parent": "llm.api.model-migration",
+   "related": [
+    "llm.internals.temperature"
+   ],
+   "aliases": [
+    "샘플링 매개변수 제거",
+    "sampling parameters removed",
+    "temperature 400 오류",
+    "temperature 제거"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/api/migration-2026-10-21",
+    "https://platform.claude.com/docs/en/about-claude/model-deprecations"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.inference-geo",
+   "title": "inference_geo(추론 지역 지정)",
+   "en": "inference_geo Request Parameter",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 보안",
+   "summary": "Claude 요청마다 추론을 미국에서만 돌릴지 전 세계 어디서나 돌릴지 정하는 값으로, 미국만 고르면 요금이 1.1배가 되고 응답 usage에 실제 지역이 찍힌다.",
+   "parent": "llm.security.data-residency-retention",
+   "aliases": [
+    "inference_geo",
+    "추론 지역",
+    "US-only inference",
+    "미국 내 추론"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/manage-claude/data-residency"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.tools.pause-turn",
+   "title": "pause_turn(서버 도구 턴 일시 중지)",
+   "en": "pause_turn Stop Reason",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "도구 호출",
+   "summary": "서버 도구 반복이 한도에 닿아 턴이 잠시 멈췄다는 종료 사유로, 받은 assistant 내용과 컨테이너 ID를 그대로 붙여 다시 보내면 이어진다.",
+   "parent": "llm.tools.tool-loop-stop-handling",
+   "related": [
+    "llm.tools.web-search-tool",
+    "llm.tools.code-execution-tool"
+   ],
+   "aliases": [
+    "pause_turn",
+    "서버 도구 일시 중지",
+    "server tool pause",
+    "턴 일시 중지"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.tools.truncated-tool-use",
+   "title": "잘린 tool_use 블록",
+   "en": "Truncated tool_use Block",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "도구 호출",
+   "summary": "max_tokens에 걸려 도구 입력이 끝나지 않은 채 끊긴 tool_use 블록으로, 입력을 쓸 수 없으니 한도를 올려 같은 요청을 다시 보낸다.",
+   "parent": "llm.tools.tool-loop-stop-handling",
+   "related": [
+    "llm.internals.max-tokens"
+   ],
+   "aliases": [
+    "잘린 도구 호출",
+    "truncated tool call",
+    "불완전한 tool_use",
+    "incomplete tool_use"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons"
+   ],
+   "domain": "llm"
+  },
+  {
    "id": "llm.api.usage-tier",
    "title": "사용 등급(usage tier)",
    "en": "Usage Tier",
@@ -51163,6 +51735,96 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-04",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.usage-export-audit",
+   "title": "모델별 사용량 내보내기 감사",
+   "en": "Auditing Model Usage via Console Export",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM API",
+   "summary": "Claude Console 사용량 화면에서 CSV를 내려받아 API 키·모델별 호출을 보고, 은퇴 예정 모델을 아직 쓰는 곳을 찾는 방법이다.",
+   "parent": "llm.api.model-migration",
+   "aliases": [
+    "Claude 사용량 감사",
+    "Claude Console usage export",
+    "Console 사용량 내보내기",
+    "모델 사용 감사"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/about-claude/model-deprecations"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.workspace-geo-controls",
+   "title": "작업 공간 지역 설정(workspace geo)",
+   "en": "Workspace Geo and Allowed Inference Geos",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 보안",
+   "summary": "Claude 작업 공간 단위로 저장 지역과 허용할 추론 지역·기본 추론 지역을 정하는 설정으로, 저장 지역은 만들 때 정하면 바꿀 수 없다.",
+   "parent": "llm.security.data-residency-retention",
+   "aliases": [
+    "workspace geo",
+    "allowed_inference_geos",
+    "default_inference_geo",
+    "작업 공간 저장 지역"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/manage-claude/data-residency"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.covered-models-retention",
+   "title": "30일 보존이 필요한 모델(Covered Models)",
+   "en": "Covered Models with 30-Day Retention",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 보안",
+   "summary": "Claude Fable 5 계열처럼 30일 데이터 보존을 켜야만 부를 수 있는 모델로, 무보존 조직은 따로 작업 공간에 보존을 켜야 쓸 수 있다.",
+   "parent": "llm.security.data-residency-retention",
+   "aliases": [
+    "Covered Models",
+    "30일 보존 필수 모델",
+    "30-day retention models",
+    "보존 필수 모델"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/manage-claude/api-and-data-retention"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.tools.empty-end-turn",
+   "title": "빈 end_turn 응답",
+   "en": "Empty end_turn Response",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "도구 호출",
+   "summary": "정상 종료로 표시되지만 내용이 거의 없는 응답으로, tool_result 뒤에 글을 덧붙인 메시지가 흔한 원인이라 결과 블록만 따로 보내 고친다.",
+   "parent": "llm.tools.tool-loop-stop-handling",
+   "aliases": [
+    "LLM 빈 응답",
+    "empty model response",
+    "내용 없는 응답",
+    "empty end_turn"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons"
+   ],
    "domain": "llm"
   },
   {
@@ -58121,6 +58783,156 @@
    "domain": "rag"
   },
   {
+   "id": "rag.agent.multi-agent-choice",
+   "title": "멀티 에이전트 구조 고르기: 호출 수·토큰·문맥의 손익",
+   "en": "Choosing a Multi-Agent Pattern: Subagents, Handoffs, Skills and Router",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "서브에이전트·핸드오프·스킬·라우터 가운데 요청 모양에 맞는 구조를 모델 호출 수, 토큰, 문맥 격리를 기준으로 고르는 설계다.",
+   "objectives": [
+    "에이전트 하나에 도구와 프롬프트를 잘 고르는 것으로 충분한지, 여러 에이전트로 나눠야 하는지 근거를 들어 고를 수 있다",
+    "같은 요청이 반복되는 대화와 여러 분야를 한꺼번에 묻는 요청에서 각 패턴의 호출 수와 토큰이 어떻게 달라지는지 따져 구조를 고를 수 있다",
+    "스킬 내용이 대화에 쌓이거나 핸드오프 기록이 길어져 비용이 늘어나는 원인을 찾을 수 있다",
+    "무상태 라우터를 대화형 에이전트의 도구로 감쌀지, 라우터에 대화 기록을 저장할지 근거를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.basics.multi-agent-idea",
+    "rag.agent.subagents",
+    "rag.agent.handoffs",
+    "rag.agent.skills-pattern"
+   ],
+   "related": [
+    "rag.agent.reliability",
+    "rag.agent.orchestrator-worker"
+   ],
+   "aliases": [
+    "멀티 에이전트 패턴 선택",
+    "multi-agent pattern",
+    "멀티 에이전트 구조",
+    "multi-agent architecture",
+    "에이전트 패턴 비교"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/multi-agent",
+    "https://docs.langchain.com/oss/python/langchain/multi-agent/router"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.fault-tolerance-design",
+   "title": "LangGraph 실패 복구 설계: 재실행과 멱등성",
+   "en": "Designing Fault-Tolerant LangGraph Agents: Re-execution and Idempotency",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "재시도·재개 때 노드가 처음부터 다시 돌아 외부 호출이 두 번 나는 것을 막으려고 체크포인트 경계, 멱등성 키, 내구성 모드를 정하는 설계다.",
+   "objectives": [
+    "재시도와 인터럽트 재개가 노드를 처음부터 다시 실행한다는 점에서 결제·메일 같은 외부 호출이 두 번 일어난 원인을 찾을 수 있다",
+    "체크포인트된 상태에서 멱등성 키를 만들어 외부 서비스가 중복 호출을 걸러 내게 설계할 수 있다",
+    "exit·async·sync 내구성 모드 가운데 속도와 크래시 뒤 복구 범위를 따져 맞는 것을 고를 수 있다",
+    "노드 하나에 몰린 여러 작업을 태스크로 나눠 재개할 때 끝난 일을 건너뛰게 할지 근거를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.checkpoint-persistence",
+    "rag.agent.node-config"
+   ],
+   "related": [
+    "be.rest.idempotency-key",
+    "rag.agent.retry-policy"
+   ],
+   "aliases": [
+    "LangGraph 실패 복구",
+    "LangGraph fault tolerance",
+    "노드 재실행",
+    "에이전트 중복 실행",
+    "LangGraph 멱등성"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/fault-tolerance",
+    "https://docs.langchain.com/oss/python/langgraph/checkpointers"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-auth-design",
+   "title": "원격 MCP 서버 인가 설계: 토큰 검증·스코프·문제 찾기",
+   "en": "Designing Authorization for Remote MCP Servers",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "HTTP로 여는 MCP 서버가 자기 앞으로 발급된 토큰만 받고 필요한 만큼의 스코프만 요구하도록 OAuth 흐름을 짜고, 401·403 응답으로 인가 실패의 원인을 찾는 방법이다.",
+   "objectives": [
+    "stdio 서버는 환경 변수 자격 증명, HTTP 서버는 OAuth 인가를 쓰는 까닭을 들어 인가 방식을 고를 수 있다",
+    "클라이언트가 401의 WWW-Authenticate에서 메타데이터를 찾아 인가 서버로 가는 흐름 가운데 어디서 끊겼는지 원인을 찾을 수 있다",
+    "토큰의 대상(audience) 검증을 빠뜨리거나 받은 토큰을 다른 API에 그대로 넘길 때 생기는 위험을 근거로 서버 설계를 고칠 수 있다",
+    "처음에는 최소 스코프만 주고 403 insufficient_scope로 필요한 권한을 더 받게 할지 사용자 경험과 피해 범위를 따져 정할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.mcp-authorization-idea",
+    "rag.agent.mcp-connect",
+    "be.auth.oauth2-social"
+   ],
+   "related": [
+    "ax.security.third-party-mcp-risks",
+    "rag.agent.mcp-protocol"
+   ],
+   "aliases": [
+    "MCP 서버 인가 설계",
+    "MCP OAuth 설계",
+    "MCP 토큰 검증",
+    "MCP 401 오류",
+    "MCP 스코프 설계"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/specification/latest/basic/authorization",
+    "https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.tool-design",
+   "title": "에이전트용 도구 설계: 개수·이름·응답 크기",
+   "en": "Designing Tools for Agents",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "API를 하나씩 감싸지 않고 에이전트가 고르기 쉽고 문맥을 덜 쓰는 도구 묶음을 정해, 이름 접두어·설명·응답 크기를 맞추는 설계다.",
+   "objectives": [
+    "엔드포인트마다 도구를 만들지, 자주 이어 부르는 작업을 도구 하나로 합칠지 근거를 들어 고를 수 있다",
+    "에이전트가 엉뚱한 도구를 고르거나 같은 호출을 되풀이하는 원인을 대화 기록에서 찾아 설명·이름·인자 이름 가운데 무엇을 고칠지 정할 수 있다",
+    "결과가 큰 도구에 페이지 나누기·자르기·간단·자세히 응답을 둬 문맥 낭비를 줄이는 설계를 고를 수 있다",
+    "불투명한 내부 ID 대신 의미 있는 식별자와 고칠 방법을 알려 주는 오류 메시지를 돌려줘야 하는 까닭을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.tools.function-calling",
+    "rag.agent.reliability"
+   ],
+   "related": [
+    "rag.agent.dynamic-tool-selection",
+    "rag.agent.tool-discovery-idea",
+    "ax.security.limit-agent-agency"
+   ],
+   "aliases": [
+    "에이전트 도구 설계",
+    "tool design for agents",
+    "도구 설명 쓰기",
+    "writing tools for agents",
+    "도구 통합 설계"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools",
+    "https://www.anthropic.com/engineering/writing-tools-for-agents"
+   ],
+   "domain": "rag"
+  },
+  {
    "id": "rag.retrieval.reranking",
    "title": "재순위",
    "en": "Reranking",
@@ -58180,6 +58992,29 @@
    "domain": "rag"
   },
   {
+   "id": "rag.agent.mcp-token-passthrough",
+   "title": "MCP 토큰 패스스루(금지된 토큰 전달)",
+   "en": "MCP Token Passthrough Anti-Pattern",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "MCP 서버가 자기 앞으로 발급됐는지 확인하지 않은 토큰을 받아 뒤쪽 API에 그대로 넘기는 금지된 방식으로, 감사 기록과 보안 통제를 우회하게 만든다.",
+   "parent": "rag.agent.mcp-auth-design",
+   "aliases": [
+    "token passthrough",
+    "토큰 패스스루",
+    "토큰 그대로 넘기기",
+    "MCP 토큰 대상 검증"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
    "id": "rag.agent.memory-store",
    "title": "장기 기억 스토어",
    "en": "Memory Store",
@@ -58212,6 +59047,162 @@
     "MCP transport",
     "stdio transport",
     "streamable http"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.router-pattern",
+   "title": "라우터 패턴(멀티 에이전트)",
+   "en": "Router Pattern for Multi-Agent Systems",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "입력을 먼저 분류해 맡을 전문 에이전트를 하나 이상 고르고, Send로 병렬 실행한 결과를 합쳐 답하는 멀티 에이전트 구조다.",
+   "parent": "rag.agent.multi-agent-choice",
+   "related": [
+    "rag.agent.routing",
+    "rag.agent.subagents"
+   ],
+   "aliases": [
+    "라우터 에이전트",
+    "router agent",
+    "멀티 에이전트 라우터",
+    "분류 후 분배"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/multi-agent/router"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.durability-mode",
+   "title": "LangGraph 내구성 모드(exit·async·sync)",
+   "en": "LangGraph Durability Modes",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "체크포인트를 실행이 끝날 때만, 다음 단계와 함께 백그라운드로, 다음 단계 전에 반드시 쓸지 정하는 설정으로 뒤로 갈수록 느리지만 크래시에 강하다.",
+   "parent": "rag.agent.fault-tolerance-design",
+   "aliases": [
+    "LangGraph durability",
+    "LangGraph 내구성 모드",
+    "durability=\"sync\"",
+    "체크포인트 쓰기 시점"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/checkpointers"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.pending-writes",
+   "title": "보류 쓰기(pending writes)",
+   "en": "Pending Writes in LangGraph Checkpoints",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "한 슈퍼스텝에서 다른 노드가 실패해도 이미 끝난 노드의 출력을 따로 저장해 두어, 재개할 때 그 노드를 다시 돌리지 않게 하는 장치다.",
+   "parent": "rag.agent.fault-tolerance-design",
+   "aliases": [
+    "checkpoint pending writes",
+    "LangGraph 보류 쓰기",
+    "슈퍼스텝 중간 저장"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/checkpointers"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.protected-resource-metadata",
+   "title": "보호된 리소스 메타데이터(RFC 9728)",
+   "en": "OAuth 2.0 Protected Resource Metadata",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "MCP 서버가 자기를 지키는 인가 서버 주소와 지원 스코프를 알리는 문서로, 401 응답의 WWW-Authenticate가 그 위치를 가리킨다.",
+   "parent": "rag.agent.mcp-auth-design",
+   "aliases": [
+    "Protected Resource Metadata",
+    "RFC 9728",
+    "oauth-protected-resource",
+    "resource_metadata",
+    "MCP 리소스 메타데이터"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/specification/latest/basic/authorization"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-step-up-authorization",
+   "title": "MCP 스코프 단계 상승 인가(step-up)",
+   "en": "MCP Step-Up Authorization",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "토큰의 스코프가 모자라 403 insufficient_scope를 받으면 클라이언트가 기존 스코프에 필요한 스코프를 더해 다시 인가받는 흐름이다.",
+   "parent": "rag.agent.mcp-auth-design",
+   "aliases": [
+    "MCP step-up authorization",
+    "MCP insufficient_scope",
+    "스코프 상승",
+    "점진적 스코프 요청",
+    "MCP 403 오류"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/specification/latest/basic/authorization"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.tool-namespacing",
+   "title": "도구 이름 접두어(네임스페이싱)",
+   "en": "Tool Name Namespacing",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "github_list_prs·slack_send_message처럼 서비스나 리소스 이름을 도구 이름 앞에 붙여, 도구가 많아져도 에이전트가 헷갈리지 않고 고르게 하는 이름 규칙이다.",
+   "parent": "rag.agent.tool-design",
+   "aliases": [
+    "tool namespacing",
+    "도구 네임스페이스",
+    "도구 이름 규칙",
+    "도구 이름 접두사"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.tool-response-verbosity",
+   "title": "도구 응답 상세도 선택(간단·자세히)",
+   "en": "Concise and Detailed Tool Responses",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "도구에 간단·자세히를 고르는 인자를 두어, 다음 호출에 ID가 필요할 때만 자세한 결과를 받고 평소에는 핵심만 받아 토큰을 아끼게 하는 응답 설계다.",
+   "parent": "rag.agent.tool-design",
+   "aliases": [
+    "concise tool response",
+    "detailed tool response",
+    "도구 응답 크기",
+    "도구 출력 줄이기"
+   ],
+   "refs": [
+    "https://www.anthropic.com/engineering/writing-tools-for-agents"
    ],
    "domain": "rag"
   },
@@ -65234,6 +66225,44 @@
    "domain": "ax"
   },
   {
+   "id": "ax.coding.permission-rule-debugging",
+   "title": "권한 규칙이 기대대로 안 먹힐 때 원인 찾기",
+   "en": "Diagnosing Claude Code Permission Rule Behavior",
+   "kind": "topic",
+   "level": 4,
+   "importance": 1,
+   "group": "AI 네이티브 개발",
+   "summary": "규칙 평가 순서, 설정 파일 간 우선순위, Bash 명령 문자열 매칭, 훅·샌드박스와의 관계를 따져 허용했는데 묻거나 막았는데 실행되는 원인을 찾는다.",
+   "objectives": [
+    "좁은 allow 규칙이 넓은 deny·ask 규칙을 이기지 못하는 이유를 평가 순서로 말할 수 있다",
+    "사용자·프로젝트·관리형 설정에 흩어진 규칙 가운데 어느 것이 결과를 정했는지 찾을 수 있다",
+    "인자를 묶는 Bash 규칙이나 Read deny 규칙이 우회되는 경로를 찾아 샌드박스나 PreToolUse 훅으로 보강할 수 있다",
+    "막아야 할 동작을 규칙·훅·샌드박스 가운데 어디에 둘지 강제력의 차이로 고를 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.permission-rules",
+    "ax.coding.agent-prompt-injection"
+   ],
+   "related": [
+    "ax.coding.hook-gates",
+    "ax.coding.agent-sandbox",
+    "ax.coding.managed-settings"
+   ],
+   "aliases": [
+    "권한 규칙 디버깅",
+    "권한 규칙 안 먹힘",
+    "permission rule precedence",
+    "deny 규칙 우선",
+    "권한 규칙 우회"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/permissions"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
    "id": "ax.coding.subagents-permission-modes",
    "title": "하위 에이전트 병렬 실행과 권한 모드",
    "en": "Parallel Subagents and Permission Modes",
@@ -65307,6 +66336,120 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-04",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.agent-otel-monitoring",
+   "title": "코딩 에이전트 사용 감사: OpenTelemetry 지표와 이벤트",
+   "en": "Auditing Coding Agent Usage with OpenTelemetry",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "Claude Code가 내보내는 지표와 이벤트를 조직의 수집기로 모아 비용·도구 승인·거부를 추적하되, 프롬프트와 명령 내용은 필요할 때만 기록하도록 설계한다.",
+   "objectives": [
+    "비용·토큰 추이를 볼 지표와 도구 승인·거부를 따질 이벤트 가운데 목적에 맞는 신호를 고를 수 있다",
+    "프롬프트·도구 인자·원본 API 본문 기록을 켤지 개인정보와 비밀값 노출 위험을 근거로 정할 수 있다",
+    "관리형 설정으로 전송 대상을 고정해야 하는 이유와 저장소 설정이 할 수 없는 일을 근거로 말할 수 있다",
+    "수집기에 데이터가 오지 않거나 비용 값이 청구액과 다를 때 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.agent-data-usage"
+   ],
+   "related": [
+    "ax.coding.nonessential-traffic-optout",
+    "ax.coding.managed-settings",
+    "ops.observe.telemetry"
+   ],
+   "aliases": [
+    "Claude Code 모니터링",
+    "Claude Code OpenTelemetry",
+    "CLAUDE_CODE_ENABLE_TELEMETRY",
+    "에이전트 사용 감사",
+    "claude_code.cost.usage"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/monitoring-usage"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.copilot-cloud-agent-safeguards",
+   "title": "Copilot 클라우드 에이전트의 보호 장치 설계",
+   "en": "Designing Safeguards for Copilot Cloud Agent",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "Copilot 클라우드 에이전트에 이슈를 맡길 때 브랜치 제한, 사람 리뷰와 워크플로 승인, 방화벽, 자동화의 쓰기 범위를 저장소 위험에 맞게 정한다.",
+   "objectives": [
+    "에이전트가 만든 PR을 누가 승인할 수 있고 왜 요청한 사람은 승인할 수 없는지 근거를 말할 수 있다",
+    "워크플로 자동 실행과 방화벽 해제를 켤지 비밀값 유출 위험과 편의를 저울질해 고를 수 있다",
+    "자동화에 줄 도구와 쓰기 범위를 저장소 전체와 자동화를 일으킨 이슈·PR만 가운데서 고를 수 있다",
+    "에이전트 PR 본문의 차단 경고나 멈춘 워크플로를 보고 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "ax.security.limit-agent-agency",
+    "ax.coding.agent-prompt-injection"
+   ],
+   "related": [
+    "ax.coding.copilot-cloud-agent",
+    "ax.coding.cloud-network-access",
+    "ax.coding.claude-code-action"
+   ],
+   "aliases": [
+    "Copilot 클라우드 에이전트 보안",
+    "Copilot coding agent security",
+    "Copilot 에이전트 위험과 완화",
+    "Copilot cloud agent mitigations"
+   ],
+   "refs": [
+    "https://docs.github.com/en/copilot/concepts/security-governance-and-network-settings/risks-and-mitigations",
+    "https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-the-firewall"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.agent-identity-delegation",
+   "title": "에이전트 신원과 위임 권한 설계",
+   "en": "Agent Identity and Delegated Privilege Design (ASI03)",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "에이전트가 사용자나 상위 에이전트의 권한을 통째로 물려받지 않도록 에이전트별 신원, 작업 범위 단기 자격 증명, 단계별 재확인을 설계해 권한 남용을 막는다.",
+   "objectives": [
+    "상위 에이전트의 자격 증명을 그대로 넘길 때와 작업마다 좁은 토큰을 새로 줄 때의 피해 범위 차이를 근거로 말할 수 있다",
+    "다른 에이전트가 보낸 요청을 믿을지 원래 사용자 의도와 권한으로 다시 확인할지 고를 수 있다",
+    "캐시된 자격 증명이나 이전 작업의 기억이 다음 사용자에게 새는 사고의 원인을 찾을 수 있다",
+    "시작할 때 확인한 승인이 실행 시점에 바뀌어 생기는 권한 어긋남을 찾아 막을 수 있다"
+   ],
+   "prerequisites": [
+    "ax.security.limit-agent-agency",
+    "ax.security.agentic-top10-overview"
+   ],
+   "related": [
+    "llm.security.agent-boundaries",
+    "ax.security.agent-tool-misuse",
+    "rag.agent.mcp-authorization-idea"
+   ],
+   "aliases": [
+    "에이전트 신원 관리",
+    "agent identity",
+    "에이전트 권한 위임",
+    "identity and privilege abuse",
+    "ASI03",
+    "에이전트 권한 상속"
+   ],
+   "refs": [
+    "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "ax"
   },
   {
@@ -65426,6 +66569,147 @@
    "domain": "ax"
   },
   {
+   "id": "ax.coding.otel-content-logging",
+   "title": "원격 측정 내용 기록 스위치(OTEL_LOG_*)",
+   "en": "Claude Code Telemetry Content Logging Flags",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "기본으로 가려지는 프롬프트·응답·도구 인자·원본 API 본문을 원격 측정에 싣도록 하나씩 여는 환경 변수들로, 켜면 비밀값도 함께 나갈 수 있다.",
+   "parent": "ax.coding.agent-otel-monitoring",
+   "related": [
+    "ax.security.sensitive-info-disclosure"
+   ],
+   "aliases": [
+    "OTEL_LOG_USER_PROMPTS",
+    "OTEL_LOG_TOOL_DETAILS",
+    "OTEL_LOG_RAW_API_BODIES",
+    "프롬프트 기록 켜기",
+    "원격 측정 내용 기록"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.copilot-agent-firewall",
+   "title": "Copilot 에이전트 방화벽과 허용 목록",
+   "en": "Copilot Cloud Agent Firewall Allowlist",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "Copilot 클라우드 에이전트가 Bash로 띄운 프로세스의 인터넷 접속을 GitHub와 허용 목록에 있는 도메인·URL로만 제한하는 장치로, MCP 서버와 설정 단계에는 직접 걸리지 않는다.",
+   "parent": "ax.coding.copilot-cloud-agent-safeguards",
+   "related": [
+    "ax.coding.devcontainer-egress-firewall",
+    "ax.coding.sandbox-proxy"
+   ],
+   "aliases": [
+    "Copilot firewall",
+    "Copilot 방화벽",
+    "Copilot 에이전트 허용 목록",
+    "Copilot recommended allowlist"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.agent-confused-deputy",
+   "title": "에이전트 간 혼동된 대리인(confused deputy)",
+   "en": "Cross-Agent Confused Deputy",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "권한이 낮거나 속은 에이전트가 넘긴 그럴듯한 요청을 권한이 높은 에이전트가 원래 사용자 의도를 다시 확인하지 않고 실행해 버리는 권한 남용이다.",
+   "parent": "ax.security.agent-identity-delegation",
+   "related": [
+    "ax.security.agent-goal-hijack"
+   ],
+   "aliases": [
+    "에이전트 혼동된 대리인",
+    "cross-agent trust exploitation",
+    "에이전트 간 신뢰 악용",
+    "에이전트 confused deputy"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.task-scoped-credentials",
+   "title": "작업 범위 단기 자격 증명",
+   "en": "Task-Scoped Short-Lived Agent Credentials",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "에이전트에게 오래가는 넓은 키 대신 한 작업에 필요한 범위와 짧은 유효 기간만 담은 토큰을 발급해 새거나 오용돼도 피해를 좁히는 설계다.",
+   "parent": "ax.security.agent-identity-delegation",
+   "related": [
+    "ax.coding.cloud-network-secret"
+   ],
+   "aliases": [
+    "작업 범위 토큰",
+    "task-scoped token",
+    "에이전트 단기 토큰",
+    "에이전트용 단기 자격 증명"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.bash-rule-matching",
+   "title": "Bash 권한 규칙의 매칭 범위",
+   "en": "Claude Code Bash Permission Rule Matching",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "Bash 규칙은 복합 명령을 나누고 래퍼를 벗긴 명령 글자에만 맞춰 보므로, 같은 프로그램을 경로·sh -c·변수로 부르면 deny 규칙이 놓칠 수 있다.",
+   "parent": "ax.coding.permission-rule-debugging",
+   "related": [
+    "ax.coding.network-command-approval"
+   ],
+   "aliases": [
+    "Bash 규칙 매칭",
+    "복합 명령 권한",
+    "compound command permission",
+    "Bash rule limits",
+    "Bash 규칙 우회"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.file-deny-rule-scope",
+   "title": "Read·Edit deny 규칙이 닿는 범위",
+   "en": "Scope of Claude Code Read and Edit Deny Rules",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "Read·Edit deny 규칙은 내장 파일 도구와 cat·sed 같은 알려진 명령, 리다이렉션 대상에는 걸리지만 스크립트가 직접 여는 파일에는 닿지 않아 OS 수준 차단은 샌드박스가 맡는다.",
+   "parent": "ax.coding.permission-rule-debugging",
+   "related": [
+    "ax.coding.agent-sandbox"
+   ],
+   "aliases": [
+    "Read deny 규칙",
+    "Read(./.env) deny",
+    "파일 deny 규칙 범위",
+    "Edit deny 규칙"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
    "id": "ax.coding.hook-event",
    "title": "훅 이벤트와 매처",
    "en": "Hook Events and Matchers",
@@ -65466,6 +66750,49 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-04",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.tool-decision-event",
+   "title": "도구 결정 이벤트(tool_decision)",
+   "en": "Claude Code tool_decision Telemetry Event",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "에이전트의 도구 호출이 허용됐는지 거부됐는지와 그 결정이 설정·훅·사용자 응답 가운데 어디서 왔는지를 남기는 원격 측정 이벤트로, 자동 모드 분류기의 판정은 따로 적힌다.",
+   "parent": "ax.coding.agent-otel-monitoring",
+   "related": [
+    "ax.coding.hook-decision",
+    "ax.coding.permission-mode"
+   ],
+   "aliases": [
+    "claude_code.tool_decision",
+    "tool_decision 이벤트",
+    "도구 승인 기록",
+    "도구 거부 기록"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.agent-pr-workflow-approval",
+   "title": "에이전트 PR의 워크플로 실행 승인",
+   "en": "Approving Actions Workflows on Agent Pull Requests",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "에이전트가 올린 PR에서 GitHub Actions 워크플로가 바로 돌지 않고 쓰기 권한이 있는 사람이 승인해야 실행되게 하는 장치로, 검토 안 된 코드의 자동 실행과 자동화끼리의 연쇄 실행을 막는다.",
+   "parent": "ax.coding.copilot-cloud-agent-safeguards",
+   "aliases": [
+    "Approve and run workflows",
+    "에이전트 PR 워크플로 승인",
+    "Copilot PR 워크플로 승인"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "ax"
   },
   {
@@ -86373,6 +87700,151 @@
    "domain": "mlops"
   },
   {
+   "id": "mlops.serve.vllm-parallelism",
+   "title": "vLLM 분산 서빙: 텐서 병렬과 파이프라인 병렬 고르기",
+   "en": "Choosing Tensor and Pipeline Parallelism for vLLM Serving",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "모델이 GPU 한 장이나 노드 하나에 안 들어갈 때 텐서 병렬과 파이프라인 병렬의 크기를 GPU·노드 수와 연결 방식에 맞춰 정하는 설계다.",
+   "objectives": [
+    "모델 크기와 GPU·노드 수를 보고 단일 GPU, 텐서 병렬, 텐서·파이프라인 병렬 중 무엇을 쓸지 고를 수 있다",
+    "NVLink가 없는 GPU나 GPU 수가 모델을 고르게 나누지 못할 때 파이프라인 병렬을 고르는 근거를 말할 수 있다",
+    "여러 노드 서빙이 느릴 때 NCCL_DEBUG 출력으로 노드 간 통신이 소켓으로 떨어졌는지 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.serve.vllm-memory-tuning"
+   ],
+   "related": [
+    "mlops.serve.inference-optimization"
+   ],
+   "aliases": [
+    "vLLM 분산 추론",
+    "vLLM distributed serving",
+    "vLLM 멀티 GPU 서빙",
+    "vLLM 멀티 노드 서빙",
+    "vLLM parallelism"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/serving/parallelism_scaling.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.vllm-latency-tuning",
+   "title": "vLLM 지연 진단: 선점과 청크 프리필 조정",
+   "en": "Diagnosing vLLM Latency: Preemption and Chunked Prefill",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "vLLM이 느려질 때 KV 캐시 사용률·선점 횟수·대기 요청 지표로 원인을 좁히고, 메모리 비율과 배치 토큰 예산을 조정해 첫 토큰 지연과 토큰 간 지연을 맞바꾸는 운영법이다.",
+   "objectives": [
+    "KV 캐시 사용률, 선점 횟수, 대기 요청 수 지표를 보고 지연이 KV 캐시 부족에서 오는지 원인을 찾을 수 있다",
+    "선점이 잦을 때 gpu_memory_utilization을 올릴지, max_num_seqs를 낮출지, 병렬 크기를 늘릴지 손익을 따져 고를 수 있다",
+    "max_num_batched_tokens를 낮추거나 높일 때 첫 토큰 지연과 토큰 간 지연이 어떻게 바뀌는지 근거를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.serve.vllm-memory-tuning",
+    "mlops.serve.llm-server-speedups-picture"
+   ],
+   "related": [
+    "llm.internals.ttft-tpot",
+    "llm.internals.kv-cache",
+    "mlops.serve.gpu-memory-utilization"
+   ],
+   "aliases": [
+    "vLLM 지연 튜닝",
+    "vLLM latency tuning",
+    "vLLM 성능 튜닝",
+    "vLLM optimization",
+    "vLLM 운영 지표"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/configuration/optimization.html",
+    "https://docs.vllm.ai/en/latest/usage/metrics.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.kserve-canary-rollout",
+   "title": "KServe로 모델 카나리 출시하고 되돌리기",
+   "en": "Canary Rollout and Rollback with KServe",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "KServe InferenceService에서 새 모델 리비전에 요청 일부만 보내 보고, 지표를 본 뒤 전체로 올리거나 마지막 정상 리비전으로 되돌리는 배포 운영이다.",
+   "objectives": [
+    "canaryTrafficPercent 값으로 새 리비전과 이전 리비전의 요청 몫을 정하고, 올리기와 되돌리기 중 무엇을 할지 고를 수 있다",
+    "새 리비전이 요청을 받지 못하거나 롤백될 때 리비전 상태와 PREV·LATEST 비율을 보고 원인을 찾을 수 있다",
+    "태그 라우팅으로 카나리 리비전만 따로 호출해 확인하는 방식의 쓸모를 근거를 들어 말할 수 있다",
+    "카나리 출시가 서버리스 배포 모드에서만 된다는 제약이 배포 모드 선택에 주는 영향을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.serve.safe-release-picture"
+   ],
+   "related": [
+    "mlops.serve.canary-release",
+    "mlops.serve.traffic-split",
+    "ops.deploy.rollout-basics"
+   ],
+   "aliases": [
+    "KServe 카나리",
+    "KServe canary rollout",
+    "InferenceService 카나리",
+    "KServe 롤백",
+    "KServe rollout strategy"
+   ],
+   "refs": [
+    "https://kserve.github.io/website/docs/model-serving/predictive-inference/rollout-strategies/canary",
+    "https://kserve.github.io/website/docs/model-serving/predictive-inference/rollout-strategies/canary-example"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.kserve-autoscaling",
+   "title": "KServe 모델 서버 자동 확장: 동시성 목표와 콜드 스타트",
+   "en": "Autoscaling KServe Model Servers with Knative",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "KServe에서 동시 요청·초당 요청 같은 지표와 목표값으로 모델 서버 복제본 수를 늘리고 줄이며, 0까지 줄일 때 생기는 콜드 스타트 비용을 따지는 설계다.",
+   "objectives": [
+    "모델 서버의 부하 특성을 보고 scaleMetric으로 concurrency·rps·cpu·memory 중 무엇을 쓸지 고를 수 있다",
+    "scaleTarget은 넘을 수 있는 목표이고 containerConcurrency는 넘지 않는 상한이라는 차이로 요청이 쌓이는 원인을 찾을 수 있다",
+    "minReplicas를 0으로 둘 때 줄어드는 비용과 첫 요청 지연(이미지 받기·모델 불러오기)을 비교해 근거를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.basics.autoscaling-idea"
+   ],
+   "related": [
+    "ops.k8s.horizontal-pod-autoscaler",
+    "mlops.serve.scale-to-zero"
+   ],
+   "aliases": [
+    "KServe 오토스케일링",
+    "KServe autoscaling",
+    "Knative Pod Autoscaler",
+    "KServe KPA",
+    "모델 서버 자동 확장"
+   ],
+   "refs": [
+    "https://kserve.github.io/website/docs/model-serving/predictive-inference/autoscaling/kpa-autoscaler"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
    "id": "mlops.eval.llm-judge",
    "title": "LLM 심판(LLM-as-a-judge)",
    "en": "LLM-as-a-Judge",
@@ -86471,6 +87943,57 @@
    "domain": "mlops"
   },
   {
+   "id": "mlops.serve.tensor-parallelism",
+   "title": "텐서 병렬(--tensor-parallel-size)",
+   "en": "Tensor Parallelism in vLLM",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "한 층의 가중치를 여러 GPU에 쪼개 함께 계산하는 방식으로, 한 노드 안에서 모델이 GPU 한 장을 넘을 때 GPU 수만큼 크기를 정한다.",
+   "parent": "mlops.serve.vllm-parallelism",
+   "related": [
+    "mlops.serve.pipeline-parallelism"
+   ],
+   "aliases": [
+    "텐서 병렬",
+    "tensor parallelism",
+    "tensor_parallel_size",
+    "--tensor-parallel-size",
+    "텐서 병렬화"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/serving/parallelism_scaling.html"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.vllm-preemption",
+   "title": "선점(KV 캐시 부족으로 요청 미루기)",
+   "en": "Request Preemption in vLLM",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "KV 캐시 자리가 모자라 일부 요청을 잠시 빼 두었다가 자리가 나면 다시 계산하는 vLLM 동작으로, 잦으면 지연이 늘어난다.",
+   "parent": "mlops.serve.vllm-latency-tuning",
+   "related": [
+    "llm.internals.kv-cache"
+   ],
+   "aliases": [
+    "vLLM 선점",
+    "vLLM preemption",
+    "요청 선점",
+    "PreemptionMode.RECOMPUTE",
+    "num_preemptions"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/configuration/optimization.html",
+    "https://docs.vllm.ai/en/latest/usage/metrics.html"
+   ],
+   "domain": "mlops"
+  },
+  {
    "id": "mlops.prompt.alias",
    "title": "프롬프트 별칭",
    "en": "Prompt Alias",
@@ -86484,6 +88007,150 @@
     "프롬프트 별칭",
     "prompt alias",
     "@production"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.pipeline-parallelism",
+   "title": "파이프라인 병렬(--pipeline-parallel-size)",
+   "en": "Pipeline Parallelism in vLLM",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "모델의 층을 몇 단계로 나눠 GPU나 노드마다 맡기는 방식으로, 보통 노드 수만큼 단계를 두고 노드 안은 텐서 병렬과 함께 쓴다.",
+   "parent": "mlops.serve.vllm-parallelism",
+   "related": [
+    "mlops.serve.tensor-parallelism"
+   ],
+   "aliases": [
+    "파이프라인 병렬",
+    "pipeline parallelism",
+    "pipeline_parallel_size",
+    "--pipeline-parallel-size",
+    "파이프라인 병렬화"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/serving/parallelism_scaling.html"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.chunked-prefill",
+   "title": "청크 프리필과 배치 토큰 예산(max_num_batched_tokens)",
+   "en": "Chunked Prefill and max_num_batched_tokens",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "긴 프롬프트의 프리필을 토큰 예산 크기로 잘라 디코드 요청과 함께 처리하는 방식으로, 예산이 작으면 토큰 간 지연이, 크면 첫 토큰 지연이 좋아진다.",
+   "parent": "mlops.serve.vllm-latency-tuning",
+   "related": [
+    "llm.internals.ttft-tpot",
+    "mlops.serve.continuous-batching"
+   ],
+   "aliases": [
+    "청크 프리필",
+    "chunked prefill",
+    "max_num_batched_tokens",
+    "--max-num-batched-tokens",
+    "프리필 쪼개기"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/configuration/optimization.html"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.canary-traffic-percent",
+   "title": "canaryTrafficPercent(KServe 카나리 비율)",
+   "en": "KServe canaryTrafficPercent",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "KServe에서 새 리비전에 보낼 요청 비율을 정하는 칸으로, 빼면 새 리비전이 전부를 받고 0으로 두면 이전 리비전으로 돌아간다.",
+   "parent": "mlops.serve.kserve-canary-rollout",
+   "related": [
+    "mlops.serve.traffic-split"
+   ],
+   "aliases": [
+    "canaryTrafficPercent",
+    "KServe 카나리 비율",
+    "KServe canary traffic percent",
+    "카나리 트래픽 비율"
+   ],
+   "refs": [
+    "https://kserve.github.io/website/docs/model-serving/predictive-inference/rollout-strategies/canary",
+    "https://kserve.github.io/website/docs/model-serving/predictive-inference/rollout-strategies/canary-example"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.kserve-tag-routing",
+   "title": "KServe 태그 라우팅(latest-·prev- 주소)",
+   "en": "KServe Tag-Based Routing",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "InferenceService에 태그 라우팅을 켜면 latest-·prev- 접두사가 붙은 주소로 카나리 리비전이나 이전 리비전만 골라 호출할 수 있다.",
+   "parent": "mlops.serve.kserve-canary-rollout",
+   "aliases": [
+    "KServe 태그 라우팅",
+    "KServe tag routing",
+    "enable-tag-routing",
+    "serving.kserve.io/enable-tag-routing"
+   ],
+   "refs": [
+    "https://kserve.github.io/website/docs/model-serving/predictive-inference/rollout-strategies/canary-example"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.container-concurrency",
+   "title": "containerConcurrency와 scaleTarget",
+   "en": "KServe containerConcurrency vs scaleTarget",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "containerConcurrency는 복제본 하나가 동시에 받는 요청의 상한이고, scaleTarget은 자동 확장이 맞추려는 목표값이라 순간적으로 넘을 수 있다.",
+   "parent": "mlops.serve.kserve-autoscaling",
+   "aliases": [
+    "containerConcurrency",
+    "scaleTarget",
+    "KServe 동시성 한도",
+    "autoscaling.knative.dev/target",
+    "복제본당 동시 요청 상한"
+   ],
+   "refs": [
+    "https://kserve.github.io/website/docs/model-serving/predictive-inference/autoscaling/kpa-autoscaler"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.model-cold-start",
+   "title": "모델 서버 콜드 스타트",
+   "en": "Model Server Cold Start",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "복제본이 0에서 다시 뜰 때 파드 생성, 서빙 이미지 받기, 모델 불러오기를 기다리느라 첫 요청이 느려지는 현상이다.",
+   "parent": "mlops.serve.kserve-autoscaling",
+   "related": [
+    "mlops.serve.scale-to-zero"
+   ],
+   "aliases": [
+    "모델 콜드 스타트",
+    "model cold start",
+    "서빙 콜드 스타트",
+    "inference cold start",
+    "추론 서버 콜드 스타트"
+   ],
+   "refs": [
+    "https://kserve.github.io/website/docs/model-serving/predictive-inference/autoscaling/kpa-autoscaler"
    ],
    "domain": "mlops"
   },

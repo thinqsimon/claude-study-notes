@@ -6709,6 +6709,147 @@
     ]
   },
   {
+    "id": "mlops.serve.vllm-parallelism",
+    "title": "vLLM 분산 서빙: 텐서 병렬과 파이프라인 병렬 고르기",
+    "en": "Choosing Tensor and Pipeline Parallelism for vLLM Serving",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "모델이 GPU 한 장이나 노드 하나에 안 들어갈 때 텐서 병렬과 파이프라인 병렬의 크기를 GPU·노드 수와 연결 방식에 맞춰 정하는 설계다.",
+    "objectives": [
+      "모델 크기와 GPU·노드 수를 보고 단일 GPU, 텐서 병렬, 텐서·파이프라인 병렬 중 무엇을 쓸지 고를 수 있다",
+      "NVLink가 없는 GPU나 GPU 수가 모델을 고르게 나누지 못할 때 파이프라인 병렬을 고르는 근거를 말할 수 있다",
+      "여러 노드 서빙이 느릴 때 NCCL_DEBUG 출력으로 노드 간 통신이 소켓으로 떨어졌는지 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.vllm-memory-tuning"
+    ],
+    "related": [
+      "mlops.serve.inference-optimization"
+    ],
+    "aliases": [
+      "vLLM 분산 추론",
+      "vLLM distributed serving",
+      "vLLM 멀티 GPU 서빙",
+      "vLLM 멀티 노드 서빙",
+      "vLLM parallelism"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/serving/parallelism_scaling.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.vllm-latency-tuning",
+    "title": "vLLM 지연 진단: 선점과 청크 프리필 조정",
+    "en": "Diagnosing vLLM Latency: Preemption and Chunked Prefill",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "vLLM이 느려질 때 KV 캐시 사용률·선점 횟수·대기 요청 지표로 원인을 좁히고, 메모리 비율과 배치 토큰 예산을 조정해 첫 토큰 지연과 토큰 간 지연을 맞바꾸는 운영법이다.",
+    "objectives": [
+      "KV 캐시 사용률, 선점 횟수, 대기 요청 수 지표를 보고 지연이 KV 캐시 부족에서 오는지 원인을 찾을 수 있다",
+      "선점이 잦을 때 gpu_memory_utilization을 올릴지, max_num_seqs를 낮출지, 병렬 크기를 늘릴지 손익을 따져 고를 수 있다",
+      "max_num_batched_tokens를 낮추거나 높일 때 첫 토큰 지연과 토큰 간 지연이 어떻게 바뀌는지 근거를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.vllm-memory-tuning",
+      "mlops.serve.llm-server-speedups-picture"
+    ],
+    "related": [
+      "llm.internals.ttft-tpot",
+      "llm.internals.kv-cache",
+      "mlops.serve.gpu-memory-utilization"
+    ],
+    "aliases": [
+      "vLLM 지연 튜닝",
+      "vLLM latency tuning",
+      "vLLM 성능 튜닝",
+      "vLLM optimization",
+      "vLLM 운영 지표"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/configuration/optimization.html",
+      "https://docs.vllm.ai/en/latest/usage/metrics.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.kserve-canary-rollout",
+    "title": "KServe로 모델 카나리 출시하고 되돌리기",
+    "en": "Canary Rollout and Rollback with KServe",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "KServe InferenceService에서 새 모델 리비전에 요청 일부만 보내 보고, 지표를 본 뒤 전체로 올리거나 마지막 정상 리비전으로 되돌리는 배포 운영이다.",
+    "objectives": [
+      "canaryTrafficPercent 값으로 새 리비전과 이전 리비전의 요청 몫을 정하고, 올리기와 되돌리기 중 무엇을 할지 고를 수 있다",
+      "새 리비전이 요청을 받지 못하거나 롤백될 때 리비전 상태와 PREV·LATEST 비율을 보고 원인을 찾을 수 있다",
+      "태그 라우팅으로 카나리 리비전만 따로 호출해 확인하는 방식의 쓸모를 근거를 들어 말할 수 있다",
+      "카나리 출시가 서버리스 배포 모드에서만 된다는 제약이 배포 모드 선택에 주는 영향을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.safe-release-picture"
+    ],
+    "related": [
+      "mlops.serve.canary-release",
+      "mlops.serve.traffic-split",
+      "ops.deploy.rollout-basics"
+    ],
+    "aliases": [
+      "KServe 카나리",
+      "KServe canary rollout",
+      "InferenceService 카나리",
+      "KServe 롤백",
+      "KServe rollout strategy"
+    ],
+    "refs": [
+      "https://kserve.github.io/website/docs/model-serving/predictive-inference/rollout-strategies/canary",
+      "https://kserve.github.io/website/docs/model-serving/predictive-inference/rollout-strategies/canary-example"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.kserve-autoscaling",
+    "title": "KServe 모델 서버 자동 확장: 동시성 목표와 콜드 스타트",
+    "en": "Autoscaling KServe Model Servers with Knative",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "KServe에서 동시 요청·초당 요청 같은 지표와 목표값으로 모델 서버 복제본 수를 늘리고 줄이며, 0까지 줄일 때 생기는 콜드 스타트 비용을 따지는 설계다.",
+    "objectives": [
+      "모델 서버의 부하 특성을 보고 scaleMetric으로 concurrency·rps·cpu·memory 중 무엇을 쓸지 고를 수 있다",
+      "scaleTarget은 넘을 수 있는 목표이고 containerConcurrency는 넘지 않는 상한이라는 차이로 요청이 쌓이는 원인을 찾을 수 있다",
+      "minReplicas를 0으로 둘 때 줄어드는 비용과 첫 요청 지연(이미지 받기·모델 불러오기)을 비교해 근거를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.basics.autoscaling-idea"
+    ],
+    "related": [
+      "ops.k8s.horizontal-pod-autoscaler",
+      "mlops.serve.scale-to-zero"
+    ],
+    "aliases": [
+      "KServe 오토스케일링",
+      "KServe autoscaling",
+      "Knative Pod Autoscaler",
+      "KServe KPA",
+      "모델 서버 자동 확장"
+    ],
+    "refs": [
+      "https://kserve.github.io/website/docs/model-serving/predictive-inference/autoscaling/kpa-autoscaler"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "mlops.eval.llm-judge",
     "title": "LLM 심판(LLM-as-a-judge)",
     "en": "LLM-as-a-Judge",
@@ -6803,6 +6944,55 @@
     ]
   },
   {
+    "id": "mlops.serve.tensor-parallelism",
+    "title": "텐서 병렬(--tensor-parallel-size)",
+    "en": "Tensor Parallelism in vLLM",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "한 층의 가중치를 여러 GPU에 쪼개 함께 계산하는 방식으로, 한 노드 안에서 모델이 GPU 한 장을 넘을 때 GPU 수만큼 크기를 정한다.",
+    "parent": "mlops.serve.vllm-parallelism",
+    "related": [
+      "mlops.serve.pipeline-parallelism"
+    ],
+    "aliases": [
+      "텐서 병렬",
+      "tensor parallelism",
+      "tensor_parallel_size",
+      "--tensor-parallel-size",
+      "텐서 병렬화"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/serving/parallelism_scaling.html"
+    ]
+  },
+  {
+    "id": "mlops.serve.vllm-preemption",
+    "title": "선점(KV 캐시 부족으로 요청 미루기)",
+    "en": "Request Preemption in vLLM",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "KV 캐시 자리가 모자라 일부 요청을 잠시 빼 두었다가 자리가 나면 다시 계산하는 vLLM 동작으로, 잦으면 지연이 늘어난다.",
+    "parent": "mlops.serve.vllm-latency-tuning",
+    "related": [
+      "llm.internals.kv-cache"
+    ],
+    "aliases": [
+      "vLLM 선점",
+      "vLLM preemption",
+      "요청 선점",
+      "PreemptionMode.RECOMPUTE",
+      "num_preemptions"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/configuration/optimization.html",
+      "https://docs.vllm.ai/en/latest/usage/metrics.html"
+    ]
+  },
+  {
     "id": "mlops.prompt.alias",
     "title": "프롬프트 별칭",
     "en": "Prompt Alias",
@@ -6816,6 +7006,144 @@
       "프롬프트 별칭",
       "prompt alias",
       "@production"
+    ]
+  },
+  {
+    "id": "mlops.serve.pipeline-parallelism",
+    "title": "파이프라인 병렬(--pipeline-parallel-size)",
+    "en": "Pipeline Parallelism in vLLM",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "모델의 층을 몇 단계로 나눠 GPU나 노드마다 맡기는 방식으로, 보통 노드 수만큼 단계를 두고 노드 안은 텐서 병렬과 함께 쓴다.",
+    "parent": "mlops.serve.vllm-parallelism",
+    "related": [
+      "mlops.serve.tensor-parallelism"
+    ],
+    "aliases": [
+      "파이프라인 병렬",
+      "pipeline parallelism",
+      "pipeline_parallel_size",
+      "--pipeline-parallel-size",
+      "파이프라인 병렬화"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/serving/parallelism_scaling.html"
+    ]
+  },
+  {
+    "id": "mlops.serve.chunked-prefill",
+    "title": "청크 프리필과 배치 토큰 예산(max_num_batched_tokens)",
+    "en": "Chunked Prefill and max_num_batched_tokens",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "긴 프롬프트의 프리필을 토큰 예산 크기로 잘라 디코드 요청과 함께 처리하는 방식으로, 예산이 작으면 토큰 간 지연이, 크면 첫 토큰 지연이 좋아진다.",
+    "parent": "mlops.serve.vllm-latency-tuning",
+    "related": [
+      "llm.internals.ttft-tpot",
+      "mlops.serve.continuous-batching"
+    ],
+    "aliases": [
+      "청크 프리필",
+      "chunked prefill",
+      "max_num_batched_tokens",
+      "--max-num-batched-tokens",
+      "프리필 쪼개기"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/configuration/optimization.html"
+    ]
+  },
+  {
+    "id": "mlops.serve.canary-traffic-percent",
+    "title": "canaryTrafficPercent(KServe 카나리 비율)",
+    "en": "KServe canaryTrafficPercent",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "KServe에서 새 리비전에 보낼 요청 비율을 정하는 칸으로, 빼면 새 리비전이 전부를 받고 0으로 두면 이전 리비전으로 돌아간다.",
+    "parent": "mlops.serve.kserve-canary-rollout",
+    "related": [
+      "mlops.serve.traffic-split"
+    ],
+    "aliases": [
+      "canaryTrafficPercent",
+      "KServe 카나리 비율",
+      "KServe canary traffic percent",
+      "카나리 트래픽 비율"
+    ],
+    "refs": [
+      "https://kserve.github.io/website/docs/model-serving/predictive-inference/rollout-strategies/canary",
+      "https://kserve.github.io/website/docs/model-serving/predictive-inference/rollout-strategies/canary-example"
+    ]
+  },
+  {
+    "id": "mlops.serve.kserve-tag-routing",
+    "title": "KServe 태그 라우팅(latest-·prev- 주소)",
+    "en": "KServe Tag-Based Routing",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "InferenceService에 태그 라우팅을 켜면 latest-·prev- 접두사가 붙은 주소로 카나리 리비전이나 이전 리비전만 골라 호출할 수 있다.",
+    "parent": "mlops.serve.kserve-canary-rollout",
+    "aliases": [
+      "KServe 태그 라우팅",
+      "KServe tag routing",
+      "enable-tag-routing",
+      "serving.kserve.io/enable-tag-routing"
+    ],
+    "refs": [
+      "https://kserve.github.io/website/docs/model-serving/predictive-inference/rollout-strategies/canary-example"
+    ]
+  },
+  {
+    "id": "mlops.serve.container-concurrency",
+    "title": "containerConcurrency와 scaleTarget",
+    "en": "KServe containerConcurrency vs scaleTarget",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "containerConcurrency는 복제본 하나가 동시에 받는 요청의 상한이고, scaleTarget은 자동 확장이 맞추려는 목표값이라 순간적으로 넘을 수 있다.",
+    "parent": "mlops.serve.kserve-autoscaling",
+    "aliases": [
+      "containerConcurrency",
+      "scaleTarget",
+      "KServe 동시성 한도",
+      "autoscaling.knative.dev/target",
+      "복제본당 동시 요청 상한"
+    ],
+    "refs": [
+      "https://kserve.github.io/website/docs/model-serving/predictive-inference/autoscaling/kpa-autoscaler"
+    ]
+  },
+  {
+    "id": "mlops.serve.model-cold-start",
+    "title": "모델 서버 콜드 스타트",
+    "en": "Model Server Cold Start",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "복제본이 0에서 다시 뜰 때 파드 생성, 서빙 이미지 받기, 모델 불러오기를 기다리느라 첫 요청이 느려지는 현상이다.",
+    "parent": "mlops.serve.kserve-autoscaling",
+    "related": [
+      "mlops.serve.scale-to-zero"
+    ],
+    "aliases": [
+      "모델 콜드 스타트",
+      "model cold start",
+      "서빙 콜드 스타트",
+      "inference cold start",
+      "추론 서버 콜드 스타트"
+    ],
+    "refs": [
+      "https://kserve.github.io/website/docs/model-serving/predictive-inference/autoscaling/kpa-autoscaler"
     ]
   },
   {

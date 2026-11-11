@@ -6017,5 +6017,312 @@
     "refs": [
       "https://www.rfc-editor.org/rfc/rfc5952.html"
     ]
+  },
+  {
+    "id": "cs.dsa.hash-flooding",
+    "title": "해시 충돌 공격과 해시 무작위화",
+    "en": "Hash-Flooding Attacks and Hash Randomization",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "자료구조",
+    "summary": "같은 칸으로 몰리는 키를 대량으로 보내 해시 테이블 삽입을 최악 비용으로 떨어뜨리는 공격과, 해시 시드를 무작위로 두는 방어다.",
+    "objectives": [
+      "적은 요청으로 서버 CPU가 오래 묶이는 증상을 보고 충돌하는 키 때문에 해시 테이블 삽입이 O(n²)로 떨어진 것인지 원인을 찾을 수 있다",
+      "해시 무작위화와 요청당 매개변수 개수 제한이 각각 공격의 어느 조건을 없애는지 근거를 말할 수 있다",
+      "해시 시드를 고정할지 기본값인 무작위로 둘지 재현 가능한 해시·여러 프로세스 간 해시 공유와 방어 사이의 손익을 따져 고를 수 있다",
+      "집합 순회 순서가 실행마다 달라지는 현상을 보고 보장되지 않는 순서에 기댄 코드를 원인으로 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "cs.dsa.hash-table"
+    ],
+    "related": [
+      "cs.dsa.hash-collision",
+      "be.rest.rate-limit"
+    ],
+    "aliases": [
+      "해시 플러딩",
+      "hash flooding",
+      "HashDoS",
+      "해시 충돌 서비스 거부"
+    ],
+    "refs": [
+      "https://docs.python.org/3/reference/datamodel.html#object.__hash__",
+      "https://docs.python.org/3/using/cmdline.html#envvar-PYTHONHASHSEED",
+      "https://ocert.org/advisories/ocert-2011-003.html"
+    ]
+  },
+  {
+    "id": "cs.algo.redos",
+    "title": "정규식 역추적 폭발과 ReDoS",
+    "en": "Catastrophic Regex Backtracking and ReDoS",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "알고리즘과 복잡도",
+    "summary": "역추적 방식 정규식 엔진이 중첩된 반복 패턴에서 입력 길이에 지수적으로 느려지는 현상과, 이를 노린 서비스 거부 공격이다.",
+    "objectives": [
+      "반복되는 그룹 안에 다시 반복이나 겹치는 선택지가 있는 패턴을 찾아 ReDoS 위험의 원인으로 짚을 수 있다",
+      "일치하지 않는 입력에서만 응답이 급격히 느려지는 증상을 보고 역추적할 경로 수가 입력 길이에 따라 불어난 것인지 진단할 수 있다",
+      "신뢰할 수 없는 입력이나 패턴을 다룰 때 최악 선형 시간을 보장하는 엔진과 역추적 엔진 중 무엇을 쓸지, 역참조·전후방 탐색을 잃는 손익을 따져 고를 수 있다",
+      "원자 그룹이나 소유 수량자로 역추적 지점을 없애면 일치 결과도 달라질 수 있다는 근거로 패턴 수정안을 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.algo.big-o-estimate",
+      "be.python.regex"
+    ],
+    "related": [
+      "cs.algo.algorithmic-complexity-attack",
+      "be.security.input-output"
+    ],
+    "aliases": [
+      "ReDoS",
+      "정규식 서비스 거부",
+      "regex denial of service",
+      "정규식 DoS"
+    ],
+    "refs": [
+      "https://community.owasp.org/attacks/Regular_expression_Denial_of_Service_-_ReDoS",
+      "https://docs.rs/regex/latest/regex/",
+      "https://docs.python.org/3/library/re.html"
+    ]
+  },
+  {
+    "id": "cs.os.wall-vs-monotonic-clock",
+    "title": "경과 시간 재기: 벽시계와 단조 시계",
+    "en": "Measuring Elapsed Time: Wall Clock vs Monotonic Clock",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "시스템 시각 조정으로 뒤로 갈 수도 있는 벽시계와 뒤로 가지 않는 단조 시계를 구분해 시간 초과와 소요 시간을 바르게 재는 법이다.",
+    "objectives": [
+      "시스템 시각이 바뀐 뒤 시간 초과가 엉뚱하게 나거나 소요 시간이 음수로 찍히는 원인을 벽시계로 간격을 잰 코드에서 찾을 수 있다",
+      "기록에 남길 시각에는 벽시계를, 간격과 시간 초과에는 기준점이 정해지지 않은 단조 시계를 고르는 근거를 말할 수 있다",
+      "절전 중 흐른 시간을 셀지에 따라 CLOCK_MONOTONIC과 CLOCK_BOOTTIME 중 무엇을 쓸지 고를 수 있다",
+      "경과 시간과 CPU 시간이 크게 다른 측정을 보고 느림이 대기 때문인지 계산 때문인지 원인을 가를 수 있다"
+    ],
+    "prerequisites": [
+      "cs.net.clock-sync"
+    ],
+    "aliases": [
+      "벽시계와 단조 시계",
+      "wall clock vs monotonic clock",
+      "시간 초과 계산",
+      "timeout clock"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man2/clock_gettime.2.html",
+      "https://docs.python.org/3/library/time.html"
+    ]
+  },
+  {
+    "id": "cs.net.connection-errors",
+    "title": "연결 실패 원인 가르기: 거부·시간 초과·재설정",
+    "en": "Diagnosing TCP Connection Failures: Refused, Timed Out, Reset",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "ECONNREFUSED·ETIMEDOUT·ECONNRESET이 TCP의 어떤 상황에서 생기는지 알고 서버가 안 떠 있는지, 답이 없는지, 끊었는지 가려낸다.",
+    "objectives": [
+      "연결 거부가 상대 주소에 수신 중인 소켓이 없어 재설정 응답이 돌아온 경우라는 근거로 서버 프로세스와 수신 주소·포트부터 확인할 수 있다",
+      "연결 시간 초과는 거부와 달리 응답이 오지 않거나 서버가 새 연결을 받지 못할 만큼 바쁠 때 생긴다는 점으로 원인 범위를 좁힐 수 있다",
+      "이미 맺은 연결에서 재설정이 나면 상대 쪽이 연결을 중단한 것이라는 근거로 상대의 로그와 시간 제한 설정을 살필 수 있다",
+      "임시 포트 범위가 바닥나 생기는 EADDRNOTAVAIL을 상대 쪽 문제인 다른 연결 오류와 구분할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.net.tcp-vs-udp"
+    ],
+    "related": [
+      "be.integrate.http-client",
+      "ops.network.ss-listening"
+    ],
+    "aliases": [
+      "소켓 연결 오류",
+      "socket connection error",
+      "connect 오류",
+      "TCP 연결 실패"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man2/connect.2.html",
+      "https://man7.org/linux/man-pages/man3/errno.3.html",
+      "https://www.rfc-editor.org/rfc/rfc9293"
+    ]
+  },
+  {
+    "id": "cs.dsa.hash-randomization",
+    "title": "해시 무작위화",
+    "en": "Hash Randomization",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "자료구조",
+    "summary": "문자열·바이트의 해시값에 실행마다 바뀌는 무작위 값을 섞어 공격자가 충돌하는 키를 미리 만들지 못하게 하는 방어다.",
+    "parent": "cs.dsa.hash-flooding",
+    "aliases": [
+      "해시 시드 무작위화",
+      "hash seed randomization",
+      "PYTHONHASHSEED",
+      "파이썬 해시 시드"
+    ],
+    "refs": [
+      "https://docs.python.org/3/using/cmdline.html#envvar-PYTHONHASHSEED"
+    ]
+  },
+  {
+    "id": "cs.algo.algorithmic-complexity-attack",
+    "title": "알고리즘 복잡도 공격",
+    "en": "Algorithmic Complexity Attack",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "알고리즘과 복잡도",
+    "summary": "자료구조나 알고리즘이 최악의 경우에 느려지는 입력을 골라 보내 적은 대역폭으로 서버 CPU를 소진시키는 서비스 거부 공격이다.",
+    "parent": "cs.dsa.hash-flooding",
+    "related": [
+      "cs.algo.redos"
+    ],
+    "aliases": [
+      "복잡도 공격",
+      "complexity attack",
+      "최악 입력 공격",
+      "알고리즘 DoS"
+    ],
+    "refs": [
+      "https://ocert.org/advisories/ocert-2011-003.html"
+    ]
+  },
+  {
+    "id": "cs.algo.catastrophic-backtracking",
+    "title": "정규식 역추적 폭발",
+    "en": "Catastrophic Backtracking",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "알고리즘과 복잡도",
+    "summary": "일치에 실패한 정규식 엔진이 되돌아가 다른 경로를 시도하는 횟수가 입력 길이에 따라 지수적으로 늘어나 멈춘 듯 느려지는 현상이다.",
+    "parent": "cs.algo.redos",
+    "aliases": [
+      "지수 시간 역추적",
+      "exponential backtracking",
+      "정규식 백트래킹 폭발",
+      "regex backtracking blowup"
+    ],
+    "refs": [
+      "https://community.owasp.org/attacks/Regular_expression_Denial_of_Service_-_ReDoS"
+    ]
+  },
+  {
+    "id": "cs.os.monotonic-clock",
+    "title": "단조 시계",
+    "en": "Monotonic Clock",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "시스템 시각을 바꿔도 뒤로 가지 않는 시계로, 기준점이 정해져 있지 않아 두 값의 차이로 간격을 잴 때만 쓴다.",
+    "parent": "cs.os.wall-vs-monotonic-clock",
+    "related": [
+      "cs.os.wall-clock-time"
+    ],
+    "aliases": [
+      "CLOCK_MONOTONIC",
+      "time.monotonic",
+      "monotonic time",
+      "단조 증가 시계"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man2/clock_gettime.2.html"
+    ]
+  },
+  {
+    "id": "cs.os.wall-clock-time",
+    "title": "벽시계 시각(CLOCK_REALTIME)",
+    "en": "Wall-Clock Time (CLOCK_REALTIME)",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "에포크부터 센 실제 시각을 주는 시계로, 관리자나 시간 동기화가 시각을 바꾸면 앞뒤로 건너뛸 수 있다.",
+    "parent": "cs.os.wall-vs-monotonic-clock",
+    "related": [
+      "cs.os.monotonic-clock"
+    ],
+    "aliases": [
+      "wall-clock time",
+      "벽시계 시간",
+      "시스템 시각",
+      "CLOCK_REALTIME"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man2/clock_gettime.2.html"
+    ]
+  },
+  {
+    "id": "cs.net.connection-refused",
+    "title": "연결 거부(ECONNREFUSED)",
+    "en": "Connection Refused (ECONNREFUSED)",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "연결하려는 주소와 포트에 수신 중인 소켓이 없어 상대가 재설정으로 답했을 때 connect가 돌려주는 오류다.",
+    "parent": "cs.net.connection-errors",
+    "related": [
+      "cs.net.tcp-reset"
+    ],
+    "aliases": [
+      "connection refused",
+      "연결이 거부됨",
+      "Connection refused 오류"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man2/connect.2.html"
+    ]
+  },
+  {
+    "id": "cs.net.tcp-reset",
+    "title": "TCP 재설정(RST)과 ECONNRESET",
+    "en": "TCP Reset (RST) and ECONNRESET",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "연결이 없거나 한쪽이 연결을 중단할 때 보내는 TCP 재설정 세그먼트로, 받은 쪽은 연결을 바로 닫고 응용에 재설정 오류를 알린다.",
+    "parent": "cs.net.connection-errors",
+    "related": [
+      "cs.net.connection-refused",
+      "cs.net.three-way-handshake"
+    ],
+    "aliases": [
+      "TCP RST",
+      "RST 세그먼트",
+      "connection reset by peer",
+      "연결 재설정"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9293"
+    ]
+  },
+  {
+    "id": "cs.algo.atomic-group-possessive",
+    "title": "원자 그룹과 소유 수량자",
+    "en": "Atomic Groups and Possessive Quantifiers",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "알고리즘과 복잡도",
+    "summary": "한 번 일치한 부분으로는 되돌아가지 않게 역추적 지점을 버리는 정규식 문법으로, 역추적 폭발을 줄이지만 일치 결과가 바뀔 수 있다.",
+    "parent": "cs.algo.redos",
+    "aliases": [
+      "atomic group",
+      "possessive quantifier",
+      "원자적 그룹",
+      "소유 수량자"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/re.html"
+    ]
   }
 ]
