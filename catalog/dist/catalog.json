@@ -1,5 +1,5 @@
 {
- "version": "0.45.0",
+ "version": "0.46.0",
  "domains": [
   {
    "prefix": "dev",
@@ -24814,6 +24814,37 @@
    "domain": "db"
   },
   {
+   "id": "db.basics.join-idea",
+   "title": "표 잇기: 따로 둔 자료를 짝 맞춰 보기",
+   "en": "Joining Related Tables",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "DB 기초",
+   "summary": "날씨 표와 도시 표처럼 나눠 둔 표를 같은 값끼리 짝지어 한 줄로 이어 보는 일이다.",
+   "objectives": [
+    "두 표에 같은 값이 든 열이 있으면 행끼리 짝을 지을 수 있음을 비유로 설명할 수 있다",
+    "짝이 없는 행이 결과에서 빠지거나 빈칸으로 남는 경우를 구분해 말할 수 있다"
+   ],
+   "prerequisites": [
+    "db.basics.table-row-column",
+    "db.basics.what-is-sql"
+   ],
+   "related": [
+    "db.basics.one-to-many"
+   ],
+   "aliases": [
+    "표 잇기",
+    "두 표 합쳐 보기",
+    "표 연결 조회",
+    "joining tables"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/tutorial-join.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.cache.cache-idea",
    "title": "캐시: 자주 찾는 자료를 손 닿는 곳에 두기",
    "en": "The Idea of Caching",
@@ -25038,6 +25069,61 @@
    ],
    "refs": [
     "https://www.postgresql.org/docs/current/indexes-intro.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.basics.aggregate-idea",
+   "title": "모아 보기: 개수·합계·평균 구하기",
+   "en": "Summarizing Rows with Aggregates",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "DB 기초",
+   "summary": "여러 행을 훑어 개수·합계·평균·최댓값 같은 값 하나로 줄여 보는 일이다.",
+   "objectives": [
+    "여러 행이 값 하나로 줄어드는 모아 보기를 출석부 세기 같은 비유로 설명할 수 있다",
+    "도시별처럼 무리를 지어 무리마다 따로 세는 것이 무엇인지 말할 수 있다"
+   ],
+   "prerequisites": [
+    "db.basics.what-is-sql",
+    "db.basics.table-row-column"
+   ],
+   "aliases": [
+    "행 모아 보기",
+    "합계와 평균 구하기",
+    "요약 통계 조회",
+    "summarizing rows"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/tutorial-agg.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.orm.migration-idea",
+   "title": "마이그레이션: DB 구조 바꾼 기록 남기기",
+   "en": "Schema Migrations as a Change History",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "ORM",
+   "summary": "표를 만들고 열을 더한 변경을 차례대로 파일에 적어 두고 그 순서대로 DB에 적용하는 방식이다.",
+   "objectives": [
+    "마이그레이션을 집 고친 내역을 순서대로 적은 공사 일지에 빗대어 설명할 수 있다",
+    "변경을 앞으로 적용하는 것과 되돌리는 것이 각각 무엇인지 말할 수 있다"
+   ],
+   "prerequisites": [
+    "db.basics.table-row-column"
+   ],
+   "aliases": [
+    "스키마 마이그레이션",
+    "schema migration",
+    "DB 구조 변경 기록",
+    "마이그레이션 개념"
+   ],
+   "refs": [
+    "https://alembic.sqlalchemy.org/en/latest/tutorial.html"
    ],
    "domain": "db"
   },
@@ -25458,6 +25544,117 @@
    "domain": "db"
   },
   {
+   "id": "db.basics.count-aggregate",
+   "title": "COUNT: 몇 개인지 세기",
+   "en": "COUNT Aggregate Function",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "DB 기초",
+   "summary": "조건에 맞는 행이 몇 개인지 세어 숫자 하나로 돌려주는 모아 보기 함수다.",
+   "parent": "db.basics.aggregate-idea",
+   "aliases": [
+    "count(*)",
+    "행 개수 세기",
+    "SQL count",
+    "개수 집계"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/tutorial-agg.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.orm.migration-revision",
+   "title": "마이그레이션 파일: 변경 한 번의 기록",
+   "en": "Migration Revision Script",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "ORM",
+   "summary": "구조 변경 한 번을 담은 파일로, 저마다 이름표가 있고 바로 앞 파일을 가리켜 줄줄이 이어진다.",
+   "parent": "db.orm.migration-idea",
+   "aliases": [
+    "마이그레이션 파일",
+    "migration script",
+    "리비전 파일",
+    "revision script",
+    "down_revision"
+   ],
+   "refs": [
+    "https://alembic.sqlalchemy.org/en/latest/tutorial.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.orm.upgrade-downgrade",
+   "title": "업그레이드와 다운그레이드: 적용과 되돌리기",
+   "en": "Migration Upgrade and Downgrade",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "ORM",
+   "summary": "마이그레이션 파일의 변경을 DB에 적용하는 쪽이 업그레이드, 그 변경을 거꾸로 무르는 쪽이 다운그레이드다.",
+   "parent": "db.orm.migration-idea",
+   "aliases": [
+    "마이그레이션 되돌리기",
+    "migration rollback",
+    "다운그레이드 함수",
+    "upgrade와 downgrade"
+   ],
+   "refs": [
+    "https://alembic.sqlalchemy.org/en/latest/tutorial.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.nosql.embedded-document",
+   "title": "중첩 문서: 문서 안에 넣은 문서",
+   "en": "Embedded Document",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "NoSQL",
+   "summary": "강의 문서 안에 차시 정보를 통째로 넣듯, 관련된 자료를 한 문서 안에 함께 담아 두는 방식이다.",
+   "related": [
+    "db.nosql.document-reference"
+   ],
+   "aliases": [
+    "중첩 문서",
+    "임베디드 문서",
+    "embedded data",
+    "하위 문서",
+    "subdocument"
+   ],
+   "refs": [
+    "https://www.mongodb.com/docs/manual/data-modeling/concepts/embedding-vs-references/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.nosql.document-reference",
+   "title": "문서 참조: 다른 문서의 아이디 적어 두기",
+   "en": "Document Reference",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "NoSQL",
+   "summary": "관련 자료를 다른 컬렉션에 따로 두고, 문서에는 그 자료의 아이디만 적어 이어 두는 방식이다.",
+   "related": [
+    "db.nosql.embedded-document"
+   ],
+   "aliases": [
+    "문서 참조",
+    "document reference",
+    "MongoDB 참조",
+    "참조 방식 모델링"
+   ],
+   "refs": [
+    "https://www.mongodb.com/docs/manual/data-modeling/concepts/embedding-vs-references/"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.nosql.what-is-nosql",
    "title": "NoSQL",
    "en": "NoSQL Databases",
@@ -25784,6 +25981,67 @@
    "refs": [
     "https://www.postgresql.org/docs/current/glossary.html",
     "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.orm.migration-version-table",
+   "title": "마이그레이션 버전 표: 어디까지 적용했나",
+   "en": "Migration Version Table",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "ORM",
+   "summary": "DB 안에 지금 어느 마이그레이션까지 적용됐는지 적어 두는 작은 표로, 다음에 돌릴 변경을 고르는 데 쓴다.",
+   "parent": "db.orm.migration-idea",
+   "aliases": [
+    "alembic_version",
+    "alembic_version 표",
+    "마이그레이션 이력 표"
+   ],
+   "refs": [
+    "https://alembic.sqlalchemy.org/en/latest/tutorial.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.nosql.bson",
+   "title": "BSON: MongoDB가 문서를 담는 형식",
+   "en": "BSON (Binary JSON)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "NoSQL",
+   "summary": "MongoDB가 문서를 저장하고 주고받을 때 쓰는 바이너리 형식으로, JSON보다 날짜·아이디 같은 값 종류가 많다.",
+   "aliases": [
+    "BSON 형식",
+    "Binary JSON",
+    "BSON 타입",
+    "bson types"
+   ],
+   "refs": [
+    "https://www.mongodb.com/docs/manual/reference/bson-types/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.orm.seed-data",
+   "title": "시드 데이터: 처음에 넣어 두는 자료",
+   "en": "Database Seeding",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "ORM",
+   "summary": "앱이 시작하는 데 필요한 기본값이나 개발·시험용 자료를 언제든 똑같이 다시 넣어 주는 일이다.",
+   "aliases": [
+    "시드 데이터",
+    "seed data",
+    "DB 시딩",
+    "prisma db seed",
+    "초기 데이터 넣기"
+   ],
+   "refs": [
+    "https://www.prisma.io/docs/orm/prisma-migrate/workflows/seeding"
    ],
    "domain": "db"
   },
@@ -30268,6 +30526,37 @@
    "domain": "fe"
   },
   {
+   "id": "fe.basics.typescript-idea",
+   "title": "TypeScript: 실행 전에 실수를 잡아 주는 JavaScript",
+   "en": "What TypeScript Is: A Static Type Checker for JavaScript",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "웹 기초",
+   "summary": "TypeScript는 JavaScript에 값의 종류 규칙을 더해 코드를 돌리기 전에 오타와 잘못 쓴 값을 알려 주는 언어다.",
+   "objectives": [
+    "TypeScript가 왜 생겼는지 맞춤법 검사기에 빗대어 설명할 수 있다",
+    "TypeScript 코드가 결국 JavaScript로 바뀌어 실행된다는 것을 말할 수 있다",
+    "문법 오류와 타입 오류의 차이를 예를 들어 말할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.basics.web-page-parts"
+   ],
+   "related": [
+    "fe.ts.first-types"
+   ],
+   "aliases": [
+    "TypeScript란",
+    "타입스크립트란",
+    "TypeScript 개념",
+    "타입이 있는 자바스크립트"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.basics.responsive-idea",
    "title": "화면 크기에 맞추는 반응형 화면",
    "en": "Responsive Screens",
@@ -30530,6 +30819,39 @@
    "domain": "fe"
   },
   {
+   "id": "fe.basics.how-browser-draws",
+   "title": "브라우저가 웹 페이지를 화면에 그리는 과정",
+   "en": "How a Browser Turns a Web Page into Pixels",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 기초",
+   "summary": "브라우저는 받은 HTML과 CSS를 읽어 내용의 뼈대와 꾸밈 규칙을 세우고, 자리와 크기를 정한 뒤 화면에 색을 칠한다.",
+   "objectives": [
+    "HTML을 받은 뒤 화면에 보이기까지의 큰 단계를 집 짓기에 빗대어 설명할 수 있다",
+    "렌더링 엔진과 JavaScript 엔진이 브라우저 안에서 맡는 일을 나눠 말할 수 있다",
+    "페이지가 다 그려져 보여도 바로 눌리지 않을 수 있는 까닭을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.basics.web-page-parts"
+   ],
+   "related": [
+    "fe.internals.render-pipeline"
+   ],
+   "aliases": [
+    "브라우저 렌더링 과정",
+    "how browsers work",
+    "웹 페이지 그리기 과정",
+    "화면 그리기 순서"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/How_browsers_work",
+    "https://developer.mozilla.org/en-US/docs/Glossary/Engine/Rendering",
+    "https://developer.mozilla.org/en-US/docs/Glossary/Engine/JavaScript"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.basics.pwa-idea",
    "title": "PWA: 앱처럼 설치해 쓰는 웹사이트",
    "en": "Progressive Web Apps",
@@ -30553,6 +30875,36 @@
    ],
    "refs": [
     "https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/What_is_a_progressive_web_app"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.dark-mode-idea",
+   "title": "다크 모드: 사용자가 고른 어두운 화면",
+   "en": "Dark Mode and the User's Color Scheme Preference",
+   "kind": "topic",
+   "level": 1,
+   "importance": 3,
+   "group": "웹 기초",
+   "summary": "다크 모드는 사용자가 운영체제나 브라우저에서 어두운 테마를 고르면 웹사이트도 그 선택을 읽어 어두운 색으로 바꿔 보여 주는 방식이다.",
+   "objectives": [
+    "다크 모드가 무엇이고 사람들이 왜 고르는지 말할 수 있다",
+    "웹사이트가 사용자의 밝기 선택을 어디서 알아내는지 설명할 수 있다",
+    "어두운 테마에서도 글자와 배경의 대비를 지켜야 하는 까닭을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.basics.ui-design-basics"
+   ],
+   "aliases": [
+    "다크 모드",
+    "dark mode",
+    "어두운 테마",
+    "dark theme",
+    "다크 테마"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-color-scheme",
+    "https://developer.mozilla.org/en-US/docs/Web/Accessibility/Guides/Understanding_WCAG/Perceivable/Color_contrast"
    ],
    "domain": "fe"
   },
@@ -30898,6 +31250,136 @@
    "domain": "fe"
   },
   {
+   "id": "fe.basics.static-type-checking",
+   "title": "정적 타입 검사",
+   "en": "Static Type Checking",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 기초",
+   "summary": "정적 타입 검사는 프로그램을 실행하지 않고 값의 종류가 맞게 쓰였는지 미리 살펴 오류를 찾아내는 일이다.",
+   "parent": "fe.basics.typescript-idea",
+   "aliases": [
+    "정적 타입 검사기",
+    "static type checker",
+    "실행 전 타입 검사"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.type-erasure",
+   "title": "타입 지우기: 타입 없이 실행되는 결과",
+   "en": "Type Erasure in TypeScript",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 기초",
+   "summary": "TypeScript는 검사가 끝나면 타입 표시를 모두 지운 평범한 JavaScript를 내놓으므로 타입은 실행 중 동작을 바꾸지 않는다.",
+   "parent": "fe.basics.typescript-idea",
+   "aliases": [
+    "타입 지우기",
+    "TypeScript 타입 소거",
+    "erased types",
+    "TypeScript type erasure"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.rendering-engine",
+   "title": "렌더링 엔진(브라우저 엔진)",
+   "en": "Browser Rendering Engine",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 기초",
+   "summary": "렌더링 엔진은 브라우저 안에서 HTML과 CSS를 읽어 눈에 보이는 화면으로 바꾸는 부분으로, Blink·Gecko·WebKit이 대표적이다.",
+   "parent": "fe.basics.how-browser-draws",
+   "aliases": [
+    "렌더링 엔진",
+    "브라우저 엔진",
+    "browser engine",
+    "레이아웃 엔진",
+    "layout engine",
+    "Blink 엔진"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Glossary/Engine/Rendering"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.javascript-engine",
+   "title": "JavaScript 엔진",
+   "en": "JavaScript Engine",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 기초",
+   "summary": "JavaScript 엔진은 JavaScript 코드를 읽어 실행하는 프로그램으로, 크롬의 V8처럼 브라우저 안에 들어 있고 Node.js에서도 쓰인다.",
+   "parent": "fe.basics.how-browser-draws",
+   "aliases": [
+    "자바스크립트 엔진",
+    "JS 엔진",
+    "JS engine",
+    "V8 엔진",
+    "SpiderMonkey"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Glossary/Engine/JavaScript"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.viewport",
+   "title": "뷰포트: 브라우저에 지금 보이는 영역",
+   "en": "Viewport (Visible Area of a Web Page)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 기초",
+   "summary": "뷰포트는 문서 가운데 지금 브라우저 창이나 휴대폰 화면에 보이는 부분으로, 그 밖의 내용은 스크롤해야 보인다.",
+   "related": [
+    "fe.css.viewport-meta"
+   ],
+   "aliases": [
+    "뷰포트",
+    "visual viewport",
+    "layout viewport",
+    "화면 표시 영역"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Glossary/Viewport"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.web-file-naming",
+   "title": "웹 파일 이름 규칙: 소문자와 하이픈",
+   "en": "Naming Web Files in Lowercase with Hyphens",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 기초",
+   "summary": "웹사이트 파일과 폴더 이름은 모두 소문자로 쓰고 빈칸 대신 하이픈을 넣어야 서버와 주소에서 엉뚱한 오류가 나지 않는다.",
+   "aliases": [
+    "웹 파일 이름 규칙",
+    "file naming convention",
+    "소문자 파일 이름",
+    "파일 이름 하이픈",
+    "파일 이름 공백 %20"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Dealing_with_files"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.basics.whatwg",
    "title": "WHATWG",
    "en": "Web Hypertext Application Technology Working Group",
@@ -31211,6 +31693,70 @@
    ],
    "refs": [
     "https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.typed-superset",
+   "title": "JavaScript의 상위 집합인 TypeScript",
+   "en": "TypeScript as a Typed Superset of JavaScript",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "웹 기초",
+   "summary": "TypeScript는 JavaScript의 상위 집합이라 문법이 맞는 JavaScript 코드는 그대로 TypeScript 코드가 되지만, 타입 오류는 따로 알려 줄 수 있다.",
+   "parent": "fe.basics.typescript-idea",
+   "aliases": [
+    "typed superset",
+    "JavaScript superset",
+    "자바스크립트 상위 집합"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.polyfill",
+   "title": "폴리필",
+   "en": "Polyfill",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "웹 기초",
+   "summary": "폴리필은 오래된 브라우저에 없는 새 기능을 대신 흉내 내 채워 주는 코드로, 주로 JavaScript로 만든다.",
+   "related": [
+    "fe.basics.cross-browser"
+   ],
+   "aliases": [
+    "폴리필",
+    "polyfills",
+    "폴리필 코드",
+    "브라우저 기능 보충 코드"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Glossary/Polyfill"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.prefers-color-scheme",
+   "title": "색 테마 선호(prefers-color-scheme)",
+   "en": "prefers-color-scheme Media Feature",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "웹 기초",
+   "summary": "prefers-color-scheme는 사용자가 밝은 테마와 어두운 테마 가운데 무엇을 골랐는지 웹 페이지가 알아보게 하는 CSS 기능이다.",
+   "parent": "fe.basics.dark-mode-idea",
+   "aliases": [
+    "prefers-color-scheme",
+    "색 구성표 선호",
+    "color scheme preference",
+    "다크 모드 미디어 쿼리"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-color-scheme"
    ],
    "domain": "fe"
   },
@@ -41479,6 +42025,105 @@
    "domain": "rag"
   },
   {
+   "id": "rag.basics.save-points-idea",
+   "title": "저장 지점: 에이전트가 멈춘 곳에서 이어 가기",
+   "en": "Save Points for Agent Runs",
+   "kind": "topic",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트 기초",
+   "summary": "에이전트가 한 걸음 갈 때마다 그때까지의 상태를 저장해 두어, 대화를 이어 가거나 끊긴 곳에서 다시 시작하게 하는 생각이다.",
+   "objectives": [
+    "저장 지점을 게임의 세이브 파일에 빗대어 설명할 수 있다",
+    "저장 지점이 있으면 대화 잇기·사람 확인 뒤 재개·실패 뒤 복구가 가능해진다는 점을 예로 들 수 있다",
+    "한 대화의 상태 저장과 여러 대화를 넘는 기억 저장이 다르다는 것을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.basics.langgraph-graph-idea"
+   ],
+   "related": [
+    "rag.agent.checkpoint-persistence",
+    "rag.agent.memory-overview"
+   ],
+   "aliases": [
+    "에이전트 상태 저장",
+    "LangGraph 지속성",
+    "그래프 상태 저장",
+    "agent state persistence"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/persistence",
+    "https://docs.langchain.com/oss/python/langgraph/checkpointers"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.generative-ui-idea",
+   "title": "생성형 UI: 에이전트가 화면을 골라 보여 주기",
+   "en": "Generative UI for Agents",
+   "kind": "topic",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "에이전트가 글만 쓰지 않고 카드·양식·표 같은 화면을 언제 무엇을 띄울지 정해 보여 주는 방식이다.",
+   "objectives": [
+    "생성형 UI를 식당에서 메뉴판·조합 메뉴·주방장 특선을 고르는 일에 빗대어 설명할 수 있다",
+    "화면을 누가 만드는지에 따라 정해진 화면형·조립형·자유형 세 갈래로 나뉜다는 것을 말할 수 있다",
+    "채팅 답에 예약 확인 카드나 입력 양식이 뜨는 예를 하나 들 수 있다"
+   ],
+   "prerequisites": [
+    "rag.basics.agent-big-picture"
+   ],
+   "related": [
+    "rag.agent.mcp-apps"
+   ],
+   "aliases": [
+    "생성형 UI",
+    "generative UI",
+    "GenUI",
+    "에이전트 생성 화면"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/frontend/generative-ui-overview"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.acp-idea",
+   "title": "ACP: 코드 편집기와 코딩 에이전트를 잇는 규격",
+   "en": "Agent Client Protocol (ACP) at a Glance",
+   "kind": "topic",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "어느 코딩 에이전트든 같은 약속으로 여러 코드 편집기 안에서 쓸 수 있게, 편집기와 에이전트 사이의 대화 방법을 정한 열린 규격이다.",
+   "objectives": [
+    "ACP를 어느 가전에나 맞는 공용 콘센트에 빗대어 설명할 수 있다",
+    "MCP는 에이전트와 도구를, A2A는 에이전트와 에이전트를, ACP는 편집기와 에이전트를 잇는다는 차이를 말할 수 있다",
+    "편집기가 에이전트를 띄우고 에이전트가 도구를 쓰기 전에 편집기에 허락을 구하는 흐름을 그림으로 그릴 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.mcp-idea"
+   ],
+   "related": [
+    "rag.agent.mcp-idea",
+    "rag.agent.a2a-idea"
+   ],
+   "aliases": [
+    "Agent Client Protocol",
+    "에이전트 클라이언트 프로토콜",
+    "agentclientprotocol"
+   ],
+   "refs": [
+    "https://agentclientprotocol.com/overview/introduction",
+    "https://agentclientprotocol.com/overview/architecture",
+    "https://docs.langchain.com/oss/python/deepagents/acp"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
    "id": "rag.basics.langchain",
    "title": "LangChain",
    "en": "LangChain",
@@ -41759,6 +42404,32 @@
    "refs": [
     "https://docs.langchain.com/oss/python/langchain/retrieval"
    ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.basics.deep-agents",
+   "title": "Deep Agents",
+   "en": "Deep Agents",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "에이전트 기초",
+   "summary": "계획 세우기·파일 작업 공간·하위 에이전트 맡기기를 미리 갖춰 오래 걸리는 여러 단계 일을 돕는 LangChain의 에이전트 하네스다.",
+   "related": [
+    "rag.basics.langchain",
+    "rag.basics.langgraph",
+    "rag.agent.deep-agents"
+   ],
+   "aliases": [
+    "LangChain Deep Agents",
+    "Managed Deep Agents",
+    "Deep Agents 제품"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/deepagents/overview"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
    "domain": "rag"
   },
   {
@@ -42130,6 +42801,162 @@
    "refs": [
     "https://microsoft.github.io/graphrag/"
    ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.basics.langgraph-thread",
+   "title": "LangGraph 스레드(thread_id)",
+   "en": "LangGraph Thread",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트 기초",
+   "summary": "저장된 상태를 한 대화 단위로 묶는 이름표로, 같은 thread_id를 주면 그 대화의 저장 지점을 찾아 이어 간다.",
+   "parent": "rag.basics.save-points-idea",
+   "related": [
+    "rag.agent.langsmith-threads"
+   ],
+   "aliases": [
+    "LangGraph 스레드",
+    "LangGraph thread",
+    "LangGraph thread_id",
+    "대화 스레드 id"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.basics.checkpoint-snapshot",
+   "title": "체크포인트(그래프 상태 스냅샷)",
+   "en": "Checkpoint (Graph State Snapshot)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트 기초",
+   "summary": "그래프가 한 단계를 마칠 때마다 찍어 두는 상태 사진으로, 그때의 값과 다음에 할 노드가 함께 담긴다.",
+   "parent": "rag.basics.save-points-idea",
+   "related": [
+    "rag.agent.checkpointer"
+   ],
+   "aliases": [
+    "LangGraph 체크포인트",
+    "그래프 상태 스냅샷",
+    "StateSnapshot",
+    "LangGraph checkpoint"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.basics.time-travel",
+   "title": "타임 트래블: 지난 저장 지점에서 다시 돌리기",
+   "en": "LangGraph Time Travel",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트 기초",
+   "summary": "지난 체크포인트로 돌아가 그대로 다시 돌리거나 값을 바꿔 새 갈래로 이어 가 보는 LangGraph 기능이다.",
+   "parent": "rag.basics.save-points-idea",
+   "related": [
+    "rag.basics.checkpoint-snapshot"
+   ],
+   "aliases": [
+    "LangGraph 타임 트래블",
+    "LangGraph replay",
+    "LangGraph fork",
+    "체크포인트에서 다시 실행"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/use-time-travel"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.controlled-generative-ui",
+   "title": "정해진 화면형 생성형 UI(controlled)",
+   "en": "Controlled Generative UI",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "개발자가 화면 부품을 모두 미리 만들어 두고 에이전트는 그중 무엇을 어떤 데이터로 띄울지만 고르는 방식이다.",
+   "parent": "rag.agent.generative-ui-idea",
+   "related": [
+    "rag.agent.declarative-generative-ui"
+   ],
+   "aliases": [
+    "controlled generative UI",
+    "정해진 화면형 UI",
+    "통제형 생성형 UI"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.declarative-generative-ui",
+   "title": "조립형 생성형 UI(declarative)",
+   "en": "Declarative Generative UI",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "에이전트가 화면 설계도를 내놓으면 화면 쪽이 미리 등록한 부품 목록으로 조립해 보여 주는 방식이다.",
+   "parent": "rag.agent.generative-ui-idea",
+   "related": [
+    "rag.agent.controlled-generative-ui",
+    "rag.agent.open-ended-generative-ui"
+   ],
+   "aliases": [
+    "declarative generative UI",
+    "조립형 UI",
+    "선언형 생성형 UI"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.open-ended-generative-ui",
+   "title": "자유형 생성형 UI(open-ended)",
+   "en": "Open-ended Generative UI",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "화면을 앱 밖, 예를 들어 MCP 서버가 통째로 만들어 보내고 앱은 그것을 격리된 칸 안에 띄우기만 하는 방식이다.",
+   "parent": "rag.agent.generative-ui-idea",
+   "related": [
+    "rag.agent.mcp-apps",
+    "rag.agent.declarative-generative-ui"
+   ],
+   "aliases": [
+    "open-ended generative UI",
+    "자유형 UI",
+    "개방형 생성형 UI"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.ag-ui",
+   "title": "AG-UI(에이전트-사용자 화면 프로토콜)",
+   "en": "Agent User Interaction Protocol (AG-UI)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "에이전트가 일하는 동안 메시지·도구 호출·상태 변화를 정해진 사건 흐름으로 내보내 어느 사용자 화면이든 받아 보여 주게 하는 열린 규격이다.",
+   "related": [
+    "rag.agent.acp-idea",
+    "rag.agent.a2a-idea",
+    "rag.agent.generative-ui-idea"
+   ],
+   "aliases": [
+    "AG-UI",
+    "AG-UI 프로토콜",
+    "Agent User Interaction Protocol",
+    "에이전트 UI 프로토콜"
+   ],
+   "refs": [
+    "https://docs.ag-ui.com/introduction",
+    "https://docs.langchain.com/oss/python/deepagents/ag-ui"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
    "domain": "rag"
   },
   {
@@ -52171,6 +52998,39 @@
    "domain": "ops"
   },
   {
+   "id": "ops.basics.deploy-environments",
+   "title": "개발·스테이징·운영 환경 나누기",
+   "en": "Development, Staging, and Production Environments",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "배포 기초",
+   "summary": "같은 서비스를 내 컴퓨터, 미리 시험하는 곳, 사용자가 쓰는 곳으로 나눠 두고 차례로 옮겨 가며 내놓는 방식이다.",
+   "objectives": [
+    "개발·스테이징·운영 환경을 연습실·리허설 무대·본 공연에 빗대어 설명할 수 있다",
+    "운영 환경에 바로 올리기 전에 미리 시험하는 환경을 두는 이유를 말할 수 있다",
+    "환경마다 접속 주소와 설정값(예: DB 주소)이 따로 있다는 점을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.basics.what-is-deploy"
+   ],
+   "related": [
+    "ops.basics.environment-drift",
+    "ops.ci.environment-secrets"
+   ],
+   "aliases": [
+    "배포 환경",
+    "deployment environments",
+    "dev staging prod",
+    "개발 스테이징 운영"
+   ],
+   "refs": [
+    "https://vercel.com/docs/deployments/environments",
+    "https://docs.github.com/en/actions/concepts/workflows-and-actions/deployment-environments"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.basics.cloud",
    "title": "클라우드: 빌려 쓰는 컴퓨터",
    "en": "What the Cloud Is",
@@ -52485,6 +53345,74 @@
    "domain": "ops"
   },
   {
+   "id": "ops.observe.observability-idea",
+   "title": "관측 가능성: 서비스 속을 밖에서 들여다보기",
+   "en": "The Idea of Observability",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "관측",
+   "summary": "서비스가 내보내는 로그·지표·트레이스를 보고 속을 열지 않고도 왜 이상한지 알아내는 힘이다.",
+   "objectives": [
+    "관측 가능성을 자동차 계기판과 블랙박스에 빗대어 설명할 수 있다",
+    "로그·지표·트레이스가 각각 어떤 기록인지 한 문장씩 말할 수 있다",
+    "서비스가 켜져 있어도 사용자가 원하는 대로 동작하지 않으면 믿을 수 없다는 점을 예로 말할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.basics.what-is-deploy"
+   ],
+   "related": [
+    "ops.observe.monitoring-idea",
+    "ops.observe.tracing"
+   ],
+   "aliases": [
+    "관측성",
+    "옵저버빌리티",
+    "observability",
+    "시스템 관측 가능성"
+   ],
+   "refs": [
+    "https://opentelemetry.io/docs/concepts/observability-primer/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.observe.availability-idea",
+   "title": "가용성: 서비스가 늘 열려 있게 하기",
+   "en": "The Idea of Availability",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "관측",
+   "summary": "서비스를 쓰려 할 때 제대로 쓸 수 있었던 시간이나 요청의 비율로, 99.9%처럼 퍼센트로 말한다.",
+   "objectives": [
+    "가용성을 가게의 영업시간 대비 실제로 문을 연 시간에 빗대어 설명할 수 있다",
+    "99.9%와 99.99%가 1년에 허용하는 멈춤 시간이 얼마나 다른지 말할 수 있다",
+    "부품 하나가 고장 나도 서비스가 멈추지 않게 여러 벌을 두는 까닭을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.basics.what-is-deploy"
+   ],
+   "related": [
+    "ops.observe.slo-design",
+    "ops.basics.region-zone"
+   ],
+   "aliases": [
+    "가용성",
+    "서비스 가용성",
+    "availability",
+    "service availability",
+    "고가용성",
+    "high availability"
+   ],
+   "refs": [
+    "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/availability.html",
+    "https://sre.google/sre-book/embracing-risk/",
+    "https://docs.cloud.google.com/architecture/framework/reliability/build-highly-available-systems"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.linux.multipass-first-vm",
    "title": "Multipass로 Ubuntu 가상 머신 처음 띄우기",
    "en": "Launching a First Ubuntu VM with Multipass",
@@ -52563,6 +53491,54 @@
    ],
    "refs": [
     "https://sre.google/sre-book/monitoring-distributed-systems/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.observe.log-entry",
+   "title": "로그(시간이 찍힌 기록)",
+   "en": "Log Entry (Timestamped Record)",
+   "kind": "term",
+   "level": 1,
+   "importance": 1,
+   "group": "관측",
+   "summary": "프로그램이 무슨 일이 언제 있었는지 시각과 함께 한 줄씩 남기는 일기 같은 기록이다.",
+   "parent": "ops.observe.observability-idea",
+   "related": [
+    "be.error.logging-basics",
+    "ops.linux.read-log-files"
+   ],
+   "aliases": [
+    "서버 로그",
+    "애플리케이션 로그",
+    "log entry",
+    "log message",
+    "로그 메시지"
+   ],
+   "refs": [
+    "https://opentelemetry.io/docs/concepts/observability-primer/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.production-environment",
+   "title": "운영 환경(프로덕션)",
+   "en": "Production Environment",
+   "kind": "term",
+   "level": 1,
+   "importance": 1,
+   "group": "배포 기초",
+   "summary": "실제 사용자가 정식 주소로 접속해 쓰는 진짜 서비스가 돌아가는 환경이다.",
+   "parent": "ops.basics.deploy-environments",
+   "aliases": [
+    "프로덕션 환경",
+    "prod 환경",
+    "실서비스 환경",
+    "라이브 환경",
+    "운영 서버"
+   ],
+   "refs": [
+    "https://vercel.com/docs/deployments/environments"
    ],
    "domain": "ops"
   },
@@ -52934,6 +53910,167 @@
    ],
    "refs": [
     "https://sre.google/sre-book/being-on-call/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.observe.telemetry",
+   "title": "텔레메트리",
+   "en": "Telemetry",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "관측",
+   "summary": "서비스가 자기 상태와 동작을 알리려고 바깥으로 내보내는 로그·지표·트레이스 같은 데이터다.",
+   "parent": "ops.observe.observability-idea",
+   "aliases": [
+    "텔레메트리 데이터",
+    "telemetry data",
+    "원격 측정 데이터"
+   ],
+   "refs": [
+    "https://opentelemetry.io/docs/concepts/observability-primer/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.observe.dashboard",
+   "title": "모니터링 대시보드",
+   "en": "Monitoring Dashboard",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "관측",
+   "summary": "서비스의 핵심 지표를 그래프로 한 화면에 모아 보여 주는 웹 화면으로, 운영의 계기판 역할을 한다.",
+   "related": [
+    "ops.observe.monitoring-idea"
+   ],
+   "aliases": [
+    "운영 대시보드",
+    "monitoring dashboard",
+    "지표 대시보드",
+    "metrics dashboard"
+   ],
+   "refs": [
+    "https://sre.google/sre-book/monitoring-distributed-systems/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.staging-environment",
+   "title": "스테이징 환경",
+   "en": "Staging Environment",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "배포 기초",
+   "summary": "운영과 거의 같게 꾸며 두고 사용자에게 내놓기 전에 마지막으로 시험해 보는 배포 환경이다.",
+   "parent": "ops.basics.deploy-environments",
+   "related": [
+    "dev.git.staging-area"
+   ],
+   "aliases": [
+    "스테이징 서버",
+    "staging server",
+    "staging 환경",
+    "사전 운영 환경",
+    "pre-production environment"
+   ],
+   "refs": [
+    "https://vercel.com/docs/deployments/environments"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.preview-deployment",
+   "title": "프리뷰 배포",
+   "en": "Preview Deployment",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "배포 기초",
+   "summary": "운영 사이트는 그대로 두고 브랜치나 PR의 변경을 따로 주소를 붙여 올려 미리 보게 하는 배포다.",
+   "parent": "ops.basics.deploy-environments",
+   "aliases": [
+    "미리보기 배포",
+    "프리뷰 URL",
+    "preview URL",
+    "PR 미리보기 배포"
+   ],
+   "refs": [
+    "https://vercel.com/docs/deployments/environments"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.observe.availability-nines",
+   "title": "가용성 나인(99.9%·99.99%)",
+   "en": "Availability Nines",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "관측",
+   "summary": "가용성을 99.9%처럼 9가 몇 개인지로 부르는 말로, 9가 하나 늘 때마다 허용되는 멈춤 시간이 약 10분의 1로 준다.",
+   "parent": "ops.observe.availability-idea",
+   "aliases": [
+    "파이브 나인",
+    "five nines",
+    "쓰리 나인",
+    "number of nines",
+    "99.99% 가용성"
+   ],
+   "refs": [
+    "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/availability.html",
+    "https://sre.google/sre-book/embracing-risk/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.observe.single-point-of-failure",
+   "title": "단일 장애점(SPOF)",
+   "en": "Single Point of Failure",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "관측",
+   "summary": "하나뿐이라 그것만 고장 나도 서비스 전체가 멈추는 부품이나 위치다.",
+   "parent": "ops.observe.availability-idea",
+   "related": [
+    "ops.observe.redundancy"
+   ],
+   "aliases": [
+    "SPOF",
+    "단일 실패 지점",
+    "단일 고장점"
+   ],
+   "refs": [
+    "https://docs.cloud.google.com/architecture/framework/reliability/build-highly-available-systems"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.observe.redundancy",
+   "title": "이중화(여러 벌 두기)",
+   "en": "Redundancy",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "관측",
+   "summary": "중요한 부품을 여러 대·여러 영역에 겹쳐 두어 하나가 고장 나도 나머지로 서비스를 이어 가게 하는 방법이다.",
+   "parent": "ops.observe.availability-idea",
+   "related": [
+    "db.basics.db-replica",
+    "ops.basics.region-zone"
+   ],
+   "aliases": [
+    "시스템 이중화",
+    "서버 이중화",
+    "중복 구성",
+    "redundant components"
+   ],
+   "refs": [
+    "https://docs.cloud.google.com/architecture/framework/reliability/build-highly-available-systems",
+    "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/availability.html"
    ],
    "domain": "ops"
   },
@@ -57486,6 +58623,101 @@
    "domain": "ml"
   },
   {
+   "id": "ml.eval.data-split",
+   "title": "데이터 나누기: 연습문제·모의고사·본시험",
+   "en": "Splitting Data into Training, Validation, and Test Sets",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "모델 평가",
+   "summary": "가진 데이터를 공부용·중간 점검용·최종 시험용으로 나눠 모델이 처음 보는 문제도 잘 푸는지 확인하는 방법이다.",
+   "objectives": [
+    "데이터를 세 묶음으로 나누는 까닭을 시험 비유로 설명할 수 있다",
+    "훈련 세트·검증 세트·테스트 세트가 각각 언제 쓰이는지 구분할 수 있다",
+    "테스트 세트를 자주 들여다보면 왜 점수를 믿기 어려워지는지 말할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.train-inference"
+   ],
+   "related": [
+    "ml.training.overfitting-idea"
+   ],
+   "aliases": [
+    "학습·검증·테스트 나누기",
+    "train/validation/test split",
+    "데이터 세 묶음",
+    "데이터 나눠 쓰기"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.neural-network-idea",
+   "title": "신경망: 층층이 이어진 작은 계산기들",
+   "en": "Neural Network Structure: Input, Hidden, and Output Layers",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "딥러닝",
+   "summary": "입력층에서 받은 값을 여러 은닉층의 뉴런이 차례로 계산해 넘기고 출력층이 답을 내는 신경망의 큰 그림이다.",
+   "objectives": [
+    "입력층·은닉층·출력층이 각각 맡는 일을 비유로 설명할 수 있다",
+    "뉴런이 앞 층의 값을 받아 섞어 다음 층으로 넘긴다는 것을 말할 수 있다",
+    "활성화 함수가 있어야 층을 쌓는 의미가 생긴다는 것을 쉬운 말로 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.ai-ml-dl"
+   ],
+   "related": [
+    "ml.nn.first-neural-network"
+   ],
+   "aliases": [
+    "인공 신경망",
+    "artificial neural network",
+    "신경망 층 구조",
+    "neural network layers"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/neural-networks/nodes-hidden-layers",
+    "https://developers.google.com/machine-learning/crash-course/neural-networks/activation-functions"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.classification-outcomes",
+   "title": "분류의 네 가지 결과: 맞힘과 두 종류의 실수",
+   "en": "True and False Positives and Negatives",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "모델 평가",
+   "summary": "스팸 필터처럼 예·아니오를 고르는 모델의 결과를 참 양성·거짓 양성·거짓 음성·참 음성 네 칸으로 나눠 보는 방법이다.",
+   "objectives": [
+    "스팸 필터 예로 네 가지 결과를 구분해 설명할 수 있다",
+    "거짓 양성과 거짓 음성 가운데 어느 실수가 더 아픈지는 상황마다 다르다는 것을 말할 수 있다",
+    "분류 임계값을 올리고 내리면 두 종류의 실수가 어떻게 바뀌는지 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.types-of-ml"
+   ],
+   "related": [
+    "ml.eval.accuracy-first-evaluation",
+    "ml.basics.classification"
+   ],
+   "aliases": [
+    "분류 결과 네 가지",
+    "four classification outcomes",
+    "분류의 두 가지 실수",
+    "양성 음성 결과"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/classification/thresholding"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.basics.data-quality",
    "title": "AI에게 데이터가 중요한 이유",
    "en": "Why Data Matters to AI",
@@ -57894,6 +59126,132 @@
    "domain": "ml"
   },
   {
+   "id": "ml.nn.neuron",
+   "title": "뉴런(신경망의 노드)",
+   "en": "Artificial Neuron",
+   "kind": "term",
+   "level": 1,
+   "importance": 1,
+   "group": "딥러닝",
+   "summary": "앞 층에서 받은 값마다 무게를 곱해 더하고 그 결과를 다음 층으로 넘기는 신경망의 작은 계산 단위다.",
+   "parent": "ml.nn.neural-network-idea",
+   "aliases": [
+    "인공 뉴런",
+    "신경망 노드",
+    "neural network node",
+    "뉴런 노드"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/neural-networks/nodes-hidden-layers"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.hidden-layer",
+   "title": "은닉층",
+   "en": "Hidden Layer",
+   "kind": "term",
+   "level": 1,
+   "importance": 1,
+   "group": "딥러닝",
+   "summary": "신경망에서 입력층과 출력층 사이에 끼어 있어 겉으로 보이지 않는 중간 계산 층이다.",
+   "parent": "ml.nn.neural-network-idea",
+   "aliases": [
+    "은닉 계층",
+    "hidden layers",
+    "숨은 층",
+    "중간층"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/neural-networks/nodes-hidden-layers"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.false-positive",
+   "title": "거짓 양성",
+   "en": "False Positive in Binary Classification",
+   "kind": "term",
+   "level": 1,
+   "importance": 1,
+   "group": "모델 평가",
+   "summary": "실제로는 아닌데 모델이 맞다고 잘못 고른 경우로, 정상 메일이 스팸함에 들어간 것과 같다.",
+   "parent": "ml.eval.classification-outcomes",
+   "aliases": [
+    "1종 오류",
+    "type I error",
+    "false alarm",
+    "잘못된 양성 판정"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/classification/thresholding"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.false-negative",
+   "title": "거짓 음성",
+   "en": "False Negative in Binary Classification",
+   "kind": "term",
+   "level": 1,
+   "importance": 1,
+   "group": "모델 평가",
+   "summary": "실제로는 맞는데 모델이 아니라고 놓친 경우로, 스팸 메일이 받은편지함에 들어온 것과 같다.",
+   "parent": "ml.eval.classification-outcomes",
+   "aliases": [
+    "2종 오류",
+    "type II error",
+    "놓친 양성",
+    "missed detection"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/classification/thresholding"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.input-output-layer",
+   "title": "입력층과 출력층",
+   "en": "Input Layer and Output Layer",
+   "kind": "term",
+   "level": 1,
+   "importance": 1,
+   "group": "딥러닝",
+   "summary": "신경망의 맨 앞에서 특성 값을 받아들이는 층과 맨 끝에서 예측값을 내놓는 층이다.",
+   "parent": "ml.nn.neural-network-idea",
+   "aliases": [
+    "입력층",
+    "출력층",
+    "input layer",
+    "output layer"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/neural-networks/nodes-hidden-layers"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.positive-negative-class",
+   "title": "양성 클래스와 음성 클래스",
+   "en": "Positive Class and Negative Class",
+   "kind": "term",
+   "level": 1,
+   "importance": 1,
+   "group": "모델 평가",
+   "summary": "예·아니오로 고르는 분류에서 찾으려는 쪽(스팸)을 양성, 그 반대쪽(정상 메일)을 음성이라 부르는 이름표다.",
+   "parent": "ml.eval.classification-outcomes",
+   "aliases": [
+    "양성 클래스",
+    "음성 클래스",
+    "positive class",
+    "negative class"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/classification/thresholding"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.basics.regression",
    "title": "회귀(수치 예측)",
    "en": "Regression (Numeric Prediction)",
@@ -58286,6 +59644,27 @@
    ],
    "refs": [
     "https://developers.google.com/machine-learning/crash-course/numerical-data/feature-vectors"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.true-positive-negative",
+   "title": "참 양성과 참 음성",
+   "en": "True Positive and True Negative",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "모델 평가",
+   "summary": "모델이 맞힌 두 경우로, 스팸을 스팸함에 넣은 것이 참 양성이고 정상 메일을 받은편지함에 둔 것이 참 음성이다.",
+   "parent": "ml.eval.classification-outcomes",
+   "aliases": [
+    "참 양성",
+    "참 음성",
+    "true positive",
+    "true negative"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/classification/thresholding"
    ],
    "domain": "ml"
   },

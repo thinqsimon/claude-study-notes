@@ -25,6 +25,38 @@
     ]
   },
   {
+    "id": "ops.basics.deploy-environments",
+    "title": "개발·스테이징·운영 환경 나누기",
+    "en": "Development, Staging, and Production Environments",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "배포 기초",
+    "summary": "같은 서비스를 내 컴퓨터, 미리 시험하는 곳, 사용자가 쓰는 곳으로 나눠 두고 차례로 옮겨 가며 내놓는 방식이다.",
+    "objectives": [
+      "개발·스테이징·운영 환경을 연습실·리허설 무대·본 공연에 빗대어 설명할 수 있다",
+      "운영 환경에 바로 올리기 전에 미리 시험하는 환경을 두는 이유를 말할 수 있다",
+      "환경마다 접속 주소와 설정값(예: DB 주소)이 따로 있다는 점을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.basics.what-is-deploy"
+    ],
+    "related": [
+      "ops.basics.environment-drift",
+      "ops.ci.environment-secrets"
+    ],
+    "aliases": [
+      "배포 환경",
+      "deployment environments",
+      "dev staging prod",
+      "개발 스테이징 운영"
+    ],
+    "refs": [
+      "https://vercel.com/docs/deployments/environments",
+      "https://docs.github.com/en/actions/concepts/workflows-and-actions/deployment-environments"
+    ]
+  },
+  {
     "id": "ops.basics.cloud",
     "title": "클라우드: 빌려 쓰는 컴퓨터",
     "en": "What the Cloud Is",
@@ -328,6 +360,72 @@
     ]
   },
   {
+    "id": "ops.observe.observability-idea",
+    "title": "관측 가능성: 서비스 속을 밖에서 들여다보기",
+    "en": "The Idea of Observability",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "관측",
+    "summary": "서비스가 내보내는 로그·지표·트레이스를 보고 속을 열지 않고도 왜 이상한지 알아내는 힘이다.",
+    "objectives": [
+      "관측 가능성을 자동차 계기판과 블랙박스에 빗대어 설명할 수 있다",
+      "로그·지표·트레이스가 각각 어떤 기록인지 한 문장씩 말할 수 있다",
+      "서비스가 켜져 있어도 사용자가 원하는 대로 동작하지 않으면 믿을 수 없다는 점을 예로 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.basics.what-is-deploy"
+    ],
+    "related": [
+      "ops.observe.monitoring-idea",
+      "ops.observe.tracing"
+    ],
+    "aliases": [
+      "관측성",
+      "옵저버빌리티",
+      "observability",
+      "시스템 관측 가능성"
+    ],
+    "refs": [
+      "https://opentelemetry.io/docs/concepts/observability-primer/"
+    ]
+  },
+  {
+    "id": "ops.observe.availability-idea",
+    "title": "가용성: 서비스가 늘 열려 있게 하기",
+    "en": "The Idea of Availability",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "관측",
+    "summary": "서비스를 쓰려 할 때 제대로 쓸 수 있었던 시간이나 요청의 비율로, 99.9%처럼 퍼센트로 말한다.",
+    "objectives": [
+      "가용성을 가게의 영업시간 대비 실제로 문을 연 시간에 빗대어 설명할 수 있다",
+      "99.9%와 99.99%가 1년에 허용하는 멈춤 시간이 얼마나 다른지 말할 수 있다",
+      "부품 하나가 고장 나도 서비스가 멈추지 않게 여러 벌을 두는 까닭을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.basics.what-is-deploy"
+    ],
+    "related": [
+      "ops.observe.slo-design",
+      "ops.basics.region-zone"
+    ],
+    "aliases": [
+      "가용성",
+      "서비스 가용성",
+      "availability",
+      "service availability",
+      "고가용성",
+      "high availability"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/availability.html",
+      "https://sre.google/sre-book/embracing-risk/",
+      "https://docs.cloud.google.com/architecture/framework/reliability/build-highly-available-systems"
+    ]
+  },
+  {
     "id": "ops.linux.multipass-first-vm",
     "title": "Multipass로 Ubuntu 가상 머신 처음 띄우기",
     "en": "Launching a First Ubuntu VM with Multipass",
@@ -404,6 +502,52 @@
     ],
     "refs": [
       "https://sre.google/sre-book/monitoring-distributed-systems/"
+    ]
+  },
+  {
+    "id": "ops.observe.log-entry",
+    "title": "로그(시간이 찍힌 기록)",
+    "en": "Log Entry (Timestamped Record)",
+    "kind": "term",
+    "level": 1,
+    "importance": 1,
+    "group": "관측",
+    "summary": "프로그램이 무슨 일이 언제 있었는지 시각과 함께 한 줄씩 남기는 일기 같은 기록이다.",
+    "parent": "ops.observe.observability-idea",
+    "related": [
+      "be.error.logging-basics",
+      "ops.linux.read-log-files"
+    ],
+    "aliases": [
+      "서버 로그",
+      "애플리케이션 로그",
+      "log entry",
+      "log message",
+      "로그 메시지"
+    ],
+    "refs": [
+      "https://opentelemetry.io/docs/concepts/observability-primer/"
+    ]
+  },
+  {
+    "id": "ops.basics.production-environment",
+    "title": "운영 환경(프로덕션)",
+    "en": "Production Environment",
+    "kind": "term",
+    "level": 1,
+    "importance": 1,
+    "group": "배포 기초",
+    "summary": "실제 사용자가 정식 주소로 접속해 쓰는 진짜 서비스가 돌아가는 환경이다.",
+    "parent": "ops.basics.deploy-environments",
+    "aliases": [
+      "프로덕션 환경",
+      "prod 환경",
+      "실서비스 환경",
+      "라이브 환경",
+      "운영 서버"
+    ],
+    "refs": [
+      "https://vercel.com/docs/deployments/environments"
     ]
   },
   {
@@ -758,6 +902,160 @@
     ],
     "refs": [
       "https://sre.google/sre-book/being-on-call/"
+    ]
+  },
+  {
+    "id": "ops.observe.telemetry",
+    "title": "텔레메트리",
+    "en": "Telemetry",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "관측",
+    "summary": "서비스가 자기 상태와 동작을 알리려고 바깥으로 내보내는 로그·지표·트레이스 같은 데이터다.",
+    "parent": "ops.observe.observability-idea",
+    "aliases": [
+      "텔레메트리 데이터",
+      "telemetry data",
+      "원격 측정 데이터"
+    ],
+    "refs": [
+      "https://opentelemetry.io/docs/concepts/observability-primer/"
+    ]
+  },
+  {
+    "id": "ops.observe.dashboard",
+    "title": "모니터링 대시보드",
+    "en": "Monitoring Dashboard",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "관측",
+    "summary": "서비스의 핵심 지표를 그래프로 한 화면에 모아 보여 주는 웹 화면으로, 운영의 계기판 역할을 한다.",
+    "related": [
+      "ops.observe.monitoring-idea"
+    ],
+    "aliases": [
+      "운영 대시보드",
+      "monitoring dashboard",
+      "지표 대시보드",
+      "metrics dashboard"
+    ],
+    "refs": [
+      "https://sre.google/sre-book/monitoring-distributed-systems/"
+    ]
+  },
+  {
+    "id": "ops.basics.staging-environment",
+    "title": "스테이징 환경",
+    "en": "Staging Environment",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "배포 기초",
+    "summary": "운영과 거의 같게 꾸며 두고 사용자에게 내놓기 전에 마지막으로 시험해 보는 배포 환경이다.",
+    "parent": "ops.basics.deploy-environments",
+    "related": [
+      "dev.git.staging-area"
+    ],
+    "aliases": [
+      "스테이징 서버",
+      "staging server",
+      "staging 환경",
+      "사전 운영 환경",
+      "pre-production environment"
+    ],
+    "refs": [
+      "https://vercel.com/docs/deployments/environments"
+    ]
+  },
+  {
+    "id": "ops.basics.preview-deployment",
+    "title": "프리뷰 배포",
+    "en": "Preview Deployment",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "배포 기초",
+    "summary": "운영 사이트는 그대로 두고 브랜치나 PR의 변경을 따로 주소를 붙여 올려 미리 보게 하는 배포다.",
+    "parent": "ops.basics.deploy-environments",
+    "aliases": [
+      "미리보기 배포",
+      "프리뷰 URL",
+      "preview URL",
+      "PR 미리보기 배포"
+    ],
+    "refs": [
+      "https://vercel.com/docs/deployments/environments"
+    ]
+  },
+  {
+    "id": "ops.observe.availability-nines",
+    "title": "가용성 나인(99.9%·99.99%)",
+    "en": "Availability Nines",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "관측",
+    "summary": "가용성을 99.9%처럼 9가 몇 개인지로 부르는 말로, 9가 하나 늘 때마다 허용되는 멈춤 시간이 약 10분의 1로 준다.",
+    "parent": "ops.observe.availability-idea",
+    "aliases": [
+      "파이브 나인",
+      "five nines",
+      "쓰리 나인",
+      "number of nines",
+      "99.99% 가용성"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/availability.html",
+      "https://sre.google/sre-book/embracing-risk/"
+    ]
+  },
+  {
+    "id": "ops.observe.single-point-of-failure",
+    "title": "단일 장애점(SPOF)",
+    "en": "Single Point of Failure",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "관측",
+    "summary": "하나뿐이라 그것만 고장 나도 서비스 전체가 멈추는 부품이나 위치다.",
+    "parent": "ops.observe.availability-idea",
+    "related": [
+      "ops.observe.redundancy"
+    ],
+    "aliases": [
+      "SPOF",
+      "단일 실패 지점",
+      "단일 고장점"
+    ],
+    "refs": [
+      "https://docs.cloud.google.com/architecture/framework/reliability/build-highly-available-systems"
+    ]
+  },
+  {
+    "id": "ops.observe.redundancy",
+    "title": "이중화(여러 벌 두기)",
+    "en": "Redundancy",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "관측",
+    "summary": "중요한 부품을 여러 대·여러 영역에 겹쳐 두어 하나가 고장 나도 나머지로 서비스를 이어 가게 하는 방법이다.",
+    "parent": "ops.observe.availability-idea",
+    "related": [
+      "db.basics.db-replica",
+      "ops.basics.region-zone"
+    ],
+    "aliases": [
+      "시스템 이중화",
+      "서버 이중화",
+      "중복 구성",
+      "redundant components"
+    ],
+    "refs": [
+      "https://docs.cloud.google.com/architecture/framework/reliability/build-highly-available-systems",
+      "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/availability.html"
     ]
   },
   {

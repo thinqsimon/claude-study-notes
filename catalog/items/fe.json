@@ -132,6 +132,36 @@
     ]
   },
   {
+    "id": "fe.basics.typescript-idea",
+    "title": "TypeScript: 실행 전에 실수를 잡아 주는 JavaScript",
+    "en": "What TypeScript Is: A Static Type Checker for JavaScript",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "웹 기초",
+    "summary": "TypeScript는 JavaScript에 값의 종류 규칙을 더해 코드를 돌리기 전에 오타와 잘못 쓴 값을 알려 주는 언어다.",
+    "objectives": [
+      "TypeScript가 왜 생겼는지 맞춤법 검사기에 빗대어 설명할 수 있다",
+      "TypeScript 코드가 결국 JavaScript로 바뀌어 실행된다는 것을 말할 수 있다",
+      "문법 오류와 타입 오류의 차이를 예를 들어 말할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.web-page-parts"
+    ],
+    "related": [
+      "fe.ts.first-types"
+    ],
+    "aliases": [
+      "TypeScript란",
+      "타입스크립트란",
+      "TypeScript 개념",
+      "타입이 있는 자바스크립트"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html"
+    ]
+  },
+  {
     "id": "fe.basics.responsive-idea",
     "title": "화면 크기에 맞추는 반응형 화면",
     "en": "Responsive Screens",
@@ -385,6 +415,38 @@
     ]
   },
   {
+    "id": "fe.basics.how-browser-draws",
+    "title": "브라우저가 웹 페이지를 화면에 그리는 과정",
+    "en": "How a Browser Turns a Web Page into Pixels",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "브라우저는 받은 HTML과 CSS를 읽어 내용의 뼈대와 꾸밈 규칙을 세우고, 자리와 크기를 정한 뒤 화면에 색을 칠한다.",
+    "objectives": [
+      "HTML을 받은 뒤 화면에 보이기까지의 큰 단계를 집 짓기에 빗대어 설명할 수 있다",
+      "렌더링 엔진과 JavaScript 엔진이 브라우저 안에서 맡는 일을 나눠 말할 수 있다",
+      "페이지가 다 그려져 보여도 바로 눌리지 않을 수 있는 까닭을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.web-page-parts"
+    ],
+    "related": [
+      "fe.internals.render-pipeline"
+    ],
+    "aliases": [
+      "브라우저 렌더링 과정",
+      "how browsers work",
+      "웹 페이지 그리기 과정",
+      "화면 그리기 순서"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/How_browsers_work",
+      "https://developer.mozilla.org/en-US/docs/Glossary/Engine/Rendering",
+      "https://developer.mozilla.org/en-US/docs/Glossary/Engine/JavaScript"
+    ]
+  },
+  {
     "id": "fe.basics.pwa-idea",
     "title": "PWA: 앱처럼 설치해 쓰는 웹사이트",
     "en": "Progressive Web Apps",
@@ -408,6 +470,35 @@
     ],
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/What_is_a_progressive_web_app"
+    ]
+  },
+  {
+    "id": "fe.basics.dark-mode-idea",
+    "title": "다크 모드: 사용자가 고른 어두운 화면",
+    "en": "Dark Mode and the User's Color Scheme Preference",
+    "kind": "topic",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 기초",
+    "summary": "다크 모드는 사용자가 운영체제나 브라우저에서 어두운 테마를 고르면 웹사이트도 그 선택을 읽어 어두운 색으로 바꿔 보여 주는 방식이다.",
+    "objectives": [
+      "다크 모드가 무엇이고 사람들이 왜 고르는지 말할 수 있다",
+      "웹사이트가 사용자의 밝기 선택을 어디서 알아내는지 설명할 수 있다",
+      "어두운 테마에서도 글자와 배경의 대비를 지켜야 하는 까닭을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.ui-design-basics"
+    ],
+    "aliases": [
+      "다크 모드",
+      "dark mode",
+      "어두운 테마",
+      "dark theme",
+      "다크 테마"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-color-scheme",
+      "https://developer.mozilla.org/en-US/docs/Web/Accessibility/Guides/Understanding_WCAG/Perceivable/Color_contrast"
     ]
   },
   {
@@ -737,6 +828,130 @@
     ]
   },
   {
+    "id": "fe.basics.static-type-checking",
+    "title": "정적 타입 검사",
+    "en": "Static Type Checking",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "정적 타입 검사는 프로그램을 실행하지 않고 값의 종류가 맞게 쓰였는지 미리 살펴 오류를 찾아내는 일이다.",
+    "parent": "fe.basics.typescript-idea",
+    "aliases": [
+      "정적 타입 검사기",
+      "static type checker",
+      "실행 전 타입 검사"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html"
+    ]
+  },
+  {
+    "id": "fe.basics.type-erasure",
+    "title": "타입 지우기: 타입 없이 실행되는 결과",
+    "en": "Type Erasure in TypeScript",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "TypeScript는 검사가 끝나면 타입 표시를 모두 지운 평범한 JavaScript를 내놓으므로 타입은 실행 중 동작을 바꾸지 않는다.",
+    "parent": "fe.basics.typescript-idea",
+    "aliases": [
+      "타입 지우기",
+      "TypeScript 타입 소거",
+      "erased types",
+      "TypeScript type erasure"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html"
+    ]
+  },
+  {
+    "id": "fe.basics.rendering-engine",
+    "title": "렌더링 엔진(브라우저 엔진)",
+    "en": "Browser Rendering Engine",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "렌더링 엔진은 브라우저 안에서 HTML과 CSS를 읽어 눈에 보이는 화면으로 바꾸는 부분으로, Blink·Gecko·WebKit이 대표적이다.",
+    "parent": "fe.basics.how-browser-draws",
+    "aliases": [
+      "렌더링 엔진",
+      "브라우저 엔진",
+      "browser engine",
+      "레이아웃 엔진",
+      "layout engine",
+      "Blink 엔진"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/Engine/Rendering"
+    ]
+  },
+  {
+    "id": "fe.basics.javascript-engine",
+    "title": "JavaScript 엔진",
+    "en": "JavaScript Engine",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "JavaScript 엔진은 JavaScript 코드를 읽어 실행하는 프로그램으로, 크롬의 V8처럼 브라우저 안에 들어 있고 Node.js에서도 쓰인다.",
+    "parent": "fe.basics.how-browser-draws",
+    "aliases": [
+      "자바스크립트 엔진",
+      "JS 엔진",
+      "JS engine",
+      "V8 엔진",
+      "SpiderMonkey"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/Engine/JavaScript"
+    ]
+  },
+  {
+    "id": "fe.basics.viewport",
+    "title": "뷰포트: 브라우저에 지금 보이는 영역",
+    "en": "Viewport (Visible Area of a Web Page)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "뷰포트는 문서 가운데 지금 브라우저 창이나 휴대폰 화면에 보이는 부분으로, 그 밖의 내용은 스크롤해야 보인다.",
+    "related": [
+      "fe.css.viewport-meta"
+    ],
+    "aliases": [
+      "뷰포트",
+      "visual viewport",
+      "layout viewport",
+      "화면 표시 영역"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/Viewport"
+    ]
+  },
+  {
+    "id": "fe.basics.web-file-naming",
+    "title": "웹 파일 이름 규칙: 소문자와 하이픈",
+    "en": "Naming Web Files in Lowercase with Hyphens",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "웹사이트 파일과 폴더 이름은 모두 소문자로 쓰고 빈칸 대신 하이픈을 넣어야 서버와 주소에서 엉뚱한 오류가 나지 않는다.",
+    "aliases": [
+      "웹 파일 이름 규칙",
+      "file naming convention",
+      "소문자 파일 이름",
+      "파일 이름 하이픈",
+      "파일 이름 공백 %20"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Dealing_with_files"
+    ]
+  },
+  {
     "id": "fe.basics.whatwg",
     "title": "WHATWG",
     "en": "Web Hypertext Application Technology Working Group",
@@ -1037,6 +1252,67 @@
     ],
     "refs": [
       "https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview"
+    ]
+  },
+  {
+    "id": "fe.basics.typed-superset",
+    "title": "JavaScript의 상위 집합인 TypeScript",
+    "en": "TypeScript as a Typed Superset of JavaScript",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 기초",
+    "summary": "TypeScript는 JavaScript의 상위 집합이라 문법이 맞는 JavaScript 코드는 그대로 TypeScript 코드가 되지만, 타입 오류는 따로 알려 줄 수 있다.",
+    "parent": "fe.basics.typescript-idea",
+    "aliases": [
+      "typed superset",
+      "JavaScript superset",
+      "자바스크립트 상위 집합"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html"
+    ]
+  },
+  {
+    "id": "fe.basics.polyfill",
+    "title": "폴리필",
+    "en": "Polyfill",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 기초",
+    "summary": "폴리필은 오래된 브라우저에 없는 새 기능을 대신 흉내 내 채워 주는 코드로, 주로 JavaScript로 만든다.",
+    "related": [
+      "fe.basics.cross-browser"
+    ],
+    "aliases": [
+      "폴리필",
+      "polyfills",
+      "폴리필 코드",
+      "브라우저 기능 보충 코드"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/Polyfill"
+    ]
+  },
+  {
+    "id": "fe.basics.prefers-color-scheme",
+    "title": "색 테마 선호(prefers-color-scheme)",
+    "en": "prefers-color-scheme Media Feature",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 기초",
+    "summary": "prefers-color-scheme는 사용자가 밝은 테마와 어두운 테마 가운데 무엇을 골랐는지 웹 페이지가 알아보게 하는 CSS 기능이다.",
+    "parent": "fe.basics.dark-mode-idea",
+    "aliases": [
+      "prefers-color-scheme",
+      "색 구성표 선호",
+      "color scheme preference",
+      "다크 모드 미디어 쿼리"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-color-scheme"
     ]
   },
   {
