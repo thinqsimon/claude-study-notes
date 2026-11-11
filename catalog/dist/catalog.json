@@ -1,5 +1,5 @@
 {
- "version": "0.29.0",
+ "version": "0.30.0",
  "domains": [
   {
    "prefix": "dev",
@@ -692,6 +692,101 @@
    "domain": "dev"
   },
   {
+   "id": "dev.git.vscode-source-control",
+   "title": "VS Code에서 Git 쓰기: 소스 제어 보기",
+   "en": "Using Git in VS Code Source Control",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "Git",
+   "summary": "명령을 치지 않고 편집기의 소스 제어 보기에서 저장소를 만들고 변경을 골라 커밋하고 원격과 맞춘다.",
+   "objectives": [
+    "소스 제어 보기에서 저장소를 초기화하고 U·M 표시로 파일 상태를 읽을 수 있다",
+    "변경 비교 화면을 보고 파일을 스테이징한 뒤 메시지를 적어 커밋할 수 있다",
+    "Sync Changes로 원격의 커밋을 받고 내 커밋을 올릴 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.first-commit",
+    "dev.basics.code-editor"
+   ],
+   "related": [
+    "dev.git.remotes"
+   ],
+   "aliases": [
+    "VS Code Git",
+    "VS Code 소스 제어",
+    "소스 제어 보기",
+    "Source Control view",
+    "VS Code 커밋"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/sourcecontrol/quickstart",
+    "https://code.visualstudio.com/docs/sourcecontrol/overview"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.terminal.vscode-terminal",
+   "title": "VS Code 통합 터미널 쓰기",
+   "en": "VS Code Integrated Terminal",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "터미널",
+   "summary": "편집기 안에서 터미널을 열어 프로젝트 폴더에서 바로 명령을 실행하고 여러 터미널을 나눠 쓴다.",
+   "objectives": [
+    "메뉴나 단축키로 통합 터미널을 열고 어느 폴더에서 열렸는지 확인할 수 있다",
+    "터미널을 여러 개 만들고 나란히 나눠 서버와 명령을 따로 돌릴 수 있다",
+    "편집기에서 고른 코드를 터미널로 보내 실행할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.terminal.basic-commands",
+    "dev.basics.code-editor"
+   ],
+   "aliases": [
+    "통합 터미널",
+    "integrated terminal",
+    "VS Code 터미널",
+    "터미널 분할"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/terminal/basics"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.test.vscode-python-testing",
+   "title": "VS Code에서 파이썬 테스트 돌리기",
+   "en": "Running Python Tests in VS Code",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "테스트",
+   "summary": "편집기에 pytest를 테스트 도구로 설정하고 버튼을 눌러 테스트를 찾아 돌린 뒤 성공과 실패를 화면에서 읽는다.",
+   "objectives": [
+    "Configure Python Tests로 pytest와 테스트 폴더를 고를 수 있다",
+    "줄 옆 실행 아이콘이나 테스트 탐색기로 테스트 하나 또는 전체를 돌릴 수 있다",
+    "실패한 테스트의 메시지를 Peek 보기와 Test Results 창에서 읽을 수 있다"
+   ],
+   "prerequisites": [
+    "be.test.pytest-first",
+    "dev.basics.code-editor"
+   ],
+   "related": [
+    "dev.debug.vscode-python"
+   ],
+   "aliases": [
+    "VS Code 테스트",
+    "VS Code pytest",
+    "Configure Python Tests",
+    "VS Code 파이썬 테스트 실행"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/python/testing"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.test.unit",
    "title": "단위 테스트",
    "en": "Unit Test",
@@ -936,6 +1031,74 @@
    "domain": "dev"
   },
   {
+   "id": "dev.git.rm-mv",
+   "title": "git rm과 git mv로 파일 지우고 옮기기",
+   "en": "Removing and Moving Files (git rm, git mv)",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "Git",
+   "summary": "파일을 지우거나 이름을 바꾸는 일과 그 변경을 스테이징하는 일을 한 번에 해 주는 Git 명령이다.",
+   "parent": "dev.git.first-commit",
+   "related": [
+    "dev.git.rm-cached"
+   ],
+   "aliases": [
+    "git rm",
+    "git mv",
+    "Git 파일 삭제",
+    "Git 파일 이름 바꾸기"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.git-help",
+   "title": "git help와 -h로 명령 설명 보기",
+   "en": "Getting Help in Git",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "Git",
+   "summary": "git help 명령이나 --help로 전체 설명서를 열고, -h로 옵션 목록만 짧게 보는 Git의 도움말 기능이다.",
+   "aliases": [
+    "git help",
+    "git --help",
+    "git 도움말",
+    "Git 매뉴얼"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Getting-Started-Getting-Help"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.terminal.pipe",
+   "title": "파이프(|)로 명령 잇기",
+   "en": "Pipes",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "터미널",
+   "summary": "앞 명령의 출력을 뒤 명령의 입력으로 넘겨 ls | wc -l처럼 작은 명령을 이어 붙이는 셸 기호다.",
+   "parent": "ops.linux.shell-script-basics",
+   "related": [
+    "ops.linux.stdout-stderr-redirection"
+   ],
+   "aliases": [
+    "셸 파이프",
+    "파이프 기호",
+    "명령 파이프",
+    "shell pipe"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Command_line"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.debug.launch-json",
    "title": "launch.json 디버그 구성",
    "en": "launch.json Debug Configuration",
@@ -953,6 +1116,114 @@
    ],
    "refs": [
     "https://code.visualstudio.com/docs/python/debugging"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.status-short",
+   "title": "git status -s 짧은 상태 표시",
+   "en": "Short Status (git status -s)",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "Git",
+   "summary": "파일마다 한 줄로 왼쪽은 스테이징 영역, 오른쪽은 작업 트리 상태를 ??·A·M 같은 글자로 보여 주는 git status 형식이다.",
+   "parent": "dev.git.first-commit",
+   "aliases": [
+    "git status -s",
+    "git status --short",
+    "짧은 상태",
+    "short status"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.commit-all",
+   "title": "git commit -a로 스테이징 건너뛰기",
+   "en": "Skipping the Staging Area (git commit -a)",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "Git",
+   "summary": "이미 추적 중인 파일의 변경을 커밋할 때 자동으로 스테이징해 git add를 생략하는 옵션이며 새 파일은 들어가지 않는다.",
+   "parent": "dev.git.first-commit",
+   "related": [
+    "dev.git.staging-area"
+   ],
+   "aliases": [
+    "git commit -a",
+    "git commit -am",
+    "스테이징 건너뛰기"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.sync-changes",
+   "title": "VS Code의 Sync Changes",
+   "en": "Sync Changes in VS Code",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "Git",
+   "summary": "VS Code에서 원격의 새 커밋을 먼저 받은 뒤 내 커밋을 올리는 동작을 버튼 하나로 하는 기능이다.",
+   "parent": "dev.git.vscode-source-control",
+   "related": [
+    "dev.git.remotes"
+   ],
+   "aliases": [
+    "Sync Changes",
+    "VS Code 변경 동기화",
+    "VS Code 동기화 버튼"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/sourcecontrol/quickstart"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.test.test-explorer",
+   "title": "테스트 탐색기(Test Explorer)",
+   "en": "Test Explorer",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "테스트",
+   "summary": "VS Code가 찾아낸 테스트를 나무 모양 목록으로 보여 주고 거기서 골라 실행·디버그하며 결과를 표시하는 보기다.",
+   "parent": "dev.test.vscode-python-testing",
+   "aliases": [
+    "Test Explorer",
+    "테스트 탐색기",
+    "VS Code 테스트 보기"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/python/testing"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.terminal.default-profile",
+   "title": "VS Code 기본 터미널 프로필",
+   "en": "Default Terminal Profile",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "터미널",
+   "summary": "VS Code 통합 터미널을 새로 열 때 어떤 셸(zsh·bash·PowerShell 등)을 쓸지 정한 설정이다.",
+   "parent": "dev.terminal.vscode-terminal",
+   "aliases": [
+    "터미널 프로필",
+    "terminal profile",
+    "Select Default Profile",
+    "VS Code 기본 셸 바꾸기"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/terminal/profiles"
    ],
    "domain": "dev"
   },
@@ -22146,6 +22417,246 @@
    "domain": "fe"
   },
   {
+   "id": "fe.css.selectors-first",
+   "title": "CSS 기본 선택자: 태그·클래스·ID",
+   "en": "Basic CSS Selectors",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "CSS",
+   "summary": "태그 이름, 점으로 시작하는 클래스, #으로 시작하는 ID로 꾸밀 요소를 골라 스타일 규칙을 적용하는 CSS의 첫 문법이다.",
+   "objectives": [
+    "태그·클래스·ID 선택자로 원하는 요소만 골라 색을 바꿀 수 있다",
+    "쉼표로 묶은 선택자 목록으로 여러 요소에 같은 스타일을 줄 수 있다",
+    "클래스는 여러 번, ID는 한 페이지에 한 번만 쓴다는 차이를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.html.first-page"
+   ],
+   "related": [
+    "fe.css.specificity",
+    "fe.css.pseudo-classes"
+   ],
+   "aliases": [
+    "CSS 선택자",
+    "CSS selector",
+    "클래스 선택자",
+    "class selector",
+    "ID 선택자",
+    "태그 선택자"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Basic_selectors"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.react.events",
+   "title": "React 이벤트 처리하기",
+   "en": "Responding to Events in React",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "React",
+   "summary": "onClick 같은 속성에 이벤트 핸들러 함수를 넘겨 클릭과 입력에 반응하는 React 컴포넌트를 만드는 방법이다.",
+   "objectives": [
+    "컴포넌트 안에 handleClick 함수를 만들어 onClick에 넘길 수 있다",
+    "핸들러를 호출하지 않고 함수 자체를 넘겨야 하는 이유를 말할 수 있다",
+    "부모가 onSomething props로 자식 버튼의 동작을 정해 줄 수 있다",
+    "e.preventDefault로 폼 제출 때 새로 고침을 막을 수 있다"
+   ],
+   "prerequisites": [
+    "fe.react.first-component",
+    "fe.js.dom-events"
+   ],
+   "related": [
+    "fe.js.event-delegation",
+    "fe.react.state-first"
+   ],
+   "aliases": [
+    "React 이벤트",
+    "React 이벤트 핸들러",
+    "onClick",
+    "React onClick"
+   ],
+   "refs": [
+    "https://react.dev/learn/responding-to-events"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.css.text-styling",
+   "title": "CSS로 글꼴과 글자 꾸미기",
+   "en": "Fundamental Text and Font Styling",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "CSS",
+   "summary": "font-family·font-size·font-weight와 text-align·line-height로 글자의 모양과 줄 배치를 바꾸는 CSS 속성 모음이다.",
+   "objectives": [
+    "대체 글꼴을 이어 쓴 font-family 목록을 따라 쓸 수 있다",
+    "font-size·font-weight·color로 제목과 본문을 다르게 꾸밀 수 있다",
+    "text-align과 line-height로 문단의 정렬과 줄 간격을 맞출 수 있다"
+   ],
+   "prerequisites": [
+    "fe.css.selectors-first"
+   ],
+   "related": [
+    "fe.next.font-optimization"
+   ],
+   "aliases": [
+    "글꼴 꾸미기",
+    "텍스트 스타일링",
+    "text styling",
+    "font-family",
+    "line-height",
+    "글꼴 스택"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Text_styling/Fundamentals"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.html.tables",
+   "title": "HTML 표 만들기",
+   "en": "HTML Table Basics",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "HTML",
+   "summary": "table·tr·td·th 요소로 행과 열이 있는 데이터를 표로 나타내고 colspan·rowspan으로 칸을 합치는 HTML 기초다.",
+   "objectives": [
+    "table·tr·td로 행과 열이 있는 표를 따라 만들 수 있다",
+    "th로 머리글 칸을 표시해 일반 칸과 구분할 수 있다",
+    "colspan과 rowspan으로 여러 칸을 하나로 합칠 수 있다",
+    "표를 화면 배치용으로 쓰지 않는 이유를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.html.first-page"
+   ],
+   "aliases": [
+    "HTML 표",
+    "HTML table",
+    "table 태그",
+    "colspan",
+    "rowspan"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/HTML_table_basics"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.css.units",
+   "title": "CSS 길이 단위: px·em·rem·%",
+   "en": "CSS Length Units",
+   "kind": "term",
+   "level": 2,
+   "importance": 1,
+   "group": "CSS",
+   "summary": "px는 고정 크기이고, em은 글자 크기에서는 부모의·다른 속성에서는 자기 글자 크기에, rem은 html 글자 크기에, %는 속성에 따라 부모 크기 등에 비례하는 CSS 값의 단위다.",
+   "parent": "fe.css.text-styling",
+   "aliases": [
+    "CSS 단위",
+    "rem 단위",
+    "em 단위",
+    "px 단위",
+    "CSS units",
+    "상대 단위"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.js.conditionals",
+   "title": "JavaScript 조건문: if...else와 switch",
+   "en": "Conditional Statements",
+   "kind": "term",
+   "level": 2,
+   "importance": 1,
+   "group": "JavaScript",
+   "summary": "조건이 참인지 거짓인지에 따라 if...else·else if·switch·삼항 연산자로 실행할 코드를 고르는 JavaScript 문법이다.",
+   "parent": "fe.js.basics",
+   "aliases": [
+    "JS 조건문",
+    "JavaScript if문",
+    "JS switch문",
+    "JS 삼항 연산자"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Conditionals"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.js.loops",
+   "title": "JavaScript 반복문: for·for...of·while",
+   "en": "Loops",
+   "kind": "term",
+   "level": 2,
+   "importance": 1,
+   "group": "JavaScript",
+   "summary": "for·for...of·while로 같은 코드를 여러 번 실행하고 break와 continue로 반복을 멈추거나 건너뛰는 문법이다.",
+   "parent": "fe.js.basics",
+   "aliases": [
+    "JS 반복문",
+    "JavaScript for문",
+    "for...of",
+    "JS while문",
+    "JS break와 continue"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Loops"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.react.jsx-rules",
+   "title": "JSX 규칙: 루트 하나·닫는 태그·className",
+   "en": "Rules of JSX",
+   "kind": "term",
+   "level": 2,
+   "importance": 1,
+   "group": "React",
+   "summary": "JSX는 요소 하나나 Fragment로 감싸 돌려주고 모든 태그를 닫으며 class 대신 className처럼 camelCase 속성을 쓴다는 약속이다.",
+   "parent": "fe.react.first-component",
+   "aliases": [
+    "JSX 문법",
+    "JSX 규칙",
+    "className",
+    "React Fragment",
+    "<> </> 프래그먼트"
+   ],
+   "refs": [
+    "https://react.dev/learn/writing-markup-with-jsx"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.react.jsx-curly-braces",
+   "title": "JSX 중괄호로 값 넣기",
+   "en": "JavaScript in JSX with Curly Braces",
+   "kind": "term",
+   "level": 2,
+   "importance": 1,
+   "group": "React",
+   "summary": "JSX의 글자 자리나 속성 값 자리에 중괄호 {} 를 열어 변수와 식의 결과를 넣고 style에는 {{ }} 로 객체를 넘기는 문법이다.",
+   "parent": "fe.react.first-component",
+   "aliases": [
+    "JSX 중괄호",
+    "JSX curly braces",
+    "JSX 표현식",
+    "double curlies"
+   ],
+   "refs": [
+    "https://react.dev/learn/javascript-in-jsx-with-curly-braces"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.css.grid",
    "title": "CSS Grid 레이아웃",
    "en": "CSS Grid Layout",
@@ -22190,6 +22701,94 @@
    ],
    "refs": [
     "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Media_queries"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.css.adding-css",
+   "title": "CSS를 넣는 세 방법: 외부·내부·인라인",
+   "en": "External, Internal and Inline CSS",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "CSS",
+   "summary": "link 요소로 별도 .css 파일을 불러오거나 style 요소나 style 속성에 직접 써서 HTML에 CSS를 붙이는 방법이다.",
+   "parent": "fe.css.selectors-first",
+   "aliases": [
+    "외부 스타일시트",
+    "external stylesheet",
+    "인라인 스타일",
+    "inline style",
+    "link rel=stylesheet"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Getting_started"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.js.template-literals",
+   "title": "템플릿 리터럴",
+   "en": "Template Literals",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "JavaScript",
+   "summary": "백틱(`)으로 감싼 문자열 안에 ${} 로 변수와 식의 값을 끼워 넣고 여러 줄을 그대로 쓰는 JavaScript 문자열 문법이다.",
+   "parent": "fe.js.basics",
+   "aliases": [
+    "템플릿 문자열",
+    "JS template string",
+    "백틱 문자열"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.ts.type-inference",
+   "title": "TypeScript 타입 추론",
+   "en": "Type Inference",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "TypeScript",
+   "summary": "타입을 적지 않아도 TypeScript가 처음 넣은 값이나 반환값을 보고 변수와 함수의 타입을 스스로 정해 주는 기능이다.",
+   "parent": "fe.ts.first-types",
+   "aliases": [
+    "TS 타입 추론",
+    "TypeScript inference",
+    "contextual typing"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/docs/handbook/type-inference.html",
+    "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.ts.any-type",
+   "title": "any 타입과 noImplicitAny",
+   "en": "The any Type",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "TypeScript",
+   "summary": "any는 그 값의 타입 검사를 끄는 특별한 타입이며 noImplicitAny를 켜면 타입을 몰라 저절로 any가 된 곳을 오류로 알려 준다.",
+   "parent": "fe.ts.first-types",
+   "related": [
+    "fe.ts.unknown-type"
+   ],
+   "aliases": [
+    "any 타입",
+    "TypeScript any",
+    "noImplicitAny",
+    "암묵적 any",
+    "implicit any"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html"
    ],
    "domain": "fe"
   },
@@ -25237,6 +25836,108 @@
    "domain": "llm"
   },
   {
+   "id": "llm.basics.transformer-families",
+   "title": "트랜스포머 모델의 세 갈래: 인코더·디코더·인코더-디코더",
+   "en": "Transformer Model Families: Encoder, Decoder, Encoder-Decoder",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "트랜스포머 모델을 글을 이해하는 인코더, 글을 이어 쓰는 디코더, 입력을 다른 글로 바꾸는 인코더-디코더로 나눠 작업마다 어느 쪽을 쓰는지 익힌다.",
+   "objectives": [
+    "인코더·디코더·인코더-디코더 모델이 각각 어떤 작업에 쓰이는지 예를 들어 말할 수 있다",
+    "BERT·GPT·T5 같은 모델 이름을 보고 어느 갈래인지 분류할 수 있다",
+    "사전 학습한 모델을 미세 조정해 쓰는 흐름을 그림으로 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.what-is-llm"
+   ],
+   "related": [
+    "ml.transformer.attention",
+    "llm.basics.transformers-pipeline"
+   ],
+   "aliases": [
+    "인코더 디코더 구조",
+    "BERT와 GPT 차이",
+    "트랜스포머 계열"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter1/4",
+    "https://huggingface.co/learn/llm-course/chapter1/6"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.bias-limitations",
+   "title": "LLM의 편향과 해로운 답 확인하기",
+   "en": "Bias and Harmful Output in LLMs",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "학습한 글에 섞인 고정관념이 모델의 답에 그대로 나오는 것을 빈칸 채우기 예제로 직접 확인하고, 앱에서 해로운 답을 줄이는 첫 방법을 익힌다.",
+   "objectives": [
+    "빈칸 채우기 예제를 따라 돌려 성별에 따라 모델의 답이 치우치는 것을 확인할 수 있다",
+    "환각·해로운 내용·불공정한 답을 예를 들어 구분할 수 있다",
+    "미세 조정만으로는 모델에 밴 편향이 사라지지 않는 이유를 말할 수 있다",
+    "시스템 지시와 콘텐츠 필터, 사용자 안내로 해로운 답을 줄이는 방법을 나열할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.generative-ai",
+    "llm.basics.why-hallucinate"
+   ],
+   "related": [
+    "ax.governance.harmful-bias",
+    "ml.eval.fairness-evaluation",
+    "llm.api.moderation-api"
+   ],
+   "aliases": [
+    "LLM 편향",
+    "LLM bias",
+    "AI 고정관념",
+    "해로운 출력"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter1/9",
+    "https://github.com/microsoft/generative-ai-for-beginners/blob/main/03-using-generative-ai-responsibly/README.md"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.prompt-template-app",
+   "title": "프롬프트에 사용자 입력 끼워 넣어 생성 앱 만들기",
+   "en": "Building a Text Generation App with Prompt Templates",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "고정된 프롬프트를 빈칸이 있는 틀로 바꾸고 사용자가 입력한 값을 채워 보내, 입력마다 다른 답을 주는 작은 텍스트 생성 앱을 만든다.",
+   "objectives": [
+    "사용자 입력을 받아 f-string 프롬프트 틀에 채워 API로 보낼 수 있다",
+    "재료·인원 같은 입력을 바꿔 가며 답이 달라지는 것을 확인할 수 있다",
+    "첫 답을 다음 프롬프트에 넣어 장보기 목록처럼 이어지는 결과를 만들 수 있다"
+   ],
+   "prerequisites": [
+    "llm.api.first-call"
+   ],
+   "related": [
+    "mlops.prompt.template-variable",
+    "mlops.prompt.register-load",
+    "be.python.strings"
+   ],
+   "aliases": [
+    "텍스트 생성 앱",
+    "text generation app",
+    "프롬프트 템플릿 앱",
+    "prompt template app"
+   ],
+   "refs": [
+    "https://github.com/microsoft/generative-ai-for-beginners/blob/main/06-text-generation-apps/README.md",
+    "https://developers.openai.com/api/docs/guides/text"
+   ],
+   "domain": "llm"
+  },
+  {
    "id": "llm.basics.token",
    "title": "토큰",
    "en": "Token",
@@ -25368,6 +26069,227 @@
     "indirect prompt injection",
     "문서 속 숨은 지시",
     "웹페이지 인젝션"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.encoder-model",
+   "title": "인코더 모델",
+   "en": "Encoder Model",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "문장 전체를 앞뒤로 함께 보고 뜻을 표현으로 바꾸는 트랜스포머 모델로, BERT처럼 분류나 개체명 찾기에 쓴다.",
+   "parent": "llm.basics.transformer-families",
+   "related": [
+    "llm.basics.decoder-model"
+   ],
+   "aliases": [
+    "encoder-only",
+    "인코더 전용 모델",
+    "BERT 계열",
+    "auto-encoding model"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter1/6"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.decoder-model",
+   "title": "디코더 모델",
+   "en": "Decoder Model",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "앞에 나온 토큰만 보고 다음 토큰을 하나씩 이어 붙이는 트랜스포머 모델로, GPT·Llama 같은 대화형 LLM이 여기에 든다.",
+   "parent": "llm.basics.transformer-families",
+   "related": [
+    "llm.basics.encoder-model"
+   ],
+   "aliases": [
+    "decoder-only",
+    "디코더 전용 모델",
+    "자기회귀 언어 모델",
+    "autoregressive language model",
+    "GPT 계열"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter1/6"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.pretraining",
+   "title": "사전 학습(pretraining)",
+   "en": "Pretraining",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "정답 표시가 없는 아주 많은 글로 모델을 처음부터 학습시켜 언어의 일반적인 쓰임을 익히게 하는 단계로, 그 뒤에 미세 조정을 한다.",
+   "parent": "llm.basics.transformer-families",
+   "related": [
+    "mlops.finetune.fine-tuning",
+    "ml.nn.transfer-learning"
+   ],
+   "aliases": [
+    "프리트레이닝",
+    "사전 훈련",
+    "LLM 사전 학습"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter1/4"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.instruction-tuned-model",
+   "title": "기반 모델과 지시 튜닝 모델",
+   "en": "Base Model vs Instruction-Tuned Model",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "글을 이어 쓰기만 하는 기반 모델에 지시와 답의 예를 더 학습시켜, 부탁을 알아듣고 따르게 만든 것이 지시 튜닝 모델이다.",
+   "related": [
+    "llm.basics.pretraining",
+    "mlops.finetune.fine-tuning"
+   ],
+   "aliases": [
+    "instruction-tuned",
+    "instruct 모델",
+    "base LLM",
+    "베이스 모델",
+    "인스트럭트 모델",
+    "지시 따르기 모델"
+   ],
+   "refs": [
+    "https://github.com/microsoft/generative-ai-for-beginners/blob/main/04-prompt-engineering-fundamentals/README.md"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.prompt.zero-shot",
+   "title": "제로샷 프롬프팅",
+   "en": "Zero-Shot Prompting",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "프롬프트",
+   "summary": "예시를 하나도 주지 않고 지시만으로 일을 맡기는 프롬프트 방식으로, 결과가 흔들리면 예시를 더하는 퓨샷으로 넘어간다.",
+   "parent": "llm.prompt.first-good-prompt",
+   "related": [
+    "llm.prompt.few-shot"
+   ],
+   "aliases": [
+    "zero-shot",
+    "제로 샷",
+    "zero-shot prompting",
+    "예시 없는 프롬프트"
+   ],
+   "refs": [
+    "https://github.com/microsoft/generative-ai-for-beginners/blob/main/04-prompt-engineering-fundamentals/README.md"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.knowledge-cutoff",
+   "title": "지식 마감일(knowledge cutoff)",
+   "en": "Knowledge Cutoff",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "모델이 학습한 자료가 끝나는 시점으로, 그 뒤에 생긴 일은 모르므로 최신 정보는 프롬프트에 직접 넣어 줘야 한다.",
+   "related": [
+    "llm.basics.why-hallucinate",
+    "llm.basics.generative-ai"
+   ],
+   "aliases": [
+    "학습 데이터 마감일",
+    "training data cutoff",
+    "knowledge cutoff",
+    "지식 컷오프",
+    "학습 마감 시점"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/about-claude/models/overview"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.encoder-decoder-model",
+   "title": "인코더-디코더 모델(seq2seq)",
+   "en": "Encoder-Decoder Model",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "인코더가 입력 전체를 읽고 디코더가 그것을 보며 새 글을 써 내는 트랜스포머 모델로, T5·BART처럼 번역과 요약에 쓴다.",
+   "parent": "llm.basics.transformer-families",
+   "aliases": [
+    "seq2seq",
+    "sequence-to-sequence",
+    "시퀀스 투 시퀀스",
+    "T5 계열"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter1/6"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.self-supervised-learning",
+   "title": "자기 지도 학습",
+   "en": "Self-Supervised Learning",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "사람이 정답을 달지 않고 글 자체에서 다음 낱말이나 가린 낱말을 정답으로 삼아 모델을 학습시키는 방식이다.",
+   "parent": "llm.basics.transformer-families",
+   "related": [
+    "llm.basics.pretraining",
+    "llm.basics.masked-language-modeling"
+   ],
+   "aliases": [
+    "self-supervised learning",
+    "자기지도학습",
+    "셀프 수퍼바이즈드"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter1/4"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.masked-language-modeling",
+   "title": "마스크 언어 모델링(MLM)",
+   "en": "Masked Language Modeling",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "문장의 낱말 일부를 가리고 그 자리에 올 말을 맞히게 하는 학습 방식으로, BERT 같은 인코더 모델을 사전 학습할 때 쓴다.",
+   "parent": "llm.basics.transformer-families",
+   "related": [
+    "llm.basics.encoder-model"
+   ],
+   "aliases": [
+    "MLM",
+    "masked language modeling",
+    "fill-mask",
+    "빈칸 채우기 모델",
+    "[MASK] 토큰"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter1/4",
+    "https://huggingface.co/learn/llm-course/chapter1/9"
    ],
    "domain": "llm"
   },
@@ -31778,6 +32700,39 @@
    "domain": "ax"
   },
   {
+   "id": "ax.coding.explore-codebase",
+   "title": "처음 보는 코드베이스를 에이전트에게 물어 파악하기",
+   "en": "Exploring an Unfamiliar Codebase with an Agent",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "AI 네이티브 개발",
+   "summary": "새 프로젝트 폴더에서 에이전트에게 전체 구조를 먼저 묻고, 기능별 파일과 실행 흐름으로 질문을 좁혀 가며 코드를 읽는 방법이다.",
+   "objectives": [
+    "프로젝트 루트에서 세션을 열고 전체 구조와 주요 데이터 모델을 묻는 질문을 따라 할 수 있다",
+    "특정 기능을 맡은 파일을 찾게 한 뒤 그 파일들이 어떻게 이어지는지 차례로 물을 수 있다",
+    "넓은 질문에서 좁은 질문으로 옮겨 가며 프로젝트 용어 목록을 만들게 할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.claude-code-quickstart"
+   ],
+   "related": [
+    "ax.coding.agent-first",
+    "ax.coding.file-mention"
+   ],
+   "aliases": [
+    "코드베이스 파악",
+    "코드베이스 개요",
+    "codebase overview",
+    "understand new codebase",
+    "코드 구조 물어보기"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/common-workflows#understand-new-codebases"
+   ],
+   "domain": "ax"
+  },
+  {
    "id": "ax.security.misinformation",
    "title": "AI의 잘못된 정보 알아채기: 환각 패키지와 가짜 근거",
    "en": "Spotting LLM Misinformation (LLM09)",
@@ -31842,6 +32797,73 @@
     "https://airc.nist.gov/airmf-resources/airmf/1-sec-risk/",
     "https://www.nist.gov/itl/ai-risk-management-framework"
    ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.agent-pull-request",
+   "title": "에이전트로 변경 요약하고 PR 만들기",
+   "en": "Creating Pull Requests with a Coding Agent",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "에이전트에게 바꾼 내용을 요약하게 하고 커밋과 PR 생성을 맡긴 뒤, 올리기 전에 PR 설명과 위험한 부분을 사람이 확인하는 흐름이다.",
+   "objectives": [
+    "변경 요약을 받고 'create a pr'처럼 요청해 PR을 만드는 과정을 따라 할 수 있다",
+    "만들어진 PR 설명에 빠진 맥락을 더 쓰게 고쳐 달라고 할 수 있다",
+    "PR을 올리기 전에 에이전트에게 위험 요소를 짚게 하고 직접 검토할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.agent-first",
+    "dev.git.branch-pr"
+   ],
+   "related": [
+    "ax.coding.claude-code-action",
+    "dev.git.pr-review"
+   ],
+   "aliases": [
+    "에이전트 PR 만들기",
+    "create a pr",
+    "AI로 PR 작성",
+    "PR 설명 자동 작성"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/common-workflows#create-pull-requests"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.vscode-extension",
+   "title": "VS Code 확장에서 Claude Code 쓰기",
+   "en": "Claude Code in VS Code",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "VS Code에 Claude Code 확장을 깔고 옆 패널에서 대화하며, 선택한 코드를 맥락으로 넘기고 제안된 수정을 diff로 보고 받아들이는 첫 사용법이다.",
+   "objectives": [
+    "확장을 설치하고 스파크 아이콘이나 명령 팔레트로 Claude Code 패널을 열 수 있다",
+    "편집기에서 코드를 골라 질문하고 @로 파일이나 폴더를 집어 넣을 수 있다",
+    "제안된 수정을 나란히 놓인 diff로 보고 받아들이거나 거절할 수 있다",
+    "패널 아래 권한 모드 표시를 눌러 Auto·Manual·Plan·Edit automatically 모드를 바꿀 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.claude-code-quickstart"
+   ],
+   "related": [
+    "ax.coding.permission-rules"
+   ],
+   "aliases": [
+    "Claude Code VS Code",
+    "Claude Code VS Code extension",
+    "Claude Code 확장 프로그램",
+    "에디터에서 Claude Code"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/vs-code"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
    "domain": "ax"
   },
   {
@@ -32056,6 +33078,81 @@
    "domain": "ax"
   },
   {
+   "id": "ax.coding.model-command",
+   "title": "/model로 모델 바꾸기",
+   "en": "Switching Models with /model",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "세션 안에서 /model이나 시작할 때 --model로 sonnet·opus·haiku 같은 별칭을 골라 작업에 맞는 모델로 바꾸는 방법이다.",
+   "parent": "ax.coding.claude-code-quickstart",
+   "related": [
+    "llm.basics.model-selection"
+   ],
+   "aliases": [
+    "/model",
+    "claude --model",
+    "Claude Code 모델 전환"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/model-config"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.gh-pr-create",
+   "title": "gh pr create(GitHub CLI로 PR 열기)",
+   "en": "gh pr create",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "터미널에서 GitHub에 PR을 여는 GitHub CLI 명령으로, 코딩 에이전트가 PR을 만들 때 이 명령을 쓰므로 미리 설치하고 로그인해 두어야 한다.",
+   "parent": "ax.coding.agent-pull-request",
+   "related": [
+    "dev.git.branch-pr",
+    "dev.git.draft-pr"
+   ],
+   "aliases": [
+    "gh pr create",
+    "gh pr 명령"
+   ],
+   "refs": [
+    "https://cli.github.com/manual/gh_pr_create",
+    "https://code.claude.com/docs/en/common-workflows#create-pull-requests"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.ide-diff-review",
+   "title": "에디터 diff로 수정 받아들이기·거절하기",
+   "en": "Reviewing Edits as Diffs in VS Code",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "묻기 모드에서 에이전트가 고치려는 내용을 나란히 놓인 diff로 보여 주면, 바뀐 곳마다 받아들이거나 거절하거나 다르게 하라고 답하는 확인 단계다.",
+   "parent": "ax.coding.vscode-extension",
+   "related": [
+    "ax.basics.verify-ai-output"
+   ],
+   "aliases": [
+    "VS Code diff 검토",
+    "Accept Change",
+    "Reject Change",
+    "Accept Change at Cursor"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/vs-code"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
    "id": "ax.coding.auto-memory",
    "title": "자동 메모리(auto memory)",
    "en": "Auto Memory",
@@ -32159,6 +33256,150 @@
    ],
    "refs": [
     "https://airc.nist.gov/airmf-resources/airmf/2-sec-audience/"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.doctor-command",
+   "title": "/doctor로 설치 상태 점검하기",
+   "en": "/doctor Diagnostics",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "무엇이 문제인지 모를 때 /doctor(실행이 안 되면 셸에서 claude doctor)로 설치·설정·확장·컨텍스트 상태를 자동 점검하고 고칠 방법을 제안받는다.",
+   "parent": "ax.coding.claude-code-quickstart",
+   "aliases": [
+    "/doctor",
+    "claude doctor",
+    "설치 점검",
+    "Claude Code 진단"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/troubleshooting"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.output-style",
+   "title": "출력 스타일(Explanatory·Learning)",
+   "en": "Output Styles",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "/output-style로 응답 방식을 바꾸는 설정으로, Explanatory는 고른 이유를 Insight로 덧붙이고 Learning은 일부 코드를 직접 쓰게 남겨 배우면서 일하게 한다.",
+   "parent": "ax.coding.explore-codebase",
+   "related": [
+    "ax.coding.claude-md"
+   ],
+   "aliases": [
+    "output style",
+    "/output-style",
+    "Explanatory 스타일",
+    "Learning 스타일",
+    "Insight 블록"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/output-styles"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.commit-attribution",
+   "title": "커밋·PR의 AI 작성 표시(attribution)",
+   "en": "Commit and PR Attribution",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "에이전트가 만든 커밋에는 Co-Authored-By 트레일러가, PR 설명에는 안내 문구가 기본으로 붙고, settings의 attribution 키로 바꾸거나 숨길 수 있다.",
+   "parent": "ax.coding.agent-pull-request",
+   "related": [
+    "ax.coding.settings-file"
+   ],
+   "aliases": [
+    "Claude Code Co-Authored-By 트레일러",
+    "attribution 설정",
+    "includeCoAuthoredBy",
+    "AI 공동 작성자 표시"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/settings-reference"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.ide-command",
+   "title": "/ide로 터미널 세션을 에디터에 잇기",
+   "en": "/ide Command",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "바깥 터미널에서 연 Claude Code 세션에서 /ide를 치면 VS Code와 이어져 수정 diff가 에디터의 비교 화면에 뜨고 에디터의 진단 정보를 에이전트와 나눈다.",
+   "parent": "ax.coding.vscode-extension",
+   "aliases": [
+    "/ide",
+    "Claude Code IDE 연결",
+    "ide integration"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/vs-code"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.ide-selection-context",
+   "title": "에디터 선택 영역 자동 공유",
+   "en": "Editor Selection as Context",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "VS Code 패널의 에이전트는 지금 연 파일과 고른 줄을 자동으로 보며, 단축키로 @파일#줄 형태로 넣거나 설정으로 공유를 끌 수 있다.",
+   "parent": "ax.coding.vscode-extension",
+   "related": [
+    "ax.coding.file-mention"
+   ],
+   "aliases": [
+    "선택 영역 공유",
+    "selection context",
+    "attachSelection",
+    "열린 파일 공유"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/vs-code"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.ai-actors",
+   "title": "AI 행위자(AI actors)",
+   "en": "AI Actors",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "AI 시스템을 설계·개발·배포·평가·사용하는 사람과 조직, 그리고 영향을 받는 사람까지 AI 수명주기에 관여하는 모두를 부르는 NIST AI RMF의 말이다.",
+   "parent": "ax.governance.ai-risk-framing",
+   "related": [
+    "ax.governance.ai-lifecycle",
+    "ax.governance.tevv"
+   ],
+   "aliases": [
+    "AI 행위자",
+    "AI actors",
+    "AI 이해관계자",
+    "AI 관여자"
+   ],
+   "refs": [
+    "https://airc.nist.gov/airmf-resources/airmf/2-sec-audience/",
+    "https://www.nist.gov/itl/ai-risk-management-framework"
    ],
    "domain": "ax"
   },
@@ -42371,6 +43612,41 @@
    "domain": "mlops"
   },
   {
+   "id": "mlops.basics.mlflow-demo",
+   "title": "MLflow 데모로 LLM 운영 기능 둘러보기",
+   "en": "Exploring MLflow GenAI Features with the Live Demo",
+   "kind": "topic",
+   "level": 2,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "예제 데이터가 미리 채워진 MLflow 데모를 열어 트레이스·평가·이슈·프롬프트 화면을 코드 없이 먼저 구경해 보는 실습이다.",
+   "objectives": [
+    "공개 데모 사이트나 uvx mlflow demo 명령으로 예제 데이터가 든 MLflow를 열 수 있다",
+    "데모 실험에서 트레이스 하나를 골라 스팬·입출력·지연 시간·토큰 수를 찾아볼 수 있다",
+    "평가 런·감지된 이슈·버전이 쌓인 프롬프트 화면이 각각 무엇을 보여 주는지 말할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.basics.what-is-mlops"
+   ],
+   "related": [
+    "mlops.observe.mlflow-server",
+    "mlops.observe.tracing-quickstart"
+   ],
+   "aliases": [
+    "MLflow 데모",
+    "mlflow demo",
+    "demo.mlflow.org",
+    "Explore Demo",
+    "MLflow 라이브 데모"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/demo/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "mlops"
+  },
+  {
    "id": "mlops.eval.eval-dataset",
    "title": "평가 세트(evaluation dataset)",
    "en": "Evaluation Dataset",
@@ -42703,6 +43979,30 @@
    ],
    "refs": [
     "https://mlflow.org/docs/latest/genai/eval-monitor/ai-insights/detect-issues/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.mlflow-mcp-registry",
+   "title": "MLflow MCP 레지스트리",
+   "en": "MLflow MCP Registry",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "팀이 쓰는 MCP 서버를 server.json 형식으로 MLflow에 등록해 버전·상태와 함께 한곳에서 찾아보게 하는 목록이다.",
+   "related": [
+    "rag.agent.mcp-registry"
+   ],
+   "aliases": [
+    "MLflow MCP Registry",
+    "register_mcp_server",
+    "사내 MCP 서버 목록"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/mcp-registry/"
    ],
    "volatile": true,
    "checked_at": "2026-11-11",

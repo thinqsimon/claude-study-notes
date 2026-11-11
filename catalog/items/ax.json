@@ -353,6 +353,38 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "ax.coding.explore-codebase",
+    "title": "처음 보는 코드베이스를 에이전트에게 물어 파악하기",
+    "en": "Exploring an Unfamiliar Codebase with an Agent",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "AI 네이티브 개발",
+    "summary": "새 프로젝트 폴더에서 에이전트에게 전체 구조를 먼저 묻고, 기능별 파일과 실행 흐름으로 질문을 좁혀 가며 코드를 읽는 방법이다.",
+    "objectives": [
+      "프로젝트 루트에서 세션을 열고 전체 구조와 주요 데이터 모델을 묻는 질문을 따라 할 수 있다",
+      "특정 기능을 맡은 파일을 찾게 한 뒤 그 파일들이 어떻게 이어지는지 차례로 물을 수 있다",
+      "넓은 질문에서 좁은 질문으로 옮겨 가며 프로젝트 용어 목록을 만들게 할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.claude-code-quickstart"
+    ],
+    "related": [
+      "ax.coding.agent-first",
+      "ax.coding.file-mention"
+    ],
+    "aliases": [
+      "코드베이스 파악",
+      "코드베이스 개요",
+      "codebase overview",
+      "understand new codebase",
+      "코드 구조 물어보기"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/common-workflows#understand-new-codebases"
+    ]
+  },
+  {
     "id": "ax.security.misinformation",
     "title": "AI의 잘못된 정보 알아채기: 환각 패키지와 가짜 근거",
     "en": "Spotting LLM Misinformation (LLM09)",
@@ -416,6 +448,71 @@
       "https://airc.nist.gov/airmf-resources/airmf/1-sec-risk/",
       "https://www.nist.gov/itl/ai-risk-management-framework"
     ]
+  },
+  {
+    "id": "ax.coding.agent-pull-request",
+    "title": "에이전트로 변경 요약하고 PR 만들기",
+    "en": "Creating Pull Requests with a Coding Agent",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "에이전트에게 바꾼 내용을 요약하게 하고 커밋과 PR 생성을 맡긴 뒤, 올리기 전에 PR 설명과 위험한 부분을 사람이 확인하는 흐름이다.",
+    "objectives": [
+      "변경 요약을 받고 'create a pr'처럼 요청해 PR을 만드는 과정을 따라 할 수 있다",
+      "만들어진 PR 설명에 빠진 맥락을 더 쓰게 고쳐 달라고 할 수 있다",
+      "PR을 올리기 전에 에이전트에게 위험 요소를 짚게 하고 직접 검토할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.agent-first",
+      "dev.git.branch-pr"
+    ],
+    "related": [
+      "ax.coding.claude-code-action",
+      "dev.git.pr-review"
+    ],
+    "aliases": [
+      "에이전트 PR 만들기",
+      "create a pr",
+      "AI로 PR 작성",
+      "PR 설명 자동 작성"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/common-workflows#create-pull-requests"
+    ]
+  },
+  {
+    "id": "ax.coding.vscode-extension",
+    "title": "VS Code 확장에서 Claude Code 쓰기",
+    "en": "Claude Code in VS Code",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "VS Code에 Claude Code 확장을 깔고 옆 패널에서 대화하며, 선택한 코드를 맥락으로 넘기고 제안된 수정을 diff로 보고 받아들이는 첫 사용법이다.",
+    "objectives": [
+      "확장을 설치하고 스파크 아이콘이나 명령 팔레트로 Claude Code 패널을 열 수 있다",
+      "편집기에서 코드를 골라 질문하고 @로 파일이나 폴더를 집어 넣을 수 있다",
+      "제안된 수정을 나란히 놓인 diff로 보고 받아들이거나 거절할 수 있다",
+      "패널 아래 권한 모드 표시를 눌러 Auto·Manual·Plan·Edit automatically 모드를 바꿀 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.claude-code-quickstart"
+    ],
+    "related": [
+      "ax.coding.permission-rules"
+    ],
+    "aliases": [
+      "Claude Code VS Code",
+      "Claude Code VS Code extension",
+      "Claude Code 확장 프로그램",
+      "에디터에서 Claude Code"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/vs-code"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
   },
   {
     "id": "ax.coding.esc-interrupt",
@@ -619,6 +716,78 @@
     ]
   },
   {
+    "id": "ax.coding.model-command",
+    "title": "/model로 모델 바꾸기",
+    "en": "Switching Models with /model",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "세션 안에서 /model이나 시작할 때 --model로 sonnet·opus·haiku 같은 별칭을 골라 작업에 맞는 모델로 바꾸는 방법이다.",
+    "parent": "ax.coding.claude-code-quickstart",
+    "related": [
+      "llm.basics.model-selection"
+    ],
+    "aliases": [
+      "/model",
+      "claude --model",
+      "Claude Code 모델 전환"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/model-config"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.coding.gh-pr-create",
+    "title": "gh pr create(GitHub CLI로 PR 열기)",
+    "en": "gh pr create",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "터미널에서 GitHub에 PR을 여는 GitHub CLI 명령으로, 코딩 에이전트가 PR을 만들 때 이 명령을 쓰므로 미리 설치하고 로그인해 두어야 한다.",
+    "parent": "ax.coding.agent-pull-request",
+    "related": [
+      "dev.git.branch-pr",
+      "dev.git.draft-pr"
+    ],
+    "aliases": [
+      "gh pr create",
+      "gh pr 명령"
+    ],
+    "refs": [
+      "https://cli.github.com/manual/gh_pr_create",
+      "https://code.claude.com/docs/en/common-workflows#create-pull-requests"
+    ]
+  },
+  {
+    "id": "ax.coding.ide-diff-review",
+    "title": "에디터 diff로 수정 받아들이기·거절하기",
+    "en": "Reviewing Edits as Diffs in VS Code",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "묻기 모드에서 에이전트가 고치려는 내용을 나란히 놓인 diff로 보여 주면, 바뀐 곳마다 받아들이거나 거절하거나 다르게 하라고 답하는 확인 단계다.",
+    "parent": "ax.coding.vscode-extension",
+    "related": [
+      "ax.basics.verify-ai-output"
+    ],
+    "aliases": [
+      "VS Code diff 검토",
+      "Accept Change",
+      "Reject Change",
+      "Accept Change at Cursor"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/vs-code"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "ax.coding.auto-memory",
     "title": "자동 메모리(auto memory)",
     "en": "Auto Memory",
@@ -718,6 +887,144 @@
     ],
     "refs": [
       "https://airc.nist.gov/airmf-resources/airmf/2-sec-audience/"
+    ]
+  },
+  {
+    "id": "ax.coding.doctor-command",
+    "title": "/doctor로 설치 상태 점검하기",
+    "en": "/doctor Diagnostics",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "무엇이 문제인지 모를 때 /doctor(실행이 안 되면 셸에서 claude doctor)로 설치·설정·확장·컨텍스트 상태를 자동 점검하고 고칠 방법을 제안받는다.",
+    "parent": "ax.coding.claude-code-quickstart",
+    "aliases": [
+      "/doctor",
+      "claude doctor",
+      "설치 점검",
+      "Claude Code 진단"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/troubleshooting"
+    ]
+  },
+  {
+    "id": "ax.coding.output-style",
+    "title": "출력 스타일(Explanatory·Learning)",
+    "en": "Output Styles",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "/output-style로 응답 방식을 바꾸는 설정으로, Explanatory는 고른 이유를 Insight로 덧붙이고 Learning은 일부 코드를 직접 쓰게 남겨 배우면서 일하게 한다.",
+    "parent": "ax.coding.explore-codebase",
+    "related": [
+      "ax.coding.claude-md"
+    ],
+    "aliases": [
+      "output style",
+      "/output-style",
+      "Explanatory 스타일",
+      "Learning 스타일",
+      "Insight 블록"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/output-styles"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.coding.commit-attribution",
+    "title": "커밋·PR의 AI 작성 표시(attribution)",
+    "en": "Commit and PR Attribution",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "에이전트가 만든 커밋에는 Co-Authored-By 트레일러가, PR 설명에는 안내 문구가 기본으로 붙고, settings의 attribution 키로 바꾸거나 숨길 수 있다.",
+    "parent": "ax.coding.agent-pull-request",
+    "related": [
+      "ax.coding.settings-file"
+    ],
+    "aliases": [
+      "Claude Code Co-Authored-By 트레일러",
+      "attribution 설정",
+      "includeCoAuthoredBy",
+      "AI 공동 작성자 표시"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/settings-reference"
+    ]
+  },
+  {
+    "id": "ax.coding.ide-command",
+    "title": "/ide로 터미널 세션을 에디터에 잇기",
+    "en": "/ide Command",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "바깥 터미널에서 연 Claude Code 세션에서 /ide를 치면 VS Code와 이어져 수정 diff가 에디터의 비교 화면에 뜨고 에디터의 진단 정보를 에이전트와 나눈다.",
+    "parent": "ax.coding.vscode-extension",
+    "aliases": [
+      "/ide",
+      "Claude Code IDE 연결",
+      "ide integration"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/vs-code"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.coding.ide-selection-context",
+    "title": "에디터 선택 영역 자동 공유",
+    "en": "Editor Selection as Context",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "VS Code 패널의 에이전트는 지금 연 파일과 고른 줄을 자동으로 보며, 단축키로 @파일#줄 형태로 넣거나 설정으로 공유를 끌 수 있다.",
+    "parent": "ax.coding.vscode-extension",
+    "related": [
+      "ax.coding.file-mention"
+    ],
+    "aliases": [
+      "선택 영역 공유",
+      "selection context",
+      "attachSelection",
+      "열린 파일 공유"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/vs-code"
+    ]
+  },
+  {
+    "id": "ax.governance.ai-actors",
+    "title": "AI 행위자(AI actors)",
+    "en": "AI Actors",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "AI 시스템을 설계·개발·배포·평가·사용하는 사람과 조직, 그리고 영향을 받는 사람까지 AI 수명주기에 관여하는 모두를 부르는 NIST AI RMF의 말이다.",
+    "parent": "ax.governance.ai-risk-framing",
+    "related": [
+      "ax.governance.ai-lifecycle",
+      "ax.governance.tevv"
+    ],
+    "aliases": [
+      "AI 행위자",
+      "AI actors",
+      "AI 이해관계자",
+      "AI 관여자"
+    ],
+    "refs": [
+      "https://airc.nist.gov/airmf-resources/airmf/2-sec-audience/",
+      "https://www.nist.gov/itl/ai-risk-management-framework"
     ]
   },
   {

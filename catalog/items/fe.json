@@ -465,6 +465,237 @@
     ]
   },
   {
+    "id": "fe.css.selectors-first",
+    "title": "CSS 기본 선택자: 태그·클래스·ID",
+    "en": "Basic CSS Selectors",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "CSS",
+    "summary": "태그 이름, 점으로 시작하는 클래스, #으로 시작하는 ID로 꾸밀 요소를 골라 스타일 규칙을 적용하는 CSS의 첫 문법이다.",
+    "objectives": [
+      "태그·클래스·ID 선택자로 원하는 요소만 골라 색을 바꿀 수 있다",
+      "쉼표로 묶은 선택자 목록으로 여러 요소에 같은 스타일을 줄 수 있다",
+      "클래스는 여러 번, ID는 한 페이지에 한 번만 쓴다는 차이를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.html.first-page"
+    ],
+    "related": [
+      "fe.css.specificity",
+      "fe.css.pseudo-classes"
+    ],
+    "aliases": [
+      "CSS 선택자",
+      "CSS selector",
+      "클래스 선택자",
+      "class selector",
+      "ID 선택자",
+      "태그 선택자"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Basic_selectors"
+    ]
+  },
+  {
+    "id": "fe.react.events",
+    "title": "React 이벤트 처리하기",
+    "en": "Responding to Events in React",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "React",
+    "summary": "onClick 같은 속성에 이벤트 핸들러 함수를 넘겨 클릭과 입력에 반응하는 React 컴포넌트를 만드는 방법이다.",
+    "objectives": [
+      "컴포넌트 안에 handleClick 함수를 만들어 onClick에 넘길 수 있다",
+      "핸들러를 호출하지 않고 함수 자체를 넘겨야 하는 이유를 말할 수 있다",
+      "부모가 onSomething props로 자식 버튼의 동작을 정해 줄 수 있다",
+      "e.preventDefault로 폼 제출 때 새로 고침을 막을 수 있다"
+    ],
+    "prerequisites": [
+      "fe.react.first-component",
+      "fe.js.dom-events"
+    ],
+    "related": [
+      "fe.js.event-delegation",
+      "fe.react.state-first"
+    ],
+    "aliases": [
+      "React 이벤트",
+      "React 이벤트 핸들러",
+      "onClick",
+      "React onClick"
+    ],
+    "refs": [
+      "https://react.dev/learn/responding-to-events"
+    ]
+  },
+  {
+    "id": "fe.css.text-styling",
+    "title": "CSS로 글꼴과 글자 꾸미기",
+    "en": "Fundamental Text and Font Styling",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "CSS",
+    "summary": "font-family·font-size·font-weight와 text-align·line-height로 글자의 모양과 줄 배치를 바꾸는 CSS 속성 모음이다.",
+    "objectives": [
+      "대체 글꼴을 이어 쓴 font-family 목록을 따라 쓸 수 있다",
+      "font-size·font-weight·color로 제목과 본문을 다르게 꾸밀 수 있다",
+      "text-align과 line-height로 문단의 정렬과 줄 간격을 맞출 수 있다"
+    ],
+    "prerequisites": [
+      "fe.css.selectors-first"
+    ],
+    "related": [
+      "fe.next.font-optimization"
+    ],
+    "aliases": [
+      "글꼴 꾸미기",
+      "텍스트 스타일링",
+      "text styling",
+      "font-family",
+      "line-height",
+      "글꼴 스택"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Text_styling/Fundamentals"
+    ]
+  },
+  {
+    "id": "fe.html.tables",
+    "title": "HTML 표 만들기",
+    "en": "HTML Table Basics",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "HTML",
+    "summary": "table·tr·td·th 요소로 행과 열이 있는 데이터를 표로 나타내고 colspan·rowspan으로 칸을 합치는 HTML 기초다.",
+    "objectives": [
+      "table·tr·td로 행과 열이 있는 표를 따라 만들 수 있다",
+      "th로 머리글 칸을 표시해 일반 칸과 구분할 수 있다",
+      "colspan과 rowspan으로 여러 칸을 하나로 합칠 수 있다",
+      "표를 화면 배치용으로 쓰지 않는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.html.first-page"
+    ],
+    "aliases": [
+      "HTML 표",
+      "HTML table",
+      "table 태그",
+      "colspan",
+      "rowspan"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/HTML_table_basics"
+    ]
+  },
+  {
+    "id": "fe.css.units",
+    "title": "CSS 길이 단위: px·em·rem·%",
+    "en": "CSS Length Units",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "CSS",
+    "summary": "px는 고정 크기이고, em은 글자 크기에서는 부모의·다른 속성에서는 자기 글자 크기에, rem은 html 글자 크기에, %는 속성에 따라 부모 크기 등에 비례하는 CSS 값의 단위다.",
+    "parent": "fe.css.text-styling",
+    "aliases": [
+      "CSS 단위",
+      "rem 단위",
+      "em 단위",
+      "px 단위",
+      "CSS units",
+      "상대 단위"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Values_and_units"
+    ]
+  },
+  {
+    "id": "fe.js.conditionals",
+    "title": "JavaScript 조건문: if...else와 switch",
+    "en": "Conditional Statements",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "JavaScript",
+    "summary": "조건이 참인지 거짓인지에 따라 if...else·else if·switch·삼항 연산자로 실행할 코드를 고르는 JavaScript 문법이다.",
+    "parent": "fe.js.basics",
+    "aliases": [
+      "JS 조건문",
+      "JavaScript if문",
+      "JS switch문",
+      "JS 삼항 연산자"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Conditionals"
+    ]
+  },
+  {
+    "id": "fe.js.loops",
+    "title": "JavaScript 반복문: for·for...of·while",
+    "en": "Loops",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "JavaScript",
+    "summary": "for·for...of·while로 같은 코드를 여러 번 실행하고 break와 continue로 반복을 멈추거나 건너뛰는 문법이다.",
+    "parent": "fe.js.basics",
+    "aliases": [
+      "JS 반복문",
+      "JavaScript for문",
+      "for...of",
+      "JS while문",
+      "JS break와 continue"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Loops"
+    ]
+  },
+  {
+    "id": "fe.react.jsx-rules",
+    "title": "JSX 규칙: 루트 하나·닫는 태그·className",
+    "en": "Rules of JSX",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "React",
+    "summary": "JSX는 요소 하나나 Fragment로 감싸 돌려주고 모든 태그를 닫으며 class 대신 className처럼 camelCase 속성을 쓴다는 약속이다.",
+    "parent": "fe.react.first-component",
+    "aliases": [
+      "JSX 문법",
+      "JSX 규칙",
+      "className",
+      "React Fragment",
+      "<> </> 프래그먼트"
+    ],
+    "refs": [
+      "https://react.dev/learn/writing-markup-with-jsx"
+    ]
+  },
+  {
+    "id": "fe.react.jsx-curly-braces",
+    "title": "JSX 중괄호로 값 넣기",
+    "en": "JavaScript in JSX with Curly Braces",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "React",
+    "summary": "JSX의 글자 자리나 속성 값 자리에 중괄호 {} 를 열어 변수와 식의 결과를 넣고 style에는 {{ }} 로 객체를 넘기는 문법이다.",
+    "parent": "fe.react.first-component",
+    "aliases": [
+      "JSX 중괄호",
+      "JSX curly braces",
+      "JSX 표현식",
+      "double curlies"
+    ],
+    "refs": [
+      "https://react.dev/learn/javascript-in-jsx-with-curly-braces"
+    ]
+  },
+  {
     "id": "fe.css.grid",
     "title": "CSS Grid 레이아웃",
     "en": "CSS Grid Layout",
@@ -508,6 +739,90 @@
     ],
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Media_queries"
+    ]
+  },
+  {
+    "id": "fe.css.adding-css",
+    "title": "CSS를 넣는 세 방법: 외부·내부·인라인",
+    "en": "External, Internal and Inline CSS",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "CSS",
+    "summary": "link 요소로 별도 .css 파일을 불러오거나 style 요소나 style 속성에 직접 써서 HTML에 CSS를 붙이는 방법이다.",
+    "parent": "fe.css.selectors-first",
+    "aliases": [
+      "외부 스타일시트",
+      "external stylesheet",
+      "인라인 스타일",
+      "inline style",
+      "link rel=stylesheet"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Getting_started"
+    ]
+  },
+  {
+    "id": "fe.js.template-literals",
+    "title": "템플릿 리터럴",
+    "en": "Template Literals",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "JavaScript",
+    "summary": "백틱(`)으로 감싼 문자열 안에 ${} 로 변수와 식의 값을 끼워 넣고 여러 줄을 그대로 쓰는 JavaScript 문자열 문법이다.",
+    "parent": "fe.js.basics",
+    "aliases": [
+      "템플릿 문자열",
+      "JS template string",
+      "백틱 문자열"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals"
+    ]
+  },
+  {
+    "id": "fe.ts.type-inference",
+    "title": "TypeScript 타입 추론",
+    "en": "Type Inference",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "TypeScript",
+    "summary": "타입을 적지 않아도 TypeScript가 처음 넣은 값이나 반환값을 보고 변수와 함수의 타입을 스스로 정해 주는 기능이다.",
+    "parent": "fe.ts.first-types",
+    "aliases": [
+      "TS 타입 추론",
+      "TypeScript inference",
+      "contextual typing"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/type-inference.html",
+      "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html"
+    ]
+  },
+  {
+    "id": "fe.ts.any-type",
+    "title": "any 타입과 noImplicitAny",
+    "en": "The any Type",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "TypeScript",
+    "summary": "any는 그 값의 타입 검사를 끄는 특별한 타입이며 noImplicitAny를 켜면 타입을 몰라 저절로 any가 된 곳을 오류로 알려 준다.",
+    "parent": "fe.ts.first-types",
+    "related": [
+      "fe.ts.unknown-type"
+    ],
+    "aliases": [
+      "any 타입",
+      "TypeScript any",
+      "noImplicitAny",
+      "암묵적 any",
+      "implicit any"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html"
     ]
   },
   {

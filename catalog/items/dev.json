@@ -418,6 +418,98 @@
     ]
   },
   {
+    "id": "dev.git.vscode-source-control",
+    "title": "VS Code에서 Git 쓰기: 소스 제어 보기",
+    "en": "Using Git in VS Code Source Control",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "Git",
+    "summary": "명령을 치지 않고 편집기의 소스 제어 보기에서 저장소를 만들고 변경을 골라 커밋하고 원격과 맞춘다.",
+    "objectives": [
+      "소스 제어 보기에서 저장소를 초기화하고 U·M 표시로 파일 상태를 읽을 수 있다",
+      "변경 비교 화면을 보고 파일을 스테이징한 뒤 메시지를 적어 커밋할 수 있다",
+      "Sync Changes로 원격의 커밋을 받고 내 커밋을 올릴 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.first-commit",
+      "dev.basics.code-editor"
+    ],
+    "related": [
+      "dev.git.remotes"
+    ],
+    "aliases": [
+      "VS Code Git",
+      "VS Code 소스 제어",
+      "소스 제어 보기",
+      "Source Control view",
+      "VS Code 커밋"
+    ],
+    "refs": [
+      "https://code.visualstudio.com/docs/sourcecontrol/quickstart",
+      "https://code.visualstudio.com/docs/sourcecontrol/overview"
+    ]
+  },
+  {
+    "id": "dev.terminal.vscode-terminal",
+    "title": "VS Code 통합 터미널 쓰기",
+    "en": "VS Code Integrated Terminal",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "터미널",
+    "summary": "편집기 안에서 터미널을 열어 프로젝트 폴더에서 바로 명령을 실행하고 여러 터미널을 나눠 쓴다.",
+    "objectives": [
+      "메뉴나 단축키로 통합 터미널을 열고 어느 폴더에서 열렸는지 확인할 수 있다",
+      "터미널을 여러 개 만들고 나란히 나눠 서버와 명령을 따로 돌릴 수 있다",
+      "편집기에서 고른 코드를 터미널로 보내 실행할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.terminal.basic-commands",
+      "dev.basics.code-editor"
+    ],
+    "aliases": [
+      "통합 터미널",
+      "integrated terminal",
+      "VS Code 터미널",
+      "터미널 분할"
+    ],
+    "refs": [
+      "https://code.visualstudio.com/docs/terminal/basics"
+    ]
+  },
+  {
+    "id": "dev.test.vscode-python-testing",
+    "title": "VS Code에서 파이썬 테스트 돌리기",
+    "en": "Running Python Tests in VS Code",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "테스트",
+    "summary": "편집기에 pytest를 테스트 도구로 설정하고 버튼을 눌러 테스트를 찾아 돌린 뒤 성공과 실패를 화면에서 읽는다.",
+    "objectives": [
+      "Configure Python Tests로 pytest와 테스트 폴더를 고를 수 있다",
+      "줄 옆 실행 아이콘이나 테스트 탐색기로 테스트 하나 또는 전체를 돌릴 수 있다",
+      "실패한 테스트의 메시지를 Peek 보기와 Test Results 창에서 읽을 수 있다"
+    ],
+    "prerequisites": [
+      "be.test.pytest-first",
+      "dev.basics.code-editor"
+    ],
+    "related": [
+      "dev.debug.vscode-python"
+    ],
+    "aliases": [
+      "VS Code 테스트",
+      "VS Code pytest",
+      "Configure Python Tests",
+      "VS Code 파이썬 테스트 실행"
+    ],
+    "refs": [
+      "https://code.visualstudio.com/docs/python/testing"
+    ]
+  },
+  {
     "id": "dev.test.unit",
     "title": "단위 테스트",
     "en": "Unit Test",
@@ -650,6 +742,71 @@
     ]
   },
   {
+    "id": "dev.git.rm-mv",
+    "title": "git rm과 git mv로 파일 지우고 옮기기",
+    "en": "Removing and Moving Files (git rm, git mv)",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Git",
+    "summary": "파일을 지우거나 이름을 바꾸는 일과 그 변경을 스테이징하는 일을 한 번에 해 주는 Git 명령이다.",
+    "parent": "dev.git.first-commit",
+    "related": [
+      "dev.git.rm-cached"
+    ],
+    "aliases": [
+      "git rm",
+      "git mv",
+      "Git 파일 삭제",
+      "Git 파일 이름 바꾸기"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository"
+    ]
+  },
+  {
+    "id": "dev.git.git-help",
+    "title": "git help와 -h로 명령 설명 보기",
+    "en": "Getting Help in Git",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Git",
+    "summary": "git help 명령이나 --help로 전체 설명서를 열고, -h로 옵션 목록만 짧게 보는 Git의 도움말 기능이다.",
+    "aliases": [
+      "git help",
+      "git --help",
+      "git 도움말",
+      "Git 매뉴얼"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Getting-Started-Getting-Help"
+    ]
+  },
+  {
+    "id": "dev.terminal.pipe",
+    "title": "파이프(|)로 명령 잇기",
+    "en": "Pipes",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "터미널",
+    "summary": "앞 명령의 출력을 뒤 명령의 입력으로 넘겨 ls | wc -l처럼 작은 명령을 이어 붙이는 셸 기호다.",
+    "parent": "ops.linux.shell-script-basics",
+    "related": [
+      "ops.linux.stdout-stderr-redirection"
+    ],
+    "aliases": [
+      "셸 파이프",
+      "파이프 기호",
+      "명령 파이프",
+      "shell pipe"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Command_line"
+    ]
+  },
+  {
     "id": "dev.debug.launch-json",
     "title": "launch.json 디버그 구성",
     "en": "launch.json Debug Configuration",
@@ -667,6 +824,109 @@
     ],
     "refs": [
       "https://code.visualstudio.com/docs/python/debugging"
+    ]
+  },
+  {
+    "id": "dev.git.status-short",
+    "title": "git status -s 짧은 상태 표시",
+    "en": "Short Status (git status -s)",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Git",
+    "summary": "파일마다 한 줄로 왼쪽은 스테이징 영역, 오른쪽은 작업 트리 상태를 ??·A·M 같은 글자로 보여 주는 git status 형식이다.",
+    "parent": "dev.git.first-commit",
+    "aliases": [
+      "git status -s",
+      "git status --short",
+      "짧은 상태",
+      "short status"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository"
+    ]
+  },
+  {
+    "id": "dev.git.commit-all",
+    "title": "git commit -a로 스테이징 건너뛰기",
+    "en": "Skipping the Staging Area (git commit -a)",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Git",
+    "summary": "이미 추적 중인 파일의 변경을 커밋할 때 자동으로 스테이징해 git add를 생략하는 옵션이며 새 파일은 들어가지 않는다.",
+    "parent": "dev.git.first-commit",
+    "related": [
+      "dev.git.staging-area"
+    ],
+    "aliases": [
+      "git commit -a",
+      "git commit -am",
+      "스테이징 건너뛰기"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository"
+    ]
+  },
+  {
+    "id": "dev.git.sync-changes",
+    "title": "VS Code의 Sync Changes",
+    "en": "Sync Changes in VS Code",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Git",
+    "summary": "VS Code에서 원격의 새 커밋을 먼저 받은 뒤 내 커밋을 올리는 동작을 버튼 하나로 하는 기능이다.",
+    "parent": "dev.git.vscode-source-control",
+    "related": [
+      "dev.git.remotes"
+    ],
+    "aliases": [
+      "Sync Changes",
+      "VS Code 변경 동기화",
+      "VS Code 동기화 버튼"
+    ],
+    "refs": [
+      "https://code.visualstudio.com/docs/sourcecontrol/quickstart"
+    ]
+  },
+  {
+    "id": "dev.test.test-explorer",
+    "title": "테스트 탐색기(Test Explorer)",
+    "en": "Test Explorer",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "테스트",
+    "summary": "VS Code가 찾아낸 테스트를 나무 모양 목록으로 보여 주고 거기서 골라 실행·디버그하며 결과를 표시하는 보기다.",
+    "parent": "dev.test.vscode-python-testing",
+    "aliases": [
+      "Test Explorer",
+      "테스트 탐색기",
+      "VS Code 테스트 보기"
+    ],
+    "refs": [
+      "https://code.visualstudio.com/docs/python/testing"
+    ]
+  },
+  {
+    "id": "dev.terminal.default-profile",
+    "title": "VS Code 기본 터미널 프로필",
+    "en": "Default Terminal Profile",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "터미널",
+    "summary": "VS Code 통합 터미널을 새로 열 때 어떤 셸(zsh·bash·PowerShell 등)을 쓸지 정한 설정이다.",
+    "parent": "dev.terminal.vscode-terminal",
+    "aliases": [
+      "터미널 프로필",
+      "terminal profile",
+      "Select Default Profile",
+      "VS Code 기본 셸 바꾸기"
+    ],
+    "refs": [
+      "https://code.visualstudio.com/docs/terminal/profiles"
     ]
   },
   {

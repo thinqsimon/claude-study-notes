@@ -437,6 +437,40 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "mlops.basics.mlflow-demo",
+    "title": "MLflow 데모로 LLM 운영 기능 둘러보기",
+    "en": "Exploring MLflow GenAI Features with the Live Demo",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "예제 데이터가 미리 채워진 MLflow 데모를 열어 트레이스·평가·이슈·프롬프트 화면을 코드 없이 먼저 구경해 보는 실습이다.",
+    "objectives": [
+      "공개 데모 사이트나 uvx mlflow demo 명령으로 예제 데이터가 든 MLflow를 열 수 있다",
+      "데모 실험에서 트레이스 하나를 골라 스팬·입출력·지연 시간·토큰 수를 찾아볼 수 있다",
+      "평가 런·감지된 이슈·버전이 쌓인 프롬프트 화면이 각각 무엇을 보여 주는지 말할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.basics.what-is-mlops"
+    ],
+    "related": [
+      "mlops.observe.mlflow-server",
+      "mlops.observe.tracing-quickstart"
+    ],
+    "aliases": [
+      "MLflow 데모",
+      "mlflow demo",
+      "demo.mlflow.org",
+      "Explore Demo",
+      "MLflow 라이브 데모"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/demo/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "mlops.eval.eval-dataset",
     "title": "평가 세트(evaluation dataset)",
     "en": "Evaluation Dataset",
@@ -755,6 +789,29 @@
     ],
     "refs": [
       "https://mlflow.org/docs/latest/genai/eval-monitor/ai-insights/detect-issues/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "mlops.serve.mlflow-mcp-registry",
+    "title": "MLflow MCP 레지스트리",
+    "en": "MLflow MCP Registry",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "팀이 쓰는 MCP 서버를 server.json 형식으로 MLflow에 등록해 버전·상태와 함께 한곳에서 찾아보게 하는 목록이다.",
+    "related": [
+      "rag.agent.mcp-registry"
+    ],
+    "aliases": [
+      "MLflow MCP Registry",
+      "register_mcp_server",
+      "사내 MCP 서버 목록"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/mcp-registry/"
     ],
     "volatile": true,
     "checked_at": "2026-11-11"

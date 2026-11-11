@@ -400,6 +400,105 @@
     "checked_at": "2026-11-04"
   },
   {
+    "id": "llm.basics.transformer-families",
+    "title": "트랜스포머 모델의 세 갈래: 인코더·디코더·인코더-디코더",
+    "en": "Transformer Model Families: Encoder, Decoder, Encoder-Decoder",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "트랜스포머 모델을 글을 이해하는 인코더, 글을 이어 쓰는 디코더, 입력을 다른 글로 바꾸는 인코더-디코더로 나눠 작업마다 어느 쪽을 쓰는지 익힌다.",
+    "objectives": [
+      "인코더·디코더·인코더-디코더 모델이 각각 어떤 작업에 쓰이는지 예를 들어 말할 수 있다",
+      "BERT·GPT·T5 같은 모델 이름을 보고 어느 갈래인지 분류할 수 있다",
+      "사전 학습한 모델을 미세 조정해 쓰는 흐름을 그림으로 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.what-is-llm"
+    ],
+    "related": [
+      "ml.transformer.attention",
+      "llm.basics.transformers-pipeline"
+    ],
+    "aliases": [
+      "인코더 디코더 구조",
+      "BERT와 GPT 차이",
+      "트랜스포머 계열"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter1/4",
+      "https://huggingface.co/learn/llm-course/chapter1/6"
+    ]
+  },
+  {
+    "id": "llm.basics.bias-limitations",
+    "title": "LLM의 편향과 해로운 답 확인하기",
+    "en": "Bias and Harmful Output in LLMs",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "학습한 글에 섞인 고정관념이 모델의 답에 그대로 나오는 것을 빈칸 채우기 예제로 직접 확인하고, 앱에서 해로운 답을 줄이는 첫 방법을 익힌다.",
+    "objectives": [
+      "빈칸 채우기 예제를 따라 돌려 성별에 따라 모델의 답이 치우치는 것을 확인할 수 있다",
+      "환각·해로운 내용·불공정한 답을 예를 들어 구분할 수 있다",
+      "미세 조정만으로는 모델에 밴 편향이 사라지지 않는 이유를 말할 수 있다",
+      "시스템 지시와 콘텐츠 필터, 사용자 안내로 해로운 답을 줄이는 방법을 나열할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.generative-ai",
+      "llm.basics.why-hallucinate"
+    ],
+    "related": [
+      "ax.governance.harmful-bias",
+      "ml.eval.fairness-evaluation",
+      "llm.api.moderation-api"
+    ],
+    "aliases": [
+      "LLM 편향",
+      "LLM bias",
+      "AI 고정관념",
+      "해로운 출력"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter1/9",
+      "https://github.com/microsoft/generative-ai-for-beginners/blob/main/03-using-generative-ai-responsibly/README.md"
+    ]
+  },
+  {
+    "id": "llm.api.prompt-template-app",
+    "title": "프롬프트에 사용자 입력 끼워 넣어 생성 앱 만들기",
+    "en": "Building a Text Generation App with Prompt Templates",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "고정된 프롬프트를 빈칸이 있는 틀로 바꾸고 사용자가 입력한 값을 채워 보내, 입력마다 다른 답을 주는 작은 텍스트 생성 앱을 만든다.",
+    "objectives": [
+      "사용자 입력을 받아 f-string 프롬프트 틀에 채워 API로 보낼 수 있다",
+      "재료·인원 같은 입력을 바꿔 가며 답이 달라지는 것을 확인할 수 있다",
+      "첫 답을 다음 프롬프트에 넣어 장보기 목록처럼 이어지는 결과를 만들 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.first-call"
+    ],
+    "related": [
+      "mlops.prompt.template-variable",
+      "mlops.prompt.register-load",
+      "be.python.strings"
+    ],
+    "aliases": [
+      "텍스트 생성 앱",
+      "text generation app",
+      "프롬프트 템플릿 앱",
+      "prompt template app"
+    ],
+    "refs": [
+      "https://github.com/microsoft/generative-ai-for-beginners/blob/main/06-text-generation-apps/README.md",
+      "https://developers.openai.com/api/docs/guides/text"
+    ]
+  },
+  {
     "id": "llm.basics.token",
     "title": "토큰",
     "en": "Token",
@@ -525,6 +624,218 @@
       "indirect prompt injection",
       "문서 속 숨은 지시",
       "웹페이지 인젝션"
+    ]
+  },
+  {
+    "id": "llm.basics.encoder-model",
+    "title": "인코더 모델",
+    "en": "Encoder Model",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "문장 전체를 앞뒤로 함께 보고 뜻을 표현으로 바꾸는 트랜스포머 모델로, BERT처럼 분류나 개체명 찾기에 쓴다.",
+    "parent": "llm.basics.transformer-families",
+    "related": [
+      "llm.basics.decoder-model"
+    ],
+    "aliases": [
+      "encoder-only",
+      "인코더 전용 모델",
+      "BERT 계열",
+      "auto-encoding model"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter1/6"
+    ]
+  },
+  {
+    "id": "llm.basics.decoder-model",
+    "title": "디코더 모델",
+    "en": "Decoder Model",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "앞에 나온 토큰만 보고 다음 토큰을 하나씩 이어 붙이는 트랜스포머 모델로, GPT·Llama 같은 대화형 LLM이 여기에 든다.",
+    "parent": "llm.basics.transformer-families",
+    "related": [
+      "llm.basics.encoder-model"
+    ],
+    "aliases": [
+      "decoder-only",
+      "디코더 전용 모델",
+      "자기회귀 언어 모델",
+      "autoregressive language model",
+      "GPT 계열"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter1/6"
+    ]
+  },
+  {
+    "id": "llm.basics.pretraining",
+    "title": "사전 학습(pretraining)",
+    "en": "Pretraining",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "정답 표시가 없는 아주 많은 글로 모델을 처음부터 학습시켜 언어의 일반적인 쓰임을 익히게 하는 단계로, 그 뒤에 미세 조정을 한다.",
+    "parent": "llm.basics.transformer-families",
+    "related": [
+      "mlops.finetune.fine-tuning",
+      "ml.nn.transfer-learning"
+    ],
+    "aliases": [
+      "프리트레이닝",
+      "사전 훈련",
+      "LLM 사전 학습"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter1/4"
+    ]
+  },
+  {
+    "id": "llm.basics.instruction-tuned-model",
+    "title": "기반 모델과 지시 튜닝 모델",
+    "en": "Base Model vs Instruction-Tuned Model",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "글을 이어 쓰기만 하는 기반 모델에 지시와 답의 예를 더 학습시켜, 부탁을 알아듣고 따르게 만든 것이 지시 튜닝 모델이다.",
+    "related": [
+      "llm.basics.pretraining",
+      "mlops.finetune.fine-tuning"
+    ],
+    "aliases": [
+      "instruction-tuned",
+      "instruct 모델",
+      "base LLM",
+      "베이스 모델",
+      "인스트럭트 모델",
+      "지시 따르기 모델"
+    ],
+    "refs": [
+      "https://github.com/microsoft/generative-ai-for-beginners/blob/main/04-prompt-engineering-fundamentals/README.md"
+    ]
+  },
+  {
+    "id": "llm.prompt.zero-shot",
+    "title": "제로샷 프롬프팅",
+    "en": "Zero-Shot Prompting",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "프롬프트",
+    "summary": "예시를 하나도 주지 않고 지시만으로 일을 맡기는 프롬프트 방식으로, 결과가 흔들리면 예시를 더하는 퓨샷으로 넘어간다.",
+    "parent": "llm.prompt.first-good-prompt",
+    "related": [
+      "llm.prompt.few-shot"
+    ],
+    "aliases": [
+      "zero-shot",
+      "제로 샷",
+      "zero-shot prompting",
+      "예시 없는 프롬프트"
+    ],
+    "refs": [
+      "https://github.com/microsoft/generative-ai-for-beginners/blob/main/04-prompt-engineering-fundamentals/README.md"
+    ]
+  },
+  {
+    "id": "llm.basics.knowledge-cutoff",
+    "title": "지식 마감일(knowledge cutoff)",
+    "en": "Knowledge Cutoff",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "모델이 학습한 자료가 끝나는 시점으로, 그 뒤에 생긴 일은 모르므로 최신 정보는 프롬프트에 직접 넣어 줘야 한다.",
+    "related": [
+      "llm.basics.why-hallucinate",
+      "llm.basics.generative-ai"
+    ],
+    "aliases": [
+      "학습 데이터 마감일",
+      "training data cutoff",
+      "knowledge cutoff",
+      "지식 컷오프",
+      "학습 마감 시점"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/about-claude/models/overview"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.encoder-decoder-model",
+    "title": "인코더-디코더 모델(seq2seq)",
+    "en": "Encoder-Decoder Model",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "인코더가 입력 전체를 읽고 디코더가 그것을 보며 새 글을 써 내는 트랜스포머 모델로, T5·BART처럼 번역과 요약에 쓴다.",
+    "parent": "llm.basics.transformer-families",
+    "aliases": [
+      "seq2seq",
+      "sequence-to-sequence",
+      "시퀀스 투 시퀀스",
+      "T5 계열"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter1/6"
+    ]
+  },
+  {
+    "id": "llm.basics.self-supervised-learning",
+    "title": "자기 지도 학습",
+    "en": "Self-Supervised Learning",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "사람이 정답을 달지 않고 글 자체에서 다음 낱말이나 가린 낱말을 정답으로 삼아 모델을 학습시키는 방식이다.",
+    "parent": "llm.basics.transformer-families",
+    "related": [
+      "llm.basics.pretraining",
+      "llm.basics.masked-language-modeling"
+    ],
+    "aliases": [
+      "self-supervised learning",
+      "자기지도학습",
+      "셀프 수퍼바이즈드"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter1/4"
+    ]
+  },
+  {
+    "id": "llm.basics.masked-language-modeling",
+    "title": "마스크 언어 모델링(MLM)",
+    "en": "Masked Language Modeling",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "문장의 낱말 일부를 가리고 그 자리에 올 말을 맞히게 하는 학습 방식으로, BERT 같은 인코더 모델을 사전 학습할 때 쓴다.",
+    "parent": "llm.basics.transformer-families",
+    "related": [
+      "llm.basics.encoder-model"
+    ],
+    "aliases": [
+      "MLM",
+      "masked language modeling",
+      "fill-mask",
+      "빈칸 채우기 모델",
+      "[MASK] 토큰"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter1/4",
+      "https://huggingface.co/learn/llm-course/chapter1/9"
     ]
   },
   {
