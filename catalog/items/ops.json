@@ -426,6 +426,101 @@
     ]
   },
   {
+    "id": "ops.network.firewall-idea",
+    "title": "방화벽: 서버로 들어오는 길의 출입 관리",
+    "en": "Network Firewalls for Servers",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "네트워크와 앞단",
+    "summary": "정해 둔 규칙에 맞는 연결만 서버에 들고 나게 하고 나머지는 막는 네트워크 출입 관리 장치다.",
+    "objectives": [
+      "방화벽을 건물 출입문의 경비원과 출입 명단에 빗대어 설명할 수 있다",
+      "들어오는 연결과 나가는 연결을 따로 허용하거나 막는다는 것을 말할 수 있다",
+      "규칙에 없는 들어오는 연결은 기본으로 막힌다는 점을 예로 들어 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "be.basics.localhost-port"
+    ],
+    "related": [
+      "ops.network.ufw-open-ports"
+    ],
+    "aliases": [
+      "방화벽",
+      "firewall",
+      "네트워크 방화벽",
+      "방화벽 규칙",
+      "firewall rule"
+    ],
+    "refs": [
+      "https://docs.cloud.google.com/firewall/docs/firewalls",
+      "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html"
+    ]
+  },
+  {
+    "id": "ops.observe.incident-response-idea",
+    "title": "장애 대응: 서비스가 멈췄을 때 하는 일",
+    "en": "Incident Response Basics",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "관측",
+    "summary": "서비스에 큰 문제가 생기면 장애로 선언하고, 역할을 나눠 맡아 복구한 뒤 배운 점을 글로 남기는 일의 흐름이다.",
+    "objectives": [
+      "장애 대응을 불이 났을 때 소방대가 역할을 나눠 움직이는 모습에 빗대어 설명할 수 있다",
+      "문제를 일찍 장애로 선언하는 편이 나은 이유를 말할 수 있다",
+      "복구가 끝난 뒤 사람을 탓하지 않고 기록을 남기는 이유를 설명할 수 있다"
+    ],
+    "related": [
+      "ops.observe.incident-analysis",
+      "ops.observe.on-call",
+      "ops.observe.playbook",
+      "ops.observe.sre-idea"
+    ],
+    "aliases": [
+      "장애 대응",
+      "incident response",
+      "인시던트 대응",
+      "장애 관리",
+      "incident management"
+    ],
+    "refs": [
+      "https://sre.google/sre-book/managing-incidents/",
+      "https://sre.google/sre-book/postmortem-culture/"
+    ]
+  },
+  {
+    "id": "ops.basics.object-storage-idea",
+    "title": "오브젝트 스토리지: 파일을 맡기는 클라우드 창고",
+    "en": "Cloud Object Storage (Amazon S3 Style)",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "배포 기초",
+    "summary": "사진·동영상·백업 같은 파일을 이름표를 붙여 클라우드 창고에 맡기고, 필요할 때 그 이름표로 꺼내 쓰는 저장 방식이다.",
+    "objectives": [
+      "오브젝트 스토리지를 짐 보관소와 보관증에 빗대어 설명할 수 있다",
+      "버킷과 오브젝트, 오브젝트 키가 각각 무엇인지 말할 수 있다",
+      "맡긴 파일이 따로 허용하기 전에는 남에게 보이지 않는다는 점을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.basics.cloud"
+    ],
+    "related": [
+      "db.data.data-lake"
+    ],
+    "aliases": [
+      "오브젝트 스토리지",
+      "object storage",
+      "객체 스토리지",
+      "Amazon S3",
+      "S3 스토리지"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html"
+    ]
+  },
+  {
     "id": "ops.linux.multipass-first-vm",
     "title": "Multipass로 Ubuntu 가상 머신 처음 띄우기",
     "en": "Launching a First Ubuntu VM with Multipass",
@@ -1059,6 +1154,205 @@
     ]
   },
   {
+    "id": "ops.network.security-group",
+    "title": "보안 그룹(클라우드 가상 방화벽)",
+    "en": "Cloud Security Group (AWS EC2/VPC)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "네트워크와 앞단",
+    "summary": "클라우드 서버에 붙여 어떤 출발지에서 어떤 포트로 오는 연결을 받을지 정하는 가상 방화벽이다.",
+    "parent": "ops.network.firewall-idea",
+    "aliases": [
+      "AWS 보안 그룹",
+      "EC2 보안 그룹",
+      "VPC 보안 그룹",
+      "AWS security group"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html"
+    ]
+  },
+  {
+    "id": "ops.network.inbound-outbound-rules",
+    "title": "인바운드 규칙과 아웃바운드 규칙",
+    "en": "Inbound (Ingress) and Outbound (Egress) Firewall Rules",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "네트워크와 앞단",
+    "summary": "방화벽 규칙을 서버로 들어오는 연결용과 서버에서 나가는 연결용으로 나눠 따로 정하는 방식이다.",
+    "parent": "ops.network.firewall-idea",
+    "aliases": [
+      "인바운드 규칙",
+      "inbound rule",
+      "아웃바운드 규칙",
+      "outbound rule"
+    ],
+    "refs": [
+      "https://docs.cloud.google.com/firewall/docs/firewalls",
+      "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html"
+    ]
+  },
+  {
+    "id": "ops.observe.incident-commander",
+    "title": "인시던트 지휘관(장애 대응 총괄)",
+    "en": "Incident Commander",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "관측",
+    "summary": "장애가 났을 때 전체 상황을 쥐고 사람들에게 일을 나눠 주며 막힌 곳을 풀어 주는 총괄 역할이다.",
+    "parent": "ops.observe.incident-response-idea",
+    "aliases": [
+      "인시던트 지휘관",
+      "incident commander",
+      "인시던트 커맨더",
+      "장애 대응 총괄",
+      "IC 역할"
+    ],
+    "refs": [
+      "https://sre.google/sre-book/managing-incidents/"
+    ]
+  },
+  {
+    "id": "ops.observe.blameless-postmortem",
+    "title": "비난 없는 포스트모템",
+    "en": "Blameless Postmortem",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "관측",
+    "summary": "장애가 끝난 뒤 누구 탓인지 따지지 않고 무엇이 일어났고 무엇을 고칠지를 글로 정리하는 문화다.",
+    "parent": "ops.observe.incident-response-idea",
+    "related": [
+      "ops.observe.incident-analysis"
+    ],
+    "aliases": [
+      "blameless postmortem",
+      "블레임리스 포스트모템",
+      "비난 없는 회고",
+      "무책 회고",
+      "blameless culture"
+    ],
+    "refs": [
+      "https://sre.google/sre-book/postmortem-culture/"
+    ]
+  },
+  {
+    "id": "ops.basics.storage-bucket",
+    "title": "버킷(오브젝트 스토리지의 보관함)",
+    "en": "Object Storage Bucket (S3 Bucket)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "배포 기초",
+    "summary": "오브젝트 스토리지에서 파일들을 담아 두는 가장 큰 보관함으로, 이름과 리전을 정해 만든다.",
+    "parent": "ops.basics.object-storage-idea",
+    "aliases": [
+      "S3 버킷",
+      "S3 bucket",
+      "스토리지 버킷",
+      "storage bucket",
+      "GCS 버킷"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html"
+    ]
+  },
+  {
+    "id": "ops.basics.vpc",
+    "title": "VPC(가상 사설 클라우드)",
+    "en": "Virtual Private Cloud (VPC)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "배포 기초",
+    "summary": "클라우드 안에 나만 쓰도록 따로 떼어 놓은 가상의 네트워크로, 회사 안 전산망을 클라우드에 옮겨 놓은 것과 비슷하다.",
+    "related": [
+      "cs.net.private-ip-address"
+    ],
+    "aliases": [
+      "VPC",
+      "가상 사설 클라우드",
+      "Amazon VPC",
+      "VPC 네트워크"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+    ]
+  },
+  {
+    "id": "ops.basics.shared-responsibility-model",
+    "title": "클라우드 공동 책임 모델",
+    "en": "Cloud Shared Responsibility Model",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "배포 기초",
+    "summary": "클라우드 회사는 건물·장비 같은 바탕을 지키고, 사용자는 그 위에 올린 데이터·접근 설정·서버 관리를 맡는다는 보안 책임의 나눔이다.",
+    "related": [
+      "ops.basics.cloud-service-models"
+    ],
+    "aliases": [
+      "공동 책임 모델",
+      "shared responsibility model",
+      "책임 공유 모델",
+      "클라우드 보안 책임 분담"
+    ],
+    "refs": [
+      "https://aws.amazon.com/compliance/shared-responsibility-model/"
+    ]
+  },
+  {
+    "id": "ops.observe.uptime-check",
+    "title": "업타임 체크(외부에서 접속 확인)",
+    "en": "Uptime Check (Synthetic Availability Probe)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "관측",
+    "summary": "세계 여러 곳에서 정해진 간격으로 서비스 주소에 접속해 보고, 응답이 없으면 알려 주는 바깥쪽 점검이다.",
+    "related": [
+      "ops.observe.monitoring-idea",
+      "ops.observe.container-healthcheck"
+    ],
+    "aliases": [
+      "업타임 체크",
+      "uptime check",
+      "가동 시간 점검",
+      "외부 접속 점검",
+      "uptime monitoring"
+    ],
+    "refs": [
+      "https://docs.cloud.google.com/monitoring/uptime-checks"
+    ]
+  },
+  {
+    "id": "ops.observe.alert-fatigue",
+    "title": "알림 피로(경보에 무뎌짐)",
+    "en": "Alert Fatigue (On-Call Paging Fatigue)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "관측",
+    "summary": "할 일이 없거나 급하지 않은 알림이 너무 자주 울려 담당자가 지치고 진짜 위험한 알림까지 흘려보내게 되는 상태다.",
+    "related": [
+      "ops.observe.on-call",
+      "ops.observe.monitoring-idea"
+    ],
+    "aliases": [
+      "alert fatigue",
+      "알람 피로",
+      "경보 피로",
+      "페이저 피로",
+      "pager fatigue"
+    ],
+    "refs": [
+      "https://sre.google/sre-book/monitoring-distributed-systems/"
+    ]
+  },
+  {
     "id": "ops.basics.cloud-service-models",
     "title": "클라우드 서비스 모델(IaaS·PaaS·SaaS)",
     "en": "Cloud Service Models",
@@ -1308,6 +1602,26 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ops.basics.object-key",
+    "title": "오브젝트 키(버킷 안의 파일 이름표)",
+    "en": "Object Key (S3 Key Name)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "배포 기초",
+    "summary": "버킷 안에서 오브젝트 하나를 딱 하나로 가리키는 이름으로, photos/puppy.jpg처럼 폴더 경로처럼 보이기도 한다.",
+    "parent": "ops.basics.object-storage-idea",
+    "aliases": [
+      "오브젝트 키",
+      "object key",
+      "S3 object key",
+      "S3 키 이름"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html"
+    ]
   },
   {
     "id": "ops.deploy.first-deploy",

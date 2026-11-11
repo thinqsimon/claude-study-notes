@@ -1,5 +1,5 @@
 {
- "version": "0.48.0",
+ "version": "0.49.0",
  "domains": [
   {
    "prefix": "dev",
@@ -6442,6 +6442,102 @@
    "domain": "cs"
   },
   {
+   "id": "cs.dsa.tree-idea",
+   "title": "트리 구조: 뿌리에서 갈라지는 자료",
+   "en": "Tree Data Structure Basics",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "자료구조",
+   "summary": "맨 위 뿌리 하나에서 시작해 각 항목이 아래로 자식을 거느리며 갈라져 나가는, 가계도나 폴더 같은 모양의 자료 구조다.",
+   "objectives": [
+    "가계도나 폴더 안의 폴더에 빗대어 트리가 뿌리에서 아래로 갈라지는 모양이라는 것을 설명할 수 있다",
+    "뿌리만 부모가 없고 나머지 항목은 모두 부모가 하나씩 있다는 것을 말할 수 있다",
+    "뿌리에서 가장 먼 항목까지의 거리를 트리의 높이라고 부른다는 것을 그림으로 보일 수 있다"
+   ],
+   "related": [
+    "cs.dsa.binary-tree",
+    "cs.os.files-directories",
+    "cs.dsa.graph-idea"
+   ],
+   "aliases": [
+    "트리 자료구조",
+    "tree data structure",
+    "계층형 자료 구조"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/tree.html",
+    "https://xlinux.nist.gov/dads/HTML/root.html",
+    "https://xlinux.nist.gov/dads/HTML/height.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dsa.graph-idea",
+   "title": "그래프: 점과 선으로 관계 그리기",
+   "en": "Graphs as Vertices and Edges",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "자료구조",
+   "summary": "지하철역과 노선처럼 여러 대상을 점으로, 그 사이의 연결을 선으로 나타내 관계를 담는 자료 구조다.",
+   "objectives": [
+    "지하철 노선도에 빗대어 그래프가 점(정점)과 선(간선)으로 이루어진다는 것을 설명할 수 있다",
+    "일방통행 길과 양방향 길에 빗대어 방향 그래프와 무방향 그래프를 구분할 수 있다",
+    "친구 관계나 웹 페이지 링크처럼 그래프로 나타낼 수 있는 예를 들 수 있다"
+   ],
+   "related": [
+    "cs.algo.graph-traversal",
+    "cs.dsa.tree-idea",
+    "db.nosql.graph-database"
+   ],
+   "aliases": [
+    "그래프 자료구조",
+    "graph data structure",
+    "정점과 간선",
+    "vertices and edges"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/graph.html",
+    "https://xlinux.nist.gov/dads/HTML/directedGraph.html",
+    "https://xlinux.nist.gov/dads/HTML/undirectedGraph.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.data.binary-numbers-idea",
+   "title": "2진수: 0과 1만으로 수 세기",
+   "en": "Binary Numbers and Place Values",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "데이터 표현",
+   "summary": "자리마다 1·2·4·8처럼 두 배씩 커지는 무게를 두고 0과 1만 써서 모든 수를 나타내는 방법이다.",
+   "objectives": [
+    "켜고 끄는 전등 스위치 줄에 빗대어 2진수의 각 자리가 0 또는 1이라는 것을 설명할 수 있다",
+    "오른쪽 자리부터 1·2·4·8로 두 배씩 커지는 무게를 더해 작은 2진수를 10진수로 읽을 수 있다",
+    "2진수의 가장 오른쪽 자리와 가장 왼쪽 자리를 각각 무엇이라 부르는지 말할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.data.digital-information"
+   ],
+   "related": [
+    "cs.data.bits-bytes",
+    "cs.data.binary-bitwise"
+   ],
+   "aliases": [
+    "2진법",
+    "이진법",
+    "binary numeral system",
+    "base 2",
+    "2진수 읽기"
+   ],
+   "refs": [
+    "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c1/c1s1/"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.data.utc",
    "title": "협정 세계시(UTC)",
    "en": "Coordinated Universal Time (UTC)",
@@ -7047,6 +7143,123 @@
    "domain": "cs"
   },
   {
+   "id": "cs.dsa.root-node",
+   "title": "루트 노드(트리의 뿌리)",
+   "en": "Root Node of a Tree",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "자료구조",
+   "summary": "트리에서 모든 탐색이 시작되는 맨 위 항목으로, 부모가 없는 유일한 항목이다.",
+   "parent": "cs.dsa.tree-idea",
+   "aliases": [
+    "루트 노드",
+    "root node",
+    "트리 루트",
+    "뿌리 노드"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/root.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dsa.parent-child-node",
+   "title": "부모 노드와 자식 노드",
+   "en": "Parent and Child Nodes in a Tree",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "자료구조",
+   "summary": "트리에서 뿌리 쪽으로 한 칸 위에서 이어 주는 항목이 부모이고, 그 아래 매달린 항목이 자식이다.",
+   "parent": "cs.dsa.tree-idea",
+   "related": [
+    "cs.dsa.root-node"
+   ],
+   "aliases": [
+    "부모 노드",
+    "자식 노드",
+    "parent node",
+    "child node"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/parent.html",
+    "https://xlinux.nist.gov/dads/HTML/child.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dsa.graph-vertex",
+   "title": "정점(그래프의 점)",
+   "en": "Vertex in a Graph",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "자료구조",
+   "summary": "그래프에서 역·사람·웹 페이지처럼 연결되는 대상 하나를 나타내는 점이다.",
+   "parent": "cs.dsa.graph-idea",
+   "related": [
+    "cs.dsa.graph-edge"
+   ],
+   "aliases": [
+    "graph vertex",
+    "그래프 정점",
+    "그래프의 꼭짓점"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/vertex.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dsa.graph-edge",
+   "title": "간선(그래프의 선)",
+   "en": "Edge in a Graph",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "자료구조",
+   "summary": "그래프에서 두 정점을 잇는 연결 하나로, 방향이나 거리 같은 값을 함께 가질 수 있다.",
+   "parent": "cs.dsa.graph-idea",
+   "related": [
+    "cs.dsa.graph-vertex",
+    "cs.dsa.weighted-graph"
+   ],
+   "aliases": [
+    "graph edge",
+    "그래프 간선",
+    "그래프의 연결선"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/edge.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dsa.directed-graph",
+   "title": "방향 그래프",
+   "en": "Directed Graph",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "자료구조",
+   "summary": "간선마다 출발과 도착이 정해져 있어 한쪽으로만 따라갈 수 있는 그래프로, 일방통행 길 지도와 같다.",
+   "parent": "cs.dsa.graph-idea",
+   "related": [
+    "cs.dsa.undirected-graph",
+    "cs.algo.topological-sort"
+   ],
+   "aliases": [
+    "방향 그래프",
+    "유향 그래프",
+    "digraph"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/directedGraph.html"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.net.robustness-principle",
    "title": "견고성 원칙(포스텔의 법칙)",
    "en": "Robustness Principle",
@@ -7388,6 +7601,101 @@
    ],
    "refs": [
     "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c18/c18s1/"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dsa.tree-height",
+   "title": "트리의 높이",
+   "en": "Height of a Tree",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "자료구조",
+   "summary": "뿌리에서 가장 멀리 떨어진 항목까지 거치는 단계 수로, 뿌리 하나뿐인 트리의 높이는 0이다.",
+   "parent": "cs.dsa.tree-idea",
+   "related": [
+    "cs.dsa.binary-search-tree"
+   ],
+   "aliases": [
+    "트리 높이",
+    "tree height",
+    "트리의 최대 깊이"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/height.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dsa.undirected-graph",
+   "title": "무방향 그래프",
+   "en": "Undirected Graph",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "자료구조",
+   "summary": "간선에 방향이 없어 이어진 두 정점 사이를 어느 쪽으로든 오갈 수 있는 그래프다.",
+   "parent": "cs.dsa.graph-idea",
+   "related": [
+    "cs.dsa.directed-graph"
+   ],
+   "aliases": [
+    "무방향 그래프",
+    "무향 그래프",
+    "undirected graph"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/undirectedGraph.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.data.least-significant-bit",
+   "title": "최하위 비트(LSB)",
+   "en": "Least Significant Bit",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "데이터 표현",
+   "summary": "2진수를 적었을 때 가장 오른쪽 자리로, 무게가 1(2의 0제곱)인 비트다.",
+   "parent": "cs.data.binary-numbers-idea",
+   "related": [
+    "cs.data.most-significant-bit"
+   ],
+   "aliases": [
+    "LSB",
+    "최하위 비트",
+    "least-significant bit",
+    "가장 오른쪽 비트"
+   ],
+   "refs": [
+    "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c1/c1s1/"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.data.most-significant-bit",
+   "title": "최상위 비트(MSB)",
+   "en": "Most Significant Bit",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "데이터 표현",
+   "summary": "2진수에서 가장 왼쪽에 있어 무게가 가장 큰 비트로, 부호 있는 정수(2의 보수)에서는 음수인지를 알려 준다.",
+   "parent": "cs.data.binary-numbers-idea",
+   "related": [
+    "cs.data.least-significant-bit",
+    "cs.data.unsigned-integer"
+   ],
+   "aliases": [
+    "MSB",
+    "최상위 비트",
+    "high-order bit",
+    "가장 왼쪽 비트"
+   ],
+   "refs": [
+    "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c1/c1s1/"
    ],
    "domain": "cs"
   },
@@ -11523,6 +11831,73 @@
    "domain": "plan"
   },
   {
+   "id": "plan.basics.scrum-framework",
+   "title": "스크럼: 역할·행사·산출물로 짠 팀 운영 틀",
+   "en": "Scrum Framework: Team, Events, and Artifacts",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "작은 팀이 한 달 이하의 스프린트를 되풀이하며 정해 둔 책임과 모임, 산출물로 제품을 조금씩 키우는 일하기 틀이다.",
+   "objectives": [
+    "스크럼 팀의 세 책임인 제품 책임자·스크럼 마스터·개발자를 운동 팀의 역할에 빗대어 설명할 수 있다",
+    "스프린트 안에서 계획·데일리 스크럼·리뷰·회고가 어떤 순서로 열리는지 하루 일과처럼 말할 수 있다",
+    "투명성·점검·적응의 세 기둥을 요리하며 맛보고 간을 고치는 일에 빗대어 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.agile-iteration"
+   ],
+   "related": [
+    "plan.basics.kanban"
+   ],
+   "aliases": [
+    "스크럼",
+    "scrum",
+    "스크럼 프레임워크",
+    "스크럼 가이드",
+    "스크럼 방법론",
+    "스크럼 세 기둥"
+   ],
+   "refs": [
+    "https://scrumguides.org/scrum-guide.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.kanban",
+   "title": "칸반: 일의 흐름을 보드로 보이게 하기",
+   "en": "Kanban Method",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "할 일을 단계별 칸이 있는 보드에 올려 흐름을 눈에 보이게 하고, 동시에 벌이는 일의 수를 묶어 막힌 곳을 찾는 일하기 방식이다.",
+   "objectives": [
+    "칸반 보드를 식당 주문표가 주방을 지나가는 모습에 빗대어 설명할 수 있다",
+    "동시에 하는 일의 수를 묶으면 왜 일이 더 빨리 끝나는지 말할 수 있다",
+    "정해진 기간을 되풀이하는 스크럼과 흐름을 이어 가는 칸반의 차이를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.agile-iteration"
+   ],
+   "related": [
+    "plan.basics.scrum-framework"
+   ],
+   "aliases": [
+    "칸반",
+    "kanban",
+    "칸반 방식",
+    "Kanban Method",
+    "칸반 방법론"
+   ],
+   "refs": [
+    "https://www.agilealliance.org/glossary/kanban/",
+    "https://www.agilealliance.org/glossary/kanban-board/",
+    "https://www.gov.uk/service-manual/agile-delivery/agile-methodologies"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.basics.wireframe",
    "title": "와이어프레임",
    "en": "Wireframe",
@@ -11904,6 +12279,167 @@
    ],
    "refs": [
     "https://help.figma.com/hc/en-us/articles/360040322673-Present-to-collaborators-using-spotlight"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.product-owner",
+   "title": "제품 책임자(Product Owner)",
+   "en": "Scrum Product Owner",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "스크럼 팀에서 제품 목표를 정하고 제품 백로그를 쓰고 줄 세워 제품의 가치를 가장 크게 만드는 책임을 진 한 사람이다.",
+   "parent": "plan.basics.scrum-framework",
+   "related": [
+    "plan.basics.product-manager"
+   ],
+   "aliases": [
+    "제품 책임자",
+    "product owner",
+    "프로덕트 오너",
+    "스크럼 제품 책임자"
+   ],
+   "refs": [
+    "https://scrumguides.org/scrum-guide.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.scrum-master",
+   "title": "스크럼 마스터",
+   "en": "Scrum Master",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "팀과 조직이 스크럼을 잘 쓰도록 코칭하고 일을 막는 장애물을 치우며 모임이 시간 안에 알차게 끝나게 돕는 책임이다.",
+   "parent": "plan.basics.scrum-framework",
+   "aliases": [
+    "scrum master",
+    "스크럼마스터"
+   ],
+   "refs": [
+    "https://scrumguides.org/scrum-guide.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.daily-scrum",
+   "title": "데일리 스크럼(매일 짧은 모임)",
+   "en": "Daily Scrum (Daily Stand-up)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "개발자들이 매일 같은 시간에 15분 동안 모여 스프린트 목표까지 얼마나 왔는지 살피고 앞으로 할 일을 다시 맞추는 모임이다.",
+   "parent": "plan.basics.scrum-framework",
+   "aliases": [
+    "데일리 스크럼",
+    "daily scrum",
+    "데일리 스탠드업",
+    "daily standup",
+    "스탠드업 미팅",
+    "stand-up meeting"
+   ],
+   "refs": [
+    "https://scrumguides.org/scrum-guide.html",
+    "https://www.gov.uk/service-manual/agile-delivery/agile-tools-techniques"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.sprint-review",
+   "title": "스프린트 리뷰",
+   "en": "Sprint Review",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "스프린트 끝에 팀과 이해관계자가 만든 결과를 함께 보며 다음에 무엇을 할지 의논하고 제품 백로그를 고치는 모임이다.",
+   "parent": "plan.basics.scrum-framework",
+   "related": [
+    "plan.basics.sprint-retrospective"
+   ],
+   "aliases": [
+    "sprint review",
+    "쇼 앤 텔",
+    "show and tell",
+    "팀 리뷰 모임",
+    "스프린트 데모"
+   ],
+   "refs": [
+    "https://scrumguides.org/scrum-guide.html",
+    "https://www.gov.uk/service-manual/agile-delivery/agile-tools-techniques"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.sprint-goal",
+   "title": "스프린트 목표(Sprint Goal)",
+   "en": "Sprint Goal",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "스프린트 계획 때 팀이 정하는 이번 스프린트의 단 하나의 목적으로, 할 일이 바뀌어도 팀이 같은 방향을 보게 한다.",
+   "parent": "plan.basics.scrum-framework",
+   "related": [
+    "plan.basics.sprint-backlog"
+   ],
+   "aliases": [
+    "스프린트 목표",
+    "sprint goal",
+    "스프린트 골",
+    "이번 스프린트 목표"
+   ],
+   "refs": [
+    "https://scrumguides.org/scrum-guide.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.kanban-board",
+   "title": "칸반 보드",
+   "en": "Kanban Board",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "'할 일·하는 중·끝남'처럼 일의 단계를 칸으로 나눈 판에 일감 카드를 옮겨 가며 진행을 한눈에 보는 도구다.",
+   "parent": "plan.basics.kanban",
+   "aliases": [
+    "kanban board",
+    "칸반 보드판",
+    "칸반판"
+   ],
+   "refs": [
+    "https://www.agilealliance.org/glossary/kanban-board/",
+    "https://www.gov.uk/service-manual/agile-delivery/agile-tools-techniques"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.wip-limit",
+   "title": "진행 중 작업 제한(WIP 제한)",
+   "en": "Work-in-Progress (WIP) Limit",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "칸반 보드의 한 칸에 동시에 둘 수 있는 일의 수를 정해, 가득 차면 새 일을 시작하지 않고 걸린 일부터 함께 끝내게 하는 규칙이다.",
+   "parent": "plan.basics.kanban",
+   "aliases": [
+    "WIP 제한",
+    "WIP limit",
+    "work in progress limit",
+    "진행 중 작업 수 제한",
+    "동시 작업 제한"
+   ],
+   "refs": [
+    "https://www.agilealliance.org/glossary/kanban-board/",
+    "https://www.agilealliance.org/glossary/kanban/"
    ],
    "domain": "plan"
   },
@@ -12457,6 +12993,54 @@
    "refs": [
     "https://help.figma.com/hc/en-us/articles/1500004414842"
    ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.draw",
+   "title": "Figma Draw(일러스트 그리기 모드)",
+   "en": "Figma Draw",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "Figma 디자인 파일의 툴바에서 Draw로 바꾸면 붓·연필 같은 그리기 도구가 나와 화면에 손그림 느낌의 일러스트를 더할 수 있다.",
+   "parent": "plan.figma.product-family",
+   "aliases": [
+    "피그마 드로우",
+    "Figma 드로우",
+    "Figma Draw 모드",
+    "Figma 일러스트 도구"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/31440394517143-Explore-Figma-Draw",
+    "https://help.figma.com/hc/en-us/articles/14563969806359"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.buzz",
+   "title": "Figma Buzz(브랜드 이미지 대량 제작)",
+   "en": "Figma Buzz",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "팀이 만든 템플릿과 라이브러리로 SNS 이미지 같은 브랜드에 맞는 그림 자료를 표 데이터로 한꺼번에 여러 장 만드는 Figma 도구다.",
+   "parent": "plan.figma.product-family",
+   "aliases": [
+    "피그마 버즈",
+    "Figma 버즈",
+    "Figma Buzz 템플릿",
+    "Figma 마케팅 에셋 도구"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/31194937548951-Explore-Figma-Buzz",
+    "https://help.figma.com/hc/en-us/articles/14563969806359"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
    "domain": "plan"
   },
   {
@@ -17319,6 +17903,34 @@
    "domain": "be"
   },
   {
+   "id": "be.security.untrusted-input-idea",
+   "title": "들어온 값은 먼저 확인하기: 입력 검사 입문",
+   "en": "Never Trust User Input",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "웹 보안",
+   "summary": "서버는 사용자나 다른 시스템이 보낸 값을 그대로 믿지 않고, 받아들일 모양과 범위를 미리 정해 그 밖의 값은 돌려보낸다.",
+   "objectives": [
+    "건물 안내 데스크가 출입증을 확인하는 일에 빗대어 서버의 입력 검사를 설명할 수 있다",
+    "허용 목록과 차단 목록의 차이를 예를 들어 말할 수 있다",
+    "브라우저에서 이미 검사했어도 서버가 다시 검사해야 하는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "be.security.web-security-idea"
+   ],
+   "aliases": [
+    "신뢰할 수 없는 입력",
+    "untrusted input",
+    "사용자 입력 믿지 않기",
+    "input validation basics"
+   ],
+   "refs": [
+    "https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html"
+   ],
+   "domain": "be"
+  },
+  {
    "id": "be.basics.web-framework-idea",
    "title": "웹 프레임워크: 서버를 빨리 만드는 도구 상자",
    "en": "What a Web Framework Does",
@@ -17407,6 +18019,66 @@
    ],
    "refs": [
     "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Proxy_servers_and_tunneling"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.auth.mfa-idea",
+   "title": "다중 인증의 큰 그림: 열쇠를 하나 더",
+   "en": "Multi-Factor Authentication Basics",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "인증·인가",
+   "summary": "다중 인증은 비밀번호 같은 아는 것에 휴대폰 같은 가진 것이나 지문 같은 나 자신을 더해 종류가 다른 증거 둘 이상으로 본인을 확인하는 방식이다.",
+   "objectives": [
+    "현관 열쇠와 비밀번호 도어락을 함께 쓰는 집에 빗대어 다중 인증을 설명할 수 있다",
+    "아는 것·가진 것·나 자신의 세 가지 인증 요소에 예를 하나씩 들 수 있다",
+    "비밀번호와 PIN을 함께 쓰는 것이 왜 다중 인증이 아닌지 말할 수 있다",
+    "비밀번호가 새어 나가도 다중 인증이 계정을 지켜 주는 까닭을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "be.auth.login-big-picture"
+   ],
+   "aliases": [
+    "2단계 인증",
+    "2FA",
+    "two-factor authentication",
+    "이중 인증",
+    "multi-factor authentication"
+   ],
+   "refs": [
+    "https://cheatsheetseries.owasp.org/cheatsheets/Multifactor_Authentication_Cheat_Sheet.html",
+    "https://csrc.nist.gov/glossary/term/multi_factor_authentication"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.security.updates-idea",
+   "title": "업데이트가 보안인 이유: 알려진 구멍 막기",
+   "en": "Why Software Updates Matter for Security",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 보안",
+   "summary": "서버의 운영체제·언어·라이브러리에서 공개된 취약점은 누구나 노릴 수 있으므로, 고친 판을 제때 설치하고 지원이 끝난 판은 바꿔야 한다.",
+   "objectives": [
+    "고장 난 자물쇠를 바꾸지 않은 집에 빗대어 업데이트를 미루는 위험을 설명할 수 있다",
+    "보안 패치와 CVE 번호가 무엇인지 말할 수 있다",
+    "지원이 끝난 버전을 계속 쓰면 왜 위험한지 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "be.security.web-security-idea"
+   ],
+   "aliases": [
+    "소프트웨어 업데이트 보안",
+    "오래된 구성 요소",
+    "outdated components",
+    "Vulnerable and Outdated Components"
+   ],
+   "refs": [
+    "https://top10.owasp.org/2025/A03_2025-Software_Supply_Chain_Failures/",
+    "https://csrc.nist.gov/glossary/term/patch"
    ],
    "domain": "be"
   },
@@ -18169,6 +18841,155 @@
    "domain": "be"
   },
   {
+   "id": "be.auth.authentication-factor",
+   "title": "인증 요소",
+   "en": "Authentication Factor",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "인증·인가",
+   "summary": "인증 요소는 본인임을 보이는 증거의 종류로, 아는 것·가진 것·나 자신의 세 가지가 있다.",
+   "parent": "be.auth.mfa-idea",
+   "aliases": [
+    "something you know",
+    "아는 것 가진 것 나 자신",
+    "인증 수단 종류"
+   ],
+   "refs": [
+    "https://csrc.nist.gov/glossary/term/authentication_factor"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.auth.one-time-password",
+   "title": "일회용 비밀번호",
+   "en": "One-Time Password",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "인증·인가",
+   "summary": "일회용 비밀번호는 짧은 시간 동안 한 번만 쓸 수 있는 인증 코드로, 문자나 앱으로 받아 비밀번호에 더해 입력한다.",
+   "parent": "be.auth.mfa-idea",
+   "aliases": [
+    "one-time password",
+    "일회용 인증 코드",
+    "인증번호 문자",
+    "OTP 코드"
+   ],
+   "refs": [
+    "https://cheatsheetseries.owasp.org/cheatsheets/Multifactor_Authentication_Cheat_Sheet.html"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.security.allowlist",
+   "title": "허용 목록",
+   "en": "Allowlist",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 보안",
+   "summary": "허용 목록은 받아들일 것을 미리 적어 두고 목록에 없는 것은 모두 거절하는 방식으로, 예전에는 화이트리스트라고 불렀다.",
+   "parent": "be.security.untrusted-input-idea",
+   "aliases": [
+    "allowlist",
+    "allow list",
+    "허용 리스트"
+   ],
+   "refs": [
+    "https://csrc.nist.gov/glossary/term/allowlist",
+    "https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.security.server-side-validation",
+   "title": "서버 측 검증",
+   "en": "Server-Side Validation",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 보안",
+   "summary": "서버 측 검증은 브라우저 검사를 건너뛴 요청도 있을 수 있으므로 서버가 받은 값을 직접 다시 확인하는 일이다.",
+   "parent": "be.security.untrusted-input-idea",
+   "related": [
+    "fe.html.form-validation"
+   ],
+   "aliases": [
+    "server-side validation",
+    "서버 측 입력 검증",
+    "백엔드 입력 검사"
+   ],
+   "refs": [
+    "https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.security.security-patch",
+   "title": "보안 패치",
+   "en": "Security Patch",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 보안",
+   "summary": "보안 패치는 이미 설치된 소프트웨어의 취약점을 고치려고 제작사가 내놓는 수리용 업데이트다.",
+   "parent": "be.security.updates-idea",
+   "aliases": [
+    "security patch",
+    "보안 업데이트",
+    "security update",
+    "취약점 패치"
+   ],
+   "refs": [
+    "https://csrc.nist.gov/glossary/term/patch"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.security.cve",
+   "title": "CVE(공개 취약점 번호)",
+   "en": "Common Vulnerabilities and Exposures",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 보안",
+   "summary": "CVE는 공개된 보안 취약점마다 고유 번호와 설명, 참고 자료를 붙여 둔 목록으로, 모두가 같은 취약점을 같은 이름으로 부르게 해 준다.",
+   "parent": "be.security.updates-idea",
+   "aliases": [
+    "CVE",
+    "CVE ID",
+    "CVE 번호",
+    "공개 취약점 목록"
+   ],
+   "refs": [
+    "https://csrc.nist.gov/glossary/term/common_vulnerabilities_and_exposures"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.security.end-of-life",
+   "title": "지원이 끝난 버전(EOL)",
+   "en": "End-of-Life Software Version",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 보안",
+   "summary": "지원이 끝난 버전은 만든 쪽이 더 이상 고치지 않는 판으로, 새 취약점이 나와도 보안 수정이 나오지 않는다.",
+   "parent": "be.security.updates-idea",
+   "aliases": [
+    "end-of-life version",
+    "EOL 버전",
+    "지원 종료 버전",
+    "파이썬 EOL"
+   ],
+   "refs": [
+    "https://devguide.python.org/versions/",
+    "https://top10.owasp.org/2025/A03_2025-Software_Supply_Chain_Failures/"
+   ],
+   "domain": "be"
+  },
+  {
    "id": "be.run.capacity-buffer",
    "title": "여유 용량",
    "en": "Capacity Buffer (Headroom)",
@@ -18208,6 +19029,48 @@
    ],
    "refs": [
     "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Proxy_servers_and_tunneling"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.auth.authenticator-app",
+   "title": "인증 앱(OTP 생성 앱)",
+   "en": "Authenticator App",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "인증·인가",
+   "summary": "인증 앱은 처음 QR 코드로 서버와 나눠 가진 값과 현재 시각을 써서 보통 30초마다 바뀌는 일회용 코드를 만들어 주는 휴대폰 앱이다.",
+   "parent": "be.auth.mfa-idea",
+   "aliases": [
+    "authenticator app",
+    "OTP 앱",
+    "TOTP 앱",
+    "인증기 앱"
+   ],
+   "refs": [
+    "https://cheatsheetseries.owasp.org/cheatsheets/Multifactor_Authentication_Cheat_Sheet.html"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.security.denylist",
+   "title": "차단 목록",
+   "en": "Denylist",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "웹 보안",
+   "summary": "차단 목록은 막을 것만 적어 두고 나머지는 통과시키는 방식으로, 나쁜 값을 빠짐없이 적기 어려워 입력 검사에는 허용 목록이 권장된다.",
+   "parent": "be.security.untrusted-input-idea",
+   "aliases": [
+    "denylist",
+    "blocklist",
+    "블록리스트",
+    "거부 목록"
+   ],
+   "refs": [
+    "https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html"
    ],
    "domain": "be"
   },
@@ -32327,6 +33190,71 @@
    "domain": "fe"
   },
   {
+   "id": "fe.basics.web-fonts-idea",
+   "title": "웹 글꼴: 내 컴퓨터에 없는 글꼴을 받아 보여 주기",
+   "en": "Web Fonts: Downloading Custom Fonts with a Page",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 기초",
+   "summary": "웹 글꼴은 페이지와 함께 글꼴 파일을 내려받게 해서, 방문자 컴퓨터에 없는 글꼴로도 글자를 보여 주는 방법이다.",
+   "objectives": [
+    "웹 글꼴이 필요한 까닭을 손님에게 내 필기구를 빌려주는 일에 빗대어 설명할 수 있다",
+    "웹 글꼴을 못 받았을 때 대신 쓰는 글꼴이 왜 필요한지 말할 수 있다",
+    "글꼴에도 사용 조건(라이선스)이 있어 쓰기 전에 확인해야 하는 까닭을 말할 수 있다",
+    "글꼴 파일을 직접 두는 방법과 온라인 글꼴 서비스를 쓰는 방법이 있다는 것을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.basics.web-page-parts"
+   ],
+   "related": [
+    "fe.css.text-styling"
+   ],
+   "aliases": [
+    "웹 폰트",
+    "web font",
+    "웹폰트",
+    "custom web font",
+    "사용자 지정 글꼴"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Text_styling/Web_fonts"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.web-apis-idea",
+   "title": "웹 API: 브라우저가 빌려주는 기능들",
+   "en": "Introduction to Web APIs",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 기초",
+   "summary": "웹 API는 위치 찾기·소리 내기·데이터 받기처럼 복잡한 일을 JavaScript에서 짧게 부를 수 있게 브라우저나 외부 서비스가 열어 둔 기능 묶음이다.",
+   "objectives": [
+    "웹 API가 무엇인지 벽의 콘센트에 플러그를 꽂아 전기를 쓰는 일에 빗대어 설명할 수 있다",
+    "브라우저에 들어 있는 API와 외부 서비스가 주는 서드파티 API를 나눠 말할 수 있다",
+    "위치 정보·알림처럼 일부 API가 쓰기 전에 사용자 허락을 묻는 까닭을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.basics.web-page-parts",
+    "be.basics.what-is-api"
+   ],
+   "aliases": [
+    "웹 API",
+    "Web APIs",
+    "브라우저 API",
+    "browser API",
+    "클라이언트 측 API",
+    "client-side web API"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Client-side_APIs/Introduction",
+    "https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.basics.pwa-idea",
    "title": "PWA: 앱처럼 설치해 쓰는 웹사이트",
    "en": "Progressive Web Apps",
@@ -32380,6 +33308,38 @@
    "refs": [
     "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-color-scheme",
     "https://developer.mozilla.org/en-US/docs/Web/Accessibility/Guides/Understanding_WCAG/Perceivable/Color_contrast"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.browser-extensions-idea",
+   "title": "브라우저 확장 프로그램: 브라우저에 기능 더하기",
+   "en": "Browser Extensions: Adding Features to a Browser",
+   "kind": "topic",
+   "level": 1,
+   "importance": 3,
+   "group": "웹 기초",
+   "summary": "브라우저 확장 프로그램은 HTML·CSS·JavaScript로 만든 작은 프로그램으로, 광고 차단이나 개발 도구처럼 브라우저에 없던 기능을 더한다.",
+   "objectives": [
+    "확장 프로그램이 브라우저에 하는 일을 스마트폰에 앱을 깔아 기능을 늘리는 일에 빗대어 설명할 수 있다",
+    "광고 차단·페이지 꾸밈·개발 도구처럼 확장 프로그램이 하는 일의 예를 들 수 있다",
+    "확장 프로그램이 설치할 때 권한을 묻는 까닭과 필요 없는 권한을 조심해야 하는 이유를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.basics.web-page-parts"
+   ],
+   "aliases": [
+    "브라우저 확장",
+    "browser extension",
+    "크롬 확장 프로그램",
+    "Chrome extension",
+    "WebExtensions",
+    "브라우저 부가 기능"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/What_are_WebExtensions",
+    "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Anatomy_of_a_WebExtension",
+    "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/permissions"
    ],
    "domain": "fe"
   },
@@ -32855,6 +33815,51 @@
    "domain": "fe"
   },
   {
+   "id": "fe.basics.third-party-api",
+   "title": "서드파티 API",
+   "en": "Third-Party Web APIs",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 기초",
+   "summary": "서드파티 API는 지도·동영상 서비스처럼 브라우저가 아닌 바깥 회사가 열어 두어, 내 페이지에서 그 서비스 기능을 빌려 쓰게 하는 API다.",
+   "parent": "fe.basics.web-apis-idea",
+   "aliases": [
+    "third-party API",
+    "서드파티 웹 API",
+    "외부 서비스 API",
+    "제3자 API"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Client-side_APIs/Introduction"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.spa",
+   "title": "단일 페이지 애플리케이션(SPA)",
+   "en": "Single-Page Application (SPA)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 기초",
+   "summary": "SPA는 처음에 문서 하나만 불러온 뒤 화면을 바꿀 때 새 페이지를 받지 않고 JavaScript로 그 문서의 내용만 바꿔 끼우는 웹 앱이다.",
+   "related": [
+    "be.basics.static-website"
+   ],
+   "aliases": [
+    "SPA",
+    "single-page application",
+    "싱글 페이지 애플리케이션",
+    "단일 페이지 앱",
+    "싱글 페이지 앱"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Glossary/SPA"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.basics.whatwg",
    "title": "WHATWG",
    "en": "Web Hypertext Application Technology Working Group",
@@ -33232,6 +34237,163 @@
    ],
    "refs": [
     "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-color-scheme"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.web-safe-fonts",
+   "title": "웹 안전 글꼴",
+   "en": "Web-Safe Fonts",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "웹 기초",
+   "summary": "웹 안전 글꼴은 Arial·Georgia·Verdana처럼 대부분의 운영체제에 미리 깔려 있어 따로 내려받지 않아도 거의 어디서나 보이는 글꼴이다.",
+   "parent": "fe.basics.web-fonts-idea",
+   "aliases": [
+    "web safe fonts",
+    "웹 세이프 폰트",
+    "웹 안전 폰트",
+    "기본 설치 글꼴"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Text_styling/Fundamentals",
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Text_styling/Web_fonts"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.woff2",
+   "title": "WOFF2 글꼴 파일 형식",
+   "en": "WOFF2 Font Format",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "웹 기초",
+   "summary": "WOFF2는 웹에서 내려받기 좋게 만든 글꼴 파일 형식으로, 요즘 브라우저가 모두 읽을 수 있어 웹 글꼴에 먼저 권하는 형식이다.",
+   "parent": "fe.basics.web-fonts-idea",
+   "aliases": [
+    "WOFF2",
+    "Web Open Font Format 2",
+    "woff2 파일"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Text_styling/Web_fonts"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.content-script",
+   "title": "콘텐츠 스크립트(확장 프로그램)",
+   "en": "Extension Content Script",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "웹 기초",
+   "summary": "콘텐츠 스크립트는 확장 프로그램이 내가 연 웹 페이지 안으로 들여보내 그 페이지 내용을 읽거나 바꾸게 하는 JavaScript 조각이다.",
+   "parent": "fe.basics.browser-extensions-idea",
+   "aliases": [
+    "content script",
+    "content scripts",
+    "확장 콘텐츠 스크립트",
+    "extension content script"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Content_scripts",
+    "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Anatomy_of_a_WebExtension"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.extension-permissions",
+   "title": "확장 프로그램 권한",
+   "en": "Browser Extension Permissions",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "웹 기초",
+   "summary": "확장 프로그램 권한은 확장이 특정 사이트나 탭·저장 공간 같은 기능에 손댈 수 있게 미리 밝혀 두는 허락 목록으로, 설치할 때 사용자에게 보여 준다.",
+   "parent": "fe.basics.browser-extensions-idea",
+   "aliases": [
+    "extension permissions",
+    "확장 권한",
+    "호스트 권한",
+    "host permissions",
+    "확장 프로그램 권한 요청"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/permissions"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.geolocation-api",
+   "title": "위치 정보 API(Geolocation)",
+   "en": "Geolocation API",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "웹 기초",
+   "summary": "위치 정보 API는 사용자가 허락하면 웹 페이지가 기기의 현재 위치를 받아 지도에 표시하거나 근처 정보를 보여 주게 하는 브라우저 기능이다.",
+   "parent": "fe.basics.web-apis-idea",
+   "aliases": [
+    "Geolocation API",
+    "지오로케이션 API",
+    "브라우저 위치 정보",
+    "navigator.geolocation",
+    "위치 권한 요청"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.user-agent",
+   "title": "사용자 에이전트(user agent)",
+   "en": "User Agent",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "웹 기초",
+   "summary": "사용자 에이전트는 사람을 대신해 웹에 접속하는 프로그램으로, 브라우저가 대표이고 요청마다 자기 이름과 버전을 알리는 문자열을 보낸다.",
+   "related": [
+    "fe.basics.web-browser",
+    "fe.basics.web-crawler"
+   ],
+   "aliases": [
+    "user agent",
+    "유저 에이전트",
+    "User-Agent 헤더",
+    "UA 문자열",
+    "user agent string"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Glossary/User_agent"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.baseline",
+   "title": "Baseline: 웹 기능이 주요 브라우저에서 되는지 표시",
+   "en": "Baseline Web Feature Compatibility",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "웹 기초",
+   "summary": "Baseline은 어떤 CSS·JavaScript 기능이 주요 브라우저 모두에서 쓸 수 있는지를 '널리 사용 가능'·'새로 사용 가능'·'제한적' 같은 배지로 알려 주는 표시다.",
+   "related": [
+    "fe.basics.cross-browser"
+   ],
+   "aliases": [
+    "Baseline 호환성",
+    "Baseline compatibility",
+    "Baseline 배지",
+    "웹 플랫폼 Baseline",
+    "Baseline widely available"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Glossary/Baseline/Compatibility"
    ],
    "domain": "fe"
   },
@@ -55781,6 +56943,104 @@
    "domain": "ops"
   },
   {
+   "id": "ops.network.firewall-idea",
+   "title": "방화벽: 서버로 들어오는 길의 출입 관리",
+   "en": "Network Firewalls for Servers",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "네트워크와 앞단",
+   "summary": "정해 둔 규칙에 맞는 연결만 서버에 들고 나게 하고 나머지는 막는 네트워크 출입 관리 장치다.",
+   "objectives": [
+    "방화벽을 건물 출입문의 경비원과 출입 명단에 빗대어 설명할 수 있다",
+    "들어오는 연결과 나가는 연결을 따로 허용하거나 막는다는 것을 말할 수 있다",
+    "규칙에 없는 들어오는 연결은 기본으로 막힌다는 점을 예로 들어 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "be.basics.localhost-port"
+   ],
+   "related": [
+    "ops.network.ufw-open-ports"
+   ],
+   "aliases": [
+    "방화벽",
+    "firewall",
+    "네트워크 방화벽",
+    "방화벽 규칙",
+    "firewall rule"
+   ],
+   "refs": [
+    "https://docs.cloud.google.com/firewall/docs/firewalls",
+    "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.observe.incident-response-idea",
+   "title": "장애 대응: 서비스가 멈췄을 때 하는 일",
+   "en": "Incident Response Basics",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "관측",
+   "summary": "서비스에 큰 문제가 생기면 장애로 선언하고, 역할을 나눠 맡아 복구한 뒤 배운 점을 글로 남기는 일의 흐름이다.",
+   "objectives": [
+    "장애 대응을 불이 났을 때 소방대가 역할을 나눠 움직이는 모습에 빗대어 설명할 수 있다",
+    "문제를 일찍 장애로 선언하는 편이 나은 이유를 말할 수 있다",
+    "복구가 끝난 뒤 사람을 탓하지 않고 기록을 남기는 이유를 설명할 수 있다"
+   ],
+   "related": [
+    "ops.observe.incident-analysis",
+    "ops.observe.on-call",
+    "ops.observe.playbook",
+    "ops.observe.sre-idea"
+   ],
+   "aliases": [
+    "장애 대응",
+    "incident response",
+    "인시던트 대응",
+    "장애 관리",
+    "incident management"
+   ],
+   "refs": [
+    "https://sre.google/sre-book/managing-incidents/",
+    "https://sre.google/sre-book/postmortem-culture/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.object-storage-idea",
+   "title": "오브젝트 스토리지: 파일을 맡기는 클라우드 창고",
+   "en": "Cloud Object Storage (Amazon S3 Style)",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "배포 기초",
+   "summary": "사진·동영상·백업 같은 파일을 이름표를 붙여 클라우드 창고에 맡기고, 필요할 때 그 이름표로 꺼내 쓰는 저장 방식이다.",
+   "objectives": [
+    "오브젝트 스토리지를 짐 보관소와 보관증에 빗대어 설명할 수 있다",
+    "버킷과 오브젝트, 오브젝트 키가 각각 무엇인지 말할 수 있다",
+    "맡긴 파일이 따로 허용하기 전에는 남에게 보이지 않는다는 점을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.basics.cloud"
+   ],
+   "related": [
+    "db.data.data-lake"
+   ],
+   "aliases": [
+    "오브젝트 스토리지",
+    "object storage",
+    "객체 스토리지",
+    "Amazon S3",
+    "S3 스토리지"
+   ],
+   "refs": [
+    "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.linux.multipass-first-vm",
    "title": "Multipass로 Ubuntu 가상 머신 처음 띄우기",
    "en": "Launching a First Ubuntu VM with Multipass",
@@ -56443,6 +57703,214 @@
    "domain": "ops"
   },
   {
+   "id": "ops.network.security-group",
+   "title": "보안 그룹(클라우드 가상 방화벽)",
+   "en": "Cloud Security Group (AWS EC2/VPC)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "네트워크와 앞단",
+   "summary": "클라우드 서버에 붙여 어떤 출발지에서 어떤 포트로 오는 연결을 받을지 정하는 가상 방화벽이다.",
+   "parent": "ops.network.firewall-idea",
+   "aliases": [
+    "AWS 보안 그룹",
+    "EC2 보안 그룹",
+    "VPC 보안 그룹",
+    "AWS security group"
+   ],
+   "refs": [
+    "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.network.inbound-outbound-rules",
+   "title": "인바운드 규칙과 아웃바운드 규칙",
+   "en": "Inbound (Ingress) and Outbound (Egress) Firewall Rules",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "네트워크와 앞단",
+   "summary": "방화벽 규칙을 서버로 들어오는 연결용과 서버에서 나가는 연결용으로 나눠 따로 정하는 방식이다.",
+   "parent": "ops.network.firewall-idea",
+   "aliases": [
+    "인바운드 규칙",
+    "inbound rule",
+    "아웃바운드 규칙",
+    "outbound rule"
+   ],
+   "refs": [
+    "https://docs.cloud.google.com/firewall/docs/firewalls",
+    "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.observe.incident-commander",
+   "title": "인시던트 지휘관(장애 대응 총괄)",
+   "en": "Incident Commander",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "관측",
+   "summary": "장애가 났을 때 전체 상황을 쥐고 사람들에게 일을 나눠 주며 막힌 곳을 풀어 주는 총괄 역할이다.",
+   "parent": "ops.observe.incident-response-idea",
+   "aliases": [
+    "인시던트 지휘관",
+    "incident commander",
+    "인시던트 커맨더",
+    "장애 대응 총괄",
+    "IC 역할"
+   ],
+   "refs": [
+    "https://sre.google/sre-book/managing-incidents/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.observe.blameless-postmortem",
+   "title": "비난 없는 포스트모템",
+   "en": "Blameless Postmortem",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "관측",
+   "summary": "장애가 끝난 뒤 누구 탓인지 따지지 않고 무엇이 일어났고 무엇을 고칠지를 글로 정리하는 문화다.",
+   "parent": "ops.observe.incident-response-idea",
+   "related": [
+    "ops.observe.incident-analysis"
+   ],
+   "aliases": [
+    "blameless postmortem",
+    "블레임리스 포스트모템",
+    "비난 없는 회고",
+    "무책 회고",
+    "blameless culture"
+   ],
+   "refs": [
+    "https://sre.google/sre-book/postmortem-culture/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.storage-bucket",
+   "title": "버킷(오브젝트 스토리지의 보관함)",
+   "en": "Object Storage Bucket (S3 Bucket)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "배포 기초",
+   "summary": "오브젝트 스토리지에서 파일들을 담아 두는 가장 큰 보관함으로, 이름과 리전을 정해 만든다.",
+   "parent": "ops.basics.object-storage-idea",
+   "aliases": [
+    "S3 버킷",
+    "S3 bucket",
+    "스토리지 버킷",
+    "storage bucket",
+    "GCS 버킷"
+   ],
+   "refs": [
+    "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.vpc",
+   "title": "VPC(가상 사설 클라우드)",
+   "en": "Virtual Private Cloud (VPC)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "배포 기초",
+   "summary": "클라우드 안에 나만 쓰도록 따로 떼어 놓은 가상의 네트워크로, 회사 안 전산망을 클라우드에 옮겨 놓은 것과 비슷하다.",
+   "related": [
+    "cs.net.private-ip-address"
+   ],
+   "aliases": [
+    "VPC",
+    "가상 사설 클라우드",
+    "Amazon VPC",
+    "VPC 네트워크"
+   ],
+   "refs": [
+    "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.shared-responsibility-model",
+   "title": "클라우드 공동 책임 모델",
+   "en": "Cloud Shared Responsibility Model",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "배포 기초",
+   "summary": "클라우드 회사는 건물·장비 같은 바탕을 지키고, 사용자는 그 위에 올린 데이터·접근 설정·서버 관리를 맡는다는 보안 책임의 나눔이다.",
+   "related": [
+    "ops.basics.cloud-service-models"
+   ],
+   "aliases": [
+    "공동 책임 모델",
+    "shared responsibility model",
+    "책임 공유 모델",
+    "클라우드 보안 책임 분담"
+   ],
+   "refs": [
+    "https://aws.amazon.com/compliance/shared-responsibility-model/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.observe.uptime-check",
+   "title": "업타임 체크(외부에서 접속 확인)",
+   "en": "Uptime Check (Synthetic Availability Probe)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "관측",
+   "summary": "세계 여러 곳에서 정해진 간격으로 서비스 주소에 접속해 보고, 응답이 없으면 알려 주는 바깥쪽 점검이다.",
+   "related": [
+    "ops.observe.monitoring-idea",
+    "ops.observe.container-healthcheck"
+   ],
+   "aliases": [
+    "업타임 체크",
+    "uptime check",
+    "가동 시간 점검",
+    "외부 접속 점검",
+    "uptime monitoring"
+   ],
+   "refs": [
+    "https://docs.cloud.google.com/monitoring/uptime-checks"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.observe.alert-fatigue",
+   "title": "알림 피로(경보에 무뎌짐)",
+   "en": "Alert Fatigue (On-Call Paging Fatigue)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "관측",
+   "summary": "할 일이 없거나 급하지 않은 알림이 너무 자주 울려 담당자가 지치고 진짜 위험한 알림까지 흘려보내게 되는 상태다.",
+   "related": [
+    "ops.observe.on-call",
+    "ops.observe.monitoring-idea"
+   ],
+   "aliases": [
+    "alert fatigue",
+    "알람 피로",
+    "경보 피로",
+    "페이저 피로",
+    "pager fatigue"
+   ],
+   "refs": [
+    "https://sre.google/sre-book/monitoring-distributed-systems/"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.basics.cloud-service-models",
    "title": "클라우드 서비스 모델(IaaS·PaaS·SaaS)",
    "en": "Cloud Service Models",
@@ -56703,6 +58171,27 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-11",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.object-key",
+   "title": "오브젝트 키(버킷 안의 파일 이름표)",
+   "en": "Object Key (S3 Key Name)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "배포 기초",
+   "summary": "버킷 안에서 오브젝트 하나를 딱 하나로 가리키는 이름으로, photos/puppy.jpg처럼 폴더 경로처럼 보이기도 한다.",
+   "parent": "ops.basics.object-storage-idea",
+   "aliases": [
+    "오브젝트 키",
+    "object key",
+    "S3 object key",
+    "S3 키 이름"
+   ],
+   "refs": [
+    "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html"
+   ],
    "domain": "ops"
   },
   {

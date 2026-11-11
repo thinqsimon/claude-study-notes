@@ -426,6 +426,99 @@
     ]
   },
   {
+    "id": "cs.dsa.tree-idea",
+    "title": "트리 구조: 뿌리에서 갈라지는 자료",
+    "en": "Tree Data Structure Basics",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "자료구조",
+    "summary": "맨 위 뿌리 하나에서 시작해 각 항목이 아래로 자식을 거느리며 갈라져 나가는, 가계도나 폴더 같은 모양의 자료 구조다.",
+    "objectives": [
+      "가계도나 폴더 안의 폴더에 빗대어 트리가 뿌리에서 아래로 갈라지는 모양이라는 것을 설명할 수 있다",
+      "뿌리만 부모가 없고 나머지 항목은 모두 부모가 하나씩 있다는 것을 말할 수 있다",
+      "뿌리에서 가장 먼 항목까지의 거리를 트리의 높이라고 부른다는 것을 그림으로 보일 수 있다"
+    ],
+    "related": [
+      "cs.dsa.binary-tree",
+      "cs.os.files-directories",
+      "cs.dsa.graph-idea"
+    ],
+    "aliases": [
+      "트리 자료구조",
+      "tree data structure",
+      "계층형 자료 구조"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/tree.html",
+      "https://xlinux.nist.gov/dads/HTML/root.html",
+      "https://xlinux.nist.gov/dads/HTML/height.html"
+    ]
+  },
+  {
+    "id": "cs.dsa.graph-idea",
+    "title": "그래프: 점과 선으로 관계 그리기",
+    "en": "Graphs as Vertices and Edges",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "자료구조",
+    "summary": "지하철역과 노선처럼 여러 대상을 점으로, 그 사이의 연결을 선으로 나타내 관계를 담는 자료 구조다.",
+    "objectives": [
+      "지하철 노선도에 빗대어 그래프가 점(정점)과 선(간선)으로 이루어진다는 것을 설명할 수 있다",
+      "일방통행 길과 양방향 길에 빗대어 방향 그래프와 무방향 그래프를 구분할 수 있다",
+      "친구 관계나 웹 페이지 링크처럼 그래프로 나타낼 수 있는 예를 들 수 있다"
+    ],
+    "related": [
+      "cs.algo.graph-traversal",
+      "cs.dsa.tree-idea",
+      "db.nosql.graph-database"
+    ],
+    "aliases": [
+      "그래프 자료구조",
+      "graph data structure",
+      "정점과 간선",
+      "vertices and edges"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/graph.html",
+      "https://xlinux.nist.gov/dads/HTML/directedGraph.html",
+      "https://xlinux.nist.gov/dads/HTML/undirectedGraph.html"
+    ]
+  },
+  {
+    "id": "cs.data.binary-numbers-idea",
+    "title": "2진수: 0과 1만으로 수 세기",
+    "en": "Binary Numbers and Place Values",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "자리마다 1·2·4·8처럼 두 배씩 커지는 무게를 두고 0과 1만 써서 모든 수를 나타내는 방법이다.",
+    "objectives": [
+      "켜고 끄는 전등 스위치 줄에 빗대어 2진수의 각 자리가 0 또는 1이라는 것을 설명할 수 있다",
+      "오른쪽 자리부터 1·2·4·8로 두 배씩 커지는 무게를 더해 작은 2진수를 10진수로 읽을 수 있다",
+      "2진수의 가장 오른쪽 자리와 가장 왼쪽 자리를 각각 무엇이라 부르는지 말할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.data.digital-information"
+    ],
+    "related": [
+      "cs.data.bits-bytes",
+      "cs.data.binary-bitwise"
+    ],
+    "aliases": [
+      "2진법",
+      "이진법",
+      "binary numeral system",
+      "base 2",
+      "2진수 읽기"
+    ],
+    "refs": [
+      "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c1/c1s1/"
+    ]
+  },
+  {
     "id": "cs.data.utc",
     "title": "협정 세계시(UTC)",
     "en": "Coordinated Universal Time (UTC)",
@@ -1003,6 +1096,118 @@
     ]
   },
   {
+    "id": "cs.dsa.root-node",
+    "title": "루트 노드(트리의 뿌리)",
+    "en": "Root Node of a Tree",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "자료구조",
+    "summary": "트리에서 모든 탐색이 시작되는 맨 위 항목으로, 부모가 없는 유일한 항목이다.",
+    "parent": "cs.dsa.tree-idea",
+    "aliases": [
+      "루트 노드",
+      "root node",
+      "트리 루트",
+      "뿌리 노드"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/root.html"
+    ]
+  },
+  {
+    "id": "cs.dsa.parent-child-node",
+    "title": "부모 노드와 자식 노드",
+    "en": "Parent and Child Nodes in a Tree",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "자료구조",
+    "summary": "트리에서 뿌리 쪽으로 한 칸 위에서 이어 주는 항목이 부모이고, 그 아래 매달린 항목이 자식이다.",
+    "parent": "cs.dsa.tree-idea",
+    "related": [
+      "cs.dsa.root-node"
+    ],
+    "aliases": [
+      "부모 노드",
+      "자식 노드",
+      "parent node",
+      "child node"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/parent.html",
+      "https://xlinux.nist.gov/dads/HTML/child.html"
+    ]
+  },
+  {
+    "id": "cs.dsa.graph-vertex",
+    "title": "정점(그래프의 점)",
+    "en": "Vertex in a Graph",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "자료구조",
+    "summary": "그래프에서 역·사람·웹 페이지처럼 연결되는 대상 하나를 나타내는 점이다.",
+    "parent": "cs.dsa.graph-idea",
+    "related": [
+      "cs.dsa.graph-edge"
+    ],
+    "aliases": [
+      "graph vertex",
+      "그래프 정점",
+      "그래프의 꼭짓점"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/vertex.html"
+    ]
+  },
+  {
+    "id": "cs.dsa.graph-edge",
+    "title": "간선(그래프의 선)",
+    "en": "Edge in a Graph",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "자료구조",
+    "summary": "그래프에서 두 정점을 잇는 연결 하나로, 방향이나 거리 같은 값을 함께 가질 수 있다.",
+    "parent": "cs.dsa.graph-idea",
+    "related": [
+      "cs.dsa.graph-vertex",
+      "cs.dsa.weighted-graph"
+    ],
+    "aliases": [
+      "graph edge",
+      "그래프 간선",
+      "그래프의 연결선"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/edge.html"
+    ]
+  },
+  {
+    "id": "cs.dsa.directed-graph",
+    "title": "방향 그래프",
+    "en": "Directed Graph",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "자료구조",
+    "summary": "간선마다 출발과 도착이 정해져 있어 한쪽으로만 따라갈 수 있는 그래프로, 일방통행 길 지도와 같다.",
+    "parent": "cs.dsa.graph-idea",
+    "related": [
+      "cs.dsa.undirected-graph",
+      "cs.algo.topological-sort"
+    ],
+    "aliases": [
+      "방향 그래프",
+      "유향 그래프",
+      "digraph"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/directedGraph.html"
+    ]
+  },
+  {
     "id": "cs.net.robustness-principle",
     "title": "견고성 원칙(포스텔의 법칙)",
     "en": "Robustness Principle",
@@ -1329,6 +1534,97 @@
     ],
     "refs": [
       "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c18/c18s1/"
+    ]
+  },
+  {
+    "id": "cs.dsa.tree-height",
+    "title": "트리의 높이",
+    "en": "Height of a Tree",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "자료구조",
+    "summary": "뿌리에서 가장 멀리 떨어진 항목까지 거치는 단계 수로, 뿌리 하나뿐인 트리의 높이는 0이다.",
+    "parent": "cs.dsa.tree-idea",
+    "related": [
+      "cs.dsa.binary-search-tree"
+    ],
+    "aliases": [
+      "트리 높이",
+      "tree height",
+      "트리의 최대 깊이"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/height.html"
+    ]
+  },
+  {
+    "id": "cs.dsa.undirected-graph",
+    "title": "무방향 그래프",
+    "en": "Undirected Graph",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "자료구조",
+    "summary": "간선에 방향이 없어 이어진 두 정점 사이를 어느 쪽으로든 오갈 수 있는 그래프다.",
+    "parent": "cs.dsa.graph-idea",
+    "related": [
+      "cs.dsa.directed-graph"
+    ],
+    "aliases": [
+      "무방향 그래프",
+      "무향 그래프",
+      "undirected graph"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/undirectedGraph.html"
+    ]
+  },
+  {
+    "id": "cs.data.least-significant-bit",
+    "title": "최하위 비트(LSB)",
+    "en": "Least Significant Bit",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "2진수를 적었을 때 가장 오른쪽 자리로, 무게가 1(2의 0제곱)인 비트다.",
+    "parent": "cs.data.binary-numbers-idea",
+    "related": [
+      "cs.data.most-significant-bit"
+    ],
+    "aliases": [
+      "LSB",
+      "최하위 비트",
+      "least-significant bit",
+      "가장 오른쪽 비트"
+    ],
+    "refs": [
+      "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c1/c1s1/"
+    ]
+  },
+  {
+    "id": "cs.data.most-significant-bit",
+    "title": "최상위 비트(MSB)",
+    "en": "Most Significant Bit",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "2진수에서 가장 왼쪽에 있어 무게가 가장 큰 비트로, 부호 있는 정수(2의 보수)에서는 음수인지를 알려 준다.",
+    "parent": "cs.data.binary-numbers-idea",
+    "related": [
+      "cs.data.least-significant-bit",
+      "cs.data.unsigned-integer"
+    ],
+    "aliases": [
+      "MSB",
+      "최상위 비트",
+      "high-order bit",
+      "가장 왼쪽 비트"
+    ],
+    "refs": [
+      "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c1/c1s1/"
     ]
   },
   {
