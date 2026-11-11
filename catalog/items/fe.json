@@ -74,6 +74,35 @@
     ]
   },
   {
+    "id": "fe.basics.hyperlinks",
+    "title": "하이퍼링크: 웹 페이지를 잇는 길",
+    "en": "Hyperlinks",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "웹 기초",
+    "summary": "하이퍼링크는 글자나 그림에 다른 문서의 주소를 붙여 눌러서 바로 옮겨 가게 하는 웹의 연결 고리다.",
+    "objectives": [
+      "하이퍼링크가 없던 시절과 비교해 링크가 웹을 쓸모 있게 만든 이유를 비유로 설명할 수 있다",
+      "내부 링크·외부 링크·들어오는 링크를 예로 들어 구분할 수 있다",
+      "검색 엔진이 링크를 따라 페이지를 찾는다는 점을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.web-page-parts"
+    ],
+    "related": [
+      "fe.html.relative-path"
+    ],
+    "aliases": [
+      "하이퍼링크",
+      "hyperlink",
+      "웹 링크"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_are_hyperlinks"
+    ]
+  },
+  {
     "id": "fe.basics.responsive-idea",
     "title": "화면 크기에 맞추는 반응형 화면",
     "en": "Responsive Screens",
@@ -153,6 +182,81 @@
     ]
   },
   {
+    "id": "fe.basics.web-standards",
+    "title": "웹 표준: 모두가 같은 규칙으로 만드는 웹",
+    "en": "Web Standards",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "웹 표준은 여러 회사와 사람이 함께 정한 공개 규칙이라 어느 브라우저에서나 같은 웹 페이지가 비슷하게 보인다.",
+    "objectives": [
+      "웹 표준이 필요한 이유를 전기 콘센트 규격에 빗대어 설명할 수 있다",
+      "W3C·WHATWG 같은 표준 단체가 하는 일을 말할 수 있다",
+      "웹 표준이 무료로 열려 있고 옛 사이트를 깨뜨리지 않으려 한다는 원칙을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.web-page-parts"
+    ],
+    "aliases": [
+      "웹 표준",
+      "web standards",
+      "웹 표준 모델"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Web_standards/The_web_standards_model"
+    ]
+  },
+  {
+    "id": "fe.basics.page-layout-parts",
+    "title": "웹 페이지의 흔한 구조: 머리글·본문·바닥글",
+    "en": "Common Web Page Layout",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "대부분의 웹 페이지는 위쪽 머리글, 가운데 본문, 옆 곁들이 영역, 아래쪽 바닥글로 나뉘어 있다.",
+    "objectives": [
+      "웹 페이지의 머리글·본문·사이드바·바닥글을 신문 지면에 빗대어 가리킬 수 있다",
+      "본문과 곁들이 영역(사이드바)이 각각 어떤 내용을 담는지 구분할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.web-page-parts"
+    ],
+    "related": [
+      "fe.basics.responsive-idea"
+    ],
+    "aliases": [
+      "웹 레이아웃",
+      "페이지 구조",
+      "web layout",
+      "1단 레이아웃",
+      "2단 레이아웃"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Design_and_accessibility/Common_web_layouts",
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Structuring_documents"
+    ]
+  },
+  {
+    "id": "fe.basics.web-browser",
+    "title": "웹 브라우저",
+    "en": "Web Browser",
+    "kind": "term",
+    "level": 1,
+    "importance": 1,
+    "group": "웹 기초",
+    "summary": "웹 브라우저는 웹에서 페이지를 받아 화면에 보여 주고 링크로 다른 페이지로 옮겨 가게 하는 프로그램이다.",
+    "parent": "be.http.web-conversation",
+    "aliases": [
+      "웹브라우저",
+      "web browser"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/Browser"
+    ]
+  },
+  {
     "id": "fe.basics.screen-reader",
     "title": "스크린 리더",
     "en": "Screen Reader",
@@ -196,6 +300,141 @@
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/HTML",
       "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/img"
+    ]
+  },
+  {
+    "id": "fe.basics.internal-external-link",
+    "title": "내부 링크와 외부 링크",
+    "en": "Internal and External Links",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "내부 링크는 같은 사이트의 다른 페이지로, 외부 링크는 다른 사이트로 이어 주는 링크다.",
+    "parent": "fe.basics.hyperlinks",
+    "aliases": [
+      "내부 링크",
+      "외부 링크",
+      "internal link",
+      "external link"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_are_hyperlinks"
+    ]
+  },
+  {
+    "id": "fe.basics.w3c",
+    "title": "W3C(월드 와이드 웹 컨소시엄)",
+    "en": "World Wide Web Consortium",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "W3C는 여러 회원 단체가 모여 웹 표준을 만들고 단계별로 다듬어 권고안으로 내는 국제 기구다.",
+    "parent": "fe.basics.web-standards",
+    "aliases": [
+      "W3C",
+      "월드 와이드 웹 컨소시엄"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/W3C"
+    ]
+  },
+  {
+    "id": "fe.basics.cross-browser",
+    "title": "크로스 브라우저 호환성",
+    "en": "Cross-Browser Compatibility",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "크로스 브라우저 호환성은 같은 웹사이트가 여러 브라우저와 기기에서도 핵심 기능을 잘 쓸 수 있게 하는 일이다.",
+    "parent": "fe.basics.web-standards",
+    "aliases": [
+      "크로스 브라우저",
+      "cross-browser",
+      "브라우저 호환성",
+      "크로스 브라우저 테스트"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Testing/Introduction"
+    ]
+  },
+  {
+    "id": "fe.basics.navigation-bar",
+    "title": "내비게이션 바(메뉴)",
+    "en": "Navigation Bar",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "내비게이션 바는 사이트의 주요 구역으로 가는 링크를 메뉴나 탭으로 모아 둔 줄이며 페이지마다 같은 자리에 있다.",
+    "parent": "fe.basics.page-layout-parts",
+    "aliases": [
+      "내비게이션 바",
+      "navigation bar",
+      "navbar",
+      "메뉴 바",
+      "상단 메뉴"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Structuring_documents"
+    ]
+  },
+  {
+    "id": "fe.basics.whatwg",
+    "title": "WHATWG",
+    "en": "Web Hypertext Application Technology Working Group",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 기초",
+    "summary": "WHATWG는 브라우저 회사 사람들이 만든 모임으로 HTML·DOM·Fetch 같은 웹 표준을 계속 고쳐 나간다.",
+    "parent": "fe.basics.web-standards",
+    "aliases": [
+      "WHATWG"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/WHATWG"
+    ]
+  },
+  {
+    "id": "fe.basics.progressive-enhancement",
+    "title": "점진적 향상",
+    "en": "Progressive Enhancement",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 기초",
+    "summary": "점진적 향상은 누구나 쓸 수 있는 기본 기능을 먼저 갖추고 좋은 브라우저에서는 기능을 더 얹는 웹 만들기 방식이다.",
+    "parent": "fe.basics.web-standards",
+    "aliases": [
+      "점진적 향상",
+      "progressive enhancement"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement"
+    ]
+  },
+  {
+    "id": "fe.basics.header-footer",
+    "title": "머리글과 바닥글",
+    "en": "Header and Footer",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 기초",
+    "summary": "머리글은 페이지 맨 위에서 로고와 사이트 이름을, 바닥글은 맨 아래에서 저작권과 연락처를 보여 주는 영역이다.",
+    "parent": "fe.basics.page-layout-parts",
+    "aliases": [
+      "머리글",
+      "바닥글",
+      "헤더 영역",
+      "푸터 영역",
+      "page footer"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Design_and_accessibility/Common_web_layouts"
     ]
   },
   {

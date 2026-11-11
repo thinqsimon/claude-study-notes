@@ -93,6 +93,37 @@
     ]
   },
   {
+    "id": "dev.git.install-git",
+    "title": "Git 설치하고 버전 확인하기",
+    "en": "Installing Git",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "Git",
+    "summary": "내 컴퓨터 운영체제에 맞는 방법으로 Git을 깔고 터미널에서 제대로 깔렸는지 확인해 본다.",
+    "objectives": [
+      "윈도우·macOS·리눅스에서 Git을 설치하는 길이 서로 다르다는 것을 말할 수 있다",
+      "Git을 설치한 뒤 터미널에서 버전을 출력해 설치를 확인할 수 있다",
+      "Git 설치가 앱 스토어에서 앱을 받는 일과 어떻게 닮았는지 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.basics.terminal",
+      "dev.git.why-version-control"
+    ],
+    "related": [
+      "dev.git.first-setup"
+    ],
+    "aliases": [
+      "Git 설치",
+      "install Git",
+      "깃 설치",
+      "git --version"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Getting-Started-Installing-Git"
+    ]
+  },
+  {
     "id": "dev.basics.code-editor",
     "title": "코드 편집기 설치와 첫 사용",
     "en": "Getting Started with a Code Editor",
@@ -156,6 +187,58 @@
     ]
   },
   {
+    "id": "dev.git.github-first-repo",
+    "title": "GitHub 가입하고 첫 저장소 만들기",
+    "en": "Signing Up for GitHub and Creating a First Repository",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "Git",
+    "summary": "GitHub 계정을 만들고 웹 화면에서 버튼 몇 번으로 첫 저장소를 만들어 본다.",
+    "objectives": [
+      "GitHub 개인 계정을 만들고 이메일 인증까지 마칠 수 있다",
+      "웹 화면에서 새 저장소를 만들고 README 파일을 함께 넣을 수 있다",
+      "저장소를 공개로 둘지 비공개로 둘지 고를 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.github-role"
+    ],
+    "related": [
+      "dev.git.readme-markdown"
+    ],
+    "aliases": [
+      "GitHub 가입",
+      "GitHub 회원가입",
+      "GitHub 새 저장소",
+      "New repository",
+      "GitHub sign up"
+    ],
+    "refs": [
+      "https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github",
+      "https://docs.github.com/en/repositories/creating-and-managing-repositories/quickstart-for-repositories"
+    ]
+  },
+  {
+    "id": "dev.git.repository",
+    "title": "저장소(repository)",
+    "en": "Repository",
+    "kind": "term",
+    "level": 1,
+    "importance": 1,
+    "group": "Git",
+    "summary": "프로젝트의 파일과 그 파일들이 바뀐 기록을 한데 모아 두는 상자다.",
+    "parent": "dev.git.github-role",
+    "aliases": [
+      "Git 저장소",
+      "repo",
+      "레포지토리",
+      "레포"
+    ],
+    "refs": [
+      "https://docs.github.com/en/repositories/creating-and-managing-repositories/about-repositories"
+    ]
+  },
+  {
     "id": "dev.git.open-source-license",
     "title": "오픈소스 라이선스와 MIT 라이선스",
     "en": "Open Source Licenses and the MIT License",
@@ -178,6 +261,170 @@
       "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository",
       "https://choosealicense.com/",
       "https://opensource.org/license/mit"
+    ]
+  },
+  {
+    "id": "dev.git.repo-visibility",
+    "title": "공개 저장소와 비공개 저장소",
+    "en": "Public and Private Repositories",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "Git",
+    "summary": "저장소를 누구에게나 보여 줄지 내가 허락한 사람에게만 보여 줄지 정하는 공개 범위다.",
+    "parent": "dev.git.github-first-repo",
+    "aliases": [
+      "public repository",
+      "private repository",
+      "공개 저장소",
+      "비공개 저장소",
+      "저장소 공개 범위"
+    ],
+    "refs": [
+      "https://docs.github.com/en/repositories/creating-and-managing-repositories/about-repositories"
+    ]
+  },
+  {
+    "id": "dev.git.git-for-windows",
+    "title": "Git for Windows",
+    "en": "Git for Windows",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "Git",
+    "summary": "윈도우에서 Git을 쓰게 해 주는 공식 설치판으로, Git Bash라는 터미널도 함께 깔린다.",
+    "parent": "dev.git.install-git",
+    "aliases": [
+      "Git Bash",
+      "윈도우용 Git",
+      "깃 배시"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Getting-Started-Installing-Git",
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Command_line"
+    ]
+  },
+  {
+    "id": "dev.basics.shell",
+    "title": "셸(shell)",
+    "en": "Shell",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "개발 환경",
+    "summary": "터미널 창 안에서 내가 적은 명령을 알아듣고 컴퓨터에 전해 주는 통역사 프로그램이다.",
+    "parent": "dev.basics.terminal",
+    "related": [
+      "ops.linux.login-shell"
+    ],
+    "aliases": [
+      "shell",
+      "Bash 셸",
+      "zsh 셸",
+      "명령 해석기"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Command_line"
+    ]
+  },
+  {
+    "id": "dev.basics.cli-gui",
+    "title": "CLI와 GUI",
+    "en": "CLI and GUI",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "개발 환경",
+    "summary": "글자로 명령을 적어 쓰는 방식(CLI)과 창과 버튼을 눌러 쓰는 방식(GUI)을 가리키는 말이다.",
+    "parent": "dev.basics.terminal",
+    "aliases": [
+      "GUI",
+      "명령줄 인터페이스",
+      "command-line interface",
+      "그래픽 사용자 인터페이스",
+      "graphical user interface"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Command_line"
+    ]
+  },
+  {
+    "id": "dev.basics.home-directory",
+    "title": "홈 디렉터리",
+    "en": "Home Directory",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "개발 환경",
+    "summary": "사용자마다 하나씩 주어지는 개인 폴더로, 터미널을 열면 처음 서 있는 자리다.",
+    "parent": "dev.basics.files-paths",
+    "aliases": [
+      "home directory",
+      "홈 폴더",
+      "사용자 폴더",
+      "~ 홈 디렉터리"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Environment_setup/Command_line"
+    ]
+  },
+  {
+    "id": "dev.git.dvcs",
+    "title": "분산 버전 관리",
+    "en": "Distributed Version Control",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "Git",
+    "summary": "서버 한 곳에만 기록을 두지 않고 내려받은 사람마다 전체 기록을 통째로 갖는 버전 관리 방식이다.",
+    "parent": "dev.git.why-version-control",
+    "aliases": [
+      "DVCS",
+      "distributed version control",
+      "분산형 버전 관리"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control"
+    ]
+  },
+  {
+    "id": "dev.git.snapshot",
+    "title": "Git 스냅샷",
+    "en": "Git Snapshots",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "Git",
+    "summary": "Git이 저장할 때마다 바뀐 부분만이 아니라 그 순간 파일 전체의 모습을 사진처럼 찍어 두는 방식이다.",
+    "parent": "dev.git.why-version-control",
+    "aliases": [
+      "Git snapshot",
+      "스냅샷 방식",
+      "snapshots not differences"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F"
+    ]
+  },
+  {
+    "id": "dev.git.github-desktop",
+    "title": "GitHub Desktop",
+    "en": "GitHub Desktop",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "Git",
+    "summary": "Git 명령을 외우지 않고 버튼과 화면으로 저장소를 내려받고 커밋하고 올리게 해 주는 무료 앱이다.",
+    "related": [
+      "dev.git.github-role",
+      "dev.git.vscode-source-control"
+    ],
+    "aliases": [
+      "깃허브 데스크톱",
+      "GitHub Desktop 앱"
+    ],
+    "refs": [
+      "https://docs.github.com/en/desktop/overview/about-github-desktop"
     ]
   },
   {
