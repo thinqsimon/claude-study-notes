@@ -2756,6 +2756,80 @@
     ]
   },
   {
+    "id": "rag.agent.claude-agent-sdk-quickstart",
+    "title": "Claude Agent SDK로 첫 에이전트 만들기",
+    "en": "Your First Agent with the Claude Agent SDK",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "Claude Agent SDK를 설치하고 query에 할 일과 허용 도구를 넘겨, 파일을 읽고 버그를 고치는 에이전트를 짧은 코드로 돌려 보는 첫 실습이다.",
+    "objectives": [
+      "claude-agent-sdk 패키지를 설치하고 ANTHROPIC_API_KEY 환경 변수를 설정할 수 있다",
+      "query에 프롬프트와 ClaudeAgentOptions를 넘겨 파일을 읽고 고치는 에이전트를 실행할 수 있다",
+      "allowed_tools와 permission_mode로 에이전트가 묻지 않고 쓸 도구를 정할 수 있다",
+      "흘러나오는 메시지에서 Claude의 설명, 부른 도구 이름, 마지막 결과를 골라 출력할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.basics.agent-framework-idea",
+      "llm.api.first-call",
+      "be.python.venv-packages"
+    ],
+    "related": [
+      "rag.agent.first-agent",
+      "rag.agent.openai-agents-quickstart"
+    ],
+    "aliases": [
+      "Claude Agent SDK 빠른 시작",
+      "Claude Agent SDK quickstart",
+      "claude_agent_sdk 예제",
+      "Agent SDK로 버그 고치는 에이전트"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/agent-sdk/quickstart",
+      "https://code.claude.com/docs/en/agent-sdk/permissions"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.agent.openai-agents-quickstart",
+    "title": "OpenAI Agents SDK로 첫 에이전트 만들기",
+    "en": "Your First Agent with the OpenAI Agents SDK",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "OpenAI Agents SDK로 지시문을 가진 Agent를 만들고 Runner로 실행한 뒤, 함수 도구와 다른 에이전트로 넘기는 핸드오프를 하나씩 붙여 보는 첫 실습이다.",
+    "objectives": [
+      "openai-agents 패키지를 설치하고 이름과 instructions를 가진 Agent를 만들 수 있다",
+      "Runner.run으로 에이전트를 실행하고 final_output에서 답을 꺼낼 수 있다",
+      "파이썬 함수를 도구로 감싸 Agent의 tools에 넣을 수 있다",
+      "분류 에이전트에 handoffs를 주어 전문 에이전트에게 질문을 넘기고 어느 에이전트가 답했는지 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.basics.agent-framework-idea",
+      "llm.api.first-call",
+      "be.python.venv-packages"
+    ],
+    "related": [
+      "rag.agent.first-agent",
+      "rag.agent.claude-agent-sdk-quickstart"
+    ],
+    "aliases": [
+      "OpenAI Agents SDK 빠른 시작",
+      "OpenAI Agents SDK quickstart",
+      "openai-agents 예제",
+      "from agents import Agent"
+    ],
+    "refs": [
+      "https://openai.github.io/openai-agents-python/quickstart/",
+      "https://openai.github.io/openai-agents-python/tools/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "rag.retrieval.llamaindex-install",
     "title": "LlamaIndex 설치와 패키지 구성",
     "en": "Installing LlamaIndex and Its Packages",
@@ -2818,6 +2892,40 @@
       "https://developers.llamaindex.ai/python/framework/module_guides/loading/connector/",
       "https://developers.llamaindex.ai/python/framework/module_guides/loading/"
     ]
+  },
+  {
+    "id": "rag.agent.adk-quickstart",
+    "title": "Google ADK로 첫 에이전트 만들기",
+    "en": "Your First Agent with Google ADK (Python)",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "google-adk를 설치하고 adk create로 만든 프로젝트에 API 키를 넣은 뒤, 터미널과 개발용 웹 화면에서 Gemini 에이전트와 대화해 보는 첫 실습이다.",
+    "objectives": [
+      "google-adk를 설치하고 adk create로 agent.py·.env·__init__.py가 든 에이전트 프로젝트를 만들 수 있다",
+      ".env에 GOOGLE_API_KEY를 넣고 agent.py의 root_agent에 함수 도구를 붙일 수 있다",
+      "adk run으로 터미널에서, adk web으로 브라우저에서 에이전트와 대화할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.basics.agent-framework-idea",
+      "be.python.venv-packages"
+    ],
+    "related": [
+      "rag.agent.openai-agents-quickstart",
+      "rag.agent.claude-agent-sdk-quickstart"
+    ],
+    "aliases": [
+      "ADK 빠른 시작",
+      "ADK Python quickstart",
+      "google-adk 설치",
+      "ADK 첫 에이전트"
+    ],
+    "refs": [
+      "https://adk.dev/get-started/python/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
   },
   {
     "id": "rag.embedding.vector",
@@ -3360,6 +3468,85 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "rag.agent.claude-agent-sdk-query",
+    "title": "Claude Agent SDK query 함수",
+    "en": "Claude Agent SDK query() Function",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "프롬프트와 옵션을 받아 에이전트 루프를 시작하고 그동안 나오는 메시지를 async for로 하나씩 돌려주는 Claude Agent SDK의 기본 진입점이다.",
+    "parent": "rag.agent.claude-agent-sdk-quickstart",
+    "related": [
+      "rag.agent.claude-agent-options",
+      "rag.agent.openai-agents-runner"
+    ],
+    "aliases": [
+      "claude_agent_sdk.query",
+      "Agent SDK query()",
+      "query() vs ClaudeSDKClient"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/agent-sdk/quickstart",
+      "https://code.claude.com/docs/en/agent-sdk/python"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.agent.claude-agent-options",
+    "title": "ClaudeAgentOptions 설정 객체",
+    "en": "ClaudeAgentOptions (Claude Agent SDK Options)",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "허용 도구, 권한 모드, 시스템 프롬프트, MCP 서버, 최대 턴 수처럼 Claude Agent SDK 에이전트의 동작을 정하는 값을 한데 묶어 query에 넘기는 객체다.",
+    "parent": "rag.agent.claude-agent-sdk-quickstart",
+    "related": [
+      "ax.coding.permission-mode",
+      "ax.coding.permission-rules"
+    ],
+    "aliases": [
+      "ClaudeAgentOptions",
+      "Agent SDK 옵션",
+      "Agent SDK allowed_tools",
+      "Agent SDK options"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/agent-sdk/python",
+      "https://code.claude.com/docs/en/agent-sdk/permissions"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.agent.openai-agents-runner",
+    "title": "OpenAI Agents SDK Runner",
+    "en": "OpenAI Agents SDK Runner (run, run_sync, run_streamed)",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "에이전트를 받아 최종 답이 나올 때까지 모델 호출·도구 실행·핸드오프를 되풀이하는 OpenAI Agents SDK의 실행기로, 비동기·동기·스트리밍 방식이 있다.",
+    "parent": "rag.agent.openai-agents-quickstart",
+    "related": [
+      "rag.agent.claude-agent-sdk-query",
+      "rag.basics.agentic-loop"
+    ],
+    "aliases": [
+      "Runner.run",
+      "Runner.run_sync",
+      "Runner.run_streamed",
+      "MaxTurnsExceeded"
+    ],
+    "refs": [
+      "https://openai.github.io/openai-agents-python/running_agents/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "rag.agent.model-router",
     "title": "모델 라우터(OpenRouter·LiteLLM)",
     "en": "Model Router",
@@ -3800,6 +3987,162 @@
     "refs": [
       "https://sbert.net/docs/quickstart.html"
     ]
+  },
+  {
+    "id": "rag.agent.claude-agent-result-message",
+    "title": "Claude Agent SDK ResultMessage",
+    "en": "Claude Agent SDK ResultMessage",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "Claude Agent SDK 실행이 끝날 때 마지막으로 오는 메시지로, 성공·오류 종류, 최종 답, 비용, 턴 수를 담고 있다.",
+    "parent": "rag.agent.claude-agent-sdk-quickstart",
+    "related": [
+      "rag.agent.openai-agents-run-result"
+    ],
+    "aliases": [
+      "ResultMessage",
+      "Agent SDK 결과 메시지",
+      "total_cost_usd",
+      "error_max_turns"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/agent-sdk/python",
+      "https://code.claude.com/docs/en/agent-sdk/quickstart"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.agent.openai-agents-run-result",
+    "title": "OpenAI Agents SDK 실행 결과(RunResult)",
+    "en": "OpenAI Agents SDK RunResult",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "Runner 실행이 돌려주는 결과 객체로, 최종 답 final_output, 마지막으로 답한 에이전트, 다음 턴에 넘길 대화 목록을 담는다.",
+    "parent": "rag.agent.openai-agents-quickstart",
+    "related": [
+      "rag.agent.claude-agent-result-message"
+    ],
+    "aliases": [
+      "RunResult",
+      "final_output",
+      "to_input_list",
+      "last_agent"
+    ],
+    "refs": [
+      "https://openai.github.io/openai-agents-python/running_agents/",
+      "https://openai.github.io/openai-agents-python/quickstart/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.agent.openai-agents-handoffs",
+    "title": "OpenAI Agents SDK 핸드오프(handoffs)",
+    "en": "Handoffs in the OpenAI Agents SDK",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "Agent의 handoffs에 다른 에이전트를 넣으면 모델에게 transfer_to_이름 도구로 보이고, 모델이 그 도구를 부르면 대화가 그 에이전트로 넘어가는 OpenAI Agents SDK 기능이다.",
+    "parent": "rag.agent.openai-agents-quickstart",
+    "related": [
+      "rag.agent.handoffs",
+      "rag.basics.multi-agent-idea"
+    ],
+    "aliases": [
+      "handoff_description",
+      "transfer_to_ 도구",
+      "OpenAI handoff()",
+      "OpenAI Agents 핸드오프"
+    ],
+    "refs": [
+      "https://openai.github.io/openai-agents-python/handoffs/",
+      "https://openai.github.io/openai-agents-python/quickstart/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.agent.openai-agents-function-tool",
+    "title": "OpenAI Agents SDK 함수 도구",
+    "en": "Function Tools in the OpenAI Agents SDK",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "파이썬 함수에 데코레이터를 붙이면 함수 이름·독스트링·타입 힌트로 도구 이름·설명·인자 스키마를 만들어 Agent의 tools에 넣게 해 주는 OpenAI Agents SDK 기능이다.",
+    "parent": "rag.agent.openai-agents-quickstart",
+    "related": [
+      "rag.agent.tool-decorator"
+    ],
+    "aliases": [
+      "function_tool",
+      "@function_tool",
+      "FunctionTool",
+      "agents.decorators tool"
+    ],
+    "refs": [
+      "https://openai.github.io/openai-agents-python/tools/",
+      "https://openai.github.io/openai-agents-python/quickstart/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.agent.adk-root-agent",
+    "title": "ADK root_agent",
+    "en": "root_agent in Google ADK",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "ADK 프로젝트의 agent.py에 꼭 있어야 하는 변수로, 모델·지시문·도구를 가진 첫 에이전트를 담아 ADK 도구가 이것을 찾아 실행한다.",
+    "parent": "rag.agent.adk-quickstart",
+    "related": [
+      "rag.agent.adk-cli"
+    ],
+    "aliases": [
+      "root_agent",
+      "ADK agent.py",
+      "ADK 루트 에이전트"
+    ],
+    "refs": [
+      "https://adk.dev/get-started/python/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.agent.adk-cli",
+    "title": "ADK 명령줄 도구(adk create·run·web)",
+    "en": "ADK Command-Line Tool (adk create, adk run, adk web)",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "adk create로 에이전트 프로젝트를 만들고 adk run으로 터미널 대화를, adk web으로 개발용 브라우저 채팅 화면을 여는 Google ADK의 명령 모음이다.",
+    "parent": "rag.agent.adk-quickstart",
+    "related": [
+      "rag.agent.adk-root-agent",
+      "rag.agent.local-server-studio"
+    ],
+    "aliases": [
+      "adk create",
+      "adk run",
+      "adk web",
+      "ADK 개발 UI",
+      "ADK dev UI"
+    ],
+    "refs": [
+      "https://adk.dev/get-started/python/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
   },
   {
     "id": "rag.vector-db.basics",

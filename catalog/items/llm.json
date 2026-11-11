@@ -2746,6 +2746,79 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "llm.api.sdk-streaming",
+    "title": "SDK로 답을 글자씩 받아 출력하기: 스트리밍",
+    "en": "Streaming a Response with an SDK",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "답이 다 만들어질 때까지 기다리지 않고 SDK의 스트리밍 기능으로 글 조각이 오는 대로 화면에 찍어 보며, 왜 긴 답에 스트리밍을 쓰는지 익힌다.",
+    "objectives": [
+      "Claude SDK의 messages.stream과 text_stream으로 답을 오는 대로 출력할 수 있다",
+      "OpenAI SDK에서 stream=True로 요청하고 글 조각 이벤트만 골라 출력할 수 있다",
+      "조각을 처리할 필요가 없을 때 스트리밍으로 받아 완성된 메시지 하나로 돌려받을 수 있다",
+      "스트리밍이 사용자가 기다리는 시간을 줄이고 긴 답의 연결 시간 초과를 막는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.first-call"
+    ],
+    "related": [
+      "llm.api.response-streaming",
+      "be.fastapi.streaming"
+    ],
+    "aliases": [
+      "스트리밍 첫 사용",
+      "답 글자씩 출력",
+      "messages.stream",
+      "OpenAI stream=True",
+      "SDK streaming"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/streaming",
+      "https://developers.openai.com/api/docs/guides/streaming-responses"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.api.responses-vs-chat-completions",
+    "title": "OpenAI Responses와 Chat Completions 비교",
+    "en": "OpenAI Responses API vs Chat Completions API",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "OpenAI SDK의 두 텍스트 생성 방식을 같은 질문으로 나란히 불러 보며, 요청을 넣는 칸과 답을 꺼내는 자리가 어떻게 다른지, 새 코드에 어느 쪽을 쓰는지 익힌다.",
+    "objectives": [
+      "같은 질문을 client.responses.create와 client.chat.completions.create로 각각 보내 답을 받을 수 있다",
+      "Responses의 instructions·input과 Chat Completions의 messages 배열이 서로 어떻게 대응하는지 말할 수 있다",
+      "답을 output_text와 choices[0].message.content에서 각각 꺼내 출력할 수 있다",
+      "새 프로젝트에는 Responses를 권하고 Chat Completions도 계속 지원된다는 점을 들어 예제 코드가 어느 쪽인지 알아볼 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.first-call"
+    ],
+    "related": [
+      "llm.api.response-output-items",
+      "llm.api.developer-message",
+      "llm.api.multi-turn"
+    ],
+    "aliases": [
+      "Responses API",
+      "responses.create",
+      "chat.completions.create",
+      "Responses vs Chat Completions",
+      "OpenAI 응답 API"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/migrate-to-responses",
+      "https://developers.openai.com/api/docs/guides/text"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "llm.prompt.metaprompt",
     "title": "메타프롬프트로 프롬프트 첫 초안 만들기",
     "en": "Drafting a First Prompt with a Metaprompt",
@@ -2838,6 +2911,44 @@
     "refs": [
       "https://aistudio.google.com/docs/image-generation",
       "https://github.com/microsoft/generative-ai-for-beginners/blob/main/09-building-image-applications/README.md"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.api.ant-cli",
+    "title": "터미널에서 Claude API 부르기: ant CLI",
+    "en": "Calling the Claude API from the Terminal with the ant CLI",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "Anthropic의 공식 명령줄 도구 ant를 설치하고 브라우저 로그인으로 인증한 뒤, 코드 없이 터미널 한 줄로 메시지를 보내고 답에서 필요한 칸만 뽑아 본다.",
+    "objectives": [
+      "ant를 설치하고 ant auth login으로 브라우저 로그인을 마쳐 API 키 없이 인증할 수 있다",
+      "ant messages create에 모델·최대 토큰·메시지를 플래그로 넣어 첫 답을 받을 수 있다",
+      "--transform과 --raw-output으로 응답 JSON에서 원하는 칸만 꺼내 셸 변수에 담을 수 있다",
+      "@파일 참조로 프롬프트 파일이나 PDF를 요청에 넣어 보낼 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.first-call",
+      "dev.terminal.basic-commands"
+    ],
+    "related": [
+      "llm.api.models-api",
+      "be.security.env-var"
+    ],
+    "aliases": [
+      "ant 명령줄 도구",
+      "Anthropic CLI",
+      "ant messages create",
+      "Claude API 명령줄 도구",
+      "anthropic-cli"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/cli-sdks-libraries/cli/quickstart",
+      "https://platform.claude.com/docs/en/cli-sdks-libraries/cli/using",
+      "https://platform.claude.com/docs/en/cli-sdks-libraries/overview"
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
@@ -3464,6 +3575,32 @@
     ]
   },
   {
+    "id": "llm.api.usage-field",
+    "title": "응답 usage 정보(input_tokens·output_tokens)",
+    "en": "Response Usage Field (input_tokens and output_tokens)",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "API 응답 끝에 붙어 오는 사용량 정보로, 이번 호출에 들어간 입력 토큰 수와 모델이 쓴 출력 토큰 수가 담겨 비용 계산의 바탕이 된다.",
+    "parent": "llm.api.first-call",
+    "related": [
+      "llm.basics.mtok-price"
+    ],
+    "aliases": [
+      "input_tokens",
+      "output_tokens",
+      "응답 사용량 정보",
+      "usage 필드",
+      "토큰 사용량 필드"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/get-started"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "llm.basics.encoder-decoder-model",
     "title": "인코더-디코더 모델(seq2seq)",
     "en": "Encoder-Decoder Model",
@@ -3761,6 +3898,200 @@
     "refs": [
       "https://aistudio.google.com/docs/image-generation"
     ]
+  },
+  {
+    "id": "llm.api.tokenizer-count-difference",
+    "title": "모델마다 다른 토큰 수(토크나이저 차이)",
+    "en": "Token Count Differences Across Model Tokenizers",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "같은 글이라도 모델의 토크나이저와 언어, 내용 종류에 따라 토큰 수가 달라져서, 모델을 바꾸면 가격표가 같아도 실제 비용이 달라질 수 있다는 점이다.",
+    "parent": "llm.basics.token-context",
+    "related": [
+      "llm.api.token-counting",
+      "llm.basics.tokenizer-vocabulary"
+    ],
+    "aliases": [
+      "토크나이저별 토큰 수 차이",
+      "새 토크나이저 토큰 증가",
+      "모델별 토큰 수 차이",
+      "tokenizer token count difference"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/about-claude/pricing"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.api.ant-auth-login",
+    "title": "ant auth login(브라우저 로그인 인증)",
+    "en": "ant auth login (Browser-Based CLI Login)",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "ant CLI가 브라우저로 Claude Console에 로그인해 한 워크스페이스에 묶인 자격 증명을 내 컴퓨터에 저장하는 명령으로, API 키를 만들지 않고도 SDK와 CLI가 API를 부를 수 있게 한다.",
+    "parent": "llm.api.ant-cli",
+    "related": [
+      "be.security.api-key"
+    ],
+    "aliases": [
+      "ant 로그인",
+      "ant auth status",
+      "ant auth logout",
+      "ant CLI 로그인"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/cli-sdks-libraries/cli/authentication",
+      "https://platform.claude.com/docs/en/cli-sdks-libraries/cli/quickstart"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.api.ant-transform",
+    "title": "ant --transform(GJSON으로 응답 칸 뽑기)",
+    "en": "ant --transform (Extracting Response Fields with GJSON)",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "ant CLI 응답을 출력하기 전에 GJSON 경로식으로 거르거나 모양을 바꾸는 옵션으로, --raw-output과 함께 쓰면 따옴표 없는 값만 남아 셸 변수에 바로 담을 수 있다.",
+    "parent": "llm.api.ant-cli",
+    "aliases": [
+      "ant --raw-output",
+      "ant GJSON 경로",
+      "ant 응답 필드 추출",
+      "ant --transform GJSON"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/cli-sdks-libraries/cli/using"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.api.ant-file-reference",
+    "title": "ant @파일 참조(@path)",
+    "en": "ant @file References",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "ant CLI 요청의 문자열 칸에 @경로를 쓰면 그 파일 내용을 끼워 넣고, PDF 같은 바이너리 파일은 알아서 base64로 바꿔 보내는 기능이다.",
+    "parent": "llm.api.ant-cli",
+    "aliases": [
+      "ant @file 참조",
+      "ant @path",
+      "ant 파일 첨부",
+      "ant CLI 파일 참조"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/cli-sdks-libraries/cli/using"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.api.stream-text-helper",
+    "title": "스트리밍 글 조각 도우미(text_stream)",
+    "en": "SDK Text Stream Helper (text_stream)",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "SDK가 스트리밍 이벤트 가운데 글 조각만 골라 차례로 내주는 도우미로, 파이썬은 stream.text_stream을 돌고 타입스크립트는 text 이벤트를 받아 바로 출력한다.",
+    "parent": "llm.api.sdk-streaming",
+    "related": [
+      "llm.api.response-streaming"
+    ],
+    "aliases": [
+      "text_stream",
+      "stream.text_stream",
+      "on(\"text\")",
+      "스트리밍 텍스트 도우미"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/streaming"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.api.get-final-message",
+    "title": "스트리밍으로 받아 한 번에 돌려받기(get_final_message)",
+    "en": "Getting the Final Message from a Stream (get_final_message)",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "속으로는 스트리밍으로 받으면서 조각을 다룰 필요 없이 일반 호출과 같은 완성된 메시지 객체를 돌려받는 SDK 기능으로, max_tokens가 큰 요청의 시간 초과를 피할 때 쓴다.",
+    "parent": "llm.api.sdk-streaming",
+    "aliases": [
+      "get_final_message",
+      "stream.get_final_message",
+      "스트리밍 최종 메시지"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/streaming"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.api.responses-instructions",
+    "title": "instructions 매개변수(Responses API)",
+    "en": "instructions Parameter in the Responses API",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "OpenAI Responses API에서 메시지 배열 밖 맨 위 칸에 앱의 지시를 넣는 매개변수로, 그 요청에만 적용되어 previous_response_id로 이어 갈 때는 다시 보내야 한다.",
+    "parent": "llm.api.responses-vs-chat-completions",
+    "related": [
+      "llm.api.developer-message",
+      "llm.api.system-prompt"
+    ],
+    "aliases": [
+      "instructions 파라미터",
+      "Responses instructions",
+      "instructions 매개변수"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/migrate-to-responses",
+      "https://developers.openai.com/api/docs/guides/text"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.api.anthropic-version-header",
+    "title": "API 버전 헤더(anthropic-version)",
+    "en": "anthropic-version API Version Header",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "Claude API 요청마다 보내는 날짜 모양의 버전 헤더로, 같은 버전 안에서는 기존 칸이 유지되고 SDK가 메이저 버전에 맞는 값을 넣으며, 2026-10-21에서는 temperature 칸이 빠졌다.",
+    "parent": "llm.api.first-call",
+    "related": [
+      "llm.api.model-ids"
+    ],
+    "aliases": [
+      "anthropic-version 헤더",
+      "Claude API 버전",
+      "API 버전 헤더",
+      "Claude API version header"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/api/versioning",
+      "https://platform.claude.com/docs/en/api/migration-2026-10-21"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
   },
   {
     "id": "llm.tools.function-calling",

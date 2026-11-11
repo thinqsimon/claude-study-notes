@@ -2547,6 +2547,146 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "db.data.duckdb-csv-query",
+    "title": "DuckDB로 CSV 파일을 바로 SQL로 조회하기",
+    "en": "Querying CSV Files Directly with the DuckDB CLI",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "데이터 수집과 가공",
+    "summary": "duckdb 명령을 띄워 표를 만들지 않고도 CSV 파일 이름을 FROM 자리에 써서 SQL로 살펴보고, 결과를 표나 새 CSV 파일로 남겨 보는 실습이다.",
+    "objectives": [
+      "duckdb를 파일 이름 없이 띄우면 메모리 DB, 파일 이름을 주면 그 파일에 남는 DB가 열린다는 것을 구분할 수 있다",
+      "SELECT * FROM 'flights.csv'처럼 CSV 파일을 FROM에 바로 써서 조회할 수 있다",
+      "CREATE TABLE ... AS SELECT로 CSV 내용을 DuckDB 표로 옮길 수 있다",
+      "COPY (SELECT ...) TO '파일.csv'로 조회 결과를 CSV 파일로 내보낼 수 있다"
+    ],
+    "prerequisites": [
+      "db.basics.csv-idea",
+      "db.sql.select-first"
+    ],
+    "related": [
+      "db.sql.sqlite-csv",
+      "db.sql.copy-csv"
+    ],
+    "aliases": [
+      "DuckDB",
+      "덕DB",
+      "DuckDB CLI",
+      "duckdb 명령",
+      "DuckDB CSV 조회"
+    ],
+    "refs": [
+      "https://duckdb.org/docs/2.0/clients/cli/overview.html",
+      "https://duckdb.org/docs/2.0/data/csv/overview.html",
+      "https://duckdb.org/docs/2.0/sql/statements/copy.html"
+    ]
+  },
+  {
+    "id": "db.nosql.dynamodb-first-table",
+    "title": "DynamoDB 첫 표 만들고 항목 넣고 읽기",
+    "en": "Getting Started with Amazon DynamoDB Tables",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "NoSQL",
+    "summary": "AWS 콘솔이나 AWS CLI로 Music 표를 만들고 put-item으로 항목을 넣은 뒤 get-item으로 키를 주어 다시 읽어 보는 DynamoDB 첫 실습이다.",
+    "objectives": [
+      "create-table로 파티션 키 Artist와 정렬 키 SongTitle을 가진 표를 만들고 describe-table로 ACTIVE 상태를 확인할 수 있다",
+      "put-item에 {\"S\": ...}·{\"N\": ...} 꼴로 값을 적어 항목을 넣을 수 있다",
+      "get-item에 파티션 키와 정렬 키 값을 모두 주어 항목 하나를 읽을 수 있다",
+      "콘솔의 Explore table items에서 넣은 항목을 눈으로 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "db.nosql.nosql-types-idea",
+      "db.basics.managed-database"
+    ],
+    "related": [
+      "db.nosql.firestore-quickstart",
+      "db.cache.redis-first-run"
+    ],
+    "aliases": [
+      "DynamoDB",
+      "Amazon DynamoDB",
+      "다이나모DB",
+      "DynamoDB 시작하기",
+      "aws dynamodb create-table"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/getting-started-step-1.html",
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/getting-started-step-2.html",
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/getting-started-step-3.html"
+    ]
+  },
+  {
+    "id": "db.data.bigquery-public-dataset",
+    "title": "BigQuery 샌드박스로 공개 데이터 세트 쿼리하기",
+    "en": "Querying a BigQuery Public Dataset in the Console",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "데이터 수집과 가공",
+    "summary": "결제 정보 없이 BigQuery 샌드박스 프로젝트를 만들고 BigQuery Studio에서 공개 데이터 세트를 찾아 SQL을 실행해 결과와 처리량을 확인해 보는 첫 실습이다.",
+    "objectives": [
+      "결제 계정 없이 샌드박스 프로젝트를 만들어 BigQuery Studio를 열 수 있다",
+      "Add data의 Public datasets에서 공개 데이터 세트를 찾아 탐색기에 붙일 수 있다",
+      "표를 프로젝트.데이터세트.표 이름으로 적은 SELECT 문을 실행하고 Query results에서 결과를 볼 수 있다",
+      "실행 전 쿼리 검사기에 나오는 처리 예상 바이트와 실행 뒤 Job information의 처리량을 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "db.data.oltp-olap-idea",
+      "db.sql.select-first"
+    ],
+    "related": [
+      "db.data.data-warehouse"
+    ],
+    "aliases": [
+      "BigQuery",
+      "Google BigQuery",
+      "빅쿼리",
+      "BigQuery Studio",
+      "BigQuery 공개 데이터 세트",
+      "bigquery-public-data"
+    ],
+    "refs": [
+      "https://docs.cloud.google.com/bigquery/docs/sandbox"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "db.sql.sqlite-dump-backup",
+    "title": "SQLite DB를 .dump와 .backup으로 떠 두기",
+    "en": "Backing Up SQLite with .dump and .backup",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "sqlite3 셸의 .dump로 DB 전체를 SQL 글 파일로 내보내 다시 넣어 보고, .backup과 .restore로 DB 파일을 통째로 복사하고 되살려 보는 실습이다.",
+    "objectives": [
+      "sqlite3 ex1 .dump > ex1.sql로 DB 전체를 SQL 글 파일로 내보낼 수 있다",
+      "내보낸 SQL을 sqlite3 새파일에 흘려 넣어 같은 DB를 다시 만들 수 있다",
+      ".backup으로 DB를 다른 파일에 복사하고 .restore로 그 파일에서 되살릴 수 있다",
+      ".dump 결과가 순수 SQL이라 psql 같은 다른 DB에도 넣어 볼 수 있다는 것을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "db.sql.sqlite-cli"
+    ],
+    "related": [
+      "db.sql.pg-dump-restore",
+      "db.basics.backup"
+    ],
+    "aliases": [
+      "SQLite 백업",
+      "SQLite 백업과 복원",
+      "SQLite backup and restore",
+      "SQLite DB 파일 백업"
+    ],
+    "refs": [
+      "https://sqlite.org/cli.html"
+    ]
+  },
+  {
     "id": "db.nosql.mongosh-first-run",
     "title": "MongoDB 셸 mongosh로 첫 문서 넣기",
     "en": "Getting Started with the MongoDB Shell (mongosh)",
@@ -3282,6 +3422,100 @@
     ]
   },
   {
+    "id": "db.data.duckdb-read-csv",
+    "title": "DuckDB read_csv: 옵션을 주어 CSV 읽기",
+    "en": "DuckDB read_csv Function",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "데이터 수집과 가공",
+    "summary": "DuckDB에서 CSV 파일을 표처럼 읽는 함수로, 구분자·머리 줄·열 정의를 직접 넘기거나 여러 파일을 한꺼번에 읽을 때 쓴다.",
+    "parent": "db.data.duckdb-csv-query",
+    "related": [
+      "db.sql.sqlite-import"
+    ],
+    "aliases": [
+      "DuckDB read_csv",
+      "read_csv 함수 DuckDB",
+      "duckdb read_csv delim"
+    ],
+    "refs": [
+      "https://duckdb.org/docs/2.0/data/csv/overview.html"
+    ]
+  },
+  {
+    "id": "db.nosql.dynamodb-partition-sort-key",
+    "title": "DynamoDB 파티션 키와 정렬 키",
+    "en": "DynamoDB Partition Key and Sort Key",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "NoSQL",
+    "summary": "DynamoDB 표의 기본 키로, 파티션 키 하나만 쓰거나 파티션 키와 정렬 키를 짝지어 쓰며 짝을 쓰면 같은 파티션 키 값의 항목이 정렬 키 순서로 함께 놓인다.",
+    "parent": "db.nosql.dynamodb-first-table",
+    "related": [
+      "db.sql.primary-key",
+      "db.internals.partitioning"
+    ],
+    "aliases": [
+      "DynamoDB 파티션 키",
+      "DynamoDB 정렬 키",
+      "DynamoDB sort key",
+      "복합 기본 키 DynamoDB",
+      "composite primary key DynamoDB",
+      "hash and range key"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html"
+    ]
+  },
+  {
+    "id": "db.data.bigquery-dataset",
+    "title": "BigQuery 데이터 세트",
+    "en": "BigQuery Dataset",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "데이터 수집과 가공",
+    "summary": "BigQuery 프로젝트 안에서 표와 뷰를 묶고 접근을 정하는 최상위 그릇으로, 만들 때 정한 저장 위치는 직접 바꿀 수 없어 옮기려면 복사나 복제를 써야 한다.",
+    "parent": "db.data.bigquery-public-dataset",
+    "related": [
+      "db.basics.db-hierarchy-idea",
+      "db.sql.search-path"
+    ],
+    "aliases": [
+      "BigQuery dataset",
+      "빅쿼리 데이터셋",
+      "BigQuery 데이터셋",
+      "project.dataset.table"
+    ],
+    "refs": [
+      "https://docs.cloud.google.com/bigquery/docs/datasets-intro"
+    ]
+  },
+  {
+    "id": "db.sql.sqlite-dump",
+    "title": ".dump: SQLite DB를 SQL 글로 내보내기",
+    "en": "SQLite .dump Command",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "sqlite3 셸에서 DB의 표 정의와 자료를 CREATE TABLE·INSERT 문이 담긴 하나의 UTF-8 글로 만들어 주는 점 명령이다.",
+    "parent": "db.sql.sqlite-dump-backup",
+    "related": [
+      "db.sql.pg-dump-formats"
+    ],
+    "aliases": [
+      "sqlite .dump",
+      "sqlite3 .dump",
+      "SQLite SQL 덤프"
+    ],
+    "refs": [
+      "https://sqlite.org/cli.html"
+    ]
+  },
+  {
     "id": "db.sql.sqlite-dot-commands",
     "title": "SQLite 점 명령: .tables·.schema·.mode",
     "en": "SQLite Dot-Commands",
@@ -3556,6 +3790,113 @@
     ],
     "refs": [
       "https://firebase.google.com/docs/firestore/quickstart"
+    ]
+  },
+  {
+    "id": "db.data.duckdb-csv-sniffer",
+    "title": "DuckDB CSV 자동 감지",
+    "en": "DuckDB CSV Auto-Detection (Sniffer)",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "데이터 수집과 가공",
+    "summary": "DuckDB가 CSV 앞부분을 훑어 구분자·따옴표·머리 줄 유무·열 자료형을 스스로 짐작하는 기능으로, 옵션을 직접 준 항목만 짐작을 건너뛴다.",
+    "parent": "db.data.duckdb-csv-query",
+    "aliases": [
+      "CSV sniffer",
+      "DuckDB auto_detect",
+      "CSV 자동 감지",
+      "DuckDB 스니퍼"
+    ],
+    "refs": [
+      "https://duckdb.org/docs/2.0/data/csv/overview.html"
+    ]
+  },
+  {
+    "id": "db.nosql.dynamodb-item-attribute",
+    "title": "DynamoDB 항목과 속성",
+    "en": "DynamoDB Items and Attributes",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "NoSQL",
+    "summary": "DynamoDB 표에 담기는 한 건을 항목, 항목을 이루는 이름-값 하나를 속성이라 하며, 기본 키 말고는 항목마다 속성이 달라도 된다.",
+    "parent": "db.nosql.dynamodb-first-table",
+    "related": [
+      "db.nosql.flexible-schema",
+      "db.nosql.document"
+    ],
+    "aliases": [
+      "DynamoDB item",
+      "DynamoDB attribute",
+      "DynamoDB 항목",
+      "DynamoDB 속성"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html"
+    ]
+  },
+  {
+    "id": "db.data.bigquery-sandbox",
+    "title": "BigQuery 샌드박스",
+    "en": "BigQuery Sandbox",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "데이터 수집과 가공",
+    "summary": "신용카드나 결제 계정 없이 BigQuery를 써 볼 수 있는 무료 사용 방식으로, 저장 용량과 쿼리 처리량에 한도가 있고 표가 60일 뒤 저절로 지워진다.",
+    "parent": "db.data.bigquery-public-dataset",
+    "aliases": [
+      "BigQuery sandbox",
+      "빅쿼리 샌드박스",
+      "BigQuery 무료 사용"
+    ],
+    "refs": [
+      "https://docs.cloud.google.com/bigquery/docs/sandbox"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "db.data.bigquery-query-validator",
+    "title": "BigQuery 쿼리 검사기와 처리 바이트",
+    "en": "BigQuery Query Validator and Bytes Processed",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "데이터 수집과 가공",
+    "summary": "BigQuery 편집기가 실행 전에 SQL이 맞는지 표시하고 그 쿼리가 읽을 데이터 양을 미리 알려 주는 기능으로, 샌드박스의 월 처리 한도도 이 처리량으로 센다.",
+    "parent": "db.data.bigquery-public-dataset",
+    "aliases": [
+      "BigQuery query validator",
+      "BigQuery 처리 바이트",
+      "bytes processed",
+      "BigQuery 예상 처리량"
+    ],
+    "refs": [
+      "https://docs.cloud.google.com/bigquery/docs/sandbox"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "db.sql.sqlite-backup-restore",
+    "title": ".backup과 .restore: SQLite DB 파일 복사와 되살리기",
+    "en": "SQLite .backup and .restore Commands",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "SQL",
+    "summary": "sqlite3 셸에서 열린 DB를 다른 파일로 복사하는 .backup과 그 파일 내용으로 DB를 되살리는 .restore로, .save는 .backup과 같은 일을 한다.",
+    "parent": "db.sql.sqlite-dump-backup",
+    "aliases": [
+      "sqlite .backup",
+      "sqlite .restore",
+      "sqlite .save",
+      "sqlite3 backup command"
+    ],
+    "refs": [
+      "https://sqlite.org/cli.html"
     ]
   },
   {

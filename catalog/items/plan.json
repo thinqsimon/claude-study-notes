@@ -2545,6 +2545,99 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "plan.figma.canvas-sections",
+    "title": "Figma 섹션으로 캔버스 묶어 정리하기",
+    "en": "Organizing the Figma Canvas with Sections",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "섹션 도구로 캔버스의 화면들을 이름 붙은 큰 칸에 묶어 옮기고 지우고 링크로 나누는 Figma Design의 첫 정리법이다.",
+    "objectives": [
+      "섹션 도구나 오른쪽 클릭의 새 섹션으로 감싸기로 화면 여러 개를 한 섹션에 묶을 수 있다",
+      "섹션 이름을 바꾸고 크기를 늘려 다른 화면을 섹션 안에 넣을 수 있다",
+      "섹션만 지우고 안의 화면은 남기는 단축키를 써서 섹션을 없앨 수 있다",
+      "섹션이 프레임이나 그룹 안에 들어갈 수 없다는 점을 알고 섹션 링크를 복사해 나눌 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.layers",
+      "plan.figma.frames-and-components"
+    ],
+    "aliases": [
+      "Figma 섹션",
+      "피그마 섹션",
+      "Figma sections",
+      "Figma 섹션 도구",
+      "Wrap in new section"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/9771500257687-Organize-your-canvas-with-sections"
+    ]
+  },
+  {
+    "id": "plan.basics.prototype-kit-first",
+    "title": "GOV.UK 프로토타입 키트로 첫 시안 만들기",
+    "en": "Building a First Prototype with the GOV.UK Prototype Kit",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "질문 두 개, 답 확인, 완료 페이지로 된 가상의 신청 서비스를 GOV.UK 프로토타입 키트 튜토리얼을 따라 클릭되는 시안으로 만든다.",
+    "objectives": [
+      "프로토타입 키트 튜토리얼을 따라 페이지를 만들고 서로 링크로 이을 수 있다",
+      "GOV.UK 디자인 시스템의 라디오 버튼 코드를 복사해 질문 페이지에 넣고 문구를 바꿀 수 있다",
+      "입력의 name 값으로 사용자의 답을 답 확인 페이지에 보여 줄 수 있다",
+      "답에 따라 다른 페이지로 보내는 분기를 튜토리얼대로 만들 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.service-flow",
+      "dev.terminal.basic-commands"
+    ],
+    "related": [
+      "plan.figma.play-share-prototype"
+    ],
+    "aliases": [
+      "GOV.UK Prototype Kit",
+      "프로토타입 키트",
+      "Prototype Kit 튜토리얼",
+      "GOV.UK 프로토타입 키트"
+    ],
+    "refs": [
+      "https://prototype-kit.service.gov.uk/make-first-prototype/start/",
+      "https://prototype-kit.service.gov.uk/make-first-prototype/use-components/",
+      "https://prototype-kit.service.gov.uk/make-first-prototype/branching/"
+    ]
+  },
+  {
+    "id": "plan.figma.slides-deck",
+    "title": "Figma Slides로 발표 자료 만들기",
+    "en": "Making a Slide Deck in Figma Slides",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "템플릿 고르기로 슬라이드를 넣고 툴바로 글과 이미지를 채운 뒤 두 가지 보기와 발표자 노트로 덱을 다듬는 Figma Slides의 첫 사용법이다.",
+    "objectives": [
+      "왼쪽 사이드바의 템플릿 고르기로 슬라이드 레이아웃을 덱에 넣고 자리표시 내용을 바꿀 수 있다",
+      "툴바로 텍스트·도형·이미지·표를 슬라이드에 넣을 수 있다",
+      "그리드 보기와 슬라이드 보기를 오가며 덱 전체 흐름과 한 장의 세부를 고칠 수 있다",
+      "슬라이드 보기에서 발표자 노트를 적을 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.product-family"
+    ],
+    "aliases": [
+      "Figma Slides 덱",
+      "피그마 슬라이드 만들기",
+      "Figma slide deck"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/24170630629911-Explore-Figma-Slides"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "plan.figma.frame",
     "title": "Figma 프레임",
     "en": "Figma Frame",
@@ -2950,6 +3043,48 @@
     ],
     "refs": [
       "https://help.figma.com/hc/en-us/articles/360039957634-Edit-vector-layers"
+    ]
+  },
+  {
+    "id": "plan.figma.measure-distance",
+    "title": "Figma 레이어 사이 거리 재기",
+    "en": "Measuring Distances Between Layers in Figma",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "한 레이어를 고르고 Option이나 Alt를 누른 채 다른 레이어에 올리면 둘 사이 가로·세로 간격을 빨간 선과 숫자로 보여 주는 기능이다.",
+    "related": [
+      "plan.figma.align-distribute"
+    ],
+    "aliases": [
+      "Figma 간격 재기",
+      "Figma 거리 측정",
+      "Alt 호버 간격",
+      "Figma measure distances"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360039956974-Measure-distances-between-layers"
+    ]
+  },
+  {
+    "id": "plan.basics.prototype-kit-answer-data",
+    "title": "프로토타입 키트에 저장되는 사용자 답",
+    "en": "Prototype Kit Answer Data",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "프로토타입 키트가 입력의 name 값마다 사용자의 답을 기억해 뒤 페이지에서 data['이름']으로 보여 주고, 푸터의 Clear data로 지우는 방식이다.",
+    "parent": "plan.basics.prototype-kit-first",
+    "aliases": [
+      "Prototype Kit data",
+      "프로토타입 키트 데이터",
+      "Clear data 링크",
+      "session-data-defaults"
+    ],
+    "refs": [
+      "https://prototype-kit.service.gov.uk/pass-data/"
     ]
   },
   {
@@ -3522,6 +3657,133 @@
     "refs": [
       "https://help.figma.com/hc/en-us/articles/360038510873-Duplicate-Community-files"
     ]
+  },
+  {
+    "id": "plan.basics.prototype-kit-templates",
+    "title": "프로토타입 키트 페이지 템플릿",
+    "en": "Prototype Kit Page Templates",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "프로토타입 관리 화면의 템플릿 목록에서 질문 페이지·답 확인·완료 페이지 같은 틀을 골라 새 페이지를 바로 만드는 기능이다.",
+    "parent": "plan.basics.prototype-kit-first",
+    "aliases": [
+      "Prototype Kit 템플릿",
+      "Manage your prototype 템플릿",
+      "프로토타입 키트 템플릿"
+    ],
+    "refs": [
+      "https://prototype-kit.service.gov.uk/create-pages-from-templates/"
+    ]
+  },
+  {
+    "id": "plan.basics.prototype-kit-routes",
+    "title": "프로토타입 키트 라우트로 답에 따라 나누기",
+    "en": "Branching with Prototype Kit Routes",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "app/routes.js에 router.post를 하나 더해 받은 답을 if로 비교하고 res.redirect로 다음 페이지를 고르는 프로토타입 키트의 분기 방법이다.",
+    "parent": "plan.basics.prototype-kit-first",
+    "related": [
+      "plan.basics.question-branching"
+    ],
+    "aliases": [
+      "Prototype Kit routes",
+      "Prototype Kit routes.js",
+      "프로토타입 키트 분기"
+    ],
+    "refs": [
+      "https://prototype-kit.service.gov.uk/make-first-prototype/branching/"
+    ]
+  },
+  {
+    "id": "plan.basics.design-system-nunjucks",
+    "title": "디자인 시스템 Nunjucks 예시 코드",
+    "en": "GOV.UK Design System Nunjucks Example Code",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "GOV.UK 디자인 시스템의 컴포넌트 예시에서 Nunjucks 탭 코드를 복사해 프로토타입 페이지에 붙이고 문구와 name만 바꿔 쓰는 짧은 매크로 코드다.",
+    "parent": "plan.basics.prototype-kit-first",
+    "aliases": [
+      "GOV.UK Nunjucks 매크로",
+      "govuk Nunjucks macro",
+      "Nunjucks 탭 코드",
+      "GOV.UK 컴포넌트 코드 복사"
+    ],
+    "refs": [
+      "https://prototype-kit.service.gov.uk/make-first-prototype/use-components/"
+    ]
+  },
+  {
+    "id": "plan.figma.slides-grid-slide-view",
+    "title": "Figma Slides 그리드 보기와 슬라이드 보기",
+    "en": "Figma Slides Grid View and Slide View",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "덱 전체를 한눈에 늘어놓는 그리드 보기와 한 장만 크게 놓고 다듬는 슬라이드 보기를 왼쪽 사이드바에서 바꿔 쓰는 Figma Slides의 두 화면이다.",
+    "parent": "plan.figma.slides-deck",
+    "aliases": [
+      "Figma Slides grid view",
+      "Figma Slides slide view",
+      "슬라이드 그리드 보기"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/24170630629911-Explore-Figma-Slides"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "plan.figma.slides-presenter-notes",
+    "title": "Figma Slides 발표자 노트",
+    "en": "Presenter Notes in Figma Slides",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "슬라이드 보기에서 장마다 적어 두고 발표할 때 할 말을 놓치지 않게 돕는 슬라이드별 메모다.",
+    "parent": "plan.figma.slides-deck",
+    "aliases": [
+      "Figma presenter notes",
+      "Figma 발표자 노트",
+      "Figma Slides 스피커 노트"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/24170630629911-Explore-Figma-Slides"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "plan.figma.slides-design-mode",
+    "title": "Figma Slides 디자인 모드",
+    "en": "Design Mode in Figma Slides",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "기본인 슬라이드 모드에서 툴바로 바꿔 켜면 오토 레이아웃과 레이어 패널 같은 Figma Design 기능을 슬라이드에서 쓰게 하는 모드로, Full 좌석이 필요하고 아직 제한 베타다.",
+    "parent": "plan.figma.slides-deck",
+    "related": [
+      "plan.figma.seat"
+    ],
+    "aliases": [
+      "Figma Slides Design mode",
+      "Slides design mode",
+      "슬라이드 디자인 모드"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/24170630629911-Explore-Figma-Slides"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
   },
   {
     "id": "plan.basics.success-metrics",
