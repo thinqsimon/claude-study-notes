@@ -2830,6 +2830,43 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "rag.agent.claude-agent-sdk-custom-tools",
+    "title": "Claude Agent SDK에 커스텀 도구 붙이기",
+    "en": "Custom Tools in the Claude Agent SDK",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "내가 짠 파이썬 함수를 @tool로 도구로 만들고 앱 안에서 도는 MCP 서버에 묶어 Claude Agent SDK 에이전트가 부르게 하는 실습이다.",
+    "objectives": [
+      "claude_agent_sdk의 @tool에 이름·설명·입력 스키마를 주고 content 목록을 돌려주는 비동기 처리 함수를 쓸 수 있다",
+      "create_sdk_mcp_server로 도구를 서버에 묶어 ClaudeAgentOptions의 mcp_servers에 넘길 수 있다",
+      "mcp__서버__도구 형식의 이름을 allowed_tools에 적어 도구 호출을 미리 허용할 수 있다",
+      "처리 함수에서 실패를 is_error 결과로 돌려주어 Claude가 오류 내용을 읽게 할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.claude-agent-sdk-quickstart",
+      "rag.basics.tool-use-idea"
+    ],
+    "related": [
+      "rag.agent.first-agent",
+      "rag.agent.openai-agents-function-tool",
+      "rag.agent.mcp-build-server"
+    ],
+    "aliases": [
+      "Agent SDK 커스텀 도구",
+      "Agent SDK custom tools",
+      "Claude Agent SDK 도구 만들기",
+      "claude_agent_sdk tool 데코레이터"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/agent-sdk/custom-tools",
+      "https://code.claude.com/docs/en/agent-sdk/mcp"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "rag.retrieval.llamaindex-install",
     "title": "LlamaIndex 설치와 패키지 구성",
     "en": "Installing LlamaIndex and Its Packages",
@@ -3547,6 +3584,61 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "rag.agent.sdk-mcp-server",
+    "title": "SDK MCP 서버(인프로세스 MCP 서버)",
+    "en": "SDK MCP Server (In-Process MCP Server)",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "create_sdk_mcp_server로 만든, 별도 프로세스 없이 내 앱 안에서 도는 MCP 서버로 Claude Agent SDK에 커스텀 도구를 넘기는 통로다.",
+    "parent": "rag.agent.claude-agent-sdk-custom-tools",
+    "related": [
+      "rag.agent.mcp-server",
+      "rag.agent.mcp-build-server"
+    ],
+    "aliases": [
+      "create_sdk_mcp_server",
+      "createSdkMcpServer",
+      "인프로세스 MCP 서버",
+      "in-process MCP server"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/agent-sdk/custom-tools",
+      "https://code.claude.com/docs/en/agent-sdk/mcp"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.mcp-tool-full-name",
+    "title": "MCP 도구 전체 이름(mcp__서버__도구)",
+    "en": "MCP Tool Naming Convention (mcp__server__tool)",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "Claude Agent SDK에서 MCP 도구를 mcp__ 뒤에 서버 등록 이름과 도구 이름을 붙여 부르는 규칙으로, 허용 목록에 이 이름이나 와일드카드를 적는다.",
+    "parent": "rag.agent.claude-agent-sdk-custom-tools",
+    "related": [
+      "rag.agent.claude-agent-options",
+      "ax.coding.permission-rules"
+    ],
+    "aliases": [
+      "mcp__ 접두사",
+      "MCP 도구 이름 규칙",
+      "MCP tool naming convention",
+      "mcp__server__tool",
+      "MCP 도구 와일드카드"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/agent-sdk/mcp",
+      "https://code.claude.com/docs/en/agent-sdk/custom-tools"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "rag.agent.model-router",
     "title": "모델 라우터(OpenRouter·LiteLLM)",
     "en": "Model Router",
@@ -4143,6 +4235,33 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.agent.mcp-tool-annotations",
+    "title": "MCP 도구 주석(readOnlyHint 등)",
+    "en": "MCP Tool Annotations",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "도구가 읽기만 하는지, 지우거나 바꿀 수 있는지, 바깥 시스템에 닿는지를 참·거짓 힌트로 적어 두는 MCP 도구의 선택 정보로, 실제로 막아 주지는 않는다.",
+    "parent": "rag.agent.claude-agent-sdk-custom-tools",
+    "related": [
+      "rag.agent.mcp-tool"
+    ],
+    "aliases": [
+      "tool annotations",
+      "도구 주석",
+      "readOnlyHint",
+      "destructiveHint",
+      "ToolAnnotations"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/specification/2025-06-18/server/tools",
+      "https://code.claude.com/docs/en/agent-sdk/custom-tools"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "rag.vector-db.basics",

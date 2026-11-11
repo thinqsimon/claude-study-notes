@@ -2853,6 +2853,42 @@
     ]
   },
   {
+    "id": "ml.supervised.sklearn-polynomial-regression",
+    "title": "scikit-learn으로 다항 회귀: 곡선 맞추기",
+    "en": "Polynomial Regression with scikit-learn PolynomialFeatures",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "특성을 제곱한 열을 만들어 선형 회귀에 넣으면 직선 대신 곡선을 맞출 수 있다는 것을 짧은 코드로 따라 해 본다.",
+    "objectives": [
+      "PolynomialFeatures로 특성 하나에서 제곱 열을 만들고 결과 배열의 열이 무엇인지 읽을 수 있다",
+      "다항 특성을 LinearRegression에 넣어 곡선 모양 데이터에 맞추고 예측값을 그래프로 그려 볼 수 있다",
+      "차수를 1·4·15처럼 바꿔 보며 너무 낮으면 덜 맞고 너무 높으면 과적합되는 것을 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.sklearn-linear-regression",
+      "ml.training.overfitting-idea",
+      "ml.data.matplotlib-first-plot"
+    ],
+    "related": [
+      "ml.data.feature-cross"
+    ],
+    "aliases": [
+      "다항 회귀",
+      "polynomial regression",
+      "다항식 회귀",
+      "곡선 회귀",
+      "polynomial transform",
+      "다항 변환"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/linear_model.html#polynomial-regression-extending-linear-models-with-basis-functions",
+      "https://scikit-learn.org/stable/auto_examples/model_selection/plot_underfitting_overfitting.html",
+      "https://developers.google.com/machine-learning/crash-course/numerical-data/polynomial-transforms"
+    ]
+  },
+  {
     "id": "ml.eval.accuracy",
     "title": "정확도",
     "en": "Accuracy",
@@ -3732,6 +3768,30 @@
     ]
   },
   {
+    "id": "ml.data.polynomial-features",
+    "title": "PolynomialFeatures(다항 특성 만들기)",
+    "en": "scikit-learn PolynomialFeatures Transformer",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "입력 특성의 거듭제곱과 서로 곱한 항을 새 열로 만들어 주는 scikit-learn 변환기로, 기본값에서는 맨 앞에 1로 채운 열도 붙인다.",
+    "parent": "ml.supervised.sklearn-polynomial-regression",
+    "related": [
+      "ml.data.feature-cross"
+    ],
+    "aliases": [
+      "다항 특성",
+      "polynomial features",
+      "다항 특성 변환기",
+      "sklearn.preprocessing.PolynomialFeatures"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/preprocessing.html#polynomial-features",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PolynomialFeatures.html"
+    ]
+  },
+  {
     "id": "ml.supervised.bunch",
     "title": "Bunch(사이킷런 결과 묶음)",
     "en": "Bunch",
@@ -4086,6 +4146,27 @@
     ],
     "refs": [
       "https://scikit-learn.org/stable/modules/generated/sklearn.dummy.DummyClassifier.html"
+    ]
+  },
+  {
+    "id": "ml.data.polynomial-degree",
+    "title": "degree(다항 특성의 최고 차수)",
+    "en": "PolynomialFeatures degree Parameter",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "PolynomialFeatures가 몇 제곱까지 항을 만들지 정하는 인자로, 클수록 곡선이 구불구불해지고 만들어지는 열 수가 빠르게 늘어난다.",
+    "parent": "ml.supervised.sklearn-polynomial-regression",
+    "aliases": [
+      "다항 차수",
+      "polynomial degree",
+      "PolynomialFeatures degree",
+      "다항식 차수"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PolynomialFeatures.html",
+      "https://scikit-learn.org/stable/auto_examples/model_selection/plot_underfitting_overfitting.html"
     ]
   },
   {

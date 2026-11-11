@@ -2609,6 +2609,42 @@
     ]
   },
   {
+    "id": "plan.figma.make-first-app",
+    "title": "Figma Make로 프롬프트에서 첫 앱 시안 만들기",
+    "en": "Building a First App Prototype from a Prompt in Figma Make",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "초안에서 Make 파일을 열어 프롬프트로 앱을 만들고, 미리보기를 다듬은 뒤 링크로 게시하기까지 따라 하는 첫 사용법이다.",
+    "objectives": [
+      "파일 브라우저의 초안에서 Make 파일을 열고 결과·사용자·제약을 담은 첫 프롬프트를 보낼 수 있다",
+      "디자인 프레임을 첨부해 레이아웃부터 기능 순서로 나누어 요청할 수 있다",
+      "미리보기에서 편집 도구나 주석으로 고칠 곳을 집어 수정을 요청할 수 있다",
+      "완성한 앱을 Publish로 figma.site 주소에 올리고 고친 뒤 Update로 반영할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.product-family"
+    ],
+    "related": [
+      "plan.figma.make",
+      "plan.basics.prototype"
+    ],
+    "aliases": [
+      "Figma Make 시작하기",
+      "Make 파일 만들기",
+      "Figma Make 프롬프트",
+      "create a Figma Make file"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/31304485164695-Create-a-Figma-Make-file",
+      "https://help.figma.com/hc/en-us/articles/42009840449175-Edit-a-Figma-Make-file",
+      "https://help.figma.com/hc/en-us/articles/31304586129559-Publish-update-or-unpublish-a-Figma-Make-file"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "plan.figma.slides-deck",
     "title": "Figma Slides로 발표 자료 만들기",
     "en": "Making a Slide Deck in Figma Slides",
@@ -3086,6 +3122,28 @@
     "refs": [
       "https://prototype-kit.service.gov.uk/pass-data/"
     ]
+  },
+  {
+    "id": "plan.figma.make-attach-designs",
+    "title": "Figma Make 프롬프트에 디자인 첨부하기",
+    "en": "Attaching Figma Designs to a Figma Make Prompt",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Add context로 프레임 링크나 레이어를 붙여 Make가 그 디자인을 그대로 또는 스타일 참고로 앱에 옮기게 하는 방법이다.",
+    "parent": "plan.figma.make-first-app",
+    "aliases": [
+      "Make 디자인 첨부",
+      "Make Add context",
+      "Figma 프레임 첨부",
+      "attach designs to Figma Make"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/31304529835671-Attach-files-to-a-prompt-in-the-Figma-agent-and-Figma-Make"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "plan.figma.layout-guides",
@@ -3784,6 +3842,53 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
+  },
+  {
+    "id": "plan.figma.make-edit-tool",
+    "title": "Figma Make 편집 도구와 에이전트용 주석",
+    "en": "Figma Make Edit Tool and Annotations for the Agent",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Make 미리보기에서 요소를 골라 속성 패널로 색·여백·글자를 바꾸거나 위치에 메모를 달아 Apply로 한 번에 반영하는 기능이다.",
+    "parent": "plan.figma.make-first-app",
+    "aliases": [
+      "Make 편집 도구",
+      "Make point and edit",
+      "Annotate for agent",
+      "Make 미리보기 수정"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/42009840449175-Edit-a-Figma-Make-file"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "plan.figma.make-publish",
+    "title": "Figma Make 앱 게시와 업데이트",
+    "en": "Publishing and Updating a Figma Make App",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Make로 만든 앱을 Publish로 figma.site 주소에 올리고, 고친 뒤에는 Update를 눌러야 바뀐 내용이 공개되는 절차다.",
+    "parent": "plan.figma.make-first-app",
+    "related": [
+      "plan.figma.sites"
+    ],
+    "aliases": [
+      "Make 앱 게시",
+      "Figma Make 게시",
+      "Make 게시 취소",
+      "publish Figma Make app"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/31304586129559-Publish-update-or-unpublish-a-Figma-Make-file"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "plan.basics.success-metrics",

@@ -1,5 +1,5 @@
 {
- "version": "0.57.0",
+ "version": "0.58.0",
  "domains": [
   {
    "prefix": "dev",
@@ -2974,6 +2974,43 @@
    "domain": "dev"
   },
   {
+   "id": "dev.basics.vscode-wsl",
+   "title": "VS Code로 WSL 안에서 개발하기",
+   "en": "Developing in WSL with VS Code",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "개발 환경",
+   "summary": "Windows의 VS Code 창에서 WSL 리눅스 안의 폴더를 열어 리눅스 쪽 도구로 코드를 고치고 실행·디버깅한다.",
+   "objectives": [
+    "WSL 확장을 설치하고 WSL 터미널에서 code .으로 리눅스 폴더를 VS Code에 열 수 있다",
+    "왼쪽 아래 원격 표시기로 지금 창이 어느 배포판에 연결됐는지 확인하고 연결을 닫을 수 있다",
+    "WSL 쪽에 파이썬 확장을 설치하고 리눅스의 python3로 스크립트를 실행·디버깅할 수 있다",
+    "WSL: Connect to WSL과 WSL: Reopen Folder in WSL 명령으로 창을 리눅스 쪽에 이을 수 있다"
+   ],
+   "prerequisites": [
+    "ops.linux.wsl-install",
+    "dev.basics.code-editor",
+    "dev.basics.vscode-extensions"
+   ],
+   "related": [
+    "dev.terminal.vscode-terminal",
+    "dev.basics.github-codespaces"
+   ],
+   "aliases": [
+    "VS Code WSL",
+    "WSL 확장",
+    "Remote - WSL",
+    "WSL: Connect to WSL",
+    "WSL에서 VS Code 쓰기"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/remote/wsl-tutorial",
+    "https://code.visualstudio.com/docs/remote/wsl"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.basics.vscode-snippets",
    "title": "VS Code 코드 조각(snippet) 쓰기",
    "en": "Snippets in VS Code",
@@ -3681,6 +3718,30 @@
    "domain": "dev"
   },
   {
+   "id": "dev.basics.vscode-code-command",
+   "title": "code 명령으로 터미널에서 VS Code 열기",
+   "en": "Launching VS Code from the Terminal with the code Command",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "개발 환경",
+   "summary": "터미널에서 code .이나 code 파일이름으로 지금 폴더나 파일을 VS Code에 여는 명령으로, macOS에서는 명령 팔레트로 PATH에 먼저 설치한다.",
+   "related": [
+    "dev.terminal.vscode-terminal"
+   ],
+   "aliases": [
+    "code .",
+    "code 명령어",
+    "Install 'code' command in PATH",
+    "code --diff",
+    "code --goto"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/editor/command-line"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.debug.launch-json",
    "title": "launch.json 디버그 구성",
    "en": "launch.json Debug Configuration",
@@ -4237,6 +4298,27 @@
    ],
    "refs": [
     "https://code.visualstudio.com/docs/configure/profiles"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.vscode-wsl-extensions",
+   "title": "로컬 확장과 WSL 쪽 확장",
+   "en": "Local and WSL-side Extensions in VS Code",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "개발 환경",
+   "summary": "WSL에 연결된 VS Code에서 테마 같은 UI 확장은 Windows 쪽에, 언어 지원 같은 대부분의 확장은 리눅스 쪽 서버에 따로 설치되어 돌아간다.",
+   "parent": "dev.basics.vscode-wsl",
+   "aliases": [
+    "WSL 쪽 확장 설치",
+    "Install Local Extensions in WSL",
+    "remote.extensionKind",
+    "UI 확장과 작업 영역 확장"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/remote/wsl"
    ],
    "domain": "dev"
   },
@@ -15882,6 +15964,43 @@
    "domain": "plan"
   },
   {
+   "id": "plan.figma.make-first-app",
+   "title": "Figma Make로 프롬프트에서 첫 앱 시안 만들기",
+   "en": "Building a First App Prototype from a Prompt in Figma Make",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "초안에서 Make 파일을 열어 프롬프트로 앱을 만들고, 미리보기를 다듬은 뒤 링크로 게시하기까지 따라 하는 첫 사용법이다.",
+   "objectives": [
+    "파일 브라우저의 초안에서 Make 파일을 열고 결과·사용자·제약을 담은 첫 프롬프트를 보낼 수 있다",
+    "디자인 프레임을 첨부해 레이아웃부터 기능 순서로 나누어 요청할 수 있다",
+    "미리보기에서 편집 도구나 주석으로 고칠 곳을 집어 수정을 요청할 수 있다",
+    "완성한 앱을 Publish로 figma.site 주소에 올리고 고친 뒤 Update로 반영할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.product-family"
+   ],
+   "related": [
+    "plan.figma.make",
+    "plan.basics.prototype"
+   ],
+   "aliases": [
+    "Figma Make 시작하기",
+    "Make 파일 만들기",
+    "Figma Make 프롬프트",
+    "create a Figma Make file"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/31304485164695-Create-a-Figma-Make-file",
+    "https://help.figma.com/hc/en-us/articles/42009840449175-Edit-a-Figma-Make-file",
+    "https://help.figma.com/hc/en-us/articles/31304586129559-Publish-update-or-unpublish-a-Figma-Make-file"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.slides-deck",
    "title": "Figma Slides로 발표 자료 만들기",
    "en": "Making a Slide Deck in Figma Slides",
@@ -16381,6 +16500,29 @@
    "refs": [
     "https://prototype-kit.service.gov.uk/pass-data/"
    ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.make-attach-designs",
+   "title": "Figma Make 프롬프트에 디자인 첨부하기",
+   "en": "Attaching Figma Designs to a Figma Make Prompt",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "Add context로 프레임 링크나 레이어를 붙여 Make가 그 디자인을 그대로 또는 스타일 참고로 앱에 옮기게 하는 방법이다.",
+   "parent": "plan.figma.make-first-app",
+   "aliases": [
+    "Make 디자인 첨부",
+    "Make Add context",
+    "Figma 프레임 첨부",
+    "attach designs to Figma Make"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/31304529835671-Attach-files-to-a-prompt-in-the-Figma-agent-and-Figma-Make"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "plan"
   },
   {
@@ -17113,6 +17255,55 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-11",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.make-edit-tool",
+   "title": "Figma Make 편집 도구와 에이전트용 주석",
+   "en": "Figma Make Edit Tool and Annotations for the Agent",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "Make 미리보기에서 요소를 골라 속성 패널로 색·여백·글자를 바꾸거나 위치에 메모를 달아 Apply로 한 번에 반영하는 기능이다.",
+   "parent": "plan.figma.make-first-app",
+   "aliases": [
+    "Make 편집 도구",
+    "Make point and edit",
+    "Annotate for agent",
+    "Make 미리보기 수정"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/42009840449175-Edit-a-Figma-Make-file"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.make-publish",
+   "title": "Figma Make 앱 게시와 업데이트",
+   "en": "Publishing and Updating a Figma Make App",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "Make로 만든 앱을 Publish로 figma.site 주소에 올리고, 고친 뒤에는 Update를 눌러야 바뀐 내용이 공개되는 절차다.",
+   "parent": "plan.figma.make-first-app",
+   "related": [
+    "plan.figma.sites"
+   ],
+   "aliases": [
+    "Make 앱 게시",
+    "Figma Make 게시",
+    "Make 게시 취소",
+    "publish Figma Make app"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/31304586129559-Publish-update-or-unpublish-a-Figma-Make-file"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "plan"
   },
   {
@@ -22680,6 +22871,45 @@
    "domain": "be"
   },
   {
+   "id": "be.basics.python-http-server",
+   "title": "python -m http.server로 파일 서버 띄우기",
+   "en": "Serving Files with python -m http.server",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "백엔드 기초",
+   "summary": "파이썬 표준 라이브러리 명령 한 줄로 현재 폴더의 파일을 localhost:8000에서 내주는 연습용 웹 서버를 띄운다.",
+   "objectives": [
+    "python3 -m http.server로 폴더를 내주고 브라우저에서 localhost:8000으로 열어 볼 수 있다",
+    "포트 번호와 --directory 옵션을 바꿔 서버를 다시 띄울 수 있다",
+    "file:// 주소로 여는 것과 로컬 서버로 여는 것의 차이를 설명할 수 있다",
+    "기본으로 모든 네트워크 주소에서 접속을 받는다는 것을 알고 --bind 127.0.0.1로 내 컴퓨터에서만 열며, 이 서버를 실제 서비스에 쓰면 안 되는 이유를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "be.basics.web-server-idea",
+    "be.basics.localhost-port",
+    "be.python.first-run"
+   ],
+   "related": [
+    "be.basics.static-website",
+    "ops.network.bind-address",
+    "fe.html.first-page"
+   ],
+   "aliases": [
+    "python -m http.server",
+    "python3 -m http.server",
+    "파이썬 간이 웹 서버",
+    "로컬 테스트 서버",
+    "local testing server",
+    "http.server 모듈"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/http.server.html",
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Tools_and_setup/set_up_a_local_testing_server"
+   ],
+   "domain": "be"
+  },
+  {
    "id": "be.python.pep8-style",
    "title": "읽기 좋은 파이썬 코드 쓰기",
    "en": "Readable Python Style",
@@ -23440,6 +23670,31 @@
    "domain": "be"
   },
   {
+   "id": "be.basics.directory-listing",
+   "title": "디렉터리 목록 페이지",
+   "en": "Web Server Directory Listing",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "백엔드 기초",
+   "summary": "폴더 주소로 요청했는데 index.html이 없을 때 웹 서버가 그 폴더의 파일 이름들을 대신 보여 주는 페이지로, 공개 서버에서는 꺼 두는 것이 원칙이다.",
+   "parent": "be.basics.python-http-server",
+   "related": [
+    "be.security.web-security-idea"
+   ],
+   "aliases": [
+    "디렉터리 리스팅",
+    "폴더 목록 페이지",
+    "directory listing page",
+    "디렉터리 인덱싱"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/http.server.html#http.server.SimpleHTTPRequestHandler.do_GET",
+    "https://top10.owasp.org/2025/A02_2025-Security_Misconfiguration"
+   ],
+   "domain": "be"
+  },
+  {
    "id": "be.python.top-level-code",
    "title": "최상위 코드 환경",
    "en": "Top-level Code Environment",
@@ -23534,6 +23789,25 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-11",
+   "domain": "be"
+  },
+  {
+   "id": "be.basics.simple-http-request-handler",
+   "title": "SimpleHTTPRequestHandler",
+   "en": "http.server SimpleHTTPRequestHandler",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "백엔드 기초",
+   "summary": "http.server에서 요청 주소에 맞는 파일을 지정한 폴더에서 찾아 돌려주고, 없으면 404를 보내는 기본 요청 처리 클래스다.",
+   "parent": "be.basics.python-http-server",
+   "aliases": [
+    "SimpleHTTPRequestHandler 클래스",
+    "http.server 파일 핸들러"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/http.server.html#http.server.SimpleHTTPRequestHandler"
+   ],
    "domain": "be"
   },
   {
@@ -54056,6 +54330,44 @@
    "domain": "rag"
   },
   {
+   "id": "rag.agent.claude-agent-sdk-custom-tools",
+   "title": "Claude Agent SDK에 커스텀 도구 붙이기",
+   "en": "Custom Tools in the Claude Agent SDK",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "내가 짠 파이썬 함수를 @tool로 도구로 만들고 앱 안에서 도는 MCP 서버에 묶어 Claude Agent SDK 에이전트가 부르게 하는 실습이다.",
+   "objectives": [
+    "claude_agent_sdk의 @tool에 이름·설명·입력 스키마를 주고 content 목록을 돌려주는 비동기 처리 함수를 쓸 수 있다",
+    "create_sdk_mcp_server로 도구를 서버에 묶어 ClaudeAgentOptions의 mcp_servers에 넘길 수 있다",
+    "mcp__서버__도구 형식의 이름을 allowed_tools에 적어 도구 호출을 미리 허용할 수 있다",
+    "처리 함수에서 실패를 is_error 결과로 돌려주어 Claude가 오류 내용을 읽게 할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.claude-agent-sdk-quickstart",
+    "rag.basics.tool-use-idea"
+   ],
+   "related": [
+    "rag.agent.first-agent",
+    "rag.agent.openai-agents-function-tool",
+    "rag.agent.mcp-build-server"
+   ],
+   "aliases": [
+    "Agent SDK 커스텀 도구",
+    "Agent SDK custom tools",
+    "Claude Agent SDK 도구 만들기",
+    "claude_agent_sdk tool 데코레이터"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/agent-sdk/custom-tools",
+    "https://code.claude.com/docs/en/agent-sdk/mcp"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
    "id": "rag.retrieval.llamaindex-install",
    "title": "LlamaIndex 설치와 패키지 구성",
    "en": "Installing LlamaIndex and Its Packages",
@@ -54805,6 +55117,63 @@
    "domain": "rag"
   },
   {
+   "id": "rag.agent.sdk-mcp-server",
+   "title": "SDK MCP 서버(인프로세스 MCP 서버)",
+   "en": "SDK MCP Server (In-Process MCP Server)",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "create_sdk_mcp_server로 만든, 별도 프로세스 없이 내 앱 안에서 도는 MCP 서버로 Claude Agent SDK에 커스텀 도구를 넘기는 통로다.",
+   "parent": "rag.agent.claude-agent-sdk-custom-tools",
+   "related": [
+    "rag.agent.mcp-server",
+    "rag.agent.mcp-build-server"
+   ],
+   "aliases": [
+    "create_sdk_mcp_server",
+    "createSdkMcpServer",
+    "인프로세스 MCP 서버",
+    "in-process MCP server"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/agent-sdk/custom-tools",
+    "https://code.claude.com/docs/en/agent-sdk/mcp"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-tool-full-name",
+   "title": "MCP 도구 전체 이름(mcp__서버__도구)",
+   "en": "MCP Tool Naming Convention (mcp__server__tool)",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "Claude Agent SDK에서 MCP 도구를 mcp__ 뒤에 서버 등록 이름과 도구 이름을 붙여 부르는 규칙으로, 허용 목록에 이 이름이나 와일드카드를 적는다.",
+   "parent": "rag.agent.claude-agent-sdk-custom-tools",
+   "related": [
+    "rag.agent.claude-agent-options",
+    "ax.coding.permission-rules"
+   ],
+   "aliases": [
+    "mcp__ 접두사",
+    "MCP 도구 이름 규칙",
+    "MCP tool naming convention",
+    "mcp__server__tool",
+    "MCP 도구 와일드카드"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/agent-sdk/mcp",
+    "https://code.claude.com/docs/en/agent-sdk/custom-tools"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
    "id": "rag.agent.model-router",
    "title": "모델 라우터(OpenRouter·LiteLLM)",
    "en": "Model Router",
@@ -55427,6 +55796,34 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-tool-annotations",
+   "title": "MCP 도구 주석(readOnlyHint 등)",
+   "en": "MCP Tool Annotations",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "도구가 읽기만 하는지, 지우거나 바꿀 수 있는지, 바깥 시스템에 닿는지를 참·거짓 힌트로 적어 두는 MCP 도구의 선택 정보로, 실제로 막아 주지는 않는다.",
+   "parent": "rag.agent.claude-agent-sdk-custom-tools",
+   "related": [
+    "rag.agent.mcp-tool"
+   ],
+   "aliases": [
+    "tool annotations",
+    "도구 주석",
+    "readOnlyHint",
+    "destructiveHint",
+    "ToolAnnotations"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/specification/2025-06-18/server/tools",
+    "https://code.claude.com/docs/en/agent-sdk/custom-tools"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "rag"
   },
   {
@@ -75031,6 +75428,43 @@
    "domain": "ml"
   },
   {
+   "id": "ml.supervised.sklearn-polynomial-regression",
+   "title": "scikit-learn으로 다항 회귀: 곡선 맞추기",
+   "en": "Polynomial Regression with scikit-learn PolynomialFeatures",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "특성을 제곱한 열을 만들어 선형 회귀에 넣으면 직선 대신 곡선을 맞출 수 있다는 것을 짧은 코드로 따라 해 본다.",
+   "objectives": [
+    "PolynomialFeatures로 특성 하나에서 제곱 열을 만들고 결과 배열의 열이 무엇인지 읽을 수 있다",
+    "다항 특성을 LinearRegression에 넣어 곡선 모양 데이터에 맞추고 예측값을 그래프로 그려 볼 수 있다",
+    "차수를 1·4·15처럼 바꿔 보며 너무 낮으면 덜 맞고 너무 높으면 과적합되는 것을 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.supervised.sklearn-linear-regression",
+    "ml.training.overfitting-idea",
+    "ml.data.matplotlib-first-plot"
+   ],
+   "related": [
+    "ml.data.feature-cross"
+   ],
+   "aliases": [
+    "다항 회귀",
+    "polynomial regression",
+    "다항식 회귀",
+    "곡선 회귀",
+    "polynomial transform",
+    "다항 변환"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/linear_model.html#polynomial-regression-extending-linear-models-with-basis-functions",
+    "https://scikit-learn.org/stable/auto_examples/model_selection/plot_underfitting_overfitting.html",
+    "https://developers.google.com/machine-learning/crash-course/numerical-data/polynomial-transforms"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.eval.accuracy",
    "title": "정확도",
    "en": "Accuracy",
@@ -75951,6 +76385,31 @@
    "domain": "ml"
   },
   {
+   "id": "ml.data.polynomial-features",
+   "title": "PolynomialFeatures(다항 특성 만들기)",
+   "en": "scikit-learn PolynomialFeatures Transformer",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "입력 특성의 거듭제곱과 서로 곱한 항을 새 열로 만들어 주는 scikit-learn 변환기로, 기본값에서는 맨 앞에 1로 채운 열도 붙인다.",
+   "parent": "ml.supervised.sklearn-polynomial-regression",
+   "related": [
+    "ml.data.feature-cross"
+   ],
+   "aliases": [
+    "다항 특성",
+    "polynomial features",
+    "다항 특성 변환기",
+    "sklearn.preprocessing.PolynomialFeatures"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/preprocessing.html#polynomial-features",
+    "https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PolynomialFeatures.html"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.supervised.bunch",
    "title": "Bunch(사이킷런 결과 묶음)",
    "en": "Bunch",
@@ -76321,6 +76780,28 @@
    ],
    "refs": [
     "https://scikit-learn.org/stable/modules/generated/sklearn.dummy.DummyClassifier.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.polynomial-degree",
+   "title": "degree(다항 특성의 최고 차수)",
+   "en": "PolynomialFeatures degree Parameter",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "PolynomialFeatures가 몇 제곱까지 항을 만들지 정하는 인자로, 클수록 곡선이 구불구불해지고 만들어지는 열 수가 빠르게 늘어난다.",
+   "parent": "ml.supervised.sklearn-polynomial-regression",
+   "aliases": [
+    "다항 차수",
+    "polynomial degree",
+    "PolynomialFeatures degree",
+    "다항식 차수"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PolynomialFeatures.html",
+    "https://scikit-learn.org/stable/auto_examples/model_selection/plot_underfitting_overfitting.html"
    ],
    "domain": "ml"
   },

@@ -2609,6 +2609,42 @@
     ]
   },
   {
+    "id": "dev.basics.vscode-wsl",
+    "title": "VS Code로 WSL 안에서 개발하기",
+    "en": "Developing in WSL with VS Code",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "개발 환경",
+    "summary": "Windows의 VS Code 창에서 WSL 리눅스 안의 폴더를 열어 리눅스 쪽 도구로 코드를 고치고 실행·디버깅한다.",
+    "objectives": [
+      "WSL 확장을 설치하고 WSL 터미널에서 code .으로 리눅스 폴더를 VS Code에 열 수 있다",
+      "왼쪽 아래 원격 표시기로 지금 창이 어느 배포판에 연결됐는지 확인하고 연결을 닫을 수 있다",
+      "WSL 쪽에 파이썬 확장을 설치하고 리눅스의 python3로 스크립트를 실행·디버깅할 수 있다",
+      "WSL: Connect to WSL과 WSL: Reopen Folder in WSL 명령으로 창을 리눅스 쪽에 이을 수 있다"
+    ],
+    "prerequisites": [
+      "ops.linux.wsl-install",
+      "dev.basics.code-editor",
+      "dev.basics.vscode-extensions"
+    ],
+    "related": [
+      "dev.terminal.vscode-terminal",
+      "dev.basics.github-codespaces"
+    ],
+    "aliases": [
+      "VS Code WSL",
+      "WSL 확장",
+      "Remote - WSL",
+      "WSL: Connect to WSL",
+      "WSL에서 VS Code 쓰기"
+    ],
+    "refs": [
+      "https://code.visualstudio.com/docs/remote/wsl-tutorial",
+      "https://code.visualstudio.com/docs/remote/wsl"
+    ]
+  },
+  {
     "id": "dev.basics.vscode-snippets",
     "title": "VS Code 코드 조각(snippet) 쓰기",
     "en": "Snippets in VS Code",
@@ -3284,6 +3320,29 @@
     ]
   },
   {
+    "id": "dev.basics.vscode-code-command",
+    "title": "code 명령으로 터미널에서 VS Code 열기",
+    "en": "Launching VS Code from the Terminal with the code Command",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "개발 환경",
+    "summary": "터미널에서 code .이나 code 파일이름으로 지금 폴더나 파일을 VS Code에 여는 명령으로, macOS에서는 명령 팔레트로 PATH에 먼저 설치한다.",
+    "related": [
+      "dev.terminal.vscode-terminal"
+    ],
+    "aliases": [
+      "code .",
+      "code 명령어",
+      "Install 'code' command in PATH",
+      "code --diff",
+      "code --goto"
+    ],
+    "refs": [
+      "https://code.visualstudio.com/docs/editor/command-line"
+    ]
+  },
+  {
     "id": "dev.debug.launch-json",
     "title": "launch.json 디버그 구성",
     "en": "launch.json Debug Configuration",
@@ -3815,6 +3874,26 @@
     ],
     "refs": [
       "https://code.visualstudio.com/docs/configure/profiles"
+    ]
+  },
+  {
+    "id": "dev.basics.vscode-wsl-extensions",
+    "title": "로컬 확장과 WSL 쪽 확장",
+    "en": "Local and WSL-side Extensions in VS Code",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "개발 환경",
+    "summary": "WSL에 연결된 VS Code에서 테마 같은 UI 확장은 Windows 쪽에, 언어 지원 같은 대부분의 확장은 리눅스 쪽 서버에 따로 설치되어 돌아간다.",
+    "parent": "dev.basics.vscode-wsl",
+    "aliases": [
+      "WSL 쪽 확장 설치",
+      "Install Local Extensions in WSL",
+      "remote.extensionKind",
+      "UI 확장과 작업 영역 확장"
+    ],
+    "refs": [
+      "https://code.visualstudio.com/docs/remote/wsl"
     ]
   },
   {

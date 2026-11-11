@@ -2719,6 +2719,44 @@
     ]
   },
   {
+    "id": "be.basics.python-http-server",
+    "title": "python -m http.server로 파일 서버 띄우기",
+    "en": "Serving Files with python -m http.server",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "백엔드 기초",
+    "summary": "파이썬 표준 라이브러리 명령 한 줄로 현재 폴더의 파일을 localhost:8000에서 내주는 연습용 웹 서버를 띄운다.",
+    "objectives": [
+      "python3 -m http.server로 폴더를 내주고 브라우저에서 localhost:8000으로 열어 볼 수 있다",
+      "포트 번호와 --directory 옵션을 바꿔 서버를 다시 띄울 수 있다",
+      "file:// 주소로 여는 것과 로컬 서버로 여는 것의 차이를 설명할 수 있다",
+      "기본으로 모든 네트워크 주소에서 접속을 받는다는 것을 알고 --bind 127.0.0.1로 내 컴퓨터에서만 열며, 이 서버를 실제 서비스에 쓰면 안 되는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "be.basics.web-server-idea",
+      "be.basics.localhost-port",
+      "be.python.first-run"
+    ],
+    "related": [
+      "be.basics.static-website",
+      "ops.network.bind-address",
+      "fe.html.first-page"
+    ],
+    "aliases": [
+      "python -m http.server",
+      "python3 -m http.server",
+      "파이썬 간이 웹 서버",
+      "로컬 테스트 서버",
+      "local testing server",
+      "http.server 모듈"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/http.server.html",
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Tools_and_setup/set_up_a_local_testing_server"
+    ]
+  },
+  {
     "id": "be.python.pep8-style",
     "title": "읽기 좋은 파이썬 코드 쓰기",
     "en": "Readable Python Style",
@@ -3433,6 +3471,30 @@
     ]
   },
   {
+    "id": "be.basics.directory-listing",
+    "title": "디렉터리 목록 페이지",
+    "en": "Web Server Directory Listing",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "백엔드 기초",
+    "summary": "폴더 주소로 요청했는데 index.html이 없을 때 웹 서버가 그 폴더의 파일 이름들을 대신 보여 주는 페이지로, 공개 서버에서는 꺼 두는 것이 원칙이다.",
+    "parent": "be.basics.python-http-server",
+    "related": [
+      "be.security.web-security-idea"
+    ],
+    "aliases": [
+      "디렉터리 리스팅",
+      "폴더 목록 페이지",
+      "directory listing page",
+      "디렉터리 인덱싱"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/http.server.html#http.server.SimpleHTTPRequestHandler.do_GET",
+      "https://top10.owasp.org/2025/A02_2025-Security_Misconfiguration"
+    ]
+  },
+  {
     "id": "be.python.top-level-code",
     "title": "최상위 코드 환경",
     "en": "Top-level Code Environment",
@@ -3523,6 +3585,24 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
+  },
+  {
+    "id": "be.basics.simple-http-request-handler",
+    "title": "SimpleHTTPRequestHandler",
+    "en": "http.server SimpleHTTPRequestHandler",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "백엔드 기초",
+    "summary": "http.server에서 요청 주소에 맞는 파일을 지정한 폴더에서 찾아 돌려주고, 없으면 404를 보내는 기본 요청 처리 클래스다.",
+    "parent": "be.basics.python-http-server",
+    "aliases": [
+      "SimpleHTTPRequestHandler 클래스",
+      "http.server 파일 핸들러"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/http.server.html#http.server.SimpleHTTPRequestHandler"
+    ]
   },
   {
     "id": "be.rest.resource-design",
