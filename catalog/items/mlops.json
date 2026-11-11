@@ -219,6 +219,77 @@
     ]
   },
   {
+    "id": "mlops.track.versioning-picture",
+    "title": "모델·프롬프트 버전 관리의 큰 그림",
+    "en": "The Big Picture of Model and Prompt Versioning",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "모델과 프롬프트를 고칠 때마다 번호를 붙여 따로 보관하고 이름표로 지금 쓸 판을 가리켜, 문제가 생기면 예전 판으로 바로 돌아갈 수 있게 하는 일이다.",
+    "objectives": [
+      "모델·프롬프트 버전 관리를 요리책의 판본과 책갈피에 빗대어 설명할 수 있다",
+      "이미 만든 판을 고쳐 쓰지 않고 새 번호를 붙이는 이유를 말할 수 있다",
+      "이름표를 예전 판으로 옮기면 서비스 코드를 고치지 않고도 되돌릴 수 있다는 흐름을 그림으로 그릴 수 있다",
+      "각 판이 어떤 데이터와 설정에서 나왔는지 기록해 두어야 하는 이유를 예를 들어 말할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.basics.what-is-mlops",
+      "dev.git.why-version-control"
+    ],
+    "related": [
+      "mlops.track.model-registry",
+      "mlops.prompt.registry",
+      "mlops.prompt.version"
+    ],
+    "aliases": [
+      "모델 버전 관리",
+      "model versioning",
+      "ML 버전 관리",
+      "프롬프트 버전 관리 입문"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/ml/model-registry/",
+      "https://mlflow.org/docs/latest/genai/prompt-registry/"
+    ]
+  },
+  {
+    "id": "mlops.serve.safe-release-picture",
+    "title": "새 모델 조심스럽게 내놓기: 오프라인·온라인 검증",
+    "en": "Releasing a New Model Safely: Offline and Online Validation",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "새 모델을 먼저 시험 문제로 재 보고, 통과하면 실제 사용자 일부에게만 써 보게 한 뒤 문제가 없을 때 전체로 넓히는 출시 순서다.",
+    "objectives": [
+      "새 모델 출시를 식당 신메뉴의 주방 시식과 일부 손님 시식회에 빗대어 설명할 수 있다",
+      "시험 문제로 재는 오프라인 검증과 실제 사용자 요청으로 보는 온라인 검증의 차이를 말할 수 있다",
+      "새 모델을 처음부터 모든 사용자에게 내놓지 않고 일부에게 먼저 내놓는 이유를 말할 수 있다",
+      "새 모델을 지금 쓰는 모델과 나란히 비교해야 하는 이유를 예를 들어 말할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.eval.why-evaluate",
+      "ops.basics.what-is-deploy"
+    ],
+    "related": [
+      "mlops.serve.pre-serving-validation",
+      "ops.deploy.zero-downtime",
+      "mlops.serve.traffic-split"
+    ],
+    "aliases": [
+      "모델 출시 검증",
+      "model rollout validation",
+      "온라인 모델 검증",
+      "online model validation",
+      "모델 안전 출시"
+    ],
+    "refs": [
+      "https://docs.cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning",
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
+    ]
+  },
+  {
     "id": "mlops.guardrail.guardrail",
     "title": "가드레일",
     "en": "Guardrails",
@@ -410,6 +481,152 @@
     ],
     "refs": [
       "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests"
+    ]
+  },
+  {
+    "id": "mlops.track.model-version",
+    "title": "등록 모델 버전",
+    "en": "Registered Model Version",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "같은 이름으로 모델을 새로 등록할 때마다 1, 2, 3처럼 차례로 붙는 번호로, 판마다 따로 남아 서로 비교하고 고를 수 있다.",
+    "parent": "mlops.track.versioning-picture",
+    "related": [
+      "mlops.prompt.version",
+      "mlops.track.model-registry"
+    ],
+    "aliases": [
+      "registered model version",
+      "MLflow 모델 버전",
+      "등록 모델 버전 번호",
+      "모델 판본"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/ml/model-registry/"
+    ]
+  },
+  {
+    "id": "mlops.track.model-alias",
+    "title": "모델 버전 별칭(champion 이름표)",
+    "en": "Registered Model Alias",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "champion처럼 이름을 붙여 특정 모델 버전을 가리키는 바꿔 달 수 있는 이름표로, 이름표만 옮기면 서비스가 쓰는 판이 코드 수정 없이 바뀐다.",
+    "parent": "mlops.track.versioning-picture",
+    "related": [
+      "mlops.prompt.alias",
+      "llm.api.model-alias"
+    ],
+    "aliases": [
+      "champion 별칭",
+      "MLflow 모델 별칭",
+      "registered model alias",
+      "모델 버전 이름표"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/ml/model-registry/"
+    ]
+  },
+  {
+    "id": "mlops.serve.model-ab-test",
+    "title": "모델 A/B 테스트",
+    "en": "A/B Testing a New ML Model",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "사용자를 두 무리로 나눠 한쪽은 지금 모델, 다른 쪽은 새 모델을 쓰게 하고 실제 반응을 비교해 어느 쪽이 나은지 가리는 온라인 실험이다.",
+    "parent": "mlops.serve.safe-release-picture",
+    "related": [
+      "mlops.serve.traffic-split",
+      "mlops.observe.real-world-metric",
+      "mlops.eval.baseline-model"
+    ],
+    "aliases": [
+      "model A/B test",
+      "모델 AB 테스트",
+      "모델 온라인 실험",
+      "A/B testing for models"
+    ],
+    "refs": [
+      "https://docs.cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning"
+    ]
+  },
+  {
+    "id": "mlops.serve.canary-release",
+    "title": "카나리 출시(새 모델을 일부 요청에 먼저)",
+    "en": "Canary Release of an ML Model",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "새 모델에게 실제 요청의 작은 몫만 먼저 맡겨 보고, 문제가 없을 때 맡기는 몫을 늘려 전체로 바꾸는 조심스러운 출시 방법이다.",
+    "parent": "mlops.serve.safe-release-picture",
+    "related": [
+      "ops.deploy.zero-downtime",
+      "mlops.serve.model-ab-test"
+    ],
+    "aliases": [
+      "모델 카나리",
+      "canary model release",
+      "점진적 모델 출시",
+      "모델 단계적 출시"
+    ],
+    "refs": [
+      "https://docs.cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning",
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
+    ]
+  },
+  {
+    "id": "mlops.basics.ml-ci",
+    "title": "ML의 지속적 통합(데이터·모델까지 시험)",
+    "en": "Continuous Integration for ML Systems",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "코드를 바꿀 때마다 코드뿐 아니라 데이터 규칙과 모델이 제대로 배우는지까지 자동으로 시험해, 고장 난 변경이 파이프라인에 섞이지 않게 하는 일이다.",
+    "related": [
+      "ops.ci.continuous-integration",
+      "mlops.basics.ml-cd",
+      "mlops.basics.continuous-training"
+    ],
+    "aliases": [
+      "ML CI",
+      "CI for ML",
+      "ML 지속적 통합",
+      "MLOps CI"
+    ],
+    "refs": [
+      "https://docs.cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning"
+    ]
+  },
+  {
+    "id": "mlops.basics.ml-cd",
+    "title": "ML의 지속적 배포(파이프라인째 내놓기)",
+    "en": "Continuous Delivery for ML Systems",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "프로그램 하나가 아니라 모델을 다시 가르치고 내놓는 학습 파이프라인 자체를 자동으로 내보내, 그 파이프라인이 새 모델을 계속 서비스하게 하는 일이다.",
+    "related": [
+      "ops.ci.continuous-deployment",
+      "mlops.basics.ml-ci",
+      "mlops.basics.continuous-training"
+    ],
+    "aliases": [
+      "ML CD",
+      "CD for ML",
+      "ML 지속적 배포",
+      "MLOps CD"
+    ],
+    "refs": [
+      "https://docs.cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning"
     ]
   },
   {
@@ -709,6 +926,99 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
+  },
+  {
+    "id": "mlops.track.model-lineage",
+    "title": "모델 계보(lineage)",
+    "en": "Model Lineage",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "어느 모델 판이 어떤 데이터·설정·학습 실행에서 나왔는지 거슬러 올라갈 수 있게 이어 둔 기록으로, 문제가 생긴 판의 원인을 찾을 때 쓴다.",
+    "parent": "mlops.track.versioning-picture",
+    "related": [
+      "mlops.observe.experiment-tracking",
+      "mlops.basics.ml-metadata-store"
+    ],
+    "aliases": [
+      "모델 계보",
+      "model lineage",
+      "ML lineage",
+      "모델 이력 추적"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/ml/model-registry/"
+    ]
+  },
+  {
+    "id": "mlops.basics.feature-store",
+    "title": "피처 스토어(특성 저장소)",
+    "en": "Feature Store",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "모델에 넣을 특성 값을 한곳에 정의해 모아 두고 학습 때와 서비스 때 같은 값을 꺼내 쓰게 해, 두 때의 재료가 어긋나지 않게 하는 공용 창고다.",
+    "related": [
+      "ml.data.training-serving-skew",
+      "ml.basics.feature-label"
+    ],
+    "aliases": [
+      "피처 스토어",
+      "feature store",
+      "특성 저장소",
+      "피처 저장소"
+    ],
+    "refs": [
+      "https://docs.cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning"
+    ]
+  },
+  {
+    "id": "mlops.basics.ml-metadata-store",
+    "title": "ML 메타데이터 저장소",
+    "en": "ML Metadata Store",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "ML 파이프라인을 돌릴 때마다 누가 언제 어떤 설정으로 돌렸고 무엇이 만들어졌는지 남겨, 비교·되돌리기·원인 찾기에 쓰는 실행 기록장이다.",
+    "related": [
+      "mlops.observe.experiment-tracking",
+      "mlops.track.model-lineage",
+      "mlops.basics.ml-pipeline"
+    ],
+    "aliases": [
+      "ML 메타데이터",
+      "ML metadata",
+      "ML metadata store",
+      "파이프라인 실행 기록"
+    ],
+    "refs": [
+      "https://docs.cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning"
+    ]
+  },
+  {
+    "id": "mlops.basics.experimental-operational-symmetry",
+    "title": "실험-운영 대칭",
+    "en": "Experimental-Operational Symmetry",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "개발하며 실험할 때 쓰던 파이프라인을 운영 직전 단계와 실제 운영에서도 똑같이 써서, 실험 결과와 실제 서비스가 어긋나지 않게 하는 원칙이다.",
+    "related": [
+      "mlops.basics.automation-levels",
+      "mlops.basics.ml-pipeline"
+    ],
+    "aliases": [
+      "실험 운영 대칭",
+      "experimental-operational symmetry",
+      "개발 운영 같은 파이프라인"
+    ],
+    "refs": [
+      "https://docs.cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning"
+    ]
   },
   {
     "id": "mlops.eval.first-eval",

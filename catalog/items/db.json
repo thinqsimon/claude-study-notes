@@ -312,6 +312,102 @@
     ]
   },
   {
+    "id": "db.nosql.nosql-types-idea",
+    "title": "NoSQL 종류: 표 말고 다른 모양으로 담기",
+    "en": "Types of NoSQL Databases",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "NoSQL",
+    "summary": "키와 값·문서·그래프·넓은 열처럼 쓰임에 맞춘 모양으로 자료를 담는 비관계형 데이터베이스의 큰 그림이다.",
+    "objectives": [
+      "표로 담는 방식과 문서 하나에 한데 담는 방식의 차이를 책 정보 예로 설명할 수 있다",
+      "키-값·문서·그래프·넓은 열 데이터베이스가 각각 어떤 자료에 어울리는지 비유로 말할 수 있다",
+      "한 서비스가 관계형 DB와 NoSQL을 함께 쓰기도 한다는 것을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "db.basics.what-is-database",
+      "db.basics.table-row-column"
+    ],
+    "related": [
+      "db.basics.relational-database",
+      "db.basics.data-modeling-idea"
+    ],
+    "aliases": [
+      "NoSQL 종류",
+      "NoSQL 유형",
+      "types of NoSQL databases",
+      "비관계형 데이터베이스 종류",
+      "non-relational database types"
+    ],
+    "refs": [
+      "https://aws.amazon.com/nosql/"
+    ]
+  },
+  {
+    "id": "db.internals.index-idea",
+    "title": "인덱스: 책 뒤의 찾아보기",
+    "en": "The Idea of a Database Index",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "DB 내부",
+    "summary": "표를 처음부터 다 읽지 않고 원하는 행으로 바로 가도록 따로 만들어 두는 찾아보기 목록이다.",
+    "objectives": [
+      "인덱스가 하는 일을 책 뒤 찾아보기에 빗대어 설명할 수 있다",
+      "인덱스가 없을 때 큰 표에서 찾기가 느린 이유를 말할 수 있다",
+      "자료를 넣고 고칠 때 인덱스도 함께 고쳐야 해서 드는 비용을 비유로 말할 수 있다"
+    ],
+    "prerequisites": [
+      "db.basics.table-row-column",
+      "db.basics.what-is-sql"
+    ],
+    "related": [
+      "db.internals.index"
+    ],
+    "aliases": [
+      "인덱스 개념",
+      "index basics",
+      "DB 색인",
+      "데이터베이스 색인",
+      "찾아보기 비유"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/indexes-intro.html"
+    ]
+  },
+  {
+    "id": "db.data.etl-idea",
+    "title": "ETL: 모으고 다듬어 한곳에 싣기",
+    "en": "ETL: Extract, Transform, Load",
+    "kind": "topic",
+    "level": 1,
+    "importance": 3,
+    "group": "데이터 수집과 가공",
+    "summary": "여러 곳의 자료를 뽑아 오고 분석하기 좋게 다듬은 뒤 한 저장소에 옮겨 싣는 세 단계 흐름이다.",
+    "objectives": [
+      "추출·변환·적재 세 단계를 장보기와 손질과 냉장고 정리에 빗대어 설명할 수 있다",
+      "여러 곳의 자료를 한곳에 모아 분석하는 이유를 말할 수 있다",
+      "ETL과 먼저 싣고 나중에 다듬는 ELT의 순서 차이를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "db.basics.what-is-database",
+      "db.basics.csv-idea"
+    ],
+    "related": [
+      "mlops.basics.ml-pipeline"
+    ],
+    "aliases": [
+      "ETL",
+      "추출 변환 적재",
+      "extract transform load",
+      "ETL 과정"
+    ],
+    "refs": [
+      "https://aws.amazon.com/what-is/etl/"
+    ]
+  },
+  {
     "id": "db.basics.relational-database",
     "title": "관계형 데이터베이스",
     "en": "Relational Database",
@@ -628,6 +724,58 @@
     ]
   },
   {
+    "id": "db.nosql.flexible-schema",
+    "title": "유연한 스키마: 문서마다 칸이 달라도 되는 것",
+    "en": "Flexible Schema in Document Databases",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "NoSQL",
+    "summary": "한 컬렉션 안의 문서들이 같은 칸을 꼭 갖지 않아도 되어 새 칸을 나중에 더하기 쉬운 성질이다.",
+    "parent": "db.nosql.nosql-types-idea",
+    "related": [
+      "db.nosql.document",
+      "db.nosql.collection"
+    ],
+    "aliases": [
+      "유연한 스키마",
+      "flexible schema",
+      "스키마리스",
+      "schemaless",
+      "schema-less",
+      "스키마 없는 DB"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/data-modeling/",
+      "https://aws.amazon.com/nosql/"
+    ]
+  },
+  {
+    "id": "db.basics.one-to-many",
+    "title": "일대다 관계",
+    "en": "One-to-Many Relationship",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "DB 기초",
+    "summary": "한 사용자가 글을 여러 개 쓰듯 한쪽 대상 하나에 다른 쪽 대상 여러 개가 이어지는 관계다.",
+    "parent": "db.basics.data-modeling-idea",
+    "related": [
+      "db.orm.relationship-patterns",
+      "db.sql.foreign-key"
+    ],
+    "aliases": [
+      "일대다 관계",
+      "one-to-many",
+      "1:N 관계",
+      "일대다",
+      "1대다 관계"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/data-modeling/"
+    ]
+  },
+  {
     "id": "db.nosql.what-is-nosql",
     "title": "NoSQL",
     "en": "NoSQL Databases",
@@ -776,6 +924,171 @@
     ],
     "refs": [
       "https://www.rfc-editor.org/rfc/rfc4180"
+    ]
+  },
+  {
+    "id": "db.nosql.wide-column-database",
+    "title": "넓은 열 데이터베이스",
+    "en": "Wide-Column Database",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "NoSQL",
+    "summary": "행마다 이름 붙은 열을 많이 달아 두고 그 자료를 여러 서버에 나눠 담는 NoSQL 데이터베이스다.",
+    "parent": "db.nosql.nosql-types-idea",
+    "related": [
+      "db.basics.relational-database"
+    ],
+    "aliases": [
+      "와이드 컬럼 DB",
+      "wide-column store",
+      "넓은 열 저장소",
+      "컬럼 패밀리 DB"
+    ],
+    "refs": [
+      "https://cassandra.apache.org/doc/latest/cassandra/architecture/overview.html",
+      "https://aws.amazon.com/nosql/"
+    ]
+  },
+  {
+    "id": "db.internals.sequential-scan",
+    "title": "순차 스캔: 표를 처음부터 끝까지 읽기",
+    "en": "Sequential Scan",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "DB 내부",
+    "summary": "찾을 행이 어디 있는지 몰라 표의 모든 행을 처음부터 하나씩 살펴보는 읽기 방식이다.",
+    "parent": "db.internals.index-idea",
+    "related": [
+      "cs.algo.linear-search"
+    ],
+    "aliases": [
+      "순차 스캔",
+      "sequential scan",
+      "Seq Scan",
+      "전체 테이블 스캔",
+      "full table scan"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/indexes-intro.html"
+    ]
+  },
+  {
+    "id": "db.data.data-warehouse",
+    "title": "데이터 웨어하우스",
+    "en": "Data Warehouse",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "데이터 수집과 가공",
+    "summary": "여러 시스템의 자료를 정해진 표 모양으로 모아 두고 보고서와 분석에 쓰는 중앙 저장소다.",
+    "parent": "db.data.etl-idea",
+    "related": [
+      "db.data.data-lake"
+    ],
+    "aliases": [
+      "데이터 웨어하우스",
+      "data warehouse",
+      "DWH",
+      "분석용 데이터 창고"
+    ],
+    "refs": [
+      "https://aws.amazon.com/what-is/data-warehouse/",
+      "https://aws.amazon.com/what-is/etl/"
+    ]
+  },
+  {
+    "id": "db.data.data-lake",
+    "title": "데이터 레이크",
+    "en": "Data Lake",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "데이터 수집과 가공",
+    "summary": "정리 전의 원본 자료를 모양에 상관없이 그대로 쌓아 두었다가 나중에 꺼내 분석하는 큰 저장소다.",
+    "parent": "db.data.etl-idea",
+    "related": [
+      "db.data.data-warehouse"
+    ],
+    "aliases": [
+      "데이터 레이크",
+      "data lake",
+      "데이터 호수",
+      "원본 데이터 저장소"
+    ],
+    "refs": [
+      "https://aws.amazon.com/what-is/data-lake/",
+      "https://aws.amazon.com/what-is/etl/"
+    ]
+  },
+  {
+    "id": "db.data.data-cleansing",
+    "title": "데이터 정제: 틀린 값과 중복 치우기",
+    "en": "Data Cleansing",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "데이터 수집과 가공",
+    "summary": "모아 온 자료에서 오류와 중복을 고치거나 빼고 빈칸을 정한 규칙대로 채워 쓸 만하게 만드는 일이다.",
+    "parent": "db.data.etl-idea",
+    "aliases": [
+      "데이터 정제",
+      "data cleansing",
+      "data cleaning",
+      "데이터 클렌징",
+      "데이터 클리닝"
+    ],
+    "refs": [
+      "https://aws.amazon.com/what-is/etl/"
+    ]
+  },
+  {
+    "id": "db.data.incremental-load",
+    "title": "전체 적재와 증분 적재",
+    "en": "Full Load and Incremental Load",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "데이터 수집과 가공",
+    "summary": "처음에는 자료를 통째로 옮기고 그다음부터는 새로 생기거나 바뀐 부분만 정해진 때마다 옮기는 두 가지 싣기 방식이다.",
+    "parent": "db.data.etl-idea",
+    "aliases": [
+      "증분 적재",
+      "incremental load",
+      "전체 적재",
+      "full load",
+      "증분 추출",
+      "incremental extraction"
+    ],
+    "refs": [
+      "https://aws.amazon.com/what-is/etl/"
+    ]
+  },
+  {
+    "id": "db.basics.db-replica",
+    "title": "DB 복제본: 같은 자료를 한 벌 더",
+    "en": "Database Replica",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "DB 기초",
+    "summary": "주 데이터베이스의 자료를 다른 서버에 똑같이 옮겨 두어 읽기를 나눠 받거나 고장 때 대신 쓰는 사본 DB다.",
+    "related": [
+      "db.basics.backup",
+      "db.internals.wal-replication"
+    ],
+    "aliases": [
+      "DB 복제본",
+      "database replica",
+      "레플리카 DB",
+      "DB replica",
+      "read replica",
+      "대기 서버"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/glossary.html",
+      "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html"
     ]
   },
   {

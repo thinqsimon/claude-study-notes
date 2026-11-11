@@ -103,6 +103,35 @@
     ]
   },
   {
+    "id": "fe.basics.semantic-html-idea",
+    "title": "시맨틱 HTML: 내용에 맞는 이름표 붙이기",
+    "en": "Semantic HTML Basics",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "웹 기초",
+    "summary": "시맨틱 HTML은 글자가 어떻게 보이는지가 아니라 제목인지 문단인지 메뉴인지 내용의 역할에 맞는 요소로 표시하는 일이다.",
+    "objectives": [
+      "보이는 모양과 내용의 역할이 다르다는 것을 일상 비유로 설명할 수 있다",
+      "역할에 맞게 표시하면 스크린 리더·검색 엔진·다른 개발자에게 왜 도움이 되는지 말할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.web-page-parts"
+    ],
+    "related": [
+      "fe.html.accessible-markup"
+    ],
+    "aliases": [
+      "의미 있는 마크업",
+      "시맨틱 마크업",
+      "HTML 의미 구조"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/Semantics",
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Headings_and_paragraphs"
+    ]
+  },
+  {
     "id": "fe.basics.responsive-idea",
     "title": "화면 크기에 맞추는 반응형 화면",
     "en": "Responsive Screens",
@@ -327,6 +356,61 @@
     ]
   },
   {
+    "id": "fe.basics.web-performance-idea",
+    "title": "웹 성능: 빨리 뜨고 바로 반응하는 웹",
+    "en": "Why Web Performance Matters",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "웹 성능은 페이지가 얼마나 빨리 뜨고 누르면 얼마나 바로 반응하는지이며, 느리면 사람들이 기다리다 떠난다.",
+    "objectives": [
+      "웹 성능이 불러오는 속도와 반응 속도를 함께 뜻한다는 것을 비유로 설명할 수 있다",
+      "느린 페이지가 방문자 이탈·데이터 요금·접근성에 주는 영향을 예로 들 수 있다",
+      "실제 속도와 사용자가 느끼는 속도가 다를 수 있음을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.web-page-parts"
+    ],
+    "aliases": [
+      "웹 성능",
+      "web performance",
+      "페이지 속도",
+      "사이트 속도",
+      "웹사이트 속도"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Performance/why_web_performance",
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Performance/What_is_web_performance"
+    ]
+  },
+  {
+    "id": "fe.basics.pwa-idea",
+    "title": "PWA: 앱처럼 설치해 쓰는 웹사이트",
+    "en": "Progressive Web Apps",
+    "kind": "topic",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 기초",
+    "summary": "PWA는 웹 기술로 만든 사이트를 기기에 설치해 따로 창으로 열고 인터넷이 끊겨도 어느 정도 쓰게 한 웹 앱이다.",
+    "objectives": [
+      "PWA가 보통 웹사이트, 앱 스토어용 앱과 어떻게 다른지 비유로 설명할 수 있다",
+      "설치·오프라인 사용·알림처럼 PWA가 더해 주는 일을 예로 들 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.web-browser"
+    ],
+    "aliases": [
+      "PWA",
+      "progressive web app",
+      "프로그레시브 웹 앱",
+      "설치형 웹 앱"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/What_is_a_progressive_web_app"
+    ]
+  },
+  {
     "id": "fe.basics.web-browser",
     "title": "웹 브라우저",
     "en": "Web Browser",
@@ -368,6 +452,26 @@
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Glossary/UI",
       "https://developer.mozilla.org/en-US/docs/Glossary/UX"
+    ]
+  },
+  {
+    "id": "fe.basics.html-element",
+    "title": "HTML 요소",
+    "en": "HTML Element",
+    "kind": "term",
+    "level": 1,
+    "importance": 1,
+    "group": "웹 기초",
+    "summary": "HTML 요소는 여는 표시와 닫는 표시 사이에 글이나 그림을 담아 웹 페이지를 이루는 한 조각이다.",
+    "parent": "fe.basics.semantic-html-idea",
+    "aliases": [
+      "HTML 엘리먼트",
+      "HTML element",
+      "여는 태그와 닫는 태그",
+      "웹 페이지 요소"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/Element"
     ]
   },
   {
@@ -541,6 +645,95 @@
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Glossary/Raster_image",
       "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Including_vector_graphics_in_HTML"
+    ]
+  },
+  {
+    "id": "fe.basics.perceived-performance",
+    "title": "체감 성능",
+    "en": "Perceived Performance",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "체감 성능은 실제 걸린 시간과 별개로 사용자가 사이트를 얼마나 빠르고 매끄럽다고 느끼는지를 말한다.",
+    "parent": "fe.basics.web-performance-idea",
+    "related": [
+      "fe.basics.page-load-time"
+    ],
+    "aliases": [
+      "체감 속도",
+      "perceived performance",
+      "느껴지는 속도",
+      "인지 성능"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Performance/Perceived_performance"
+    ]
+  },
+  {
+    "id": "fe.basics.heading-levels",
+    "title": "제목 단계: h1부터 h6까지",
+    "en": "HTML Heading Levels",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "웹 페이지의 제목은 h1 큰 제목부터 h6 작은 제목까지 책의 장·절처럼 단계를 건너뛰지 않고 차례로 나눈다.",
+    "parent": "fe.basics.semantic-html-idea",
+    "aliases": [
+      "제목 태그",
+      "heading levels",
+      "h1~h6",
+      "제목 계층",
+      "heading hierarchy"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Headings_and_paragraphs"
+    ]
+  },
+  {
+    "id": "fe.basics.wcag",
+    "title": "WCAG(웹 콘텐츠 접근성 지침)",
+    "en": "Web Content Accessibility Guidelines",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "WCAG는 W3C가 낸 웹 접근성 지침으로, 지켜야 할 기준을 A·AA·AAA 세 등급으로 나눠 둔다.",
+    "parent": "fe.basics.accessibility-idea",
+    "related": [
+      "fe.basics.w3c"
+    ],
+    "aliases": [
+      "WCAG",
+      "웹 콘텐츠 접근성 지침",
+      "WCAG 2.2",
+      "접근성 지침"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/WCAG"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "fe.basics.devtools-console",
+    "title": "개발자 도구 콘솔 패널",
+    "en": "DevTools Console Panel",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "콘솔 패널은 개발자 도구에서 페이지의 오류와 기록 메시지를 보고 JavaScript를 한 줄씩 바로 실행해 보는 창이다.",
+    "parent": "fe.basics.browser-devtools",
+    "aliases": [
+      "브라우저 콘솔",
+      "콘솔 패널",
+      "console panel",
+      "DevTools Console"
+    ],
+    "refs": [
+      "https://developer.chrome.com/docs/devtools/console"
     ]
   },
   {
@@ -731,6 +924,119 @@
     ],
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Glossary/Lazy_load"
+    ]
+  },
+  {
+    "id": "fe.basics.page-load-time",
+    "title": "페이지 로드 시간",
+    "en": "Page Load Time",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 기초",
+    "summary": "페이지 로드 시간은 페이지 열기를 시작해 다 불러올 때까지 걸린 시간으로, 기기와 인터넷 환경에 따라 크게 달라진다.",
+    "parent": "fe.basics.web-performance-idea",
+    "related": [
+      "fe.basics.perceived-performance"
+    ],
+    "aliases": [
+      "로딩 시간",
+      "page load time",
+      "페이지 로딩 속도",
+      "로드 타임"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/Page_load_time"
+    ]
+  },
+  {
+    "id": "fe.basics.jank",
+    "title": "화면 버벅임(jank)",
+    "en": "UI Jank",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 기초",
+    "summary": "버벅임은 스크롤이나 버튼 반응이 끊기고 굼뜨게 느껴지는 현상으로, 브라우저가 다른 일에 오래 붙잡혀 있을 때 생긴다.",
+    "parent": "fe.basics.web-performance-idea",
+    "aliases": [
+      "버벅임",
+      "UI jank",
+      "화면 끊김",
+      "스크롤 버벅임"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/Jank",
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Performance/What_is_web_performance"
+    ]
+  },
+  {
+    "id": "fe.basics.web-app-manifest",
+    "title": "웹 앱 매니페스트",
+    "en": "Web App Manifest",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 기초",
+    "summary": "웹 앱 매니페스트는 앱 이름과 아이콘 같은 정보를 적어 브라우저가 웹사이트를 앱처럼 설치하게 해 주는 안내 파일이다.",
+    "parent": "fe.basics.pwa-idea",
+    "aliases": [
+      "웹 매니페스트",
+      "web manifest",
+      ".webmanifest",
+      "앱 매니페스트"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Manifest",
+      "https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/What_is_a_progressive_web_app"
+    ]
+  },
+  {
+    "id": "fe.basics.ecmascript",
+    "title": "ECMAScript",
+    "en": "ECMAScript Language Specification",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 기초",
+    "summary": "ECMAScript는 JavaScript가 따르는 언어 표준으로, Ecma International이라는 표준 기구가 정한다.",
+    "parent": "fe.basics.web-standards",
+    "related": [
+      "fe.basics.whatwg",
+      "fe.basics.w3c"
+    ],
+    "aliases": [
+      "ES6",
+      "ES2015",
+      "ECMA-262",
+      "에크마스크립트"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/ECMAScript"
+    ]
+  },
+  {
+    "id": "fe.basics.sitemap",
+    "title": "사이트맵",
+    "en": "XML Sitemap",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 기초",
+    "summary": "사이트맵은 사이트에 있는 페이지 목록과 갱신 날짜를 적어 검색 엔진이 빠짐없이 찾아가게 돕는 파일이다.",
+    "parent": "fe.basics.seo-idea",
+    "related": [
+      "fe.basics.robots-txt",
+      "fe.basics.web-crawler"
+    ],
+    "aliases": [
+      "sitemap.xml",
+      "XML 사이트맵",
+      "사이트맵 파일",
+      "sitemap"
+    ],
+    "refs": [
+      "https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview"
     ]
   },
   {
