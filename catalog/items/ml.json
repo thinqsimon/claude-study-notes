@@ -2745,6 +2745,114 @@
     ]
   },
   {
+    "id": "ml.supervised.sklearn-linear-regression",
+    "title": "scikit-learn으로 선형 회귀 모델 만들기",
+    "en": "Building a Linear Regression Model with scikit-learn",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "LinearRegression에 특성 표와 숫자 정답을 fit으로 넣어 직선을 맞추고, 학습된 기울기와 절편을 꺼내 보며 새 값의 숫자를 예측해 본다.",
+    "objectives": [
+      "(표본 수, 특성 수) 모양의 X와 숫자 y를 준비해 LinearRegression을 fit할 수 있다",
+      "coef_와 intercept_를 출력해 특성마다 붙은 기울기와 절편을 읽을 수 있다",
+      "predict로 새 표본의 숫자를 예측하고 score로 테스트 데이터의 R² 점수를 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.linear-regression-idea",
+      "ml.supervised.sklearn-first-model",
+      "ml.eval.sklearn-train-test-split"
+    ],
+    "related": [
+      "ml.supervised.linear-regression",
+      "ml.eval.regression-metrics",
+      "ml.supervised.score-method"
+    ],
+    "aliases": [
+      "LinearRegression 따라 하기",
+      "사이킷런 선형 회귀",
+      "sklearn LinearRegression",
+      "선형 회귀 실습"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/linear_model.html#ordinary-least-squares",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.sklearn-logistic-regression",
+    "title": "scikit-learn으로 로지스틱 회귀 분류기 만들기",
+    "en": "Building a Logistic Regression Classifier with scikit-learn",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "LogisticRegression을 fit해 클래스를 예측하고 predict_proba로 클래스별 확률을 받아 보며, 테스트 데이터의 정확도로 결과를 확인한다.",
+    "objectives": [
+      "LogisticRegression을 학습 데이터로 fit하고 predict로 테스트 표본의 클래스를 예측할 수 있다",
+      "predict_proba의 열이 classes_ 순서를 따른다는 것을 알고 표본마다 클래스별 확률을 읽을 수 있다",
+      "테스트 데이터의 정확도를 구해 다른 분류기와 같은 방법으로 비교할 수 있다",
+      "수렴 경고가 나오면 max_iter를 늘리거나 특성 눈금을 맞춰 다시 학습시킬 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.logistic-regression-idea",
+      "ml.supervised.sklearn-first-model",
+      "ml.eval.sklearn-train-test-split",
+      "ml.eval.accuracy-first-evaluation"
+    ],
+    "related": [
+      "ml.supervised.logistic-regression",
+      "ml.supervised.sklearn-knn-classifier",
+      "ml.supervised.predict-proba"
+    ],
+    "aliases": [
+      "LogisticRegression 따라 하기",
+      "사이킷런 로지스틱 회귀",
+      "sklearn LogisticRegression",
+      "로지스틱 회귀 실습"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html",
+      "https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+    ]
+  },
+  {
+    "id": "ml.data.sklearn-standard-scaler",
+    "title": "scikit-learn 스케일러로 특성 눈금 맞추기",
+    "en": "Scaling Features with scikit-learn's StandardScaler",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "StandardScaler를 학습 데이터로 fit해 특성마다 평균과 표준편차를 구하고, 같은 스케일러로 학습·테스트 데이터를 transform해 눈금을 맞춘다.",
+    "objectives": [
+      "StandardScaler를 X_train으로 fit하고 transform으로 평균 0·표준편차 1인 특성 표를 만들 수 있다",
+      "학습 데이터에 맞춘 같은 스케일러로 X_test를 transform만 해야 하는 이유를 말할 수 있다",
+      "fit 뒤 mean_과 scale_을 출력해 스케일러가 배운 값을 확인할 수 있다",
+      "MinMaxScaler로 바꿔 특성을 0~1 범위로 맞춘 결과와 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.data.normalization-idea",
+      "ml.supervised.sklearn-first-model",
+      "ml.eval.sklearn-train-test-split"
+    ],
+    "related": [
+      "ml.data.feature-normalization",
+      "ml.data.numeric-categorical-preprocessing",
+      "ml.supervised.sklearn-pipeline"
+    ],
+    "aliases": [
+      "StandardScaler",
+      "사이킷런 스케일링",
+      "sklearn 스케일링 따라 하기",
+      "특성 표준화 실습"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/preprocessing.html#standardization-or-mean-removal-and-variance-scaling",
+      "https://scikit-learn.org/stable/getting_started.html"
+    ]
+  },
+  {
     "id": "ml.eval.accuracy",
     "title": "정확도",
     "en": "Accuracy",
@@ -2917,6 +3025,31 @@
     "refs": [
       "https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html",
       "https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html"
+    ]
+  },
+  {
+    "id": "ml.data.fit-transform",
+    "title": "fit_transform과 transform",
+    "en": "fit_transform and transform in scikit-learn Transformers",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "AI 기초",
+    "summary": "fit_transform은 학습 데이터로 변환 규칙을 배우면서 바로 바꾼 결과를 돌려주고, 테스트 데이터에는 그 규칙을 transform으로 적용만 한다.",
+    "parent": "ml.data.sklearn-standard-scaler",
+    "related": [
+      "ml.supervised.estimator",
+      "ml.supervised.sklearn-pipeline"
+    ],
+    "aliases": [
+      "fit_transform",
+      "transform 메서드",
+      "sklearn 변환기",
+      "사이킷런 변환기"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/glossary.html#term-fit_transform",
+      "https://scikit-learn.org/stable/getting_started.html"
     ]
   },
   {
@@ -3501,6 +3634,104 @@
     ]
   },
   {
+    "id": "ml.supervised.coef-intercept",
+    "title": "coef_와 intercept_(학습된 계수와 절편)",
+    "en": "coef_ and intercept_ (Fitted Coefficients and Intercept)",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "선형 모델을 fit한 뒤 특성마다 붙은 가중치는 coef_에, 특성과 상관없이 더하는 절편은 intercept_에 담겨 꺼내 볼 수 있다.",
+    "parent": "ml.supervised.sklearn-linear-regression",
+    "related": [
+      "ml.nn.weight-bias",
+      "ml.supervised.fitted-attribute"
+    ],
+    "aliases": [
+      "coef_",
+      "intercept_",
+      "회귀 계수",
+      "선형 모델 절편"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/glossary.html#term-coef_",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html"
+    ]
+  },
+  {
+    "id": "ml.data.reshape-to-column",
+    "title": "reshape(-1, 1)로 열 하나짜리 표 만들기",
+    "en": "Reshaping a 1D Array into a Single Column with reshape(-1, 1)",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "특성이 하나뿐인 1차원 배열을 scikit-learn이 바라는 (표본 수, 1) 모양으로 바꾸는 코드로, -1 자리는 원소 수에 맞춰 NumPy가 채운다.",
+    "parent": "ml.supervised.sklearn-linear-regression",
+    "related": [
+      "ml.data.array-shape",
+      "ml.nn.tensor-reshape"
+    ],
+    "aliases": [
+      "reshape(-1, 1)",
+      "Expected 2D array",
+      "열 하나짜리 2차원",
+      "단일 특성 reshape"
+    ],
+    "refs": [
+      "https://numpy.org/doc/stable/reference/generated/numpy.reshape.html",
+      "https://scikit-learn.org/stable/getting_started.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.classes-attribute",
+    "title": "classes_(분류기가 아는 클래스 목록)",
+    "en": "classes_ (Class Labels Known to a Classifier)",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "분류기를 fit하면 정답에 나온 클래스 이름이 정렬되어 classes_에 담기고, predict_proba가 내는 확률 열도 이 순서를 따른다.",
+    "parent": "ml.supervised.sklearn-logistic-regression",
+    "related": [
+      "ml.supervised.predict-proba"
+    ],
+    "aliases": [
+      "classes_",
+      "classes_ 속성",
+      "predict_proba 열 순서",
+      "클래스 레이블 목록"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/glossary.html#term-classes_",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.fitted-attribute",
+    "title": "학습된 속성(밑줄로 끝나는 이름)",
+    "en": "Fitted Attributes (Trailing-Underscore Names)",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "scikit-learn 객체가 fit하면서 데이터에서 배운 값은 mean_·coef_처럼 이름 끝에 밑줄 하나를 붙여 저장해, 사람이 정한 인자와 구분한다.",
+    "parent": "ml.data.sklearn-standard-scaler",
+    "related": [
+      "ml.supervised.estimator",
+      "ml.supervised.coef-intercept"
+    ],
+    "aliases": [
+      "fitted attribute",
+      "학습된 속성",
+      "밑줄 붙은 속성",
+      "trailing underscore attribute"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/glossary.html#term-attributes"
+    ]
+  },
+  {
     "id": "ml.supervised.bunch",
     "title": "Bunch(사이킷런 결과 묶음)",
     "en": "Bunch",
@@ -3786,6 +4017,75 @@
     ],
     "refs": [
       "https://scikit-learn.org/stable/modules/neighbors.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.max-iter",
+    "title": "max_iter(최대 반복 횟수)",
+    "en": "max_iter (Maximum Number of Solver Iterations)",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "반복 계산으로 학습하는 모델이 수렴을 기다리며 최대 몇 번까지 돌지 정하는 인자로, 실제로 돈 횟수는 fit 뒤 n_iter_에 남는다.",
+    "parent": "ml.supervised.sklearn-logistic-regression",
+    "related": [
+      "ml.training.iteration"
+    ],
+    "aliases": [
+      "max_iter",
+      "n_iter_",
+      "ConvergenceWarning",
+      "솔버 반복 횟수"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/glossary.html#term-max_iter",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.exceptions.ConvergenceWarning.html"
+    ]
+  },
+  {
+    "id": "ml.data.min-max-scaler",
+    "title": "MinMaxScaler(특성을 0~1 범위로 맞추기)",
+    "en": "MinMaxScaler (Scaling Features to a Range)",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "학습 데이터의 열마다 최솟값과 최댓값을 기억해 두고 기본으로 0~1 사이로 옮기는 스케일러로, 학습 범위를 벗어난 테스트 값은 0~1 밖으로 나온다.",
+    "parent": "ml.data.sklearn-standard-scaler",
+    "related": [
+      "ml.data.feature-normalization"
+    ],
+    "aliases": [
+      "MinMaxScaler",
+      "feature_range",
+      "0~1 범위 스케일러"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/preprocessing.html#scaling-features-to-a-range"
+    ]
+  },
+  {
+    "id": "ml.eval.dummy-classifier",
+    "title": "DummyClassifier(특성을 보지 않는 기준 분류기)",
+    "en": "DummyClassifier (Feature-Ignoring Baseline Classifier)",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "모델 평가",
+    "summary": "입력 특성은 무시하고 가장 많은 클래스를 내놓는 식으로만 예측하는 scikit-learn 분류기로, 내 모델 점수가 이보다 나은지 견줘 보는 데 쓴다.",
+    "related": [
+      "mlops.eval.baseline-model"
+    ],
+    "aliases": [
+      "더미 분류기",
+      "dummy classifier",
+      "most_frequent 전략",
+      "최빈 클래스 예측기"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/generated/sklearn.dummy.DummyClassifier.html"
     ]
   },
   {

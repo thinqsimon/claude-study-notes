@@ -1,5 +1,5 @@
 {
- "version": "0.55.0",
+ "version": "0.56.0",
  "domains": [
   {
    "prefix": "dev",
@@ -2874,6 +2874,106 @@
    "domain": "dev"
   },
   {
+   "id": "dev.basics.vscode-keybindings",
+   "title": "VS Code 단축키 찾아보고 바꾸기",
+   "en": "Customizing VS Code Keyboard Shortcuts",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "개발 환경",
+   "summary": "키보드 바로 가기 편집기에서 명령의 단축키를 찾아 새로 붙이거나 지우고, 겹치는 키를 확인한다.",
+   "objectives": [
+    "Ctrl+K Ctrl+S로 키보드 바로 가기 편집기를 열어 명령이나 키로 검색할 수 있다",
+    "원하는 명령에 단축키를 새로 붙이거나 기존 단축키를 지울 수 있다",
+    "Show Same Keybindings로 같은 키에 묶인 명령을 찾아 충돌을 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.basics.code-editor"
+   ],
+   "related": [
+    "dev.basics.vscode-settings"
+   ],
+   "aliases": [
+    "VS Code 단축키 설정",
+    "VS Code keyboard shortcuts",
+    "키보드 바로 가기 편집기",
+    "Keyboard Shortcuts editor",
+    "VS Code 단축키 바꾸기"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/configure/keybindings"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.vscode-refactoring",
+   "title": "VS Code 리팩터링: 이름 바꾸기와 빠른 수정",
+   "en": "Refactoring in VS Code: Rename and Quick Fix",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "개발 환경",
+   "summary": "전구 아이콘의 코드 작업과 기호 이름 바꾸기로 코드를 손으로 고치지 않고 편집기에 맡겨 안전하게 다듬는다.",
+   "objectives": [
+    "물결 밑줄 위에 뜬 전구나 Ctrl+.로 빠른 수정을 골라 적용할 수 있다",
+    "F2로 변수나 함수 이름을 바꿔 쓰인 곳을 한 번에 고칠 수 있다",
+    "코드를 선택해 함수나 변수로 추출하는 리팩터링을 실행할 수 있다",
+    "리팩터링 미리 보기로 바뀔 내용을 확인한 뒤 적용할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.basics.vscode-code-navigation"
+   ],
+   "related": [
+    "dev.basics.vscode-search"
+   ],
+   "aliases": [
+    "VS Code 리팩터링",
+    "VS Code refactoring",
+    "VS Code 코드 작업",
+    "VS Code Code Actions",
+    "리팩터링 미리 보기"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/editing/refactoring"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.github-cli-start",
+   "title": "GitHub CLI(gh) 설치하고 로그인해 쓰기",
+   "en": "Getting Started with GitHub CLI",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "Git",
+   "summary": "터미널에서 gh 명령으로 GitHub에 로그인하고 저장소·이슈·풀 리퀘스트를 브라우저 없이 살펴본다.",
+   "objectives": [
+    "gh auth login을 따라 GitHub 계정으로 로그인할 수 있다",
+    "gh repo view와 gh repo clone으로 저장소를 보고 내려받을 수 있다",
+    "gh issue list와 gh pr list로 열린 이슈와 풀 리퀘스트를 볼 수 있다",
+    "명령 뒤에 --help를 붙여 쓸 수 있는 옵션을 찾아볼 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.remotes",
+    "dev.terminal.basic-commands"
+   ],
+   "related": [
+    "ax.coding.gh-pr-create",
+    "dev.git.github-desktop"
+   ],
+   "aliases": [
+    "GitHub CLI",
+    "깃허브 CLI",
+    "gh 명령어",
+    "gh CLI 시작하기",
+    "gh repo view"
+   ],
+   "refs": [
+    "https://docs.github.com/en/github-cli/github-cli/quickstart"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.basics.vscode-snippets",
    "title": "VS Code 코드 조각(snippet) 쓰기",
    "en": "Snippets in VS Code",
@@ -2903,6 +3003,38 @@
    ],
    "refs": [
     "https://code.visualstudio.com/docs/editing/userdefinedsnippets"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.vscode-settings-sync",
+   "title": "VS Code 설정 동기화로 다른 컴퓨터에 옮기기",
+   "en": "VS Code Settings Sync",
+   "kind": "topic",
+   "level": 2,
+   "importance": 3,
+   "group": "개발 환경",
+   "summary": "GitHub나 Microsoft 계정으로 설정·단축키·확장을 백업해 두고 다른 컴퓨터의 VS Code에서 그대로 받아 쓴다.",
+   "objectives": [
+    "Backup and Sync Settings를 켜고 계정으로 로그인해 동기화를 시작할 수 있다",
+    "Settings Sync: Configure로 동기화할 항목을 고를 수 있다",
+    "동기화 충돌이 나면 로컬과 원격 중 하나를 고르거나 비교해 정리할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.basics.vscode-settings",
+    "dev.basics.vscode-extensions"
+   ],
+   "related": [
+    "dev.basics.vscode-profiles"
+   ],
+   "aliases": [
+    "Settings Sync",
+    "VS Code 설정 동기화",
+    "Backup and Sync Settings",
+    "VS Code 설정 백업"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/configure/settings-sync"
    ],
    "domain": "dev"
   },
@@ -3477,6 +3609,78 @@
    "domain": "dev"
   },
   {
+   "id": "dev.basics.vscode-rename-symbol",
+   "title": "기호 이름 바꾸기(F2)",
+   "en": "VS Code Rename Symbol",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "개발 환경",
+   "summary": "커서가 놓인 변수나 함수의 이름을 바꾸면 그 이름이 쓰인 곳까지 함께 고쳐 주는 VS Code 명령이다.",
+   "parent": "dev.basics.vscode-refactoring",
+   "related": [
+    "dev.basics.vscode-search"
+   ],
+   "aliases": [
+    "Rename Symbol",
+    "VS Code 이름 바꾸기",
+    "VS Code F2 이름 바꾸기",
+    "기호 이름 변경"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/editing/refactoring"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.vscode-quick-fix",
+   "title": "전구 아이콘과 빠른 수정(Ctrl+.)",
+   "en": "VS Code Code Action Lightbulb and Quick Fix",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "개발 환경",
+   "summary": "오류 밑줄이나 선택한 코드 옆에 전구가 뜨면 눌러서 편집기가 제안하는 고침을 고르는 기능이다.",
+   "parent": "dev.basics.vscode-refactoring",
+   "related": [
+    "dev.basics.vscode-problems-panel"
+   ],
+   "aliases": [
+    "VS Code 빠른 수정",
+    "VS Code Quick Fix",
+    "VS Code 전구 아이콘",
+    "code action lightbulb",
+    "VS Code Ctrl+."
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/editing/refactoring"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.gh-auth-login",
+   "title": "gh auth login으로 GitHub CLI 로그인",
+   "en": "gh auth login",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "Git",
+   "summary": "질문에 답하며 GitHub CLI를 계정에 연결하고, HTTPS를 고르면 git push·pull 로그인도 함께 맡기는 명령이다.",
+   "parent": "dev.git.github-cli-start",
+   "related": [
+    "dev.git.github-ssh-key"
+   ],
+   "aliases": [
+    "gh auth login",
+    "GitHub CLI 로그인",
+    "gh 로그인"
+   ],
+   "refs": [
+    "https://docs.github.com/en/github-cli/github-cli/quickstart"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.debug.launch-json",
    "title": "launch.json 디버그 구성",
    "en": "launch.json Debug Configuration",
@@ -3904,6 +4108,135 @@
    ],
    "refs": [
     "https://code.visualstudio.com/docs/editing/userdefinedsnippets"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.vscode-keybindings-json",
+   "title": "keybindings.json 단축키 파일",
+   "en": "VS Code keybindings.json",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "개발 환경",
+   "summary": "key와 command를 짝지은 규칙 목록으로 사용자 단축키를 적어 두는 VS Code의 JSON 파일이다.",
+   "parent": "dev.basics.vscode-keybindings",
+   "related": [
+    "dev.basics.vscode-workspace-settings"
+   ],
+   "aliases": [
+    "keybindings.json",
+    "VS Code 단축키 JSON",
+    "Open Keyboard Shortcuts (JSON)"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/configure/keybindings"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.vscode-chord-shortcut",
+   "title": "두 번 이어 누르는 단축키(chord)",
+   "en": "VS Code Chord Keyboard Shortcuts",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "개발 환경",
+   "summary": "Ctrl+K Ctrl+S처럼 키 조합 두 개를 차례로 눌러야 실행되는 VS Code 단축키 방식이다.",
+   "parent": "dev.basics.vscode-keybindings",
+   "aliases": [
+    "VS Code 연속 단축키",
+    "VS Code chord",
+    "키 조합 이어 누르기"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/configure/keybindings"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.vscode-extract-refactor",
+   "title": "함수로 추출·변수로 추출",
+   "en": "Extract Method and Extract Variable in VS Code",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "개발 환경",
+   "summary": "선택한 코드 덩어리나 식을 새 함수나 변수로 떼어 내고 원래 자리를 그 이름으로 바꿔 주는 리팩터링이다.",
+   "parent": "dev.basics.vscode-refactoring",
+   "aliases": [
+    "Extract Method",
+    "Extract Variable",
+    "함수 추출 리팩터링",
+    "Extract to const"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/editing/refactoring"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.gh-issue-pr-list",
+   "title": "gh issue list와 gh pr list",
+   "en": "Listing Issues and Pull Requests with gh",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "Git",
+   "summary": "터미널에서 저장소의 열린 이슈와 풀 리퀘스트 목록을 보고 담당자·작성자·레이블로 걸러 보는 gh 명령이다.",
+   "parent": "dev.git.github-cli-start",
+   "aliases": [
+    "gh issue list",
+    "gh pr list",
+    "gh 이슈 목록",
+    "gh PR 목록"
+   ],
+   "refs": [
+    "https://docs.github.com/en/github-cli/github-cli/quickstart"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.settings-sync-ignored",
+   "title": "동기화에서 뺄 설정(settingsSync.ignoredSettings)",
+   "en": "settingsSync.ignoredSettings",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "개발 환경",
+   "summary": "이 컴퓨터에만 둘 설정이나 확장을 적어 설정 동기화가 다른 컴퓨터로 옮기지 않게 하는 VS Code 설정이다.",
+   "parent": "dev.basics.vscode-settings-sync",
+   "aliases": [
+    "settingsSync.ignoredSettings",
+    "settingsSync.ignoredExtensions",
+    "동기화 제외 설정"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/configure/settings-sync"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.vscode-profiles",
+   "title": "VS Code 프로필(Profiles)",
+   "en": "VS Code Profiles",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "개발 환경",
+   "summary": "설정·확장·단축키 묶음을 이름 붙여 여러 벌 두고, 작업에 따라 바꿔 쓰거나 내보내 나누는 VS Code 기능이다.",
+   "related": [
+    "dev.basics.vscode-settings-sync",
+    "dev.terminal.default-profile"
+   ],
+   "aliases": [
+    "VS Code profile",
+    "VS Code 프로필 전환",
+    "Profiles: Switch Profile",
+    ".code-profile"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/configure/profiles"
    ],
    "domain": "dev"
   },
@@ -21825,6 +22158,44 @@
    "domain": "be"
   },
   {
+   "id": "be.http.devtools-network",
+   "title": "개발자 도구로 HTTP 요청 살펴보기",
+   "en": "Inspecting HTTP Requests in the DevTools Network Panel",
+   "kind": "topic",
+   "level": 2,
+   "importance": 1,
+   "group": "HTTP",
+   "summary": "브라우저 개발자 도구의 Network 패널을 열고 새로고침해, 페이지가 보낸 요청마다 상태 코드·헤더·응답 본문을 하나씩 열어 본다.",
+   "objectives": [
+    "Network 패널을 열고 페이지를 새로고침해 요청 목록을 띄울 수 있다",
+    "요청 하나를 눌러 Headers·Response 탭에서 메서드·상태 코드·응답 JSON을 확인할 수 있다",
+    "필터 상자로 내 API 요청만 골라 볼 수 있다",
+    "스로틀링을 켜서 느린 네트워크에서 페이지가 어떻게 보이는지 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "be.http.methods-status",
+    "fe.basics.browser-devtools"
+   ],
+   "related": [
+    "be.http.curl",
+    "be.test.postman-first"
+   ],
+   "aliases": [
+    "Network 패널",
+    "네트워크 패널",
+    "DevTools Network panel",
+    "네트워크 탭",
+    "Network tab"
+   ],
+   "refs": [
+    "https://developer.chrome.com/docs/devtools/network",
+    "https://developer.chrome.com/docs/devtools/network/reference"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "be"
+  },
+  {
    "id": "be.test.postman-first",
    "title": "Postman으로 API 호출하기",
    "en": "Calling APIs with Postman",
@@ -21909,6 +22280,71 @@
    ],
    "refs": [
     "https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.python.main-guard",
+   "title": "직접 실행할 때만 도는 코드: __main__",
+   "en": "Running Code Only as a Script with __main__",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "Python",
+   "summary": "파일을 직접 실행할 때만 서버 시작 같은 코드가 돌고 import할 때는 돌지 않게 if __name__ == \"__main__\" 블록으로 나눈다.",
+   "objectives": [
+    "직접 실행할 때와 import할 때 __name__ 값이 어떻게 다른지 print로 확인할 수 있다",
+    "if __name__ == \"__main__\" 블록 안에 uvicorn.run을 넣어 FastAPI 앱을 python 명령으로 띄울 수 있다",
+    "실행할 내용을 main 함수로 묶고 블록에서는 그 함수만 부르게 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "be.python.modules-import",
+    "be.fastapi.first-app"
+   ],
+   "aliases": [
+    "if __name__ == \"__main__\"",
+    "if __name__ == '__main__'",
+    "메인 가드",
+    "main guard",
+    "스크립트 진입점"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/__main__.html",
+    "https://fastapi.tiangolo.com/tutorial/debugging/"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.security.secrets-module",
+   "title": "secrets 모듈로 안전한 토큰 만들기",
+   "en": "Generating Secure Tokens with Python secrets",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "웹 보안",
+   "summary": "API 키·비밀번호 재설정 링크·임시 비밀번호처럼 남이 맞히면 안 되는 값을 random 대신 secrets 모듈로 만든다.",
+   "objectives": [
+    "보안에 쓰는 값은 random이 아니라 secrets로 만들어야 하는 이유를 말할 수 있다",
+    "token_hex와 token_urlsafe로 API 키와 재설정 링크용 토큰을 만들 수 있다",
+    "secrets.choice로 영문자와 숫자가 섞인 임시 비밀번호를 만들 수 있다"
+   ],
+   "prerequisites": [
+    "be.python.modules-import"
+   ],
+   "related": [
+    "cs.algo.computer-randomness",
+    "be.auth.password-hash-why"
+   ],
+   "aliases": [
+    "secrets 모듈",
+    "파이썬 secrets",
+    "import secrets",
+    "안전한 토큰 생성",
+    "secure token generation"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/secrets.html",
+    "https://docs.python.org/3/library/random.html"
    ],
    "domain": "be"
   },
@@ -22615,6 +23051,158 @@
     "301",
     "302"
    ],
+   "domain": "be"
+  },
+  {
+   "id": "be.python.dunder-name",
+   "title": "__name__ 변수",
+   "en": "Module __name__ Attribute",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "Python",
+   "summary": "모듈마다 붙는 이름표로, import하면 모듈 이름이 들어가고 직접 실행하면 '__main__'이 들어간다.",
+   "parent": "be.python.main-guard",
+   "aliases": [
+    "__name__",
+    "모듈 이름 속성"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.security.token-urlsafe",
+   "title": "URL 안전 토큰: token_urlsafe",
+   "en": "URL-safe Token from secrets.token_urlsafe",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "웹 보안",
+   "summary": "secrets.token_urlsafe가 만드는 무작위 문자열로, 주소에 그대로 넣어도 깨지지 않는 글자만 써서 재설정 링크 등에 쓴다.",
+   "parent": "be.security.secrets-module",
+   "aliases": [
+    "token_urlsafe",
+    "secrets.token_urlsafe",
+    "URL 안전 토큰"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.python.random-module",
+   "title": "random 모듈",
+   "en": "Python random Module",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "Python",
+   "summary": "주사위·섞기·뽑기처럼 흉내 내기용 무작위 값을 만드는 표준 모듈로, 결과를 예측할 수 있어 보안 값에는 쓰지 않는다.",
+   "parent": "be.security.secrets-module",
+   "related": [
+    "cs.algo.pseudorandom-generator"
+   ],
+   "aliases": [
+    "import random",
+    "random.randint",
+    "random.choice",
+    "random.shuffle",
+    "파이썬 random"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.python.top-level-code",
+   "title": "최상위 코드 환경",
+   "en": "Top-level Code Environment",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "Python",
+   "summary": "프로그램이 처음 시작되는 자리로, 직접 실행한 파일·python -m으로 실행한 모듈·대화형 프롬프트 등이 여기에 해당한다.",
+   "parent": "be.python.main-guard",
+   "related": [
+    "dev.basics.python-m"
+   ],
+   "aliases": [
+    "top-level code environment",
+    "__main__ 모듈",
+    "최상위 모듈"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.security.compare-digest",
+   "title": "compare_digest로 비밀값 비교하기",
+   "en": "Timing-safe Comparison with compare_digest",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "웹 보안",
+   "summary": "토큰처럼 비밀인 값 두 개가 같은지 볼 때 == 대신 쓰는 함수로, 비교에 걸린 시간으로 값을 짐작하지 못하게 한다.",
+   "parent": "be.security.secrets-module",
+   "aliases": [
+    "compare_digest",
+    "secrets.compare_digest",
+    "hmac.compare_digest",
+    "타이밍 안전 비교"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.http.har-file",
+   "title": "HAR 파일",
+   "en": "HTTP Archive (HAR) File",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "HTTP",
+   "summary": "Network 패널에 쌓인 요청과 응답 기록을 저장한 파일로, 남에게 문제 상황을 보여 줄 때 쓰며 기본 저장은 쿠키와 Authorization 헤더를 뺀다.",
+   "parent": "be.http.devtools-network",
+   "aliases": [
+    "HAR 파일",
+    ".har 파일",
+    "HTTP Archive 파일",
+    "HAR 내보내기"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "be"
+  },
+  {
+   "id": "be.http.preserve-log",
+   "title": "Preserve log 옵션",
+   "en": "Preserve Log Option in DevTools",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "HTTP",
+   "summary": "켜 두면 페이지를 옮기거나 새로고침해도 Network 패널의 요청 기록이 지워지지 않게 하는 확인란이다.",
+   "parent": "be.http.devtools-network",
+   "aliases": [
+    "로그 보존",
+    "요청 기록 유지",
+    "Preserve log 체크박스"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "be"
+  },
+  {
+   "id": "be.http.network-throttling",
+   "title": "네트워크 스로틀링",
+   "en": "DevTools Network Throttling",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "HTTP",
+   "summary": "개발자 도구에서 3G·느린 4G 같은 느린 연결을 흉내 내어 내 페이지와 API가 느린 환경에서 어떻게 보이는지 보는 기능이다.",
+   "parent": "be.http.devtools-network",
+   "aliases": [
+    "DevTools 스로틀링",
+    "느린 네트워크 흉내",
+    "Throttling 드롭다운",
+    "Emulate slow network"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
    "domain": "be"
   },
   {
@@ -58971,6 +59559,74 @@
    "domain": "ax"
   },
   {
+   "id": "ax.coding.copilot-chat-github",
+   "title": "GitHub 웹에서 Copilot Chat 쓰기",
+   "en": "Copilot Chat on GitHub.com",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "에디터를 열지 않고 github.com의 Copilot 채팅 창에 질문하고, 모델을 바꿔 답을 비교하고, 질문을 고쳐 갈래를 나눠 보는 첫 사용법이다.",
+   "objectives": [
+    "github.com/copilot이나 저장소·이슈·PR 페이지에서 Copilot Chat을 열어 질문하고 답이 나오는 중에 멈출 수 있다",
+    "아래쪽 모델 목록에서 모델을 고르고 다시 생성 버튼으로 다른 모델의 답과 비교할 수 있다",
+    "보낸 질문을 고쳐 하위 스레드를 만들고 화살표로 갈래 사이를 오갈 수 있다",
+    "스크린샷이나 PDF를 첨부해 그 내용에 대해 물어볼 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.copilot-chat-ide"
+   ],
+   "related": [
+    "ax.coding.copilot-chat-history"
+   ],
+   "aliases": [
+    "github.com Copilot Chat",
+    "github.com/copilot",
+    "GitHub 웹 Copilot 채팅",
+    "Copilot Chat on GitHub"
+   ],
+   "refs": [
+    "https://docs.github.com/en/copilot/how-tos/copilot-on-github/chat-with-copilot/chat-in-github"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.update-claude-code",
+   "title": "Claude Code 업데이트와 버전 관리",
+   "en": "Updating Claude Code",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "Claude Code가 설치 방식에 따라 저절로 또는 손으로 업데이트된다는 점을 알고, 릴리스 채널과 자동 업데이트 설정을 골라 버전을 관리하는 방법이다.",
+   "objectives": [
+    "설치 방식(네이티브·Homebrew·WinGet 등)에 따라 자동 업데이트가 되는지 구분할 수 있다",
+    "claude update로 바로 업데이트하고 claude --version으로 바뀐 버전을 확인할 수 있다",
+    "/config나 settings.json에서 latest와 stable 채널 중 하나를 고를 수 있다",
+    "자동 업데이트를 끄는 설정을 넣고 claude doctor로 꺼졌는지 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.claude-code-quickstart"
+   ],
+   "related": [
+    "ax.coding.doctor-command"
+   ],
+   "aliases": [
+    "Claude Code 업데이트",
+    "Claude Code 자동 업데이트",
+    "Claude Code auto-update",
+    "DISABLE_AUTOUPDATER"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/setup#update-claude-code"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
    "id": "ax.coding.agent-write-docs",
    "title": "에이전트에게 코드 문서 주석 채우게 하기",
    "en": "Generating Code Documentation with an Agent",
@@ -59029,6 +59685,41 @@
    ],
    "refs": [
     "https://code.claude.com/docs/en/jetbrains"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.terminal-config",
+   "title": "Claude Code에 맞게 터미널 설정하기",
+   "en": "Configuring the Terminal for Claude Code",
+   "kind": "topic",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "작업이 끝나면 알림이 오게 하고, 테마를 터미널 배경에 맞추고, tmux나 Vim 키를 쓸 때 필요한 설정을 증상별로 찾아 고치는 방법이다.",
+   "objectives": [
+    "긴 작업이 끝나거나 승인을 기다릴 때 터미널 벨이나 데스크톱 알림이 오게 설정할 수 있다",
+    "/theme나 /config로 터미널의 밝은·어두운 배경에 맞는 테마를 고를 수 있다",
+    "tmux 안에서 쓸 때 줄바꿈과 알림이 되도록 ~/.tmux.conf에 필요한 줄을 넣을 수 있다",
+    "macOS에서 Option 키 단축키가 안 먹을 때 터미널의 Option-as-Meta 설정을 켤 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.claude-code-quickstart"
+   ],
+   "related": [
+    "ax.coding.terminal-setup-command",
+    "ax.coding.interactive-shortcuts"
+   ],
+   "aliases": [
+    "Claude Code 터미널 설정",
+    "Claude Code tmux 설정",
+    "Claude Code 테마",
+    "Use Option as Meta Key"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/terminal-config"
    ],
    "volatile": true,
    "checked_at": "2026-11-11",
@@ -59559,6 +60250,111 @@
    ],
    "refs": [
     "https://code.claude.com/docs/en/interactive-mode"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.copilot-model-picker",
+   "title": "Copilot Chat 모델 고르기와 답 비교",
+   "en": "Copilot Chat Model Picker",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "Copilot Chat 아래쪽 목록에서 답할 모델을 고르고, 다시 생성 버튼으로 같은 질문을 다른 모델에 맡겨 답을 견줘 보는 기능이다.",
+   "parent": "ax.coding.copilot-chat-github",
+   "related": [
+    "ax.coding.model-command",
+    "ax.coding.copilot-premium-requests"
+   ],
+   "aliases": [
+    "Copilot 모델 선택",
+    "Copilot model picker",
+    "Copilot 모델 바꾸기",
+    "Copilot 다른 모델로 다시 생성"
+   ],
+   "refs": [
+    "https://docs.github.com/en/copilot/how-tos/copilot-on-github/chat-with-copilot/chat-in-github#changing-and-comparing-ai-models"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.copilot-pr-summary",
+   "title": "Copilot으로 PR 요약 쓰기",
+   "en": "Copilot Pull Request Summary",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "GitHub PR의 설명이나 댓글 칸 위쪽 Copilot 아이콘에서 Summary를 누르면 바뀐 내용을 요약한 글이 채워지고, 사람이 빠진 맥락을 더해 올리며, Copilot Free에서는 쓸 수 없다.",
+   "related": [
+    "ax.coding.agent-pull-request",
+    "ax.coding.copilot-code-review"
+   ],
+   "aliases": [
+    "Copilot PR 요약",
+    "Copilot pull request summary",
+    "Copilot PR 설명 요약",
+    "Copilot Summary 버튼"
+   ],
+   "refs": [
+    "https://docs.github.com/en/copilot/how-tos/copilot-on-github/copilot-for-github-tasks/create-a-pr-summary"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.vscode-ai-commit-message",
+   "title": "VS Code에서 AI로 커밋 메시지 만들기",
+   "en": "AI-Generated Commit Messages in VS Code",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "VS Code 소스 제어 창의 커밋 메시지 칸에 있는 반짝이 아이콘을 누르면 바뀐 내용을 바탕으로 메시지 초안이 채워지며, 읽고 고친 뒤 커밋한다.",
+   "related": [
+    "dev.git.vscode-source-control",
+    "ax.coding.commit-attribution",
+    "ax.coding.agent-pull-request"
+   ],
+   "aliases": [
+    "AI 커밋 메시지",
+    "Copilot 커밋 메시지 생성",
+    "generate commit message",
+    "커밋 메시지 반짝이 아이콘"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/sourcecontrol/staging-commits"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.claude-update-command",
+   "title": "claude update로 바로 업데이트하기",
+   "en": "claude update Command",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "다음 자동 확인을 기다리지 않고 셸에서 claude update를 실행해 최신 버전을 바로 설치하고 결과 메시지로 바뀐 버전을 확인하는 명령이다.",
+   "parent": "ax.coding.update-claude-code",
+   "related": [
+    "ax.coding.doctor-command"
+   ],
+   "aliases": [
+    "claude update",
+    "Claude Code 수동 업데이트",
+    "Claude Code 최신 버전 받기"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/setup#update-manually"
    ],
    "volatile": true,
    "checked_at": "2026-11-11",
@@ -60181,6 +60977,130 @@
    ],
    "refs": [
     "https://code.claude.com/docs/en/jetbrains"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.copilot-chat-subthread",
+   "title": "Copilot Chat 하위 스레드",
+   "en": "Copilot Chat Subthreads",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "GitHub 웹의 Copilot Chat에서 이미 보낸 질문을 고쳐 다시 보내면 원래 대화를 지우지 않고 새 갈래가 생겨 화살표로 오갈 수 있는 기능이다.",
+   "parent": "ax.coding.copilot-chat-github",
+   "related": [
+    "ax.coding.copilot-chat-history"
+   ],
+   "aliases": [
+    "Copilot 하위 스레드",
+    "Copilot subthread",
+    "Copilot 질문 고쳐 다시 묻기"
+   ],
+   "refs": [
+    "https://docs.github.com/en/copilot/how-tos/copilot-on-github/chat-with-copilot/chat-in-github#using-subthreads-in-a-conversation"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.release-channel",
+   "title": "Claude Code 릴리스 채널(latest·stable)",
+   "en": "Claude Code Release Channel",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "새 버전을 바로 받는 latest와 큰 문제가 있던 버전을 건너뛰고 한 주쯤 늦게 받는 stable 중 어느 쪽으로 업데이트할지 정하는 설정이다.",
+   "parent": "ax.coding.update-claude-code",
+   "aliases": [
+    "autoUpdatesChannel",
+    "Claude Code stable 채널",
+    "Claude Code latest 채널"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/setup#configure-release-channel"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.notification-channel",
+   "title": "Claude Code 작업 끝 알림 받기",
+   "en": "Claude Code Notification Channel",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "Claude Code가 작업을 마치거나 승인을 기다릴 때 터미널 벨이나 데스크톱 알림으로 알려 주게 preferredNotifChannel이나 알림 훅을 설정하는 것이다.",
+   "parent": "ax.coding.terminal-config",
+   "related": [
+    "ax.coding.hooks"
+   ],
+   "aliases": [
+    "preferredNotifChannel",
+    "Claude Code 알림",
+    "Claude Code 작업 완료 알림",
+    "terminal_bell"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/terminal-config#get-a-terminal-bell-or-notification"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.vim-editor-mode",
+   "title": "Claude Code 입력창 Vim 편집 모드",
+   "en": "Claude Code Vim Editor Mode",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "/config의 Editor mode나 editorMode 설정을 vim으로 바꿔 Claude Code 입력창에서 Vim식 이동·선택·삭제 키를 쓰게 하는 모드로, INSERT 모드에서 Enter는 그대로 전송이다.",
+   "parent": "ax.coding.terminal-config",
+   "related": [
+    "ax.coding.interactive-shortcuts"
+   ],
+   "aliases": [
+    "Claude Code Vim 모드",
+    "editorMode vim",
+    "vimInsertModeRemaps"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/terminal-config#edit-prompts-with-vim-keybindings"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.statusline",
+   "title": "Claude Code 상태 줄(/statusline)",
+   "en": "Claude Code Status Line",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "Claude Code 화면 아래에 모델 이름·컨텍스트 사용률·git 브랜치 등을 늘 띄우는 줄로, /statusline에 원하는 내용을 말하면 스크립트와 설정이 만들어진다.",
+   "related": [
+    "ax.coding.context-command",
+    "ax.coding.settings-file"
+   ],
+   "aliases": [
+    "/statusline",
+    "statusLine 설정",
+    "Claude Code 상태 줄",
+    "statusline.sh"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/statusline"
    ],
    "volatile": true,
    "checked_at": "2026-11-11",
@@ -65589,6 +66509,75 @@
    "domain": "ops"
   },
   {
+   "id": "ops.k8s.expose-service",
+   "title": "Service로 앱 열기: kubectl expose",
+   "en": "Exposing an App with a Kubernetes Service",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "kubectl expose로 Deployment 앞에 Service를 만들어, 파드가 바뀌어도 변하지 않는 주소로 앱에 접속해 본다.",
+   "objectives": [
+    "kubectl expose deployment에 --type=NodePort와 --port를 주어 Service를 만들 수 있다",
+    "kubectl get services와 kubectl describe service로 Service의 IP와 노드 포트를 찾을 수 있다",
+    "minikube ip와 노드 포트를 이어 curl로 앱 응답을 확인할 수 있다",
+    "kubectl delete service로 만든 Service를 지우고 파드는 그대로 남는 것을 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.k8s.minikube-first-cluster"
+   ],
+   "related": [
+    "ops.k8s.port-forward",
+    "ops.k8s.minikube-service"
+   ],
+   "aliases": [
+    "kubectl expose",
+    "쿠버네티스 서비스",
+    "Kubernetes Service",
+    "k8s 서비스 오브젝트",
+    "kubectl get services"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/tutorials/kubernetes-basics/expose/expose-intro/",
+    "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_expose/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.aws-s3-cli",
+   "title": "aws s3 명령으로 버킷에 파일 올리고 받기",
+   "en": "Managing S3 Files with aws s3 Commands",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "배포 기초",
+   "summary": "로그인한 AWS CLI에서 aws s3 mb·ls·cp·rm·rb를 따라 쳐서 버킷을 만들고 파일을 올리고 내려받고 지워 본다.",
+   "objectives": [
+    "aws s3 mb로 전 세계에서 하나뿐인 이름의 버킷을 만들 수 있다",
+    "aws s3 ls로 버킷 목록과 버킷 안의 접두사·파일을 볼 수 있다",
+    "aws s3 cp로 내 컴퓨터와 버킷 사이에 파일을 올리고 내려받을 수 있다",
+    "aws s3 rm과 aws s3 rb로 파일과 버킷을 지울 수 있다"
+   ],
+   "prerequisites": [
+    "ops.basics.aws-cli-first",
+    "ops.basics.object-storage-idea"
+   ],
+   "related": [
+    "ops.basics.storage-bucket"
+   ],
+   "aliases": [
+    "aws s3 명령",
+    "aws s3 commands",
+    "aws s3 mb",
+    "aws s3 ls",
+    "S3 CLI 사용법"
+   ],
+   "refs": [
+    "https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.k8s.minikube-first-cluster",
    "title": "minikube로 내 컴퓨터에 첫 클러스터 띄우기",
    "en": "Your First Local Cluster with minikube",
@@ -65686,6 +66675,72 @@
    "refs": [
     "https://kubernetes.io/docs/concepts/overview/working-with-objects/",
     "https://kubernetes.io/docs/tasks/manage-kubernetes-objects/declarative-config/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.gcloud-cli-first",
+   "title": "Google Cloud CLI 설치하고 gcloud init 하기",
+   "en": "Installing the Google Cloud CLI and Running gcloud init",
+   "kind": "topic",
+   "level": 2,
+   "importance": 3,
+   "group": "배포 기초",
+   "summary": "공식 안내대로 Google Cloud CLI를 설치하고 gcloud init으로 구글 계정 로그인과 기본 프로젝트 선택을 마친 뒤 설정을 확인한다.",
+   "objectives": [
+    "운영체제에 맞는 공식 설치 방법(apt 저장소·설치 스크립트·설치 프로그램)으로 gcloud를 설치할 수 있다",
+    "gcloud init을 실행해 브라우저로 로그인하고 기본 프로젝트를 고르며, Compute Engine API가 켜져 있으면 기본 영역(zone)도 고를 수 있다",
+    "gcloud auth list와 gcloud config list로 로그인한 계정과 현재 설정을 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.basics.cloud",
+    "dev.terminal.basic-commands"
+   ],
+   "related": [
+    "ops.basics.aws-cli-first"
+   ],
+   "aliases": [
+    "gcloud CLI",
+    "gcloud init",
+    "Google Cloud SDK",
+    "gcloud 설치",
+    "구글 클라우드 CLI"
+   ],
+   "refs": [
+    "https://docs.cloud.google.com/sdk/docs/install-sdk"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.docker.docker-init",
+   "title": "docker init으로 Dockerfile 초안 만들기",
+   "en": "Generating Docker Files with docker init",
+   "kind": "topic",
+   "level": 2,
+   "importance": 3,
+   "group": "Docker",
+   "summary": "프로젝트 폴더에서 docker init을 실행해 언어·포트 같은 질문에 답하면 Dockerfile·compose.yaml·.dockerignore 초안이 만들어진다.",
+   "objectives": [
+    "프로젝트 폴더에서 docker init을 실행해 언어 템플릿을 고르고 질문에 답할 수 있다",
+    "만들어진 Dockerfile·compose.yaml·.dockerignore·README.Docker.md가 각각 무엇인지 말할 수 있다",
+    "이미 있는 Dockerfile이 덮어써지면 되살릴 수 없으므로 실행 전에 이름을 바꿔 둘 수 있다"
+   ],
+   "prerequisites": [
+    "ops.docker.first-container"
+   ],
+   "related": [
+    "ops.docker.dockerfile",
+    "ops.docker.compose"
+   ],
+   "aliases": [
+    "docker init",
+    "도커 init",
+    "Dockerfile 자동 생성"
+   ],
+   "refs": [
+    "https://docs.docker.com/reference/cli/docker/init/"
    ],
    "domain": "ops"
   },
@@ -66327,6 +67382,54 @@
    "domain": "ops"
   },
   {
+   "id": "ops.k8s.service-types",
+   "title": "Kubernetes Service 종류(type)",
+   "en": "Kubernetes Service Types (ClusterIP, NodePort, LoadBalancer)",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "Service를 클러스터 안에서만 열지(ClusterIP), 노드마다 30000번대 포트로 열지(NodePort), 클라우드 부하 분산기로 열지(LoadBalancer) 정하는 type 값이다.",
+   "parent": "ops.k8s.expose-service",
+   "related": [
+    "ops.network.load-balancer"
+   ],
+   "aliases": [
+    "ClusterIP",
+    "NodePort",
+    "LoadBalancer 서비스",
+    "Service type",
+    "서비스 타입 k8s",
+    "ExternalName 서비스"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/services-networking/service/",
+    "https://kubernetes.io/docs/tutorials/kubernetes-basics/expose/expose-intro/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.aws-s3-cp",
+   "title": "aws s3 cp와 --recursive",
+   "en": "Copying Files with aws s3 cp --recursive",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "배포 기초",
+   "summary": "aws s3 cp는 원본과 대상 중 한쪽에 s3:// 주소를 써서 파일 하나를 복사하고, --recursive를 붙이면 폴더나 접두사 아래 전체를 복사한다.",
+   "parent": "ops.basics.aws-s3-cli",
+   "aliases": [
+    "aws s3 cp",
+    "s3 cp --recursive",
+    "S3 파일 업로드 명령",
+    "S3 파일 다운로드 명령"
+   ],
+   "refs": [
+    "https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.k8s.kubeconfig-context",
    "title": "kubeconfig와 kubectl 컨텍스트",
    "en": "kubeconfig and kubectl Contexts",
@@ -66786,6 +67889,141 @@
    "refs": [
     "https://bind9.readthedocs.io/en/latest/manpages.html#std-iscman-dig"
    ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.service-port-target-port",
+   "title": "Service의 port와 targetPort",
+   "en": "Service port and targetPort",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "port는 Service가 받는 포트이고 targetPort는 받은 요청을 넘길 컨테이너 포트이며, targetPort를 비우면 port와 같은 값이 쓰인다.",
+   "parent": "ops.k8s.expose-service",
+   "related": [
+    "ops.docker.port-publishing"
+   ],
+   "aliases": [
+    "targetPort",
+    "--target-port",
+    "Service targetPort",
+    "서비스 포트와 타깃 포트"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/services-networking/service/",
+    "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_expose/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.aws-s3-sync",
+   "title": "aws s3 sync와 --delete",
+   "en": "Syncing Folders with aws s3 sync",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "배포 기초",
+   "summary": "aws s3 sync는 크기나 수정 시각이 다른 파일만 옮겨 폴더와 버킷을 맞추며, --delete를 붙여야 원본에 없는 파일을 대상에서도 지운다.",
+   "parent": "ops.basics.aws-s3-cli",
+   "related": [
+    "ops.basics.aws-s3-cp"
+   ],
+   "aliases": [
+    "aws s3 sync",
+    "s3 sync --delete",
+    "S3 폴더 동기화"
+   ],
+   "refs": [
+    "https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.aws-s3-exclude-include",
+   "title": "aws s3의 --exclude·--include 필터",
+   "en": "aws s3 --exclude and --include Filters",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "배포 기초",
+   "summary": "aws s3 cp·mv·sync·rm에서 --exclude와 --include로 *.txt 같은 패턴의 파일을 빼거나 넣으며, 여러 개를 쓰면 적은 순서대로 적용된다.",
+   "parent": "ops.basics.aws-s3-cli",
+   "aliases": [
+    "aws s3 --exclude",
+    "aws s3 --include",
+    "S3 복사 제외 패턴"
+   ],
+   "refs": [
+    "https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.gcloud-config-set-project",
+   "title": "gcloud config set project로 기본 프로젝트 바꾸기",
+   "en": "Setting the Default Project with gcloud config set project",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "배포 기초",
+   "summary": "gcloud config set project로 이후 명령이 쓸 기본 프로젝트를 바꾸고, gcloud config list로 지금 값을 확인하며 unset으로 지운다.",
+   "parent": "ops.basics.gcloud-cli-first",
+   "aliases": [
+    "gcloud config set project",
+    "gcloud 기본 프로젝트",
+    "CLOUDSDK_CORE_PROJECT"
+   ],
+   "refs": [
+    "https://docs.cloud.google.com/sdk/docs/configurations"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.gcloud-named-configurations",
+   "title": "gcloud 이름 있는 설정(configurations)",
+   "en": "gcloud Named Configurations",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "배포 기초",
+   "summary": "계정·프로젝트 같은 gcloud 속성 묶음에 이름을 붙여 여러 벌 두고 activate로 바꾸거나 --configuration으로 한 명령에만 골라 쓴다.",
+   "parent": "ops.basics.gcloud-cli-first",
+   "related": [
+    "ops.basics.aws-cli-named-profile"
+   ],
+   "aliases": [
+    "gcloud config configurations",
+    "gcloud configurations activate",
+    "CLOUDSDK_ACTIVE_CONFIG_NAME",
+    "gcloud 설정 전환"
+   ],
+   "refs": [
+    "https://docs.cloud.google.com/sdk/docs/configurations"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.gcloud-adc-login",
+   "title": "gcloud auth application-default login",
+   "en": "Application Default Credentials Login with gcloud",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "배포 기초",
+   "summary": "내 컴퓨터에서 돌리는 코드의 Google Cloud 클라이언트 라이브러리가 쓸 자격 증명(ADC)을 내 계정으로 만들어 두는 명령으로, 서비스 계정 키 파일 대신 권장된다.",
+   "parent": "ops.basics.gcloud-cli-first",
+   "aliases": [
+    "application-default login",
+    "애플리케이션 기본 자격 증명",
+    "Application Default Credentials",
+    "Google ADC"
+   ],
+   "refs": [
+    "https://docs.cloud.google.com/docs/authentication/set-up-adc-local-dev-environment"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
    "domain": "ops"
   },
   {
@@ -72369,6 +73607,117 @@
    "domain": "ml"
   },
   {
+   "id": "ml.supervised.sklearn-linear-regression",
+   "title": "scikit-learn으로 선형 회귀 모델 만들기",
+   "en": "Building a Linear Regression Model with scikit-learn",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "LinearRegression에 특성 표와 숫자 정답을 fit으로 넣어 직선을 맞추고, 학습된 기울기와 절편을 꺼내 보며 새 값의 숫자를 예측해 본다.",
+   "objectives": [
+    "(표본 수, 특성 수) 모양의 X와 숫자 y를 준비해 LinearRegression을 fit할 수 있다",
+    "coef_와 intercept_를 출력해 특성마다 붙은 기울기와 절편을 읽을 수 있다",
+    "predict로 새 표본의 숫자를 예측하고 score로 테스트 데이터의 R² 점수를 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.supervised.linear-regression-idea",
+    "ml.supervised.sklearn-first-model",
+    "ml.eval.sklearn-train-test-split"
+   ],
+   "related": [
+    "ml.supervised.linear-regression",
+    "ml.eval.regression-metrics",
+    "ml.supervised.score-method"
+   ],
+   "aliases": [
+    "LinearRegression 따라 하기",
+    "사이킷런 선형 회귀",
+    "sklearn LinearRegression",
+    "선형 회귀 실습"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/linear_model.html#ordinary-least-squares",
+    "https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.sklearn-logistic-regression",
+   "title": "scikit-learn으로 로지스틱 회귀 분류기 만들기",
+   "en": "Building a Logistic Regression Classifier with scikit-learn",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "LogisticRegression을 fit해 클래스를 예측하고 predict_proba로 클래스별 확률을 받아 보며, 테스트 데이터의 정확도로 결과를 확인한다.",
+   "objectives": [
+    "LogisticRegression을 학습 데이터로 fit하고 predict로 테스트 표본의 클래스를 예측할 수 있다",
+    "predict_proba의 열이 classes_ 순서를 따른다는 것을 알고 표본마다 클래스별 확률을 읽을 수 있다",
+    "테스트 데이터의 정확도를 구해 다른 분류기와 같은 방법으로 비교할 수 있다",
+    "수렴 경고가 나오면 max_iter를 늘리거나 특성 눈금을 맞춰 다시 학습시킬 수 있다"
+   ],
+   "prerequisites": [
+    "ml.supervised.logistic-regression-idea",
+    "ml.supervised.sklearn-first-model",
+    "ml.eval.sklearn-train-test-split",
+    "ml.eval.accuracy-first-evaluation"
+   ],
+   "related": [
+    "ml.supervised.logistic-regression",
+    "ml.supervised.sklearn-knn-classifier",
+    "ml.supervised.predict-proba"
+   ],
+   "aliases": [
+    "LogisticRegression 따라 하기",
+    "사이킷런 로지스틱 회귀",
+    "sklearn LogisticRegression",
+    "로지스틱 회귀 실습"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html",
+    "https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.sklearn-standard-scaler",
+   "title": "scikit-learn 스케일러로 특성 눈금 맞추기",
+   "en": "Scaling Features with scikit-learn's StandardScaler",
+   "kind": "topic",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "StandardScaler를 학습 데이터로 fit해 특성마다 평균과 표준편차를 구하고, 같은 스케일러로 학습·테스트 데이터를 transform해 눈금을 맞춘다.",
+   "objectives": [
+    "StandardScaler를 X_train으로 fit하고 transform으로 평균 0·표준편차 1인 특성 표를 만들 수 있다",
+    "학습 데이터에 맞춘 같은 스케일러로 X_test를 transform만 해야 하는 이유를 말할 수 있다",
+    "fit 뒤 mean_과 scale_을 출력해 스케일러가 배운 값을 확인할 수 있다",
+    "MinMaxScaler로 바꿔 특성을 0~1 범위로 맞춘 결과와 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.data.normalization-idea",
+    "ml.supervised.sklearn-first-model",
+    "ml.eval.sklearn-train-test-split"
+   ],
+   "related": [
+    "ml.data.feature-normalization",
+    "ml.data.numeric-categorical-preprocessing",
+    "ml.supervised.sklearn-pipeline"
+   ],
+   "aliases": [
+    "StandardScaler",
+    "사이킷런 스케일링",
+    "sklearn 스케일링 따라 하기",
+    "특성 표준화 실습"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/preprocessing.html#standardization-or-mean-removal-and-variance-scaling",
+    "https://scikit-learn.org/stable/getting_started.html"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.eval.accuracy",
    "title": "정확도",
    "en": "Accuracy",
@@ -72548,6 +73897,32 @@
    "refs": [
     "https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html",
     "https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.fit-transform",
+   "title": "fit_transform과 transform",
+   "en": "fit_transform and transform in scikit-learn Transformers",
+   "kind": "term",
+   "level": 2,
+   "importance": 1,
+   "group": "AI 기초",
+   "summary": "fit_transform은 학습 데이터로 변환 규칙을 배우면서 바로 바꾼 결과를 돌려주고, 테스트 데이터에는 그 규칙을 transform으로 적용만 한다.",
+   "parent": "ml.data.sklearn-standard-scaler",
+   "related": [
+    "ml.supervised.estimator",
+    "ml.supervised.sklearn-pipeline"
+   ],
+   "aliases": [
+    "fit_transform",
+    "transform 메서드",
+    "sklearn 변환기",
+    "사이킷런 변환기"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/glossary.html#term-fit_transform",
+    "https://scikit-learn.org/stable/getting_started.html"
    ],
    "domain": "ml"
   },
@@ -73161,6 +74536,108 @@
    "domain": "ml"
   },
   {
+   "id": "ml.supervised.coef-intercept",
+   "title": "coef_와 intercept_(학습된 계수와 절편)",
+   "en": "coef_ and intercept_ (Fitted Coefficients and Intercept)",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "선형 모델을 fit한 뒤 특성마다 붙은 가중치는 coef_에, 특성과 상관없이 더하는 절편은 intercept_에 담겨 꺼내 볼 수 있다.",
+   "parent": "ml.supervised.sklearn-linear-regression",
+   "related": [
+    "ml.nn.weight-bias",
+    "ml.supervised.fitted-attribute"
+   ],
+   "aliases": [
+    "coef_",
+    "intercept_",
+    "회귀 계수",
+    "선형 모델 절편"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/glossary.html#term-coef_",
+    "https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.reshape-to-column",
+   "title": "reshape(-1, 1)로 열 하나짜리 표 만들기",
+   "en": "Reshaping a 1D Array into a Single Column with reshape(-1, 1)",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "특성이 하나뿐인 1차원 배열을 scikit-learn이 바라는 (표본 수, 1) 모양으로 바꾸는 코드로, -1 자리는 원소 수에 맞춰 NumPy가 채운다.",
+   "parent": "ml.supervised.sklearn-linear-regression",
+   "related": [
+    "ml.data.array-shape",
+    "ml.nn.tensor-reshape"
+   ],
+   "aliases": [
+    "reshape(-1, 1)",
+    "Expected 2D array",
+    "열 하나짜리 2차원",
+    "단일 특성 reshape"
+   ],
+   "refs": [
+    "https://numpy.org/doc/stable/reference/generated/numpy.reshape.html",
+    "https://scikit-learn.org/stable/getting_started.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.classes-attribute",
+   "title": "classes_(분류기가 아는 클래스 목록)",
+   "en": "classes_ (Class Labels Known to a Classifier)",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "분류기를 fit하면 정답에 나온 클래스 이름이 정렬되어 classes_에 담기고, predict_proba가 내는 확률 열도 이 순서를 따른다.",
+   "parent": "ml.supervised.sklearn-logistic-regression",
+   "related": [
+    "ml.supervised.predict-proba"
+   ],
+   "aliases": [
+    "classes_",
+    "classes_ 속성",
+    "predict_proba 열 순서",
+    "클래스 레이블 목록"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/glossary.html#term-classes_",
+    "https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.fitted-attribute",
+   "title": "학습된 속성(밑줄로 끝나는 이름)",
+   "en": "Fitted Attributes (Trailing-Underscore Names)",
+   "kind": "term",
+   "level": 2,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "scikit-learn 객체가 fit하면서 데이터에서 배운 값은 mean_·coef_처럼 이름 끝에 밑줄 하나를 붙여 저장해, 사람이 정한 인자와 구분한다.",
+   "parent": "ml.data.sklearn-standard-scaler",
+   "related": [
+    "ml.supervised.estimator",
+    "ml.supervised.coef-intercept"
+   ],
+   "aliases": [
+    "fitted attribute",
+    "학습된 속성",
+    "밑줄 붙은 속성",
+    "trailing underscore attribute"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/glossary.html#term-attributes"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.supervised.bunch",
    "title": "Bunch(사이킷런 결과 묶음)",
    "en": "Bunch",
@@ -73459,6 +74936,78 @@
    ],
    "refs": [
     "https://scikit-learn.org/stable/modules/neighbors.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.max-iter",
+   "title": "max_iter(최대 반복 횟수)",
+   "en": "max_iter (Maximum Number of Solver Iterations)",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "반복 계산으로 학습하는 모델이 수렴을 기다리며 최대 몇 번까지 돌지 정하는 인자로, 실제로 돈 횟수는 fit 뒤 n_iter_에 남는다.",
+   "parent": "ml.supervised.sklearn-logistic-regression",
+   "related": [
+    "ml.training.iteration"
+   ],
+   "aliases": [
+    "max_iter",
+    "n_iter_",
+    "ConvergenceWarning",
+    "솔버 반복 횟수"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/glossary.html#term-max_iter",
+    "https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html",
+    "https://scikit-learn.org/stable/modules/generated/sklearn.exceptions.ConvergenceWarning.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.min-max-scaler",
+   "title": "MinMaxScaler(특성을 0~1 범위로 맞추기)",
+   "en": "MinMaxScaler (Scaling Features to a Range)",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "학습 데이터의 열마다 최솟값과 최댓값을 기억해 두고 기본으로 0~1 사이로 옮기는 스케일러로, 학습 범위를 벗어난 테스트 값은 0~1 밖으로 나온다.",
+   "parent": "ml.data.sklearn-standard-scaler",
+   "related": [
+    "ml.data.feature-normalization"
+   ],
+   "aliases": [
+    "MinMaxScaler",
+    "feature_range",
+    "0~1 범위 스케일러"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/preprocessing.html#scaling-features-to-a-range"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.dummy-classifier",
+   "title": "DummyClassifier(특성을 보지 않는 기준 분류기)",
+   "en": "DummyClassifier (Feature-Ignoring Baseline Classifier)",
+   "kind": "term",
+   "level": 2,
+   "importance": 3,
+   "group": "모델 평가",
+   "summary": "입력 특성은 무시하고 가장 많은 클래스를 내놓는 식으로만 예측하는 scikit-learn 분류기로, 내 모델 점수가 이보다 나은지 견줘 보는 데 쓴다.",
+   "related": [
+    "mlops.eval.baseline-model"
+   ],
+   "aliases": [
+    "더미 분류기",
+    "dummy classifier",
+    "most_frequent 전략",
+    "최빈 클래스 예측기"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/generated/sklearn.dummy.DummyClassifier.html"
    ],
    "domain": "ml"
   },

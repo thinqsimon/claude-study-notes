@@ -2448,6 +2448,73 @@
     ]
   },
   {
+    "id": "ops.k8s.expose-service",
+    "title": "Service로 앱 열기: kubectl expose",
+    "en": "Exposing an App with a Kubernetes Service",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "kubectl expose로 Deployment 앞에 Service를 만들어, 파드가 바뀌어도 변하지 않는 주소로 앱에 접속해 본다.",
+    "objectives": [
+      "kubectl expose deployment에 --type=NodePort와 --port를 주어 Service를 만들 수 있다",
+      "kubectl get services와 kubectl describe service로 Service의 IP와 노드 포트를 찾을 수 있다",
+      "minikube ip와 노드 포트를 이어 curl로 앱 응답을 확인할 수 있다",
+      "kubectl delete service로 만든 Service를 지우고 파드는 그대로 남는 것을 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.minikube-first-cluster"
+    ],
+    "related": [
+      "ops.k8s.port-forward",
+      "ops.k8s.minikube-service"
+    ],
+    "aliases": [
+      "kubectl expose",
+      "쿠버네티스 서비스",
+      "Kubernetes Service",
+      "k8s 서비스 오브젝트",
+      "kubectl get services"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/tutorials/kubernetes-basics/expose/expose-intro/",
+      "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_expose/"
+    ]
+  },
+  {
+    "id": "ops.basics.aws-s3-cli",
+    "title": "aws s3 명령으로 버킷에 파일 올리고 받기",
+    "en": "Managing S3 Files with aws s3 Commands",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "배포 기초",
+    "summary": "로그인한 AWS CLI에서 aws s3 mb·ls·cp·rm·rb를 따라 쳐서 버킷을 만들고 파일을 올리고 내려받고 지워 본다.",
+    "objectives": [
+      "aws s3 mb로 전 세계에서 하나뿐인 이름의 버킷을 만들 수 있다",
+      "aws s3 ls로 버킷 목록과 버킷 안의 접두사·파일을 볼 수 있다",
+      "aws s3 cp로 내 컴퓨터와 버킷 사이에 파일을 올리고 내려받을 수 있다",
+      "aws s3 rm과 aws s3 rb로 파일과 버킷을 지울 수 있다"
+    ],
+    "prerequisites": [
+      "ops.basics.aws-cli-first",
+      "ops.basics.object-storage-idea"
+    ],
+    "related": [
+      "ops.basics.storage-bucket"
+    ],
+    "aliases": [
+      "aws s3 명령",
+      "aws s3 commands",
+      "aws s3 mb",
+      "aws s3 ls",
+      "S3 CLI 사용법"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html"
+    ]
+  },
+  {
     "id": "ops.k8s.minikube-first-cluster",
     "title": "minikube로 내 컴퓨터에 첫 클러스터 띄우기",
     "en": "Your First Local Cluster with minikube",
@@ -2543,6 +2610,70 @@
     "refs": [
       "https://kubernetes.io/docs/concepts/overview/working-with-objects/",
       "https://kubernetes.io/docs/tasks/manage-kubernetes-objects/declarative-config/"
+    ]
+  },
+  {
+    "id": "ops.basics.gcloud-cli-first",
+    "title": "Google Cloud CLI 설치하고 gcloud init 하기",
+    "en": "Installing the Google Cloud CLI and Running gcloud init",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "배포 기초",
+    "summary": "공식 안내대로 Google Cloud CLI를 설치하고 gcloud init으로 구글 계정 로그인과 기본 프로젝트 선택을 마친 뒤 설정을 확인한다.",
+    "objectives": [
+      "운영체제에 맞는 공식 설치 방법(apt 저장소·설치 스크립트·설치 프로그램)으로 gcloud를 설치할 수 있다",
+      "gcloud init을 실행해 브라우저로 로그인하고 기본 프로젝트를 고르며, Compute Engine API가 켜져 있으면 기본 영역(zone)도 고를 수 있다",
+      "gcloud auth list와 gcloud config list로 로그인한 계정과 현재 설정을 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.basics.cloud",
+      "dev.terminal.basic-commands"
+    ],
+    "related": [
+      "ops.basics.aws-cli-first"
+    ],
+    "aliases": [
+      "gcloud CLI",
+      "gcloud init",
+      "Google Cloud SDK",
+      "gcloud 설치",
+      "구글 클라우드 CLI"
+    ],
+    "refs": [
+      "https://docs.cloud.google.com/sdk/docs/install-sdk"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ops.docker.docker-init",
+    "title": "docker init으로 Dockerfile 초안 만들기",
+    "en": "Generating Docker Files with docker init",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "Docker",
+    "summary": "프로젝트 폴더에서 docker init을 실행해 언어·포트 같은 질문에 답하면 Dockerfile·compose.yaml·.dockerignore 초안이 만들어진다.",
+    "objectives": [
+      "프로젝트 폴더에서 docker init을 실행해 언어 템플릿을 고르고 질문에 답할 수 있다",
+      "만들어진 Dockerfile·compose.yaml·.dockerignore·README.Docker.md가 각각 무엇인지 말할 수 있다",
+      "이미 있는 Dockerfile이 덮어써지면 되살릴 수 없으므로 실행 전에 이름을 바꿔 둘 수 있다"
+    ],
+    "prerequisites": [
+      "ops.docker.first-container"
+    ],
+    "related": [
+      "ops.docker.dockerfile",
+      "ops.docker.compose"
+    ],
+    "aliases": [
+      "docker init",
+      "도커 init",
+      "Dockerfile 자동 생성"
+    ],
+    "refs": [
+      "https://docs.docker.com/reference/cli/docker/init/"
     ]
   },
   {
@@ -3155,6 +3286,52 @@
     ]
   },
   {
+    "id": "ops.k8s.service-types",
+    "title": "Kubernetes Service 종류(type)",
+    "en": "Kubernetes Service Types (ClusterIP, NodePort, LoadBalancer)",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "Service를 클러스터 안에서만 열지(ClusterIP), 노드마다 30000번대 포트로 열지(NodePort), 클라우드 부하 분산기로 열지(LoadBalancer) 정하는 type 값이다.",
+    "parent": "ops.k8s.expose-service",
+    "related": [
+      "ops.network.load-balancer"
+    ],
+    "aliases": [
+      "ClusterIP",
+      "NodePort",
+      "LoadBalancer 서비스",
+      "Service type",
+      "서비스 타입 k8s",
+      "ExternalName 서비스"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/services-networking/service/",
+      "https://kubernetes.io/docs/tutorials/kubernetes-basics/expose/expose-intro/"
+    ]
+  },
+  {
+    "id": "ops.basics.aws-s3-cp",
+    "title": "aws s3 cp와 --recursive",
+    "en": "Copying Files with aws s3 cp --recursive",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "배포 기초",
+    "summary": "aws s3 cp는 원본과 대상 중 한쪽에 s3:// 주소를 써서 파일 하나를 복사하고, --recursive를 붙이면 폴더나 접두사 아래 전체를 복사한다.",
+    "parent": "ops.basics.aws-s3-cli",
+    "aliases": [
+      "aws s3 cp",
+      "s3 cp --recursive",
+      "S3 파일 업로드 명령",
+      "S3 파일 다운로드 명령"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html"
+    ]
+  },
+  {
     "id": "ops.k8s.kubeconfig-context",
     "title": "kubeconfig와 kubectl 컨텍스트",
     "en": "kubeconfig and kubectl Contexts",
@@ -3594,6 +3771,135 @@
     "refs": [
       "https://bind9.readthedocs.io/en/latest/manpages.html#std-iscman-dig"
     ]
+  },
+  {
+    "id": "ops.k8s.service-port-target-port",
+    "title": "Service의 port와 targetPort",
+    "en": "Service port and targetPort",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "port는 Service가 받는 포트이고 targetPort는 받은 요청을 넘길 컨테이너 포트이며, targetPort를 비우면 port와 같은 값이 쓰인다.",
+    "parent": "ops.k8s.expose-service",
+    "related": [
+      "ops.docker.port-publishing"
+    ],
+    "aliases": [
+      "targetPort",
+      "--target-port",
+      "Service targetPort",
+      "서비스 포트와 타깃 포트"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/services-networking/service/",
+      "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_expose/"
+    ]
+  },
+  {
+    "id": "ops.basics.aws-s3-sync",
+    "title": "aws s3 sync와 --delete",
+    "en": "Syncing Folders with aws s3 sync",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "배포 기초",
+    "summary": "aws s3 sync는 크기나 수정 시각이 다른 파일만 옮겨 폴더와 버킷을 맞추며, --delete를 붙여야 원본에 없는 파일을 대상에서도 지운다.",
+    "parent": "ops.basics.aws-s3-cli",
+    "related": [
+      "ops.basics.aws-s3-cp"
+    ],
+    "aliases": [
+      "aws s3 sync",
+      "s3 sync --delete",
+      "S3 폴더 동기화"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html"
+    ]
+  },
+  {
+    "id": "ops.basics.aws-s3-exclude-include",
+    "title": "aws s3의 --exclude·--include 필터",
+    "en": "aws s3 --exclude and --include Filters",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "배포 기초",
+    "summary": "aws s3 cp·mv·sync·rm에서 --exclude와 --include로 *.txt 같은 패턴의 파일을 빼거나 넣으며, 여러 개를 쓰면 적은 순서대로 적용된다.",
+    "parent": "ops.basics.aws-s3-cli",
+    "aliases": [
+      "aws s3 --exclude",
+      "aws s3 --include",
+      "S3 복사 제외 패턴"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html"
+    ]
+  },
+  {
+    "id": "ops.basics.gcloud-config-set-project",
+    "title": "gcloud config set project로 기본 프로젝트 바꾸기",
+    "en": "Setting the Default Project with gcloud config set project",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "배포 기초",
+    "summary": "gcloud config set project로 이후 명령이 쓸 기본 프로젝트를 바꾸고, gcloud config list로 지금 값을 확인하며 unset으로 지운다.",
+    "parent": "ops.basics.gcloud-cli-first",
+    "aliases": [
+      "gcloud config set project",
+      "gcloud 기본 프로젝트",
+      "CLOUDSDK_CORE_PROJECT"
+    ],
+    "refs": [
+      "https://docs.cloud.google.com/sdk/docs/configurations"
+    ]
+  },
+  {
+    "id": "ops.basics.gcloud-named-configurations",
+    "title": "gcloud 이름 있는 설정(configurations)",
+    "en": "gcloud Named Configurations",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "배포 기초",
+    "summary": "계정·프로젝트 같은 gcloud 속성 묶음에 이름을 붙여 여러 벌 두고 activate로 바꾸거나 --configuration으로 한 명령에만 골라 쓴다.",
+    "parent": "ops.basics.gcloud-cli-first",
+    "related": [
+      "ops.basics.aws-cli-named-profile"
+    ],
+    "aliases": [
+      "gcloud config configurations",
+      "gcloud configurations activate",
+      "CLOUDSDK_ACTIVE_CONFIG_NAME",
+      "gcloud 설정 전환"
+    ],
+    "refs": [
+      "https://docs.cloud.google.com/sdk/docs/configurations"
+    ]
+  },
+  {
+    "id": "ops.basics.gcloud-adc-login",
+    "title": "gcloud auth application-default login",
+    "en": "Application Default Credentials Login with gcloud",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "배포 기초",
+    "summary": "내 컴퓨터에서 돌리는 코드의 Google Cloud 클라이언트 라이브러리가 쓸 자격 증명(ADC)을 내 계정으로 만들어 두는 명령으로, 서비스 계정 키 파일 대신 권장된다.",
+    "parent": "ops.basics.gcloud-cli-first",
+    "aliases": [
+      "application-default login",
+      "애플리케이션 기본 자격 증명",
+      "Application Default Credentials",
+      "Google ADC"
+    ],
+    "refs": [
+      "https://docs.cloud.google.com/docs/authentication/set-up-adc-local-dev-environment"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
   },
   {
     "id": "ops.linux.file-permissions",

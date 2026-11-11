@@ -2534,6 +2534,43 @@
     ]
   },
   {
+    "id": "be.http.devtools-network",
+    "title": "개발자 도구로 HTTP 요청 살펴보기",
+    "en": "Inspecting HTTP Requests in the DevTools Network Panel",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "HTTP",
+    "summary": "브라우저 개발자 도구의 Network 패널을 열고 새로고침해, 페이지가 보낸 요청마다 상태 코드·헤더·응답 본문을 하나씩 열어 본다.",
+    "objectives": [
+      "Network 패널을 열고 페이지를 새로고침해 요청 목록을 띄울 수 있다",
+      "요청 하나를 눌러 Headers·Response 탭에서 메서드·상태 코드·응답 JSON을 확인할 수 있다",
+      "필터 상자로 내 API 요청만 골라 볼 수 있다",
+      "스로틀링을 켜서 느린 네트워크에서 페이지가 어떻게 보이는지 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "be.http.methods-status",
+      "fe.basics.browser-devtools"
+    ],
+    "related": [
+      "be.http.curl",
+      "be.test.postman-first"
+    ],
+    "aliases": [
+      "Network 패널",
+      "네트워크 패널",
+      "DevTools Network panel",
+      "네트워크 탭",
+      "Network tab"
+    ],
+    "refs": [
+      "https://developer.chrome.com/docs/devtools/network",
+      "https://developer.chrome.com/docs/devtools/network/reference"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "be.test.postman-first",
     "title": "Postman으로 API 호출하기",
     "en": "Calling APIs with Postman",
@@ -2616,6 +2653,69 @@
     ],
     "refs": [
       "https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files"
+    ]
+  },
+  {
+    "id": "be.python.main-guard",
+    "title": "직접 실행할 때만 도는 코드: __main__",
+    "en": "Running Code Only as a Script with __main__",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "Python",
+    "summary": "파일을 직접 실행할 때만 서버 시작 같은 코드가 돌고 import할 때는 돌지 않게 if __name__ == \"__main__\" 블록으로 나눈다.",
+    "objectives": [
+      "직접 실행할 때와 import할 때 __name__ 값이 어떻게 다른지 print로 확인할 수 있다",
+      "if __name__ == \"__main__\" 블록 안에 uvicorn.run을 넣어 FastAPI 앱을 python 명령으로 띄울 수 있다",
+      "실행할 내용을 main 함수로 묶고 블록에서는 그 함수만 부르게 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "be.python.modules-import",
+      "be.fastapi.first-app"
+    ],
+    "aliases": [
+      "if __name__ == \"__main__\"",
+      "if __name__ == '__main__'",
+      "메인 가드",
+      "main guard",
+      "스크립트 진입점"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/__main__.html",
+      "https://fastapi.tiangolo.com/tutorial/debugging/"
+    ]
+  },
+  {
+    "id": "be.security.secrets-module",
+    "title": "secrets 모듈로 안전한 토큰 만들기",
+    "en": "Generating Secure Tokens with Python secrets",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "웹 보안",
+    "summary": "API 키·비밀번호 재설정 링크·임시 비밀번호처럼 남이 맞히면 안 되는 값을 random 대신 secrets 모듈로 만든다.",
+    "objectives": [
+      "보안에 쓰는 값은 random이 아니라 secrets로 만들어야 하는 이유를 말할 수 있다",
+      "token_hex와 token_urlsafe로 API 키와 재설정 링크용 토큰을 만들 수 있다",
+      "secrets.choice로 영문자와 숫자가 섞인 임시 비밀번호를 만들 수 있다"
+    ],
+    "prerequisites": [
+      "be.python.modules-import"
+    ],
+    "related": [
+      "cs.algo.computer-randomness",
+      "be.auth.password-hash-why"
+    ],
+    "aliases": [
+      "secrets 모듈",
+      "파이썬 secrets",
+      "import secrets",
+      "안전한 토큰 생성",
+      "secure token generation"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/secrets.html",
+      "https://docs.python.org/3/library/random.html"
     ]
   },
   {
@@ -3279,6 +3379,150 @@
       "301",
       "302"
     ]
+  },
+  {
+    "id": "be.python.dunder-name",
+    "title": "__name__ 변수",
+    "en": "Module __name__ Attribute",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Python",
+    "summary": "모듈마다 붙는 이름표로, import하면 모듈 이름이 들어가고 직접 실행하면 '__main__'이 들어간다.",
+    "parent": "be.python.main-guard",
+    "aliases": [
+      "__name__",
+      "모듈 이름 속성"
+    ]
+  },
+  {
+    "id": "be.security.token-urlsafe",
+    "title": "URL 안전 토큰: token_urlsafe",
+    "en": "URL-safe Token from secrets.token_urlsafe",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "웹 보안",
+    "summary": "secrets.token_urlsafe가 만드는 무작위 문자열로, 주소에 그대로 넣어도 깨지지 않는 글자만 써서 재설정 링크 등에 쓴다.",
+    "parent": "be.security.secrets-module",
+    "aliases": [
+      "token_urlsafe",
+      "secrets.token_urlsafe",
+      "URL 안전 토큰"
+    ]
+  },
+  {
+    "id": "be.python.random-module",
+    "title": "random 모듈",
+    "en": "Python random Module",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Python",
+    "summary": "주사위·섞기·뽑기처럼 흉내 내기용 무작위 값을 만드는 표준 모듈로, 결과를 예측할 수 있어 보안 값에는 쓰지 않는다.",
+    "parent": "be.security.secrets-module",
+    "related": [
+      "cs.algo.pseudorandom-generator"
+    ],
+    "aliases": [
+      "import random",
+      "random.randint",
+      "random.choice",
+      "random.shuffle",
+      "파이썬 random"
+    ]
+  },
+  {
+    "id": "be.python.top-level-code",
+    "title": "최상위 코드 환경",
+    "en": "Top-level Code Environment",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Python",
+    "summary": "프로그램이 처음 시작되는 자리로, 직접 실행한 파일·python -m으로 실행한 모듈·대화형 프롬프트 등이 여기에 해당한다.",
+    "parent": "be.python.main-guard",
+    "related": [
+      "dev.basics.python-m"
+    ],
+    "aliases": [
+      "top-level code environment",
+      "__main__ 모듈",
+      "최상위 모듈"
+    ]
+  },
+  {
+    "id": "be.security.compare-digest",
+    "title": "compare_digest로 비밀값 비교하기",
+    "en": "Timing-safe Comparison with compare_digest",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "웹 보안",
+    "summary": "토큰처럼 비밀인 값 두 개가 같은지 볼 때 == 대신 쓰는 함수로, 비교에 걸린 시간으로 값을 짐작하지 못하게 한다.",
+    "parent": "be.security.secrets-module",
+    "aliases": [
+      "compare_digest",
+      "secrets.compare_digest",
+      "hmac.compare_digest",
+      "타이밍 안전 비교"
+    ]
+  },
+  {
+    "id": "be.http.har-file",
+    "title": "HAR 파일",
+    "en": "HTTP Archive (HAR) File",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "HTTP",
+    "summary": "Network 패널에 쌓인 요청과 응답 기록을 저장한 파일로, 남에게 문제 상황을 보여 줄 때 쓰며 기본 저장은 쿠키와 Authorization 헤더를 뺀다.",
+    "parent": "be.http.devtools-network",
+    "aliases": [
+      "HAR 파일",
+      ".har 파일",
+      "HTTP Archive 파일",
+      "HAR 내보내기"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "be.http.preserve-log",
+    "title": "Preserve log 옵션",
+    "en": "Preserve Log Option in DevTools",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "HTTP",
+    "summary": "켜 두면 페이지를 옮기거나 새로고침해도 Network 패널의 요청 기록이 지워지지 않게 하는 확인란이다.",
+    "parent": "be.http.devtools-network",
+    "aliases": [
+      "로그 보존",
+      "요청 기록 유지",
+      "Preserve log 체크박스"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "be.http.network-throttling",
+    "title": "네트워크 스로틀링",
+    "en": "DevTools Network Throttling",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "HTTP",
+    "summary": "개발자 도구에서 3G·느린 4G 같은 느린 연결을 흉내 내어 내 페이지와 API가 느린 환경에서 어떻게 보이는지 보는 기능이다.",
+    "parent": "be.http.devtools-network",
+    "aliases": [
+      "DevTools 스로틀링",
+      "느린 네트워크 흉내",
+      "Throttling 드롭다운",
+      "Emulate slow network"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
   },
   {
     "id": "be.rest.resource-design",

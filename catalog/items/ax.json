@@ -2773,6 +2773,72 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "ax.coding.copilot-chat-github",
+    "title": "GitHub 웹에서 Copilot Chat 쓰기",
+    "en": "Copilot Chat on GitHub.com",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "에디터를 열지 않고 github.com의 Copilot 채팅 창에 질문하고, 모델을 바꿔 답을 비교하고, 질문을 고쳐 갈래를 나눠 보는 첫 사용법이다.",
+    "objectives": [
+      "github.com/copilot이나 저장소·이슈·PR 페이지에서 Copilot Chat을 열어 질문하고 답이 나오는 중에 멈출 수 있다",
+      "아래쪽 모델 목록에서 모델을 고르고 다시 생성 버튼으로 다른 모델의 답과 비교할 수 있다",
+      "보낸 질문을 고쳐 하위 스레드를 만들고 화살표로 갈래 사이를 오갈 수 있다",
+      "스크린샷이나 PDF를 첨부해 그 내용에 대해 물어볼 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.copilot-chat-ide"
+    ],
+    "related": [
+      "ax.coding.copilot-chat-history"
+    ],
+    "aliases": [
+      "github.com Copilot Chat",
+      "github.com/copilot",
+      "GitHub 웹 Copilot 채팅",
+      "Copilot Chat on GitHub"
+    ],
+    "refs": [
+      "https://docs.github.com/en/copilot/how-tos/copilot-on-github/chat-with-copilot/chat-in-github"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.coding.update-claude-code",
+    "title": "Claude Code 업데이트와 버전 관리",
+    "en": "Updating Claude Code",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "Claude Code가 설치 방식에 따라 저절로 또는 손으로 업데이트된다는 점을 알고, 릴리스 채널과 자동 업데이트 설정을 골라 버전을 관리하는 방법이다.",
+    "objectives": [
+      "설치 방식(네이티브·Homebrew·WinGet 등)에 따라 자동 업데이트가 되는지 구분할 수 있다",
+      "claude update로 바로 업데이트하고 claude --version으로 바뀐 버전을 확인할 수 있다",
+      "/config나 settings.json에서 latest와 stable 채널 중 하나를 고를 수 있다",
+      "자동 업데이트를 끄는 설정을 넣고 claude doctor로 꺼졌는지 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.claude-code-quickstart"
+    ],
+    "related": [
+      "ax.coding.doctor-command"
+    ],
+    "aliases": [
+      "Claude Code 업데이트",
+      "Claude Code 자동 업데이트",
+      "Claude Code auto-update",
+      "DISABLE_AUTOUPDATER"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/setup#update-claude-code"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "ax.coding.agent-write-docs",
     "title": "에이전트에게 코드 문서 주석 채우게 하기",
     "en": "Generating Code Documentation with an Agent",
@@ -2830,6 +2896,40 @@
     ],
     "refs": [
       "https://code.claude.com/docs/en/jetbrains"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.coding.terminal-config",
+    "title": "Claude Code에 맞게 터미널 설정하기",
+    "en": "Configuring the Terminal for Claude Code",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "작업이 끝나면 알림이 오게 하고, 테마를 터미널 배경에 맞추고, tmux나 Vim 키를 쓸 때 필요한 설정을 증상별로 찾아 고치는 방법이다.",
+    "objectives": [
+      "긴 작업이 끝나거나 승인을 기다릴 때 터미널 벨이나 데스크톱 알림이 오게 설정할 수 있다",
+      "/theme나 /config로 터미널의 밝은·어두운 배경에 맞는 테마를 고를 수 있다",
+      "tmux 안에서 쓸 때 줄바꿈과 알림이 되도록 ~/.tmux.conf에 필요한 줄을 넣을 수 있다",
+      "macOS에서 Option 키 단축키가 안 먹을 때 터미널의 Option-as-Meta 설정을 켤 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.claude-code-quickstart"
+    ],
+    "related": [
+      "ax.coding.terminal-setup-command",
+      "ax.coding.interactive-shortcuts"
+    ],
+    "aliases": [
+      "Claude Code 터미널 설정",
+      "Claude Code tmux 설정",
+      "Claude Code 테마",
+      "Use Option as Meta Key"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/terminal-config"
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
@@ -3337,6 +3437,107 @@
     ],
     "refs": [
       "https://code.claude.com/docs/en/interactive-mode"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.coding.copilot-model-picker",
+    "title": "Copilot Chat 모델 고르기와 답 비교",
+    "en": "Copilot Chat Model Picker",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "Copilot Chat 아래쪽 목록에서 답할 모델을 고르고, 다시 생성 버튼으로 같은 질문을 다른 모델에 맡겨 답을 견줘 보는 기능이다.",
+    "parent": "ax.coding.copilot-chat-github",
+    "related": [
+      "ax.coding.model-command",
+      "ax.coding.copilot-premium-requests"
+    ],
+    "aliases": [
+      "Copilot 모델 선택",
+      "Copilot model picker",
+      "Copilot 모델 바꾸기",
+      "Copilot 다른 모델로 다시 생성"
+    ],
+    "refs": [
+      "https://docs.github.com/en/copilot/how-tos/copilot-on-github/chat-with-copilot/chat-in-github#changing-and-comparing-ai-models"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.coding.copilot-pr-summary",
+    "title": "Copilot으로 PR 요약 쓰기",
+    "en": "Copilot Pull Request Summary",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "GitHub PR의 설명이나 댓글 칸 위쪽 Copilot 아이콘에서 Summary를 누르면 바뀐 내용을 요약한 글이 채워지고, 사람이 빠진 맥락을 더해 올리며, Copilot Free에서는 쓸 수 없다.",
+    "related": [
+      "ax.coding.agent-pull-request",
+      "ax.coding.copilot-code-review"
+    ],
+    "aliases": [
+      "Copilot PR 요약",
+      "Copilot pull request summary",
+      "Copilot PR 설명 요약",
+      "Copilot Summary 버튼"
+    ],
+    "refs": [
+      "https://docs.github.com/en/copilot/how-tos/copilot-on-github/copilot-for-github-tasks/create-a-pr-summary"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.coding.vscode-ai-commit-message",
+    "title": "VS Code에서 AI로 커밋 메시지 만들기",
+    "en": "AI-Generated Commit Messages in VS Code",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "VS Code 소스 제어 창의 커밋 메시지 칸에 있는 반짝이 아이콘을 누르면 바뀐 내용을 바탕으로 메시지 초안이 채워지며, 읽고 고친 뒤 커밋한다.",
+    "related": [
+      "dev.git.vscode-source-control",
+      "ax.coding.commit-attribution",
+      "ax.coding.agent-pull-request"
+    ],
+    "aliases": [
+      "AI 커밋 메시지",
+      "Copilot 커밋 메시지 생성",
+      "generate commit message",
+      "커밋 메시지 반짝이 아이콘"
+    ],
+    "refs": [
+      "https://code.visualstudio.com/docs/sourcecontrol/staging-commits"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.coding.claude-update-command",
+    "title": "claude update로 바로 업데이트하기",
+    "en": "claude update Command",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "다음 자동 확인을 기다리지 않고 셸에서 claude update를 실행해 최신 버전을 바로 설치하고 결과 메시지로 바뀐 버전을 확인하는 명령이다.",
+    "parent": "ax.coding.update-claude-code",
+    "related": [
+      "ax.coding.doctor-command"
+    ],
+    "aliases": [
+      "claude update",
+      "Claude Code 수동 업데이트",
+      "Claude Code 최신 버전 받기"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/setup#update-manually"
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
@@ -3932,6 +4133,125 @@
     ],
     "refs": [
       "https://code.claude.com/docs/en/jetbrains"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.coding.copilot-chat-subthread",
+    "title": "Copilot Chat 하위 스레드",
+    "en": "Copilot Chat Subthreads",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "GitHub 웹의 Copilot Chat에서 이미 보낸 질문을 고쳐 다시 보내면 원래 대화를 지우지 않고 새 갈래가 생겨 화살표로 오갈 수 있는 기능이다.",
+    "parent": "ax.coding.copilot-chat-github",
+    "related": [
+      "ax.coding.copilot-chat-history"
+    ],
+    "aliases": [
+      "Copilot 하위 스레드",
+      "Copilot subthread",
+      "Copilot 질문 고쳐 다시 묻기"
+    ],
+    "refs": [
+      "https://docs.github.com/en/copilot/how-tos/copilot-on-github/chat-with-copilot/chat-in-github#using-subthreads-in-a-conversation"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.coding.release-channel",
+    "title": "Claude Code 릴리스 채널(latest·stable)",
+    "en": "Claude Code Release Channel",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "새 버전을 바로 받는 latest와 큰 문제가 있던 버전을 건너뛰고 한 주쯤 늦게 받는 stable 중 어느 쪽으로 업데이트할지 정하는 설정이다.",
+    "parent": "ax.coding.update-claude-code",
+    "aliases": [
+      "autoUpdatesChannel",
+      "Claude Code stable 채널",
+      "Claude Code latest 채널"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/setup#configure-release-channel"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.coding.notification-channel",
+    "title": "Claude Code 작업 끝 알림 받기",
+    "en": "Claude Code Notification Channel",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "Claude Code가 작업을 마치거나 승인을 기다릴 때 터미널 벨이나 데스크톱 알림으로 알려 주게 preferredNotifChannel이나 알림 훅을 설정하는 것이다.",
+    "parent": "ax.coding.terminal-config",
+    "related": [
+      "ax.coding.hooks"
+    ],
+    "aliases": [
+      "preferredNotifChannel",
+      "Claude Code 알림",
+      "Claude Code 작업 완료 알림",
+      "terminal_bell"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/terminal-config#get-a-terminal-bell-or-notification"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.coding.vim-editor-mode",
+    "title": "Claude Code 입력창 Vim 편집 모드",
+    "en": "Claude Code Vim Editor Mode",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "/config의 Editor mode나 editorMode 설정을 vim으로 바꿔 Claude Code 입력창에서 Vim식 이동·선택·삭제 키를 쓰게 하는 모드로, INSERT 모드에서 Enter는 그대로 전송이다.",
+    "parent": "ax.coding.terminal-config",
+    "related": [
+      "ax.coding.interactive-shortcuts"
+    ],
+    "aliases": [
+      "Claude Code Vim 모드",
+      "editorMode vim",
+      "vimInsertModeRemaps"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/terminal-config#edit-prompts-with-vim-keybindings"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.coding.statusline",
+    "title": "Claude Code 상태 줄(/statusline)",
+    "en": "Claude Code Status Line",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "Claude Code 화면 아래에 모델 이름·컨텍스트 사용률·git 브랜치 등을 늘 띄우는 줄로, /statusline에 원하는 내용을 말하면 스크립트와 설정이 만들어진다.",
+    "related": [
+      "ax.coding.context-command",
+      "ax.coding.settings-file"
+    ],
+    "aliases": [
+      "/statusline",
+      "statusLine 설정",
+      "Claude Code 상태 줄",
+      "statusline.sh"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/statusline"
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
