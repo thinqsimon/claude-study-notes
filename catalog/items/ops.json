@@ -2355,6 +2355,99 @@
     ]
   },
   {
+    "id": "ops.k8s.configmap-intro",
+    "title": "ConfigMap으로 앱 설정 넘겨 보기",
+    "en": "Passing App Settings with a Kubernetes ConfigMap",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "비밀이 아닌 설정값을 ConfigMap에 따로 담아 만들고, 파드가 환경 변수나 파일로 읽게 해 본다.",
+    "objectives": [
+      "kubectl create configmap으로 키와 값을 담은 ConfigMap을 만들고 kubectl get configmap -o yaml로 내용을 확인할 수 있다",
+      "예제 파드 매니페스트에 envFrom이나 configMapKeyRef를 넣어 설정값을 환경 변수로 받을 수 있다",
+      "ConfigMap에 비밀번호 같은 비밀값을 넣지 않고 Secret을 써야 하는 이유를 말할 수 있다",
+      "환경 변수로 받은 값은 ConfigMap을 고친 뒤 파드를 다시 띄워야 바뀐다는 것을 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.apply-manifest"
+    ],
+    "related": [
+      "ops.docker.run-env"
+    ],
+    "aliases": [
+      "컨피그맵",
+      "쿠버네티스 ConfigMap",
+      "Kubernetes ConfigMap",
+      "k8s 설정 분리"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/configuration/configmap/",
+      "https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/"
+    ]
+  },
+  {
+    "id": "ops.basics.aws-cli-first",
+    "title": "AWS CLI 설치하고 첫 명령 실행하기",
+    "en": "Installing the AWS CLI and Running Your First Command",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "배포 기초",
+    "summary": "AWS CLI 버전 2를 설치하고 aws login으로 콘솔 계정에 로그인해 짧게 쓰는 자격 증명을 받은 뒤 터미널에서 첫 AWS 명령을 실행해 본다.",
+    "objectives": [
+      "공식 안내를 따라 AWS CLI를 설치하고 aws --version으로 설치를 확인할 수 있다",
+      "aws login으로 로그인하고 리전을 고른 뒤 그 설정이 ~/.aws/config에 저장되는 것을 확인할 수 있다",
+      "aws sts get-caller-identity로 어느 계정의 누구로 명령을 보내는지 확인할 수 있다",
+      "--profile로 계정 설정을 골라 같은 명령을 다른 프로필로 실행할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.basics.cloud",
+      "dev.terminal.basic-commands"
+    ],
+    "aliases": [
+      "aws login",
+      "aws configure",
+      "AWS 명령줄 도구",
+      "AWS Command Line Interface",
+      "awscli"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html",
+      "https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html",
+      "https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sign-in.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ops.network.dig-lookup",
+    "title": "dig로 도메인의 DNS 레코드 조회하기",
+    "en": "Looking Up DNS Records with dig",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "네트워크와 앞단",
+    "summary": "dig 명령으로 도메인의 A·MX 같은 레코드를 물어보고, 답변 절을 읽거나 특정 DNS 서버를 골라 다시 물어본다.",
+    "objectives": [
+      "dig 도메인으로 A 레코드를 조회하고 출력의 ANSWER 절에서 IP 주소를 찾을 수 있다",
+      "dig 도메인 MX처럼 레코드 종류를 붙여 원하는 레코드를 조회할 수 있다",
+      "dig @서버 도메인으로 /etc/resolv.conf의 기본 서버 대신 특정 DNS 서버에 물어볼 수 있다"
+    ],
+    "prerequisites": [
+      "ops.basics.domain-dns"
+    ],
+    "aliases": [
+      "dig 명령",
+      "dig 조회",
+      "DNS 조회 명령",
+      "dig command"
+    ],
+    "refs": [
+      "https://bind9.readthedocs.io/en/latest/manpages.html#std-iscman-dig"
+    ]
+  },
+  {
     "id": "ops.k8s.minikube-first-cluster",
     "title": "minikube로 내 컴퓨터에 첫 클러스터 띄우기",
     "en": "Your First Local Cluster with minikube",
@@ -2978,6 +3071,90 @@
     ]
   },
   {
+    "id": "ops.k8s.create-configmap",
+    "title": "kubectl create configmap으로 설정 만들기",
+    "en": "Creating a ConfigMap with kubectl create configmap",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "--from-literal로 키=값을 직접 적거나 --from-file·--from-env-file로 파일 내용을 읽어 ConfigMap을 만든다.",
+    "parent": "ops.k8s.configmap-intro",
+    "aliases": [
+      "kubectl create configmap",
+      "--from-literal",
+      "--from-env-file",
+      "컨피그맵 만들기"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_create/kubectl_create_configmap/"
+    ]
+  },
+  {
+    "id": "ops.k8s.configmap-envfrom",
+    "title": "envFrom과 configMapKeyRef로 환경 변수 받기",
+    "en": "ConfigMap Environment Variables with envFrom and configMapKeyRef",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "envFrom의 configMapRef는 ConfigMap의 모든 키를, env의 valueFrom.configMapKeyRef는 고른 키 하나를 컨테이너 환경 변수로 넣는다.",
+    "parent": "ops.k8s.configmap-intro",
+    "related": [
+      "ops.docker.run-env"
+    ],
+    "aliases": [
+      "envFrom",
+      "configMapRef",
+      "configMapKeyRef",
+      "ConfigMap 환경 변수"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/configuration/configmap/"
+    ]
+  },
+  {
+    "id": "ops.basics.aws-cli-config-files",
+    "title": "AWS CLI 설정 파일(~/.aws/config·credentials)",
+    "en": "AWS CLI config and credentials Files",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "배포 기초",
+    "summary": "aws configure로 넣은 액세스 키는 홈 폴더 .aws의 credentials 파일에, 리전·출력 형식과 aws login 세션 정보는 config 파일에 프로필별로 저장된다.",
+    "parent": "ops.basics.aws-cli-first",
+    "aliases": [
+      "~/.aws/credentials",
+      "~/.aws/config",
+      "AWS 자격 증명 파일",
+      "AWS credentials file"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html",
+      "https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sign-in.html"
+    ]
+  },
+  {
+    "id": "ops.basics.aws-sts-get-caller-identity",
+    "title": "aws sts get-caller-identity로 내 신원 확인",
+    "en": "Checking Your Identity with aws sts get-caller-identity",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "배포 기초",
+    "summary": "지금 AWS CLI가 쓰는 자격 증명이 어느 계정의 어떤 IAM 사용자나 역할인지 계정 번호와 ARN으로 보여 주며, 따로 권한이 없어도 실행된다.",
+    "parent": "ops.basics.aws-cli-first",
+    "aliases": [
+      "get-caller-identity",
+      "sts get-caller-identity",
+      "AWS 신원 확인",
+      "AWS whoami"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/cli/latest/reference/sts/get-caller-identity.html"
+    ]
+  },
+  {
     "id": "ops.k8s.kubeconfig-context",
     "title": "kubeconfig와 kubectl 컨텍스트",
     "en": "kubeconfig and kubectl Contexts",
@@ -3338,6 +3515,84 @@
     ],
     "refs": [
       "https://ubuntu.com/server/docs/how-to/security/user-management/"
+    ]
+  },
+  {
+    "id": "ops.k8s.configmap-volume",
+    "title": "ConfigMap을 볼륨 파일로 마운트하기",
+    "en": "Mounting a ConfigMap as a Volume",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "ConfigMap의 각 키를 컨테이너 안 폴더의 읽기 전용 파일로 넣으며, 이 파일은 ConfigMap을 고치면 시간이 조금 지나 바뀐다.",
+    "parent": "ops.k8s.configmap-intro",
+    "aliases": [
+      "ConfigMap 볼륨",
+      "configMap volume",
+      "ConfigMap 마운트",
+      "컨피그맵 볼륨"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/configuration/configmap/",
+      "https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/"
+    ]
+  },
+  {
+    "id": "ops.basics.aws-cli-named-profile",
+    "title": "AWS CLI 이름 있는 프로필(--profile·AWS_PROFILE)",
+    "en": "AWS CLI Named Profiles",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "배포 기초",
+    "summary": "여러 계정이나 역할의 설정을 프로필 이름으로 나눠 두고, 명령마다 --profile로 고르거나 AWS_PROFILE 환경 변수로 기본값을 바꾼다.",
+    "parent": "ops.basics.aws-cli-first",
+    "aliases": [
+      "AWS_PROFILE",
+      "aws --profile",
+      "AWS CLI 프로필",
+      "AWS named profile"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html"
+    ]
+  },
+  {
+    "id": "ops.network.dig-short",
+    "title": "dig +short로 답만 짧게 보기",
+    "en": "Terse dig Output with +short",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "네트워크와 앞단",
+    "summary": "dig에 +short를 붙이면 긴 기본 출력 대신 IP 주소 같은 답변 값만 한 줄씩 나온다.",
+    "parent": "ops.network.dig-lookup",
+    "aliases": [
+      "dig +short",
+      "dig 짧은 출력"
+    ],
+    "refs": [
+      "https://bind9.readthedocs.io/en/latest/manpages.html#std-iscman-dig"
+    ]
+  },
+  {
+    "id": "ops.network.dig-reverse",
+    "title": "dig -x로 IP의 이름 찾기(역방향 조회)",
+    "en": "Reverse DNS Lookup with dig -x",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "네트워크와 앞단",
+    "summary": "dig -x에 IP 주소를 주면 역방향 이름을 만들어 PTR 레코드를 물어 그 주소에 붙은 호스트 이름을 알려 준다.",
+    "parent": "ops.network.dig-lookup",
+    "aliases": [
+      "dig -x",
+      "역방향 DNS 조회",
+      "reverse DNS lookup"
+    ],
+    "refs": [
+      "https://bind9.readthedocs.io/en/latest/manpages.html#std-iscman-dig"
     ]
   },
   {

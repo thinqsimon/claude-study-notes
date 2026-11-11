@@ -2704,6 +2704,75 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "ax.coding.desktop-app",
+    "title": "Claude 데스크톱 앱에서 Claude Code 쓰기",
+    "en": "Claude Code in the Claude Desktop App",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "Claude 데스크톱 앱의 Code 탭에서 폴더와 권한 모드를 고르고 세션을 열어, 터미널 없이 수정 diff를 보며 에이전트에게 일을 맡기는 첫 사용법이다.",
+    "objectives": [
+      "데스크톱 앱의 Code 탭에서 환경·프로젝트 폴더·권한 모드·모델을 골라 첫 세션을 열 수 있다",
+      "Changes 카드에서 바뀐 파일을 열어 보고 줄에 댓글을 달아 고쳐 달라고 할 수 있다",
+      "사이드바에서 세션을 여러 개 열고 필요하면 Worktree를 켜 서로 섞이지 않게 돌릴 수 있다",
+      "Local과 Cloud 환경이 어디서 실행되는지 구분해 고를 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.claude-code-quickstart"
+    ],
+    "related": [
+      "ax.coding.vscode-extension",
+      "ax.coding.cloud-sessions"
+    ],
+    "aliases": [
+      "Claude Code 데스크톱",
+      "Claude Code desktop",
+      "데스크톱 앱 Code 탭",
+      "Claude Code Desktop app"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/desktop"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.coding.interactive-shortcuts",
+    "title": "Claude Code 입력창 단축키 익히기",
+    "en": "Claude Code Interactive Mode Shortcuts",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "Claude Code 입력창에서 지난 프롬프트를 찾고, 긴 지시는 편집기로 쓰고, 도구 실행 기록과 바뀐 파일을 펼쳐 보는 기본 단축키와 명령을 익힌다.",
+    "objectives": [
+      "Ctrl+R로 지난 프롬프트를 찾아 다시 쓸 수 있다",
+      "Ctrl+G로 긴 프롬프트를 외부 편집기에서 써서 보낼 수 있다",
+      "Ctrl+O와 /diff로 에이전트가 무엇을 실행하고 무엇을 고쳤는지 펼쳐 볼 수 있다",
+      "/btw로 대화 기록을 늘리지 않고 곁가지 질문을 할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.claude-code-quickstart"
+    ],
+    "related": [
+      "ax.coding.esc-interrupt",
+      "ax.coding.message-queue",
+      "ax.coding.shell-mode"
+    ],
+    "aliases": [
+      "Claude Code 단축키",
+      "Claude Code keyboard shortcuts",
+      "Claude Code 인터랙티브 모드",
+      "interactive mode shortcuts"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/interactive-mode"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "ax.coding.agent-write-docs",
     "title": "에이전트에게 코드 문서 주석 채우게 하기",
     "en": "Generating Code Documentation with an Agent",
@@ -2730,6 +2799,40 @@
     "refs": [
       "https://code.claude.com/docs/en/common-workflows#handle-documentation"
     ]
+  },
+  {
+    "id": "ax.coding.jetbrains-plugin",
+    "title": "JetBrains IDE에서 Claude Code 쓰기",
+    "en": "Claude Code in JetBrains IDEs",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "IntelliJ·PyCharm 같은 JetBrains IDE에 Claude Code 플러그인을 깔고 내장 터미널에서 claude를 실행해, IDE의 diff 화면과 선택 영역 공유를 함께 쓰는 첫 사용법이다.",
+    "objectives": [
+      "CLI와 JetBrains 플러그인을 각각 설치하고 Cmd+Esc나 Ctrl+Esc로 Claude Code를 열 수 있다",
+      "바깥 터미널에서 연 세션을 /ide로 IDE에 이을 수 있다",
+      "/config의 Diff tool 설정으로 수정 diff를 IDE에 띄울지 터미널에 둘지 고를 수 있다",
+      "IDE 설정 파일을 고칠 위험을 알고 acceptEdits 대신 수동 승인을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.claude-code-quickstart"
+    ],
+    "related": [
+      "ax.coding.vscode-extension",
+      "ax.coding.ide-command"
+    ],
+    "aliases": [
+      "Claude Code JetBrains",
+      "Claude Code IntelliJ",
+      "Claude Code PyCharm",
+      "JetBrains Claude Code 플러그인"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/jetbrains"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
   },
   {
     "id": "ax.coding.esc-interrupt",
@@ -3188,6 +3291,57 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "ax.coding.transcript-viewer",
+    "title": "Ctrl+O로 도구 실행 기록 펼쳐 보기",
+    "en": "Transcript Viewer (Ctrl+O)",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "Ctrl+O로 여는 기록 보기 화면으로, 접혀 있던 도구 호출과 실행 결과를 메시지마다 시각과 모델 이름까지 펼쳐 에이전트가 실제로 한 일을 확인한다.",
+    "parent": "ax.coding.interactive-shortcuts",
+    "related": [
+      "ax.coding.session-transcript",
+      "ax.basics.verify-ai-output"
+    ],
+    "aliases": [
+      "Claude Code 기록 보기",
+      "transcript viewer",
+      "Ctrl+O 상세 보기",
+      "Claude Code 상세 로그 보기"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/interactive-mode"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.coding.diff-command",
+    "title": "/diff로 바뀐 파일 훑어보기",
+    "en": "/diff Command",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "Claude Code 안에서 /diff를 치면 에이전트가 고친 것과 아직 커밋하지 않은 변경을 파일별 줄 수와 diff로 보여 주고, 턴마다 고친 내용도 따로 볼 수 있다.",
+    "parent": "ax.coding.interactive-shortcuts",
+    "related": [
+      "ax.coding.ide-diff-review"
+    ],
+    "aliases": [
+      "Claude Code /diff",
+      "Claude Code diff 패널",
+      "Claude Code diff panel",
+      "에이전트 변경 보기"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/interactive-mode"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "ax.coding.auto-memory",
     "title": "자동 메모리(auto memory)",
     "en": "Auto Memory",
@@ -3634,6 +3788,150 @@
     ],
     "refs": [
       "https://code.claude.com/docs/en/commands"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.coding.history-search",
+    "title": "Ctrl+R로 지난 프롬프트 찾기",
+    "en": "Reverse History Search with Ctrl+R",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "Claude Code 입력창에서 Ctrl+R을 누르고 낱말을 치면 예전에 보낸 프롬프트 가운데 맞는 것을 찾아 입력창에 다시 올려 준다.",
+    "parent": "ax.coding.interactive-shortcuts",
+    "aliases": [
+      "Claude Code 프롬프트 기록 검색",
+      "Claude Code reverse search",
+      "prompt history search"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/interactive-mode"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.coding.external-editor-prompt",
+    "title": "Ctrl+G로 편집기에서 프롬프트 쓰기",
+    "en": "Edit Prompt in External Editor (Ctrl+G)",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "Ctrl+G를 누르면 쓰던 프롬프트가 기본 텍스트 편집기에 열려, 긴 지시를 편하게 고쳐 쓴 뒤 저장하면 입력창으로 돌아온다.",
+    "parent": "ax.coding.interactive-shortcuts",
+    "related": [
+      "ax.coding.terminal-setup-command"
+    ],
+    "aliases": [
+      "Claude Code 외부 편집기",
+      "Claude Code external editor",
+      "Ctrl+G 편집기 열기"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/interactive-mode"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.coding.btw-command",
+    "title": "/btw로 곁가지 질문하기",
+    "en": "Side Questions with /btw",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "/btw 뒤에 질문을 쓰면 지금 대화에 쌓인 내용만으로 짧게 답하고 대화 기록에는 남기지 않으며, 에이전트가 일하는 중에도 끊지 않고 물을 수 있다.",
+    "parent": "ax.coding.interactive-shortcuts",
+    "related": [
+      "ax.coding.message-queue"
+    ],
+    "aliases": [
+      "/btw",
+      "곁가지 질문",
+      "side question",
+      "Claude Code 사이드 질문"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/interactive-mode",
+      "https://code.claude.com/docs/en/desktop"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.coding.desktop-diff-comments",
+    "title": "데스크톱 앱 Changes 카드에 줄 댓글 달기",
+    "en": "Inline Diff Comments in Claude Code Desktop",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "데스크톱 앱에서 Changes 카드의 줄 수를 눌러 파일별 diff를 열고, 줄 옆 +로 댓글을 모아 보내면 에이전트가 그 요청을 반영한 새 diff를 내놓는다.",
+    "parent": "ax.coding.desktop-app",
+    "related": [
+      "ax.coding.ide-diff-review"
+    ],
+    "aliases": [
+      "Changes 카드",
+      "데스크톱 diff 댓글",
+      "Claude Code desktop diff view"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/desktop"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.coding.desktop-preview-pane",
+    "title": "데스크톱 앱 브라우저 창으로 결과 확인",
+    "en": "Browser Pane Preview in Claude Code Desktop",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "데스크톱 앱에서 에이전트가 개발 서버를 띄워 브라우저 창에 열고 화면을 찍어 보며 스스로 고친 결과를 확인하는 기능으로, 서버 설정은 .claude/launch.json에 둔다.",
+    "parent": "ax.coding.desktop-app",
+    "related": [
+      "ax.basics.verify-ai-output"
+    ],
+    "aliases": [
+      "Claude Code 브라우저 미리보기",
+      "Claude Code browser pane",
+      "데스크톱 auto-verify",
+      ".claude/launch.json"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/desktop"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.coding.jetbrains-esc-key",
+    "title": "JetBrains 터미널에서 Esc 키 되찾기",
+    "en": "ESC Key Configuration in JetBrains Terminal",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "JetBrains 내장 터미널은 Esc를 편집기로 포커스 옮기기에 쓰므로, 터미널 설정에서 그 동작을 끄거나 단축키를 지워야 Esc로 Claude Code를 멈출 수 있다.",
+    "parent": "ax.coding.jetbrains-plugin",
+    "related": [
+      "ax.coding.esc-interrupt"
+    ],
+    "aliases": [
+      "JetBrains Esc 설정",
+      "Move focus to the editor with Escape",
+      "JetBrains 터미널 Esc 안 됨"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/jetbrains"
     ],
     "volatile": true,
     "checked_at": "2026-11-11"

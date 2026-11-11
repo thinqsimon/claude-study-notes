@@ -2429,6 +2429,135 @@
     ]
   },
   {
+    "id": "cs.data.rfc3339-timestamp",
+    "title": "날짜·시각 문자열 표기: RFC 3339",
+    "en": "RFC 3339 Internet Date/Time Format",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "2025-03-01T09:30:00+09:00처럼 날짜, T, 시각, UTC와의 차이를 정해진 순서로 적어 프로그램끼리 시각을 헷갈리지 않고 주고받게 하는 표기다.",
+    "objectives": [
+      "RFC 3339 시각 문자열을 날짜·T·시각·오프셋 부분으로 나눠 읽을 수 있다",
+      "같은 순간을 Z 표기와 +09:00 표기로 각각 따라 적을 수 있다",
+      "오프셋 표기와 소수 초 자릿수를 맞춰야 문자열 정렬이 시간순이 된다는 것을 예로 보일 수 있다",
+      "RFC 3339가 t·z 소문자도 받아들이지만 시각 문자열을 만들 때는 대문자 T·Z를 쓰라고 권한다는 것을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.data.utc-time-zones"
+    ],
+    "related": [
+      "cs.os.unix-time",
+      "be.python.datetime"
+    ],
+    "aliases": [
+      "RFC 3339",
+      "RFC 3339 타임스탬프",
+      "인터넷 날짜 시각 형식"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc3339"
+    ]
+  },
+  {
+    "id": "cs.data.percent-encoding",
+    "title": "퍼센트 인코딩: URL에 못 쓰는 글자 옮기기",
+    "en": "Percent-Encoding in URIs",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "URL에 그대로 쓸 수 없는 글자를 UTF-8 바이트로 바꾼 뒤 바이트마다 %와 16진수 두 자리로 적어 주소에 안전하게 담는 방식이다.",
+    "objectives": [
+      "공백이 %20이 되듯 바이트 하나가 %와 두 자리로 적힌다는 규칙을 예로 설명할 수 있다",
+      "한글 같은 글자를 UTF-8 바이트로 바꿔 퍼센트 인코딩하는 과정을 따라 할 수 있다",
+      "urllib.parse의 quote와 unquote로 문자열을 인코딩하고 되돌리는 코드를 따라 쓸 수 있다",
+      "이미 인코딩한 문자열을 다시 인코딩하면 %가 %25로 바뀌어 값이 달라진다는 것을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.data.character-codes"
+    ],
+    "related": [
+      "cs.data.base64"
+    ],
+    "aliases": [
+      "URL 인코딩",
+      "URL encoding",
+      "퍼센트 인코딩 디코딩",
+      "%20 공백",
+      "URL escape"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc3986",
+      "https://docs.python.org/3/library/urllib.parse.html#url-quoting"
+    ]
+  },
+  {
+    "id": "cs.dsa.two-dimensional-array",
+    "title": "2차원 배열: 행과 열로 표 담기",
+    "en": "Two-Dimensional Arrays",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "자료구조",
+    "summary": "배열 안에 배열을 넣어 표처럼 행과 열로 값을 담고, 첫 번째 번호로 행을 두 번째 번호로 열을 골라 칸을 찾는 자료구조다.",
+    "objectives": [
+      "3행 4열 표를 리스트의 리스트로 따라 만들 수 있다",
+      "matrix[행][열]처럼 두 번호로 한 칸을 읽고 바꿀 수 있다",
+      "중첩 for 문이나 zip(*matrix)으로 행과 열을 맞바꾼 표를 만들 수 있다"
+    ],
+    "prerequisites": [
+      "cs.dsa.array-basics"
+    ],
+    "related": [
+      "be.python.list-dict"
+    ],
+    "aliases": [
+      "이차원 배열",
+      "2D array",
+      "2D 리스트",
+      "리스트의 리스트",
+      "list of lists"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/matrix.html",
+      "https://docs.python.org/3/tutorial/datastructures.html#nested-list-comprehensions"
+    ]
+  },
+  {
+    "id": "cs.data.floor-division-modulo",
+    "title": "몫과 나머지: 내림 나눗셈과 % 연산",
+    "en": "Floor Division and the Modulo Operator",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "정수를 나눠 몫은 //로, 나머지는 %로 구하고 몫×나누는 수+나머지가 원래 수가 되는 관계로 결과를 확인하는 계산 방법이다.",
+    "objectives": [
+      "17 // 3과 17 % 3을 계산하고 몫×3+나머지가 17이 되는지 따라 확인할 수 있다",
+      "파이썬에서 % 결과의 부호가 나누는 수의 부호를 따른다는 것을 -7 % 3 같은 예로 보일 수 있다",
+      "0으로 나누면 몫과 나머지 모두 ZeroDivisionError가 난다는 것을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.data.integer-float"
+    ],
+    "related": [
+      "fe.js.remainder-operator"
+    ],
+    "aliases": [
+      "파이썬 나머지 연산",
+      "모듈로 연산",
+      "Python modulo operator",
+      "몫과 나머지",
+      "divmod",
+      "quotient and remainder"
+    ],
+    "refs": [
+      "https://docs.python.org/3/tutorial/introduction.html#numbers",
+      "https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations"
+    ]
+  },
+  {
     "id": "cs.dsa.data-structure",
     "title": "자료구조",
     "en": "Data Structure",
@@ -3023,6 +3152,66 @@
     ]
   },
   {
+    "id": "cs.data.iso-8601",
+    "title": "ISO 8601 날짜·시각 표기",
+    "en": "ISO 8601 Date and Time Notation",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "연-월-일 순서로 날짜와 시각을 적는 국제 표준 표기로, RFC 3339는 이 표기에서 인터넷용으로 몇 가지 형태만 골라 쓴다.",
+    "parent": "cs.data.rfc3339-timestamp",
+    "aliases": [
+      "ISO 8601",
+      "ISO 날짜 형식",
+      "ISO 8601 형식",
+      "ISO date format"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc3339"
+    ]
+  },
+  {
+    "id": "cs.data.uri-reserved-characters",
+    "title": "URI 예약 문자",
+    "en": "URI Reserved Characters",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "URL에서 / ? # & = 처럼 부분을 나누는 구분자로 쓰이는 글자들로, 데이터로 넣을 때는 퍼센트 인코딩해야 뜻이 바뀌지 않는다.",
+    "parent": "cs.data.percent-encoding",
+    "aliases": [
+      "URL 예약 문자",
+      "URL 구분자 문자",
+      "gen-delims",
+      "sub-delims"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc3986"
+    ]
+  },
+  {
+    "id": "cs.data.double-percent-encoding",
+    "title": "이중 퍼센트 인코딩",
+    "en": "Double Percent-Encoding",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "이미 퍼센트 인코딩한 문자열을 한 번 더 인코딩해 %20이 %2520이 되는 실수로, 받는 쪽에서 원래 값과 다른 글자를 읽게 된다.",
+    "parent": "cs.data.percent-encoding",
+    "aliases": [
+      "URL 이중 인코딩",
+      "double URL encoding",
+      "%2520",
+      "URL 두 번 인코딩"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc3986"
+    ]
+  },
+  {
     "id": "cs.data.binary-prefix",
     "title": "이진 접두어(KiB·MiB·GiB)",
     "en": "Binary Prefixes",
@@ -3268,6 +3457,128 @@
     ],
     "refs": [
       "https://docs.python.org/3/library/zlib.html"
+    ]
+  },
+  {
+    "id": "cs.data.unknown-local-offset",
+    "title": "알 수 없는 지역 오프셋(-00:00)",
+    "en": "Unknown Local Offset (-00:00)",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "UTC 시각은 알지만 그 지역의 시차를 모를 때 쓰는 -00:00 표기로, UTC를 기준으로 삼는다는 Z나 +00:00과는 뜻이 다르다.",
+    "parent": "cs.data.rfc3339-timestamp",
+    "aliases": [
+      "-00:00 오프셋",
+      "unknown local offset",
+      "알 수 없는 시차"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc3339"
+    ]
+  },
+  {
+    "id": "cs.data.uri-unreserved-characters",
+    "title": "URI 비예약 문자",
+    "en": "URI Unreserved Characters",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "영문자·숫자와 - . _ ~ 네 기호처럼 URL 어디에 넣어도 인코딩하지 않고 그대로 써도 되는 글자들이다.",
+    "parent": "cs.data.percent-encoding",
+    "aliases": [
+      "비예약 문자",
+      "unreserved characters",
+      "URL 안전 문자",
+      "인코딩하지 않는 문자"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc3986"
+    ]
+  },
+  {
+    "id": "cs.data.form-urlencoded-plus",
+    "title": "폼 값 인코딩의 공백 +",
+    "en": "Plus Sign for Spaces in Form Encoding",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "HTML 폼 값을 쿼리 문자열로 만들 때는 공백을 %20 대신 +로 적고 /까지 인코딩하는 방식으로, 경로용 인코딩과 결과가 다르다.",
+    "parent": "cs.data.percent-encoding",
+    "aliases": [
+      "quote_plus",
+      "공백 플러스 인코딩",
+      "폼 인코딩 공백",
+      "unquote_plus"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/urllib.parse.html#url-quoting"
+    ]
+  },
+  {
+    "id": "cs.dsa.matrix-transpose",
+    "title": "행렬 전치(행과 열 맞바꾸기)",
+    "en": "Matrix Transpose",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "자료구조",
+    "summary": "표의 행을 열로, 열을 행으로 바꿔 3행 4열 표를 4행 3열 표로 만드는 일이다.",
+    "parent": "cs.dsa.two-dimensional-array",
+    "aliases": [
+      "전치 행렬",
+      "matrix transpose",
+      "zip(*matrix)",
+      "행과 열 바꾸기"
+    ],
+    "refs": [
+      "https://docs.python.org/3/tutorial/datastructures.html#nested-list-comprehensions"
+    ]
+  },
+  {
+    "id": "cs.dsa.ragged-array",
+    "title": "들쭉날쭉한 배열(행마다 길이가 다른 표)",
+    "en": "Ragged Matrix",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "자료구조",
+    "summary": "행마다 담긴 칸 수가 서로 달라 모든 행이 같은 길이라고 가정하고 열 번호로 찾으면 범위를 벗어날 수 있는 2차원 배열이다.",
+    "parent": "cs.dsa.two-dimensional-array",
+    "related": [
+      "cs.dsa.index-out-of-range"
+    ],
+    "aliases": [
+      "가변 길이 행",
+      "ragged array",
+      "jagged array",
+      "들쭉날쭉 배열"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/raggedmatrix.html"
+    ]
+  },
+  {
+    "id": "cs.dsa.sparse-matrix",
+    "title": "희소 행렬",
+    "en": "Sparse Matrix",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "자료구조",
+    "summary": "칸 대부분이 0이라 값이 있는 칸의 행·열 위치와 값만 따로 적어 두면 전체 표보다 훨씬 적은 공간에 담을 수 있는 행렬이다.",
+    "related": [
+      "cs.dsa.two-dimensional-array"
+    ],
+    "aliases": [
+      "성긴 행렬",
+      "sparse matrix 저장"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/sparsematrix.html"
     ]
   },
   {

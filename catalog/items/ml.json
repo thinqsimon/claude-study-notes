@@ -2642,6 +2642,109 @@
     ]
   },
   {
+    "id": "ml.eval.sklearn-train-test-split",
+    "title": "scikit-learn으로 학습·테스트 데이터 나누기",
+    "en": "Splitting Data into Train and Test Sets with scikit-learn",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "모델 평가",
+    "summary": "train_test_split 한 줄로 X와 y를 학습용과 테스트용으로 섞어 나누고, 테스트용은 학습에 넣지 않고 점수 매길 때만 쓴다.",
+    "objectives": [
+      "train_test_split에 X와 y를 넘겨 X_train·X_test·y_train·y_test 네 묶음을 받을 수 있다",
+      "test_size로 테스트용 비율이나 개수를 정할 수 있다",
+      "random_state에 정수를 넣어 실행할 때마다 같은 분할이 나오게 할 수 있다",
+      "stratify=y로 학습용과 테스트용의 클래스 비율을 맞출 수 있다"
+    ],
+    "prerequisites": [
+      "ml.eval.data-split",
+      "ml.supervised.sklearn-first-model"
+    ],
+    "related": [
+      "ml.eval.data-splitting-cv",
+      "ml.eval.accuracy-first-evaluation"
+    ],
+    "aliases": [
+      "학습 테스트 분할",
+      "train test split 따라 하기",
+      "X_train X_test",
+      "테스트 세트 떼어 두기"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html",
+      "https://developers.google.com/machine-learning/crash-course/overfitting/dividing-datasets"
+    ]
+  },
+  {
+    "id": "ml.supervised.sklearn-decision-tree",
+    "title": "scikit-learn으로 결정 트리 만들고 그려 보기",
+    "en": "Building and Plotting a Decision Tree with scikit-learn",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "DecisionTreeClassifier로 붓꽃 데이터를 학습시킨 뒤 plot_tree와 export_text로 모델이 묻는 질문을 그림과 글로 직접 확인해 본다.",
+    "objectives": [
+      "DecisionTreeClassifier를 fit하고 predict로 새 표본의 클래스를 예측할 수 있다",
+      "max_depth로 트리 깊이를 정해 작은 트리부터 만들어 볼 수 있다",
+      "plot_tree에 feature_names·class_names·filled를 넣어 학습한 트리를 그림으로 그릴 수 있다",
+      "export_text로 트리의 분기 조건을 글로 출력해 읽을 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.decision-tree-idea",
+      "ml.supervised.sklearn-first-model"
+    ],
+    "related": [
+      "ml.supervised.decision-tree",
+      "ml.supervised.tree-ensembles"
+    ],
+    "aliases": [
+      "결정 트리 따라 하기",
+      "결정 트리 시각화",
+      "decision tree tutorial",
+      "트리 그려 보기"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/tree.html",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.tree.plot_tree.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.sklearn-knn-classifier",
+    "title": "scikit-learn으로 k-최근접 이웃 분류기 만들기",
+    "en": "Building a k-Nearest Neighbors Classifier with scikit-learn",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "KNeighborsClassifier로 학습 데이터를 저장해 두고 새 점과 가까운 이웃 k개의 다수결로 클래스를 예측하며, k와 가중 방식을 바꿔 결과를 비교해 본다.",
+    "objectives": [
+      "KNeighborsClassifier를 fit하고 predict로 새 표본의 클래스를 예측할 수 있다",
+      "n_neighbors 값을 바꿔 가며 테스트 정확도가 어떻게 달라지는지 비교할 수 있다",
+      "weights를 'uniform'과 'distance'로 바꿔 가까운 이웃에 무게를 더 줄 수 있다",
+      "predict_proba로 이웃 가운데 각 클래스가 차지한 비율을 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.knn-idea",
+      "ml.supervised.sklearn-first-model",
+      "ml.eval.accuracy-first-evaluation"
+    ],
+    "related": [
+      "ml.supervised.k-nearest-neighbors",
+      "ml.supervised.instance-based-learning"
+    ],
+    "aliases": [
+      "KNN 따라 하기",
+      "k-NN 실습",
+      "KNN 분류기 만들기",
+      "kNN classifier tutorial"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/neighbors.html",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html"
+    ]
+  },
+  {
     "id": "ml.eval.accuracy",
     "title": "정확도",
     "en": "Accuracy",
@@ -2790,6 +2893,30 @@
     ],
     "refs": [
       "https://pandas.pydata.org/docs/user_guide/basics.html#dtypes"
+    ]
+  },
+  {
+    "id": "ml.eval.random-state",
+    "title": "random_state(무작위 결과 고정 인자)",
+    "en": "random_state Parameter in scikit-learn",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "모델 평가",
+    "summary": "scikit-learn 함수와 모델에 정수를 넘겨 데이터 섞기와 학습 속 무작위 선택을 고정하고, 다시 실행해도 같은 분할과 같은 결과가 나오게 하는 인자다.",
+    "parent": "ml.eval.sklearn-train-test-split",
+    "related": [
+      "cs.algo.random-seed",
+      "mlops.track.reproducible-training"
+    ],
+    "aliases": [
+      "random_state",
+      "random_state=42",
+      "random_state 인자"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html"
     ]
   },
   {
@@ -3263,6 +3390,117 @@
     ]
   },
   {
+    "id": "ml.eval.test-size",
+    "title": "test_size(테스트용 비율)",
+    "en": "test_size Parameter of train_test_split",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "모델 평가",
+    "summary": "train_test_split에서 테스트용으로 떼어 둘 몫을 0과 1 사이 비율이나 정수 개수로 정하는 인자로, 비우면 25%가 된다.",
+    "parent": "ml.eval.sklearn-train-test-split",
+    "aliases": [
+      "test_size",
+      "테스트 비율",
+      "테스트 세트 크기"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html",
+      "https://developers.google.com/machine-learning/glossary#test-set"
+    ]
+  },
+  {
+    "id": "ml.eval.stratified-split",
+    "title": "층화 분할(stratify)",
+    "en": "Stratified Train-Test Split",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "모델 평가",
+    "summary": "train_test_split에 stratify=y를 주어 학습용과 테스트용에 각 클래스가 원래 데이터와 같은 비율로 들어가게 나누는 방법이다.",
+    "parent": "ml.eval.sklearn-train-test-split",
+    "related": [
+      "ml.data.imbalanced-datasets"
+    ],
+    "aliases": [
+      "층화 분할",
+      "stratify=y",
+      "stratified split",
+      "클래스 비율 유지 분할"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.tree-max-depth",
+    "title": "max_depth(트리 최대 깊이)",
+    "en": "max_depth of a Decision Tree",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "결정 트리가 뿌리에서 잎까지 내려갈 수 있는 질문 단계 수의 상한으로, 비우면 끝까지 자라 과적합되기 쉽다.",
+    "parent": "ml.supervised.sklearn-decision-tree",
+    "related": [
+      "ml.training.overfitting-idea"
+    ],
+    "aliases": [
+      "max_depth",
+      "트리 최대 깊이",
+      "트리 깊이 제한",
+      "결정 트리 깊이"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html",
+      "https://scikit-learn.org/stable/modules/tree.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.n-neighbors",
+    "title": "n_neighbors(이웃 수 k)",
+    "en": "n_neighbors Parameter of KNeighborsClassifier",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "k-최근접 이웃 모델이 투표에 쓸 가까운 이웃의 개수로, 기본은 5이고 크게 하면 잡음에 덜 흔들리지만 경계가 흐려진다.",
+    "parent": "ml.supervised.sklearn-knn-classifier",
+    "aliases": [
+      "n_neighbors",
+      "이웃 수",
+      "KNN의 k값",
+      "KNN k 값 고르기"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html",
+      "https://scikit-learn.org/stable/modules/neighbors.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.predict-proba",
+    "title": "predict_proba(클래스별 확률 예측)",
+    "en": "predict_proba Method in scikit-learn",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "scikit-learn 분류 모델이 표본마다 각 클래스일 확률을 한 행씩 돌려주는 메서드로, 열은 클래스 순서대로 놓인다.",
+    "parent": "ml.supervised.sklearn-knn-classifier",
+    "related": [
+      "ml.eval.threshold-confusion-matrix"
+    ],
+    "aliases": [
+      "predict_proba",
+      "클래스 확률 예측",
+      "예측 확률 출력"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html",
+      "https://scikit-learn.org/stable/modules/tree.html"
+    ]
+  },
+  {
     "id": "ml.supervised.bunch",
     "title": "Bunch(사이킷런 결과 묶음)",
     "en": "Bunch",
@@ -3487,6 +3725,67 @@
     ],
     "refs": [
       "https://seaborn.pydata.org/generated/seaborn.pairplot.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.plot-tree",
+    "title": "plot_tree(결정 트리 그림)",
+    "en": "sklearn.tree.plot_tree",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "학습한 결정 트리의 노드마다 분기 조건·불순도·표본 수·다수 클래스를 matplotlib 그림으로 그려 주는 scikit-learn 함수다.",
+    "parent": "ml.supervised.sklearn-decision-tree",
+    "aliases": [
+      "plot_tree",
+      "tree.plot_tree",
+      "트리 시각화 함수"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/generated/sklearn.tree.plot_tree.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.export-text",
+    "title": "export_text(트리 규칙 글로 출력)",
+    "en": "sklearn.tree.export_text",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "학습한 결정 트리의 분기 조건과 잎의 클래스를 들여쓰기한 글로 출력해, 다른 라이브러리 없이 규칙을 읽게 해 주는 함수다.",
+    "parent": "ml.supervised.sklearn-decision-tree",
+    "related": [
+      "ml.supervised.plot-tree"
+    ],
+    "aliases": [
+      "export_text",
+      "트리 규칙 출력",
+      "결정 트리 텍스트 출력"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/tree.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.knn-distance-weights",
+    "title": "거리 가중 투표(weights='distance')",
+    "en": "Distance-Weighted Voting in k-NN",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "k-최근접 이웃이 투표할 때 모든 이웃을 똑같이 세는 대신 거리의 역수만큼 무게를 주어 가까운 이웃의 말을 더 듣게 하는 설정이다.",
+    "parent": "ml.supervised.sklearn-knn-classifier",
+    "aliases": [
+      "weights='distance'",
+      "거리 가중 KNN",
+      "distance weighting",
+      "거리 역수 가중"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/neighbors.html"
     ]
   },
   {

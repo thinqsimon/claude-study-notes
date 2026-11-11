@@ -2559,6 +2559,69 @@
     ]
   },
   {
+    "id": "fe.html.head-metadata",
+    "title": "HTML head와 메타데이터",
+    "en": "HTML Head and Web Page Metadata",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "HTML",
+    "summary": "화면에는 안 보이지만 탭 제목·문자 인코딩·설명·CSS와 JS 연결을 담는 head 부분을 채워 페이지 정보를 브라우저와 검색 엔진에 알린다.",
+    "objectives": [
+      "title 요소로 탭에 보일 문서 제목을 정하고 h1과의 차이를 말할 수 있다",
+      "meta charset과 meta name=description을 head에 따라 넣을 수 있다",
+      "link rel=stylesheet와 defer를 단 script로 CSS와 JS 파일을 연결할 수 있다",
+      "html 태그에 lang 속성을 달아 문서 언어를 알릴 수 있다"
+    ],
+    "prerequisites": [
+      "fe.html.first-page"
+    ],
+    "related": [
+      "fe.next.metadata"
+    ],
+    "aliases": [
+      "head 요소",
+      "HTML head",
+      "웹 페이지 메타데이터",
+      "webpage metadata",
+      "<head> 태그"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Webpage_metadata"
+    ]
+  },
+  {
+    "id": "fe.js.arrays-first",
+    "title": "JavaScript 배열 기초",
+    "en": "JavaScript Array Basics",
+    "kind": "topic",
+    "level": 2,
+    "importance": 1,
+    "group": "JavaScript",
+    "summary": "대괄호로 여러 값을 한 줄로 묶은 배열을 만들고, 0부터 세는 번호로 항목을 읽고 바꾸며 넣고 빼는 JavaScript의 첫 사용법이다.",
+    "objectives": [
+      "대괄호로 배열을 만들고 length로 항목 수를 알아낼 수 있다",
+      "0부터 시작하는 인덱스로 항목을 읽고 새 값으로 바꿀 수 있다",
+      "push·pop·indexOf로 항목을 더하고 빼고 위치를 찾을 수 있다",
+      "for...of로 배열의 모든 항목을 차례로 출력할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.js.basics"
+    ],
+    "related": [
+      "fe.js.array-methods"
+    ],
+    "aliases": [
+      "JS 배열",
+      "자바스크립트 배열",
+      "JavaScript 배열",
+      "JS array"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Arrays"
+    ]
+  },
+  {
     "id": "fe.css.text-styling",
     "title": "CSS로 글꼴과 글자 꾸미기",
     "en": "Fundamental Text and Font Styling",
@@ -2773,6 +2836,64 @@
     ]
   },
   {
+    "id": "fe.css.styling-lists",
+    "title": "CSS로 목록 꾸미기",
+    "en": "Styling Lists with CSS",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "CSS",
+    "summary": "list-style 속성으로 글머리 기호와 번호 모양·위치를 바꾸고 여백과 줄 간격을 맞춰 ul·ol 목록을 보기 좋게 꾸미는 CSS 사용법이다.",
+    "objectives": [
+      "list-style-type으로 글머리 기호나 번호 모양을 바꿀 수 있다",
+      "list-style-position의 inside와 outside 차이를 화면에서 보일 수 있다",
+      "background-image로 글머리 기호를 원하는 그림으로 바꿀 수 있다",
+      "ol의 start·reversed와 li의 value로 번호 매기기를 바꿀 수 있다"
+    ],
+    "prerequisites": [
+      "fe.html.lists",
+      "fe.css.selectors-first"
+    ],
+    "aliases": [
+      "목록 스타일",
+      "CSS 목록 꾸미기",
+      "styling lists",
+      "글머리 기호 꾸미기"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Text_styling/Styling_lists"
+    ]
+  },
+  {
+    "id": "fe.css.styling-tables",
+    "title": "CSS로 표 꾸미기",
+    "en": "Styling Tables with CSS",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "CSS",
+    "summary": "테두리 합치기·칸 여백·정렬·줄무늬·캡션 위치를 CSS로 정해 HTML 표를 읽기 쉽게 다듬는 방법이다.",
+    "objectives": [
+      "border-collapse와 th·td의 padding으로 칸이 또렷한 표를 만들 수 있다",
+      "글자는 왼쪽, 숫자는 오른쪽으로 열마다 text-align을 정할 수 있다",
+      "tbody tr:nth-child(odd)로 행마다 배경색을 번갈아 칠할 수 있다",
+      "caption-side로 표 캡션을 표 아래로 옮길 수 있다"
+    ],
+    "prerequisites": [
+      "fe.html.tables",
+      "fe.css.selectors-first"
+    ],
+    "aliases": [
+      "표 스타일",
+      "CSS 표 꾸미기",
+      "styling tables",
+      "테이블 스타일링"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Tables"
+    ]
+  },
+  {
     "id": "fe.css.units",
     "title": "CSS 길이 단위: px·em·rem·%",
     "en": "CSS Length Units",
@@ -2983,6 +3104,51 @@
     ],
     "refs": [
       "https://react.dev/learn/passing-props-to-a-component"
+    ]
+  },
+  {
+    "id": "fe.html.meta-charset",
+    "title": "meta charset으로 문자 인코딩 선언하기",
+    "en": "Declaring Character Encoding with meta charset",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "HTML",
+    "summary": "head 맨 앞쪽에 meta charset=\"utf-8\"을 넣어 한글을 비롯한 모든 언어의 글자가 깨지지 않게 하는 선언이다.",
+    "parent": "fe.html.head-metadata",
+    "related": [
+      "be.python.unicode"
+    ],
+    "aliases": [
+      "meta charset",
+      "charset 메타 태그",
+      "HTML 문자 인코딩 선언",
+      "<meta charset=\"utf-8\">"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Webpage_metadata",
+      "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta"
+    ]
+  },
+  {
+    "id": "fe.js.array-push-pop",
+    "title": "push·pop으로 배열 끝에 넣고 빼기",
+    "en": "Adding and Removing Array Items with push() and pop()",
+    "kind": "term",
+    "level": 2,
+    "importance": 1,
+    "group": "JavaScript",
+    "summary": "push는 배열 끝에 항목을 더하고 pop은 끝 항목을 꺼내며, 앞쪽은 unshift와 shift가 같은 일을 한다.",
+    "parent": "fe.js.arrays-first",
+    "aliases": [
+      "배열 push",
+      "배열 pop",
+      "Array push",
+      "Array.prototype.push",
+      "unshift와 shift"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Arrays"
     ]
   },
   {
@@ -3401,6 +3567,91 @@
     ]
   },
   {
+    "id": "fe.css.list-style-type",
+    "title": "list-style-type: 글머리 기호와 번호 모양",
+    "en": "CSS list-style-type Property",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "CSS",
+    "summary": "목록 앞에 붙는 점·네모·로마 숫자 같은 표시 모양을 정하는 CSS 속성으로, list-style 단축 속성에 함께 쓸 수 있다.",
+    "parent": "fe.css.styling-lists",
+    "aliases": [
+      "글머리 기호 모양",
+      "목록 번호 모양",
+      "list-style 단축 속성",
+      "bullet style"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Text_styling/Styling_lists"
+    ]
+  },
+  {
+    "id": "fe.html.meta-description",
+    "title": "meta description: 검색 결과에 보일 설명",
+    "en": "HTML meta description",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "HTML",
+    "summary": "meta name=\"description\"의 content에 페이지를 짧게 요약해 두면 검색 엔진이 결과 목록에 그 문장을 보여 줄 수 있다.",
+    "parent": "fe.html.head-metadata",
+    "related": [
+      "fe.basics.seo-idea"
+    ],
+    "aliases": [
+      "메타 설명",
+      "meta description",
+      "description 메타 태그",
+      "검색 결과 설명문"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Webpage_metadata",
+      "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meta"
+    ]
+  },
+  {
+    "id": "fe.js.split-join",
+    "title": "split과 join으로 문자열과 배열 바꾸기",
+    "en": "Converting Between Strings and Arrays with split() and join()",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "JavaScript",
+    "summary": "split은 구분 문자로 문자열을 잘라 배열로 만들고, join은 배열 항목을 구분 문자로 이어 문자열로 되돌린다.",
+    "parent": "fe.js.arrays-first",
+    "aliases": [
+      "JS split",
+      "Array join",
+      "JS 문자열 나누기",
+      "배열 합치기 join"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Arrays"
+    ]
+  },
+  {
+    "id": "fe.css.border-collapse",
+    "title": "border-collapse로 표 테두리 합치기",
+    "en": "CSS border-collapse Property",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "CSS",
+    "summary": "border-collapse: collapse를 주면 이웃한 표 칸의 테두리가 겹쳐 한 줄이 되고, 기본값 separate는 칸마다 테두리를 따로 그린다.",
+    "parent": "fe.css.styling-tables",
+    "aliases": [
+      "표 테두리 합치기",
+      "border-collapse collapse",
+      "collapsed border model",
+      "표 칸 테두리 겹치기"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Tables",
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-collapse"
+    ]
+  },
+  {
     "id": "fe.html.track-captions",
     "title": "track 요소와 WebVTT 자막",
     "en": "Text Tracks and WebVTT",
@@ -3529,6 +3780,72 @@
     ],
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Text_styling/Styling_links"
+    ]
+  },
+  {
+    "id": "fe.html.ol-start-reversed",
+    "title": "ol의 start·reversed와 li의 value",
+    "en": "Ordered List start, reversed, and value Attributes",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "HTML",
+    "summary": "번호 목록이 몇부터 셀지(start), 거꾸로 셀지(reversed), 특정 항목에 어떤 번호를 줄지(value)를 정하는 HTML 속성이다.",
+    "parent": "fe.css.styling-lists",
+    "aliases": [
+      "ol start 속성",
+      "ol reversed 속성",
+      "li value 속성",
+      "목록 번호 시작값"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Text_styling/Styling_lists",
+      "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/ol"
+    ]
+  },
+  {
+    "id": "fe.css.zebra-striping",
+    "title": "줄무늬 표: nth-child로 행 색 번갈아 칠하기",
+    "en": "Zebra Striping Table Rows with :nth-child",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "CSS",
+    "summary": "tr:nth-child(odd)나 even으로 홀수·짝수 행에 다른 배경색을 주어 긴 표에서 줄을 따라 읽기 쉽게 하는 꾸밈이다.",
+    "parent": "fe.css.styling-tables",
+    "related": [
+      "fe.css.pseudo-classes"
+    ],
+    "aliases": [
+      "zebra striping",
+      "얼룩말 줄무늬 표",
+      "표 줄무늬",
+      "nth-child(odd)",
+      "교차 행 색"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Tables"
+    ]
+  },
+  {
+    "id": "fe.css.table-layout",
+    "title": "table-layout: fixed로 열 너비 정하기",
+    "en": "CSS table-layout: fixed",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "CSS",
+    "summary": "표에 width를 주고 table-layout: fixed를 걸면 칸 내용 대신 정해 둔 열 너비대로 표가 배치되어 모양이 예측하기 쉬워진다.",
+    "parent": "fe.css.styling-tables",
+    "aliases": [
+      "table-layout fixed",
+      "고정 표 레이아웃",
+      "fixed table layout",
+      "표 열 너비 고정"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Tables",
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/table-layout"
     ]
   },
   {
