@@ -239,6 +239,94 @@
     ]
   },
   {
+    "id": "fe.basics.seo-idea",
+    "title": "검색 엔진 최적화(SEO): 검색에 잘 보이는 웹",
+    "en": "Search Engine Optimization (SEO)",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "검색 엔진이 내 페이지를 잘 찾아 읽고 위쪽에 보여 주도록 내용과 구조를 다듬는 일이다.",
+    "objectives": [
+      "검색 엔진이 페이지를 모으고 정리해 결과를 보여 주는 흐름을 도서관 비유로 설명할 수 있다",
+      "SEO가 왜 방문자 수와 연결되는지 말할 수 있다",
+      "구조를 잘 표시하기·방문자가 쓰는 말로 쓰기·다른 사이트의 링크 받기가 SEO에 도움이 되는 까닭을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.hyperlinks"
+    ],
+    "aliases": [
+      "SEO",
+      "검색 최적화",
+      "검색 노출",
+      "검색 순위 올리기",
+      "search ranking"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/SEO",
+      "https://developer.mozilla.org/en-US/docs/Glossary/Search_engine"
+    ]
+  },
+  {
+    "id": "fe.basics.web-image-formats",
+    "title": "웹에서 쓰는 이미지 형식: JPEG·PNG·SVG·WebP",
+    "en": "Image File Formats for the Web",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "사진은 JPEG·WebP, 화면 캡처와 투명 그림은 PNG, 로고와 아이콘은 SVG처럼 그림의 성격에 따라 파일 형식을 고른다.",
+    "objectives": [
+      "JPEG·PNG·SVG·WebP가 각각 어떤 그림에 어울리는지 예를 들어 말할 수 있다",
+      "확장자를 보고 사진용 형식인지 아이콘용 형식인지 구분할 수 있다",
+      "투명한 배경이 필요한 그림에 JPEG가 맞지 않는 까닭을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.web-page-parts"
+    ],
+    "aliases": [
+      "이미지 파일 형식",
+      "image file format",
+      "이미지 포맷",
+      "웹 이미지 형식",
+      "image format"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Image_types"
+    ]
+  },
+  {
+    "id": "fe.basics.ui-design-basics",
+    "title": "화면 디자인 기본기: 대비·정렬·여백·위계",
+    "en": "Basic UI Design Principles",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "대비·정렬·여백·크기 차이로 중요한 것을 먼저 보이게 해 화면을 읽기 쉽게 만드는 디자인의 기본 원칙이다.",
+    "objectives": [
+      "대비·정렬·여백·시각적 위계가 각각 무엇인지 잡지나 포스터 예로 설명할 수 있다",
+      "읽기 어려운 화면을 보고 어느 원칙이 빠졌는지 말할 수 있다",
+      "디자이너와 이야기할 때 쓰는 기본 디자인 용어의 뜻을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.page-layout-parts"
+    ],
+    "related": [
+      "plan.basics.color-contrast"
+    ],
+    "aliases": [
+      "UI 디자인 기초",
+      "UI design fundamentals",
+      "시각적 위계",
+      "visual hierarchy",
+      "화면 디자인 원칙"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/curriculum/core/design-for-developers/"
+    ]
+  },
+  {
     "id": "fe.basics.web-browser",
     "title": "웹 브라우저",
     "en": "Web Browser",
@@ -254,6 +342,32 @@
     ],
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Glossary/Browser"
+    ]
+  },
+  {
+    "id": "fe.basics.ui-ux",
+    "title": "UI와 UX",
+    "en": "User Interface and User Experience",
+    "kind": "term",
+    "level": 1,
+    "importance": 1,
+    "group": "웹 기초",
+    "summary": "UI는 사람이 기계와 주고받는 화면·버튼 같은 접점이고, UX는 그것을 쓰면서 얼마나 쉽고 편한지에 대한 경험이다.",
+    "parent": "fe.basics.ui-design-basics",
+    "related": [
+      "dev.basics.cli-gui"
+    ],
+    "aliases": [
+      "UX",
+      "UI/UX",
+      "UI와 UX 차이",
+      "사용자 인터페이스",
+      "사용자 경험",
+      "user experience"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/UI",
+      "https://developer.mozilla.org/en-US/docs/Glossary/UX"
     ]
   },
   {
@@ -382,6 +496,54 @@
     ]
   },
   {
+    "id": "fe.basics.search-engine",
+    "title": "검색 엔진",
+    "en": "Search Engine",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "웹 페이지를 모으고 낱말별로 정리해 두었다가 찾는 말에 맞는 페이지를 순서대로 보여 주는 시스템이다.",
+    "parent": "fe.basics.seo-idea",
+    "related": [
+      "fe.basics.web-browser"
+    ],
+    "aliases": [
+      "검색 사이트",
+      "웹 검색 엔진",
+      "web search engine"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/Search_engine"
+    ]
+  },
+  {
+    "id": "fe.basics.raster-vector-image",
+    "title": "래스터 이미지와 벡터 이미지",
+    "en": "Raster and Vector Images",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "점(픽셀)을 촘촘히 찍어 만든 그림은 키우면 깨지고, 모양을 계산식으로 저장한 그림은 아무리 키워도 선명하다.",
+    "parent": "fe.basics.web-image-formats",
+    "related": [
+      "cs.data.pixel"
+    ],
+    "aliases": [
+      "래스터 이미지",
+      "raster image",
+      "벡터 이미지",
+      "vector image",
+      "비트맵 이미지",
+      "벡터 그래픽"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/Raster_image",
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Including_vector_graphics_in_HTML"
+    ]
+  },
+  {
     "id": "fe.basics.whatwg",
     "title": "WHATWG",
     "en": "Web Hypertext Application Technology Working Group",
@@ -435,6 +597,140 @@
     ],
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Design_and_accessibility/Common_web_layouts"
+    ]
+  },
+  {
+    "id": "fe.basics.web-crawler",
+    "title": "웹 크롤러",
+    "en": "Web Crawler",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 기초",
+    "summary": "링크를 따라 웹 페이지를 차례로 돌아다니며 내용을 모으는 프로그램으로, 검색 엔진이 색인을 만들 때 쓴다.",
+    "parent": "fe.basics.seo-idea",
+    "aliases": [
+      "크롤러",
+      "crawler",
+      "검색 로봇",
+      "스파이더",
+      "spider bot",
+      "웹 크롤링"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/Crawler"
+    ]
+  },
+  {
+    "id": "fe.basics.robots-txt",
+    "title": "robots.txt",
+    "en": "robots.txt",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 기초",
+    "summary": "사이트 맨 위 폴더에 두고 크롤러에게 들어가도 되는 곳과 안 되는 곳을 알려 주는 안내문 파일이다.",
+    "parent": "fe.basics.seo-idea",
+    "related": [
+      "fe.basics.web-crawler"
+    ],
+    "aliases": [
+      "로봇 배제 표준",
+      "robots exclusion",
+      "로봇츠 텍스트",
+      "robots 파일"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/Robots.txt"
+    ]
+  },
+  {
+    "id": "fe.basics.lossy-compression",
+    "title": "손실 압축",
+    "en": "Lossy Compression",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 기초",
+    "summary": "눈에 잘 띄지 않는 정보를 버려 파일을 크게 줄이는 압축으로, 한 번 버린 정보는 되살릴 수 없다.",
+    "parent": "fe.basics.web-image-formats",
+    "related": [
+      "cs.data.lossless-compression"
+    ],
+    "aliases": [
+      "손실 압축 방식",
+      "비가역 압축",
+      "irreversible compression",
+      "이미지 화질 압축"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/Lossy_compression",
+      "https://developer.mozilla.org/en-US/docs/Glossary/Lossless_compression"
+    ]
+  },
+  {
+    "id": "fe.basics.favicon",
+    "title": "파비콘",
+    "en": "Favicon",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 기초",
+    "summary": "브라우저 탭과 즐겨찾기에 사이트 이름 옆으로 보이는 작은 아이콘이다.",
+    "aliases": [
+      "favicon",
+      "파비콘 아이콘",
+      "사이트 아이콘",
+      "탭 아이콘",
+      "favorite icon"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/Favicon"
+    ]
+  },
+  {
+    "id": "fe.basics.breadcrumb",
+    "title": "브레드크럼(현재 위치 표시)",
+    "en": "Breadcrumb",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 기초",
+    "summary": "홈 > 분류 > 현재 페이지처럼 지금 사이트의 어디에 있는지 보여 주고 위 단계로 쉽게 돌아가게 하는 길 표시다.",
+    "related": [
+      "fe.basics.navigation-bar"
+    ],
+    "aliases": [
+      "브레드크럼",
+      "빵 부스러기 내비게이션",
+      "breadcrumb trail",
+      "breadcrumb navigation"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/Breadcrumb",
+      "https://developer.mozilla.org/en-US/curriculum/core/design-for-developers/"
+    ]
+  },
+  {
+    "id": "fe.basics.lazy-load",
+    "title": "이미지 지연 로딩(lazy load)",
+    "en": "Image Lazy Loading",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 기초",
+    "summary": "화면에 보일 때가 되어서야 이미지 같은 파일을 불러와 첫 화면을 빨리 띄우는 방법이다.",
+    "related": [
+      "fe.basics.web-image-formats"
+    ],
+    "aliases": [
+      "이미지 지연 로딩",
+      "image lazy loading",
+      "이미지 레이지 로딩",
+      "이미지 늦게 불러오기"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/Lazy_load"
     ]
   },
   {

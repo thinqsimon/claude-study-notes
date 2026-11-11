@@ -166,6 +166,109 @@
     ]
   },
   {
+    "id": "rag.basics.computer-use-idea",
+    "title": "컴퓨터 사용: 화면을 보고 조작하는 AI",
+    "en": "Computer Use at a Glance",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "에이전트 기초",
+    "summary": "AI가 화면 캡처를 보고 마우스 클릭과 키보드 입력을 부탁해 사람처럼 컴퓨터 프로그램을 다루는 방식이다.",
+    "objectives": [
+      "컴퓨터 사용을 전화로 화면을 설명받으며 대신 클릭해 주는 도우미에 빗대어 설명할 수 있다",
+      "AI가 화면을 보고, 동작을 부탁하고, 결과 화면을 다시 보는 흐름을 순서대로 말할 수 있다",
+      "컴퓨터 사용을 따로 떼어 둔 컴퓨터에서 돌리고 중요한 동작은 사람이 확인해야 하는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.basics.tool-use-idea"
+    ],
+    "related": [
+      "rag.basics.agent-big-picture"
+    ],
+    "aliases": [
+      "Claude 컴퓨터 사용",
+      "computer use",
+      "컴퓨터 유즈",
+      "화면 조작 AI",
+      "데스크톱 조작 에이전트"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/computer-use-tool"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.basics.research-mode",
+    "title": "리서치 기능: AI가 여러 번 찾아보고 정리하기",
+    "en": "Research Mode at a Glance",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "RAG 기초",
+    "summary": "AI가 검색을 한 번에 끝내지 않고 찾은 내용을 보며 다음 검색을 정해 여러 번 찾아본 뒤 정리해 주는 기능이다.",
+    "objectives": [
+      "리서치 기능을 자료를 하나 찾으면 그 안의 단서로 다음 자료를 찾아가는 조사원에 빗대어 설명할 수 있다",
+      "한 번 검색하고 답하는 방식과 여러 번 이어 찾는 방식의 차이를 예를 들어 말할 수 있다",
+      "리서치 결과를 쓸 때 근거 자료를 직접 열어 확인해야 하는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.basics.rag-big-picture",
+      "rag.basics.agent-big-picture"
+    ],
+    "related": [
+      "llm.tools.web-search-tool"
+    ],
+    "aliases": [
+      "리서치 기능",
+      "딥 리서치",
+      "deep research",
+      "Research 모드",
+      "심층 조사 기능"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/11088861-using-research-on-claude",
+      "https://www.anthropic.com/engineering/multi-agent-research-system"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.agent.a2a-idea",
+    "title": "A2A: 에이전트끼리 일을 맡기는 공용 규격",
+    "en": "A2A at a Glance",
+    "kind": "topic",
+    "level": 1,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "서로 다른 회사나 도구로 만든 AI 에이전트가 속을 보여 주지 않고도 서로를 찾아 일을 맡기고 결과를 주고받게 하는 열린 규격이다.",
+    "objectives": [
+      "A2A를 동료에게 명함을 보고 일을 부탁하는 일에 빗대어 설명할 수 있다",
+      "MCP는 에이전트와 도구를, A2A는 에이전트와 에이전트를 잇는다는 차이를 말할 수 있다",
+      "여러 에이전트가 A2A로 함께 일하는 예를 하나 들 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.mcp-idea"
+    ],
+    "related": [
+      "rag.agent.mcp-idea"
+    ],
+    "aliases": [
+      "A2A",
+      "Agent2Agent",
+      "에이전트 간 프로토콜",
+      "A2A 프로토콜",
+      "Agent2Agent protocol"
+    ],
+    "refs": [
+      "https://a2a-protocol.org/latest/",
+      "https://a2a-protocol.org/latest/topics/a2a-and-mcp/",
+      "https://a2a-protocol.org/latest/topics/key-concepts/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "rag.basics.langchain",
     "title": "LangChain",
     "en": "LangChain",
@@ -322,6 +425,51 @@
     ]
   },
   {
+    "id": "rag.retrieval.indexing",
+    "title": "RAG 인덱싱: 문서 미리 준비하기",
+    "en": "RAG Indexing",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "RAG",
+    "summary": "질문이 오기 전에 미리 문서를 불러와 조각내고 숫자로 바꿔 저장해 두어, 나중에 빨리 찾을 수 있게 준비하는 RAG의 앞 단계다.",
+    "parent": "rag.basics.rag-big-picture",
+    "related": [
+      "rag.retrieval.retriever"
+    ],
+    "aliases": [
+      "RAG 인덱싱",
+      "indexing pipeline",
+      "RAG 문서 준비 단계"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/rag"
+    ]
+  },
+  {
+    "id": "rag.basics.llm-workflow",
+    "title": "LLM 워크플로: 정해진 순서로 도는 AI",
+    "en": "LLM Workflow",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "에이전트 기초",
+    "summary": "AI 호출과 도구 실행의 순서를 사람이 미리 정해 두고 그대로 따라가게 하는 방식으로, 스스로 순서를 정하는 에이전트와 짝을 이룬다.",
+    "parent": "rag.basics.agent-big-picture",
+    "related": [
+      "rag.basics.orchestration"
+    ],
+    "aliases": [
+      "LLM 워크플로",
+      "predefined workflow",
+      "정해진 순서 AI 흐름"
+    ],
+    "refs": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://docs.langchain.com/oss/python/langgraph/workflows-agents"
+    ]
+  },
+  {
     "id": "rag.basics.client-server-tools",
     "title": "클라이언트 도구와 서버 도구",
     "en": "Client Tools and Server Tools",
@@ -340,6 +488,120 @@
     "refs": [
       "https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works"
     ]
+  },
+  {
+    "id": "rag.basics.multi-step-search",
+    "title": "다단계 검색(multi-step search)",
+    "en": "Multi-step Search",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "RAG 기초",
+    "summary": "한 번 찾은 자료로 바로 답하지 않고, 찾은 내용을 보고 다음에 무엇을 찾을지 정해 검색을 여러 번 이어 가는 방식이다.",
+    "parent": "rag.basics.research-mode",
+    "aliases": [
+      "다단계 검색",
+      "multi-step search",
+      "반복 검색",
+      "정적 검색과 동적 검색"
+    ],
+    "refs": [
+      "https://www.anthropic.com/engineering/multi-agent-research-system"
+    ]
+  },
+  {
+    "id": "rag.agent.agent-card",
+    "title": "에이전트 카드(Agent Card)",
+    "en": "Agent Card",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "A2A에서 에이전트가 자기 이름, 연락 주소, 할 줄 아는 일, 접속 조건을 적어 내놓는 디지털 명함이다.",
+    "parent": "rag.agent.a2a-idea",
+    "aliases": [
+      "에이전트 카드",
+      "Agent Card",
+      "A2A 에이전트 카드",
+      "agent-card.json"
+    ],
+    "refs": [
+      "https://a2a-protocol.org/latest/topics/key-concepts/",
+      "https://a2a-protocol.org/latest/topics/agent-discovery/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.agent.a2a-remote-agent",
+    "title": "A2A 클라이언트와 원격 에이전트",
+    "en": "A2A Client and Remote Agent",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "A2A에서 사용자를 대신해 일을 부탁하는 쪽을 클라이언트 에이전트, 부탁받아 처리하고 결과를 돌려주는 쪽을 원격 에이전트라고 한다.",
+    "parent": "rag.agent.a2a-idea",
+    "aliases": [
+      "A2A 원격 에이전트",
+      "A2A remote agent",
+      "클라이언트 에이전트",
+      "A2A client agent",
+      "A2A 서버"
+    ],
+    "refs": [
+      "https://a2a-protocol.org/latest/topics/key-concepts/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.agent.a2a-task",
+    "title": "A2A 작업(Task)과 결과물(Artifact)",
+    "en": "A2A Task and Artifact",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "A2A에서 맡긴 일 하나를 번호와 진행 상태를 가진 작업으로 다루고, 그 일로 만든 문서·그림 같은 산출물을 결과물로 돌려준다.",
+    "parent": "rag.agent.a2a-idea",
+    "aliases": [
+      "A2A 작업",
+      "A2A task",
+      "A2A 아티팩트",
+      "A2A artifact",
+      "A2A 결과물"
+    ],
+    "refs": [
+      "https://a2a-protocol.org/latest/topics/key-concepts/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.agent.mcp-apps",
+    "title": "MCP 앱(MCP Apps)",
+    "en": "MCP Apps",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "MCP 서버가 글 대신 지도·표·입력 양식 같은 눌러 볼 수 있는 화면을 AI 채팅 안에 띄우게 해 주는 MCP 확장 기능이다.",
+    "parent": "rag.agent.mcp-idea",
+    "related": [
+      "rag.agent.mcp-server"
+    ],
+    "aliases": [
+      "MCP 앱",
+      "MCP Apps",
+      "MCP 앱 확장",
+      "채팅 안 대화형 화면"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/extensions/apps/overview"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
   },
   {
     "id": "rag.embedding.similarity-search",

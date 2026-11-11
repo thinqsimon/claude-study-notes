@@ -90,6 +90,102 @@
     ]
   },
   {
+    "id": "mlops.basics.ml-system-picture",
+    "title": "ML 시스템의 큰 그림: 모델은 작은 부품",
+    "en": "Production ML Systems at a Glance",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "실제로 돌아가는 AI 서비스에서 모델은 작은 한 부품이고 데이터 수집·검사·서빙·감시 같은 부품이 훨씬 많다는 큰 그림이다.",
+    "objectives": [
+      "운영 ML 시스템을 엔진과 나머지 자동차 부품에 빗대어 설명할 수 있다",
+      "모델 말고 시스템에 필요한 부품을 세 가지 이상 말할 수 있다",
+      "모델 코드보다 데이터를 다루는 일이 더 크다는 점을 예를 들어 말할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.basics.what-is-mlops"
+    ],
+    "related": [
+      "mlops.basics.what-is-mlops"
+    ],
+    "aliases": [
+      "운영 ML 시스템",
+      "production ML system",
+      "ML 시스템 구성 요소",
+      "ML 시스템 부품"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems"
+    ]
+  },
+  {
+    "id": "mlops.observe.why-monitor",
+    "title": "운영 중인 AI 지켜보기: 모니터링의 큰 그림",
+    "en": "Why Monitor AI in Production",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "내놓은 AI가 지금도 빠르고 정확하게 답하는지 숫자와 기록으로 계속 살펴 조용히 나빠지는 것을 일찍 알아채는 일이다.",
+    "objectives": [
+      "AI 모니터링을 가게의 매출 장부와 손님 후기 살피기에 빗대어 설명할 수 있다",
+      "갑자기 나빠지는 경우와 서서히 나빠지는 경우를 예를 들어 구분할 수 있다",
+      "속도·비용·답의 품질처럼 지켜볼 것을 세 가지 이상 말할 수 있다",
+      "개발 때 평가만으로 모자라 운영 중에도 지켜봐야 하는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.basics.what-is-mlops"
+    ],
+    "related": [
+      "ops.observe.monitoring-idea",
+      "mlops.eval.why-evaluate"
+    ],
+    "aliases": [
+      "AI 모니터링",
+      "모델 모니터링",
+      "model monitoring",
+      "LLM 모니터링"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring",
+      "https://mlflow.org/docs/latest/genai/eval-monitor/",
+      "https://mlflow.org/docs/latest/genai/tracing/"
+    ]
+  },
+  {
+    "id": "mlops.basics.data-checks",
+    "title": "ML 데이터 점검: 재료 규칙·부분 집단·정답 누수",
+    "en": "Checking Data in ML Pipelines",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "모델에 들어가는 데이터가 정한 규칙에 맞는지, 일부 집단에서만 성적이 나쁘지 않은지, 정답이 학습 재료에 새어 들지 않았는지 살피는 일이다.",
+    "objectives": [
+      "데이터 검사를 식당 주방의 재료 검수에 빗대어 설명할 수 있다",
+      "규칙에 어긋난 데이터의 예를 두 가지 이상 들 수 있다",
+      "전체 점수가 좋아도 일부 집단에서는 나쁠 수 있는 이유를 말할 수 있다",
+      "정답이 문제에 미리 새어 들어가면 점수가 부풀려지는 이유를 비유로 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.data-quality",
+      "mlops.basics.ml-system-picture"
+    ],
+    "related": [
+      "ml.basics.data-quality"
+    ],
+    "aliases": [
+      "ML 데이터 검사",
+      "ML data validation",
+      "입력 데이터 검사",
+      "운영 데이터 검사"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
+    ]
+  },
+  {
     "id": "mlops.guardrail.guardrail",
     "title": "가드레일",
     "en": "Guardrails",
@@ -195,6 +291,50 @@
     ]
   },
   {
+    "id": "mlops.basics.ml-pipeline",
+    "title": "ML 파이프라인",
+    "en": "Machine Learning Pipeline",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "데이터를 모아 다듬고 모델을 가르쳐 내놓기까지의 단계를 공장 컨베이어처럼 차례로 이어 자동으로 돌리는 작업 흐름이다.",
+    "parent": "mlops.basics.ml-system-picture",
+    "aliases": [
+      "ML 파이프라인",
+      "ML pipeline",
+      "머신러닝 파이프라인",
+      "학습 파이프라인"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/deployment-testing",
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
+    ]
+  },
+  {
+    "id": "mlops.observe.llm-observability",
+    "title": "LLM 관측성",
+    "en": "Observability for LLM Apps and Agents",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "LLM 앱이 한 요청을 처리하며 거친 단계마다 무엇을 받고 무엇을 내놓았는지 남겨 속을 들여다볼 수 있게 하는 성질이다.",
+    "parent": "mlops.observe.why-monitor",
+    "related": [
+      "mlops.observe.trace"
+    ],
+    "aliases": [
+      "LLM 앱 들여다보기",
+      "에이전트 관측성",
+      "agent observability",
+      "AI 관측성"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/tracing/"
+    ]
+  },
+  {
     "id": "mlops.observe.experiment-tracking",
     "title": "실험 추적",
     "en": "Experiment Tracking",
@@ -232,6 +372,121 @@
     ],
     "refs": [
       "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/models/tune-models"
+    ]
+  },
+  {
+    "id": "mlops.observe.model-freshness",
+    "title": "모델 나이(모델 신선도)",
+    "en": "Model Age and Freshness",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "모델을 마지막으로 다시 가르친 뒤 얼마나 지났는지를 뜻하며, 너무 오래되면 요즘 데이터에 맞지 않게 된다.",
+    "parent": "mlops.observe.why-monitor",
+    "related": [
+      "mlops.basics.retraining",
+      "mlops.observe.drift"
+    ],
+    "aliases": [
+      "모델 신선도",
+      "model freshness",
+      "model age",
+      "모델 나이"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
+    ]
+  },
+  {
+    "id": "mlops.observe.real-world-metric",
+    "title": "실사용 지표",
+    "en": "Real-World Metrics for ML Models",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "모델 점수표 대신 사용자가 실제로 만족했는지처럼 서비스에 미친 효과를 따로 재는 숫자다.",
+    "parent": "mlops.observe.why-monitor",
+    "related": [
+      "plan.basics.success-metrics"
+    ],
+    "aliases": [
+      "실사용 지표",
+      "real-world metrics",
+      "현실 지표",
+      "사용자 영향 지표"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
+    ]
+  },
+  {
+    "id": "mlops.basics.data-schema-check",
+    "title": "ML 데이터 스키마 검사",
+    "en": "Data Schema Validation for ML",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "들어오는 데이터가 값의 범위나 허용된 종류 같은 미리 정한 규칙표에 맞는지 확인해 이상한 데이터를 걸러 내는 일이다.",
+    "parent": "mlops.basics.data-checks",
+    "aliases": [
+      "데이터 스키마 검사",
+      "ML data schema validation",
+      "데이터 규칙 검사",
+      "ML 데이터 스키마"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
+    ]
+  },
+  {
+    "id": "mlops.eval.data-slice",
+    "title": "데이터 슬라이스",
+    "en": "Data Slices in Model Evaluation",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "데이터를 지역·나이처럼 의미 있는 부분 집단으로 잘라 각 조각의 점수를 따로 보아 평균에 가려진 약점을 찾는 방법이다.",
+    "parent": "mlops.basics.data-checks",
+    "related": [
+      "ax.governance.harmful-bias"
+    ],
+    "aliases": [
+      "데이터 슬라이스",
+      "data slice",
+      "data slicing",
+      "슬라이스별 지표",
+      "부분 집단 평가"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
+    ]
+  },
+  {
+    "id": "mlops.basics.label-leakage",
+    "title": "라벨 누수",
+    "en": "Label Leakage",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "정답을 몰래 알려 주거나 실제 예측 때는 없을 정보가 학습 재료에 섞여, 시험 점수만 좋고 실전에서는 틀리는 문제다.",
+    "parent": "mlops.basics.data-checks",
+    "related": [
+      "ml.training.overfitting-idea"
+    ],
+    "aliases": [
+      "라벨 누수",
+      "label leakage",
+      "레이블 누수",
+      "target leakage",
+      "정답 누출"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
     ]
   },
   {
