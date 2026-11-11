@@ -424,7 +424,8 @@ class DicMakerTest(unittest.TestCase):
         self.assertIn("1회차 1개", out["message"])
         self.assertEqual((self.repo / "catalog" / "VERSION").read_text().strip(), version)
         self.assertIn("mlops.serve.test-fixture-serving", (self.repo / "catalog" / "items" / "mlops.json").read_text(encoding="utf-8"))
-        self.assertEqual(self.run_cmd("campaign", "--level", "2", "--total", "3")["level"], 2)   # 닫힌 뒤에는 새로 열 수 있다
+        # 닫힌 뒤에는 새로 열 수 있다(실제 사전이 2단계 목표치를 채웠어도 돌도록 --over-target)
+        self.assertEqual(self.run_cmd("campaign", "--level", "2", "--total", "3", "--over-target")["level"], 2)
 
     # ----- 전체 단계 (all) -----
 
