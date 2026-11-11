@@ -739,6 +739,94 @@
     ]
   },
   {
+    "id": "plan.figma.effects",
+    "title": "Figma 효과로 그림자와 흐림 넣기",
+    "en": "Applying Effects in Figma",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Effects 칸의 더하기 버튼으로 레이어에 그림자·흐림·노이즈 같은 효과를 붙이고 값을 조절하는 방법이다.",
+    "objectives": [
+      "레이어를 골라 Effects 칸에서 드롭 섀도나 흐림 효과를 더할 수 있다",
+      "그림자의 X·Y 위치, 흐림, 퍼짐, 색을 바꿔 원하는 모양을 만들 수 있다",
+      "배경 흐림이 보이려면 채우기 불투명도가 100%보다 낮아야 한다는 것을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.fills-color-picker"
+    ],
+    "aliases": [
+      "Figma 효과",
+      "Figma effects",
+      "Figma 그림자",
+      "Figma 흐림 효과",
+      "Figma blur"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360041488473-Apply-effects-to-layers"
+    ]
+  },
+  {
+    "id": "plan.figma.pen-vector",
+    "title": "Figma 펜 도구로 벡터 경로 그리기",
+    "en": "Drawing Vector Paths with the Figma Pen Tool",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "펜 도구로 점을 찍어 경로를 만들고, 벡터 편집 모드에서 점과 곡선을 고쳐 원하는 아이콘 모양을 그리는 방법이다.",
+    "objectives": [
+      "펜 도구(P)로 클릭해 점을 찍고 드래그해 곡선을 만들 수 있다",
+      "경로를 다른 점에 이어 닫거나 Escape로 열린 채 끝낼 수 있다",
+      "벡터 레이어를 골라 Enter로 편집 모드에 들어가 점을 옮기고 Bend 도구로 곡선을 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.shape-tools"
+    ],
+    "aliases": [
+      "Figma 펜 도구",
+      "Figma pen tool",
+      "Figma 벡터 그리기",
+      "Figma 패스 그리기"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360040450213-Vector-networks",
+      "https://help.figma.com/hc/en-us/articles/360039957634-Edit-vector-layers"
+    ]
+  },
+  {
+    "id": "plan.figma.community-plugins",
+    "title": "Figma 커뮤니티에서 플러그인과 파일 가져다 쓰기",
+    "en": "Using Plugins and Files from the Figma Community",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Figma 커뮤니티에 올라온 플러그인을 파일 안에서 실행하고, 공개된 파일을 내 드래프트로 복제해 쓰는 방법이다.",
+    "objectives": [
+      "Figma Design의 Tools 탭에서 플러그인을 찾아 Run으로 실행할 수 있다",
+      "커뮤니티 파일을 Open in Figma로 내 드래프트에 복제할 수 있다",
+      "보기 전용 좌석에서는 플러그인을 실행할 수 없다는 것을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.ui-kits"
+    ],
+    "aliases": [
+      "Figma 플러그인",
+      "Figma plugin",
+      "Figma 커뮤니티",
+      "Figma Community",
+      "피그마 플러그인"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360042532714-Use-plugins-in-files",
+      "https://help.figma.com/hc/en-us/articles/360038510693-Guide-to-the-Figma-Community",
+      "https://help.figma.com/hc/en-us/articles/360038510873-Duplicate-Community-files"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "plan.figma.frame",
     "title": "Figma 프레임",
     "en": "Figma Frame",
@@ -1104,6 +1192,46 @@
     ],
     "refs": [
       "https://help.figma.com/hc/en-us/articles/360039832054-The-difference-between-frames-and-groups"
+    ]
+  },
+  {
+    "id": "plan.figma.drop-shadow",
+    "title": "Figma 드롭 섀도(drop shadow)",
+    "en": "Drop Shadow in Figma",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "레이어 바깥에 X·Y 위치, 흐림, 퍼짐, 색으로 정하는 그림자를 드리워 떠 보이게 하는 효과이다.",
+    "parent": "plan.figma.effects",
+    "aliases": [
+      "Figma 그림자 효과",
+      "Figma drop shadow"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360041488473-Apply-effects-to-layers"
+    ]
+  },
+  {
+    "id": "plan.figma.vector-edit-mode",
+    "title": "Figma 벡터 편집 모드",
+    "en": "Vector Edit Mode in Figma",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "벡터 레이어를 골라 Enter를 누르면 들어가는 모드로, 점을 옮기고 경로에 점을 더하고 곡선을 고칠 수 있다.",
+    "parent": "plan.figma.pen-vector",
+    "related": [
+      "plan.figma.bezier-handle"
+    ],
+    "aliases": [
+      "벡터 편집 모드",
+      "vector edit mode",
+      "Figma 벡터 편집"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360039957634-Edit-vector-layers"
     ]
   },
   {
@@ -1554,6 +1682,127 @@
     ],
     "refs": [
       "https://help.figma.com/hc/en-us/articles/360039957534-Boolean-operations"
+    ]
+  },
+  {
+    "id": "plan.figma.background-blur",
+    "title": "Figma 배경 흐림(background blur)",
+    "en": "Background Blur in Figma",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "반투명한 레이어 뒤에 있는 내용을 흐리게 보이게 하는 효과로, 채우기 불투명도가 100%면 보이지 않는다.",
+    "parent": "plan.figma.effects",
+    "related": [
+      "plan.figma.drop-shadow"
+    ],
+    "aliases": [
+      "Figma background blur",
+      "Figma 배경 블러"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360041488473-Apply-effects-to-layers"
+    ]
+  },
+  {
+    "id": "plan.figma.blend-mode",
+    "title": "Figma 블렌드 모드(blend mode)",
+    "en": "Blend Modes in Figma",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "겹친 레이어의 색을 아래 색과 어떻게 섞을지 정하는 설정으로, 레이어 기본값은 Pass through이고 채우기와 효과 기본값은 Normal이다.",
+    "related": [
+      "plan.figma.effects"
+    ],
+    "aliases": [
+      "Figma blend mode",
+      "Figma 혼합 모드"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360040667874-Apply-blend-modes-to-layers-fills-and-effects"
+    ]
+  },
+  {
+    "id": "plan.figma.vector-network",
+    "title": "Figma 벡터 네트워크(vector network)",
+    "en": "Vector Networks in Figma",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "한 방향으로 이어 그릴 필요 없이 경로가 여러 갈래로 갈라질 수 있는 Figma의 벡터 도형 방식이다.",
+    "parent": "plan.figma.pen-vector",
+    "aliases": [
+      "벡터 네트워크",
+      "Figma vector network",
+      "vector networks"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360040450213-Vector-networks"
+    ]
+  },
+  {
+    "id": "plan.figma.bezier-handle",
+    "title": "Figma 베지어 핸들과 미러링",
+    "en": "Bezier Handles and Mirroring in Figma",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "점에서 뻗은 손잡이의 길이와 기울기로 곡선을 정하며, 반대쪽 손잡이가 각도나 길이를 따라 할지 고를 수 있다.",
+    "parent": "plan.figma.pen-vector",
+    "aliases": [
+      "베지어 핸들",
+      "bezier handle",
+      "Figma 곡선 핸들",
+      "Figma Bend 도구"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360039957634-Edit-vector-layers"
+    ]
+  },
+  {
+    "id": "plan.figma.widget",
+    "title": "Figma 위젯(widget)",
+    "en": "Figma Widgets",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "파일 안의 모든 사람이 함께 보는 커뮤니티 확장 객체로, 실행한 사람에게만 보이는 플러그인과 다르다.",
+    "parent": "plan.figma.community-plugins",
+    "aliases": [
+      "Figma 위젯",
+      "Figma widget",
+      "FigJam 위젯"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360038510693-Guide-to-the-Figma-Community"
+    ]
+  },
+  {
+    "id": "plan.figma.community-file-copy",
+    "title": "Figma 커뮤니티 파일 복제",
+    "en": "Duplicating Figma Community Files",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "커뮤니티 파일을 내 드래프트에 따로 복사하는 일로, 복사본에는 원본의 버전 기록·댓글·권한이 없고 원본의 이후 변경도 반영되지 않는다.",
+    "parent": "plan.figma.community-plugins",
+    "related": [
+      "plan.figma.ui-kits"
+    ],
+    "aliases": [
+      "커뮤니티 파일 복제",
+      "Figma Community 복제",
+      "Duplicate Community file"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360038510873-Duplicate-Community-files"
     ]
   },
   {

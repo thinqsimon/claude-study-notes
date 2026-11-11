@@ -677,6 +677,65 @@
     ]
   },
   {
+    "id": "rag.agent.langsmith-annotation-queue",
+    "title": "LangSmith 주석 큐로 사람이 답변 채점하기",
+    "en": "LangSmith Annotation Queues",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "LangSmith에 쌓인 실행이나 대화를 큐에 모아 두고, 정해 둔 채점 기준에 따라 사람이 하나씩 점수와 메모를 남기는 첫 실습이다.",
+    "objectives": [
+      "LangSmith 화면에서 이름·설명·채점 기준을 넣어 주석 큐를 만들 수 있다",
+      "트레이스 목록에서 실행이나 스레드를 골라 큐에 넣을 수 있다",
+      "큐의 항목을 열어 피드백 점수를 매기고 완료 처리하거나 데이터셋에 추가할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.langsmith-tracing"
+    ],
+    "related": [
+      "mlops.eval.human-annotation"
+    ],
+    "aliases": [
+      "주석 큐",
+      "annotation queue",
+      "LangSmith 사람 평가",
+      "LangSmith human review",
+      "어노테이션 큐"
+    ],
+    "refs": [
+      "https://docs.langchain.com/langsmith/annotation-queues"
+    ]
+  },
+  {
+    "id": "rag.agent.langsmith-threads",
+    "title": "LangSmith 스레드로 여러 턴 대화 묶어 보기",
+    "en": "LangSmith Threads",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "챗봇의 턴마다 따로 남는 트레이스에 같은 스레드 id를 달아 한 대화로 묶고, Threads 탭에서 대화 전체를 훑어보는 방법이다.",
+    "objectives": [
+      "트레이스 메타데이터에 thread_id를 넣어 여러 턴을 한 스레드로 묶을 수 있다",
+      "자식 실행에도 같은 메타데이터를 달아야 하는 까닭을 설명할 수 있다",
+      "Threads 탭에서 대화를 열어 턴 수·지연 시간·비용을 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.langsmith-tracing"
+    ],
+    "aliases": [
+      "LangSmith 스레드",
+      "LangSmith threads",
+      "대화 스레드 추적",
+      "멀티턴 트레이스",
+      "Threads 탭"
+    ],
+    "refs": [
+      "https://docs.langchain.com/langsmith/threads"
+    ]
+  },
+  {
     "id": "rag.retrieval.llamaindex-install",
     "title": "LlamaIndex 설치와 패키지 구성",
     "en": "Installing LlamaIndex and Its Packages",
@@ -708,6 +767,37 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.retrieval.llamaindex-data-connectors",
+    "title": "LlamaIndex 데이터 커넥터로 여러 곳의 자료 읽기",
+    "en": "LlamaIndex Data Connectors",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "RAG",
+    "summary": "Notion·Google Docs·Slack 같은 곳의 자료를 그곳 전용 리더 패키지를 깔아 Document로 불러오고 인덱스로 넘기는 사용법이다.",
+    "objectives": [
+      "필요한 자료원에 맞는 llama-index-readers 패키지를 찾아 설치할 수 있다",
+      "리더 객체를 만들고 load_data로 Document 목록을 받을 수 있다",
+      "불러온 Document로 VectorStoreIndex를 만들어 질문할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.retrieval.llamaindex-install",
+      "rag.retrieval.llamaindex-starter"
+    ],
+    "related": [
+      "rag.retrieval.document-loader"
+    ],
+    "aliases": [
+      "LlamaIndex 데이터 커넥터",
+      "LlamaIndex data connector",
+      "LlamaHub 리더"
+    ],
+    "refs": [
+      "https://developers.llamaindex.ai/python/framework/module_guides/loading/connector/",
+      "https://developers.llamaindex.ai/python/framework/module_guides/loading/"
+    ]
   },
   {
     "id": "rag.embedding.vector",
@@ -1182,6 +1272,74 @@
     ]
   },
   {
+    "id": "rag.agent.langsmith-feedback-key",
+    "title": "LangSmith 피드백 키와 채점 기준",
+    "en": "LangSmith Feedback Keys and Rubric",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "주석 큐에서 검토자가 매길 항목의 이름과 점수 방식, 범주 설명을 정해 둔 것으로, 사람마다 같은 기준으로 채점하게 해 준다.",
+    "parent": "rag.agent.langsmith-annotation-queue",
+    "aliases": [
+      "피드백 키",
+      "feedback key",
+      "LangSmith 루브릭",
+      "annotation rubric",
+      "주석 루브릭"
+    ],
+    "refs": [
+      "https://docs.langchain.com/langsmith/annotation-queues"
+    ]
+  },
+  {
+    "id": "rag.agent.langsmith-thread-metadata",
+    "title": "LangSmith 스레드 메타데이터 키",
+    "en": "LangSmith Thread Metadata Keys",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "트레이스에 thread_id나 session_id 메타데이터로 같은 문자열을 달면 LangSmith가 그 트레이스들을 한 대화로 묶어 보여 준다.",
+    "parent": "rag.agent.langsmith-threads",
+    "related": [
+      "rag.agent.langsmith-tags-metadata"
+    ],
+    "aliases": [
+      "LangSmith thread_id",
+      "LangSmith session_id",
+      "스레드 메타데이터",
+      "thread metadata"
+    ],
+    "refs": [
+      "https://docs.langchain.com/langsmith/threads"
+    ]
+  },
+  {
+    "id": "rag.embedding.all-minilm",
+    "title": "all-MiniLM-L6-v2와 all-mpnet-base-v2",
+    "en": "all-MiniLM-L6-v2 and all-mpnet-base-v2",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "임베딩",
+    "summary": "Sentence Transformers 예제에 자주 나오는 범용 임베딩 모델 둘로, all-mpnet-base-v2는 품질이 가장 좋고 all-MiniLM-L6-v2는 다섯 배쯤 빠르면서 품질도 괜찮다.",
+    "related": [
+      "rag.embedding.sentence-transformers"
+    ],
+    "aliases": [
+      "all-MiniLM-L6-v2",
+      "all-mpnet-base-v2",
+      "MiniLM 임베딩",
+      "sentence-transformers 기본 모델"
+    ],
+    "refs": [
+      "https://sbert.net/docs/sentence_transformer/pretrained_models.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "rag.agent.model-router",
     "title": "모델 라우터(OpenRouter·LiteLLM)",
     "en": "Model Router",
@@ -1528,6 +1686,99 @@
     ],
     "refs": [
       "https://sbert.net/examples/sentence_transformer/applications/semantic-search/README.html"
+    ]
+  },
+  {
+    "id": "rag.agent.pairwise-annotation-queue",
+    "title": "쌍 비교 주석 큐",
+    "en": "Pairwise Annotation Queue",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "두 실험의 출력을 나란히 띄워 검토자가 기준마다 A·B·같음 가운데 더 나은 쪽을 고르게 하는 LangSmith 주석 큐다.",
+    "parent": "rag.agent.langsmith-annotation-queue",
+    "related": [
+      "rag.agent.langsmith-experiment"
+    ],
+    "aliases": [
+      "pairwise annotation queue",
+      "PAQ",
+      "LangSmith 쌍 비교",
+      "LangSmith A/B 비교 평가"
+    ],
+    "refs": [
+      "https://docs.langchain.com/langsmith/annotation-queues"
+    ]
+  },
+  {
+    "id": "rag.agent.langsmith-automation-rule",
+    "title": "LangSmith 자동화 규칙",
+    "en": "LangSmith Automation Rules",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "조건에 맞는 실행이나 스레드를 정한 비율만큼 골라 주석 큐나 데이터셋에 자동으로 넣는 등 정해 둔 동작을 걸어 주는 LangSmith 설정이다.",
+    "parent": "rag.agent.langsmith-annotation-queue",
+    "aliases": [
+      "LangSmith automation rule",
+      "LangSmith 규칙",
+      "LangSmith 자동 규칙",
+      "추적 자동화 규칙"
+    ],
+    "refs": [
+      "https://docs.langchain.com/langsmith/rules",
+      "https://docs.langchain.com/langsmith/annotation-queues"
+    ]
+  },
+  {
+    "id": "rag.retrieval.llamaparse",
+    "title": "LlamaParse",
+    "en": "LlamaParse",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "RAG",
+    "summary": "PDF 같은 문서를 RAG에 넣기 좋은 글로 바꿔 주는 LlamaIndex의 관리형 파싱 API다.",
+    "parent": "rag.retrieval.llamaindex-data-connectors",
+    "related": [
+      "rag.retrieval.simple-directory-reader"
+    ],
+    "aliases": [
+      "LlamaParse",
+      "라마파스",
+      "LlamaIndex PDF 파싱",
+      "LlamaParse API"
+    ],
+    "refs": [
+      "https://developers.llamaindex.ai/python/framework/module_guides/loading/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.embedding.sparse-encoder",
+    "title": "희소 임베딩과 SparseEncoder",
+    "en": "Sparse Embeddings and SparseEncoder",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "임베딩",
+    "summary": "대부분의 칸이 0이고 남은 칸이 특정 낱말에 대응하는 희소 임베딩을 SPLADE 같은 모델로 만드는 Sentence Transformers 클래스다.",
+    "related": [
+      "rag.embedding.sentence-transformers",
+      "rag.retrieval.keyword-vs-vector"
+    ],
+    "aliases": [
+      "SparseEncoder",
+      "희소 임베딩",
+      "sparse embedding",
+      "SPLADE",
+      "희소 인코더"
+    ],
+    "refs": [
+      "https://sbert.net/docs/quickstart.html"
     ]
   },
   {

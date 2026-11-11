@@ -708,6 +708,66 @@
     ]
   },
   {
+    "id": "llm.basics.tokenizer-encode-decode",
+    "title": "토크나이저 첫 사용: 문장을 토큰 ID로 바꾸고 되돌리기",
+    "en": "Using a Tokenizer: Encoding and Decoding Text",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "AutoTokenizer로 문장을 하위 단어 토큰으로 쪼개고 숫자 ID로 바꾼 뒤 decode로 다시 글로 되돌려 모델이 글을 받는 모양을 직접 확인한다.",
+    "objectives": [
+      "AutoTokenizer로 모델에 맞는 토크나이저를 불러와 tokenize로 문장을 토큰으로 쪼갤 수 있다",
+      "convert_tokens_to_ids로 토큰을 입력 ID로 바꾸고 decode로 원래 문장에 가깝게 되돌릴 수 있다",
+      "단어 단위·글자 단위·하위 단어 단위 토큰화의 차이를 예문으로 비교할 수 있다",
+      "흔한 단어는 통째로, 드문 단어는 조각으로 나뉘는 것을 출력에서 찾아 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.token-context"
+    ],
+    "aliases": [
+      "tokenizer.tokenize",
+      "convert_tokens_to_ids",
+      "tokenizer.decode",
+      "AutoTokenizer",
+      "토큰 ID 변환"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter2/4"
+    ]
+  },
+  {
+    "id": "llm.prompt.ai-studio-playground",
+    "title": "Google AI Studio에서 프롬프트 시험하고 코드 받기",
+    "en": "Prototyping Prompts in Google AI Studio",
+    "kind": "topic",
+    "level": 2,
+    "importance": 2,
+    "group": "프롬프트",
+    "summary": "코드를 쓰기 전에 Google AI Studio 플레이그라운드에서 시스템 지시와 실행 설정을 바꿔 가며 챗봇 답을 시험하고, 마음에 들면 Get code로 API 코드를 받아 간다.",
+    "objectives": [
+      "AI Studio 플레이그라운드에서 새 채팅 프롬프트를 열고 질문을 넣어 답을 받을 수 있다",
+      "Run settings의 시스템 지시에 역할·말투·길이 규칙을 넣고 바꾸기 전후의 답을 비교할 수 있다",
+      "대화가 길어지면 모든 메시지가 프롬프트에 들어가 토큰 한도에 닿는다는 점을 말할 수 있다",
+      "다듬은 프롬프트를 Get code로 원하는 언어의 API 코드로 옮길 수 있다"
+    ],
+    "prerequisites": [
+      "llm.prompt.first-good-prompt"
+    ],
+    "aliases": [
+      "Google AI Studio",
+      "AI Studio",
+      "구글 AI 스튜디오",
+      "AI Studio Get code",
+      "AI Studio Run settings"
+    ],
+    "refs": [
+      "https://aistudio.google.com/docs/ai-studio-quickstart"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "llm.prompt.metaprompt",
     "title": "메타프롬프트로 프롬프트 첫 초안 만들기",
     "en": "Drafting a First Prompt with a Metaprompt",
@@ -739,6 +799,70 @@
       "https://github.com/anthropics/claude-cookbooks/blob/main/misc/metaprompt.ipynb",
       "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview"
     ]
+  },
+  {
+    "id": "llm.api.gemini-safety-settings",
+    "title": "Gemini 안전 설정으로 콘텐츠 차단 수준 바꾸기",
+    "en": "Gemini API Safety Settings",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "Gemini API 요청에 해로움 범주와 차단 임계값을 짝지어 넣거나 AI Studio 슬라이더로 조절해, 내 앱에 맞게 거르는 콘텐츠의 범위를 정한다.",
+    "objectives": [
+      "safety_settings에 범주와 임계값을 넣어 요청을 보낼 수 있다",
+      "AI Studio의 Run safety settings 창에서 범주별 슬라이더를 바꾸고 Content blocked 표시를 확인할 수 있다",
+      "차단되면 400 오류와 safety 같은 code가 돌아온다는 것을 보고 앱에서 안내 문구를 띄울 수 있다",
+      "확률 기준 차단과 피해의 심각도가 다르다는 점을 예문으로 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.first-call",
+      "llm.basics.bias-limitations"
+    ],
+    "aliases": [
+      "safety_settings",
+      "Gemini 안전 설정",
+      "Gemini safety settings",
+      "Gemini 안전 필터",
+      "Run safety settings"
+    ],
+    "refs": [
+      "https://aistudio.google.com/docs/safety-settings"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.prompt.image-prompt-writing",
+    "title": "이미지 생성 프롬프트 쓰기: 장면을 구체적으로 묘사하기",
+    "en": "Writing Prompts for Image Generation",
+    "kind": "topic",
+    "level": 2,
+    "importance": 3,
+    "group": "프롬프트",
+    "summary": "낱말을 늘어놓는 대신 대상·배경·빛·구도·화풍을 문장으로 묘사하는 틀을 따라 이미지 프롬프트를 쓰고, 대화로 조금씩 고쳐 원하는 그림에 다가간다.",
+    "objectives": [
+      "사진풍·일러스트 템플릿의 빈칸에 대상·배경·빛·카메라 각도를 채워 프롬프트를 쓸 수 있다",
+      "그림의 쓰임과 의도를 한 문장 더해 결과가 어떻게 달라지는지 비교할 수 있다",
+      "'~없이' 대신 원하는 장면을 긍정형으로 묘사해 빼고 싶은 요소를 줄일 수 있다",
+      "첫 결과에 '조명만 더 따뜻하게'처럼 작은 수정 요청을 이어 보내 그림을 다듬을 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.image-generation"
+    ],
+    "aliases": [
+      "이미지 프롬프트",
+      "image prompt",
+      "text-to-image 프롬프트",
+      "이미지 프롬프트 템플릿",
+      "Nano Banana 프롬프트"
+    ],
+    "refs": [
+      "https://aistudio.google.com/docs/image-generation",
+      "https://github.com/microsoft/generative-ai-for-beginners/blob/main/09-building-image-applications/README.md"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
   },
   {
     "id": "llm.basics.token",
@@ -1257,6 +1381,111 @@
     ]
   },
   {
+    "id": "llm.basics.subword-tokenization",
+    "title": "하위 단어 토큰화(subword tokenization)",
+    "en": "Subword Tokenization",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "자주 쓰는 단어는 통째로 두고 드문 단어는 뜻 있는 조각으로 나눠 어휘 크기와 표현력을 함께 챙기는 토큰화 방식이다.",
+    "parent": "llm.basics.tokenizer-encode-decode",
+    "aliases": [
+      "subword tokenization",
+      "서브워드 토큰화",
+      "하위 단어 토큰",
+      "## 접두사 토큰"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter2/4"
+    ]
+  },
+  {
+    "id": "llm.basics.tokenizer-vocabulary",
+    "title": "토크나이저 어휘(vocabulary)",
+    "en": "Tokenizer Vocabulary",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "토크나이저가 아는 토큰들과 각 토큰에 붙인 번호를 모은 목록으로, 토크나이저를 저장하면 이 목록도 함께 저장된다.",
+    "parent": "llm.basics.tokenizer-encode-decode",
+    "aliases": [
+      "tokenizer vocabulary",
+      "vocab size",
+      "어휘 크기",
+      "토크나이저 사전",
+      "vocab.txt"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter2/4"
+    ]
+  },
+  {
+    "id": "llm.basics.input-ids",
+    "title": "입력 ID(input_ids)",
+    "en": "Input IDs",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "토큰을 어휘 번호로 바꾼 정수 목록으로, 모델은 글 대신 이 숫자 목록을 받아 처리한다.",
+    "parent": "llm.basics.tokenizer-encode-decode",
+    "aliases": [
+      "input_ids",
+      "입력 ID",
+      "토큰 ID 목록",
+      "token IDs"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter2/4"
+    ]
+  },
+  {
+    "id": "llm.basics.causal-language-modeling",
+    "title": "인과적 언어 모델링(CLM)",
+    "en": "Causal Language Modeling",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "앞에 나온 낱말만 보고 다음 낱말을 맞히게 하는 학습 방식으로, GPT 같은 디코더 모델을 사전 학습할 때 쓴다.",
+    "parent": "llm.basics.transformer-families",
+    "related": [
+      "llm.basics.masked-language-modeling"
+    ],
+    "aliases": [
+      "CLM",
+      "causal language modeling",
+      "다음 단어 예측",
+      "next-token prediction",
+      "인과 언어 모델링"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter1/4",
+      "https://huggingface.co/learn/llm-course/chapter1/6"
+    ]
+  },
+  {
+    "id": "llm.prompt.llm-playground",
+    "title": "LLM 플레이그라운드",
+    "en": "LLM Playground",
+    "kind": "term",
+    "level": 2,
+    "importance": 2,
+    "group": "프롬프트",
+    "summary": "모델 제공사의 웹 화면에서 코드 없이 프롬프트와 설정을 바꿔 가며 답을 바로 시험해 보는 공간이다.",
+    "parent": "llm.prompt.ai-studio-playground",
+    "aliases": [
+      "LLM playground",
+      "모델 플레이그라운드",
+      "프롬프트 시험 화면"
+    ],
+    "refs": [
+      "https://aistudio.google.com/docs/ai-studio-quickstart"
+    ]
+  },
+  {
     "id": "llm.basics.encoder-decoder-model",
     "title": "인코더-디코더 모델(seq2seq)",
     "en": "Encoder-Decoder Model",
@@ -1468,6 +1697,91 @@
     ],
     "refs": [
       "https://huggingface.co/learn/llm-course/chapter1/2"
+    ]
+  },
+  {
+    "id": "llm.basics.unknown-token",
+    "title": "미지 토큰([UNK])",
+    "en": "Unknown Token",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "토크나이저 어휘에 없는 말을 대신하는 자리표시 토큰으로, 많이 나올수록 모델이 입력의 뜻을 잃는다.",
+    "parent": "llm.basics.tokenizer-encode-decode",
+    "aliases": [
+      "unknown token",
+      "[UNK]",
+      "UNK 토큰",
+      "unk_token",
+      "어휘 밖 단어"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter2/4"
+    ]
+  },
+  {
+    "id": "llm.api.harm-category",
+    "title": "해로움 범주(harm category)",
+    "en": "Harm Category",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "괴롭힘·혐오 발언·성적 콘텐츠·위험한 콘텐츠처럼 안전 필터가 따로 재고 거르는 해로운 내용의 갈래다.",
+    "parent": "llm.api.gemini-safety-settings",
+    "aliases": [
+      "harm category",
+      "HarmCategory",
+      "hate_speech",
+      "dangerous_content",
+      "Gemini 안전 범주"
+    ],
+    "refs": [
+      "https://aistudio.google.com/docs/safety-settings"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.api.block-threshold",
+    "title": "차단 임계값(block threshold)",
+    "en": "Block Threshold",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "해로울 확률이 높음·중간·낮음 중 어디부터 막을지 정하는 값으로, 낮게 잡을수록 더 많은 내용을 거른다.",
+    "parent": "llm.api.gemini-safety-settings",
+    "aliases": [
+      "block threshold",
+      "block_medium_and_above",
+      "block_only_high",
+      "block_low_and_above",
+      "Gemini 차단 수준"
+    ],
+    "refs": [
+      "https://aistudio.google.com/docs/safety-settings"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.prompt.semantic-negative-prompt",
+    "title": "시맨틱 네거티브 프롬프트",
+    "en": "Semantic Negative Prompt",
+    "kind": "term",
+    "level": 2,
+    "importance": 3,
+    "group": "프롬프트",
+    "summary": "그림에서 빼고 싶은 것을 '~없이'로 적지 않고 그것이 없는 장면을 긍정형으로 묘사해 모델이 원치 않는 요소를 그리지 않게 하는 방법이다.",
+    "parent": "llm.prompt.image-prompt-writing",
+    "aliases": [
+      "semantic negative prompt",
+      "긍정형 장면 묘사"
+    ],
+    "refs": [
+      "https://aistudio.google.com/docs/image-generation"
     ]
   },
   {
