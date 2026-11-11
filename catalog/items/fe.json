@@ -576,6 +576,77 @@
     ]
   },
   {
+    "id": "fe.basics.i18n-idea",
+    "title": "다국어 웹: 여러 나라 사람이 쓰는 웹사이트",
+    "en": "Web Internationalization and Localization",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "웹사이트를 여러 언어와 문화에 맞출 수 있게 미리 준비하는 국제화와 나라별로 실제 맞추는 현지화의 큰 그림이다.",
+    "objectives": [
+      "국제화와 현지화가 각각 언제 하는 일인지 구분해 설명할 수 있다",
+      "언어 말고도 날짜·통화·단위·글 방향처럼 나라마다 달라지는 것을 예로 들 수 있다",
+      "페이지 언어를 알려 주지 않으면 스크린 리더가 엉뚱한 발음으로 읽는다는 것을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.web-page-parts"
+    ],
+    "related": [
+      "fe.basics.accessibility-idea"
+    ],
+    "aliases": [
+      "국제화",
+      "i18n",
+      "다국어 지원",
+      "웹 국제화",
+      "다국어 웹사이트"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/Internationalization",
+      "https://developer.mozilla.org/en-US/docs/Glossary/Localization",
+      "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/lang"
+    ]
+  },
+  {
+    "id": "fe.basics.web-animation-idea",
+    "title": "웹 애니메이션: 화면에 움직임 더하기",
+    "en": "Web Animation Basics",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "웹 페이지의 요소가 조금씩 모습을 바꾸며 움직이게 하는 애니메이션이 어떻게 보이고 언제 쓰고 무엇을 조심하는지 보는 큰 그림이다.",
+    "objectives": [
+      "애니메이션이 조금씩 다른 장면을 빠르게 이어 보여 주는 것임을 플립북에 빗대어 설명할 수 있다",
+      "마우스를 올리는 것처럼 무언가 바뀔 때 생기는 움직임과 스스로 되풀이되는 움직임을 구분할 수 있다",
+      "처음엔 느리다가 빨라지는 것처럼 움직임의 빠르기가 바뀌는 이징을 공 굴리기에 빗대어 설명할 수 있다",
+      "움직임이 많으면 어지러움을 느끼는 사람이 있어 동작 줄이기 설정을 존중해야 함을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.web-page-parts"
+    ],
+    "related": [
+      "fe.css.transitions",
+      "fe.css.keyframes",
+      "fe.basics.prefers-reduced-motion",
+      "fe.basics.jank"
+    ],
+    "aliases": [
+      "웹 애니메이션",
+      "web animation",
+      "화면 움직임 효과",
+      "움직이는 웹 화면"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Animations/Using",
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Transitions/Using",
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/easing-function",
+      "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Animation_performance_and_frame_rate",
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion"
+    ]
+  },
+  {
     "id": "fe.basics.pwa-idea",
     "title": "PWA: 앱처럼 설치해 쓰는 웹사이트",
     "en": "Progressive Web Apps",
@@ -1282,6 +1353,93 @@
     ]
   },
   {
+    "id": "fe.basics.localization",
+    "title": "현지화(l10n)",
+    "en": "Localization (l10n)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "현지화는 화면의 말뿐 아니라 날짜·숫자·통화·단위까지 특정 나라 사용자에게 맞게 바꾸는 일이다.",
+    "parent": "fe.basics.i18n-idea",
+    "aliases": [
+      "l10n",
+      "로컬라이제이션",
+      "UI 현지화",
+      "웹사이트 현지화"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/Localization"
+    ]
+  },
+  {
+    "id": "fe.basics.locale",
+    "title": "로캘(locale): 언어와 지역 설정",
+    "en": "Locale",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "로캘은 사용자가 쓰는 언어와 지역에 따라 날짜·숫자·통화를 어떻게 보여 줄지 정하는 설정 묶음이다.",
+    "parent": "fe.basics.i18n-idea",
+    "aliases": [
+      "locale",
+      "로케일",
+      "언어·지역 설정",
+      "지역 설정"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/Locale"
+    ]
+  },
+  {
+    "id": "fe.basics.lang-attribute",
+    "title": "lang 속성: 페이지의 언어 알려 주기",
+    "en": "HTML lang Attribute",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "lang 속성은 페이지나 문단이 어떤 언어로 쓰였는지 알려 주어 스크린 리더가 알맞은 발음으로 읽게 돕는다.",
+    "parent": "fe.basics.i18n-idea",
+    "related": [
+      "fe.basics.screen-reader"
+    ],
+    "aliases": [
+      "lang 속성",
+      "html lang",
+      "lang attribute",
+      "문서 언어 지정"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/lang"
+    ]
+  },
+  {
+    "id": "fe.basics.frame-rate",
+    "title": "프레임 레이트(화면 초당 프레임)",
+    "en": "Frame Rate (Frames per Second)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 기초",
+    "summary": "프레임 레이트는 1초에 화면을 몇 번 새로 그리는지 나타내는 수로, 웹에서는 보통 초당 60번이면 움직임이 부드럽게 보인다.",
+    "parent": "fe.basics.web-animation-idea",
+    "related": [
+      "fe.basics.jank"
+    ],
+    "aliases": [
+      "frames per second",
+      "초당 프레임 수",
+      "프레임률",
+      "60fps",
+      "웹 애니메이션 fps"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Animation_performance_and_frame_rate"
+    ]
+  },
+  {
     "id": "fe.basics.whatwg",
     "title": "WHATWG",
     "en": "Web Hypertext Application Technology Working Group",
@@ -1900,6 +2058,49 @@
     ],
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria"
+    ]
+  },
+  {
+    "id": "fe.basics.rtl-text",
+    "title": "오른쪽에서 왼쪽으로 쓰는 글(RTL)",
+    "en": "Right-to-Left Text Direction",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 기초",
+    "summary": "아랍어·히브리어처럼 오른쪽에서 왼쪽으로 쓰는 글은 dir 속성으로 방향을 알려 주어야 화면에 바르게 놓인다.",
+    "parent": "fe.basics.i18n-idea",
+    "aliases": [
+      "RTL",
+      "right-to-left",
+      "dir 속성",
+      "RTL 언어",
+      "dir=\"rtl\""
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/dir",
+      "https://developer.mozilla.org/en-US/docs/Glossary/Localization"
+    ]
+  },
+  {
+    "id": "fe.basics.easing",
+    "title": "이징: 움직임의 빠르기 변화",
+    "en": "Easing Function",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 기초",
+    "summary": "이징은 움직임이 처음부터 끝까지 같은 빠르기로 갈지, 천천히 출발하거나 서서히 멈출지를 정하는 빠르기 곡선이다.",
+    "parent": "fe.basics.web-animation-idea",
+    "aliases": [
+      "easing",
+      "이징 함수",
+      "ease-in",
+      "ease-out",
+      "타이밍 함수"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/easing-function"
     ]
   },
   {

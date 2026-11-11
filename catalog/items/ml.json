@@ -609,6 +609,71 @@
     ]
   },
   {
+    "id": "ml.supervised.knn-idea",
+    "title": "k-최근접 이웃 맛보기: 가까운 이웃에게 묻기",
+    "en": "k-Nearest Neighbors Intuition",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "새 데이터와 가장 가까운 학습 예시 몇 개를 찾아 그들의 다수결이나 평균으로 답을 정하는 방법의 큰 그림이다.",
+    "objectives": [
+      "새 손님의 취향을 가장 비슷한 단골 몇 명에게 물어 정하는 비유로 k-최근접 이웃을 설명할 수 있다",
+      "분류에서는 이웃의 다수결, 회귀에서는 이웃 값의 평균으로 답한다는 것을 말할 수 있다",
+      "이웃 수 k를 늘리면 잡음에는 강해지지만 경계가 흐려진다는 것을 쉬운 말로 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.types-of-ml"
+    ],
+    "related": [
+      "ml.supervised.k-nearest-neighbors",
+      "ml.basics.clustering"
+    ],
+    "aliases": [
+      "KNN 입문",
+      "k-NN 원리",
+      "nearest neighbors intuition",
+      "이웃 다수결 분류",
+      "최근접 이웃 맛보기"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/neighbors.html#nearest-neighbors-classification",
+      "https://scikit-learn.org/stable/modules/neighbors.html#nearest-neighbors-regression"
+    ]
+  },
+  {
+    "id": "ml.nn.cnn-idea",
+    "title": "합성곱 신경망 맛보기: 돋보기로 그림 훑기",
+    "en": "Convolutional Neural Network Intuition",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "작은 필터로 그림을 조각조각 훑어 무늬를 찾고 풀링으로 요약해 가며 사진 속 대상을 알아보는 신경망의 큰 그림이다.",
+    "objectives": [
+      "작은 돋보기를 그림 위로 옮겨 가며 무늬를 찾는 비유로 합성곱 필터를 설명할 수 있다",
+      "풀링이 찾은 결과를 칸마다 대표값으로 줄여 요약한다는 것을 말할 수 있다",
+      "합성곱 신경망이 이미지 인식에 잘 맞는 이유를 쉬운 말로 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.nn.neural-network-idea"
+    ],
+    "related": [
+      "ml.nn.cnn-image-classifier"
+    ],
+    "aliases": [
+      "CNN 입문",
+      "CNN intuition",
+      "합성곱 신경망 원리",
+      "이미지 인식 신경망"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/glossary#convolutional-neural-network",
+      "https://developers.google.com/machine-learning/glossary#convolutional-filter",
+      "https://developers.google.com/machine-learning/glossary#pooling"
+    ]
+  },
+  {
     "id": "ml.basics.automl",
     "title": "AutoML: 모델 만들기를 자동으로 맡기기",
     "en": "AutoML",
@@ -1486,6 +1551,138 @@
     ]
   },
   {
+    "id": "ml.supervised.euclidean-distance",
+    "title": "유클리드 거리(직선거리)",
+    "en": "Euclidean Distance",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "두 점 사이를 자로 곧게 잰 길이로, 가까운 이웃을 고를 때 가장 흔히 쓰는 거리 재기 방법이다.",
+    "parent": "ml.supervised.knn-idea",
+    "related": [
+      "rag.embedding.similarity-search"
+    ],
+    "aliases": [
+      "Euclidean distance",
+      "유클리디안 거리",
+      "직선 거리",
+      "euclidean metric"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/neighbors.html",
+      "https://developers.google.com/machine-learning/glossary#k-median"
+    ]
+  },
+  {
+    "id": "ml.supervised.decision-boundary",
+    "title": "결정 경계(클래스를 가르는 선)",
+    "en": "Decision Boundary",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "모델이 데이터 공간에서 한 클래스와 다른 클래스를 갈라 놓는 선이나 면이다.",
+    "parent": "ml.supervised.knn-idea",
+    "aliases": [
+      "decision boundary",
+      "분류 경계",
+      "클래스 경계선",
+      "결정 경계면"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/glossary#decision-boundary",
+      "https://scikit-learn.org/stable/modules/neighbors.html#nearest-neighbors-classification"
+    ]
+  },
+  {
+    "id": "ml.nn.convolutional-filter",
+    "title": "합성곱 필터(그림을 훑는 작은 창)",
+    "en": "Convolutional Filter",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "입력 그림보다 훨씬 작은 숫자 판으로, 그림 위를 한 칸씩 옮겨 가며 무늬를 찾고 그 값은 학습으로 정해진다.",
+    "parent": "ml.nn.cnn-idea",
+    "aliases": [
+      "convolutional filter",
+      "합성곱 커널",
+      "convolution kernel",
+      "CNN 필터"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/glossary#convolutional-filter"
+    ]
+  },
+  {
+    "id": "ml.nn.pooling",
+    "title": "풀링(찾은 무늬를 줄여 요약하기)",
+    "en": "Pooling in Convolutional Networks",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "합성곱 층이 만든 결과를 작은 구역마다 최댓값이나 평균 하나로 줄여 크기를 작게 만드는 단계다.",
+    "parent": "ml.nn.cnn-idea",
+    "related": [
+      "ml.nn.max-pooling"
+    ],
+    "aliases": [
+      "CNN pooling",
+      "CNN 풀링",
+      "공간 풀링",
+      "spatial pooling",
+      "평균 풀링"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/glossary#pooling"
+    ]
+  },
+  {
+    "id": "ml.nn.image-recognition",
+    "title": "이미지 인식",
+    "en": "Image Recognition",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "사진 속에 어떤 물체나 무늬, 개념이 있는지 알아내는 머신러닝 과제다.",
+    "parent": "ml.nn.cnn-idea",
+    "aliases": [
+      "image recognition",
+      "이미지 분류 과제",
+      "사진 인식",
+      "image classification task"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/glossary#image-recognition"
+    ]
+  },
+  {
+    "id": "ml.data.data-augmentation",
+    "title": "데이터 증강(있는 예시를 변형해 늘리기)",
+    "en": "Data Augmentation",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "가진 예시를 돌리거나 늘이거나 뒤집어 새 학습 예시를 만들어 데이터 양을 인위적으로 늘리는 방법이다.",
+    "related": [
+      "ml.nn.image-augmentation",
+      "ml.training.overfitting-idea"
+    ],
+    "aliases": [
+      "data augmentation",
+      "학습 데이터 늘리기",
+      "데이터 부풀리기",
+      "데이터 증강 기법"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/glossary#data-augmentation"
+    ]
+  },
+  {
     "id": "ml.basics.reinforcement-learning",
     "title": "강화 학습",
     "en": "Reinforcement Learning",
@@ -1865,6 +2062,26 @@
     "refs": [
       "https://developers.google.com/machine-learning/glossary#demographic-parity",
       "https://developers.google.com/machine-learning/crash-course/fairness/demographic-parity"
+    ]
+  },
+  {
+    "id": "ml.supervised.instance-based-learning",
+    "title": "인스턴스 기반 학습(외워 두고 비교하기)",
+    "en": "Instance-Based Learning",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "규칙이나 식을 따로 만들지 않고 학습 예시를 그대로 기억해 두었다가 새 데이터와 견주어 답하는 학습 방식이다.",
+    "parent": "ml.supervised.knn-idea",
+    "aliases": [
+      "instance-based learning",
+      "사례 기반 학습",
+      "non-generalizing learning",
+      "비일반화 학습"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/neighbors.html#nearest-neighbors-classification"
     ]
   },
   {

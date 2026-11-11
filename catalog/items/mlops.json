@@ -520,6 +520,103 @@
     ]
   },
   {
+    "id": "mlops.serve.inference-timing-picture",
+    "title": "미리 만든 답과 그때 만든 답: 추론 시점의 큰 그림",
+    "en": "Static vs Dynamic Inference at a Glance",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "모델의 예측을 자주 나올 질문에 대해 미리 계산해 두었다 꺼내 줄지, 요청이 올 때마다 그 자리에서 계산할지 정하는 일의 큰 그림이다.",
+    "objectives": [
+      "미리 싸 둔 도시락과 주문받고 바로 만드는 요리에 빗대어 두 추론 방식의 차이를 설명할 수 있다",
+      "미리 계산해 두는 방식은 준비하지 않은 질문에 답하지 못하고 새 답이 늦게 반영된다는 점을 설명할 수 있다",
+      "그때그때 계산하는 방식은 어떤 질문에도 답하지만 빨라야 하고 계산이 많이 든다는 점을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.train-inference"
+    ],
+    "related": [
+      "mlops.serve.static-dynamic-inference",
+      "mlops.serve.model-serving"
+    ],
+    "aliases": [
+      "추론 시점",
+      "미리 계산한 예측",
+      "요청 시 예측",
+      "precomputed predictions",
+      "inference timing"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/static-vs-dynamic-inference"
+    ]
+  },
+  {
+    "id": "mlops.guardrail.red-teaming-picture",
+    "title": "레드팀의 큰 그림: 내놓기 전에 일부러 공격해 보기",
+    "en": "LLM Red Teaming at a Glance",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "AI 앱을 사용자에게 내놓기 전에 나쁜 사람처럼 일부러 속이고 공격해 보며 약한 곳을 찾아 점수로 남기고 고치는 일이다.",
+    "objectives": [
+      "모의 해킹이나 소방 훈련에 빗대어 레드팀이 무엇을 하는지 설명할 수 있다",
+      "공격 입력 만들기, 앱의 답 기록하기, 약점 채점하고 고치기의 세 걸음을 순서대로 말할 수 있다",
+      "레드팀이 모델만이 아니라 모델을 붙인 앱과 실행 중 동작까지 살핀다는 점을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.guardrail.llm-top10-overview"
+    ],
+    "related": [
+      "ax.governance.ai-red-teaming",
+      "mlops.guardrail.promptfoo-redteam"
+    ],
+    "aliases": [
+      "LLM 레드팀",
+      "LLM red teaming",
+      "레드팀 테스트",
+      "모의 공격 시험",
+      "red team testing"
+    ],
+    "refs": [
+      "https://www.promptfoo.dev/docs/red-team/",
+      "https://genai.owasp.org/resource/genai-red-teaming-guide/"
+    ]
+  },
+  {
+    "id": "mlops.observe.user-feedback-picture",
+    "title": "사용자 반응 모으기의 큰 그림: 좋아요 한 번의 쓸모",
+    "en": "Collecting User Feedback at a Glance",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "사용자가 누른 좋아요·별점·한 줄 의견을 그 답이 나온 실행 기록에 붙여 모아 두고, 나쁜 답을 찾아 고치는 재료로 쓰는 일이다.",
+    "objectives": [
+      "식당 손님 평가 카드에 빗대어 사용자 피드백을 모으는 까닭을 설명할 수 있다",
+      "피드백을 그 답이 나온 트레이스에 붙여야 어느 요청이 나빴는지 찾을 수 있는 이유를 설명할 수 있다",
+      "좋아요·싫어요, 점수, 글로 쓴 의견처럼 피드백이 여러 모양으로 온다는 점을 예로 들 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.observe.trace-picture"
+    ],
+    "related": [
+      "mlops.observe.user-feedback",
+      "mlops.eval.human-annotation",
+      "ax.basics.chat-feedback-retention"
+    ],
+    "aliases": [
+      "사용자 피드백 수집",
+      "user feedback collection",
+      "LLM 앱 피드백",
+      "답변 평가 모으기"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/tracing/collect-user-feedback/"
+    ]
+  },
+  {
     "id": "mlops.prompt.optimization-picture",
     "title": "프롬프트 최적화의 큰 그림: 채점하며 고쳐 쓰기",
     "en": "The Big Picture of Prompt Optimization",
@@ -1177,6 +1274,26 @@
     ],
     "refs": [
       "https://mlflow.org/docs/latest/genai/eval-monitor/running-evaluation/multi-turn/"
+    ]
+  },
+  {
+    "id": "mlops.guardrail.adversarial-input",
+    "title": "적대적 프롬프트(공격용 입력)",
+    "en": "Adversarial Prompts",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "AI가 위험한 답을 하거나 규칙을 어기거나 비밀을 흘리게 만들려고 일부러 꾸며 넣는 입력이다.",
+    "parent": "mlops.guardrail.red-teaming-picture",
+    "aliases": [
+      "adversarial prompt",
+      "공격 프롬프트",
+      "LLM 적대적 입력",
+      "레드팀 공격 프롬프트"
+    ],
+    "refs": [
+      "https://www.promptfoo.dev/docs/red-team/"
     ]
   },
   {
@@ -1875,6 +1992,96 @@
     "refs": [
       "https://mlflow.org/docs/latest/genai/eval-monitor/running-evaluation/multi-turn/"
     ]
+  },
+  {
+    "id": "mlops.serve.long-tail-input",
+    "title": "롱테일 입력(드물고 다양한 입력)",
+    "en": "Long-Tail Inputs",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "하나하나는 드물게 오지만 종류가 끝없이 많아 미리 답을 다 준비해 둘 수 없는 입력들이다.",
+    "parent": "mlops.serve.inference-timing-picture",
+    "aliases": [
+      "롱테일 입력",
+      "long-tail inputs",
+      "드문 입력",
+      "긴 꼬리 입력"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/production-ml-systems/static-vs-dynamic-inference"
+    ]
+  },
+  {
+    "id": "mlops.guardrail.black-box-red-teaming",
+    "title": "블랙박스 레드팀(겉에서만 두드려 보기)",
+    "en": "Black-Box Red Teaming",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "AI 앱의 속 코드나 설정은 보지 않고 넣은 입력과 나온 답만으로 약점을 찾는 레드팀 방식이다.",
+    "parent": "mlops.guardrail.red-teaming-picture",
+    "aliases": [
+      "블랙박스 레드팀",
+      "black-box red teaming",
+      "블랙박스 공격 시험",
+      "black-box LLM testing"
+    ],
+    "refs": [
+      "https://www.promptfoo.dev/docs/red-team/"
+    ]
+  },
+  {
+    "id": "mlops.serve.gateway-usage-tracking",
+    "title": "게이트웨이 사용량 추적",
+    "en": "AI Gateway Usage Tracking",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "AI 게이트웨이를 지나간 요청마다 기록을 남겨 요청 수·응답 속도·오류·토큰·비용을 한 화면에서 모아 보는 기능이다.",
+    "parent": "mlops.serve.ai-gateway-picture",
+    "related": [
+      "mlops.observe.token-usage-cost",
+      "mlops.serve.gateway-budget-policy"
+    ],
+    "aliases": [
+      "AI Gateway usage tracking",
+      "게이트웨이 사용량",
+      "게이트웨이 사용량 대시보드",
+      "gateway usage dashboard"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/governance/ai-gateway/usage-tracking/"
+    ]
+  },
+  {
+    "id": "mlops.track.skill-registry",
+    "title": "MLflow 스킬 레지스트리",
+    "en": "MLflow Skill Registry",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "팀이 만든 에이전트 스킬을 한곳에 올려 번호를 붙여 보관하고, 필요한 사람이 원하는 판을 찾아 내려받게 하는 저장소다.",
+    "related": [
+      "rag.basics.agent-skills-idea",
+      "mlops.serve.mlflow-mcp-registry",
+      "mlops.track.versioning-picture"
+    ],
+    "aliases": [
+      "MLflow 스킬 저장소",
+      "mlflow skills register",
+      "mlflow skills pull",
+      "register_skill"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/skill-registry/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
   },
   {
     "id": "mlops.eval.first-eval",

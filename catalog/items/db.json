@@ -186,6 +186,36 @@
     ]
   },
   {
+    "id": "db.data.data-formats-idea",
+    "title": "자료의 세 가지 모양: 정형·반정형·비정형",
+    "en": "Structured, Semi-structured, and Unstructured Data",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "데이터 수집과 가공",
+    "summary": "칸이 딱 정해진 표, 칸이 조금씩 다른 JSON 문서, 칸이 없는 사진·글처럼 자료를 모양에 따라 세 갈래로 나눠 보는 눈이다.",
+    "objectives": [
+      "정형·반정형·비정형 데이터를 서류 양식·자유 메모·사진첩 같은 비유로 설명할 수 있다",
+      "주변의 자료(주문 표, JSON 응답, 사진, 녹음)가 세 가지 중 어디에 드는지 고를 수 있다",
+      "반정형 데이터에서는 같은 종류의 자료라도 칸이 서로 다를 수 있다는 점을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "db.basics.table-row-column"
+    ],
+    "related": [
+      "db.nosql.flexible-schema"
+    ],
+    "aliases": [
+      "정형 반정형 비정형",
+      "structured vs unstructured data",
+      "데이터 형태 분류",
+      "자료 형태 구분"
+    ],
+    "refs": [
+      "https://learn.microsoft.com/en-us/training/modules/explore-core-data-concepts/2-data-formats"
+    ]
+  },
+  {
     "id": "db.cache.cache-idea",
     "title": "캐시: 자주 찾는 자료를 손 닿는 곳에 두기",
     "en": "The Idea of Caching",
@@ -580,6 +610,37 @@
     "refs": [
       "https://www.postgresql.org/docs/current/user-manag.html",
       "https://www.postgresql.org/docs/current/ddl-priv.html"
+    ]
+  },
+  {
+    "id": "db.data.batch-stream-idea",
+    "title": "일괄 처리와 스트림 처리: 모아서 또는 바로",
+    "en": "Batch Processing and Stream Processing",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "데이터 수집과 가공",
+    "summary": "자료를 쌓아 두었다 한꺼번에 처리하는 일괄 처리와 들어오는 대로 하나씩 처리하는 스트림 처리의 차이를 보는 큰 그림이다.",
+    "objectives": [
+      "일괄 처리와 스트림 처리를 한 달 치 카드 청구서와 실시간 화재 경보 같은 비유로 설명할 수 있다",
+      "결과가 나오기까지 걸리는 시간이 두 방식에서 어떻게 다른지 말할 수 있다",
+      "실시간 대시보드와 지난해 통계처럼 두 방식을 함께 쓰는 경우가 있다는 것을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "db.data.etl-idea"
+    ],
+    "related": [
+      "db.data.incremental-load"
+    ],
+    "aliases": [
+      "배치 처리와 스트림 처리",
+      "batch vs stream processing",
+      "실시간 데이터 처리",
+      "스트림 처리",
+      "stream processing"
+    ],
+    "refs": [
+      "https://learn.microsoft.com/en-us/training/modules/explore-fundamentals-stream-processing/2-batch-stream"
     ]
   },
   {
@@ -1313,6 +1374,119 @@
     ]
   },
   {
+    "id": "db.data.semi-structured-data",
+    "title": "반정형 데이터",
+    "en": "Semi-structured Data",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "데이터 수집과 가공",
+    "summary": "이름표 붙은 틀은 있지만 자료마다 칸이 더 있거나 빠질 수 있는 자료로, JSON 문서가 흔한 예다.",
+    "parent": "db.data.data-formats-idea",
+    "related": [
+      "db.nosql.flexible-schema",
+      "db.nosql.document"
+    ],
+    "aliases": [
+      "반구조화 데이터",
+      "semi-structured data",
+      "반정형 자료"
+    ],
+    "refs": [
+      "https://learn.microsoft.com/en-us/training/modules/explore-core-data-concepts/2-data-formats"
+    ]
+  },
+  {
+    "id": "db.data.unstructured-data",
+    "title": "비정형 데이터",
+    "en": "Unstructured Data",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "데이터 수집과 가공",
+    "summary": "문서·사진·소리·영상처럼 행과 열 같은 정해진 칸 없이 통째로 담기는 자료다.",
+    "parent": "db.data.data-formats-idea",
+    "related": [
+      "db.data.data-lake"
+    ],
+    "aliases": [
+      "비구조화 데이터",
+      "unstructured data",
+      "비정형 자료"
+    ],
+    "refs": [
+      "https://learn.microsoft.com/en-us/training/modules/explore-core-data-concepts/2-data-formats"
+    ]
+  },
+  {
+    "id": "db.data.streaming-data",
+    "title": "스트리밍 데이터: 끊임없이 흘러드는 자료",
+    "en": "Streaming Data",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "데이터 수집과 가공",
+    "summary": "주가 변화, 게임 속 행동, 센서 값처럼 멈추지 않고 계속 새로 생겨 들어오는 자료의 흐름이다.",
+    "parent": "db.data.batch-stream-idea",
+    "related": [
+      "db.nosql.time-series-idea"
+    ],
+    "aliases": [
+      "streaming data",
+      "데이터 스트림",
+      "data stream",
+      "실시간 데이터 흐름"
+    ],
+    "refs": [
+      "https://learn.microsoft.com/en-us/training/modules/explore-fundamentals-stream-processing/2-batch-stream"
+    ]
+  },
+  {
+    "id": "db.data.database-administrator",
+    "title": "데이터베이스 관리자(DBA)",
+    "en": "Database Administrator (DBA)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "데이터 수집과 가공",
+    "summary": "DB가 늘 잘 돌아가게 지키며 권한을 나눠 주고 백업을 떠 두었다가 사고가 나면 되살리는 일을 맡는 역할이다.",
+    "related": [
+      "db.basics.db-roles-idea",
+      "db.basics.backup"
+    ],
+    "aliases": [
+      "DBA",
+      "DB 관리자",
+      "database administrator",
+      "DB 운영 담당자"
+    ],
+    "refs": [
+      "https://learn.microsoft.com/en-us/training/modules/explore-roles-responsibilities-world-of-data/2-explore-job-roles"
+    ]
+  },
+  {
+    "id": "db.data.data-engineer",
+    "title": "데이터 엔지니어",
+    "en": "Data Engineer",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "데이터 수집과 가공",
+    "summary": "여러 시스템의 자료를 모아 다듬고 옮기는 파이프라인과 분석용 저장소를 만들고 돌보는 역할이다.",
+    "related": [
+      "db.data.etl-idea",
+      "db.data.database-administrator"
+    ],
+    "aliases": [
+      "data engineer",
+      "데이터 엔지니어링 담당",
+      "데이터 파이프라인 담당자"
+    ],
+    "refs": [
+      "https://learn.microsoft.com/en-us/training/modules/explore-roles-responsibilities-world-of-data/2-explore-job-roles"
+    ]
+  },
+  {
     "id": "db.nosql.what-is-nosql",
     "title": "NoSQL",
     "en": "NoSQL Databases",
@@ -1919,6 +2093,26 @@
     "refs": [
       "https://www.postgresql.org/docs/current/catalogs.html",
       "https://www.postgresql.org/docs/current/glossary.html"
+    ]
+  },
+  {
+    "id": "db.data.micro-batch",
+    "title": "마이크로 배치: 아주 작게 나눈 묶음",
+    "en": "Micro-batch",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "데이터 수집과 가공",
+    "summary": "스트림 처리에서 자료를 몇 건씩만 아주 작게 묶어 짧은 간격으로 처리하는 단위다.",
+    "parent": "db.data.batch-stream-idea",
+    "aliases": [
+      "micro-batch",
+      "micro batch",
+      "마이크로배치",
+      "소규모 배치 처리"
+    ],
+    "refs": [
+      "https://learn.microsoft.com/en-us/training/modules/explore-fundamentals-stream-processing/2-batch-stream"
     ]
   },
   {

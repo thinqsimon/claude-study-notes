@@ -1,5 +1,5 @@
 {
- "version": "0.52.0",
+ "version": "0.53.0",
  "domains": [
   {
    "prefix": "dev",
@@ -28306,6 +28306,37 @@
    "domain": "db"
   },
   {
+   "id": "db.data.data-formats-idea",
+   "title": "자료의 세 가지 모양: 정형·반정형·비정형",
+   "en": "Structured, Semi-structured, and Unstructured Data",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "데이터 수집과 가공",
+   "summary": "칸이 딱 정해진 표, 칸이 조금씩 다른 JSON 문서, 칸이 없는 사진·글처럼 자료를 모양에 따라 세 갈래로 나눠 보는 눈이다.",
+   "objectives": [
+    "정형·반정형·비정형 데이터를 서류 양식·자유 메모·사진첩 같은 비유로 설명할 수 있다",
+    "주변의 자료(주문 표, JSON 응답, 사진, 녹음)가 세 가지 중 어디에 드는지 고를 수 있다",
+    "반정형 데이터에서는 같은 종류의 자료라도 칸이 서로 다를 수 있다는 점을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "db.basics.table-row-column"
+   ],
+   "related": [
+    "db.nosql.flexible-schema"
+   ],
+   "aliases": [
+    "정형 반정형 비정형",
+    "structured vs unstructured data",
+    "데이터 형태 분류",
+    "자료 형태 구분"
+   ],
+   "refs": [
+    "https://learn.microsoft.com/en-us/training/modules/explore-core-data-concepts/2-data-formats"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.cache.cache-idea",
    "title": "캐시: 자주 찾는 자료를 손 닿는 곳에 두기",
    "en": "The Idea of Caching",
@@ -28712,6 +28743,38 @@
    "refs": [
     "https://www.postgresql.org/docs/current/user-manag.html",
     "https://www.postgresql.org/docs/current/ddl-priv.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.data.batch-stream-idea",
+   "title": "일괄 처리와 스트림 처리: 모아서 또는 바로",
+   "en": "Batch Processing and Stream Processing",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "데이터 수집과 가공",
+   "summary": "자료를 쌓아 두었다 한꺼번에 처리하는 일괄 처리와 들어오는 대로 하나씩 처리하는 스트림 처리의 차이를 보는 큰 그림이다.",
+   "objectives": [
+    "일괄 처리와 스트림 처리를 한 달 치 카드 청구서와 실시간 화재 경보 같은 비유로 설명할 수 있다",
+    "결과가 나오기까지 걸리는 시간이 두 방식에서 어떻게 다른지 말할 수 있다",
+    "실시간 대시보드와 지난해 통계처럼 두 방식을 함께 쓰는 경우가 있다는 것을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "db.data.etl-idea"
+   ],
+   "related": [
+    "db.data.incremental-load"
+   ],
+   "aliases": [
+    "배치 처리와 스트림 처리",
+    "batch vs stream processing",
+    "실시간 데이터 처리",
+    "스트림 처리",
+    "stream processing"
+   ],
+   "refs": [
+    "https://learn.microsoft.com/en-us/training/modules/explore-fundamentals-stream-processing/2-batch-stream"
    ],
    "domain": "db"
   },
@@ -29477,6 +29540,124 @@
    "domain": "db"
   },
   {
+   "id": "db.data.semi-structured-data",
+   "title": "반정형 데이터",
+   "en": "Semi-structured Data",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "데이터 수집과 가공",
+   "summary": "이름표 붙은 틀은 있지만 자료마다 칸이 더 있거나 빠질 수 있는 자료로, JSON 문서가 흔한 예다.",
+   "parent": "db.data.data-formats-idea",
+   "related": [
+    "db.nosql.flexible-schema",
+    "db.nosql.document"
+   ],
+   "aliases": [
+    "반구조화 데이터",
+    "semi-structured data",
+    "반정형 자료"
+   ],
+   "refs": [
+    "https://learn.microsoft.com/en-us/training/modules/explore-core-data-concepts/2-data-formats"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.data.unstructured-data",
+   "title": "비정형 데이터",
+   "en": "Unstructured Data",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "데이터 수집과 가공",
+   "summary": "문서·사진·소리·영상처럼 행과 열 같은 정해진 칸 없이 통째로 담기는 자료다.",
+   "parent": "db.data.data-formats-idea",
+   "related": [
+    "db.data.data-lake"
+   ],
+   "aliases": [
+    "비구조화 데이터",
+    "unstructured data",
+    "비정형 자료"
+   ],
+   "refs": [
+    "https://learn.microsoft.com/en-us/training/modules/explore-core-data-concepts/2-data-formats"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.data.streaming-data",
+   "title": "스트리밍 데이터: 끊임없이 흘러드는 자료",
+   "en": "Streaming Data",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "데이터 수집과 가공",
+   "summary": "주가 변화, 게임 속 행동, 센서 값처럼 멈추지 않고 계속 새로 생겨 들어오는 자료의 흐름이다.",
+   "parent": "db.data.batch-stream-idea",
+   "related": [
+    "db.nosql.time-series-idea"
+   ],
+   "aliases": [
+    "streaming data",
+    "데이터 스트림",
+    "data stream",
+    "실시간 데이터 흐름"
+   ],
+   "refs": [
+    "https://learn.microsoft.com/en-us/training/modules/explore-fundamentals-stream-processing/2-batch-stream"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.data.database-administrator",
+   "title": "데이터베이스 관리자(DBA)",
+   "en": "Database Administrator (DBA)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "데이터 수집과 가공",
+   "summary": "DB가 늘 잘 돌아가게 지키며 권한을 나눠 주고 백업을 떠 두었다가 사고가 나면 되살리는 일을 맡는 역할이다.",
+   "related": [
+    "db.basics.db-roles-idea",
+    "db.basics.backup"
+   ],
+   "aliases": [
+    "DBA",
+    "DB 관리자",
+    "database administrator",
+    "DB 운영 담당자"
+   ],
+   "refs": [
+    "https://learn.microsoft.com/en-us/training/modules/explore-roles-responsibilities-world-of-data/2-explore-job-roles"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.data.data-engineer",
+   "title": "데이터 엔지니어",
+   "en": "Data Engineer",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "데이터 수집과 가공",
+   "summary": "여러 시스템의 자료를 모아 다듬고 옮기는 파이프라인과 분석용 저장소를 만들고 돌보는 역할이다.",
+   "related": [
+    "db.data.etl-idea",
+    "db.data.database-administrator"
+   ],
+   "aliases": [
+    "data engineer",
+    "데이터 엔지니어링 담당",
+    "데이터 파이프라인 담당자"
+   ],
+   "refs": [
+    "https://learn.microsoft.com/en-us/training/modules/explore-roles-responsibilities-world-of-data/2-explore-job-roles"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.nosql.what-is-nosql",
    "title": "NoSQL",
    "en": "NoSQL Databases",
@@ -30110,6 +30291,27 @@
    "refs": [
     "https://www.postgresql.org/docs/current/catalogs.html",
     "https://www.postgresql.org/docs/current/glossary.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.data.micro-batch",
+   "title": "마이크로 배치: 아주 작게 나눈 묶음",
+   "en": "Micro-batch",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "데이터 수집과 가공",
+   "summary": "스트림 처리에서 자료를 몇 건씩만 아주 작게 묶어 짧은 간격으로 처리하는 단위다.",
+   "parent": "db.data.batch-stream-idea",
+   "aliases": [
+    "micro-batch",
+    "micro batch",
+    "마이크로배치",
+    "소규모 배치 처리"
+   ],
+   "refs": [
+    "https://learn.microsoft.com/en-us/training/modules/explore-fundamentals-stream-processing/2-batch-stream"
    ],
    "domain": "db"
   },
@@ -35053,6 +35255,79 @@
    "domain": "fe"
   },
   {
+   "id": "fe.basics.i18n-idea",
+   "title": "다국어 웹: 여러 나라 사람이 쓰는 웹사이트",
+   "en": "Web Internationalization and Localization",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 기초",
+   "summary": "웹사이트를 여러 언어와 문화에 맞출 수 있게 미리 준비하는 국제화와 나라별로 실제 맞추는 현지화의 큰 그림이다.",
+   "objectives": [
+    "국제화와 현지화가 각각 언제 하는 일인지 구분해 설명할 수 있다",
+    "언어 말고도 날짜·통화·단위·글 방향처럼 나라마다 달라지는 것을 예로 들 수 있다",
+    "페이지 언어를 알려 주지 않으면 스크린 리더가 엉뚱한 발음으로 읽는다는 것을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.basics.web-page-parts"
+   ],
+   "related": [
+    "fe.basics.accessibility-idea"
+   ],
+   "aliases": [
+    "국제화",
+    "i18n",
+    "다국어 지원",
+    "웹 국제화",
+    "다국어 웹사이트"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Glossary/Internationalization",
+    "https://developer.mozilla.org/en-US/docs/Glossary/Localization",
+    "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/lang"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.web-animation-idea",
+   "title": "웹 애니메이션: 화면에 움직임 더하기",
+   "en": "Web Animation Basics",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 기초",
+   "summary": "웹 페이지의 요소가 조금씩 모습을 바꾸며 움직이게 하는 애니메이션이 어떻게 보이고 언제 쓰고 무엇을 조심하는지 보는 큰 그림이다.",
+   "objectives": [
+    "애니메이션이 조금씩 다른 장면을 빠르게 이어 보여 주는 것임을 플립북에 빗대어 설명할 수 있다",
+    "마우스를 올리는 것처럼 무언가 바뀔 때 생기는 움직임과 스스로 되풀이되는 움직임을 구분할 수 있다",
+    "처음엔 느리다가 빨라지는 것처럼 움직임의 빠르기가 바뀌는 이징을 공 굴리기에 빗대어 설명할 수 있다",
+    "움직임이 많으면 어지러움을 느끼는 사람이 있어 동작 줄이기 설정을 존중해야 함을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.basics.web-page-parts"
+   ],
+   "related": [
+    "fe.css.transitions",
+    "fe.css.keyframes",
+    "fe.basics.prefers-reduced-motion",
+    "fe.basics.jank"
+   ],
+   "aliases": [
+    "웹 애니메이션",
+    "web animation",
+    "화면 움직임 효과",
+    "움직이는 웹 화면"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Animations/Using",
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Transitions/Using",
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/easing-function",
+    "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Animation_performance_and_frame_rate",
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.basics.pwa-idea",
    "title": "PWA: 앱처럼 설치해 쓰는 웹사이트",
    "en": "Progressive Web Apps",
@@ -35790,6 +36065,97 @@
    "domain": "fe"
   },
   {
+   "id": "fe.basics.localization",
+   "title": "현지화(l10n)",
+   "en": "Localization (l10n)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 기초",
+   "summary": "현지화는 화면의 말뿐 아니라 날짜·숫자·통화·단위까지 특정 나라 사용자에게 맞게 바꾸는 일이다.",
+   "parent": "fe.basics.i18n-idea",
+   "aliases": [
+    "l10n",
+    "로컬라이제이션",
+    "UI 현지화",
+    "웹사이트 현지화"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Glossary/Localization"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.locale",
+   "title": "로캘(locale): 언어와 지역 설정",
+   "en": "Locale",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 기초",
+   "summary": "로캘은 사용자가 쓰는 언어와 지역에 따라 날짜·숫자·통화를 어떻게 보여 줄지 정하는 설정 묶음이다.",
+   "parent": "fe.basics.i18n-idea",
+   "aliases": [
+    "locale",
+    "로케일",
+    "언어·지역 설정",
+    "지역 설정"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Glossary/Locale"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.lang-attribute",
+   "title": "lang 속성: 페이지의 언어 알려 주기",
+   "en": "HTML lang Attribute",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 기초",
+   "summary": "lang 속성은 페이지나 문단이 어떤 언어로 쓰였는지 알려 주어 스크린 리더가 알맞은 발음으로 읽게 돕는다.",
+   "parent": "fe.basics.i18n-idea",
+   "related": [
+    "fe.basics.screen-reader"
+   ],
+   "aliases": [
+    "lang 속성",
+    "html lang",
+    "lang attribute",
+    "문서 언어 지정"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/lang"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.frame-rate",
+   "title": "프레임 레이트(화면 초당 프레임)",
+   "en": "Frame Rate (Frames per Second)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 기초",
+   "summary": "프레임 레이트는 1초에 화면을 몇 번 새로 그리는지 나타내는 수로, 웹에서는 보통 초당 60번이면 움직임이 부드럽게 보인다.",
+   "parent": "fe.basics.web-animation-idea",
+   "related": [
+    "fe.basics.jank"
+   ],
+   "aliases": [
+    "frames per second",
+    "초당 프레임 수",
+    "프레임률",
+    "60fps",
+    "웹 애니메이션 fps"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Animation_performance_and_frame_rate"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.basics.whatwg",
    "title": "WHATWG",
    "en": "Web Hypertext Application Technology Working Group",
@@ -36436,6 +36802,51 @@
    ],
    "refs": [
     "https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.rtl-text",
+   "title": "오른쪽에서 왼쪽으로 쓰는 글(RTL)",
+   "en": "Right-to-Left Text Direction",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "웹 기초",
+   "summary": "아랍어·히브리어처럼 오른쪽에서 왼쪽으로 쓰는 글은 dir 속성으로 방향을 알려 주어야 화면에 바르게 놓인다.",
+   "parent": "fe.basics.i18n-idea",
+   "aliases": [
+    "RTL",
+    "right-to-left",
+    "dir 속성",
+    "RTL 언어",
+    "dir=\"rtl\""
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/dir",
+    "https://developer.mozilla.org/en-US/docs/Glossary/Localization"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.basics.easing",
+   "title": "이징: 움직임의 빠르기 변화",
+   "en": "Easing Function",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "웹 기초",
+   "summary": "이징은 움직임이 처음부터 끝까지 같은 빠르기로 갈지, 천천히 출발하거나 서서히 멈출지를 정하는 빠르기 곡선이다.",
+   "parent": "fe.basics.web-animation-idea",
+   "aliases": [
+    "easing",
+    "이징 함수",
+    "ease-in",
+    "ease-out",
+    "타이밍 함수"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/easing-function"
    ],
    "domain": "fe"
   },
@@ -53811,6 +54222,44 @@
    "domain": "ax"
   },
   {
+   "id": "ax.basics.coding-agent-safeguards",
+   "title": "코딩 에이전트에게 내 컴퓨터를 맡길 때의 안전장치",
+   "en": "Safeguards When a Coding Agent Works on Your Computer",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "AI 보안과 윤리",
+   "summary": "코딩 에이전트는 파일을 고치고 명령을 실행하기 전에 묻거나 따로 검토하는 모델이 위험한 동작을 막지만, 무엇을 허락할지 마지막으로 보는 책임은 사람에게 있다.",
+   "objectives": [
+    "코딩 에이전트가 내 컴퓨터에서 할 수 있는 일(파일 읽기·고치기·명령 실행·인터넷 접속)을 집 열쇠를 맡긴 수리 기사에 빗대어 설명할 수 있다",
+    "에이전트가 허락을 묻는 방식과 다른 AI가 대신 검토하는 방식의 차이를 말할 수 있다",
+    "승인하기 전에 제안된 명령과 변경을 읽어야 하는 이유와 낯선 폴더·외부 글을 조심해야 하는 이유를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.basics.ai-coding-tools"
+   ],
+   "related": [
+    "ax.basics.browser-agent-safety",
+    "ax.coding.permission-rules",
+    "ax.coding.workspace-trust",
+    "ax.coding.agent-prompt-injection"
+   ],
+   "aliases": [
+    "코딩 에이전트 안전장치",
+    "coding agent safeguards",
+    "코딩 에이전트 안전 수칙",
+    "Claude Code 안전장치",
+    "AI 코딩 도구 보안 기본"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/security",
+    "https://code.claude.com/docs/en/permission-modes"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
    "id": "ax.basics.what-is-ax",
    "title": "AX: 일하는 방식을 AI로 바꾸기",
    "en": "What AX Is",
@@ -54374,6 +54823,45 @@
     "https://www.anthropic.com/research/the-anthropic-economic-index",
     "https://www.anthropic.com/research/anthropic-economic-index-september-2025-report",
     "https://www.anthropic.com/research/economic-index-june-2026-report"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.agentic-top10-overview",
+   "title": "AI 에이전트의 보안 위험 10가지: OWASP 에이전트 Top 10",
+   "en": "OWASP Top 10 for Agentic Applications",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "스스로 계획하고 도구를 써서 일하는 AI 에이전트는 심부름꾼처럼 속거나 엉뚱하게 움직일 수 있어, OWASP가 그 위험을 열 가지로 묶어 정리했다.",
+   "objectives": [
+    "답만 하는 챗봇과 스스로 여러 단계를 실행하는 에이전트의 위험이 왜 다른지 심부름꾼 비유로 설명할 수 있다",
+    "목표 가로채기·도구 오용·메모리 오염·폭주 에이전트 같은 대표 위험을 일상 예로 말할 수 있다",
+    "필요 없는 곳에 자율성을 주지 않고 에이전트가 하는 일을 지켜봐야 하는 이유를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.basics.ai-coding-tools",
+    "mlops.guardrail.llm-top10-overview"
+   ],
+   "related": [
+    "mlops.guardrail.llm-top10-overview",
+    "mlops.guardrail.excessive-agency",
+    "ax.security.limit-agent-agency",
+    "ax.basics.browser-agent-safety"
+   ],
+   "aliases": [
+    "OWASP Agentic Top 10",
+    "에이전트 보안 Top 10",
+    "Agentic AI Top 10",
+    "에이전트 10대 위험",
+    "AI 에이전트 보안 위험"
+   ],
+   "refs": [
+    "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/",
+    "https://genai.owasp.org/download/52117/?tmstv=1765059207"
    ],
    "volatile": true,
    "checked_at": "2026-11-11",
@@ -55064,6 +55552,148 @@
    "domain": "ax"
   },
   {
+   "id": "ax.security.agent-goal-hijack",
+   "title": "에이전트 목표 가로채기(goal hijack)",
+   "en": "Agent Goal Hijack (ASI01)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "에이전트가 읽은 문서·도구 결과·다른 에이전트의 메시지에 섞인 지시 때문에 맡긴 일의 목표 자체가 공격자가 원하는 쪽으로 바뀌는 위험이다.",
+   "parent": "ax.security.agentic-top10-overview",
+   "related": [
+    "llm.security.indirect-injection",
+    "ax.security.agent-memory-poisoning"
+   ],
+   "aliases": [
+    "목표 가로채기",
+    "agent goal hijack",
+    "에이전트 목표 탈취",
+    "goal hijacking",
+    "ASI01"
+   ],
+   "refs": [
+    "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.agent-tool-misuse",
+   "title": "에이전트 도구 오용(tool misuse)",
+   "en": "Agent Tool Misuse and Exploitation (ASI02)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "에이전트가 허락받은 정상 도구를 엉뚱하게 써서 중요한 자료를 지우거나 비싼 API를 마구 부르거나 정보를 밖으로 보내는 위험이다.",
+   "parent": "ax.security.agentic-top10-overview",
+   "related": [
+    "mlops.guardrail.excessive-agency",
+    "ax.security.least-agency"
+   ],
+   "aliases": [
+    "도구 오용",
+    "agent tool misuse",
+    "에이전트 도구 남용",
+    "tool misuse and exploitation",
+    "ASI02"
+   ],
+   "refs": [
+    "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.agent-memory-poisoning",
+   "title": "에이전트 메모리·문맥 오염(memory poisoning)",
+   "en": "Agent Memory and Context Poisoning (ASI06)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "에이전트가 기억해 두고 다시 꺼내 쓰는 대화 요약·메모·검색 자료에 거짓이나 나쁜 내용이 심겨, 다음 작업들까지 계속 잘못 판단하게 되는 위험이다.",
+   "parent": "ax.security.agentic-top10-overview",
+   "related": [
+    "ax.security.agent-goal-hijack",
+    "ax.security.data-poisoning",
+    "mlops.guardrail.vector-embedding-weakness"
+   ],
+   "aliases": [
+    "에이전트 메모리 오염",
+    "agent memory poisoning",
+    "문맥 오염",
+    "context poisoning",
+    "ASI06"
+   ],
+   "refs": [
+    "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.human-agent-trust-exploitation",
+   "title": "에이전트를 믿는 마음 악용(trust exploitation)",
+   "en": "Human-Agent Trust Exploitation (ASI09)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "말을 잘하고 자신 있어 보이는 에이전트를 사람이 쉽게 믿는 점을 노려, 그럴듯한 설명으로 위험한 송금·삭제·명령 실행을 사람이 직접 승인하게 만드는 위험이다.",
+   "parent": "ax.security.agentic-top10-overview",
+   "related": [
+    "ax.governance.automation-bias",
+    "ax.governance.anthropomorphism",
+    "ax.basics.agent-action-confirmation"
+   ],
+   "aliases": [
+    "사람-에이전트 신뢰 악용",
+    "human-agent trust exploitation",
+    "에이전트 신뢰 악용",
+    "가짜 설명으로 승인 유도",
+    "ASI09"
+   ],
+   "refs": [
+    "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.least-agency",
+   "title": "최소 자율성 원칙(least agency)",
+   "en": "Principle of Least Agency",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "에이전트에게는 꼭 필요한 만큼의 스스로 할 자유와 도구만 주라는 원칙으로, 필요 없는 자율성은 공격받을 틈만 넓힌다는 생각에서 나왔다.",
+   "parent": "ax.security.agentic-top10-overview",
+   "related": [
+    "mlops.guardrail.excessive-agency",
+    "ax.security.limit-agent-agency",
+    "ax.security.agent-tool-misuse"
+   ],
+   "aliases": [
+    "최소 자율성",
+    "least agency",
+    "least-agency",
+    "최소 에이전시 원칙"
+   ],
+   "refs": [
+    "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
    "id": "ax.governance.oecd-ai-principles",
    "title": "OECD AI 원칙",
    "en": "OECD AI Principles",
@@ -55733,6 +56363,33 @@
     "내 작업 검토 부탁",
     "AI에게 피드백 받기"
    ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.rogue-agent",
+   "title": "폭주 에이전트(rogue agent)",
+   "en": "Rogue Agents (ASI10)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "맡은 역할과 허락된 범위를 벗어나 겉으로는 정상처럼 보이면서 해롭거나 속이는 행동을 이어 가는 에이전트로, 처음 침입보다 그 뒤의 이탈을 가리킨다.",
+   "parent": "ax.security.agentic-top10-overview",
+   "related": [
+    "ax.security.agent-goal-hijack",
+    "ax.security.backdoor-sleeper"
+   ],
+   "aliases": [
+    "rogue AI agent",
+    "통제를 벗어난 에이전트",
+    "악성 AI 에이전트",
+    "ASI10"
+   ],
+   "refs": [
+    "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
    "domain": "ax"
   },
   {
@@ -66937,6 +67594,73 @@
    "domain": "ml"
   },
   {
+   "id": "ml.supervised.knn-idea",
+   "title": "k-최근접 이웃 맛보기: 가까운 이웃에게 묻기",
+   "en": "k-Nearest Neighbors Intuition",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "새 데이터와 가장 가까운 학습 예시 몇 개를 찾아 그들의 다수결이나 평균으로 답을 정하는 방법의 큰 그림이다.",
+   "objectives": [
+    "새 손님의 취향을 가장 비슷한 단골 몇 명에게 물어 정하는 비유로 k-최근접 이웃을 설명할 수 있다",
+    "분류에서는 이웃의 다수결, 회귀에서는 이웃 값의 평균으로 답한다는 것을 말할 수 있다",
+    "이웃 수 k를 늘리면 잡음에는 강해지지만 경계가 흐려진다는 것을 쉬운 말로 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.types-of-ml"
+   ],
+   "related": [
+    "ml.supervised.k-nearest-neighbors",
+    "ml.basics.clustering"
+   ],
+   "aliases": [
+    "KNN 입문",
+    "k-NN 원리",
+    "nearest neighbors intuition",
+    "이웃 다수결 분류",
+    "최근접 이웃 맛보기"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/neighbors.html#nearest-neighbors-classification",
+    "https://scikit-learn.org/stable/modules/neighbors.html#nearest-neighbors-regression"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.cnn-idea",
+   "title": "합성곱 신경망 맛보기: 돋보기로 그림 훑기",
+   "en": "Convolutional Neural Network Intuition",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "작은 필터로 그림을 조각조각 훑어 무늬를 찾고 풀링으로 요약해 가며 사진 속 대상을 알아보는 신경망의 큰 그림이다.",
+   "objectives": [
+    "작은 돋보기를 그림 위로 옮겨 가며 무늬를 찾는 비유로 합성곱 필터를 설명할 수 있다",
+    "풀링이 찾은 결과를 칸마다 대표값으로 줄여 요약한다는 것을 말할 수 있다",
+    "합성곱 신경망이 이미지 인식에 잘 맞는 이유를 쉬운 말로 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.nn.neural-network-idea"
+   ],
+   "related": [
+    "ml.nn.cnn-image-classifier"
+   ],
+   "aliases": [
+    "CNN 입문",
+    "CNN intuition",
+    "합성곱 신경망 원리",
+    "이미지 인식 신경망"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/glossary#convolutional-neural-network",
+    "https://developers.google.com/machine-learning/glossary#convolutional-filter",
+    "https://developers.google.com/machine-learning/glossary#pooling"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.basics.automl",
    "title": "AutoML: 모델 만들기를 자동으로 맡기기",
    "en": "AutoML",
@@ -67853,6 +68577,144 @@
    "domain": "ml"
   },
   {
+   "id": "ml.supervised.euclidean-distance",
+   "title": "유클리드 거리(직선거리)",
+   "en": "Euclidean Distance",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "두 점 사이를 자로 곧게 잰 길이로, 가까운 이웃을 고를 때 가장 흔히 쓰는 거리 재기 방법이다.",
+   "parent": "ml.supervised.knn-idea",
+   "related": [
+    "rag.embedding.similarity-search"
+   ],
+   "aliases": [
+    "Euclidean distance",
+    "유클리디안 거리",
+    "직선 거리",
+    "euclidean metric"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/neighbors.html",
+    "https://developers.google.com/machine-learning/glossary#k-median"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.decision-boundary",
+   "title": "결정 경계(클래스를 가르는 선)",
+   "en": "Decision Boundary",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "모델이 데이터 공간에서 한 클래스와 다른 클래스를 갈라 놓는 선이나 면이다.",
+   "parent": "ml.supervised.knn-idea",
+   "aliases": [
+    "decision boundary",
+    "분류 경계",
+    "클래스 경계선",
+    "결정 경계면"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/glossary#decision-boundary",
+    "https://scikit-learn.org/stable/modules/neighbors.html#nearest-neighbors-classification"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.convolutional-filter",
+   "title": "합성곱 필터(그림을 훑는 작은 창)",
+   "en": "Convolutional Filter",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "입력 그림보다 훨씬 작은 숫자 판으로, 그림 위를 한 칸씩 옮겨 가며 무늬를 찾고 그 값은 학습으로 정해진다.",
+   "parent": "ml.nn.cnn-idea",
+   "aliases": [
+    "convolutional filter",
+    "합성곱 커널",
+    "convolution kernel",
+    "CNN 필터"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/glossary#convolutional-filter"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.pooling",
+   "title": "풀링(찾은 무늬를 줄여 요약하기)",
+   "en": "Pooling in Convolutional Networks",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "합성곱 층이 만든 결과를 작은 구역마다 최댓값이나 평균 하나로 줄여 크기를 작게 만드는 단계다.",
+   "parent": "ml.nn.cnn-idea",
+   "related": [
+    "ml.nn.max-pooling"
+   ],
+   "aliases": [
+    "CNN pooling",
+    "CNN 풀링",
+    "공간 풀링",
+    "spatial pooling",
+    "평균 풀링"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/glossary#pooling"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.image-recognition",
+   "title": "이미지 인식",
+   "en": "Image Recognition",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "사진 속에 어떤 물체나 무늬, 개념이 있는지 알아내는 머신러닝 과제다.",
+   "parent": "ml.nn.cnn-idea",
+   "aliases": [
+    "image recognition",
+    "이미지 분류 과제",
+    "사진 인식",
+    "image classification task"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/glossary#image-recognition"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.data-augmentation",
+   "title": "데이터 증강(있는 예시를 변형해 늘리기)",
+   "en": "Data Augmentation",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "가진 예시를 돌리거나 늘이거나 뒤집어 새 학습 예시를 만들어 데이터 양을 인위적으로 늘리는 방법이다.",
+   "related": [
+    "ml.nn.image-augmentation",
+    "ml.training.overfitting-idea"
+   ],
+   "aliases": [
+    "data augmentation",
+    "학습 데이터 늘리기",
+    "데이터 부풀리기",
+    "데이터 증강 기법"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/glossary#data-augmentation"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.basics.reinforcement-learning",
    "title": "강화 학습",
    "en": "Reinforcement Learning",
@@ -68248,6 +69110,27 @@
    "refs": [
     "https://developers.google.com/machine-learning/glossary#demographic-parity",
     "https://developers.google.com/machine-learning/crash-course/fairness/demographic-parity"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.instance-based-learning",
+   "title": "인스턴스 기반 학습(외워 두고 비교하기)",
+   "en": "Instance-Based Learning",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "규칙이나 식을 따로 만들지 않고 학습 예시를 그대로 기억해 두었다가 새 데이터와 견주어 답하는 학습 방식이다.",
+   "parent": "ml.supervised.knn-idea",
+   "aliases": [
+    "instance-based learning",
+    "사례 기반 학습",
+    "non-generalizing learning",
+    "비일반화 학습"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/neighbors.html#nearest-neighbors-classification"
    ],
    "domain": "ml"
   },
@@ -72845,6 +73728,106 @@
    "domain": "mlops"
   },
   {
+   "id": "mlops.serve.inference-timing-picture",
+   "title": "미리 만든 답과 그때 만든 답: 추론 시점의 큰 그림",
+   "en": "Static vs Dynamic Inference at a Glance",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "모델의 예측을 자주 나올 질문에 대해 미리 계산해 두었다 꺼내 줄지, 요청이 올 때마다 그 자리에서 계산할지 정하는 일의 큰 그림이다.",
+   "objectives": [
+    "미리 싸 둔 도시락과 주문받고 바로 만드는 요리에 빗대어 두 추론 방식의 차이를 설명할 수 있다",
+    "미리 계산해 두는 방식은 준비하지 않은 질문에 답하지 못하고 새 답이 늦게 반영된다는 점을 설명할 수 있다",
+    "그때그때 계산하는 방식은 어떤 질문에도 답하지만 빨라야 하고 계산이 많이 든다는 점을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.train-inference"
+   ],
+   "related": [
+    "mlops.serve.static-dynamic-inference",
+    "mlops.serve.model-serving"
+   ],
+   "aliases": [
+    "추론 시점",
+    "미리 계산한 예측",
+    "요청 시 예측",
+    "precomputed predictions",
+    "inference timing"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/production-ml-systems/static-vs-dynamic-inference"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.guardrail.red-teaming-picture",
+   "title": "레드팀의 큰 그림: 내놓기 전에 일부러 공격해 보기",
+   "en": "LLM Red Teaming at a Glance",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "AI 앱을 사용자에게 내놓기 전에 나쁜 사람처럼 일부러 속이고 공격해 보며 약한 곳을 찾아 점수로 남기고 고치는 일이다.",
+   "objectives": [
+    "모의 해킹이나 소방 훈련에 빗대어 레드팀이 무엇을 하는지 설명할 수 있다",
+    "공격 입력 만들기, 앱의 답 기록하기, 약점 채점하고 고치기의 세 걸음을 순서대로 말할 수 있다",
+    "레드팀이 모델만이 아니라 모델을 붙인 앱과 실행 중 동작까지 살핀다는 점을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.guardrail.llm-top10-overview"
+   ],
+   "related": [
+    "ax.governance.ai-red-teaming",
+    "mlops.guardrail.promptfoo-redteam"
+   ],
+   "aliases": [
+    "LLM 레드팀",
+    "LLM red teaming",
+    "레드팀 테스트",
+    "모의 공격 시험",
+    "red team testing"
+   ],
+   "refs": [
+    "https://www.promptfoo.dev/docs/red-team/",
+    "https://genai.owasp.org/resource/genai-red-teaming-guide/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.user-feedback-picture",
+   "title": "사용자 반응 모으기의 큰 그림: 좋아요 한 번의 쓸모",
+   "en": "Collecting User Feedback at a Glance",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "사용자가 누른 좋아요·별점·한 줄 의견을 그 답이 나온 실행 기록에 붙여 모아 두고, 나쁜 답을 찾아 고치는 재료로 쓰는 일이다.",
+   "objectives": [
+    "식당 손님 평가 카드에 빗대어 사용자 피드백을 모으는 까닭을 설명할 수 있다",
+    "피드백을 그 답이 나온 트레이스에 붙여야 어느 요청이 나빴는지 찾을 수 있는 이유를 설명할 수 있다",
+    "좋아요·싫어요, 점수, 글로 쓴 의견처럼 피드백이 여러 모양으로 온다는 점을 예로 들 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.observe.trace-picture"
+   ],
+   "related": [
+    "mlops.observe.user-feedback",
+    "mlops.eval.human-annotation",
+    "ax.basics.chat-feedback-retention"
+   ],
+   "aliases": [
+    "사용자 피드백 수집",
+    "user feedback collection",
+    "LLM 앱 피드백",
+    "답변 평가 모으기"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/tracing/collect-user-feedback/"
+   ],
+   "domain": "mlops"
+  },
+  {
    "id": "mlops.prompt.optimization-picture",
    "title": "프롬프트 최적화의 큰 그림: 채점하며 고쳐 쓰기",
    "en": "The Big Picture of Prompt Optimization",
@@ -73529,6 +74512,27 @@
    ],
    "refs": [
     "https://mlflow.org/docs/latest/genai/eval-monitor/running-evaluation/multi-turn/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.guardrail.adversarial-input",
+   "title": "적대적 프롬프트(공격용 입력)",
+   "en": "Adversarial Prompts",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "AI가 위험한 답을 하거나 규칙을 어기거나 비밀을 흘리게 만들려고 일부러 꾸며 넣는 입력이다.",
+   "parent": "mlops.guardrail.red-teaming-picture",
+   "aliases": [
+    "adversarial prompt",
+    "공격 프롬프트",
+    "LLM 적대적 입력",
+    "레드팀 공격 프롬프트"
+   ],
+   "refs": [
+    "https://www.promptfoo.dev/docs/red-team/"
    ],
    "domain": "mlops"
   },
@@ -74258,6 +75262,100 @@
    "refs": [
     "https://mlflow.org/docs/latest/genai/eval-monitor/running-evaluation/multi-turn/"
    ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.long-tail-input",
+   "title": "롱테일 입력(드물고 다양한 입력)",
+   "en": "Long-Tail Inputs",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "하나하나는 드물게 오지만 종류가 끝없이 많아 미리 답을 다 준비해 둘 수 없는 입력들이다.",
+   "parent": "mlops.serve.inference-timing-picture",
+   "aliases": [
+    "롱테일 입력",
+    "long-tail inputs",
+    "드문 입력",
+    "긴 꼬리 입력"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/production-ml-systems/static-vs-dynamic-inference"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.guardrail.black-box-red-teaming",
+   "title": "블랙박스 레드팀(겉에서만 두드려 보기)",
+   "en": "Black-Box Red Teaming",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "AI 앱의 속 코드나 설정은 보지 않고 넣은 입력과 나온 답만으로 약점을 찾는 레드팀 방식이다.",
+   "parent": "mlops.guardrail.red-teaming-picture",
+   "aliases": [
+    "블랙박스 레드팀",
+    "black-box red teaming",
+    "블랙박스 공격 시험",
+    "black-box LLM testing"
+   ],
+   "refs": [
+    "https://www.promptfoo.dev/docs/red-team/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.gateway-usage-tracking",
+   "title": "게이트웨이 사용량 추적",
+   "en": "AI Gateway Usage Tracking",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "AI 게이트웨이를 지나간 요청마다 기록을 남겨 요청 수·응답 속도·오류·토큰·비용을 한 화면에서 모아 보는 기능이다.",
+   "parent": "mlops.serve.ai-gateway-picture",
+   "related": [
+    "mlops.observe.token-usage-cost",
+    "mlops.serve.gateway-budget-policy"
+   ],
+   "aliases": [
+    "AI Gateway usage tracking",
+    "게이트웨이 사용량",
+    "게이트웨이 사용량 대시보드",
+    "gateway usage dashboard"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/governance/ai-gateway/usage-tracking/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.track.skill-registry",
+   "title": "MLflow 스킬 레지스트리",
+   "en": "MLflow Skill Registry",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "팀이 만든 에이전트 스킬을 한곳에 올려 번호를 붙여 보관하고, 필요한 사람이 원하는 판을 찾아 내려받게 하는 저장소다.",
+   "related": [
+    "rag.basics.agent-skills-idea",
+    "mlops.serve.mlflow-mcp-registry",
+    "mlops.track.versioning-picture"
+   ],
+   "aliases": [
+    "MLflow 스킬 저장소",
+    "mlflow skills register",
+    "mlflow skills pull",
+    "register_skill"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/skill-registry/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
    "domain": "mlops"
   },
   {

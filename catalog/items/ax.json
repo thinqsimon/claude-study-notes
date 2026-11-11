@@ -103,6 +103,43 @@
     ]
   },
   {
+    "id": "ax.basics.coding-agent-safeguards",
+    "title": "코딩 에이전트에게 내 컴퓨터를 맡길 때의 안전장치",
+    "en": "Safeguards When a Coding Agent Works on Your Computer",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "AI 보안과 윤리",
+    "summary": "코딩 에이전트는 파일을 고치고 명령을 실행하기 전에 묻거나 따로 검토하는 모델이 위험한 동작을 막지만, 무엇을 허락할지 마지막으로 보는 책임은 사람에게 있다.",
+    "objectives": [
+      "코딩 에이전트가 내 컴퓨터에서 할 수 있는 일(파일 읽기·고치기·명령 실행·인터넷 접속)을 집 열쇠를 맡긴 수리 기사에 빗대어 설명할 수 있다",
+      "에이전트가 허락을 묻는 방식과 다른 AI가 대신 검토하는 방식의 차이를 말할 수 있다",
+      "승인하기 전에 제안된 명령과 변경을 읽어야 하는 이유와 낯선 폴더·외부 글을 조심해야 하는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.basics.ai-coding-tools"
+    ],
+    "related": [
+      "ax.basics.browser-agent-safety",
+      "ax.coding.permission-rules",
+      "ax.coding.workspace-trust",
+      "ax.coding.agent-prompt-injection"
+    ],
+    "aliases": [
+      "코딩 에이전트 안전장치",
+      "coding agent safeguards",
+      "코딩 에이전트 안전 수칙",
+      "Claude Code 안전장치",
+      "AI 코딩 도구 보안 기본"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/security",
+      "https://code.claude.com/docs/en/permission-modes"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "ax.basics.what-is-ax",
     "title": "AX: 일하는 방식을 AI로 바꾸기",
     "en": "What AX Is",
@@ -651,6 +688,44 @@
       "https://www.anthropic.com/research/the-anthropic-economic-index",
       "https://www.anthropic.com/research/anthropic-economic-index-september-2025-report",
       "https://www.anthropic.com/research/economic-index-june-2026-report"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.security.agentic-top10-overview",
+    "title": "AI 에이전트의 보안 위험 10가지: OWASP 에이전트 Top 10",
+    "en": "OWASP Top 10 for Agentic Applications",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "스스로 계획하고 도구를 써서 일하는 AI 에이전트는 심부름꾼처럼 속거나 엉뚱하게 움직일 수 있어, OWASP가 그 위험을 열 가지로 묶어 정리했다.",
+    "objectives": [
+      "답만 하는 챗봇과 스스로 여러 단계를 실행하는 에이전트의 위험이 왜 다른지 심부름꾼 비유로 설명할 수 있다",
+      "목표 가로채기·도구 오용·메모리 오염·폭주 에이전트 같은 대표 위험을 일상 예로 말할 수 있다",
+      "필요 없는 곳에 자율성을 주지 않고 에이전트가 하는 일을 지켜봐야 하는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.basics.ai-coding-tools",
+      "mlops.guardrail.llm-top10-overview"
+    ],
+    "related": [
+      "mlops.guardrail.llm-top10-overview",
+      "mlops.guardrail.excessive-agency",
+      "ax.security.limit-agent-agency",
+      "ax.basics.browser-agent-safety"
+    ],
+    "aliases": [
+      "OWASP Agentic Top 10",
+      "에이전트 보안 Top 10",
+      "Agentic AI Top 10",
+      "에이전트 10대 위험",
+      "AI 에이전트 보안 위험"
+    ],
+    "refs": [
+      "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/",
+      "https://genai.owasp.org/download/52117/?tmstv=1765059207"
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
@@ -1312,6 +1387,143 @@
     ]
   },
   {
+    "id": "ax.security.agent-goal-hijack",
+    "title": "에이전트 목표 가로채기(goal hijack)",
+    "en": "Agent Goal Hijack (ASI01)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "에이전트가 읽은 문서·도구 결과·다른 에이전트의 메시지에 섞인 지시 때문에 맡긴 일의 목표 자체가 공격자가 원하는 쪽으로 바뀌는 위험이다.",
+    "parent": "ax.security.agentic-top10-overview",
+    "related": [
+      "llm.security.indirect-injection",
+      "ax.security.agent-memory-poisoning"
+    ],
+    "aliases": [
+      "목표 가로채기",
+      "agent goal hijack",
+      "에이전트 목표 탈취",
+      "goal hijacking",
+      "ASI01"
+    ],
+    "refs": [
+      "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.security.agent-tool-misuse",
+    "title": "에이전트 도구 오용(tool misuse)",
+    "en": "Agent Tool Misuse and Exploitation (ASI02)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "에이전트가 허락받은 정상 도구를 엉뚱하게 써서 중요한 자료를 지우거나 비싼 API를 마구 부르거나 정보를 밖으로 보내는 위험이다.",
+    "parent": "ax.security.agentic-top10-overview",
+    "related": [
+      "mlops.guardrail.excessive-agency",
+      "ax.security.least-agency"
+    ],
+    "aliases": [
+      "도구 오용",
+      "agent tool misuse",
+      "에이전트 도구 남용",
+      "tool misuse and exploitation",
+      "ASI02"
+    ],
+    "refs": [
+      "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.security.agent-memory-poisoning",
+    "title": "에이전트 메모리·문맥 오염(memory poisoning)",
+    "en": "Agent Memory and Context Poisoning (ASI06)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "에이전트가 기억해 두고 다시 꺼내 쓰는 대화 요약·메모·검색 자료에 거짓이나 나쁜 내용이 심겨, 다음 작업들까지 계속 잘못 판단하게 되는 위험이다.",
+    "parent": "ax.security.agentic-top10-overview",
+    "related": [
+      "ax.security.agent-goal-hijack",
+      "ax.security.data-poisoning",
+      "mlops.guardrail.vector-embedding-weakness"
+    ],
+    "aliases": [
+      "에이전트 메모리 오염",
+      "agent memory poisoning",
+      "문맥 오염",
+      "context poisoning",
+      "ASI06"
+    ],
+    "refs": [
+      "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.security.human-agent-trust-exploitation",
+    "title": "에이전트를 믿는 마음 악용(trust exploitation)",
+    "en": "Human-Agent Trust Exploitation (ASI09)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "말을 잘하고 자신 있어 보이는 에이전트를 사람이 쉽게 믿는 점을 노려, 그럴듯한 설명으로 위험한 송금·삭제·명령 실행을 사람이 직접 승인하게 만드는 위험이다.",
+    "parent": "ax.security.agentic-top10-overview",
+    "related": [
+      "ax.governance.automation-bias",
+      "ax.governance.anthropomorphism",
+      "ax.basics.agent-action-confirmation"
+    ],
+    "aliases": [
+      "사람-에이전트 신뢰 악용",
+      "human-agent trust exploitation",
+      "에이전트 신뢰 악용",
+      "가짜 설명으로 승인 유도",
+      "ASI09"
+    ],
+    "refs": [
+      "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.security.least-agency",
+    "title": "최소 자율성 원칙(least agency)",
+    "en": "Principle of Least Agency",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "에이전트에게는 꼭 필요한 만큼의 스스로 할 자유와 도구만 주라는 원칙으로, 필요 없는 자율성은 공격받을 틈만 넓힌다는 생각에서 나왔다.",
+    "parent": "ax.security.agentic-top10-overview",
+    "related": [
+      "mlops.guardrail.excessive-agency",
+      "ax.security.limit-agent-agency",
+      "ax.security.agent-tool-misuse"
+    ],
+    "aliases": [
+      "최소 자율성",
+      "least agency",
+      "least-agency",
+      "최소 에이전시 원칙"
+    ],
+    "refs": [
+      "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "ax.governance.oecd-ai-principles",
     "title": "OECD AI 원칙",
     "en": "OECD AI Principles",
@@ -1952,6 +2164,32 @@
       "내 작업 검토 부탁",
       "AI에게 피드백 받기"
     ]
+  },
+  {
+    "id": "ax.security.rogue-agent",
+    "title": "폭주 에이전트(rogue agent)",
+    "en": "Rogue Agents (ASI10)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "맡은 역할과 허락된 범위를 벗어나 겉으로는 정상처럼 보이면서 해롭거나 속이는 행동을 이어 가는 에이전트로, 처음 침입보다 그 뒤의 이탈을 가리킨다.",
+    "parent": "ax.security.agentic-top10-overview",
+    "related": [
+      "ax.security.agent-goal-hijack",
+      "ax.security.backdoor-sleeper"
+    ],
+    "aliases": [
+      "rogue AI agent",
+      "통제를 벗어난 에이전트",
+      "악성 AI 에이전트",
+      "ASI10"
+    ],
+    "refs": [
+      "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
   },
   {
     "id": "ax.coding.agent-first",
