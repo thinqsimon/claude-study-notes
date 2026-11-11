@@ -107,6 +107,38 @@
     ]
   },
   {
+    "id": "cs.os.concurrency-parallelism-idea",
+    "title": "번갈아 하기와 함께 하기: 동시성·병렬성 입문",
+    "en": "Concurrency and Parallelism for Beginners",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "운영체제",
+    "summary": "한 사람이 여러 일을 번갈아 조금씩 진행하는 것이 동시성이고, 여러 사람이 일을 나눠 같은 순간에 진행하는 것이 병렬성이다.",
+    "objectives": [
+      "동시성과 병렬성의 차이를 혼자 여러 일을 번갈아 하는 사람과 일을 나눠 맡은 팀에 빗대어 설명할 수 있다",
+      "CPU 코어가 하나뿐이어도 일을 번갈아 돌려 동시성을 낼 수 있다는 것을 말할 수 있다",
+      "코어가 여럿이면 서로 다른 일이 정말 같은 순간에 진행될 수 있다는 것을 설명할 수 있다",
+      "앞 일이 끝나야 다음 일을 할 수 있으면 나눠 맡아도 차례대로 할 수밖에 없다는 것을 예로 들 수 있다"
+    ],
+    "prerequisites": [
+      "cs.os.multitasking"
+    ],
+    "related": [
+      "be.async.concurrency-parallelism"
+    ],
+    "aliases": [
+      "동시성 입문",
+      "병렬성 입문",
+      "concurrency vs parallelism",
+      "병렬 처리 입문",
+      "동시 실행과 병렬 실행"
+    ],
+    "refs": [
+      "https://doc.rust-lang.org/book/ch17-00-async-await.html"
+    ]
+  },
+  {
     "id": "cs.data.digital-information",
     "title": "디지털 정보: 글자와 그림을 숫자로 담기",
     "en": "Digital Information",
@@ -516,6 +548,67 @@
     ],
     "refs": [
       "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c1/c1s1/"
+    ]
+  },
+  {
+    "id": "cs.algo.sorting-idea",
+    "title": "정렬 입문: 정한 기준으로 줄 세우기",
+    "en": "Sorting for Beginners: Putting Items in Order",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "알고리즘과 복잡도",
+    "summary": "정렬은 크기나 글자 순서처럼 미리 정한 기준에 맞춰 자료를 차례대로 늘어놓는 일이다.",
+    "objectives": [
+      "정렬을 키 순서로 줄 서기나 이름순 출석부에 빗대어 설명할 수 있다",
+      "같은 자료라도 무엇을 기준으로 삼느냐에 따라 늘어선 순서가 달라진다는 것을 예로 들 수 있다",
+      "작은 것부터 놓는 순서와 큰 것부터 놓는 순서를 구분해 말할 수 있다",
+      "단어끼리는 첫 글자부터 차례로 견주어 순서를 정한다는 것을 설명할 수 있다"
+    ],
+    "related": [
+      "cs.algo.sorting"
+    ],
+    "aliases": [
+      "정렬 입문",
+      "sorting basics",
+      "자료 정렬하기",
+      "순서대로 늘어놓기"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/sort.html",
+      "https://docs.python.org/3/howto/sorting.html",
+      "https://docs.python.org/3/tutorial/datastructures.html#comparing-sequences-and-other-types"
+    ]
+  },
+  {
+    "id": "cs.data.digital-audio-idea",
+    "title": "디지털 소리: 소리를 잘게 재어 숫자로 담기",
+    "en": "Digital Audio Basics",
+    "kind": "topic",
+    "level": 1,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "컴퓨터는 이어진 소리의 세기를 아주 짧은 간격마다 재어 숫자로 적어 두고, 이 숫자들을 다시 소리로 되살린다.",
+    "objectives": [
+      "소리를 일정한 간격마다 재어 숫자 목록으로 바꾸는 과정을 연속 사진으로 움직임을 담는 것에 빗대어 설명할 수 있다",
+      "1초에 더 자주 잴수록 더 높은 소리까지 담을 수 있다는 것을 말할 수 있다",
+      "CD는 1초에 44,100번, DVD는 48,000번 재어 담는다는 예를 들 수 있다",
+      "모노는 소리 줄기가 하나, 스테레오는 둘이라는 것을 구분할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.data.digital-information"
+    ],
+    "related": [
+      "cs.data.bit-depth"
+    ],
+    "aliases": [
+      "디지털 오디오",
+      "digital audio",
+      "소리의 디지털화",
+      "오디오 디지털 표현"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Audio_concepts"
     ]
   },
   {
@@ -1208,6 +1301,96 @@
     ]
   },
   {
+    "id": "cs.algo.ascending-descending",
+    "title": "오름차순과 내림차순",
+    "en": "Ascending and Descending Order",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "알고리즘과 복잡도",
+    "summary": "작은 값부터 큰 값으로 늘어놓는 것이 오름차순, 큰 값부터 작은 값으로 늘어놓는 것이 내림차순이다.",
+    "parent": "cs.algo.sorting-idea",
+    "aliases": [
+      "오름차순",
+      "내림차순",
+      "ascending order",
+      "descending order",
+      "역순 정렬",
+      "reverse=True"
+    ],
+    "refs": [
+      "https://docs.python.org/3/howto/sorting.html#ascending-and-descending"
+    ]
+  },
+  {
+    "id": "cs.algo.lexicographic-order",
+    "title": "사전순(사전식 순서)",
+    "en": "Lexicographic Order",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "알고리즘과 복잡도",
+    "summary": "두 글자열이나 목록을 첫 항목부터 차례로 견주어 처음 달라지는 자리에서 순서를 정하고, 앞부분이 같으면 짧은 쪽을 앞에 두는 순서다.",
+    "parent": "cs.algo.sorting-idea",
+    "related": [
+      "cs.data.code-point"
+    ],
+    "aliases": [
+      "사전순",
+      "사전식 순서",
+      "lexicographical order",
+      "lexicographic ordering",
+      "문자열 사전순 비교"
+    ],
+    "refs": [
+      "https://docs.python.org/3/tutorial/datastructures.html#comparing-sequences-and-other-types"
+    ]
+  },
+  {
+    "id": "cs.algo.sort-key",
+    "title": "정렬 키(정렬 기준값)",
+    "en": "Sort Key",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "알고리즘과 복잡도",
+    "summary": "자료를 줄 세울 때 각 항목에서 뽑아 서로 견주는 값으로, 나이나 이름처럼 무엇을 키로 고르느냐에 따라 순서가 달라진다.",
+    "parent": "cs.algo.sorting-idea",
+    "aliases": [
+      "정렬 키",
+      "sort key",
+      "key function",
+      "키 함수",
+      "정렬 기준값"
+    ],
+    "refs": [
+      "https://docs.python.org/3/howto/sorting.html#key-functions"
+    ]
+  },
+  {
+    "id": "cs.arch.multicore-processor",
+    "title": "멀티코어 프로세서",
+    "en": "Multi-core Processor",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "컴퓨터 구조",
+    "summary": "계산을 맡는 코어를 한 CPU 안에 여럿 둔 프로세서로, 코어마다 다른 일을 맡아 같은 순간에 처리할 수 있다.",
+    "parent": "cs.os.concurrency-parallelism-idea",
+    "related": [
+      "cs.arch.cpu"
+    ],
+    "aliases": [
+      "멀티코어 CPU",
+      "multicore CPU",
+      "다중 코어 프로세서",
+      "multi-core CPU"
+    ],
+    "refs": [
+      "https://doc.rust-lang.org/book/ch17-00-async-await.html"
+    ]
+  },
+  {
     "id": "cs.net.robustness-principle",
     "title": "견고성 원칙(포스텔의 법칙)",
     "en": "Robustness Principle",
@@ -1625,6 +1808,110 @@
     ],
     "refs": [
       "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c1/c1s1/"
+    ]
+  },
+  {
+    "id": "cs.os.serial-execution",
+    "title": "직렬 실행(차례대로 하나씩 처리)",
+    "en": "Serial Execution",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "일을 한 번에 하나씩, 앞 일이 끝난 뒤에 다음 일을 하는 방식으로, 앞뒤가 이어진 일은 나눠 맡아도 이렇게 될 수밖에 없다.",
+    "parent": "cs.os.concurrency-parallelism-idea",
+    "aliases": [
+      "직렬 처리",
+      "serial execution",
+      "serial work",
+      "차례대로 실행"
+    ],
+    "refs": [
+      "https://doc.rust-lang.org/book/ch17-00-async-await.html"
+    ]
+  },
+  {
+    "id": "cs.data.audio-sample-rate",
+    "title": "샘플링 레이트(초당 샘플 수)",
+    "en": "Audio Sample Rate",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "소리를 1초에 몇 번 재어 숫자로 담는지 나타내는 값으로, CD 음질은 44.1kHz, DVD 음질은 48kHz다.",
+    "parent": "cs.data.digital-audio-idea",
+    "aliases": [
+      "샘플링 레이트",
+      "샘플 레이트",
+      "sample rate",
+      "sampling rate",
+      "44.1kHz",
+      "48kHz"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Audio_concepts"
+    ]
+  },
+  {
+    "id": "cs.data.audio-channels",
+    "title": "오디오 채널(모노·스테레오)",
+    "en": "Audio Channels (Mono and Stereo)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "한 소리 파일 안에 시간을 맞춰 함께 담긴 소리 줄기의 수로, 모노는 하나, 스테레오는 둘, 5.1 서라운드는 여섯이다.",
+    "parent": "cs.data.digital-audio-idea",
+    "aliases": [
+      "오디오 채널",
+      "audio channel",
+      "모노 오디오",
+      "스테레오 오디오",
+      "mono audio",
+      "stereo audio"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Audio_concepts"
+    ]
+  },
+  {
+    "id": "cs.data.nyquist-frequency",
+    "title": "나이퀴스트 주파수",
+    "en": "Nyquist Frequency",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "샘플링 레이트의 절반에 해당하는 주파수로, 그 주파수보다 높은 소리는 제대로 담아 되살릴 수 없다는 위쪽 한계다.",
+    "parent": "cs.data.digital-audio-idea",
+    "aliases": [
+      "나이퀴스트 주파수",
+      "Nyquist frequency",
+      "나이퀴스트 정리",
+      "Nyquist-Shannon theorem",
+      "샘플링 정리"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Audio_concepts"
+    ]
+  },
+  {
+    "id": "cs.data.analog-to-digital-converter",
+    "title": "아날로그-디지털 변환기(ADC)",
+    "en": "Analog-to-Digital Converter (ADC)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "마이크가 만든 전압처럼 이어진 신호의 크기를 일정한 간격마다 재어 정해진 비트 수의 숫자로 바꾸는 장치다.",
+    "parent": "cs.data.digital-audio-idea",
+    "aliases": [
+      "analog-to-digital converter",
+      "A/D 변환기",
+      "아날로그 디지털 변환"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Audio_concepts"
     ]
   },
   {

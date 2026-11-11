@@ -124,6 +124,36 @@
     ]
   },
   {
+    "id": "dev.git.three-states",
+    "title": "Git의 세 가지 상태: 수정·스테이징·커밋",
+    "en": "The Three States of Files in Git",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "Git",
+    "summary": "Git의 파일은 고친 상태, 다음 기록에 넣겠다고 골라 둔 상태, 기록으로 저장된 상태를 차례로 거친다.",
+    "objectives": [
+      "수정·스테이징·커밋 세 상태를 짐 싸기에 빗대어 설명할 수 있다",
+      "작업 트리·스테이징 영역·Git 디렉터리가 각각 무엇을 담는지 말할 수 있다",
+      "고치고, 골라 담고, 기록하는 기본 흐름을 순서대로 말할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.why-version-control"
+    ],
+    "related": [
+      "dev.git.first-commit"
+    ],
+    "aliases": [
+      "Git 세 가지 상태",
+      "Git three states",
+      "modified staged committed",
+      "Git 기본 작업 흐름"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F"
+    ]
+  },
+  {
     "id": "dev.basics.code-editor",
     "title": "코드 편집기 설치와 첫 사용",
     "en": "Getting Started with a Code Editor",
@@ -513,6 +543,64 @@
     "refs": [
       "https://docs.github.com/en/account-and-profile/concepts/personal-profile",
       "https://docs.github.com/en/account-and-profile/reference/profile-reference"
+    ]
+  },
+  {
+    "id": "dev.git.github-releases",
+    "title": "GitHub 릴리스: 완성본 묶어 내놓기",
+    "en": "GitHub Releases",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "Git",
+    "summary": "릴리스는 저장소의 한 시점을 태그로 표시하고 설명과 내려받을 파일을 붙여 다른 사람이 쓰도록 내놓은 판이다.",
+    "objectives": [
+      "릴리스를 완성품을 포장해 진열하는 일에 빗대어 설명할 수 있다",
+      "릴리스가 Git 태그가 가리키는 시점을 바탕으로 만들어진다는 것을 말할 수 있다",
+      "릴리스 페이지에서 설명과 내려받을 파일을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.github-role"
+    ],
+    "related": [
+      "dev.git.annotated-tag"
+    ],
+    "aliases": [
+      "GitHub 릴리스",
+      "GitHub Releases",
+      "릴리스 페이지",
+      "저장소 릴리스"
+    ],
+    "refs": [
+      "https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases",
+      "https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository"
+    ]
+  },
+  {
+    "id": "dev.git.github-projects",
+    "title": "GitHub Projects: 할 일을 표와 보드로 정리하기",
+    "en": "GitHub Projects",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "Git",
+    "summary": "GitHub Projects는 이슈와 풀 리퀘스트를 한곳에 모아 표·보드·로드맵 모양으로 보며 일의 진행을 정리하는 계획 도구다.",
+    "objectives": [
+      "Projects를 할 일 메모를 붙여 두는 게시판에 빗대어 설명할 수 있다",
+      "표·보드·로드맵 세 가지 보기가 각각 무엇을 보여 주는지 말할 수 있다",
+      "프로젝트에서 바꾼 내용이 원래 이슈에도 반영된다는 것을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.github-issues"
+    ],
+    "aliases": [
+      "GitHub 프로젝트",
+      "GitHub 프로젝트 보드",
+      "Projects 탭"
+    ],
+    "refs": [
+      "https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects",
+      "https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/quickstart-for-projects"
     ]
   },
   {
@@ -1114,6 +1202,87 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "dev.git.git-directory",
+    "title": "Git 디렉터리(.git)",
+    "en": "Git Directory",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "Git",
+    "summary": "저장소의 모든 기록과 정보를 Git이 모아 두는 저장 공간으로, 저장소를 복제하면 바로 이 부분이 복사된다.",
+    "parent": "dev.git.three-states",
+    "related": [
+      "dev.git.working-tree"
+    ],
+    "aliases": [
+      "Git directory",
+      ".git 디렉터리",
+      ".git 폴더"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F"
+    ]
+  },
+  {
+    "id": "dev.git.tracked-untracked",
+    "title": "추적 파일과 미추적 파일",
+    "en": "Tracked and Untracked Files",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "Git",
+    "summary": "Git이 이미 알고 기록을 지켜보는 파일이 추적 파일이고, 지난 기록에도 없고 다음 기록에 넣겠다고 고르지도 않아 Git이 지켜보지 않는 파일이 미추적 파일이다.",
+    "parent": "dev.git.three-states",
+    "aliases": [
+      "tracked files",
+      "untracked files",
+      "추적되지 않는 파일",
+      "추적되는 파일"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository"
+    ]
+  },
+  {
+    "id": "dev.git.release-notes",
+    "title": "릴리스 노트",
+    "en": "GitHub Release Notes",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "Git",
+    "summary": "릴리스에 무엇이 달라졌는지 적은 설명으로, GitHub은 병합된 풀 리퀘스트와 기여자 목록을 모아 자동으로 만들어 주기도 한다.",
+    "parent": "dev.git.github-releases",
+    "aliases": [
+      "release notes",
+      "자동 생성 릴리스 노트",
+      "Generate release notes",
+      "GitHub 릴리스 설명"
+    ],
+    "refs": [
+      "https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes"
+    ]
+  },
+  {
+    "id": "dev.git.project-board-layout",
+    "title": "프로젝트 보드 레이아웃",
+    "en": "GitHub Projects Board Layout",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "Git",
+    "summary": "항목을 상태별 칸에 카드처럼 늘어놓는 보기로, 카드를 다른 칸으로 끌어 옮기면 그 항목의 상태 값도 바뀐다.",
+    "parent": "dev.git.github-projects",
+    "aliases": [
+      "GitHub Projects board layout",
+      "GitHub 칸반 보드",
+      "프로젝트 보드 보기"
+    ],
+    "refs": [
+      "https://docs.github.com/en/issues/planning-and-tracking-with-projects/customizing-views-in-your-project/changing-the-layout-of-a-view"
+    ]
+  },
+  {
     "id": "dev.git.dvcs",
     "title": "분산 버전 관리",
     "en": "Distributed Version Control",
@@ -1643,6 +1812,106 @@
     ],
     "refs": [
       "https://docs.github.com/en/account-and-profile/reference/profile-reference"
+    ]
+  },
+  {
+    "id": "dev.git.release-assets",
+    "title": "릴리스 자산",
+    "en": "GitHub Release Assets",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "Git",
+    "summary": "릴리스에 붙인 내려받기 파일로, 직접 올린 실행 파일 같은 것과 GitHub이 그 시점 코드로 만들어 주는 압축 파일이 있다.",
+    "parent": "dev.git.github-releases",
+    "aliases": [
+      "release assets",
+      "릴리스 첨부 파일",
+      "릴리스 소스 코드 압축 파일"
+    ],
+    "refs": [
+      "https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases"
+    ]
+  },
+  {
+    "id": "dev.git.pre-release",
+    "title": "사전 릴리스(pre-release)",
+    "en": "GitHub Pre-release",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "Git",
+    "summary": "아직 실제로 쓰기에는 준비되지 않아 불안정할 수 있다고 표시해 둔 릴리스다.",
+    "parent": "dev.git.github-releases",
+    "aliases": [
+      "pre-release",
+      "프리릴리스",
+      "This is a pre-release"
+    ],
+    "refs": [
+      "https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository"
+    ]
+  },
+  {
+    "id": "dev.git.project-roadmap-layout",
+    "title": "프로젝트 로드맵 레이아웃",
+    "en": "GitHub Projects Roadmap Layout",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "Git",
+    "summary": "항목을 날짜나 반복 주기 필드에 따라 시간 막대 위에 놓아 언제 시작하고 끝날지 보여 주는 보기다.",
+    "parent": "dev.git.github-projects",
+    "aliases": [
+      "GitHub Projects roadmap layout",
+      "프로젝트 타임라인 보기",
+      "Projects 로드맵 보기"
+    ],
+    "refs": [
+      "https://docs.github.com/en/issues/planning-and-tracking-with-projects/customizing-views-in-your-project/changing-the-layout-of-a-view"
+    ]
+  },
+  {
+    "id": "dev.git.draft-issue",
+    "title": "초안 이슈(draft issue)",
+    "en": "GitHub Projects Draft Issue",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "Git",
+    "summary": "저장소가 아니라 프로젝트 안에만 있는 메모 같은 항목으로, 나중에 정식 이슈로 바꿀 수 있다.",
+    "parent": "dev.git.github-projects",
+    "related": [
+      "dev.git.github-issues"
+    ],
+    "aliases": [
+      "draft issue",
+      "프로젝트 초안 이슈",
+      "Projects 초안 항목"
+    ],
+    "refs": [
+      "https://docs.github.com/en/issues/planning-and-tracking-with-projects/managing-items-in-your-project/adding-items-to-your-project"
+    ]
+  },
+  {
+    "id": "dev.git.project-custom-field",
+    "title": "프로젝트 사용자 지정 필드",
+    "en": "GitHub Projects Custom Fields",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "Git",
+    "summary": "담당자·레이블 같은 기본 정보 말고 날짜·숫자·선택지·글·반복 주기 같은 칸을 프로젝트에 직접 더해 항목마다 적는 것이다.",
+    "parent": "dev.git.github-projects",
+    "aliases": [
+      "GitHub Projects custom fields",
+      "GitHub 프로젝트 필드",
+      "iteration field",
+      "반복 주기 필드"
+    ],
+    "refs": [
+      "https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects",
+      "https://docs.github.com/en/issues/planning-and-tracking-with-projects/understanding-fields/about-text-and-number-fields"
     ]
   },
   {

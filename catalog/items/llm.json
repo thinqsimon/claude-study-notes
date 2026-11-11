@@ -530,6 +530,104 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "llm.basics.scheduled-tasks",
+    "title": "AI에게 정기적인 일 맡기기: 예약 작업",
+    "en": "Scheduling Recurring Tasks for an AI Assistant",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "할 일과 주기를 한 번 말해 두면 AI가 매일·매주 정해진 때에 그 일을 다시 해 결과를 놓아 둔다.",
+    "objectives": [
+      "예약 작업을 매일 아침 신문이 배달되는 일에 빗대어 설명할 수 있다",
+      "할 일과 실행 주기를 함께 적어 챗봇에 예약 작업을 부탁할 수 있다",
+      "예약 목록에서 작업을 멈추거나 지우는 이유를 말할 수 있다",
+      "Gemini처럼 결과를 배달 시각보다 미리 만들어 두는 서비스에서는 빠르게 바뀌는 정보가 낡을 수 있다는 점을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.first-chat"
+    ],
+    "related": [
+      "llm.basics.claude-cowork"
+    ],
+    "aliases": [
+      "AI 예약 작업",
+      "AI 정기 작업",
+      "챗봇 예약 실행",
+      "반복 예약 작업",
+      "recurring AI task"
+    ],
+    "refs": [
+      "https://support.google.com/gemini/answer/16316416",
+      "https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.chat-visuals",
+    "title": "대화 속에 그려 주는 그림과 도표: 시각 자료",
+    "en": "Inline Visuals in AI Chat Responses",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "AI가 답 안에 흐름도·차트·비교표 같은 그림을 바로 그려 보여 주고, 누르거나 다시 부탁해 고칠 수 있다.",
+    "objectives": [
+      "답 속 시각 자료를 화이트보드에 쓱 그린 설명 그림에 빗대어 설명할 수 있다",
+      "자료를 올리고 '차트로 그려 줘'처럼 그림을 직접 부탁할 수 있다",
+      "그때그때 그린 시각 자료와 따로 저장되는 아티팩트의 차이를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.first-chat"
+    ],
+    "related": [
+      "llm.basics.chat-artifact"
+    ],
+    "aliases": [
+      "Claude 시각 자료",
+      "Claude custom visuals",
+      "답 속 차트",
+      "대화 속 도표",
+      "챗봇이 그린 도표"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/13979539-custom-visuals-in-chat-and-cowork"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.ai-in-office-apps",
+    "title": "문서·시트·슬라이드 안에서 AI 부르기",
+    "en": "Using an AI Assistant inside Google Docs, Sheets and Slides",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "문서·스프레드시트·발표 자료 옆 사이드바에서 AI를 불러 지금 연 파일을 읽고 바로 고치게 하는 방식이다.",
+    "objectives": [
+      "사이드바 AI를 내 파일을 함께 보며 고쳐 주는 옆자리 동료에 빗대어 설명할 수 있다",
+      "확장 프로그램을 설치하고 문서에서 AI 사이드바를 열 수 있다",
+      "AI가 고치기 전에 하나씩 확인받는 모드를 켜 두는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.first-chat"
+    ],
+    "aliases": [
+      "Claude for Google Workspace",
+      "구글 문서 속 AI",
+      "스프레드시트 AI 사이드바",
+      "오피스 앱 속 AI",
+      "Docs Sheets Slides AI"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/16951679-use-claude-in-google-docs-sheets-and-slides"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "llm.basics.image-generation",
     "title": "이미지 생성 AI: 글로 주문하는 그림",
     "en": "Image Generation from Text",
@@ -1344,6 +1442,30 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "llm.basics.capability-hallucination",
+    "title": "하지 않은 일을 했다고 말하는 AI",
+    "en": "Capability Hallucination: Claimed Actions and Broken Links",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "연결된 도구가 없는데도 AI가 메일을 보냈다거나 파일을 만들었다고 말하거나 열리지 않는 링크를 주는 환각이다.",
+    "related": [
+      "llm.basics.why-hallucinate",
+      "llm.basics.hallucination"
+    ],
+    "aliases": [
+      "능력 환각",
+      "AI 가짜 링크",
+      "메일 보냈다는 거짓말",
+      "hallucinated capabilities",
+      "깨진 링크 환각"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/8241188-claude-is-producing-links-that-don-t-work-and-falsely-claiming-that-it-has-sent-emails-or-produced-external-documents-what-s-going-on"
+    ]
+  },
+  {
     "id": "llm.basics.small-language-model",
     "title": "소형 언어 모델(SLM)",
     "en": "Small Language Model",
@@ -1896,6 +2018,197 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.gemini-scheduled-actions",
+    "title": "Gemini 예약 작업(scheduled actions)",
+    "en": "Gemini Scheduled Actions",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "Gemini에 주기를 담은 프롬프트를 보내 매일·매주·매달 정한 시각에 답을 받아 보는 기능으로, 한 번에 10개까지 켜 둘 수 있다.",
+    "parent": "llm.basics.scheduled-tasks",
+    "aliases": [
+      "Gemini scheduled actions",
+      "제미나이 예약 작업",
+      "Gemini 예약 실행",
+      "Gemini 예약 목록"
+    ],
+    "refs": [
+      "https://support.google.com/gemini/answer/16316416"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.cowork-scheduled-tasks",
+    "title": "Cowork 예약 작업",
+    "en": "Scheduled Tasks in Claude Cowork",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "Claude Cowork에 맡긴 일을 매시간·매일·매주·평일마다 또는 원할 때 다시 돌리는 기능으로, 원격에서 돌아 컴퓨터가 잠자기 상태여도 실행된다.",
+    "parent": "llm.basics.scheduled-tasks",
+    "related": [
+      "llm.basics.claude-cowork",
+      "ax.coding.scheduled-tasks"
+    ],
+    "aliases": [
+      "Cowork scheduled tasks",
+      "Cowork 예약",
+      "코워크 예약 작업",
+      "Cowork 반복 작업"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.ask-before-edits",
+    "title": "문서 속 Claude의 편집 전 확인 모드",
+    "en": "Ask Before Edits Mode in Claude for Google Workspace",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "문서 속 AI가 바꿀 내용을 먼저 설명하고 내가 허락해야 고치는 기본 모드로, 모두 허용 모드로 바꾸면 보통 편집은 묻지 않고 한다.",
+    "parent": "llm.basics.ai-in-office-apps",
+    "related": [
+      "ax.basics.agent-manual-approval"
+    ],
+    "aliases": [
+      "Workspace Ask before edits",
+      "Accept all edits",
+      "편집 전 확인 모드",
+      "Claude for Google Workspace 편집 모드"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/16951679-use-claude-in-google-docs-sheets-and-slides"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.safety-model-switch",
+    "title": "안전 검사로 대화 중 모델이 바뀌는 일",
+    "en": "Automatic Model Switching after a Safety Flag",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "안전 분류기가 요청을 걸러 내면 챗봇이 같은 대화에서 덜 강한 모델로 다시 답하고 어떤 모델이 답했는지 표시하는 일이다.",
+    "related": [
+      "ax.governance.why-ai-refuses"
+    ],
+    "aliases": [
+      "Claude 모델 자동 전환",
+      "automatic model switching",
+      "안전 분류기 모델 전환",
+      "대화 중 모델 바뀜"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/16049681-why-claude-switched-models-in-your-conversation-with-opus-5-or-opus-5-5"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.break-reminder",
+    "title": "AI 사용 쉬는 시간 알림",
+    "en": "Break Reminders in an AI Chat App",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "하루에 정한 시간만큼 챗봇을 쓰면 잠깐 쉬라는 알림을 띄우는 설정으로, 막지는 않아 미루거나 닫고 계속할 수 있다.",
+    "related": [
+      "llm.basics.quiet-hours",
+      "ax.governance.ai-emotional-reliance"
+    ],
+    "aliases": [
+      "break reminder",
+      "휴식 알림",
+      "Claude 쉬는 시간 알림",
+      "Wellbeing 설정"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/15672868-set-break-reminders-and-quiet-hours"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.quiet-hours",
+    "title": "AI 앱 조용한 시간(quiet hours)",
+    "en": "Quiet Hours in an AI Chat App",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "요일과 시간대를 정해 두면 그때 챗봇을 열 때 알림이 먼저 떠서 계속 쓸지 나중에 올지 고르게 하는 설정이다.",
+    "related": [
+      "llm.basics.break-reminder"
+    ],
+    "aliases": [
+      "quiet hours",
+      "조용한 시간 설정",
+      "Claude 사용 시간대 알림"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/15672868-set-break-reminders-and-quiet-hours"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.monthly-recap",
+    "title": "AI 사용 월간 돌아보기(monthly recap)",
+    "en": "Monthly Recap of AI Chat Usage",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "한 달 동안 챗봇과 나눈 대화의 주제 비율과 자주 쓴 요일·시간을 모아 보여 주고 다음에 해 볼 쓰임을 권하는 요약 화면이다.",
+    "related": [
+      "llm.basics.chat-memory-feature"
+    ],
+    "aliases": [
+      "monthly recap",
+      "월간 요약",
+      "Claude Reflect",
+      "Claude 사용 돌아보기"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/15672559-see-your-monthly-recap"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.beta-research-preview",
+    "title": "베타 기능과 연구 미리보기(research preview)",
+    "en": "Beta and Research Preview Features",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "AI 앱에서 베타는 쓸 만큼 안정됐지만 다듬는 중인 기능이고, 연구 미리보기는 더 이른 실험이라 크게 바뀌거나 없어질 수 있다는 표시다.",
+    "related": [
+      "plan.basics.public-beta"
+    ],
+    "aliases": [
+      "research preview",
+      "연구 미리보기",
+      "베타 기능 표시",
+      "Claude 베타 기능"
+    ],
+    "refs": [
+      "https://support.claude.com/en/articles/14503520-available-beta-and-research-preview-features"
+    ]
   },
   {
     "id": "llm.basics.token-context",

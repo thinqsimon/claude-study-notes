@@ -627,6 +627,97 @@
     ]
   },
   {
+    "id": "be.security.phishing-idea",
+    "title": "피싱: 믿을 만한 곳인 척 속이는 공격",
+    "en": "Phishing Attacks",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 보안",
+    "summary": "피싱은 은행이나 아는 사람인 척 꾸민 메일·문자·가짜 웹사이트로 비밀번호나 개인정보를 넘기게 만드는 속임수다.",
+    "objectives": [
+      "가짜 은행 직원의 전화에 빗대어 피싱이 무엇을 노리는지 설명할 수 있다",
+      "급하게 재촉하는 말투와 조금 틀린 주소 같은 피싱의 흔한 표시를 말할 수 있다",
+      "의심스러운 메시지를 받았을 때 링크를 누르지 않고 직접 확인하는 방법을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "be.security.web-security-idea"
+    ],
+    "aliases": [
+      "피싱 메일",
+      "phishing email",
+      "피싱 사이트",
+      "phishing site",
+      "피싱 공격"
+    ],
+    "refs": [
+      "https://www.cisa.gov/secure-our-world/recognize-and-report-phishing",
+      "https://csrc.nist.gov/glossary/term/phishing",
+      "https://www.ncsc.gov.uk/guidance/phishing"
+    ]
+  },
+  {
+    "id": "be.auth.strong-password-idea",
+    "title": "튼튼한 비밀번호: 길게, 계정마다 다르게",
+    "en": "Creating Strong Passwords",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "인증·인가",
+    "summary": "남이 짐작하기 어렵게 길고 무작위한 비밀번호를 계정마다 따로 쓰고, 다 외우기 어려우면 비밀번호 관리자에 맡기는 습관이다.",
+    "objectives": [
+      "열쇠 하나로 집·차·사무실을 다 여는 위험에 빗대어 비밀번호를 여러 곳에 같이 쓰면 안 되는 이유를 설명할 수 있다",
+      "생일·이름·흔한 단어보다 서로 관계없는 단어 몇 개를 이은 긴 비밀번호가 나은 이유를 말할 수 있다",
+      "비밀번호 관리자가 대신해 주는 일을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "be.auth.login-big-picture"
+    ],
+    "aliases": [
+      "강한 비밀번호",
+      "strong password",
+      "안전한 비밀번호 만들기",
+      "비밀번호 재사용",
+      "password reuse",
+      "세 단어 비밀번호"
+    ],
+    "refs": [
+      "https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/three-random-words",
+      "https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/password-managers",
+      "https://top10.owasp.org/2025/A07_2025-Authentication_Failures/"
+    ]
+  },
+  {
+    "id": "be.security.malware-idea",
+    "title": "악성 소프트웨어: 몰래 해를 끼치는 프로그램",
+    "en": "Malware",
+    "kind": "topic",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 보안",
+    "summary": "악성 소프트웨어는 주인 몰래 컴퓨터나 서버에 들어가 정보를 훔치거나 망가뜨리거나 파일을 잠그는 프로그램을 통틀어 부르는 말이다.",
+    "objectives": [
+      "선물 상자에 숨은 도둑에 빗대어 악성 소프트웨어가 들어오는 방식을 설명할 수 있다",
+      "랜섬웨어와 트로이 목마가 각각 어떤 해를 끼치는지 말할 수 있다",
+      "남이 만든 패키지를 설치할 때도 악성 코드가 섞일 수 있음을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "be.security.web-security-idea"
+    ],
+    "aliases": [
+      "멀웨어",
+      "악성 코드",
+      "악성 프로그램",
+      "malicious software",
+      "malicious code"
+    ],
+    "refs": [
+      "https://csrc.nist.gov/glossary/term/malware",
+      "https://www.cisa.gov/stopransomware/ransomware-101",
+      "https://csrc.nist.gov/glossary/term/trojan_horse"
+    ]
+  },
+  {
     "id": "be.basics.server",
     "title": "서버",
     "en": "Server",
@@ -1488,6 +1579,125 @@
     ]
   },
   {
+    "id": "be.security.social-engineering",
+    "title": "사회공학",
+    "en": "Social Engineering",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 보안",
+    "summary": "기술의 빈틈 대신 사람의 믿음과 실수를 노려 비밀번호 같은 정보를 알아내는 속임수를 통틀어 부르는 말이다.",
+    "parent": "be.security.phishing-idea",
+    "aliases": [
+      "사회 공학",
+      "사회공학 공격",
+      "social engineering attack",
+      "소셜 엔지니어링"
+    ],
+    "refs": [
+      "https://csrc.nist.gov/glossary/term/social_engineering"
+    ]
+  },
+  {
+    "id": "be.security.lookalike-domain",
+    "title": "유사 도메인(진짜와 닮은 가짜 주소)",
+    "en": "Lookalike Domain",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 보안",
+    "summary": "글자 하나를 바꾸거나 더해 진짜 회사 주소처럼 보이게 만든 가짜 웹 주소나 메일 주소로, 피싱에 자주 쓰인다.",
+    "parent": "be.security.phishing-idea",
+    "aliases": [
+      "가짜 도메인",
+      "닮은꼴 도메인",
+      "lookalike URL",
+      "사칭 도메인"
+    ],
+    "refs": [
+      "https://www.cisa.gov/secure-our-world/recognize-and-report-phishing"
+    ]
+  },
+  {
+    "id": "be.auth.password-manager",
+    "title": "비밀번호 관리자",
+    "en": "Password Manager",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "인증·인가",
+    "summary": "주 비밀번호 하나로 잠근 금고에 계정별 비밀번호를 보관하고, 튼튼한 비밀번호를 만들어 자동으로 채워 주는 프로그램이다.",
+    "parent": "be.auth.strong-password-idea",
+    "aliases": [
+      "패스워드 매니저",
+      "비밀번호 관리 앱",
+      "password vault",
+      "비밀번호 금고"
+    ],
+    "refs": [
+      "https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/password-managers"
+    ]
+  },
+  {
+    "id": "be.auth.brute-force",
+    "title": "무차별 대입 공격",
+    "en": "Brute-Force Attack",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "인증·인가",
+    "summary": "맞을 때까지 비밀번호 후보를 하나씩 자동으로 넣어 보는 공격으로, 짧고 흔한 비밀번호일수록 빨리 뚫린다.",
+    "parent": "be.auth.strong-password-idea",
+    "aliases": [
+      "brute force",
+      "brute-force attack",
+      "비밀번호 대입 공격"
+    ],
+    "refs": [
+      "https://community.owasp.org/attacks/Brute_force_attack",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Credential_Stuffing_Prevention_Cheat_Sheet.html"
+    ]
+  },
+  {
+    "id": "be.security.ransomware",
+    "title": "랜섬웨어",
+    "en": "Ransomware",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 보안",
+    "summary": "파일을 암호화해 못 쓰게 잠근 뒤 풀어 주는 대가로 돈을 요구하고, 훔친 자료를 퍼뜨리겠다고 협박하기도 하는 악성 소프트웨어다.",
+    "parent": "be.security.malware-idea",
+    "aliases": [
+      "랜섬웨어 공격",
+      "ransomware attack",
+      "몸값 요구 악성 코드"
+    ],
+    "refs": [
+      "https://www.cisa.gov/stopransomware/ransomware-101"
+    ]
+  },
+  {
+    "id": "be.security.malicious-package",
+    "title": "악성 패키지",
+    "en": "Malicious Software Package",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "웹 보안",
+    "summary": "pip이나 npm 같은 공개 저장소에 올라온 패키지 가운데 정보를 빼내거나 해를 끼치는 코드가 몰래 들어 있는 것이다.",
+    "parent": "be.security.malware-idea",
+    "aliases": [
+      "악성 라이브러리",
+      "malicious package",
+      "malicious npm package",
+      "악성 PyPI 패키지"
+    ],
+    "refs": [
+      "https://top10.owasp.org/2025/A03_2025-Software_Supply_Chain_Failures/"
+    ]
+  },
+  {
     "id": "be.run.capacity-buffer",
     "title": "여유 용량",
     "en": "Capacity Buffer (Headroom)",
@@ -1566,6 +1776,45 @@
     ],
     "refs": [
       "https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html"
+    ]
+  },
+  {
+    "id": "be.security.spear-phishing",
+    "title": "스피어 피싱",
+    "en": "Spear Phishing",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 보안",
+    "summary": "아무에게나 뿌리지 않고 특정 사람이나 회사의 정보를 미리 알아내 그럴듯하게 꾸민 표적 피싱이다.",
+    "parent": "be.security.phishing-idea",
+    "aliases": [
+      "표적 피싱",
+      "targeted phishing",
+      "작살 피싱"
+    ],
+    "refs": [
+      "https://www.ncsc.gov.uk/guidance/phishing"
+    ]
+  },
+  {
+    "id": "be.security.trojan-horse",
+    "title": "트로이 목마(악성 프로그램)",
+    "en": "Trojan Horse (Malware)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "웹 보안",
+    "summary": "쓸모 있는 프로그램처럼 보이지만 실행하면 숨겨 둔 해로운 기능이 몰래 움직이는 악성 소프트웨어다.",
+    "parent": "be.security.malware-idea",
+    "aliases": [
+      "트로이목마",
+      "trojan malware",
+      "트로이 목마 프로그램",
+      "트로이언"
+    ],
+    "refs": [
+      "https://csrc.nist.gov/glossary/term/trojan_horse"
     ]
   },
   {

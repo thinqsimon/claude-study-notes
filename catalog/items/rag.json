@@ -538,6 +538,75 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "rag.basics.voice-agent-idea",
+    "title": "음성 에이전트: 말로 묻고 답하는 에이전트",
+    "en": "Voice Agents at a Glance",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "에이전트 기초",
+    "summary": "사람의 말을 듣고 뜻을 헤아려 도구를 쓴 뒤 다시 목소리로 답해 주는 AI 에이전트다.",
+    "objectives": [
+      "음성 에이전트가 하는 일을 듣기·생각하기·말하기 세 단계로 나눠 전화 상담원에 빗대어 설명할 수 있다",
+      "말을 글로 바꿔 처리하는 방식과 목소리를 바로 주고받는 방식의 차이를 말할 수 있다",
+      "음성 에이전트에서 대답이 늦게 나오면 왜 불편한지 예를 들어 말할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.basics.agent-big-picture"
+    ],
+    "related": [
+      "llm.basics.voice-chat"
+    ],
+    "aliases": [
+      "음성 에이전트",
+      "voice agent",
+      "보이스 에이전트",
+      "음성 AI 에이전트",
+      "voice AI agent"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/voice-agent",
+      "https://developers.openai.com/api/docs/guides/voice-agents"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.basics.agent-framework-idea",
+    "title": "에이전트 프레임워크: 에이전트 만드는 부품 상자",
+    "en": "Agent Frameworks at a Glance",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "에이전트 기초",
+    "summary": "모델 부르기, 도구 정의와 연결, 여러 단계 잇기처럼 에이전트마다 되풀이되는 일을 미리 만들어 둔 라이브러리 묶음이다.",
+    "objectives": [
+      "에이전트 프레임워크를 조립식 가구의 부품 상자에 빗대어 설명할 수 있다",
+      "프레임워크가 대신해 주는 일을 두세 가지 말할 수 있다",
+      "프레임워크가 속을 가려 문제를 찾기 어려워질 수 있다는 주의점을 말할 수 있다",
+      "여러 회사가 내놓은 에이전트 프레임워크의 예를 두세 개 들 수 있다"
+    ],
+    "prerequisites": [
+      "rag.basics.agent-big-picture"
+    ],
+    "related": [
+      "rag.basics.framework-choice",
+      "be.basics.web-framework-idea"
+    ],
+    "aliases": [
+      "에이전트 프레임워크",
+      "agent framework",
+      "AI 에이전트 프레임워크",
+      "에이전트 개발 프레임워크",
+      "agent development framework"
+    ],
+    "refs": [
+      "https://www.anthropic.com/engineering/building-effective-agents",
+      "https://learn.microsoft.com/en-us/agent-framework/overview/",
+      "https://adk.dev/"
+    ]
+  },
+  {
     "id": "rag.agent.a2a-idea",
     "title": "A2A: 에이전트끼리 일을 맡기는 공용 규격",
     "en": "A2A at a Glance",
@@ -727,6 +796,42 @@
     ],
     "refs": [
       "https://modelcontextprotocol.io/extensions/overview"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.agent.agentic-commerce-idea",
+    "title": "에이전트 커머스: AI가 대신 사고 결제하기",
+    "en": "Agentic Commerce at a Glance",
+    "kind": "topic",
+    "level": 1,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "AI 에이전트가 사용자를 대신해 상품을 찾고 장바구니를 채우고 결제까지 하도록, 허락과 책임을 증명하는 공용 규격으로 가게와 결제사를 잇는 일이다.",
+    "objectives": [
+      "에이전트 커머스를 심부름꾼에게 위임장을 써 주고 장보기를 맡기는 일에 빗대어 설명할 수 있다",
+      "에이전트가 결제할 때 사용자가 정말 허락했는지와 잘못되면 누가 책임지는지가 왜 문제인지 말할 수 있다",
+      "UCP는 상품 찾기부터 주문까지, AP2는 결제 허락을 맡는다는 차이를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.basics.agent-big-picture",
+      "rag.agent.a2a-idea"
+    ],
+    "related": [
+      "rag.agent.a2a-idea",
+      "rag.agent.mcp-idea"
+    ],
+    "aliases": [
+      "에이전트 커머스",
+      "agentic commerce",
+      "에이전틱 커머스",
+      "AI 대리 구매",
+      "에이전트 쇼핑"
+    ],
+    "refs": [
+      "https://ap2-protocol.org/overview/",
+      "https://ucp.dev/"
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
@@ -1096,6 +1201,55 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.basics.chained-voice-pipeline",
+    "title": "체인 방식 음성 파이프라인(STT→에이전트→TTS)",
+    "en": "Chained Voice Pipeline (STT, Agent, TTS)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "에이전트 기초",
+    "summary": "말을 글로 받아 적고, 글로 일하는 에이전트가 답을 쓰고, 그 답을 다시 목소리로 읽어 주는 세 단계를 이어 붙인 음성 에이전트 구조다.",
+    "parent": "rag.basics.voice-agent-idea",
+    "related": [
+      "rag.basics.speech-to-speech-agent"
+    ],
+    "aliases": [
+      "샌드위치 구조",
+      "sandwich architecture",
+      "chained voice pipeline",
+      "STT-에이전트-TTS 구조",
+      "체인 음성 파이프라인"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/voice-agent",
+      "https://developers.openai.com/api/docs/guides/voice-agents"
+    ]
+  },
+  {
+    "id": "rag.basics.speech-to-speech-agent",
+    "title": "음성 대 음성(S2S) 방식",
+    "en": "Speech-to-Speech Voice Architecture",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "에이전트 기초",
+    "summary": "글로 바꾸는 단계 없이 모델 하나가 목소리를 듣고 바로 목소리로 답해 말투와 감정까지 살리는 음성 에이전트 구조다.",
+    "parent": "rag.basics.voice-agent-idea",
+    "related": [
+      "rag.basics.chained-voice-pipeline"
+    ],
+    "aliases": [
+      "speech-to-speech",
+      "음성 대 음성 모델",
+      "S2S 음성 에이전트",
+      "speech-to-speech 에이전트"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/voice-agent",
+      "https://developers.openai.com/api/docs/guides/voice-agents"
+    ]
   },
   {
     "id": "rag.basics.client-server-tools",
@@ -1863,6 +2017,184 @@
     ],
     "refs": [
       "https://docs.langchain.com/langsmith/fleet/schedules"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.basics.full-duplex-voice",
+    "title": "전이중 음성 대화(들으면서 말하기)",
+    "en": "Full-Duplex Voice Conversation",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "에이전트 기초",
+    "summary": "음성 에이전트가 말하는 동안에도 사람의 말을 계속 들어, 뒤에서 일을 처리하는 중에 끼어들어 고쳐 말해도 받아 주는 대화 방식이다.",
+    "parent": "rag.basics.voice-agent-idea",
+    "aliases": [
+      "full-duplex 음성 대화",
+      "전이중 음성 에이전트",
+      "full-duplex voice agent",
+      "동시에 듣고 말하는 음성 AI"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/voice-agents"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.agent.ap2",
+    "title": "AP2(에이전트 결제 프로토콜)",
+    "en": "Agent Payments Protocol (AP2)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "에이전트가 한 결제마다 사용자가 서명한 위임장을 붙여 허락과 책임을 증명하게 하는, Google이 시작해 FIDO Alliance로 넘긴 열린 결제 규격이다.",
+    "parent": "rag.agent.agentic-commerce-idea",
+    "related": [
+      "rag.agent.a2a-idea",
+      "rag.agent.ucp"
+    ],
+    "aliases": [
+      "Agent Payments Protocol",
+      "에이전트 결제 프로토콜",
+      "AP2 프로토콜",
+      "AP2 결제 규격"
+    ],
+    "refs": [
+      "https://ap2-protocol.org/",
+      "https://ap2-protocol.org/overview/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.agent.ap2-mandate",
+    "title": "AP2 위임장(Checkout·Payment Mandate)",
+    "en": "AP2 Mandates (Checkout and Payment)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "AP2에서 무엇을 살지 승인한 체크아웃 위임장과 어느 결제 수단으로 얼마를 낼지 승인한 결제 위임장을 서명된 디지털 증명으로 남겨 분쟁 때 근거로 쓰는 기록이다.",
+    "parent": "rag.agent.agentic-commerce-idea",
+    "related": [
+      "rag.agent.ap2"
+    ],
+    "aliases": [
+      "Checkout Mandate",
+      "Payment Mandate",
+      "AP2 mandate",
+      "AP2 결제 위임장",
+      "AP2 체크아웃 위임장"
+    ],
+    "refs": [
+      "https://ap2-protocol.org/overview/",
+      "https://ap2-protocol.org/ap2/checkout_mandate/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.agent.ap2-human-not-present",
+    "title": "AP2 사람 없는 결제(Human-Not-Present)",
+    "en": "AP2 Human-Not-Present Flow",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "사용자가 미리 정해 둔 조건, 예를 들어 값이 얼마 아래로 내려가면 사라는 조건이 맞을 때 사용자가 자리에 없어도 에이전트가 대신 사도록 하는 AP2의 결제 흐름이다.",
+    "parent": "rag.agent.agentic-commerce-idea",
+    "related": [
+      "rag.agent.ap2-mandate"
+    ],
+    "aliases": [
+      "Human-Not-Present",
+      "human-not-present flow",
+      "AP2 무인 결제",
+      "사람 부재 결제"
+    ],
+    "refs": [
+      "https://ap2-protocol.org/overview/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.agent.ucp",
+    "title": "UCP(범용 커머스 프로토콜)",
+    "en": "Universal Commerce Protocol (UCP)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "AI 에이전트와 쇼핑 플랫폼, 가게가 상품 검색·장바구니·결제·주문 확인을 같은 말로 주고받게 하려고 여러 유통·결제 회사가 함께 만든 열린 규격이다.",
+    "parent": "rag.agent.agentic-commerce-idea",
+    "related": [
+      "rag.agent.ap2"
+    ],
+    "aliases": [
+      "Universal Commerce Protocol",
+      "범용 커머스 프로토콜",
+      "UCP 프로토콜",
+      "UCP 커머스 규격"
+    ],
+    "refs": [
+      "https://ucp.dev/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.basics.google-adk",
+    "title": "Google ADK(Agent Development Kit)",
+    "en": "Google Agent Development Kit (ADK)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "에이전트 기초",
+    "summary": "에이전트를 만들고 시험하고 배포하게 해 주는 Google의 오픈 소스 프레임워크로, Gemini 말고 다른 모델도 쓸 수 있고 파이썬·타입스크립트·Go·자바 등을 지원한다.",
+    "parent": "rag.basics.agent-framework-idea",
+    "related": [
+      "rag.basics.openai-agents-sdk",
+      "rag.basics.claude-agent-sdk"
+    ],
+    "aliases": [
+      "Agent Development Kit",
+      "Google Agent Development Kit",
+      "구글 ADK",
+      "Google ADK 프레임워크"
+    ],
+    "refs": [
+      "https://adk.dev/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.basics.microsoft-agent-framework",
+    "title": "Microsoft Agent Framework",
+    "en": "Microsoft Agent Framework",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "에이전트 기초",
+    "summary": "Semantic Kernel과 AutoGen을 만든 팀이 둘을 이어받아 만든 Microsoft의 에이전트·멀티 에이전트 워크플로 프레임워크로, .NET과 파이썬에서 쓰고 Go는 공개 미리 보기다.",
+    "parent": "rag.basics.agent-framework-idea",
+    "related": [
+      "rag.basics.google-adk",
+      "rag.basics.openai-agents-sdk"
+    ],
+    "aliases": [
+      "MS Agent Framework",
+      "마이크로소프트 에이전트 프레임워크",
+      "Semantic Kernel 후속 프레임워크",
+      "AutoGen 후속 프레임워크"
+    ],
+    "refs": [
+      "https://learn.microsoft.com/en-us/agent-framework/overview/"
     ],
     "volatile": true,
     "checked_at": "2026-11-11"

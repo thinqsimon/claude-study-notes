@@ -1,5 +1,5 @@
 {
- "version": "0.51.0",
+ "version": "0.52.0",
  "domains": [
   {
    "prefix": "dev",
@@ -383,6 +383,37 @@
    ],
    "refs": [
     "https://git-scm.com/book/en/v2/Getting-Started-Installing-Git"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.three-states",
+   "title": "Git의 세 가지 상태: 수정·스테이징·커밋",
+   "en": "The Three States of Files in Git",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "Git",
+   "summary": "Git의 파일은 고친 상태, 다음 기록에 넣겠다고 골라 둔 상태, 기록으로 저장된 상태를 차례로 거친다.",
+   "objectives": [
+    "수정·스테이징·커밋 세 상태를 짐 싸기에 빗대어 설명할 수 있다",
+    "작업 트리·스테이징 영역·Git 디렉터리가 각각 무엇을 담는지 말할 수 있다",
+    "고치고, 골라 담고, 기록하는 기본 흐름을 순서대로 말할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.why-version-control"
+   ],
+   "related": [
+    "dev.git.first-commit"
+   ],
+   "aliases": [
+    "Git 세 가지 상태",
+    "Git three states",
+    "modified staged committed",
+    "Git 기본 작업 흐름"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F"
    ],
    "domain": "dev"
   },
@@ -789,6 +820,66 @@
    "refs": [
     "https://docs.github.com/en/account-and-profile/concepts/personal-profile",
     "https://docs.github.com/en/account-and-profile/reference/profile-reference"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.github-releases",
+   "title": "GitHub 릴리스: 완성본 묶어 내놓기",
+   "en": "GitHub Releases",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "Git",
+   "summary": "릴리스는 저장소의 한 시점을 태그로 표시하고 설명과 내려받을 파일을 붙여 다른 사람이 쓰도록 내놓은 판이다.",
+   "objectives": [
+    "릴리스를 완성품을 포장해 진열하는 일에 빗대어 설명할 수 있다",
+    "릴리스가 Git 태그가 가리키는 시점을 바탕으로 만들어진다는 것을 말할 수 있다",
+    "릴리스 페이지에서 설명과 내려받을 파일을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.github-role"
+   ],
+   "related": [
+    "dev.git.annotated-tag"
+   ],
+   "aliases": [
+    "GitHub 릴리스",
+    "GitHub Releases",
+    "릴리스 페이지",
+    "저장소 릴리스"
+   ],
+   "refs": [
+    "https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases",
+    "https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.github-projects",
+   "title": "GitHub Projects: 할 일을 표와 보드로 정리하기",
+   "en": "GitHub Projects",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "Git",
+   "summary": "GitHub Projects는 이슈와 풀 리퀘스트를 한곳에 모아 표·보드·로드맵 모양으로 보며 일의 진행을 정리하는 계획 도구다.",
+   "objectives": [
+    "Projects를 할 일 메모를 붙여 두는 게시판에 빗대어 설명할 수 있다",
+    "표·보드·로드맵 세 가지 보기가 각각 무엇을 보여 주는지 말할 수 있다",
+    "프로젝트에서 바꾼 내용이 원래 이슈에도 반영된다는 것을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.github-issues"
+   ],
+   "aliases": [
+    "GitHub 프로젝트",
+    "GitHub 프로젝트 보드",
+    "Projects 탭"
+   ],
+   "refs": [
+    "https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects",
+    "https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/quickstart-for-projects"
    ],
    "domain": "dev"
   },
@@ -1418,6 +1509,91 @@
    "domain": "dev"
   },
   {
+   "id": "dev.git.git-directory",
+   "title": "Git 디렉터리(.git)",
+   "en": "Git Directory",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "Git",
+   "summary": "저장소의 모든 기록과 정보를 Git이 모아 두는 저장 공간으로, 저장소를 복제하면 바로 이 부분이 복사된다.",
+   "parent": "dev.git.three-states",
+   "related": [
+    "dev.git.working-tree"
+   ],
+   "aliases": [
+    "Git directory",
+    ".git 디렉터리",
+    ".git 폴더"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.tracked-untracked",
+   "title": "추적 파일과 미추적 파일",
+   "en": "Tracked and Untracked Files",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "Git",
+   "summary": "Git이 이미 알고 기록을 지켜보는 파일이 추적 파일이고, 지난 기록에도 없고 다음 기록에 넣겠다고 고르지도 않아 Git이 지켜보지 않는 파일이 미추적 파일이다.",
+   "parent": "dev.git.three-states",
+   "aliases": [
+    "tracked files",
+    "untracked files",
+    "추적되지 않는 파일",
+    "추적되는 파일"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.release-notes",
+   "title": "릴리스 노트",
+   "en": "GitHub Release Notes",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "Git",
+   "summary": "릴리스에 무엇이 달라졌는지 적은 설명으로, GitHub은 병합된 풀 리퀘스트와 기여자 목록을 모아 자동으로 만들어 주기도 한다.",
+   "parent": "dev.git.github-releases",
+   "aliases": [
+    "release notes",
+    "자동 생성 릴리스 노트",
+    "Generate release notes",
+    "GitHub 릴리스 설명"
+   ],
+   "refs": [
+    "https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.project-board-layout",
+   "title": "프로젝트 보드 레이아웃",
+   "en": "GitHub Projects Board Layout",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "Git",
+   "summary": "항목을 상태별 칸에 카드처럼 늘어놓는 보기로, 카드를 다른 칸으로 끌어 옮기면 그 항목의 상태 값도 바뀐다.",
+   "parent": "dev.git.github-projects",
+   "aliases": [
+    "GitHub Projects board layout",
+    "GitHub 칸반 보드",
+    "프로젝트 보드 보기"
+   ],
+   "refs": [
+    "https://docs.github.com/en/issues/planning-and-tracking-with-projects/customizing-views-in-your-project/changing-the-layout-of-a-view"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.git.dvcs",
    "title": "분산 버전 관리",
    "en": "Distributed Version Control",
@@ -1972,6 +2148,111 @@
    ],
    "refs": [
     "https://docs.github.com/en/account-and-profile/reference/profile-reference"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.release-assets",
+   "title": "릴리스 자산",
+   "en": "GitHub Release Assets",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "Git",
+   "summary": "릴리스에 붙인 내려받기 파일로, 직접 올린 실행 파일 같은 것과 GitHub이 그 시점 코드로 만들어 주는 압축 파일이 있다.",
+   "parent": "dev.git.github-releases",
+   "aliases": [
+    "release assets",
+    "릴리스 첨부 파일",
+    "릴리스 소스 코드 압축 파일"
+   ],
+   "refs": [
+    "https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.pre-release",
+   "title": "사전 릴리스(pre-release)",
+   "en": "GitHub Pre-release",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "Git",
+   "summary": "아직 실제로 쓰기에는 준비되지 않아 불안정할 수 있다고 표시해 둔 릴리스다.",
+   "parent": "dev.git.github-releases",
+   "aliases": [
+    "pre-release",
+    "프리릴리스",
+    "This is a pre-release"
+   ],
+   "refs": [
+    "https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.project-roadmap-layout",
+   "title": "프로젝트 로드맵 레이아웃",
+   "en": "GitHub Projects Roadmap Layout",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "Git",
+   "summary": "항목을 날짜나 반복 주기 필드에 따라 시간 막대 위에 놓아 언제 시작하고 끝날지 보여 주는 보기다.",
+   "parent": "dev.git.github-projects",
+   "aliases": [
+    "GitHub Projects roadmap layout",
+    "프로젝트 타임라인 보기",
+    "Projects 로드맵 보기"
+   ],
+   "refs": [
+    "https://docs.github.com/en/issues/planning-and-tracking-with-projects/customizing-views-in-your-project/changing-the-layout-of-a-view"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.draft-issue",
+   "title": "초안 이슈(draft issue)",
+   "en": "GitHub Projects Draft Issue",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "Git",
+   "summary": "저장소가 아니라 프로젝트 안에만 있는 메모 같은 항목으로, 나중에 정식 이슈로 바꿀 수 있다.",
+   "parent": "dev.git.github-projects",
+   "related": [
+    "dev.git.github-issues"
+   ],
+   "aliases": [
+    "draft issue",
+    "프로젝트 초안 이슈",
+    "Projects 초안 항목"
+   ],
+   "refs": [
+    "https://docs.github.com/en/issues/planning-and-tracking-with-projects/managing-items-in-your-project/adding-items-to-your-project"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.project-custom-field",
+   "title": "프로젝트 사용자 지정 필드",
+   "en": "GitHub Projects Custom Fields",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "Git",
+   "summary": "담당자·레이블 같은 기본 정보 말고 날짜·숫자·선택지·글·반복 주기 같은 칸을 프로젝트에 직접 더해 항목마다 적는 것이다.",
+   "parent": "dev.git.github-projects",
+   "aliases": [
+    "GitHub Projects custom fields",
+    "GitHub 프로젝트 필드",
+    "iteration field",
+    "반복 주기 필드"
+   ],
+   "refs": [
+    "https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects",
+    "https://docs.github.com/en/issues/planning-and-tracking-with-projects/understanding-fields/about-text-and-number-fields"
    ],
    "domain": "dev"
   },
@@ -6395,6 +6676,39 @@
    "domain": "cs"
   },
   {
+   "id": "cs.os.concurrency-parallelism-idea",
+   "title": "번갈아 하기와 함께 하기: 동시성·병렬성 입문",
+   "en": "Concurrency and Parallelism for Beginners",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "운영체제",
+   "summary": "한 사람이 여러 일을 번갈아 조금씩 진행하는 것이 동시성이고, 여러 사람이 일을 나눠 같은 순간에 진행하는 것이 병렬성이다.",
+   "objectives": [
+    "동시성과 병렬성의 차이를 혼자 여러 일을 번갈아 하는 사람과 일을 나눠 맡은 팀에 빗대어 설명할 수 있다",
+    "CPU 코어가 하나뿐이어도 일을 번갈아 돌려 동시성을 낼 수 있다는 것을 말할 수 있다",
+    "코어가 여럿이면 서로 다른 일이 정말 같은 순간에 진행될 수 있다는 것을 설명할 수 있다",
+    "앞 일이 끝나야 다음 일을 할 수 있으면 나눠 맡아도 차례대로 할 수밖에 없다는 것을 예로 들 수 있다"
+   ],
+   "prerequisites": [
+    "cs.os.multitasking"
+   ],
+   "related": [
+    "be.async.concurrency-parallelism"
+   ],
+   "aliases": [
+    "동시성 입문",
+    "병렬성 입문",
+    "concurrency vs parallelism",
+    "병렬 처리 입문",
+    "동시 실행과 병렬 실행"
+   ],
+   "refs": [
+    "https://doc.rust-lang.org/book/ch17-00-async-await.html"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.data.digital-information",
    "title": "디지털 정보: 글자와 그림을 숫자로 담기",
    "en": "Digital Information",
@@ -6817,6 +7131,69 @@
    ],
    "refs": [
     "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c1/c1s1/"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.algo.sorting-idea",
+   "title": "정렬 입문: 정한 기준으로 줄 세우기",
+   "en": "Sorting for Beginners: Putting Items in Order",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "알고리즘과 복잡도",
+   "summary": "정렬은 크기나 글자 순서처럼 미리 정한 기준에 맞춰 자료를 차례대로 늘어놓는 일이다.",
+   "objectives": [
+    "정렬을 키 순서로 줄 서기나 이름순 출석부에 빗대어 설명할 수 있다",
+    "같은 자료라도 무엇을 기준으로 삼느냐에 따라 늘어선 순서가 달라진다는 것을 예로 들 수 있다",
+    "작은 것부터 놓는 순서와 큰 것부터 놓는 순서를 구분해 말할 수 있다",
+    "단어끼리는 첫 글자부터 차례로 견주어 순서를 정한다는 것을 설명할 수 있다"
+   ],
+   "related": [
+    "cs.algo.sorting"
+   ],
+   "aliases": [
+    "정렬 입문",
+    "sorting basics",
+    "자료 정렬하기",
+    "순서대로 늘어놓기"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/sort.html",
+    "https://docs.python.org/3/howto/sorting.html",
+    "https://docs.python.org/3/tutorial/datastructures.html#comparing-sequences-and-other-types"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.data.digital-audio-idea",
+   "title": "디지털 소리: 소리를 잘게 재어 숫자로 담기",
+   "en": "Digital Audio Basics",
+   "kind": "topic",
+   "level": 1,
+   "importance": 3,
+   "group": "데이터 표현",
+   "summary": "컴퓨터는 이어진 소리의 세기를 아주 짧은 간격마다 재어 숫자로 적어 두고, 이 숫자들을 다시 소리로 되살린다.",
+   "objectives": [
+    "소리를 일정한 간격마다 재어 숫자 목록으로 바꾸는 과정을 연속 사진으로 움직임을 담는 것에 빗대어 설명할 수 있다",
+    "1초에 더 자주 잴수록 더 높은 소리까지 담을 수 있다는 것을 말할 수 있다",
+    "CD는 1초에 44,100번, DVD는 48,000번 재어 담는다는 예를 들 수 있다",
+    "모노는 소리 줄기가 하나, 스테레오는 둘이라는 것을 구분할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.data.digital-information"
+   ],
+   "related": [
+    "cs.data.bit-depth"
+   ],
+   "aliases": [
+    "디지털 오디오",
+    "digital audio",
+    "소리의 디지털화",
+    "오디오 디지털 표현"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Audio_concepts"
    ],
    "domain": "cs"
   },
@@ -7543,6 +7920,100 @@
    "domain": "cs"
   },
   {
+   "id": "cs.algo.ascending-descending",
+   "title": "오름차순과 내림차순",
+   "en": "Ascending and Descending Order",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "알고리즘과 복잡도",
+   "summary": "작은 값부터 큰 값으로 늘어놓는 것이 오름차순, 큰 값부터 작은 값으로 늘어놓는 것이 내림차순이다.",
+   "parent": "cs.algo.sorting-idea",
+   "aliases": [
+    "오름차순",
+    "내림차순",
+    "ascending order",
+    "descending order",
+    "역순 정렬",
+    "reverse=True"
+   ],
+   "refs": [
+    "https://docs.python.org/3/howto/sorting.html#ascending-and-descending"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.algo.lexicographic-order",
+   "title": "사전순(사전식 순서)",
+   "en": "Lexicographic Order",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "알고리즘과 복잡도",
+   "summary": "두 글자열이나 목록을 첫 항목부터 차례로 견주어 처음 달라지는 자리에서 순서를 정하고, 앞부분이 같으면 짧은 쪽을 앞에 두는 순서다.",
+   "parent": "cs.algo.sorting-idea",
+   "related": [
+    "cs.data.code-point"
+   ],
+   "aliases": [
+    "사전순",
+    "사전식 순서",
+    "lexicographical order",
+    "lexicographic ordering",
+    "문자열 사전순 비교"
+   ],
+   "refs": [
+    "https://docs.python.org/3/tutorial/datastructures.html#comparing-sequences-and-other-types"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.algo.sort-key",
+   "title": "정렬 키(정렬 기준값)",
+   "en": "Sort Key",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "알고리즘과 복잡도",
+   "summary": "자료를 줄 세울 때 각 항목에서 뽑아 서로 견주는 값으로, 나이나 이름처럼 무엇을 키로 고르느냐에 따라 순서가 달라진다.",
+   "parent": "cs.algo.sorting-idea",
+   "aliases": [
+    "정렬 키",
+    "sort key",
+    "key function",
+    "키 함수",
+    "정렬 기준값"
+   ],
+   "refs": [
+    "https://docs.python.org/3/howto/sorting.html#key-functions"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.arch.multicore-processor",
+   "title": "멀티코어 프로세서",
+   "en": "Multi-core Processor",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "컴퓨터 구조",
+   "summary": "계산을 맡는 코어를 한 CPU 안에 여럿 둔 프로세서로, 코어마다 다른 일을 맡아 같은 순간에 처리할 수 있다.",
+   "parent": "cs.os.concurrency-parallelism-idea",
+   "related": [
+    "cs.arch.cpu"
+   ],
+   "aliases": [
+    "멀티코어 CPU",
+    "multicore CPU",
+    "다중 코어 프로세서",
+    "multi-core CPU"
+   ],
+   "refs": [
+    "https://doc.rust-lang.org/book/ch17-00-async-await.html"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.net.robustness-principle",
    "title": "견고성 원칙(포스텔의 법칙)",
    "en": "Robustness Principle",
@@ -7979,6 +8450,115 @@
    ],
    "refs": [
     "https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c1/c1s1/"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.serial-execution",
+   "title": "직렬 실행(차례대로 하나씩 처리)",
+   "en": "Serial Execution",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "일을 한 번에 하나씩, 앞 일이 끝난 뒤에 다음 일을 하는 방식으로, 앞뒤가 이어진 일은 나눠 맡아도 이렇게 될 수밖에 없다.",
+   "parent": "cs.os.concurrency-parallelism-idea",
+   "aliases": [
+    "직렬 처리",
+    "serial execution",
+    "serial work",
+    "차례대로 실행"
+   ],
+   "refs": [
+    "https://doc.rust-lang.org/book/ch17-00-async-await.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.data.audio-sample-rate",
+   "title": "샘플링 레이트(초당 샘플 수)",
+   "en": "Audio Sample Rate",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "데이터 표현",
+   "summary": "소리를 1초에 몇 번 재어 숫자로 담는지 나타내는 값으로, CD 음질은 44.1kHz, DVD 음질은 48kHz다.",
+   "parent": "cs.data.digital-audio-idea",
+   "aliases": [
+    "샘플링 레이트",
+    "샘플 레이트",
+    "sample rate",
+    "sampling rate",
+    "44.1kHz",
+    "48kHz"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Audio_concepts"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.data.audio-channels",
+   "title": "오디오 채널(모노·스테레오)",
+   "en": "Audio Channels (Mono and Stereo)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "데이터 표현",
+   "summary": "한 소리 파일 안에 시간을 맞춰 함께 담긴 소리 줄기의 수로, 모노는 하나, 스테레오는 둘, 5.1 서라운드는 여섯이다.",
+   "parent": "cs.data.digital-audio-idea",
+   "aliases": [
+    "오디오 채널",
+    "audio channel",
+    "모노 오디오",
+    "스테레오 오디오",
+    "mono audio",
+    "stereo audio"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Audio_concepts"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.data.nyquist-frequency",
+   "title": "나이퀴스트 주파수",
+   "en": "Nyquist Frequency",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "데이터 표현",
+   "summary": "샘플링 레이트의 절반에 해당하는 주파수로, 그 주파수보다 높은 소리는 제대로 담아 되살릴 수 없다는 위쪽 한계다.",
+   "parent": "cs.data.digital-audio-idea",
+   "aliases": [
+    "나이퀴스트 주파수",
+    "Nyquist frequency",
+    "나이퀴스트 정리",
+    "Nyquist-Shannon theorem",
+    "샘플링 정리"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Audio_concepts"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.data.analog-to-digital-converter",
+   "title": "아날로그-디지털 변환기(ADC)",
+   "en": "Analog-to-Digital Converter (ADC)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "데이터 표현",
+   "summary": "마이크가 만든 전압처럼 이어진 신호의 크기를 일정한 간격마다 재어 정해진 비트 수의 숫자로 바꾸는 장치다.",
+   "parent": "cs.data.digital-audio-idea",
+   "aliases": [
+    "analog-to-digital converter",
+    "A/D 변환기",
+    "아날로그 디지털 변환"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Audio_concepts"
    ],
    "domain": "cs"
   },
@@ -18656,6 +19236,100 @@
    "domain": "be"
   },
   {
+   "id": "be.security.phishing-idea",
+   "title": "피싱: 믿을 만한 곳인 척 속이는 공격",
+   "en": "Phishing Attacks",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 보안",
+   "summary": "피싱은 은행이나 아는 사람인 척 꾸민 메일·문자·가짜 웹사이트로 비밀번호나 개인정보를 넘기게 만드는 속임수다.",
+   "objectives": [
+    "가짜 은행 직원의 전화에 빗대어 피싱이 무엇을 노리는지 설명할 수 있다",
+    "급하게 재촉하는 말투와 조금 틀린 주소 같은 피싱의 흔한 표시를 말할 수 있다",
+    "의심스러운 메시지를 받았을 때 링크를 누르지 않고 직접 확인하는 방법을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "be.security.web-security-idea"
+   ],
+   "aliases": [
+    "피싱 메일",
+    "phishing email",
+    "피싱 사이트",
+    "phishing site",
+    "피싱 공격"
+   ],
+   "refs": [
+    "https://www.cisa.gov/secure-our-world/recognize-and-report-phishing",
+    "https://csrc.nist.gov/glossary/term/phishing",
+    "https://www.ncsc.gov.uk/guidance/phishing"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.auth.strong-password-idea",
+   "title": "튼튼한 비밀번호: 길게, 계정마다 다르게",
+   "en": "Creating Strong Passwords",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "인증·인가",
+   "summary": "남이 짐작하기 어렵게 길고 무작위한 비밀번호를 계정마다 따로 쓰고, 다 외우기 어려우면 비밀번호 관리자에 맡기는 습관이다.",
+   "objectives": [
+    "열쇠 하나로 집·차·사무실을 다 여는 위험에 빗대어 비밀번호를 여러 곳에 같이 쓰면 안 되는 이유를 설명할 수 있다",
+    "생일·이름·흔한 단어보다 서로 관계없는 단어 몇 개를 이은 긴 비밀번호가 나은 이유를 말할 수 있다",
+    "비밀번호 관리자가 대신해 주는 일을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "be.auth.login-big-picture"
+   ],
+   "aliases": [
+    "강한 비밀번호",
+    "strong password",
+    "안전한 비밀번호 만들기",
+    "비밀번호 재사용",
+    "password reuse",
+    "세 단어 비밀번호"
+   ],
+   "refs": [
+    "https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/three-random-words",
+    "https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/password-managers",
+    "https://top10.owasp.org/2025/A07_2025-Authentication_Failures/"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.security.malware-idea",
+   "title": "악성 소프트웨어: 몰래 해를 끼치는 프로그램",
+   "en": "Malware",
+   "kind": "topic",
+   "level": 1,
+   "importance": 3,
+   "group": "웹 보안",
+   "summary": "악성 소프트웨어는 주인 몰래 컴퓨터나 서버에 들어가 정보를 훔치거나 망가뜨리거나 파일을 잠그는 프로그램을 통틀어 부르는 말이다.",
+   "objectives": [
+    "선물 상자에 숨은 도둑에 빗대어 악성 소프트웨어가 들어오는 방식을 설명할 수 있다",
+    "랜섬웨어와 트로이 목마가 각각 어떤 해를 끼치는지 말할 수 있다",
+    "남이 만든 패키지를 설치할 때도 악성 코드가 섞일 수 있음을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "be.security.web-security-idea"
+   ],
+   "aliases": [
+    "멀웨어",
+    "악성 코드",
+    "악성 프로그램",
+    "malicious software",
+    "malicious code"
+   ],
+   "refs": [
+    "https://csrc.nist.gov/glossary/term/malware",
+    "https://www.cisa.gov/stopransomware/ransomware-101",
+    "https://csrc.nist.gov/glossary/term/trojan_horse"
+   ],
+   "domain": "be"
+  },
+  {
    "id": "be.basics.server",
    "title": "서버",
    "en": "Server",
@@ -19563,6 +20237,131 @@
    "domain": "be"
   },
   {
+   "id": "be.security.social-engineering",
+   "title": "사회공학",
+   "en": "Social Engineering",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 보안",
+   "summary": "기술의 빈틈 대신 사람의 믿음과 실수를 노려 비밀번호 같은 정보를 알아내는 속임수를 통틀어 부르는 말이다.",
+   "parent": "be.security.phishing-idea",
+   "aliases": [
+    "사회 공학",
+    "사회공학 공격",
+    "social engineering attack",
+    "소셜 엔지니어링"
+   ],
+   "refs": [
+    "https://csrc.nist.gov/glossary/term/social_engineering"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.security.lookalike-domain",
+   "title": "유사 도메인(진짜와 닮은 가짜 주소)",
+   "en": "Lookalike Domain",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 보안",
+   "summary": "글자 하나를 바꾸거나 더해 진짜 회사 주소처럼 보이게 만든 가짜 웹 주소나 메일 주소로, 피싱에 자주 쓰인다.",
+   "parent": "be.security.phishing-idea",
+   "aliases": [
+    "가짜 도메인",
+    "닮은꼴 도메인",
+    "lookalike URL",
+    "사칭 도메인"
+   ],
+   "refs": [
+    "https://www.cisa.gov/secure-our-world/recognize-and-report-phishing"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.auth.password-manager",
+   "title": "비밀번호 관리자",
+   "en": "Password Manager",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "인증·인가",
+   "summary": "주 비밀번호 하나로 잠근 금고에 계정별 비밀번호를 보관하고, 튼튼한 비밀번호를 만들어 자동으로 채워 주는 프로그램이다.",
+   "parent": "be.auth.strong-password-idea",
+   "aliases": [
+    "패스워드 매니저",
+    "비밀번호 관리 앱",
+    "password vault",
+    "비밀번호 금고"
+   ],
+   "refs": [
+    "https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/password-managers"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.auth.brute-force",
+   "title": "무차별 대입 공격",
+   "en": "Brute-Force Attack",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "인증·인가",
+   "summary": "맞을 때까지 비밀번호 후보를 하나씩 자동으로 넣어 보는 공격으로, 짧고 흔한 비밀번호일수록 빨리 뚫린다.",
+   "parent": "be.auth.strong-password-idea",
+   "aliases": [
+    "brute force",
+    "brute-force attack",
+    "비밀번호 대입 공격"
+   ],
+   "refs": [
+    "https://community.owasp.org/attacks/Brute_force_attack",
+    "https://cheatsheetseries.owasp.org/cheatsheets/Credential_Stuffing_Prevention_Cheat_Sheet.html"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.security.ransomware",
+   "title": "랜섬웨어",
+   "en": "Ransomware",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 보안",
+   "summary": "파일을 암호화해 못 쓰게 잠근 뒤 풀어 주는 대가로 돈을 요구하고, 훔친 자료를 퍼뜨리겠다고 협박하기도 하는 악성 소프트웨어다.",
+   "parent": "be.security.malware-idea",
+   "aliases": [
+    "랜섬웨어 공격",
+    "ransomware attack",
+    "몸값 요구 악성 코드"
+   ],
+   "refs": [
+    "https://www.cisa.gov/stopransomware/ransomware-101"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.security.malicious-package",
+   "title": "악성 패키지",
+   "en": "Malicious Software Package",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "웹 보안",
+   "summary": "pip이나 npm 같은 공개 저장소에 올라온 패키지 가운데 정보를 빼내거나 해를 끼치는 코드가 몰래 들어 있는 것이다.",
+   "parent": "be.security.malware-idea",
+   "aliases": [
+    "악성 라이브러리",
+    "malicious package",
+    "malicious npm package",
+    "악성 PyPI 패키지"
+   ],
+   "refs": [
+    "https://top10.owasp.org/2025/A03_2025-Software_Supply_Chain_Failures/"
+   ],
+   "domain": "be"
+  },
+  {
    "id": "be.run.capacity-buffer",
    "title": "여유 용량",
    "en": "Capacity Buffer (Headroom)",
@@ -19644,6 +20443,47 @@
    ],
    "refs": [
     "https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.security.spear-phishing",
+   "title": "스피어 피싱",
+   "en": "Spear Phishing",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "웹 보안",
+   "summary": "아무에게나 뿌리지 않고 특정 사람이나 회사의 정보를 미리 알아내 그럴듯하게 꾸민 표적 피싱이다.",
+   "parent": "be.security.phishing-idea",
+   "aliases": [
+    "표적 피싱",
+    "targeted phishing",
+    "작살 피싱"
+   ],
+   "refs": [
+    "https://www.ncsc.gov.uk/guidance/phishing"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.security.trojan-horse",
+   "title": "트로이 목마(악성 프로그램)",
+   "en": "Trojan Horse (Malware)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "웹 보안",
+   "summary": "쓸모 있는 프로그램처럼 보이지만 실행하면 숨겨 둔 해로운 기능이 몰래 움직이는 악성 소프트웨어다.",
+   "parent": "be.security.malware-idea",
+   "aliases": [
+    "트로이목마",
+    "trojan malware",
+    "트로이 목마 프로그램",
+    "트로이언"
+   ],
+   "refs": [
+    "https://csrc.nist.gov/glossary/term/trojan_horse"
    ],
    "domain": "be"
   },
@@ -40261,6 +41101,107 @@
    "domain": "llm"
   },
   {
+   "id": "llm.basics.scheduled-tasks",
+   "title": "AI에게 정기적인 일 맡기기: 예약 작업",
+   "en": "Scheduling Recurring Tasks for an AI Assistant",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "할 일과 주기를 한 번 말해 두면 AI가 매일·매주 정해진 때에 그 일을 다시 해 결과를 놓아 둔다.",
+   "objectives": [
+    "예약 작업을 매일 아침 신문이 배달되는 일에 빗대어 설명할 수 있다",
+    "할 일과 실행 주기를 함께 적어 챗봇에 예약 작업을 부탁할 수 있다",
+    "예약 목록에서 작업을 멈추거나 지우는 이유를 말할 수 있다",
+    "Gemini처럼 결과를 배달 시각보다 미리 만들어 두는 서비스에서는 빠르게 바뀌는 정보가 낡을 수 있다는 점을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.first-chat"
+   ],
+   "related": [
+    "llm.basics.claude-cowork"
+   ],
+   "aliases": [
+    "AI 예약 작업",
+    "AI 정기 작업",
+    "챗봇 예약 실행",
+    "반복 예약 작업",
+    "recurring AI task"
+   ],
+   "refs": [
+    "https://support.google.com/gemini/answer/16316416",
+    "https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.chat-visuals",
+   "title": "대화 속에 그려 주는 그림과 도표: 시각 자료",
+   "en": "Inline Visuals in AI Chat Responses",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "AI가 답 안에 흐름도·차트·비교표 같은 그림을 바로 그려 보여 주고, 누르거나 다시 부탁해 고칠 수 있다.",
+   "objectives": [
+    "답 속 시각 자료를 화이트보드에 쓱 그린 설명 그림에 빗대어 설명할 수 있다",
+    "자료를 올리고 '차트로 그려 줘'처럼 그림을 직접 부탁할 수 있다",
+    "그때그때 그린 시각 자료와 따로 저장되는 아티팩트의 차이를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.first-chat"
+   ],
+   "related": [
+    "llm.basics.chat-artifact"
+   ],
+   "aliases": [
+    "Claude 시각 자료",
+    "Claude custom visuals",
+    "답 속 차트",
+    "대화 속 도표",
+    "챗봇이 그린 도표"
+   ],
+   "refs": [
+    "https://support.claude.com/en/articles/13979539-custom-visuals-in-chat-and-cowork"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.ai-in-office-apps",
+   "title": "문서·시트·슬라이드 안에서 AI 부르기",
+   "en": "Using an AI Assistant inside Google Docs, Sheets and Slides",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "문서·스프레드시트·발표 자료 옆 사이드바에서 AI를 불러 지금 연 파일을 읽고 바로 고치게 하는 방식이다.",
+   "objectives": [
+    "사이드바 AI를 내 파일을 함께 보며 고쳐 주는 옆자리 동료에 빗대어 설명할 수 있다",
+    "확장 프로그램을 설치하고 문서에서 AI 사이드바를 열 수 있다",
+    "AI가 고치기 전에 하나씩 확인받는 모드를 켜 두는 이유를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.first-chat"
+   ],
+   "aliases": [
+    "Claude for Google Workspace",
+    "구글 문서 속 AI",
+    "스프레드시트 AI 사이드바",
+    "오피스 앱 속 AI",
+    "Docs Sheets Slides AI"
+   ],
+   "refs": [
+    "https://support.claude.com/en/articles/16951679-use-claude-in-google-docs-sheets-and-slides"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "llm"
+  },
+  {
    "id": "llm.basics.image-generation",
    "title": "이미지 생성 AI: 글로 주문하는 그림",
    "en": "Image Generation from Text",
@@ -41106,6 +42047,31 @@
    "domain": "llm"
   },
   {
+   "id": "llm.basics.capability-hallucination",
+   "title": "하지 않은 일을 했다고 말하는 AI",
+   "en": "Capability Hallucination: Claimed Actions and Broken Links",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "연결된 도구가 없는데도 AI가 메일을 보냈다거나 파일을 만들었다고 말하거나 열리지 않는 링크를 주는 환각이다.",
+   "related": [
+    "llm.basics.why-hallucinate",
+    "llm.basics.hallucination"
+   ],
+   "aliases": [
+    "능력 환각",
+    "AI 가짜 링크",
+    "메일 보냈다는 거짓말",
+    "hallucinated capabilities",
+    "깨진 링크 환각"
+   ],
+   "refs": [
+    "https://support.claude.com/en/articles/8241188-claude-is-producing-links-that-don-t-work-and-falsely-claiming-that-it-has-sent-emails-or-produced-external-documents-what-s-going-on"
+   ],
+   "domain": "llm"
+  },
+  {
    "id": "llm.basics.small-language-model",
    "title": "소형 언어 모델(SLM)",
    "en": "Small Language Model",
@@ -41681,6 +42647,205 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-11",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.gemini-scheduled-actions",
+   "title": "Gemini 예약 작업(scheduled actions)",
+   "en": "Gemini Scheduled Actions",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "Gemini에 주기를 담은 프롬프트를 보내 매일·매주·매달 정한 시각에 답을 받아 보는 기능으로, 한 번에 10개까지 켜 둘 수 있다.",
+   "parent": "llm.basics.scheduled-tasks",
+   "aliases": [
+    "Gemini scheduled actions",
+    "제미나이 예약 작업",
+    "Gemini 예약 실행",
+    "Gemini 예약 목록"
+   ],
+   "refs": [
+    "https://support.google.com/gemini/answer/16316416"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.cowork-scheduled-tasks",
+   "title": "Cowork 예약 작업",
+   "en": "Scheduled Tasks in Claude Cowork",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "Claude Cowork에 맡긴 일을 매시간·매일·매주·평일마다 또는 원할 때 다시 돌리는 기능으로, 원격에서 돌아 컴퓨터가 잠자기 상태여도 실행된다.",
+   "parent": "llm.basics.scheduled-tasks",
+   "related": [
+    "llm.basics.claude-cowork",
+    "ax.coding.scheduled-tasks"
+   ],
+   "aliases": [
+    "Cowork scheduled tasks",
+    "Cowork 예약",
+    "코워크 예약 작업",
+    "Cowork 반복 작업"
+   ],
+   "refs": [
+    "https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.ask-before-edits",
+   "title": "문서 속 Claude의 편집 전 확인 모드",
+   "en": "Ask Before Edits Mode in Claude for Google Workspace",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "문서 속 AI가 바꿀 내용을 먼저 설명하고 내가 허락해야 고치는 기본 모드로, 모두 허용 모드로 바꾸면 보통 편집은 묻지 않고 한다.",
+   "parent": "llm.basics.ai-in-office-apps",
+   "related": [
+    "ax.basics.agent-manual-approval"
+   ],
+   "aliases": [
+    "Workspace Ask before edits",
+    "Accept all edits",
+    "편집 전 확인 모드",
+    "Claude for Google Workspace 편집 모드"
+   ],
+   "refs": [
+    "https://support.claude.com/en/articles/16951679-use-claude-in-google-docs-sheets-and-slides"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.safety-model-switch",
+   "title": "안전 검사로 대화 중 모델이 바뀌는 일",
+   "en": "Automatic Model Switching after a Safety Flag",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "안전 분류기가 요청을 걸러 내면 챗봇이 같은 대화에서 덜 강한 모델로 다시 답하고 어떤 모델이 답했는지 표시하는 일이다.",
+   "related": [
+    "ax.governance.why-ai-refuses"
+   ],
+   "aliases": [
+    "Claude 모델 자동 전환",
+    "automatic model switching",
+    "안전 분류기 모델 전환",
+    "대화 중 모델 바뀜"
+   ],
+   "refs": [
+    "https://support.claude.com/en/articles/16049681-why-claude-switched-models-in-your-conversation-with-opus-5-or-opus-5-5"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.break-reminder",
+   "title": "AI 사용 쉬는 시간 알림",
+   "en": "Break Reminders in an AI Chat App",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "하루에 정한 시간만큼 챗봇을 쓰면 잠깐 쉬라는 알림을 띄우는 설정으로, 막지는 않아 미루거나 닫고 계속할 수 있다.",
+   "related": [
+    "llm.basics.quiet-hours",
+    "ax.governance.ai-emotional-reliance"
+   ],
+   "aliases": [
+    "break reminder",
+    "휴식 알림",
+    "Claude 쉬는 시간 알림",
+    "Wellbeing 설정"
+   ],
+   "refs": [
+    "https://support.claude.com/en/articles/15672868-set-break-reminders-and-quiet-hours"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.quiet-hours",
+   "title": "AI 앱 조용한 시간(quiet hours)",
+   "en": "Quiet Hours in an AI Chat App",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "요일과 시간대를 정해 두면 그때 챗봇을 열 때 알림이 먼저 떠서 계속 쓸지 나중에 올지 고르게 하는 설정이다.",
+   "related": [
+    "llm.basics.break-reminder"
+   ],
+   "aliases": [
+    "quiet hours",
+    "조용한 시간 설정",
+    "Claude 사용 시간대 알림"
+   ],
+   "refs": [
+    "https://support.claude.com/en/articles/15672868-set-break-reminders-and-quiet-hours"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.monthly-recap",
+   "title": "AI 사용 월간 돌아보기(monthly recap)",
+   "en": "Monthly Recap of AI Chat Usage",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "한 달 동안 챗봇과 나눈 대화의 주제 비율과 자주 쓴 요일·시간을 모아 보여 주고 다음에 해 볼 쓰임을 권하는 요약 화면이다.",
+   "related": [
+    "llm.basics.chat-memory-feature"
+   ],
+   "aliases": [
+    "monthly recap",
+    "월간 요약",
+    "Claude Reflect",
+    "Claude 사용 돌아보기"
+   ],
+   "refs": [
+    "https://support.claude.com/en/articles/15672559-see-your-monthly-recap"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.beta-research-preview",
+   "title": "베타 기능과 연구 미리보기(research preview)",
+   "en": "Beta and Research Preview Features",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "AI 앱에서 베타는 쓸 만큼 안정됐지만 다듬는 중인 기능이고, 연구 미리보기는 더 이른 실험이라 크게 바뀌거나 없어질 수 있다는 표시다.",
+   "related": [
+    "plan.basics.public-beta"
+   ],
+   "aliases": [
+    "research preview",
+    "연구 미리보기",
+    "베타 기능 표시",
+    "Claude 베타 기능"
+   ],
+   "refs": [
+    "https://support.claude.com/en/articles/14503520-available-beta-and-research-preview-features"
+   ],
    "domain": "llm"
   },
   {
@@ -46575,6 +47740,77 @@
    "domain": "rag"
   },
   {
+   "id": "rag.basics.voice-agent-idea",
+   "title": "음성 에이전트: 말로 묻고 답하는 에이전트",
+   "en": "Voice Agents at a Glance",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "에이전트 기초",
+   "summary": "사람의 말을 듣고 뜻을 헤아려 도구를 쓴 뒤 다시 목소리로 답해 주는 AI 에이전트다.",
+   "objectives": [
+    "음성 에이전트가 하는 일을 듣기·생각하기·말하기 세 단계로 나눠 전화 상담원에 빗대어 설명할 수 있다",
+    "말을 글로 바꿔 처리하는 방식과 목소리를 바로 주고받는 방식의 차이를 말할 수 있다",
+    "음성 에이전트에서 대답이 늦게 나오면 왜 불편한지 예를 들어 말할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.basics.agent-big-picture"
+   ],
+   "related": [
+    "llm.basics.voice-chat"
+   ],
+   "aliases": [
+    "음성 에이전트",
+    "voice agent",
+    "보이스 에이전트",
+    "음성 AI 에이전트",
+    "voice AI agent"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/voice-agent",
+    "https://developers.openai.com/api/docs/guides/voice-agents"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.basics.agent-framework-idea",
+   "title": "에이전트 프레임워크: 에이전트 만드는 부품 상자",
+   "en": "Agent Frameworks at a Glance",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "에이전트 기초",
+   "summary": "모델 부르기, 도구 정의와 연결, 여러 단계 잇기처럼 에이전트마다 되풀이되는 일을 미리 만들어 둔 라이브러리 묶음이다.",
+   "objectives": [
+    "에이전트 프레임워크를 조립식 가구의 부품 상자에 빗대어 설명할 수 있다",
+    "프레임워크가 대신해 주는 일을 두세 가지 말할 수 있다",
+    "프레임워크가 속을 가려 문제를 찾기 어려워질 수 있다는 주의점을 말할 수 있다",
+    "여러 회사가 내놓은 에이전트 프레임워크의 예를 두세 개 들 수 있다"
+   ],
+   "prerequisites": [
+    "rag.basics.agent-big-picture"
+   ],
+   "related": [
+    "rag.basics.framework-choice",
+    "be.basics.web-framework-idea"
+   ],
+   "aliases": [
+    "에이전트 프레임워크",
+    "agent framework",
+    "AI 에이전트 프레임워크",
+    "에이전트 개발 프레임워크",
+    "agent development framework"
+   ],
+   "refs": [
+    "https://www.anthropic.com/engineering/building-effective-agents",
+    "https://learn.microsoft.com/en-us/agent-framework/overview/",
+    "https://adk.dev/"
+   ],
+   "domain": "rag"
+  },
+  {
    "id": "rag.agent.a2a-idea",
    "title": "A2A: 에이전트끼리 일을 맡기는 공용 규격",
    "en": "A2A at a Glance",
@@ -46769,6 +48005,43 @@
    ],
    "refs": [
     "https://modelcontextprotocol.io/extensions/overview"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.agentic-commerce-idea",
+   "title": "에이전트 커머스: AI가 대신 사고 결제하기",
+   "en": "Agentic Commerce at a Glance",
+   "kind": "topic",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "AI 에이전트가 사용자를 대신해 상품을 찾고 장바구니를 채우고 결제까지 하도록, 허락과 책임을 증명하는 공용 규격으로 가게와 결제사를 잇는 일이다.",
+   "objectives": [
+    "에이전트 커머스를 심부름꾼에게 위임장을 써 주고 장보기를 맡기는 일에 빗대어 설명할 수 있다",
+    "에이전트가 결제할 때 사용자가 정말 허락했는지와 잘못되면 누가 책임지는지가 왜 문제인지 말할 수 있다",
+    "UCP는 상품 찾기부터 주문까지, AP2는 결제 허락을 맡는다는 차이를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.basics.agent-big-picture",
+    "rag.agent.a2a-idea"
+   ],
+   "related": [
+    "rag.agent.a2a-idea",
+    "rag.agent.mcp-idea"
+   ],
+   "aliases": [
+    "에이전트 커머스",
+    "agentic commerce",
+    "에이전틱 커머스",
+    "AI 대리 구매",
+    "에이전트 쇼핑"
+   ],
+   "refs": [
+    "https://ap2-protocol.org/overview/",
+    "https://ucp.dev/"
    ],
    "volatile": true,
    "checked_at": "2026-11-11",
@@ -47155,6 +48428,57 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.basics.chained-voice-pipeline",
+   "title": "체인 방식 음성 파이프라인(STT→에이전트→TTS)",
+   "en": "Chained Voice Pipeline (STT, Agent, TTS)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "에이전트 기초",
+   "summary": "말을 글로 받아 적고, 글로 일하는 에이전트가 답을 쓰고, 그 답을 다시 목소리로 읽어 주는 세 단계를 이어 붙인 음성 에이전트 구조다.",
+   "parent": "rag.basics.voice-agent-idea",
+   "related": [
+    "rag.basics.speech-to-speech-agent"
+   ],
+   "aliases": [
+    "샌드위치 구조",
+    "sandwich architecture",
+    "chained voice pipeline",
+    "STT-에이전트-TTS 구조",
+    "체인 음성 파이프라인"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/voice-agent",
+    "https://developers.openai.com/api/docs/guides/voice-agents"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.basics.speech-to-speech-agent",
+   "title": "음성 대 음성(S2S) 방식",
+   "en": "Speech-to-Speech Voice Architecture",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "에이전트 기초",
+   "summary": "글로 바꾸는 단계 없이 모델 하나가 목소리를 듣고 바로 목소리로 답해 말투와 감정까지 살리는 음성 에이전트 구조다.",
+   "parent": "rag.basics.voice-agent-idea",
+   "related": [
+    "rag.basics.chained-voice-pipeline"
+   ],
+   "aliases": [
+    "speech-to-speech",
+    "음성 대 음성 모델",
+    "S2S 음성 에이전트",
+    "speech-to-speech 에이전트"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/voice-agent",
+    "https://developers.openai.com/api/docs/guides/voice-agents"
+   ],
    "domain": "rag"
   },
   {
@@ -47956,6 +49280,191 @@
    ],
    "refs": [
     "https://docs.langchain.com/langsmith/fleet/schedules"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.basics.full-duplex-voice",
+   "title": "전이중 음성 대화(들으면서 말하기)",
+   "en": "Full-Duplex Voice Conversation",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트 기초",
+   "summary": "음성 에이전트가 말하는 동안에도 사람의 말을 계속 들어, 뒤에서 일을 처리하는 중에 끼어들어 고쳐 말해도 받아 주는 대화 방식이다.",
+   "parent": "rag.basics.voice-agent-idea",
+   "aliases": [
+    "full-duplex 음성 대화",
+    "전이중 음성 에이전트",
+    "full-duplex voice agent",
+    "동시에 듣고 말하는 음성 AI"
+   ],
+   "refs": [
+    "https://developers.openai.com/api/docs/guides/voice-agents"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.ap2",
+   "title": "AP2(에이전트 결제 프로토콜)",
+   "en": "Agent Payments Protocol (AP2)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "에이전트가 한 결제마다 사용자가 서명한 위임장을 붙여 허락과 책임을 증명하게 하는, Google이 시작해 FIDO Alliance로 넘긴 열린 결제 규격이다.",
+   "parent": "rag.agent.agentic-commerce-idea",
+   "related": [
+    "rag.agent.a2a-idea",
+    "rag.agent.ucp"
+   ],
+   "aliases": [
+    "Agent Payments Protocol",
+    "에이전트 결제 프로토콜",
+    "AP2 프로토콜",
+    "AP2 결제 규격"
+   ],
+   "refs": [
+    "https://ap2-protocol.org/",
+    "https://ap2-protocol.org/overview/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.ap2-mandate",
+   "title": "AP2 위임장(Checkout·Payment Mandate)",
+   "en": "AP2 Mandates (Checkout and Payment)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "AP2에서 무엇을 살지 승인한 체크아웃 위임장과 어느 결제 수단으로 얼마를 낼지 승인한 결제 위임장을 서명된 디지털 증명으로 남겨 분쟁 때 근거로 쓰는 기록이다.",
+   "parent": "rag.agent.agentic-commerce-idea",
+   "related": [
+    "rag.agent.ap2"
+   ],
+   "aliases": [
+    "Checkout Mandate",
+    "Payment Mandate",
+    "AP2 mandate",
+    "AP2 결제 위임장",
+    "AP2 체크아웃 위임장"
+   ],
+   "refs": [
+    "https://ap2-protocol.org/overview/",
+    "https://ap2-protocol.org/ap2/checkout_mandate/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.ap2-human-not-present",
+   "title": "AP2 사람 없는 결제(Human-Not-Present)",
+   "en": "AP2 Human-Not-Present Flow",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "사용자가 미리 정해 둔 조건, 예를 들어 값이 얼마 아래로 내려가면 사라는 조건이 맞을 때 사용자가 자리에 없어도 에이전트가 대신 사도록 하는 AP2의 결제 흐름이다.",
+   "parent": "rag.agent.agentic-commerce-idea",
+   "related": [
+    "rag.agent.ap2-mandate"
+   ],
+   "aliases": [
+    "Human-Not-Present",
+    "human-not-present flow",
+    "AP2 무인 결제",
+    "사람 부재 결제"
+   ],
+   "refs": [
+    "https://ap2-protocol.org/overview/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.ucp",
+   "title": "UCP(범용 커머스 프로토콜)",
+   "en": "Universal Commerce Protocol (UCP)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "AI 에이전트와 쇼핑 플랫폼, 가게가 상품 검색·장바구니·결제·주문 확인을 같은 말로 주고받게 하려고 여러 유통·결제 회사가 함께 만든 열린 규격이다.",
+   "parent": "rag.agent.agentic-commerce-idea",
+   "related": [
+    "rag.agent.ap2"
+   ],
+   "aliases": [
+    "Universal Commerce Protocol",
+    "범용 커머스 프로토콜",
+    "UCP 프로토콜",
+    "UCP 커머스 규격"
+   ],
+   "refs": [
+    "https://ucp.dev/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.basics.google-adk",
+   "title": "Google ADK(Agent Development Kit)",
+   "en": "Google Agent Development Kit (ADK)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트 기초",
+   "summary": "에이전트를 만들고 시험하고 배포하게 해 주는 Google의 오픈 소스 프레임워크로, Gemini 말고 다른 모델도 쓸 수 있고 파이썬·타입스크립트·Go·자바 등을 지원한다.",
+   "parent": "rag.basics.agent-framework-idea",
+   "related": [
+    "rag.basics.openai-agents-sdk",
+    "rag.basics.claude-agent-sdk"
+   ],
+   "aliases": [
+    "Agent Development Kit",
+    "Google Agent Development Kit",
+    "구글 ADK",
+    "Google ADK 프레임워크"
+   ],
+   "refs": [
+    "https://adk.dev/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.basics.microsoft-agent-framework",
+   "title": "Microsoft Agent Framework",
+   "en": "Microsoft Agent Framework",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트 기초",
+   "summary": "Semantic Kernel과 AutoGen을 만든 팀이 둘을 이어받아 만든 Microsoft의 에이전트·멀티 에이전트 워크플로 프레임워크로, .NET과 파이썬에서 쓰고 Go는 공개 미리 보기다.",
+   "parent": "rag.basics.agent-framework-idea",
+   "related": [
+    "rag.basics.google-adk",
+    "rag.basics.openai-agents-sdk"
+   ],
+   "aliases": [
+    "MS Agent Framework",
+    "마이크로소프트 에이전트 프레임워크",
+    "Semantic Kernel 후속 프레임워크",
+    "AutoGen 후속 프레임워크"
+   ],
+   "refs": [
+    "https://learn.microsoft.com/en-us/agent-framework/overview/"
    ],
    "volatile": true,
    "checked_at": "2026-11-11",
