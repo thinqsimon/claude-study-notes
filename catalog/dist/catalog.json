@@ -1,5 +1,5 @@
 {
- "version": "0.40.0",
+ "version": "0.41.0",
  "domains": [
   {
    "prefix": "dev",
@@ -22726,6 +22726,106 @@
    "domain": "db"
   },
   {
+   "id": "db.basics.data-modeling-idea",
+   "title": "데이터 모델링: 무엇을 어떻게 담을지 정하기",
+   "en": "The Idea of Data Modeling",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "DB 기초",
+   "summary": "자료를 넣기 전에 다룰 대상과 그 대상들이 서로 어떻게 이어지는지를 먼저 그려 보는 일이다.",
+   "objectives": [
+    "학생·수업처럼 현실의 대상을 데이터베이스에 담을 덩어리로 나누어 말할 수 있다",
+    "일대일·일대다·다대다 관계를 일상의 예로 설명할 수 있다",
+    "자료를 넣기 전에 대상과 관계를 먼저 그려 보는 이유를 집 설계도에 빗대어 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "db.basics.table-row-column"
+   ],
+   "related": [
+    "db.basics.relational-database",
+    "db.nosql.document"
+   ],
+   "aliases": [
+    "데이터 모델링",
+    "data modeling",
+    "DB 모델링",
+    "자료 설계"
+   ],
+   "refs": [
+    "https://www.mongodb.com/docs/manual/data-modeling/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.basics.managed-database",
+   "title": "관리형 데이터베이스: 운영을 맡기는 DB",
+   "en": "Managed Database Services",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "DB 기초",
+   "summary": "설치·백업·업데이트·고장 복구 같은 DB 운영 일을 클라우드 회사가 대신 맡아 주고 사용자는 자료와 앱에 집중하는 방식이다.",
+   "objectives": [
+    "DB를 직접 운영할 때와 관리형 서비스를 쓸 때 누가 무슨 일을 맡는지 비유로 말할 수 있다",
+    "관리형 서비스가 맡아 주는 일과 그래도 사용자가 챙겨야 할 일을 구분할 수 있다"
+   ],
+   "prerequisites": [
+    "db.basics.client-server",
+    "db.basics.what-is-database"
+   ],
+   "related": [
+    "ops.basics.cloud-service-models",
+    "db.nosql.atlas-free-cluster",
+    "db.postgres.supabase-table-editor"
+   ],
+   "aliases": [
+    "관리형 DB",
+    "managed database",
+    "DBaaS",
+    "클라우드 데이터베이스",
+    "cloud database"
+   ],
+   "refs": [
+    "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.basics.csv-idea",
+   "title": "CSV: 쉼표로 나눈 표 파일",
+   "en": "CSV Files (Comma-Separated Values)",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "DB 기초",
+   "summary": "한 줄에 자료 한 건을 쓰고 칸을 쉼표로 나누어, 표를 글자만으로 담아 두는 가장 흔한 데이터 파일 형식이다.",
+   "objectives": [
+    "CSV 파일의 한 줄과 쉼표가 표의 행과 칸에 어떻게 대응하는지 말할 수 있다",
+    "값 안에 쉼표가 있으면 왜 큰따옴표로 감싸야 하는지 설명할 수 있다",
+    "스프레드시트와 데이터베이스가 CSV로 자료를 주고받는 큰 그림을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "db.basics.table-row-column"
+   ],
+   "related": [
+    "db.sql.sqlite-csv",
+    "db.sql.copy-csv",
+    "be.basics.what-is-json"
+   ],
+   "aliases": [
+    "CSV 파일",
+    "CSV",
+    "comma-separated values",
+    "쉼표 구분 파일",
+    ".csv 파일"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc4180"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.basics.relational-database",
    "title": "관계형 데이터베이스",
    "en": "Relational Database",
@@ -22938,6 +23038,124 @@
    "domain": "db"
   },
   {
+   "id": "db.basics.dbms",
+   "title": "DBMS(데이터베이스 관리 시스템)",
+   "en": "Database Management System (DBMS)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "DB 기초",
+   "summary": "자료 묶음인 데이터베이스를 만들고 지키고 찾아 주는 소프트웨어로, PostgreSQL·MySQL 같은 프로그램을 가리킨다.",
+   "parent": "db.basics.what-is-database",
+   "related": [
+    "db.basics.relational-database"
+   ],
+   "aliases": [
+    "DBMS",
+    "데이터베이스 관리 시스템",
+    "database management system",
+    "DB 관리 시스템"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/tutorial-concepts.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.basics.concurrent-connections",
+   "title": "동시 접속: 여러 클라이언트를 한꺼번에",
+   "en": "Concurrent Database Connections",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "DB 기초",
+   "summary": "DB 서버는 여러 프로그램의 접속을 한꺼번에 받아, 접속마다 따로 일꾼을 붙여 동시에 부탁을 처리한다.",
+   "parent": "db.basics.client-server",
+   "related": [
+    "db.orm.connection-pool"
+   ],
+   "aliases": [
+    "DB 동시 접속",
+    "concurrent connections",
+    "multiple client connections"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/tutorial-arch.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.basics.persistence",
+   "title": "데이터 영속성: 꺼져도 남는 자료",
+   "en": "Data Persistence in Databases",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "DB 기초",
+   "summary": "프로그램이나 컴퓨터가 꺼졌다 켜져도 자료가 사라지지 않도록 디스크 같은 오래가는 저장소에 적어 두는 성질이다.",
+   "parent": "db.basics.what-is-database",
+   "related": [
+    "db.cache.in-memory-database",
+    "db.basics.backup"
+   ],
+   "aliases": [
+    "영속성",
+    "데이터 영속성",
+    "data persistence",
+    "DB 영속화"
+   ],
+   "refs": [
+    "https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.cache.cache-hit-miss",
+   "title": "캐시 적중과 캐시 미스",
+   "en": "Cache Hit and Cache Miss",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "캐시",
+   "summary": "찾는 자료가 캐시에 있어 바로 내주면 적중, 없어서 원래 저장소까지 가야 하면 미스라 한다.",
+   "parent": "db.cache.cache-idea",
+   "related": [
+    "db.cache.ttl"
+   ],
+   "aliases": [
+    "캐시 히트",
+    "cache hit",
+    "캐시 미스",
+    "cache miss",
+    "캐시 적중률",
+    "cache hit rate"
+   ],
+   "refs": [
+    "https://aws.amazon.com/caching/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.basics.entity",
+   "title": "엔터티: 자료로 담을 대상 하나",
+   "en": "Entity in Data Modeling",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "DB 기초",
+   "summary": "학생·주문·상품처럼 데이터베이스에 따로 기록해 둘 만한 현실의 대상 하나를 가리키는 말이다.",
+   "parent": "db.basics.data-modeling-idea",
+   "aliases": [
+    "엔터티",
+    "엔티티",
+    "데이터 엔터티"
+   ],
+   "refs": [
+    "https://www.mongodb.com/docs/manual/data-modeling/"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.nosql.what-is-nosql",
    "title": "NoSQL",
    "en": "NoSQL Databases",
@@ -23023,6 +23241,75 @@
    "refs": [
     "https://redis.io/docs/latest/get-started/",
     "https://redis.io/docs/latest/develop/get-started/data-store/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.basics.db-driver",
+   "title": "DB 드라이버: 앱과 DB를 잇는 통역기",
+   "en": "Database Driver",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "DB 기초",
+   "summary": "프로그램이 특정 데이터베이스와 말을 주고받을 수 있게 그 DB의 대화 방식을 대신 맡아 주는 작은 라이브러리다.",
+   "related": [
+    "db.orm.what-is-orm",
+    "db.sql.psycopg-basics"
+   ],
+   "aliases": [
+    "DB 드라이버",
+    "database driver",
+    "DBAPI 드라이버",
+    "DB 연결 라이브러리"
+   ],
+   "refs": [
+    "https://docs.sqlalchemy.org/en/20/tutorial/engine.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.nosql.graph-database",
+   "title": "그래프 데이터베이스",
+   "en": "Graph Database",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "NoSQL",
+   "summary": "사람·물건 같은 점과 그 사이를 잇는 선으로 자료를 담아, 친구 관계처럼 이어짐 자체가 중요한 자료에 쓰는 데이터베이스다.",
+   "related": [
+    "db.nosql.what-is-nosql",
+    "db.basics.relational-database"
+   ],
+   "aliases": [
+    "그래프 DB",
+    "graph database",
+    "그래프형 데이터베이스",
+    "graph DB"
+   ],
+   "refs": [
+    "https://neo4j.com/docs/getting-started/graph-database/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.basics.csv-header",
+   "title": "CSV 머리 줄: 첫 줄의 열 이름",
+   "en": "CSV Header Row",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "DB 기초",
+   "summary": "CSV 파일의 첫 줄에 자료 대신 각 칸의 이름을 적어 두는 줄로, 있어도 되고 없어도 된다.",
+   "parent": "db.basics.csv-idea",
+   "aliases": [
+    "CSV 헤더",
+    "CSV header row",
+    "머리글 행",
+    "CSV 첫 줄"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc4180"
    ],
    "domain": "db"
   },
@@ -42286,6 +42573,44 @@
    "domain": "ax"
   },
   {
+   "id": "ax.basics.chat-data-training",
+   "title": "내 대화가 AI 학습에 쓰일까: 데이터 설정 확인",
+   "en": "Is My Chat Used for AI Training? Checking Data Settings",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "AI 챗봇에 쓴 대화는 계정 종류와 설정에 따라 다음 모델을 가르치는 재료가 될 수 있으니 설정을 보고 직접 고른다.",
+   "objectives": [
+    "내 대화가 AI 학습에 쓰일 수 있는 경우를 일상 비유로 설명할 수 있다",
+    "개인 계정의 개인정보 설정에서 학습 사용 여부를 찾아 바꿀 수 있다",
+    "개인용 계정과 회사용 계정에서 대화 데이터를 다루는 방식이 다르다는 점을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.basics.personal-data",
+    "llm.basics.first-chat"
+   ],
+   "related": [
+    "ax.coding.agent-data-usage",
+    "llm.basics.incognito-chat",
+    "ax.governance.ai-training-opt-out"
+   ],
+   "aliases": [
+    "AI 학습 데이터 설정",
+    "대화 학습 사용",
+    "챗봇 데이터 설정",
+    "chat data training",
+    "학습에 쓰이는 대화"
+   ],
+   "refs": [
+    "https://privacy.claude.com/en/articles/10023580-is-my-data-used-for-model-training",
+    "https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
    "id": "ax.governance.harmful-bias",
    "title": "AI 편향(harmful bias)",
    "en": "Harmful Bias in AI",
@@ -42508,6 +42833,166 @@
    "domain": "ax"
   },
   {
+   "id": "ax.basics.model-improvement-setting",
+   "title": "모델 개선 설정(학습 사용 허용)",
+   "en": "Model Improvement Setting (Training Opt-in)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "개인 계정의 대화를 AI 회사가 다음 모델 학습에 써도 되는지 사용자가 켜고 끄는 개인정보 설정이다.",
+   "parent": "ax.basics.chat-data-training",
+   "aliases": [
+    "모델 개선 설정",
+    "Model Improvement",
+    "학습 사용 허용",
+    "학습 데이터 제공 설정",
+    "대화 학습 끄기"
+   ],
+   "refs": [
+    "https://privacy.claude.com/en/articles/10023580-is-my-data-used-for-model-training"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.basics.consumer-vs-commercial-data",
+   "title": "개인용과 업무용 AI 계정의 데이터 차이",
+   "en": "Consumer vs Commercial AI Accounts and Data Use",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "개인 요금제는 설정에 따라 대화가 학습에 쓰일 수 있지만 회사용 요금제와 API는 기본적으로 학습에 쓰지 않는다는 구분이다.",
+   "parent": "ax.basics.chat-data-training",
+   "aliases": [
+    "개인용 계정 업무용 계정",
+    "consumer vs commercial",
+    "상업용 약관 학습",
+    "회사용 AI 계정",
+    "업무용 요금제 데이터"
+   ],
+   "refs": [
+    "https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.valid-reliable",
+   "title": "유효성과 신뢰성(valid and reliable)",
+   "en": "Valid and Reliable AI (Trustworthiness Characteristic)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "AI가 정해진 목적대로 맞는 결과를 내고, 시간이 지나거나 상황이 바뀌어도 그 성능을 꾸준히 지키는 성질이다.",
+   "parent": "ax.governance.trustworthy-ai",
+   "aliases": [
+    "AI 유효성",
+    "AI 신뢰성",
+    "valid and reliable",
+    "유효하고 신뢰할 수 있는 AI"
+   ],
+   "refs": [
+    "https://airc.nist.gov/airmf-resources/airmf/3-sec-characteristics/"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.ai-safe",
+   "title": "AI 안전성(safe)",
+   "en": "Safe AI (Trustworthiness Characteristic)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "AI가 사람의 생명·건강·재산이나 환경을 위험에 빠뜨리지 않도록 만들고 쓰는 성질이다.",
+   "parent": "ax.governance.trustworthy-ai",
+   "aliases": [
+    "AI 안전성",
+    "안전한 AI",
+    "safe AI",
+    "AI safety characteristic"
+   ],
+   "refs": [
+    "https://airc.nist.gov/airmf-resources/airmf/3-sec-characteristics/"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.secure-resilient",
+   "title": "보안과 복원력(secure and resilient)",
+   "en": "Secure and Resilient AI (Trustworthiness Characteristic)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "AI가 공격으로부터 데이터와 기능을 지키고, 뜻밖의 일이 생겨도 버티거나 무리 없이 회복하는 성질이다.",
+   "parent": "ax.governance.trustworthy-ai",
+   "aliases": [
+    "AI 복원력",
+    "AI 회복력",
+    "secure and resilient",
+    "AI resilience"
+   ],
+   "refs": [
+    "https://airc.nist.gov/airmf-resources/airmf/3-sec-characteristics/"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.accountable-transparent",
+   "title": "책임성과 투명성(accountable and transparent)",
+   "en": "Accountable and Transparent AI (Trustworthiness Characteristic)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "AI가 어떻게 만들어지고 무엇을 내놓는지 사람들이 알 수 있게 하고, 문제가 생기면 누가 책임지는지 분명히 하는 성질이다.",
+   "parent": "ax.governance.trustworthy-ai",
+   "related": [
+    "ax.governance.explainability"
+   ],
+   "aliases": [
+    "AI 책임성",
+    "AI 투명성",
+    "accountable and transparent",
+    "AI accountability",
+    "AI transparency"
+   ],
+   "refs": [
+    "https://airc.nist.gov/airmf-resources/airmf/3-sec-characteristics/"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.family-safe-word",
+   "title": "가족 확인 암호(딥페이크 사기 대비)",
+   "en": "Family Secret Word Against Deepfake Scams",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "가족끼리 미리 정해 둔 비밀 단어로, AI로 흉내 낸 목소리나 영상이 급히 돈을 요구할 때 진짜 가족인지 확인하는 방법이다.",
+   "parent": "ax.governance.deepfake",
+   "related": [
+    "ax.governance.voice-cloning"
+   ],
+   "aliases": [
+    "가족 암호",
+    "가족 비밀 단어",
+    "family safe word",
+    "가족 확인 질문"
+   ],
+   "refs": [
+    "https://www.ic3.gov/PSA/2024/PSA241203"
+   ],
+   "domain": "ax"
+  },
+  {
    "id": "ax.governance.oecd-ai-principles",
    "title": "OECD AI 원칙",
    "en": "OECD AI Principles",
@@ -42572,6 +43057,54 @@
    ],
    "refs": [
     "https://oecd.ai/en/incidents"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.basics.chat-feedback-retention",
+   "title": "좋아요·싫어요 피드백과 대화 보관",
+   "en": "Thumbs Feedback and Conversation Retention",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "답에 좋아요나 싫어요를 누르면 그 대화 전체가 회사에 보내져 오래 보관되고 학습에 쓰일 수 있다.",
+   "parent": "ax.basics.chat-data-training",
+   "aliases": [
+    "좋아요 싫어요 버튼",
+    "thumbs up down feedback",
+    "대화 피드백 보관",
+    "답변 평가 버튼"
+   ],
+   "refs": [
+    "https://privacy.claude.com/en/articles/10023580-is-my-data-used-for-model-training",
+    "https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.privacy-enhanced",
+   "title": "프라이버시 강화(privacy-enhanced)",
+   "en": "Privacy-Enhanced AI (Trustworthiness Characteristic)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "AI가 사람의 자기 정보에 대한 통제와 존엄을 지키도록 개인을 알아보기 어렵게 하는 기법 등을 쓰는 성질이다.",
+   "parent": "ax.governance.trustworthy-ai",
+   "related": [
+    "ax.basics.personal-data"
+   ],
+   "aliases": [
+    "프라이버시 강화 AI",
+    "privacy-enhanced AI",
+    "AI 프라이버시 보호",
+    "프라이버시 친화 AI"
+   ],
+   "refs": [
+    "https://airc.nist.gov/airmf-resources/airmf/3-sec-characteristics/"
    ],
    "domain": "ax"
   },
@@ -47155,6 +47688,95 @@
    "domain": "ops"
   },
   {
+   "id": "ops.basics.serverless-idea",
+   "title": "서버리스: 서버 관리 없이 코드만 올리기",
+   "en": "The Idea of Serverless Computing",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "배포 기초",
+   "summary": "서버를 준비하고 돌보는 일은 클라우드 회사에 맡기고, 내가 쓴 코드만 올려 필요할 때 돌아가게 하는 방식이다.",
+   "objectives": [
+    "서버리스를 택시 호출에 빗대어 내 차를 두는 것과의 차이를 설명할 수 있다",
+    "서버리스에서도 서버가 사라지는 것이 아니라 관리를 맡기는 것임을 말할 수 있다",
+    "파일 업로드나 정해진 시각 같은 일이 생길 때 코드가 돌아가는 예를 들 수 있다"
+   ],
+   "prerequisites": [
+    "ops.basics.cloud"
+   ],
+   "aliases": [
+    "서버리스",
+    "serverless",
+    "서버리스 컴퓨팅",
+    "serverless computing",
+    "서버 없는 실행"
+   ],
+   "refs": [
+    "https://aws.amazon.com/serverless/",
+    "https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.linux.wsl-install",
+   "title": "WSL 설치와 첫 실행: Windows에서 리눅스 쓰기",
+   "en": "Installing and First Launching WSL on Windows",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "리눅스",
+   "summary": "Windows 컴퓨터에 WSL을 설치해 따로 컴퓨터를 두지 않고도 Ubuntu 같은 리눅스를 켜 보는 과정이다.",
+   "objectives": [
+    "WSL이 Windows 안에서 리눅스를 돌려 주는 기능임을 설명할 수 있다",
+    "관리자 PowerShell에서 설치 명령 한 줄로 WSL과 Ubuntu를 설치할 수 있다",
+    "처음 켠 리눅스에서 사용자 이름과 비밀번호를 만들고 명령 창이 열린 것을 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.linux.what-is-linux"
+   ],
+   "aliases": [
+    "WSL",
+    "Windows Subsystem for Linux",
+    "WSL 설치",
+    "윈도우 리눅스 하위 시스템",
+    "wsl --install"
+   ],
+   "refs": [
+    "https://learn.microsoft.com/en-us/windows/wsl/about",
+    "https://learn.microsoft.com/en-us/windows/wsl/install"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.linux.multipass-first-vm",
+   "title": "Multipass로 Ubuntu 가상 머신 처음 띄우기",
+   "en": "Launching a First Ubuntu VM with Multipass",
+   "kind": "topic",
+   "level": 1,
+   "importance": 3,
+   "group": "리눅스",
+   "summary": "Multipass를 설치하고 내 컴퓨터 안에 Ubuntu 가상 머신 하나를 만들어 들어가 보고 다 쓰면 지우는 과정이다.",
+   "objectives": [
+    "Multipass가 내 컴퓨터 안에 연습용 Ubuntu 컴퓨터를 만들어 주는 도구임을 설명할 수 있다",
+    "Multipass를 설치하고 첫 인스턴스를 띄워 그 안의 명령 창에 들어갈 수 있다",
+    "만든 인스턴스 목록을 보고 다 쓴 인스턴스를 지울 수 있다"
+   ],
+   "prerequisites": [
+    "ops.linux.what-is-linux"
+   ],
+   "aliases": [
+    "Multipass",
+    "멀티패스",
+    "multipass launch",
+    "Multipass 인스턴스",
+    "Ubuntu VM 만들기"
+   ],
+   "refs": [
+    "https://canonical.com/multipass/docs/en/latest/tutorial/getting-started/"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.observe.monitoring-idea",
    "title": "모니터링",
    "en": "Monitoring",
@@ -47323,6 +47945,163 @@
    "domain": "ops"
   },
   {
+   "id": "ops.basics.container-image",
+   "title": "컨테이너 이미지",
+   "en": "Container Image",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "배포 기초",
+   "summary": "컨테이너를 만들 때 쓰는 틀로, 프로그램과 실행에 필요한 파일·설정을 한데 묶어 두고 한 번 만들면 바꾸지 않는다.",
+   "aliases": [
+    "컨테이너 이미지",
+    "container image",
+    "Docker image"
+   ],
+   "refs": [
+    "https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-an-image/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.control-plane",
+   "title": "Kubernetes 컨트롤 플레인",
+   "en": "Kubernetes Control Plane",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "Kubernetes 클러스터 전체의 상태를 지켜보고 어느 노드에서 무엇을 돌릴지 정하는 관제탑 부분이다.",
+   "related": [
+    "ops.k8s.cluster-node"
+   ],
+   "aliases": [
+    "컨트롤 플레인",
+    "control plane",
+    "쿠버네티스 컨트롤 플레인",
+    "k8s 컨트롤 플레인",
+    "마스터 노드"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/overview/components/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.desired-state",
+   "title": "원하는 상태(Kubernetes)",
+   "en": "Desired State in Kubernetes",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "\"이 앱을 세 개 띄워 둬\"처럼 사람이 적어 두는 목표 모습으로, Kubernetes는 실제 모습이 이것과 다르면 계속 맞춰 간다.",
+   "parent": "ops.k8s.idea",
+   "aliases": [
+    "원하는 상태",
+    "desired state",
+    "선언한 상태",
+    "Kubernetes desired state"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/overview/working-with-objects/",
+    "https://kubernetes.io/docs/concepts/overview/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.self-healing",
+   "title": "자가 치유(Kubernetes)",
+   "en": "Self-Healing in Kubernetes",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "멈추거나 응답하지 않는 컨테이너를 Kubernetes가 알아채고 사람 손 없이 다시 띄우거나 바꿔 넣는 성질이다.",
+   "parent": "ops.k8s.idea",
+   "aliases": [
+    "자가 치유",
+    "self-healing",
+    "셀프 힐링",
+    "자동 복구 컨테이너",
+    "Kubernetes 자동 복구"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/overview/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.linux.kernel",
+   "title": "리눅스 커널",
+   "en": "Linux Kernel",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "리눅스",
+   "summary": "리눅스의 한가운데에서 CPU·메모리·장치를 나눠 주고 프로그램이 하드웨어를 쓰게 해 주는 핵심 프로그램이다.",
+   "parent": "ops.linux.what-is-linux",
+   "related": [
+    "ops.linux.distribution"
+   ],
+   "aliases": [
+    "리눅스 커널",
+    "Linux kernel",
+    "리눅스 핵심부"
+   ],
+   "refs": [
+    "https://docs.kernel.org/admin-guide/README.html",
+    "https://www.redhat.com/en/topics/linux/what-is-linux"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.pay-as-you-go",
+   "title": "종량제 요금(클라우드)",
+   "en": "Pay-as-You-Go Cloud Pricing",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "배포 기초",
+   "summary": "수도·전기 요금처럼 클라우드 자원을 쓴 시간과 양만큼만 돈을 내는 요금 방식이다.",
+   "parent": "ops.basics.cloud",
+   "aliases": [
+    "종량제",
+    "pay-as-you-go",
+    "사용량 기반 과금",
+    "쓴 만큼 과금"
+   ],
+   "refs": [
+    "https://aws.amazon.com/what-is-cloud-computing/",
+    "https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-cloud-computing"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.on-premises",
+   "title": "온프레미스",
+   "en": "On-Premises Infrastructure",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "배포 기초",
+   "summary": "서버를 빌리지 않고 회사가 직접 사서 자기 건물이나 데이터 센터에 두고 운영하는 방식이다.",
+   "parent": "ops.basics.cloud",
+   "aliases": [
+    "온프레미스",
+    "on-premises",
+    "온프렘",
+    "on-prem",
+    "자체 서버실",
+    "사내 데이터 센터"
+   ],
+   "refs": [
+    "https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-cloud-computing",
+    "https://aws.amazon.com/what-is-cloud-computing/"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.basics.cloud-service-models",
    "title": "클라우드 서비스 모델(IaaS·PaaS·SaaS)",
    "en": "Cloud Service Models",
@@ -47406,6 +48185,49 @@
    ],
    "refs": [
     "https://docs.docker.com/get-started/docker-overview/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.serverless-function",
+   "title": "서버리스 함수",
+   "en": "Serverless Function",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "배포 기초",
+   "summary": "요청이나 파일 업로드 같은 일이 생길 때만 클라우드에서 잠깐 실행되는 작은 코드 조각이다.",
+   "parent": "ops.basics.serverless-idea",
+   "aliases": [
+    "서버리스 함수",
+    "serverless function",
+    "클라우드 함수",
+    "이벤트 기반 함수"
+   ],
+   "refs": [
+    "https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview",
+    "https://aws.amazon.com/serverless/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.domain-registrar",
+   "title": "도메인 등록 대행자(레지스트라)",
+   "en": "Domain Name Registrar",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "배포 기초",
+   "summary": "도메인 이름을 해마다 빌려 쓰도록 등록해 주는 회사로, 이름은 사는 것이 아니라 기간을 정해 쓸 권리를 받는 것이다.",
+   "aliases": [
+    "도메인 등록 대행자",
+    "domain registrar",
+    "레지스트라",
+    "도메인 등록 업체",
+    "도메인 구매"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_domain_name"
    ],
    "domain": "ops"
   },
@@ -51813,6 +52635,74 @@
    "domain": "ml"
   },
   {
+   "id": "ml.basics.data-bias-types",
+   "title": "데이터에 숨은 편향의 종류",
+   "en": "Types of Bias in ML Data",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "데이터를 모으고 기록하는 방식 때문에 현실과 다른 그림이 담기는 대표적인 경우들을 살펴본다.",
+   "objectives": [
+    "설문 대상을 잘못 고른 예로 선택 편향을 설명할 수 있다",
+    "눈에 띄는 일만 기록되어 생기는 보고 편향을 일상 예로 들 수 있다",
+    "과거 차별이 데이터에 남아 모델로 옮겨 가는 이유를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.data-quality"
+   ],
+   "related": [
+    "ax.governance.harmful-bias",
+    "ax.governance.automation-bias",
+    "ml.eval.fairness-evaluation"
+   ],
+   "aliases": [
+    "데이터 편향",
+    "data bias",
+    "편향의 종류",
+    "types of bias",
+    "ML 데이터 편향"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/fairness/types-of-bias"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.basics.labeling",
+   "title": "레이블 만들기: 데이터에 정답 달기",
+   "en": "Creating Labels for ML Data",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "모델이 배울 정답을 사람이 직접 달지 프로그램이 자동으로 달지 고르고, 그 정답을 믿을 수 있는지 살핀다.",
+   "objectives": [
+    "사람이 단 레이블과 자동으로 만든 레이블의 차이를 예로 설명할 수 있다",
+    "사람이 정답을 달 때 드는 비용과 실수를 일상 비유로 말할 수 있다",
+    "여러 사람이 단 정답을 서로 견주어 보는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.types-of-ml",
+    "ml.basics.data-quality"
+   ],
+   "related": [
+    "ml.basics.labeled-example",
+    "ml.basics.proxy-label"
+   ],
+   "aliases": [
+    "데이터 레이블링",
+    "data labeling",
+    "데이터 라벨링",
+    "데이터 어노테이션",
+    "정답 달기"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/overfitting/labels"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.basics.automl",
    "title": "AutoML: 모델 만들기를 자동으로 맡기기",
    "en": "AutoML",
@@ -51837,6 +52727,40 @@
    ],
    "refs": [
     "https://developers.google.com/machine-learning/crash-course/automl"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.gan-idea",
+   "title": "GAN: 위조범과 감정사가 겨루며 배우는 AI",
+   "en": "Generative Adversarial Networks (GAN) Overview",
+   "kind": "topic",
+   "level": 1,
+   "importance": 3,
+   "group": "딥러닝",
+   "summary": "가짜를 만드는 쪽과 가려내는 쪽 두 신경망이 서로 겨루면서 진짜 같은 새 데이터를 만들어 내는 방식이다.",
+   "objectives": [
+    "생성자와 판별자가 각각 맡는 일을 위조범과 감정사에 빗대어 설명할 수 있다",
+    "두 쪽이 겨룰수록 만든 결과가 진짜에 가까워지는 흐름을 말할 수 있다",
+    "새 데이터를 만드는 모델과 종류를 가려내는 모델의 차이를 예로 들 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.ai-ml-dl",
+    "ml.basics.types-of-ml"
+   ],
+   "related": [
+    "ax.governance.deepfake",
+    "llm.basics.image-generation"
+   ],
+   "aliases": [
+    "GAN",
+    "생성적 적대 신경망",
+    "적대적 생성 신경망",
+    "generative adversarial network"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/gan/gan_structure",
+    "https://developers.google.com/machine-learning/gan/generative"
    ],
    "domain": "ml"
   },
@@ -52030,6 +52954,148 @@
    "domain": "ml"
   },
   {
+   "id": "ml.basics.selection-bias",
+   "title": "선택 편향",
+   "en": "Selection Bias (ML Data)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "데이터로 고른 사례가 실제 전체와 다른 방식으로 뽑혀서 결론이 한쪽으로 기우는 편향이다.",
+   "parent": "ml.basics.data-bias-types",
+   "related": [
+    "ml.basics.reporting-bias"
+   ],
+   "aliases": [
+    "표본 선택 편향",
+    "선택 바이어스",
+    "selection bias"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/fairness/types-of-bias",
+    "https://developers.google.com/machine-learning/glossary"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.basics.reporting-bias",
+   "title": "보고 편향",
+   "en": "Reporting Bias (ML Data)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "사람들이 특이하거나 기억에 남는 일만 많이 적어서 데이터 속 빈도가 현실과 달라지는 편향이다.",
+   "parent": "ml.basics.data-bias-types",
+   "related": [
+    "ml.basics.selection-bias"
+   ],
+   "aliases": [
+    "보고 바이어스",
+    "reporting bias"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/fairness/types-of-bias",
+    "https://developers.google.com/machine-learning/glossary"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.basics.historical-bias",
+   "title": "역사적 편향",
+   "en": "Historical Bias (ML Data)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "데이터를 모은 시절의 차별이나 고정관념이 기록에 그대로 남아 모델이 따라 배우게 되는 편향이다.",
+   "parent": "ml.basics.data-bias-types",
+   "aliases": [
+    "역사 편향",
+    "historical bias",
+    "과거 데이터 편향"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/fairness/types-of-bias",
+    "https://developers.google.com/machine-learning/glossary"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.basics.human-rater",
+   "title": "레이블 평가자(rater)",
+   "en": "Rater (Human Labeler)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "학습 데이터의 사례를 보고 정답 레이블을 직접 달아 주는 사람이다.",
+   "parent": "ml.basics.labeling",
+   "related": [
+    "ml.basics.inter-rater-agreement"
+   ],
+   "aliases": [
+    "사람 평가자",
+    "human rater",
+    "레이블 작업자",
+    "annotator",
+    "어노테이터"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/overfitting/labels",
+    "https://developers.google.com/machine-learning/glossary"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.basics.recommendation-cold-start",
+   "title": "추천 시스템의 콜드 스타트",
+   "en": "Cold-Start Problem (Recommendation Systems)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "새로 들어온 상품이나 사용자는 쌓인 기록이 없어서 추천 시스템이 취향을 짐작하기 어려운 문제다.",
+   "related": [
+    "ml.basics.collaborative-filtering",
+    "ml.basics.content-based-filtering"
+   ],
+   "aliases": [
+    "추천 콜드 스타트",
+    "recommendation cold start",
+    "신규 아이템 문제",
+    "신규 사용자 문제"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/recommendation/collaborative/summary"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.basics.semi-supervised-learning",
+   "title": "준지도 학습",
+   "en": "Semi-Supervised Learning",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "정답이 달린 적은 데이터와 정답 없는 많은 데이터를 함께 써서 모델을 학습시키는 방식이다.",
+   "related": [
+    "ml.basics.labeled-example",
+    "llm.basics.self-supervised-learning"
+   ],
+   "aliases": [
+    "semi-supervised learning",
+    "반지도 학습",
+    "세미 지도 학습",
+    "준지도학습"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/glossary"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.basics.reinforcement-learning",
    "title": "강화 학습",
    "en": "Reinforcement Learning",
@@ -52110,6 +53176,101 @@
    "refs": [
     "https://developers.google.com/machine-learning/recommendation/overview/types",
     "https://developers.google.com/machine-learning/glossary"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.gan-generator",
+   "title": "생성자(GAN)",
+   "en": "Generator (GAN)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "딥러닝",
+   "summary": "GAN에서 판별자를 속일 만큼 그럴듯한 새 데이터를 만들어 내는 쪽 신경망이다.",
+   "parent": "ml.nn.gan-idea",
+   "related": [
+    "ml.nn.gan-discriminator"
+   ],
+   "aliases": [
+    "GAN 생성자",
+    "generator network",
+    "생성기 네트워크"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/gan/gan_structure",
+    "https://developers.google.com/machine-learning/glossary"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.gan-discriminator",
+   "title": "판별자(GAN)",
+   "en": "Discriminator (GAN)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "딥러닝",
+   "summary": "GAN에서 들어온 데이터가 진짜인지 생성자가 만든 가짜인지 가려내는 쪽 신경망이다.",
+   "parent": "ml.nn.gan-idea",
+   "related": [
+    "ml.nn.gan-generator"
+   ],
+   "aliases": [
+    "GAN 판별자",
+    "discriminator network",
+    "판별기 네트워크"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/gan/gan_structure"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.basics.inter-rater-agreement",
+   "title": "평가자 간 일치도",
+   "en": "Inter-Rater Agreement (Labeling)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "여러 평가자가 같은 사례에 같은 정답을 얼마나 자주 다는지 보는 값으로, 낮으면 작업 안내가 모호하다는 신호다.",
+   "parent": "ml.basics.labeling",
+   "related": [
+    "ml.basics.human-rater"
+   ],
+   "aliases": [
+    "inter-rater agreement",
+    "inter-annotator agreement",
+    "레이블 일치도",
+    "평가자 일치도"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/glossary",
+    "https://developers.google.com/machine-learning/crash-course/overfitting/labels"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.basics.recommendation-scoring",
+   "title": "스코어링(추천 점수 매기기)",
+   "en": "Scoring (Recommendation Systems)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "추천 후보를 좁힌 뒤 다른 모델이 각 후보에 점수를 매겨 보여 줄 몇 개를 고르는 단계다.",
+   "parent": "ml.basics.recommendation-systems",
+   "related": [
+    "ml.basics.candidate-generation"
+   ],
+   "aliases": [
+    "추천 스코어링",
+    "recommendation scoring",
+    "추천 점수화"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/recommendation/overview/types"
    ],
    "domain": "ml"
   },
@@ -56363,6 +57524,40 @@
    "domain": "mlops"
   },
   {
+   "id": "mlops.basics.automation-levels",
+   "title": "MLOps 자동화 단계: 수작업에서 자동 재학습까지",
+   "en": "MLOps Automation Levels: From Manual Process to Continuous Training",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "모델을 사람이 손으로 가르치고 내놓는 단계에서, 정해진 신호가 오면 다시 가르치고 내놓는 일이 저절로 돌아가는 단계까지 MLOps가 자라는 모습이다.",
+   "objectives": [
+    "수작업 단계와 자동 파이프라인 단계의 차이를 손으로 빵 굽기와 제빵 공장에 빗대어 설명할 수 있다",
+    "한 번 가르쳐 오래 쓰는 방식과 자주 다시 가르치는 방식을 일상 예로 구분할 수 있다",
+    "모델을 다시 가르치게 만드는 신호를 두 가지 이상 말할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.basics.what-is-mlops",
+    "mlops.basics.ml-system-picture"
+   ],
+   "related": [
+    "ops.ci.cicd-idea"
+   ],
+   "aliases": [
+    "MLOps 성숙도",
+    "MLOps maturity",
+    "MLOps 레벨",
+    "MLOps level 0",
+    "ML 자동화 수준"
+   ],
+   "refs": [
+    "https://docs.cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning",
+    "https://developers.google.com/machine-learning/crash-course/production-ml-systems/static-vs-dynamic-training"
+   ],
+   "domain": "mlops"
+  },
+  {
    "id": "mlops.guardrail.guardrail",
    "title": "가드레일",
    "en": "Guardrails",
@@ -56515,6 +57710,53 @@
    ],
    "refs": [
     "https://mlflow.org/docs/latest/genai/tracing/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.basics.continuous-training",
+   "title": "지속적 학습(CT)",
+   "en": "Continuous Training (CT) in MLOps",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "새 데이터나 성능 저하 같은 신호가 오면 사람이 손대지 않아도 모델을 다시 가르쳐 내놓는 흐름이 저절로 돌게 하는 일이다.",
+   "parent": "mlops.basics.automation-levels",
+   "related": [
+    "mlops.basics.retraining",
+    "ops.ci.continuous-deployment"
+   ],
+   "aliases": [
+    "continuous training",
+    "CT 파이프라인",
+    "자동 재학습"
+   ],
+   "refs": [
+    "https://docs.cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.eval.success-criteria",
+   "title": "평가 성공 기준",
+   "en": "Success Criteria for LLM Evaluation",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "AI 기능이 잘 됐다고 말하려면 넘어야 할 선을 '정확도 몇 퍼센트 이상'처럼 구체적이고 잴 수 있게 미리 적어 둔 것이다.",
+   "parent": "mlops.eval.why-evaluate",
+   "related": [
+    "plan.basics.success-metrics"
+   ],
+   "aliases": [
+    "성공 기준",
+    "success criteria",
+    "eval success criteria"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests"
    ],
    "domain": "mlops"
   },
@@ -56678,6 +57920,155 @@
    "refs": [
     "https://developers.google.com/machine-learning/crash-course/production-ml-systems/monitoring"
    ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.basics.retraining-trigger",
+   "title": "재학습 트리거",
+   "en": "Retraining Triggers for ML Models",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "정해진 날짜, 새 데이터 도착, 성적 하락, 들어오는 데이터의 변화처럼 모델을 다시 가르치기 시작하게 만드는 신호다.",
+   "parent": "mlops.basics.automation-levels",
+   "related": [
+    "mlops.observe.drift",
+    "mlops.basics.retraining"
+   ],
+   "aliases": [
+    "재학습 트리거",
+    "retraining trigger",
+    "재학습 조건",
+    "재학습 시점"
+   ],
+   "refs": [
+    "https://docs.cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.basics.static-training",
+   "title": "정적 학습(한 번 학습)",
+   "en": "Static Training (Offline Training) of ML Models",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "모델을 한 번 가르쳐 만든 그대로 한동안 계속 쓰는 방식으로, 단순하지만 세상이 바뀌면 낡기 쉽다.",
+   "parent": "mlops.basics.automation-levels",
+   "related": [
+    "mlops.basics.dynamic-training",
+    "mlops.observe.model-freshness"
+   ],
+   "aliases": [
+    "정적 학습",
+    "static training",
+    "offline training",
+    "오프라인 모델 학습"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/production-ml-systems/static-vs-dynamic-training"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.basics.dynamic-training",
+   "title": "동적 학습(계속 학습)",
+   "en": "Dynamic Training (Online Training) of ML Models",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "모델을 자주 또는 쉬지 않고 다시 가르쳐 늘 가장 새 판을 쓰는 방식으로, 변화에 잘 맞추지만 손이 많이 간다.",
+   "parent": "mlops.basics.automation-levels",
+   "related": [
+    "mlops.basics.static-training",
+    "mlops.basics.continuous-training"
+   ],
+   "aliases": [
+    "동적 학습",
+    "dynamic training",
+    "online training",
+    "온라인 모델 학습"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/production-ml-systems/static-vs-dynamic-training"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.eval.edge-case",
+   "title": "엣지 케이스(평가용 까다로운 사례)",
+   "en": "Edge Cases in LLM Test Sets",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "없거나 엉뚱한 입력, 아주 긴 글, 엉뚱하거나 해로운 질문처럼 드물지만 AI가 헷갈리기 쉬운 경우로, 평가 문제에 일부러 섞어 넣는다.",
+   "parent": "mlops.eval.why-evaluate",
+   "aliases": [
+    "엣지 케이스",
+    "eval edge case",
+    "경계 사례",
+    "까다로운 입력"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.eval.baseline-model",
+   "title": "기준선 모델(비교 기준)",
+   "en": "Baseline Model for Comparison",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "새 모델이 정말 나아졌는지 보려고 나란히 세워 비교하는 잣대로, 지금 쓰는 모델이나 아주 단순한 규칙이 그 자리에 선다.",
+   "parent": "mlops.eval.why-evaluate",
+   "related": [
+    "plan.basics.metric-baseline",
+    "mlops.serve.pre-serving-validation"
+   ],
+   "aliases": [
+    "기준선 모델",
+    "baseline model",
+    "베이스라인 모델",
+    "비교 기준 모델"
+   ],
+   "refs": [
+    "https://docs.cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning",
+    "https://developers.google.com/machine-learning/crash-course/production-ml-systems/deployment-testing"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.guardrail.vector-embedding-weakness",
+   "title": "벡터·임베딩 약점(LLM08)",
+   "en": "Vector and Embedding Weaknesses (OWASP LLM08)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "AI가 참고하려고 모아 둔 자료 창고에 몰래 심은 글이 섞이거나 남의 자료가 잘못 꺼내져 답이 비틀리거나 비밀이 새는 위험이다.",
+   "parent": "mlops.guardrail.llm-top10-overview",
+   "related": [
+    "ax.security.rag-access-control",
+    "ax.security.data-poisoning"
+   ],
+   "aliases": [
+    "벡터 임베딩 약점",
+    "vector and embedding weaknesses",
+    "LLM08",
+    "LLM08:2025"
+   ],
+   "refs": [
+    "https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
    "domain": "mlops"
   },
   {

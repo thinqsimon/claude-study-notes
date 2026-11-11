@@ -263,6 +263,43 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "ax.basics.chat-data-training",
+    "title": "내 대화가 AI 학습에 쓰일까: 데이터 설정 확인",
+    "en": "Is My Chat Used for AI Training? Checking Data Settings",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "AI 챗봇에 쓴 대화는 계정 종류와 설정에 따라 다음 모델을 가르치는 재료가 될 수 있으니 설정을 보고 직접 고른다.",
+    "objectives": [
+      "내 대화가 AI 학습에 쓰일 수 있는 경우를 일상 비유로 설명할 수 있다",
+      "개인 계정의 개인정보 설정에서 학습 사용 여부를 찾아 바꿀 수 있다",
+      "개인용 계정과 회사용 계정에서 대화 데이터를 다루는 방식이 다르다는 점을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.basics.personal-data",
+      "llm.basics.first-chat"
+    ],
+    "related": [
+      "ax.coding.agent-data-usage",
+      "llm.basics.incognito-chat",
+      "ax.governance.ai-training-opt-out"
+    ],
+    "aliases": [
+      "AI 학습 데이터 설정",
+      "대화 학습 사용",
+      "챗봇 데이터 설정",
+      "chat data training",
+      "학습에 쓰이는 대화"
+    ],
+    "refs": [
+      "https://privacy.claude.com/en/articles/10023580-is-my-data-used-for-model-training",
+      "https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "ax.governance.harmful-bias",
     "title": "AI 편향(harmful bias)",
     "en": "Harmful Bias in AI",
@@ -476,6 +513,159 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "ax.basics.model-improvement-setting",
+    "title": "모델 개선 설정(학습 사용 허용)",
+    "en": "Model Improvement Setting (Training Opt-in)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "개인 계정의 대화를 AI 회사가 다음 모델 학습에 써도 되는지 사용자가 켜고 끄는 개인정보 설정이다.",
+    "parent": "ax.basics.chat-data-training",
+    "aliases": [
+      "모델 개선 설정",
+      "Model Improvement",
+      "학습 사용 허용",
+      "학습 데이터 제공 설정",
+      "대화 학습 끄기"
+    ],
+    "refs": [
+      "https://privacy.claude.com/en/articles/10023580-is-my-data-used-for-model-training"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.basics.consumer-vs-commercial-data",
+    "title": "개인용과 업무용 AI 계정의 데이터 차이",
+    "en": "Consumer vs Commercial AI Accounts and Data Use",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "개인 요금제는 설정에 따라 대화가 학습에 쓰일 수 있지만 회사용 요금제와 API는 기본적으로 학습에 쓰지 않는다는 구분이다.",
+    "parent": "ax.basics.chat-data-training",
+    "aliases": [
+      "개인용 계정 업무용 계정",
+      "consumer vs commercial",
+      "상업용 약관 학습",
+      "회사용 AI 계정",
+      "업무용 요금제 데이터"
+    ],
+    "refs": [
+      "https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.governance.valid-reliable",
+    "title": "유효성과 신뢰성(valid and reliable)",
+    "en": "Valid and Reliable AI (Trustworthiness Characteristic)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "AI가 정해진 목적대로 맞는 결과를 내고, 시간이 지나거나 상황이 바뀌어도 그 성능을 꾸준히 지키는 성질이다.",
+    "parent": "ax.governance.trustworthy-ai",
+    "aliases": [
+      "AI 유효성",
+      "AI 신뢰성",
+      "valid and reliable",
+      "유효하고 신뢰할 수 있는 AI"
+    ],
+    "refs": [
+      "https://airc.nist.gov/airmf-resources/airmf/3-sec-characteristics/"
+    ]
+  },
+  {
+    "id": "ax.governance.ai-safe",
+    "title": "AI 안전성(safe)",
+    "en": "Safe AI (Trustworthiness Characteristic)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "AI가 사람의 생명·건강·재산이나 환경을 위험에 빠뜨리지 않도록 만들고 쓰는 성질이다.",
+    "parent": "ax.governance.trustworthy-ai",
+    "aliases": [
+      "AI 안전성",
+      "안전한 AI",
+      "safe AI",
+      "AI safety characteristic"
+    ],
+    "refs": [
+      "https://airc.nist.gov/airmf-resources/airmf/3-sec-characteristics/"
+    ]
+  },
+  {
+    "id": "ax.governance.secure-resilient",
+    "title": "보안과 복원력(secure and resilient)",
+    "en": "Secure and Resilient AI (Trustworthiness Characteristic)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "AI가 공격으로부터 데이터와 기능을 지키고, 뜻밖의 일이 생겨도 버티거나 무리 없이 회복하는 성질이다.",
+    "parent": "ax.governance.trustworthy-ai",
+    "aliases": [
+      "AI 복원력",
+      "AI 회복력",
+      "secure and resilient",
+      "AI resilience"
+    ],
+    "refs": [
+      "https://airc.nist.gov/airmf-resources/airmf/3-sec-characteristics/"
+    ]
+  },
+  {
+    "id": "ax.governance.accountable-transparent",
+    "title": "책임성과 투명성(accountable and transparent)",
+    "en": "Accountable and Transparent AI (Trustworthiness Characteristic)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "AI가 어떻게 만들어지고 무엇을 내놓는지 사람들이 알 수 있게 하고, 문제가 생기면 누가 책임지는지 분명히 하는 성질이다.",
+    "parent": "ax.governance.trustworthy-ai",
+    "related": [
+      "ax.governance.explainability"
+    ],
+    "aliases": [
+      "AI 책임성",
+      "AI 투명성",
+      "accountable and transparent",
+      "AI accountability",
+      "AI transparency"
+    ],
+    "refs": [
+      "https://airc.nist.gov/airmf-resources/airmf/3-sec-characteristics/"
+    ]
+  },
+  {
+    "id": "ax.governance.family-safe-word",
+    "title": "가족 확인 암호(딥페이크 사기 대비)",
+    "en": "Family Secret Word Against Deepfake Scams",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "가족끼리 미리 정해 둔 비밀 단어로, AI로 흉내 낸 목소리나 영상이 급히 돈을 요구할 때 진짜 가족인지 확인하는 방법이다.",
+    "parent": "ax.governance.deepfake",
+    "related": [
+      "ax.governance.voice-cloning"
+    ],
+    "aliases": [
+      "가족 암호",
+      "가족 비밀 단어",
+      "family safe word",
+      "가족 확인 질문"
+    ],
+    "refs": [
+      "https://www.ic3.gov/PSA/2024/PSA241203"
+    ]
+  },
+  {
     "id": "ax.governance.oecd-ai-principles",
     "title": "OECD AI 원칙",
     "en": "OECD AI Principles",
@@ -538,6 +728,52 @@
     ],
     "refs": [
       "https://oecd.ai/en/incidents"
+    ]
+  },
+  {
+    "id": "ax.basics.chat-feedback-retention",
+    "title": "좋아요·싫어요 피드백과 대화 보관",
+    "en": "Thumbs Feedback and Conversation Retention",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "답에 좋아요나 싫어요를 누르면 그 대화 전체가 회사에 보내져 오래 보관되고 학습에 쓰일 수 있다.",
+    "parent": "ax.basics.chat-data-training",
+    "aliases": [
+      "좋아요 싫어요 버튼",
+      "thumbs up down feedback",
+      "대화 피드백 보관",
+      "답변 평가 버튼"
+    ],
+    "refs": [
+      "https://privacy.claude.com/en/articles/10023580-is-my-data-used-for-model-training",
+      "https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "ax.governance.privacy-enhanced",
+    "title": "프라이버시 강화(privacy-enhanced)",
+    "en": "Privacy-Enhanced AI (Trustworthiness Characteristic)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "AI가 사람의 자기 정보에 대한 통제와 존엄을 지키도록 개인을 알아보기 어렵게 하는 기법 등을 쓰는 성질이다.",
+    "parent": "ax.governance.trustworthy-ai",
+    "related": [
+      "ax.basics.personal-data"
+    ],
+    "aliases": [
+      "프라이버시 강화 AI",
+      "privacy-enhanced AI",
+      "AI 프라이버시 보호",
+      "프라이버시 친화 AI"
+    ],
+    "refs": [
+      "https://airc.nist.gov/airmf-resources/airmf/3-sec-characteristics/"
     ]
   },
   {

@@ -209,6 +209,92 @@
     ]
   },
   {
+    "id": "ops.basics.serverless-idea",
+    "title": "서버리스: 서버 관리 없이 코드만 올리기",
+    "en": "The Idea of Serverless Computing",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "배포 기초",
+    "summary": "서버를 준비하고 돌보는 일은 클라우드 회사에 맡기고, 내가 쓴 코드만 올려 필요할 때 돌아가게 하는 방식이다.",
+    "objectives": [
+      "서버리스를 택시 호출에 빗대어 내 차를 두는 것과의 차이를 설명할 수 있다",
+      "서버리스에서도 서버가 사라지는 것이 아니라 관리를 맡기는 것임을 말할 수 있다",
+      "파일 업로드나 정해진 시각 같은 일이 생길 때 코드가 돌아가는 예를 들 수 있다"
+    ],
+    "prerequisites": [
+      "ops.basics.cloud"
+    ],
+    "aliases": [
+      "서버리스",
+      "serverless",
+      "서버리스 컴퓨팅",
+      "serverless computing",
+      "서버 없는 실행"
+    ],
+    "refs": [
+      "https://aws.amazon.com/serverless/",
+      "https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview"
+    ]
+  },
+  {
+    "id": "ops.linux.wsl-install",
+    "title": "WSL 설치와 첫 실행: Windows에서 리눅스 쓰기",
+    "en": "Installing and First Launching WSL on Windows",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "Windows 컴퓨터에 WSL을 설치해 따로 컴퓨터를 두지 않고도 Ubuntu 같은 리눅스를 켜 보는 과정이다.",
+    "objectives": [
+      "WSL이 Windows 안에서 리눅스를 돌려 주는 기능임을 설명할 수 있다",
+      "관리자 PowerShell에서 설치 명령 한 줄로 WSL과 Ubuntu를 설치할 수 있다",
+      "처음 켠 리눅스에서 사용자 이름과 비밀번호를 만들고 명령 창이 열린 것을 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.linux.what-is-linux"
+    ],
+    "aliases": [
+      "WSL",
+      "Windows Subsystem for Linux",
+      "WSL 설치",
+      "윈도우 리눅스 하위 시스템",
+      "wsl --install"
+    ],
+    "refs": [
+      "https://learn.microsoft.com/en-us/windows/wsl/about",
+      "https://learn.microsoft.com/en-us/windows/wsl/install"
+    ]
+  },
+  {
+    "id": "ops.linux.multipass-first-vm",
+    "title": "Multipass로 Ubuntu 가상 머신 처음 띄우기",
+    "en": "Launching a First Ubuntu VM with Multipass",
+    "kind": "topic",
+    "level": 1,
+    "importance": 3,
+    "group": "리눅스",
+    "summary": "Multipass를 설치하고 내 컴퓨터 안에 Ubuntu 가상 머신 하나를 만들어 들어가 보고 다 쓰면 지우는 과정이다.",
+    "objectives": [
+      "Multipass가 내 컴퓨터 안에 연습용 Ubuntu 컴퓨터를 만들어 주는 도구임을 설명할 수 있다",
+      "Multipass를 설치하고 첫 인스턴스를 띄워 그 안의 명령 창에 들어갈 수 있다",
+      "만든 인스턴스 목록을 보고 다 쓴 인스턴스를 지울 수 있다"
+    ],
+    "prerequisites": [
+      "ops.linux.what-is-linux"
+    ],
+    "aliases": [
+      "Multipass",
+      "멀티패스",
+      "multipass launch",
+      "Multipass 인스턴스",
+      "Ubuntu VM 만들기"
+    ],
+    "refs": [
+      "https://canonical.com/multipass/docs/en/latest/tutorial/getting-started/"
+    ]
+  },
+  {
     "id": "ops.observe.monitoring-idea",
     "title": "모니터링",
     "en": "Monitoring",
@@ -369,6 +455,156 @@
     ]
   },
   {
+    "id": "ops.basics.container-image",
+    "title": "컨테이너 이미지",
+    "en": "Container Image",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "배포 기초",
+    "summary": "컨테이너를 만들 때 쓰는 틀로, 프로그램과 실행에 필요한 파일·설정을 한데 묶어 두고 한 번 만들면 바꾸지 않는다.",
+    "aliases": [
+      "컨테이너 이미지",
+      "container image",
+      "Docker image"
+    ],
+    "refs": [
+      "https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-an-image/"
+    ]
+  },
+  {
+    "id": "ops.k8s.control-plane",
+    "title": "Kubernetes 컨트롤 플레인",
+    "en": "Kubernetes Control Plane",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "Kubernetes 클러스터 전체의 상태를 지켜보고 어느 노드에서 무엇을 돌릴지 정하는 관제탑 부분이다.",
+    "related": [
+      "ops.k8s.cluster-node"
+    ],
+    "aliases": [
+      "컨트롤 플레인",
+      "control plane",
+      "쿠버네티스 컨트롤 플레인",
+      "k8s 컨트롤 플레인",
+      "마스터 노드"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/overview/components/"
+    ]
+  },
+  {
+    "id": "ops.k8s.desired-state",
+    "title": "원하는 상태(Kubernetes)",
+    "en": "Desired State in Kubernetes",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "\"이 앱을 세 개 띄워 둬\"처럼 사람이 적어 두는 목표 모습으로, Kubernetes는 실제 모습이 이것과 다르면 계속 맞춰 간다.",
+    "parent": "ops.k8s.idea",
+    "aliases": [
+      "원하는 상태",
+      "desired state",
+      "선언한 상태",
+      "Kubernetes desired state"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/overview/working-with-objects/",
+      "https://kubernetes.io/docs/concepts/overview/"
+    ]
+  },
+  {
+    "id": "ops.k8s.self-healing",
+    "title": "자가 치유(Kubernetes)",
+    "en": "Self-Healing in Kubernetes",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "멈추거나 응답하지 않는 컨테이너를 Kubernetes가 알아채고 사람 손 없이 다시 띄우거나 바꿔 넣는 성질이다.",
+    "parent": "ops.k8s.idea",
+    "aliases": [
+      "자가 치유",
+      "self-healing",
+      "셀프 힐링",
+      "자동 복구 컨테이너",
+      "Kubernetes 자동 복구"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/overview/"
+    ]
+  },
+  {
+    "id": "ops.linux.kernel",
+    "title": "리눅스 커널",
+    "en": "Linux Kernel",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "리눅스의 한가운데에서 CPU·메모리·장치를 나눠 주고 프로그램이 하드웨어를 쓰게 해 주는 핵심 프로그램이다.",
+    "parent": "ops.linux.what-is-linux",
+    "related": [
+      "ops.linux.distribution"
+    ],
+    "aliases": [
+      "리눅스 커널",
+      "Linux kernel",
+      "리눅스 핵심부"
+    ],
+    "refs": [
+      "https://docs.kernel.org/admin-guide/README.html",
+      "https://www.redhat.com/en/topics/linux/what-is-linux"
+    ]
+  },
+  {
+    "id": "ops.basics.pay-as-you-go",
+    "title": "종량제 요금(클라우드)",
+    "en": "Pay-as-You-Go Cloud Pricing",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "배포 기초",
+    "summary": "수도·전기 요금처럼 클라우드 자원을 쓴 시간과 양만큼만 돈을 내는 요금 방식이다.",
+    "parent": "ops.basics.cloud",
+    "aliases": [
+      "종량제",
+      "pay-as-you-go",
+      "사용량 기반 과금",
+      "쓴 만큼 과금"
+    ],
+    "refs": [
+      "https://aws.amazon.com/what-is-cloud-computing/",
+      "https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-cloud-computing"
+    ]
+  },
+  {
+    "id": "ops.basics.on-premises",
+    "title": "온프레미스",
+    "en": "On-Premises Infrastructure",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "배포 기초",
+    "summary": "서버를 빌리지 않고 회사가 직접 사서 자기 건물이나 데이터 센터에 두고 운영하는 방식이다.",
+    "parent": "ops.basics.cloud",
+    "aliases": [
+      "온프레미스",
+      "on-premises",
+      "온프렘",
+      "on-prem",
+      "자체 서버실",
+      "사내 데이터 센터"
+    ],
+    "refs": [
+      "https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-cloud-computing",
+      "https://aws.amazon.com/what-is-cloud-computing/"
+    ]
+  },
+  {
     "id": "ops.basics.cloud-service-models",
     "title": "클라우드 서비스 모델(IaaS·PaaS·SaaS)",
     "en": "Cloud Service Models",
@@ -449,6 +685,47 @@
     ],
     "refs": [
       "https://docs.docker.com/get-started/docker-overview/"
+    ]
+  },
+  {
+    "id": "ops.basics.serverless-function",
+    "title": "서버리스 함수",
+    "en": "Serverless Function",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "배포 기초",
+    "summary": "요청이나 파일 업로드 같은 일이 생길 때만 클라우드에서 잠깐 실행되는 작은 코드 조각이다.",
+    "parent": "ops.basics.serverless-idea",
+    "aliases": [
+      "서버리스 함수",
+      "serverless function",
+      "클라우드 함수",
+      "이벤트 기반 함수"
+    ],
+    "refs": [
+      "https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview",
+      "https://aws.amazon.com/serverless/"
+    ]
+  },
+  {
+    "id": "ops.basics.domain-registrar",
+    "title": "도메인 등록 대행자(레지스트라)",
+    "en": "Domain Name Registrar",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "배포 기초",
+    "summary": "도메인 이름을 해마다 빌려 쓰도록 등록해 주는 회사로, 이름은 사는 것이 아니라 기간을 정해 쓸 권리를 받는 것이다.",
+    "aliases": [
+      "도메인 등록 대행자",
+      "domain registrar",
+      "레지스트라",
+      "도메인 등록 업체",
+      "도메인 구매"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_domain_name"
     ]
   },
   {

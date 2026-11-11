@@ -215,6 +215,103 @@
     ]
   },
   {
+    "id": "db.basics.data-modeling-idea",
+    "title": "데이터 모델링: 무엇을 어떻게 담을지 정하기",
+    "en": "The Idea of Data Modeling",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "DB 기초",
+    "summary": "자료를 넣기 전에 다룰 대상과 그 대상들이 서로 어떻게 이어지는지를 먼저 그려 보는 일이다.",
+    "objectives": [
+      "학생·수업처럼 현실의 대상을 데이터베이스에 담을 덩어리로 나누어 말할 수 있다",
+      "일대일·일대다·다대다 관계를 일상의 예로 설명할 수 있다",
+      "자료를 넣기 전에 대상과 관계를 먼저 그려 보는 이유를 집 설계도에 빗대어 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "db.basics.table-row-column"
+    ],
+    "related": [
+      "db.basics.relational-database",
+      "db.nosql.document"
+    ],
+    "aliases": [
+      "데이터 모델링",
+      "data modeling",
+      "DB 모델링",
+      "자료 설계"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/data-modeling/"
+    ]
+  },
+  {
+    "id": "db.basics.managed-database",
+    "title": "관리형 데이터베이스: 운영을 맡기는 DB",
+    "en": "Managed Database Services",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "DB 기초",
+    "summary": "설치·백업·업데이트·고장 복구 같은 DB 운영 일을 클라우드 회사가 대신 맡아 주고 사용자는 자료와 앱에 집중하는 방식이다.",
+    "objectives": [
+      "DB를 직접 운영할 때와 관리형 서비스를 쓸 때 누가 무슨 일을 맡는지 비유로 말할 수 있다",
+      "관리형 서비스가 맡아 주는 일과 그래도 사용자가 챙겨야 할 일을 구분할 수 있다"
+    ],
+    "prerequisites": [
+      "db.basics.client-server",
+      "db.basics.what-is-database"
+    ],
+    "related": [
+      "ops.basics.cloud-service-models",
+      "db.nosql.atlas-free-cluster",
+      "db.postgres.supabase-table-editor"
+    ],
+    "aliases": [
+      "관리형 DB",
+      "managed database",
+      "DBaaS",
+      "클라우드 데이터베이스",
+      "cloud database"
+    ],
+    "refs": [
+      "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html"
+    ]
+  },
+  {
+    "id": "db.basics.csv-idea",
+    "title": "CSV: 쉼표로 나눈 표 파일",
+    "en": "CSV Files (Comma-Separated Values)",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "DB 기초",
+    "summary": "한 줄에 자료 한 건을 쓰고 칸을 쉼표로 나누어, 표를 글자만으로 담아 두는 가장 흔한 데이터 파일 형식이다.",
+    "objectives": [
+      "CSV 파일의 한 줄과 쉼표가 표의 행과 칸에 어떻게 대응하는지 말할 수 있다",
+      "값 안에 쉼표가 있으면 왜 큰따옴표로 감싸야 하는지 설명할 수 있다",
+      "스프레드시트와 데이터베이스가 CSV로 자료를 주고받는 큰 그림을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "db.basics.table-row-column"
+    ],
+    "related": [
+      "db.sql.sqlite-csv",
+      "db.sql.copy-csv",
+      "be.basics.what-is-json"
+    ],
+    "aliases": [
+      "CSV 파일",
+      "CSV",
+      "comma-separated values",
+      "쉼표 구분 파일",
+      ".csv 파일"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc4180"
+    ]
+  },
+  {
     "id": "db.basics.relational-database",
     "title": "관계형 데이터베이스",
     "en": "Relational Database",
@@ -418,6 +515,119 @@
     ]
   },
   {
+    "id": "db.basics.dbms",
+    "title": "DBMS(데이터베이스 관리 시스템)",
+    "en": "Database Management System (DBMS)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "DB 기초",
+    "summary": "자료 묶음인 데이터베이스를 만들고 지키고 찾아 주는 소프트웨어로, PostgreSQL·MySQL 같은 프로그램을 가리킨다.",
+    "parent": "db.basics.what-is-database",
+    "related": [
+      "db.basics.relational-database"
+    ],
+    "aliases": [
+      "DBMS",
+      "데이터베이스 관리 시스템",
+      "database management system",
+      "DB 관리 시스템"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/tutorial-concepts.html"
+    ]
+  },
+  {
+    "id": "db.basics.concurrent-connections",
+    "title": "동시 접속: 여러 클라이언트를 한꺼번에",
+    "en": "Concurrent Database Connections",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "DB 기초",
+    "summary": "DB 서버는 여러 프로그램의 접속을 한꺼번에 받아, 접속마다 따로 일꾼을 붙여 동시에 부탁을 처리한다.",
+    "parent": "db.basics.client-server",
+    "related": [
+      "db.orm.connection-pool"
+    ],
+    "aliases": [
+      "DB 동시 접속",
+      "concurrent connections",
+      "multiple client connections"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/tutorial-arch.html"
+    ]
+  },
+  {
+    "id": "db.basics.persistence",
+    "title": "데이터 영속성: 꺼져도 남는 자료",
+    "en": "Data Persistence in Databases",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "DB 기초",
+    "summary": "프로그램이나 컴퓨터가 꺼졌다 켜져도 자료가 사라지지 않도록 디스크 같은 오래가는 저장소에 적어 두는 성질이다.",
+    "parent": "db.basics.what-is-database",
+    "related": [
+      "db.cache.in-memory-database",
+      "db.basics.backup"
+    ],
+    "aliases": [
+      "영속성",
+      "데이터 영속성",
+      "data persistence",
+      "DB 영속화"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/"
+    ]
+  },
+  {
+    "id": "db.cache.cache-hit-miss",
+    "title": "캐시 적중과 캐시 미스",
+    "en": "Cache Hit and Cache Miss",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "캐시",
+    "summary": "찾는 자료가 캐시에 있어 바로 내주면 적중, 없어서 원래 저장소까지 가야 하면 미스라 한다.",
+    "parent": "db.cache.cache-idea",
+    "related": [
+      "db.cache.ttl"
+    ],
+    "aliases": [
+      "캐시 히트",
+      "cache hit",
+      "캐시 미스",
+      "cache miss",
+      "캐시 적중률",
+      "cache hit rate"
+    ],
+    "refs": [
+      "https://aws.amazon.com/caching/"
+    ]
+  },
+  {
+    "id": "db.basics.entity",
+    "title": "엔터티: 자료로 담을 대상 하나",
+    "en": "Entity in Data Modeling",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "DB 기초",
+    "summary": "학생·주문·상품처럼 데이터베이스에 따로 기록해 둘 만한 현실의 대상 하나를 가리키는 말이다.",
+    "parent": "db.basics.data-modeling-idea",
+    "aliases": [
+      "엔터티",
+      "엔티티",
+      "데이터 엔터티"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/data-modeling/"
+    ]
+  },
+  {
     "id": "db.nosql.what-is-nosql",
     "title": "NoSQL",
     "en": "NoSQL Databases",
@@ -500,6 +710,72 @@
     "refs": [
       "https://redis.io/docs/latest/get-started/",
       "https://redis.io/docs/latest/develop/get-started/data-store/"
+    ]
+  },
+  {
+    "id": "db.basics.db-driver",
+    "title": "DB 드라이버: 앱과 DB를 잇는 통역기",
+    "en": "Database Driver",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "DB 기초",
+    "summary": "프로그램이 특정 데이터베이스와 말을 주고받을 수 있게 그 DB의 대화 방식을 대신 맡아 주는 작은 라이브러리다.",
+    "related": [
+      "db.orm.what-is-orm",
+      "db.sql.psycopg-basics"
+    ],
+    "aliases": [
+      "DB 드라이버",
+      "database driver",
+      "DBAPI 드라이버",
+      "DB 연결 라이브러리"
+    ],
+    "refs": [
+      "https://docs.sqlalchemy.org/en/20/tutorial/engine.html"
+    ]
+  },
+  {
+    "id": "db.nosql.graph-database",
+    "title": "그래프 데이터베이스",
+    "en": "Graph Database",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "NoSQL",
+    "summary": "사람·물건 같은 점과 그 사이를 잇는 선으로 자료를 담아, 친구 관계처럼 이어짐 자체가 중요한 자료에 쓰는 데이터베이스다.",
+    "related": [
+      "db.nosql.what-is-nosql",
+      "db.basics.relational-database"
+    ],
+    "aliases": [
+      "그래프 DB",
+      "graph database",
+      "그래프형 데이터베이스",
+      "graph DB"
+    ],
+    "refs": [
+      "https://neo4j.com/docs/getting-started/graph-database/"
+    ]
+  },
+  {
+    "id": "db.basics.csv-header",
+    "title": "CSV 머리 줄: 첫 줄의 열 이름",
+    "en": "CSV Header Row",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "DB 기초",
+    "summary": "CSV 파일의 첫 줄에 자료 대신 각 칸의 이름을 적어 두는 줄로, 있어도 되고 없어도 된다.",
+    "parent": "db.basics.csv-idea",
+    "aliases": [
+      "CSV 헤더",
+      "CSV header row",
+      "머리글 행",
+      "CSV 첫 줄"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc4180"
     ]
   },
   {

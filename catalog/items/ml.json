@@ -190,6 +190,72 @@
     ]
   },
   {
+    "id": "ml.basics.data-bias-types",
+    "title": "데이터에 숨은 편향의 종류",
+    "en": "Types of Bias in ML Data",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "데이터를 모으고 기록하는 방식 때문에 현실과 다른 그림이 담기는 대표적인 경우들을 살펴본다.",
+    "objectives": [
+      "설문 대상을 잘못 고른 예로 선택 편향을 설명할 수 있다",
+      "눈에 띄는 일만 기록되어 생기는 보고 편향을 일상 예로 들 수 있다",
+      "과거 차별이 데이터에 남아 모델로 옮겨 가는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.data-quality"
+    ],
+    "related": [
+      "ax.governance.harmful-bias",
+      "ax.governance.automation-bias",
+      "ml.eval.fairness-evaluation"
+    ],
+    "aliases": [
+      "데이터 편향",
+      "data bias",
+      "편향의 종류",
+      "types of bias",
+      "ML 데이터 편향"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/fairness/types-of-bias"
+    ]
+  },
+  {
+    "id": "ml.basics.labeling",
+    "title": "레이블 만들기: 데이터에 정답 달기",
+    "en": "Creating Labels for ML Data",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "모델이 배울 정답을 사람이 직접 달지 프로그램이 자동으로 달지 고르고, 그 정답을 믿을 수 있는지 살핀다.",
+    "objectives": [
+      "사람이 단 레이블과 자동으로 만든 레이블의 차이를 예로 설명할 수 있다",
+      "사람이 정답을 달 때 드는 비용과 실수를 일상 비유로 말할 수 있다",
+      "여러 사람이 단 정답을 서로 견주어 보는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.types-of-ml",
+      "ml.basics.data-quality"
+    ],
+    "related": [
+      "ml.basics.labeled-example",
+      "ml.basics.proxy-label"
+    ],
+    "aliases": [
+      "데이터 레이블링",
+      "data labeling",
+      "데이터 라벨링",
+      "데이터 어노테이션",
+      "정답 달기"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/overfitting/labels"
+    ]
+  },
+  {
     "id": "ml.basics.automl",
     "title": "AutoML: 모델 만들기를 자동으로 맡기기",
     "en": "AutoML",
@@ -214,6 +280,39 @@
     ],
     "refs": [
       "https://developers.google.com/machine-learning/crash-course/automl"
+    ]
+  },
+  {
+    "id": "ml.nn.gan-idea",
+    "title": "GAN: 위조범과 감정사가 겨루며 배우는 AI",
+    "en": "Generative Adversarial Networks (GAN) Overview",
+    "kind": "topic",
+    "level": 1,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "가짜를 만드는 쪽과 가려내는 쪽 두 신경망이 서로 겨루면서 진짜 같은 새 데이터를 만들어 내는 방식이다.",
+    "objectives": [
+      "생성자와 판별자가 각각 맡는 일을 위조범과 감정사에 빗대어 설명할 수 있다",
+      "두 쪽이 겨룰수록 만든 결과가 진짜에 가까워지는 흐름을 말할 수 있다",
+      "새 데이터를 만드는 모델과 종류를 가려내는 모델의 차이를 예로 들 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.ai-ml-dl",
+      "ml.basics.types-of-ml"
+    ],
+    "related": [
+      "ax.governance.deepfake",
+      "llm.basics.image-generation"
+    ],
+    "aliases": [
+      "GAN",
+      "생성적 적대 신경망",
+      "적대적 생성 신경망",
+      "generative adversarial network"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/gan/gan_structure",
+      "https://developers.google.com/machine-learning/gan/generative"
     ]
   },
   {
@@ -397,6 +496,142 @@
     ]
   },
   {
+    "id": "ml.basics.selection-bias",
+    "title": "선택 편향",
+    "en": "Selection Bias (ML Data)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "데이터로 고른 사례가 실제 전체와 다른 방식으로 뽑혀서 결론이 한쪽으로 기우는 편향이다.",
+    "parent": "ml.basics.data-bias-types",
+    "related": [
+      "ml.basics.reporting-bias"
+    ],
+    "aliases": [
+      "표본 선택 편향",
+      "선택 바이어스",
+      "selection bias"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/fairness/types-of-bias",
+      "https://developers.google.com/machine-learning/glossary"
+    ]
+  },
+  {
+    "id": "ml.basics.reporting-bias",
+    "title": "보고 편향",
+    "en": "Reporting Bias (ML Data)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "사람들이 특이하거나 기억에 남는 일만 많이 적어서 데이터 속 빈도가 현실과 달라지는 편향이다.",
+    "parent": "ml.basics.data-bias-types",
+    "related": [
+      "ml.basics.selection-bias"
+    ],
+    "aliases": [
+      "보고 바이어스",
+      "reporting bias"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/fairness/types-of-bias",
+      "https://developers.google.com/machine-learning/glossary"
+    ]
+  },
+  {
+    "id": "ml.basics.historical-bias",
+    "title": "역사적 편향",
+    "en": "Historical Bias (ML Data)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "데이터를 모은 시절의 차별이나 고정관념이 기록에 그대로 남아 모델이 따라 배우게 되는 편향이다.",
+    "parent": "ml.basics.data-bias-types",
+    "aliases": [
+      "역사 편향",
+      "historical bias",
+      "과거 데이터 편향"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/fairness/types-of-bias",
+      "https://developers.google.com/machine-learning/glossary"
+    ]
+  },
+  {
+    "id": "ml.basics.human-rater",
+    "title": "레이블 평가자(rater)",
+    "en": "Rater (Human Labeler)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "학습 데이터의 사례를 보고 정답 레이블을 직접 달아 주는 사람이다.",
+    "parent": "ml.basics.labeling",
+    "related": [
+      "ml.basics.inter-rater-agreement"
+    ],
+    "aliases": [
+      "사람 평가자",
+      "human rater",
+      "레이블 작업자",
+      "annotator",
+      "어노테이터"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/overfitting/labels",
+      "https://developers.google.com/machine-learning/glossary"
+    ]
+  },
+  {
+    "id": "ml.basics.recommendation-cold-start",
+    "title": "추천 시스템의 콜드 스타트",
+    "en": "Cold-Start Problem (Recommendation Systems)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "새로 들어온 상품이나 사용자는 쌓인 기록이 없어서 추천 시스템이 취향을 짐작하기 어려운 문제다.",
+    "related": [
+      "ml.basics.collaborative-filtering",
+      "ml.basics.content-based-filtering"
+    ],
+    "aliases": [
+      "추천 콜드 스타트",
+      "recommendation cold start",
+      "신규 아이템 문제",
+      "신규 사용자 문제"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/recommendation/collaborative/summary"
+    ]
+  },
+  {
+    "id": "ml.basics.semi-supervised-learning",
+    "title": "준지도 학습",
+    "en": "Semi-Supervised Learning",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "정답이 달린 적은 데이터와 정답 없는 많은 데이터를 함께 써서 모델을 학습시키는 방식이다.",
+    "related": [
+      "ml.basics.labeled-example",
+      "llm.basics.self-supervised-learning"
+    ],
+    "aliases": [
+      "semi-supervised learning",
+      "반지도 학습",
+      "세미 지도 학습",
+      "준지도학습"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/glossary"
+    ]
+  },
+  {
     "id": "ml.basics.reinforcement-learning",
     "title": "강화 학습",
     "en": "Reinforcement Learning",
@@ -474,6 +709,97 @@
     "refs": [
       "https://developers.google.com/machine-learning/recommendation/overview/types",
       "https://developers.google.com/machine-learning/glossary"
+    ]
+  },
+  {
+    "id": "ml.nn.gan-generator",
+    "title": "생성자(GAN)",
+    "en": "Generator (GAN)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "GAN에서 판별자를 속일 만큼 그럴듯한 새 데이터를 만들어 내는 쪽 신경망이다.",
+    "parent": "ml.nn.gan-idea",
+    "related": [
+      "ml.nn.gan-discriminator"
+    ],
+    "aliases": [
+      "GAN 생성자",
+      "generator network",
+      "생성기 네트워크"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/gan/gan_structure",
+      "https://developers.google.com/machine-learning/glossary"
+    ]
+  },
+  {
+    "id": "ml.nn.gan-discriminator",
+    "title": "판별자(GAN)",
+    "en": "Discriminator (GAN)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "GAN에서 들어온 데이터가 진짜인지 생성자가 만든 가짜인지 가려내는 쪽 신경망이다.",
+    "parent": "ml.nn.gan-idea",
+    "related": [
+      "ml.nn.gan-generator"
+    ],
+    "aliases": [
+      "GAN 판별자",
+      "discriminator network",
+      "판별기 네트워크"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/gan/gan_structure"
+    ]
+  },
+  {
+    "id": "ml.basics.inter-rater-agreement",
+    "title": "평가자 간 일치도",
+    "en": "Inter-Rater Agreement (Labeling)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "여러 평가자가 같은 사례에 같은 정답을 얼마나 자주 다는지 보는 값으로, 낮으면 작업 안내가 모호하다는 신호다.",
+    "parent": "ml.basics.labeling",
+    "related": [
+      "ml.basics.human-rater"
+    ],
+    "aliases": [
+      "inter-rater agreement",
+      "inter-annotator agreement",
+      "레이블 일치도",
+      "평가자 일치도"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/glossary",
+      "https://developers.google.com/machine-learning/crash-course/overfitting/labels"
+    ]
+  },
+  {
+    "id": "ml.basics.recommendation-scoring",
+    "title": "스코어링(추천 점수 매기기)",
+    "en": "Scoring (Recommendation Systems)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "추천 후보를 좁힌 뒤 다른 모델이 각 후보에 점수를 매겨 보여 줄 몇 개를 고르는 단계다.",
+    "parent": "ml.basics.recommendation-systems",
+    "related": [
+      "ml.basics.candidate-generation"
+    ],
+    "aliases": [
+      "추천 스코어링",
+      "recommendation scoring",
+      "추천 점수화"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/recommendation/overview/types"
     ]
   },
   {
