@@ -104,6 +104,39 @@
     ]
   },
   {
+    "id": "rag.vector-db.vector-store-idea",
+    "title": "벡터 저장소: 뜻으로 찾는 자료 창고",
+    "en": "Vector Stores at a Glance",
+    "kind": "topic",
+    "level": 1,
+    "importance": 1,
+    "group": "벡터 DB",
+    "summary": "임베딩으로 바꾼 글 조각을 모아 두었다가 질문과 뜻이 가까운 조각을 골라 꺼내 주는 저장소다.",
+    "objectives": [
+      "벡터 저장소를 뜻이 비슷한 책끼리 꽂아 둔 서가에 빗대어 설명할 수 있다",
+      "글자가 같아야 찾는 보통 검색과 뜻이 가까우면 찾는 벡터 저장소 검색의 차이를 예로 말할 수 있다",
+      "RAG에서 문서를 넣어 두고 질문 때 꺼내 쓰는 순서 속 벡터 저장소의 자리를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.embedding.meaning-as-numbers",
+      "rag.basics.rag-big-picture"
+    ],
+    "related": [
+      "rag.vector-db.basics",
+      "rag.retrieval.retriever"
+    ],
+    "aliases": [
+      "vector store",
+      "벡터 스토어",
+      "임베딩 저장소",
+      "벡터 저장소 개념"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/integrations/vectorstores",
+      "https://docs.langchain.com/oss/python/langchain/retrieval"
+    ]
+  },
+  {
     "id": "rag.agent.mcp-idea",
     "title": "MCP: AI를 바깥 도구에 꽂는 공용 규격",
     "en": "MCP at a Glance",
@@ -300,6 +333,39 @@
     ]
   },
   {
+    "id": "rag.agent.mcp-server-features",
+    "title": "MCP 서버의 세 가지 기능: 도구·리소스·프롬프트",
+    "en": "MCP Server Features: Tools, Resources and Prompts",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "MCP 서버가 AI 앱에 내주는 세 가지, 즉 실행하는 도구와 읽어 보는 리소스와 골라 쓰는 프롬프트의 큰 그림이다.",
+    "objectives": [
+      "도구·리소스·프롬프트를 손발·참고 자료·주문서 양식에 빗대어 구분할 수 있다",
+      "세 기능을 각각 모델·앱·사용자 중 누가 쓰기로 정하는지 말할 수 있다",
+      "여행 예약 같은 예에서 어느 일이 도구이고 어느 정보가 리소스인지 가려낼 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.mcp-idea"
+    ],
+    "related": [
+      "rag.agent.mcp-tool",
+      "rag.agent.mcp-resource",
+      "rag.agent.mcp-prompt"
+    ],
+    "aliases": [
+      "MCP 서버 기능",
+      "MCP server features",
+      "MCP 프리미티브",
+      "MCP primitives",
+      "도구 리소스 프롬프트"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/docs/learn/server-concepts"
+    ]
+  },
+  {
     "id": "rag.agent.a2a-idea",
     "title": "A2A: 에이전트끼리 일을 맡기는 공용 규격",
     "en": "A2A at a Glance",
@@ -333,6 +399,37 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.basics.langgraph-graph-idea",
+    "title": "LangGraph 그래프: 상태·노드·엣지로 짜는 순서도",
+    "en": "LangGraph Graphs at a Glance: State, Nodes and Edges",
+    "kind": "topic",
+    "level": 1,
+    "importance": 3,
+    "group": "에이전트 기초",
+    "summary": "LangGraph가 AI의 일을 함께 보는 메모장인 상태, 일하는 칸인 노드, 다음 칸을 가리키는 화살표인 엣지로 나눠 순서도처럼 그리는 방식이다.",
+    "objectives": [
+      "상태·노드·엣지를 공유 메모장·작업 칸·화살표에 빗대어 설명할 수 있다",
+      "노드는 일을 하고 엣지는 다음에 무엇을 할지 정한다는 차이를 말할 수 있다",
+      "상황에 따라 길이 갈라지는 순서도를 예로 들어 조건에 따른 분기를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.basics.agent-big-picture"
+    ],
+    "related": [
+      "rag.basics.langgraph",
+      "rag.agent.graph-api"
+    ],
+    "aliases": [
+      "LangGraph 순서도",
+      "LangGraph graph concepts",
+      "상태 노드 엣지",
+      "LangGraph 그래프 구조"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/graph-api"
+    ]
   },
   {
     "id": "rag.basics.langchain",
@@ -557,6 +654,52 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.basics.react-pattern",
+    "title": "ReAct: 생각과 행동을 번갈아 하기",
+    "en": "ReAct (Reasoning and Acting)",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "에이전트 기초",
+    "summary": "언어 모델이 다음에 할 일을 생각하고, 검색 같은 행동을 하고, 그 결과를 보고 다시 생각하기를 되풀이하게 하는 방법이다.",
+    "related": [
+      "rag.basics.agentic-loop"
+    ],
+    "aliases": [
+      "ReAct 에이전트",
+      "ReAct prompting",
+      "ReAct 프롬프팅",
+      "추론-행동 반복",
+      "Reasoning and Acting"
+    ],
+    "refs": [
+      "https://research.google/blog/react-synergizing-reasoning-and-acting-in-language-models/"
+    ]
+  },
+  {
+    "id": "rag.basics.knowledge-base",
+    "title": "지식 베이스(knowledge base)",
+    "en": "Knowledge Base for Retrieval",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "RAG 기초",
+    "summary": "RAG가 질문을 받을 때마다 뒤져 보는 문서나 정리된 데이터를 모아 둔 자료 창고다.",
+    "related": [
+      "rag.retrieval.retriever",
+      "rag.vector-db.vector-store-idea"
+    ],
+    "aliases": [
+      "RAG 지식 베이스",
+      "RAG knowledge base",
+      "검색용 자료 창고",
+      "검색 대상 문서 모음"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/retrieval"
+    ]
   },
   {
     "id": "rag.basics.client-server-tools",
@@ -834,6 +977,84 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
+  },
+  {
+    "id": "rag.basics.langgraph-state",
+    "title": "LangGraph 상태(state)",
+    "en": "LangGraph Graph State",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "에이전트 기초",
+    "summary": "LangGraph의 모든 노드가 함께 읽고 고쳐 쓰는, 그래프 실행 내내 들고 다니는 공유 메모장 같은 데이터다.",
+    "parent": "rag.basics.langgraph-graph-idea",
+    "related": [
+      "rag.agent.state-reducer"
+    ],
+    "aliases": [
+      "LangGraph state",
+      "LangGraph 공유 상태",
+      "LangGraph 그래프 상태"
+    ]
+  },
+  {
+    "id": "rag.basics.langgraph-node",
+    "title": "LangGraph 노드",
+    "en": "LangGraph Node",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "에이전트 기초",
+    "summary": "LangGraph 순서도에서 상태를 받아 한 가지 일을 하고 바뀐 내용을 돌려주는 작업 칸이다.",
+    "parent": "rag.basics.langgraph-graph-idea",
+    "related": [
+      "rag.basics.langgraph-edge"
+    ],
+    "aliases": [
+      "LangGraph node",
+      "LangGraph 노드 함수"
+    ]
+  },
+  {
+    "id": "rag.basics.langgraph-edge",
+    "title": "LangGraph 엣지",
+    "en": "LangGraph Edge",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "에이전트 기초",
+    "summary": "LangGraph 순서도에서 한 노드가 끝난 뒤 어느 노드로 갈지 가리키는 화살표다.",
+    "parent": "rag.basics.langgraph-graph-idea",
+    "related": [
+      "rag.agent.conditional-edge",
+      "rag.basics.langgraph-node"
+    ],
+    "aliases": [
+      "LangGraph edge",
+      "LangGraph 엣지 연결"
+    ]
+  },
+  {
+    "id": "rag.retrieval.graphrag",
+    "title": "GraphRAG(그래프 RAG)",
+    "en": "GraphRAG (Knowledge-Graph-Based RAG)",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "RAG",
+    "summary": "문서에서 사람·사물과 그 관계를 뽑아 지식 그래프로 엮고, 그 그래프와 요약을 근거로 답하게 하는 RAG 방식이다.",
+    "related": [
+      "rag.basics.rag-big-picture"
+    ],
+    "aliases": [
+      "그래프 RAG",
+      "graph RAG",
+      "지식 그래프 RAG",
+      "knowledge graph RAG"
+    ],
+    "refs": [
+      "https://microsoft.github.io/graphrag/"
+    ]
   },
   {
     "id": "rag.embedding.similarity-search",

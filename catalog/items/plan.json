@@ -309,6 +309,103 @@
     ]
   },
   {
+    "id": "plan.basics.service-phases",
+    "title": "서비스 단계: 디스커버리에서 라이브까지",
+    "en": "Service Delivery Phases from Discovery to Live",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "서비스는 문제 알아보기, 시험 삼아 만들기, 일부에게 먼저 열기, 모두에게 운영하기, 문 닫기의 순서로 자란다.",
+    "objectives": [
+      "디스커버리·알파·베타·라이브의 차례를 집 짓기 전 땅 보기와 모형 만들기에 빗대어 설명할 수 있다",
+      "단계마다 무엇을 알아내고 무엇을 만드는지 한 문장씩 말할 수 있다",
+      "쓰는 사람이 없어진 서비스도 정리해서 닫는 단계가 있다는 점을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.agile-iteration"
+    ],
+    "related": [
+      "plan.basics.double-diamond"
+    ],
+    "aliases": [
+      "service phases",
+      "agile delivery phases",
+      "GOV.UK 서비스 단계",
+      "디스커버리 알파 베타 라이브"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/agile-delivery",
+      "https://www.gov.uk/service-manual/agile-delivery/how-the-discovery-phase-works",
+      "https://www.gov.uk/service-manual/agile-delivery/how-the-beta-phase-works",
+      "https://www.gov.uk/service-manual/agile-delivery/how-the-live-phase-works"
+    ]
+  },
+  {
+    "id": "plan.basics.product-backlog",
+    "title": "제품 백로그: 할 일을 중요한 순서로 줄 세우기",
+    "en": "Product Backlog",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "제품을 낫게 할 일을 한 목록에 모아 중요한 것부터 줄 세우고, 팀이 그 위에서부터 꺼내 일하는 방식이다.",
+    "objectives": [
+      "제품 백로그를 우선순위를 매긴 장보기 목록에 빗대어 설명할 수 있다",
+      "제품 백로그와 스프린트 백로그가 무엇이 다른지 말할 수 있다",
+      "새 기능만이 아니라 고칠 문제와 지원 요청도 백로그에 들어간다는 점을 말할 수 있다",
+      "완료 정의를 맞춰야 일이 끝난 것으로 친다는 점을 예를 들어 말할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.agile-iteration"
+    ],
+    "related": [
+      "plan.basics.roadmap"
+    ],
+    "aliases": [
+      "제품 백로그",
+      "product backlog",
+      "프로덕트 백로그",
+      "백로그 우선순위",
+      "backlog prioritisation"
+    ],
+    "refs": [
+      "https://scrumguides.org/scrum-guide.html",
+      "https://www.gov.uk/service-manual/agile-delivery/deciding-on-priorities",
+      "https://www.gov.uk/service-manual/agile-delivery/writing-user-stories"
+    ]
+  },
+  {
+    "id": "plan.basics.roadmap",
+    "title": "로드맵: 서비스가 나아갈 길 그리기",
+    "en": "Product Roadmap",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "서비스가 앞으로 어떤 목표를 향해 어떤 순서로 자랄지 큰 단계로 보여 주고, 상황이 바뀌면 고쳐 그리는 계획표다.",
+    "objectives": [
+      "로드맵을 여행 일정표에 빗대어 설명할 수 있다",
+      "로드맵과 백로그가 다루는 일의 크기 차이를 말할 수 있다",
+      "먼 계획일수록 확실하지 않아 자주 고쳐야 한다는 점을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.problem-first"
+    ],
+    "related": [
+      "plan.basics.product-backlog"
+    ],
+    "aliases": [
+      "product roadmap",
+      "제품 로드맵",
+      "서비스 로드맵",
+      "service roadmap"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/agile-delivery/developing-a-roadmap"
+    ]
+  },
+  {
     "id": "plan.basics.wireframe",
     "title": "와이어프레임",
     "en": "Wireframe",
@@ -583,6 +680,29 @@
     ]
   },
   {
+    "id": "plan.basics.definition-of-done",
+    "title": "완료 정의(Definition of Done)",
+    "en": "Definition of Done in Scrum",
+    "kind": "term",
+    "level": 1,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "작업이 끝났다고 말하려면 갖춰야 할 품질 조건을 팀이 함께 정해 둔 확인 목록이다.",
+    "parent": "plan.basics.product-backlog",
+    "related": [
+      "plan.basics.acceptance-criteria"
+    ],
+    "aliases": [
+      "완료 정의",
+      "definition of done",
+      "완료의 정의",
+      "스크럼 완료 정의"
+    ],
+    "refs": [
+      "https://scrumguides.org/scrum-guide.html"
+    ]
+  },
+  {
     "id": "plan.figma.figjam",
     "title": "FigJam(온라인 화이트보드)",
     "en": "FigJam",
@@ -804,6 +924,177 @@
     "refs": [
       "https://design-system.service.gov.uk/patterns/",
       "https://design-system.service.gov.uk/components/"
+    ]
+  },
+  {
+    "id": "plan.basics.private-beta",
+    "title": "비공개 베타(private beta)",
+    "en": "Private Beta Phase",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "새로 만든 서비스를 초대한 일부 사용자에게만 먼저 써 보게 하고 의견을 받아 고치는 시기다.",
+    "parent": "plan.basics.service-phases",
+    "related": [
+      "plan.basics.public-beta"
+    ],
+    "aliases": [
+      "비공개 베타",
+      "private beta",
+      "클로즈드 베타",
+      "closed beta"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/agile-delivery/how-the-beta-phase-works"
+    ]
+  },
+  {
+    "id": "plan.basics.public-beta",
+    "title": "공개 베타(public beta)",
+    "en": "Public Beta Phase",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "많은 사람이 써도 버틸 수 있다고 확인한 뒤 필요한 누구나 쓸 수 있게 열어 두고 계속 다듬는 시기다.",
+    "parent": "plan.basics.service-phases",
+    "related": [
+      "plan.basics.private-beta"
+    ],
+    "aliases": [
+      "공개 베타",
+      "public beta",
+      "오픈 베타",
+      "open beta"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/agile-delivery/how-the-beta-phase-works"
+    ]
+  },
+  {
+    "id": "plan.basics.live-phase",
+    "title": "라이브 단계(live phase)",
+    "en": "Live Phase of a Service",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "정식으로 문을 연 서비스를 오래 안정되게 운영하면서 사용자 조사와 지표를 보고 계속 고치는 단계다.",
+    "parent": "plan.basics.service-phases",
+    "aliases": [
+      "라이브 단계",
+      "live phase",
+      "정식 운영 단계",
+      "서비스 운영 단계"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/agile-delivery/how-the-live-phase-works"
+    ]
+  },
+  {
+    "id": "plan.basics.service-retirement",
+    "title": "서비스 종료(retiring a service)",
+    "en": "Retiring a Digital Service",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "더는 필요 없거나 쓰는 사람이 너무 적은 서비스를 사용자에게 미리 알리고 대신할 곳과 데이터 처리를 정한 뒤 닫는 일이다.",
+    "parent": "plan.basics.service-phases",
+    "aliases": [
+      "서비스 종료",
+      "service retirement",
+      "retiring a service",
+      "서비스 폐지",
+      "서비스 문 닫기"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/agile-delivery/retiring-your-service",
+      "https://www.gov.uk/service-manual/agile-delivery/how-the-live-phase-works"
+    ]
+  },
+  {
+    "id": "plan.basics.sprint-backlog",
+    "title": "스프린트 백로그",
+    "en": "Sprint Backlog in Scrum",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "이번 스프린트에 할 일로 제품 백로그에서 골라 온 항목과 그 목표, 해낼 계획을 묶은 팀의 작업 목록이다.",
+    "parent": "plan.basics.product-backlog",
+    "related": [
+      "plan.basics.sprint"
+    ],
+    "aliases": [
+      "스프린트 백로그",
+      "sprint backlog",
+      "스프린트 할 일 목록"
+    ],
+    "refs": [
+      "https://scrumguides.org/scrum-guide.html"
+    ]
+  },
+  {
+    "id": "plan.basics.backlog-refinement",
+    "title": "백로그 다듬기(backlog refinement)",
+    "en": "Product Backlog Refinement",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "백로그의 큰 항목을 작고 분명하게 쪼개고 설명과 순서, 크기를 덧붙여 바로 꺼내 쓸 수 있게 손보는 일이다.",
+    "parent": "plan.basics.product-backlog",
+    "aliases": [
+      "백로그 다듬기",
+      "backlog refinement",
+      "백로그 정제",
+      "백로그 그루밍",
+      "backlog grooming"
+    ],
+    "refs": [
+      "https://scrumguides.org/scrum-guide.html"
+    ]
+  },
+  {
+    "id": "plan.basics.increment",
+    "title": "스크럼 증분(Increment)",
+    "en": "Increment in Scrum",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "완료 정의를 맞춘 작업이 앞선 결과 위에 쌓여 실제로 쓸 수 있게 된 제품의 한 걸음이다.",
+    "parent": "plan.basics.product-backlog",
+    "aliases": [
+      "스크럼 증분",
+      "scrum increment",
+      "제품 증분",
+      "product increment"
+    ],
+    "refs": [
+      "https://scrumguides.org/scrum-guide.html"
+    ]
+  },
+  {
+    "id": "plan.basics.product-vision",
+    "title": "제품 비전(product vision)",
+    "en": "Product Vision Statement",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "서비스가 오래 걸려서라도 사용자에게 이뤄 주려는 모습을 짧게 적은 장기 목표로, 로드맵의 맨 끝 목적지다.",
+    "parent": "plan.basics.roadmap",
+    "aliases": [
+      "제품 비전",
+      "product vision",
+      "서비스 비전",
+      "제품 비전 문장"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/agile-delivery/developing-a-roadmap"
     ]
   },
   {

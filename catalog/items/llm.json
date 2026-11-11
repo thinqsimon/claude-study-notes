@@ -253,6 +253,39 @@
     "checked_at": "2026-11-11"
   },
   {
+    "id": "llm.basics.ai-tutor-mode",
+    "title": "AI와 공부하기: 답 대신 이끌어 주는 학습 도구",
+    "en": "Studying with an AI Chatbot's Learning Tools",
+    "kind": "topic",
+    "level": 1,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "챗봇의 학습 도구를 켜면 답을 바로 주는 대신 단계별 설명과 그림, 문제와 힌트로 스스로 이해하도록 돕는다.",
+    "objectives": [
+      "학습 도구를 정답지가 아니라 질문을 던지며 이끄는 과외 선생님에 빗대어 설명할 수 있다",
+      "챗봇에서 학습 도구를 켜고 배우고 싶은 주제나 자료를 넣어 시작할 수 있다",
+      "학습 도구가 낸 설명과 문제도 틀릴 수 있어 교재로 확인해야 하는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.first-chat"
+    ],
+    "related": [
+      "llm.basics.why-hallucinate"
+    ],
+    "aliases": [
+      "AI 학습 도구",
+      "AI 튜터",
+      "AI 과외",
+      "공부용 AI 모드",
+      "AI tutor"
+    ],
+    "refs": [
+      "https://support.google.com/gemini/answer/16448384?hl=en"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
     "id": "llm.basics.image-generation",
     "title": "이미지 생성 AI: 글로 주문하는 그림",
     "en": "Image Generation from Text",
@@ -345,6 +378,74 @@
     ],
     "refs": [
       "https://support.claude.com/en/articles/11101966-using-voice-mode"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.video-generation",
+    "title": "동영상 생성 AI: 글로 주문하는 짧은 영상",
+    "en": "Text-to-Video Generation with AI",
+    "kind": "topic",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "장면과 카메라 움직임, 분위기를 글로 설명하면 AI가 소리까지 붙은 몇 초짜리 새 영상을 만들어 주는 기술이다.",
+    "objectives": [
+      "동영상 생성 AI가 일하는 방식을 촬영 감독에게 장면을 말로 주문하는 일에 빗대어 설명할 수 있다",
+      "글만 주는 방법과 사진을 함께 주는 방법의 차이를 예를 들어 말할 수 있다",
+      "AI가 만든 영상에 길이 제한과 보이지 않는 표시(워터마크)가 붙는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.image-generation"
+    ],
+    "related": [
+      "ax.governance.deepfake"
+    ],
+    "aliases": [
+      "AI 동영상 생성",
+      "영상 생성 AI",
+      "text-to-video",
+      "AI 영상 만들기",
+      "video generation"
+    ],
+    "refs": [
+      "https://aistudio.google.com/docs/omni"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.music-generation",
+    "title": "음악 생성 AI: 분위기를 말하면 나오는 노래",
+    "en": "Text-to-Music Generation with AI",
+    "kind": "topic",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "장르와 분위기, 악기, 가사를 글로 설명하면 AI가 노래나 연주곡을 새로 지어 오디오 파일로 돌려주는 기술이다.",
+    "objectives": [
+      "음악 생성 AI가 일하는 방식을 작곡가에게 원하는 곡을 말로 주문하는 일에 빗대어 설명할 수 있다",
+      "같은 설명을 넣어도 곡이 매번 달라질 수 있다는 점을 말할 수 있다",
+      "특정 가수의 목소리나 저작권 있는 가사를 요청하면 막히는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.generative-ai",
+      "llm.basics.what-is-prompt"
+    ],
+    "related": [
+      "llm.basics.image-generation",
+      "ax.governance.ai-copyright"
+    ],
+    "aliases": [
+      "AI 음악 생성",
+      "AI 작곡",
+      "text-to-music",
+      "music generation",
+      "노래 만드는 AI"
+    ],
+    "refs": [
+      "https://aistudio.google.com/docs/music-generation"
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
@@ -842,6 +943,132 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.image-to-video",
+    "title": "이미지로 영상 만들기(image-to-video)",
+    "en": "Image-to-Video Generation",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "사진이나 그림 한 장을 글 설명과 함께 주면 AI가 그 장면을 움직이는 영상으로 바꿔 주는 방식이다.",
+    "parent": "llm.basics.video-generation",
+    "aliases": [
+      "이미지 투 비디오",
+      "사진으로 영상 만들기",
+      "사진 움직이게 하기",
+      "image to video"
+    ],
+    "refs": [
+      "https://aistudio.google.com/docs/omni"
+    ]
+  },
+  {
+    "id": "llm.basics.first-last-frame",
+    "title": "첫 장면·끝 장면 지정",
+    "en": "First and Last Frame Interpolation",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "영상의 시작 그림과 끝 그림 두 장을 주면 AI가 그 사이를 이어지는 움직임으로 채워 영상을 만드는 방식이다.",
+    "parent": "llm.basics.video-generation",
+    "aliases": [
+      "첫 프레임 끝 프레임 지정",
+      "first and last frame",
+      "first-last frame interpolation",
+      "시작 프레임과 끝 프레임"
+    ],
+    "refs": [
+      "https://aistudio.google.com/docs/omni"
+    ]
+  },
+  {
+    "id": "llm.basics.subject-reference",
+    "title": "참조 이미지로 인물 모습 유지하기",
+    "en": "Subject Reference Images for Character Consistency",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "같은 인물이나 물건의 사진 몇 장을 미리 보여 주어 여러 장면에서 얼굴과 옷차림이 바뀌지 않게 하는 방법이다.",
+    "parent": "llm.basics.video-generation",
+    "aliases": [
+      "피사체 참조",
+      "subject reference",
+      "캐릭터 일관성",
+      "character consistency",
+      "인물 일관성"
+    ],
+    "refs": [
+      "https://aistudio.google.com/docs/omni"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.video-extension",
+    "title": "영상 이어 만들기(영상 확장)",
+    "en": "AI Video Extension",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "AI가 만든 짧은 영상의 끝부분을 보고 다음 장면을 덧붙여 영상을 조금씩 길게 늘리는 기능이다.",
+    "parent": "llm.basics.video-generation",
+    "aliases": [
+      "영상 확장",
+      "video extension",
+      "AI 영상 연장",
+      "영상 뒤에 이어 붙이기"
+    ],
+    "refs": [
+      "https://aistudio.google.com/docs/omni"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-11"
+  },
+  {
+    "id": "llm.basics.song-section-tags",
+    "title": "곡 구조 태그(벌스·코러스)",
+    "en": "Song Section Tags in Music Prompts",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "음악 생성 프롬프트에 [Verse]·[Chorus]처럼 곡의 부분 이름을 적어 어디서 절이 나오고 어디서 후렴이 나올지 정해 주는 표시다.",
+    "parent": "llm.basics.music-generation",
+    "aliases": [
+      "음악 섹션 태그",
+      "[Verse] [Chorus] 태그",
+      "벌스 코러스 태그",
+      "곡 구성 표시"
+    ],
+    "refs": [
+      "https://aistudio.google.com/docs/music-generation"
+    ]
+  },
+  {
+    "id": "llm.basics.ai-quiz-flashcards",
+    "title": "AI가 만든 퀴즈와 플래시카드",
+    "en": "AI-Generated Quizzes and Flashcards",
+    "kind": "term",
+    "level": 1,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "주제나 올린 자료를 바탕으로 챗봇이 문제와 낱말 카드를 만들어 주고, 풀고 나면 잘한 점과 더 볼 곳을 알려 주는 공부 자료다.",
+    "parent": "llm.basics.ai-tutor-mode",
+    "aliases": [
+      "AI 퀴즈",
+      "AI 플래시카드",
+      "AI flashcards",
+      "AI 연습 문제",
+      "AI 모의고사"
+    ],
+    "refs": [
+      "https://support.google.com/gemini/answer/16275879?hl=en"
+    ]
   },
   {
     "id": "llm.basics.token-context",

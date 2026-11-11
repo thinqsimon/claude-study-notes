@@ -1,5 +1,5 @@
 {
- "version": "0.43.0",
+ "version": "0.44.0",
  "domains": [
   {
    "prefix": "dev",
@@ -10466,6 +10466,106 @@
    "domain": "plan"
   },
   {
+   "id": "plan.basics.service-phases",
+   "title": "서비스 단계: 디스커버리에서 라이브까지",
+   "en": "Service Delivery Phases from Discovery to Live",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "서비스는 문제 알아보기, 시험 삼아 만들기, 일부에게 먼저 열기, 모두에게 운영하기, 문 닫기의 순서로 자란다.",
+   "objectives": [
+    "디스커버리·알파·베타·라이브의 차례를 집 짓기 전 땅 보기와 모형 만들기에 빗대어 설명할 수 있다",
+    "단계마다 무엇을 알아내고 무엇을 만드는지 한 문장씩 말할 수 있다",
+    "쓰는 사람이 없어진 서비스도 정리해서 닫는 단계가 있다는 점을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.agile-iteration"
+   ],
+   "related": [
+    "plan.basics.double-diamond"
+   ],
+   "aliases": [
+    "service phases",
+    "agile delivery phases",
+    "GOV.UK 서비스 단계",
+    "디스커버리 알파 베타 라이브"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/agile-delivery",
+    "https://www.gov.uk/service-manual/agile-delivery/how-the-discovery-phase-works",
+    "https://www.gov.uk/service-manual/agile-delivery/how-the-beta-phase-works",
+    "https://www.gov.uk/service-manual/agile-delivery/how-the-live-phase-works"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.product-backlog",
+   "title": "제품 백로그: 할 일을 중요한 순서로 줄 세우기",
+   "en": "Product Backlog",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "제품을 낫게 할 일을 한 목록에 모아 중요한 것부터 줄 세우고, 팀이 그 위에서부터 꺼내 일하는 방식이다.",
+   "objectives": [
+    "제품 백로그를 우선순위를 매긴 장보기 목록에 빗대어 설명할 수 있다",
+    "제품 백로그와 스프린트 백로그가 무엇이 다른지 말할 수 있다",
+    "새 기능만이 아니라 고칠 문제와 지원 요청도 백로그에 들어간다는 점을 말할 수 있다",
+    "완료 정의를 맞춰야 일이 끝난 것으로 친다는 점을 예를 들어 말할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.agile-iteration"
+   ],
+   "related": [
+    "plan.basics.roadmap"
+   ],
+   "aliases": [
+    "제품 백로그",
+    "product backlog",
+    "프로덕트 백로그",
+    "백로그 우선순위",
+    "backlog prioritisation"
+   ],
+   "refs": [
+    "https://scrumguides.org/scrum-guide.html",
+    "https://www.gov.uk/service-manual/agile-delivery/deciding-on-priorities",
+    "https://www.gov.uk/service-manual/agile-delivery/writing-user-stories"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.roadmap",
+   "title": "로드맵: 서비스가 나아갈 길 그리기",
+   "en": "Product Roadmap",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "서비스가 앞으로 어떤 목표를 향해 어떤 순서로 자랄지 큰 단계로 보여 주고, 상황이 바뀌면 고쳐 그리는 계획표다.",
+   "objectives": [
+    "로드맵을 여행 일정표에 빗대어 설명할 수 있다",
+    "로드맵과 백로그가 다루는 일의 크기 차이를 말할 수 있다",
+    "먼 계획일수록 확실하지 않아 자주 고쳐야 한다는 점을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.problem-first"
+   ],
+   "related": [
+    "plan.basics.product-backlog"
+   ],
+   "aliases": [
+    "product roadmap",
+    "제품 로드맵",
+    "서비스 로드맵",
+    "service roadmap"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/agile-delivery/developing-a-roadmap"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.basics.wireframe",
    "title": "와이어프레임",
    "en": "Wireframe",
@@ -10752,6 +10852,30 @@
    "domain": "plan"
   },
   {
+   "id": "plan.basics.definition-of-done",
+   "title": "완료 정의(Definition of Done)",
+   "en": "Definition of Done in Scrum",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "작업이 끝났다고 말하려면 갖춰야 할 품질 조건을 팀이 함께 정해 둔 확인 목록이다.",
+   "parent": "plan.basics.product-backlog",
+   "related": [
+    "plan.basics.acceptance-criteria"
+   ],
+   "aliases": [
+    "완료 정의",
+    "definition of done",
+    "완료의 정의",
+    "스크럼 완료 정의"
+   ],
+   "refs": [
+    "https://scrumguides.org/scrum-guide.html"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.figjam",
    "title": "FigJam(온라인 화이트보드)",
    "en": "FigJam",
@@ -10982,6 +11106,185 @@
    "refs": [
     "https://design-system.service.gov.uk/patterns/",
     "https://design-system.service.gov.uk/components/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.private-beta",
+   "title": "비공개 베타(private beta)",
+   "en": "Private Beta Phase",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "새로 만든 서비스를 초대한 일부 사용자에게만 먼저 써 보게 하고 의견을 받아 고치는 시기다.",
+   "parent": "plan.basics.service-phases",
+   "related": [
+    "plan.basics.public-beta"
+   ],
+   "aliases": [
+    "비공개 베타",
+    "private beta",
+    "클로즈드 베타",
+    "closed beta"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/agile-delivery/how-the-beta-phase-works"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.public-beta",
+   "title": "공개 베타(public beta)",
+   "en": "Public Beta Phase",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "많은 사람이 써도 버틸 수 있다고 확인한 뒤 필요한 누구나 쓸 수 있게 열어 두고 계속 다듬는 시기다.",
+   "parent": "plan.basics.service-phases",
+   "related": [
+    "plan.basics.private-beta"
+   ],
+   "aliases": [
+    "공개 베타",
+    "public beta",
+    "오픈 베타",
+    "open beta"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/agile-delivery/how-the-beta-phase-works"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.live-phase",
+   "title": "라이브 단계(live phase)",
+   "en": "Live Phase of a Service",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "정식으로 문을 연 서비스를 오래 안정되게 운영하면서 사용자 조사와 지표를 보고 계속 고치는 단계다.",
+   "parent": "plan.basics.service-phases",
+   "aliases": [
+    "라이브 단계",
+    "live phase",
+    "정식 운영 단계",
+    "서비스 운영 단계"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/agile-delivery/how-the-live-phase-works"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.service-retirement",
+   "title": "서비스 종료(retiring a service)",
+   "en": "Retiring a Digital Service",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "더는 필요 없거나 쓰는 사람이 너무 적은 서비스를 사용자에게 미리 알리고 대신할 곳과 데이터 처리를 정한 뒤 닫는 일이다.",
+   "parent": "plan.basics.service-phases",
+   "aliases": [
+    "서비스 종료",
+    "service retirement",
+    "retiring a service",
+    "서비스 폐지",
+    "서비스 문 닫기"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/agile-delivery/retiring-your-service",
+    "https://www.gov.uk/service-manual/agile-delivery/how-the-live-phase-works"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.sprint-backlog",
+   "title": "스프린트 백로그",
+   "en": "Sprint Backlog in Scrum",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "이번 스프린트에 할 일로 제품 백로그에서 골라 온 항목과 그 목표, 해낼 계획을 묶은 팀의 작업 목록이다.",
+   "parent": "plan.basics.product-backlog",
+   "related": [
+    "plan.basics.sprint"
+   ],
+   "aliases": [
+    "스프린트 백로그",
+    "sprint backlog",
+    "스프린트 할 일 목록"
+   ],
+   "refs": [
+    "https://scrumguides.org/scrum-guide.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.backlog-refinement",
+   "title": "백로그 다듬기(backlog refinement)",
+   "en": "Product Backlog Refinement",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "백로그의 큰 항목을 작고 분명하게 쪼개고 설명과 순서, 크기를 덧붙여 바로 꺼내 쓸 수 있게 손보는 일이다.",
+   "parent": "plan.basics.product-backlog",
+   "aliases": [
+    "백로그 다듬기",
+    "backlog refinement",
+    "백로그 정제",
+    "백로그 그루밍",
+    "backlog grooming"
+   ],
+   "refs": [
+    "https://scrumguides.org/scrum-guide.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.increment",
+   "title": "스크럼 증분(Increment)",
+   "en": "Increment in Scrum",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "완료 정의를 맞춘 작업이 앞선 결과 위에 쌓여 실제로 쓸 수 있게 된 제품의 한 걸음이다.",
+   "parent": "plan.basics.product-backlog",
+   "aliases": [
+    "스크럼 증분",
+    "scrum increment",
+    "제품 증분",
+    "product increment"
+   ],
+   "refs": [
+    "https://scrumguides.org/scrum-guide.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.product-vision",
+   "title": "제품 비전(product vision)",
+   "en": "Product Vision Statement",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "서비스가 오래 걸려서라도 사용자에게 이뤄 주려는 모습을 짧게 적은 장기 목표로, 로드맵의 맨 끝 목적지다.",
+   "parent": "plan.basics.roadmap",
+   "aliases": [
+    "제품 비전",
+    "product vision",
+    "서비스 비전",
+    "제품 비전 문장"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/agile-delivery/developing-a-roadmap"
    ],
    "domain": "plan"
   },
@@ -34721,6 +35024,40 @@
    "domain": "llm"
   },
   {
+   "id": "llm.basics.ai-tutor-mode",
+   "title": "AI와 공부하기: 답 대신 이끌어 주는 학습 도구",
+   "en": "Studying with an AI Chatbot's Learning Tools",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "챗봇의 학습 도구를 켜면 답을 바로 주는 대신 단계별 설명과 그림, 문제와 힌트로 스스로 이해하도록 돕는다.",
+   "objectives": [
+    "학습 도구를 정답지가 아니라 질문을 던지며 이끄는 과외 선생님에 빗대어 설명할 수 있다",
+    "챗봇에서 학습 도구를 켜고 배우고 싶은 주제나 자료를 넣어 시작할 수 있다",
+    "학습 도구가 낸 설명과 문제도 틀릴 수 있어 교재로 확인해야 하는 이유를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.first-chat"
+   ],
+   "related": [
+    "llm.basics.why-hallucinate"
+   ],
+   "aliases": [
+    "AI 학습 도구",
+    "AI 튜터",
+    "AI 과외",
+    "공부용 AI 모드",
+    "AI tutor"
+   ],
+   "refs": [
+    "https://support.google.com/gemini/answer/16448384?hl=en"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "llm"
+  },
+  {
    "id": "llm.basics.image-generation",
    "title": "이미지 생성 AI: 글로 주문하는 그림",
    "en": "Image Generation from Text",
@@ -34815,6 +35152,76 @@
    ],
    "refs": [
     "https://support.claude.com/en/articles/11101966-using-voice-mode"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.video-generation",
+   "title": "동영상 생성 AI: 글로 주문하는 짧은 영상",
+   "en": "Text-to-Video Generation with AI",
+   "kind": "topic",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "장면과 카메라 움직임, 분위기를 글로 설명하면 AI가 소리까지 붙은 몇 초짜리 새 영상을 만들어 주는 기술이다.",
+   "objectives": [
+    "동영상 생성 AI가 일하는 방식을 촬영 감독에게 장면을 말로 주문하는 일에 빗대어 설명할 수 있다",
+    "글만 주는 방법과 사진을 함께 주는 방법의 차이를 예를 들어 말할 수 있다",
+    "AI가 만든 영상에 길이 제한과 보이지 않는 표시(워터마크)가 붙는 이유를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.image-generation"
+   ],
+   "related": [
+    "ax.governance.deepfake"
+   ],
+   "aliases": [
+    "AI 동영상 생성",
+    "영상 생성 AI",
+    "text-to-video",
+    "AI 영상 만들기",
+    "video generation"
+   ],
+   "refs": [
+    "https://aistudio.google.com/docs/omni"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.music-generation",
+   "title": "음악 생성 AI: 분위기를 말하면 나오는 노래",
+   "en": "Text-to-Music Generation with AI",
+   "kind": "topic",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "장르와 분위기, 악기, 가사를 글로 설명하면 AI가 노래나 연주곡을 새로 지어 오디오 파일로 돌려주는 기술이다.",
+   "objectives": [
+    "음악 생성 AI가 일하는 방식을 작곡가에게 원하는 곡을 말로 주문하는 일에 빗대어 설명할 수 있다",
+    "같은 설명을 넣어도 곡이 매번 달라질 수 있다는 점을 말할 수 있다",
+    "특정 가수의 목소리나 저작권 있는 가사를 요청하면 막히는 이유를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.generative-ai",
+    "llm.basics.what-is-prompt"
+   ],
+   "related": [
+    "llm.basics.image-generation",
+    "ax.governance.ai-copyright"
+   ],
+   "aliases": [
+    "AI 음악 생성",
+    "AI 작곡",
+    "text-to-music",
+    "music generation",
+    "노래 만드는 AI"
+   ],
+   "refs": [
+    "https://aistudio.google.com/docs/music-generation"
    ],
    "volatile": true,
    "checked_at": "2026-11-11",
@@ -35333,6 +35740,138 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-11",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.image-to-video",
+   "title": "이미지로 영상 만들기(image-to-video)",
+   "en": "Image-to-Video Generation",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "사진이나 그림 한 장을 글 설명과 함께 주면 AI가 그 장면을 움직이는 영상으로 바꿔 주는 방식이다.",
+   "parent": "llm.basics.video-generation",
+   "aliases": [
+    "이미지 투 비디오",
+    "사진으로 영상 만들기",
+    "사진 움직이게 하기",
+    "image to video"
+   ],
+   "refs": [
+    "https://aistudio.google.com/docs/omni"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.first-last-frame",
+   "title": "첫 장면·끝 장면 지정",
+   "en": "First and Last Frame Interpolation",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "영상의 시작 그림과 끝 그림 두 장을 주면 AI가 그 사이를 이어지는 움직임으로 채워 영상을 만드는 방식이다.",
+   "parent": "llm.basics.video-generation",
+   "aliases": [
+    "첫 프레임 끝 프레임 지정",
+    "first and last frame",
+    "first-last frame interpolation",
+    "시작 프레임과 끝 프레임"
+   ],
+   "refs": [
+    "https://aistudio.google.com/docs/omni"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.subject-reference",
+   "title": "참조 이미지로 인물 모습 유지하기",
+   "en": "Subject Reference Images for Character Consistency",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "같은 인물이나 물건의 사진 몇 장을 미리 보여 주어 여러 장면에서 얼굴과 옷차림이 바뀌지 않게 하는 방법이다.",
+   "parent": "llm.basics.video-generation",
+   "aliases": [
+    "피사체 참조",
+    "subject reference",
+    "캐릭터 일관성",
+    "character consistency",
+    "인물 일관성"
+   ],
+   "refs": [
+    "https://aistudio.google.com/docs/omni"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.video-extension",
+   "title": "영상 이어 만들기(영상 확장)",
+   "en": "AI Video Extension",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "AI가 만든 짧은 영상의 끝부분을 보고 다음 장면을 덧붙여 영상을 조금씩 길게 늘리는 기능이다.",
+   "parent": "llm.basics.video-generation",
+   "aliases": [
+    "영상 확장",
+    "video extension",
+    "AI 영상 연장",
+    "영상 뒤에 이어 붙이기"
+   ],
+   "refs": [
+    "https://aistudio.google.com/docs/omni"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.song-section-tags",
+   "title": "곡 구조 태그(벌스·코러스)",
+   "en": "Song Section Tags in Music Prompts",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "음악 생성 프롬프트에 [Verse]·[Chorus]처럼 곡의 부분 이름을 적어 어디서 절이 나오고 어디서 후렴이 나올지 정해 주는 표시다.",
+   "parent": "llm.basics.music-generation",
+   "aliases": [
+    "음악 섹션 태그",
+    "[Verse] [Chorus] 태그",
+    "벌스 코러스 태그",
+    "곡 구성 표시"
+   ],
+   "refs": [
+    "https://aistudio.google.com/docs/music-generation"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.ai-quiz-flashcards",
+   "title": "AI가 만든 퀴즈와 플래시카드",
+   "en": "AI-Generated Quizzes and Flashcards",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "주제나 올린 자료를 바탕으로 챗봇이 문제와 낱말 카드를 만들어 주고, 풀고 나면 잘한 점과 더 볼 곳을 알려 주는 공부 자료다.",
+   "parent": "llm.basics.ai-tutor-mode",
+   "aliases": [
+    "AI 퀴즈",
+    "AI 플래시카드",
+    "AI flashcards",
+    "AI 연습 문제",
+    "AI 모의고사"
+   ],
+   "refs": [
+    "https://support.google.com/gemini/answer/16275879?hl=en"
+   ],
    "domain": "llm"
   },
   {
@@ -39780,6 +40319,40 @@
    "domain": "rag"
   },
   {
+   "id": "rag.vector-db.vector-store-idea",
+   "title": "벡터 저장소: 뜻으로 찾는 자료 창고",
+   "en": "Vector Stores at a Glance",
+   "kind": "topic",
+   "level": 1,
+   "importance": 1,
+   "group": "벡터 DB",
+   "summary": "임베딩으로 바꾼 글 조각을 모아 두었다가 질문과 뜻이 가까운 조각을 골라 꺼내 주는 저장소다.",
+   "objectives": [
+    "벡터 저장소를 뜻이 비슷한 책끼리 꽂아 둔 서가에 빗대어 설명할 수 있다",
+    "글자가 같아야 찾는 보통 검색과 뜻이 가까우면 찾는 벡터 저장소 검색의 차이를 예로 말할 수 있다",
+    "RAG에서 문서를 넣어 두고 질문 때 꺼내 쓰는 순서 속 벡터 저장소의 자리를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.embedding.meaning-as-numbers",
+    "rag.basics.rag-big-picture"
+   ],
+   "related": [
+    "rag.vector-db.basics",
+    "rag.retrieval.retriever"
+   ],
+   "aliases": [
+    "vector store",
+    "벡터 스토어",
+    "임베딩 저장소",
+    "벡터 저장소 개념"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/integrations/vectorstores",
+    "https://docs.langchain.com/oss/python/langchain/retrieval"
+   ],
+   "domain": "rag"
+  },
+  {
    "id": "rag.agent.mcp-idea",
    "title": "MCP: AI를 바깥 도구에 꽂는 공용 규격",
    "en": "MCP at a Glance",
@@ -39982,6 +40555,40 @@
    "domain": "rag"
   },
   {
+   "id": "rag.agent.mcp-server-features",
+   "title": "MCP 서버의 세 가지 기능: 도구·리소스·프롬프트",
+   "en": "MCP Server Features: Tools, Resources and Prompts",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "MCP 서버가 AI 앱에 내주는 세 가지, 즉 실행하는 도구와 읽어 보는 리소스와 골라 쓰는 프롬프트의 큰 그림이다.",
+   "objectives": [
+    "도구·리소스·프롬프트를 손발·참고 자료·주문서 양식에 빗대어 구분할 수 있다",
+    "세 기능을 각각 모델·앱·사용자 중 누가 쓰기로 정하는지 말할 수 있다",
+    "여행 예약 같은 예에서 어느 일이 도구이고 어느 정보가 리소스인지 가려낼 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.mcp-idea"
+   ],
+   "related": [
+    "rag.agent.mcp-tool",
+    "rag.agent.mcp-resource",
+    "rag.agent.mcp-prompt"
+   ],
+   "aliases": [
+    "MCP 서버 기능",
+    "MCP server features",
+    "MCP 프리미티브",
+    "MCP primitives",
+    "도구 리소스 프롬프트"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/docs/learn/server-concepts"
+   ],
+   "domain": "rag"
+  },
+  {
    "id": "rag.agent.a2a-idea",
    "title": "A2A: 에이전트끼리 일을 맡기는 공용 규격",
    "en": "A2A at a Glance",
@@ -40015,6 +40622,38 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.basics.langgraph-graph-idea",
+   "title": "LangGraph 그래프: 상태·노드·엣지로 짜는 순서도",
+   "en": "LangGraph Graphs at a Glance: State, Nodes and Edges",
+   "kind": "topic",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트 기초",
+   "summary": "LangGraph가 AI의 일을 함께 보는 메모장인 상태, 일하는 칸인 노드, 다음 칸을 가리키는 화살표인 엣지로 나눠 순서도처럼 그리는 방식이다.",
+   "objectives": [
+    "상태·노드·엣지를 공유 메모장·작업 칸·화살표에 빗대어 설명할 수 있다",
+    "노드는 일을 하고 엣지는 다음에 무엇을 할지 정한다는 차이를 말할 수 있다",
+    "상황에 따라 길이 갈라지는 순서도를 예로 들어 조건에 따른 분기를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.basics.agent-big-picture"
+   ],
+   "related": [
+    "rag.basics.langgraph",
+    "rag.agent.graph-api"
+   ],
+   "aliases": [
+    "LangGraph 순서도",
+    "LangGraph graph concepts",
+    "상태 노드 엣지",
+    "LangGraph 그래프 구조"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/graph-api"
+   ],
    "domain": "rag"
   },
   {
@@ -40250,6 +40889,54 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.basics.react-pattern",
+   "title": "ReAct: 생각과 행동을 번갈아 하기",
+   "en": "ReAct (Reasoning and Acting)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "에이전트 기초",
+   "summary": "언어 모델이 다음에 할 일을 생각하고, 검색 같은 행동을 하고, 그 결과를 보고 다시 생각하기를 되풀이하게 하는 방법이다.",
+   "related": [
+    "rag.basics.agentic-loop"
+   ],
+   "aliases": [
+    "ReAct 에이전트",
+    "ReAct prompting",
+    "ReAct 프롬프팅",
+    "추론-행동 반복",
+    "Reasoning and Acting"
+   ],
+   "refs": [
+    "https://research.google/blog/react-synergizing-reasoning-and-acting-in-language-models/"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.basics.knowledge-base",
+   "title": "지식 베이스(knowledge base)",
+   "en": "Knowledge Base for Retrieval",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "RAG 기초",
+   "summary": "RAG가 질문을 받을 때마다 뒤져 보는 문서나 정리된 데이터를 모아 둔 자료 창고다.",
+   "related": [
+    "rag.retrieval.retriever",
+    "rag.vector-db.vector-store-idea"
+   ],
+   "aliases": [
+    "RAG 지식 베이스",
+    "RAG knowledge base",
+    "검색용 자료 창고",
+    "검색 대상 문서 모음"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/retrieval"
+   ],
    "domain": "rag"
   },
   {
@@ -40539,6 +41226,88 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-11",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.basics.langgraph-state",
+   "title": "LangGraph 상태(state)",
+   "en": "LangGraph Graph State",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트 기초",
+   "summary": "LangGraph의 모든 노드가 함께 읽고 고쳐 쓰는, 그래프 실행 내내 들고 다니는 공유 메모장 같은 데이터다.",
+   "parent": "rag.basics.langgraph-graph-idea",
+   "related": [
+    "rag.agent.state-reducer"
+   ],
+   "aliases": [
+    "LangGraph state",
+    "LangGraph 공유 상태",
+    "LangGraph 그래프 상태"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.basics.langgraph-node",
+   "title": "LangGraph 노드",
+   "en": "LangGraph Node",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트 기초",
+   "summary": "LangGraph 순서도에서 상태를 받아 한 가지 일을 하고 바뀐 내용을 돌려주는 작업 칸이다.",
+   "parent": "rag.basics.langgraph-graph-idea",
+   "related": [
+    "rag.basics.langgraph-edge"
+   ],
+   "aliases": [
+    "LangGraph node",
+    "LangGraph 노드 함수"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.basics.langgraph-edge",
+   "title": "LangGraph 엣지",
+   "en": "LangGraph Edge",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "에이전트 기초",
+   "summary": "LangGraph 순서도에서 한 노드가 끝난 뒤 어느 노드로 갈지 가리키는 화살표다.",
+   "parent": "rag.basics.langgraph-graph-idea",
+   "related": [
+    "rag.agent.conditional-edge",
+    "rag.basics.langgraph-node"
+   ],
+   "aliases": [
+    "LangGraph edge",
+    "LangGraph 엣지 연결"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.graphrag",
+   "title": "GraphRAG(그래프 RAG)",
+   "en": "GraphRAG (Knowledge-Graph-Based RAG)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "RAG",
+   "summary": "문서에서 사람·사물과 그 관계를 뽑아 지식 그래프로 엮고, 그 그래프와 요약을 근거로 답하게 하는 RAG 방식이다.",
+   "related": [
+    "rag.basics.rag-big-picture"
+   ],
+   "aliases": [
+    "그래프 RAG",
+    "graph RAG",
+    "지식 그래프 RAG",
+    "knowledge graph RAG"
+   ],
+   "refs": [
+    "https://microsoft.github.io/graphrag/"
+   ],
    "domain": "rag"
   },
   {
@@ -50546,6 +51315,69 @@
    "domain": "ops"
   },
   {
+   "id": "ops.basics.devops-idea",
+   "title": "DevOps: 개발과 운영이 한 팀처럼 일하기",
+   "en": "The Idea of DevOps",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "배포 기초",
+   "summary": "만드는 사람과 운영하는 사람이 벽 없이 함께 일하며 자동화로 서비스를 빠르고 안전하게 내놓는 문화이자 일하는 방식이다.",
+   "objectives": [
+    "개발팀과 운영팀이 따로 일할 때 생기는 문제를 식당 주방과 홀에 빗대어 설명할 수 있다",
+    "DevOps가 쓰는 대표 습관(CI/CD, 코드로 인프라 관리, 모니터링)을 이름으로 말할 수 있다",
+    "DevOps가 도구 하나가 아니라 문화와 방식의 묶음이라는 점을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.ci.cicd-idea"
+   ],
+   "related": [
+    "ops.ci.cicd-idea"
+   ],
+   "aliases": [
+    "데브옵스",
+    "DevOps 문화",
+    "개발 운영 협업",
+    "DevOps culture"
+   ],
+   "refs": [
+    "https://aws.amazon.com/devops/what-is-devops/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.iac-idea",
+   "title": "코드로 인프라 만들기(IaC)",
+   "en": "The Idea of Infrastructure as Code",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "배포 기초",
+   "summary": "서버·네트워크 같은 인프라를 손으로 하나씩 설정하지 않고 설정 파일에 적어 두어 언제든 똑같이 다시 만드는 방식이다.",
+   "objectives": [
+    "손으로 서버를 설정할 때와 파일에 적어 두고 만들 때의 차이를 요리 레시피에 빗대어 설명할 수 있다",
+    "환경마다 설정이 조금씩 어긋나는 문제를 IaC가 어떻게 줄이는지 말할 수 있다",
+    "Terraform이 쓰기·계획·적용 세 단계로 인프라를 바꾼다는 큰 흐름을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.basics.cloud"
+   ],
+   "related": [
+    "ops.k8s.desired-state"
+   ],
+   "aliases": [
+    "IaC",
+    "인프라 코드화",
+    "infrastructure as code",
+    "코드형 인프라"
+   ],
+   "refs": [
+    "https://learn.microsoft.com/en-us/devops/deliver/what-is-infrastructure-as-code",
+    "https://developer.hashicorp.com/terraform/intro"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.linux.multipass-first-vm",
    "title": "Multipass로 Ubuntu 가상 머신 처음 띄우기",
    "en": "Launching a First Ubuntu VM with Multipass",
@@ -50571,6 +51403,38 @@
    ],
    "refs": [
     "https://canonical.com/multipass/docs/en/latest/tutorial/getting-started/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.observe.sre-idea",
+   "title": "SRE: 소프트웨어로 운영을 지키는 일",
+   "en": "The Idea of Site Reliability Engineering",
+   "kind": "topic",
+   "level": 1,
+   "importance": 3,
+   "group": "관측",
+   "summary": "운영 업무를 소프트웨어 엔지니어가 맡아 반복되는 손일은 자동화하고 장애에는 준비된 절차로 대응하는 Google식 운영 방법이다.",
+   "objectives": [
+    "SRE가 반복되는 손일을 자동화로 줄이려 한다는 점을 설명할 수 있다",
+    "당번(온콜)·대응 절차서·복구 시간이 장애 대응에서 각각 무슨 역할인지 비유로 말할 수 있다",
+    "SRE와 DevOps가 둘 다 개발과 운영을 잇는 방식이라는 점을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.basics.devops-idea"
+   ],
+   "related": [
+    "ops.basics.devops-idea",
+    "ops.observe.slo-design"
+   ],
+   "aliases": [
+    "사이트 신뢰성 엔지니어링",
+    "site reliability engineering",
+    "SRE 팀",
+    "SRE 엔지니어"
+   ],
+   "refs": [
+    "https://sre.google/sre-book/introduction/"
    ],
    "domain": "ops"
   },
@@ -50900,6 +51764,73 @@
    "domain": "ops"
   },
   {
+   "id": "ops.basics.container-registry",
+   "title": "컨테이너 레지스트리",
+   "en": "Container Image Registry",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "배포 기초",
+   "summary": "컨테이너 이미지를 모아 두고 꺼내 쓰게 해 주는 저장소 서비스로, 공개용과 사내 전용이 있다.",
+   "related": [
+    "ops.basics.container-image",
+    "ops.docker.docker-hub-pull"
+   ],
+   "aliases": [
+    "이미지 레지스트리",
+    "container registry",
+    "image registry",
+    "도커 레지스트리",
+    "Docker registry"
+   ],
+   "refs": [
+    "https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-a-registry/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.terraform",
+   "title": "Terraform",
+   "en": "HashiCorp Terraform",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "배포 기초",
+   "summary": "사람이 읽을 수 있는 설정 파일로 클라우드와 사내 인프라를 만들고 바꾸는 대표적인 IaC 도구다.",
+   "parent": "ops.basics.iac-idea",
+   "aliases": [
+    "테라폼",
+    "Terraform IaC",
+    "HashiCorp 테라폼"
+   ],
+   "refs": [
+    "https://developer.hashicorp.com/terraform/intro"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.observe.on-call",
+   "title": "온콜(장애 대응 당번)",
+   "en": "On-Call Duty",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "관측",
+   "summary": "정해진 기간 동안 알림을 받으면 몇 분 안에 운영 중인 서비스의 문제에 대응하기로 맡은 당번 근무다.",
+   "parent": "ops.observe.sre-idea",
+   "aliases": [
+    "온콜",
+    "on-call",
+    "온콜 당번",
+    "장애 대응 당번",
+    "on-call rotation"
+   ],
+   "refs": [
+    "https://sre.google/sre-book/being-on-call/"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.basics.cloud-service-models",
    "title": "클라우드 서비스 모델(IaaS·PaaS·SaaS)",
    "en": "Cloud Service Models",
@@ -51027,6 +51958,139 @@
    "refs": [
     "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_domain_name"
    ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.environment-drift",
+   "title": "환경 드리프트(구성 어긋남)",
+   "en": "Environment Drift (Configuration Drift)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "배포 기초",
+   "summary": "손으로 고친 설정이 쌓여 개발·테스트·운영 환경이 서로 조금씩 달라지는 현상이다.",
+   "parent": "ops.basics.iac-idea",
+   "aliases": [
+    "구성 드리프트",
+    "configuration drift",
+    "environment drift",
+    "설정 드리프트"
+   ],
+   "refs": [
+    "https://learn.microsoft.com/en-us/devops/deliver/what-is-infrastructure-as-code"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.observe.toil",
+   "title": "토일(반복 운영 잡일)",
+   "en": "Toil in Site Reliability Engineering",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "관측",
+   "summary": "서비스를 돌리느라 사람이 손으로 되풀이하지만 자동화할 수 있고 해도 남는 개선이 없는 운영 일이다.",
+   "parent": "ops.observe.sre-idea",
+   "aliases": [
+    "toil",
+    "SRE 토일",
+    "반복 수작업",
+    "운영 토일"
+   ],
+   "refs": [
+    "https://sre.google/sre-book/eliminating-toil/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.observe.mttr",
+   "title": "평균 복구 시간(MTTR)",
+   "en": "Mean Time to Repair (MTTR)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "관측",
+   "summary": "장애가 났을 때 서비스를 다시 정상으로 되돌리기까지 평균 얼마나 걸리는지 나타내는 숫자다.",
+   "parent": "ops.observe.sre-idea",
+   "aliases": [
+    "MTTR",
+    "평균 복구 시간",
+    "mean time to recovery",
+    "평균 수리 시간"
+   ],
+   "refs": [
+    "https://sre.google/sre-book/introduction/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.observe.playbook",
+   "title": "장애 대응 플레이북(런북)",
+   "en": "Incident Response Playbook (Runbook)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "관측",
+   "summary": "장애가 났을 때 무엇을 확인하고 어떻게 고칠지 미리 적어 둔 대응 절차서다.",
+   "parent": "ops.observe.sre-idea",
+   "aliases": [
+    "런북",
+    "runbook",
+    "장애 대응 런북",
+    "장애 대응 매뉴얼"
+   ],
+   "refs": [
+    "https://sre.google/sre-book/introduction/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.basics.devsecops",
+   "title": "DevSecOps",
+   "en": "DevSecOps (Security in DevOps)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "배포 기초",
+   "summary": "보안을 마지막 검사로 미루지 않고 개발과 운영의 모든 사람이 처음부터 계속 챙기도록 DevOps에 보안을 묶은 방식이다.",
+   "related": [
+    "ops.basics.devops-idea"
+   ],
+   "aliases": [
+    "데브섹옵스",
+    "DevOps 보안",
+    "security in DevOps",
+    "Dev Sec Ops"
+   ],
+   "refs": [
+    "https://learn.microsoft.com/en-us/devops/operate/security-in-devops"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.ci.dora-metrics",
+   "title": "DORA 지표",
+   "en": "DORA Software Delivery Metrics",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "CI/CD",
+   "summary": "배포를 얼마나 자주, 얼마나 빨리 하고 배포가 얼마나 자주 탈 나 다시 손봐야 하며 얼마나 빨리 회복하는지로 팀의 전달 실력을 재는 지표 묶음이다.",
+   "related": [
+    "ops.ci.cicd-idea"
+   ],
+   "aliases": [
+    "DORA metrics",
+    "DORA 핵심 지표",
+    "배포 빈도",
+    "변경 리드 타임",
+    "변경 실패율"
+   ],
+   "refs": [
+    "https://dora.dev/guides/dora-metrics/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-11",
    "domain": "ops"
   },
   {
@@ -55501,6 +56565,72 @@
    "domain": "ml"
   },
   {
+   "id": "ml.supervised.decision-tree-idea",
+   "title": "의사결정나무: 스무고개로 답 찾기",
+   "en": "Decision Trees as a Game of Twenty Questions",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "예/아니요로 답하는 질문을 차례로 따라 내려가 맨 끝 칸에 적힌 답을 예측으로 내놓는 모델이다.",
+   "objectives": [
+    "의사결정나무가 예측하는 과정을 스무고개에 빗대어 설명할 수 있다",
+    "질문이 있는 칸과 답이 적힌 맨 끝 칸이 각각 하는 일을 말할 수 있다",
+    "맨 끝 칸에 종류가 적히면 분류, 숫자가 적히면 회귀임을 예로 들어 말할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.types-of-ml"
+   ],
+   "related": [
+    "ml.supervised.decision-tree"
+   ],
+   "aliases": [
+    "의사결정나무 원리",
+    "결정 트리 원리",
+    "decision tree basics",
+    "트리 모델 입문"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/decision-forests/decision-trees",
+    "https://developers.google.com/machine-learning/glossary/df"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.numerical-vs-categorical",
+   "title": "숫자 데이터와 범주 데이터 구분하기",
+   "en": "Numerical Data vs. Categorical Data",
+   "kind": "topic",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "더하고 크기를 견줄 수 있는 숫자 데이터와 정해진 몇 가지 값 중 하나인 범주 데이터를 가르고, 모델이 둘을 숫자 묶음으로 받는다는 큰 그림을 본다.",
+   "objectives": [
+    "온도·몸무게 같은 숫자 데이터와 색깔·동물 종류 같은 범주 데이터를 예로 구분할 수 있다",
+    "우편번호처럼 숫자로 적혀도 범주로 봐야 하는 데이터가 있는 이유를 설명할 수 있다",
+    "모델이 데이터 한 줄을 숫자 목록으로 바꿔 받는다는 것을 비유로 말할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.data-quality"
+   ],
+   "related": [
+    "ml.data.numeric-categorical-preprocessing",
+    "ml.data.category-dtype"
+   ],
+   "aliases": [
+    "데이터 종류 구분",
+    "수치 데이터와 범주 데이터",
+    "numerical vs categorical",
+    "ML 데이터 유형"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/numerical-data",
+    "https://developers.google.com/machine-learning/crash-course/categorical-data",
+    "https://developers.google.com/machine-learning/crash-course/numerical-data/feature-vectors"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.basics.automl",
    "title": "AutoML: 모델 만들기를 자동으로 맡기기",
    "en": "AutoML",
@@ -55559,6 +56689,40 @@
    "refs": [
     "https://developers.google.com/machine-learning/gan/gan_structure",
     "https://developers.google.com/machine-learning/gan/generative"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.ensemble-idea",
+   "title": "앙상블: 여러 모델의 의견 모으기",
+   "en": "Ensembles: Combining Many Models' Predictions",
+   "kind": "topic",
+   "level": 1,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "서로 조금씩 다른 여러 모델의 예측을 평균이나 투표로 합쳐 모델 하나보다 더 믿을 만한 답을 얻는 방법이다.",
+   "objectives": [
+    "여러 사람의 짐작을 모으면 한 사람보다 정확해지는 이유를 비유로 설명할 수 있다",
+    "같은 모델을 여러 개 모아도 나아지지 않는 이유를 말할 수 있다",
+    "나무 여러 그루가 투표해 답을 정하는 숲 모델의 흐름을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.supervised.decision-tree-idea"
+   ],
+   "related": [
+    "ml.supervised.tree-ensembles",
+    "ml.supervised.bagging"
+   ],
+   "aliases": [
+    "앙상블 학습",
+    "ensemble learning",
+    "모델 앙상블",
+    "model ensemble",
+    "앙상블 모델"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/decision-forests/intro-to-decision-forests",
+    "https://developers.google.com/machine-learning/decision-forests/intro-to-decision-forests-real"
    ],
    "domain": "ml"
   },
@@ -55894,6 +57058,131 @@
    "domain": "ml"
   },
   {
+   "id": "ml.supervised.tree-condition",
+   "title": "조건(결정 트리의 분기 질문)",
+   "en": "Condition (Decision Tree Split)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "의사결정나무의 갈림길마다 놓인 예/아니요 질문으로, 답에 따라 예시를 왼쪽 또는 오른쪽 가지로 보낸다.",
+   "parent": "ml.supervised.decision-tree-idea",
+   "related": [
+    "ml.supervised.tree-leaf"
+   ],
+   "aliases": [
+    "결정 트리 조건",
+    "decision tree condition",
+    "분할 조건",
+    "split condition"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/decision-forests/decision-trees",
+    "https://developers.google.com/machine-learning/glossary/df"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.tree-leaf",
+   "title": "잎 노드(결정 트리의 답 칸)",
+   "en": "Leaf Node (Decision Tree)",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "의사결정나무에서 더 묻지 않고 예측값을 내놓는 맨 끝 칸으로, 맨 위 첫 질문 칸인 루트에서 출발한 길이 여기서 끝난다.",
+   "parent": "ml.supervised.decision-tree-idea",
+   "related": [
+    "ml.supervised.tree-condition"
+   ],
+   "aliases": [
+    "결정 트리 잎",
+    "leaf node",
+    "트리 잎 노드",
+    "결정 트리 리프"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/decision-forests/decision-trees",
+    "https://developers.google.com/machine-learning/glossary/df"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.numerical-data",
+   "title": "수치형 데이터",
+   "en": "Numerical Data",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "온도나 몸무게처럼 더하고 세고 크기를 견주는 것이 뜻이 있는 정수·실수 값의 데이터다.",
+   "parent": "ml.data.numerical-vs-categorical",
+   "related": [
+    "ml.data.categorical-data"
+   ],
+   "aliases": [
+    "수치 데이터",
+    "numerical data",
+    "숫자형 데이터",
+    "수치형 특성",
+    "numerical feature"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/numerical-data"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.categorical-data",
+   "title": "범주형 데이터",
+   "en": "Categorical Data",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "동물 종류나 집 외벽 색처럼 정해진 몇 가지 값 가운데 하나를 갖는 데이터로, 숫자로 적힌 우편번호도 여기에 든다.",
+   "parent": "ml.data.numerical-vs-categorical",
+   "related": [
+    "ml.data.numerical-data",
+    "ml.data.category-dtype"
+   ],
+   "aliases": [
+    "범주 데이터",
+    "categorical data",
+    "범주형 특성",
+    "categorical feature",
+    "범주형 변수"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/categorical-data"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.data.feature-vector",
+   "title": "특성 벡터",
+   "en": "Feature Vector",
+   "kind": "term",
+   "level": 1,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "데이터 한 줄을 모델이 실제로 받아 먹는 실수들의 목록으로 바꾼 것으로, 원래 값을 손본 숫자가 들어가는 경우가 많다.",
+   "parent": "ml.data.numerical-vs-categorical",
+   "related": [
+    "ml.basics.feature-label"
+   ],
+   "aliases": [
+    "특성 벡터",
+    "feature vector",
+    "피처 벡터",
+    "ML 특성 벡터"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/numerical-data/feature-vectors"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.basics.reinforcement-learning",
    "title": "강화 학습",
    "en": "Reinforcement Learning",
@@ -56069,6 +57358,54 @@
    ],
    "refs": [
     "https://developers.google.com/machine-learning/recommendation/overview/types"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.inference-path",
+   "title": "추론 경로(결정 트리)",
+   "en": "Inference Path (Decision Tree)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "예시 하나가 루트에서 출발해 조건들의 답을 따라 잎에 닿을 때까지 지나간 칸들의 길이다.",
+   "parent": "ml.supervised.decision-tree-idea",
+   "related": [
+    "ml.supervised.tree-condition",
+    "ml.supervised.tree-leaf"
+   ],
+   "aliases": [
+    "트리 추론 경로",
+    "decision tree inference path",
+    "결정 경로",
+    "decision path"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/decision-forests/decision-trees",
+    "https://developers.google.com/machine-learning/glossary/df"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.wisdom-of-the-crowd",
+   "title": "집단 지성(앙상블의 원리)",
+   "en": "Wisdom of the Crowd (Ensembles)",
+   "kind": "term",
+   "level": 1,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "여러 사람이나 모델의 짐작을 모아 합치면 한 명의 짐작보다 정답에 더 가까워지는 현상으로, 앙상블이 기대는 생각이다.",
+   "parent": "ml.supervised.ensemble-idea",
+   "aliases": [
+    "wisdom of the crowd",
+    "wisdom of crowds",
+    "군중의 지혜",
+    "다수의 지혜"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/decision-forests/intro-to-decision-forests",
+    "https://developers.google.com/machine-learning/glossary/df"
    ],
    "domain": "ml"
   },
