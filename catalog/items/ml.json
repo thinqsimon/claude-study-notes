@@ -6335,6 +6335,139 @@
     ]
   },
   {
+    "id": "ml.training.loss-curve-diagnosis",
+    "title": "손실 곡선 모양으로 학습 문제 진단하기",
+    "en": "Diagnosing Training Problems from Loss Curve Shapes",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "출렁이거나 갑자기 치솟거나 검증 쪽만 올라가는 손실 곡선 모양을 보고 데이터·학습률·셔플 중 무엇이 원인인지 좁힌다.",
+    "objectives": [
+      "손실이 계속 출렁일 때 학습률과 나쁜 예시 중 원인을 가려 먼저 해 볼 조치를 고를 수 있다",
+      "잘 내려가던 손실이 갑자기 치솟을 때 입력의 NaN과 한 배치에 몰린 이상치에서 원인을 찾을 수 있다",
+      "학습 손실은 줄고 검증 손실만 오를 때 모델 단순화·규제 강화·분할 점검 중 무엇을 할지 근거를 말할 수 있다",
+      "어느 스텝부터 손실이 들쭉날쭉해지면 학습 데이터가 충분히 섞이지 않았는지 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.training.regularization",
+      "ml.nn.training-loop"
+    ],
+    "related": [
+      "ml.training.loss-curve",
+      "ml.training.overfitting"
+    ],
+    "aliases": [
+      "손실 곡선 해석",
+      "loss curve debugging",
+      "학습 디버깅",
+      "손실이 안 줄어요",
+      "interpreting loss curves"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/overfitting/interpreting-loss-curves"
+    ]
+  },
+  {
+    "id": "ml.training.deep-learning-tuning-strategy",
+    "title": "딥러닝 튜닝 전략: 점진적 실험 설계",
+    "en": "Incremental Hyperparameter Tuning Strategy for Deep Learning",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "단순한 설정에서 출발해 목표를 좁힌 실험을 반복하고, 근거가 충분할 때만 최선 설정을 바꾸는 하이퍼파라미터 튜닝 방식이다.",
+    "objectives": [
+      "실험 목표에 따라 하이퍼파라미터를 비교 대상·함께 맞출 값·고정할 값으로 나누고 그 근거를 말할 수 있다",
+      "배치 크기를 검증 점수가 아니라 학습 시간과 자원 기준으로 고르고, 바꾸면 학습률을 다시 맞춰야 하는 이유를 말할 수 있다",
+      "운 좋은 실행 한 번으로 설정을 바꾸면 안 되는 이유를 들어 새 설정 채택 여부를 판단할 수 있다",
+      "학습 스텝 수를 정하고 마지막이 아닌 가장 좋았던 체크포인트를 고를 수 있다"
+    ],
+    "prerequisites": [
+      "ml.nn.training-loop",
+      "ml.supervised.hyperparameter-search"
+    ],
+    "related": [
+      "ml.supervised.hyperparameter-search",
+      "ml.training.hyperparameter"
+    ],
+    "aliases": [
+      "튜닝 플레이북",
+      "tuning playbook",
+      "Deep Learning Tuning Playbook",
+      "점진적 튜닝",
+      "incremental tuning"
+    ],
+    "refs": [
+      "https://github.com/google-research/tuning_playbook"
+    ]
+  },
+  {
+    "id": "ml.eval.scoring-function-choice",
+    "title": "예측 목표에 맞는 손실과 평가 지표 고르기",
+    "en": "Choosing Consistent Scoring Functions for the Prediction Target",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "모델 평가",
+    "summary": "평균·중앙값·분위수 중 무엇을 예측할지 먼저 정하고, 그 목표와 맞는 하나의 함수를 학습 손실과 평가 지표로 함께 쓴다.",
+    "objectives": [
+      "요구 사항에서 예측할 대상이 평균인지 중앙값인지 분위수인지 가려 그에 맞는 손실 함수를 고를 수 있다",
+      "음수가 없는 개수형 목표에 제곱 오차 대신 푸아송 편차를 쓰는 근거를 말할 수 있다",
+      "학습 손실과 평가 지표가 서로 다른 목표를 겨냥해 모델 비교가 어긋나는 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "ml.eval.regression-metrics"
+    ],
+    "related": [
+      "ml.eval.metrics-tradeoffs",
+      "ml.eval.regression-metrics"
+    ],
+    "aliases": [
+      "점수 함수 선택",
+      "scoring function 선택",
+      "strictly consistent scoring function",
+      "일관된 점수 함수",
+      "손실 함수 고르기"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#which-scoring-function-should-i-use"
+    ]
+  },
+  {
+    "id": "ml.eval.linear-coefficient-interpretation",
+    "title": "선형 모델 계수 해석의 함정",
+    "en": "Pitfalls in Interpreting Linear Model Coefficients",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "모델 평가",
+    "summary": "선형 모델의 계수 크기를 그대로 특성 중요도로 읽으면 단위·상관된 특성·인과 착각 때문에 틀린 결론을 내기 쉽다.",
+    "objectives": [
+      "단위가 다른 특성의 계수를 비교하려면 표준편차로 맞춰야 하는 근거를 말할 수 있다",
+      "계수는 다른 특성을 고정한 조건부 관계라서 단순 산점도와 부호가 반대로 나올 수 있다는 점과, 상관이 강한 특성끼리 폴드마다 계수를 주고받아 부호가 뒤집히는 원인을 가려 말할 수 있다",
+      "교차 검증 폴드마다 계수를 다시 학습해 그 계수가 믿을 만한지 판단할 수 있다",
+      "계수가 연관을 나타낼 뿐 개입 효과를 보장하지 않는다는 점을 근거로 해석의 한계를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.linear-regression",
+      "ml.data.numeric-categorical-preprocessing"
+    ],
+    "related": [
+      "ml.eval.permutation-importance",
+      "ml.supervised.coef-intercept"
+    ],
+    "aliases": [
+      "계수 해석",
+      "coefficient interpretation",
+      "선형 회귀 계수 해석",
+      "interpreting coefficients"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/auto_examples/inspection/plot_linear_model_coefficient_interpretation.html"
+    ]
+  },
+  {
     "id": "ml.nn.activation-function",
     "title": "활성화 함수",
     "en": "Activation Function",
@@ -6437,6 +6570,50 @@
     ]
   },
   {
+    "id": "ml.training.nan-trap",
+    "title": "NaN 함정",
+    "en": "NaN Trap",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "학습 중 값 하나가 NaN이 되면 계산을 타고 퍼져 손실과 가중치 대부분이 NaN으로 바뀌는 현상이다.",
+    "parent": "ml.training.loss-curve-diagnosis",
+    "aliases": [
+      "NaN 손실",
+      "loss가 nan",
+      "nan loss",
+      "NaN 전파"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/glossary#nan-trap",
+      "https://developers.google.com/machine-learning/crash-course/overfitting/interpreting-loss-curves"
+    ]
+  },
+  {
+    "id": "ml.training.generalization-curve",
+    "title": "일반화 곡선(학습·검증 손실 함께 그리기)",
+    "en": "Generalization Curve",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "학습 손실과 검증 손실을 반복 횟수에 따라 한 그래프에 그린 것으로, 두 선이 벌어지면 과적합을 의심한다.",
+    "parent": "ml.training.loss-curve-diagnosis",
+    "related": [
+      "ml.training.loss-curve"
+    ],
+    "aliases": [
+      "학습 검증 손실 그래프",
+      "train val loss curve",
+      "검증 손실 곡선",
+      "validation loss curve"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/glossary#generalization-curve"
+    ]
+  },
+  {
     "id": "ml.eval.roc-auc",
     "title": "ROC 곡선과 AUC",
     "en": "ROC Curve and AUC",
@@ -6457,6 +6634,132 @@
     ],
     "refs": [
       "https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc"
+    ]
+  },
+  {
+    "id": "ml.training.scientific-nuisance-fixed-hyperparameters",
+    "title": "과학적·방해·고정 하이퍼파라미터",
+    "en": "Scientific, Nuisance, and Fixed Hyperparameters",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "한 실험에서 효과를 재려는 값, 공정한 비교를 위해 함께 최적화할 값, 그대로 두는 값으로 하이퍼파라미터의 역할을 나누는 구분이다.",
+    "parent": "ml.training.deep-learning-tuning-strategy",
+    "aliases": [
+      "방해 하이퍼파라미터",
+      "nuisance hyperparameter",
+      "과학적 하이퍼파라미터",
+      "scientific hyperparameter"
+    ],
+    "refs": [
+      "https://github.com/google-research/tuning_playbook#identifying-scientific-nuisance-and-fixed-hyperparameters"
+    ]
+  },
+  {
+    "id": "ml.training.retrospective-checkpoint-selection",
+    "title": "최적 체크포인트 사후 선택",
+    "en": "Retrospective Best-Checkpoint Selection",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "정한 스텝만큼 학습하며 체크포인트를 저장해 두고, 끝난 뒤 검증 성능이 가장 좋았던 것을 골라 쓰는 방식이다.",
+    "parent": "ml.training.deep-learning-tuning-strategy",
+    "related": [
+      "ml.training.early-stopping",
+      "ml.nn.training-checkpoint"
+    ],
+    "aliases": [
+      "best checkpoint 선택",
+      "최고 체크포인트 고르기",
+      "retrospective checkpoint selection",
+      "가장 좋은 체크포인트"
+    ],
+    "refs": [
+      "https://github.com/google-research/tuning_playbook#saving-checkpoints-and-retrospectively-selecting-the-best-checkpoint"
+    ]
+  },
+  {
+    "id": "ml.eval.pinball-loss",
+    "title": "핀볼 손실(분위수 손실)",
+    "en": "Pinball Loss",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "모델 평가",
+    "summary": "실제값보다 낮게 예측한 오차와 높게 예측한 오차에 분위수에 따라 다른 가중을 주어, 분위수 예측을 평가하고 학습하는 손실이다.",
+    "parent": "ml.eval.scoring-function-choice",
+    "aliases": [
+      "pinball loss",
+      "mean_pinball_loss",
+      "분위수 손실",
+      "quantile loss"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#pinball-loss"
+    ]
+  },
+  {
+    "id": "ml.eval.poisson-deviance",
+    "title": "푸아송 편차",
+    "en": "Poisson Deviance",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "모델 평가",
+    "summary": "음수가 없는 개수나 빈도의 기댓값을 예측하는 모델을 평가하는 손실로, 예측값이 0보다 커야 한다.",
+    "parent": "ml.eval.scoring-function-choice",
+    "aliases": [
+      "mean_poisson_deviance",
+      "포아송 편차",
+      "Poisson deviance loss"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#mean-tweedie-deviance"
+    ]
+  },
+  {
+    "id": "ml.eval.multicollinearity",
+    "title": "다중공선성과 계수 불안정",
+    "en": "Multicollinearity and Coefficient Instability",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "모델 평가",
+    "summary": "서로 강하게 함께 움직이는 특성이 있으면 각 특성의 몫을 나누기 어려워 데이터가 조금만 바뀌어도 계수가 크게 흔들리는 현상이다.",
+    "parent": "ml.eval.linear-coefficient-interpretation",
+    "related": [
+      "ml.data.correlation-coefficient"
+    ],
+    "aliases": [
+      "다중공선성",
+      "multicollinearity",
+      "공선성",
+      "collinear features"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/auto_examples/inspection/plot_linear_model_coefficient_interpretation.html#the-problem-of-correlated-variables"
+    ]
+  },
+  {
+    "id": "ml.eval.std-scaled-coefficients",
+    "title": "표준편차로 맞춘 계수",
+    "en": "Standard-Deviation-Scaled Coefficients",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "모델 평가",
+    "summary": "계수에 해당 특성의 표준편차를 곱해 단위 차이를 없애, 특성마다 예측에 주는 영향을 견줄 수 있게 만든 값이다.",
+    "parent": "ml.eval.linear-coefficient-interpretation",
+    "aliases": [
+      "표준화 계수",
+      "standardized coefficients",
+      "계수 스케일 맞추기",
+      "scaled coefficients"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/auto_examples/inspection/plot_linear_model_coefficient_interpretation.html#interpreting-coefficients-scale-matters"
     ]
   },
   {

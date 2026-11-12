@@ -6085,6 +6085,28 @@
     ]
   },
   {
+    "id": "fe.js.dynamic-import",
+    "title": "동적 import()",
+    "en": "Dynamic import() Expression",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "JavaScript",
+    "summary": "모듈을 실행 중에 비동기로 불러와 모듈 객체를 Promise로 돌려주는 문법으로, 조건부 로딩과 첫 로딩 비용 줄이기에 쓴다.",
+    "related": [
+      "fe.js.modules"
+    ],
+    "aliases": [
+      "동적 import",
+      "dynamic import",
+      "import() 표현식",
+      "동적 임포트"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import"
+    ]
+  },
+  {
     "id": "fe.html.constraint-validation",
     "title": "Constraint Validation API",
     "en": "Constraint Validation API",
@@ -6211,6 +6233,81 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-10"
+  },
+  {
+    "id": "fe.internals.rendering-strategy",
+    "title": "렌더링 방식 고르기: SSR·정적 렌더링·CSR",
+    "en": "Choosing a Rendering Strategy: SSR, Static Rendering and CSR",
+    "kind": "topic",
+    "level": 4,
+    "importance": 1,
+    "group": "프론트엔드 내부",
+    "summary": "페이지마다 HTML을 언제 어디서 만들지 정하고, 그 선택이 TTFB·첫 화면·상호작용 지연과 서버 비용에 주는 영향을 따지는 설계다.",
+    "objectives": [
+      "데이터의 신선도, 개인화 여부, URL을 미리 알 수 있는지를 근거로 페이지마다 SSR·정적 렌더링·CSR 중 하나를 고를 수 있다",
+      "각 방식이 TTFB·FCP·INP에 주는 손익을 근거로 설명할 수 있다",
+      "정적 페이지를 정한 시간이 지난 뒤나 데이터가 바뀌었다는 알림을 받았을 때 다시 만드는 ISR이 언제 맞는지 고를 수 있다",
+      "화면은 떴는데 입력이 늦게 반응할 때 하이드레이션과 큰 자바스크립트 번들 쪽에서 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "fe.next.first-page"
+    ],
+    "related": [
+      "fe.internals.server-components",
+      "fe.next.streaming-suspense",
+      "fe.internals.web-vitals"
+    ],
+    "aliases": [
+      "렌더링 전략",
+      "rendering strategy",
+      "SSR과 CSR 비교",
+      "SSR vs CSR",
+      "정적 렌더링",
+      "static rendering"
+    ],
+    "refs": [
+      "https://web.dev/articles/rendering-on-the-web",
+      "https://nextjs.org/docs/app/guides/incremental-static-regeneration"
+    ]
+  },
+  {
+    "id": "fe.next.auth-check-placement",
+    "title": "Next.js 인증 확인 위치 정하기",
+    "en": "Placing Authentication and Authorization Checks in Next.js",
+    "kind": "topic",
+    "level": 4,
+    "importance": 1,
+    "group": "Next.js",
+    "summary": "세션을 쿠키와 DB 중 어디에 둘지 고르고, Proxy·레이아웃·데이터 접근 계층·Server Action 중 어디서 권한을 확인해야 데이터가 새지 않는지 정하는 설계다.",
+    "objectives": [
+      "쿠키에 담는 무상태 세션과 DB 세션의 손익을 비교해 하나를 고를 수 있다",
+      "Proxy에서는 쿠키만 보는 낙관적 확인을 하고 실제 권한 확인은 데이터 가까이의 데이터 접근 계층에 두어야 하는 근거를 말할 수 있다",
+      "레이아웃에서만 확인하거나 화면을 숨기기만 해서 하위 경로·Server Action이 그대로 열려 있는 원인을 찾을 수 있다",
+      "Server Action과 Route Handler를 공개 API처럼 보고 그 안에서 다시 인증·인가를 확인하고 필요한 필드만 돌려줄 수 있다"
+    ],
+    "prerequisites": [
+      "be.auth.session-cookie",
+      "be.auth.authn-authz",
+      "fe.next.server-actions"
+    ],
+    "related": [
+      "be.auth.object-level",
+      "be.security.csrf-samesite",
+      "fe.internals.server-only"
+    ],
+    "aliases": [
+      "Next.js 인증",
+      "Next.js authentication",
+      "Next.js 인가 확인",
+      "Next.js 권한 확인",
+      "Next.js 세션 관리"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/guides/authentication",
+      "https://nextjs.org/docs/app/guides/data-security"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "fe.internals.server-client-boundary",
@@ -6359,6 +6456,107 @@
     ]
   },
   {
+    "id": "fe.next.caching-revalidation",
+    "title": "Next.js 캐싱과 재검증 설계",
+    "en": "Caching and Revalidation Design in Next.js",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "Next.js",
+    "summary": "어떤 데이터와 UI를 얼마 동안 캐시할지, 바뀐 뒤 어떤 방법으로 무효화할지 정하고 오래된 화면이 남는 원인을 찾는 설계다.",
+    "objectives": [
+      "요청마다 달라지는 데이터와 여러 사용자가 함께 보는 데이터를 나눠, 개발 오버레이의 blocking-route 경고가 뜬 읽기를 'use cache'로 감쌀지 Suspense 안으로 옮길지 고를 수 있다",
+      "cacheLife의 시간 기준 재검증과 revalidateTag·updateTag·revalidatePath의 요청 기반 무효화 중 무엇이 맞는지 근거를 말할 수 있다",
+      "CMS처럼 드물게 바뀌는 콘텐츠를 긴 cacheLife와 cacheTag로 두고 변경 알림에서 revalidateTag를 부르는 구조를 설계할 수 있다",
+      "서버리스나 여러 인스턴스에서 메모리 캐시가 남지 않거나 새 배포 뒤 캐시가 비는 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "fe.next.server-data-fetching",
+      "fe.next.server-actions"
+    ],
+    "related": [
+      "be.http.caching",
+      "fe.next.request-memoization",
+      "fe.next.revalidate-path"
+    ],
+    "aliases": [
+      "Next.js 캐싱",
+      "Next.js caching",
+      "Next.js 재검증",
+      "Next.js revalidation",
+      "Cache Components"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/getting-started/caching",
+      "https://nextjs.org/docs/app/getting-started/revalidating"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "fe.next.code-splitting",
+    "title": "코드 분할과 지연 로딩으로 번들 줄이기",
+    "en": "Reducing Bundles with Code Splitting and Lazy Loading",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "Next.js",
+    "summary": "처음 화면에 필요 없는 클라이언트 코드와 라이브러리를 따로 떼어 필요할 때 불러오게 하고, 그 손익과 흔한 실수를 따지는 설계다.",
+    "objectives": [
+      "모달·차트·검색 라이브러리처럼 처음에 안 쓰는 코드를 골라 next/dynamic·React.lazy·import() 중 맞는 방법으로 나눌 수 있다",
+      "ssr: false로 사전 렌더링을 끄는 것이 맞는 경우와 서버 컴포넌트에서 쓰면 안 되는 이유를 말할 수 있다",
+      "지연 컴포넌트를 컴포넌트 안에서 선언해 상태가 매번 초기화되는 문제의 원인을 찾을 수 있다",
+      "서버 컴포넌트는 자동으로 분할되어 지연 로딩이 클라이언트 컴포넌트에만 해당하고, 서버 컴포넌트에서 클라이언트 컴포넌트를 동적으로 불러오면 자동 분할이 되지 않는다는 점을 근거로 분할 위치를 정할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.js.modules",
+      "fe.internals.server-client-boundary"
+    ],
+    "related": [
+      "fe.basics.lazy-load",
+      "fe.internals.web-vitals",
+      "fe.react.suspense-boundary"
+    ],
+    "aliases": [
+      "코드 분할",
+      "code splitting",
+      "번들 분할",
+      "bundle splitting",
+      "컴포넌트 지연 로딩",
+      "component lazy loading"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/guides/lazy-loading",
+      "https://react.dev/reference/react/lazy",
+      "https://web.dev/articles/reduce-javascript-payloads-with-code-splitting"
+    ]
+  },
+  {
+    "id": "fe.next.data-access-layer",
+    "title": "데이터 접근 계층(DAL)",
+    "en": "Data Access Layer in Next.js",
+    "kind": "term",
+    "level": 4,
+    "importance": 1,
+    "group": "Next.js",
+    "summary": "서버에서만 돌며 데이터 요청마다 세션과 권한을 확인하고 필요한 필드만 담은 객체를 돌려주도록 데이터 접근을 한곳에 모은 내부 모듈이다.",
+    "parent": "fe.next.auth-check-placement",
+    "related": [
+      "fe.internals.server-only",
+      "be.fastapi.dto"
+    ],
+    "aliases": [
+      "데이터 접근 계층",
+      "data access layer",
+      "Next.js DAL",
+      "verifySession"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/guides/data-security",
+      "https://nextjs.org/docs/app/guides/authentication"
+    ]
+  },
+  {
     "id": "fe.internals.use-client-directive",
     "title": "'use client' 지시어",
     "en": "'use client' Directive",
@@ -6461,6 +6659,157 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-05"
+  },
+  {
+    "id": "fe.next.isr",
+    "title": "ISR(증분 정적 재생성)",
+    "en": "Incremental Static Regeneration",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Next.js",
+    "summary": "미리 만든 정적 페이지를 정한 시간이 지난 뒤 들어온 요청이나 revalidatePath·revalidateTag 호출을 계기로 뒤에서 다시 만들어, 전체 빌드 없이 내용을 새로 고치는 방식이다.",
+    "parent": "fe.internals.rendering-strategy",
+    "related": [
+      "fe.next.caching-revalidation"
+    ],
+    "aliases": [
+      "증분 정적 재생성",
+      "Next.js ISR",
+      "온디맨드 ISR",
+      "on-demand ISR"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/guides/incremental-static-regeneration"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "fe.next.use-cache",
+    "title": "'use cache' 지시어",
+    "en": "The 'use cache' Directive",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Next.js",
+    "summary": "비동기 함수나 컴포넌트의 결과를 캐시하게 하는 Next.js 지시어로, 인자가 캐시 키가 되고 cacheLife로 수명을 정한다.",
+    "parent": "fe.next.caching-revalidation",
+    "related": [
+      "fe.internals.use-client-directive",
+      "fe.next.request-memoization"
+    ],
+    "aliases": [
+      "use cache",
+      "use cache 지시어",
+      "cacheLife",
+      "use cache: remote",
+      "use cache: private"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/getting-started/caching",
+      "https://nextjs.org/docs/app/getting-started/revalidating"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "fe.next.cache-tag-revalidation",
+    "title": "cacheTag와 revalidateTag·updateTag",
+    "en": "Tag-based Cache Invalidation with cacheTag, revalidateTag and updateTag",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Next.js",
+    "summary": "캐시에 이름표를 붙여 두고 데이터가 바뀌면 그 이름표로 무효화하는 방법으로, revalidateTag는 뒤에서 갱신하고 updateTag는 즉시 만료시킨다.",
+    "parent": "fe.next.caching-revalidation",
+    "related": [
+      "fe.next.revalidate-path"
+    ],
+    "aliases": [
+      "cacheTag",
+      "revalidateTag",
+      "updateTag",
+      "태그 기반 재검증",
+      "tag-based revalidation"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/getting-started/revalidating"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "fe.next.next-dynamic",
+    "title": "next/dynamic",
+    "en": "Dynamic Imports with next/dynamic",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Next.js",
+    "summary": "React.lazy와 Suspense를 합친 Next.js 함수로, 클라이언트 컴포넌트를 별도 번들로 떼어 필요할 때 불러오고 ssr: false로 사전 렌더링을 끌 수 있다.",
+    "parent": "fe.next.code-splitting",
+    "related": [
+      "fe.react.lazy"
+    ],
+    "aliases": [
+      "next dynamic",
+      "Next.js dynamic import",
+      "ssr: false",
+      "dynamic()"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/guides/lazy-loading"
+    ]
+  },
+  {
+    "id": "fe.react.lazy",
+    "title": "React.lazy",
+    "en": "React lazy()",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "React",
+    "summary": "컴포넌트 코드를 처음 렌더링할 때까지 불러오지 않게 하는 React 함수로, Suspense 경계 안에서 쓰고 모듈 최상위에 선언해야 한다.",
+    "parent": "fe.next.code-splitting",
+    "related": [
+      "fe.react.suspense-boundary",
+      "fe.next.next-dynamic"
+    ],
+    "aliases": [
+      "React lazy",
+      "lazy 컴포넌트",
+      "lazy component",
+      "React 지연 로딩"
+    ],
+    "refs": [
+      "https://react.dev/reference/react/lazy"
+    ]
+  },
+  {
+    "id": "fe.next.proxy-file",
+    "title": "Next.js Proxy(proxy.ts)",
+    "en": "Next.js Proxy File Convention",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Next.js",
+    "summary": "경로가 렌더링되기 전에 요청을 받아 리다이렉트·리라이트·헤더 수정을 하는 Next.js 파일로, 예전 이름은 middleware이고 matcher로 적용 경로를 정한다.",
+    "parent": "fe.next.auth-check-placement",
+    "related": [
+      "be.http.reverse-proxy"
+    ],
+    "aliases": [
+      "proxy.ts",
+      "Next.js 미들웨어",
+      "middleware.ts",
+      "Proxy matcher"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/api-reference/file-conventions/proxy"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "fe.internals.server-only",

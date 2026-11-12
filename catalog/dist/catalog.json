@@ -1,5 +1,5 @@
 {
- "version": "0.59.0",
+ "version": "0.60.0",
  "domains": [
   {
    "prefix": "dev",
@@ -6542,6 +6542,36 @@
    "domain": "dev"
   },
   {
+   "id": "dev.git.leaked-secret-cleanup",
+   "title": "커밋된 비밀값 대응: 폐기·기록 정리·푸시 보호",
+   "en": "Responding to Secrets Committed to Git History",
+   "kind": "topic",
+   "level": 4,
+   "importance": 1,
+   "group": "Git",
+   "summary": "저장소에 올라간 비밀값은 먼저 폐기하고, 필요할 때만 기록을 다시 써서 지우며, 푸시 보호로 재발을 막는다.",
+   "objectives": [
+    "비밀값이 커밋됐을 때 키 폐기와 기록 다시 쓰기 중 무엇이 먼저인지 근거를 말할 수 있다",
+    "기록을 다시 쓴 뒤 포크·옛 클론·풀 리퀘스트에 비밀값이 남는 원인을 찾을 수 있다",
+    "푸시 보호와 커밋 전 훅 중 팀 상황에 맞는 재발 방지책을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "be.security.secrets-handling"
+   ],
+   "aliases": [
+    "비밀값 유출 대응",
+    "민감 정보 제거",
+    "removing sensitive data",
+    "커밋된 API 키 지우기",
+    "leaked secret in git"
+   ],
+   "refs": [
+    "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository",
+    "https://docs.github.com/en/code-security/secret-scanning/introduction/about-push-protection"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.test.coverage-meaning",
    "title": "커버리지를 제대로 읽기",
    "en": "Reading Test Coverage",
@@ -6650,6 +6680,95 @@
    "domain": "dev"
   },
   {
+   "id": "dev.test.mock-patch-target",
+   "title": "패치가 먹지 않는 원인: 패치 위치와 autospec",
+   "en": "Choosing the Patch Target and Autospeccing Mocks",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "테스트",
+   "summary": "mock.patch는 코드가 찾아 쓰는 이름을 바꾸므로 위치를 잘못 고르면 효과가 없고, autospec이 없으면 틀린 호출도 통과한다.",
+   "objectives": [
+    "패치했는데 진짜 객체가 불리는 원인을 import 방식에서 찾을 수 있다",
+    "패치할 이름을 정의한 모듈과 쓰는 모듈 중에서 고르고 근거를 말할 수 있다",
+    "API 서명이 바뀌어도 테스트가 통과하는 원인을 찾고 autospec으로 막을 수 있다"
+   ],
+   "prerequisites": [
+    "be.test.mocking"
+   ],
+   "aliases": [
+    "where to patch",
+    "mock 패치 위치",
+    "patch가 안 먹힘",
+    "mock.patch 대상",
+    "unittest.mock patch target"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/unittest.mock.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.test.warnings-as-errors",
+   "title": "폐지 예정 경고를 테스트에서 오류로 잡기",
+   "en": "Turning Deprecation Warnings into Test Errors",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "테스트",
+   "summary": "숨겨지기 쉬운 DeprecationWarning을 경고 필터로 드러내거나 오류로 바꿔, 라이브러리 업그레이드 전에 깨질 곳을 찾는다.",
+   "objectives": [
+    "평소 실행에서 DeprecationWarning이 보이지 않는 원인을 기본 경고 필터로 설명할 수 있다",
+    "-W·PYTHONWARNINGS·pytest filterwarnings 중 어디에 필터를 둘지 고를 수 있다",
+    "경고를 오류로 바꾼 뒤 실패한 테스트에서 경고를 낸 호출 위치를 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "dev.test.pytest-select"
+   ],
+   "aliases": [
+    "경고를 오류로",
+    "warnings as errors",
+    "폐지 예정 경고",
+    "deprecation warning 테스트",
+    "경고 필터"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/warnings.html",
+    "https://docs.pytest.org/en/stable/how-to/capture-warnings.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.large-repo-clone",
+   "title": "큰 저장소 가볍게 받기: 얕은·부분 클론과 sparse-checkout",
+   "en": "Shallow Clone, Partial Clone, and Sparse Checkout for Large Repositories",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "Git",
+   "summary": "커밋 수를 줄이는 얕은 클론, 파일 내용을 나중에 받는 부분 클론, 작업 폴더를 좁히는 sparse-checkout을 상황에 맞게 고른다.",
+   "objectives": [
+    "CI와 개발자 작업에 맞춰 얕은 클론과 부분 클론 중 하나를 고르고 근거를 말할 수 있다",
+    "부분 클론에서 명령이 느려지거나 오프라인에서 실패하는 원인을 지연 받기에서 찾을 수 있다",
+    "sparse-checkout에서 cone 모드를 고르는 근거를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.remote-tracking"
+   ],
+   "aliases": [
+    "큰 저장소 클론",
+    "모노레포 클론 줄이기",
+    "large repository clone",
+    "클론 용량 줄이기"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/partial-clone",
+    "https://git-scm.com/docs/git-sparse-checkout",
+    "https://git-scm.com/docs/git-clone"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.test.e2e",
    "title": "E2E 테스트",
    "en": "End-to-End Test",
@@ -6737,6 +6856,112 @@
    "domain": "dev"
   },
   {
+   "id": "dev.git.filter-repo",
+   "title": "git filter-repo",
+   "en": "git filter-repo History Rewriting Tool",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Git",
+   "summary": "저장소 전체 기록에서 파일이나 문자열을 지워 커밋을 새로 만드는 도구로, 모든 뒤 커밋의 해시가 바뀐다.",
+   "parent": "dev.git.leaked-secret-cleanup",
+   "aliases": [
+    "git-filter-repo",
+    "filter-repo",
+    "--sensitive-data-removal",
+    "기록에서 파일 지우기"
+   ],
+   "refs": [
+    "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.push-protection",
+   "title": "푸시 보호(push protection)",
+   "en": "GitHub Secret Scanning Push Protection",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Git",
+   "summary": "비밀값처럼 보이는 내용이 든 푸시를 저장소에 들어가기 전에 막고, 우회하면 사유와 경고를 남기는 GitHub 기능이다.",
+   "parent": "dev.git.leaked-secret-cleanup",
+   "aliases": [
+    "푸시 보호",
+    "secret scanning push protection",
+    "비밀값 푸시 차단",
+    "push protection bypass"
+   ],
+   "refs": [
+    "https://docs.github.com/en/code-security/secret-scanning/introduction/about-push-protection"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "dev"
+  },
+  {
+   "id": "dev.test.autospec",
+   "title": "autospec과 create_autospec",
+   "en": "Autospec Mocks with create_autospec",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "테스트",
+   "summary": "진짜 객체의 속성과 호출 서명을 본떠 mock을 만들어, 틀린 인자로 부르면 진짜처럼 TypeError를 내게 하는 방법이다.",
+   "parent": "dev.test.mock-patch-target",
+   "aliases": [
+    "create_autospec",
+    "autospec=True",
+    "자동 명세 mock"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/unittest.mock.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.test.warning-filter-option",
+   "title": "-W 옵션과 PYTHONWARNINGS",
+   "en": "Python -W Option and PYTHONWARNINGS",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "테스트",
+   "summary": "명령줄이나 환경 변수로 '동작:메시지:종류:모듈:줄' 형식의 경고 필터를 걸어 경고를 숨기거나 보이거나 오류로 바꾼다.",
+   "parent": "dev.test.warnings-as-errors",
+   "aliases": [
+    "PYTHONWARNINGS",
+    "python -W error",
+    "python -Wd",
+    "error::DeprecationWarning"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/warnings.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.test.pytest-filterwarnings",
+   "title": "pytest filterwarnings",
+   "en": "pytest filterwarnings Option and Mark",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "테스트",
+   "summary": "설정 파일이나 마크로 pytest 실행 중의 경고 필터를 정해, 특정 경고만 오류로 만들거나 알려진 경고를 예외로 둔다.",
+   "parent": "dev.test.warnings-as-errors",
+   "aliases": [
+    "pytest.mark.filterwarnings",
+    "filterwarnings ini",
+    "pytest 경고 필터",
+    "pytest -W error"
+   ],
+   "refs": [
+    "https://docs.pytest.org/en/stable/how-to/capture-warnings.html"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.robust.fsync",
    "title": "fsync",
    "en": "fsync",
@@ -6770,6 +6995,70 @@
     ".done 파일",
     "완료 마커",
     "_SUCCESS 파일"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.shallow-clone",
+   "title": "얕은 클론(--depth)",
+   "en": "Git Shallow Clone with --depth",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Git",
+   "summary": "최근 커밋 몇 개까지만 기록을 받는 클론으로, 기본으로 한 브랜치만 받아 오래된 기록이 필요한 명령에는 맞지 않는다.",
+   "parent": "dev.git.large-repo-clone",
+   "aliases": [
+    "shallow clone",
+    "git clone --depth 1",
+    "--shallow-since",
+    "얕은 복제"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/git-clone"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.partial-clone",
+   "title": "부분 클론(--filter=blob:none)",
+   "en": "Git Partial Clone with --filter",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Git",
+   "summary": "커밋 기록은 다 받되 파일 내용 같은 객체를 빼고 받아, 필요할 때 원격에서 하나씩 가져오는 클론 방식이다.",
+   "parent": "dev.git.large-repo-clone",
+   "aliases": [
+    "partial clone",
+    "git clone --filter=blob:none",
+    "blobless clone",
+    "부분 복제"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/partial-clone",
+    "https://git-scm.com/docs/git-clone"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.sparse-checkout-cone",
+   "title": "sparse-checkout의 cone 모드",
+   "en": "Git Sparse Checkout Cone Mode",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Git",
+   "summary": "패턴 대신 디렉터리 목록으로 작업 폴더에 꺼낼 범위를 정하는 기본 모드로, 빠르고 실수가 적어 새 작업에 권장된다.",
+   "parent": "dev.git.large-repo-clone",
+   "aliases": [
+    "cone mode",
+    "git sparse-checkout set",
+    "sparse checkout cone",
+    "--no-cone"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/git-sparse-checkout"
    ],
    "domain": "dev"
   },
@@ -13390,6 +13679,144 @@
    "domain": "cs"
   },
   {
+   "id": "cs.data.json-large-integer",
+   "title": "JSON에서 큰 정수가 바뀌는 문제",
+   "en": "Large Integer Precision Loss in JSON",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "데이터 표현",
+   "summary": "받는 쪽이 JSON 숫자를 배정밀도 실수로 읽으면 2^53을 넘는 정수 ID의 끝자리가 바뀌므로 문자열로 보낼지 고른다.",
+   "objectives": [
+    "서버의 64비트 ID가 브라우저에서 끝자리만 다르게 보이는 원인을 안전 정수 범위를 넘은 정밀도 손실에서 찾을 수 있다",
+    "수신 측이 배정밀도보다 정확하다고 가정할 수 없다는 근거로 큰 정수 ID를 JSON 숫자 대신 문자열로 보낼지 고를 수 있다",
+    "JSON.parse가 숫자를 읽는 순간 정밀도가 이미 사라진다는 점을 근거로, 큰 정수는 문자열로 받아 그대로 쓰거나 BigInt로 바꾸고 Number.isSafeInteger로는 손실 여부만 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.data.integer-float",
+    "cs.data.float-error"
+   ],
+   "related": [
+    "cs.data.binary64",
+    "cs.data.arbitrary-precision-int"
+   ],
+   "aliases": [
+    "JSON 큰 정수",
+    "JSON number precision",
+    "64비트 ID 정밀도",
+    "JSON 숫자 정밀도 손실"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc8259",
+    "https://www.rfc-editor.org/rfc/rfc7493",
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.fd-exhaustion",
+   "title": "파일 디스크립터 고갈 원인 찾기",
+   "en": "Diagnosing File Descriptor Exhaustion",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "서버가 새 연결이나 파일을 못 여는 원인이 프로세스 한도인지 시스템 한도인지, 닫히지 않는 디스크립터 누수인지 가려낸다.",
+   "objectives": [
+    "EMFILE과 ENFILE을 구분해 바닥난 것이 프로세스의 한도인지 시스템 전체 한도인지 가를 수 있다",
+    "/proc/<pid>/fd 목록에서 늘어만 가는 파일·소켓·파이프를 보고 닫지 않는 코드를 찾을 수 있다",
+    "소프트 한도·하드 한도의 차이와 자식 프로세스로 이어지는 상속을 근거로 한도를 어디서 올릴지 고를 수 있다",
+    "close-on-exec 없이 연 디스크립터가 exec한 자식 프로세스로 새는 원인을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.os.process-vs-thread"
+   ],
+   "related": [
+    "cs.os.file-descriptor",
+    "cs.net.connection-errors"
+   ],
+   "aliases": [
+    "디스크립터 고갈",
+    "file descriptor exhaustion",
+    "fd 누수",
+    "file descriptor leak",
+    "열린 파일 수 초과"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man2/open.2.html",
+    "https://man7.org/linux/man-pages/man2/getrlimit.2.html",
+    "https://man7.org/linux/man-pages/man5/proc_pid_fd.5.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.broken-pipe",
+   "title": "닫힌 상대에게 쓰기: SIGPIPE와 EPIPE",
+   "en": "Writing to a Closed Peer: SIGPIPE and EPIPE",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "읽는 쪽이 닫힌 파이프나 소켓에 쓰면 SIGPIPE가 오고, 무시하면 EPIPE 오류가 되는 원리로 갑작스런 종료와 Broken pipe를 다룬다.",
+   "objectives": [
+    "클라이언트가 먼저 끊은 뒤 응답을 쓰던 프로세스가 로그 없이 끝나는 원인을 SIGPIPE의 기본 동작이 종료라는 데서 찾을 수 있다",
+    "SIGPIPE를 프로세스 전체에서 무시할지, MSG_NOSIGNAL로 쓰기 호출마다 막을지 영향 범위를 근거로 고를 수 있다",
+    "출력을 head 같은 명령에 넘길 때 나는 BrokenPipeError를 진입점에서 잡아 처리하고, SIGPIPE를 기본 동작으로 되돌리면 안 되는 근거를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.os.signals"
+   ],
+   "related": [
+    "cs.net.tcp-reset",
+    "cs.net.connection-errors"
+   ],
+   "aliases": [
+    "Broken pipe",
+    "BrokenPipeError",
+    "닫힌 소켓에 쓰기",
+    "write to closed socket"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man7/pipe.7.html",
+    "https://man7.org/linux/man-pages/man2/send.2.html",
+    "https://man7.org/linux/man-pages/man7/signal.7.html",
+    "https://docs.python.org/3/library/signal.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.nagle-delayed-ack",
+   "title": "Nagle 알고리즘과 지연 ACK의 지연",
+   "en": "Nagle's Algorithm, Delayed ACK, and TCP_NODELAY",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "네트워크",
+   "summary": "작은 조각을 모아 보내는 Nagle 알고리즘과 확인 응답을 미루는 지연 ACK가 겹쳐 짧은 요청·응답이 늦어지는 원리와 끄는 선택이다.",
+   "objectives": [
+    "작은 쓰기를 여러 번 하는 요청·응답에서만 수십 ms씩 지연이 생기는 원인을 Nagle 알고리즘과 지연 ACK가 맞물린 데서 찾을 수 있다",
+    "지연이 중요한 연결에서 TCP_NODELAY로 Nagle을 끌지, 패킷 수를 줄이려 그대로 둘지 손익을 근거로 고를 수 있다",
+    "TCP_CORK가 켜져 있으면 TCP_NODELAY만으로 작은 조각이 바로 나가지 않는다는 근거를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.net.tcp-vs-udp"
+   ],
+   "related": [
+    "ops.network.tcp-internals"
+   ],
+   "aliases": [
+    "Nagle 지연",
+    "Nagle delay",
+    "TCP 작은 패킷 지연",
+    "small packet delay"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9293",
+    "https://man7.org/linux/man-pages/man7/tcp.7.html"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.dsa.hash-randomization",
    "title": "해시 무작위화",
    "en": "Hash Randomization",
@@ -13552,6 +13979,120 @@
    "domain": "cs"
   },
   {
+   "id": "cs.data.safe-integer-range",
+   "title": "안전 정수 범위(±(2^53−1))",
+   "en": "Safe Integer Range of Double Precision",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "데이터 표현",
+   "summary": "배정밀도 실수가 모든 정수를 정확히 담고 바르게 비교할 수 있는 범위로, 그 밖의 정수는 이웃 값과 같아질 수 있다.",
+   "parent": "cs.data.json-large-integer",
+   "related": [
+    "cs.data.binary64"
+   ],
+   "aliases": [
+    "MAX_SAFE_INTEGER",
+    "Number.MAX_SAFE_INTEGER",
+    "safe integer",
+    "9007199254740991",
+    "Number.isSafeInteger"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER",
+    "https://www.rfc-editor.org/rfc/rfc8259"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.emfile",
+   "title": "EMFILE(프로세스 열린 파일 한도 초과)",
+   "en": "EMFILE Error",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "한 프로세스가 열 수 있는 파일 디스크립터 수에 닿아 open·accept·pipe가 실패할 때 받는 오류 번호다.",
+   "parent": "cs.os.fd-exhaustion",
+   "related": [
+    "cs.os.file-descriptor"
+   ],
+   "aliases": [
+    "EMFILE",
+    "Errno 24"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man2/open.2.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.rlimit-nofile",
+   "title": "열린 파일 수 한도(RLIMIT_NOFILE)",
+   "en": "RLIMIT_NOFILE Resource Limit",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "프로세스가 열 수 있는 디스크립터 번호의 상한으로, 커널이 지키는 소프트 한도와 그 천장인 하드 한도가 있다.",
+   "parent": "cs.os.fd-exhaustion",
+   "aliases": [
+    "RLIMIT_NOFILE",
+    "ulimit -n",
+    "nofile limit",
+    "열린 파일 한도",
+    "/proc/pid/limits"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man2/getrlimit.2.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.sigpipe",
+   "title": "SIGPIPE",
+   "en": "SIGPIPE Signal",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "읽는 쪽이 없는 파이프나 상대가 닫은 소켓에 쓸 때 커널이 보내는 시그널로, 기본 동작은 프로세스 종료다.",
+   "parent": "cs.os.broken-pipe",
+   "related": [
+    "cs.os.signals"
+   ],
+   "aliases": [
+    "SIGPIPE",
+    "파이프 끊김 시그널"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man7/signal.7.html",
+    "https://man7.org/linux/man-pages/man7/pipe.7.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.epipe",
+   "title": "EPIPE(Broken pipe 오류)",
+   "en": "EPIPE Error",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "SIGPIPE를 무시하거나 막은 상태에서 닫힌 파이프·소켓에 쓰면 write나 send가 돌려주는 오류 번호다.",
+   "parent": "cs.os.broken-pipe",
+   "aliases": [
+    "EPIPE",
+    "Errno 32",
+    "Broken pipe 오류"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man2/send.2.html",
+    "https://man7.org/linux/man-pages/man7/pipe.7.html"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.algo.atomic-group-possessive",
    "title": "원자 그룹과 소유 수량자",
    "en": "Atomic Groups and Possessive Quantifiers",
@@ -13569,6 +14110,70 @@
    ],
    "refs": [
     "https://docs.python.org/3/library/re.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.data.i-json",
+   "title": "I-JSON(상호운용 JSON 규약)",
+   "en": "I-JSON (Internet JSON Profile)",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "데이터 표현",
+   "summary": "어느 구현이 받아도 같은 뜻이 되도록 중복 이름 금지, 숫자 범위, 큰 정수의 문자열 표기 같은 제약을 더한 JSON 규약이다.",
+   "parent": "cs.data.json-large-integer",
+   "aliases": [
+    "I-JSON",
+    "Internet JSON",
+    "RFC 7493"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc7493"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.nagle-algorithm",
+   "title": "Nagle 알고리즘",
+   "en": "Nagle's Algorithm",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "네트워크",
+   "summary": "확인받지 못한 데이터가 있는 동안 작은 쓰기를 버퍼에 모았다가 확인이 오거나 한 세그먼트가 찰 때 보내는 TCP 송신 규칙이다.",
+   "parent": "cs.net.nagle-delayed-ack",
+   "aliases": [
+    "Nagle algorithm",
+    "TCP_NODELAY",
+    "네이글 알고리즘",
+    "RFC 896"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9293",
+    "https://man7.org/linux/man-pages/man7/tcp.7.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.delayed-ack",
+   "title": "지연 ACK",
+   "en": "TCP Delayed Acknowledgment",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "네트워크",
+   "summary": "받는 쪽이 확인 응답을 바로 보내지 않고 잠시 미뤄 여러 세그먼트를 한 번에 확인하는 TCP 수신 규칙이다.",
+   "parent": "cs.net.nagle-delayed-ack",
+   "aliases": [
+    "delayed ACK",
+    "지연 확인 응답",
+    "TCP_QUICKACK",
+    "ACK 지연"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9293",
+    "https://man7.org/linux/man-pages/man7/tcp.7.html"
    ],
    "domain": "cs"
   },
@@ -43792,6 +44397,29 @@
    "domain": "fe"
   },
   {
+   "id": "fe.js.dynamic-import",
+   "title": "동적 import()",
+   "en": "Dynamic import() Expression",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "JavaScript",
+   "summary": "모듈을 실행 중에 비동기로 불러와 모듈 객체를 Promise로 돌려주는 문법으로, 조건부 로딩과 첫 로딩 비용 줄이기에 쓴다.",
+   "related": [
+    "fe.js.modules"
+   ],
+   "aliases": [
+    "동적 import",
+    "dynamic import",
+    "import() 표현식",
+    "동적 임포트"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.html.constraint-validation",
    "title": "Constraint Validation API",
    "en": "Constraint Validation API",
@@ -43923,6 +44551,83 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-10",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.rendering-strategy",
+   "title": "렌더링 방식 고르기: SSR·정적 렌더링·CSR",
+   "en": "Choosing a Rendering Strategy: SSR, Static Rendering and CSR",
+   "kind": "topic",
+   "level": 4,
+   "importance": 1,
+   "group": "프론트엔드 내부",
+   "summary": "페이지마다 HTML을 언제 어디서 만들지 정하고, 그 선택이 TTFB·첫 화면·상호작용 지연과 서버 비용에 주는 영향을 따지는 설계다.",
+   "objectives": [
+    "데이터의 신선도, 개인화 여부, URL을 미리 알 수 있는지를 근거로 페이지마다 SSR·정적 렌더링·CSR 중 하나를 고를 수 있다",
+    "각 방식이 TTFB·FCP·INP에 주는 손익을 근거로 설명할 수 있다",
+    "정적 페이지를 정한 시간이 지난 뒤나 데이터가 바뀌었다는 알림을 받았을 때 다시 만드는 ISR이 언제 맞는지 고를 수 있다",
+    "화면은 떴는데 입력이 늦게 반응할 때 하이드레이션과 큰 자바스크립트 번들 쪽에서 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "fe.next.first-page"
+   ],
+   "related": [
+    "fe.internals.server-components",
+    "fe.next.streaming-suspense",
+    "fe.internals.web-vitals"
+   ],
+   "aliases": [
+    "렌더링 전략",
+    "rendering strategy",
+    "SSR과 CSR 비교",
+    "SSR vs CSR",
+    "정적 렌더링",
+    "static rendering"
+   ],
+   "refs": [
+    "https://web.dev/articles/rendering-on-the-web",
+    "https://nextjs.org/docs/app/guides/incremental-static-regeneration"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.auth-check-placement",
+   "title": "Next.js 인증 확인 위치 정하기",
+   "en": "Placing Authentication and Authorization Checks in Next.js",
+   "kind": "topic",
+   "level": 4,
+   "importance": 1,
+   "group": "Next.js",
+   "summary": "세션을 쿠키와 DB 중 어디에 둘지 고르고, Proxy·레이아웃·데이터 접근 계층·Server Action 중 어디서 권한을 확인해야 데이터가 새지 않는지 정하는 설계다.",
+   "objectives": [
+    "쿠키에 담는 무상태 세션과 DB 세션의 손익을 비교해 하나를 고를 수 있다",
+    "Proxy에서는 쿠키만 보는 낙관적 확인을 하고 실제 권한 확인은 데이터 가까이의 데이터 접근 계층에 두어야 하는 근거를 말할 수 있다",
+    "레이아웃에서만 확인하거나 화면을 숨기기만 해서 하위 경로·Server Action이 그대로 열려 있는 원인을 찾을 수 있다",
+    "Server Action과 Route Handler를 공개 API처럼 보고 그 안에서 다시 인증·인가를 확인하고 필요한 필드만 돌려줄 수 있다"
+   ],
+   "prerequisites": [
+    "be.auth.session-cookie",
+    "be.auth.authn-authz",
+    "fe.next.server-actions"
+   ],
+   "related": [
+    "be.auth.object-level",
+    "be.security.csrf-samesite",
+    "fe.internals.server-only"
+   ],
+   "aliases": [
+    "Next.js 인증",
+    "Next.js authentication",
+    "Next.js 인가 확인",
+    "Next.js 권한 확인",
+    "Next.js 세션 관리"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/guides/authentication",
+    "https://nextjs.org/docs/app/guides/data-security"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "fe"
   },
   {
@@ -44076,6 +44781,110 @@
    "domain": "fe"
   },
   {
+   "id": "fe.next.caching-revalidation",
+   "title": "Next.js 캐싱과 재검증 설계",
+   "en": "Caching and Revalidation Design in Next.js",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "Next.js",
+   "summary": "어떤 데이터와 UI를 얼마 동안 캐시할지, 바뀐 뒤 어떤 방법으로 무효화할지 정하고 오래된 화면이 남는 원인을 찾는 설계다.",
+   "objectives": [
+    "요청마다 달라지는 데이터와 여러 사용자가 함께 보는 데이터를 나눠, 개발 오버레이의 blocking-route 경고가 뜬 읽기를 'use cache'로 감쌀지 Suspense 안으로 옮길지 고를 수 있다",
+    "cacheLife의 시간 기준 재검증과 revalidateTag·updateTag·revalidatePath의 요청 기반 무효화 중 무엇이 맞는지 근거를 말할 수 있다",
+    "CMS처럼 드물게 바뀌는 콘텐츠를 긴 cacheLife와 cacheTag로 두고 변경 알림에서 revalidateTag를 부르는 구조를 설계할 수 있다",
+    "서버리스나 여러 인스턴스에서 메모리 캐시가 남지 않거나 새 배포 뒤 캐시가 비는 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "fe.next.server-data-fetching",
+    "fe.next.server-actions"
+   ],
+   "related": [
+    "be.http.caching",
+    "fe.next.request-memoization",
+    "fe.next.revalidate-path"
+   ],
+   "aliases": [
+    "Next.js 캐싱",
+    "Next.js caching",
+    "Next.js 재검증",
+    "Next.js revalidation",
+    "Cache Components"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/getting-started/caching",
+    "https://nextjs.org/docs/app/getting-started/revalidating"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.code-splitting",
+   "title": "코드 분할과 지연 로딩으로 번들 줄이기",
+   "en": "Reducing Bundles with Code Splitting and Lazy Loading",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "Next.js",
+   "summary": "처음 화면에 필요 없는 클라이언트 코드와 라이브러리를 따로 떼어 필요할 때 불러오게 하고, 그 손익과 흔한 실수를 따지는 설계다.",
+   "objectives": [
+    "모달·차트·검색 라이브러리처럼 처음에 안 쓰는 코드를 골라 next/dynamic·React.lazy·import() 중 맞는 방법으로 나눌 수 있다",
+    "ssr: false로 사전 렌더링을 끄는 것이 맞는 경우와 서버 컴포넌트에서 쓰면 안 되는 이유를 말할 수 있다",
+    "지연 컴포넌트를 컴포넌트 안에서 선언해 상태가 매번 초기화되는 문제의 원인을 찾을 수 있다",
+    "서버 컴포넌트는 자동으로 분할되어 지연 로딩이 클라이언트 컴포넌트에만 해당하고, 서버 컴포넌트에서 클라이언트 컴포넌트를 동적으로 불러오면 자동 분할이 되지 않는다는 점을 근거로 분할 위치를 정할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.js.modules",
+    "fe.internals.server-client-boundary"
+   ],
+   "related": [
+    "fe.basics.lazy-load",
+    "fe.internals.web-vitals",
+    "fe.react.suspense-boundary"
+   ],
+   "aliases": [
+    "코드 분할",
+    "code splitting",
+    "번들 분할",
+    "bundle splitting",
+    "컴포넌트 지연 로딩",
+    "component lazy loading"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/guides/lazy-loading",
+    "https://react.dev/reference/react/lazy",
+    "https://web.dev/articles/reduce-javascript-payloads-with-code-splitting"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.data-access-layer",
+   "title": "데이터 접근 계층(DAL)",
+   "en": "Data Access Layer in Next.js",
+   "kind": "term",
+   "level": 4,
+   "importance": 1,
+   "group": "Next.js",
+   "summary": "서버에서만 돌며 데이터 요청마다 세션과 권한을 확인하고 필요한 필드만 담은 객체를 돌려주도록 데이터 접근을 한곳에 모은 내부 모듈이다.",
+   "parent": "fe.next.auth-check-placement",
+   "related": [
+    "fe.internals.server-only",
+    "be.fastapi.dto"
+   ],
+   "aliases": [
+    "데이터 접근 계층",
+    "data access layer",
+    "Next.js DAL",
+    "verifySession"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/guides/data-security",
+    "https://nextjs.org/docs/app/guides/authentication"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.internals.use-client-directive",
    "title": "'use client' 지시어",
    "en": "'use client' Directive",
@@ -44182,6 +44991,163 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-05",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.isr",
+   "title": "ISR(증분 정적 재생성)",
+   "en": "Incremental Static Regeneration",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Next.js",
+   "summary": "미리 만든 정적 페이지를 정한 시간이 지난 뒤 들어온 요청이나 revalidatePath·revalidateTag 호출을 계기로 뒤에서 다시 만들어, 전체 빌드 없이 내용을 새로 고치는 방식이다.",
+   "parent": "fe.internals.rendering-strategy",
+   "related": [
+    "fe.next.caching-revalidation"
+   ],
+   "aliases": [
+    "증분 정적 재생성",
+    "Next.js ISR",
+    "온디맨드 ISR",
+    "on-demand ISR"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/guides/incremental-static-regeneration"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.use-cache",
+   "title": "'use cache' 지시어",
+   "en": "The 'use cache' Directive",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Next.js",
+   "summary": "비동기 함수나 컴포넌트의 결과를 캐시하게 하는 Next.js 지시어로, 인자가 캐시 키가 되고 cacheLife로 수명을 정한다.",
+   "parent": "fe.next.caching-revalidation",
+   "related": [
+    "fe.internals.use-client-directive",
+    "fe.next.request-memoization"
+   ],
+   "aliases": [
+    "use cache",
+    "use cache 지시어",
+    "cacheLife",
+    "use cache: remote",
+    "use cache: private"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/getting-started/caching",
+    "https://nextjs.org/docs/app/getting-started/revalidating"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.cache-tag-revalidation",
+   "title": "cacheTag와 revalidateTag·updateTag",
+   "en": "Tag-based Cache Invalidation with cacheTag, revalidateTag and updateTag",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Next.js",
+   "summary": "캐시에 이름표를 붙여 두고 데이터가 바뀌면 그 이름표로 무효화하는 방법으로, revalidateTag는 뒤에서 갱신하고 updateTag는 즉시 만료시킨다.",
+   "parent": "fe.next.caching-revalidation",
+   "related": [
+    "fe.next.revalidate-path"
+   ],
+   "aliases": [
+    "cacheTag",
+    "revalidateTag",
+    "updateTag",
+    "태그 기반 재검증",
+    "tag-based revalidation"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/getting-started/revalidating"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.next-dynamic",
+   "title": "next/dynamic",
+   "en": "Dynamic Imports with next/dynamic",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Next.js",
+   "summary": "React.lazy와 Suspense를 합친 Next.js 함수로, 클라이언트 컴포넌트를 별도 번들로 떼어 필요할 때 불러오고 ssr: false로 사전 렌더링을 끌 수 있다.",
+   "parent": "fe.next.code-splitting",
+   "related": [
+    "fe.react.lazy"
+   ],
+   "aliases": [
+    "next dynamic",
+    "Next.js dynamic import",
+    "ssr: false",
+    "dynamic()"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/guides/lazy-loading"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.react.lazy",
+   "title": "React.lazy",
+   "en": "React lazy()",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "React",
+   "summary": "컴포넌트 코드를 처음 렌더링할 때까지 불러오지 않게 하는 React 함수로, Suspense 경계 안에서 쓰고 모듈 최상위에 선언해야 한다.",
+   "parent": "fe.next.code-splitting",
+   "related": [
+    "fe.react.suspense-boundary",
+    "fe.next.next-dynamic"
+   ],
+   "aliases": [
+    "React lazy",
+    "lazy 컴포넌트",
+    "lazy component",
+    "React 지연 로딩"
+   ],
+   "refs": [
+    "https://react.dev/reference/react/lazy"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.proxy-file",
+   "title": "Next.js Proxy(proxy.ts)",
+   "en": "Next.js Proxy File Convention",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Next.js",
+   "summary": "경로가 렌더링되기 전에 요청을 받아 리다이렉트·리라이트·헤더 수정을 하는 Next.js 파일로, 예전 이름은 middleware이고 matcher로 적용 경로를 정한다.",
+   "parent": "fe.next.auth-check-placement",
+   "related": [
+    "be.http.reverse-proxy"
+   ],
+   "aliases": [
+    "proxy.ts",
+    "Next.js 미들웨어",
+    "middleware.ts",
+    "Proxy matcher"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/api-reference/file-conventions/proxy"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "fe"
   },
   {
@@ -73395,6 +74361,77 @@
    "domain": "ops"
   },
   {
+   "id": "ops.ci.oidc-cloud-deploy",
+   "title": "OIDC로 키 없이 클라우드에 배포하기",
+   "en": "Keyless Cloud Deployment with GitHub Actions OIDC",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "CI/CD",
+   "summary": "오래 쓰는 클라우드 키를 시크릿에 두지 않고 잡마다 받은 OIDC 토큰을 짧은 자격 증명으로 바꿔 배포한다.",
+   "objectives": [
+    "장기 액세스 키와 OIDC 연동의 유출 위험과 관리 비용을 비교해 배포 인증 방식을 고를 수 있다",
+    "클라우드 역할의 신뢰 조건을 저장소·브랜치·환경 단위로 좁혀 다른 저장소가 역할을 못 쓰게 설계할 수 있다",
+    "id-token 권한 누락이나 sub·aud 조건 불일치로 역할 맡기가 거부되는 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "ops.ci.environment-secrets",
+    "ops.ci.workflow-basics"
+   ],
+   "related": [
+    "be.auth.oidc",
+    "ops.ci.github-token"
+   ],
+   "aliases": [
+    "GitHub Actions OIDC",
+    "OIDC 배포 인증",
+    "키 없는 배포",
+    "OIDC 클라우드 인증"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/concepts/security/openid-connect",
+    "https://docs.github.com/en/actions/how-tos/secure-your-work/security-harden-deployments/oidc-in-aws"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.ci.workflow-injection-defense",
+   "title": "워크플로 스크립트 인젝션과 포크 PR 위험 막기",
+   "en": "Defending GitHub Actions Against Script Injection and Untrusted PRs",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "CI/CD",
+   "summary": "PR 제목·브랜치 이름 같은 외부 입력이 run 스크립트에 끼어 실행되거나 권한 있는 트리거에서 남의 코드가 도는 위험을 막는다.",
+   "objectives": [
+    "워크플로에서 공격자가 바꿀 수 있는 컨텍스트 값을 찾아 인젝션 위험이 있는 스텝을 가릴 수 있다",
+    "표현식을 run에 바로 넣는 대신 중간 환경 변수나 액션 입력으로 넘기는 방식을 골라 근거를 말할 수 있다",
+    "포크 PR에 pull_request와 pull_request_target 중 어느 트리거를 쓸지 시크릿·쓰기 권한 기준으로 고를 수 있다"
+   ],
+   "prerequisites": [
+    "ops.ci.contexts-expressions",
+    "ops.ci.workflow-basics"
+   ],
+   "related": [
+    "ops.ci.github-token",
+    "ops.ci.action-sha-pinning",
+    "be.security.supply-chain"
+   ],
+   "aliases": [
+    "Actions 스크립트 인젝션",
+    "GitHub Actions script injection",
+    "워크플로 인젝션"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/concepts/security/script-injections",
+    "https://docs.github.com/en/actions/reference/security/secure-use",
+    "https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.network.edge-waf",
    "title": "웹 방화벽(WAF)과 오탐 분석",
    "en": "WAF Rules and False Positives",
@@ -73445,6 +74482,78 @@
    "refs": [
     "https://kubernetes.io/docs/concepts/overview/",
     "https://kubernetes.io/docs/concepts/workloads/pods/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.debug-pod-failures",
+   "title": "파드가 안 뜰 때 원인 찾기: Pending·Waiting·재시작",
+   "en": "Diagnosing Pods Stuck in Pending, Waiting, or Restart Loops",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "파드 상태와 이벤트, 이전 컨테이너의 종료 정보를 차례로 읽어 스케줄링·이미지·앱 중 어디가 문제인지 가른다.",
+   "objectives": [
+    "Pending 파드의 이벤트를 읽고 자원 요청 과다와 노드 선택 조건 불일치 중 원인을 찾을 수 있다",
+    "Waiting 상태가 이미지 이름·레지스트리 인증·앱 크래시 중 무엇 때문인지 상태 사유로 가를 수 있다",
+    "재시작 횟수와 lastState의 종료 코드·종료 메시지를 보고 앱 버그와 설정 누락 중 원인을 찾을 수 있다",
+    "적용한 매니페스트와 API 서버에 저장된 내용을 비교해 오타로 무시된 필드를 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "ops.k8s.basics",
+    "ops.k8s.kubectl-inspect"
+   ],
+   "related": [
+    "ops.container.resource-limits",
+    "ops.k8s.scheduling"
+   ],
+   "aliases": [
+    "파드 장애 진단",
+    "파드 디버깅",
+    "pod troubleshooting",
+    "Pending 파드",
+    "debug pods"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/tasks/debug/debug-application/debug-pods/",
+    "https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/",
+    "https://kubernetes.io/docs/tasks/debug/debug-application/determine-reason-pod-failure/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.pod-graceful-termination",
+   "title": "파드 종료 순서와 요청 끊김 막기",
+   "en": "Pod Graceful Termination and Connection Draining",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "파드가 지워질 때 preStop·SIGTERM·엔드포인트 제외·SIGKILL이 어떤 순서로 일어나는지 알고 배포 중 끊기는 요청을 없앤다.",
+   "objectives": [
+    "엔드포인트 제외와 SIGTERM이 동시에 일어나서 생기는 배포 중 5xx의 원인을 찾을 수 있다",
+    "preStop 대기와 종료 유예 시간을 앱의 요청 처리 시간에 맞춰 고르고 근거를 말할 수 있다",
+    "PID 1이 SIGTERM을 받지 못해 유예 시간이 다 지나 강제 종료되는 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "ops.k8s.basics",
+    "ops.deploy.zero-downtime",
+    "cs.os.signals"
+   ],
+   "related": [
+    "be.run.workers",
+    "be.error.health-check",
+    "ops.docker.exec-shell-form"
+   ],
+   "aliases": [
+    "파드 종료 과정",
+    "pod termination",
+    "파드 우아한 종료",
+    "Terminating 파드"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/"
    ],
    "domain": "ops"
   },
@@ -73507,6 +74616,166 @@
     "https://man7.org/linux/man-pages/man1/bash.1.html",
     "https://man7.org/linux/man-pages/man7/signal.7.html"
    ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.crashloopbackoff",
+   "title": "CrashLoopBackOff",
+   "en": "CrashLoopBackOff Restart Backoff",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "컨테이너가 거듭 죽어 kubelet이 10초부터 두 배씩 최대 5분까지 늘린 대기 뒤에 재시작하는 동안 보이는 상태다.",
+   "parent": "ops.k8s.debug-pod-failures",
+   "related": [
+    "ops.container.oom-killed",
+    "ops.docker.restart-policy"
+   ],
+   "aliases": [
+    "크래시 루프 백오프",
+    "crash loop",
+    "재시작 백오프",
+    "컨테이너 재시작 반복"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.imagepullbackoff",
+   "title": "ImagePullBackOff와 ErrImagePull",
+   "en": "ImagePullBackOff and ErrImagePull",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "이미지 이름이 틀렸거나 비공개 레지스트리 인증이 없어 이미지를 못 받아 재시도 간격을 늘려 가며 기다리는 상태다.",
+   "parent": "ops.k8s.debug-pod-failures",
+   "related": [
+    "ops.docker.build-tag-push",
+    "ops.docker.image-tag"
+   ],
+   "aliases": [
+    "ErrImagePull",
+    "이미지 풀 실패",
+    "이미지 받기 실패"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/containers/images/",
+    "https://kubernetes.io/docs/tasks/debug/debug-application/debug-pods/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.prestop-hook",
+   "title": "preStop 훅",
+   "en": "Kubernetes preStop Lifecycle Hook",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "SIGTERM 전에 컨테이너 안에서 먼저 도는 명령으로, 트래픽이 빠질 시간을 벌지만 종료 유예 시간을 함께 쓴다.",
+   "parent": "ops.k8s.pod-graceful-termination",
+   "aliases": [
+    "preStop 훅",
+    "preStop hook",
+    "컨테이너 종료 전 훅"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.termination-grace-period",
+   "title": "종료 유예 시간(terminationGracePeriodSeconds)",
+   "en": "terminationGracePeriodSeconds",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "파드 삭제부터 남은 프로세스에 SIGKILL을 보낼 때까지 기다리는 시간으로, 기본은 30초이고 preStop 시간도 여기에 포함된다.",
+   "parent": "ops.k8s.pod-graceful-termination",
+   "aliases": [
+    "파드 종료 유예",
+    "terminationGracePeriod",
+    "종료 유예 기간"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.ci.id-token-permission",
+   "title": "id-token: write 권한",
+   "en": "id-token: write Workflow Permission",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "CI/CD",
+   "summary": "잡이 GitHub에서 OIDC 토큰을 받으려면 필요한 권한으로, 클라우드 자원에 쓸 권한을 주는 것은 아니다.",
+   "parent": "ops.ci.oidc-cloud-deploy",
+   "aliases": [
+    "id-token: write",
+    "OIDC 토큰 권한"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/how-tos/secure-your-work/security-harden-deployments/oidc-in-aws"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.ci.oidc-subject-claim",
+   "title": "OIDC sub 클레임과 신뢰 조건",
+   "en": "OIDC Subject Claim Trust Conditions",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "CI/CD",
+   "summary": "토큰의 sub 값에 담긴 저장소·브랜치·환경을 클라우드 역할의 신뢰 조건과 맞춰 어떤 워크플로가 역할을 맡을지 정한다.",
+   "parent": "ops.ci.oidc-cloud-deploy",
+   "aliases": [
+    "sub 클레임",
+    "subject claim",
+    "OIDC 신뢰 정책",
+    "OIDC trust policy"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/concepts/security/openid-connect",
+    "https://docs.github.com/en/actions/how-tos/secure-your-work/security-harden-deployments/oidc-in-aws"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.ci.pull-request-target",
+   "title": "pull_request_target 트리거",
+   "en": "pull_request_target Workflow Trigger",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "CI/CD",
+   "summary": "PR의 코드가 아니라 기본 브랜치 맥락에서 도는 트리거로, 포크 PR에 라벨·댓글을 다는 데 쓰고 PR 코드를 받아 실행하면 위험하다.",
+   "parent": "ops.ci.workflow-injection-defense",
+   "related": [
+    "ops.ci.workflow-trigger"
+   ],
+   "aliases": [
+    "pull_request_target",
+    "포크 PR 트리거"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows",
+    "https://docs.github.com/en/actions/reference/security/secure-use"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "ops"
   },
   {
@@ -80383,6 +81652,143 @@
    "domain": "ml"
   },
   {
+   "id": "ml.training.loss-curve-diagnosis",
+   "title": "손실 곡선 모양으로 학습 문제 진단하기",
+   "en": "Diagnosing Training Problems from Loss Curve Shapes",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "출렁이거나 갑자기 치솟거나 검증 쪽만 올라가는 손실 곡선 모양을 보고 데이터·학습률·셔플 중 무엇이 원인인지 좁힌다.",
+   "objectives": [
+    "손실이 계속 출렁일 때 학습률과 나쁜 예시 중 원인을 가려 먼저 해 볼 조치를 고를 수 있다",
+    "잘 내려가던 손실이 갑자기 치솟을 때 입력의 NaN과 한 배치에 몰린 이상치에서 원인을 찾을 수 있다",
+    "학습 손실은 줄고 검증 손실만 오를 때 모델 단순화·규제 강화·분할 점검 중 무엇을 할지 근거를 말할 수 있다",
+    "어느 스텝부터 손실이 들쭉날쭉해지면 학습 데이터가 충분히 섞이지 않았는지 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.training.regularization",
+    "ml.nn.training-loop"
+   ],
+   "related": [
+    "ml.training.loss-curve",
+    "ml.training.overfitting"
+   ],
+   "aliases": [
+    "손실 곡선 해석",
+    "loss curve debugging",
+    "학습 디버깅",
+    "손실이 안 줄어요",
+    "interpreting loss curves"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/overfitting/interpreting-loss-curves"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.training.deep-learning-tuning-strategy",
+   "title": "딥러닝 튜닝 전략: 점진적 실험 설계",
+   "en": "Incremental Hyperparameter Tuning Strategy for Deep Learning",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "단순한 설정에서 출발해 목표를 좁힌 실험을 반복하고, 근거가 충분할 때만 최선 설정을 바꾸는 하이퍼파라미터 튜닝 방식이다.",
+   "objectives": [
+    "실험 목표에 따라 하이퍼파라미터를 비교 대상·함께 맞출 값·고정할 값으로 나누고 그 근거를 말할 수 있다",
+    "배치 크기를 검증 점수가 아니라 학습 시간과 자원 기준으로 고르고, 바꾸면 학습률을 다시 맞춰야 하는 이유를 말할 수 있다",
+    "운 좋은 실행 한 번으로 설정을 바꾸면 안 되는 이유를 들어 새 설정 채택 여부를 판단할 수 있다",
+    "학습 스텝 수를 정하고 마지막이 아닌 가장 좋았던 체크포인트를 고를 수 있다"
+   ],
+   "prerequisites": [
+    "ml.nn.training-loop",
+    "ml.supervised.hyperparameter-search"
+   ],
+   "related": [
+    "ml.supervised.hyperparameter-search",
+    "ml.training.hyperparameter"
+   ],
+   "aliases": [
+    "튜닝 플레이북",
+    "tuning playbook",
+    "Deep Learning Tuning Playbook",
+    "점진적 튜닝",
+    "incremental tuning"
+   ],
+   "refs": [
+    "https://github.com/google-research/tuning_playbook"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.scoring-function-choice",
+   "title": "예측 목표에 맞는 손실과 평가 지표 고르기",
+   "en": "Choosing Consistent Scoring Functions for the Prediction Target",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "모델 평가",
+   "summary": "평균·중앙값·분위수 중 무엇을 예측할지 먼저 정하고, 그 목표와 맞는 하나의 함수를 학습 손실과 평가 지표로 함께 쓴다.",
+   "objectives": [
+    "요구 사항에서 예측할 대상이 평균인지 중앙값인지 분위수인지 가려 그에 맞는 손실 함수를 고를 수 있다",
+    "음수가 없는 개수형 목표에 제곱 오차 대신 푸아송 편차를 쓰는 근거를 말할 수 있다",
+    "학습 손실과 평가 지표가 서로 다른 목표를 겨냥해 모델 비교가 어긋나는 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "ml.eval.regression-metrics"
+   ],
+   "related": [
+    "ml.eval.metrics-tradeoffs",
+    "ml.eval.regression-metrics"
+   ],
+   "aliases": [
+    "점수 함수 선택",
+    "scoring function 선택",
+    "strictly consistent scoring function",
+    "일관된 점수 함수",
+    "손실 함수 고르기"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/model_evaluation.html#which-scoring-function-should-i-use"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.linear-coefficient-interpretation",
+   "title": "선형 모델 계수 해석의 함정",
+   "en": "Pitfalls in Interpreting Linear Model Coefficients",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "모델 평가",
+   "summary": "선형 모델의 계수 크기를 그대로 특성 중요도로 읽으면 단위·상관된 특성·인과 착각 때문에 틀린 결론을 내기 쉽다.",
+   "objectives": [
+    "단위가 다른 특성의 계수를 비교하려면 표준편차로 맞춰야 하는 근거를 말할 수 있다",
+    "계수는 다른 특성을 고정한 조건부 관계라서 단순 산점도와 부호가 반대로 나올 수 있다는 점과, 상관이 강한 특성끼리 폴드마다 계수를 주고받아 부호가 뒤집히는 원인을 가려 말할 수 있다",
+    "교차 검증 폴드마다 계수를 다시 학습해 그 계수가 믿을 만한지 판단할 수 있다",
+    "계수가 연관을 나타낼 뿐 개입 효과를 보장하지 않는다는 점을 근거로 해석의 한계를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.supervised.linear-regression",
+    "ml.data.numeric-categorical-preprocessing"
+   ],
+   "related": [
+    "ml.eval.permutation-importance",
+    "ml.supervised.coef-intercept"
+   ],
+   "aliases": [
+    "계수 해석",
+    "coefficient interpretation",
+    "선형 회귀 계수 해석",
+    "interpreting coefficients"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/auto_examples/inspection/plot_linear_model_coefficient_interpretation.html"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.nn.activation-function",
    "title": "활성화 함수",
    "en": "Activation Function",
@@ -80490,6 +81896,52 @@
    "domain": "ml"
   },
   {
+   "id": "ml.training.nan-trap",
+   "title": "NaN 함정",
+   "en": "NaN Trap",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "학습 중 값 하나가 NaN이 되면 계산을 타고 퍼져 손실과 가중치 대부분이 NaN으로 바뀌는 현상이다.",
+   "parent": "ml.training.loss-curve-diagnosis",
+   "aliases": [
+    "NaN 손실",
+    "loss가 nan",
+    "nan loss",
+    "NaN 전파"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/glossary#nan-trap",
+    "https://developers.google.com/machine-learning/crash-course/overfitting/interpreting-loss-curves"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.training.generalization-curve",
+   "title": "일반화 곡선(학습·검증 손실 함께 그리기)",
+   "en": "Generalization Curve",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "학습 손실과 검증 손실을 반복 횟수에 따라 한 그래프에 그린 것으로, 두 선이 벌어지면 과적합을 의심한다.",
+   "parent": "ml.training.loss-curve-diagnosis",
+   "related": [
+    "ml.training.loss-curve"
+   ],
+   "aliases": [
+    "학습 검증 손실 그래프",
+    "train val loss curve",
+    "검증 손실 곡선",
+    "validation loss curve"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/glossary#generalization-curve"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.eval.roc-auc",
    "title": "ROC 곡선과 AUC",
    "en": "ROC Curve and AUC",
@@ -80510,6 +81962,138 @@
    ],
    "refs": [
     "https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.training.scientific-nuisance-fixed-hyperparameters",
+   "title": "과학적·방해·고정 하이퍼파라미터",
+   "en": "Scientific, Nuisance, and Fixed Hyperparameters",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "딥러닝",
+   "summary": "한 실험에서 효과를 재려는 값, 공정한 비교를 위해 함께 최적화할 값, 그대로 두는 값으로 하이퍼파라미터의 역할을 나누는 구분이다.",
+   "parent": "ml.training.deep-learning-tuning-strategy",
+   "aliases": [
+    "방해 하이퍼파라미터",
+    "nuisance hyperparameter",
+    "과학적 하이퍼파라미터",
+    "scientific hyperparameter"
+   ],
+   "refs": [
+    "https://github.com/google-research/tuning_playbook#identifying-scientific-nuisance-and-fixed-hyperparameters"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.training.retrospective-checkpoint-selection",
+   "title": "최적 체크포인트 사후 선택",
+   "en": "Retrospective Best-Checkpoint Selection",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "딥러닝",
+   "summary": "정한 스텝만큼 학습하며 체크포인트를 저장해 두고, 끝난 뒤 검증 성능이 가장 좋았던 것을 골라 쓰는 방식이다.",
+   "parent": "ml.training.deep-learning-tuning-strategy",
+   "related": [
+    "ml.training.early-stopping",
+    "ml.nn.training-checkpoint"
+   ],
+   "aliases": [
+    "best checkpoint 선택",
+    "최고 체크포인트 고르기",
+    "retrospective checkpoint selection",
+    "가장 좋은 체크포인트"
+   ],
+   "refs": [
+    "https://github.com/google-research/tuning_playbook#saving-checkpoints-and-retrospectively-selecting-the-best-checkpoint"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.pinball-loss",
+   "title": "핀볼 손실(분위수 손실)",
+   "en": "Pinball Loss",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "모델 평가",
+   "summary": "실제값보다 낮게 예측한 오차와 높게 예측한 오차에 분위수에 따라 다른 가중을 주어, 분위수 예측을 평가하고 학습하는 손실이다.",
+   "parent": "ml.eval.scoring-function-choice",
+   "aliases": [
+    "pinball loss",
+    "mean_pinball_loss",
+    "분위수 손실",
+    "quantile loss"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/model_evaluation.html#pinball-loss"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.poisson-deviance",
+   "title": "푸아송 편차",
+   "en": "Poisson Deviance",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "모델 평가",
+   "summary": "음수가 없는 개수나 빈도의 기댓값을 예측하는 모델을 평가하는 손실로, 예측값이 0보다 커야 한다.",
+   "parent": "ml.eval.scoring-function-choice",
+   "aliases": [
+    "mean_poisson_deviance",
+    "포아송 편차",
+    "Poisson deviance loss"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/model_evaluation.html#mean-tweedie-deviance"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.multicollinearity",
+   "title": "다중공선성과 계수 불안정",
+   "en": "Multicollinearity and Coefficient Instability",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "모델 평가",
+   "summary": "서로 강하게 함께 움직이는 특성이 있으면 각 특성의 몫을 나누기 어려워 데이터가 조금만 바뀌어도 계수가 크게 흔들리는 현상이다.",
+   "parent": "ml.eval.linear-coefficient-interpretation",
+   "related": [
+    "ml.data.correlation-coefficient"
+   ],
+   "aliases": [
+    "다중공선성",
+    "multicollinearity",
+    "공선성",
+    "collinear features"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/auto_examples/inspection/plot_linear_model_coefficient_interpretation.html#the-problem-of-correlated-variables"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.std-scaled-coefficients",
+   "title": "표준편차로 맞춘 계수",
+   "en": "Standard-Deviation-Scaled Coefficients",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "모델 평가",
+   "summary": "계수에 해당 특성의 표준편차를 곱해 단위 차이를 없애, 특성마다 예측에 주는 영향을 견줄 수 있게 만든 값이다.",
+   "parent": "ml.eval.linear-coefficient-interpretation",
+   "aliases": [
+    "표준화 계수",
+    "standardized coefficients",
+    "계수 스케일 맞추기",
+    "scaled coefficients"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/auto_examples/inspection/plot_linear_model_coefficient_interpretation.html#interpreting-coefficients-scale-matters"
    ],
    "domain": "ml"
   },

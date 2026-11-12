@@ -6031,6 +6031,35 @@
     ]
   },
   {
+    "id": "dev.git.leaked-secret-cleanup",
+    "title": "커밋된 비밀값 대응: 폐기·기록 정리·푸시 보호",
+    "en": "Responding to Secrets Committed to Git History",
+    "kind": "topic",
+    "level": 4,
+    "importance": 1,
+    "group": "Git",
+    "summary": "저장소에 올라간 비밀값은 먼저 폐기하고, 필요할 때만 기록을 다시 써서 지우며, 푸시 보호로 재발을 막는다.",
+    "objectives": [
+      "비밀값이 커밋됐을 때 키 폐기와 기록 다시 쓰기 중 무엇이 먼저인지 근거를 말할 수 있다",
+      "기록을 다시 쓴 뒤 포크·옛 클론·풀 리퀘스트에 비밀값이 남는 원인을 찾을 수 있다",
+      "푸시 보호와 커밋 전 훅 중 팀 상황에 맞는 재발 방지책을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "be.security.secrets-handling"
+    ],
+    "aliases": [
+      "비밀값 유출 대응",
+      "민감 정보 제거",
+      "removing sensitive data",
+      "커밋된 API 키 지우기",
+      "leaked secret in git"
+    ],
+    "refs": [
+      "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository",
+      "https://docs.github.com/en/code-security/secret-scanning/introduction/about-push-protection"
+    ]
+  },
+  {
     "id": "dev.test.coverage-meaning",
     "title": "커버리지를 제대로 읽기",
     "en": "Reading Test Coverage",
@@ -6136,6 +6165,92 @@
     ]
   },
   {
+    "id": "dev.test.mock-patch-target",
+    "title": "패치가 먹지 않는 원인: 패치 위치와 autospec",
+    "en": "Choosing the Patch Target and Autospeccing Mocks",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "테스트",
+    "summary": "mock.patch는 코드가 찾아 쓰는 이름을 바꾸므로 위치를 잘못 고르면 효과가 없고, autospec이 없으면 틀린 호출도 통과한다.",
+    "objectives": [
+      "패치했는데 진짜 객체가 불리는 원인을 import 방식에서 찾을 수 있다",
+      "패치할 이름을 정의한 모듈과 쓰는 모듈 중에서 고르고 근거를 말할 수 있다",
+      "API 서명이 바뀌어도 테스트가 통과하는 원인을 찾고 autospec으로 막을 수 있다"
+    ],
+    "prerequisites": [
+      "be.test.mocking"
+    ],
+    "aliases": [
+      "where to patch",
+      "mock 패치 위치",
+      "patch가 안 먹힘",
+      "mock.patch 대상",
+      "unittest.mock patch target"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/unittest.mock.html"
+    ]
+  },
+  {
+    "id": "dev.test.warnings-as-errors",
+    "title": "폐지 예정 경고를 테스트에서 오류로 잡기",
+    "en": "Turning Deprecation Warnings into Test Errors",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "테스트",
+    "summary": "숨겨지기 쉬운 DeprecationWarning을 경고 필터로 드러내거나 오류로 바꿔, 라이브러리 업그레이드 전에 깨질 곳을 찾는다.",
+    "objectives": [
+      "평소 실행에서 DeprecationWarning이 보이지 않는 원인을 기본 경고 필터로 설명할 수 있다",
+      "-W·PYTHONWARNINGS·pytest filterwarnings 중 어디에 필터를 둘지 고를 수 있다",
+      "경고를 오류로 바꾼 뒤 실패한 테스트에서 경고를 낸 호출 위치를 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "dev.test.pytest-select"
+    ],
+    "aliases": [
+      "경고를 오류로",
+      "warnings as errors",
+      "폐지 예정 경고",
+      "deprecation warning 테스트",
+      "경고 필터"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/warnings.html",
+      "https://docs.pytest.org/en/stable/how-to/capture-warnings.html"
+    ]
+  },
+  {
+    "id": "dev.git.large-repo-clone",
+    "title": "큰 저장소 가볍게 받기: 얕은·부분 클론과 sparse-checkout",
+    "en": "Shallow Clone, Partial Clone, and Sparse Checkout for Large Repositories",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "Git",
+    "summary": "커밋 수를 줄이는 얕은 클론, 파일 내용을 나중에 받는 부분 클론, 작업 폴더를 좁히는 sparse-checkout을 상황에 맞게 고른다.",
+    "objectives": [
+      "CI와 개발자 작업에 맞춰 얕은 클론과 부분 클론 중 하나를 고르고 근거를 말할 수 있다",
+      "부분 클론에서 명령이 느려지거나 오프라인에서 실패하는 원인을 지연 받기에서 찾을 수 있다",
+      "sparse-checkout에서 cone 모드를 고르는 근거를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.remote-tracking"
+    ],
+    "aliases": [
+      "큰 저장소 클론",
+      "모노레포 클론 줄이기",
+      "large repository clone",
+      "클론 용량 줄이기"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/partial-clone",
+      "https://git-scm.com/docs/git-sparse-checkout",
+      "https://git-scm.com/docs/git-clone"
+    ]
+  },
+  {
     "id": "dev.test.e2e",
     "title": "E2E 테스트",
     "en": "End-to-End Test",
@@ -6218,6 +6333,107 @@
     ]
   },
   {
+    "id": "dev.git.filter-repo",
+    "title": "git filter-repo",
+    "en": "git filter-repo History Rewriting Tool",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Git",
+    "summary": "저장소 전체 기록에서 파일이나 문자열을 지워 커밋을 새로 만드는 도구로, 모든 뒤 커밋의 해시가 바뀐다.",
+    "parent": "dev.git.leaked-secret-cleanup",
+    "aliases": [
+      "git-filter-repo",
+      "filter-repo",
+      "--sensitive-data-removal",
+      "기록에서 파일 지우기"
+    ],
+    "refs": [
+      "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository"
+    ]
+  },
+  {
+    "id": "dev.git.push-protection",
+    "title": "푸시 보호(push protection)",
+    "en": "GitHub Secret Scanning Push Protection",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Git",
+    "summary": "비밀값처럼 보이는 내용이 든 푸시를 저장소에 들어가기 전에 막고, 우회하면 사유와 경고를 남기는 GitHub 기능이다.",
+    "parent": "dev.git.leaked-secret-cleanup",
+    "aliases": [
+      "푸시 보호",
+      "secret scanning push protection",
+      "비밀값 푸시 차단",
+      "push protection bypass"
+    ],
+    "refs": [
+      "https://docs.github.com/en/code-security/secret-scanning/introduction/about-push-protection"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "dev.test.autospec",
+    "title": "autospec과 create_autospec",
+    "en": "Autospec Mocks with create_autospec",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "테스트",
+    "summary": "진짜 객체의 속성과 호출 서명을 본떠 mock을 만들어, 틀린 인자로 부르면 진짜처럼 TypeError를 내게 하는 방법이다.",
+    "parent": "dev.test.mock-patch-target",
+    "aliases": [
+      "create_autospec",
+      "autospec=True",
+      "자동 명세 mock"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/unittest.mock.html"
+    ]
+  },
+  {
+    "id": "dev.test.warning-filter-option",
+    "title": "-W 옵션과 PYTHONWARNINGS",
+    "en": "Python -W Option and PYTHONWARNINGS",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "테스트",
+    "summary": "명령줄이나 환경 변수로 '동작:메시지:종류:모듈:줄' 형식의 경고 필터를 걸어 경고를 숨기거나 보이거나 오류로 바꾼다.",
+    "parent": "dev.test.warnings-as-errors",
+    "aliases": [
+      "PYTHONWARNINGS",
+      "python -W error",
+      "python -Wd",
+      "error::DeprecationWarning"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/warnings.html"
+    ]
+  },
+  {
+    "id": "dev.test.pytest-filterwarnings",
+    "title": "pytest filterwarnings",
+    "en": "pytest filterwarnings Option and Mark",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "테스트",
+    "summary": "설정 파일이나 마크로 pytest 실행 중의 경고 필터를 정해, 특정 경고만 오류로 만들거나 알려진 경고를 예외로 둔다.",
+    "parent": "dev.test.warnings-as-errors",
+    "aliases": [
+      "pytest.mark.filterwarnings",
+      "filterwarnings ini",
+      "pytest 경고 필터",
+      "pytest -W error"
+    ],
+    "refs": [
+      "https://docs.pytest.org/en/stable/how-to/capture-warnings.html"
+    ]
+  },
+  {
     "id": "dev.robust.fsync",
     "title": "fsync",
     "en": "fsync",
@@ -6250,6 +6466,67 @@
       ".done 파일",
       "완료 마커",
       "_SUCCESS 파일"
+    ]
+  },
+  {
+    "id": "dev.git.shallow-clone",
+    "title": "얕은 클론(--depth)",
+    "en": "Git Shallow Clone with --depth",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Git",
+    "summary": "최근 커밋 몇 개까지만 기록을 받는 클론으로, 기본으로 한 브랜치만 받아 오래된 기록이 필요한 명령에는 맞지 않는다.",
+    "parent": "dev.git.large-repo-clone",
+    "aliases": [
+      "shallow clone",
+      "git clone --depth 1",
+      "--shallow-since",
+      "얕은 복제"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/git-clone"
+    ]
+  },
+  {
+    "id": "dev.git.partial-clone",
+    "title": "부분 클론(--filter=blob:none)",
+    "en": "Git Partial Clone with --filter",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Git",
+    "summary": "커밋 기록은 다 받되 파일 내용 같은 객체를 빼고 받아, 필요할 때 원격에서 하나씩 가져오는 클론 방식이다.",
+    "parent": "dev.git.large-repo-clone",
+    "aliases": [
+      "partial clone",
+      "git clone --filter=blob:none",
+      "blobless clone",
+      "부분 복제"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/partial-clone",
+      "https://git-scm.com/docs/git-clone"
+    ]
+  },
+  {
+    "id": "dev.git.sparse-checkout-cone",
+    "title": "sparse-checkout의 cone 모드",
+    "en": "Git Sparse Checkout Cone Mode",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Git",
+    "summary": "패턴 대신 디렉터리 목록으로 작업 폴더에 꺼낼 범위를 정하는 기본 모드로, 빠르고 실수가 적어 새 작업에 권장된다.",
+    "parent": "dev.git.large-repo-clone",
+    "aliases": [
+      "cone mode",
+      "git sparse-checkout set",
+      "sparse checkout cone",
+      "--no-cone"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/git-sparse-checkout"
     ]
   },
   {
