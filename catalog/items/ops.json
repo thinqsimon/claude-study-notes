@@ -3536,7 +3536,7 @@
     "summary": "tracepath는 줄마다 몇 번째 홉에서 누가 응답했는지와 왕복 시간을 보여 주고, 끝에 경로 MTU와 전체 홉 수를 적는다.",
     "parent": "ops.network.ping-tracepath",
     "aliases": [
-      "pmtu",
+      "tracepath pmtu",
       "경로 MTU",
       "path MTU",
       "tracepath 출력"
@@ -7378,6 +7378,7 @@
     "importance": 2,
     "group": "Kubernetes",
     "summary": "느리게 뜨는 컨테이너가 성공할 때까지 라이브니스·레디니스 검사를 미뤄, 시작 중에 재시작당하는 일을 막는 Kubernetes 프로브다.",
+    "parent": "ops.k8s.probe-design",
     "related": [
       "be.error.health-check",
       "ops.k8s.crashloopbackoff"
@@ -8184,9 +8185,11 @@
     "prerequisites": [
       "ops.container.resource-limits"
     ],
+    "related": [
+      "cs.os.oom-killer"
+    ],
     "aliases": [
       "cgroup",
-      "OOM killer",
       "컨테이너 격리",
       "리눅스 네임스페이스"
     ],
@@ -8260,13 +8263,15 @@
       "창을 닫으면 백그라운드 작업이 죽는 원인을 분석할 수 있다",
       "종료 신호를 받아 정리 작업을 하는 프로세스를 설계할 수 있다"
     ],
+    "related": [
+      "cs.os.zombie-process"
+    ],
     "aliases": [
       "nohup",
       "SIGTERM",
       "SIGKILL",
       "시그널",
-      "백그라운드 프로세스",
-      "좀비 프로세스"
+      "백그라운드 프로세스"
     ],
     "refs": [
       "https://man7.org/linux/man-pages/man7/signal.7.html",

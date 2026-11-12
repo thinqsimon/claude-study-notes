@@ -4575,7 +4575,8 @@
     ],
     "related": [
       "ml.eval.data-splitting-cv",
-      "ml.data.training-serving-skew"
+      "ml.data.training-serving-skew",
+      "ml.eval.preprocessing-leakage"
     ],
     "aliases": [
       "사이킷런 파이프라인",

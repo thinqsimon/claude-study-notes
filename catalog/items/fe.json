@@ -7657,7 +7657,8 @@
     "summary": "보조 기술이 요소를 부를 때 쓰는 이름으로, 요소 내용·연결된 label·alt·aria-labelledby·aria-label에서 얻는다.",
     "parent": "fe.html.accessibility-audit",
     "related": [
-      "fe.html.accessibility-tree"
+      "fe.html.accessibility-tree",
+      "plan.basics.label-in-name"
     ],
     "aliases": [
       "accessible name",

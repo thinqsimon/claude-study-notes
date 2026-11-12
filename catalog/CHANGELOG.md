@@ -1,5 +1,12 @@
 # 개념사전 변경 내역
 
+## 0.72.1
+
+- MCP 명세 2026-07-28판에 맞춰 기존 MCP 항목 9개를 고쳤다. `rag.agent.mcp-protocol-version`·`mcp-transport`·`mcp-protocol`은 요청마다 버전을 싣는 상태 없는 구조와 HTTP+SSE 지원 중단을, tasks 계열은 공식 확장과 `tasks/get` 폴링을, `mcp-elicitation`은 MRTR 방식을 반영했고 refs를 최신판으로 바꿨다.
+- 자료를 다시 확인해 `llm.api.anthropic-version-header`·`llm.internals.prompt-caching`·`ax.coding.permission-mode`·`plan.figma.component-properties`(슬롯)·`ax.security.system-prompt-leakage`·`ax.security.third-party-mcp-risks`·`plan.figma.variables-modes`를 고쳤다.
+- `ax.coding.agent-sandbox`·`ops.k8s.startup-probe`·`ax.security.rag-access-control`에 parent를 달았다.
+- 넓은 별칭을 좁히거나 옮겼다: `be.error.health-check`, `ops.network.tracepath-hops`, `ops.linux.process-signals`, `ops.container.isolation`, `mlops.observe.llm-tracing`, `db.cache.response-caching`, `cs.os.file-descriptor`→`cs.os.emfile`, `be.arch.multi-tenancy`→`db.sql.row-level-security`, `be.auth.login-abuse`→`be.auth.brute-force`, `ax.governance.ai-value-chain`(LLM03).
+
 ## 0.72.0
 
 - dic-maker 캠페인 14회차로 4단계에 주제 10개, 용어 31개를 더했다

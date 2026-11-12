@@ -5039,8 +5039,7 @@
     ],
     "aliases": [
       "file descriptor",
-      "파일 기술자",
-      "Too many open files"
+      "파일 기술자"
     ],
     "refs": [
       "https://man7.org/linux/man-pages/man2/open.2.html"
@@ -7085,7 +7084,8 @@
     ],
     "aliases": [
       "EMFILE",
-      "Errno 24"
+      "Errno 24",
+      "Too many open files"
     ],
     "refs": [
       "https://man7.org/linux/man-pages/man2/open.2.html"

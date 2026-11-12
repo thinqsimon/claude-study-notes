@@ -1651,7 +1651,8 @@
     "aliases": [
       "brute force",
       "brute-force attack",
-      "비밀번호 대입 공격"
+      "비밀번호 대입 공격",
+      "브루트 포스"
     ],
     "refs": [
       "https://community.owasp.org/attacks/Brute_force_attack",
@@ -6832,14 +6833,17 @@
       "be.fastapi.first-app",
       "be.fastapi.db-session"
     ],
+    "related": [
+      "ops.k8s.probe-design"
+    ],
     "aliases": [
       "헬스 체크와 상태 확인",
       "Health Checks",
       "헬스 체크",
       "health check",
       "/health",
-      "liveness",
-      "readiness"
+      "liveness 체크",
+      "readiness 체크"
     ],
     "refs": [
       "https://kubernetes.io/docs/concepts/workloads/pods/probes/"
@@ -7152,8 +7156,6 @@
     "aliases": [
       "로그인 공격 막기",
       "Protecting Login from Abuse",
-      "브루트포스",
-      "크리덴셜 스터핑",
       "MFA",
       "다단계 인증",
       "계정 잠금"
@@ -8102,13 +8104,14 @@
     "prerequisites": [
       "be.auth.object-level"
     ],
+    "related": [
+      "db.sql.row-level-security"
+    ],
     "aliases": [
       "멀티테넌시",
       "Multi-Tenancy",
       "테넌트",
-      "tenant",
-      "행 수준 보안",
-      "RLS"
+      "tenant"
     ],
     "refs": [
       "https://www.postgresql.org/docs/current/ddl-rowsecurity.html"

@@ -4788,10 +4788,11 @@
     "level": 3,
     "importance": 2,
     "group": "Figma와 디자인 시스템",
-    "summary": "아이콘 표시 여부, 글자, 안쪽 인스턴스처럼 바꿔도 되는 부분을 불리언·텍스트·인스턴스 교체 속성으로 열어 오른쪽 패널에서 조작하게 하는 Figma 기능이다.",
+    "summary": "아이콘 표시 여부, 글자, 안쪽 인스턴스, 자유롭게 채우는 영역처럼 바꿔도 되는 부분을 불리언·텍스트·인스턴스 교체·슬롯 속성으로 열어 패널에서 조작하게 하는 Figma 기능이다.",
     "related": [
       "plan.figma.variants",
-      "plan.figma.main-component-instance"
+      "plan.figma.main-component-instance",
+      "plan.figma.slot"
     ],
     "aliases": [
       "Figma 컴포넌트 속성",
@@ -4802,7 +4803,9 @@
     ],
     "refs": [
       "https://help.figma.com/hc/en-us/articles/5579474826519-Explore-component-properties"
-    ]
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "plan.basics.acceptance-criteria",
@@ -7070,7 +7073,7 @@
       "Figma 디자인 토큰"
     ],
     "refs": [
-      "https://help.figma.com/hc/en-us/articles/15145852043927-Create-and-manage-variables",
+      "https://help.figma.com/hc/en-us/articles/15145852043927-Create-and-manage-variables-and-collections",
       "https://help.figma.com/hc/en-us/articles/15343816063383-Modes-for-variables"
     ]
   },

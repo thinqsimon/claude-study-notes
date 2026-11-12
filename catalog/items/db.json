@@ -6608,10 +6608,6 @@
     "aliases": [
       "응답 캐시로 부하와 비용 줄이기",
       "Caching to Reduce Load and Cost",
-      "Redis",
-      "캐시",
-      "캐싱",
-      "TTL",
       "cache-aside",
       "캐시 무효화"
     ],
@@ -6921,7 +6917,9 @@
       "row level security",
       "PostgreSQL RLS",
       "CREATE POLICY",
-      "행 보안 정책"
+      "행 보안 정책",
+      "RLS",
+      "행 수준 보안"
     ],
     "refs": [
       "https://www.postgresql.org/docs/current/ddl-rowsecurity.html"

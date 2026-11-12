@@ -4297,10 +4297,11 @@
     "level": 2,
     "importance": 3,
     "group": "LLM API",
-    "summary": "Claude API 요청마다 보내는 날짜 모양의 버전 헤더로, 같은 버전 안에서는 기존 칸이 유지되고 SDK가 메이저 버전에 맞는 값을 넣으며, 2026-10-21에서는 temperature 칸이 빠졌다.",
+    "summary": "Claude API 요청마다 보내는 날짜 모양의 버전 헤더로, 같은 버전 안에서는 기존 입력·출력 칸이 유지되고 SDK를 쓰면 알맞은 값을 대신 넣어 준다.",
     "parent": "llm.api.first-call",
     "related": [
-      "llm.api.model-ids"
+      "llm.api.model-ids",
+      "llm.api.sampling-params-removal"
     ],
     "aliases": [
       "anthropic-version 헤더",
@@ -4313,7 +4314,7 @@
       "https://platform.claude.com/docs/en/api/migration-2026-10-21"
     ],
     "volatile": true,
-    "checked_at": "2026-11-11"
+    "checked_at": "2026-11-12"
   },
   {
     "id": "llm.api.workspace-id-header",
@@ -6713,7 +6714,8 @@
     "summary": "입력의 앞부분을 재사용하는 원리로 비용과 지연을 줄이고 효과를 측정한다.",
     "objectives": [
       "캐시가 맞거나 빗나가는 조건을 설명할 수 있다",
-      "프롬프트 구조를 바꿔 비용 절감을 측정할 수 있다"
+      "프롬프트 구조를 바꿔 비용 절감을 측정할 수 있다",
+      "중단점 위치와 5분·1시간 TTL 가운데 재사용 간격에 맞는 것을 고를 수 있다"
     ],
     "prerequisites": [
       "llm.api.first-call"
@@ -6728,7 +6730,7 @@
       "https://platform.claude.com/docs/en/build-with-claude/prompt-caching"
     ],
     "volatile": true,
-    "checked_at": "2026-11-04"
+    "checked_at": "2026-11-12"
   },
   {
     "id": "llm.api.latency-design",

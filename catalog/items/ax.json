@@ -748,14 +748,18 @@
       "ax.governance.genai-risks-overview"
     ],
     "related": [
-      "ax.security.model-supply-chain"
+      "ax.security.model-supply-chain",
+      "mlops.guardrail.llm-top10-overview"
     ],
     "aliases": [
       "AI 가치사슬",
       "AI value chain",
       "제3자 AI 부품",
       "third-party AI components",
-      "AI 부품 조립"
+      "AI 부품 조립",
+      "LLM03",
+      "LLM03:2025",
+      "LLM 공급망 위험"
     ],
     "refs": [
       "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf",
@@ -4863,11 +4867,11 @@
     ],
     "refs": [
       "https://genai.owasp.org/resource/cheatsheet-a-practical-guide-for-securely-using-third-party-mcp-servers-1-0/",
-      "https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices",
+      "https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices",
       "https://code.claude.com/docs/en/mcp"
     ],
     "volatile": true,
-    "checked_at": "2026-11-06"
+    "checked_at": "2026-11-12"
   },
   {
     "id": "ax.governance.automated-decision-rights",
@@ -5277,11 +5281,17 @@
     "group": "AI 보안과 윤리",
     "summary": "모델을 조종하는 지시문이 사용자에게 드러나는 일로, 지시문 안에 비밀값이나 통제 규칙을 넣어 둔 경우에만 실제 피해가 된다.",
     "parent": "ax.security.sensitive-info-disclosure",
+    "related": [
+      "llm.security.prompt-leak"
+    ],
     "aliases": [
       "시스템 프롬프트 유출",
       "system prompt leakage",
       "프롬프트 유출",
       "LLM07:2025"
+    ],
+    "refs": [
+      "https://genai.owasp.org/llmrisk/llm072025-system-prompt-leakage/"
     ]
   },
   {
@@ -5648,6 +5658,9 @@
     "group": "AI 보안과 윤리",
     "summary": "통제된 환경에서 공격자처럼 모델과 AI 기능을 시험해 안전장치가 뚫리는 입력과 해로운 출력을 배포 전에 찾는 활동이다.",
     "parent": "ax.governance.genai-profile",
+    "related": [
+      "mlops.guardrail.red-teaming-picture"
+    ],
     "aliases": [
       "AI red teaming",
       "AI 레드티밍",
@@ -7558,7 +7571,7 @@
     "level": 4,
     "importance": 2,
     "group": "AI 네이티브 개발",
-    "summary": "코딩 에이전트가 어떤 동작을 묻지 않고 실행할지 정하는 설정으로, 묻기(default)·편집 허용·계획·자동·거부(dontAsk)·우회 같은 단계가 있다.",
+    "summary": "코딩 에이전트가 어떤 동작을 묻지 않고 실행할지 정하는 설정으로, Claude Code에는 묻기(Manual·default)·편집 허용·계획·자동·거부(dontAsk)·우회 단계가 있다.",
     "parent": "ax.coding.subagents-permission-modes",
     "related": [
       "ax.coding.agent-sandbox"
@@ -7569,10 +7582,11 @@
       "계획 모드",
       "bypassPermissions",
       "dontAsk",
-      "auto 모드"
+      "auto 모드",
+      "Manual 모드"
     ],
     "volatile": true,
-    "checked_at": "2026-11-04"
+    "checked_at": "2026-11-12"
   },
   {
     "id": "ax.coding.agent-sandbox",
@@ -7583,6 +7597,7 @@
     "importance": 2,
     "group": "AI 네이티브 개발",
     "summary": "에이전트가 실행하는 셸 명령을 OS 수준에서 가두어 쓸 수 있는 파일과 접속할 수 있는 주소를 제한하는 장치다.",
+    "parent": "ax.coding.sandbox-troubleshooting",
     "related": [
       "ax.coding.permission-mode",
       "ops.container.isolation"
@@ -7606,6 +7621,7 @@
     "importance": 2,
     "group": "AI 보안과 윤리",
     "summary": "RAG가 꺼내 오는 문서를 질문한 사용자의 권한으로 걸러, 다른 사용자나 조직의 자료가 답변에 섞이지 않게 하는 장치다.",
+    "parent": "ax.security.vector-embedding-weaknesses",
     "related": [
       "ax.security.sensitive-info-disclosure",
       "be.arch.multi-tenancy"

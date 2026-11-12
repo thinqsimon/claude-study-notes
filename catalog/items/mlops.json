@@ -6622,7 +6622,8 @@
     ],
     "related": [
       "ops.observe.tracing",
-      "mlops.eval.llm-regression"
+      "mlops.eval.llm-regression",
+      "mlops.observe.otel-genai-conventions"
     ],
     "aliases": [
       "LLM 트레이스",
@@ -6630,9 +6631,7 @@
       "MLflow Tracing",
       "LLM 관측",
       "LLM observability",
-      "GenAI 시맨틱 컨벤션",
-      "token usage",
-      "gen_ai.usage"
+      "token usage"
     ],
     "refs": [
       "https://mlflow.org/docs/latest/genai/tracing/",

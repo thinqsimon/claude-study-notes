@@ -1807,7 +1807,7 @@
     "level": 1,
     "importance": 3,
     "group": "에이전트",
-    "summary": "오래 걸리는 도구 호출에 MCP 서버가 바로 결과 대신 작업 번호를 돌려주고, 클라이언트가 그 번호로 진행 상황과 결과를 나중에 받아 가는 확장이다.",
+    "summary": "오래 걸리는 요청에 MCP 서버가 바로 결과 대신 작업 번호를 돌려주고, 클라이언트가 그 번호로 진행 상황을 물어보다가 끝나면 결과를 받아 가는 공식 확장이다.",
     "parent": "rag.agent.mcp-extensions-idea",
     "related": [
       "rag.agent.a2a-task"
@@ -1817,13 +1817,14 @@
       "MCP tasks extension",
       "MCP 비동기 작업",
       "MCP 장기 실행 작업",
-      "tasks/get"
+      "tasks/get",
+      "io.modelcontextprotocol/tasks"
     ],
     "refs": [
       "https://modelcontextprotocol.io/extensions/tasks/overview"
     ],
     "volatile": true,
-    "checked_at": "2026-11-11"
+    "checked_at": "2026-11-12"
   },
   {
     "id": "rag.agent.mcp-skills-extension",
@@ -1859,22 +1860,25 @@
     "level": 1,
     "importance": 3,
     "group": "에이전트",
-    "summary": "MCP 규격은 호환이 깨지는 변경이 마지막으로 들어간 날짜로 버전 이름을 붙이고, 클라이언트와 서버는 서로 맞는 버전으로 대화한다.",
+    "summary": "MCP 규격은 호환이 깨지는 변경이 마지막으로 들어간 날짜로 버전 이름을 붙이고, 최신판에서는 요청마다 쓰는 버전을 적어 보내 서버가 하나씩 받거나 거절한다.",
     "related": [
-      "rag.agent.mcp-idea"
+      "rag.agent.mcp-idea",
+      "rag.agent.mcp-version-compat"
     ],
     "aliases": [
       "MCP 버전",
       "MCP protocol version",
       "MCP 규격 개정판",
       "MCP-Protocol-Version",
-      "MCP 날짜 버전"
+      "MCP 날짜 버전",
+      "io.modelcontextprotocol/protocolVersion"
     ],
     "refs": [
-      "https://modelcontextprotocol.io/docs/learn/versioning"
+      "https://modelcontextprotocol.io/docs/2026-07-28/learn/versioning",
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning"
     ],
     "volatile": true,
-    "checked_at": "2026-11-11"
+    "checked_at": "2026-11-12"
   },
   {
     "id": "rag.basics.claude-agent-sdk",
@@ -4257,7 +4261,7 @@
       "ToolAnnotations"
     ],
     "refs": [
-      "https://modelcontextprotocol.io/specification/2025-06-18/server/tools",
+      "https://modelcontextprotocol.io/specification/2026-07-28/schema#toolannotations",
       "https://code.claude.com/docs/en/agent-sdk/custom-tools"
     ],
     "volatile": true,
@@ -6174,21 +6178,26 @@
     "level": 3,
     "importance": 3,
     "group": "에이전트",
-    "summary": "MCP 서버가 도구를 처리하다 필요한 정보를 클라이언트를 거쳐 사용자에게 폼이나 URL로 물어보고 받은 답으로 요청을 이어 가는 클라이언트 기능이다.",
+    "summary": "MCP 서버가 요청을 처리하다 사용자 입력이 필요하면 폼이나 URL 요청을 결과에 담아 돌려주고, 클라이언트가 사용자 답을 붙여 원래 요청을 다시 보내게 하는 기능이다.",
     "parent": "rag.agent.mcp-build-client",
     "related": [
-      "rag.agent.interrupt"
+      "rag.agent.interrupt",
+      "rag.agent.mcp-mrtr-design",
+      "rag.agent.mcp-input-required-result"
     ],
     "aliases": [
       "elicitation/create",
       "MCP 사용자 입력 요청",
-      "MCP 일리시테이션 요청"
+      "MCP 일리시테이션 요청",
+      "URL 모드 일리시테이션",
+      "URL mode elicitation"
     ],
     "refs": [
-      "https://modelcontextprotocol.io/docs/learn/client-concepts"
+      "https://modelcontextprotocol.io/specification/2026-07-28/client/elicitation",
+      "https://modelcontextprotocol.io/docs/2026-07-28/learn/client-concepts"
     ],
     "volatile": true,
-    "checked_at": "2026-11-06"
+    "checked_at": "2026-11-12"
   },
   {
     "id": "rag.agent.agent-jump",
@@ -6810,11 +6819,11 @@
     "level": 4,
     "importance": 2,
     "group": "에이전트",
-    "summary": "응답을 붙잡고 기다리는 대신 서버가 작업 핸들을 돌려주고 클라이언트가 상태를 물어 결과를 받는 MCP 확장의 쓰임과 손익을 고르는 방법이다.",
+    "summary": "응답을 붙잡고 기다리는 대신 서버가 작업 핸들을 돌려주고 클라이언트가 tasks/get으로 상태를 물어 결과를 받는 MCP 공식 확장의 쓰임과 손익을 고르는 방법이다.",
     "objectives": [
       "연결 시간 제한·끊김·사람 승인 대기 같은 조건을 근거로 도구 호출을 바로 응답할지 Tasks로 돌려줄지 고를 수 있다",
       "클라이언트가 요청 _meta에 tasks 확장을 선언하지 않아 서버가 작업을 돌려주지 못하는 원인을 찾을 수 있다",
-      "taskId를 오래 남는 곳에 저장해 클라이언트가 다시 시작한 뒤에도 tasks/get으로 결과를 이어 받도록 설계할 수 있다",
+      "이전 실험판의 tasks/result 대기와 tasks/list 대신, 오래 남는 곳에 저장한 taskId로 pollIntervalMs 간격의 tasks/get 폴링을 이어 가 재시작 뒤에도 결과를 받도록 설계할 수 있다",
       "취소가 협조적이라 tasks/cancel 뒤에도 작업이 completed로 끝날 수 있음을 알고 부작용 처리를 정할 수 있다"
     ],
     "prerequisites": [
@@ -6833,7 +6842,8 @@
       "MCP 도구 호출 비동기화"
     ],
     "refs": [
-      "https://modelcontextprotocol.io/extensions/tasks/overview"
+      "https://modelcontextprotocol.io/extensions/tasks/overview",
+      "https://modelcontextprotocol.io/specification/2026-07-28/changelog"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
@@ -7727,13 +7737,25 @@
     "level": 4,
     "importance": 3,
     "group": "에이전트",
-    "summary": "MCP 클라이언트와 서버가 메시지를 주고받는 통로로, 같은 기계의 프로세스는 stdio, 원격 서버는 HTTP와 SSE를 쓴다.",
+    "summary": "MCP 클라이언트와 서버가 메시지를 주고받는 통로로, 같은 기계의 프로세스는 stdio, 원격 서버는 Streamable HTTP를 쓰고 예전 HTTP+SSE는 지원 중단 상태다.",
     "parent": "rag.agent.mcp-connect",
+    "related": [
+      "rag.agent.mcp-version-compat",
+      "rag.agent.mcp-header-mismatch"
+    ],
     "aliases": [
       "MCP transport",
       "stdio transport",
-      "streamable http"
-    ]
+      "streamable http",
+      "MCP 전송 계층",
+      "HTTP+SSE 전송"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio",
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "rag.agent.router-pattern",
@@ -8024,7 +8046,7 @@
     "level": 4,
     "importance": 3,
     "group": "에이전트",
-    "summary": "오래 걸릴 요청에 MCP 서버가 최종 결과 대신 돌려주는 resultType이 task인 응답으로, taskId·상태·보존 시간·권장 조회 간격을 담는다.",
+    "summary": "오래 걸릴 요청에 MCP 서버가 최종 결과 대신 돌려주는 resultType이 task인 응답으로, taskId·상태·보존 시간·권장 조회 간격을 담고 tasks 확장을 밝힌 클라이언트에만 보낸다.",
     "parent": "rag.agent.mcp-tasks-design",
     "related": [
       "rag.agent.call-tool-result"
@@ -8597,22 +8619,34 @@
     "level": 5,
     "importance": 2,
     "group": "에이전트",
-    "summary": "호스트가 서버마다 클라이언트를 두고 서버가 도구·자원·프롬프트를 제공하는 구조와 보안의 손익을 다룬다.",
+    "summary": "호스트가 서버마다 클라이언트를 두고 요청마다 버전과 기능을 실어 보내는 상태 없는 구조와, 그 설계가 확장성과 보안에 주는 손익을 다룬다.",
     "objectives": [
-      "MCP의 구성 요소와 메시지 흐름을 설명할 수 있다",
-      "외부 MCP 서버를 연결할 때의 보안 위험을 따질 수 있다"
+      "호스트·클라이언트·서버와 데이터 계층·전송 계층의 역할을 나눠 server/discover부터 tools/call까지의 메시지 흐름을 설명할 수 있다",
+      "initialize 핸드셰이크와 프로토콜 세션을 없애고 요청마다 _meta에 버전·기능을 싣는 설계가 서버 여러 대의 부하 분산과 공유 저장소 필요에 주는 손익을 따질 수 있다",
+      "서버가 먼저 보내던 요청을 MRTR로, 연결별 상태를 명시적 핸들로 바꾼 뒤 남는 requestState 변조와 핸들 도용 위험을 분석할 수 있다",
+      "지원 중단된 Roots·Sampling·Logging과 HTTP+SSE의 대안을 근거로 새 구현에서 쓸 기능을 고를 수 있다"
     ],
     "prerequisites": [
       "llm.tools.function-calling"
     ],
+    "related": [
+      "rag.agent.mcp-version-compat",
+      "rag.agent.mcp-mrtr-design"
+    ],
     "aliases": [
-      "Model Context Protocol"
+      "Model Context Protocol",
+      "MCP 아키텍처",
+      "상태 없는 MCP",
+      "stateless MCP"
     ],
     "refs": [
-      "https://modelcontextprotocol.io/docs/learn/architecture"
+      "https://modelcontextprotocol.io/docs/2026-07-28/learn/architecture",
+      "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic/patterns/mrtr",
+      "https://modelcontextprotocol.io/specification/2026-07-28/server/tools"
     ],
     "volatile": true,
-    "checked_at": "2026-11-04"
+    "checked_at": "2026-11-12"
   },
   {
     "id": "rag.embedding.model-tradeoffs",
