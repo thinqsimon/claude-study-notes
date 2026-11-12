@@ -303,7 +303,8 @@ class DicMakerTest(unittest.TestCase):
         return base
 
     def test_campaign_opens_rounds_and_auto_apply_records_them(self):
-        out = self.run_cmd("campaign", "--level", "4", "--total", "5", "--round", "3")
+        # 실제 사전이 4단계 목표치에 닿아도 회차 흐름을 시험하도록 목표치 검사를 넘긴다
+        out = self.run_cmd("campaign", "--level", "4", "--total", "5", "--round", "3", "--over-target")
         self.assertEqual((out["level"], out["count"], out["round"], out["auto"]), (4, 3, 1, True))
         self.assertEqual((out["campaign"]["remaining"], out["campaign"]["rounds_planned"]), (5, 2))
         with self.assertRaises(SystemExit):   # 회차가 열려 있으면 또 열지 않는다
