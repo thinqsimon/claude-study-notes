@@ -9021,6 +9021,39 @@
     ]
   },
   {
+    "id": "be.auth.oauth-attacks",
+    "title": "OAuth 2.0 공격과 보안 모범 사례",
+    "en": "OAuth 2.0 Attacks and Security BCP",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "인증·인가",
+    "summary": "RFC 9700이 정리한 OAuth 2.0 공격들의 원리와 막는 방법을 흐름 단계별로 분석한다.",
+    "objectives": [
+      "인가 서버가 여럿인 클라이언트에서 mix-up 공격이 일어나는 과정과 iss 대조로 막는 원리를 설명할 수 있다",
+      "인가 코드 주입을 PKCE와 ID 토큰 nonce가 각각 막는 범위와 한계를 비교할 수 있다",
+      "리다이렉트 URI 검증이 느슨할 때 코드와 토큰이 새는 경로를 찾을 수 있다",
+      "암묵적 승인과 비밀번호 승인을 쓰지 말라는 권고의 근거를 공격 유형으로 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "be.auth.oidc"
+    ],
+    "related": [
+      "be.auth.oauth2-social"
+    ],
+    "aliases": [
+      "OAuth 보안 BCP",
+      "OAuth 2.0 Security BCP",
+      "RFC 9700",
+      "OAuth 공격",
+      "OAuth 보안 모범 사례"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9700",
+      "https://cheatsheetseries.owasp.org/cheatsheets/OAuth2_Cheat_Sheet.html"
+    ]
+  },
+  {
     "id": "be.async.asgi",
     "title": "ASGI: 파이썬 비동기 서버의 약속",
     "en": "ASGI Specification",
@@ -9265,6 +9298,107 @@
     ]
   },
   {
+    "id": "be.auth.sender-constrained",
+    "title": "송신자 제한 토큰: DPoP와 mTLS 바인딩",
+    "en": "Sender-Constrained Tokens: DPoP and mTLS",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "인증·인가",
+    "summary": "훔친 액세스 토큰만으로는 쓸 수 없도록 토큰을 클라이언트의 키나 인증서에 묶는 두 표준 방식과 그 손익을 분석한다.",
+    "objectives": [
+      "베어러 토큰과 송신자 제한 토큰이 토큰 유출 시 어떻게 다르게 피해를 입는지 설명할 수 있다",
+      "DPoP 증명의 htm·htu·ath·jti 클레임과 cnf.jkt를 대조하는 리소스 서버 검증 순서를 설명할 수 있다",
+      "TLS 종료 지점과 브라우저 지원을 근거로 DPoP와 mTLS 인증서 바인딩 중 하나를 고를 수 있다",
+      "jti 기록과 서버 제공 nonce로 증명 재사용을 줄이는 방식의 손익을 따질 수 있다"
+    ],
+    "prerequisites": [
+      "be.auth.jwt-attacks",
+      "be.auth.refresh-token"
+    ],
+    "related": [
+      "be.auth.oidc"
+    ],
+    "aliases": [
+      "송신자 제한 토큰",
+      "sender-constrained token",
+      "소유 증명 토큰",
+      "proof-of-possession token",
+      "PoP 토큰",
+      "holder-of-key 토큰"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9449",
+      "https://www.rfc-editor.org/rfc/rfc8705"
+    ]
+  },
+  {
+    "id": "be.security.request-smuggling",
+    "title": "HTTP 요청 스머글링과 메시지 경계",
+    "en": "HTTP Request Smuggling and Message Framing",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "웹 보안",
+    "summary": "프록시와 서버가 HTTP/1.1 본문 길이를 다르게 읽을 때 요청이 몰래 끼어드는 원리와 막는 규칙을 분석한다.",
+    "objectives": [
+      "Content-Length와 Transfer-Encoding이 함께 올 때 RFC 9112가 정한 처리 순서를 설명할 수 있다",
+      "프록시와 원 서버의 본문 길이 해석 차이가 숨은 요청을 만드는 과정을 단계별로 추적할 수 있다",
+      "헤더 값에 CR·LF가 섞여 응답이 둘로 갈리는 응답 분할의 원리와 막는 위치를 설명할 수 있다",
+      "두 헤더가 함께 온 메시지를 전달하기 전에 중간 프록시가 해야 할 처리와 그 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "be.http.proxy-headers"
+    ],
+    "related": [
+      "be.http.versions"
+    ],
+    "aliases": [
+      "HTTP 요청 스머글링",
+      "request smuggling",
+      "HTTP desync",
+      "요청 밀반입",
+      "CL.TE 공격"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9112"
+    ]
+  },
+  {
+    "id": "be.http.message-signatures",
+    "title": "HTTP 메시지 서명",
+    "en": "HTTP Message Signatures",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "HTTP",
+    "summary": "TLS가 끝난 뒤에도 요청의 어느 부분이 바뀌지 않았는지 증명하도록 고른 구성 요소에 서명하는 RFC 9421 방식을 분석한다.",
+    "objectives": [
+      "@method·@authority·@path 같은 파생 구성 요소와 헤더로 서명 기반 문자열이 만들어지는 과정을 설명할 수 있다",
+      "본문은 직접 서명되지 않으므로 Content-Digest를 함께 서명해야 하는 이유를 설명할 수 있다",
+      "created·expires·nonce 매개변수로 재전송 위험을 줄이는 방법의 손익을 따질 수 있다",
+      "중간 프록시가 메시지를 바꿔도 서명이 깨지지 않도록 덮을 구성 요소를 고를 수 있다"
+    ],
+    "prerequisites": [
+      "be.integrate.webhook",
+      "be.security.crypto-basics"
+    ],
+    "related": [
+      "be.auth.sender-constrained"
+    ],
+    "aliases": [
+      "RFC 9421",
+      "HTTP Message Signatures",
+      "Signature-Input",
+      "HTTP 서명 헤더",
+      "서명 기반 문자열"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9421",
+      "https://www.rfc-editor.org/rfc/rfc9530"
+    ]
+  },
+  {
     "id": "be.http.tls-term",
     "title": "TLS",
     "en": "Transport Layer Security",
@@ -9456,6 +9590,150 @@
     "aliases": [
       "토큰 버킷",
       "Token Bucket"
+    ]
+  },
+  {
+    "id": "be.auth.dpop",
+    "title": "DPoP",
+    "en": "Demonstrating Proof of Possession",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "인증·인가",
+    "summary": "요청마다 클라이언트의 개인 키로 서명한 증명 JWT를 DPoP 헤더에 실어 토큰 주인임을 보이는 OAuth 2.0 확장이다.",
+    "parent": "be.auth.sender-constrained",
+    "aliases": [
+      "DPoP",
+      "DPoP 증명",
+      "DPoP proof",
+      "RFC 9449"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9449"
+    ]
+  },
+  {
+    "id": "be.auth.cert-bound-token",
+    "title": "인증서 바인딩 액세스 토큰",
+    "en": "Certificate-Bound Access Token",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "인증·인가",
+    "summary": "상호 TLS에서 쓴 클라이언트 인증서의 해시를 토큰의 cnf에 넣어 같은 인증서로만 쓰게 하는 RFC 8705의 토큰이다.",
+    "parent": "be.auth.sender-constrained",
+    "aliases": [
+      "인증서 바인딩 토큰",
+      "certificate-bound token",
+      "mTLS 바인딩 토큰",
+      "x5t#S256",
+      "RFC 8705"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc8705"
+    ]
+  },
+  {
+    "id": "be.auth.mix-up-attack",
+    "title": "OAuth mix-up 공격",
+    "en": "OAuth Mix-Up Attack",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "인증·인가",
+    "summary": "여러 인가 서버를 쓰는 클라이언트를 속여 인가 코드나 토큰을 공격자의 서버로 보내게 하는 OAuth 공격이다.",
+    "parent": "be.auth.oauth-attacks",
+    "aliases": [
+      "mix-up 공격",
+      "OAuth mix-up",
+      "인가 서버 혼동 공격",
+      "RFC 9207 iss"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9700"
+    ]
+  },
+  {
+    "id": "be.auth.code-injection",
+    "title": "인가 코드 주입",
+    "en": "Authorization Code Injection",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "인증·인가",
+    "summary": "훔친 피해자의 인가 코드를 공격자 자신의 로그인 흐름에 바꿔 넣어 피해자의 자원과 신원에 묶인 세션을 얻는 OAuth 공격이다.",
+    "parent": "be.auth.oauth-attacks",
+    "aliases": [
+      "인가 코드 주입 공격",
+      "authorization code injection",
+      "OAuth 코드 주입"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9700"
+    ]
+  },
+  {
+    "id": "be.security.response-splitting",
+    "title": "HTTP 응답 분할",
+    "en": "HTTP Response Splitting",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "웹 보안",
+    "summary": "사용자 입력의 CR·LF가 응답 헤더에 그대로 들어가 응답 하나가 둘로 읽히게 만드는 공격이다.",
+    "parent": "be.security.request-smuggling",
+    "aliases": [
+      "응답 분할",
+      "response splitting",
+      "CRLF 인젝션",
+      "CRLF injection",
+      "HTTP 응답 분할 공격"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9112"
+    ]
+  },
+  {
+    "id": "be.http.content-digest",
+    "title": "Content-Digest",
+    "en": "Content-Digest",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "HTTP",
+    "summary": "메시지 본문 바이트의 SHA-256 같은 해시를 실어 받은 쪽이 손상 여부를 확인하게 하는 RFC 9530의 HTTP 필드다.",
+    "parent": "be.http.message-signatures",
+    "aliases": [
+      "Content-Digest 헤더",
+      "RFC 9530",
+      "본문 다이제스트",
+      "HTTP 본문 해시 필드"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9530"
+    ]
+  },
+  {
+    "id": "be.http.early-data",
+    "title": "TLS 0-RTT 조기 데이터",
+    "en": "TLS 1.3 Early Data (0-RTT)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "HTTP",
+    "summary": "TLS 1.3 재연결에서 핸드셰이크가 끝나기 전 첫 왕복에 요청을 보내 지연을 줄이지만 재전송될 수 있는 데이터다.",
+    "aliases": [
+      "0-RTT",
+      "조기 데이터",
+      "early data",
+      "425 Too Early",
+      "Early-Data 헤더",
+      "RFC 8470"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc8470",
+      "https://www.rfc-editor.org/rfc/rfc8446",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/425"
     ]
   }
 ]

@@ -9049,6 +9049,102 @@
     ]
   },
   {
+    "id": "mlops.serve.knative-request-path",
+    "title": "KServe 서버리스 요청 경로와 queue-proxy",
+    "en": "Knative Serving Request Path: Activator and Queue-Proxy",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "서버리스 모델 서버로 가는 요청이 언제 activator를 거치고 언제 파드로 바로 가는지, queue-proxy가 무엇을 하는지 나눠 본다.",
+    "objectives": [
+      "트래픽이 적을 때와 많을 때 ingress가 요청을 activator와 파드 중 어디로 보내는지 설명할 수 있다",
+      "queue-proxy가 동시 요청 측정, containerConcurrency 강제, 종료 처리에서 맡는 일을 구분할 수 있다",
+      "target-burst-capacity 값에 따라 activator가 요청 경로에 남는 조건과 그 손익을 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.kserve-autoscaling"
+    ],
+    "related": [
+      "mlops.serve.ray-serve-architecture"
+    ],
+    "aliases": [
+      "Knative 요청 흐름",
+      "Knative request flow",
+      "Knative activator",
+      "KServe 서버리스 요청 경로"
+    ],
+    "refs": [
+      "https://knative.dev/docs/serving/request-flow/",
+      "https://knative.dev/docs/serving/load-balancing/target-burst-capacity/"
+    ]
+  },
+  {
+    "id": "mlops.serve.ray-serve-architecture",
+    "title": "Ray Serve 내부 구조: 컨트롤러·프록시·레플리카와 요청 경로",
+    "en": "Ray Serve Architecture and Request Lifecycle",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "Ray Serve에서 컨트롤러·HTTP 프록시·레플리카가 맡는 일과 요청 하나가 대기열을 지나 레플리카에 닿는 경로를 따라간다.",
+    "objectives": [
+      "컨트롤러, HTTP·gRPC 프록시, 레플리카 액터가 맡는 일을 구분할 수 있다",
+      "요청이 프록시에서 배포로 매핑되고 대기열을 거쳐 레플리카에 배정되는 순서를 설명할 수 있다",
+      "DeploymentHandle 호출이 프록시를 건너뛰는 점이 모델 조합의 경로에 주는 영향을 설명할 수 있다",
+      "컨트롤러가 멈췄을 때 요청 처리와 자동 확장에 각각 무슨 일이 생기는지 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.ray-serve-autoscaling"
+    ],
+    "related": [
+      "mlops.serve.ray-serve-fault-tolerance",
+      "mlops.serve.knative-request-path"
+    ],
+    "aliases": [
+      "Ray Serve 아키텍처",
+      "Ray Serve architecture",
+      "Ray Serve 컨트롤러",
+      "Serve 요청 수명"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/serve/architecture.html"
+    ]
+  },
+  {
+    "id": "mlops.serve.vllm-cudagraph-modes",
+    "title": "vLLM CUDA 그래프 모드 고르기: 조각 캡처와 전체 캡처",
+    "en": "vLLM CUDA Graph Modes",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "vLLM이 배치 모양에 따라 CUDA 그래프를 조각으로 또는 통째로 캡처하는 방식과 그에 따른 속도·메모리·캡처 시간의 손익을 따진다.",
+    "objectives": [
+      "PIECEWISE·FULL·FULL_DECODE_ONLY·FULL_AND_PIECEWISE가 어떤 배치를 어떻게 캡처하는지 구분할 수 있다",
+      "모드마다 지연·메모리·캡처 시간이 어떻게 달라지는지 근거로 모드를 고를 수 있다",
+      "실행 중 배치가 캡처 크기에 맞지 않을 때 그래프 대신 즉시 실행으로 넘어가는 경우를 설명할 수 있다",
+      "어텐션 백엔드가 고른 모드를 지원하지 않을 때 vLLM이 모드를 낮추는 동작을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.vllm-v1-process-architecture"
+    ],
+    "related": [
+      "mlops.serve.vllm-disagg-prefill"
+    ],
+    "aliases": [
+      "cudagraph_mode",
+      "vLLM CUDA graph",
+      "vLLM CUDA 그래프",
+      "FULL_AND_PIECEWISE"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/design/cuda_graphs/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "mlops.serve.inference-optimization",
     "title": "모델 서빙과 양자화",
     "en": "Model Serving and Quantization",
@@ -9226,6 +9322,71 @@
     ],
     "refs": [
       "https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/user_guide/batcher.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.triton-rate-limiter",
+    "title": "Triton 레이트 리미터: 자원 수와 우선순위로 모델 실행 조절",
+    "en": "Triton Rate Limiter",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "여러 모델 인스턴스가 한꺼번에 돌지 않도록 이름 붙인 자원과 우선순위로 Triton이 실행 순서를 미루는 방식과 그 손익을 다룬다.",
+    "objectives": [
+      "레이트 리미터를 켰을 때와 껐을 때 인스턴스 실행 시점이 어떻게 다른지 설명할 수 있다",
+      "인스턴스 그룹에 적은 자원 요구와 서버 옵션의 자원 수가 실행을 어떻게 막는지 추적할 수 있다",
+      "장치별 자원과 전역 자원을 구분해 메모리 부족을 피하는 설정을 고를 수 있다",
+      "자원이 모자랄 때 우선순위가 어떤 인스턴스를 먼저 돌리는지 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.triton-batcher-design"
+    ],
+    "related": [
+      "mlops.serve.triton-queue-policy"
+    ],
+    "aliases": [
+      "Triton rate limiter",
+      "Triton 레이트 리미터",
+      "--rate-limit",
+      "Triton 실행 제한"
+    ],
+    "refs": [
+      "https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/user_guide/rate_limiter.html"
+    ]
+  },
+  {
+    "id": "mlops.serve.sglang-hicache",
+    "title": "SGLang HiCache 계층 KV 캐시: GPU·호스트·저장소",
+    "en": "SGLang HiCache Hierarchical KV Cache",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "SGLang이 접두사 KV 캐시를 GPU·호스트 메모리·외부 저장소 세 층에 나눠 두고 쓰기·미리 가져오기 정책으로 적중률과 지연을 맞바꾸는 구조다.",
+    "objectives": [
+      "HiRadixTree 노드가 KV 데이터의 위치를 층별로 기록하는 방식을 설명할 수 있다",
+      "L1·L2·L3 가운데 여러 인스턴스가 함께 쓸 수 있는 층이 어디인지 구분할 수 있다",
+      "쓰기 정책과 미리 가져오기 정책이 대역폭·적중률·첫 토큰 지연에 주는 손익을 비교할 수 있다",
+      "페이지 크기와 메모리 배치 설정이 접두사 일치와 입출력 효율에 주는 영향을 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.vllm-prefix-cache-ops"
+    ],
+    "related": [
+      "mlops.serve.vllm-disagg-prefill"
+    ],
+    "aliases": [
+      "HiCache",
+      "SGLang HiCache",
+      "HiRadixTree",
+      "SGLang 계층 캐시",
+      "SGLang hierarchical cache"
+    ],
+    "refs": [
+      "https://docs.sglang.io/docs/advanced_features/hicache_design"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
@@ -9440,5 +9601,166 @@
     "refs": [
       "https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/user_guide/batcher.html"
     ]
+  },
+  {
+    "id": "mlops.serve.knative-target-burst-capacity",
+    "title": "target-burst-capacity(activator 경유 기준)",
+    "en": "Knative target-burst-capacity",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "남는 처리 여유가 이 값보다 작으면 activator를 요청 경로에 두어 갑작스런 몰림을 버퍼링하게 하는 Knative 설정이다.",
+    "parent": "mlops.serve.knative-request-path",
+    "aliases": [
+      "target-burst-capacity",
+      "autoscaling.knative.dev/target-burst-capacity",
+      "Knative 버스트 용량"
+    ],
+    "refs": [
+      "https://knative.dev/docs/serving/load-balancing/target-burst-capacity/"
+    ]
+  },
+  {
+    "id": "mlops.serve.knative-queue-proxy",
+    "title": "queue-proxy(Knative 사이드카)",
+    "en": "Knative Queue-Proxy",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "모델 서버 컨테이너 바로 앞에 붙어 동시 요청을 재고 동시성 상한과 정상 종료, 준비 상태 검사를 대신 맡는 사이드카다.",
+    "parent": "mlops.serve.knative-request-path",
+    "aliases": [
+      "queue-proxy",
+      "큐 프록시 사이드카",
+      "Knative 사이드카"
+    ],
+    "refs": [
+      "https://knative.dev/docs/serving/request-flow/"
+    ]
+  },
+  {
+    "id": "mlops.serve.ray-power-of-two-choices",
+    "title": "두 후보 중 고르기 배정(Ray Serve 레플리카 선택)",
+    "en": "Power of Two Choices Replica Scheduling",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "레플리카 두 개를 골라 덜 붐비는 쪽으로 보내되 max_ongoing_requests를 넘기지 않게 하는 Ray Serve의 요청 배정 방식이다.",
+    "parent": "mlops.serve.ray-serve-architecture",
+    "aliases": [
+      "power of two choices",
+      "두 후보 선택",
+      "Ray Serve 레플리카 배정"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/serve/architecture.html"
+    ]
+  },
+  {
+    "id": "mlops.serve.vllm-cudagraph-capture-sizes",
+    "title": "CUDA 그래프 캡처 크기(요청 수·토큰 수 기준)",
+    "en": "vLLM CUDA Graph Capture Sizes",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "디코드 전용 배치는 요청 수로, 나머지 배치는 토큰 수로 미리 캡처해 둔 그래프 크기 목록이며 덮는 크기가 없으면 즉시 실행한다.",
+    "parent": "mlops.serve.vllm-cudagraph-modes",
+    "aliases": [
+      "decode_cudagraph_capture_request_sizes",
+      "prefill_cudagraph_capture_token_sizes",
+      "CUDA 그래프 캡처 크기",
+      "cudagraph capture sizes"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/design/cuda_graphs/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.triton-rate-limit-resource",
+    "title": "레이트 리미터 자원(장치별·전역)",
+    "en": "Triton Rate Limiter Resources",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "모델 인스턴스가 실행 중에 잡았다 놓는 이름 붙인 자원 수로, 장치마다 따로 세거나 시스템 전체에 하나로 셀 수 있다.",
+    "parent": "mlops.serve.triton-rate-limiter",
+    "aliases": [
+      "--rate-limit-resource",
+      "rate limiter resources",
+      "Triton 전역 자원",
+      "레이트 리미터 자원"
+    ],
+    "refs": [
+      "https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/user_guide/rate_limiter.html"
+    ]
+  },
+  {
+    "id": "mlops.serve.sglang-hicache-write-policy",
+    "title": "HiCache 쓰기 정책(write_through·write_back)",
+    "en": "HiCache Write Policy",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "KV 데이터를 아래 층에 곧바로 모두 쓸지, 자주 쓰인 것만 쓸지, 밀려날 때만 쓸지 정하는 HiCache 설정이다.",
+    "parent": "mlops.serve.sglang-hicache",
+    "aliases": [
+      "--hicache-write-policy",
+      "write_through_selective",
+      "HiCache 쓰기 정책"
+    ],
+    "refs": [
+      "https://docs.sglang.io/docs/advanced_features/hicache_design"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.sglang-hicache-prefetch-policy",
+    "title": "HiCache 미리 가져오기 정책",
+    "en": "HiCache Storage Prefetch Policy",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "외부 저장소에서 KV를 가져오는 일을 프리필 시작 전에 어디서 끊을지 정해 적중률과 첫 토큰 지연을 맞바꾸는 HiCache 설정이다.",
+    "parent": "mlops.serve.sglang-hicache",
+    "aliases": [
+      "--hicache-storage-prefetch-policy",
+      "HiCache 프리페치 정책",
+      "HiCache prefetch timeout"
+    ],
+    "refs": [
+      "https://docs.sglang.io/docs/advanced_features/hicache_design"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.sglang-schedule-conservativeness",
+    "title": "SGLang 스케줄 보수성",
+    "en": "SGLang Schedule Conservativeness",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "값을 키울수록 스케줄러가 새 요청을 조심스럽게 받아들이게 해, 이미 받은 요청을 되돌리는 일이 잦을 때 높이는 SGLang 설정이다.",
+    "aliases": [
+      "--schedule-conservativeness",
+      "schedule conservativeness",
+      "SGLang 스케줄 보수성 설정"
+    ],
+    "refs": [
+      "https://docs.sglang.io/docs/advanced_features/server_arguments"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   }
 ]

@@ -6696,6 +6696,37 @@
     ]
   },
   {
+    "id": "cs.dist.replication-majority",
+    "title": "복제와 과반 합의: 같은 순서에 동의해야 하는 이유",
+    "en": "Replication and Majority Agreement",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "분산 시스템",
+    "summary": "여러 서버가 같은 명령을 같은 순서로 적용해야 같은 상태를 유지하고, 과반이 살아 있어야만 진행하는 복제 클러스터의 장애 허용 원리다.",
+    "objectives": [
+      "복제 상태 기계가 같은 명령 로그를 같은 순서로 적용해야 같은 결과를 내는 이유를 설명할 수 있다",
+      "클러스터 크기별 과반 수와 견딜 수 있는 장애 대수를 계산해 홀수 대수를 고르는 근거를 말할 수 있다",
+      "과반을 잃은 클러스터가 틀린 답을 내는 대신 멈추는 동작을 장애 증상과 연결해 설명할 수 있다",
+      "죽은 구성원을 먼저 빼고 새 구성원을 넣어야 과반을 지키는 이유를 설명할 수 있다"
+    ],
+    "related": [
+      "db.cache.sentinel-quorum",
+      "db.nosql.write-concern-majority"
+    ],
+    "aliases": [
+      "과반 합의",
+      "복제 클러스터 장애 허용",
+      "majority agreement",
+      "홀수 대수 클러스터",
+      "클러스터 과반"
+    ],
+    "refs": [
+      "https://raft.github.io/",
+      "https://etcd.io/docs/v3.5/faq/"
+    ]
+  },
+  {
     "id": "cs.net.nagle-delayed-ack",
     "title": "Nagle 알고리즘과 지연 ACK의 지연",
     "en": "Nagle's Algorithm, Delayed ACK, and TCP_NODELAY",
@@ -7399,6 +7430,46 @@
     "refs": [
       "https://man7.org/linux/man-pages/man5/proc_meminfo.5.html",
       "https://docs.kernel.org/filesystems/proc.html"
+    ]
+  },
+  {
+    "id": "cs.dist.replicated-state-machine",
+    "title": "복제 상태 기계",
+    "en": "Replicated State Machine",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "분산 시스템",
+    "summary": "여러 서버가 같은 명령 로그를 같은 순서로 실행해 똑같은 상태를 갖게 하는 장애 허용 설계 방식이다.",
+    "parent": "cs.dist.replication-majority",
+    "aliases": [
+      "replicated state machine",
+      "상태 기계 복제",
+      "state machine replication",
+      "복제 상태 머신"
+    ],
+    "refs": [
+      "https://raft.github.io/"
+    ]
+  },
+  {
+    "id": "cs.dist.majority-quorum",
+    "title": "과반 정족수(n/2+1)",
+    "en": "Majority Quorum",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "분산 시스템",
+    "summary": "n대 중 절반을 넘는 floor(n/2)+1대가 동의해야 결정을 내리는 규칙으로, 견딜 수 있는 장애는 n에서 과반을 뺀 수다.",
+    "parent": "cs.dist.replication-majority",
+    "aliases": [
+      "과반 정족수",
+      "majority quorum",
+      "과반수 쿼럼",
+      "quorum size"
+    ],
+    "refs": [
+      "https://etcd.io/docs/v3.5/faq/"
     ]
   },
   {
@@ -8359,6 +8430,137 @@
     ]
   },
   {
+    "id": "cs.arch.memory-ordering-barriers",
+    "title": "메모리 순서와 메모리 장벽",
+    "en": "Memory Ordering and Memory Barriers",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "컴퓨터 구조",
+    "summary": "CPU와 컴파일러가 메모리 접근 순서를 바꿔도 다른 코어가 올바른 순서로 보게 하려고 쓰는 장벽과 획득·해제 연산의 의미를 분석한다.",
+    "objectives": [
+      "저장 버퍼·추측 적재·컴파일러 최적화 때문에 다른 CPU가 저장 순서를 다르게 관찰할 수 있는 이유를 설명할 수 있다",
+      "쓰기 장벽·읽기 장벽·범용 장벽이 각각 어떤 접근의 순서를 보장하는지 비교할 수 있다",
+      "ACQUIRE·RELEASE가 한 방향 장벽이라 RELEASE 뒤 ACQUIRE가 완전한 장벽이 아닌 이유를 설명할 수 있다",
+      "짝 없는 장벽이 순서를 보장하지 못하는 이유와 컴파일러 장벽이 CPU 재배치는 막지 못하는 한계를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.os.mutex-lock",
+      "cs.arch.memory-hierarchy"
+    ],
+    "related": [
+      "cs.os.lock-implementation",
+      "cs.arch.cache-coherence-false-sharing"
+    ],
+    "aliases": [
+      "메모리 장벽",
+      "memory barrier",
+      "메모리 펜스",
+      "memory fence",
+      "메모리 재배치",
+      "memory reordering"
+    ],
+    "refs": [
+      "https://docs.kernel.org/core-api/wrappers/memory-barriers.html"
+    ]
+  },
+  {
+    "id": "cs.os.transparent-huge-pages",
+    "title": "투명 대형 페이지(THP)의 손익",
+    "en": "Transparent Huge Pages Trade-offs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "커널이 메모리를 2MB 같은 큰 페이지로 자동으로 묶어 TLB 적중을 늘리는 대신 지연·메모리 부풀림·압축 비용을 치르는 손익을 분석한다.",
+    "objectives": [
+      "큰 페이지 하나가 TLB 항목 하나로 더 넓은 메모리를 덮어 TLB 실패와 페이지 폴트가 줄어드는 원리를 설명할 수 있다",
+      "큰 페이지를 채우는 지연, 1바이트만 써도 2MB가 잡히는 부풀림, 단편화 정리 정지 같은 비용을 작업 부하별로 따질 수 있다",
+      "enabled의 always·madvise·never와 defrag 설정이 할당 실패 때 동작을 어떻게 바꾸는지 비교할 수 있다",
+      "khugepaged가 작은 페이지를 나중에 큰 페이지로 합치는 역할과 조정값을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.os.address-translation-internals"
+    ],
+    "related": [
+      "cs.os.oom-killer"
+    ],
+    "aliases": [
+      "Transparent Huge Pages",
+      "투명 거대 페이지",
+      "THP 설정",
+      "transparent hugepage",
+      "huge page 손익"
+    ],
+    "refs": [
+      "https://docs.kernel.org/admin-guide/mm/transhuge.html"
+    ]
+  },
+  {
+    "id": "cs.os.io-uring",
+    "title": "io_uring: 공유 링으로 하는 비동기 I/O",
+    "en": "io_uring Asynchronous I/O",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "사용자 공간과 커널이 함께 보는 제출·완료 링 버퍼로 I/O 요청을 묶어 보내 시스템 호출 비용을 줄이는 리눅스 비동기 I/O 인터페이스다.",
+    "objectives": [
+      "제출 큐와 완료 큐가 공유 메모리 링이라 요청과 결과를 복사 없이 주고받는 구조를 설명할 수 있다",
+      "여러 요청을 io_uring_enter 한 번에 보내거나 SQPOLL로 호출 자체를 없애 시스템 호출 비용을 줄이는 손익을 따질 수 있다",
+      "완료가 제출 순서와 다르게 올 수 있어 user_data로 짝을 맞추고 순서가 필요하면 연결 요청을 쓰는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.os.epoll-trigger-modes"
+    ],
+    "related": [
+      "be.async.event-loop-internals"
+    ],
+    "aliases": [
+      "io_uring 비동기 I/O",
+      "io uring",
+      "리눅스 io_uring",
+      "liburing",
+      "io_uring_enter"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man7/io_uring.7.html"
+    ]
+  },
+  {
+    "id": "cs.algo.timsort-internals",
+    "title": "Timsort의 내부: 실행 구간 병합과 갤로핑",
+    "en": "Timsort Internals: Run Merging and Galloping",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "알고리즘과 복잡도",
+    "summary": "이미 정렬된 구간을 찾아 길이를 맞추고 이웃끼리만 병합하며 한쪽이 연달아 이기면 지수 탐색으로 건너뛰는 적응형 안정 정렬의 설계를 분석한다.",
+    "objectives": [
+      "자연 실행 구간을 찾고 짧은 구간을 이진 삽입 정렬로 최소 길이까지 늘리는 이유를 설명할 수 있다",
+      "이웃한 구간만 병합해 안정성을 지키고, 옛 스택 불변식 대신 쓰는 powersort 규칙으로 병합 순서를 정하는 방식을 설명할 수 있다",
+      "갤로핑 모드와 적응하는 문턱값이 구조 있는 데이터에서는 비교를 줄이고 무작위 데이터에서는 손해를 막는 손익을 따질 수 있다",
+      "이미 정렬된 입력에서 비교 N−1번의 선형 시간으로 끝나는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.algo.sorting"
+    ],
+    "related": [
+      "cs.algo.merge-sort",
+      "cs.algo.stable-sort"
+    ],
+    "aliases": [
+      "Timsort",
+      "팀소트",
+      "팀 정렬",
+      "listsort",
+      "Python Timsort"
+    ],
+    "refs": [
+      "https://github.com/python/cpython/blob/main/Objects/listsort.txt"
+    ]
+  },
+  {
     "id": "cs.os.tlb",
     "title": "TLB(주소 변환 캐시)",
     "en": "Translation Lookaside Buffer (TLB)",
@@ -8619,6 +8821,111 @@
     ],
     "refs": [
       "https://docs.python.org/3/library/math.html"
+    ]
+  },
+  {
+    "id": "cs.arch.acquire-release",
+    "title": "획득·해제 의미론(acquire/release)",
+    "en": "Acquire and Release Semantics",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "컴퓨터 구조",
+    "summary": "획득 연산 뒤의 접근은 앞으로 넘어가지 않고 해제 연산 앞의 접근은 뒤로 넘어가지 않게 하는 한 방향 순서 보장이다.",
+    "parent": "cs.arch.memory-ordering-barriers",
+    "aliases": [
+      "acquire/release semantics",
+      "획득-해제 순서",
+      "load-acquire",
+      "store-release",
+      "smp_load_acquire"
+    ],
+    "refs": [
+      "https://docs.kernel.org/core-api/wrappers/memory-barriers.html"
+    ]
+  },
+  {
+    "id": "cs.os.rcu",
+    "title": "RCU(읽기-복사-갱신)",
+    "en": "Read-Copy-Update (RCU)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "읽는 쪽은 잠금 없이 읽게 하고 갱신하는 쪽이 새 판으로 바꾼 뒤 유예 기간이 끝나면 옛 판을 해제하는 읽기 위주 동기화 방식이다.",
+    "related": [
+      "cs.os.lock-implementation"
+    ],
+    "aliases": [
+      "Read-Copy-Update",
+      "읽기 복사 갱신",
+      "RCU 유예 기간",
+      "RCU grace period",
+      "synchronize_rcu"
+    ],
+    "refs": [
+      "https://docs.kernel.org/RCU/whatisRCU.html"
+    ]
+  },
+  {
+    "id": "cs.os.khugepaged",
+    "title": "khugepaged(큰 페이지 합치기 데몬)",
+    "en": "khugepaged",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "메모리를 훑어 연속한 작은 페이지들을 큰 페이지 하나로 합치는 커널 백그라운드 스레드다.",
+    "parent": "cs.os.transparent-huge-pages",
+    "aliases": [
+      "khugepaged 데몬",
+      "huge page collapse",
+      "큰 페이지 합치기",
+      "max_ptes_none"
+    ],
+    "refs": [
+      "https://docs.kernel.org/admin-guide/mm/transhuge.html"
+    ]
+  },
+  {
+    "id": "cs.os.io-uring-sq-cq",
+    "title": "제출 큐와 완료 큐(SQ·CQ)",
+    "en": "Submission Queue and Completion Queue",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "응용이 요청 항목(SQE)을 넣는 제출 링과 커널이 대개 요청마다 결과 항목(CQE)을 하나씩 넣는 완료 링의 짝이다.",
+    "parent": "cs.os.io-uring",
+    "aliases": [
+      "SQE",
+      "CQE",
+      "submission queue entry",
+      "completion queue event",
+      "io_uring 제출 큐"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man7/io_uring.7.html"
+    ]
+  },
+  {
+    "id": "cs.algo.galloping-mode",
+    "title": "갤로핑 모드(병합 중 지수 탐색)",
+    "en": "Galloping Mode",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "알고리즘과 복잡도",
+    "summary": "병합 중 한쪽 구간이 연달아 이기면 한 칸씩 비교하는 대신 지수 탐색과 이진 탐색으로 위치를 찾아 덩어리째 옮기는 방식이다.",
+    "parent": "cs.algo.timsort-internals",
+    "aliases": [
+      "galloping mode",
+      "갤로핑 병합",
+      "min_gallop",
+      "MIN_GALLOP"
+    ],
+    "refs": [
+      "https://github.com/python/cpython/blob/main/Objects/listsort.txt"
     ]
   }
 ]

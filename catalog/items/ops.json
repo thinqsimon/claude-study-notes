@@ -8246,6 +8246,76 @@
     ]
   },
   {
+    "id": "ops.k8s.pod-priority-preemption",
+    "title": "파드 우선순위와 선점의 동작",
+    "en": "Pod Priority and Preemption",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "자리가 없을 때 스케줄러가 낮은 우선순위 파드를 골라 내보내는 방식과 PDB·종료 유예·친화성과 얽힐 때 생기는 장애를 분석한다.",
+    "objectives": [
+      "스케줄러가 선점할 노드와 희생 파드를 고르는 순서와, PDB를 최선의 노력으로만 지키다 어길 수도 있다는 점을 설명할 수 있다",
+      "희생 파드의 종료 유예 때문에 선점한 파드가 곧바로 배치되지 않거나 다른 파드가 자리를 가져가는 상황을 분석할 수 있다",
+      "낮은 우선순위 파드를 향한 파드 간 친화성이나 다른 노드의 파드를 지워야 풀리는 제약에서는 선점이 일어나지 않는 이유를 설명할 수 있다",
+      "우선순위는 선점과 kubelet 노드 압박 축출 순서에 쓰이지만 QoS 클래스와는 서로 독립이라는 점을 근거로 PriorityClass 값을 설계할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.scheduling",
+      "ops.k8s.disruption-budget"
+    ],
+    "related": [
+      "ops.k8s.scheduling-framework",
+      "ops.k8s.node-pressure-eviction"
+    ],
+    "aliases": [
+      "파드 선점",
+      "pod preemption",
+      "파드 우선순위",
+      "pod priority",
+      "PriorityClass",
+      "priorityClassName"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/"
+    ]
+  },
+  {
+    "id": "ops.k8s.node-pressure-eviction",
+    "title": "kubelet 노드 압박 축출의 내부",
+    "en": "Node-pressure Eviction",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "kubelet이 메모리·디스크·PID 신호가 임계값을 넘으면 노드 자원을 먼저 회수하고 정해진 순서로 파드를 내보내는 과정과 OOM 킬러와의 차이를 분석한다.",
+    "objectives": [
+      "memory.available이 free 명령이 아니라 cgroupfs의 working set에서 계산되고 inactive_file을 회수 가능한 메모리로 보아 뺀다는 점으로 축출 시점을 설명할 수 있다",
+      "요청량 초과 여부, 우선순위, 요청 대비 사용량 순으로 축출할 파드를 고르는 규칙으로 어떤 파드가 먼저 나갈지 예측할 수 있다",
+      "노드 압박 축출은 PDB와 terminationGracePeriodSeconds를 따르지 않고, 메모리가 kubelet 회수보다 빨리 바닥나면 커널 OOM 킬러가 먼저 컨테이너를 죽인다는 차이로 장애 기록을 해석할 수 있다",
+      "evictionMinimumReclaim을 0보다 크게 두어 임계값 근처에서 축출이 되풀이되는 것을 막는 손익을 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.scheduling"
+    ],
+    "related": [
+      "ops.k8s.eviction-api",
+      "ops.container.oom-killed",
+      "ops.k8s.pod-priority-preemption"
+    ],
+    "aliases": [
+      "노드 압박 축출",
+      "node-pressure eviction",
+      "kubelet eviction",
+      "kubelet 축출"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "ops.observe.incident-analysis",
     "title": "장애 분석과 회고",
     "en": "Incident Analysis and Postmortems",
@@ -8471,6 +8541,107 @@
     ]
   },
   {
+    "id": "ops.k8s.scheduling-framework",
+    "title": "kube-scheduler 스케줄링 프레임워크와 확장 지점",
+    "en": "Kubernetes Scheduling Framework",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "스케줄러가 파드 하나를 필터·점수·예약·허가·바인딩 단계의 플러그인으로 나눠 처리하는 구조와 그 성능 손익을 분석한다.",
+    "objectives": [
+      "직렬로 도는 스케줄링 주기와 동시에 돌 수 있는 바인딩 주기를 나누고 어느 단계 실패가 파드를 큐로 되돌리는지 설명할 수 있다",
+      "Filter·PostFilter·Score·Reserve·Permit·Bind 확장 지점이 각각 맡는 일과, PostFilter가 실행 가능한 노드가 없을 때만 돌아 선점에 쓰이는 이유를 설명할 수 있다",
+      "스케줄러 프로필로 워크로드마다 다른 플러그인 조합을 두는 설계를 기본 프로필 하나와 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.scheduling"
+    ],
+    "related": [
+      "ops.k8s.pod-priority-preemption"
+    ],
+    "aliases": [
+      "스케줄링 프레임워크",
+      "scheduling framework",
+      "스케줄러 플러그인",
+      "스케줄러 확장 지점",
+      "scheduler profile"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/scheduling-eviction/scheduling-framework/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ops.k8s.cpu-topology-manager",
+    "title": "kubelet CPU 관리자와 토폴로지 관리자",
+    "en": "CPU Manager and Topology Manager",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "지연에 민감한 파드에 독점 CPU를 주고 CPU·장치·메모리를 같은 NUMA 노드에 맞추는 kubelet 자원 관리자의 동작과 그 대가를 분석한다.",
+    "objectives": [
+      "none 정책의 CFS 할당량 공유와 static 정책의 cpuset 독점 할당을 비교하고, 독점 CPU를 받는 조건을 설명할 수 있다",
+      "토폴로지 관리자의 best-effort·restricted·single-numa-node 정책과 container·pod 범위가 파드 승인 여부를 어떻게 바꾸는지 설명할 수 있다",
+      "스케줄러가 토폴로지를 모르기 때문에 배치된 노드에서 승인이 거부된 파드는 다시 스케줄되지 않는다는 점으로 장애를 분석할 수 있다",
+      "정책을 바꿀 때 노드를 비우고 cpu_manager_state 파일을 지워야 kubelet이 계속 재시작하지 않는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.container.resource-limits",
+      "ops.k8s.scheduling"
+    ],
+    "aliases": [
+      "CPU 관리자",
+      "CPU Manager",
+      "토폴로지 관리자",
+      "Topology Manager",
+      "NUMA 정렬",
+      "single-numa-node"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/",
+      "https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/",
+      "https://kubernetes.io/docs/concepts/resource-management/resource-managers/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ops.k8s.etcd-compaction-defrag",
+    "title": "etcd 기록 압축·조각 모음·공간 할당량",
+    "en": "etcd Compaction, Defragmentation and Space Quota",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "키의 모든 리비전을 남기는 etcd가 압축으로 기록을 줄이고 조각 모음으로 디스크를 돌려주며 할당량으로 무한 증가를 막는 원리와 운영 손익을 분석한다.",
+    "objectives": [
+      "압축이 지운 공간은 백엔드 DB 안에만 비고 조각 모음을 해야 파일 시스템으로 돌아간다는 차이를 설명할 수 있다",
+      "periodic과 revision 자동 압축 모드가 기록을 남기는 기준과 압축 주기를 비교할 수 있다",
+      "조각 모음이 그 멤버의 읽기·쓰기를 막으므로 한 번에 한 멤버씩 해야 하는 이유를 설명할 수 있다",
+      "공간 할당량을 넘어 읽기와 삭제만 받는 상태가 된 클러스터를 압축·조각 모음·경보 해제 순서로 되살리는 절차를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.basics"
+    ],
+    "related": [
+      "cs.dist.raft-consensus",
+      "ops.k8s.api-watch-consistency"
+    ],
+    "aliases": [
+      "etcd 압축",
+      "etcd compaction",
+      "etcd 조각 모음",
+      "etcd defrag",
+      "auto-compaction"
+    ],
+    "refs": [
+      "https://etcd.io/docs/v3.6/op-guide/maintenance/"
+    ]
+  },
+  {
     "id": "ops.k8s.resource-version-410-gone",
     "title": "resourceVersion 만료와 410 Gone",
     "en": "Expired resourceVersion and 410 Gone",
@@ -8661,6 +8832,146 @@
     ],
     "refs": [
       "https://docs.kernel.org/networking/nf_conntrack-sysctl.html"
+    ]
+  },
+  {
+    "id": "ops.k8s.percentage-of-nodes-to-score",
+    "title": "percentageOfNodesToScore: 점수 매길 노드 비율",
+    "en": "percentageOfNodesToScore",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "실행 가능한 노드를 클러스터의 일정 비율만큼 찾으면 탐색을 멈춰 큰 클러스터의 스케줄링 속도와 배치 품질을 맞바꾸는 kube-scheduler 설정이다.",
+    "parent": "ops.k8s.scheduling-framework",
+    "aliases": [
+      "percentageOfNodesToScore",
+      "점수 매길 노드 비율",
+      "kube-scheduler 노드 점수 비율"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/scheduling-eviction/scheduler-perf-tuning/"
+    ]
+  },
+  {
+    "id": "ops.k8s.nominated-node-name",
+    "title": "nominatedNodeName: 선점 뒤 지명된 노드",
+    "en": "nominatedNodeName",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "선점을 일으킨 파드의 status에 적히는 노드 이름으로, 그 노드를 먼저 시도한다는 표시일 뿐 그곳에 배치된다는 보장은 아니다.",
+    "parent": "ops.k8s.pod-priority-preemption",
+    "aliases": [
+      "nominatedNodeName",
+      "지명 노드",
+      "nominated node"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/"
+    ]
+  },
+  {
+    "id": "ops.k8s.non-preempting-priority-class",
+    "title": "선점하지 않는 PriorityClass",
+    "en": "Non-preempting PriorityClass",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "스케줄링 큐에서는 낮은 우선순위 파드보다 앞에 서지만 다른 파드를 내보내지는 않는 PriorityClass 설정으로, 자신은 여전히 더 높은 파드에게 선점될 수 있다.",
+    "parent": "ops.k8s.pod-priority-preemption",
+    "aliases": [
+      "preemptionPolicy: Never",
+      "비선점 우선순위 클래스",
+      "non-preempting PriorityClass"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/"
+    ]
+  },
+  {
+    "id": "ops.k8s.eviction-soft-hard-thresholds",
+    "title": "축출 임계값: evictionSoft와 evictionHard",
+    "en": "Soft and Hard Eviction Thresholds",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "유예 시간 동안 넘어 있어야 파드를 내보내는 소프트 임계값과 넘는 즉시 유예 없이 내보내는 하드 임계값으로 나뉜 kubelet 축출 기준이다.",
+    "parent": "ops.k8s.node-pressure-eviction",
+    "aliases": [
+      "evictionHard",
+      "evictionSoft",
+      "eviction-hard",
+      "evictionSoftGracePeriod",
+      "하드 축출 임계값"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/"
+    ]
+  },
+  {
+    "id": "ops.k8s.node-pressure-conditions",
+    "title": "노드 압박 조건과 전환 유예",
+    "en": "Node Pressure Conditions",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "축출 임계값을 넘은 노드에 붙는 MemoryPressure·DiskPressure·PIDPressure 조건으로, 경계에서 깜빡이지 않게 일정 시간 기다린 뒤에야 상태를 바꾼다.",
+    "parent": "ops.k8s.node-pressure-eviction",
+    "aliases": [
+      "MemoryPressure",
+      "DiskPressure",
+      "PIDPressure",
+      "eviction-pressure-transition-period"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/"
+    ]
+  },
+  {
+    "id": "ops.k8s.cpu-manager-static-policy",
+    "title": "CPU 관리자 static 정책과 독점 CPU",
+    "en": "CPU Manager Static Policy",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "Guaranteed 파드이면서 CPU 요청이 정수인 컨테이너에만 공유 풀에서 떼어 낸 CPU를 독점으로 주는 kubelet 정책으로, 0보다 큰 CPU 예약이 있어야 켤 수 있다.",
+    "parent": "ops.k8s.cpu-topology-manager",
+    "aliases": [
+      "cpuManagerPolicy static",
+      "독점 CPU",
+      "exclusive CPUs",
+      "cpu_manager_state"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ops.k8s.etcd-nospace-alarm",
+    "title": "etcd NOSPACE 경보",
+    "en": "etcd NOSPACE Alarm",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "멤버의 백엔드 DB가 공간 할당량을 넘으면 클러스터 전체에 걸리는 경보로, 해제될 때까지 etcd는 키 읽기와 삭제만 받는다.",
+    "parent": "ops.k8s.etcd-compaction-defrag",
+    "aliases": [
+      "NOSPACE",
+      "etcd 공간 할당량",
+      "etcd space quota",
+      "etcd alarm disarm"
+    ],
+    "refs": [
+      "https://etcd.io/docs/v3.6/op-guide/maintenance/"
     ]
   }
 ]

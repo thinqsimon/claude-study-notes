@@ -1,5 +1,5 @@
 {
- "version": "0.76.0",
+ "version": "0.77.0",
  "domains": [
   {
    "prefix": "dev",
@@ -16477,6 +16477,38 @@
    "domain": "cs"
   },
   {
+   "id": "cs.dist.replication-majority",
+   "title": "복제와 과반 합의: 같은 순서에 동의해야 하는 이유",
+   "en": "Replication and Majority Agreement",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "분산 시스템",
+   "summary": "여러 서버가 같은 명령을 같은 순서로 적용해야 같은 상태를 유지하고, 과반이 살아 있어야만 진행하는 복제 클러스터의 장애 허용 원리다.",
+   "objectives": [
+    "복제 상태 기계가 같은 명령 로그를 같은 순서로 적용해야 같은 결과를 내는 이유를 설명할 수 있다",
+    "클러스터 크기별 과반 수와 견딜 수 있는 장애 대수를 계산해 홀수 대수를 고르는 근거를 말할 수 있다",
+    "과반을 잃은 클러스터가 틀린 답을 내는 대신 멈추는 동작을 장애 증상과 연결해 설명할 수 있다",
+    "죽은 구성원을 먼저 빼고 새 구성원을 넣어야 과반을 지키는 이유를 설명할 수 있다"
+   ],
+   "related": [
+    "db.cache.sentinel-quorum",
+    "db.nosql.write-concern-majority"
+   ],
+   "aliases": [
+    "과반 합의",
+    "복제 클러스터 장애 허용",
+    "majority agreement",
+    "홀수 대수 클러스터",
+    "클러스터 과반"
+   ],
+   "refs": [
+    "https://raft.github.io/",
+    "https://etcd.io/docs/v3.5/faq/"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.net.nagle-delayed-ack",
    "title": "Nagle 알고리즘과 지연 ACK의 지연",
    "en": "Nagle's Algorithm, Delayed ACK, and TCP_NODELAY",
@@ -17209,6 +17241,48 @@
    "refs": [
     "https://man7.org/linux/man-pages/man5/proc_meminfo.5.html",
     "https://docs.kernel.org/filesystems/proc.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dist.replicated-state-machine",
+   "title": "복제 상태 기계",
+   "en": "Replicated State Machine",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "분산 시스템",
+   "summary": "여러 서버가 같은 명령 로그를 같은 순서로 실행해 똑같은 상태를 갖게 하는 장애 허용 설계 방식이다.",
+   "parent": "cs.dist.replication-majority",
+   "aliases": [
+    "replicated state machine",
+    "상태 기계 복제",
+    "state machine replication",
+    "복제 상태 머신"
+   ],
+   "refs": [
+    "https://raft.github.io/"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dist.majority-quorum",
+   "title": "과반 정족수(n/2+1)",
+   "en": "Majority Quorum",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "분산 시스템",
+   "summary": "n대 중 절반을 넘는 floor(n/2)+1대가 동의해야 결정을 내리는 규칙으로, 견딜 수 있는 장애는 n에서 과반을 뺀 수다.",
+   "parent": "cs.dist.replication-majority",
+   "aliases": [
+    "과반 정족수",
+    "majority quorum",
+    "과반수 쿼럼",
+    "quorum size"
+   ],
+   "refs": [
+    "https://etcd.io/docs/v3.5/faq/"
    ],
    "domain": "cs"
   },
@@ -18211,6 +18285,141 @@
    "domain": "cs"
   },
   {
+   "id": "cs.arch.memory-ordering-barriers",
+   "title": "메모리 순서와 메모리 장벽",
+   "en": "Memory Ordering and Memory Barriers",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "컴퓨터 구조",
+   "summary": "CPU와 컴파일러가 메모리 접근 순서를 바꿔도 다른 코어가 올바른 순서로 보게 하려고 쓰는 장벽과 획득·해제 연산의 의미를 분석한다.",
+   "objectives": [
+    "저장 버퍼·추측 적재·컴파일러 최적화 때문에 다른 CPU가 저장 순서를 다르게 관찰할 수 있는 이유를 설명할 수 있다",
+    "쓰기 장벽·읽기 장벽·범용 장벽이 각각 어떤 접근의 순서를 보장하는지 비교할 수 있다",
+    "ACQUIRE·RELEASE가 한 방향 장벽이라 RELEASE 뒤 ACQUIRE가 완전한 장벽이 아닌 이유를 설명할 수 있다",
+    "짝 없는 장벽이 순서를 보장하지 못하는 이유와 컴파일러 장벽이 CPU 재배치는 막지 못하는 한계를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.os.mutex-lock",
+    "cs.arch.memory-hierarchy"
+   ],
+   "related": [
+    "cs.os.lock-implementation",
+    "cs.arch.cache-coherence-false-sharing"
+   ],
+   "aliases": [
+    "메모리 장벽",
+    "memory barrier",
+    "메모리 펜스",
+    "memory fence",
+    "메모리 재배치",
+    "memory reordering"
+   ],
+   "refs": [
+    "https://docs.kernel.org/core-api/wrappers/memory-barriers.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.transparent-huge-pages",
+   "title": "투명 대형 페이지(THP)의 손익",
+   "en": "Transparent Huge Pages Trade-offs",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "커널이 메모리를 2MB 같은 큰 페이지로 자동으로 묶어 TLB 적중을 늘리는 대신 지연·메모리 부풀림·압축 비용을 치르는 손익을 분석한다.",
+   "objectives": [
+    "큰 페이지 하나가 TLB 항목 하나로 더 넓은 메모리를 덮어 TLB 실패와 페이지 폴트가 줄어드는 원리를 설명할 수 있다",
+    "큰 페이지를 채우는 지연, 1바이트만 써도 2MB가 잡히는 부풀림, 단편화 정리 정지 같은 비용을 작업 부하별로 따질 수 있다",
+    "enabled의 always·madvise·never와 defrag 설정이 할당 실패 때 동작을 어떻게 바꾸는지 비교할 수 있다",
+    "khugepaged가 작은 페이지를 나중에 큰 페이지로 합치는 역할과 조정값을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.os.address-translation-internals"
+   ],
+   "related": [
+    "cs.os.oom-killer"
+   ],
+   "aliases": [
+    "Transparent Huge Pages",
+    "투명 거대 페이지",
+    "THP 설정",
+    "transparent hugepage",
+    "huge page 손익"
+   ],
+   "refs": [
+    "https://docs.kernel.org/admin-guide/mm/transhuge.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.io-uring",
+   "title": "io_uring: 공유 링으로 하는 비동기 I/O",
+   "en": "io_uring Asynchronous I/O",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "사용자 공간과 커널이 함께 보는 제출·완료 링 버퍼로 I/O 요청을 묶어 보내 시스템 호출 비용을 줄이는 리눅스 비동기 I/O 인터페이스다.",
+   "objectives": [
+    "제출 큐와 완료 큐가 공유 메모리 링이라 요청과 결과를 복사 없이 주고받는 구조를 설명할 수 있다",
+    "여러 요청을 io_uring_enter 한 번에 보내거나 SQPOLL로 호출 자체를 없애 시스템 호출 비용을 줄이는 손익을 따질 수 있다",
+    "완료가 제출 순서와 다르게 올 수 있어 user_data로 짝을 맞추고 순서가 필요하면 연결 요청을 쓰는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.os.epoll-trigger-modes"
+   ],
+   "related": [
+    "be.async.event-loop-internals"
+   ],
+   "aliases": [
+    "io_uring 비동기 I/O",
+    "io uring",
+    "리눅스 io_uring",
+    "liburing",
+    "io_uring_enter"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man7/io_uring.7.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.algo.timsort-internals",
+   "title": "Timsort의 내부: 실행 구간 병합과 갤로핑",
+   "en": "Timsort Internals: Run Merging and Galloping",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "알고리즘과 복잡도",
+   "summary": "이미 정렬된 구간을 찾아 길이를 맞추고 이웃끼리만 병합하며 한쪽이 연달아 이기면 지수 탐색으로 건너뛰는 적응형 안정 정렬의 설계를 분석한다.",
+   "objectives": [
+    "자연 실행 구간을 찾고 짧은 구간을 이진 삽입 정렬로 최소 길이까지 늘리는 이유를 설명할 수 있다",
+    "이웃한 구간만 병합해 안정성을 지키고, 옛 스택 불변식 대신 쓰는 powersort 규칙으로 병합 순서를 정하는 방식을 설명할 수 있다",
+    "갤로핑 모드와 적응하는 문턱값이 구조 있는 데이터에서는 비교를 줄이고 무작위 데이터에서는 손해를 막는 손익을 따질 수 있다",
+    "이미 정렬된 입력에서 비교 N−1번의 선형 시간으로 끝나는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.algo.sorting"
+   ],
+   "related": [
+    "cs.algo.merge-sort",
+    "cs.algo.stable-sort"
+   ],
+   "aliases": [
+    "Timsort",
+    "팀소트",
+    "팀 정렬",
+    "listsort",
+    "Python Timsort"
+   ],
+   "refs": [
+    "https://github.com/python/cpython/blob/main/Objects/listsort.txt"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.os.tlb",
    "title": "TLB(주소 변환 캐시)",
    "en": "Translation Lookaside Buffer (TLB)",
@@ -18484,6 +18693,116 @@
    ],
    "refs": [
     "https://docs.python.org/3/library/math.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.arch.acquire-release",
+   "title": "획득·해제 의미론(acquire/release)",
+   "en": "Acquire and Release Semantics",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "컴퓨터 구조",
+   "summary": "획득 연산 뒤의 접근은 앞으로 넘어가지 않고 해제 연산 앞의 접근은 뒤로 넘어가지 않게 하는 한 방향 순서 보장이다.",
+   "parent": "cs.arch.memory-ordering-barriers",
+   "aliases": [
+    "acquire/release semantics",
+    "획득-해제 순서",
+    "load-acquire",
+    "store-release",
+    "smp_load_acquire"
+   ],
+   "refs": [
+    "https://docs.kernel.org/core-api/wrappers/memory-barriers.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.rcu",
+   "title": "RCU(읽기-복사-갱신)",
+   "en": "Read-Copy-Update (RCU)",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "읽는 쪽은 잠금 없이 읽게 하고 갱신하는 쪽이 새 판으로 바꾼 뒤 유예 기간이 끝나면 옛 판을 해제하는 읽기 위주 동기화 방식이다.",
+   "related": [
+    "cs.os.lock-implementation"
+   ],
+   "aliases": [
+    "Read-Copy-Update",
+    "읽기 복사 갱신",
+    "RCU 유예 기간",
+    "RCU grace period",
+    "synchronize_rcu"
+   ],
+   "refs": [
+    "https://docs.kernel.org/RCU/whatisRCU.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.khugepaged",
+   "title": "khugepaged(큰 페이지 합치기 데몬)",
+   "en": "khugepaged",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "메모리를 훑어 연속한 작은 페이지들을 큰 페이지 하나로 합치는 커널 백그라운드 스레드다.",
+   "parent": "cs.os.transparent-huge-pages",
+   "aliases": [
+    "khugepaged 데몬",
+    "huge page collapse",
+    "큰 페이지 합치기",
+    "max_ptes_none"
+   ],
+   "refs": [
+    "https://docs.kernel.org/admin-guide/mm/transhuge.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.io-uring-sq-cq",
+   "title": "제출 큐와 완료 큐(SQ·CQ)",
+   "en": "Submission Queue and Completion Queue",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "응용이 요청 항목(SQE)을 넣는 제출 링과 커널이 대개 요청마다 결과 항목(CQE)을 하나씩 넣는 완료 링의 짝이다.",
+   "parent": "cs.os.io-uring",
+   "aliases": [
+    "SQE",
+    "CQE",
+    "submission queue entry",
+    "completion queue event",
+    "io_uring 제출 큐"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man7/io_uring.7.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.algo.galloping-mode",
+   "title": "갤로핑 모드(병합 중 지수 탐색)",
+   "en": "Galloping Mode",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "알고리즘과 복잡도",
+   "summary": "병합 중 한쪽 구간이 연달아 이기면 한 칸씩 비교하는 대신 지수 탐색과 이진 탐색으로 위치를 찾아 덩어리째 옮기는 방식이다.",
+   "parent": "cs.algo.timsort-internals",
+   "aliases": [
+    "galloping mode",
+    "갤로핑 병합",
+    "min_gallop",
+    "MIN_GALLOP"
+   ],
+   "refs": [
+    "https://github.com/python/cpython/blob/main/Objects/listsort.txt"
    ],
    "domain": "cs"
   },
@@ -27203,6 +27522,108 @@
    "domain": "plan"
   },
   {
+   "id": "plan.basics.accname-computation",
+   "title": "accname 1.2의 이름·설명 계산 순서",
+   "en": "Accessible Name and Description Computation 1.2",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "브라우저가 aria-labelledby·aria-label·호스트 언어 라벨·내용·툴팁을 정해진 우선순위와 재귀 규칙으로 따져 요소의 이름과 설명을 정하는 W3C 초안 알고리즘이다.",
+   "objectives": [
+    "숨김 처리·aria-labelledby·내장 컨트롤·aria-label·호스트 언어 라벨·내용·툴팁 단계가 어떤 순서로 이름을 정하는지 설명할 수 있다",
+    "aria-labelledby 순회 중에 다시 만난 노드의 aria-labelledby를 따르지 않고 노드를 한 번만 살피는 규칙이 무한 순환을 막는 원리를 설명할 수 있다",
+    "숨긴 텍스트도 aria-labelledby·aria-describedby로 가리키면 이름에 들어가고 opacity:0이나 화면 밖 배치는 숨김으로 치지 않는 점을 근거로 엉뚱한 이름의 원인을 분석할 수 있다",
+    "이름에 이미 쓴 호스트 언어 속성이나 툴팁이 설명에서는 다시 쓰이지 않는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.label-in-name"
+   ],
+   "related": [
+    "fe.html.accessible-name"
+   ],
+   "aliases": [
+    "accname",
+    "accname 1.2",
+    "이름 계산 알고리즘",
+    "접근 가능한 이름 계산 규칙"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/accname-1.2/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.bcp47-language-tags",
+   "title": "BCP 47 언어 태그 구조와 매칭",
+   "en": "BCP 47 Language Tags and Matching",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "언어·문자·지역·변이 하위 태그로 언어를 표시하는 IETF BCP 47 규칙과, 사용자가 원하는 언어 범위를 지원 언어에 맞추는 RFC 4647 매칭 방식이다.",
+   "objectives": [
+    "언어·확장 언어·문자·지역·변이·확장·사용자 정의 하위 태그의 순서와 개수 제약을 설명할 수 있다",
+    "태그를 가능한 한 짧게 두고 구별이 필요할 때만 지역이나 문자를 붙이는 원칙을 근거로 ja와 ja-JP, zh-Hans와 zh 가운데 고를 수 있다",
+    "여러 결과를 돌려주는 필터링과 하나만 돌려주는 조회(lookup) 매칭의 차이를 비교해 콘텐츠 선택 방식을 고를 수 있다",
+    "필터링에서는 범위 en이 태그 en-GB에 맞지만 범위 en-GB는 태그 en에 맞지 않고, 조회에서는 en-GB를 잘라 en으로 물러나는 차이 때문에 생기는 언어 선택 오류를 분석할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.basics.i18n-idea"
+   ],
+   "related": [
+    "fe.next.internationalization",
+    "fe.basics.lang-attribute"
+   ],
+   "aliases": [
+    "BCP 47",
+    "BCP47",
+    "언어 태그",
+    "language tag",
+    "RFC 5646"
+   ],
+   "refs": [
+    "https://www.w3.org/International/articles/language-tags/",
+    "https://www.rfc-editor.org/rfc/rfc5646.html",
+    "https://www.rfc-editor.org/rfc/rfc4647.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.composite-widget-focus",
+   "title": "복합 위젯 포커스 관리 방식 비교",
+   "en": "Focus Management in Composite Widgets",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "탭·메뉴·그리드 같은 복합 위젯 안에서 실제 DOM 포커스를 옮길지, 컨테이너가 포커스를 쥔 채 활성 항목만 알릴지 견주는 WAI-ARIA APG 지침이다.",
+   "objectives": [
+    "roving tabindex가 tabindex 0과 -1을 바꾸며 포커스를 옮기는 방식과 aria-activedescendant가 컨테이너에 포커스를 둔 채 활성 항목 id를 알리는 방식을 설명할 수 있다",
+    "aria-activedescendant를 쓰면 포커스 표시와 스크롤을 직접 처리해야 하고 참조 대상이 DOM 관계 규칙을 지켜야 하는 손익을 비교할 수 있다",
+    "선택이 포커스를 따라가게 할지 Enter·Space로 따로 선택하게 할지를 내용 전환 비용에 따라 고를 수 있다",
+    "포인터 클릭 뒤 키보드 포커스 위치가 어긋나는 문제의 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "fe.html.accessible-markup"
+   ],
+   "related": [
+    "plan.basics.focus-visibility-design"
+   ],
+   "aliases": [
+    "roving tabindex",
+    "로빙 tabindex",
+    "복합 위젯 포커스",
+    "composite widget focus"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.basics.wcag2ict",
    "title": "WCAG2ICT로 앱·문서에 WCAG 적용하기",
    "en": "Applying WCAG to Non-Web ICT with WCAG2ICT",
@@ -27388,6 +27809,79 @@
    ],
    "refs": [
     "https://www.designtokens.org/tr/2025.10/resolver/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.bidi-text-isolation",
+   "title": "양방향 텍스트의 기본 방향과 격리 설계",
+   "en": "Bidirectional Text Base Direction and Isolation",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "오른쪽에서 왼쪽으로 쓰는 문장 안에 숫자·라틴 문자 구절이나 사용자 입력이 섞일 때 dir·bdi·유니코드 격리 문자로 기본 방향을 정하고 주변 글과 떼어 놓는 W3C i18n 지침이다.",
+   "objectives": [
+    "방향을 아는 구절은 dir 속성으로, 모르는 동적 값은 bdi나 dir=auto로 감싸는 선택의 근거를 설명할 수 있다",
+    "dir=auto가 첫 강한 문자만 보고 방향을 정하기 때문에 생기는 오판 사례를 분석할 수 있다",
+    "격리하지 않은 구절 뒤의 숫자·문장부호가 엉뚱한 방향으로 붙는 현상의 원인을 찾을 수 있다",
+    "마크업을 쓸 수 없는 title·속성 값에서 RLI·LRI·FSI·PDI를 쓰는 대안과 그 관리 부담을 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.basics.i18n-idea"
+   ],
+   "related": [
+    "plan.basics.messageformat2",
+    "fe.basics.rtl-text"
+   ],
+   "aliases": [
+    "양방향 텍스트",
+    "bidi 텍스트",
+    "bidirectional text",
+    "bdi 요소",
+    "dir=auto",
+    "양방향 격리"
+   ],
+   "refs": [
+    "https://www.w3.org/International/articles/inline-bidi-markup/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.plugin-traversal-performance",
+   "title": "Figma 플러그인 문서 순회 비용과 탐색 API 손익",
+   "en": "Figma Plugin Document Traversal Performance",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "노드 트리를 읽는 플러그인이 페이지 로드 범위, findAll 콜백과 조건 탐색, 숨은 인스턴스 자식 건너뛰기를 골라 큰 파일에서 순회 비용을 줄이는 Figma Plugin API 설계다.",
+   "objectives": [
+    "문서·페이지·레이어로 이어진 노드 트리에서 현재 페이지만 보장되는 로드 모델이 전체 순회 비용에 주는 영향을 설명할 수 있다",
+    "임의 콜백을 받는 findAll과 형식·플러그인 데이터 조건만 받는 findAllWithCriteria의 유연성과 속도 손익을 비교할 수 있다",
+    "숨은 인스턴스 자식을 건너뛰게 하면 빨라지는 대신 그 노드가 null이 되거나 속성 읽기가 오류를 내는 부작용을 근거로 사용 여부를 판단할 수 있다",
+    "찾기·바꾸기처럼 문서 전체가 필요한 작업과 필요한 페이지만 불러도 되는 작업을 구분해 순회 범위를 정할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.codegen-plugin"
+   ],
+   "related": [
+    "plan.figma.dynamic-page-loading",
+    "plan.figma.plugin-sandbox",
+    "plan.figma.file-memory-model"
+   ],
+   "aliases": [
+    "Figma 플러그인 성능",
+    "Figma 플러그인 순회",
+    "findAllWithCriteria",
+    "plugin traversal performance"
+   ],
+   "refs": [
+    "https://developers.figma.com/docs/plugins/accessing-document/",
+    "https://developers.figma.com/docs/plugins/api/properties/nodes-findallwithcriteria/",
+    "https://developers.figma.com/docs/plugins/api/properties/figma-skipinvisibleinstancechildren/"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -27634,6 +28128,157 @@
     "resolutionOrder",
     "DTCG 해석 순서"
    ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.accessible-description",
+   "title": "접근 가능한 설명(accessible description)",
+   "en": "Accessible Description",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "aria-describedby·aria-description·호스트 언어 기능·툴팁 가운데 처음 해당하는 출처 하나로 정해지며, 결과가 비어도 다음 출처로 넘어가지 않는 보조 설명 문자열이다.",
+   "parent": "plan.basics.accname-computation",
+   "aliases": [
+    "aria-describedby",
+    "aria-description",
+    "접근 가능한 설명",
+    "보조기술 설명 문자열"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/accname-1.2/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.name-from-content",
+   "title": "내용에서 이름 얻기(name from content)",
+   "en": "Name from Content",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "역할이 허용하거나 다른 요소가 참조할 때 CSS ::before·::after 텍스트와 렌더링된 자식을 재귀로 모아 이름을 만드는 accname 계산 단계다.",
+   "parent": "plan.basics.accname-computation",
+   "aliases": [
+    "name from content",
+    "nameFrom content",
+    "콘텐츠에서 이름 얻기"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/accname-1.2/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.unicode-bidi-algorithm",
+   "title": "유니코드 양방향 알고리즘(UBA)",
+   "en": "Unicode Bidirectional Algorithm (UAX #9)",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "문자마다 강한·약한·중립 방향 유형을 매겨 임베딩 수준을 풀고 표시 순서를 다시 정하는 Unicode 표준 부속서 9의 알고리즘으로, 격리 문자는 바깥 글의 순서에 영향을 주지 않는다.",
+   "parent": "plan.basics.bidi-text-isolation",
+   "aliases": [
+    "UBA",
+    "UAX #9",
+    "UAX 9",
+    "유니코드 양방향 알고리즘"
+   ],
+   "refs": [
+    "https://www.unicode.org/reports/tr9/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.language-subtag-registry",
+   "title": "IANA 언어 하위 태그 레지스트리",
+   "en": "IANA Language Subtag Registry",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "유효한 언어·문자·지역 하위 태그를 정하는 단 하나의 공식 목록으로, 항목마다 Preferred-Value·Suppress-Script 같은 칸이 있어 es-Latn처럼 군더더기 태그를 피하게 한다.",
+   "parent": "plan.basics.bcp47-language-tags",
+   "aliases": [
+    "IANA language subtag registry",
+    "언어 하위 태그 레지스트리",
+    "Suppress-Script",
+    "subtag registry"
+   ],
+   "refs": [
+    "https://www.w3.org/International/articles/language-tags/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.language-range-lookup",
+   "title": "언어 범위 조회와 필터링(RFC 4647)",
+   "en": "Language Range Lookup and Filtering (RFC 4647)",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "필터링은 범위에 맞는 태그를 여럿 돌려주고, 조회는 범위 끝의 하위 태그를 하나씩 잘라 가며 맞는 태그 하나를 찾다가 없으면 기본값을 쓰는 RFC 4647의 두 매칭 방식이다.",
+   "parent": "plan.basics.bcp47-language-tags",
+   "aliases": [
+    "RFC 4647",
+    "language range",
+    "언어 범위 매칭",
+    "언어 범위 조회",
+    "language range lookup"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc4647.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.aria-activedescendant",
+   "title": "aria-activedescendant",
+   "en": "aria-activedescendant",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "DOM 포커스는 컨테이너에 두고 활성 자식의 id를 값으로 넣어 보조기술이 그 자식을 포커스된 것으로 다루게 하는 ARIA 속성으로, 시각적 포커스와 스크롤은 직접 맞춰야 한다.",
+   "parent": "plan.basics.composite-widget-focus",
+   "aliases": [
+    "활성 하위 요소 속성",
+    "active descendant"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.skip-invisible-instance-children",
+   "title": "숨은 인스턴스 자식 건너뛰기",
+   "en": "figma.skipInvisibleInstanceChildren",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "켜면 인스턴스 안의 보이지 않는 노드와 그 자손을 순회와 조회에서 빼 탐색을 크게 빠르게 하지만 그 노드를 읽으면 null이나 오류가 나는 플러그인 설정으로, Dev Mode에서는 기본으로 켜져 있다.",
+   "parent": "plan.figma.plugin-traversal-performance",
+   "aliases": [
+    "skipInvisibleInstanceChildren",
+    "숨은 인스턴스 자식 생략"
+   ],
+   "refs": [
+    "https://developers.figma.com/docs/plugins/api/properties/figma-skipinvisibleinstancechildren/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "plan"
   },
   {
@@ -37045,6 +37690,40 @@
    "domain": "be"
   },
   {
+   "id": "be.auth.oauth-attacks",
+   "title": "OAuth 2.0 공격과 보안 모범 사례",
+   "en": "OAuth 2.0 Attacks and Security BCP",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "인증·인가",
+   "summary": "RFC 9700이 정리한 OAuth 2.0 공격들의 원리와 막는 방법을 흐름 단계별로 분석한다.",
+   "objectives": [
+    "인가 서버가 여럿인 클라이언트에서 mix-up 공격이 일어나는 과정과 iss 대조로 막는 원리를 설명할 수 있다",
+    "인가 코드 주입을 PKCE와 ID 토큰 nonce가 각각 막는 범위와 한계를 비교할 수 있다",
+    "리다이렉트 URI 검증이 느슨할 때 코드와 토큰이 새는 경로를 찾을 수 있다",
+    "암묵적 승인과 비밀번호 승인을 쓰지 말라는 권고의 근거를 공격 유형으로 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "be.auth.oidc"
+   ],
+   "related": [
+    "be.auth.oauth2-social"
+   ],
+   "aliases": [
+    "OAuth 보안 BCP",
+    "OAuth 2.0 Security BCP",
+    "RFC 9700",
+    "OAuth 공격",
+    "OAuth 보안 모범 사례"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9700",
+    "https://cheatsheetseries.owasp.org/cheatsheets/OAuth2_Cheat_Sheet.html"
+   ],
+   "domain": "be"
+  },
+  {
    "id": "be.async.asgi",
    "title": "ASGI: 파이썬 비동기 서버의 약속",
    "en": "ASGI Specification",
@@ -37297,6 +37976,110 @@
    "domain": "be"
   },
   {
+   "id": "be.auth.sender-constrained",
+   "title": "송신자 제한 토큰: DPoP와 mTLS 바인딩",
+   "en": "Sender-Constrained Tokens: DPoP and mTLS",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "인증·인가",
+   "summary": "훔친 액세스 토큰만으로는 쓸 수 없도록 토큰을 클라이언트의 키나 인증서에 묶는 두 표준 방식과 그 손익을 분석한다.",
+   "objectives": [
+    "베어러 토큰과 송신자 제한 토큰이 토큰 유출 시 어떻게 다르게 피해를 입는지 설명할 수 있다",
+    "DPoP 증명의 htm·htu·ath·jti 클레임과 cnf.jkt를 대조하는 리소스 서버 검증 순서를 설명할 수 있다",
+    "TLS 종료 지점과 브라우저 지원을 근거로 DPoP와 mTLS 인증서 바인딩 중 하나를 고를 수 있다",
+    "jti 기록과 서버 제공 nonce로 증명 재사용을 줄이는 방식의 손익을 따질 수 있다"
+   ],
+   "prerequisites": [
+    "be.auth.jwt-attacks",
+    "be.auth.refresh-token"
+   ],
+   "related": [
+    "be.auth.oidc"
+   ],
+   "aliases": [
+    "송신자 제한 토큰",
+    "sender-constrained token",
+    "소유 증명 토큰",
+    "proof-of-possession token",
+    "PoP 토큰",
+    "holder-of-key 토큰"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9449",
+    "https://www.rfc-editor.org/rfc/rfc8705"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.security.request-smuggling",
+   "title": "HTTP 요청 스머글링과 메시지 경계",
+   "en": "HTTP Request Smuggling and Message Framing",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "웹 보안",
+   "summary": "프록시와 서버가 HTTP/1.1 본문 길이를 다르게 읽을 때 요청이 몰래 끼어드는 원리와 막는 규칙을 분석한다.",
+   "objectives": [
+    "Content-Length와 Transfer-Encoding이 함께 올 때 RFC 9112가 정한 처리 순서를 설명할 수 있다",
+    "프록시와 원 서버의 본문 길이 해석 차이가 숨은 요청을 만드는 과정을 단계별로 추적할 수 있다",
+    "헤더 값에 CR·LF가 섞여 응답이 둘로 갈리는 응답 분할의 원리와 막는 위치를 설명할 수 있다",
+    "두 헤더가 함께 온 메시지를 전달하기 전에 중간 프록시가 해야 할 처리와 그 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "be.http.proxy-headers"
+   ],
+   "related": [
+    "be.http.versions"
+   ],
+   "aliases": [
+    "HTTP 요청 스머글링",
+    "request smuggling",
+    "HTTP desync",
+    "요청 밀반입",
+    "CL.TE 공격"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9112"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.http.message-signatures",
+   "title": "HTTP 메시지 서명",
+   "en": "HTTP Message Signatures",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "HTTP",
+   "summary": "TLS가 끝난 뒤에도 요청의 어느 부분이 바뀌지 않았는지 증명하도록 고른 구성 요소에 서명하는 RFC 9421 방식을 분석한다.",
+   "objectives": [
+    "@method·@authority·@path 같은 파생 구성 요소와 헤더로 서명 기반 문자열이 만들어지는 과정을 설명할 수 있다",
+    "본문은 직접 서명되지 않으므로 Content-Digest를 함께 서명해야 하는 이유를 설명할 수 있다",
+    "created·expires·nonce 매개변수로 재전송 위험을 줄이는 방법의 손익을 따질 수 있다",
+    "중간 프록시가 메시지를 바꿔도 서명이 깨지지 않도록 덮을 구성 요소를 고를 수 있다"
+   ],
+   "prerequisites": [
+    "be.integrate.webhook",
+    "be.security.crypto-basics"
+   ],
+   "related": [
+    "be.auth.sender-constrained"
+   ],
+   "aliases": [
+    "RFC 9421",
+    "HTTP Message Signatures",
+    "Signature-Input",
+    "HTTP 서명 헤더",
+    "서명 기반 문자열"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9421",
+    "https://www.rfc-editor.org/rfc/rfc9530"
+   ],
+   "domain": "be"
+  },
+  {
    "id": "be.http.tls-term",
    "title": "TLS",
    "en": "Transport Layer Security",
@@ -37500,6 +38283,157 @@
    "aliases": [
     "토큰 버킷",
     "Token Bucket"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.auth.dpop",
+   "title": "DPoP",
+   "en": "Demonstrating Proof of Possession",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "인증·인가",
+   "summary": "요청마다 클라이언트의 개인 키로 서명한 증명 JWT를 DPoP 헤더에 실어 토큰 주인임을 보이는 OAuth 2.0 확장이다.",
+   "parent": "be.auth.sender-constrained",
+   "aliases": [
+    "DPoP",
+    "DPoP 증명",
+    "DPoP proof",
+    "RFC 9449"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9449"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.auth.cert-bound-token",
+   "title": "인증서 바인딩 액세스 토큰",
+   "en": "Certificate-Bound Access Token",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "인증·인가",
+   "summary": "상호 TLS에서 쓴 클라이언트 인증서의 해시를 토큰의 cnf에 넣어 같은 인증서로만 쓰게 하는 RFC 8705의 토큰이다.",
+   "parent": "be.auth.sender-constrained",
+   "aliases": [
+    "인증서 바인딩 토큰",
+    "certificate-bound token",
+    "mTLS 바인딩 토큰",
+    "x5t#S256",
+    "RFC 8705"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc8705"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.auth.mix-up-attack",
+   "title": "OAuth mix-up 공격",
+   "en": "OAuth Mix-Up Attack",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "인증·인가",
+   "summary": "여러 인가 서버를 쓰는 클라이언트를 속여 인가 코드나 토큰을 공격자의 서버로 보내게 하는 OAuth 공격이다.",
+   "parent": "be.auth.oauth-attacks",
+   "aliases": [
+    "mix-up 공격",
+    "OAuth mix-up",
+    "인가 서버 혼동 공격",
+    "RFC 9207 iss"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9700"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.auth.code-injection",
+   "title": "인가 코드 주입",
+   "en": "Authorization Code Injection",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "인증·인가",
+   "summary": "훔친 피해자의 인가 코드를 공격자 자신의 로그인 흐름에 바꿔 넣어 피해자의 자원과 신원에 묶인 세션을 얻는 OAuth 공격이다.",
+   "parent": "be.auth.oauth-attacks",
+   "aliases": [
+    "인가 코드 주입 공격",
+    "authorization code injection",
+    "OAuth 코드 주입"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9700"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.security.response-splitting",
+   "title": "HTTP 응답 분할",
+   "en": "HTTP Response Splitting",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "웹 보안",
+   "summary": "사용자 입력의 CR·LF가 응답 헤더에 그대로 들어가 응답 하나가 둘로 읽히게 만드는 공격이다.",
+   "parent": "be.security.request-smuggling",
+   "aliases": [
+    "응답 분할",
+    "response splitting",
+    "CRLF 인젝션",
+    "CRLF injection",
+    "HTTP 응답 분할 공격"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9112"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.http.content-digest",
+   "title": "Content-Digest",
+   "en": "Content-Digest",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "HTTP",
+   "summary": "메시지 본문 바이트의 SHA-256 같은 해시를 실어 받은 쪽이 손상 여부를 확인하게 하는 RFC 9530의 HTTP 필드다.",
+   "parent": "be.http.message-signatures",
+   "aliases": [
+    "Content-Digest 헤더",
+    "RFC 9530",
+    "본문 다이제스트",
+    "HTTP 본문 해시 필드"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9530"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.http.early-data",
+   "title": "TLS 0-RTT 조기 데이터",
+   "en": "TLS 1.3 Early Data (0-RTT)",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "HTTP",
+   "summary": "TLS 1.3 재연결에서 핸드셰이크가 끝나기 전 첫 왕복에 요청을 보내 지연을 줄이지만 재전송될 수 있는 데이터다.",
+   "aliases": [
+    "0-RTT",
+    "조기 데이터",
+    "early data",
+    "425 Too Early",
+    "Early-Data 헤더",
+    "RFC 8470"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc8470",
+    "https://www.rfc-editor.org/rfc/rfc8446",
+    "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/425"
    ],
    "domain": "be"
   },
@@ -94742,6 +95676,78 @@
    "domain": "ops"
   },
   {
+   "id": "ops.k8s.pod-priority-preemption",
+   "title": "파드 우선순위와 선점의 동작",
+   "en": "Pod Priority and Preemption",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "자리가 없을 때 스케줄러가 낮은 우선순위 파드를 골라 내보내는 방식과 PDB·종료 유예·친화성과 얽힐 때 생기는 장애를 분석한다.",
+   "objectives": [
+    "스케줄러가 선점할 노드와 희생 파드를 고르는 순서와, PDB를 최선의 노력으로만 지키다 어길 수도 있다는 점을 설명할 수 있다",
+    "희생 파드의 종료 유예 때문에 선점한 파드가 곧바로 배치되지 않거나 다른 파드가 자리를 가져가는 상황을 분석할 수 있다",
+    "낮은 우선순위 파드를 향한 파드 간 친화성이나 다른 노드의 파드를 지워야 풀리는 제약에서는 선점이 일어나지 않는 이유를 설명할 수 있다",
+    "우선순위는 선점과 kubelet 노드 압박 축출 순서에 쓰이지만 QoS 클래스와는 서로 독립이라는 점을 근거로 PriorityClass 값을 설계할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.k8s.scheduling",
+    "ops.k8s.disruption-budget"
+   ],
+   "related": [
+    "ops.k8s.scheduling-framework",
+    "ops.k8s.node-pressure-eviction"
+   ],
+   "aliases": [
+    "파드 선점",
+    "pod preemption",
+    "파드 우선순위",
+    "pod priority",
+    "PriorityClass",
+    "priorityClassName"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.node-pressure-eviction",
+   "title": "kubelet 노드 압박 축출의 내부",
+   "en": "Node-pressure Eviction",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "kubelet이 메모리·디스크·PID 신호가 임계값을 넘으면 노드 자원을 먼저 회수하고 정해진 순서로 파드를 내보내는 과정과 OOM 킬러와의 차이를 분석한다.",
+   "objectives": [
+    "memory.available이 free 명령이 아니라 cgroupfs의 working set에서 계산되고 inactive_file을 회수 가능한 메모리로 보아 뺀다는 점으로 축출 시점을 설명할 수 있다",
+    "요청량 초과 여부, 우선순위, 요청 대비 사용량 순으로 축출할 파드를 고르는 규칙으로 어떤 파드가 먼저 나갈지 예측할 수 있다",
+    "노드 압박 축출은 PDB와 terminationGracePeriodSeconds를 따르지 않고, 메모리가 kubelet 회수보다 빨리 바닥나면 커널 OOM 킬러가 먼저 컨테이너를 죽인다는 차이로 장애 기록을 해석할 수 있다",
+    "evictionMinimumReclaim을 0보다 크게 두어 임계값 근처에서 축출이 되풀이되는 것을 막는 손익을 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.k8s.scheduling"
+   ],
+   "related": [
+    "ops.k8s.eviction-api",
+    "ops.container.oom-killed",
+    "ops.k8s.pod-priority-preemption"
+   ],
+   "aliases": [
+    "노드 압박 축출",
+    "node-pressure eviction",
+    "kubelet eviction",
+    "kubelet 축출"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ops"
+  },
+  {
    "id": "ops.observe.incident-analysis",
    "title": "장애 분석과 회고",
    "en": "Incident Analysis and Postmortems",
@@ -94975,6 +95981,110 @@
    "domain": "ops"
   },
   {
+   "id": "ops.k8s.scheduling-framework",
+   "title": "kube-scheduler 스케줄링 프레임워크와 확장 지점",
+   "en": "Kubernetes Scheduling Framework",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "스케줄러가 파드 하나를 필터·점수·예약·허가·바인딩 단계의 플러그인으로 나눠 처리하는 구조와 그 성능 손익을 분석한다.",
+   "objectives": [
+    "직렬로 도는 스케줄링 주기와 동시에 돌 수 있는 바인딩 주기를 나누고 어느 단계 실패가 파드를 큐로 되돌리는지 설명할 수 있다",
+    "Filter·PostFilter·Score·Reserve·Permit·Bind 확장 지점이 각각 맡는 일과, PostFilter가 실행 가능한 노드가 없을 때만 돌아 선점에 쓰이는 이유를 설명할 수 있다",
+    "스케줄러 프로필로 워크로드마다 다른 플러그인 조합을 두는 설계를 기본 프로필 하나와 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.k8s.scheduling"
+   ],
+   "related": [
+    "ops.k8s.pod-priority-preemption"
+   ],
+   "aliases": [
+    "스케줄링 프레임워크",
+    "scheduling framework",
+    "스케줄러 플러그인",
+    "스케줄러 확장 지점",
+    "scheduler profile"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/scheduling-eviction/scheduling-framework/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.cpu-topology-manager",
+   "title": "kubelet CPU 관리자와 토폴로지 관리자",
+   "en": "CPU Manager and Topology Manager",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "지연에 민감한 파드에 독점 CPU를 주고 CPU·장치·메모리를 같은 NUMA 노드에 맞추는 kubelet 자원 관리자의 동작과 그 대가를 분석한다.",
+   "objectives": [
+    "none 정책의 CFS 할당량 공유와 static 정책의 cpuset 독점 할당을 비교하고, 독점 CPU를 받는 조건을 설명할 수 있다",
+    "토폴로지 관리자의 best-effort·restricted·single-numa-node 정책과 container·pod 범위가 파드 승인 여부를 어떻게 바꾸는지 설명할 수 있다",
+    "스케줄러가 토폴로지를 모르기 때문에 배치된 노드에서 승인이 거부된 파드는 다시 스케줄되지 않는다는 점으로 장애를 분석할 수 있다",
+    "정책을 바꿀 때 노드를 비우고 cpu_manager_state 파일을 지워야 kubelet이 계속 재시작하지 않는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.container.resource-limits",
+    "ops.k8s.scheduling"
+   ],
+   "aliases": [
+    "CPU 관리자",
+    "CPU Manager",
+    "토폴로지 관리자",
+    "Topology Manager",
+    "NUMA 정렬",
+    "single-numa-node"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/",
+    "https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/",
+    "https://kubernetes.io/docs/concepts/resource-management/resource-managers/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.etcd-compaction-defrag",
+   "title": "etcd 기록 압축·조각 모음·공간 할당량",
+   "en": "etcd Compaction, Defragmentation and Space Quota",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "키의 모든 리비전을 남기는 etcd가 압축으로 기록을 줄이고 조각 모음으로 디스크를 돌려주며 할당량으로 무한 증가를 막는 원리와 운영 손익을 분석한다.",
+   "objectives": [
+    "압축이 지운 공간은 백엔드 DB 안에만 비고 조각 모음을 해야 파일 시스템으로 돌아간다는 차이를 설명할 수 있다",
+    "periodic과 revision 자동 압축 모드가 기록을 남기는 기준과 압축 주기를 비교할 수 있다",
+    "조각 모음이 그 멤버의 읽기·쓰기를 막으므로 한 번에 한 멤버씩 해야 하는 이유를 설명할 수 있다",
+    "공간 할당량을 넘어 읽기와 삭제만 받는 상태가 된 클러스터를 압축·조각 모음·경보 해제 순서로 되살리는 절차를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.k8s.basics"
+   ],
+   "related": [
+    "cs.dist.raft-consensus",
+    "ops.k8s.api-watch-consistency"
+   ],
+   "aliases": [
+    "etcd 압축",
+    "etcd compaction",
+    "etcd 조각 모음",
+    "etcd defrag",
+    "auto-compaction"
+   ],
+   "refs": [
+    "https://etcd.io/docs/v3.6/op-guide/maintenance/"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.k8s.resource-version-410-gone",
    "title": "resourceVersion 만료와 410 Gone",
    "en": "Expired resourceVersion and 410 Gone",
@@ -95174,6 +96284,153 @@
    ],
    "refs": [
     "https://docs.kernel.org/networking/nf_conntrack-sysctl.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.percentage-of-nodes-to-score",
+   "title": "percentageOfNodesToScore: 점수 매길 노드 비율",
+   "en": "percentageOfNodesToScore",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "실행 가능한 노드를 클러스터의 일정 비율만큼 찾으면 탐색을 멈춰 큰 클러스터의 스케줄링 속도와 배치 품질을 맞바꾸는 kube-scheduler 설정이다.",
+   "parent": "ops.k8s.scheduling-framework",
+   "aliases": [
+    "percentageOfNodesToScore",
+    "점수 매길 노드 비율",
+    "kube-scheduler 노드 점수 비율"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/scheduling-eviction/scheduler-perf-tuning/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.nominated-node-name",
+   "title": "nominatedNodeName: 선점 뒤 지명된 노드",
+   "en": "nominatedNodeName",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "선점을 일으킨 파드의 status에 적히는 노드 이름으로, 그 노드를 먼저 시도한다는 표시일 뿐 그곳에 배치된다는 보장은 아니다.",
+   "parent": "ops.k8s.pod-priority-preemption",
+   "aliases": [
+    "nominatedNodeName",
+    "지명 노드",
+    "nominated node"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.non-preempting-priority-class",
+   "title": "선점하지 않는 PriorityClass",
+   "en": "Non-preempting PriorityClass",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "스케줄링 큐에서는 낮은 우선순위 파드보다 앞에 서지만 다른 파드를 내보내지는 않는 PriorityClass 설정으로, 자신은 여전히 더 높은 파드에게 선점될 수 있다.",
+   "parent": "ops.k8s.pod-priority-preemption",
+   "aliases": [
+    "preemptionPolicy: Never",
+    "비선점 우선순위 클래스",
+    "non-preempting PriorityClass"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.eviction-soft-hard-thresholds",
+   "title": "축출 임계값: evictionSoft와 evictionHard",
+   "en": "Soft and Hard Eviction Thresholds",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "유예 시간 동안 넘어 있어야 파드를 내보내는 소프트 임계값과 넘는 즉시 유예 없이 내보내는 하드 임계값으로 나뉜 kubelet 축출 기준이다.",
+   "parent": "ops.k8s.node-pressure-eviction",
+   "aliases": [
+    "evictionHard",
+    "evictionSoft",
+    "eviction-hard",
+    "evictionSoftGracePeriod",
+    "하드 축출 임계값"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.node-pressure-conditions",
+   "title": "노드 압박 조건과 전환 유예",
+   "en": "Node Pressure Conditions",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "축출 임계값을 넘은 노드에 붙는 MemoryPressure·DiskPressure·PIDPressure 조건으로, 경계에서 깜빡이지 않게 일정 시간 기다린 뒤에야 상태를 바꾼다.",
+   "parent": "ops.k8s.node-pressure-eviction",
+   "aliases": [
+    "MemoryPressure",
+    "DiskPressure",
+    "PIDPressure",
+    "eviction-pressure-transition-period"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.cpu-manager-static-policy",
+   "title": "CPU 관리자 static 정책과 독점 CPU",
+   "en": "CPU Manager Static Policy",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "Guaranteed 파드이면서 CPU 요청이 정수인 컨테이너에만 공유 풀에서 떼어 낸 CPU를 독점으로 주는 kubelet 정책으로, 0보다 큰 CPU 예약이 있어야 켤 수 있다.",
+   "parent": "ops.k8s.cpu-topology-manager",
+   "aliases": [
+    "cpuManagerPolicy static",
+    "독점 CPU",
+    "exclusive CPUs",
+    "cpu_manager_state"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.etcd-nospace-alarm",
+   "title": "etcd NOSPACE 경보",
+   "en": "etcd NOSPACE Alarm",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "멤버의 백엔드 DB가 공간 할당량을 넘으면 클러스터 전체에 걸리는 경보로, 해제될 때까지 etcd는 키 읽기와 삭제만 받는다.",
+   "parent": "ops.k8s.etcd-compaction-defrag",
+   "aliases": [
+    "NOSPACE",
+    "etcd 공간 할당량",
+    "etcd space quota",
+    "etcd alarm disarm"
+   ],
+   "refs": [
+    "https://etcd.io/docs/v3.6/op-guide/maintenance/"
    ],
    "domain": "ops"
   },
@@ -114056,6 +115313,105 @@
    "domain": "mlops"
   },
   {
+   "id": "mlops.serve.knative-request-path",
+   "title": "KServe 서버리스 요청 경로와 queue-proxy",
+   "en": "Knative Serving Request Path: Activator and Queue-Proxy",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "서버리스 모델 서버로 가는 요청이 언제 activator를 거치고 언제 파드로 바로 가는지, queue-proxy가 무엇을 하는지 나눠 본다.",
+   "objectives": [
+    "트래픽이 적을 때와 많을 때 ingress가 요청을 activator와 파드 중 어디로 보내는지 설명할 수 있다",
+    "queue-proxy가 동시 요청 측정, containerConcurrency 강제, 종료 처리에서 맡는 일을 구분할 수 있다",
+    "target-burst-capacity 값에 따라 activator가 요청 경로에 남는 조건과 그 손익을 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.serve.kserve-autoscaling"
+   ],
+   "related": [
+    "mlops.serve.ray-serve-architecture"
+   ],
+   "aliases": [
+    "Knative 요청 흐름",
+    "Knative request flow",
+    "Knative activator",
+    "KServe 서버리스 요청 경로"
+   ],
+   "refs": [
+    "https://knative.dev/docs/serving/request-flow/",
+    "https://knative.dev/docs/serving/load-balancing/target-burst-capacity/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.ray-serve-architecture",
+   "title": "Ray Serve 내부 구조: 컨트롤러·프록시·레플리카와 요청 경로",
+   "en": "Ray Serve Architecture and Request Lifecycle",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "Ray Serve에서 컨트롤러·HTTP 프록시·레플리카가 맡는 일과 요청 하나가 대기열을 지나 레플리카에 닿는 경로를 따라간다.",
+   "objectives": [
+    "컨트롤러, HTTP·gRPC 프록시, 레플리카 액터가 맡는 일을 구분할 수 있다",
+    "요청이 프록시에서 배포로 매핑되고 대기열을 거쳐 레플리카에 배정되는 순서를 설명할 수 있다",
+    "DeploymentHandle 호출이 프록시를 건너뛰는 점이 모델 조합의 경로에 주는 영향을 설명할 수 있다",
+    "컨트롤러가 멈췄을 때 요청 처리와 자동 확장에 각각 무슨 일이 생기는지 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.serve.ray-serve-autoscaling"
+   ],
+   "related": [
+    "mlops.serve.ray-serve-fault-tolerance",
+    "mlops.serve.knative-request-path"
+   ],
+   "aliases": [
+    "Ray Serve 아키텍처",
+    "Ray Serve architecture",
+    "Ray Serve 컨트롤러",
+    "Serve 요청 수명"
+   ],
+   "refs": [
+    "https://docs.ray.io/en/latest/serve/architecture.html"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.vllm-cudagraph-modes",
+   "title": "vLLM CUDA 그래프 모드 고르기: 조각 캡처와 전체 캡처",
+   "en": "vLLM CUDA Graph Modes",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "vLLM이 배치 모양에 따라 CUDA 그래프를 조각으로 또는 통째로 캡처하는 방식과 그에 따른 속도·메모리·캡처 시간의 손익을 따진다.",
+   "objectives": [
+    "PIECEWISE·FULL·FULL_DECODE_ONLY·FULL_AND_PIECEWISE가 어떤 배치를 어떻게 캡처하는지 구분할 수 있다",
+    "모드마다 지연·메모리·캡처 시간이 어떻게 달라지는지 근거로 모드를 고를 수 있다",
+    "실행 중 배치가 캡처 크기에 맞지 않을 때 그래프 대신 즉시 실행으로 넘어가는 경우를 설명할 수 있다",
+    "어텐션 백엔드가 고른 모드를 지원하지 않을 때 vLLM이 모드를 낮추는 동작을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.serve.vllm-v1-process-architecture"
+   ],
+   "related": [
+    "mlops.serve.vllm-disagg-prefill"
+   ],
+   "aliases": [
+    "cudagraph_mode",
+    "vLLM CUDA graph",
+    "vLLM CUDA 그래프",
+    "FULL_AND_PIECEWISE"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/design/cuda_graphs/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
    "id": "mlops.serve.inference-optimization",
    "title": "모델 서빙과 양자화",
    "en": "Model Serving and Quantization",
@@ -114238,6 +115594,73 @@
    ],
    "refs": [
     "https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/user_guide/batcher.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.triton-rate-limiter",
+   "title": "Triton 레이트 리미터: 자원 수와 우선순위로 모델 실행 조절",
+   "en": "Triton Rate Limiter",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "여러 모델 인스턴스가 한꺼번에 돌지 않도록 이름 붙인 자원과 우선순위로 Triton이 실행 순서를 미루는 방식과 그 손익을 다룬다.",
+   "objectives": [
+    "레이트 리미터를 켰을 때와 껐을 때 인스턴스 실행 시점이 어떻게 다른지 설명할 수 있다",
+    "인스턴스 그룹에 적은 자원 요구와 서버 옵션의 자원 수가 실행을 어떻게 막는지 추적할 수 있다",
+    "장치별 자원과 전역 자원을 구분해 메모리 부족을 피하는 설정을 고를 수 있다",
+    "자원이 모자랄 때 우선순위가 어떤 인스턴스를 먼저 돌리는지 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.serve.triton-batcher-design"
+   ],
+   "related": [
+    "mlops.serve.triton-queue-policy"
+   ],
+   "aliases": [
+    "Triton rate limiter",
+    "Triton 레이트 리미터",
+    "--rate-limit",
+    "Triton 실행 제한"
+   ],
+   "refs": [
+    "https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/user_guide/rate_limiter.html"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.sglang-hicache",
+   "title": "SGLang HiCache 계층 KV 캐시: GPU·호스트·저장소",
+   "en": "SGLang HiCache Hierarchical KV Cache",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "SGLang이 접두사 KV 캐시를 GPU·호스트 메모리·외부 저장소 세 층에 나눠 두고 쓰기·미리 가져오기 정책으로 적중률과 지연을 맞바꾸는 구조다.",
+   "objectives": [
+    "HiRadixTree 노드가 KV 데이터의 위치를 층별로 기록하는 방식을 설명할 수 있다",
+    "L1·L2·L3 가운데 여러 인스턴스가 함께 쓸 수 있는 층이 어디인지 구분할 수 있다",
+    "쓰기 정책과 미리 가져오기 정책이 대역폭·적중률·첫 토큰 지연에 주는 손익을 비교할 수 있다",
+    "페이지 크기와 메모리 배치 설정이 접두사 일치와 입출력 효율에 주는 영향을 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.serve.vllm-prefix-cache-ops"
+   ],
+   "related": [
+    "mlops.serve.vllm-disagg-prefill"
+   ],
+   "aliases": [
+    "HiCache",
+    "SGLang HiCache",
+    "HiRadixTree",
+    "SGLang 계층 캐시",
+    "SGLang hierarchical cache"
+   ],
+   "refs": [
+    "https://docs.sglang.io/docs/advanced_features/hicache_design"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -114463,6 +115886,175 @@
    "refs": [
     "https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/user_guide/batcher.html"
    ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.knative-target-burst-capacity",
+   "title": "target-burst-capacity(activator 경유 기준)",
+   "en": "Knative target-burst-capacity",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "남는 처리 여유가 이 값보다 작으면 activator를 요청 경로에 두어 갑작스런 몰림을 버퍼링하게 하는 Knative 설정이다.",
+   "parent": "mlops.serve.knative-request-path",
+   "aliases": [
+    "target-burst-capacity",
+    "autoscaling.knative.dev/target-burst-capacity",
+    "Knative 버스트 용량"
+   ],
+   "refs": [
+    "https://knative.dev/docs/serving/load-balancing/target-burst-capacity/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.knative-queue-proxy",
+   "title": "queue-proxy(Knative 사이드카)",
+   "en": "Knative Queue-Proxy",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "모델 서버 컨테이너 바로 앞에 붙어 동시 요청을 재고 동시성 상한과 정상 종료, 준비 상태 검사를 대신 맡는 사이드카다.",
+   "parent": "mlops.serve.knative-request-path",
+   "aliases": [
+    "queue-proxy",
+    "큐 프록시 사이드카",
+    "Knative 사이드카"
+   ],
+   "refs": [
+    "https://knative.dev/docs/serving/request-flow/"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.ray-power-of-two-choices",
+   "title": "두 후보 중 고르기 배정(Ray Serve 레플리카 선택)",
+   "en": "Power of Two Choices Replica Scheduling",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "레플리카 두 개를 골라 덜 붐비는 쪽으로 보내되 max_ongoing_requests를 넘기지 않게 하는 Ray Serve의 요청 배정 방식이다.",
+   "parent": "mlops.serve.ray-serve-architecture",
+   "aliases": [
+    "power of two choices",
+    "두 후보 선택",
+    "Ray Serve 레플리카 배정"
+   ],
+   "refs": [
+    "https://docs.ray.io/en/latest/serve/architecture.html"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.vllm-cudagraph-capture-sizes",
+   "title": "CUDA 그래프 캡처 크기(요청 수·토큰 수 기준)",
+   "en": "vLLM CUDA Graph Capture Sizes",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "디코드 전용 배치는 요청 수로, 나머지 배치는 토큰 수로 미리 캡처해 둔 그래프 크기 목록이며 덮는 크기가 없으면 즉시 실행한다.",
+   "parent": "mlops.serve.vllm-cudagraph-modes",
+   "aliases": [
+    "decode_cudagraph_capture_request_sizes",
+    "prefill_cudagraph_capture_token_sizes",
+    "CUDA 그래프 캡처 크기",
+    "cudagraph capture sizes"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/design/cuda_graphs/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.triton-rate-limit-resource",
+   "title": "레이트 리미터 자원(장치별·전역)",
+   "en": "Triton Rate Limiter Resources",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "모델 인스턴스가 실행 중에 잡았다 놓는 이름 붙인 자원 수로, 장치마다 따로 세거나 시스템 전체에 하나로 셀 수 있다.",
+   "parent": "mlops.serve.triton-rate-limiter",
+   "aliases": [
+    "--rate-limit-resource",
+    "rate limiter resources",
+    "Triton 전역 자원",
+    "레이트 리미터 자원"
+   ],
+   "refs": [
+    "https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/user_guide/rate_limiter.html"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.sglang-hicache-write-policy",
+   "title": "HiCache 쓰기 정책(write_through·write_back)",
+   "en": "HiCache Write Policy",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "KV 데이터를 아래 층에 곧바로 모두 쓸지, 자주 쓰인 것만 쓸지, 밀려날 때만 쓸지 정하는 HiCache 설정이다.",
+   "parent": "mlops.serve.sglang-hicache",
+   "aliases": [
+    "--hicache-write-policy",
+    "write_through_selective",
+    "HiCache 쓰기 정책"
+   ],
+   "refs": [
+    "https://docs.sglang.io/docs/advanced_features/hicache_design"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.sglang-hicache-prefetch-policy",
+   "title": "HiCache 미리 가져오기 정책",
+   "en": "HiCache Storage Prefetch Policy",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "외부 저장소에서 KV를 가져오는 일을 프리필 시작 전에 어디서 끊을지 정해 적중률과 첫 토큰 지연을 맞바꾸는 HiCache 설정이다.",
+   "parent": "mlops.serve.sglang-hicache",
+   "aliases": [
+    "--hicache-storage-prefetch-policy",
+    "HiCache 프리페치 정책",
+    "HiCache prefetch timeout"
+   ],
+   "refs": [
+    "https://docs.sglang.io/docs/advanced_features/hicache_design"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.sglang-schedule-conservativeness",
+   "title": "SGLang 스케줄 보수성",
+   "en": "SGLang Schedule Conservativeness",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "값을 키울수록 스케줄러가 새 요청을 조심스럽게 받아들이게 해, 이미 받은 요청을 되돌리는 일이 잦을 때 높이는 SGLang 설정이다.",
+   "aliases": [
+    "--schedule-conservativeness",
+    "schedule conservativeness",
+    "SGLang 스케줄 보수성 설정"
+   ],
+   "refs": [
+    "https://docs.sglang.io/docs/advanced_features/server_arguments"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "mlops"
   }
  ]

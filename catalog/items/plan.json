@@ -8373,6 +8373,105 @@
     ]
   },
   {
+    "id": "plan.basics.accname-computation",
+    "title": "accname 1.2의 이름·설명 계산 순서",
+    "en": "Accessible Name and Description Computation 1.2",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "브라우저가 aria-labelledby·aria-label·호스트 언어 라벨·내용·툴팁을 정해진 우선순위와 재귀 규칙으로 따져 요소의 이름과 설명을 정하는 W3C 초안 알고리즘이다.",
+    "objectives": [
+      "숨김 처리·aria-labelledby·내장 컨트롤·aria-label·호스트 언어 라벨·내용·툴팁 단계가 어떤 순서로 이름을 정하는지 설명할 수 있다",
+      "aria-labelledby 순회 중에 다시 만난 노드의 aria-labelledby를 따르지 않고 노드를 한 번만 살피는 규칙이 무한 순환을 막는 원리를 설명할 수 있다",
+      "숨긴 텍스트도 aria-labelledby·aria-describedby로 가리키면 이름에 들어가고 opacity:0이나 화면 밖 배치는 숨김으로 치지 않는 점을 근거로 엉뚱한 이름의 원인을 분석할 수 있다",
+      "이름에 이미 쓴 호스트 언어 속성이나 툴팁이 설명에서는 다시 쓰이지 않는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.label-in-name"
+    ],
+    "related": [
+      "fe.html.accessible-name"
+    ],
+    "aliases": [
+      "accname",
+      "accname 1.2",
+      "이름 계산 알고리즘",
+      "접근 가능한 이름 계산 규칙"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/accname-1.2/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "plan.basics.bcp47-language-tags",
+    "title": "BCP 47 언어 태그 구조와 매칭",
+    "en": "BCP 47 Language Tags and Matching",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "언어·문자·지역·변이 하위 태그로 언어를 표시하는 IETF BCP 47 규칙과, 사용자가 원하는 언어 범위를 지원 언어에 맞추는 RFC 4647 매칭 방식이다.",
+    "objectives": [
+      "언어·확장 언어·문자·지역·변이·확장·사용자 정의 하위 태그의 순서와 개수 제약을 설명할 수 있다",
+      "태그를 가능한 한 짧게 두고 구별이 필요할 때만 지역이나 문자를 붙이는 원칙을 근거로 ja와 ja-JP, zh-Hans와 zh 가운데 고를 수 있다",
+      "여러 결과를 돌려주는 필터링과 하나만 돌려주는 조회(lookup) 매칭의 차이를 비교해 콘텐츠 선택 방식을 고를 수 있다",
+      "필터링에서는 범위 en이 태그 en-GB에 맞지만 범위 en-GB는 태그 en에 맞지 않고, 조회에서는 en-GB를 잘라 en으로 물러나는 차이 때문에 생기는 언어 선택 오류를 분석할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.i18n-idea"
+    ],
+    "related": [
+      "fe.next.internationalization",
+      "fe.basics.lang-attribute"
+    ],
+    "aliases": [
+      "BCP 47",
+      "BCP47",
+      "언어 태그",
+      "language tag",
+      "RFC 5646"
+    ],
+    "refs": [
+      "https://www.w3.org/International/articles/language-tags/",
+      "https://www.rfc-editor.org/rfc/rfc5646.html",
+      "https://www.rfc-editor.org/rfc/rfc4647.html"
+    ]
+  },
+  {
+    "id": "plan.basics.composite-widget-focus",
+    "title": "복합 위젯 포커스 관리 방식 비교",
+    "en": "Focus Management in Composite Widgets",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "탭·메뉴·그리드 같은 복합 위젯 안에서 실제 DOM 포커스를 옮길지, 컨테이너가 포커스를 쥔 채 활성 항목만 알릴지 견주는 WAI-ARIA APG 지침이다.",
+    "objectives": [
+      "roving tabindex가 tabindex 0과 -1을 바꾸며 포커스를 옮기는 방식과 aria-activedescendant가 컨테이너에 포커스를 둔 채 활성 항목 id를 알리는 방식을 설명할 수 있다",
+      "aria-activedescendant를 쓰면 포커스 표시와 스크롤을 직접 처리해야 하고 참조 대상이 DOM 관계 규칙을 지켜야 하는 손익을 비교할 수 있다",
+      "선택이 포커스를 따라가게 할지 Enter·Space로 따로 선택하게 할지를 내용 전환 비용에 따라 고를 수 있다",
+      "포인터 클릭 뒤 키보드 포커스 위치가 어긋나는 문제의 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "fe.html.accessible-markup"
+    ],
+    "related": [
+      "plan.basics.focus-visibility-design"
+    ],
+    "aliases": [
+      "roving tabindex",
+      "로빙 tabindex",
+      "복합 위젯 포커스",
+      "composite widget focus"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/"
+    ]
+  },
+  {
     "id": "plan.basics.wcag2ict",
     "title": "WCAG2ICT로 앱·문서에 WCAG 적용하기",
     "en": "Applying WCAG to Non-Web ICT with WCAG2ICT",
@@ -8553,6 +8652,77 @@
     ],
     "refs": [
       "https://www.designtokens.org/tr/2025.10/resolver/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "plan.basics.bidi-text-isolation",
+    "title": "양방향 텍스트의 기본 방향과 격리 설계",
+    "en": "Bidirectional Text Base Direction and Isolation",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "오른쪽에서 왼쪽으로 쓰는 문장 안에 숫자·라틴 문자 구절이나 사용자 입력이 섞일 때 dir·bdi·유니코드 격리 문자로 기본 방향을 정하고 주변 글과 떼어 놓는 W3C i18n 지침이다.",
+    "objectives": [
+      "방향을 아는 구절은 dir 속성으로, 모르는 동적 값은 bdi나 dir=auto로 감싸는 선택의 근거를 설명할 수 있다",
+      "dir=auto가 첫 강한 문자만 보고 방향을 정하기 때문에 생기는 오판 사례를 분석할 수 있다",
+      "격리하지 않은 구절 뒤의 숫자·문장부호가 엉뚱한 방향으로 붙는 현상의 원인을 찾을 수 있다",
+      "마크업을 쓸 수 없는 title·속성 값에서 RLI·LRI·FSI·PDI를 쓰는 대안과 그 관리 부담을 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.i18n-idea"
+    ],
+    "related": [
+      "plan.basics.messageformat2",
+      "fe.basics.rtl-text"
+    ],
+    "aliases": [
+      "양방향 텍스트",
+      "bidi 텍스트",
+      "bidirectional text",
+      "bdi 요소",
+      "dir=auto",
+      "양방향 격리"
+    ],
+    "refs": [
+      "https://www.w3.org/International/articles/inline-bidi-markup/"
+    ]
+  },
+  {
+    "id": "plan.figma.plugin-traversal-performance",
+    "title": "Figma 플러그인 문서 순회 비용과 탐색 API 손익",
+    "en": "Figma Plugin Document Traversal Performance",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "노드 트리를 읽는 플러그인이 페이지 로드 범위, findAll 콜백과 조건 탐색, 숨은 인스턴스 자식 건너뛰기를 골라 큰 파일에서 순회 비용을 줄이는 Figma Plugin API 설계다.",
+    "objectives": [
+      "문서·페이지·레이어로 이어진 노드 트리에서 현재 페이지만 보장되는 로드 모델이 전체 순회 비용에 주는 영향을 설명할 수 있다",
+      "임의 콜백을 받는 findAll과 형식·플러그인 데이터 조건만 받는 findAllWithCriteria의 유연성과 속도 손익을 비교할 수 있다",
+      "숨은 인스턴스 자식을 건너뛰게 하면 빨라지는 대신 그 노드가 null이 되거나 속성 읽기가 오류를 내는 부작용을 근거로 사용 여부를 판단할 수 있다",
+      "찾기·바꾸기처럼 문서 전체가 필요한 작업과 필요한 페이지만 불러도 되는 작업을 구분해 순회 범위를 정할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.codegen-plugin"
+    ],
+    "related": [
+      "plan.figma.dynamic-page-loading",
+      "plan.figma.plugin-sandbox",
+      "plan.figma.file-memory-model"
+    ],
+    "aliases": [
+      "Figma 플러그인 성능",
+      "Figma 플러그인 순회",
+      "findAllWithCriteria",
+      "plugin traversal performance"
+    ],
+    "refs": [
+      "https://developers.figma.com/docs/plugins/accessing-document/",
+      "https://developers.figma.com/docs/plugins/api/properties/nodes-findallwithcriteria/",
+      "https://developers.figma.com/docs/plugins/api/properties/figma-skipinvisibleinstancechildren/"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
@@ -8787,5 +8957,149 @@
       "resolutionOrder",
       "DTCG 해석 순서"
     ]
+  },
+  {
+    "id": "plan.basics.accessible-description",
+    "title": "접근 가능한 설명(accessible description)",
+    "en": "Accessible Description",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "aria-describedby·aria-description·호스트 언어 기능·툴팁 가운데 처음 해당하는 출처 하나로 정해지며, 결과가 비어도 다음 출처로 넘어가지 않는 보조 설명 문자열이다.",
+    "parent": "plan.basics.accname-computation",
+    "aliases": [
+      "aria-describedby",
+      "aria-description",
+      "접근 가능한 설명",
+      "보조기술 설명 문자열"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/accname-1.2/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "plan.basics.name-from-content",
+    "title": "내용에서 이름 얻기(name from content)",
+    "en": "Name from Content",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "역할이 허용하거나 다른 요소가 참조할 때 CSS ::before·::after 텍스트와 렌더링된 자식을 재귀로 모아 이름을 만드는 accname 계산 단계다.",
+    "parent": "plan.basics.accname-computation",
+    "aliases": [
+      "name from content",
+      "nameFrom content",
+      "콘텐츠에서 이름 얻기"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/accname-1.2/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "plan.basics.unicode-bidi-algorithm",
+    "title": "유니코드 양방향 알고리즘(UBA)",
+    "en": "Unicode Bidirectional Algorithm (UAX #9)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "문자마다 강한·약한·중립 방향 유형을 매겨 임베딩 수준을 풀고 표시 순서를 다시 정하는 Unicode 표준 부속서 9의 알고리즘으로, 격리 문자는 바깥 글의 순서에 영향을 주지 않는다.",
+    "parent": "plan.basics.bidi-text-isolation",
+    "aliases": [
+      "UBA",
+      "UAX #9",
+      "UAX 9",
+      "유니코드 양방향 알고리즘"
+    ],
+    "refs": [
+      "https://www.unicode.org/reports/tr9/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "plan.basics.language-subtag-registry",
+    "title": "IANA 언어 하위 태그 레지스트리",
+    "en": "IANA Language Subtag Registry",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "유효한 언어·문자·지역 하위 태그를 정하는 단 하나의 공식 목록으로, 항목마다 Preferred-Value·Suppress-Script 같은 칸이 있어 es-Latn처럼 군더더기 태그를 피하게 한다.",
+    "parent": "plan.basics.bcp47-language-tags",
+    "aliases": [
+      "IANA language subtag registry",
+      "언어 하위 태그 레지스트리",
+      "Suppress-Script",
+      "subtag registry"
+    ],
+    "refs": [
+      "https://www.w3.org/International/articles/language-tags/"
+    ]
+  },
+  {
+    "id": "plan.basics.language-range-lookup",
+    "title": "언어 범위 조회와 필터링(RFC 4647)",
+    "en": "Language Range Lookup and Filtering (RFC 4647)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "필터링은 범위에 맞는 태그를 여럿 돌려주고, 조회는 범위 끝의 하위 태그를 하나씩 잘라 가며 맞는 태그 하나를 찾다가 없으면 기본값을 쓰는 RFC 4647의 두 매칭 방식이다.",
+    "parent": "plan.basics.bcp47-language-tags",
+    "aliases": [
+      "RFC 4647",
+      "language range",
+      "언어 범위 매칭",
+      "언어 범위 조회",
+      "language range lookup"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc4647.html"
+    ]
+  },
+  {
+    "id": "plan.basics.aria-activedescendant",
+    "title": "aria-activedescendant",
+    "en": "aria-activedescendant",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "DOM 포커스는 컨테이너에 두고 활성 자식의 id를 값으로 넣어 보조기술이 그 자식을 포커스된 것으로 다루게 하는 ARIA 속성으로, 시각적 포커스와 스크롤은 직접 맞춰야 한다.",
+    "parent": "plan.basics.composite-widget-focus",
+    "aliases": [
+      "활성 하위 요소 속성",
+      "active descendant"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/"
+    ]
+  },
+  {
+    "id": "plan.figma.skip-invisible-instance-children",
+    "title": "숨은 인스턴스 자식 건너뛰기",
+    "en": "figma.skipInvisibleInstanceChildren",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "켜면 인스턴스 안의 보이지 않는 노드와 그 자손을 순회와 조회에서 빼 탐색을 크게 빠르게 하지만 그 노드를 읽으면 null이나 오류가 나는 플러그인 설정으로, Dev Mode에서는 기본으로 켜져 있다.",
+    "parent": "plan.figma.plugin-traversal-performance",
+    "aliases": [
+      "skipInvisibleInstanceChildren",
+      "숨은 인스턴스 자식 생략"
+    ],
+    "refs": [
+      "https://developers.figma.com/docs/plugins/api/properties/figma-skipinvisibleinstancechildren/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   }
 ]
