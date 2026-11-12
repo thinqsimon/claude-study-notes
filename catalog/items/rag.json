@@ -6623,6 +6623,153 @@
     ]
   },
   {
+    "id": "rag.vector-db.multitenancy-design",
+    "title": "벡터 DB 멀티테넌시 설계: 컬렉션·네임스페이스·페이로드 분할",
+    "en": "Multitenancy Design in Vector Databases",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "벡터 DB",
+    "summary": "고객별 문서를 컬렉션·네임스페이스·샤드로 나눌지 한 곳에 두고 테넌트 값으로 거를지, 격리·비용·속도·삭제 편의를 따져 고르는 설계다.",
+    "objectives": [
+      "테넌트 수와 크기, 격리 요구를 근거로 테넌트별 컬렉션·네임스페이스, 테넌트별 샤드(Qdrant 사용자 정의 샤딩·계층형 멀티테넌시), 공유 컬렉션의 테넌트 필드 분할 가운데 하나를 고를 수 있다",
+      "메타데이터 필터 방식에서 검색 비용과 지연이 전체 데이터 크기를 따라 늘어나는 까닭을 들어 큰 고객을 따로 떼어 낼 시점을 정할 수 있다",
+      "필터를 빠뜨린 질의가 다른 고객의 문서를 돌려준 원인을 찾고 테넌트 조건을 강제하는 구조로 고칠 수 있다",
+      "고객 탈퇴 때 네임스페이스 삭제와 필터 기반 삭제의 손익을 비교해 오프보딩 방법을 정할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.vector-db.basics",
+      "be.arch.multi-tenancy"
+    ],
+    "related": [
+      "ax.security.rag-access-control",
+      "be.arch.multi-tenancy"
+    ],
+    "aliases": [
+      "벡터 DB 멀티테넌시",
+      "vector database multitenancy",
+      "Qdrant multitenancy",
+      "Pinecone multitenancy",
+      "벡터 DB 고객별 분리"
+    ],
+    "refs": [
+      "https://qdrant.tech/documentation/guides/multiple-partitions/",
+      "https://docs.pinecone.io/guides/index-data/implement-multitenancy"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.vector-db.pgvector-filtered-search",
+    "title": "pgvector 근사 인덱스와 필터: 결과 부족 진단",
+    "en": "Filtered Search with pgvector Approximate Indexes",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "벡터 DB",
+    "summary": "pgvector의 HNSW·IVFFlat 인덱스에 WHERE 조건을 붙이면 결과가 k개보다 모자라거나 인덱스를 안 타는 까닭을 찾고 설정과 인덱스 구조로 고치는 방법이다.",
+    "objectives": [
+      "인덱스를 만든 뒤 필터 검색 결과가 줄어든 원인을 인덱스 스캔 뒤에 필터가 걸리는 순서와 ef_search·probes 한도에서 찾을 수 있다",
+      "필터 조건의 선택도에 따라 필터 칼럼 일반 인덱스·부분 인덱스·파티셔닝·반복 인덱스 스캔 가운데 맞는 것을 고를 수 있다",
+      "질의가 인덱스를 쓰지 않을 때 ORDER BY 거리 연산자와 LIMIT 형태, 작은 표의 순차 스캔 여부를 점검해 원인을 찾을 수 있다",
+      "재현율과 지연을 함께 재며 hnsw.ef_search·ivfflat.probes 값을 질의 단위로 조정할지 정할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.vector-db.basics"
+    ],
+    "related": [
+      "rag.vector-index.internals",
+      "rag.vector-index.recall",
+      "rag.retrieval.top-k-filter"
+    ],
+    "aliases": [
+      "pgvector 필터 검색",
+      "pgvector filtering",
+      "pgvector 결과 부족",
+      "pgvector 인덱스 안 탐",
+      "pgvector 튜닝"
+    ],
+    "refs": [
+      "https://github.com/pgvector/pgvector"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.agent-server-deploy",
+    "title": "LangGraph 배포 구조 고르기: API 서버·큐 워커·저장소",
+    "en": "Designing LangGraph Agent Server Deployments",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "LangGraph 앱을 Agent Server로 운영할 때 요청을 받는 API 서버와 그래프를 돌리는 큐 워커를 나누고 PostgreSQL·Redis를 두어 규모에 맞게 늘리는 설계다.",
+    "objectives": [
+      "단일 호스트와 API 서버·큐 워커 분리 배포 가운데 트래픽과 실행 시간을 근거로 맞는 구성을 고를 수 있다",
+      "API 서버를 늘려도 실행이 밀리는 까닭을 실행 동시성이 워커 수와 워커당 작업 수로 정해진다는 점에서 찾을 수 있다",
+      "실행이 느려지거나 시간 초과가 날 때 그래프 안의 동기 블로킹 호출이나 워커 메모리 한도를 원인으로 의심하고 확인할 수 있다",
+      "같은 스레드에 사용자가 연달아 입력할 때 거절·대기·중단·되돌리기 가운데 어떤 처리를 쓸지 정할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.local-server-studio",
+      "rag.agent.checkpoint-persistence"
+    ],
+    "related": [
+      "rag.agent.fault-tolerance-design",
+      "rag.agent.durability-mode"
+    ],
+    "aliases": [
+      "LangGraph 배포",
+      "LangGraph deployment",
+      "LangSmith Deployment",
+      "LangGraph Agent Server",
+      "LangSmith Agent Server 확장"
+    ],
+    "refs": [
+      "https://docs.langchain.com/langsmith/agent-server",
+      "https://docs.langchain.com/langsmith/agent-server-scale",
+      "https://docs.langchain.com/langsmith/double-texting"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.mcp-security-threats",
+    "title": "MCP 서버·클라이언트 공격 막기: 대리인 혼동·SSRF·핸들 탈취",
+    "en": "Mitigating Attacks on MCP Servers and Clients",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "MCP 프록시의 동의 우회, 인가 메타데이터 주소를 이용한 SSRF, 상태 핸들 도용, 로컬 서버 실행 명령 악용을 알아보고 각각 막는 설계를 고르는 방법이다.",
+    "objectives": [
+      "제3자 API를 잇는 MCP 프록시에서 고정 client_id와 동의 쿠키가 겹칠 때 동의 화면이 건너뛰어지는 원인을 찾고 클라이언트별 동의와 redirect_uri 정확 일치로 막을 수 있다",
+      "서버에서 도는 MCP 클라이언트가 OAuth 메타데이터 주소를 따라갈 때 HTTPS 강제·사설 IP 차단·이그레스 프록시 가운데 맞는 방어를 근거를 들어 고를 수 있다",
+      "도구 인자로 오가는 상태 핸들을 인증 수단으로 믿지 않고 검증된 사용자 id에 묶어 저장하도록 서버를 설계할 수 있다",
+      "원클릭 로컬 서버 설정과 서버가 내준 인가 URL을 처리할 때 명령 전체 표시·사용자 승인·위험한 스킴 거부를 클라이언트에 넣어야 하는 근거를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.mcp-auth-design",
+      "ax.security.third-party-mcp-risks"
+    ],
+    "related": [
+      "be.security.ssrf",
+      "ax.security.agent-confused-deputy",
+      "rag.agent.mcp-token-passthrough"
+    ],
+    "aliases": [
+      "MCP 보안 모범 사례",
+      "MCP security best practices",
+      "MCP 공격 대응",
+      "MCP 서버 보안 설계"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "rag.retrieval.reranking",
     "title": "재순위",
     "en": "Reranking",
@@ -6693,6 +6840,73 @@
       "토큰 패스스루",
       "토큰 그대로 넘기기",
       "MCP 토큰 대상 검증"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.vector-db.hnsw-ef-search",
+    "title": "검색 후보 크기(hnsw.ef_search)",
+    "en": "pgvector hnsw.ef_search",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "벡터 DB",
+    "summary": "pgvector HNSW 검색이 살펴볼 후보 목록 크기로, 기본 40이며 키우면 재현율이 오르고 느려지고 한 질의가 돌려주는 결과 수의 한도도 된다.",
+    "parent": "rag.vector-db.pgvector-filtered-search",
+    "aliases": [
+      "hnsw.ef_search",
+      "pgvector ef_search",
+      "SET hnsw.ef_search"
+    ],
+    "refs": [
+      "https://github.com/pgvector/pgvector"
+    ]
+  },
+  {
+    "id": "rag.agent.double-texting",
+    "title": "더블 텍스팅 처리 전략(multitask_strategy)",
+    "en": "LangGraph Double Texting Strategies",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "실행 중인 스레드에 새 입력이 오면 reject·enqueue·interrupt·rollback 중 무엇을 할지 multitask_strategy로 정하는 Agent Server 기능이며 기본값은 enqueue다.",
+    "parent": "rag.agent.agent-server-deploy",
+    "aliases": [
+      "double texting",
+      "더블 텍스팅",
+      "multitask_strategy",
+      "LangGraph 동시 입력 처리"
+    ],
+    "refs": [
+      "https://docs.langchain.com/langsmith/double-texting",
+      "https://docs.langchain.com/langsmith/interrupt-concurrent"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.mcp-confused-deputy",
+    "title": "MCP 프록시의 혼동된 대리인 공격",
+    "en": "MCP Proxy Confused Deputy Attack",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "고정 client_id로 제3자 API에 붙는 MCP 프록시가 클라이언트별 동의를 받지 않으면, 남은 동의 쿠키 덕에 공격자 클라이언트가 동의 없이 인가 코드를 가로채는 공격이다.",
+    "parent": "rag.agent.mcp-security-threats",
+    "related": [
+      "ax.security.agent-confused-deputy"
+    ],
+    "aliases": [
+      "MCP confused deputy",
+      "MCP 프록시 동의 우회",
+      "MCP 혼동된 대리인",
+      "MCP per-client consent"
     ],
     "refs": [
       "https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices"
@@ -6882,6 +7096,115 @@
     "refs": [
       "https://www.anthropic.com/engineering/writing-tools-for-agents"
     ]
+  },
+  {
+    "id": "rag.vector-db.qdrant-tenant-index",
+    "title": "Qdrant 테넌트 페이로드 인덱스(is_tenant)",
+    "en": "Qdrant Tenant Payload Index (is_tenant)",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "Qdrant에서 테넌트 필드의 keyword 인덱스에 is_tenant를 켜 같은 고객의 벡터를 모아 저장하게 해 테넌트별 검색을 빠르게 하는 설정이다.",
+    "parent": "rag.vector-db.multitenancy-design",
+    "aliases": [
+      "is_tenant",
+      "Qdrant is_tenant",
+      "Qdrant 테넌트 인덱스",
+      "Qdrant tenant index"
+    ],
+    "refs": [
+      "https://qdrant.tech/documentation/guides/multiple-partitions/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.vector-db.pinecone-namespace",
+    "title": "Pinecone 네임스페이스",
+    "en": "Pinecone Namespaces",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "Pinecone 인덱스 안을 따로 저장되는 칸으로 나눠 읽기·쓰기를 한 칸에만 보내는 단위로, 고객별로 하나씩 두면 격리와 손쉬운 삭제를 얻는다.",
+    "parent": "rag.vector-db.multitenancy-design",
+    "aliases": [
+      "Pinecone namespace",
+      "파인콘 네임스페이스",
+      "Pinecone 고객별 네임스페이스"
+    ],
+    "refs": [
+      "https://docs.pinecone.io/guides/index-data/implement-multitenancy"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.vector-db.iterative-index-scan",
+    "title": "pgvector 반복 인덱스 스캔",
+    "en": "pgvector Iterative Index Scans",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "필터를 거친 결과가 모자라면 인덱스를 더 훑어 결과를 채우는 pgvector 0.8의 기능으로, strict_order와 relaxed_order 중 하나를 고르고 max_scan_tuples로 한도를 둔다.",
+    "parent": "rag.vector-db.pgvector-filtered-search",
+    "aliases": [
+      "hnsw.iterative_scan",
+      "ivfflat.iterative_scan",
+      "pgvector iterative scan",
+      "hnsw.max_scan_tuples"
+    ],
+    "refs": [
+      "https://github.com/pgvector/pgvector"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.queue-worker-concurrency",
+    "title": "큐 워커 동시 실행 수(N_JOBS_PER_WORKER)",
+    "en": "Agent Server N_JOBS_PER_WORKER",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "Agent Server 큐 워커 하나가 동시에 돌리는 실행 수로 기본 10이며, 입출력 위주 그래프는 올리고 메모리가 한도에 가깝거나 CPU 사용이 지나치면 낮춘다.",
+    "parent": "rag.agent.agent-server-deploy",
+    "aliases": [
+      "N_JOBS_PER_WORKER",
+      "Agent Server 큐 워커",
+      "Agent Server queue worker",
+      "LangGraph 워커 동시성"
+    ],
+    "refs": [
+      "https://docs.langchain.com/langsmith/agent-server-scale"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.mcp-state-handle-hijacking",
+    "title": "MCP 상태 핸들 탈취",
+    "en": "MCP State Handle Hijacking",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "MCP 서버가 도구 결과로 내준 장바구니 id 같은 상태 핸들을 남이 얻거나 맞혀 다른 사용자의 상태를 건드리는 공격으로, 핸들을 검증된 사용자에 묶어 막는다.",
+    "parent": "rag.agent.mcp-security-threats",
+    "aliases": [
+      "state handle hijacking",
+      "MCP 핸들 탈취",
+      "MCP 상태 핸들",
+      "상태 핸들 도용"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "rag.vector-index.internals",

@@ -6779,6 +6779,44 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "mlops.eval.online-judge-monitoring",
+    "title": "운영 트레이스 자동 평가 설계: 표본·필터·대기 시간",
+    "en": "Designing Automatic LLM Judge Evaluation on Production Traces",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "MLflow에 쌓이는 운영 트레이스와 세션에 LLM 심판을 등록해 뒤에서 채점하게 하고, 표본 비율·필터·대기 시간을 비용과 감시 범위에 맞춰 고르는 운영 설계다.",
+    "objectives": [
+      "개발과 운영 환경의 비용과 감시 범위를 근거로 심판마다 표본 비율과 트레이스 필터를 고를 수 있다",
+      "코드 스코어러는 자동 평가에 바로 못 쓰고 LLM 심판만 된다는 제약을 보고 채점 방식을 고를 수 있다",
+      "자동 평가 결과가 안 보일 때 대기 시간, 소급 평가 없음, 세션 ID 누락, 게이트웨이 엔드포인트 설정에서 원인을 찾을 수 있다",
+      "심판 설정을 바꿔도 이미 채점된 트레이스는 다시 채점되지 않는다는 점을 품질 지표 해석에 반영할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.eval.automatic-eval-picture",
+      "mlops.eval.builtin-judges",
+      "mlops.observe.search-traces"
+    ],
+    "related": [
+      "mlops.eval.llm-regression",
+      "rag.agent.offline-online-eval",
+      "mlops.observe.trace-sampling"
+    ],
+    "aliases": [
+      "운영 트레이스 자동 평가",
+      "production trace evaluation",
+      "MLflow 자동 평가 설정",
+      "LLM 심판 온라인 감시",
+      "online LLM judge monitoring"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/eval-monitor/automatic-evaluations/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "mlops.serve.kserve-canary-rollout",
     "title": "KServe로 모델 카나리 출시하고 되돌리기",
     "en": "Canary Rollout and Rollback with KServe",
@@ -6845,6 +6883,115 @@
     ],
     "refs": [
       "https://kserve.github.io/website/docs/model-serving/predictive-inference/autoscaling/kpa-autoscaler"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.ray-serve-dynamic-batching",
+    "title": "Ray Serve 요청 묶기: 배치 크기와 대기 시간 조정",
+    "en": "Dynamic Request Batching in Ray Serve",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Ray Serve가 들어온 요청을 잠깐 모아 한 번에 모델에 넣게 하고, 배치 크기와 대기 시간으로 처리량과 지연의 균형을 고르는 운영 설계다.",
+    "objectives": [
+      "모델이 배치 처리에 유리한지와 지연 목표를 근거로 @serve.batch를 붙일지 고를 수 있다",
+      "지연 목표와 배치 계산 시간을 따져 max_batch_size와 batch_wait_timeout_s 값을 정하고 그 근거를 말할 수 있다",
+      "트래픽이 적을 때 응답이 늦어지거나 메모리가 부족해질 때 배치 설정에서 원인을 찾을 수 있다",
+      "앞뒤 배포의 배치 크기가 맞지 않아 덜 찬 배치가 생기는 문제를 찾아 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.local-model-serving",
+      "mlops.serve.llm-server-speedups-picture"
+    ],
+    "related": [
+      "mlops.serve.continuous-batching",
+      "mlops.serve.batch-inference",
+      "mlops.serve.chunked-prefill"
+    ],
+    "aliases": [
+      "Ray Serve 배치",
+      "Ray Serve dynamic batching",
+      "@serve.batch",
+      "Ray Serve 요청 묶기",
+      "serve.batch 데코레이터"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/serve/advanced-guides/dyn-req-batch.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.ray-serve-multiplexing",
+    "title": "Ray Serve 모델 멀티플렉싱: 여러 모델이 레플리카 나눠 쓰기",
+    "en": "Model Multiplexing in Ray Serve",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "입력 모양은 같고 가중치만 다른 여러 모델을 한 레플리카 묶음에서 요청의 모델 ID로 골라 불러 쓰게 해, 드물게 쓰는 모델마다 서버를 따로 두지 않는 서빙 설계다.",
+    "objectives": [
+      "모델 수와 호출 빈도를 근거로 모델마다 배포를 따로 둘지 멀티플렉싱으로 묶을지 고를 수 있다",
+      "레플리카당 모델 수 상한과 LRU 축출이 지연과 메모리에 주는 손익을 말할 수 있다",
+      "같은 모델 요청이 자꾸 느려질 때 모델 ID 헤더 누락이나 잦은 축출·재적재에서 원인을 찾을 수 있다",
+      "멀티플렉싱과 요청 묶기를 함께 쓸 때 배치가 모델 ID별로 나뉜다는 점을 설계에 반영할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.local-model-serving"
+    ],
+    "related": [
+      "mlops.serve.vllm-lora-serving",
+      "mlops.serve.ray-serve-dynamic-batching",
+      "mlops.serve.model-cold-start"
+    ],
+    "aliases": [
+      "Ray Serve 멀티플렉싱",
+      "Ray Serve model multiplexing",
+      "@serve.multiplexed",
+      "모델 멀티플렉싱",
+      "레플리카 모델 공유"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/serve/model-multiplexing.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.kserve-inference-graph",
+    "title": "KServe InferenceGraph로 여러 모델 엮기",
+    "en": "Composing Models with KServe InferenceGraph",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "KServe InferenceGraph의 Sequence·Switch·Ensemble·Splitter 노드로 여러 모델을 차례·조건·병렬·가중치로 엮는 방식을 고르는 서빙 설계다.",
+    "objectives": [
+      "전처리 뒤 분류, 조건별 분기, 여러 모델 합치기, 비율 나누기 가운데 요구에 맞는 라우터 유형을 고를 수 있다",
+      "Sequence에서 다음 단계가 이전 응답을 받을지 원래 요청을 받을지 data 칸으로 정하고 그 근거를 말할 수 있다",
+      "Switch에서 맞는 조건이 없어 원래 요청이 그대로 돌아오거나 뒤 단계가 실행되지 않을 때 조건식에서 원인을 찾을 수 있다",
+      "그래프 라우터와 각 모델이 따로 확장된다는 점과 시간 제한 설정을 지연 문제 진단에 쓸 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.kserve-canary-rollout"
+    ],
+    "related": [
+      "mlops.serve.traffic-split",
+      "mlops.serve.kserve-autoscaling"
+    ],
+    "aliases": [
+      "KServe InferenceGraph",
+      "InferenceGraph",
+      "KServe 추론 그래프",
+      "KServe 모델 파이프라인",
+      "routerType"
+    ],
+    "refs": [
+      "https://kserve.github.io/website/docs/model-serving/inferencegraph/overview",
+      "https://kserve.github.io/website/docs/concepts/resources/inferencegraph"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
@@ -7145,6 +7292,182 @@
     "refs": [
       "https://kserve.github.io/website/docs/model-serving/predictive-inference/autoscaling/kpa-autoscaler"
     ]
+  },
+  {
+    "id": "mlops.serve.ray-batch-wait-timeout",
+    "title": "배치 대기 시간과 최대 배치 크기(batch_wait_timeout_s)",
+    "en": "Ray Serve batch_wait_timeout_s and max_batch_size",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "첫 요청이 온 뒤 배치가 찰 때까지 기다리는 시간과 한 배치의 최대 요청 수로, 시간이 다 되면 덜 찬 배치라도 바로 보낸다.",
+    "parent": "mlops.serve.ray-serve-dynamic-batching",
+    "related": [
+      "mlops.serve.chunked-prefill"
+    ],
+    "aliases": [
+      "batch_wait_timeout_s",
+      "max_batch_size",
+      "Ray Serve 배치 대기 시간",
+      "Ray Serve 최대 배치 크기"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/serve/advanced-guides/dyn-req-batch.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.ray-batch-size-fn",
+    "title": "batch_size_fn(요청 수 대신 토큰 수로 배치 재기)",
+    "en": "Ray Serve batch_size_fn for Custom Batch Size",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "배치 크기를 요청 개수가 아닌 전체 토큰 수 같은 기준으로 재게 하는 함수로, 이때 max_batch_size도 그 단위로 정해야 한다.",
+    "parent": "mlops.serve.ray-serve-dynamic-batching",
+    "aliases": [
+      "batch_size_fn",
+      "Ray Serve 맞춤 배치 크기",
+      "토큰 수 기준 배치",
+      "custom batch size function"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/serve/advanced-guides/dyn-req-batch.html"
+    ]
+  },
+  {
+    "id": "mlops.serve.multiplexed-model-id-header",
+    "title": "serve_multiplexed_model_id 헤더(요청할 모델 지정)",
+    "en": "Ray Serve serve_multiplexed_model_id Header",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "클라이언트가 원하는 모델 ID를 담아 보내는 요청 헤더로, 빠지면 Ray Serve가 보통 요청으로 보고 아무 레플리카에나 보낸다.",
+    "parent": "mlops.serve.ray-serve-multiplexing",
+    "aliases": [
+      "serve_multiplexed_model_id",
+      "get_multiplexed_model_id",
+      "multiplexed_model_id",
+      "Ray Serve 모델 ID 헤더"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/serve/model-multiplexing.html"
+    ]
+  },
+  {
+    "id": "mlops.serve.max-models-per-replica",
+    "title": "max_num_models_per_replica와 LRU 축출",
+    "en": "Ray Serve max_num_models_per_replica and LRU Eviction",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "한 레플리카가 동시에 올려 둘 모델 수의 상한으로, 넘으면 가장 오래 안 쓴 모델을 내려 메모리를 비우고 다시 부르면 새로 불러온다.",
+    "parent": "mlops.serve.ray-serve-multiplexing",
+    "related": [
+      "mlops.serve.model-cold-start"
+    ],
+    "aliases": [
+      "max_num_models_per_replica",
+      "레플리카당 모델 수",
+      "멀티플렉싱 모델 축출",
+      "multiplexed model eviction"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/serve/model-multiplexing.html"
+    ]
+  },
+  {
+    "id": "mlops.eval.judge-lifecycle",
+    "title": "등록 심판의 수명 주기(register·start·update·stop)",
+    "en": "MLflow Registered Judge Lifecycle",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "실험에 심판을 등록하고 시작한 뒤 이름으로 불러 표본 설정을 바꾸거나 멈추는 MLflow 자동 평가의 관리 단계다.",
+    "parent": "mlops.eval.online-judge-monitoring",
+    "aliases": [
+      "judge.register",
+      "ScorerSamplingConfig",
+      "get_scorer",
+      "심판 등록과 시작",
+      "scorer start stop"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/eval-monitor/automatic-evaluations/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.eval.auto-eval-delay-no-backfill",
+    "title": "자동 평가 대기 시간과 소급 평가 없음",
+    "en": "Automatic Evaluation Delay and No Backfill",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "트레이스는 시작 몇 분 뒤에야 채점 대상이 되고, 심판을 새로 켜면 최근 기록만 채점하며 지난 기록은 거슬러 채점하지 않는 MLflow 자동 평가의 규칙이다.",
+    "parent": "mlops.eval.online-judge-monitoring",
+    "aliases": [
+      "자동 평가 지연",
+      "평가 소급 없음",
+      "no historical backfill",
+      "세션 완료 대기 시간",
+      "trace completion buffer"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/eval-monitor/automatic-evaluations/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.inference-graph-response-data",
+    "title": "InferenceGraph 단계 출력 전달($response)",
+    "en": "Passing $response Between InferenceGraph Steps",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "InferenceGraph Sequence 단계에 data: $response를 적으면 앞 단계의 응답을 받고, 적지 않으면 처음 들어온 요청을 그대로 받는 규칙이다.",
+    "parent": "mlops.serve.kserve-inference-graph",
+    "aliases": [
+      "data: $response",
+      "InferenceGraph data 칸",
+      "Sequence 단계 출력 연결",
+      "InferenceGraph step data"
+    ],
+    "refs": [
+      "https://kserve.github.io/website/docs/model-serving/inferencegraph/overview"
+    ]
+  },
+  {
+    "id": "mlops.serve.inference-graph-router-timeouts",
+    "title": "InferenceGraph 시간 제한(routerTimeouts)",
+    "en": "KServe InferenceGraph timeout and routerTimeouts",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "InferenceGraph 전체 요청의 제한 시간과, 라우터가 요청을 읽고 응답을 쓰고 각 단계 모델을 부를 때의 제한 시간을 따로 정하는 칸이다.",
+    "parent": "mlops.serve.kserve-inference-graph",
+    "aliases": [
+      "routerTimeouts",
+      "InferenceGraph timeout",
+      "serviceClient 시간 제한",
+      "InferenceGraph 시간 초과"
+    ],
+    "refs": [
+      "https://kserve.github.io/website/docs/reference/crd-api"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "mlops.serve.inference-optimization",

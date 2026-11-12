@@ -1,5 +1,5 @@
 {
- "version": "0.60.0",
+ "version": "0.61.0",
  "domains": [
   {
    "prefix": "dev",
@@ -20007,6 +20007,49 @@
    "domain": "plan"
   },
   {
+   "id": "plan.basics.dragging-alternative",
+   "title": "드래그 동작의 단일 포인터 대안",
+   "en": "Dragging Movements Alternative (WCAG 2.5.7)",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "끌어 놓기로 하는 기능을 탭·클릭만으로도 할 수 있게 대안을 두라는 WCAG 2.2 AA 기준이며 키보드 대안과는 따로 본다.",
+   "aliases": [
+    "드래그 대안",
+    "WCAG 2.5.7",
+    "dragging movements",
+    "끌어 놓기 대안"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.redundant-entry",
+   "title": "중복 입력 줄이기(Redundant Entry)",
+   "en": "Redundant Entry (WCAG 3.3.7)",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "같은 과정 안에서 이미 입력한 정보는 자동으로 채우거나 고를 수 있게 하라는 WCAG 2.2 A 기준이며 브라우저 자동완성으로는 충족되지 않는다.",
+   "related": [
+    "plan.basics.check-answers-page"
+   ],
+   "aliases": [
+    "중복 입력",
+    "WCAG 3.3.7",
+    "redundant entry",
+    "같은 정보 다시 묻지 않기"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/redundant-entry.html"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.constraints",
    "title": "제약(constraints)",
    "en": "Figma Constraints",
@@ -20595,6 +20638,135 @@
    "domain": "plan"
   },
   {
+   "id": "plan.basics.focus-visibility-design",
+   "title": "키보드 포커스 표시와 가려짐 설계",
+   "en": "Keyboard Focus Visibility and Obscuring",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "키보드로 옮겨 다니는 포커스가 늘 보이고 고정 헤더·배너에 가리지 않도록 화면을 설계하는 일이다.",
+   "objectives": [
+    "포커스 표시가 사라지거나 가려지는 화면에서 그 원인이 스타일 제거인지 고정 요소인지 찾을 수 있다",
+    "고정 헤더·쿠키 배너·비모달 대화상자가 포커스를 가릴 때 쓸 대응을 골라 근거를 말할 수 있다",
+    "Focus Visible(AA), Focus Not Obscured(AA), Focus Appearance(AAA) 중 서비스 목표에 맞는 기준을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.color-contrast"
+   ],
+   "related": [
+    "plan.basics.non-text-contrast"
+   ],
+   "aliases": [
+    "포커스 표시",
+    "WCAG 2.4.7",
+    "포커스 링",
+    "focus indicator",
+    "키보드 포커스 디자인"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html",
+    "https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.reflow-layout",
+   "title": "400% 확대에서도 한 줄로 흐르는 화면 설계",
+   "en": "Designing for Reflow at 400% Zoom",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "폭 320 CSS px(400% 확대)에서도 가로·세로 두 방향 스크롤 없이 내용과 기능이 남도록 화면을 짜는 일이다.",
+   "objectives": [
+    "확대했을 때 페이지 전체에 가로 스크롤이 생기는 원인을 고정 폭 미디어·긴 문자열·표 배치 등에서 찾을 수 있다",
+    "지도·데이터 표처럼 2차원 배치가 필요한 부분과 반드시 다시 흘러야 하는 부분을 나눠 근거를 말할 수 있다",
+    "좁은 화면에서 고정 헤더·사이드바·내비게이션을 어떻게 바꿀지 고를 수 있다",
+    "줄 높이·문단 간격·자간·단어 간격을 늘렸을 때 높이를 고정한 상자에서 글이 잘리거나 겹치는 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "fe.css.responsive-design"
+   ],
+   "related": [
+    "plan.figma.auto-layout"
+   ],
+   "aliases": [
+    "WCAG 리플로",
+    "WCAG 1.4.10",
+    "400% 확대",
+    "320px 레이아웃",
+    "content reflow"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.variable-scoping-code-syntax",
+   "title": "Figma 변수 범위와 코드 구문 설계",
+   "en": "Figma Variable Scoping and Code Syntax",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "변수를 쓸 수 있는 속성을 범위로 좁히고 웹·안드로이드·iOS별 코드 이름을 붙여 토큰 오용과 구현 어긋남을 줄이는 일이다.",
+   "objectives": [
+    "색·숫자·문자열 변수마다 어떤 속성에 열어 둘지 범위를 골라 근거를 말할 수 있다",
+    "Dev Mode 코드 조각에 나온 변수 이름이 코드의 토큰 이름과 다를 때 원인을 코드 구문 설정에서 찾을 수 있다",
+    "플랫폼별 코드 구문을 둘지 하나로 맞출지 구현 방식에 맞게 고를 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.design-token-architecture"
+   ],
+   "related": [
+    "plan.figma.code-connect",
+    "plan.figma.dev-mode-handoff"
+   ],
+   "aliases": [
+    "Figma 변수 스코프",
+    "variable scoping",
+    "Figma 코드 구문",
+    "variable code syntax"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/15145852043927-Create-and-manage-variables-and-collections"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.label-in-name",
+   "title": "보이는 라벨과 접근 가능한 이름 맞추기",
+   "en": "Label in Name",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "버튼·입력칸의 화면 라벨 글자가 보조기술이 읽는 이름에도 들어가게 해 음성 명령과 화면 낭독이 어긋나지 않게 하는 일이다.",
+   "objectives": [
+    "음성 명령으로 버튼이 눌리지 않을 때 aria-label 덮어쓰기·라벨 연결 누락 같은 원인을 찾을 수 있다",
+    "화면 라벨과 보조기술용 이름을 다르게 둘 때 어떤 차이까지 허용되는지 근거를 말할 수 있다",
+    "아이콘 기호·괄호 설명·자리표시자가 있는 컨트롤에 어떤 이름을 붙일지 고를 수 있다"
+   ],
+   "prerequisites": [
+    "fe.html.accessible-markup"
+   ],
+   "related": [
+    "plan.basics.ui-writing"
+   ],
+   "aliases": [
+    "라벨과 이름 일치",
+    "WCAG 2.5.3",
+    "음성 명령 라벨",
+    "visible label mismatch"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/label-in-name.html"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.design-token-architecture",
    "title": "디자인 토큰 표준과 별칭 계층 설계",
    "en": "Design Token Standard and Alias Layers",
@@ -20796,6 +20968,93 @@
    "domain": "plan"
   },
   {
+   "id": "plan.basics.focus-not-obscured",
+   "title": "포커스 가려짐 방지(Focus Not Obscured)",
+   "en": "Focus Not Obscured (WCAG 2.4.11)",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "포커스를 받은 요소가 작성자가 만든 고정 헤더·배너 등에 완전히 가려지지 않아야 한다는 WCAG 2.2 AA 기준이다.",
+   "parent": "plan.basics.focus-visibility-design",
+   "aliases": [
+    "포커스 가려짐",
+    "WCAG 2.4.11",
+    "focus obscured",
+    "고정 헤더 포커스 가림"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.text-spacing",
+   "title": "텍스트 간격 조정 대응(Text Spacing)",
+   "en": "Text Spacing (WCAG 1.4.12)",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "사용자가 줄 높이 1.5배·문단 간격 2배·자간 0.12배·단어 간격 0.16배로 바꿔도 글이 잘리거나 겹치지 않아야 한다는 AA 기준이다.",
+   "parent": "plan.basics.reflow-layout",
+   "aliases": [
+    "텍스트 간격",
+    "WCAG 1.4.12",
+    "줄 간격 조정",
+    "글자 간격 대응"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/text-spacing.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.variable-scoping",
+   "title": "Figma 변수 범위(scoping)",
+   "en": "Figma Variable Scoping",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "색·숫자·문자열 변수가 채우기·간격·모서리 반경 같은 어느 속성의 선택 목록에 나타날지 정하는 Figma 설정이다.",
+   "parent": "plan.figma.variable-scoping-code-syntax",
+   "aliases": [
+    "변수 범위",
+    "변수 스코핑",
+    "Show in all",
+    "변수 적용 범위"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/15145852043927-Create-and-manage-variables-and-collections"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.variable-code-syntax",
+   "title": "Figma 변수 코드 구문(code syntax)",
+   "en": "Figma Variable Code Syntax",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "변수마다 웹·안드로이드·iOS 코드에서 쓸 이름을 최대 세 개 붙여 Dev Mode 코드 조각에 그 이름이 나오게 하는 설정이다.",
+   "parent": "plan.figma.variable-scoping-code-syntax",
+   "related": [
+    "plan.figma.code-connect"
+   ],
+   "aliases": [
+    "변수 코드 이름",
+    "코드 구문 설정",
+    "Dev Mode 변수 이름",
+    "플랫폼별 변수 이름"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/15145852043927-Create-and-manage-variables-and-collections"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.ready-for-dev",
    "title": "Ready for dev 상태",
    "en": "Ready for Dev Status",
@@ -20936,6 +21195,51 @@
    "refs": [
     "https://developers.figma.com/docs/plugins/how-plugins-run/",
     "https://developers.figma.com/docs/plugins/making-network-requests/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.focus-appearance",
+   "title": "포커스 외형 기준(Focus Appearance)",
+   "en": "Focus Appearance (WCAG 2.4.13)",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "포커스 표시의 면적이 2 CSS px 둘레 이상이고 포커스 전후 대비가 3:1 이상이어야 한다는 WCAG 2.2 AAA 기준이다.",
+   "parent": "plan.basics.focus-visibility-design",
+   "related": [
+    "plan.basics.non-text-contrast"
+   ],
+   "aliases": [
+    "포커스 외형",
+    "WCAG 2.4.13",
+    "포커스 표시 크기",
+    "focus indicator size"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.reflow-2d-exception",
+   "title": "리플로의 2차원 배치 예외",
+   "en": "Two-Dimensional Layout Exception in Reflow",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "지도·도표·데이터 표처럼 2차원 배치가 꼭 필요한 부분만 리플로 기준에서 빠지고 주변 요소는 여전히 흘러야 한다는 규칙이다.",
+   "parent": "plan.basics.reflow-layout",
+   "aliases": [
+    "리플로 예외",
+    "2차원 스크롤 예외",
+    "표 가로 스크롤 예외",
+    "reflow exception"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html"
    ],
    "domain": "plan"
   },
@@ -37612,6 +37916,41 @@
    "domain": "db"
   },
   {
+   "id": "db.internals.slow-query-stats",
+   "title": "pg_stat_statements로 느린 쿼리 찾기",
+   "en": "Finding Slow Queries with pg_stat_statements",
+   "kind": "topic",
+   "level": 4,
+   "importance": 1,
+   "group": "DB 내부",
+   "summary": "쿼리 모양별 실행 횟수와 누적 시간을 모아 주는 확장과 느린 문장 로그로, 운영 DB에서 먼저 고칠 쿼리를 골라내는 방법이다.",
+   "objectives": [
+    "pg_stat_statements를 total_exec_time과 mean_exec_time으로 각각 정렬해, 한 번이 느린 쿼리와 자주 불려 합이 큰 쿼리 중 어느 쪽을 먼저 고칠지 근거를 말할 수 있다",
+    "상수가 $1로 바뀐 쿼리 묶음과 shared_blks_hit·shared_blks_read 비율을 보고 느린 원인이 공유 버퍼에 없는 블록을 읽어 오는 데 있는지 찾을 수 있다",
+    "log_min_duration_statement와 auto_explain 중 무엇을 켤지 로그 양, 실행 계획 필요 여부, 측정 부담을 따져 고를 수 있다",
+    "로그와 통계 뷰에 남는 쿼리 글에 민감한 값이 섞일 수 있다는 점을 근거로 볼 수 있는 역할을 정할 수 있다"
+   ],
+   "prerequisites": [
+    "db.internals.index-design"
+   ],
+   "related": [
+    "db.internals.query-planner",
+    "db.orm.n-plus-one"
+   ],
+   "aliases": [
+    "pg_stat_statements",
+    "느린 쿼리 찾기",
+    "PostgreSQL 느린 쿼리",
+    "쿼리 통계 뷰"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/pgstatstatements.html",
+    "https://www.postgresql.org/docs/current/auto-explain.html",
+    "https://www.postgresql.org/docs/current/runtime-config-logging.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.cache.response-caching",
    "title": "응답 캐시로 부하와 비용 줄이기",
    "en": "Caching to Reduce Load and Cost",
@@ -37683,6 +38022,112 @@
     "https://www.postgresql.org/docs/current/runtime-config-client.html",
     "https://alembic.sqlalchemy.org/en/latest/autogenerate.html",
     "https://www.postgresql.org/docs/current/sql-createindex.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.cache.redis-persistence",
+   "title": "Redis 영속성 고르기: RDB와 AOF",
+   "en": "Choosing Redis Persistence: RDB vs AOF",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "캐시",
+   "summary": "Redis가 꺼져도 자료를 되살리려고 주기적 스냅숏(RDB), 쓰기 명령 기록(AOF), 둘 다, 또는 영속성 없음 중에서 고르는 운영 설계다.",
+   "objectives": [
+    "잃어도 되는 자료의 양과 재시작 속도를 기준으로 영속성 없음·RDB·AOF·RDB+AOF 중 하나를 골라 근거를 말할 수 있다",
+    "자료가 큰 인스턴스에서 스냅숏이나 AOF 다시 쓰기 때 응답이 잠깐 멈추는 원인을 fork와 연결해 찾을 수 있다",
+    "실행 중인 RDB 파일 복사, 자동 다시 쓰기를 끈 뒤의 AOF 디렉터리 복사, Redis 8.10부터 생긴 BACKUP 명령 가운데 버전과 운영 조건에 맞는 백업 방법을 골라 근거를 말할 수 있다",
+    "설정 파일만 바꿔 재시작해 AOF로 옮기면 자료를 잃을 수 있는 이유를 말하고 CONFIG SET으로 먼저 켜는 순서를 따를 수 있다"
+   ],
+   "prerequisites": [
+    "db.cache.redis-data-types"
+   ],
+   "related": [
+    "db.basics.persistence",
+    "db.internals.wal-replication"
+   ],
+   "aliases": [
+    "Redis 영속성",
+    "Redis persistence",
+    "RDB 스냅숏",
+    "AOF",
+    "append-only file",
+    "dump.rdb"
+   ],
+   "refs": [
+    "https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "db"
+  },
+  {
+   "id": "db.cache.redis-eviction",
+   "title": "Redis 메모리 한도와 키 축출 정책",
+   "en": "Redis maxmemory and Key Eviction Policies",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "캐시",
+   "summary": "maxmemory를 넘으면 Redis가 maxmemory-policy에 따라 어떤 키를 지울지, 또는 쓰기를 거절할지 정하는 설정으로, 캐시의 적중률과 장애 모양을 좌우한다.",
+   "objectives": [
+    "접근 패턴과 TTL 사용 여부를 보고 allkeys-lru·allkeys-lfu·volatile 계열·noeviction 중 맞는 정책을 고를 수 있다",
+    "한도에 닿은 뒤 쓰기 명령이 오류를 내면 noeviction이거나 TTL 붙은 키가 없는 volatile 정책 때문인지 찾을 수 있다",
+    "INFO의 keyspace_hits·keyspace_misses·evicted_keys·expired_keys로 적중률이 낮은 원인이 축출인지 짧은 TTL인지 가릴 수 있다",
+    "복제·AOF 버퍼가 한도 계산에 들어가지 않는다는 점을 근거로 maxmemory를 실제 메모리보다 낮게 잡을 수 있다"
+   ],
+   "prerequisites": [
+    "db.cache.response-caching"
+   ],
+   "related": [
+    "db.cache.ttl"
+   ],
+   "aliases": [
+    "maxmemory",
+    "maxmemory-policy",
+    "Redis eviction",
+    "Redis 축출 정책",
+    "allkeys-lru",
+    "noeviction"
+   ],
+   "refs": [
+    "https://redis.io/docs/latest/develop/reference/eviction/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.sqlite-wal-concurrency",
+   "title": "SQLite 동시 접근: WAL 모드와 잠금 오류",
+   "en": "SQLite Concurrency with WAL Mode",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "SQLite를 웹 서버에서 여러 연결이 함께 쓸 때 WAL 모드로 읽기와 쓰기가 서로 막지 않게 하고, 쓰기는 하나뿐이라 생기는 잠금 오류를 다루는 방법이다.",
+   "objectives": [
+    "PRAGMA journal_mode=WAL을 켤지 같은 호스트 여부, 네트워크 파일 시스템, 읽기 위주 부하를 따져 고를 수 있다",
+    "WAL 모드에서도 쓰기 트랜잭션은 한 번에 하나라는 점을 근거로 OperationalError가 나는 원인을 긴 쓰기 트랜잭션에서 찾을 수 있다",
+    "busy_timeout이나 sqlite3.connect의 timeout으로 잠금을 기다릴 시간을 정하고 그래도 실패하면 다시 시도하게 만들 수 있다",
+    "-wal 파일이 계속 커지면 체크포인트가 끝나지 못하는 원인을 끊이지 않는 읽기 연결에서 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "db.sql.python-sqlite3"
+   ],
+   "related": [
+    "dev.robust.crash-consistency"
+   ],
+   "aliases": [
+    "SQLite WAL",
+    "SQLite WAL 모드",
+    "journal_mode=WAL",
+    "PRAGMA journal_mode",
+    "database is locked"
+   ],
+   "refs": [
+    "https://www.sqlite.org/wal.html",
+    "https://www.sqlite.org/c3ref/busy_timeout.html",
+    "https://docs.python.org/3/library/sqlite3.html"
    ],
    "domain": "db"
   },
@@ -37841,6 +38286,187 @@
    ],
    "refs": [
     "https://docs.sqlalchemy.org/en/20/orm/versioning.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.auto-explain",
+   "title": "auto_explain: 느린 쿼리의 실행 계획 자동 기록",
+   "en": "PostgreSQL auto_explain Module",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "정한 시간보다 오래 걸린 문장의 실행 계획을 서버 로그에 남기는 모듈로, log_analyze를 켜면 모든 문장에 측정 부담이 붙는다.",
+   "parent": "db.internals.slow-query-stats",
+   "related": [
+    "db.internals.query-planner"
+   ],
+   "aliases": [
+    "auto_explain",
+    "auto_explain.log_min_duration",
+    "자동 실행 계획 로그",
+    "auto_explain.log_analyze"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/auto-explain.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.log-min-duration-statement",
+   "title": "log_min_duration_statement: 느린 문장 로그",
+   "en": "log_min_duration_statement Setting",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "정한 시간 이상 걸려 끝난 문장의 소요 시간과 쿼리 글을 로그에 남기는 PostgreSQL 설정으로, 기본값 -1은 끈 상태다.",
+   "parent": "db.internals.slow-query-stats",
+   "aliases": [
+    "log_min_duration_statement",
+    "느린 문장 로그",
+    "슬로 쿼리 로그 설정"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/runtime-config-logging.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.cache.aof-fsync-policy",
+   "title": "appendfsync: AOF를 디스크에 맞추는 주기",
+   "en": "Redis AOF appendfsync Policy",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "캐시",
+   "summary": "AOF를 명령마다(always), 1초마다(everysec), 운영체제에 맡겨(no) 디스크에 동기화할지 정해 속도와 잃을 수 있는 쓰기의 양을 맞바꾸는 Redis 설정이다.",
+   "parent": "db.cache.redis-persistence",
+   "related": [
+    "dev.robust.fsync"
+   ],
+   "aliases": [
+    "appendfsync",
+    "appendfsync everysec",
+    "appendfsync always",
+    "AOF fsync 정책"
+   ],
+   "refs": [
+    "https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.sqlite-busy-timeout",
+   "title": "busy_timeout: SQLite 잠금 기다리기",
+   "en": "SQLite busy_timeout",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "다른 연결이 잠근 동안 바로 실패하지 않고 정한 밀리초까지 잠깐씩 쉬며 다시 시도하게 하는 SQLite 설정으로, 시간이 다 지나면 SQLITE_BUSY를 돌려준다.",
+   "parent": "db.sql.sqlite-wal-concurrency",
+   "aliases": [
+    "busy_timeout",
+    "PRAGMA busy_timeout",
+    "SQLITE_BUSY",
+    "sqlite3_busy_timeout"
+   ],
+   "refs": [
+    "https://www.sqlite.org/c3ref/busy_timeout.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.statement-timeout",
+   "title": "statement_timeout: 오래 도는 문장 끊기",
+   "en": "PostgreSQL statement_timeout",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "서버가 받은 문장이 정한 시간 안에 끝나지 않으면 취소하는 PostgreSQL 설정으로, 모든 세션에 걸리지 않게 역할이나 세션 단위로 거는 것이 권장된다.",
+   "related": [
+    "db.internals.online-schema-change",
+    "be.integrate.timeout"
+   ],
+   "aliases": [
+    "statement_timeout",
+    "PostgreSQL 쿼리 타임아웃",
+    "문장 시간 제한",
+    "canceling statement due to statement timeout"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/runtime-config-client.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.idle-in-transaction-timeout",
+   "title": "idle_in_transaction_session_timeout",
+   "en": "PostgreSQL idle_in_transaction_session_timeout",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "트랜잭션을 연 채 아무 쿼리도 보내지 않는 세션을 정한 시간 뒤 끊는 설정으로, 그런 세션이 잠금을 쥐고 VACUUM을 막아 표가 부푸는 일을 줄인다.",
+   "related": [
+    "db.internals.mvcc-vacuum",
+    "db.orm.connection-pool"
+   ],
+   "aliases": [
+    "idle in transaction",
+    "유휴 트랜잭션",
+    "트랜잭션 열린 채 대기",
+    "idle_in_transaction"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/runtime-config-client.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.cache.aof-rewrite",
+   "title": "AOF 다시 쓰기(BGREWRITEAOF)",
+   "en": "Redis AOF Rewrite",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "캐시",
+   "summary": "커진 AOF를 지금 자료를 만드는 최소 명령만 담은 새 파일로 백그라운드에서 바꿔 쓰는 일로, 7.0부터는 base와 증분 파일을 manifest로 묶는다.",
+   "parent": "db.cache.redis-persistence",
+   "aliases": [
+    "BGREWRITEAOF",
+    "AOF rewrite",
+    "auto-aof-rewrite-percentage",
+    "multi-part AOF",
+    "AOF 재작성"
+   ],
+   "refs": [
+    "https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.sqlite-wal-checkpoint",
+   "title": "WAL 체크포인트와 -wal 파일 커짐",
+   "en": "SQLite WAL Checkpoint",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "SQL",
+   "summary": "WAL에 쌓인 커밋을 DB 파일로 옮기는 일로, 기본은 1000쪽마다 자동이며 읽기 연결이 끊이지 않으면 끝나지 못해 -wal 파일이 계속 커진다.",
+   "parent": "db.sql.sqlite-wal-concurrency",
+   "aliases": [
+    "wal_checkpoint",
+    "PRAGMA wal_checkpoint",
+    "wal_autocheckpoint",
+    "checkpoint starvation",
+    "SQLite 체크포인트"
+   ],
+   "refs": [
+    "https://www.sqlite.org/wal.html"
    ],
    "domain": "db"
   },
@@ -59899,6 +60525,157 @@
    "domain": "rag"
   },
   {
+   "id": "rag.vector-db.multitenancy-design",
+   "title": "벡터 DB 멀티테넌시 설계: 컬렉션·네임스페이스·페이로드 분할",
+   "en": "Multitenancy Design in Vector Databases",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "벡터 DB",
+   "summary": "고객별 문서를 컬렉션·네임스페이스·샤드로 나눌지 한 곳에 두고 테넌트 값으로 거를지, 격리·비용·속도·삭제 편의를 따져 고르는 설계다.",
+   "objectives": [
+    "테넌트 수와 크기, 격리 요구를 근거로 테넌트별 컬렉션·네임스페이스, 테넌트별 샤드(Qdrant 사용자 정의 샤딩·계층형 멀티테넌시), 공유 컬렉션의 테넌트 필드 분할 가운데 하나를 고를 수 있다",
+    "메타데이터 필터 방식에서 검색 비용과 지연이 전체 데이터 크기를 따라 늘어나는 까닭을 들어 큰 고객을 따로 떼어 낼 시점을 정할 수 있다",
+    "필터를 빠뜨린 질의가 다른 고객의 문서를 돌려준 원인을 찾고 테넌트 조건을 강제하는 구조로 고칠 수 있다",
+    "고객 탈퇴 때 네임스페이스 삭제와 필터 기반 삭제의 손익을 비교해 오프보딩 방법을 정할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.vector-db.basics",
+    "be.arch.multi-tenancy"
+   ],
+   "related": [
+    "ax.security.rag-access-control",
+    "be.arch.multi-tenancy"
+   ],
+   "aliases": [
+    "벡터 DB 멀티테넌시",
+    "vector database multitenancy",
+    "Qdrant multitenancy",
+    "Pinecone multitenancy",
+    "벡터 DB 고객별 분리"
+   ],
+   "refs": [
+    "https://qdrant.tech/documentation/guides/multiple-partitions/",
+    "https://docs.pinecone.io/guides/index-data/implement-multitenancy"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.pgvector-filtered-search",
+   "title": "pgvector 근사 인덱스와 필터: 결과 부족 진단",
+   "en": "Filtered Search with pgvector Approximate Indexes",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "벡터 DB",
+   "summary": "pgvector의 HNSW·IVFFlat 인덱스에 WHERE 조건을 붙이면 결과가 k개보다 모자라거나 인덱스를 안 타는 까닭을 찾고 설정과 인덱스 구조로 고치는 방법이다.",
+   "objectives": [
+    "인덱스를 만든 뒤 필터 검색 결과가 줄어든 원인을 인덱스 스캔 뒤에 필터가 걸리는 순서와 ef_search·probes 한도에서 찾을 수 있다",
+    "필터 조건의 선택도에 따라 필터 칼럼 일반 인덱스·부분 인덱스·파티셔닝·반복 인덱스 스캔 가운데 맞는 것을 고를 수 있다",
+    "질의가 인덱스를 쓰지 않을 때 ORDER BY 거리 연산자와 LIMIT 형태, 작은 표의 순차 스캔 여부를 점검해 원인을 찾을 수 있다",
+    "재현율과 지연을 함께 재며 hnsw.ef_search·ivfflat.probes 값을 질의 단위로 조정할지 정할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.vector-db.basics"
+   ],
+   "related": [
+    "rag.vector-index.internals",
+    "rag.vector-index.recall",
+    "rag.retrieval.top-k-filter"
+   ],
+   "aliases": [
+    "pgvector 필터 검색",
+    "pgvector filtering",
+    "pgvector 결과 부족",
+    "pgvector 인덱스 안 탐",
+    "pgvector 튜닝"
+   ],
+   "refs": [
+    "https://github.com/pgvector/pgvector"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.agent-server-deploy",
+   "title": "LangGraph 배포 구조 고르기: API 서버·큐 워커·저장소",
+   "en": "Designing LangGraph Agent Server Deployments",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "LangGraph 앱을 Agent Server로 운영할 때 요청을 받는 API 서버와 그래프를 돌리는 큐 워커를 나누고 PostgreSQL·Redis를 두어 규모에 맞게 늘리는 설계다.",
+   "objectives": [
+    "단일 호스트와 API 서버·큐 워커 분리 배포 가운데 트래픽과 실행 시간을 근거로 맞는 구성을 고를 수 있다",
+    "API 서버를 늘려도 실행이 밀리는 까닭을 실행 동시성이 워커 수와 워커당 작업 수로 정해진다는 점에서 찾을 수 있다",
+    "실행이 느려지거나 시간 초과가 날 때 그래프 안의 동기 블로킹 호출이나 워커 메모리 한도를 원인으로 의심하고 확인할 수 있다",
+    "같은 스레드에 사용자가 연달아 입력할 때 거절·대기·중단·되돌리기 가운데 어떤 처리를 쓸지 정할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.local-server-studio",
+    "rag.agent.checkpoint-persistence"
+   ],
+   "related": [
+    "rag.agent.fault-tolerance-design",
+    "rag.agent.durability-mode"
+   ],
+   "aliases": [
+    "LangGraph 배포",
+    "LangGraph deployment",
+    "LangSmith Deployment",
+    "LangGraph Agent Server",
+    "LangSmith Agent Server 확장"
+   ],
+   "refs": [
+    "https://docs.langchain.com/langsmith/agent-server",
+    "https://docs.langchain.com/langsmith/agent-server-scale",
+    "https://docs.langchain.com/langsmith/double-texting"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-security-threats",
+   "title": "MCP 서버·클라이언트 공격 막기: 대리인 혼동·SSRF·핸들 탈취",
+   "en": "Mitigating Attacks on MCP Servers and Clients",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "MCP 프록시의 동의 우회, 인가 메타데이터 주소를 이용한 SSRF, 상태 핸들 도용, 로컬 서버 실행 명령 악용을 알아보고 각각 막는 설계를 고르는 방법이다.",
+   "objectives": [
+    "제3자 API를 잇는 MCP 프록시에서 고정 client_id와 동의 쿠키가 겹칠 때 동의 화면이 건너뛰어지는 원인을 찾고 클라이언트별 동의와 redirect_uri 정확 일치로 막을 수 있다",
+    "서버에서 도는 MCP 클라이언트가 OAuth 메타데이터 주소를 따라갈 때 HTTPS 강제·사설 IP 차단·이그레스 프록시 가운데 맞는 방어를 근거를 들어 고를 수 있다",
+    "도구 인자로 오가는 상태 핸들을 인증 수단으로 믿지 않고 검증된 사용자 id에 묶어 저장하도록 서버를 설계할 수 있다",
+    "원클릭 로컬 서버 설정과 서버가 내준 인가 URL을 처리할 때 명령 전체 표시·사용자 승인·위험한 스킴 거부를 클라이언트에 넣어야 하는 근거를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.mcp-auth-design",
+    "ax.security.third-party-mcp-risks"
+   ],
+   "related": [
+    "be.security.ssrf",
+    "ax.security.agent-confused-deputy",
+    "rag.agent.mcp-token-passthrough"
+   ],
+   "aliases": [
+    "MCP 보안 모범 사례",
+    "MCP security best practices",
+    "MCP 공격 대응",
+    "MCP 서버 보안 설계"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
    "id": "rag.retrieval.reranking",
    "title": "재순위",
    "en": "Reranking",
@@ -59972,6 +60749,76 @@
     "토큰 패스스루",
     "토큰 그대로 넘기기",
     "MCP 토큰 대상 검증"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.hnsw-ef-search",
+   "title": "검색 후보 크기(hnsw.ef_search)",
+   "en": "pgvector hnsw.ef_search",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "벡터 DB",
+   "summary": "pgvector HNSW 검색이 살펴볼 후보 목록 크기로, 기본 40이며 키우면 재현율이 오르고 느려지고 한 질의가 돌려주는 결과 수의 한도도 된다.",
+   "parent": "rag.vector-db.pgvector-filtered-search",
+   "aliases": [
+    "hnsw.ef_search",
+    "pgvector ef_search",
+    "SET hnsw.ef_search"
+   ],
+   "refs": [
+    "https://github.com/pgvector/pgvector"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.double-texting",
+   "title": "더블 텍스팅 처리 전략(multitask_strategy)",
+   "en": "LangGraph Double Texting Strategies",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "실행 중인 스레드에 새 입력이 오면 reject·enqueue·interrupt·rollback 중 무엇을 할지 multitask_strategy로 정하는 Agent Server 기능이며 기본값은 enqueue다.",
+   "parent": "rag.agent.agent-server-deploy",
+   "aliases": [
+    "double texting",
+    "더블 텍스팅",
+    "multitask_strategy",
+    "LangGraph 동시 입력 처리"
+   ],
+   "refs": [
+    "https://docs.langchain.com/langsmith/double-texting",
+    "https://docs.langchain.com/langsmith/interrupt-concurrent"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-confused-deputy",
+   "title": "MCP 프록시의 혼동된 대리인 공격",
+   "en": "MCP Proxy Confused Deputy Attack",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "고정 client_id로 제3자 API에 붙는 MCP 프록시가 클라이언트별 동의를 받지 않으면, 남은 동의 쿠키 덕에 공격자 클라이언트가 동의 없이 인가 코드를 가로채는 공격이다.",
+   "parent": "rag.agent.mcp-security-threats",
+   "related": [
+    "ax.security.agent-confused-deputy"
+   ],
+   "aliases": [
+    "MCP confused deputy",
+    "MCP 프록시 동의 우회",
+    "MCP 혼동된 대리인",
+    "MCP per-client consent"
    ],
    "refs": [
     "https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices"
@@ -60170,6 +61017,120 @@
    "refs": [
     "https://www.anthropic.com/engineering/writing-tools-for-agents"
    ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.qdrant-tenant-index",
+   "title": "Qdrant 테넌트 페이로드 인덱스(is_tenant)",
+   "en": "Qdrant Tenant Payload Index (is_tenant)",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "벡터 DB",
+   "summary": "Qdrant에서 테넌트 필드의 keyword 인덱스에 is_tenant를 켜 같은 고객의 벡터를 모아 저장하게 해 테넌트별 검색을 빠르게 하는 설정이다.",
+   "parent": "rag.vector-db.multitenancy-design",
+   "aliases": [
+    "is_tenant",
+    "Qdrant is_tenant",
+    "Qdrant 테넌트 인덱스",
+    "Qdrant tenant index"
+   ],
+   "refs": [
+    "https://qdrant.tech/documentation/guides/multiple-partitions/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.pinecone-namespace",
+   "title": "Pinecone 네임스페이스",
+   "en": "Pinecone Namespaces",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "벡터 DB",
+   "summary": "Pinecone 인덱스 안을 따로 저장되는 칸으로 나눠 읽기·쓰기를 한 칸에만 보내는 단위로, 고객별로 하나씩 두면 격리와 손쉬운 삭제를 얻는다.",
+   "parent": "rag.vector-db.multitenancy-design",
+   "aliases": [
+    "Pinecone namespace",
+    "파인콘 네임스페이스",
+    "Pinecone 고객별 네임스페이스"
+   ],
+   "refs": [
+    "https://docs.pinecone.io/guides/index-data/implement-multitenancy"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.iterative-index-scan",
+   "title": "pgvector 반복 인덱스 스캔",
+   "en": "pgvector Iterative Index Scans",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "벡터 DB",
+   "summary": "필터를 거친 결과가 모자라면 인덱스를 더 훑어 결과를 채우는 pgvector 0.8의 기능으로, strict_order와 relaxed_order 중 하나를 고르고 max_scan_tuples로 한도를 둔다.",
+   "parent": "rag.vector-db.pgvector-filtered-search",
+   "aliases": [
+    "hnsw.iterative_scan",
+    "ivfflat.iterative_scan",
+    "pgvector iterative scan",
+    "hnsw.max_scan_tuples"
+   ],
+   "refs": [
+    "https://github.com/pgvector/pgvector"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.queue-worker-concurrency",
+   "title": "큐 워커 동시 실행 수(N_JOBS_PER_WORKER)",
+   "en": "Agent Server N_JOBS_PER_WORKER",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "Agent Server 큐 워커 하나가 동시에 돌리는 실행 수로 기본 10이며, 입출력 위주 그래프는 올리고 메모리가 한도에 가깝거나 CPU 사용이 지나치면 낮춘다.",
+   "parent": "rag.agent.agent-server-deploy",
+   "aliases": [
+    "N_JOBS_PER_WORKER",
+    "Agent Server 큐 워커",
+    "Agent Server queue worker",
+    "LangGraph 워커 동시성"
+   ],
+   "refs": [
+    "https://docs.langchain.com/langsmith/agent-server-scale"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-state-handle-hijacking",
+   "title": "MCP 상태 핸들 탈취",
+   "en": "MCP State Handle Hijacking",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "MCP 서버가 도구 결과로 내준 장바구니 id 같은 상태 핸들을 남이 얻거나 맞혀 다른 사용자의 상태를 건드리는 공격으로, 핸들을 검증된 사용자에 묶어 막는다.",
+   "parent": "rag.agent.mcp-security-threats",
+   "aliases": [
+    "state handle hijacking",
+    "MCP 핸들 탈취",
+    "MCP 상태 핸들",
+    "상태 핸들 도용"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "rag"
   },
   {
@@ -67229,6 +68190,45 @@
    "domain": "ax"
   },
   {
+   "id": "ax.coding.auto-mode-classifier",
+   "title": "자동 모드 분류기 설계와 차단 원인 찾기",
+   "en": "Designing and Debugging Claude Code Auto Mode Classifier Rules",
+   "kind": "topic",
+   "level": 4,
+   "importance": 1,
+   "group": "AI 네이티브 개발",
+   "summary": "승인 대신 별도 분류기가 동작마다 판정하는 자동 모드에서 규칙·신뢰 환경·차단 목록을 어디에 둘지 정하고 막힌 동작의 원인을 찾는다.",
+   "objectives": [
+    "권한 규칙, 자동 승인, 분류기로 이어지는 판정 순서를 근거로 어떤 동작이 왜 막혔는지 원인을 찾을 수 있다",
+    "꼭 묻게 할 동작과 절대 실행하면 안 될 동작을 ask 규칙·deny 규칙·대화 속 지시 가운데 어디에 둘지 강제력의 차이로 고를 수 있다",
+    "autoMode 설정을 프로젝트 설정에 두면 무시되는 이유와 \"$defaults\"를 빼면 기본 차단 규칙이 사라지는 위험을 근거로 말할 수 있다",
+    "같은 대상이 거듭 막힐 때 신뢰 환경 항목, allow 예외, 일회성 재시도 가운데 알맞은 처방을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.permission-rules",
+    "ax.coding.permission-rule-debugging"
+   ],
+   "related": [
+    "ax.coding.permission-mode",
+    "ax.coding.hook-gates",
+    "ax.coding.agent-prompt-injection"
+   ],
+   "aliases": [
+    "자동 모드 분류기",
+    "auto mode classifier",
+    "autoMode 설정",
+    "claude auto-mode config",
+    "자동 모드 차단"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/permission-modes",
+    "https://code.claude.com/docs/en/auto-mode-config"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
    "id": "ax.coding.subagents-permission-modes",
    "title": "하위 에이전트 병렬 실행과 권한 모드",
    "en": "Parallel Subagents and Permission Modes",
@@ -67413,6 +68413,117 @@
    ],
    "refs": [
     "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.agent-team-cost-control",
+   "title": "팀의 코딩 에이전트 비용 통제 설계",
+   "en": "Designing Team Cost Controls for Claude Code",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "구독 좌석·Console API·클라우드 공급자 가운데 어떤 방식으로 쓰는지에 따라 지출을 보고 막는 곳이 다르므로, 한도와 사용자별 보고 수단을 골라 비용 급증 원인을 찾는다.",
+   "objectives": [
+    "Teams·Enterprise 좌석, Console 워크스페이스, 클라우드 공급자 가운데 쓰는 과금 방식에 맞춰 지출을 보고 상한을 거는 곳을 고를 수 있다",
+    "팀 규모에 따라 사용자당 분당 토큰 한도를 낮춰 잡는 근거를 동시 사용 비율로 말할 수 있다",
+    "개발자가 보는 한도 메시지가 좌석 사용 창, 지출 한도, 컨텍스트 경고 가운데 무엇인지 구분해 원인을 찾을 수 있다",
+    "긴 세션·하위 에이전트·에이전트 팀·예약 작업 가운데 사용량을 키운 원인을 찾아 줄일 방법을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.claude-code-context-window",
+    "ax.coding.agent-otel-monitoring"
+   ],
+   "related": [
+    "llm.internals.prompt-caching",
+    "llm.api.spend-limit",
+    "mlops.serve.gateway-budget-policy"
+   ],
+   "aliases": [
+    "Claude Code 팀 비용",
+    "Claude Code 조직 비용 관리",
+    "manage Claude Code costs",
+    "코딩 에이전트 지출 한도"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/costs"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.ci-agent-action-security",
+   "title": "CI에서 도는 Claude Code 액션의 보안 설계",
+   "en": "Securing Claude Code GitHub Action Workflows",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "GitHub Actions에서 Claude Code를 돌릴 때 누가 실행을 일으킬 수 있는지, 어떤 도구와 토큰을 줄지, 남의 PR 코드를 어디에 받을지를 정해 인젝션과 비밀값 유출을 막는다.",
+   "objectives": [
+    "쓰기 권한 검사, 허용 봇 목록, 쓰기 권한 없는 사용자 허용 가운데 저장소 공개 여부에 맞는 실행 허용 범위를 고를 수 있다",
+    "개인 접근 토큰 대신 워크플로 토큰과 좁은 도구 허용 목록을 써야 하는 이유를 인젝션으로 자격 증명이 새는 경로로 말할 수 있다",
+    "pull_request_target에서 PR 코드를 하위 폴더에 받아야 하는 이유와 훅이 PR의 패키지 스크립트를 실행하는 경로를 찾을 수 있다",
+    "전체 출력 기록을 켰을 때 공개 저장소 로그로 비밀값이 새는 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.headless-mode",
+    "ops.ci.workflow-injection-defense",
+    "ax.coding.agent-prompt-injection"
+   ],
+   "related": [
+    "ax.coding.claude-code-action",
+    "ops.ci.pull-request-target",
+    "ax.coding.agent-pr-workflow-approval"
+   ],
+   "aliases": [
+    "claude-code-action 보안",
+    "Claude GitHub Action 보안",
+    "CI 에이전트 보안",
+    "claude-code-action security"
+   ],
+   "refs": [
+    "https://github.com/anthropics/claude-code-action/blob/main/docs/security.md"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.copilot-content-exclusion",
+   "title": "Copilot 콘텐츠 제외 설계와 한계",
+   "en": "Designing GitHub Copilot Content Exclusion",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "민감한 파일을 Copilot 제안·채팅·에이전트가 쓰지 못하게 저장소·조직·엔터프라이즈에서 막되, 보안 경계가 아니므로 닿지 않는 경로는 다른 접근 제어로 메운다.",
+   "objectives": [
+    "제외 규칙을 저장소·조직·엔터프라이즈 가운데 어디에 둘지 적용 대상과 수정 권한을 근거로 고를 수 있다",
+    "제외한 파일인데 제안이나 답에 내용이 비칠 때 반영 지연, 지원하지 않는 도구, IDE가 주는 간접 정보 가운데 원인을 찾을 수 있다",
+    "심볼릭 링크·원격 파일 시스템·서드파티 MCP처럼 제외가 닿지 않는 경로를 운영체제 권한이나 비밀값 분리로 보완할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.copilot-chat-ide",
+    "ax.security.sensitive-info-disclosure"
+   ],
+   "related": [
+    "ax.coding.file-deny-rule-scope",
+    "ax.coding.copilot-cloud-agent-safeguards"
+   ],
+   "aliases": [
+    "Copilot content exclusion",
+    "콘텐츠 제외",
+    "Copilot 파일 제외",
+    "Copilot 제외 설정"
+   ],
+   "refs": [
+    "https://docs.github.com/en/copilot/concepts/security-governance-and-network-settings/content-exclusion",
+    "https://docs.github.com/en/copilot/how-tos/configure-content-exclusion/exclude-content-from-copilot"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -67676,6 +68787,65 @@
    "domain": "ax"
   },
   {
+   "id": "ax.coding.auto-mode-environment",
+   "title": "자동 모드 신뢰 환경(autoMode.environment)",
+   "en": "Auto Mode Trusted Environment Entries",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "자동 모드 분류기에 회사 저장소·버킷·내부 도메인을 자연어로 알려 주는 설정으로, 적히지 않은 목적지는 바깥으로 보고 유출 대상으로 의심한다.",
+   "parent": "ax.coding.auto-mode-classifier",
+   "aliases": [
+    "autoMode.environment",
+    "/auto-mode-setup",
+    "자동 모드 신뢰 인프라",
+    "trusted infrastructure for auto mode"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.idle-session-usage",
+   "title": "쉬는 동안 늘어나는 세션 사용량",
+   "en": "Idle and Background Token Usage in Long Sessions",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "세션 예약 작업, 다른 세션의 메시지, 목표 확인이 대화 전체를 다시 보내고 캐시가 만료된 뒤 첫 요청도 전체를 다시 처리해, 쉬는 동안에도 사용량이 오른다.",
+   "parent": "ax.coding.agent-team-cost-control",
+   "aliases": [
+    "background token usage",
+    "백그라운드 토큰 사용",
+    "긴 세션 사용량 급증",
+    "유휴 세션 토큰"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.content-exclusion-gaps",
+   "title": "콘텐츠 제외가 닿지 않는 경로",
+   "en": "Limitations of Copilot Content Exclusion",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "IDE가 건네는 타입·정의 정보, 심볼릭 링크, 원격 파일 시스템, 서드파티 MCP, 에이전트의 간접 파일 접근에는 제외가 보장되지 않아 보안 경계로 믿으면 안 된다.",
+   "parent": "ax.coding.copilot-content-exclusion",
+   "aliases": [
+    "content exclusion limitations",
+    "콘텐츠 제외 한계",
+    "콘텐츠 제외 우회"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
    "id": "ax.coding.hook-event",
    "title": "훅 이벤트와 매처",
    "en": "Hook Events and Matchers",
@@ -67756,6 +68926,103 @@
     "Approve and run workflows",
     "에이전트 PR 워크플로 승인",
     "Copilot PR 워크플로 승인"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.auto-mode-fallback",
+   "title": "자동 모드 일시 중지와 차단 기록",
+   "en": "Auto Mode Fallback and Recently Blocked Actions",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "분류기가 연속 3번이나 세션 통틀어 20번 막으면 자동 모드가 멈춰 다시 사람에게 묻고, 막힌 동작은 /permissions의 최근 차단 탭에 남아 승인 후 재시도할 수 있다.",
+   "parent": "ax.coding.auto-mode-classifier",
+   "aliases": [
+    "Recently blocked",
+    "자동 모드 되돌아가기",
+    "auto mode fallback",
+    "최근 차단 탭"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.claude-code-workspace",
+   "title": "Claude Code 전용 Console 워크스페이스",
+   "en": "Claude Code Workspace in the Claude Console",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "Console 계정으로 처음 인증하면 자동으로 생기는 Claude Code 전용 워크스페이스로, 지출 한도와 속도 한도를 걸어 다른 운영 서비스의 API 한도를 지킨다.",
+   "parent": "ax.coding.agent-team-cost-control",
+   "aliases": [
+    "Claude Code workspace",
+    "워크스페이스 지출 한도",
+    "workspace rate limit",
+    "Claude Code 워크스페이스 한도"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.action-non-write-users",
+   "title": "쓰기 권한 없는 사용자의 액션 실행 허용",
+   "en": "allowed_non_write_users in Claude Code Action",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "쓰기 권한이 있는 사람만 Claude 액션을 일으키게 하는 검사를 건너뛰는 위험한 설정으로, 이슈 라벨 붙이기처럼 권한이 아주 좁은 워크플로에서만 쓴다.",
+   "parent": "ax.coding.ci-agent-action-security",
+   "aliases": [
+    "allowed_non_write_users",
+    "쓰기 권한 검사 우회",
+    "비쓰기 사용자 허용"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.action-config-restore",
+   "title": "PR 실행 시 Claude 설정 기준 브랜치 복원",
+   "en": "Base-Branch Restoration of Claude Config on Pull Requests",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "PR에서 액션은 .claude/·.mcp.json·CLAUDE.md를 기준 브랜치 것으로 되돌리지만 package.json·Makefile은 PR이 쥐고 있어, 이를 부르는 훅이 PR 코드를 실행할 수 있다.",
+   "parent": "ax.coding.ci-agent-action-security",
+   "aliases": [
+    "Claude 설정 복원",
+    "config restoration",
+    "기준 브랜치 설정 복원"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.content-exclusion-path-rule",
+   "title": "콘텐츠 제외 경로 규칙",
+   "en": "Copilot Content Exclusion Path Patterns",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "대소문자를 가리지 않는 fnmatch 패턴으로 쓰며, 맨 앞 /는 저장소 루트에 고정하고 이름만 쓰면 어디서든 맞으며 조직 수준의 \"*\"는 모든 위치에 건다.",
+   "parent": "ax.coding.copilot-content-exclusion",
+   "aliases": [
+    "Paths to exclude",
+    "콘텐츠 제외 패턴",
+    "Copilot 제외 경로"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -89356,6 +90623,45 @@
    "domain": "mlops"
   },
   {
+   "id": "mlops.eval.online-judge-monitoring",
+   "title": "운영 트레이스 자동 평가 설계: 표본·필터·대기 시간",
+   "en": "Designing Automatic LLM Judge Evaluation on Production Traces",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "MLflow에 쌓이는 운영 트레이스와 세션에 LLM 심판을 등록해 뒤에서 채점하게 하고, 표본 비율·필터·대기 시간을 비용과 감시 범위에 맞춰 고르는 운영 설계다.",
+   "objectives": [
+    "개발과 운영 환경의 비용과 감시 범위를 근거로 심판마다 표본 비율과 트레이스 필터를 고를 수 있다",
+    "코드 스코어러는 자동 평가에 바로 못 쓰고 LLM 심판만 된다는 제약을 보고 채점 방식을 고를 수 있다",
+    "자동 평가 결과가 안 보일 때 대기 시간, 소급 평가 없음, 세션 ID 누락, 게이트웨이 엔드포인트 설정에서 원인을 찾을 수 있다",
+    "심판 설정을 바꿔도 이미 채점된 트레이스는 다시 채점되지 않는다는 점을 품질 지표 해석에 반영할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.eval.automatic-eval-picture",
+    "mlops.eval.builtin-judges",
+    "mlops.observe.search-traces"
+   ],
+   "related": [
+    "mlops.eval.llm-regression",
+    "rag.agent.offline-online-eval",
+    "mlops.observe.trace-sampling"
+   ],
+   "aliases": [
+    "운영 트레이스 자동 평가",
+    "production trace evaluation",
+    "MLflow 자동 평가 설정",
+    "LLM 심판 온라인 감시",
+    "online LLM judge monitoring"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/eval-monitor/automatic-evaluations/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
    "id": "mlops.serve.kserve-canary-rollout",
    "title": "KServe로 모델 카나리 출시하고 되돌리기",
    "en": "Canary Rollout and Rollback with KServe",
@@ -89423,6 +90729,118 @@
    ],
    "refs": [
     "https://kserve.github.io/website/docs/model-serving/predictive-inference/autoscaling/kpa-autoscaler"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.ray-serve-dynamic-batching",
+   "title": "Ray Serve 요청 묶기: 배치 크기와 대기 시간 조정",
+   "en": "Dynamic Request Batching in Ray Serve",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "Ray Serve가 들어온 요청을 잠깐 모아 한 번에 모델에 넣게 하고, 배치 크기와 대기 시간으로 처리량과 지연의 균형을 고르는 운영 설계다.",
+   "objectives": [
+    "모델이 배치 처리에 유리한지와 지연 목표를 근거로 @serve.batch를 붙일지 고를 수 있다",
+    "지연 목표와 배치 계산 시간을 따져 max_batch_size와 batch_wait_timeout_s 값을 정하고 그 근거를 말할 수 있다",
+    "트래픽이 적을 때 응답이 늦어지거나 메모리가 부족해질 때 배치 설정에서 원인을 찾을 수 있다",
+    "앞뒤 배포의 배치 크기가 맞지 않아 덜 찬 배치가 생기는 문제를 찾아 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.serve.local-model-serving",
+    "mlops.serve.llm-server-speedups-picture"
+   ],
+   "related": [
+    "mlops.serve.continuous-batching",
+    "mlops.serve.batch-inference",
+    "mlops.serve.chunked-prefill"
+   ],
+   "aliases": [
+    "Ray Serve 배치",
+    "Ray Serve dynamic batching",
+    "@serve.batch",
+    "Ray Serve 요청 묶기",
+    "serve.batch 데코레이터"
+   ],
+   "refs": [
+    "https://docs.ray.io/en/latest/serve/advanced-guides/dyn-req-batch.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.ray-serve-multiplexing",
+   "title": "Ray Serve 모델 멀티플렉싱: 여러 모델이 레플리카 나눠 쓰기",
+   "en": "Model Multiplexing in Ray Serve",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "입력 모양은 같고 가중치만 다른 여러 모델을 한 레플리카 묶음에서 요청의 모델 ID로 골라 불러 쓰게 해, 드물게 쓰는 모델마다 서버를 따로 두지 않는 서빙 설계다.",
+   "objectives": [
+    "모델 수와 호출 빈도를 근거로 모델마다 배포를 따로 둘지 멀티플렉싱으로 묶을지 고를 수 있다",
+    "레플리카당 모델 수 상한과 LRU 축출이 지연과 메모리에 주는 손익을 말할 수 있다",
+    "같은 모델 요청이 자꾸 느려질 때 모델 ID 헤더 누락이나 잦은 축출·재적재에서 원인을 찾을 수 있다",
+    "멀티플렉싱과 요청 묶기를 함께 쓸 때 배치가 모델 ID별로 나뉜다는 점을 설계에 반영할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.serve.local-model-serving"
+   ],
+   "related": [
+    "mlops.serve.vllm-lora-serving",
+    "mlops.serve.ray-serve-dynamic-batching",
+    "mlops.serve.model-cold-start"
+   ],
+   "aliases": [
+    "Ray Serve 멀티플렉싱",
+    "Ray Serve model multiplexing",
+    "@serve.multiplexed",
+    "모델 멀티플렉싱",
+    "레플리카 모델 공유"
+   ],
+   "refs": [
+    "https://docs.ray.io/en/latest/serve/model-multiplexing.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.kserve-inference-graph",
+   "title": "KServe InferenceGraph로 여러 모델 엮기",
+   "en": "Composing Models with KServe InferenceGraph",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "KServe InferenceGraph의 Sequence·Switch·Ensemble·Splitter 노드로 여러 모델을 차례·조건·병렬·가중치로 엮는 방식을 고르는 서빙 설계다.",
+   "objectives": [
+    "전처리 뒤 분류, 조건별 분기, 여러 모델 합치기, 비율 나누기 가운데 요구에 맞는 라우터 유형을 고를 수 있다",
+    "Sequence에서 다음 단계가 이전 응답을 받을지 원래 요청을 받을지 data 칸으로 정하고 그 근거를 말할 수 있다",
+    "Switch에서 맞는 조건이 없어 원래 요청이 그대로 돌아오거나 뒤 단계가 실행되지 않을 때 조건식에서 원인을 찾을 수 있다",
+    "그래프 라우터와 각 모델이 따로 확장된다는 점과 시간 제한 설정을 지연 문제 진단에 쓸 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.serve.kserve-canary-rollout"
+   ],
+   "related": [
+    "mlops.serve.traffic-split",
+    "mlops.serve.kserve-autoscaling"
+   ],
+   "aliases": [
+    "KServe InferenceGraph",
+    "InferenceGraph",
+    "KServe 추론 그래프",
+    "KServe 모델 파이프라인",
+    "routerType"
+   ],
+   "refs": [
+    "https://kserve.github.io/website/docs/model-serving/inferencegraph/overview",
+    "https://kserve.github.io/website/docs/concepts/resources/inferencegraph"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -89736,6 +91154,190 @@
    "refs": [
     "https://kserve.github.io/website/docs/model-serving/predictive-inference/autoscaling/kpa-autoscaler"
    ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.ray-batch-wait-timeout",
+   "title": "배치 대기 시간과 최대 배치 크기(batch_wait_timeout_s)",
+   "en": "Ray Serve batch_wait_timeout_s and max_batch_size",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "첫 요청이 온 뒤 배치가 찰 때까지 기다리는 시간과 한 배치의 최대 요청 수로, 시간이 다 되면 덜 찬 배치라도 바로 보낸다.",
+   "parent": "mlops.serve.ray-serve-dynamic-batching",
+   "related": [
+    "mlops.serve.chunked-prefill"
+   ],
+   "aliases": [
+    "batch_wait_timeout_s",
+    "max_batch_size",
+    "Ray Serve 배치 대기 시간",
+    "Ray Serve 최대 배치 크기"
+   ],
+   "refs": [
+    "https://docs.ray.io/en/latest/serve/advanced-guides/dyn-req-batch.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.ray-batch-size-fn",
+   "title": "batch_size_fn(요청 수 대신 토큰 수로 배치 재기)",
+   "en": "Ray Serve batch_size_fn for Custom Batch Size",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "배치 크기를 요청 개수가 아닌 전체 토큰 수 같은 기준으로 재게 하는 함수로, 이때 max_batch_size도 그 단위로 정해야 한다.",
+   "parent": "mlops.serve.ray-serve-dynamic-batching",
+   "aliases": [
+    "batch_size_fn",
+    "Ray Serve 맞춤 배치 크기",
+    "토큰 수 기준 배치",
+    "custom batch size function"
+   ],
+   "refs": [
+    "https://docs.ray.io/en/latest/serve/advanced-guides/dyn-req-batch.html"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.multiplexed-model-id-header",
+   "title": "serve_multiplexed_model_id 헤더(요청할 모델 지정)",
+   "en": "Ray Serve serve_multiplexed_model_id Header",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "클라이언트가 원하는 모델 ID를 담아 보내는 요청 헤더로, 빠지면 Ray Serve가 보통 요청으로 보고 아무 레플리카에나 보낸다.",
+   "parent": "mlops.serve.ray-serve-multiplexing",
+   "aliases": [
+    "serve_multiplexed_model_id",
+    "get_multiplexed_model_id",
+    "multiplexed_model_id",
+    "Ray Serve 모델 ID 헤더"
+   ],
+   "refs": [
+    "https://docs.ray.io/en/latest/serve/model-multiplexing.html"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.max-models-per-replica",
+   "title": "max_num_models_per_replica와 LRU 축출",
+   "en": "Ray Serve max_num_models_per_replica and LRU Eviction",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "한 레플리카가 동시에 올려 둘 모델 수의 상한으로, 넘으면 가장 오래 안 쓴 모델을 내려 메모리를 비우고 다시 부르면 새로 불러온다.",
+   "parent": "mlops.serve.ray-serve-multiplexing",
+   "related": [
+    "mlops.serve.model-cold-start"
+   ],
+   "aliases": [
+    "max_num_models_per_replica",
+    "레플리카당 모델 수",
+    "멀티플렉싱 모델 축출",
+    "multiplexed model eviction"
+   ],
+   "refs": [
+    "https://docs.ray.io/en/latest/serve/model-multiplexing.html"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.eval.judge-lifecycle",
+   "title": "등록 심판의 수명 주기(register·start·update·stop)",
+   "en": "MLflow Registered Judge Lifecycle",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "실험에 심판을 등록하고 시작한 뒤 이름으로 불러 표본 설정을 바꾸거나 멈추는 MLflow 자동 평가의 관리 단계다.",
+   "parent": "mlops.eval.online-judge-monitoring",
+   "aliases": [
+    "judge.register",
+    "ScorerSamplingConfig",
+    "get_scorer",
+    "심판 등록과 시작",
+    "scorer start stop"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/eval-monitor/automatic-evaluations/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.eval.auto-eval-delay-no-backfill",
+   "title": "자동 평가 대기 시간과 소급 평가 없음",
+   "en": "Automatic Evaluation Delay and No Backfill",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "트레이스는 시작 몇 분 뒤에야 채점 대상이 되고, 심판을 새로 켜면 최근 기록만 채점하며 지난 기록은 거슬러 채점하지 않는 MLflow 자동 평가의 규칙이다.",
+   "parent": "mlops.eval.online-judge-monitoring",
+   "aliases": [
+    "자동 평가 지연",
+    "평가 소급 없음",
+    "no historical backfill",
+    "세션 완료 대기 시간",
+    "trace completion buffer"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/eval-monitor/automatic-evaluations/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.inference-graph-response-data",
+   "title": "InferenceGraph 단계 출력 전달($response)",
+   "en": "Passing $response Between InferenceGraph Steps",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "InferenceGraph Sequence 단계에 data: $response를 적으면 앞 단계의 응답을 받고, 적지 않으면 처음 들어온 요청을 그대로 받는 규칙이다.",
+   "parent": "mlops.serve.kserve-inference-graph",
+   "aliases": [
+    "data: $response",
+    "InferenceGraph data 칸",
+    "Sequence 단계 출력 연결",
+    "InferenceGraph step data"
+   ],
+   "refs": [
+    "https://kserve.github.io/website/docs/model-serving/inferencegraph/overview"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.inference-graph-router-timeouts",
+   "title": "InferenceGraph 시간 제한(routerTimeouts)",
+   "en": "KServe InferenceGraph timeout and routerTimeouts",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "InferenceGraph 전체 요청의 제한 시간과, 라우터가 요청을 읽고 응답을 쓰고 각 단계 모델을 부를 때의 제한 시간을 따로 정하는 칸이다.",
+   "parent": "mlops.serve.kserve-inference-graph",
+   "aliases": [
+    "routerTimeouts",
+    "InferenceGraph timeout",
+    "serviceClient 시간 제한",
+    "InferenceGraph 시간 초과"
+   ],
+   "refs": [
+    "https://kserve.github.io/website/docs/reference/crd-api"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "mlops"
   },
   {
