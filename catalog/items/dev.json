@@ -8009,6 +8009,29 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "dev.git.refspec",
+    "title": "refspec",
+    "en": "Refspec",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Git",
+    "summary": "원격의 어느 참조를 로컬의 어느 참조로 받거나 보낼지 +<src>:<dst> 꼴로 적는 규칙으로, 원격 설정의 fetch·push 줄과 git push origin :브랜치 삭제가 이것으로 동작한다.",
+    "related": [
+      "dev.git.remote-tracking"
+    ],
+    "aliases": [
+      "refspec",
+      "참조 명세",
+      "fetch refspec",
+      "push refspec",
+      "+refs/heads/*:refs/remotes/origin/*"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Internals-The-Refspec"
+    ]
+  },
+  {
     "id": "dev.git.internals",
     "title": "Git 내부: 객체·참조·packfile",
     "en": "Git Internals: Objects, Refs and Packfiles",
@@ -8111,6 +8134,186 @@
     ]
   },
   {
+    "id": "dev.git.transfer-protocols",
+    "title": "Git 전송 프로토콜: 스마트 프로토콜과 v2",
+    "en": "Git Transfer Protocols: Smart Protocol and Protocol v2",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "Git",
+    "summary": "clone·fetch·push 때 클라이언트와 서버의 Git 프로세스가 참조 목록과 want/have를 주고받아 필요한 packfile만 만드는 과정과 v2의 개선점을 분석한다.",
+    "objectives": [
+      "fetch-pack과 upload-pack, send-pack과 receive-pack이 참조 목록·want/have·packfile을 주고받는 순서로 clone·fetch·push 한 번의 흐름을 설명할 수 있다",
+      "덤 프로토콜과 스마트 프로토콜이 서버에 요구하는 것과 쓰기 지원·비공개 운영의 차이를 근거로 비교할 수 있다",
+      "프로토콜 v2가 참조 광고를 요청할 때만 보내고 ls-refs의 접두사로 걸러 받으며 상태 없이 한 번 왕복으로 명령을 끝내는 점을 v0과 비교해 손익을 설명할 수 있다",
+      "protocol.version 설정과 서버가 v2를 지원하지 않을 때 v0으로 돌아가는 동작을 근거로 전송 문제를 진단할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.internals",
+      "dev.git.remotes"
+    ],
+    "related": [
+      "dev.git.large-repo-clone"
+    ],
+    "aliases": [
+      "스마트 프로토콜",
+      "smart protocol",
+      "git-upload-pack",
+      "git-receive-pack",
+      "want/have 협상",
+      "transfer protocols"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Internals-Transfer-Protocols",
+      "https://git-scm.com/docs/gitprotocol-v2",
+      "https://git-scm.com/docs/git-config"
+    ]
+  },
+  {
+    "id": "dev.git.merge-strategies-internals",
+    "title": "병합 전략의 내부: 3방향 병합과 ort",
+    "en": "Merge Strategy Internals: Three-Way Merge and ort",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "Git",
+    "summary": "병합 기준을 골라 3방향 병합을 하는 원리와 병합 기준이 여럿일 때의 처리, ort·resolve·octopus·ours·subtree 전략의 차이를 근거로 병합 결과를 분석한다.",
+    "objectives": [
+      "병합 기준이 더 나은 공통 조상이 없는 공통 조상이라는 정의로 3방향 병합의 기준 트리가 어떻게 정해지는지 설명할 수 있다",
+      "교차 병합으로 병합 기준이 여럿일 때 ort는 그것들을 먼저 합친 트리를 기준으로 쓰고 resolve는 모호함을 조심해 다룬다는 차이를 근거로 전략을 고를 수 있다",
+      "ort·resolve·octopus·ours·subtree가 이름 바꾸기 감지, 세 개 이상의 머리, 상대 변경 버리기를 어떻게 다루는지 비교할 수 있다",
+      "-s ours와 -Xours의 차이, find-renames·diff-algorithm·renormalize 옵션이 병합 결과에 주는 영향을 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.advanced-merge",
+      "dev.git.merge-methods"
+    ],
+    "related": [
+      "dev.git.merge-ours-driver",
+      "dev.git.subtree-strategy-option"
+    ],
+    "aliases": [
+      "병합 전략",
+      "merge strategy",
+      "merge-ort",
+      "ort 병합 전략",
+      "3방향 병합",
+      "three-way merge"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/merge-strategies",
+      "https://git-scm.com/docs/git-merge-base"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "dev.git.hash-transition",
+    "title": "Git 해시 전환: SHA-1에서 SHA-256으로",
+    "en": "Git Hash Function Transition: SHA-1 to SHA-256",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "Git",
+    "summary": "내용 해시로 객체를 부르는 Git이 SHA-1 충돌 위험 때문에 SHA-256 객체 형식을 들이는 설계와 현재 제약을 알고 새 저장소에 쓸지 판단한다.",
+    "objectives": [
+      "모든 객체 이름이 내용 해시라서 해시 충돌이 무결성 검사와 서명을 흔드는 이유와 강화된 SHA-1을 쓰면서도 전환을 준비하는 근거를 설명할 수 있다",
+      "SHA-256 저장소에서 트리·커밋·태그의 내용은 바뀌고 blob은 그대로인 이유를 객체가 다른 객체를 가리키는 방식으로 설명할 수 있다",
+      "repositoryFormatVersion 1과 extensions.objectFormat이 옛 Git이 저장소를 고치지 않고 거부하게 하는 장치임을 알고 호환 오류를 진단할 수 있다",
+      "지금은 SHA-1 저장소와 상호 운용이 없다는 점과 설계 문서의 변환표·제약을 근거로 SHA-256 저장소를 쓸지 손익을 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.internals"
+    ],
+    "related": [
+      "dev.git.signed-commit"
+    ],
+    "aliases": [
+      "SHA-256 저장소",
+      "sha256 repository",
+      "Git SHA-1 교체",
+      "hash function transition",
+      "Git 해시 함수 전환"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/hash-function-transition",
+      "https://git-scm.com/docs/git-init"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "dev.debug.import-system",
+    "title": "import 시스템의 내부: 파인더·로더·모듈 스펙",
+    "en": "The Python Import System: Finders, Loaders and Module Specs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "import가 모듈 캐시를 보고 파인더로 스펙을 찾은 뒤 로더로 실행하는 과정을 알고 순환 import, 반쯤 불린 모듈, import 훅의 장애를 분석한다.",
+    "objectives": [
+      "import가 sys.modules 확인, sys.meta_path 파인더의 find_spec, 로더의 exec_module 순으로 진행되는 흐름으로 import 결과와 오류를 설명할 수 있다",
+      "모듈이 코드 실행 전에 sys.modules에 들어가고 실행이 실패하면 그 모듈만 지워진다는 점으로 순환 import와 부작용으로 남은 모듈의 장애를 분석할 수 있다",
+      "경로 기반 파인더가 sys.path_hooks와 sys.path_importer_cache로 경로 항목마다 파인더를 정하는 방식을 알고 캐시 항목을 지워 다시 찾게 할 수 있다",
+      "메타 경로 파인더가 None을 돌려줄 때와 ModuleNotFoundError를 낼 때 탐색이 이어지거나 멈추는 차이를 알고 import 훅을 설계할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.debug.sys-path-shadowing"
+    ],
+    "related": [
+      "be.arch.circular-import",
+      "dev.test.pytest-import-mode"
+    ],
+    "aliases": [
+      "import system",
+      "import 시스템 내부",
+      "파인더와 로더",
+      "finders and loaders",
+      "import hook",
+      "import 훅"
+    ],
+    "refs": [
+      "https://docs.python.org/3/reference/import.html"
+    ]
+  },
+  {
+    "id": "dev.debug.trace-monitoring",
+    "title": "settrace와 sys.monitoring: 추적 도구의 내부",
+    "en": "Inside Debuggers and Coverage Tools: settrace and sys.monitoring",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "디버거와 커버리지 도구가 실행 이벤트를 받는 두 방식, 프레임마다 추적 함수를 부르는 settrace와 이벤트를 골라 켜고 끄는 sys.monitoring의 동작과 부담을 비교한다.",
+    "objectives": [
+      "settrace가 스레드마다 전역·지역 추적 함수를 call·line·return 이벤트로 부르는 방식과 sys.monitoring이 도구 ID마다 이벤트와 콜백을 등록하는 방식을 비교할 수 있다",
+      "콜백이 DISABLE을 돌려 그 위치의 지역 이벤트를 끄고 restart_events로 되살리는 구조가 도구의 실행 부담을 줄이는 원리를 설명할 수 있다",
+      "coverage.py의 측정 코어 ctrace·sysmon·pytrace와 파이썬 버전별 기본값, sysmon이 아직 지원하지 않는 기능을 알고 코어를 고를 수 있다"
+    ],
+    "prerequisites": [
+      "dev.test.coverage-meaning",
+      "dev.debug.pdb"
+    ],
+    "related": [
+      "dev.debug.remote-attach"
+    ],
+    "aliases": [
+      "sys.monitoring",
+      "sys.settrace",
+      "추적 함수",
+      "trace function",
+      "PEP 669",
+      "실행 이벤트 모니터링"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/sys.monitoring.html",
+      "https://docs.python.org/3/library/sys.html#sys.settrace",
+      "https://coverage.readthedocs.io/en/latest/config.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "dev.git.reflog",
     "title": "reflog",
     "en": "Reflog",
@@ -8125,6 +8328,28 @@
       "리플로그",
       "git reflog",
       "잃어버린 커밋 복구"
+    ]
+  },
+  {
+    "id": "dev.git.merge-base",
+    "title": "병합 기준(merge base)",
+    "en": "Merge Base",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "Git",
+    "summary": "두 커밋의 공통 조상 가운데 더 나은 공통 조상이 없는 것으로 3방향 병합의 출발점이 되며, 교차 병합에서는 여럿이 나올 수 있다.",
+    "parent": "dev.git.merge-strategies-internals",
+    "aliases": [
+      "merge base",
+      "git merge-base",
+      "병합 기준 커밋",
+      "best common ancestor",
+      "criss-cross merge",
+      "교차 병합"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/git-merge-base"
     ]
   },
   {
@@ -8204,6 +8429,136 @@
     "refs": [
       "https://man7.org/linux/man-pages/man2/fsync.2.html",
       "https://www.sqlite.org/atomiccommit.html"
+    ]
+  },
+  {
+    "id": "dev.git.protocol-v2",
+    "title": "Git 프로토콜 v2",
+    "en": "Git Wire Protocol Version 2",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Git",
+    "summary": "참조 목록을 요청할 때만 보내고 ls-refs·fetch 같은 명령을 상태 없이 한 번 왕복으로 처리하는 Git 전송 규약으로, protocol.version을 정하지 않으면 기본으로 쓴다.",
+    "parent": "dev.git.transfer-protocols",
+    "aliases": [
+      "protocol v2",
+      "프로토콜 버전 2",
+      "protocol.version",
+      "git ls-refs"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/gitprotocol-v2"
+    ]
+  },
+  {
+    "id": "dev.git.object-format",
+    "title": "Git 객체 형식(extensions.objectFormat)",
+    "en": "Git Object Format",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Git",
+    "summary": "저장소가 객체 이름에 SHA-1과 SHA-256 중 무엇을 쓰는지 정하는 저장소 확장 설정으로, git init --object-format이나 init.defaultObjectFormat으로 고른다.",
+    "parent": "dev.git.hash-transition",
+    "aliases": [
+      "objectFormat",
+      "--object-format",
+      "init.defaultObjectFormat",
+      "GIT_DEFAULT_HASH"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/git-init"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "dev.debug.module-spec",
+    "title": "모듈 스펙(ModuleSpec)",
+    "en": "Module Spec",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "파인더가 찾아 로더에게 넘기는 모듈 하나의 import 정보 묶음으로, 이름·로더·위치를 담고 모듈의 __spec__으로 남는다.",
+    "parent": "dev.debug.import-system",
+    "aliases": [
+      "ModuleSpec",
+      "__spec__",
+      "module spec",
+      "importlib.machinery.ModuleSpec"
+    ],
+    "refs": [
+      "https://docs.python.org/3/reference/import.html"
+    ]
+  },
+  {
+    "id": "dev.debug.meta-path-finder",
+    "title": "메타 경로 파인더",
+    "en": "Meta Path Finder",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "sys.meta_path에 차례로 놓여 모듈 이름을 받으면 find_spec으로 스펙을 돌려주거나 None으로 다음에 넘기는 객체로, import를 가로채는 가장 앞 단계다.",
+    "parent": "dev.debug.import-system",
+    "aliases": [
+      "meta path finder",
+      "sys.meta_path",
+      "MetaPathFinder",
+      "find_spec"
+    ],
+    "refs": [
+      "https://docs.python.org/3/reference/import.html"
+    ]
+  },
+  {
+    "id": "dev.debug.coverage-core",
+    "title": "coverage.py 측정 코어(COVERAGE_CORE)",
+    "en": "coverage.py Measurement Core",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "coverage.py가 실행을 추적하는 방식을 ctrace·sysmon·pytrace 중에서 정하는 설정으로, 파이썬 3.14부터는 sys.monitoring을 쓰는 sysmon이 기본이다.",
+    "parent": "dev.debug.trace-monitoring",
+    "related": [
+      "dev.test.coverage"
+    ],
+    "aliases": [
+      "COVERAGE_CORE",
+      "coverage sysmon",
+      "coverage.py core",
+      "coverage ctrace"
+    ],
+    "refs": [
+      "https://coverage.readthedocs.io/en/latest/config.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "dev.test.assert-rewriting",
+    "title": "pytest 단언 재작성",
+    "en": "pytest Assertion Rewriting",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "테스트",
+    "summary": "pytest가 import 훅으로 테스트 모듈의 assert 문을 실행 전에 고쳐 써서 실패 때 값을 자세히 보여 주는 장치로, 고친 결과는 pyc로 캐시한다.",
+    "related": [
+      "dev.debug.import-system"
+    ],
+    "aliases": [
+      "assertion rewriting",
+      "assert 재작성",
+      "register_assert_rewrite",
+      "PYTEST_DONT_REWRITE",
+      "--assert=plain"
+    ],
+    "refs": [
+      "https://docs.pytest.org/en/stable/how-to/assert.html"
     ]
   }
 ]

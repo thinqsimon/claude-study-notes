@@ -8871,6 +8871,44 @@
     ]
   },
   {
+    "id": "llm.tools.tool-search-tradeoffs",
+    "title": "도구 검색과 지연 로딩의 내부와 손익",
+    "en": "Tool Search and Deferred Loading Trade-offs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "도구 호출",
+    "summary": "도구 정의를 처음부터 다 싣지 않고 검색으로 필요할 때만 펼치는 방식이 컨텍스트·캐시·선택 정확도에 주는 손익을 다룬다.",
+    "objectives": [
+      "지연된 도구가 시스템 프롬프트 접두사에서 빠지고 대화 안에서 펼쳐지는 흐름을 설명할 수 있다",
+      "도구 검색이 프롬프트 캐시 접두사를 깨지 않는 이유와 캐시를 깨는 변경을 구분할 수 있다",
+      "도구 수와 정의 크기를 근거로 도구 검색을 켤지 일반 도구 호출을 쓸지 판단할 수 있다",
+      "Claude의 regex·BM25 검색과 OpenAI의 hosted·client 검색 방식을 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.tools.function-calling",
+      "llm.internals.prompt-caching"
+    ],
+    "related": [
+      "rag.agent.tool-discovery-idea",
+      "llm.tools.programmatic-calling-tradeoffs"
+    ],
+    "aliases": [
+      "tool_search_tool_regex",
+      "tool_search_tool_bm25",
+      "도구 정의 지연 로딩",
+      "도구 검색 손익",
+      "tool search trade-offs"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool",
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-use-with-prompt-caching",
+      "https://developers.openai.com/api/docs/guides/tools-tool-search"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "llm.internals.structured-decoding",
     "title": "구조화 출력의 보장과 한계",
     "en": "Guarantees of Structured Output",
@@ -8933,6 +8971,74 @@
       "https://huggingface.co/docs/trl/main/en/grpo_trainer",
       "https://huggingface.co/learn/llm-course/chapter12/1"
     ]
+  },
+  {
+    "id": "llm.tools.programmatic-calling-tradeoffs",
+    "title": "프로그램 방식 도구 호출의 내부와 손익",
+    "en": "Programmatic Tool Calling Trade-offs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "도구 호출",
+    "summary": "모델이 코드 실행 컨테이너 안에서 도구를 불러 중간 결과를 컨텍스트 밖에서 처리하는 방식의 토큰·지연 이득과 제약을 다룬다.",
+    "objectives": [
+      "프로그램 방식 호출에서 도구 결과가 컨텍스트에 들어가지 않고 최종 출력만 들어가는 흐름을 설명할 수 있다",
+      "팬아웃·대용량 결과 작업과 순차 단일 호출 작업에서 토큰 손익이 갈리는 이유를 설명할 수 있다",
+      "컨테이너 수명과 결과 대기 시간 제한이 장애로 이어지는 경로를 분석할 수 있다",
+      "strict 도구·tool_choice 강제·병렬 호출 끄기와 함께 쓸 수 없는 제약을 근거로 도입 여부를 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.tools.function-calling"
+    ],
+    "related": [
+      "rag.agent.programmatic-tool-calling",
+      "llm.tools.tool-search-tradeoffs"
+    ],
+    "aliases": [
+      "코드에서 도구 호출(Claude)",
+      "프로그램 방식 도구 호출 손익",
+      "programmatic tool calling trade-offs"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.prompt.citations-internals",
+    "title": "인용 기능의 내부: 문서 분할과 위치 색인",
+    "en": "Citations Internals: Chunking and Location Indices",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "프롬프트",
+    "summary": "Claude 인용 기능이 문서를 문장 단위로 나누고 위치 색인을 붙이는 방식과, 그에 따른 토큰 비용·호환성 손익을 다룬다.",
+    "objectives": [
+      "평문·PDF·커스텀 콘텐츠 문서가 인용 단위로 나뉘는 방식의 차이를 설명할 수 있다",
+      "cited_text가 출력·입력 토큰에 세지지 않는 구조를 근거로 프롬프트 인용과 비용을 비교할 수 있다",
+      "인용과 구조화 출력이 함께 쓰이지 못하는 이유를 설명하고 대신 쓸 추출 방식을 고를 수 있다",
+      "스캔 PDF가 인용되지 않는 경우처럼 인용이 비는 원인을 분석할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.pdf-long-documents"
+    ],
+    "related": [
+      "llm.prompt.citations",
+      "llm.prompt.search-result-blocks",
+      "llm.internals.structured-decoding"
+    ],
+    "aliases": [
+      "Claude 인용 내부",
+      "citations chunking",
+      "인용 청크 분할",
+      "citations.enabled"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/citations"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "llm.internals.kv-cache",
@@ -9002,6 +9108,85 @@
       "reward model",
       "선호 점수 모델",
       "리워드 모델"
+    ]
+  },
+  {
+    "id": "llm.tools.tool-reference-block",
+    "title": "tool_reference 블록",
+    "en": "tool_reference Block",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "도구 호출",
+    "summary": "도구 검색 결과로 돌아와 API가 대화 안에서 전체 도구 정의로 펼쳐 주는 도구 가리킴 블록이다.",
+    "parent": "llm.tools.tool-search-tradeoffs",
+    "aliases": [
+      "tool_reference",
+      "도구 참조 블록(Claude)"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.tools.allowed-callers",
+    "title": "allowed_callers(도구 호출 주체 지정)",
+    "en": "allowed_callers",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "도구 호출",
+    "summary": "도구를 모델이 직접 부를지, 코드 실행 안에서만 부를지, 둘 다 허용할지 정하는 Claude 도구 정의 칸이다.",
+    "parent": "llm.tools.programmatic-calling-tradeoffs",
+    "aliases": [
+      "allowed_callers",
+      "도구 호출 주체(Claude)"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/programmatic-tool-calling"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.prompt.custom-content-document",
+    "title": "커스텀 콘텐츠 문서(인용 단위 직접 지정)",
+    "en": "Custom Content Document",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "프롬프트",
+    "summary": "추가 분할 없이 내가 넣은 콘텐츠 블록 하나하나를 인용 단위로 쓰게 하는 Claude 문서 형식이다.",
+    "parent": "llm.prompt.citations-internals",
+    "aliases": [
+      "custom content document",
+      "커스텀 콘텐츠 문서(Claude)",
+      "content 문서 소스"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/citations"
+    ]
+  },
+  {
+    "id": "llm.prompt.citation-location-types",
+    "title": "인용 위치 형식: 글자·쪽·블록 색인",
+    "en": "Citation Location Types",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "프롬프트",
+    "summary": "문서 종류에 따라 인용 위치를 글자 범위, 쪽 범위, 콘텐츠 블록 범위로 돌려주는 세 가지 색인 형식이다.",
+    "parent": "llm.prompt.citations-internals",
+    "aliases": [
+      "char_location",
+      "page_location",
+      "content_block_location",
+      "인용 색인(Claude)"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/citations"
     ]
   }
 ]

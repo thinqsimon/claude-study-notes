@@ -8357,6 +8357,133 @@
     ]
   },
   {
+    "id": "ml.supervised.nearest-neighbor-algorithms",
+    "title": "최근접 이웃 탐색 알고리즘: 전수 계산·KD 트리·볼 트리",
+    "en": "Nearest Neighbor Search Algorithms: Brute Force, KD Tree, Ball Tree",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "표본 수·차원·k·질의 횟수에 따라 전수 거리 계산과 공간 분할 트리 중 어느 쪽이 빠른지 갈라지는 k-NN 탐색의 내부다.",
+    "objectives": [
+      "전수 계산·KD 트리·볼 트리의 질의 비용이 표본 수와 차원에 따라 어떻게 달라지는지 비교할 수 있다",
+      "algorithm='auto'가 전수 계산을 고르는 조건을 근거로 데이터에 맞는 알고리즘을 판단할 수 있다",
+      "leaf_size가 트리 생성 시간·질의 시간·메모리에 주는 손익을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.sklearn-knn-classifier"
+    ],
+    "related": [
+      "ml.data.curse-of-dimensionality"
+    ],
+    "aliases": [
+      "k-NN 탐색 알고리즘",
+      "최근접 이웃 알고리즘",
+      "nearest neighbor algorithm",
+      "algorithm='auto'"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/neighbors.html#nearest-neighbor-algorithms"
+    ]
+  },
+  {
+    "id": "ml.supervised.logistic-regression-solvers",
+    "title": "로지스틱 회귀 솔버 고르기: lbfgs·saga 등의 손익",
+    "en": "Logistic Regression Solvers",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "로지스틱 회귀를 푸는 최적화 알고리즘마다 지원하는 규제·다중 분류·데이터 규모·메모리가 달라 생기는 손익이다.",
+    "objectives": [
+      "솔버별로 지원하는 규제(L1·L2·엘라스틱넷)와 다중 분류 방식을 구분할 수 있다",
+      "newton-cholesky의 헤시안 메모리 비용과 sag·saga의 대용량 속도를 표본·특성 수에 따라 비교할 수 있다",
+      "liblinear의 절편 규제와 일대다 처리, sag·saga의 스케일 민감성이 결과에 주는 영향을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.sklearn-logistic-regression"
+    ],
+    "related": [
+      "ml.supervised.multiclass-strategies"
+    ],
+    "aliases": [
+      "로지스틱 회귀 solver",
+      "LogisticRegression solver",
+      "saga 솔버",
+      "lbfgs 솔버"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/linear_model.html#solvers"
+    ]
+  },
+  {
+    "id": "ml.nn.autograd-internals",
+    "title": "PyTorch autograd 내부: 계산 그래프와 저장 텐서",
+    "en": "PyTorch Autograd Mechanics",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "autograd가 순전파마다 Function 그래프를 새로 짓고 역전파용 텐서를 저장하며 제자리 연산을 검사하는 내부 동작이다.",
+    "objectives": [
+      "grad_fn으로 이어진 계산 그래프가 매 반복 다시 만들어지는 방식을 설명할 수 있다",
+      "역전파를 위해 저장되는 텐서와 제자리 연산이 일으키는 오류의 원인을 분석할 수 있다",
+      "saved_tensors_hooks로 저장 텐서를 다른 곳에 두는 방법의 손익을 판단할 수 있다",
+      "여러 스레드에서 backward를 부를 때 생기는 비결정성과 그래프 공유 문제를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.training.backprop"
+    ],
+    "related": [
+      "ml.nn.autograd",
+      "ml.nn.accumulated-autograd-history"
+    ],
+    "aliases": [
+      "autograd 내부 동작",
+      "autograd mechanics",
+      "저장 텐서",
+      "saved tensors",
+      "saved_tensors_hooks"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/notes/autograd.html"
+    ]
+  },
+  {
+    "id": "ml.nn.fsdp-sharding",
+    "title": "FSDP 완전 분할 데이터 병렬: 메모리와 통신의 손익",
+    "en": "Fully Sharded Data Parallel (FSDP2)",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "파라미터·기울기·옵티마이저 상태를 GPU마다 나눠 들고 all-gather와 reduce-scatter로 모아 쓰며 메모리를 통신과 바꾸는 분산 학습이다.",
+    "objectives": [
+      "fully_shard가 순전파 전 all-gather와 역전파 후 reduce-scatter로 파라미터를 다루는 흐름을 설명할 수 있다",
+      "fully_shard를 거는 모듈 단위가 통신 묶음과 연산 겹침에 주는 영향을 분석할 수 있다",
+      "reshard_after_forward와 프리페치 설정이 메모리와 통신량에 주는 손익을 판단할 수 있다",
+      "FSDP2의 파라미터별 dim-0 분할이 FSDP1의 평탄화 방식과 어떻게 다른지 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.nn.distributed-data-parallel"
+    ],
+    "related": [
+      "ml.nn.mixed-precision-training"
+    ],
+    "aliases": [
+      "FSDP",
+      "FSDP2",
+      "fully_shard",
+      "완전 분할 데이터 병렬",
+      "fully sharded data parallel"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/distributed.fsdp.fully_shard.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "ml.training.backprop",
     "title": "역전파와 경사 하강법",
     "en": "Backpropagation and Gradient Descent",
@@ -8477,6 +8604,60 @@
     ]
   },
   {
+    "id": "ml.supervised.kernel-approximation",
+    "title": "커널 근사: Nyström과 랜덤 푸리에 특성의 손익",
+    "en": "Kernel Approximation: Nyström vs Random Fourier Features",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "커널을 유한 차원 특성으로 근사해 큰 데이터에서도 선형 모델로 비선형 학습을 하게 하는 방법과 그 정확도·비용의 손익이다.",
+    "objectives": [
+      "정확한 커널 방법이 큰 데이터에서 느린 까닭과 명시적 특성 사상이 그 비용을 줄이는 방식을 설명할 수 있다",
+      "같은 n_components에서 Nystroem과 RBFSampler의 정확도와 계산 비용을 비교할 수 있다",
+      "데이터에 의존하는 근사와 데이터에 의존하지 않는 근사의 차이를 근거로 방법을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.svm-classification"
+    ],
+    "related": [
+      "ml.supervised.svm-kernel"
+    ],
+    "aliases": [
+      "커널 근사",
+      "kernel approximation",
+      "명시적 특성 사상",
+      "sklearn.kernel_approximation"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/kernel_approximation.html"
+    ]
+  },
+  {
+    "id": "ml.nn.activation-checkpointing",
+    "title": "활성화 체크포인팅(torch.utils.checkpoint)",
+    "en": "Activation Checkpointing",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "순전파 중간값을 저장하지 않고 역전파 때 다시 계산해 GPU 메모리를 계산 시간과 바꾸는 기법이다.",
+    "related": [
+      "ml.nn.training-checkpoint",
+      "ml.nn.cuda-out-of-memory"
+    ],
+    "aliases": [
+      "활성화 체크포인팅",
+      "gradient checkpointing",
+      "그래디언트 체크포인팅",
+      "torch.utils.checkpoint",
+      "선택적 활성화 체크포인팅"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/checkpoint.html"
+    ]
+  },
+  {
     "id": "ml.eval.equality-of-opportunity",
     "title": "기회 균등(equality of opportunity)",
     "en": "Equality of Opportunity",
@@ -8532,5 +8713,138 @@
     "refs": [
       "https://developers.google.com/machine-learning/crash-course/neural-networks/backpropagation"
     ]
+  },
+  {
+    "id": "ml.supervised.kd-tree",
+    "title": "KD 트리(KDTree)",
+    "en": "K-D Tree",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "데이터 축을 따라 공간을 반씩 나눠 이웃 질의를 줄이는 이진 트리로, 저차원에서 빠르고 차원이 커지면 느려진다.",
+    "parent": "ml.supervised.nearest-neighbor-algorithms",
+    "related": [
+      "ml.supervised.ball-tree"
+    ],
+    "aliases": [
+      "k-d 트리",
+      "kd_tree",
+      "KD 트리 탐색"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/neighbors.html#k-d-tree",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KDTree.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.ball-tree",
+    "title": "볼 트리(BallTree)",
+    "en": "Ball Tree",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "중심과 반지름으로 정한 초구를 겹겹이 나누고 삼각 부등식으로 가지를 쳐서 고차원에서도 이웃 질의를 줄이는 트리다.",
+    "parent": "ml.supervised.nearest-neighbor-algorithms",
+    "related": [
+      "ml.supervised.kd-tree"
+    ],
+    "aliases": [
+      "볼 트리 탐색",
+      "ball_tree",
+      "ball tree 알고리즘"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/neighbors.html#ball-tree",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.BallTree.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.nystroem",
+    "title": "Nyström 근사(Nystroem)",
+    "en": "Nyström Method",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "학습 데이터 일부를 뽑아 기저로 삼아 커널 행렬을 저차원으로 근사하는, 데이터에 의존하는 커널 근사법이다.",
+    "parent": "ml.supervised.kernel-approximation",
+    "related": [
+      "ml.supervised.random-fourier-features"
+    ],
+    "aliases": [
+      "니스트롬 근사",
+      "Nystroem 변환",
+      "Nystrom method"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/kernel_approximation.html#nystroem-method-for-kernel-approximation",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.kernel_approximation.Nystroem.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.random-fourier-features",
+    "title": "랜덤 푸리에 특성(RBFSampler)",
+    "en": "Random Fourier Features",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "무작위 표본으로 RBF 커널을 몬테카를로 근사하는 특성 사상으로, Nyström보다 덜 정확하지만 계산이 싸다.",
+    "parent": "ml.supervised.kernel-approximation",
+    "related": [
+      "ml.supervised.nystroem"
+    ],
+    "aliases": [
+      "랜덤 푸리에 특성",
+      "RBFSampler",
+      "random kitchen sinks"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/kernel_approximation.html#radial-basis-function-kernel",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.kernel_approximation.RBFSampler.html"
+    ]
+  },
+  {
+    "id": "ml.nn.tensor-version-counter",
+    "title": "텐서 버전 카운터(제자리 연산 검사)",
+    "en": "Tensor Version Counter",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "제자리 연산마다 늘어나는 텐서의 번호로, 역전파 때 저장된 텐서가 바뀌었는지 확인해 오류를 낸다.",
+    "parent": "ml.nn.autograd-internals",
+    "aliases": [
+      "버전 카운터",
+      "version counter",
+      "_version",
+      "in-place correctness check"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/notes/autograd.html#in-place-correctness-checks"
+    ]
+  },
+  {
+    "id": "ml.nn.reshard-after-forward",
+    "title": "reshard_after_forward(FSDP 순전파 뒤 재분할)",
+    "en": "reshard_after_forward",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "순전파 뒤 모은 파라미터를 버릴지 정하는 FSDP 설정으로, 버리면 메모리를 아끼는 대신 역전파에서 다시 모아야 한다.",
+    "parent": "ml.nn.fsdp-sharding",
+    "aliases": [
+      "FSDP 재분할",
+      "FSDP reshard",
+      "reshard after forward"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/distributed.fsdp.fully_shard.html#torch.distributed.fsdp.fully_shard"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   }
 ]

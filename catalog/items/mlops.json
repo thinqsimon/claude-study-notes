@@ -8949,6 +8949,106 @@
     ]
   },
   {
+    "id": "mlops.serve.vllm-v1-process-architecture",
+    "title": "vLLM V1 프로세스 구조: API 서버·엔진 코어·워커",
+    "en": "vLLM V1 Process Architecture",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "vLLM V1이 HTTP 처리, 스케줄링과 KV 캐시 관리, GPU 실행을 서로 다른 프로세스로 나눠 처리량을 높이는 구조와 그 비용을 따진다.",
+    "objectives": [
+      "API 서버, 엔진 코어, GPU 워커, DP 코디네이터 프로세스가 각각 맡는 일을 설명할 수 있다",
+      "텐서·데이터 병렬 설정에서 띄워지는 프로세스 수를 계산할 수 있다",
+      "비동기 스케줄링이 CPU 스케줄링과 GPU 실행을 겹치는 방식과 선점 시 출력이 버려지는 경우를 설명할 수 있다",
+      "스케줄러가 KV 블록이 모자랄 때 요청을 선점하고 다시 계산하는 흐름을 분석할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.vllm-parallelism"
+    ],
+    "related": [
+      "mlops.serve.vllm-data-expert-parallel"
+    ],
+    "aliases": [
+      "vLLM 엔진 코어",
+      "vLLM EngineCore",
+      "vLLM V1 아키텍처",
+      "vLLM 멀티프로세스 구조"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/design/arch_overview/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.vllm-fp8-kv-cache",
+    "title": "KV 캐시 FP8 양자화의 손익: 스케일 보정과 층 제외",
+    "en": "FP8 KV Cache Quantization Trade-offs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "vLLM에서 KV 캐시를 FP8로 저장해 더 많은 토큰과 긴 컨텍스트를 담는 대신 정확도를 지키려고 스케일을 보정하고 민감한 층을 빼는 판단을 다룬다.",
+    "objectives": [
+      "kv_cache_dtype의 auto·fp8·fp8_e4m3·fp8_e5m2가 무엇을 바꾸는지 설명할 수 있다",
+      "기본 스케일 1.0을 쓸 때와 데이터셋으로 스케일을 보정할 때의 정확도 손익을 비교할 수 있다",
+      "텐서별 스케일과 어텐션 헤드별 스케일의 차이와 헤드별 방식이 요구하는 백엔드 조건을 설명할 수 있다",
+      "양자화에 민감한 층을 원래 자료형으로 남기는 설정을 언제 쓸지 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.inference-optimization"
+    ],
+    "related": [
+      "mlops.serve.vllm-quantization-option",
+      "llm.internals.kv-cache"
+    ],
+    "aliases": [
+      "FP8 KV cache",
+      "KV 캐시 양자화",
+      "quantized KV cache",
+      "kv-cache-dtype fp8"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/features/quantization/quantized_kvcache/",
+      "https://docs.vllm.ai/en/latest/configuration/engine_args/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.observe.head-tail-sampling",
+    "title": "헤드 샘플링과 테일 샘플링의 손익",
+    "en": "Head Sampling vs Tail Sampling",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "트레이스를 남길지 처음에 정하는 헤드 샘플링과 트레이스를 다 보고 정하는 테일 샘플링을 비용·정확성·운영 부담으로 비교한다.",
+    "objectives": [
+      "헤드 샘플링이 오류가 난 트레이스를 모두 남긴다고 보장하지 못하는 이유를 설명할 수 있다",
+      "테일 샘플링이 오류·지연·속성 기준 규칙을 쓸 수 있는 대신 상태를 들고 자원을 많이 쓰는 손익을 분석할 수 있다",
+      "헤드 샘플링과 테일 샘플링을 한 파이프라인에서 함께 쓰는 구성을 설계할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.observe.distributed-trace-propagation"
+    ],
+    "related": [
+      "mlops.observe.trace-sampling",
+      "mlops.eval.eval-sampling-rate"
+    ],
+    "aliases": [
+      "head sampling",
+      "tail sampling",
+      "헤드 샘플링",
+      "테일 샘플링",
+      "OpenTelemetry 샘플링"
+    ],
+    "refs": [
+      "https://opentelemetry.io/docs/concepts/sampling/"
+    ]
+  },
+  {
     "id": "mlops.serve.inference-optimization",
     "title": "모델 서빙과 양자화",
     "en": "Model Serving and Quantization",
@@ -9067,6 +9167,70 @@
     ]
   },
   {
+    "id": "mlops.serve.vllm-hybrid-kv-cache",
+    "title": "vLLM 하이브리드 KV 캐시 관리: 어텐션 종류별 층 묶기",
+    "en": "vLLM Hybrid KV Cache Manager",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "전체 어텐션과 슬라이딩 윈도·Mamba 층이 섞인 모델에서 vLLM이 층을 그룹으로 묶어 같은 페이지 크기의 블록을 나눠 주는 방식과 그 낭비를 따진다.",
+    "objectives": [
+      "층을 KV 캐시 그룹으로 나누는 두 조건(한 그룹 한 어텐션 종류, 모든 그룹 같은 페이지 크기)을 설명할 수 있다",
+      "슬라이딩 윈도 층이 창 밖 블록을 내놓아 메모리를 아끼는 대신 패딩 층이 메모리를 쓰는 손익을 분석할 수 있다",
+      "전체 어텐션과 슬라이딩 윈도 층에서 접두사 캐시 적중을 찾는 방향이 다른 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.vllm-prefix-cache-ops"
+    ],
+    "related": [
+      "llm.internals.kv-cache"
+    ],
+    "aliases": [
+      "hybrid KV cache manager",
+      "하이브리드 KV 캐시",
+      "슬라이딩 윈도 KV 캐시"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/design/hybrid_kv_cache_manager/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.triton-batcher-design",
+    "title": "Triton 배처 고르기: 동적 배처·시퀀스 배처·반복 시퀀스",
+    "en": "Triton Batcher Design Choices",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Triton Inference Server에서 상태 없는 요청을 묶는 동적 배처, 상태 있는 시퀀스를 한 인스턴스로 보내는 시퀀스 배처, LLM용 반복 시퀀스를 비교해 고른다.",
+    "objectives": [
+      "동적 배처의 최대 대기 시간이 지연과 처리량 사이에서 무엇을 바꾸는지 분석할 수 있다",
+      "선호 배치 크기를 대부분 모델에 두지 않는 이유와 예외가 되는 경우를 설명할 수 있다",
+      "우선순위 수준과 큐 정책(최대 크기·시간 초과)으로 과부하 시 요청 처리를 설계할 수 있다",
+      "상태 있는 모델에 시퀀스 배처가 필요한 이유와, 아직 임시(provisional) 기능인 반복 시퀀스가 연속 배칭을 가능하게 하는 방식을 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.ray-serve-dynamic-batching"
+    ],
+    "related": [
+      "mlops.serve.continuous-batching"
+    ],
+    "aliases": [
+      "Triton dynamic batcher",
+      "Triton 동적 배처",
+      "Triton sequence batcher",
+      "Triton 시퀀스 배처"
+    ],
+    "refs": [
+      "https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/user_guide/batcher.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "mlops.observe.data-drift",
     "title": "데이터 드리프트",
     "en": "Data Drift",
@@ -9132,6 +9296,149 @@
       "LoRA 병합",
       "adapter merge",
       "가중치 병합"
+    ]
+  },
+  {
+    "id": "mlops.serve.vllm-async-scheduling",
+    "title": "vLLM 비동기 스케줄링(--async-scheduling)",
+    "en": "vLLM Async Scheduling",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "GPU가 한 단계를 실행하는 동안 CPU가 다음 단계를 미리 짜서 GPU가 노는 틈을 줄이는 vLLM 엔진 코어의 스케줄링 방식이다.",
+    "parent": "mlops.serve.vllm-v1-process-architecture",
+    "aliases": [
+      "async scheduling",
+      "비동기 스케줄링",
+      "--no-async-scheduling"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/design/arch_overview/",
+      "https://docs.vllm.ai/en/latest/configuration/engine_args/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.vllm-api-server-count",
+    "title": "--api-server-count(vLLM API 서버 프로세스 수)",
+    "en": "vLLM API Server Count",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "HTTP 처리와 토큰화를 맡는 vLLM API 서버 프로세스 수를 정하는 값으로, 각 API 서버는 모든 엔진 코어와 연결된다.",
+    "parent": "mlops.serve.vllm-v1-process-architecture",
+    "aliases": [
+      "api-server-count",
+      "vLLM API 서버 수",
+      "API 서버 스케일 아웃"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/design/arch_overview/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.kv-cache-group",
+    "title": "KV 캐시 그룹(vLLM KV cache group)",
+    "en": "KV Cache Group",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "어텐션 종류가 같은 층들을 묶어 같은 블록 ID를 함께 쓰게 하는 vLLM 하이브리드 KV 캐시 관리의 단위다.",
+    "parent": "mlops.serve.vllm-hybrid-kv-cache",
+    "aliases": [
+      "kv_cache_groups",
+      "KV cache group",
+      "KV 캐시 층 그룹"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/design/hybrid_kv_cache_manager/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.kv-scale-calibration",
+    "title": "KV 스케일 보정(텐서별·어텐션 헤드별)",
+    "en": "KV Cache Scale Calibration",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "FP8 KV 캐시에서 값의 범위를 맞추는 스케일을 Q·K·V마다 하나씩 또는 어텐션 헤드마다 정하고, 보정 데이터로 구해 정확도를 지키는 절차다.",
+    "parent": "mlops.serve.vllm-fp8-kv-cache",
+    "aliases": [
+      "KV scale calibration",
+      "KV 캐시 스케일",
+      "per-head KV scale",
+      "llm-compressor KV 보정"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/features/quantization/quantized_kvcache/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.observe.tail-sampling-processor",
+    "title": "테일 샘플링 프로세서(OpenTelemetry Collector)",
+    "en": "Tail Sampling Processor",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "OpenTelemetry Collector에서 한 트레이스의 스팬을 모아 본 뒤 오류·지연 같은 규칙으로 남길지 정하는 처리기다.",
+    "parent": "mlops.observe.head-tail-sampling",
+    "aliases": [
+      "tail_sampling processor",
+      "tailsamplingprocessor",
+      "Collector 테일 샘플링"
+    ],
+    "refs": [
+      "https://opentelemetry.io/docs/concepts/sampling/"
+    ]
+  },
+  {
+    "id": "mlops.observe.consistent-probability-sampling",
+    "title": "일관 확률 샘플링(trace ID 기반)",
+    "en": "Consistent Probability Sampling",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "trace ID와 목표 비율로 남길지 정해 같은 트레이스의 스팬이 모두 함께 남거나 함께 빠지게 하는 헤드 샘플링 방식이다.",
+    "parent": "mlops.observe.head-tail-sampling",
+    "aliases": [
+      "consistent probability sampling",
+      "deterministic sampling",
+      "결정적 샘플링"
+    ],
+    "refs": [
+      "https://opentelemetry.io/docs/concepts/sampling/"
+    ]
+  },
+  {
+    "id": "mlops.serve.triton-queue-policy",
+    "title": "Triton 큐 정책(queue policy)",
+    "en": "Triton Dynamic Batcher Queue Policy",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Triton 동적 배처의 대기열 최대 크기와 시간 초과를 정하고, 시간이 지난 요청을 거절할지 뒤로 미룰지 우선순위 수준마다 정하는 설정이다.",
+    "parent": "mlops.serve.triton-batcher-design",
+    "aliases": [
+      "Triton queue policy",
+      "Triton 큐 정책",
+      "Triton 우선순위 큐"
+    ],
+    "refs": [
+      "https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/user_guide/batcher.html"
     ]
   }
 ]
