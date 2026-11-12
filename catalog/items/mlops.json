@@ -7033,6 +7033,149 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "mlops.observe.distributed-trace-propagation",
+    "title": "MLflow 트레이스를 서비스 사이로 잇기: 컨텍스트 전파",
+    "en": "MLflow Distributed Tracing: Context Propagation Across Services",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "클라이언트와 원격 에이전트 서비스가 따로 남기던 MLflow 스팬을 traceparent 헤더로 이어 요청 하나를 한 트레이스로 보는 방법이다.",
+    "objectives": [
+      "클라이언트에서 추적 컨텍스트 헤더를 만들고 서비스에서 그 헤더로 컨텍스트를 세워 두 프로세스의 스팬을 한 트레이스로 이을 수 있다",
+      "스팬이 이어지지 않을 때 추적 서버·실험 불일치, 에이전트 호출 뒤 컨텍스트 추출, 헤더 대소문자 같은 원인을 찾을 수 있다",
+      "독립 요청마다 새 루트 스팬을 만들고 traceparent가 없는 요청은 추출을 건너뛰도록 요청 처리기를 설계할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.observe.manual-tracing",
+      "ops.observe.tracing"
+    ],
+    "related": [
+      "ops.observe.tracing",
+      "mlops.observe.llm-tracing",
+      "mlops.observe.otlp-export"
+    ],
+    "aliases": [
+      "MLflow distributed tracing",
+      "MLflow 분산 트레이싱",
+      "MLflow 트레이스 컨텍스트 전파",
+      "MLflow context propagation",
+      "get_tracing_context_headers_for_http_request",
+      "set_tracing_context_from_http_request_headers"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/tracing/app-instrumentation/distributed-tracing/",
+      "https://www.w3.org/TR/trace-context/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.track.model-promotion",
+    "title": "환경 사이 모델 승격: 별칭과 copy_model_version",
+    "en": "Promoting Models Across Environments with Aliases and copy_model_version",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "개발·스테이징·운영 환경마다 등록 모델을 따로 두고 검증한 버전을 복사한 뒤 별칭을 옮겨, 서비스 코드를 바꾸지 않고 모델을 올리고 되돌리는 운영법이다.",
+    "objectives": [
+      "지원이 중단된 모델 스테이지 대신 환경별 등록 모델과 별칭·태그로 승격 절차를 설계할 수 있다",
+      "copy_model_version으로 검증한 버전을 운영용 등록 모델에 복사하고 별칭을 옮겨 배포·되돌리기를 할 수 있다",
+      "서비스가 models:/이름@별칭 URI로 모델을 불러올 때 별칭을 옮기면 무엇이 바뀌는지 근거를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.track.experiment-tracking"
+    ],
+    "related": [
+      "mlops.track.model-registry",
+      "mlops.prompt.registry",
+      "mlops.prompt.alias"
+    ],
+    "aliases": [
+      "MLflow 모델 승격",
+      "MLflow model promotion",
+      "모델 환경 승격",
+      "MLflow champion alias",
+      "set_registered_model_alias"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/ml/model-registry/workflow/",
+      "https://mlflow.org/docs/latest/ml/model-registry/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.guardrail.gateway-guardrails",
+    "title": "AI 게이트웨이 가드레일 설계: 요청 전·응답 후 검사",
+    "en": "Designing MLflow AI Gateway Guardrails",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "MLflow AI 게이트웨이 엔드포인트에 LLM 심판 기반 가드레일을 붙여, 요청 전과 응답 후 어디서 무엇을 막거나 가릴지 정하는 운영 설계다.",
+    "objectives": [
+      "개인정보 검사는 요청 전, 유해 응답 검사는 응답 후처럼 가드레일을 둘 단계를 골라 근거를 말할 수 있다",
+      "차단과 정리(Sanitize) 중 무엇을 쓸지 정하고 차단 시 돌아오는 HTTP 400 응답으로 막힌 원인을 찾을 수 있다",
+      "가드레일마다 심판 모델 호출이 더해지는 비용을 따져 더 싸고 빠른 심판 엔드포인트를 고를 수 있다",
+      "스트리밍 요청에는 응답 후 가드레일이 돌지 않는다는 한계를 알고 앱 쪽 검사를 더할지 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.ai-gateway-quickstart",
+      "mlops.guardrail.input-output-guardrails"
+    ],
+    "related": [
+      "mlops.guardrail.input-output-guardrails",
+      "mlops.eval.guidelines-judge"
+    ],
+    "aliases": [
+      "MLflow AI Gateway guardrails",
+      "AI 게이트웨이 가드레일",
+      "게이트웨이 가드레일",
+      "MLflow gateway guardrail"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/governance/ai-gateway/guardrails/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.ray-serve-fault-tolerance",
+    "title": "Ray Serve 장애 복구: 레플리카 헬스 체크와 헤드 노드 장애",
+    "en": "Ray Serve Fault Tolerance: Replica Health Checks and Head Node Failure",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "Ray Serve가 레플리카·워커 노드·헤드 노드 장애에서 어떻게 복구되는지 알고, 헬스 체크와 GCS 장애 허용을 설정해 모델 서비스가 멈추지 않게 하는 운영법이다.",
+    "objectives": [
+      "check_health 메서드와 헬스 체크 주기·시간 제한을 설정해 고장 난 모델 레플리카가 다시 시작되게 할 수 있다",
+      "레플리카 생성자가 계속 실패할 때 재시도 한도를 보고 배포가 멈춘 원인을 찾을 수 있다",
+      "헤드 노드 장애가 클러스터 전체를 멈추는 이유를 알고 외부 Redis로 GCS 장애 허용을 켤지 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.ray-serve-load-shedding",
+      "be.error.health-check"
+    ],
+    "related": [
+      "be.error.health-check",
+      "mlops.serve.ray-serve-autoscaling"
+    ],
+    "aliases": [
+      "Ray Serve fault tolerance",
+      "Ray Serve 장애 복구",
+      "Ray Serve 장애 허용",
+      "Ray Serve 헬스 체크"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/serve/production-guide/fault-tolerance.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "mlops.serve.kserve-canary-rollout",
     "title": "KServe로 모델 카나리 출시하고 되돌리기",
     "en": "Canary Rollout and Rollback with KServe",
@@ -7557,6 +7700,30 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.observe.traceparent-header",
+    "title": "traceparent 헤더(W3C Trace Context)",
+    "en": "traceparent Header (W3C Trace Context)",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "트레이스 ID·부모 스팬 ID·표본 여부 플래그를 담아 다음 서비스가 같은 트레이스에 스팬을 이어 붙이게 하는 W3C 표준 HTTP 헤더다.",
+    "parent": "mlops.observe.distributed-trace-propagation",
+    "related": [
+      "ops.observe.tracing"
+    ],
+    "aliases": [
+      "traceparent",
+      "W3C traceparent",
+      "W3C Trace Context",
+      "트레이스 컨텍스트 헤더",
+      "tracestate"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/trace-context/"
+    ]
   },
   {
     "id": "mlops.prompt.alias",
@@ -8102,6 +8269,165 @@
     ],
     "refs": [
       "https://docs.ray.io/en/latest/serve/advanced-guides/advanced-autoscaling.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.track.copy-model-version",
+    "title": "copy_model_version(등록 모델 사이 버전 복사)",
+    "en": "copy_model_version",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "한 등록 모델의 버전을 다른 등록 모델의 새 버전으로 복사하는 MLflow API로, 스테이징에서 검증한 모델을 운영용 모델로 옮길 때 쓴다.",
+    "parent": "mlops.track.model-promotion",
+    "aliases": [
+      "MLflow copy_model_version",
+      "MlflowClient.copy_model_version",
+      "MLflow 모델 버전 복사",
+      "MLflow Promote model 버튼"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/ml/model-registry/workflow/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.track.model-stages-deprecated",
+    "title": "모델 스테이지(Staging·Production)와 지원 중단",
+    "en": "Deprecated MLflow Model Stages",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "모델 버전에 None·Staging·Production·Archived 단계를 붙이던 옛 MLflow 방식으로, 2.9.0부터 지원이 중단되어 별칭과 태그로 옮겨 가야 한다.",
+    "parent": "mlops.track.model-promotion",
+    "aliases": [
+      "MLflow model stage",
+      "MLflow 모델 스테이지",
+      "transition_model_version_stage",
+      "MLflow Staging Production stage"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/ml/model-registry/workflow/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.guardrail.pre-post-llm-stage",
+    "title": "Pre-LLM·Post-LLM 가드레일 단계",
+    "en": "Pre-LLM and Post-LLM Guardrail Stages",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "MLflow 게이트웨이 가드레일이 모델 호출 전 요청을 볼지, 호출 뒤 응답을 볼지 정하는 단계로, 같은 단계 안에서는 표 순서대로 돌고 하나가 막으면 나머지는 건너뛴다.",
+    "parent": "mlops.guardrail.gateway-guardrails",
+    "aliases": [
+      "Pre-LLM guardrail",
+      "Post-LLM guardrail",
+      "요청 전 가드레일",
+      "응답 후 가드레일"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/governance/ai-gateway/guardrails/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.guardrail.block-sanitize-action",
+    "title": "Block과 Sanitize(가드레일 처리 방식)",
+    "en": "Block and Sanitize Guardrail Actions",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "가드레일이 걸린 요청이나 응답을 HTTP 400으로 거절할지, 문제 부분을 가린 뒤 그대로 흘려보낼지 고르는 MLflow 게이트웨이 설정이다.",
+    "parent": "mlops.guardrail.gateway-guardrails",
+    "aliases": [
+      "MLflow guardrail Block",
+      "MLflow guardrail Sanitize",
+      "MLflow 가드레일 차단",
+      "가드레일 마스킹"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/governance/ai-gateway/guardrails/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.ray-check-health",
+    "title": "Ray Serve check_health(레플리카 상태 검사)",
+    "en": "Ray Serve check_health and health_check_period_s",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Ray Serve 배포 클래스에 두는 사용자 정의 상태 검사 메서드로, 예외를 던지면 컨트롤러가 그 레플리카를 죽이고 새로 띄우며 주기와 시간 제한은 배포 옵션으로 정한다.",
+    "parent": "mlops.serve.ray-serve-fault-tolerance",
+    "aliases": [
+      "Ray Serve check_health",
+      "health_check_period_s",
+      "health_check_timeout_s",
+      "Ray Serve 레플리카 헬스 체크"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/serve/production-guide/fault-tolerance.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.ray-gcs-fault-tolerance",
+    "title": "GCS 장애 허용(Ray 헤드 노드 복구)",
+    "en": "Ray GCS Fault Tolerance",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Ray 클러스터 상태를 외부 Redis에 두어 헤드 노드가 죽어도 워커가 계속 요청을 처리하게 하는 KubeRay 설정으로, 복구 전까지 배포 변경은 할 수 없다.",
+    "parent": "mlops.serve.ray-serve-fault-tolerance",
+    "aliases": [
+      "Ray GCS fault tolerance",
+      "GCS FT",
+      "ray.io/ft-enabled",
+      "RAY_REDIS_ADDRESS",
+      "Ray 헤드 노드 장애"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/serve/production-guide/fault-tolerance.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.vllm-request-phase-latency",
+    "title": "vLLM 요청 단계별 지연 지표(대기·프리필·디코드 시간)",
+    "en": "vLLM Request Phase Latency Metrics",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "vLLM이 /metrics로 내보내는 요청 대기 시간·프리필 시간·디코드 시간 히스토그램으로, 느린 요청이 줄 서기 때문인지 프롬프트 처리나 토큰 생성 때문인지 나눠 본다.",
+    "parent": "mlops.serve.vllm-latency-tuning",
+    "related": [
+      "llm.internals.ttft-tpot"
+    ],
+    "aliases": [
+      "vllm:request_queue_time_seconds",
+      "vllm:request_prefill_time_seconds",
+      "vllm:request_decode_time_seconds",
+      "vLLM 단계별 지연",
+      "vLLM /metrics"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/usage/metrics/"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"

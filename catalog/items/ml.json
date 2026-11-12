@@ -6809,6 +6809,110 @@
     ]
   },
   {
+    "id": "ml.unsupervised.outlier-novelty-detection",
+    "title": "이상치 탐지와 신규성 탐지: 추정기 고르기",
+    "en": "Outlier Detection vs Novelty Detection",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "학습 데이터에 이상한 값이 섞였는지에 따라 이상치 탐지와 신규성 탐지를 나누고, IsolationForest·LOF·One-Class SVM 가운데 데이터에 맞는 추정기를 고른다.",
+    "objectives": [
+      "학습 데이터가 깨끗한지 오염됐는지를 근거로 이상치 탐지와 신규성 탐지 중 하나를 고를 수 있다",
+      "데이터 크기와 분포 가정에 따라 IsolationForest·LOF·One-Class SVM·EllipticEnvelope 중 알맞은 것을 고르고 이유를 말할 수 있다",
+      "contamination 값이 판정 기준점을 어떻게 정하는지 설명하고 이상치 비율이 예상과 다를 때 원인을 찾을 수 있다",
+      "LOF를 novelty=True로 만든 뒤 학습 데이터에 predict를 부르면 결과가 틀리는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.unsupervised.kmeans-clustering"
+    ],
+    "related": [
+      "ml.basics.anomaly-detection",
+      "ml.data.outlier"
+    ],
+    "aliases": [
+      "신규성 탐지",
+      "novelty detection",
+      "outlier detection",
+      "비지도 이상 탐지",
+      "scikit-learn 이상치 탐지"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/outlier_detection.html"
+    ]
+  },
+  {
+    "id": "ml.nn.training-throughput-tuning",
+    "title": "PyTorch 학습 속도 병목 찾기: 데이터 공급과 GPU 동기화",
+    "en": "PyTorch Training Performance Tuning",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "GPU가 놀며 학습이 느릴 때 DataLoader 워커 수·메모리 고정·불필요한 CPU-GPU 동기화를 점검해 병목을 찾아 고치는 방법이다.",
+    "objectives": [
+      "num_workers가 0일 때 데이터 읽기가 학습과 겹치지 않아 느려지는 이유를 설명하고 값을 조정할 수 있다",
+      "GPU 학습에서 pin_memory를 켜는 이유를 말할 수 있다",
+      ".item()·print·.cpu()처럼 CPU-GPU 동기화를 일으키는 코드를 학습 루프에서 찾아낼 수 있다",
+      "워커 수를 늘린 뒤 CPU 메모리가 계속 늘어날 때 데이터셋 안의 파이썬 객체에서 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "ml.nn.dataset-dataloader",
+      "ml.nn.training-loop"
+    ],
+    "related": [
+      "ml.nn.cuda-out-of-memory",
+      "ml.nn.mixed-precision-training"
+    ],
+    "aliases": [
+      "PyTorch 성능 튜닝",
+      "PyTorch tuning guide",
+      "학습 속도 개선",
+      "DataLoader 병목",
+      "GPU 활용률 개선"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/tutorials/recipes/recipes/tuning_guide.html",
+      "https://docs.pytorch.org/docs/2.15/data.html"
+    ]
+  },
+  {
+    "id": "ml.nn.distributed-data-parallel",
+    "title": "여러 GPU로 학습하기: DistributedDataParallel",
+    "en": "Multi-GPU Training with DistributedDataParallel",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "GPU마다 프로세스 하나를 두고 기울기를 모아 맞추는 DDP로 학습을 나누고, DataParallel 대신 DDP를 쓰는 이유와 멈춤·체크포인트 문제를 다룬다.",
+    "objectives": [
+      "DataParallel보다 DistributedDataParallel이 한 머신에서도 빠른 이유를 말하고 둘 중 하나를 고를 수 있다",
+      "프로세스 사이 작업량이 어긋나 동기화 지점에서 시간 초과가 날 때 원인을 찾을 수 있다",
+      "랭크 0에서만 체크포인트를 저장하고 barrier와 map_location으로 안전하게 불러오는 순서를 설명할 수 있다",
+      "torchrun으로 여러 노드에 학습을 띄울 때 맞춰야 할 설정을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.nn.training-loop",
+      "ml.nn.save-load-model"
+    ],
+    "related": [
+      "ml.nn.training-throughput-tuning",
+      "mlops.serve.vllm-parallelism"
+    ],
+    "aliases": [
+      "DDP",
+      "PyTorch DDP",
+      "분산 데이터 병렬",
+      "멀티 GPU 학습",
+      "multi-GPU training",
+      "torchrun"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/tutorials/intermediate/ddp_tutorial.html",
+      "https://docs.pytorch.org/docs/2.15/notes/ddp.html"
+    ]
+  },
+  {
     "id": "ml.eval.partial-dependence-ice",
     "title": "부분 의존 그래프와 ICE로 모델 동작 점검",
     "en": "Partial Dependence and ICE Plots",
@@ -6871,6 +6975,39 @@
     "refs": [
       "https://scikit-learn.org/stable/auto_examples/model_selection/plot_nested_cross_validation_iris.html",
       "https://scikit-learn.org/stable/modules/grid_search.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.multiclass-strategies",
+    "title": "다중 분류 전략 고르기: 일대다와 일대일",
+    "en": "Multiclass Strategies: One-vs-Rest and One-vs-One",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "이진 분류기를 여러 개 엮어 클래스가 셋 이상인 문제를 푸는 일대다·일대일·출력 코드 전략의 차이와, 추정기가 이미 쓰는 전략을 보고 고르는 법이다.",
+    "objectives": [
+      "클래스 수와 학습 데이터 크기를 근거로 OneVsRestClassifier와 OneVsOneClassifier 중 하나를 고를 수 있다",
+      "SVC와 LinearSVC가 기본으로 쓰는 다중 분류 전략이 다르다는 것을 알고 결과 차이를 설명할 수 있다",
+      "다중 분류·다중 레이블·다중 출력 문제를 구분하고 각각에 맞는 scikit-learn 도구를 고를 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.svm-classification"
+    ],
+    "related": [
+      "ml.nn.multiclass-softmax",
+      "ml.nn.multi-label-classification"
+    ],
+    "aliases": [
+      "일대다 분류",
+      "one-vs-rest",
+      "OvR",
+      "일대일 분류",
+      "one-vs-one",
+      "OvO"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/multiclass.html"
     ]
   },
   {
@@ -7257,6 +7394,103 @@
     "refs": [
       "https://docs.pytorch.org/docs/2.15/amp.html",
       "https://docs.pytorch.org/docs/2.15/notes/amp_examples.html"
+    ]
+  },
+  {
+    "id": "ml.eval.preprocessing-leakage",
+    "title": "전처리 데이터 누수",
+    "en": "Data Leakage in Preprocessing",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "모델 평가",
+    "summary": "스케일러나 특성 선택기를 나누기 전 전체 데이터에 fit해 테스트 데이터의 정보가 학습에 섞이고, 교차 검증 점수까지 부풀려지는 실수다.",
+    "parent": "ml.eval.data-splitting-cv",
+    "related": [
+      "ml.supervised.sklearn-pipeline",
+      "mlops.basics.label-leakage"
+    ],
+    "aliases": [
+      "전처리 누수",
+      "preprocessing leakage",
+      "fit_transform 누수",
+      "테스트 데이터 누수",
+      "특성 선택 누수"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/common_pitfalls.html"
+    ]
+  },
+  {
+    "id": "ml.unsupervised.isolation-forest",
+    "title": "IsolationForest(격리 숲)",
+    "en": "Isolation Forest",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "특성과 분할값을 무작위로 골라 데이터를 쪼갤 때 짧은 경로 만에 혼자 떨어지는 점을 이상치로 보는 트리 앙상블 추정기다.",
+    "parent": "ml.unsupervised.outlier-novelty-detection",
+    "related": [
+      "ml.unsupervised.local-outlier-factor"
+    ],
+    "aliases": [
+      "격리 숲",
+      "아이솔레이션 포레스트",
+      "iForest",
+      "sklearn IsolationForest"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/outlier_detection.html",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html"
+    ]
+  },
+  {
+    "id": "ml.nn.pin-memory",
+    "title": "pin_memory(고정 메모리)",
+    "en": "Pinned Memory (pin_memory)",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "DataLoader가 꺼낸 텐서를 페이지 고정 메모리에 두어 CPU에서 GPU로의 복사를 더 빠르게, 비동기로 할 수 있게 하는 설정이다.",
+    "parent": "ml.nn.training-throughput-tuning",
+    "related": [
+      "ml.nn.tensor-device"
+    ],
+    "aliases": [
+      "pin_memory=True",
+      "페이지 고정 메모리",
+      "pinned memory",
+      "메모리 고정",
+      "page-locked memory"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/data.html",
+      "https://docs.pytorch.org/tutorials/recipes/recipes/tuning_guide.html"
+    ]
+  },
+  {
+    "id": "ml.nn.distributed-sampler-set-epoch",
+    "title": "DistributedSampler와 set_epoch",
+    "en": "DistributedSampler and set_epoch",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "분산 학습에서 프로세스마다 데이터의 다른 몫을 나눠 주는 샘플러로, 에폭마다 set_epoch를 부르지 않으면 매번 같은 순서로 섞인다.",
+    "parent": "ml.nn.distributed-data-parallel",
+    "related": [
+      "ml.nn.dataset-dataloader"
+    ],
+    "aliases": [
+      "DistributedSampler",
+      "sampler.set_epoch",
+      "분산 샘플러",
+      "set_epoch"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/data.html"
     ]
   },
   {
@@ -7697,6 +7931,97 @@
     ],
     "refs": [
       "https://developers.google.com/machine-learning/recommendation/dnn/training"
+    ]
+  },
+  {
+    "id": "ml.unsupervised.local-outlier-factor",
+    "title": "LOF(국소 이상치 계수)",
+    "en": "Local Outlier Factor",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "한 점 주변의 밀도를 가까운 이웃들의 밀도와 견줘 유난히 성긴 점을 이상치로 보는 추정기로, 새 데이터를 판정하려면 novelty=True로 만들어야 한다.",
+    "parent": "ml.unsupervised.outlier-novelty-detection",
+    "related": [
+      "ml.unsupervised.isolation-forest",
+      "ml.supervised.k-nearest-neighbors"
+    ],
+    "aliases": [
+      "LOF",
+      "LocalOutlierFactor",
+      "국소 이상치 계수",
+      "LOF novelty"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/outlier_detection.html",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.LocalOutlierFactor.html"
+    ]
+  },
+  {
+    "id": "ml.nn.cpu-gpu-sync",
+    "title": "CPU-GPU 동기화 지점",
+    "en": "CPU-GPU Synchronization Points",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "GPU 텐서 값을 .item()·print·.cpu()로 꺼내거나 그 값으로 분기할 때 CPU가 GPU 계산이 끝나길 기다리게 되어 학습이 느려지는 지점이다.",
+    "parent": "ml.nn.training-throughput-tuning",
+    "aliases": [
+      "CUDA 동기화",
+      "GPU 동기화",
+      "item() 동기화",
+      "host-device sync"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/tutorials/recipes/recipes/tuning_guide.html"
+    ]
+  },
+  {
+    "id": "ml.nn.ddp-find-unused-parameters",
+    "title": "find_unused_parameters(DDP 미사용 파라미터 찾기)",
+    "en": "DDP find_unused_parameters",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "순전파에서 쓰이지 않은 파라미터를 DDP가 찾아 준비 완료로 표시하게 하는 옵션으로, 켜지 않으면 역전파가 기울기를 기다리며 멈출 수 있고 켜면 탐색 비용이 든다.",
+    "parent": "ml.nn.distributed-data-parallel",
+    "aliases": [
+      "find_unused_parameters=True",
+      "DDP 미사용 파라미터",
+      "unused parameters DDP"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/notes/ddp.html",
+      "https://docs.pytorch.org/docs/2.15/generated/torch.nn.parallel.DistributedDataParallel.html"
+    ]
+  },
+  {
+    "id": "ml.data.feature-hashing",
+    "title": "특성 해싱(해싱 트릭)",
+    "en": "Feature Hashing",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "종류가 아주 많은 범주를 해시값의 나머지로 정해 둔 개수의 칸에 몰아 넣어 차원을 줄이는 인코딩으로, 서로 다른 범주가 같은 칸에 부딪칠 수 있다.",
+    "related": [
+      "ml.data.one-hot-encoding",
+      "ml.nn.embedding-layer",
+      "ml.data.target-encoding-high-cardinality"
+    ],
+    "aliases": [
+      "해싱 트릭",
+      "hashing trick",
+      "feature hashing",
+      "FeatureHasher",
+      "범주 해싱"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/categorical-data/one-hot-encoding",
+      "https://scikit-learn.org/stable/modules/feature_extraction.html#feature-hashing"
     ]
   },
   {

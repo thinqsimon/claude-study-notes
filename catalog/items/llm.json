@@ -7248,6 +7248,141 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "llm.basics.trainer-pipeline-debugging",
+    "title": "Trainer 학습 파이프라인 오류 추적",
+    "en": "Debugging the Trainer Training Pipeline",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "Trainer 학습이 멈추거나 결과가 나쁠 때 데이터·배치 묶기·모델 계산·최적화·평가 단계를 차례로 떼어 보며 원인을 좁히는 방법이다.",
+    "objectives": [
+      "엉뚱해 보이는 오류 메시지가 나올 때 trainer.train_dataset을 직접 꺼내 디코딩해 토큰화하지 않은 데이터를 넘긴 실수를 찾을 수 있다",
+      "배치 안 길이가 달라 나는 오류를 데이터 콜레이터 설정에서 찾아 고칠 수 있다",
+      "읽기 어려운 CUDA 오류와 메모리 부족 오류를 구분해 CPU에서 다시 돌려 볼지 배치 크기를 줄일지 고를 수 있다",
+      "오류 없이 결과만 나쁠 때 한 배치 과적합으로 모델이 과제를 배울 수 있는지 먼저 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.trainer-fine-tune"
+    ],
+    "related": [
+      "llm.basics.compute-metrics",
+      "llm.basics.dynamic-padding"
+    ],
+    "aliases": [
+      "Trainer 디버깅",
+      "Trainer debugging",
+      "학습 파이프라인 디버깅",
+      "debugging the training pipeline",
+      "trainer.train() 오류"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter8/4"
+    ]
+  },
+  {
+    "id": "llm.security.prompt-leak",
+    "title": "프롬프트 유출 줄이기 설계",
+    "en": "Reducing Prompt Leak",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 보안",
+    "summary": "프롬프트에 숨긴 지시나 내부 정보가 답으로 새어 나가는 위험을, 성능을 해치지 않는 선에서 감시·후처리·정보 덜어내기로 줄이는 설계다.",
+    "objectives": [
+      "유출 방지 지시를 늘리면 과제가 복잡해져 답 품질이 떨어질 수 있다는 손익을 들어 감시부터 할지 정할 수 있다",
+      "정규식·키워드 필터와 LLM 검사기 중 어떤 출력 후처리로 유출을 잡을지 고를 수 있다",
+      "과제에 필요 없는 내부 정보를 프롬프트에서 빼야 하는 까닭을 말할 수 있다",
+      "프롬프트와 출력을 주기적으로 감사하는 절차를 세울 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.message-roles",
+      "llm.security.prompt-injection"
+    ],
+    "related": [
+      "ax.security.system-prompt-leakage",
+      "llm.security.prompt-injection",
+      "llm.security.harmlessness-screen"
+    ],
+    "aliases": [
+      "프롬프트 유출 방지",
+      "prompt leak prevention",
+      "reduce prompt leak",
+      "유출 방지 프롬프트",
+      "leak-resistant prompt"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-prompt-leak"
+    ]
+  },
+  {
+    "id": "llm.tools.tool-result-errors",
+    "title": "도구 결과 돌려주기 오류와 실패 알리기",
+    "en": "Handling Tool Results and Tool Errors",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "도구 호출",
+    "summary": "도구 실행이 실패하거나 결과 메시지 형식이 어긋날 때 is_error로 실패를 알리고 tool_result 배치 규칙을 지켜 400 오류와 헛된 재시도를 막는 방법이다.",
+    "objectives": [
+      "도구 실행 실패를 예외로 끝내지 않고 is_error 결과로 돌려줄 때와 그 오류 문구에 무엇을 적을지 고를 수 있다",
+      "tool_use ids가 tool_result 없이 발견되었다는 400 오류의 원인을 결과 블록 위치와 순서에서 찾아 고칠 수 있다",
+      "필수 인자가 빠진 도구 호출을 오류 결과로 되돌려 재시도하게 할지 도구 설명이나 strict 설정을 고칠지 판단할 수 있다",
+      "외부에서 온 도구 결과를 시스템 프롬프트가 아니라 tool_result 안에 두어야 하는 까닭을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.tools.function-calling"
+    ],
+    "related": [
+      "llm.tools.tool-loop-stop-handling",
+      "llm.tools.strict-tool-use",
+      "llm.tools.empty-end-turn"
+    ],
+    "aliases": [
+      "도구 오류 처리",
+      "tool error handling",
+      "tool_result 형식 오류",
+      "handle tool calls",
+      "도구 결과 400 오류"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls"
+    ]
+  },
+  {
+    "id": "llm.basics.hub-model-load-errors",
+    "title": "Hub 모델 불러오기와 추론 오류 읽기",
+    "en": "Debugging Hub Model Loading and Pipeline Errors",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "pipeline이나 모델 호출이 실패할 때 트레이스백 마지막 줄부터 읽고 저장소 이름·빠진 설정 파일·입력 자료형을 차례로 확인해 원인을 찾는다.",
+    "objectives": [
+      "설정 파일을 불러올 수 없다는 OSError가 날 때 모델 이름 오타와 저장소에 config.json이 없는 경우를 구분할 수 있다",
+      "저장소 파일 목록을 확인해 빠진 파일을 찾고, 기반 체크포인트 설정으로 채울 때의 위험을 말할 수 있다",
+      "모델에 입력을 넣을 때 나는 AttributeError를 토크나이저가 텐서 대신 리스트를 돌려준 데서 찾아 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.transformers-pipeline",
+      "llm.basics.share-on-hub"
+    ],
+    "related": [
+      "llm.basics.model-checkpoint",
+      "be.error.read-traceback"
+    ],
+    "aliases": [
+      "from_pretrained 오류",
+      "pipeline 오류 디버깅",
+      "Hugging Face pipeline error",
+      "config.json 없음 오류",
+      "Hub 모델 로딩 실패"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter8/2"
+    ]
+  },
+  {
     "id": "llm.api.spend-limit",
     "title": "지출 한도",
     "en": "Spend Limit",
@@ -7580,6 +7715,86 @@
     ],
     "refs": [
       "https://huggingface.co/docs/transformers/llm_tutorial"
+    ]
+  },
+  {
+    "id": "llm.basics.overfit-one-batch",
+    "title": "한 배치 과적합 점검",
+    "en": "Overfitting a Single Batch",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "배치 하나만 반복 학습시켜 거의 완벽히 맞히는지 보고, 모델과 데이터 구성이 과제를 배울 수 있는 상태인지 확인하는 점검이다.",
+    "parent": "llm.basics.trainer-pipeline-debugging",
+    "aliases": [
+      "한 배치 과적합",
+      "overfit one batch",
+      "overfit a single batch",
+      "단일 배치 과적합 테스트"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter8/4"
+    ]
+  },
+  {
+    "id": "llm.security.output-leak-filter",
+    "title": "출력 유출 검사(후처리 필터)",
+    "en": "Output Post-processing for Leak Detection",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 보안",
+    "summary": "모델 답을 사용자에게 보내기 전에 정규식·키워드나 별도 LLM 검사로 숨겨야 할 내용이 들어갔는지 걸러 내는 후처리 단계다.",
+    "parent": "llm.security.prompt-leak",
+    "aliases": [
+      "출력 후처리 필터",
+      "유출 키워드 필터",
+      "프롬프트 유출 출력 검사",
+      "prompt leak output filter"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-prompt-leak"
+    ]
+  },
+  {
+    "id": "llm.tools.is-error-result",
+    "title": "is_error 도구 결과(Claude tool_result)",
+    "en": "is_error Tool Result",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "도구 호출",
+    "summary": "도구 실행이 실패했음을 is_error 표시와 함께 오류 내용을 tool_result로 돌려주어 모델이 사용자에게 알리거나 고쳐서 다시 부르게 하는 형식이다.",
+    "parent": "llm.tools.tool-result-errors",
+    "aliases": [
+      "\"is_error\": true",
+      "도구 오류 결과",
+      "Claude tool error result",
+      "tool_result is_error"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls"
+    ]
+  },
+  {
+    "id": "llm.tools.tool-result-ordering",
+    "title": "tool_result 블록 배치 규칙",
+    "en": "tool_result Placement Rules",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "도구 호출",
+    "summary": "도구 결과 메시지는 도구 호출 바로 다음에 와야 하고 그 안에서 tool_result 블록이 글보다 앞서야 하며, 어기면 400 오류가 나는 규칙이다.",
+    "parent": "llm.tools.tool-result-errors",
+    "aliases": [
+      "tool_result 순서",
+      "tool_result ordering",
+      "tool_use ids were found without tool_result blocks",
+      "도구 결과 순서 오류"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls"
     ]
   },
   {
@@ -8147,6 +8362,88 @@
     ],
     "refs": [
       "https://huggingface.co/docs/inference-providers/pricing"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.basics.cuda-error-cpu-repro",
+    "title": "CPU에서 다시 돌려 CUDA 오류 읽기",
+    "en": "Reproducing CUDA Errors on CPU",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "GPU에서 난 알아보기 힘든 CUDA 오류를 같은 입력으로 CPU에서 다시 돌려 라벨 범위 초과 같은 진짜 원인 메시지를 얻는 방법이다.",
+    "parent": "llm.basics.trainer-pipeline-debugging",
+    "aliases": [
+      "CUDA 오류 CPU 재현",
+      "CUBLAS_STATUS_ALLOC_FAILED",
+      "debug CUDA error on CPU",
+      "CUDA error device-side"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter8/4"
+    ]
+  },
+  {
+    "id": "llm.basics.hub-repo-file-list",
+    "title": "Hub 저장소 파일 목록 확인(list_repo_files)",
+    "en": "Listing Hub Repository Files (list_repo_files)",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "huggingface_hub의 list_repo_files로 모델 저장소에 config.json 같은 필요한 파일이 실제로 올라와 있는지 확인하는 방법이다.",
+    "parent": "llm.basics.hub-model-load-errors",
+    "aliases": [
+      "list_repo_files",
+      "Hub 저장소 파일 확인",
+      "huggingface_hub list_repo_files"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter8/2"
+    ]
+  },
+  {
+    "id": "llm.internals.prompt-cache-key",
+    "title": "prompt_cache_key(OpenAI 캐시 키)",
+    "en": "OpenAI prompt_cache_key",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "OpenAI 요청에 붙이는 캐시 키로, GPT-5.6 이전 모델에서는 캐시 적중을 돕는 라우팅에, 이후 모델에서는 고객별 캐시 계산을 나누는 데 쓴다.",
+    "parent": "llm.internals.prompt-caching",
+    "aliases": [
+      "prompt_cache_key",
+      "OpenAI 프롬프트 캐시 키",
+      "OpenAI cache key"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/prompt-caching"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.api.predicted-outputs",
+    "title": "예측 출력(OpenAI Predicted Outputs)",
+    "en": "OpenAI Predicted Outputs",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "답 대부분을 미리 알 때 Chat Completions의 prediction 파라미터로 예상 글을 넘겨 생성을 빠르게 하며, 쓰이지 않은 예측 토큰도 출력 요금이 붙는 기능이다.",
+    "parent": "llm.api.latency-design",
+    "aliases": [
+      "Predicted Outputs",
+      "OpenAI prediction 파라미터",
+      "rejected_prediction_tokens",
+      "OpenAI 예측 출력"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/predicted-outputs"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"

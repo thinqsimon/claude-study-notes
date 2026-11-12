@@ -7245,6 +7245,151 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "ax.coding.claude-md-loading",
+    "title": "큰 저장소의 CLAUDE.md 불러오기 설계와 원인 찾기",
+    "en": "Designing and Debugging CLAUDE.md Loading in Large Repositories",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "상위·하위 폴더 CLAUDE.md, 경로 규칙, import가 언제 읽히는지 알고 모노레포에서 지시가 안 먹히거나 남의 지시가 섞이는 원인을 찾는다.",
+    "objectives": [
+      "시작할 때 읽히는 상위 폴더 CLAUDE.md와 파일을 다룰 때 읽히는 하위 폴더 CLAUDE.md·경로 규칙의 차이로 지시가 빠진 이유를 설명할 수 있다",
+      "모노레포에서 다른 팀의 CLAUDE.md를 claudeMdExcludes로 빼고, 조직 관리 CLAUDE.md는 뺄 수 없다는 점을 고려해 배치를 정할 수 있다",
+      "/context all의 Memory files 목록과 InstructionsLoaded 훅으로 어떤 지시 파일이 언제 왜 읽혔는지 확인할 수 있다",
+      "/compact 뒤 사라진 지시가 대화에만 있었는지, 아직 다시 읽히지 않은 하위 파일에 있었는지 가려낼 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.claude-md"
+    ],
+    "related": [
+      "ax.coding.rules-dir",
+      "ax.coding.claude-code-context-window"
+    ],
+    "aliases": [
+      "CLAUDE.md 안 읽힘",
+      "CLAUDE.md 로딩 순서",
+      "모노레포 CLAUDE.md",
+      "CLAUDE.md loading",
+      "nested CLAUDE.md"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/memory"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.coding.sandbox-troubleshooting",
+    "title": "Claude Code 샌드박스 설정과 막힌 명령 원인 찾기",
+    "en": "Configuring and Troubleshooting the Claude Code Sandbox",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "Bash 샌드박스를 켠 뒤 docker·git·gh 같은 명령이 실패하는 이유를 찾고, 쓰기 경로·허용 도메인·제외 명령을 필요한 만큼만 넓힌다.",
+    "objectives": [
+      "자동 허용 모드와 일반 권한 모드 가운데 어느 쪽을 쓸지 승인 횟수와 위험으로 고를 수 있다",
+      "허용되지 않은 호스트, 프록시를 따르지 않는 도구, 샌드박스와 맞지 않는 도구 가운데 무엇 때문에 명령이 실패했는지 가려낼 수 있다",
+      "allowWrite·allowedDomains·excludedCommands 가운데 가장 좁은 설정으로 막힌 명령을 풀 수 있다",
+      "샌드박스 밖 재시도를 승인 대상으로 둘지 끌지, 샌드박스가 없으면 시작을 멈출지 정할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.permission-rules",
+      "ax.coding.permission-rule-debugging"
+    ],
+    "related": [
+      "ax.coding.sandbox-internals",
+      "ax.coding.devcontainer"
+    ],
+    "aliases": [
+      "Claude Code 샌드박스 설정",
+      "/sandbox",
+      "Claude Code 샌드박스 오류",
+      "Claude Code sandbox settings",
+      "Sandbox is required"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/sandboxing"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.coding.codex-sandbox-approvals",
+    "title": "Codex 샌드박스 모드와 승인 정책 조합 고르기",
+    "en": "Choosing Codex Sandbox Modes and Approval Policies",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "Codex의 read-only·workspace-write·danger-full-access 샌드박스와 on-request·never 승인 정책을 작업과 환경에 맞게 짝지어 고른다.",
+    "objectives": [
+      "대화형 작업, 읽기만 하는 탐색, 사람이 없는 CI에 맞는 샌드박스 모드와 승인 정책 조합을 근거와 함께 고를 수 있다",
+      "workspace-write에서 네트워크가 기본으로 꺼져 있다는 점과 켤 때의 도메인 정책을 알고 접속 실패 원인을 찾을 수 있다",
+      "danger-full-access나 승인·샌드박스 우회 플래그가 믿을 수 없는 저장소에서 위험한 이유를 설명할 수 있다",
+      "에이전트에 맡기기 전 깨끗한 브랜치와 잦은 커밋으로 되돌릴 길을 마련할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.basics.coding-agent-safeguards"
+    ],
+    "related": [
+      "ax.coding.permission-mode",
+      "ax.coding.sandbox-troubleshooting"
+    ],
+    "aliases": [
+      "Codex 샌드박스",
+      "Codex 승인 정책",
+      "approval_policy",
+      "sandbox_mode",
+      "workspace-write",
+      "Codex --yolo"
+    ],
+    "refs": [
+      "https://learn.chatgpt.com/docs/agent-approvals-security"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.governance.post-deployment-ai-management",
+    "title": "AI 기능 배포 후 감시·중지·사고 알림 계획",
+    "en": "Post-Deployment Management of AI Features",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "NIST AI RMF의 MANAGE 기능을 따라 배포한 AI 기능의 위험 대응, 중지·대체 장치, 배포 후 감시, 사고 알림을 미리 계획한다.",
+    "objectives": [
+      "우선순위가 높은 AI 위험마다 완화·이전·회피·수용 가운데 대응을 골라 문서로 남길 수 있다",
+      "의도와 다르게 동작하는 AI 기능을 대체하거나 끄는 장치와 그 책임자를 정할 수 있다",
+      "사용자 이의 제기·판단 뒤집기·사고 대응·변경 관리를 담은 배포 후 감시 계획을 세울 수 있다",
+      "외부 모델·서비스에서 오는 위험을 정기적으로 점검하는 항목을 정할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.governance.ai-risk-framing",
+      "ax.governance.genai-profile"
+    ],
+    "related": [
+      "ax.governance.ai-incident",
+      "ax.governance.ai-stop-button",
+      "ax.governance.residual-risk"
+    ],
+    "aliases": [
+      "AI RMF MANAGE",
+      "AI 위험 대응 계획",
+      "AI 배포 후 감시",
+      "AI 사고 대응 계획",
+      "post-deployment monitoring"
+    ],
+    "refs": [
+      "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+      "https://www.nist.gov/itl/ai-risk-management-framework"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "ax.coding.subagent",
     "title": "하위 에이전트",
     "en": "Subagent",
@@ -7690,6 +7835,57 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "ax.coding.nested-claude-md-lazy-load",
+    "title": "하위 폴더 CLAUDE.md 지연 로드",
+    "en": "On-Demand Loading of Nested CLAUDE.md",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "작업 폴더 아래 하위 폴더의 CLAUDE.md는 시작할 때가 아니라 Claude가 그 폴더의 파일을 다룰 때 읽히며, 길면 앞부분만 들어간다.",
+    "parent": "ax.coding.claude-md-loading",
+    "related": [
+      "ax.coding.rules-dir"
+    ],
+    "aliases": [
+      "하위 CLAUDE.md",
+      "중첩 CLAUDE.md",
+      "CLAUDE.md 지연 로딩",
+      "lazy-loaded CLAUDE.md"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/memory"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.coding.sandbox-unsandboxed-retry",
+    "title": "샌드박스 밖 재시도(dangerouslyDisableSandbox)",
+    "en": "Unsandboxed Retry Escape Hatch",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "샌드박스 때문에 실패한 명령을 Claude가 샌드박스 없이 다시 실행하려는 길로, 권한 모드에 따라 승인·분류기·거부가 갈리며 설정으로 끌 수 있다.",
+    "parent": "ax.coding.sandbox-troubleshooting",
+    "related": [
+      "ax.coding.permission-mode",
+      "ax.coding.auto-mode-classifier"
+    ],
+    "aliases": [
+      "dangerouslyDisableSandbox",
+      "allowUnsandboxedCommands",
+      "샌드박스 해제 재시도",
+      "unsandboxed retry"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/sandboxing"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "ax.coding.hook-event",
     "title": "훅 이벤트와 매처",
     "en": "Hook Events and Matchers",
@@ -8092,6 +8288,152 @@
     ],
     "refs": [
       "https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/customize-the-agent-environment"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.coding.claude-md-excludes",
+    "title": "CLAUDE.md 제외 설정(claudeMdExcludes)",
+    "en": "claudeMdExcludes Setting",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "모노레포에서 관련 없는 CLAUDE.md를 절대 경로 glob 패턴으로 골라 읽지 않게 하는 Claude Code 설정이다.",
+    "parent": "ax.coding.claude-md-loading",
+    "related": [
+      "ax.coding.managed-settings"
+    ],
+    "aliases": [
+      "claudeMdExcludes",
+      "CLAUDE.md 제외",
+      "CLAUDE.md 빼기"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/memory"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.coding.instructions-loaded-hook",
+    "title": "InstructionsLoaded 훅",
+    "en": "InstructionsLoaded Hook",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "CLAUDE.md나 규칙 파일이 컨텍스트에 들어갈 때마다 실행되어 어떤 지시 파일이 언제 왜 읽혔는지 기록하게 해 주는 관찰용 훅 이벤트다.",
+    "parent": "ax.coding.claude-md-loading",
+    "related": [
+      "ax.coding.hook-event"
+    ],
+    "aliases": [
+      "InstructionsLoaded",
+      "지시 파일 로드 훅",
+      "CLAUDE.md 로드 기록"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/hooks",
+      "https://code.claude.com/docs/en/memory"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.coding.claude-md-external-import",
+    "title": "CLAUDE.md 외부 import 승인",
+    "en": "External Import Approval in CLAUDE.md",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "프로젝트 CLAUDE.md의 @경로 import가 작업 폴더 밖을 가리키면 Claude Code가 처음 한 번 승인을 받은 뒤에만 그 파일을 읽는 보호 장치다.",
+    "parent": "ax.coding.claude-md-loading",
+    "related": [
+      "ax.coding.agent-prompt-injection",
+      "ax.coding.workspace-trust"
+    ],
+    "aliases": [
+      "CLAUDE.md 외부 import",
+      "CLAUDE.md external import",
+      "CLAUDE.md @import 승인",
+      "외부 import 승인 창"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/memory"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.coding.sandbox-excluded-commands",
+    "title": "샌드박스 제외 명령(excludedCommands)",
+    "en": "Sandbox excludedCommands",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "docker처럼 샌드박스 안에서 돌지 못하는 명령을 패턴으로 지정해 샌드박스 밖에서 일반 권한 확인을 거쳐 실행되게 하는 Claude Code 설정이다.",
+    "parent": "ax.coding.sandbox-troubleshooting",
+    "related": [
+      "ax.coding.bash-rule-matching"
+    ],
+    "aliases": [
+      "excludedCommands",
+      "샌드박스 제외",
+      "sandbox exclude",
+      "docker 샌드박스 제외"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/sandboxing"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.coding.codex-protected-paths",
+    "title": "Codex 쓰기 가능 영역의 보호 경로",
+    "en": "Codex Protected Paths in Writable Roots",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "Codex workspace-write 모드에서도 .git·.codex·.agents·.aws 같은 폴더와 그 아래는 읽기만 되게 묶어 두는 기본 보호다.",
+    "parent": "ax.coding.codex-sandbox-approvals",
+    "aliases": [
+      "Codex protected paths",
+      "Codex 보호 경로",
+      "Codex .git 쓰기 금지"
+    ],
+    "refs": [
+      "https://learn.chatgpt.com/docs/agent-approvals-security"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.coding.codex-auto-review",
+    "title": "Codex 자동 승인 검토(auto_review)",
+    "en": "Codex Automatic Approval Review",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "Codex의 샌드박스 밖 실행·네트워크 요청 같은 승인 요청을 사람보다 먼저 검토 에이전트가 위험도로 걸러 허용하거나 거부하게 하는 설정이다.",
+    "parent": "ax.coding.codex-sandbox-approvals",
+    "related": [
+      "ax.coding.auto-mode-classifier"
+    ],
+    "aliases": [
+      "approvals_reviewer",
+      "auto_review",
+      "Codex auto-review",
+      "Codex 자동 검토"
+    ],
+    "refs": [
+      "https://learn.chatgpt.com/docs/agent-approvals-security"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
