@@ -6648,6 +6648,111 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "plan.basics.error-prevention-design",
+    "title": "되돌리기·검사·확인으로 중요한 제출 실수 막기",
+    "en": "Error Prevention for Legal, Financial and Data Submissions",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "결제·계약·데이터 삭제처럼 되돌리기 어려운 제출에서 취소 기간, 입력 검사, 제출 전 확인 중 무엇으로 실수를 막을지 고르는 설계다.",
+    "objectives": [
+      "법적 약속·금융 거래·사용자 데이터 변경·시험 답안 제출처럼 이 기준이 걸리는 화면을 흐름에서 찾아낼 수 있다",
+      "되돌리기·입력 검사·제출 전 확인 세 방식 가운데 화면마다 알맞은 것을 골라 근거를 말할 수 있다",
+      "삭제에는 복구나 확인 요청을, 주문에는 검토 화면이나 취소 가능 기간을 두는 식으로 상황별 대책을 설계할 수 있다",
+      "모든 저장에 확인 창을 붙이는 과잉 설계와 큰 손실을 막는 데 필요한 설계를 구분할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.form-error-messages",
+      "plan.basics.question-pages"
+    ],
+    "related": [
+      "plan.basics.check-answers-page",
+      "plan.basics.error-summary"
+    ],
+    "aliases": [
+      "WCAG 3.3.4",
+      "오류 예방 기준",
+      "Error Prevention (Legal, Financial, Data)",
+      "제출 전 확인 설계",
+      "되돌릴 수 있는 제출"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/WCAG22/Understanding/error-prevention-legal-financial-data.html"
+    ]
+  },
+  {
+    "id": "plan.basics.consistent-help-navigation",
+    "title": "여러 페이지에 걸친 도움말과 내비게이션 일관성 설계",
+    "en": "Consistent Help and Navigation Across Pages",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "반복되는 메뉴와 연락처·FAQ·챗봇 같은 도움 수단을 페이지 묶음 전체에서 같은 상대 순서에 두어 사용자가 다시 찾기 쉽게 만드는 설계다.",
+    "objectives": [
+      "사람 연락처·연락 수단·셀프 도움말·자동 응답 중 어떤 도움 수단이 일관성 기준에 들어가는지 구분할 수 있다",
+      "화면에 보이는 위치가 아니라 페이지 안의 상대 순서로 일관성을 따진다는 점을 근거로 템플릿 배치를 정할 수 있다",
+      "하위 메뉴 추가나 사용자가 바꾼 확대·방향 설정처럼 순서가 달라져도 되는 경우와 위반이 되는 경우를 가려낼 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.card-sorting",
+      "plan.basics.service-scope"
+    ],
+    "related": [
+      "plan.basics.label-in-name"
+    ],
+    "aliases": [
+      "WCAG 3.2.6",
+      "WCAG 3.2.3",
+      "일관된 도움말",
+      "Consistent Help",
+      "Consistent Navigation",
+      "일관된 내비게이션"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/WCAG22/Understanding/consistent-help.html",
+      "https://www.w3.org/WAI/WCAG22/Understanding/consistent-navigation.html"
+    ]
+  },
+  {
+    "id": "plan.figma.component-api-design",
+    "title": "Figma 컴포넌트 유연성 설계: 슬롯·인스턴스 교체·변형 고르기",
+    "en": "Choosing Between Slots, Instance Swap and Variants in Figma",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "컴포넌트 안에서 바꿀 수 있는 부분을 변형·인스턴스 교체·슬롯 중 무엇으로 열지 통제와 자유의 손익으로 정해 분리(detach) 없이 업데이트를 받게 하는 설계다.",
+    "objectives": [
+      "상태·크기는 변형, 엄격히 한 개만 바꾸는 부분은 인스턴스 교체, 내용이 자유로운 영역은 슬롯으로 나누는 근거를 말할 수 있다",
+      "변형으로 슬롯을 흉내 낸 기존 라이브러리를 슬롯으로 옮길지 판단하고 슬롯 속성 삭제가 인스턴스 내용을 지운다는 위험을 브랜치에서 미리 확인할 수 있다",
+      "선호 인스턴스와 레이어 개수 한도로 슬롯 안 내용을 어느 정도 이끌지 정할 수 있다",
+      "인스턴스가 자주 분리되는 원인을 열린 속성 설계에서 찾아 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.interactive-components",
+      "plan.figma.instance-overrides"
+    ],
+    "related": [
+      "plan.figma.component-properties",
+      "plan.figma.variants",
+      "plan.figma.detach-instance"
+    ],
+    "aliases": [
+      "Figma 슬롯 대 변형",
+      "slots vs variants",
+      "Figma 컴포넌트 속성 설계",
+      "Figma component API"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/38741465279895-The-difference-between-slots-instance-swaps-and-variants",
+      "https://help.figma.com/hc/en-us/articles/38231200344599-Create-and-use-slots-to-build-flexible-components-in-Figma-Design"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "plan.figma.design-token-architecture",
     "title": "디자인 토큰 표준과 별칭 계층 설계",
     "en": "Design Token Standard and Alias Layers",
@@ -6783,6 +6888,40 @@
     ],
     "refs": [
       "https://help.figma.com/hc/en-us/articles/36346281624471-Extend-a-variable-collection"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "plan.figma.library-swap",
+    "title": "Figma 라이브러리 교체로 파일을 새 디자인 시스템으로 옮기기",
+    "en": "Migrating Files with Figma Library Swap",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "파일의 컴포넌트·스타일·변수 연결을 다른 게시 라이브러리의 같은 이름 에셋으로 바꾸고, 맞지 않는 에셋과 오버라이드 손실을 미리 다루는 이전 작업이다.",
+    "objectives": [
+      "이름으로만 짝을 찾는 방식을 근거로 교체 뒤에도 옛 라이브러리에 남은 에셋이 생긴 원인을 찾을 수 있다",
+      "인스턴스의 기본 스타일까지 교체할지 정하는 설정이 오버라이드를 남기는지 잃는지 알고 이전 목적에 맞게 고를 수 있다",
+      "게시가 내려가거나 접근할 수 없는 라이브러리에 묶인 에셋을 찾아 다른 라이브러리로 다시 연결할 수 있다",
+      "실행 취소·되바꾸기·라이브러리 이전 버전 복원 중 무엇으로 되돌릴지 이전 계획에 넣을 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.branch-and-publish",
+      "plan.figma.instance-overrides"
+    ],
+    "related": [
+      "plan.figma.multi-brand-extended-collections"
+    ],
+    "aliases": [
+      "Figma 라이브러리 스왑",
+      "Figma library swap",
+      "Swap libraries Figma",
+      "라이브러리 이전"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/4404856784663-Swap-libraries"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
@@ -7181,6 +7320,100 @@
     ]
   },
   {
+    "id": "plan.basics.consistent-identification",
+    "title": "같은 기능의 일관된 이름(Consistent Identification)",
+    "en": "Consistent Identification",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "여러 페이지에서 같은 기능을 하는 부품은 문맥에 따라 표기가 조금 달라도 같은 기능으로 알아보게 일관되게 식별하라는 WCAG AA 기준이다.",
+    "parent": "plan.basics.consistent-help-navigation",
+    "related": [
+      "plan.basics.label-in-name"
+    ],
+    "aliases": [
+      "WCAG 3.2.4",
+      "일관된 식별",
+      "같은 기능 같은 라벨"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/WCAG22/Understanding/consistent-identification.html"
+    ]
+  },
+  {
+    "id": "plan.figma.slot",
+    "title": "Figma 슬롯(slot)",
+    "en": "Figma Slots",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "메인 컴포넌트 안에 내용을 넣고 배치할 수 있는 빈 영역을 열어, 인스턴스를 분리하지 않고도 내용을 바꾸며 업데이트를 계속 받게 하는 컴포넌트 속성이다.",
+    "parent": "plan.figma.component-api-design",
+    "related": [
+      "plan.figma.detach-instance"
+    ],
+    "aliases": [
+      "Figma slot",
+      "슬롯 속성",
+      "Convert to slot",
+      "Wrap in new slot"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/38231200344599-Create-and-use-slots-to-build-flexible-components-in-Figma-Design"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "plan.figma.dev-mode-annotations",
+    "title": "Dev Mode 주석과 측정 표시",
+    "en": "Annotations and Measurements in Figma Dev Mode",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "레이어에 속성 값·설명·분류를 단 주석과 간격 측정을 남겨 개발자가 디자인 의도를 놓치지 않게 하는 Figma 핸드오프 기능이다.",
+    "parent": "plan.figma.dev-mode-handoff",
+    "aliases": [
+      "Figma 주석",
+      "Figma annotations",
+      "Dev Mode 측정",
+      "Figma measurements"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/20774752502935-Add-measurements-and-annotate-designs"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "plan.figma.dev-mode-compare-changes",
+    "title": "Dev Mode 변경 비교(compare changes)",
+    "en": "Compare Changes in Figma Dev Mode",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "프레임이나 컴포넌트의 이전 버전과 지금을 겹쳐 보고 바뀐 레이어·속성·코드 차이를 확인해 구현할 부분만 골라내는 Dev Mode 기능이다.",
+    "parent": "plan.figma.dev-mode-handoff",
+    "related": [
+      "plan.figma.version-history"
+    ],
+    "aliases": [
+      "Figma 변경 비교",
+      "Figma compare changes",
+      "Dev Mode diff",
+      "디자인 변경 내역 비교"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/15023193382935-Compare-changes-in-Dev-Mode"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "plan.figma.ready-for-dev",
     "title": "Ready for dev 상태",
     "en": "Ready for Dev Status",
@@ -7545,6 +7778,88 @@
     ],
     "refs": [
       "https://help.figma.com/hc/en-us/articles/360040045574-Restrict-copying-and-sharing-on-files"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "plan.basics.error-prevention-all",
+    "title": "모든 제출의 오류 예방(Error Prevention All)",
+    "en": "Error Prevention (All)",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "되돌리기·검사·확인 중 하나를 결제·계약에 그치지 않고 정보를 받는 모든 폼에 적용하라는 WCAG의 AAA 기준이다.",
+    "parent": "plan.basics.error-prevention-design",
+    "aliases": [
+      "WCAG 3.3.6",
+      "전체 오류 예방",
+      "AAA 오류 예방"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/WCAG22/Understanding/error-prevention-all.html"
+    ]
+  },
+  {
+    "id": "plan.figma.preferred-instances",
+    "title": "Figma 선호 인스턴스(preferred instances)",
+    "en": "Figma Preferred Instances",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "인스턴스 교체나 슬롯에서 먼저 보여 줄 컴포넌트 목록을 골라 두어 많은 라이브러리 부품 중 써야 할 것으로 디자이너를 이끄는 설정이다.",
+    "parent": "plan.figma.component-api-design",
+    "aliases": [
+      "Figma preferred values",
+      "Only allow preferred instances"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/5579474826519-Explore-component-properties",
+      "https://help.figma.com/hc/en-us/articles/38231200344599-Create-and-use-slots-to-build-flexible-components-in-Figma-Design"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "plan.figma.expose-nested-instances",
+    "title": "중첩 인스턴스 속성 노출(expose nested instances)",
+    "en": "Exposing Nested Instance Properties in Figma",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "컴포넌트 안에 든 인스턴스의 속성을 바깥 인스턴스 속성 패널에 함께 띄워 깊이 선택하지 않고 고치게 하는 Figma 설정이다.",
+    "parent": "plan.figma.component-api-design",
+    "aliases": [
+      "Figma 중첩 인스턴스",
+      "nested instance properties",
+      "Expose properties from nested instances"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/5579474826519-Explore-component-properties"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "plan.figma.missing-libraries",
+    "title": "Figma 누락된 라이브러리(missing libraries)",
+    "en": "Figma Missing Libraries",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "게시가 내려가거나 폐기되었거나 접근 권한이 없어진 라이브러리에 아직 묶여 있는 파일의 인스턴스·스타일을 찾아 다른 라이브러리로 다시 잇는 Figma 기능이다.",
+    "parent": "plan.figma.library-swap",
+    "aliases": [
+      "Figma missing libraries",
+      "View missing libraries",
+      "끊긴 라이브러리 연결"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/4404856784663-Swap-libraries"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"

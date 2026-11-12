@@ -1,5 +1,5 @@
 {
- "version": "0.68.0",
+ "version": "0.69.0",
  "domains": [
   {
    "prefix": "dev",
@@ -7012,6 +7012,103 @@
    "domain": "dev"
   },
   {
+   "id": "dev.git.attributes-drivers",
+   "title": "gitattributes로 파일별 diff·병합·내보내기 정하기",
+   "en": "Per-Path Behavior with Git Attributes",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "Git",
+   "summary": "파일 경로마다 diff 변환기, 병합 드라이버, 필터, 내보내기 제외를 지정해 Git이 파일을 다루는 방식을 바꾼다.",
+   "objectives": [
+    "바이너리 파일에 textconv 변환기를 걸어 git diff로 바뀐 내용을 읽을 수 있다",
+    "환경마다 다른 설정 파일에 merge=ours를 걸어 병합 때 내 쪽을 유지할 수 있다",
+    "clean·smudge 필터 설정은 저장소에 함께 올라가지 않는다는 점을 알고 필터가 없는 환경에서도 깨지지 않게 설계할 수 있다",
+    "export-ignore로 git archive 결과에서 뺄 경로를 정할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.diff",
+    "dev.git.merge-methods"
+   ],
+   "related": [
+    "dev.git.line-endings"
+   ],
+   "aliases": [
+    ".gitattributes 드라이버",
+    "Git 속성",
+    "git attributes",
+    "export-ignore",
+    "clean smudge 필터"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes",
+    "https://git-scm.com/docs/gitattributes"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.test.xdist-parallel",
+   "title": "pytest-xdist로 테스트 병렬 실행하기",
+   "en": "Parallel Testing with pytest-xdist",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "테스트",
+   "summary": "테스트를 여러 워커 프로세스에 나눠 돌리고, 분배 방식과 공유 자원 처리를 골라 병렬 실행에서만 생기는 실패를 막는다.",
+   "objectives": [
+    "-n auto와 --dist 분배 방식을 골라 비싼 픽스처를 다시 만들지 않게 할 수 있다",
+    "세션 범위 픽스처가 워커마다 한 번씩 돈다는 점을 알고 파일 잠금과 공유 임시 폴더로 한 번만 돌게 만들 수 있다",
+    "worker_id로 워커마다 다른 자원을 쓰게 해 테스트끼리 부딪히는 실패를 없앨 수 있다"
+   ],
+   "prerequisites": [
+    "dev.test.pytest-select",
+    "dev.test.fixture-scope-isolation"
+   ],
+   "aliases": [
+    "pytest-xdist",
+    "xdist",
+    "pytest -n auto",
+    "pytest 병렬 실행",
+    "pytest parallel"
+   ],
+   "refs": [
+    "https://pytest-xdist.readthedocs.io/en/stable/distribution.html",
+    "https://pytest-xdist.readthedocs.io/en/stable/how-to.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.robust.subprocess-timeout",
+   "title": "외부 명령 시간 제한과 프로세스 그룹 정리",
+   "en": "Subprocess Timeouts and Process Group Cleanup",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "견고한 스크립트",
+   "summary": "외부 명령이 멈췄을 때 시간 제한으로 끊고, 남은 자식 프로세스까지 프로세스 그룹 단위로 정리해 스크립트가 걸려 있지 않게 한다.",
+   "objectives": [
+    "run()의 timeout과 Popen.communicate()의 timeout이 자식을 끝내는지 아닌지 구분해 TimeoutExpired를 처리할 수 있다",
+    "파이프를 쓸 때 wait() 대신 communicate()를 써서 출력 버퍼가 차서 멈추는 교착을 피할 수 있다",
+    "start_new_session이나 process_group으로 자식을 새 그룹에 두고 os.killpg로 그룹 전체에 신호를 보낼 수 있다"
+   ],
+   "prerequisites": [
+    "dev.robust.subprocess-run",
+    "cs.os.signals"
+   ],
+   "aliases": [
+    "subprocess timeout",
+    "subprocess 시간 제한",
+    "프로세스 그룹 종료",
+    "process group kill",
+    "멈춘 외부 명령"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/subprocess.html",
+    "https://docs.python.org/3/library/os.html"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.git.large-repo-clone",
    "title": "큰 저장소 가볍게 받기: 얕은·부분 클론과 sparse-checkout",
    "en": "Shallow Clone, Partial Clone, and Sparse Checkout for Large Repositories",
@@ -7173,6 +7270,38 @@
    ],
    "refs": [
     "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "dev"
+  },
+  {
+   "id": "dev.debug.import-time",
+   "title": "파이썬 시작이 느린 원인 찾기: import 시간 재기",
+   "en": "Diagnosing Slow Python Startup with Import Timing",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "디버깅",
+   "summary": "-X importtime으로 모듈마다 import에 걸린 시간을 재고, 무거운 모듈을 늦게 불러올지 손익을 따져 정한다.",
+   "objectives": [
+    "-X importtime 출력에서 자기 시간과 누적 시간을 구분해 느린 import를 찾을 수 있다",
+    "importlib.util.LazyLoader로 import를 늦추면 시작은 빨라지지만 로딩 오류가 엉뚱한 곳에서 난다는 손익을 설명할 수 있다",
+    "Python 3.15의 lazy 키워드와 -X lazy_imports 옵션이 어떤 import를 늦추는지 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.debug.timeit"
+   ],
+   "aliases": [
+    "import 시간 측정",
+    "python 시작 속도",
+    "LazyLoader",
+    "파이썬 지연 import",
+    "Python lazy import"
+   ],
+   "refs": [
+    "https://docs.python.org/3/using/cmdline.html",
+    "https://docs.python.org/3/library/importlib.html"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -7996,6 +8125,179 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.diff-textconv",
+   "title": "diff 변환기(textconv)",
+   "en": "Diff Text Conversion (textconv)",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Git",
+   "summary": "바이너리 파일을 텍스트로 바꾼 뒤 비교하게 해서 git diff가 문서·이미지 정보의 차이를 보여 주게 하는 설정이다.",
+   "parent": "dev.git.attributes-drivers",
+   "aliases": [
+    "textconv",
+    "diff.textconv",
+    "Git diff 드라이버",
+    "바이너리 파일 diff"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.merge-ours-driver",
+   "title": "merge=ours 병합 드라이버",
+   "en": "merge=ours Merge Driver",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Git",
+   "summary": "특정 파일은 병합할 때 충돌 없이 현재 브랜치 내용을 그대로 두도록 .gitattributes와 merge.ours.driver로 정하는 방법이다.",
+   "parent": "dev.git.attributes-drivers",
+   "related": [
+    "dev.git.ours-theirs"
+   ],
+   "aliases": [
+    "merge=ours",
+    "merge.ours.driver",
+    "Git 병합 드라이버",
+    "git merge driver"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.test.xdist-dist-mode",
+   "title": "pytest-xdist 분배 방식(--dist)",
+   "en": "pytest-xdist Distribution Modes",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "테스트",
+   "summary": "load·loadscope·loadfile·loadgroup·worksteal 중 하나를 골라 테스트를 워커에 어떻게 묶어 보낼지 정하는 옵션이다.",
+   "parent": "dev.test.xdist-parallel",
+   "aliases": [
+    "--dist loadscope",
+    "--dist loadgroup",
+    "xdist_group",
+    "xdist worksteal"
+   ],
+   "refs": [
+    "https://pytest-xdist.readthedocs.io/en/stable/distribution.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.test.xdist-worker-id",
+   "title": "xdist worker_id 픽스처",
+   "en": "xdist worker_id Fixture",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "테스트",
+   "summary": "지금 테스트가 도는 워커 이름(gw0 등)을 알려 주는 픽스처로, 병렬이 꺼져 있으면 master를 돌려준다.",
+   "parent": "dev.test.xdist-parallel",
+   "aliases": [
+    "worker_id",
+    "PYTEST_XDIST_WORKER",
+    "xdist 워커 번호"
+   ],
+   "refs": [
+    "https://pytest-xdist.readthedocs.io/en/stable/how-to.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.robust.timeout-expired",
+   "title": "subprocess.TimeoutExpired",
+   "en": "subprocess.TimeoutExpired",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "견고한 스크립트",
+   "summary": "외부 명령이 정한 시간 안에 끝나지 않을 때 나는 예외로, run()은 자식을 끝낸 뒤 던지지만 communicate()는 자식을 그대로 둔다.",
+   "parent": "dev.robust.subprocess-timeout",
+   "related": [
+    "dev.robust.called-process-error"
+   ],
+   "aliases": [
+    "TimeoutExpired",
+    "subprocess 시간 초과 예외",
+    "communicate timeout"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/subprocess.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.robust.start-new-session",
+   "title": "start_new_session과 os.killpg",
+   "en": "start_new_session and os.killpg",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "견고한 스크립트",
+   "summary": "자식 프로세스를 새 세션·프로세스 그룹에서 시작하게 하고, 나중에 그 그룹 전체에 신호를 보내 한꺼번에 끝내는 방법이다.",
+   "parent": "dev.robust.subprocess-timeout",
+   "aliases": [
+    "start_new_session",
+    "subprocess process_group",
+    "os.killpg",
+    "프로세스 그룹 신호"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/subprocess.html",
+    "https://docs.python.org/3/library/os.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.debug.x-importtime",
+   "title": "-X importtime 옵션",
+   "en": "-X importtime Option",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "디버깅",
+   "summary": "파이썬을 실행할 때 모듈마다 import에 걸린 자기 시간과 누적 시간을 표준 오류로 찍어 주는 옵션이다.",
+   "parent": "dev.debug.import-time",
+   "aliases": [
+    "importtime",
+    "PYTHONPROFILEIMPORTTIME",
+    "python -X importtime"
+   ],
+   "refs": [
+    "https://docs.python.org/3/using/cmdline.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.range-diff",
+   "title": "git range-diff",
+   "en": "git range-diff",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Git",
+   "summary": "리베이스 전후처럼 두 버전의 커밋 묶음을 짝지어 어느 커밋이 그대로이고 어느 커밋이 바뀌거나 더해졌는지 보여 주는 명령이다.",
+   "related": [
+    "dev.git.rebase"
+   ],
+   "aliases": [
+    "range-diff",
+    "rebase 전후 비교",
+    "패치 시리즈 비교"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/git-range-diff"
+   ],
    "domain": "dev"
   },
   {
@@ -15163,6 +15465,142 @@
    "domain": "cs"
   },
   {
+   "id": "cs.net.pmtud-black-hole",
+   "title": "경로 MTU 발견과 MTU 블랙홀",
+   "en": "Path MTU Discovery and MTU Black Holes",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "네트워크",
+   "summary": "작은 요청은 되는데 큰 전송만 멈추는 증상을, 경로 MTU 발견이 ICMP 메시지에 기대는 구조로 설명하고 진단하는 주제다.",
+   "objectives": [
+    "DF 비트를 켠 패킷과 라우터의 '단편화 필요' ICMP 응답으로 경로 MTU 추정값을 줄여 가는 과정을 설명할 수 있다",
+    "핑과 작은 패킷은 되는데 큰 쓰기부터 멈추는 증상을 ICMP 차단으로 생긴 블랙홀로 가려낼 수 있다",
+    "ICMP에 기대지 않고 크기를 늘려 가며 탐침하는 PLPMTUD가 블랙홀을 어떻게 피하는지 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.net.tcp-vs-udp"
+   ],
+   "related": [
+    "ops.network.tracepath-hops",
+    "ops.network.tcp-internals",
+    "cs.net.connection-errors"
+   ],
+   "aliases": [
+    "PMTUD",
+    "path MTU discovery",
+    "MTU black hole",
+    "PMTUD 블랙홀",
+    "단편화 필요 ICMP"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc1191.html",
+    "https://www.rfc-editor.org/rfc/rfc2923.html",
+    "https://www.rfc-editor.org/rfc/rfc8899.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.epoll-trigger-modes",
+   "title": "epoll의 레벨 트리거와 엣지 트리거",
+   "en": "epoll Level-Triggered and Edge-Triggered Modes",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "준비된 디스크립터를 상태가 이어지는 동안 계속 알릴지 바뀔 때만 알릴지에 따라, 읽다 만 데이터로 프로그램이 멈추는 버그가 생기는 원리다.",
+   "objectives": [
+    "엣지 트리거에서 데이터를 덜 읽으면 epoll_wait가 다시 깨어나지 않는 원인을 설명하고 고칠 수 있다",
+    "엣지 트리거에는 논블로킹 디스크립터를 쓰고 EAGAIN이 나올 때까지 읽고 쓰는 규칙을 적용할 수 있다",
+    "바쁜 디스크립터 하나가 다른 디스크립터를 굶기는 문제를 준비 목록을 돌아가며 처리하는 방식으로 피할 수 있다",
+    "닫거나 dup·fork한 디스크립터가 관심 목록에 남는 경우를 열린 파일 설명 기준으로 진단할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.net.tcp-message-boundary"
+   ],
+   "related": [
+    "be.async.event-loop-internals",
+    "be.async.blocking-diagnosis",
+    "cs.net.short-read-write"
+   ],
+   "aliases": [
+    "EPOLLET",
+    "epoll edge-triggered",
+    "epoll level-triggered",
+    "epoll 엣지 트리거",
+    "epoll 레벨 트리거"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man7/epoll.7.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dsa.bloom-filter",
+   "title": "블룸 필터: 거짓 양성을 감수하고 메모리 아끼기",
+   "en": "Bloom Filter",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "자료구조",
+   "summary": "여러 해시 함수로 비트 배열 하나에 표시해 큰 집합의 소속을 빠르게 걸러 내되, 없는 원소를 있다고 답할 수 있는 확률적 자료구조다.",
+   "objectives": [
+    "비트 배열과 여러 해시 함수로 소속을 검사하는 원리를 근거로 '있다'는 답에 확인이 더 필요한 이유를 설명할 수 있다",
+    "원하는 거짓 양성률과 예상 원소 수로 필요한 비트 수와 해시 함수 개수가 정해진다는 점을 근거로 집합 대신 블룸 필터를 쓸지 고를 수 있다",
+    "예상 용량보다 많이 넣으면 거짓 양성률이 올라간다는 점을 알고 용량을 넉넉히 잡을지 확장을 둘지 고를 수 있다"
+   ],
+   "prerequisites": [
+    "cs.dsa.hash-table"
+   ],
+   "related": [
+    "dev.git.commit-graph"
+   ],
+   "aliases": [
+    "Bloom filter",
+    "블룸필터",
+    "확률적 소속 검사"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/bloomFilter.html",
+    "https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.tcp-zero-window",
+   "title": "느린 수신자와 TCP 흐름 제어: 수신 창 0",
+   "en": "TCP Flow Control and the Zero Window",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "네트워크",
+   "summary": "받는 쪽 프로그램이 읽지 않아 수신 버퍼가 차면 광고하는 창이 0이 되어 보내는 쪽이 멈추는 흐름 제어의 동작과 그 진단이다.",
+   "objectives": [
+    "수신 버퍼 중 응용이 아직 읽지 않은 몫이 광고하는 창을 줄여 창이 0까지 닫히는 과정을 설명할 수 있다",
+    "창이 0인 동안 보내는 쪽이 탐침을 보내며 연결을 유지한다는 규칙을 근거로 끊김이 아니라 멈춤인 증상을 가려낼 수 있다",
+    "창이 조금씩만 열려 작은 세그먼트만 오가는 어리석은 창 증후군과 보내는 쪽·받는 쪽의 회피 규칙을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.net.tcp-vs-udp"
+   ],
+   "related": [
+    "cs.net.nagle-delayed-ack",
+    "cs.net.tcp-keepalive",
+    "ops.network.tcp-internals"
+   ],
+   "aliases": [
+    "zero window",
+    "TCP 제로 윈도",
+    "수신 창 0",
+    "TCP flow control",
+    "TCP 흐름 제어"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9293.html"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.dsa.hash-randomization",
    "title": "해시 무작위화",
    "en": "Hash Randomization",
@@ -16034,6 +16472,173 @@
    ],
    "refs": [
     "https://man7.org/linux/man-pages/man7/signal.7.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.mtu",
+   "title": "MTU(최대 전송 단위)",
+   "en": "Maximum Transmission Unit",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "네트워크",
+   "summary": "한 링크가 쪼개지 않고 한 번에 실어 나를 수 있는 IP 패킷의 최대 크기로, 경로 위 가장 작은 값이 경로 MTU가 된다.",
+   "parent": "cs.net.pmtud-black-hole",
+   "aliases": [
+    "maximum transmission unit",
+    "MTU 크기",
+    "링크 MTU"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc1191.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.plpmtud",
+   "title": "패킷화 계층 경로 MTU 발견(PLPMTUD)",
+   "en": "Packetization Layer Path MTU Discovery",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "네트워크",
+   "summary": "전송 계층이 점점 큰 탐침 패킷을 보내 상대의 확인으로 통과 크기를 정해, ICMP가 막힌 경로에서도 MTU를 찾는 방식이다.",
+   "parent": "cs.net.pmtud-black-hole",
+   "aliases": [
+    "PLPMTUD",
+    "DPLPMTUD",
+    "MTU 탐침"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc8899.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.eagain",
+   "title": "EAGAIN·EWOULDBLOCK(논블로킹 호출의 지금은 불가)",
+   "en": "EAGAIN and EWOULDBLOCK",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "논블로킹으로 연 디스크립터에서 읽기·쓰기가 기다려야 할 때 바로 돌아오며 내는 오류로, 실패가 아니라 나중에 다시 하라는 뜻이다.",
+   "parent": "cs.os.epoll-trigger-modes",
+   "aliases": [
+    "EAGAIN",
+    "EWOULDBLOCK",
+    "Resource temporarily unavailable",
+    "논블로킹 다시 시도 오류"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man2/read.2.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.o-nonblock",
+   "title": "논블로킹 모드(O_NONBLOCK)",
+   "en": "Nonblocking Mode (O_NONBLOCK)",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "디스크립터의 입출력이 호출한 쪽을 기다리게 하지 않도록 하는 플래그로, 일반 파일과 블록 장치에는 효과가 없다.",
+   "parent": "cs.os.epoll-trigger-modes",
+   "aliases": [
+    "O_NONBLOCK",
+    "O_NDELAY",
+    "논블로킹 I/O",
+    "nonblocking I/O"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man2/open.2.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.epolloneshot",
+   "title": "EPOLLONESHOT(한 번 알린 뒤 멈추기)",
+   "en": "EPOLLONESHOT",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "epoll이 한 디스크립터의 이벤트를 한 번 알린 뒤 그 디스크립터를 꺼 두어, 다시 쓰려면 EPOLL_CTL_MOD로 다시 켜야 하게 하는 플래그다.",
+   "parent": "cs.os.epoll-trigger-modes",
+   "aliases": [
+    "EPOLLONESHOT",
+    "oneshot epoll",
+    "epoll 일회성 알림"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man7/epoll.7.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dsa.bloom-false-positive",
+   "title": "블룸 필터 거짓 양성",
+   "en": "Bloom Filter False Positive",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "자료구조",
+   "summary": "넣은 적 없는 원소인데 해당 비트가 모두 다른 원소들 때문에 켜져 있어 블룸 필터가 있다고 잘못 답하는 경우다.",
+   "parent": "cs.dsa.bloom-filter",
+   "aliases": [
+    "블룸 필터 오탐",
+    "Bloom filter false positive",
+    "블룸 필터 거짓 양성률"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/bloomFilter.html",
+    "https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.zero-window-probe",
+   "title": "제로 윈도 탐침(zero window probe)",
+   "en": "Zero Window Probe",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "네트워크",
+   "summary": "상대의 수신 창이 0일 때 보내는 쪽이 간격을 늘려 가며 작은 세그먼트를 보내 창이 다시 열렸는지 확인하는 동작이다.",
+   "parent": "cs.net.tcp-zero-window",
+   "aliases": [
+    "zero window probe",
+    "제로 윈도 프로브",
+    "persist timer",
+    "TCP 지속 타이머"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9293.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.silly-window-syndrome",
+   "title": "어리석은 창 증후군(SWS)",
+   "en": "Silly Window Syndrome",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "네트워크",
+   "summary": "수신 창이 아주 조금씩 열리고 그만큼씩 작은 세그먼트가 오가며 전송 효율이 떨어지는 현상으로, TCP는 양쪽에서 이를 피하는 규칙을 둔다.",
+   "parent": "cs.net.tcp-zero-window",
+   "related": [
+    "cs.net.nagle-algorithm"
+   ],
+   "aliases": [
+    "silly window syndrome",
+    "SWS 회피",
+    "실리 윈도 신드롬"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9293.html"
    ],
    "domain": "cs"
   },
@@ -22956,6 +23561,114 @@
    "domain": "plan"
   },
   {
+   "id": "plan.basics.error-prevention-design",
+   "title": "되돌리기·검사·확인으로 중요한 제출 실수 막기",
+   "en": "Error Prevention for Legal, Financial and Data Submissions",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "결제·계약·데이터 삭제처럼 되돌리기 어려운 제출에서 취소 기간, 입력 검사, 제출 전 확인 중 무엇으로 실수를 막을지 고르는 설계다.",
+   "objectives": [
+    "법적 약속·금융 거래·사용자 데이터 변경·시험 답안 제출처럼 이 기준이 걸리는 화면을 흐름에서 찾아낼 수 있다",
+    "되돌리기·입력 검사·제출 전 확인 세 방식 가운데 화면마다 알맞은 것을 골라 근거를 말할 수 있다",
+    "삭제에는 복구나 확인 요청을, 주문에는 검토 화면이나 취소 가능 기간을 두는 식으로 상황별 대책을 설계할 수 있다",
+    "모든 저장에 확인 창을 붙이는 과잉 설계와 큰 손실을 막는 데 필요한 설계를 구분할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.form-error-messages",
+    "plan.basics.question-pages"
+   ],
+   "related": [
+    "plan.basics.check-answers-page",
+    "plan.basics.error-summary"
+   ],
+   "aliases": [
+    "WCAG 3.3.4",
+    "오류 예방 기준",
+    "Error Prevention (Legal, Financial, Data)",
+    "제출 전 확인 설계",
+    "되돌릴 수 있는 제출"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/error-prevention-legal-financial-data.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.consistent-help-navigation",
+   "title": "여러 페이지에 걸친 도움말과 내비게이션 일관성 설계",
+   "en": "Consistent Help and Navigation Across Pages",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "반복되는 메뉴와 연락처·FAQ·챗봇 같은 도움 수단을 페이지 묶음 전체에서 같은 상대 순서에 두어 사용자가 다시 찾기 쉽게 만드는 설계다.",
+   "objectives": [
+    "사람 연락처·연락 수단·셀프 도움말·자동 응답 중 어떤 도움 수단이 일관성 기준에 들어가는지 구분할 수 있다",
+    "화면에 보이는 위치가 아니라 페이지 안의 상대 순서로 일관성을 따진다는 점을 근거로 템플릿 배치를 정할 수 있다",
+    "하위 메뉴 추가나 사용자가 바꾼 확대·방향 설정처럼 순서가 달라져도 되는 경우와 위반이 되는 경우를 가려낼 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.card-sorting",
+    "plan.basics.service-scope"
+   ],
+   "related": [
+    "plan.basics.label-in-name"
+   ],
+   "aliases": [
+    "WCAG 3.2.6",
+    "WCAG 3.2.3",
+    "일관된 도움말",
+    "Consistent Help",
+    "Consistent Navigation",
+    "일관된 내비게이션"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/consistent-help.html",
+    "https://www.w3.org/WAI/WCAG22/Understanding/consistent-navigation.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.component-api-design",
+   "title": "Figma 컴포넌트 유연성 설계: 슬롯·인스턴스 교체·변형 고르기",
+   "en": "Choosing Between Slots, Instance Swap and Variants in Figma",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "컴포넌트 안에서 바꿀 수 있는 부분을 변형·인스턴스 교체·슬롯 중 무엇으로 열지 통제와 자유의 손익으로 정해 분리(detach) 없이 업데이트를 받게 하는 설계다.",
+   "objectives": [
+    "상태·크기는 변형, 엄격히 한 개만 바꾸는 부분은 인스턴스 교체, 내용이 자유로운 영역은 슬롯으로 나누는 근거를 말할 수 있다",
+    "변형으로 슬롯을 흉내 낸 기존 라이브러리를 슬롯으로 옮길지 판단하고 슬롯 속성 삭제가 인스턴스 내용을 지운다는 위험을 브랜치에서 미리 확인할 수 있다",
+    "선호 인스턴스와 레이어 개수 한도로 슬롯 안 내용을 어느 정도 이끌지 정할 수 있다",
+    "인스턴스가 자주 분리되는 원인을 열린 속성 설계에서 찾아 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.interactive-components",
+    "plan.figma.instance-overrides"
+   ],
+   "related": [
+    "plan.figma.component-properties",
+    "plan.figma.variants",
+    "plan.figma.detach-instance"
+   ],
+   "aliases": [
+    "Figma 슬롯 대 변형",
+    "slots vs variants",
+    "Figma 컴포넌트 속성 설계",
+    "Figma component API"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/38741465279895-The-difference-between-slots-instance-swaps-and-variants",
+    "https://help.figma.com/hc/en-us/articles/38231200344599-Create-and-use-slots-to-build-flexible-components-in-Figma-Design"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.design-token-architecture",
    "title": "디자인 토큰 표준과 별칭 계층 설계",
    "en": "Design Token Standard and Alias Layers",
@@ -23094,6 +23807,41 @@
    ],
    "refs": [
     "https://help.figma.com/hc/en-us/articles/36346281624471-Extend-a-variable-collection"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.library-swap",
+   "title": "Figma 라이브러리 교체로 파일을 새 디자인 시스템으로 옮기기",
+   "en": "Migrating Files with Figma Library Swap",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "파일의 컴포넌트·스타일·변수 연결을 다른 게시 라이브러리의 같은 이름 에셋으로 바꾸고, 맞지 않는 에셋과 오버라이드 손실을 미리 다루는 이전 작업이다.",
+   "objectives": [
+    "이름으로만 짝을 찾는 방식을 근거로 교체 뒤에도 옛 라이브러리에 남은 에셋이 생긴 원인을 찾을 수 있다",
+    "인스턴스의 기본 스타일까지 교체할지 정하는 설정이 오버라이드를 남기는지 잃는지 알고 이전 목적에 맞게 고를 수 있다",
+    "게시가 내려가거나 접근할 수 없는 라이브러리에 묶인 에셋을 찾아 다른 라이브러리로 다시 연결할 수 있다",
+    "실행 취소·되바꾸기·라이브러리 이전 버전 복원 중 무엇으로 되돌릴지 이전 계획에 넣을 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.branch-and-publish",
+    "plan.figma.instance-overrides"
+   ],
+   "related": [
+    "plan.figma.multi-brand-extended-collections"
+   ],
+   "aliases": [
+    "Figma 라이브러리 스왑",
+    "Figma library swap",
+    "Swap libraries Figma",
+    "라이브러리 이전"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/4404856784663-Swap-libraries"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -23512,6 +24260,104 @@
    "domain": "plan"
   },
   {
+   "id": "plan.basics.consistent-identification",
+   "title": "같은 기능의 일관된 이름(Consistent Identification)",
+   "en": "Consistent Identification",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "여러 페이지에서 같은 기능을 하는 부품은 문맥에 따라 표기가 조금 달라도 같은 기능으로 알아보게 일관되게 식별하라는 WCAG AA 기준이다.",
+   "parent": "plan.basics.consistent-help-navigation",
+   "related": [
+    "plan.basics.label-in-name"
+   ],
+   "aliases": [
+    "WCAG 3.2.4",
+    "일관된 식별",
+    "같은 기능 같은 라벨"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/consistent-identification.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.slot",
+   "title": "Figma 슬롯(slot)",
+   "en": "Figma Slots",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "메인 컴포넌트 안에 내용을 넣고 배치할 수 있는 빈 영역을 열어, 인스턴스를 분리하지 않고도 내용을 바꾸며 업데이트를 계속 받게 하는 컴포넌트 속성이다.",
+   "parent": "plan.figma.component-api-design",
+   "related": [
+    "plan.figma.detach-instance"
+   ],
+   "aliases": [
+    "Figma slot",
+    "슬롯 속성",
+    "Convert to slot",
+    "Wrap in new slot"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/38231200344599-Create-and-use-slots-to-build-flexible-components-in-Figma-Design"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.dev-mode-annotations",
+   "title": "Dev Mode 주석과 측정 표시",
+   "en": "Annotations and Measurements in Figma Dev Mode",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "레이어에 속성 값·설명·분류를 단 주석과 간격 측정을 남겨 개발자가 디자인 의도를 놓치지 않게 하는 Figma 핸드오프 기능이다.",
+   "parent": "plan.figma.dev-mode-handoff",
+   "aliases": [
+    "Figma 주석",
+    "Figma annotations",
+    "Dev Mode 측정",
+    "Figma measurements"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/20774752502935-Add-measurements-and-annotate-designs"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.dev-mode-compare-changes",
+   "title": "Dev Mode 변경 비교(compare changes)",
+   "en": "Compare Changes in Figma Dev Mode",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "프레임이나 컴포넌트의 이전 버전과 지금을 겹쳐 보고 바뀐 레이어·속성·코드 차이를 확인해 구현할 부분만 골라내는 Dev Mode 기능이다.",
+   "parent": "plan.figma.dev-mode-handoff",
+   "related": [
+    "plan.figma.version-history"
+   ],
+   "aliases": [
+    "Figma 변경 비교",
+    "Figma compare changes",
+    "Dev Mode diff",
+    "디자인 변경 내역 비교"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/15023193382935-Compare-changes-in-Dev-Mode"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.ready-for-dev",
    "title": "Ready for dev 상태",
    "en": "Ready for Dev Status",
@@ -23893,6 +24739,92 @@
    ],
    "refs": [
     "https://help.figma.com/hc/en-us/articles/360040045574-Restrict-copying-and-sharing-on-files"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.error-prevention-all",
+   "title": "모든 제출의 오류 예방(Error Prevention All)",
+   "en": "Error Prevention (All)",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "되돌리기·검사·확인 중 하나를 결제·계약에 그치지 않고 정보를 받는 모든 폼에 적용하라는 WCAG의 AAA 기준이다.",
+   "parent": "plan.basics.error-prevention-design",
+   "aliases": [
+    "WCAG 3.3.6",
+    "전체 오류 예방",
+    "AAA 오류 예방"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/error-prevention-all.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.preferred-instances",
+   "title": "Figma 선호 인스턴스(preferred instances)",
+   "en": "Figma Preferred Instances",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "인스턴스 교체나 슬롯에서 먼저 보여 줄 컴포넌트 목록을 골라 두어 많은 라이브러리 부품 중 써야 할 것으로 디자이너를 이끄는 설정이다.",
+   "parent": "plan.figma.component-api-design",
+   "aliases": [
+    "Figma preferred values",
+    "Only allow preferred instances"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/5579474826519-Explore-component-properties",
+    "https://help.figma.com/hc/en-us/articles/38231200344599-Create-and-use-slots-to-build-flexible-components-in-Figma-Design"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.expose-nested-instances",
+   "title": "중첩 인스턴스 속성 노출(expose nested instances)",
+   "en": "Exposing Nested Instance Properties in Figma",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "컴포넌트 안에 든 인스턴스의 속성을 바깥 인스턴스 속성 패널에 함께 띄워 깊이 선택하지 않고 고치게 하는 Figma 설정이다.",
+   "parent": "plan.figma.component-api-design",
+   "aliases": [
+    "Figma 중첩 인스턴스",
+    "nested instance properties",
+    "Expose properties from nested instances"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/5579474826519-Explore-component-properties"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.missing-libraries",
+   "title": "Figma 누락된 라이브러리(missing libraries)",
+   "en": "Figma Missing Libraries",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "게시가 내려가거나 폐기되었거나 접근 권한이 없어진 라이브러리에 아직 묶여 있는 파일의 인스턴스·스타일을 찾아 다른 라이브러리로 다시 잇는 Figma 기능이다.",
+   "parent": "plan.figma.library-swap",
+   "aliases": [
+    "Figma missing libraries",
+    "View missing libraries",
+    "끊긴 라이브러리 연결"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/4404856784663-Swap-libraries"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -48948,6 +49880,79 @@
    "domain": "fe"
   },
   {
+   "id": "fe.react.unnecessary-effects",
+   "title": "필요 없는 Effect 가려내고 걷어 내기",
+   "en": "You Might Not Need an Effect",
+   "kind": "topic",
+   "level": 4,
+   "importance": 1,
+   "group": "React",
+   "summary": "바깥 시스템과 맞추는 일이 아닌 계산·초기화·부모 알림을 Effect에서 렌더링 중 계산, key, 이벤트 핸들러로 옮겨 버그와 불필요한 렌더링을 줄이는 판단이다.",
+   "objectives": [
+    "props나 상태에서 계산할 수 있는 값을 Effect와 상태 대신 렌더링 중 계산으로 바꿀 수 있다",
+    "props가 바뀔 때 상태 전체는 key로 초기화하고 일부만 맞출 때는 렌더링 중에 조정해 Effect 없이 상태를 맞출 수 있다",
+    "서로 상태를 바꿔 부르는 Effect 연쇄를 찾아 이벤트 핸들러 하나로 모을 수 있다",
+    "Effect로 데이터를 가져올 때 늦게 온 응답이 새 결과를 덮어쓰는 문제를 클린업으로 막을 수 있다"
+   ],
+   "prerequisites": [
+    "fe.react.use-effect",
+    "fe.react.state-structure"
+   ],
+   "related": [
+    "fe.react.derived-value",
+    "fe.react.key-reset",
+    "fe.react.lifting-state"
+   ],
+   "aliases": [
+    "You Might Not Need an Effect",
+    "불필요한 useEffect",
+    "Effect 남용",
+    "useEffect 걷어 내기",
+    "Effect 연쇄"
+   ],
+   "refs": [
+    "https://react.dev/learn/you-might-not-need-an-effect"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.ts.strict-options",
+   "title": "TypeScript strict 옵션 고르기",
+   "en": "Choosing TypeScript Strictness Options",
+   "kind": "topic",
+   "level": 4,
+   "importance": 1,
+   "group": "TypeScript",
+   "summary": "strict 한 줄로 켜지는 검사 묶음과 따로 켜야 하는 검사를 알고, 새 코드와 옮겨 오는 JavaScript 코드에 맞게 엄격함을 정하는 판단이다.",
+   "objectives": [
+    "strict가 함께 켜는 검사 옵션들과 현재 TSConfig 문서에서 strict 기본값이 true라는 점을 알고 그중 하나만 끌 수 있다",
+    "새 코드베이스와 기존 JavaScript를 옮기는 코드베이스에서 엄격함을 어떻게 정할지 근거를 말할 수 있다",
+    "strict에 들어 있지 않은 noUncheckedIndexedAccess 같은 검사를 따로 켤지 판단할 수 있다",
+    "strictNullChecks를 켰을 때 생기는 'possibly undefined' 오류의 원인을 찾아 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "fe.ts.union-narrowing"
+   ],
+   "related": [
+    "fe.ts.any-type",
+    "fe.ts.tsconfig"
+   ],
+   "aliases": [
+    "TypeScript strict 모드",
+    "strict: true",
+    "tsconfig strict",
+    "TS 엄격 모드",
+    "strict mode TypeScript"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/docs/handbook/2/basic-types.html",
+    "https://www.typescriptlang.org/tsconfig/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "fe"
+  },
+  {
    "id": "fe.internals.server-client-boundary",
    "title": "서버 컴포넌트와 클라이언트 컴포넌트 경계 정하기",
    "en": "Choosing the Server and Client Component Boundary",
@@ -49481,6 +50486,43 @@
    "domain": "fe"
   },
   {
+   "id": "fe.next.internationalization",
+   "title": "Next.js 다국어 라우팅과 번역 사전",
+   "en": "Internationalization in Next.js",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "Next.js",
+   "summary": "Proxy에서 로캘을 골라 /[lang] 경로로 보내고, 서버 컴포넌트에서 번역 사전을 불러와 정적으로 렌더링하는 Next.js 다국어 구성이다.",
+   "objectives": [
+    "Accept-Language 헤더로 로캘을 골라 Proxy에서 로캘 경로로 리다이렉트할 수 있다",
+    "app/[lang] 아래에 라우트를 두고 지원하지 않는 로캘을 notFound로 막을 수 있다",
+    "번역 사전을 서버 컴포넌트에서만 불러 클라이언트 번들이 커지지 않게 할 수 있다",
+    "generateStaticParams로 로캘별 정적 경로를 만들 수 있다"
+   ],
+   "prerequisites": [
+    "fe.next.routes-layouts"
+   ],
+   "related": [
+    "fe.next.proxy-file",
+    "fe.basics.i18n-idea",
+    "fe.next.dynamic-segment"
+   ],
+   "aliases": [
+    "Next.js i18n",
+    "Next.js 다국어",
+    "로캘 라우팅",
+    "i18n routing",
+    "app/[lang]"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/guides/internationalization"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "fe"
+  },
+  {
    "id": "fe.internals.service-worker-caching",
    "title": "서비스 워커 캐싱 전략 고르기",
    "en": "Choosing Service Worker Caching Strategies",
@@ -49516,6 +50558,40 @@
    "domain": "fe"
   },
   {
+   "id": "fe.ts.project-references",
+   "title": "프로젝트 참조로 TypeScript 코드베이스 나누기",
+   "en": "TypeScript Project References",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "TypeScript",
+   "summary": "큰 TypeScript 코드를 references로 이어진 작은 프로젝트로 나눠 빌드를 빠르게 하고 구현과 테스트 같은 경계를 지키게 하는 구성이다.",
+   "objectives": [
+    "tsconfig.json의 references로 한 프로젝트가 다른 프로젝트에 기대게 만들 수 있다",
+    "참조되는 프로젝트에 composite가 왜 필요하고 무엇이 바뀌는지 설명할 수 있다",
+    "tsc --build가 바뀐 프로젝트만 의존 순서대로 다시 빌드하는 방식을 설명할 수 있다",
+    "빌드 결과 선언 파일이 없을 때 에디터에 생기는 엉뚱한 오류의 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "fe.ts.module-settings"
+   ],
+   "related": [
+    "fe.ts.tsconfig",
+    "fe.ts.declaration-files"
+   ],
+   "aliases": [
+    "TS project references",
+    "TypeScript 프로젝트 참조",
+    "tsconfig references",
+    "솔루션 tsconfig",
+    "TS 모노레포 구성"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/docs/handbook/project-references.html"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.next.data-access-layer",
    "title": "데이터 접근 계층(DAL)",
    "en": "Data Access Layer in Next.js",
@@ -49538,6 +50614,57 @@
    "refs": [
     "https://nextjs.org/docs/app/guides/data-security",
     "https://nextjs.org/docs/app/guides/authentication"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.react.effect-fetch-race",
+   "title": "Effect 데이터 요청의 경쟁 상태와 ignore 플래그",
+   "en": "Race Conditions When Fetching in Effects",
+   "kind": "term",
+   "level": 4,
+   "importance": 1,
+   "group": "React",
+   "summary": "Effect에서 보낸 요청의 응답이 순서가 뒤바뀌어 오래된 결과가 새 결과를 덮는 문제로, 클린업에서 ignore 플래그를 세워 늦은 응답을 버려 막는다.",
+   "parent": "fe.react.unnecessary-effects",
+   "related": [
+    "fe.react.effect-cleanup"
+   ],
+   "aliases": [
+    "ignore 플래그",
+    "Effect 경쟁 상태",
+    "fetch 경쟁 상태",
+    "오래된 응답 덮어쓰기"
+   ],
+   "refs": [
+    "https://react.dev/learn/you-might-not-need-an-effect",
+    "https://react.dev/learn/synchronizing-with-effects"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.ts.strict-null-checks",
+   "title": "strictNullChecks",
+   "en": "strictNullChecks",
+   "kind": "term",
+   "level": 4,
+   "importance": 1,
+   "group": "TypeScript",
+   "summary": "null과 undefined를 따로 된 타입으로 다뤄, 값이 없을 수 있는 곳을 처리하지 않고 쓰면 컴파일 오류로 알려 주는 TypeScript 검사 옵션이다.",
+   "parent": "fe.ts.strict-options",
+   "related": [
+    "fe.js.optional-chaining",
+    "fe.ts.type-assertion"
+   ],
+   "aliases": [
+    "strictNullChecks",
+    "null 검사 옵션",
+    "possibly undefined 오류",
+    "TS18048",
+    "TypeScript null 검사"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/tsconfig/"
    ],
    "domain": "fe"
   },
@@ -50172,6 +51299,80 @@
    "domain": "fe"
   },
   {
+   "id": "fe.react.use-sync-external-store",
+   "title": "useSyncExternalStore",
+   "en": "useSyncExternalStore",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "React",
+   "summary": "React 바깥 저장소나 navigator.onLine 같은 브라우저 값을 구독해 지금 값을 읽는 훅으로, getSnapshot이 바뀌지 않은 동안 같은 값을 돌려줘야 한다.",
+   "parent": "fe.react.unnecessary-effects",
+   "related": [
+    "fe.react.use-effect",
+    "fe.react.custom-hook"
+   ],
+   "aliases": [
+    "useSyncExternalStore",
+    "외부 스토어 구독",
+    "external store subscription",
+    "getSnapshot",
+    "getServerSnapshot"
+   ],
+   "refs": [
+    "https://react.dev/reference/react/useSyncExternalStore"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.ts.no-unchecked-indexed-access",
+   "title": "noUncheckedIndexedAccess",
+   "en": "noUncheckedIndexedAccess",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "TypeScript",
+   "summary": "인덱스 시그니처로만 알려진 속성이나 배열 원소를 읽을 때 타입에 undefined를 더해 주는 옵션으로, strict에 들어 있지 않아 따로 켜야 한다.",
+   "parent": "fe.ts.strict-options",
+   "related": [
+    "fe.ts.strict-null-checks"
+   ],
+   "aliases": [
+    "noUncheckedIndexedAccess",
+    "인덱스 접근 undefined 검사",
+    "인덱스 시그니처 undefined",
+    "unchecked indexed access"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/tsconfig/"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.accept-language",
+   "title": "Accept-Language 헤더로 로캘 고르기",
+   "en": "Accept-Language Header",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Next.js",
+   "summary": "브라우저가 선호하는 언어를 q 값 순서로 알려 주는 요청 헤더로, 서버는 이를 기본값으로만 쓰고 사용자가 고른 언어를 앞세워야 한다.",
+   "parent": "fe.next.internationalization",
+   "related": [
+    "fe.basics.locale"
+   ],
+   "aliases": [
+    "Accept-Language",
+    "언어 협상",
+    "language negotiation",
+    "선호 언어 헤더"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Accept-Language"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.internals.server-only",
    "title": "server-only와 client-only",
    "en": "server-only and client-only",
@@ -50392,6 +51593,81 @@
    "refs": [
     "https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Transferable_objects"
    ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.ts.composite-option",
+   "title": "TypeScript composite 옵션",
+   "en": "The composite Compiler Option",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "TypeScript",
+   "summary": "다른 프로젝트가 참조할 수 있게 rootDir 기본값, 모든 파일의 include 포함, 선언 파일 생성을 강제해 빌드 도구가 빌드 여부를 빨리 알게 하는 옵션이다.",
+   "parent": "fe.ts.project-references",
+   "related": [
+    "fe.ts.build-mode"
+   ],
+   "aliases": [
+    "TypeScript composite",
+    "composite: true",
+    "composite 프로젝트"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/tsconfig/",
+    "https://www.typescriptlang.org/docs/handbook/project-references.html"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.ts.build-mode",
+   "title": "tsc --build(빌드 모드)",
+   "en": "TypeScript Build Mode",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "TypeScript",
+   "summary": "참조된 프로젝트를 모두 찾아 낡은 것만 의존 순서대로 다시 빌드하고, 오류가 있으면 결과를 내지 않는 tsc의 빌드 지휘 모드다.",
+   "parent": "fe.ts.project-references",
+   "related": [
+    "fe.ts.composite-option"
+   ],
+   "aliases": [
+    "tsc --build",
+    "tsc -b",
+    "TypeScript 빌드 모드",
+    "tsc -b --clean"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/docs/handbook/project-references.html"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.root-params",
+   "title": "next/root-params",
+   "en": "next/root-params",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Next.js",
+   "summary": "루트 레이아웃 위 동적 세그먼트 값(예: lang)을 props로 내려 주지 않고 아무 서버 컴포넌트에서나 함수로 읽게 해 주는 Next.js 모듈이다.",
+   "parent": "fe.next.internationalization",
+   "related": [
+    "fe.next.dynamic-segment",
+    "fe.next.use-cache"
+   ],
+   "aliases": [
+    "root-params",
+    "next/root-params",
+    "루트 매개변수",
+    "root parameters"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/api-reference/functions/next-root-params"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "fe"
   },
   {
@@ -83910,6 +85186,145 @@
    "domain": "ops"
   },
   {
+   "id": "ops.k8s.probe-design",
+   "title": "Kubernetes 프로브 설계: 검사 방식과 임계값",
+   "en": "Designing Kubernetes Probes: Mechanisms and Thresholds",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "시작·라이브니스·레디니스 프로브의 검사 방식과 임계값을 골라, 부하 때 재시작이 이어지거나 느린 앱이 시작 중에 죽는 일을 막는 Kubernetes 설정이다.",
+   "objectives": [
+    "라이브니스 실패는 컨테이너 재시작으로, 레디니스 실패는 서비스 엔드포인트 제외로 이어진다는 차이를 근거로 프로브를 고를 수 있다",
+    "exec·httpGet·tcpSocket·grpc 검사 방식 중 하나를 고르고, 파드가 많은 노드에서 exec 프로브가 CPU 부담을 키우는 이유를 말할 수 있다",
+    "부하가 클 때 재시작이 이어지는 원인을 프로브 임계값과 주기 설정에서 찾을 수 있다",
+    "느리게 뜨는 앱에 라이브니스 지연을 늘리는 대신 시작 프로브를 더할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.k8s.basics"
+   ],
+   "related": [
+    "be.error.health-check",
+    "be.error.liveness-readiness",
+    "ops.k8s.startup-probe",
+    "ops.k8s.debug-pod-failures"
+   ],
+   "aliases": [
+    "livenessProbe",
+    "readinessProbe",
+    "쿠버네티스 프로브",
+    "Kubernetes probes",
+    "k8s 헬스 체크 프로브"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/workloads/pods/probes/",
+    "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.debug-service",
+   "title": "Service에 연결이 안 될 때 원인 찾기",
+   "en": "Debugging Kubernetes Service Connectivity",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "Service로 요청이 닿지 않을 때 파드 상태, DNS 이름, 셀렉터와 포트, EndpointSlice, kube-proxy를 차례로 확인해 끊긴 곳을 찾는다.",
+   "objectives": [
+    "임시 디버그 파드에서 Service 이름과 클러스터 IP로 차례로 접속해 DNS 문제와 라우팅 문제를 가를 수 있다",
+    "EndpointSlice가 비어 있을 때 셀렉터 불일치와 준비 안 된 파드 중 원인을 찾을 수 있다",
+    "다른 네임스페이스의 Service를 짧은 이름으로 불러 실패하는 이유를 resolv.conf의 search 목록으로 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.k8s.basics"
+   ],
+   "related": [
+    "ops.network.dns-resolution",
+    "ops.k8s.network-policy"
+   ],
+   "aliases": [
+    "kubectl 서비스 디버깅",
+    "debug service k8s",
+    "쿠버네티스 서비스 연결 오류",
+    "Service 접속 안 됨 k8s"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/tasks/debug/debug-application/debug-service/",
+    "https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.ci.self-hosted-runner-hardening",
+   "title": "자체 호스트 러너 보안 설계",
+   "en": "Hardening Self-Hosted Runners",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "CI/CD",
+   "summary": "자체 호스트 러너는 잡이 끝나도 깨끗해지지 않으므로, 공개 저장소에서 쓰지 않고 한 번 쓰고 버리는 러너와 러너 그룹으로 피해 범위를 줄인다.",
+   "objectives": [
+    "공개 저장소와 비공개 저장소에서 자체 호스트 러너가 어떤 경로로 침해될 수 있는지 설명할 수 있다",
+    "러너가 침해됐을 때 시크릿·GITHUB_TOKEN·SSH 키·클라우드 메타데이터 같은 노출 대상을 짚을 수 있다",
+    "JIT 러너와 러너 그룹을 써서 한 러너가 여러 저장소의 잡을 받지 않게 설계할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.ci.workflow-basics"
+   ],
+   "related": [
+    "ops.ci.runner",
+    "ops.ci.workflow-injection-defense"
+   ],
+   "aliases": [
+    "self-hosted runner security",
+    "러너 하드닝",
+    "자체 호스트 러너 보안",
+    "GitHub Actions 러너 보안"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/reference/security/secure-use",
+    "https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/manage-access"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.docker.logging-driver-design",
+   "title": "Docker 로깅 드라이버 고르기와 로그 회전",
+   "en": "Choosing Docker Logging Drivers",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "Docker",
+   "summary": "기본 json-file 드라이버는 로그를 돌리지 않아 디스크를 채울 수 있으므로, local 드라이버나 회전 옵션과 전달 방식을 골라 운영한다.",
+   "objectives": [
+    "컨테이너 로그가 디스크를 채운 원인을 기본 드라이버의 회전 설정에서 찾을 수 있다",
+    "데몬 기본값과 컨테이너별 설정 중 어디에 로깅 드라이버를 둘지 고르고, 바꾼 설정이 기존 컨테이너에 적용되지 않는 이유를 말할 수 있다",
+    "blocking과 non-blocking 전달 방식의 손익을 앱 멈춤과 로그 유실로 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.observe.container-healthcheck"
+   ],
+   "related": [
+    "ops.linux.logrotate",
+    "ops.linux.disk-space"
+   ],
+   "aliases": [
+    "log-driver",
+    "daemon.json log-opts",
+    "Docker 로깅 드라이버",
+    "Docker logging driver",
+    "local 로깅 드라이버"
+   ],
+   "refs": [
+    "https://docs.docker.com/engine/logging/configure/",
+    "https://docs.docker.com/engine/logging/drivers/json-file/"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.network.edge-waf",
    "title": "웹 방화벽(WAF)과 오탐 분석",
    "en": "WAF Rules and False Positives",
@@ -84654,6 +86069,91 @@
    "domain": "ops"
   },
   {
+   "id": "ops.k8s.probe-timing-fields",
+   "title": "프로브 주기와 실패 임계값",
+   "en": "Probe Timing and Failure Threshold",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "initialDelaySeconds·periodSeconds·timeoutSeconds·failureThreshold로 프로브가 언제부터 얼마나 자주 검사하고 몇 번 실패해야 조치할지 정한다.",
+   "parent": "ops.k8s.probe-design",
+   "aliases": [
+    "failureThreshold",
+    "periodSeconds",
+    "initialDelaySeconds",
+    "프로브 임계값",
+    "probe timeoutSeconds"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.endpointslice",
+   "title": "EndpointSlice",
+   "en": "EndpointSlice",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "Service 셀렉터에 맞는 파드 IP와 ready·serving·terminating 상태를 담아 kube-proxy가 트래픽을 보낼 곳을 정하게 하는 객체다.",
+   "parent": "ops.k8s.debug-service",
+   "aliases": [
+    "엔드포인트 슬라이스",
+    "EndpointSlices",
+    "kubectl get endpointslices",
+    "kubernetes.io/service-name"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/services-networking/endpoint-slices/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.service-dns-name",
+   "title": "Service DNS 이름과 네임스페이스",
+   "en": "Service DNS Names",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "Service는 <이름>.<네임스페이스>.svc.<클러스터 도메인>으로 조회되며, 네임스페이스를 빼면 자기 네임스페이스에서만 찾는다.",
+   "parent": "ops.k8s.debug-service",
+   "aliases": [
+    "svc.cluster.local",
+    "쿠버네티스 서비스 DNS",
+    "Kubernetes service DNS",
+    "ndots:5"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.docker.json-file-max-size",
+   "title": "json-file 로그 회전(max-size·max-file)",
+   "en": "json-file Log Rotation Options",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Docker",
+   "summary": "json-file 드라이버는 max-size를 정해야 로그 파일을 돌리고, max-file로 남길 파일 개수를 정하며 compress로 지난 파일을 압축한다.",
+   "parent": "ops.docker.logging-driver-design",
+   "aliases": [
+    "max-size log-opt",
+    "max-file log-opt",
+    "json-file 드라이버",
+    "Docker 로그 용량 제한"
+   ],
+   "refs": [
+    "https://docs.docker.com/engine/logging/drivers/json-file/"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.linux.flock",
    "title": "파일 잠금(flock)으로 동시 실행 막기",
    "en": "flock: File Locking Against Concurrent Runs",
@@ -84838,6 +86338,99 @@
    ],
    "refs": [
     "https://gateway-api.sigs.k8s.io/reference/api-types/referencegrant/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.headless-service",
+   "title": "헤드리스 서비스(clusterIP: None)",
+   "en": "Headless Service",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "클러스터 IP 없이 DNS가 셀렉터에 맞는 파드 IP 목록을 바로 돌려줘, 클라이언트가 직접 파드를 고르게 하는 Service다.",
+   "parent": "ops.k8s.debug-service",
+   "related": [
+    "ops.k8s.service-types"
+   ],
+   "aliases": [
+    "clusterIP: None",
+    "헤드리스 Service",
+    "Kubernetes headless service",
+    "k8s headless service"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/",
+    "https://kubernetes.io/docs/concepts/services-networking/service/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.ci.jit-runner",
+   "title": "JIT 러너와 일회용 러너",
+   "en": "Just-in-Time and Ephemeral Runners",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "CI/CD",
+   "summary": "REST API로 만든 JIT 러너는 잡을 하나만 실행하고 자동으로 지워져, 앞 잡이 남긴 흔적이 다음 잡에 닿지 않는다.",
+   "parent": "ops.ci.self-hosted-runner-hardening",
+   "aliases": [
+    "JIT runner",
+    "just-in-time runner",
+    "ephemeral runner",
+    "일회용 러너",
+    "--ephemeral 러너"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/reference/security/secure-use"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.ci.runner-group",
+   "title": "러너 그룹으로 접근 제한",
+   "en": "Runner Groups",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "CI/CD",
+   "summary": "조직의 자체 호스트 러너를 그룹으로 묶고 그룹마다 쓸 수 있는 저장소를 정해, 침해 시 영향이 퍼지는 범위를 줄인다.",
+   "parent": "ops.ci.self-hosted-runner-hardening",
+   "aliases": [
+    "runner groups",
+    "GitHub 러너 그룹",
+    "Actions runner group",
+    "기본 러너 그룹"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/manage-access"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.docker.log-delivery-mode",
+   "title": "로그 전달 방식(blocking·non-blocking)",
+   "en": "Log Delivery Mode",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Docker",
+   "summary": "blocking은 로그가 느리면 앱도 기다리고, non-blocking은 버퍼에 담아 앱을 멈추지 않는 대신 버퍼가 차면 로그를 버린다.",
+   "parent": "ops.docker.logging-driver-design",
+   "aliases": [
+    "mode=non-blocking",
+    "max-buffer-size",
+    "Docker 로그 전달 모드",
+    "non-blocking log delivery"
+   ],
+   "refs": [
+    "https://docs.docker.com/engine/logging/configure/"
    ],
    "domain": "ops"
   },

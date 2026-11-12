@@ -6439,6 +6439,77 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "fe.react.unnecessary-effects",
+    "title": "필요 없는 Effect 가려내고 걷어 내기",
+    "en": "You Might Not Need an Effect",
+    "kind": "topic",
+    "level": 4,
+    "importance": 1,
+    "group": "React",
+    "summary": "바깥 시스템과 맞추는 일이 아닌 계산·초기화·부모 알림을 Effect에서 렌더링 중 계산, key, 이벤트 핸들러로 옮겨 버그와 불필요한 렌더링을 줄이는 판단이다.",
+    "objectives": [
+      "props나 상태에서 계산할 수 있는 값을 Effect와 상태 대신 렌더링 중 계산으로 바꿀 수 있다",
+      "props가 바뀔 때 상태 전체는 key로 초기화하고 일부만 맞출 때는 렌더링 중에 조정해 Effect 없이 상태를 맞출 수 있다",
+      "서로 상태를 바꿔 부르는 Effect 연쇄를 찾아 이벤트 핸들러 하나로 모을 수 있다",
+      "Effect로 데이터를 가져올 때 늦게 온 응답이 새 결과를 덮어쓰는 문제를 클린업으로 막을 수 있다"
+    ],
+    "prerequisites": [
+      "fe.react.use-effect",
+      "fe.react.state-structure"
+    ],
+    "related": [
+      "fe.react.derived-value",
+      "fe.react.key-reset",
+      "fe.react.lifting-state"
+    ],
+    "aliases": [
+      "You Might Not Need an Effect",
+      "불필요한 useEffect",
+      "Effect 남용",
+      "useEffect 걷어 내기",
+      "Effect 연쇄"
+    ],
+    "refs": [
+      "https://react.dev/learn/you-might-not-need-an-effect"
+    ]
+  },
+  {
+    "id": "fe.ts.strict-options",
+    "title": "TypeScript strict 옵션 고르기",
+    "en": "Choosing TypeScript Strictness Options",
+    "kind": "topic",
+    "level": 4,
+    "importance": 1,
+    "group": "TypeScript",
+    "summary": "strict 한 줄로 켜지는 검사 묶음과 따로 켜야 하는 검사를 알고, 새 코드와 옮겨 오는 JavaScript 코드에 맞게 엄격함을 정하는 판단이다.",
+    "objectives": [
+      "strict가 함께 켜는 검사 옵션들과 현재 TSConfig 문서에서 strict 기본값이 true라는 점을 알고 그중 하나만 끌 수 있다",
+      "새 코드베이스와 기존 JavaScript를 옮기는 코드베이스에서 엄격함을 어떻게 정할지 근거를 말할 수 있다",
+      "strict에 들어 있지 않은 noUncheckedIndexedAccess 같은 검사를 따로 켤지 판단할 수 있다",
+      "strictNullChecks를 켰을 때 생기는 'possibly undefined' 오류의 원인을 찾아 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "fe.ts.union-narrowing"
+    ],
+    "related": [
+      "fe.ts.any-type",
+      "fe.ts.tsconfig"
+    ],
+    "aliases": [
+      "TypeScript strict 모드",
+      "strict: true",
+      "tsconfig strict",
+      "TS 엄격 모드",
+      "strict mode TypeScript"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/2/basic-types.html",
+      "https://www.typescriptlang.org/tsconfig/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "fe.internals.server-client-boundary",
     "title": "서버 컴포넌트와 클라이언트 컴포넌트 경계 정하기",
     "en": "Choosing the Server and Client Component Boundary",
@@ -6957,6 +7028,42 @@
     ]
   },
   {
+    "id": "fe.next.internationalization",
+    "title": "Next.js 다국어 라우팅과 번역 사전",
+    "en": "Internationalization in Next.js",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "Next.js",
+    "summary": "Proxy에서 로캘을 골라 /[lang] 경로로 보내고, 서버 컴포넌트에서 번역 사전을 불러와 정적으로 렌더링하는 Next.js 다국어 구성이다.",
+    "objectives": [
+      "Accept-Language 헤더로 로캘을 골라 Proxy에서 로캘 경로로 리다이렉트할 수 있다",
+      "app/[lang] 아래에 라우트를 두고 지원하지 않는 로캘을 notFound로 막을 수 있다",
+      "번역 사전을 서버 컴포넌트에서만 불러 클라이언트 번들이 커지지 않게 할 수 있다",
+      "generateStaticParams로 로캘별 정적 경로를 만들 수 있다"
+    ],
+    "prerequisites": [
+      "fe.next.routes-layouts"
+    ],
+    "related": [
+      "fe.next.proxy-file",
+      "fe.basics.i18n-idea",
+      "fe.next.dynamic-segment"
+    ],
+    "aliases": [
+      "Next.js i18n",
+      "Next.js 다국어",
+      "로캘 라우팅",
+      "i18n routing",
+      "app/[lang]"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/guides/internationalization"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "fe.internals.service-worker-caching",
     "title": "서비스 워커 캐싱 전략 고르기",
     "en": "Choosing Service Worker Caching Strategies",
@@ -6991,6 +7098,39 @@
     ]
   },
   {
+    "id": "fe.ts.project-references",
+    "title": "프로젝트 참조로 TypeScript 코드베이스 나누기",
+    "en": "TypeScript Project References",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "TypeScript",
+    "summary": "큰 TypeScript 코드를 references로 이어진 작은 프로젝트로 나눠 빌드를 빠르게 하고 구현과 테스트 같은 경계를 지키게 하는 구성이다.",
+    "objectives": [
+      "tsconfig.json의 references로 한 프로젝트가 다른 프로젝트에 기대게 만들 수 있다",
+      "참조되는 프로젝트에 composite가 왜 필요하고 무엇이 바뀌는지 설명할 수 있다",
+      "tsc --build가 바뀐 프로젝트만 의존 순서대로 다시 빌드하는 방식을 설명할 수 있다",
+      "빌드 결과 선언 파일이 없을 때 에디터에 생기는 엉뚱한 오류의 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "fe.ts.module-settings"
+    ],
+    "related": [
+      "fe.ts.tsconfig",
+      "fe.ts.declaration-files"
+    ],
+    "aliases": [
+      "TS project references",
+      "TypeScript 프로젝트 참조",
+      "tsconfig references",
+      "솔루션 tsconfig",
+      "TS 모노레포 구성"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/project-references.html"
+    ]
+  },
+  {
     "id": "fe.next.data-access-layer",
     "title": "데이터 접근 계층(DAL)",
     "en": "Data Access Layer in Next.js",
@@ -7013,6 +7153,55 @@
     "refs": [
       "https://nextjs.org/docs/app/guides/data-security",
       "https://nextjs.org/docs/app/guides/authentication"
+    ]
+  },
+  {
+    "id": "fe.react.effect-fetch-race",
+    "title": "Effect 데이터 요청의 경쟁 상태와 ignore 플래그",
+    "en": "Race Conditions When Fetching in Effects",
+    "kind": "term",
+    "level": 4,
+    "importance": 1,
+    "group": "React",
+    "summary": "Effect에서 보낸 요청의 응답이 순서가 뒤바뀌어 오래된 결과가 새 결과를 덮는 문제로, 클린업에서 ignore 플래그를 세워 늦은 응답을 버려 막는다.",
+    "parent": "fe.react.unnecessary-effects",
+    "related": [
+      "fe.react.effect-cleanup"
+    ],
+    "aliases": [
+      "ignore 플래그",
+      "Effect 경쟁 상태",
+      "fetch 경쟁 상태",
+      "오래된 응답 덮어쓰기"
+    ],
+    "refs": [
+      "https://react.dev/learn/you-might-not-need-an-effect",
+      "https://react.dev/learn/synchronizing-with-effects"
+    ]
+  },
+  {
+    "id": "fe.ts.strict-null-checks",
+    "title": "strictNullChecks",
+    "en": "strictNullChecks",
+    "kind": "term",
+    "level": 4,
+    "importance": 1,
+    "group": "TypeScript",
+    "summary": "null과 undefined를 따로 된 타입으로 다뤄, 값이 없을 수 있는 곳을 처리하지 않고 쓰면 컴파일 오류로 알려 주는 TypeScript 검사 옵션이다.",
+    "parent": "fe.ts.strict-options",
+    "related": [
+      "fe.js.optional-chaining",
+      "fe.ts.type-assertion"
+    ],
+    "aliases": [
+      "strictNullChecks",
+      "null 검사 옵션",
+      "possibly undefined 오류",
+      "TS18048",
+      "TypeScript null 검사"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/tsconfig/"
     ]
   },
   {
@@ -7619,6 +7808,77 @@
     ]
   },
   {
+    "id": "fe.react.use-sync-external-store",
+    "title": "useSyncExternalStore",
+    "en": "useSyncExternalStore",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "React",
+    "summary": "React 바깥 저장소나 navigator.onLine 같은 브라우저 값을 구독해 지금 값을 읽는 훅으로, getSnapshot이 바뀌지 않은 동안 같은 값을 돌려줘야 한다.",
+    "parent": "fe.react.unnecessary-effects",
+    "related": [
+      "fe.react.use-effect",
+      "fe.react.custom-hook"
+    ],
+    "aliases": [
+      "useSyncExternalStore",
+      "외부 스토어 구독",
+      "external store subscription",
+      "getSnapshot",
+      "getServerSnapshot"
+    ],
+    "refs": [
+      "https://react.dev/reference/react/useSyncExternalStore"
+    ]
+  },
+  {
+    "id": "fe.ts.no-unchecked-indexed-access",
+    "title": "noUncheckedIndexedAccess",
+    "en": "noUncheckedIndexedAccess",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "TypeScript",
+    "summary": "인덱스 시그니처로만 알려진 속성이나 배열 원소를 읽을 때 타입에 undefined를 더해 주는 옵션으로, strict에 들어 있지 않아 따로 켜야 한다.",
+    "parent": "fe.ts.strict-options",
+    "related": [
+      "fe.ts.strict-null-checks"
+    ],
+    "aliases": [
+      "noUncheckedIndexedAccess",
+      "인덱스 접근 undefined 검사",
+      "인덱스 시그니처 undefined",
+      "unchecked indexed access"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/tsconfig/"
+    ]
+  },
+  {
+    "id": "fe.next.accept-language",
+    "title": "Accept-Language 헤더로 로캘 고르기",
+    "en": "Accept-Language Header",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Next.js",
+    "summary": "브라우저가 선호하는 언어를 q 값 순서로 알려 주는 요청 헤더로, 서버는 이를 기본값으로만 쓰고 사용자가 고른 언어를 앞세워야 한다.",
+    "parent": "fe.next.internationalization",
+    "related": [
+      "fe.basics.locale"
+    ],
+    "aliases": [
+      "Accept-Language",
+      "언어 협상",
+      "language negotiation",
+      "선호 언어 헤더"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Accept-Language"
+    ]
+  },
+  {
     "id": "fe.internals.server-only",
     "title": "server-only와 client-only",
     "en": "server-only and client-only",
@@ -7830,6 +8090,78 @@
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Transferable_objects"
     ]
+  },
+  {
+    "id": "fe.ts.composite-option",
+    "title": "TypeScript composite 옵션",
+    "en": "The composite Compiler Option",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "TypeScript",
+    "summary": "다른 프로젝트가 참조할 수 있게 rootDir 기본값, 모든 파일의 include 포함, 선언 파일 생성을 강제해 빌드 도구가 빌드 여부를 빨리 알게 하는 옵션이다.",
+    "parent": "fe.ts.project-references",
+    "related": [
+      "fe.ts.build-mode"
+    ],
+    "aliases": [
+      "TypeScript composite",
+      "composite: true",
+      "composite 프로젝트"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/tsconfig/",
+      "https://www.typescriptlang.org/docs/handbook/project-references.html"
+    ]
+  },
+  {
+    "id": "fe.ts.build-mode",
+    "title": "tsc --build(빌드 모드)",
+    "en": "TypeScript Build Mode",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "TypeScript",
+    "summary": "참조된 프로젝트를 모두 찾아 낡은 것만 의존 순서대로 다시 빌드하고, 오류가 있으면 결과를 내지 않는 tsc의 빌드 지휘 모드다.",
+    "parent": "fe.ts.project-references",
+    "related": [
+      "fe.ts.composite-option"
+    ],
+    "aliases": [
+      "tsc --build",
+      "tsc -b",
+      "TypeScript 빌드 모드",
+      "tsc -b --clean"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/project-references.html"
+    ]
+  },
+  {
+    "id": "fe.next.root-params",
+    "title": "next/root-params",
+    "en": "next/root-params",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Next.js",
+    "summary": "루트 레이아웃 위 동적 세그먼트 값(예: lang)을 props로 내려 주지 않고 아무 서버 컴포넌트에서나 함수로 읽게 해 주는 Next.js 모듈이다.",
+    "parent": "fe.next.internationalization",
+    "related": [
+      "fe.next.dynamic-segment",
+      "fe.next.use-cache"
+    ],
+    "aliases": [
+      "root-params",
+      "next/root-params",
+      "루트 매개변수",
+      "root parameters"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/api-reference/functions/next-root-params"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "fe.internals.render-pipeline",

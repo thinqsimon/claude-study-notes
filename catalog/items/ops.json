@@ -6628,6 +6628,141 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "ops.k8s.probe-design",
+    "title": "Kubernetes 프로브 설계: 검사 방식과 임계값",
+    "en": "Designing Kubernetes Probes: Mechanisms and Thresholds",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "시작·라이브니스·레디니스 프로브의 검사 방식과 임계값을 골라, 부하 때 재시작이 이어지거나 느린 앱이 시작 중에 죽는 일을 막는 Kubernetes 설정이다.",
+    "objectives": [
+      "라이브니스 실패는 컨테이너 재시작으로, 레디니스 실패는 서비스 엔드포인트 제외로 이어진다는 차이를 근거로 프로브를 고를 수 있다",
+      "exec·httpGet·tcpSocket·grpc 검사 방식 중 하나를 고르고, 파드가 많은 노드에서 exec 프로브가 CPU 부담을 키우는 이유를 말할 수 있다",
+      "부하가 클 때 재시작이 이어지는 원인을 프로브 임계값과 주기 설정에서 찾을 수 있다",
+      "느리게 뜨는 앱에 라이브니스 지연을 늘리는 대신 시작 프로브를 더할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.basics"
+    ],
+    "related": [
+      "be.error.health-check",
+      "be.error.liveness-readiness",
+      "ops.k8s.startup-probe",
+      "ops.k8s.debug-pod-failures"
+    ],
+    "aliases": [
+      "livenessProbe",
+      "readinessProbe",
+      "쿠버네티스 프로브",
+      "Kubernetes probes",
+      "k8s 헬스 체크 프로브"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/workloads/pods/probes/",
+      "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/"
+    ]
+  },
+  {
+    "id": "ops.k8s.debug-service",
+    "title": "Service에 연결이 안 될 때 원인 찾기",
+    "en": "Debugging Kubernetes Service Connectivity",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "Service로 요청이 닿지 않을 때 파드 상태, DNS 이름, 셀렉터와 포트, EndpointSlice, kube-proxy를 차례로 확인해 끊긴 곳을 찾는다.",
+    "objectives": [
+      "임시 디버그 파드에서 Service 이름과 클러스터 IP로 차례로 접속해 DNS 문제와 라우팅 문제를 가를 수 있다",
+      "EndpointSlice가 비어 있을 때 셀렉터 불일치와 준비 안 된 파드 중 원인을 찾을 수 있다",
+      "다른 네임스페이스의 Service를 짧은 이름으로 불러 실패하는 이유를 resolv.conf의 search 목록으로 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.basics"
+    ],
+    "related": [
+      "ops.network.dns-resolution",
+      "ops.k8s.network-policy"
+    ],
+    "aliases": [
+      "kubectl 서비스 디버깅",
+      "debug service k8s",
+      "쿠버네티스 서비스 연결 오류",
+      "Service 접속 안 됨 k8s"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/tasks/debug/debug-application/debug-service/",
+      "https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/"
+    ]
+  },
+  {
+    "id": "ops.ci.self-hosted-runner-hardening",
+    "title": "자체 호스트 러너 보안 설계",
+    "en": "Hardening Self-Hosted Runners",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "CI/CD",
+    "summary": "자체 호스트 러너는 잡이 끝나도 깨끗해지지 않으므로, 공개 저장소에서 쓰지 않고 한 번 쓰고 버리는 러너와 러너 그룹으로 피해 범위를 줄인다.",
+    "objectives": [
+      "공개 저장소와 비공개 저장소에서 자체 호스트 러너가 어떤 경로로 침해될 수 있는지 설명할 수 있다",
+      "러너가 침해됐을 때 시크릿·GITHUB_TOKEN·SSH 키·클라우드 메타데이터 같은 노출 대상을 짚을 수 있다",
+      "JIT 러너와 러너 그룹을 써서 한 러너가 여러 저장소의 잡을 받지 않게 설계할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.ci.workflow-basics"
+    ],
+    "related": [
+      "ops.ci.runner",
+      "ops.ci.workflow-injection-defense"
+    ],
+    "aliases": [
+      "self-hosted runner security",
+      "러너 하드닝",
+      "자체 호스트 러너 보안",
+      "GitHub Actions 러너 보안"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/reference/security/secure-use",
+      "https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/manage-access"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ops.docker.logging-driver-design",
+    "title": "Docker 로깅 드라이버 고르기와 로그 회전",
+    "en": "Choosing Docker Logging Drivers",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "Docker",
+    "summary": "기본 json-file 드라이버는 로그를 돌리지 않아 디스크를 채울 수 있으므로, local 드라이버나 회전 옵션과 전달 방식을 골라 운영한다.",
+    "objectives": [
+      "컨테이너 로그가 디스크를 채운 원인을 기본 드라이버의 회전 설정에서 찾을 수 있다",
+      "데몬 기본값과 컨테이너별 설정 중 어디에 로깅 드라이버를 둘지 고르고, 바꾼 설정이 기존 컨테이너에 적용되지 않는 이유를 말할 수 있다",
+      "blocking과 non-blocking 전달 방식의 손익을 앱 멈춤과 로그 유실로 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.observe.container-healthcheck"
+    ],
+    "related": [
+      "ops.linux.logrotate",
+      "ops.linux.disk-space"
+    ],
+    "aliases": [
+      "log-driver",
+      "daemon.json log-opts",
+      "Docker 로깅 드라이버",
+      "Docker logging driver",
+      "local 로깅 드라이버"
+    ],
+    "refs": [
+      "https://docs.docker.com/engine/logging/configure/",
+      "https://docs.docker.com/engine/logging/drivers/json-file/"
+    ]
+  },
+  {
     "id": "ops.network.edge-waf",
     "title": "웹 방화벽(WAF)과 오탐 분석",
     "en": "WAF Rules and False Positives",
@@ -7340,6 +7475,87 @@
     ]
   },
   {
+    "id": "ops.k8s.probe-timing-fields",
+    "title": "프로브 주기와 실패 임계값",
+    "en": "Probe Timing and Failure Threshold",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "initialDelaySeconds·periodSeconds·timeoutSeconds·failureThreshold로 프로브가 언제부터 얼마나 자주 검사하고 몇 번 실패해야 조치할지 정한다.",
+    "parent": "ops.k8s.probe-design",
+    "aliases": [
+      "failureThreshold",
+      "periodSeconds",
+      "initialDelaySeconds",
+      "프로브 임계값",
+      "probe timeoutSeconds"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/"
+    ]
+  },
+  {
+    "id": "ops.k8s.endpointslice",
+    "title": "EndpointSlice",
+    "en": "EndpointSlice",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "Service 셀렉터에 맞는 파드 IP와 ready·serving·terminating 상태를 담아 kube-proxy가 트래픽을 보낼 곳을 정하게 하는 객체다.",
+    "parent": "ops.k8s.debug-service",
+    "aliases": [
+      "엔드포인트 슬라이스",
+      "EndpointSlices",
+      "kubectl get endpointslices",
+      "kubernetes.io/service-name"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/services-networking/endpoint-slices/"
+    ]
+  },
+  {
+    "id": "ops.k8s.service-dns-name",
+    "title": "Service DNS 이름과 네임스페이스",
+    "en": "Service DNS Names",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "Service는 <이름>.<네임스페이스>.svc.<클러스터 도메인>으로 조회되며, 네임스페이스를 빼면 자기 네임스페이스에서만 찾는다.",
+    "parent": "ops.k8s.debug-service",
+    "aliases": [
+      "svc.cluster.local",
+      "쿠버네티스 서비스 DNS",
+      "Kubernetes service DNS",
+      "ndots:5"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/"
+    ]
+  },
+  {
+    "id": "ops.docker.json-file-max-size",
+    "title": "json-file 로그 회전(max-size·max-file)",
+    "en": "json-file Log Rotation Options",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Docker",
+    "summary": "json-file 드라이버는 max-size를 정해야 로그 파일을 돌리고, max-file로 남길 파일 개수를 정하며 compress로 지난 파일을 압축한다.",
+    "parent": "ops.docker.logging-driver-design",
+    "aliases": [
+      "max-size log-opt",
+      "max-file log-opt",
+      "json-file 드라이버",
+      "Docker 로그 용량 제한"
+    ],
+    "refs": [
+      "https://docs.docker.com/engine/logging/drivers/json-file/"
+    ]
+  },
+  {
     "id": "ops.linux.flock",
     "title": "파일 잠금(flock)으로 동시 실행 막기",
     "en": "flock: File Locking Against Concurrent Runs",
@@ -7517,6 +7733,95 @@
     ],
     "refs": [
       "https://gateway-api.sigs.k8s.io/reference/api-types/referencegrant/"
+    ]
+  },
+  {
+    "id": "ops.k8s.headless-service",
+    "title": "헤드리스 서비스(clusterIP: None)",
+    "en": "Headless Service",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "클러스터 IP 없이 DNS가 셀렉터에 맞는 파드 IP 목록을 바로 돌려줘, 클라이언트가 직접 파드를 고르게 하는 Service다.",
+    "parent": "ops.k8s.debug-service",
+    "related": [
+      "ops.k8s.service-types"
+    ],
+    "aliases": [
+      "clusterIP: None",
+      "헤드리스 Service",
+      "Kubernetes headless service",
+      "k8s headless service"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/",
+      "https://kubernetes.io/docs/concepts/services-networking/service/"
+    ]
+  },
+  {
+    "id": "ops.ci.jit-runner",
+    "title": "JIT 러너와 일회용 러너",
+    "en": "Just-in-Time and Ephemeral Runners",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "CI/CD",
+    "summary": "REST API로 만든 JIT 러너는 잡을 하나만 실행하고 자동으로 지워져, 앞 잡이 남긴 흔적이 다음 잡에 닿지 않는다.",
+    "parent": "ops.ci.self-hosted-runner-hardening",
+    "aliases": [
+      "JIT runner",
+      "just-in-time runner",
+      "ephemeral runner",
+      "일회용 러너",
+      "--ephemeral 러너"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/reference/security/secure-use"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ops.ci.runner-group",
+    "title": "러너 그룹으로 접근 제한",
+    "en": "Runner Groups",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "CI/CD",
+    "summary": "조직의 자체 호스트 러너를 그룹으로 묶고 그룹마다 쓸 수 있는 저장소를 정해, 침해 시 영향이 퍼지는 범위를 줄인다.",
+    "parent": "ops.ci.self-hosted-runner-hardening",
+    "aliases": [
+      "runner groups",
+      "GitHub 러너 그룹",
+      "Actions runner group",
+      "기본 러너 그룹"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/manage-access"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ops.docker.log-delivery-mode",
+    "title": "로그 전달 방식(blocking·non-blocking)",
+    "en": "Log Delivery Mode",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Docker",
+    "summary": "blocking은 로그가 느리면 앱도 기다리고, non-blocking은 버퍼에 담아 앱을 멈추지 않는 대신 버퍼가 차면 로그를 버린다.",
+    "parent": "ops.docker.logging-driver-design",
+    "aliases": [
+      "mode=non-blocking",
+      "max-buffer-size",
+      "Docker 로그 전달 모드",
+      "non-blocking log delivery"
+    ],
+    "refs": [
+      "https://docs.docker.com/engine/logging/configure/"
     ]
   },
   {

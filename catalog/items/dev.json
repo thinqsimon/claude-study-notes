@@ -6487,6 +6487,100 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "dev.git.attributes-drivers",
+    "title": "gitattributes로 파일별 diff·병합·내보내기 정하기",
+    "en": "Per-Path Behavior with Git Attributes",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "Git",
+    "summary": "파일 경로마다 diff 변환기, 병합 드라이버, 필터, 내보내기 제외를 지정해 Git이 파일을 다루는 방식을 바꾼다.",
+    "objectives": [
+      "바이너리 파일에 textconv 변환기를 걸어 git diff로 바뀐 내용을 읽을 수 있다",
+      "환경마다 다른 설정 파일에 merge=ours를 걸어 병합 때 내 쪽을 유지할 수 있다",
+      "clean·smudge 필터 설정은 저장소에 함께 올라가지 않는다는 점을 알고 필터가 없는 환경에서도 깨지지 않게 설계할 수 있다",
+      "export-ignore로 git archive 결과에서 뺄 경로를 정할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.diff",
+      "dev.git.merge-methods"
+    ],
+    "related": [
+      "dev.git.line-endings"
+    ],
+    "aliases": [
+      ".gitattributes 드라이버",
+      "Git 속성",
+      "git attributes",
+      "export-ignore",
+      "clean smudge 필터"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes",
+      "https://git-scm.com/docs/gitattributes"
+    ]
+  },
+  {
+    "id": "dev.test.xdist-parallel",
+    "title": "pytest-xdist로 테스트 병렬 실행하기",
+    "en": "Parallel Testing with pytest-xdist",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "테스트",
+    "summary": "테스트를 여러 워커 프로세스에 나눠 돌리고, 분배 방식과 공유 자원 처리를 골라 병렬 실행에서만 생기는 실패를 막는다.",
+    "objectives": [
+      "-n auto와 --dist 분배 방식을 골라 비싼 픽스처를 다시 만들지 않게 할 수 있다",
+      "세션 범위 픽스처가 워커마다 한 번씩 돈다는 점을 알고 파일 잠금과 공유 임시 폴더로 한 번만 돌게 만들 수 있다",
+      "worker_id로 워커마다 다른 자원을 쓰게 해 테스트끼리 부딪히는 실패를 없앨 수 있다"
+    ],
+    "prerequisites": [
+      "dev.test.pytest-select",
+      "dev.test.fixture-scope-isolation"
+    ],
+    "aliases": [
+      "pytest-xdist",
+      "xdist",
+      "pytest -n auto",
+      "pytest 병렬 실행",
+      "pytest parallel"
+    ],
+    "refs": [
+      "https://pytest-xdist.readthedocs.io/en/stable/distribution.html",
+      "https://pytest-xdist.readthedocs.io/en/stable/how-to.html"
+    ]
+  },
+  {
+    "id": "dev.robust.subprocess-timeout",
+    "title": "외부 명령 시간 제한과 프로세스 그룹 정리",
+    "en": "Subprocess Timeouts and Process Group Cleanup",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "견고한 스크립트",
+    "summary": "외부 명령이 멈췄을 때 시간 제한으로 끊고, 남은 자식 프로세스까지 프로세스 그룹 단위로 정리해 스크립트가 걸려 있지 않게 한다.",
+    "objectives": [
+      "run()의 timeout과 Popen.communicate()의 timeout이 자식을 끝내는지 아닌지 구분해 TimeoutExpired를 처리할 수 있다",
+      "파이프를 쓸 때 wait() 대신 communicate()를 써서 출력 버퍼가 차서 멈추는 교착을 피할 수 있다",
+      "start_new_session이나 process_group으로 자식을 새 그룹에 두고 os.killpg로 그룹 전체에 신호를 보낼 수 있다"
+    ],
+    "prerequisites": [
+      "dev.robust.subprocess-run",
+      "cs.os.signals"
+    ],
+    "aliases": [
+      "subprocess timeout",
+      "subprocess 시간 제한",
+      "프로세스 그룹 종료",
+      "process group kill",
+      "멈춘 외부 명령"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/subprocess.html",
+      "https://docs.python.org/3/library/os.html"
+    ]
+  },
+  {
     "id": "dev.git.large-repo-clone",
     "title": "큰 저장소 가볍게 받기: 얕은·부분 클론과 sparse-checkout",
     "en": "Shallow Clone, Partial Clone, and Sparse Checkout for Large Repositories",
@@ -6644,6 +6738,37 @@
     ],
     "refs": [
       "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "dev.debug.import-time",
+    "title": "파이썬 시작이 느린 원인 찾기: import 시간 재기",
+    "en": "Diagnosing Slow Python Startup with Import Timing",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "-X importtime으로 모듈마다 import에 걸린 시간을 재고, 무거운 모듈을 늦게 불러올지 손익을 따져 정한다.",
+    "objectives": [
+      "-X importtime 출력에서 자기 시간과 누적 시간을 구분해 느린 import를 찾을 수 있다",
+      "importlib.util.LazyLoader로 import를 늦추면 시작은 빨라지지만 로딩 오류가 엉뚱한 곳에서 난다는 손익을 설명할 수 있다",
+      "Python 3.15의 lazy 키워드와 -X lazy_imports 옵션이 어떤 import를 늦추는지 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.debug.timeit"
+    ],
+    "aliases": [
+      "import 시간 측정",
+      "python 시작 속도",
+      "LazyLoader",
+      "파이썬 지연 import",
+      "Python lazy import"
+    ],
+    "refs": [
+      "https://docs.python.org/3/using/cmdline.html",
+      "https://docs.python.org/3/library/importlib.html"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
@@ -7428,6 +7553,171 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
+  },
+  {
+    "id": "dev.git.diff-textconv",
+    "title": "diff 변환기(textconv)",
+    "en": "Diff Text Conversion (textconv)",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Git",
+    "summary": "바이너리 파일을 텍스트로 바꾼 뒤 비교하게 해서 git diff가 문서·이미지 정보의 차이를 보여 주게 하는 설정이다.",
+    "parent": "dev.git.attributes-drivers",
+    "aliases": [
+      "textconv",
+      "diff.textconv",
+      "Git diff 드라이버",
+      "바이너리 파일 diff"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes"
+    ]
+  },
+  {
+    "id": "dev.git.merge-ours-driver",
+    "title": "merge=ours 병합 드라이버",
+    "en": "merge=ours Merge Driver",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Git",
+    "summary": "특정 파일은 병합할 때 충돌 없이 현재 브랜치 내용을 그대로 두도록 .gitattributes와 merge.ours.driver로 정하는 방법이다.",
+    "parent": "dev.git.attributes-drivers",
+    "related": [
+      "dev.git.ours-theirs"
+    ],
+    "aliases": [
+      "merge=ours",
+      "merge.ours.driver",
+      "Git 병합 드라이버",
+      "git merge driver"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes"
+    ]
+  },
+  {
+    "id": "dev.test.xdist-dist-mode",
+    "title": "pytest-xdist 분배 방식(--dist)",
+    "en": "pytest-xdist Distribution Modes",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "테스트",
+    "summary": "load·loadscope·loadfile·loadgroup·worksteal 중 하나를 골라 테스트를 워커에 어떻게 묶어 보낼지 정하는 옵션이다.",
+    "parent": "dev.test.xdist-parallel",
+    "aliases": [
+      "--dist loadscope",
+      "--dist loadgroup",
+      "xdist_group",
+      "xdist worksteal"
+    ],
+    "refs": [
+      "https://pytest-xdist.readthedocs.io/en/stable/distribution.html"
+    ]
+  },
+  {
+    "id": "dev.test.xdist-worker-id",
+    "title": "xdist worker_id 픽스처",
+    "en": "xdist worker_id Fixture",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "테스트",
+    "summary": "지금 테스트가 도는 워커 이름(gw0 등)을 알려 주는 픽스처로, 병렬이 꺼져 있으면 master를 돌려준다.",
+    "parent": "dev.test.xdist-parallel",
+    "aliases": [
+      "worker_id",
+      "PYTEST_XDIST_WORKER",
+      "xdist 워커 번호"
+    ],
+    "refs": [
+      "https://pytest-xdist.readthedocs.io/en/stable/how-to.html"
+    ]
+  },
+  {
+    "id": "dev.robust.timeout-expired",
+    "title": "subprocess.TimeoutExpired",
+    "en": "subprocess.TimeoutExpired",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "견고한 스크립트",
+    "summary": "외부 명령이 정한 시간 안에 끝나지 않을 때 나는 예외로, run()은 자식을 끝낸 뒤 던지지만 communicate()는 자식을 그대로 둔다.",
+    "parent": "dev.robust.subprocess-timeout",
+    "related": [
+      "dev.robust.called-process-error"
+    ],
+    "aliases": [
+      "TimeoutExpired",
+      "subprocess 시간 초과 예외",
+      "communicate timeout"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/subprocess.html"
+    ]
+  },
+  {
+    "id": "dev.robust.start-new-session",
+    "title": "start_new_session과 os.killpg",
+    "en": "start_new_session and os.killpg",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "견고한 스크립트",
+    "summary": "자식 프로세스를 새 세션·프로세스 그룹에서 시작하게 하고, 나중에 그 그룹 전체에 신호를 보내 한꺼번에 끝내는 방법이다.",
+    "parent": "dev.robust.subprocess-timeout",
+    "aliases": [
+      "start_new_session",
+      "subprocess process_group",
+      "os.killpg",
+      "프로세스 그룹 신호"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/subprocess.html",
+      "https://docs.python.org/3/library/os.html"
+    ]
+  },
+  {
+    "id": "dev.debug.x-importtime",
+    "title": "-X importtime 옵션",
+    "en": "-X importtime Option",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "파이썬을 실행할 때 모듈마다 import에 걸린 자기 시간과 누적 시간을 표준 오류로 찍어 주는 옵션이다.",
+    "parent": "dev.debug.import-time",
+    "aliases": [
+      "importtime",
+      "PYTHONPROFILEIMPORTTIME",
+      "python -X importtime"
+    ],
+    "refs": [
+      "https://docs.python.org/3/using/cmdline.html"
+    ]
+  },
+  {
+    "id": "dev.git.range-diff",
+    "title": "git range-diff",
+    "en": "git range-diff",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Git",
+    "summary": "리베이스 전후처럼 두 버전의 커밋 묶음을 짝지어 어느 커밋이 그대로이고 어느 커밋이 바뀌거나 더해졌는지 보여 주는 명령이다.",
+    "related": [
+      "dev.git.rebase"
+    ],
+    "aliases": [
+      "range-diff",
+      "rebase 전후 비교",
+      "패치 시리즈 비교"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/git-range-diff"
+    ]
   },
   {
     "id": "dev.git.internals",

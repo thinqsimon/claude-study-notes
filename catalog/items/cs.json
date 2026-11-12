@@ -6683,6 +6683,138 @@
     ]
   },
   {
+    "id": "cs.net.pmtud-black-hole",
+    "title": "경로 MTU 발견과 MTU 블랙홀",
+    "en": "Path MTU Discovery and MTU Black Holes",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "작은 요청은 되는데 큰 전송만 멈추는 증상을, 경로 MTU 발견이 ICMP 메시지에 기대는 구조로 설명하고 진단하는 주제다.",
+    "objectives": [
+      "DF 비트를 켠 패킷과 라우터의 '단편화 필요' ICMP 응답으로 경로 MTU 추정값을 줄여 가는 과정을 설명할 수 있다",
+      "핑과 작은 패킷은 되는데 큰 쓰기부터 멈추는 증상을 ICMP 차단으로 생긴 블랙홀로 가려낼 수 있다",
+      "ICMP에 기대지 않고 크기를 늘려 가며 탐침하는 PLPMTUD가 블랙홀을 어떻게 피하는지 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.net.tcp-vs-udp"
+    ],
+    "related": [
+      "ops.network.tracepath-hops",
+      "ops.network.tcp-internals",
+      "cs.net.connection-errors"
+    ],
+    "aliases": [
+      "PMTUD",
+      "path MTU discovery",
+      "MTU black hole",
+      "PMTUD 블랙홀",
+      "단편화 필요 ICMP"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc1191.html",
+      "https://www.rfc-editor.org/rfc/rfc2923.html",
+      "https://www.rfc-editor.org/rfc/rfc8899.html"
+    ]
+  },
+  {
+    "id": "cs.os.epoll-trigger-modes",
+    "title": "epoll의 레벨 트리거와 엣지 트리거",
+    "en": "epoll Level-Triggered and Edge-Triggered Modes",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "준비된 디스크립터를 상태가 이어지는 동안 계속 알릴지 바뀔 때만 알릴지에 따라, 읽다 만 데이터로 프로그램이 멈추는 버그가 생기는 원리다.",
+    "objectives": [
+      "엣지 트리거에서 데이터를 덜 읽으면 epoll_wait가 다시 깨어나지 않는 원인을 설명하고 고칠 수 있다",
+      "엣지 트리거에는 논블로킹 디스크립터를 쓰고 EAGAIN이 나올 때까지 읽고 쓰는 규칙을 적용할 수 있다",
+      "바쁜 디스크립터 하나가 다른 디스크립터를 굶기는 문제를 준비 목록을 돌아가며 처리하는 방식으로 피할 수 있다",
+      "닫거나 dup·fork한 디스크립터가 관심 목록에 남는 경우를 열린 파일 설명 기준으로 진단할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.net.tcp-message-boundary"
+    ],
+    "related": [
+      "be.async.event-loop-internals",
+      "be.async.blocking-diagnosis",
+      "cs.net.short-read-write"
+    ],
+    "aliases": [
+      "EPOLLET",
+      "epoll edge-triggered",
+      "epoll level-triggered",
+      "epoll 엣지 트리거",
+      "epoll 레벨 트리거"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man7/epoll.7.html"
+    ]
+  },
+  {
+    "id": "cs.dsa.bloom-filter",
+    "title": "블룸 필터: 거짓 양성을 감수하고 메모리 아끼기",
+    "en": "Bloom Filter",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "자료구조",
+    "summary": "여러 해시 함수로 비트 배열 하나에 표시해 큰 집합의 소속을 빠르게 걸러 내되, 없는 원소를 있다고 답할 수 있는 확률적 자료구조다.",
+    "objectives": [
+      "비트 배열과 여러 해시 함수로 소속을 검사하는 원리를 근거로 '있다'는 답에 확인이 더 필요한 이유를 설명할 수 있다",
+      "원하는 거짓 양성률과 예상 원소 수로 필요한 비트 수와 해시 함수 개수가 정해진다는 점을 근거로 집합 대신 블룸 필터를 쓸지 고를 수 있다",
+      "예상 용량보다 많이 넣으면 거짓 양성률이 올라간다는 점을 알고 용량을 넉넉히 잡을지 확장을 둘지 고를 수 있다"
+    ],
+    "prerequisites": [
+      "cs.dsa.hash-table"
+    ],
+    "related": [
+      "dev.git.commit-graph"
+    ],
+    "aliases": [
+      "Bloom filter",
+      "블룸필터",
+      "확률적 소속 검사"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/bloomFilter.html",
+      "https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/"
+    ]
+  },
+  {
+    "id": "cs.net.tcp-zero-window",
+    "title": "느린 수신자와 TCP 흐름 제어: 수신 창 0",
+    "en": "TCP Flow Control and the Zero Window",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "받는 쪽 프로그램이 읽지 않아 수신 버퍼가 차면 광고하는 창이 0이 되어 보내는 쪽이 멈추는 흐름 제어의 동작과 그 진단이다.",
+    "objectives": [
+      "수신 버퍼 중 응용이 아직 읽지 않은 몫이 광고하는 창을 줄여 창이 0까지 닫히는 과정을 설명할 수 있다",
+      "창이 0인 동안 보내는 쪽이 탐침을 보내며 연결을 유지한다는 규칙을 근거로 끊김이 아니라 멈춤인 증상을 가려낼 수 있다",
+      "창이 조금씩만 열려 작은 세그먼트만 오가는 어리석은 창 증후군과 보내는 쪽·받는 쪽의 회피 규칙을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.net.tcp-vs-udp"
+    ],
+    "related": [
+      "cs.net.nagle-delayed-ack",
+      "cs.net.tcp-keepalive",
+      "ops.network.tcp-internals"
+    ],
+    "aliases": [
+      "zero window",
+      "TCP 제로 윈도",
+      "수신 창 0",
+      "TCP flow control",
+      "TCP 흐름 제어"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9293.html"
+    ]
+  },
+  {
     "id": "cs.dsa.hash-randomization",
     "title": "해시 무작위화",
     "en": "Hash Randomization",
@@ -7515,6 +7647,165 @@
     ],
     "refs": [
       "https://man7.org/linux/man-pages/man7/signal.7.html"
+    ]
+  },
+  {
+    "id": "cs.net.mtu",
+    "title": "MTU(최대 전송 단위)",
+    "en": "Maximum Transmission Unit",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "한 링크가 쪼개지 않고 한 번에 실어 나를 수 있는 IP 패킷의 최대 크기로, 경로 위 가장 작은 값이 경로 MTU가 된다.",
+    "parent": "cs.net.pmtud-black-hole",
+    "aliases": [
+      "maximum transmission unit",
+      "MTU 크기",
+      "링크 MTU"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc1191.html"
+    ]
+  },
+  {
+    "id": "cs.net.plpmtud",
+    "title": "패킷화 계층 경로 MTU 발견(PLPMTUD)",
+    "en": "Packetization Layer Path MTU Discovery",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "전송 계층이 점점 큰 탐침 패킷을 보내 상대의 확인으로 통과 크기를 정해, ICMP가 막힌 경로에서도 MTU를 찾는 방식이다.",
+    "parent": "cs.net.pmtud-black-hole",
+    "aliases": [
+      "PLPMTUD",
+      "DPLPMTUD",
+      "MTU 탐침"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc8899.html"
+    ]
+  },
+  {
+    "id": "cs.os.eagain",
+    "title": "EAGAIN·EWOULDBLOCK(논블로킹 호출의 지금은 불가)",
+    "en": "EAGAIN and EWOULDBLOCK",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "논블로킹으로 연 디스크립터에서 읽기·쓰기가 기다려야 할 때 바로 돌아오며 내는 오류로, 실패가 아니라 나중에 다시 하라는 뜻이다.",
+    "parent": "cs.os.epoll-trigger-modes",
+    "aliases": [
+      "EAGAIN",
+      "EWOULDBLOCK",
+      "Resource temporarily unavailable",
+      "논블로킹 다시 시도 오류"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man2/read.2.html"
+    ]
+  },
+  {
+    "id": "cs.os.o-nonblock",
+    "title": "논블로킹 모드(O_NONBLOCK)",
+    "en": "Nonblocking Mode (O_NONBLOCK)",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "디스크립터의 입출력이 호출한 쪽을 기다리게 하지 않도록 하는 플래그로, 일반 파일과 블록 장치에는 효과가 없다.",
+    "parent": "cs.os.epoll-trigger-modes",
+    "aliases": [
+      "O_NONBLOCK",
+      "O_NDELAY",
+      "논블로킹 I/O",
+      "nonblocking I/O"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man2/open.2.html"
+    ]
+  },
+  {
+    "id": "cs.os.epolloneshot",
+    "title": "EPOLLONESHOT(한 번 알린 뒤 멈추기)",
+    "en": "EPOLLONESHOT",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "epoll이 한 디스크립터의 이벤트를 한 번 알린 뒤 그 디스크립터를 꺼 두어, 다시 쓰려면 EPOLL_CTL_MOD로 다시 켜야 하게 하는 플래그다.",
+    "parent": "cs.os.epoll-trigger-modes",
+    "aliases": [
+      "EPOLLONESHOT",
+      "oneshot epoll",
+      "epoll 일회성 알림"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man7/epoll.7.html"
+    ]
+  },
+  {
+    "id": "cs.dsa.bloom-false-positive",
+    "title": "블룸 필터 거짓 양성",
+    "en": "Bloom Filter False Positive",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "자료구조",
+    "summary": "넣은 적 없는 원소인데 해당 비트가 모두 다른 원소들 때문에 켜져 있어 블룸 필터가 있다고 잘못 답하는 경우다.",
+    "parent": "cs.dsa.bloom-filter",
+    "aliases": [
+      "블룸 필터 오탐",
+      "Bloom filter false positive",
+      "블룸 필터 거짓 양성률"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/bloomFilter.html",
+      "https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/"
+    ]
+  },
+  {
+    "id": "cs.net.zero-window-probe",
+    "title": "제로 윈도 탐침(zero window probe)",
+    "en": "Zero Window Probe",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "상대의 수신 창이 0일 때 보내는 쪽이 간격을 늘려 가며 작은 세그먼트를 보내 창이 다시 열렸는지 확인하는 동작이다.",
+    "parent": "cs.net.tcp-zero-window",
+    "aliases": [
+      "zero window probe",
+      "제로 윈도 프로브",
+      "persist timer",
+      "TCP 지속 타이머"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9293.html"
+    ]
+  },
+  {
+    "id": "cs.net.silly-window-syndrome",
+    "title": "어리석은 창 증후군(SWS)",
+    "en": "Silly Window Syndrome",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "수신 창이 아주 조금씩 열리고 그만큼씩 작은 세그먼트가 오가며 전송 효율이 떨어지는 현상으로, TCP는 양쪽에서 이를 피하는 규칙을 둔다.",
+    "parent": "cs.net.tcp-zero-window",
+    "related": [
+      "cs.net.nagle-algorithm"
+    ],
+    "aliases": [
+      "silly window syndrome",
+      "SWS 회피",
+      "실리 윈도 신드롬"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9293.html"
     ]
   }
 ]
