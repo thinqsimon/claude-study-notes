@@ -7283,6 +7283,41 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "mlops.track.mlflow-artifact-proxy",
+    "title": "MLflow 추적 서버의 아티팩트 프록시와 직접 접근의 손익",
+    "en": "MLflow Tracking Server Artifact Proxying vs Direct Access",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "MLflow 추적 서버가 메타데이터 저장소와 아티팩트 저장소를 나누고, 아티팩트를 서버로 중계하거나 클라이언트가 직접 쓰게 하는 설계를 보안·부하로 비교한다.",
+    "objectives": [
+      "백엔드 저장소(SQL 데이터베이스)와 아티팩트 저장소(객체 저장소)를 나누는 이유를 접근 빈도와 파일 크기로 설명할 수 있다",
+      "프록시 방식은 서버만 저장소 자격 증명을 갖지만 서버를 쓰는 모든 사용자가 그 접근 범위를 물려받는다는 보안 손익을 분석할 수 있다",
+      "--no-serve-artifacts 직접 방식이 서버 부하를 줄이는 대신 클라이언트마다 자격 증명이 필요해지는 차이를 비교할 수 있다",
+      "실험이 만들 때의 아티팩트 위치를 계속 쓰기 때문에 방식을 바꾸면 새 실험이 필요하다는 점과 큰 파일 전송 시간 초과의 원인을 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.track.experiment-tracking"
+    ],
+    "related": [
+      "mlops.observe.mlflow-server"
+    ],
+    "aliases": [
+      "MLflow 아티팩트 프록시",
+      "MLflow artifact proxy",
+      "--serve-artifacts",
+      "--artifacts-destination",
+      "MLflow 아티팩트 저장소"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/self-hosting/architecture/tracking-server/",
+      "https://mlflow.org/docs/latest/self-hosting/architecture/overview/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
     "id": "mlops.serve.kserve-canary-rollout",
     "title": "KServe로 모델 카나리 출시하고 되돌리기",
     "en": "Canary Rollout and Rollback with KServe",
@@ -8949,6 +8984,27 @@
     ]
   },
   {
+    "id": "mlops.track.mlflow-artifacts-only-server",
+    "title": "MLflow 아티팩트 전용 서버(--artifacts-only)",
+    "en": "MLflow Artifacts-Only Server",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "아티팩트 요청만 받는 MLflow 서버를 따로 띄워 추적 서버의 부하를 덜되, 다른 엔드포인트는 거절하고 클라이언트가 아티팩트 URI로 그 서버를 직접 가리켜야 한다.",
+    "parent": "mlops.track.mlflow-artifact-proxy",
+    "aliases": [
+      "--artifacts-only",
+      "MLflow 아티팩트 전용 서버",
+      "MLflow artifacts-only server"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/self-hosting/architecture/tracking-server/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
     "id": "mlops.serve.vllm-v1-process-architecture",
     "title": "vLLM V1 프로세스 구조: API 서버·엔진 코어·워커",
     "en": "vLLM V1 Process Architecture",
@@ -9208,6 +9264,41 @@
       "https://docs.feast.dev/getting-started/concepts/point-in-time-joins",
       "https://docs.feast.dev/getting-started/concepts/data-ingestion"
     ]
+  },
+  {
+    "id": "mlops.serve.ray-object-ownership",
+    "title": "Ray 객체 저장소 내부: 소유권·참조 계수·계보 재구성",
+    "en": "Ray Object Store Internals: Ownership, Reference Counting, and Lineage Reconstruction",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "Ray가 객체 값은 노드 객체 저장소에, 메타데이터는 소유자 워커에 두고 분산 참조 계수와 계보로 해제·복구하는 방식을 분석한다.",
+    "objectives": [
+      "객체 값과 메타데이터가 각각 어디에 저장되고 ObjectRef를 만든 워커가 소유자가 되는 구조를 설명할 수 있다",
+      "로컬 참조·대기 중인 작업 인자·다른 객체에 담긴 참조가 객체를 고정해 메모리가 풀리지 않는 원인을 ray memory 출력으로 분석할 수 있다",
+      "객체 저장소 기본 크기(노드 메모리의 30%, 최대 200GB)와 저장소가 가득 찼을 때 디스크로 스필하는 동작의 영향을 판단할 수 있다",
+      "계보 재구성이 ray.put 객체와 소유자 장애에는 통하지 않는 한계를 근거로 장애 시 ObjectLostError 종류를 구분할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.ray-serve-architecture"
+    ],
+    "related": [
+      "cs.lang.reference-counting"
+    ],
+    "aliases": [
+      "Ray 객체 저장소",
+      "Ray object store",
+      "Ray 분산 참조 계수",
+      "Ray ObjectRef 참조 계수"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/ray-core/scheduling/memory-management.html",
+      "https://docs.ray.io/en/latest/ray-core/fault_tolerance/objects.html",
+      "https://docs.ray.io/en/latest/ray-core/objects/object-spilling.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
   },
   {
     "id": "mlops.serve.inference-optimization",
@@ -9522,6 +9613,70 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.ray-scheduling-policy",
+    "title": "Ray 작업 배치 내부: DEFAULT 전략과 지역성",
+    "en": "Ray Task Placement Internals: DEFAULT Strategy and Locality",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Ray가 자원으로 후보 노드를 거른 뒤 DEFAULT 전략의 상위 k 무작위 선택·SPREAD·노드 친화성·인자 지역성으로 한 노드를 고르는 과정과 손익을 비교한다.",
+    "objectives": [
+      "실행 가능한 노드와 지금 쓸 수 있는 노드를 나누는 두 단계 배치 과정을 설명할 수 있다",
+      "DEFAULT 전략이 사용률 임계값 아래 노드를 같은 점수로 보고 점수가 낮은 상위 k개 중 무작위로 고르는 이유를 지역성·부하 분산·콜드 스타트 면에서 설명할 수 있다",
+      "노드 친화성의 soft=False와 soft=True가 노드가 사라졌을 때 각각 실패와 다른 노드 대체로 갈리는 차이와 자동 확장 클러스터에서의 한계를 판단할 수 있다",
+      "큰 인자를 가진 노드를 먼저 고르는 지역성 배치가 작업에만 쓰이고 명시한 전략보다 뒤에 오는 우선순위를 분석할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.ray-serve-architecture",
+      "ops.k8s.scheduling"
+    ],
+    "aliases": [
+      "Ray 스케줄링",
+      "Ray scheduling",
+      "Ray 스케줄링 전략",
+      "Ray scheduling strategy",
+      "NodeAffinitySchedulingStrategy"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/ray-core/scheduling/index.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "mlops.serve.cuda-mps-isolation",
+    "title": "CUDA MPS의 내부와 격리 한계",
+    "en": "CUDA MPS Internals and Isolation Limits",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "여러 프로세스의 CUDA 커널을 한 GPU에서 동시에 돌리는 MPS의 서버·클라이언트 구조와 주소 공간 격리, 오류 전파 범위의 손익을 분석한다.",
+    "objectives": [
+      "서로 다른 CUDA 컨텍스트의 작업은 시간 분할로 번갈아 돌아 동시에 실행되지 않는다는 점에서 MPS가 사용률을 높이는 원리를 설명할 수 있다",
+      "Volta 이후 MPS에서 클라이언트 주소 공간은 격리되지만 치명적 GPU 오류는 같은 GPU를 쓰는 모든 클라이언트에 알려진다는 오류 전파 범위를 분석할 수 있다",
+      "프로세스 하나가 GPU를 채우지 못할 때 MPS가 맞고, 동기화 없이 클라이언트를 끝내면 서버와 다른 클라이언트가 정의되지 않은 상태가 될 수 있다는 위험을 판단할 수 있다",
+      "MIG·타임 슬라이싱과 견주어 MPS를 고를 때 격리와 동시 실행의 손익을 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.gpu-sharing-mig-time-slicing"
+    ],
+    "aliases": [
+      "CUDA MPS",
+      "NVIDIA MPS",
+      "Multi-Process Service",
+      "멀티 프로세스 서비스",
+      "nvidia-cuda-mps-control"
+    ],
+    "refs": [
+      "https://docs.nvidia.com/deploy/mps/latest/index.html",
+      "https://docs.nvidia.com/deploy/mps/latest/architecture.html",
+      "https://docs.nvidia.com/deploy/mps/latest/when-to-use-mps.html",
+      "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/gpu-sharing.html"
+    ]
   },
   {
     "id": "mlops.observe.data-drift",
@@ -10036,5 +10191,123 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.ray-object-owner",
+    "title": "Ray 객체 소유자와 OwnerDiedError",
+    "en": "Ray Object Owner and OwnerDiedError",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "ObjectRef를 처음 만든 워커가 객체 메타데이터를 들고 있으며, 이 워커가 죽으면 객체를 되살리지 못하고 OwnerDiedError가 난다.",
+    "parent": "mlops.serve.ray-object-ownership",
+    "aliases": [
+      "Ray 객체 소유자",
+      "Ray object owner",
+      "OwnerDiedError"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/ray-core/fault_tolerance/objects.html"
+    ]
+  },
+  {
+    "id": "mlops.serve.ray-lineage-reconstruction",
+    "title": "Ray 계보 재구성(lineage reconstruction)",
+    "en": "Ray Lineage Reconstruction",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "잃어버린 객체의 사본이 다른 노드에 없으면 그 값을 만든 작업을 다시 실행해 되살리는 Ray의 복구 방식으로, 계보 메모리는 RAY_max_lineage_bytes로 제한한다.",
+    "parent": "mlops.serve.ray-object-ownership",
+    "aliases": [
+      "Ray 계보 재구성",
+      "Ray lineage reconstruction",
+      "RAY_max_lineage_bytes"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/ray-core/fault_tolerance/objects.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "mlops.serve.ray-object-spilling",
+    "title": "Ray 객체 스필링(object spilling)",
+    "en": "Ray Object Spilling",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Ray 노드의 객체 저장소가 가득 차면 객체를 로컬 디스크로 내보냈다가 필요할 때 다시 읽어 오는 동작으로, 기본 위치는 임시 디렉터리다.",
+    "parent": "mlops.serve.ray-object-ownership",
+    "aliases": [
+      "Ray 객체 스필링",
+      "Ray object spilling",
+      "object_spilling_directory"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/ray-core/objects/object-spilling.html"
+    ]
+  },
+  {
+    "id": "mlops.serve.ray-scheduler-spread-threshold",
+    "title": "Ray 스케줄링 사용률 임계값",
+    "en": "RAY_scheduler_spread_threshold",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Ray DEFAULT 전략에서 사용률이 이 값(기본 0.5)보다 낮은 노드를 모두 0점으로 보게 하는 임계값으로, 점수가 낮은 상위 k개 노드 중 무작위로 고르는 기준이 된다.",
+    "parent": "mlops.serve.ray-scheduling-policy",
+    "aliases": [
+      "Ray spread threshold",
+      "Ray 사용률 임계값",
+      "scheduler_spread_threshold"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/ray-core/scheduling/index.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "mlops.serve.ray-locality-aware-scheduling",
+    "title": "Ray 지역성 인식 배치(인자 위치 기준)",
+    "en": "Ray Locality-Aware Scheduling",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Ray가 작업의 큰 인자를 가장 많이 들고 있는 노드를 먼저 고르는 배치 규칙으로, 액터와 인라인으로 보내는 작은 인자에는 쓰이지 않는다.",
+    "parent": "mlops.serve.ray-scheduling-policy",
+    "aliases": [
+      "Ray 지역성 인식 스케줄링",
+      "Ray locality-aware scheduling",
+      "Ray 데이터 지역성 배치"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/ray-core/scheduling/index.html"
+    ]
+  },
+  {
+    "id": "mlops.serve.mps-multiuser-server",
+    "title": "MPS 다중 사용자 서버(-multiuser-server)",
+    "en": "MPS Multiuser Server",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "여러 Linux 사용자의 클라이언트가 root로 띄운 MPS 서버 하나에 붙게 하는 모드로, 로그와 오류 격리를 함께 쓰므로 한 사용자의 치명적 오류가 다른 사용자에게 번질 수 있다.",
+    "parent": "mlops.serve.cuda-mps-isolation",
+    "aliases": [
+      "-multiuser-server",
+      "MPS multiuser server",
+      "MPS 다중 사용자 모드"
+    ],
+    "refs": [
+      "https://docs.nvidia.com/deploy/mps/latest/architecture.html"
+    ]
   }
 ]

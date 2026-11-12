@@ -8652,6 +8652,173 @@
     ]
   },
   {
+    "id": "dev.debug.specializing-interpreter",
+    "title": "적응형 특수화 인터프리터의 내부(PEP 659)",
+    "en": "CPython Specializing Adaptive Interpreter (PEP 659)",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "자주 실행되는 바이트코드를 관측한 타입에 맞는 명령어로 바꾸고 맞지 않으면 되돌리는 CPython 3.11 이후 인터프리터의 동작과 비용을 분석한다.",
+    "objectives": [
+      "특수화할 만한 명령어가 적응형 명령어를 거쳐 특수화 명령어로 바뀌고, 입력이 기대와 어긋나 카운터가 바닥나면 적응형으로 돌아가는 흐름을 설명할 수 있다",
+      "명령어 뒤에 붙는 16비트 인라인 캐시 항목 때문에 3.11의 명령어당 메모리가 3.10의 차가운 코드보다 크고 뜨거운 코드보다 작다는 PEP 659의 비교로 손익을 따질 수 있다",
+      "dis의 adaptive·show_caches 옵션(3.11부터, get_instructions의 show_caches는 3.13부터 효과 없음)으로 특수화된 바이트코드와 CACHE 항목을 읽고, 바이트코드가 버전마다 바뀌는 구현 세부라는 점을 감안해 해석할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.lang.compile-vs-interpret"
+    ],
+    "related": [
+      "dev.debug.trace-monitoring"
+    ],
+    "aliases": [
+      "PEP 659",
+      "specializing adaptive interpreter",
+      "특수화 적응형 인터프리터",
+      "CPython 바이트코드 특수화"
+    ],
+    "refs": [
+      "https://peps.python.org/pep-0659/",
+      "https://docs.python.org/3/whatsnew/3.11.html",
+      "https://docs.python.org/3/library/dis.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "dev.debug.zero-cost-exceptions",
+    "title": "예외 처리의 내부: 무비용 try와 예외 테이블",
+    "en": "CPython Zero-Cost Exception Handling",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "try 문을 실행 명령 대신 코드 객체의 예외 테이블로 표시해, 예외가 없을 때 비용을 없애고 예외가 날 때만 처리기를 찾는 CPython 3.11 이후의 방식이다.",
+    "objectives": [
+      "예외가 없을 때 try 문 비용이 사라지고 예외를 낼 때만 비용이 조금 늘어나는 무비용 예외 설계의 손익을 설명할 수 있다",
+      "예외 테이블 항목의 시작·끝 오프셋, 처리기 위치, 스택 깊이, lasti 플래그로 예외가 난 명령에서 처리기를 찾는 과정을 따라갈 수 있다",
+      "처리기가 없으면 호출자 프레임으로 전파되고, finally 끝의 RERAISE가 lasti로 원래 발생 위치를 되살리는 원리를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "be.python.exceptions",
+      "cs.lang.compile-vs-interpret"
+    ],
+    "related": [
+      "dev.debug.specializing-interpreter"
+    ],
+    "aliases": [
+      "zero-cost exceptions",
+      "무비용 예외",
+      "CPython 예외 처리 내부",
+      "zero-cost try"
+    ],
+    "refs": [
+      "https://github.com/python/cpython/blob/main/InternalDocs/exception_handling.md",
+      "https://docs.python.org/3/whatsnew/3.11.html"
+    ]
+  },
+  {
+    "id": "dev.debug.cpython-allocator",
+    "title": "CPython 메모리 할당자의 내부: pymalloc과 mimalloc",
+    "en": "CPython Memory Allocators: pymalloc and mimalloc",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "작은 객체를 아레나에서 나눠 주는 pymalloc, 자유 스레딩 빌드의 mimalloc, 할당자 도메인과 디버그 훅을 알고 메모리 사용과 손상 문제를 분석한다.",
+    "objectives": [
+      "512바이트 이하 요청은 아레나(64비트 1 MiB, 32비트 256 KiB)에서 받고 더 큰 요청은 PyMem_RawMalloc으로 넘기는 pymalloc의 경로를 설명할 수 있다",
+      "원시·메모리·객체 도메인마다 기본 할당자가 다르고, GIL 빌드는 pymalloc을, 자유 스레딩 빌드는 끌 수 없는 mimalloc을 쓰는 차이를 근거로 메모리 문제를 분석할 수 있다",
+      "디버그 훅이 0xCD·0xDD·0xFD 채움 바이트와 블록 앞뒤 경계 바이트로 잘못된 API 짝, 버퍼 넘침과 앞쪽 침범을 잡는 원리와 블록마다 붙는 추가 바이트를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.lang.garbage-collection",
+      "be.python.memory"
+    ],
+    "aliases": [
+      "CPython 메모리 할당자",
+      "CPython allocator",
+      "파이썬 할당자 도메인",
+      "PyMem_Malloc",
+      "PyObject_Malloc"
+    ],
+    "refs": [
+      "https://docs.python.org/3/c-api/memory.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "dev.debug.cyclic-gc-internals",
+    "title": "CPython 순환 GC의 내부: gc_refs와 세대",
+    "en": "CPython Cyclic Garbage Collector Internals",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "참조 수에서 내부 참조를 빼 순환 쓰레기를 찾고 세대로 수집 빈도를 줄이는 CPython 순환 수집기의 알고리즘과 빌드별 차이를 분석한다.",
+    "objectives": [
+      "후보 객체마다 참조 수를 복사해 내부 참조를 뺀 뒤 남은 값으로 바깥에서 닿는 객체와 잠정적 도달 불가 객체를 가르는 알고리즘을 설명할 수 있다",
+      "세대와 threshold로 수집 시점을 정하는 방식과, 3.14에서 바뀐 세대 처리가 3.14.5에서 3.13 동작으로 돌아간 점을 버전별로 구분할 수 있다",
+      "도달 불가 객체를 약한 참조 콜백, tp_finalize, 부활 재검사, 약한 참조 정리, tp_clear 순으로 없애는 순서로 종료자 관련 장애를 분석할 수 있다",
+      "기본 빌드의 세대별 수집과 자유 스레딩 빌드의 세대 없는 전체 힙 스캔을 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.lang.garbage-collection",
+      "be.python.memory"
+    ],
+    "related": [
+      "cs.lang.mark-sweep"
+    ],
+    "aliases": [
+      "CPython cycle collector",
+      "CPython 순환 수집기",
+      "CPython 세대별 GC",
+      "gc_refs"
+    ],
+    "refs": [
+      "https://github.com/python/cpython/blob/main/InternalDocs/garbage_collector.md",
+      "https://docs.python.org/3/library/gc.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "dev.git.delta-chain-tuning",
+    "title": "델타 창과 체인 깊이: repack·gc의 손익",
+    "en": "Git Delta Window and Chain Depth Trade-offs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "Git",
+    "summary": "packfile을 만들 때 델타 후보 창과 체인 깊이, 델타 재사용, 델타 섬이 팩 크기·압축 시간·읽기 속도에 주는 손익을 판단한다.",
+    "objectives": [
+      "--window(기본 10)와 --depth(기본 50, 최대 4095)가 팩 크기, 압축에 드는 CPU·메모리, 깊은 체인 객체를 꺼내는 속도에 주는 손익을 따질 수 있다",
+      "gc --aggressive가 기존 델타를 버리고 큰 창(기본 250)으로 다시 계산하는 비용을 알고 벤치마크 없이 쓰지 말라는 근거를 설명할 수 있다",
+      "기존 델타 재사용과 --no-reuse-delta, --threads, --window-memory가 시간과 메모리에 주는 영향을 판단할 수 있다",
+      "포크나 refs/pull이 섞인 서버 저장소에서 델타 섬이 가져오기 때 델타를 다시 계산하는 비용을 막는 원리를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.internals",
+      "dev.git.repo-performance"
+    ],
+    "related": [
+      "dev.git.packfile",
+      "dev.git.cruft-gc"
+    ],
+    "aliases": [
+      "delta chain",
+      "델타 체인 깊이",
+      "pack.depth",
+      "pack.window",
+      "git gc --aggressive"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/git-pack-objects",
+      "https://git-scm.com/docs/git-gc"
+    ]
+  },
+  {
     "id": "dev.git.reflog",
     "title": "reflog",
     "en": "Reflog",
@@ -9192,6 +9359,147 @@
     ],
     "refs": [
       "https://docs.python.org/3/howto/mro.html"
+    ]
+  },
+  {
+    "id": "dev.debug.specialized-instruction",
+    "title": "특수화 명령어와 특수화 해제",
+    "en": "Specialized Instructions and De-specialization",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "LOAD_ATTR_INSTANCE_VALUE처럼 관측한 타입에 맞춘 빠른 명령어로, 입력이 계속 어긋나면 적응형 명령어로 되돌아간다.",
+    "parent": "dev.debug.specializing-interpreter",
+    "aliases": [
+      "specialized instruction",
+      "LOAD_ATTR_INSTANCE_VALUE",
+      "LOAD_GLOBAL_BUILTIN",
+      "de-specialization",
+      "CPython 특수화 명령어"
+    ],
+    "refs": [
+      "https://peps.python.org/pep-0659/"
+    ]
+  },
+  {
+    "id": "dev.debug.bytecode-inline-cache",
+    "title": "바이트코드 인라인 캐시(CACHE 항목)",
+    "en": "CPython Bytecode Inline Cache Entries",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "명령어 바로 뒤 16비트 칸에 특수화에 쓸 데이터와 카운터를 담는 자리로, dis는 기본으로 숨기고 show_caches=True일 때 보여 준다.",
+    "parent": "dev.debug.specializing-interpreter",
+    "aliases": [
+      "CPython inline cache",
+      "CACHE 명령어",
+      "show_caches",
+      "인라인 캐시 항목"
+    ],
+    "refs": [
+      "https://peps.python.org/pep-0659/",
+      "https://docs.python.org/3/library/dis.html"
+    ]
+  },
+  {
+    "id": "dev.debug.exception-table",
+    "title": "예외 테이블(co_exceptiontable)",
+    "en": "Exception Table (co_exceptiontable)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "코드 객체에 든 명령 범위·처리기·스택 깊이의 대응표로, 이진 탐색이 가능하게 가변 길이 정수로 압축해 두고 예외가 날 때만 찾아 읽는다.",
+    "parent": "dev.debug.zero-cost-exceptions",
+    "aliases": [
+      "co_exceptiontable",
+      "파이썬 예외 테이블",
+      "CPython exception table"
+    ],
+    "refs": [
+      "https://github.com/python/cpython/blob/main/InternalDocs/exception_handling.md"
+    ]
+  },
+  {
+    "id": "dev.debug.pymalloc-arena",
+    "title": "pymalloc 아레나",
+    "en": "pymalloc Arena",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "pymalloc이 작은 객체를 나눠 주려고 미리 잡아 두는 고정 크기 메모리 매핑으로, 기본 크기는 64비트에서 1 MiB, 32비트에서 256 KiB다.",
+    "parent": "dev.debug.cpython-allocator",
+    "aliases": [
+      "pymalloc arena",
+      "파이썬 메모리 아레나",
+      "CPython 아레나"
+    ],
+    "refs": [
+      "https://docs.python.org/3/c-api/memory.html"
+    ]
+  },
+  {
+    "id": "dev.debug.pythonmalloc",
+    "title": "PYTHONMALLOC 환경 변수",
+    "en": "PYTHONMALLOC Environment Variable",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "CPython이 쓸 메모리 할당자를 malloc·pymalloc·mimalloc 중에서 고르고 _debug 값이나 debug로 디버그 훅을 켜는 환경 변수다.",
+    "parent": "dev.debug.cpython-allocator",
+    "aliases": [
+      "PYTHONMALLOC=debug",
+      "PYTHONMALLOC=malloc",
+      "pymalloc_debug"
+    ],
+    "refs": [
+      "https://docs.python.org/3/c-api/memory.html"
+    ]
+  },
+  {
+    "id": "dev.debug.gc-freeze",
+    "title": "gc.freeze와 영구 세대",
+    "en": "gc.freeze and the Permanent Generation",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "수집기가 추적하는 객체를 모두 영구 세대로 옮겨 이후 수집에서 빼는 함수로, exec 없이 fork하는 프로세스의 쓰기 시 복사를 줄이는 데 쓴다.",
+    "related": [
+      "dev.debug.cyclic-gc-internals"
+    ],
+    "aliases": [
+      "gc.freeze()",
+      "파이썬 영구 세대",
+      "Python permanent generation"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/gc.html",
+      "https://github.com/python/cpython/blob/main/InternalDocs/garbage_collector.md"
+    ]
+  },
+  {
+    "id": "dev.git.delta-islands",
+    "title": "델타 섬(delta islands)",
+    "en": "Git Delta Islands",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Git",
+    "summary": "pack.island 정규식으로 참조를 묶고, 객체의 모든 섬에 없는 기준 객체로는 델타를 만들지 않게 해 서버가 가져오기 때 델타를 다시 계산하지 않게 하는 설정이다.",
+    "parent": "dev.git.delta-chain-tuning",
+    "aliases": [
+      "delta islands",
+      "pack.island",
+      "Git 델타 섬",
+      "--delta-islands"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/git-pack-objects"
     ]
   }
 ]

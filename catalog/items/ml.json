@@ -7758,6 +7758,31 @@
     ]
   },
   {
+    "id": "ml.nn.inference-mode",
+    "title": "torch.inference_mode(추론 모드)",
+    "en": "torch.inference_mode",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "no_grad보다 강하게 뷰 추적과 버전 카운터 증가까지 끄는 모드로, 그 안에서 만든 텐서는 나중에 autograd가 기록하는 계산에 쓸 수 없다.",
+    "related": [
+      "ml.nn.no-grad",
+      "ml.nn.autograd-internals",
+      "ml.nn.tensor-version-counter"
+    ],
+    "aliases": [
+      "inference_mode",
+      "PyTorch 추론 모드",
+      "inference tensor",
+      "추론 텐서"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/notes/autograd.html",
+      "https://docs.pytorch.org/docs/2.15/generated/torch.autograd.grad_mode.inference_mode.html"
+    ]
+  },
+  {
     "id": "ml.eval.roc-auc",
     "title": "ROC 곡선과 AUC",
     "en": "ROC Curve and AUC",
@@ -8887,6 +8912,170 @@
     ]
   },
   {
+    "id": "ml.supervised.svm-solver-internals",
+    "title": "SVM 학습 내부: libsvm 쌍대 솔버와 계산 비용",
+    "en": "SVM Solver Internals and Complexity",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "SVC가 libsvm으로 쌍대 문제를 풀어 표본 수의 제곱~세제곱 비용이 들고, LinearSVC는 liblinear로 거의 선형에 가깝게 늘어나는 차이다.",
+    "objectives": [
+      "libsvm 기반 추정기의 학습 비용이 표본 수의 제곱에서 세제곱 사이로 늘어나고 커널 캐시 활용에 따라 달라지는 이유를 설명할 수 있다",
+      "쌍대 문제에서 서포트 벡터만 결정 함수에 남는 구조를 dual_coef_와 support_vectors_로 확인할 수 있다",
+      "선형 커널이면 libsvm 기반 SVC 대신 거의 선형으로 늘어나는 LinearSVC나 입력 복사를 피하는 SGDClassifier를 고르는 근거를 말할 수 있다",
+      "shrinking을 켜고 끄는 선택이 반복 횟수와 허용 오차에 따라 학습 시간을 어떻게 바꾸는지 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.svm-classification"
+    ],
+    "related": [
+      "ml.supervised.kernel-approximation",
+      "ml.supervised.logistic-regression-solvers"
+    ],
+    "aliases": [
+      "libsvm",
+      "SVM 계산 복잡도",
+      "SVC 학습 시간",
+      "SVM 쌍대 문제"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/svm.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.lasso-solvers",
+    "title": "Lasso 솔버 내부: 좌표 하강과 LARS의 손익",
+    "en": "Lasso Solvers: Coordinate Descent vs LARS",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "Lasso를 좌표 하강으로 반복해 풀지 LARS로 조각별 선형 경로를 정확히 구할지, 그리고 alpha를 교차 검증과 정보 기준 중 무엇으로 고를지의 손익이다.",
+    "objectives": [
+      "좌표 하강이 특성 하나씩 소프트 임계값을 적용해 계수를 0으로 만들고 쌍대 간격이 tol보다 작아지면 멈추는 방식을 설명할 수 있다",
+      "LassoLars가 계수 노름에 대해 조각별 선형인 정확한 해 경로를 내는 점과 잡음에 민감할 수 있는 약점을 비교할 수 있다",
+      "공선성이 많은 고차원 데이터와 특성 수가 표본 수보다 훨씬 많은 데이터에서 LassoCV와 LassoLarsCV 중 하나를 고를 수 있다",
+      "LassoLarsIC가 경로를 한 번만 계산해 싸지만 큰 표본 가정과 자유도 추정에 기대 특성 수가 표본 수보다 많으면 무너질 수 있음을 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.training.regularization",
+      "ml.supervised.linear-regression"
+    ],
+    "related": [
+      "ml.supervised.logistic-regression-solvers",
+      "ml.eval.multicollinearity"
+    ],
+    "aliases": [
+      "Lasso 좌표 하강",
+      "coordinate descent Lasso",
+      "LassoLars",
+      "LassoCV",
+      "LassoLarsIC",
+      "lasso_path"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/linear_model.html"
+    ]
+  },
+  {
+    "id": "ml.unsupervised.tsne-optimization",
+    "title": "t-SNE 최적화 내부: KL 발산과 근사 계산",
+    "en": "t-SNE Optimization Internals",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "t-SNE가 볼록하지 않은 KL 발산을 경사 하강으로 줄이는 과정과 perplexity·학습률·근사 방식이 결과와 계산 비용에 주는 손익이다.",
+    "objectives": [
+      "KL 발산이 볼록하지 않아 시드마다 다른 임베딩이 나오고 오차가 가장 작은 것을 골라도 되는 이유를 설명할 수 있다",
+      "perplexity·초기 과장·학습률·angle이 군집 간격과 수렴, 속도·정확도에 주는 영향을 분석할 수 있다",
+      "Barnes-Hut 근사와 exact 방법의 계산 복잡도·표본 규모·출력 차원·희소 입력 제약을 비교해 방법을 고를 수 있다",
+      "2차원 t-SNE 그림에서 레이블이 갈라지지 않는 것만으로 분류가 불가능하다고 결론 내리면 안 되는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.unsupervised.pca-dimensionality-reduction"
+    ],
+    "related": [
+      "ml.unsupervised.tsne"
+    ],
+    "aliases": [
+      "t-SNE 최적화",
+      "t-SNE 학습률",
+      "t-SNE 계산 비용",
+      "TSNE learning_rate"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/manifold.html"
+    ]
+  },
+  {
+    "id": "ml.nn.cuda-stream-semantics",
+    "title": "PyTorch CUDA 비동기 실행과 스트림 의미",
+    "en": "PyTorch CUDA Asynchronous Execution and Stream Semantics",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "GPU 연산이 장치 큐에 쌓여 나중에 실행되는 구조와, 기본 스트림 밖에서 일할 때 직접 맞춰야 하는 동기화와 메모리 수명 규칙이다.",
+    "objectives": [
+      "GPU 연산이 비동기로 큐에 쌓이기 때문에 오류 위치와 시간 측정이 어긋나는 이유를 설명하고 CUDA_LAUNCH_BLOCKING·torch.cuda.Event로 바로잡을 수 있다",
+      "보조 스트림에서 wait_stream 없이 기본 스트림 결과를 읽을 때 생기는 경쟁과, 읽기 의존이 없어도 캐싱 할당기의 메모리 재사용 때문에 동기화가 필요한 이유를 분석할 수 있다",
+      "역전파 연산이 대응하는 순전파 연산과 같은 스트림에서 돈다는 규칙으로 여러 스트림 학습의 안전한 패턴과 위험한 패턴을 구분할 수 있다",
+      "PyTorch 1.9까지는 안전했던, 보조 스트림에서 backward한 뒤 기본 스트림에서 기울기를 쓰는 패턴이 지금은 wait_stream 동기화를 요구한다는 점을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.nn.training-throughput-tuning"
+    ],
+    "related": [
+      "ml.nn.cpu-gpu-sync",
+      "ml.nn.cuda-caching-allocator"
+    ],
+    "aliases": [
+      "PyTorch CUDA 스트림",
+      "torch.cuda.Stream",
+      "CUDA stream semantics",
+      "wait_stream",
+      "PyTorch 비동기 GPU 실행"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/notes/cuda.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.sgd-estimator-internals",
+    "title": "SGD 추정기 내부: 학습률 일정·평균화·희소 구현",
+    "en": "SGD Estimator Internals in scikit-learn",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "scikit-learn SGDClassifier·SGDRegressor가 표본마다 가중치를 갱신하며 쓰는 학습률 일정, 평균화, 희소 입력 처리와 그 비용의 손익이다.",
+    "objectives": [
+      "optimal·invscaling·constant·adaptive 학습률 일정이 시간 단계에 따라 보폭을 바꾸는 방식을 비교할 수 있다",
+      "학습 비용이 에폭 수·표본 수·표본당 평균 비영 특성 수에 비례해 큰 희소 데이터에 유리한 이유를 설명할 수 있다",
+      "희소 입력에서 절편 학습률을 0.01배로 줄이는 구현 때문에 희소와 밀집 입력의 결과가 조금 다를 수 있음을 설명할 수 있다",
+      "max_iter를 약 10^6 / 표본 수로 잡는 경험칙과 에폭마다 n_iter_no_change로 멈추는 기준을 근거로 학습 설정을 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.linear-regression",
+      "ml.training.regularization"
+    ],
+    "related": [
+      "ml.supervised.logistic-regression-solvers",
+      "ml.nn.optimizer"
+    ],
+    "aliases": [
+      "SGDClassifier 내부",
+      "SGDRegressor",
+      "SGD 학습률 일정",
+      "scikit-learn SGD"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/sgd.html"
+    ]
+  },
+  {
     "id": "ml.nn.activation-checkpointing",
     "title": "활성화 체크포인팅(torch.utils.checkpoint)",
     "en": "Activation Checkpointing",
@@ -9400,6 +9589,121 @@
     ],
     "refs": [
       "https://scikit-learn.org/stable/modules/generated/sklearn.config_context.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.libsvm-kernel-cache",
+    "title": "libsvm 커널 캐시(cache_size)",
+    "en": "libsvm Kernel Cache",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "SVC가 계산한 커널 값을 담아 두는 메모리로, 기본 200MB이며 큰 문제에서 크기를 키우면 학습 시간이 크게 줄 수 있다.",
+    "parent": "ml.supervised.svm-solver-internals",
+    "aliases": [
+      "SVM 커널 캐시",
+      "SVC cache_size",
+      "libsvm cache"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/svm.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.lars",
+    "title": "최소 각 회귀(LARS)",
+    "en": "Least Angle Regression",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "매 단계 타깃과 가장 상관된 특성 쪽으로, 동률이면 그 특성들과 같은 각도로 나아가며 최소 제곱과 같은 차수의 비용으로 조각별 선형인 전체 계수 경로를 얻는 회귀 알고리즘이다.",
+    "parent": "ml.supervised.lasso-solvers",
+    "aliases": [
+      "LARS 회귀",
+      "Least Angle Regression",
+      "lars_path",
+      "최소각 회귀"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/linear_model.html"
+    ]
+  },
+  {
+    "id": "ml.unsupervised.barnes-hut-tsne",
+    "title": "Barnes-Hut t-SNE",
+    "en": "Barnes-Hut t-SNE",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "먼 점들을 한 점으로 묶어 t-SNE 기울기를 O(dN log N)에 근사하는 방법으로, 출력이 3차원 이하이고 입력이 밀집 행렬일 때만 쓸 수 있다.",
+    "parent": "ml.unsupervised.tsne-optimization",
+    "aliases": [
+      "Barnes-Hut 근사",
+      "t-SNE angle",
+      "method='barnes_hut'"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/manifold.html"
+    ]
+  },
+  {
+    "id": "ml.unsupervised.tsne-early-exaggeration",
+    "title": "t-SNE 초기 과장(early_exaggeration)",
+    "en": "t-SNE Early Exaggeration",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "최적화 초반에 원래 공간의 결합 확률에 계수를 곱해 키우는 단계로, 계수가 클수록 군집 사이 간격이 넓어지고 너무 크면 KL 발산이 오를 수 있다.",
+    "parent": "ml.unsupervised.tsne-optimization",
+    "aliases": [
+      "early exaggeration",
+      "early_exaggeration",
+      "초기 과장 계수"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/manifold.html"
+    ]
+  },
+  {
+    "id": "ml.nn.record-stream",
+    "title": "Tensor.record_stream(스트림 사용 기록)",
+    "en": "Tensor.record_stream",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "다른 스트림에서 만든 텐서를 보조 스트림이 쓴다고 표시해, 그 스트림 작업이 끝나기 전에 캐싱 할당기가 메모리를 되쓰지 않게 하는 메서드다.",
+    "parent": "ml.nn.cuda-stream-semantics",
+    "aliases": [
+      "record_stream",
+      "텐서 스트림 기록"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/notes/cuda.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.averaged-sgd",
+    "title": "평균 SGD(averaged SGD)",
+    "en": "Averaged Stochastic Gradient Descent",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "SGD와 같은 갱신을 하되 마지막 값 대신 모든 갱신의 평균을 계수로 삼는 방법으로, 더 크거나 일정한 학습률을 쓸 수 있게 해 준다.",
+    "parent": "ml.supervised.sgd-estimator-internals",
+    "aliases": [
+      "averaged SGD",
+      "SGD average=True",
+      "평균화 SGD",
+      "scikit-learn ASGD"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/sgd.html"
     ]
   }
 ]

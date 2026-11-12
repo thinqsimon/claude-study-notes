@@ -8549,6 +8549,40 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "cs.dist.logical-clocks",
+    "title": "논리 시계와 벡터 시계: 인과 순서 추적",
+    "en": "Logical Clocks and Vector Clocks",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "분산 시스템",
+    "summary": "물리 시계 대신 사건 수를 세는 램포트 시계와 벡터 시계로 사건 사이의 먼저 일어남 관계를 추적하고, 전체 순서와 동시 사건 탐지 사이의 손익을 비교한다.",
+    "objectives": [
+      "동기화한 물리 시계의 시각도 인과 순서와 어긋날 수 있어 사건 수를 세는 논리 시계가 필요한 이유를 설명할 수 있다",
+      "램포트 타임스탬프는 a가 b보다 먼저면 L(a) < L(b)이지만 그 역은 성립하지 않아 동시 사건을 가려내지 못한다는 한계를 설명할 수 있다",
+      "벡터 시계에서 받은 벡터와 원소별 최댓값을 취해 합치는 규칙과, 두 벡터가 비교 불가이면 두 사건이 동시라는 판정을 적용할 수 있다",
+      "동시 쓰기를 마지막 쓰기 승리로 버릴지 벡터 시계로 모두 남길지를 데이터 손실과 클라이언트 수에 따라 커지는 벡터 크기 면에서 따질 수 있다"
+    ],
+    "prerequisites": [
+      "cs.dist.replication-majority",
+      "cs.net.clock-sync"
+    ],
+    "related": [
+      "cs.dist.raft-consensus",
+      "cs.os.wall-vs-monotonic-clock"
+    ],
+    "aliases": [
+      "벡터 시계",
+      "vector clock",
+      "논리 시계",
+      "logical clock",
+      "분산 시스템 인과 순서"
+    ],
+    "refs": [
+      "https://www.cl.cam.ac.uk/teaching/2122/ConcDisSys/dist-sys-notes.pdf"
+    ]
+  },
+  {
     "id": "cs.os.page-replacement",
     "title": "페이지 교체 정책: LRU 근사와 스래싱",
     "en": "Page Replacement Policies: Approximating LRU and Thrashing",
@@ -8749,6 +8783,141 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "cs.net.quic-loss-recovery",
+    "title": "QUIC 손실 탐지와 복구: 패킷 번호와 PTO",
+    "en": "QUIC Loss Detection and Recovery",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "재전송마다 새 패킷 번호를 쓰는 QUIC이 패킷·시간 임계값과 탐침 시간 제한으로 손실을 찾고, TCP와 달리 시간 초과만으로 혼잡 창을 줄이지 않는 설계를 분석한다.",
+    "objectives": [
+      "패킷 번호 공간 안에서 번호가 늘기만 하고 재전송에도 새 번호를 쓰므로 TCP의 재전송 모호성이 사라져 RTT 표본이 정확해지는 이유를 설명할 수 있다",
+      "뒤에 보낸 패킷이 확인됐을 때 패킷 임계값(권장 3)과 시간 임계값(권장 9/8 × max(smoothed_rtt, latest_rtt))으로 손실을 판정하는 규칙을 설명할 수 있다",
+      "PTO가 만료되어도 그것만으로는 패킷을 잃었다고 보지 않고 탐침을 보내며 시간 제한을 두 배로 늘리는 동작을 TCP의 RTO와 비교할 수 있다",
+      "손실이 나면 혼잡 창을 줄이되 최소 창까지 한 번에 줄이는 일은 지속 혼잡을 판정했을 때만 요구하는 이유와 그 판정 조건을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.net.tcp-vs-udp",
+      "ops.network.tcp-internals"
+    ],
+    "related": [
+      "be.http.quic",
+      "be.http.versions"
+    ],
+    "aliases": [
+      "QUIC 손실 복구",
+      "QUIC loss recovery",
+      "QUIC loss detection",
+      "RFC 9002",
+      "QUIC 손실 탐지"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9002.html"
+    ]
+  },
+  {
+    "id": "cs.net.cubic-congestion-control",
+    "title": "CUBIC 혼잡 제어: 3차 함수 창 증가",
+    "en": "CUBIC Congestion Control",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "마지막 혼잡 이후 경과 시간의 3차 함수로 혼잡 창을 키우고 0.7배로 줄이는 CUBIC이 Reno보다 빠른 망에서 잘 확장되는 원리와 손익을 분석한다.",
+    "objectives": [
+      "직전 최대 창 W_max 아래의 오목 구간에서는 빠르게, 위의 볼록 구간에서는 조심스럽게 창을 키우는 3차 함수의 모양을 설명할 수 있다",
+      "창 증가가 RTT가 아니라 경과 시간에 달려 있어 RTT가 다른 흐름끼리 Reno보다 공평하게 대역폭을 나누는 이유를 설명할 수 있다",
+      "곱셈 감소 계수를 Reno의 0.5 대신 0.7로 두어 확장성은 좋아지지만 다중화가 적을 때 수렴이 느려지는 손익을 따질 수 있다",
+      "3차 함수가 Reno 추정치보다 느리게 자랄 때 Reno 추정 창을 따르는 구간을 두는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.network.tcp-internals"
+    ],
+    "related": [
+      "cs.net.ecn-l4s",
+      "cs.net.quic-loss-recovery"
+    ],
+    "aliases": [
+      "CUBIC",
+      "TCP CUBIC",
+      "RFC 9438",
+      "큐빅 혼잡 제어",
+      "CUBIC congestion control"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9438.html"
+    ]
+  },
+  {
+    "id": "cs.net.ecn-l4s",
+    "title": "명시적 혼잡 알림(ECN)과 L4S",
+    "en": "Explicit Congestion Notification and L4S",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "라우터가 패킷을 버리는 대신 IP 헤더의 ECN 칸에 혼잡 표시를 남기는 방식과, 잦은 표시로 평균 대기 지연을 1ms 아래로 낮추려는 L4S 구조를 비교한다.",
+    "objectives": [
+      "IP 헤더의 ECN 두 비트 값(Not-ECT·ECT(0)·ECT(1)·CE)과 TCP의 ECE·CWR 플래그가 혼잡 신호를 되돌려 보내는 과정을 설명할 수 있다",
+      "고전 ECN에서는 CE 표시 하나가 패킷 손실 하나와 같은 창 감소를 일으키되 창 하나에 한 번만 반응한다는 규칙을 설명할 수 있다",
+      "버리지 않고 표시하면 재전송 지연이 사라지지만 큐가 가득 차면 여전히 버린다는 점을 들어 손실 기반 신호와의 손익을 따질 수 있다",
+      "L4S가 ECT(1)로 패킷을 구분해 따로 둔 큐에서 확장형 혼잡 제어의 잦은 표시를 받게 하는 구조를 고전 ECN과 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.network.tcp-internals"
+    ],
+    "related": [
+      "cs.net.cubic-congestion-control"
+    ],
+    "aliases": [
+      "ECN",
+      "Explicit Congestion Notification",
+      "RFC 3168",
+      "L4S",
+      "저지연 저손실 확장 처리량"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc3168.html",
+      "https://www.rfc-editor.org/rfc/rfc9330.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "cs.dsa.dynamic-hashing",
+    "title": "동적 해싱: 선형 해싱과 확장 해싱",
+    "en": "Dynamic Hashing: Linear and Extendible Hashing",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "자료구조",
+    "summary": "표 전체를 한 번에 다시 해싱하지 않고 칸이나 버킷을 하나씩 나눠 키우는 선형 해싱과 확장 해싱의 동작과 손익을 비교한다.",
+    "objectives": [
+      "선형 해싱이 분할 포인터 p와 범위가 두 배인 해시 함수 두 개로 키의 칸을 정하고 칸 하나씩 나누며 자라는 과정을 설명할 수 있다",
+      "확장 해싱이 키의 끝 비트로 디렉터리를 찾아 넘친 버킷만 나누고, 그 버킷을 가리키는 칸이 하나뿐일 때만 디렉터리를 두 배로 늘리는 과정을 설명할 수 있다",
+      "표 전체를 한 번에 다시 해싱하는 크기 조정과 달리 선형 해싱은 칸 하나씩, 확장 해싱은 넘친 버킷 하나씩 나누어 한 번에 다시 해싱하는 양을 줄이는 방식을 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.dsa.hash-table",
+      "cs.algo.amortized-analysis"
+    ],
+    "related": [
+      "cs.dsa.open-addressing-probing"
+    ],
+    "aliases": [
+      "동적 해싱",
+      "dynamic hashing",
+      "선형 해싱",
+      "linear hashing"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/dynamicHashing.html",
+      "https://xlinux.nist.gov/dads/HTML/linearHashing.html",
+      "https://xlinux.nist.gov/dads/HTML/extendibleHashing.html"
+    ]
+  },
+  {
     "id": "cs.os.tlb",
     "title": "TLB(주소 변환 캐시)",
     "en": "Translation Lookaside Buffer (TLB)",
@@ -8860,6 +9029,46 @@
     ],
     "refs": [
       "https://go.dev/doc/gc-guide"
+    ]
+  },
+  {
+    "id": "cs.dist.lamport-timestamp",
+    "title": "램포트 타임스탬프",
+    "en": "Lamport Timestamp",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "분산 시스템",
+    "summary": "각 노드가 사건마다 1씩 늘리고 메시지를 받으면 max(자기 값, 받은 값) + 1로 맞추는 정수 시계로, 노드 이름을 붙이면 인과 순서를 지키는 전체 순서를 만든다.",
+    "parent": "cs.dist.logical-clocks",
+    "aliases": [
+      "Lamport clock",
+      "램포트 시계",
+      "Lamport timestamp",
+      "램포트 논리 시계"
+    ],
+    "refs": [
+      "https://www.cl.cam.ac.uk/teaching/2122/ConcDisSys/dist-sys-notes.pdf"
+    ]
+  },
+  {
+    "id": "cs.dist.last-writer-wins",
+    "title": "마지막 쓰기 승리(LWW)",
+    "en": "Last Writer Wins (LWW)",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "분산 시스템",
+    "summary": "전체 순서를 주는 타임스탬프가 가장 큰 쓰기만 남기고 동시에 들어온 다른 쓰기는 버려, 단순하지만 데이터를 잃을 수 있는 충돌 해결 방식이다.",
+    "parent": "cs.dist.logical-clocks",
+    "aliases": [
+      "last writer wins",
+      "LWW 충돌 해결",
+      "last-write-wins",
+      "마지막 쓰기 우선"
+    ],
+    "refs": [
+      "https://www.cl.cam.ac.uk/teaching/2122/ConcDisSys/dist-sys-notes.pdf"
     ]
   },
   {
@@ -9232,6 +9441,101 @@
     ],
     "refs": [
       "https://www.unicode.org/reports/tr15/"
+    ]
+  },
+  {
+    "id": "cs.net.quic-probe-timeout",
+    "title": "탐침 시간 제한(PTO)",
+    "en": "Probe Timeout (PTO)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "확인을 기다리는 패킷이 있을 때 smoothed_rtt + max(4×rttvar, 1ms) + max_ack_delay 뒤에 탐침 패킷을 보내게 하는 QUIC의 타이머다.",
+    "parent": "cs.net.quic-loss-recovery",
+    "aliases": [
+      "QUIC PTO",
+      "QUIC probe timeout",
+      "QUIC 탐침 타이머"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9002.html"
+    ]
+  },
+  {
+    "id": "cs.net.quic-persistent-congestion",
+    "title": "QUIC 지속 혼잡(persistent congestion)",
+    "en": "QUIC Persistent Congestion",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "확인을 유발하는 두 패킷이 손실로 판정되고 그 사이 보낸 패킷이 하나도 확인되지 않은 채 두 송신 시각 간격이 PTO 기간의 3배(권장값)를 넘으면 혼잡 창을 최소 창으로 줄이는 QUIC의 판정이다.",
+    "parent": "cs.net.quic-loss-recovery",
+    "aliases": [
+      "QUIC persistent congestion",
+      "QUIC 지속적 혼잡",
+      "kPersistentCongestionThreshold"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9002.html"
+    ]
+  },
+  {
+    "id": "cs.net.cubic-reno-friendly-region",
+    "title": "CUBIC의 Reno 친화 구간",
+    "en": "CUBIC Reno-Friendly Region",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "3차 함수로 키운 창이 같은 조건의 Reno 추정 창보다 작을 때 CUBIC이 Reno 추정 창을 따라 적어도 Reno만큼의 처리량을 얻게 하는 구간이다.",
+    "parent": "cs.net.cubic-congestion-control",
+    "aliases": [
+      "Reno-friendly region",
+      "Reno 친화 영역",
+      "CUBIC W_est"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9438.html"
+    ]
+  },
+  {
+    "id": "cs.net.ecn-ce-codepoint",
+    "title": "ECN CE 표시(Congestion Experienced)",
+    "en": "ECN Congestion Experienced (CE) Codepoint",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "ECN을 지원한다고 표시된 패킷을 버리는 대신 라우터가 IP 헤더 ECN 칸을 11로 바꿔 혼잡을 알리는 값이다.",
+    "parent": "cs.net.ecn-l4s",
+    "aliases": [
+      "CE 코드포인트",
+      "Congestion Experienced",
+      "ECN CE 비트"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc3168.html"
+    ]
+  },
+  {
+    "id": "cs.dsa.extendible-hashing",
+    "title": "확장 해싱(extendible hashing)",
+    "en": "Extendible Hashing",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "자료구조",
+    "summary": "키의 끝 몇 비트로 디렉터리를 찾아 버킷을 가리키고, 버킷이 넘치면 그 버킷만 나누며 필요할 때 디렉터리를 두 배로 늘리는 동적 해시 테이블이다.",
+    "parent": "cs.dsa.dynamic-hashing",
+    "aliases": [
+      "extendible hashing",
+      "확장성 해싱",
+      "확장 가능 해싱"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/extendibleHashing.html"
     ]
   }
 ]
