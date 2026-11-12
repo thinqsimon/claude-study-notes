@@ -6753,6 +6753,133 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "plan.basics.media-alternatives-planning",
+    "title": "영상·음성 콘텐츠의 대체 수단 계획하기",
+    "en": "Planning Audio and Video Media Alternatives",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "영상과 음성 콘텐츠마다 자막·대본·화면 해설 중 무엇이 필요한지 정하고 제작 일정과 계약에 미리 넣는 일이다.",
+    "objectives": [
+      "녹화·실시간, 음성 전용·영상 여부에 따라 자막·대본·화면 해설 중 필요한 대체 수단을 고를 수 있다",
+      "말소리와 시각 정보가 내용 이해에 필요한지 따져 대체 수단이 필요 없다는 안내를 낼지 판단할 수 있다",
+      "자막에서 대본을 만드는 순서로 제작 흐름을 짜고 외주 계약에 접근성 요구사항을 넣을 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.accessibility-idea"
+    ],
+    "related": [
+      "fe.html.track-captions"
+    ],
+    "aliases": [
+      "미디어 대체 수단",
+      "media alternatives",
+      "영상 접근성 계획",
+      "오디오 비디오 접근성"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/media/av/planning/"
+    ]
+  },
+  {
+    "id": "plan.ai-ux.hax-guidelines",
+    "title": "HAX 가이드라인으로 AI 기능 상호작용 점검하기",
+    "en": "Applying the Guidelines for Human-AI Interaction",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "AI UX 설계",
+    "summary": "Microsoft의 18개 Human-AI 상호작용 가이드라인으로 AI 기능을 처음·사용 중·틀렸을 때·시간이 지나며 단계별로 점검하고 우선순위를 정하는 일이다.",
+    "objectives": [
+      "AI 기능 하나를 처음 만날 때·사용 중·틀렸을 때·시간이 지나며의 네 시점으로 나눠 해당 가이드라인을 고를 수 있다",
+      "HAX Workbook처럼 가이드라인마다 UI·AI·데이터·엔지니어링 요구사항과 노력을 추정할 수 있다",
+      "사용자 영향과 구현 비용을 비교해 먼저 지킬 가이드라인의 순서를 근거를 들어 정할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.ai-ux.feedback-control"
+    ],
+    "related": [
+      "plan.ai-ux.errors-graceful-failure"
+    ],
+    "aliases": [
+      "HAX 가이드라인",
+      "HAX Toolkit",
+      "Human-AI 상호작용 가이드라인",
+      "HAX Workbook",
+      "Guidelines for Human-AI Interaction"
+    ],
+    "refs": [
+      "https://www.microsoft.com/en-us/haxtoolkit/ai-guidelines/",
+      "https://www.microsoft.com/en-us/haxtoolkit/workbook/",
+      "https://www.microsoft.com/en-us/haxtoolkit/library/"
+    ]
+  },
+  {
+    "id": "plan.basics.assisted-digital-design",
+    "title": "도움 받는 디지털 이용 경로와 채널 전환 설계",
+    "en": "Designing Assisted Digital Support and Channel Shift",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "온라인 이용이 어려운 사용자를 위해 대면·전화·웹채팅 지원 경로와 제공 기관을 고르고, 사용자를 억지로 밀지 않으며 온라인 이용을 늘리는 설계다.",
+    "objectives": [
+      "조사 결과를 근거로 대면·전화·웹채팅 지원 중 사용자에게 맞는 경로를 고르고 종이 경로를 피하는 이유를 말할 수 있다",
+      "지원 제공 기관이 갖춰야 할 조건(무료 제공·수요 변동 대응·데이터 제공 등)으로 후보를 비교할 수 있다",
+      "오프라인 이용이 많은 원인을 조사해 연락처를 숨기지 않고 온라인 이용을 늘릴 방법을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.contextual-research"
+    ],
+    "related": [
+      "plan.basics.assisted-digital",
+      "plan.basics.digital-take-up"
+    ],
+    "aliases": [
+      "어시스티드 디지털 설계",
+      "디지털 지원 경로 설계",
+      "assisted digital design",
+      "온라인 이용 늘리기"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/helping-people-to-use-your-service/designing-assisted-digital",
+      "https://www.gov.uk/service-manual/helping-people-to-use-your-service/encouraging-people-to-use-your-digital-service"
+    ]
+  },
+  {
+    "id": "plan.basics.user-support-model",
+    "title": "사용자 지원 창구 설계: 수요 추정·서비스 수준·문의 분류",
+    "en": "Setting Up and Managing User Support",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "채널·문의 유형별 수요를 추정해 서비스 수준과 인력을 정하고, 문의를 분류해 서비스 개선의 근거로 쓰는 지원 창구 운영 설계다.",
+    "objectives": [
+      "과거 자료와 비슷한 서비스 자료로 채널·문의 유형별 문의량과 성수기를 추정할 수 있다",
+      "채널마다 서비스 수준과 평균 처리 시간을 정해 필요한 인력을 계산할 수 있다",
+      "문의를 하위 분류로 나누고 영향받는 사용자 비율과 절감 비용으로 개선 순서를 정할 수 있다",
+      "문의를 결함 신호로 보고 사용자가 말한 문제와 실제 원인이 다른 곳(편지·상담 처리 등)을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.success-metrics"
+    ],
+    "related": [
+      "plan.basics.assisted-digital-design"
+    ],
+    "aliases": [
+      "사용자 지원 설계",
+      "헬프데스크 설계",
+      "user support model",
+      "고객 문의 창구 운영",
+      "contact centre planning"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/helping-people-to-use-your-service/set-up-and-manage-user-support"
+    ]
+  },
+  {
     "id": "plan.figma.design-token-architecture",
     "title": "디자인 토큰 표준과 별칭 계층 설계",
     "en": "Design Token Standard and Alias Layers",
@@ -7414,6 +7541,100 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "plan.basics.audio-description",
+    "title": "화면 해설(audio description)",
+    "en": "Audio Description",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "영상 속 동작·장면 전환·화면 글자처럼 소리로 전달되지 않는 시각 정보를 말로 풀어 들려주는 대체 수단이다.",
+    "parent": "plan.basics.media-alternatives-planning",
+    "related": [
+      "plan.basics.descriptive-transcript"
+    ],
+    "aliases": [
+      "화면 해설",
+      "음성 해설",
+      "audio description",
+      "video description",
+      "described video"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/media/av/description/"
+    ]
+  },
+  {
+    "id": "plan.basics.descriptive-transcript",
+    "title": "서술형 대본(descriptive transcript)",
+    "en": "Descriptive Transcript",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "말소리와 소리 정보에 영상의 시각 정보 설명까지 글로 담아, 보지도 듣지도 못하는 사용자도 내용을 따라가게 하는 대본이다.",
+    "parent": "plan.basics.media-alternatives-planning",
+    "related": [
+      "plan.basics.audio-description"
+    ],
+    "aliases": [
+      "서술형 대본",
+      "descriptive transcript",
+      "설명 대본",
+      "영상 설명 대본"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/media/av/transcripts/"
+    ]
+  },
+  {
+    "id": "plan.ai-ux.update-adapt-cautiously",
+    "title": "AI 동작의 신중한 업데이트와 적응",
+    "en": "Update and Adapt Cautiously (HAX G14)",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "AI UX 설계",
+    "summary": "AI의 동작을 바꾸거나 모델을 갱신할 때 변경의 크기와 속도를 줄이고, 전에 잘하던 일에서 새 오류가 생기지 않는지 확인하라는 지침이다.",
+    "parent": "plan.ai-ux.hax-guidelines",
+    "related": [
+      "plan.ai-ux.notify-users-changes"
+    ],
+    "aliases": [
+      "HAX G14",
+      "update and adapt cautiously",
+      "AI 신중한 업데이트",
+      "모델 업데이트 하위 호환"
+    ],
+    "refs": [
+      "https://www.microsoft.com/en-us/haxtoolkit/guideline/update-and-adapt-cautiously/"
+    ]
+  },
+  {
+    "id": "plan.ai-ux.notify-users-changes",
+    "title": "AI 기능 변경 알림",
+    "en": "Notify Users About Changes (HAX G18)",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "AI UX 설계",
+    "summary": "AI 시스템이 기능을 더하거나 모델을 크게 바꿨을 때 사용자에게 알려 기대치를 다시 맞추게 하라는 지침이다.",
+    "parent": "plan.ai-ux.hax-guidelines",
+    "related": [
+      "plan.ai-ux.update-adapt-cautiously",
+      "plan.ai-ux.calibrated-trust"
+    ],
+    "aliases": [
+      "HAX G18",
+      "notify users about changes",
+      "AI 변경 알림",
+      "모델 업데이트 공지"
+    ],
+    "refs": [
+      "https://www.microsoft.com/en-us/haxtoolkit/guideline/notify-users-about-changes/"
+    ]
+  },
+  {
     "id": "plan.figma.ready-for-dev",
     "title": "Ready for dev 상태",
     "en": "Ready for Dev Status",
@@ -7863,6 +8084,98 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
+  },
+  {
+    "id": "plan.basics.integrated-description",
+    "title": "제작 단계 통합 해설(integrated description)",
+    "en": "Integrated Description",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "영상을 만들 때 발표자가 화면의 중요한 시각 정보를 직접 말하도록 대본에 넣어 따로 해설을 만들 필요를 없애는 방법이다.",
+    "parent": "plan.basics.media-alternatives-planning",
+    "related": [
+      "plan.basics.audio-description"
+    ],
+    "aliases": [
+      "통합 해설",
+      "integrated description",
+      "대본에 넣는 화면 설명"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/media/av/description/"
+    ]
+  },
+  {
+    "id": "plan.basics.channel-shift",
+    "title": "채널 전환(channel shift)",
+    "en": "Channel Shift",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "사용자 필요를 채울 수 있는 범위에서 대면처럼 비싼 이용 경로의 수요를 전화·온라인 같은 싼 경로로 옮기는 일이다.",
+    "parent": "plan.basics.assisted-digital-design",
+    "related": [
+      "plan.basics.digital-take-up",
+      "plan.basics.cost-per-transaction"
+    ],
+    "aliases": [
+      "채널 전환",
+      "channel shift",
+      "이용 경로 전환",
+      "채널 시프트"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/helping-people-to-use-your-service/encouraging-people-to-use-your-digital-service"
+    ]
+  },
+  {
+    "id": "plan.basics.support-service-level",
+    "title": "지원 창구 서비스 수준(service level)",
+    "en": "Support Service Level",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "채널별로 정한 시간 안에 처리하려는 문의의 비율로, 예를 들면 이메일의 80%를 24시간 안에 답하는 식의 목표다.",
+    "parent": "plan.basics.user-support-model",
+    "related": [
+      "plan.basics.average-handling-time"
+    ],
+    "aliases": [
+      "지원 서비스 수준",
+      "응답 서비스 수준",
+      "contact centre service level",
+      "문의 응답 목표"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/helping-people-to-use-your-service/set-up-and-manage-user-support"
+    ]
+  },
+  {
+    "id": "plan.basics.average-handling-time",
+    "title": "평균 처리 시간(AHT)",
+    "en": "Average Handling Time",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "한 채널에서 문의 하나를 처리하는 데 드는 평균 시간으로, 상담원 한 명이 감당할 문의량과 필요 인력을 계산하는 데 쓴다.",
+    "parent": "plan.basics.user-support-model",
+    "related": [
+      "plan.basics.support-service-level"
+    ],
+    "aliases": [
+      "평균 처리 시간",
+      "AHT",
+      "average handling time",
+      "문의 처리 시간"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/helping-people-to-use-your-service/set-up-and-manage-user-support"
+    ]
   },
   {
     "id": "plan.figma.library-analytics",

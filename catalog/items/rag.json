@@ -7163,6 +7163,80 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "rag.agent.mcp-version-compat",
+    "title": "MCP 버전 협상과 이전 판 호환 설계",
+    "en": "MCP Version Negotiation and Backward Compatibility",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "요청마다 프로토콜 버전을 싣는 최신 MCP와 initialize 핸드셰이크를 쓰는 이전 판이 섞일 때, 상대의 세대를 가려 다시 시도할지 물러설지 정하는 설계다.",
+    "objectives": [
+      "요청의 _meta와 MCP-Protocol-Version 헤더로 버전을 밝히는 방식과 버전 미지원 오류를 받았을 때 supported 목록으로 다시 시도하는 흐름을 설명할 수 있다",
+      "stdio에서는 server/discover 탐침으로, Streamable HTTP에서는 400 응답 본문을 보고 상대가 최신 세대인지 이전 세대인지 가를 수 있다",
+      "알아보는 최신 오류가 오면 initialize로 물러서지 않아야 하는 이유와 특정 오류 코드 하나에 물러서기를 묶으면 안 되는 이유를 말할 수 있다",
+      "호환 표를 보고 클라이언트와 서버 가운데 어느 쪽을 이중 세대로 만들어야 이전 판 사용자가 끊기지 않는지 고를 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.mcp-connect"
+    ],
+    "related": [
+      "rag.agent.mcp-transport",
+      "rag.agent.mcp-protocol"
+    ],
+    "aliases": [
+      "MCP 버전 협상",
+      "MCP version negotiation",
+      "MCP 하위 호환",
+      "MCP backward compatibility",
+      "initialize 없는 MCP"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning",
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio",
+      "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.deepagents-context-compression",
+    "title": "Deep Agents 컨텍스트 압축 설계: 떠넘기기·요약·격리",
+    "en": "Context Compression Design in Deep Agents",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "오래 도는 Deep Agents가 모델 문맥 창을 넘지 않도록 큰 도구 입출력은 파일로 떠넘기고, 그래도 차면 앞 대화를 요약하고, 무거운 일은 서브에이전트에 맡기는 설계다.",
+    "objectives": [
+      "큰 도구 결과가 파일 경로와 짧은 미리보기로 바뀌는 떠넘기기와 앞 대화를 요약으로 바꾸는 요약이 어떤 순서와 기준으로 일어나는지 설명할 수 있다",
+      "요약은 모델에 보내는 메시지만 바꾸고 저장된 상태의 메시지 기록은 그대로 둔다는 점을 근거로 재실행·평가에 쓸 기록을 어디서 볼지 정할 수 있다",
+      "서브에이전트에 일을 맡겨 중간 도구 호출을 주 에이전트 문맥 밖에 두고, 짧은 보고와 파일 저장을 지시해 문맥이 다시 부푸는 것을 막을 수 있다",
+      "모델 프로필이 없어 요약 기준이 기본값으로 떨어지거나 이미지 같은 멀티모달 내용이 압축되지 않아 문맥이 넘치는 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.deep-agents",
+      "rag.agent.context-engineering-design"
+    ],
+    "related": [
+      "rag.agent.summarization-middleware",
+      "rag.agent.subagents"
+    ],
+    "aliases": [
+      "Deep Agents 컨텍스트 압축",
+      "Deep Agents context compression",
+      "Deep Agents 컨텍스트 엔지니어링",
+      "Deep Agents 요약",
+      "context engineering in Deep Agents"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/deepagents/context-engineering"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "rag.agent.agent-server-cron-webhook",
     "title": "Agent Server 예약 실행과 웹훅 설계: 스레드·정리·완료 알림",
     "en": "Designing Agent Server Cron Jobs and Webhooks",
@@ -7224,6 +7298,79 @@
     ],
     "refs": [
       "https://modelcontextprotocol.io/specification/2026-07-28/server/utilities/caching"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.mcp-subscriptions-design",
+    "title": "MCP 변경 알림 구독 설계: subscriptions/listen",
+    "en": "Designing MCP Change Notification Subscriptions",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "도구 목록 변경이나 리소스 갱신 알림을 받으려고 오래 열어 두는 구독 스트림을 열고, 받은 알림을 구독별로 나누고, 끊기면 다시 여는 방법을 정하는 설계다.",
+    "objectives": [
+      "알림 필터에 받을 알림 종류만 골라 subscriptions/listen을 열고, 확인 알림에 돌아온 필터와 요청한 필터를 비교해 서버가 빼 버린 종류를 처리할 수 있다",
+      "진행 알림처럼 요청에 딸린 알림은 구독 스트림이 아니라 그 요청의 응답 스트림으로 온다는 점을 근거로 알림이 안 오는 원인을 찾을 수 있다",
+      "여러 구독을 동시에 열 때 subscriptionId로 알림을 나누고, 서버의 정상 종료 응답과 갑작스러운 연결 끊김을 구분해 다시 구독할지 정할 수 있다",
+      "stdio 서버가 다시 시작되면 구독 상태가 남지 않으므로 클라이언트가 구독을 다시 열어야 하는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.mcp-connect"
+    ],
+    "related": [
+      "rag.agent.mcp-caching-design"
+    ],
+    "aliases": [
+      "subscriptions/listen",
+      "MCP 구독",
+      "MCP subscriptions",
+      "MCP 변경 알림",
+      "list_changed 알림 구독",
+      "resources/updated 알림"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic/patterns/subscriptions",
+      "https://modelcontextprotocol.io/specification/2026-07-28/changelog"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.mcp-adapter-connections",
+    "title": "LangChain MCP 연결 설계: 세션 수명·서버 묶음·세대",
+    "en": "Designing LangChain MCP Connections",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "LangChain 에이전트에 MCP 서버를 붙일 때 도구 호출마다 연결을 열지 계속 열어 둘지, 여러 서버를 한 묶음으로 둘지 따로 둘지, 어느 프로토콜 세대로 말할지 고르는 설계다.",
+    "objectives": [
+      "도구 호출마다 연결을 열고 닫는 기본 방식과 어댑터 컨텍스트를 열어 둔 채 에이전트를 부르는 방식의 연결 비용과 유휴 연결 손익을 비교해 고를 수 있다",
+      "여러 서버를 MCPConfig 한 묶음으로 둘지 ClientGroup으로 서버마다 따로 연결할지, 서버별 인증·프로토콜 세대·연결 풀 필요를 근거로 고를 수 있다",
+      "이전 세대 서버 하나를 MCPConfig에 넣으면 묶음 전체가 이전 세대로 내려가는 원인을 찾고 별도 어댑터나 ClientGroup으로 연결을 나눠 고칠 수 있다",
+      "도구 목록 캐시의 use·refresh·bypass 중 상황에 맞는 것을 고르고, 캐시가 서버의 신선도 힌트가 있을 때만 동작한다는 점을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.mcp-connect"
+    ],
+    "related": [
+      "rag.agent.mcp-version-compat",
+      "rag.agent.tool-namespacing",
+      "rag.agent.mcp-caching-design"
+    ],
+    "aliases": [
+      "LangChain MCP 연결",
+      "MCPAdapter",
+      "MCPConfig",
+      "ClientGroup",
+      "langchain.mcp 연결",
+      "LangChain MCP connections"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/mcp/connections"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
@@ -7504,6 +7651,52 @@
     ],
     "refs": [
       "https://docs.langchain.com/oss/python/deepagents/permissions"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.mcp-unsupported-version-error",
+    "title": "MCP 버전 미지원 오류",
+    "en": "MCP UnsupportedProtocolVersionError",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "서버가 요청에 적힌 프로토콜 버전을 지원하지 않을 때 -32022 코드와 함께 지원 버전 목록과 요청 버전을 담아 돌려주는 오류로, 받으면 목록의 버전으로 다시 요청한다.",
+    "parent": "rag.agent.mcp-version-compat",
+    "related": [
+      "rag.agent.mcp-header-mismatch"
+    ],
+    "aliases": [
+      "UnsupportedProtocolVersionError",
+      "MCP -32022",
+      "MCP 버전 미지원"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.mcp-server-discover",
+    "title": "MCP 서버 탐색 요청(server/discover)",
+    "en": "MCP server/discover",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "서버가 지원하는 프로토콜 버전·기능·자기 정보를 한 번에 알려 주는 요청으로, 모든 최신 서버가 구현해야 하고 stdio에서는 상대 세대를 가리는 탐침으로 쓴다.",
+    "parent": "rag.agent.mcp-version-compat",
+    "aliases": [
+      "server/discover",
+      "DiscoverResult",
+      "MCP 탐색 요청",
+      "supportedVersions"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/specification/2026-07-28/server/discover"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
@@ -8174,6 +8367,143 @@
     ],
     "refs": [
       "https://modelcontextprotocol.io/specification/2026-07-28/server/utilities/caching"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.mcp-dual-era",
+    "title": "MCP 이중 세대 구현(dual-era)",
+    "en": "MCP Dual-era Implementation",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "요청마다 버전을 싣는 최신 세대와 initialize 핸드셰이크를 쓰는 이전 세대를 모두 지원해, 어느 쪽 상대와도 연결되게 만든 MCP 클라이언트나 서버다.",
+    "parent": "rag.agent.mcp-version-compat",
+    "aliases": [
+      "dual-era",
+      "MCP 이중 세대",
+      "MCP modern legacy",
+      "MCP 이전 세대 지원"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.mcp-header-mismatch",
+    "title": "MCP 헤더 불일치 오류(HeaderMismatch)",
+    "en": "MCP HeaderMismatch Error",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "Streamable HTTP 요청의 MCP 헤더가 빠졌거나 본문 값과 다를 때 서버가 400과 -32020 코드로 거절하는 오류로, 이전 세대 서버의 400과 본문으로 구분한다.",
+    "parent": "rag.agent.mcp-version-compat",
+    "related": [
+      "rag.agent.mcp-unsupported-version-error"
+    ],
+    "aliases": [
+      "HeaderMismatch",
+      "MCP -32020",
+      "MCP 헤더 불일치"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.mcp-subscription-id",
+    "title": "MCP 구독 id(subscriptionId)",
+    "en": "MCP subscriptionId",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "구독을 연 subscriptions/listen 요청의 JSON-RPC id를 그대로 쓴 값으로, 그 구독의 확인 알림과 모든 알림의 _meta에 실려 어느 구독의 알림인지 가르게 한다.",
+    "parent": "rag.agent.mcp-subscriptions-design",
+    "aliases": [
+      "subscriptionId",
+      "MCP 구독 id",
+      "io.modelcontextprotocol/subscriptionId",
+      "MCP 구독 식별자"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic/patterns/subscriptions"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.mcp-subscription-ack",
+    "title": "MCP 구독 확인 알림(subscriptions/acknowledged)",
+    "en": "MCP Subscription Acknowledgment",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "그 구독에서 가장 먼저 오는 알림으로, 서버가 실제로 보내 주기로 한 알림 종류만 담아 돌려주므로 요청한 필터와 비교해 빠진 종류를 알아낸다.",
+    "parent": "rag.agent.mcp-subscriptions-design",
+    "aliases": [
+      "notifications/subscriptions/acknowledged",
+      "MCP 구독 확인",
+      "subscription acknowledgment",
+      "MCP 구독 승인 필터"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic/patterns/subscriptions"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.tool-result-offloading",
+    "title": "Deep Agents 큰 도구 결과 떠넘기기",
+    "en": "Deep Agents Large Tool Result Offloading",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "도구 결과가 정해진 크기를 넘으면 Deep Agents가 그 내용을 백엔드 파일에 쓰고 대화에는 파일 경로와 앞부분 몇 줄만 남겨, 필요하면 에이전트가 다시 읽게 하는 방식이다.",
+    "parent": "rag.agent.deepagents-context-compression",
+    "aliases": [
+      "Deep Agents offloading",
+      "도구 결과 떠넘기기",
+      "tool result offloading",
+      "Deep Agents 파일 떠넘기기"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/deepagents/context-engineering"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.mcp-fleet-era-downgrade",
+    "title": "MCPConfig 서버 묶음의 세대 하향",
+    "en": "MCPConfig Fleet Era Downgrade",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "LangChain MCPConfig에 묶인 서버들은 프로토콜 세대 하나를 함께 쓰므로, 이전 세대만 아는 서버가 하나라도 끼면 묶음 전체가 이전 세대로 내려가는 현상이다.",
+    "parent": "rag.agent.mcp-adapter-connections",
+    "related": [
+      "rag.agent.mcp-dual-era"
+    ],
+    "aliases": [
+      "MCPConfig 세대 하향",
+      "MCP fleet era",
+      "LangChain MCP legacy era",
+      "MCPConfig legacy downgrade"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/mcp/connections"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"

@@ -6763,6 +6763,133 @@
     ]
   },
   {
+    "id": "ops.linux.systemd-sandboxing",
+    "title": "systemd 서비스 샌드박스로 권한 줄이기",
+    "en": "Hardening systemd Services with Sandboxing Options",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "유닛 파일의 ProtectSystem·ProtectHome·NoNewPrivileges·PrivateTmp 같은 설정으로 서비스가 건드릴 수 있는 파일과 권한을 줄이는 방법이다.",
+    "objectives": [
+      "ProtectSystem의 true·full·strict가 각각 어느 경로를 읽기 전용으로 만드는지 비교해 서비스에 맞는 값을 고를 수 있다",
+      "ProtectSystem=strict를 켠 뒤 쓰기가 막힌 경로를 ReadWritePaths로 열어 줄 수 있다",
+      "NoNewPrivileges와 CapabilityBoundingSet으로 서비스가 더 높은 권한을 얻지 못하게 막을 수 있다",
+      "systemd-analyze security의 노출 점수를 보고 더 조일 설정을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "ops.linux.systemd-service",
+      "ops.linux.file-permissions"
+    ],
+    "related": [
+      "ops.container.linux-capabilities"
+    ],
+    "aliases": [
+      "systemd 샌드박싱",
+      "systemd hardening",
+      "systemd 보안 설정"
+    ],
+    "refs": [
+      "https://www.freedesktop.org/software/systemd/man/latest/systemd.exec.html",
+      "https://www.freedesktop.org/software/systemd/man/latest/systemd-analyze.html"
+    ]
+  },
+  {
+    "id": "ops.network.nginx-rate-limiting",
+    "title": "nginx 요청 속도 제한: limit_req",
+    "en": "Rate Limiting Requests in nginx with limit_req",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "네트워크와 앞단",
+    "summary": "limit_req_zone으로 키·공유 메모리·속도를 정하고 limit_req의 burst로 순간 몰림을 받아 주어, 앞단에서 과한 요청을 늦추거나 거절하는 설정이다.",
+    "objectives": [
+      "$binary_remote_addr 같은 키와 영역 크기·rate를 정해 limit_req_zone을 설계할 수 있다",
+      "burst·nodelay·delay 값에 따라 넘친 요청이 지연되는지 거절되는지 설명할 수 있다",
+      "거절 응답 코드를 기본값 503에서 429로 바꾸고 로그와 $limit_req_status로 거절 원인을 찾을 수 있다",
+      "limit_req_dry_run으로 실제로 막기 전에 한도가 적절한지 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.network.nginx-first-config"
+    ],
+    "related": [
+      "be.rest.rate-limit"
+    ],
+    "aliases": [
+      "nginx rate limit",
+      "nginx 속도 제한",
+      "limit_req_zone",
+      "ngx_http_limit_req_module"
+    ],
+    "refs": [
+      "https://nginx.org/en/docs/http/ngx_http_limit_req_module.html"
+    ]
+  },
+  {
+    "id": "ops.deploy.terraform-refactoring",
+    "title": "Terraform 리팩터링: 주소를 바꿔도 지우지 않기",
+    "en": "Refactoring Terraform Configuration without Destroying Resources",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "배포",
+    "summary": "리소스 이름을 바꾸거나 모듈로 옮길 때 moved·removed 블록과 lifecycle 설정으로 실제 인프라가 지워졌다 다시 만들어지지 않게 하는 방법이다.",
+    "objectives": [
+      "주소가 바뀐 리소스가 plan에서 삭제 후 생성으로 나오는 이유를 상태 파일의 주소로 설명할 수 있다",
+      "moved 블록으로 리소스 이름 변경, 모듈 안으로 옮기기, count·for_each 전환을 처리할 수 있다",
+      "removed 블록의 destroy = false로 리소스를 지우지 않고 Terraform 관리에서만 뺄 수 있다",
+      "prevent_destroy가 막지 못하는 경우(설정 블록 자체를 지운 경우)를 알고 삭제 위험을 점검할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.deploy.terraform-state"
+    ],
+    "aliases": [
+      "Terraform 리팩터링",
+      "Terraform refactoring",
+      "Terraform 리소스 이름 변경",
+      "terraform state mv"
+    ],
+    "refs": [
+      "https://developer.hashicorp.com/terraform/language/modules/develop/refactoring",
+      "https://developer.hashicorp.com/terraform/language/block/removed",
+      "https://developer.hashicorp.com/terraform/language/block/resource"
+    ]
+  },
+  {
+    "id": "ops.k8s.namespace-quotas",
+    "title": "네임스페이스 자원 한도: ResourceQuota와 LimitRange",
+    "en": "Namespace Resource Limits with ResourceQuota and LimitRange",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "ResourceQuota로 네임스페이스 전체의 CPU·메모리·객체 수 합계를 묶고, LimitRange로 컨테이너마다 기본값과 최솟값·최댓값을 정해 팀끼리 클러스터를 나눠 쓰는 방법이다.",
+    "objectives": [
+      "팀별 네임스페이스에 requests·limits 합계 한도를 ResourceQuota로 나눠 정할 수 있다",
+      "CPU·메모리 쿼터가 있는 네임스페이스에서 requests·limits가 없는 파드가 거절되는 이유를 설명하고 LimitRange 기본값으로 막을 수 있다",
+      "쿼터 위반으로 Deployment의 파드가 만들어지지 않을 때 kubectl describe로 원인을 찾을 수 있다",
+      "LimitRange 기본 limit이 파드의 request보다 작아 생기는 오류를 알아보고 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.basics",
+      "ops.container.resource-limits"
+    ],
+    "related": [
+      "ops.k8s.scheduling"
+    ],
+    "aliases": [
+      "ResourceQuota",
+      "LimitRange",
+      "리소스 쿼터",
+      "네임스페이스 쿼터",
+      "Kubernetes 쿼터"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/policy/resource-quotas/",
+      "https://kubernetes.io/docs/concepts/policy/limit-range/"
+    ]
+  },
+  {
     "id": "ops.network.edge-waf",
     "title": "웹 방화벽(WAF)과 오탐 분석",
     "en": "WAF Rules and False Positives",
@@ -7556,6 +7683,104 @@
     ]
   },
   {
+    "id": "ops.linux.protect-system-strict",
+    "title": "ProtectSystem=strict와 ReadWritePaths",
+    "en": "ProtectSystem=strict and ReadWritePaths",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "서비스에게 /dev·/proc·/sys를 뺀 파일 시스템 전체를 읽기 전용으로 보이게 하고, 써야 하는 경로만 ReadWritePaths로 골라 여는 조합이다.",
+    "parent": "ops.linux.systemd-sandboxing",
+    "aliases": [
+      "ProtectSystem",
+      "ReadWritePaths",
+      "ProtectSystem strict",
+      "systemd 읽기 전용 파일 시스템"
+    ],
+    "refs": [
+      "https://www.freedesktop.org/software/systemd/man/latest/systemd.exec.html"
+    ]
+  },
+  {
+    "id": "ops.network.nginx-burst-nodelay",
+    "title": "limit_req의 burst와 nodelay",
+    "en": "burst and nodelay in nginx limit_req",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "네트워크와 앞단",
+    "summary": "burst는 속도를 넘어 기다릴 수 있는 요청 수이고, nodelay는 그 안의 요청을 기다리지 않고 바로 처리하게 하며, burst를 넘으면 둘 다 거절된다.",
+    "parent": "ops.network.nginx-rate-limiting",
+    "aliases": [
+      "nginx burst",
+      "nginx nodelay",
+      "limit_req burst",
+      "burst nodelay"
+    ],
+    "refs": [
+      "https://nginx.org/en/docs/http/ngx_http_limit_req_module.html"
+    ]
+  },
+  {
+    "id": "ops.deploy.terraform-moved-block",
+    "title": "Terraform moved 블록",
+    "en": "Terraform moved Block",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "배포",
+    "summary": "from에 옛 주소, to에 새 주소를 적어 상태 속 기존 객체를 새 주소로 옮기게 하는 블록으로, 지우면 옛 주소를 쓰던 곳에서 삭제가 계획된다.",
+    "parent": "ops.deploy.terraform-refactoring",
+    "aliases": [
+      "moved block",
+      "moved 블록",
+      "Terraform moved",
+      "Terraform 주소 이동"
+    ],
+    "refs": [
+      "https://developer.hashicorp.com/terraform/language/modules/develop/refactoring"
+    ]
+  },
+  {
+    "id": "ops.k8s.limitrange-defaults",
+    "title": "LimitRange 기본 requests·limits 주입",
+    "en": "LimitRange Default Requests and Limits",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "자원 값을 적지 않은 컨테이너에 LimitRange의 default와 defaultRequest를 생성 시점에 채워 넣는 기능으로, 이미 돌고 있는 파드는 바뀌지 않는다.",
+    "parent": "ops.k8s.namespace-quotas",
+    "aliases": [
+      "defaultRequest",
+      "LimitRange default",
+      "LimitRange 기본값",
+      "기본 리소스 요청"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/policy/limit-range/"
+    ]
+  },
+  {
+    "id": "ops.k8s.quota-exceeded-forbidden",
+    "title": "쿼터 초과로 생긴 403 Forbidden",
+    "en": "ResourceQuota Exceeded: 403 Forbidden",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "생성이나 수정이 ResourceQuota를 넘기면 API 서버가 어긴 한도를 적은 403으로 거절하며, Deployment는 만들어지고 그 파드만 생기지 않아 상태를 따로 봐야 한다.",
+    "parent": "ops.k8s.namespace-quotas",
+    "aliases": [
+      "exceeded quota",
+      "forbidden: exceeded quota"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/policy/resource-quotas/"
+    ]
+  },
+  {
     "id": "ops.linux.flock",
     "title": "파일 잠금(flock)으로 동시 실행 막기",
     "en": "flock: File Locking Against Concurrent Runs",
@@ -7822,6 +8047,66 @@
     ],
     "refs": [
       "https://docs.docker.com/engine/logging/configure/"
+    ]
+  },
+  {
+    "id": "ops.linux.systemd-analyze-security",
+    "title": "systemd-analyze security 노출 점수",
+    "en": "systemd-analyze security Exposure Score",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "리눅스",
+    "summary": "서비스 유닛에 적용된 systemd 샌드박스 설정을 항목별로 점검해 0.0~10.0의 노출 점수로 보여 주는 명령이며, 점수가 높을수록 제한이 적다.",
+    "parent": "ops.linux.systemd-sandboxing",
+    "aliases": [
+      "systemd-analyze security",
+      "systemd 노출 점수",
+      "exposure level",
+      "systemd 보안 점수"
+    ],
+    "refs": [
+      "https://www.freedesktop.org/software/systemd/man/latest/systemd-analyze.html"
+    ]
+  },
+  {
+    "id": "ops.network.nginx-limit-req-dry-run",
+    "title": "limit_req_dry_run으로 한도 미리 재 보기",
+    "en": "nginx limit_req_dry_run",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "네트워크와 앞단",
+    "summary": "요청을 실제로 막지 않고 넘친 요청만 영역에 세어 두어, $limit_req_status의 DRY_RUN 값으로 한도가 적절한지 먼저 확인하게 하는 nginx 설정이다.",
+    "parent": "ops.network.nginx-rate-limiting",
+    "aliases": [
+      "limit_req_dry_run",
+      "nginx dry run",
+      "$limit_req_status",
+      "속도 제한 시험 모드"
+    ],
+    "refs": [
+      "https://nginx.org/en/docs/http/ngx_http_limit_req_module.html"
+    ]
+  },
+  {
+    "id": "ops.deploy.terraform-removed-block",
+    "title": "Terraform removed 블록과 destroy = false",
+    "en": "Terraform removed Block with destroy = false",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "배포",
+    "summary": "from에 적은 리소스를 상태에서 빼는 블록으로, lifecycle의 destroy = false를 주면 실제 인프라는 남기고 Terraform 관리만 끝낸다.",
+    "parent": "ops.deploy.terraform-refactoring",
+    "aliases": [
+      "removed block",
+      "removed 블록",
+      "Terraform removed",
+      "destroy = false"
+    ],
+    "refs": [
+      "https://developer.hashicorp.com/terraform/language/block/removed"
     ]
   },
   {

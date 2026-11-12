@@ -6581,6 +6581,104 @@
     ]
   },
   {
+    "id": "dev.basics.uv-workspace",
+    "title": "uv 워크스페이스로 여러 패키지 한 저장소에 묶기",
+    "en": "uv Workspaces",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "개발 환경",
+    "summary": "한 저장소의 여러 파이썬 패키지를 잠금 파일 하나로 함께 관리할지, 경로 의존성으로 따로 둘지 고르는 uv의 구성 방식이다.",
+    "objectives": [
+      "멤버끼리 요구 사항이 충돌하는지를 근거로 워크스페이스와 경로 의존성 중 하나를 고를 수 있다",
+      "members·exclude와 workspace = true 소스로 멤버 사이 의존을 설정할 수 있다",
+      "공유 uv.lock과 requires-python 교집합 때문에 생기는 설치 제약을 설명할 수 있다",
+      "다른 멤버가 선언한 의존성을 import해도 막히지 않는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "be.python.venv-packages",
+      "be.python.project-layout"
+    ],
+    "aliases": [
+      "uv workspace",
+      "uv 워크스페이스",
+      "tool.uv.workspace",
+      "uv 모노레포"
+    ],
+    "refs": [
+      "https://docs.astral.sh/uv/concepts/projects/workspaces/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "dev.basics.ruff-rule-adoption",
+    "title": "ruff 규칙 점진 도입: 억제 주석과 안전한 자동 수정",
+    "en": "Adopting Ruff Rules Incrementally",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "개발 환경",
+    "summary": "기존 코드에 ruff 규칙을 켤 때 억제 범위와 자동 수정의 안전 등급을 골라 위반을 단계적으로 줄이는 방법이다.",
+    "objectives": [
+      "select·extend-select·ignore와 명령줄 옵션의 우선순위로 실제로 켜진 규칙 집합을 설명할 수 있다",
+      "줄 단위 noqa·블록 단위 ruff: disable·enable·파일 단위 억제·per-file-ignores 중 범위에 맞는 것을 고를 수 있다",
+      "--add-noqa로 기존 위반을 묶어 두고 RUF100으로 쓸모없어진 억제를 정리할 수 있다",
+      "안전한 수정과 안전하지 않은 수정의 차이를 알고 --unsafe-fixes를 쓸지 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "be.python.pep8-style"
+    ],
+    "aliases": [
+      "ruff 규칙 도입",
+      "ruff noqa",
+      "ruff per-file-ignores",
+      "ruff unsafe fixes",
+      "ruff 오류 억제"
+    ],
+    "refs": [
+      "https://docs.astral.sh/ruff/linter/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "dev.debug.sys-path-shadowing",
+    "title": "엉뚱한 모듈이 import되는 원인: sys.path 순서와 이름 가림",
+    "en": "sys.path Order and Module Shadowing",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "디버깅",
+    "summary": "스크립트 폴더가 표준 라이브러리보다 앞에 오는 sys.path 순서 때문에 같은 이름의 파일이 진짜 모듈을 가리는 문제를 찾고 막는 법이다.",
+    "objectives": [
+      "sys.path가 스크립트 폴더·PYTHONPATH·표준 라이브러리·site-packages 순으로 채워진다는 것으로 import 결과를 설명할 수 있다",
+      "스크립트 옆 파일이 같은 이름의 표준 라이브러리 모듈을 가리는 오류를 찾아낼 수 있다",
+      "-P·PYTHONSAFEPATH·-I가 경로 앞자리를 빼는 효과를 알고 실행 방식을 고를 수 있다",
+      "python -m site로 sys.path와 사용자 site-packages 설정을 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "be.python.modules-import",
+      "be.python.venv-packages"
+    ],
+    "related": [
+      "dev.test.pytest-import-mode"
+    ],
+    "aliases": [
+      "sys.path 순서",
+      "모듈 이름 가림",
+      "module shadowing",
+      "표준 라이브러리 가림",
+      "sys.path initialization"
+    ],
+    "refs": [
+      "https://docs.python.org/3/tutorial/modules.html#the-module-search-path",
+      "https://docs.python.org/3/library/sys_path_init.html",
+      "https://docs.python.org/3/using/cmdline.html",
+      "https://docs.python.org/3/library/site.html"
+    ]
+  },
+  {
     "id": "dev.git.large-repo-clone",
     "title": "큰 저장소 가볍게 받기: 얕은·부분 클론과 sparse-checkout",
     "en": "Shallow Clone, Partial Clone, and Sparse Checkout for Large Repositories",
@@ -6772,6 +6870,37 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
+  },
+  {
+    "id": "dev.git.subtree-merge",
+    "title": "서브트리 병합으로 다른 저장소를 하위 폴더에 담기",
+    "en": "Subtree Merging",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "Git",
+    "summary": "다른 프로젝트를 하위 폴더에 그대로 커밋해 두고 상류 변경을 병합 전략으로 받아 오는, 서브모듈을 쓰지 않는 방식이다.",
+    "objectives": [
+      "코드가 한 저장소에 모이는 이점과 재통합 실수 위험을 근거로 서브모듈과 서브트리 병합 중 하나를 고를 수 있다",
+      "read-tree --prefix로 다른 프로젝트를 하위 폴더에 넣고 -Xsubtree로 상류 변경을 병합할 수 있다",
+      "하위 폴더와 상류 브랜치의 차이를 git diff 대신 diff-tree로 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.submodules",
+      "dev.git.merge-methods"
+    ],
+    "related": [
+      "dev.git.submodules"
+    ],
+    "aliases": [
+      "subtree merging",
+      "git 서브트리 병합",
+      "subtree merge strategy",
+      "서브트리 머지"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging"
+    ]
   },
   {
     "id": "dev.test.e2e",
@@ -7102,6 +7231,27 @@
     ],
     "refs": [
       "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "dev.basics.uv-workspace-source",
+    "title": "uv 워크스페이스 소스(workspace = true)",
+    "en": "uv Workspace Sources",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "개발 환경",
+    "summary": "tool.uv.sources에서 의존성을 PyPI 대신 같은 워크스페이스의 멤버에서 편집 가능 설치로 가져오게 하는 설정이다.",
+    "parent": "dev.basics.uv-workspace",
+    "aliases": [
+      "workspace = true",
+      "uv 워크스페이스 의존성",
+      "tool.uv.sources workspace"
+    ],
+    "refs": [
+      "https://docs.astral.sh/uv/concepts/projects/workspaces/"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
@@ -7718,6 +7868,145 @@
     "refs": [
       "https://git-scm.com/docs/git-range-diff"
     ]
+  },
+  {
+    "id": "dev.basics.uv-run-package",
+    "title": "uv run --package",
+    "en": "uv run --package",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "개발 환경",
+    "summary": "워크스페이스 안 어느 폴더에서든 지정한 멤버를 대상으로 명령을 실행하거나 환경을 맞추는 uv 옵션이다.",
+    "parent": "dev.basics.uv-workspace",
+    "aliases": [
+      "uv sync --package",
+      "uv --package 옵션",
+      "워크스페이스 멤버 실행"
+    ],
+    "refs": [
+      "https://docs.astral.sh/uv/concepts/projects/workspaces/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "dev.basics.ruff-add-noqa",
+    "title": "ruff --add-noqa",
+    "en": "ruff --add-noqa",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "개발 환경",
+    "summary": "현재 위반이 있는 줄마다 noqa 주석을 자동으로 붙여 새 규칙을 켠 뒤 새 위반만 막게 하는 ruff 옵션이다.",
+    "parent": "dev.basics.ruff-rule-adoption",
+    "aliases": [
+      "add-noqa",
+      "noqa 자동 추가",
+      "ruff noqa 일괄 추가"
+    ],
+    "refs": [
+      "https://docs.astral.sh/ruff/linter/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "dev.basics.ruff-unused-noqa",
+    "title": "쓰이지 않는 noqa 찾기(RUF100)",
+    "en": "Unused noqa Detection (RUF100)",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "개발 환경",
+    "summary": "더는 아무 위반도 막지 않는 억제 주석을 찾아 알리고 --fix로 지울 수 있게 하는 ruff 규칙이다.",
+    "parent": "dev.basics.ruff-rule-adoption",
+    "aliases": [
+      "RUF100",
+      "unused-noqa",
+      "ruff 불필요한 noqa"
+    ],
+    "refs": [
+      "https://docs.astral.sh/ruff/linter/"
+    ]
+  },
+  {
+    "id": "dev.git.read-tree-prefix",
+    "title": "git read-tree --prefix",
+    "en": "git read-tree --prefix",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Git",
+    "summary": "다른 브랜치의 트리를 기존 인덱스를 지우지 않고 지정한 하위 폴더 아래에 스테이징하는 read-tree 옵션이다.",
+    "parent": "dev.git.subtree-merge",
+    "aliases": [
+      "read-tree --prefix",
+      "git read-tree",
+      "하위 폴더로 트리 읽기"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/git-read-tree"
+    ]
+  },
+  {
+    "id": "dev.git.subtree-strategy-option",
+    "title": "-Xsubtree 병합 옵션",
+    "en": "Subtree Merge Strategy Option",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Git",
+    "summary": "병합할 브랜치의 트리를 현재 브랜치의 하위 폴더에 맞춰 옮겨 붙이도록 ort 병합 전략에 주는 옵션이다.",
+    "parent": "dev.git.subtree-merge",
+    "aliases": [
+      "-Xsubtree",
+      "merge -Xsubtree",
+      "subtree 병합 옵션"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/merge-strategies"
+    ]
+  },
+  {
+    "id": "dev.debug.python-safe-path",
+    "title": "-P 옵션과 PYTHONSAFEPATH",
+    "en": "Python Safe Path Option",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "스크립트 폴더나 현재 폴더를 sys.path 맨 앞에 넣지 않게 해 이름 가림과 코드 주입 위험을 줄이는 파이썬 실행 옵션이다.",
+    "parent": "dev.debug.sys-path-shadowing",
+    "aliases": [
+      "PYTHONSAFEPATH",
+      "python -P",
+      "sys._path0"
+    ],
+    "refs": [
+      "https://docs.python.org/3/using/cmdline.html"
+    ]
+  },
+  {
+    "id": "dev.debug.pth-file",
+    "title": ".pth 경로 설정 파일",
+    "en": "Path Configuration (.pth) Files",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "site-packages에 놓여 시작할 때 sys.path에 폴더를 더하는 파일로, 예상 밖 경로가 끼어든 원인이 되기도 한다.",
+    "parent": "dev.debug.sys-path-shadowing",
+    "aliases": [
+      ".pth 파일",
+      "pth file",
+      "site-packages .pth"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/site.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "dev.git.internals",

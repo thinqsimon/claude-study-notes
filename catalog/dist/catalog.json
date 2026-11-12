@@ -1,5 +1,5 @@
 {
- "version": "0.70.0",
+ "version": "0.71.0",
  "domains": [
   {
    "prefix": "dev",
@@ -7109,6 +7109,107 @@
    "domain": "dev"
   },
   {
+   "id": "dev.basics.uv-workspace",
+   "title": "uv 워크스페이스로 여러 패키지 한 저장소에 묶기",
+   "en": "uv Workspaces",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "개발 환경",
+   "summary": "한 저장소의 여러 파이썬 패키지를 잠금 파일 하나로 함께 관리할지, 경로 의존성으로 따로 둘지 고르는 uv의 구성 방식이다.",
+   "objectives": [
+    "멤버끼리 요구 사항이 충돌하는지를 근거로 워크스페이스와 경로 의존성 중 하나를 고를 수 있다",
+    "members·exclude와 workspace = true 소스로 멤버 사이 의존을 설정할 수 있다",
+    "공유 uv.lock과 requires-python 교집합 때문에 생기는 설치 제약을 설명할 수 있다",
+    "다른 멤버가 선언한 의존성을 import해도 막히지 않는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "be.python.venv-packages",
+    "be.python.project-layout"
+   ],
+   "aliases": [
+    "uv workspace",
+    "uv 워크스페이스",
+    "tool.uv.workspace",
+    "uv 모노레포"
+   ],
+   "refs": [
+    "https://docs.astral.sh/uv/concepts/projects/workspaces/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.ruff-rule-adoption",
+   "title": "ruff 규칙 점진 도입: 억제 주석과 안전한 자동 수정",
+   "en": "Adopting Ruff Rules Incrementally",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "개발 환경",
+   "summary": "기존 코드에 ruff 규칙을 켤 때 억제 범위와 자동 수정의 안전 등급을 골라 위반을 단계적으로 줄이는 방법이다.",
+   "objectives": [
+    "select·extend-select·ignore와 명령줄 옵션의 우선순위로 실제로 켜진 규칙 집합을 설명할 수 있다",
+    "줄 단위 noqa·블록 단위 ruff: disable·enable·파일 단위 억제·per-file-ignores 중 범위에 맞는 것을 고를 수 있다",
+    "--add-noqa로 기존 위반을 묶어 두고 RUF100으로 쓸모없어진 억제를 정리할 수 있다",
+    "안전한 수정과 안전하지 않은 수정의 차이를 알고 --unsafe-fixes를 쓸지 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "be.python.pep8-style"
+   ],
+   "aliases": [
+    "ruff 규칙 도입",
+    "ruff noqa",
+    "ruff per-file-ignores",
+    "ruff unsafe fixes",
+    "ruff 오류 억제"
+   ],
+   "refs": [
+    "https://docs.astral.sh/ruff/linter/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "dev"
+  },
+  {
+   "id": "dev.debug.sys-path-shadowing",
+   "title": "엉뚱한 모듈이 import되는 원인: sys.path 순서와 이름 가림",
+   "en": "sys.path Order and Module Shadowing",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "디버깅",
+   "summary": "스크립트 폴더가 표준 라이브러리보다 앞에 오는 sys.path 순서 때문에 같은 이름의 파일이 진짜 모듈을 가리는 문제를 찾고 막는 법이다.",
+   "objectives": [
+    "sys.path가 스크립트 폴더·PYTHONPATH·표준 라이브러리·site-packages 순으로 채워진다는 것으로 import 결과를 설명할 수 있다",
+    "스크립트 옆 파일이 같은 이름의 표준 라이브러리 모듈을 가리는 오류를 찾아낼 수 있다",
+    "-P·PYTHONSAFEPATH·-I가 경로 앞자리를 빼는 효과를 알고 실행 방식을 고를 수 있다",
+    "python -m site로 sys.path와 사용자 site-packages 설정을 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "be.python.modules-import",
+    "be.python.venv-packages"
+   ],
+   "related": [
+    "dev.test.pytest-import-mode"
+   ],
+   "aliases": [
+    "sys.path 순서",
+    "모듈 이름 가림",
+    "module shadowing",
+    "표준 라이브러리 가림",
+    "sys.path initialization"
+   ],
+   "refs": [
+    "https://docs.python.org/3/tutorial/modules.html#the-module-search-path",
+    "https://docs.python.org/3/library/sys_path_init.html",
+    "https://docs.python.org/3/using/cmdline.html",
+    "https://docs.python.org/3/library/site.html"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.git.large-repo-clone",
    "title": "큰 저장소 가볍게 받기: 얕은·부분 클론과 sparse-checkout",
    "en": "Shallow Clone, Partial Clone, and Sparse Checkout for Large Repositories",
@@ -7305,6 +7406,38 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.subtree-merge",
+   "title": "서브트리 병합으로 다른 저장소를 하위 폴더에 담기",
+   "en": "Subtree Merging",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "Git",
+   "summary": "다른 프로젝트를 하위 폴더에 그대로 커밋해 두고 상류 변경을 병합 전략으로 받아 오는, 서브모듈을 쓰지 않는 방식이다.",
+   "objectives": [
+    "코드가 한 저장소에 모이는 이점과 재통합 실수 위험을 근거로 서브모듈과 서브트리 병합 중 하나를 고를 수 있다",
+    "read-tree --prefix로 다른 프로젝트를 하위 폴더에 넣고 -Xsubtree로 상류 변경을 병합할 수 있다",
+    "하위 폴더와 상류 브랜치의 차이를 git diff 대신 diff-tree로 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.submodules",
+    "dev.git.merge-methods"
+   ],
+   "related": [
+    "dev.git.submodules"
+   ],
+   "aliases": [
+    "subtree merging",
+    "git 서브트리 병합",
+    "subtree merge strategy",
+    "서브트리 머지"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging"
+   ],
    "domain": "dev"
   },
   {
@@ -7652,6 +7785,28 @@
    ],
    "refs": [
     "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.uv-workspace-source",
+   "title": "uv 워크스페이스 소스(workspace = true)",
+   "en": "uv Workspace Sources",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "개발 환경",
+   "summary": "tool.uv.sources에서 의존성을 PyPI 대신 같은 워크스페이스의 멤버에서 편집 가능 설치로 가져오게 하는 설정이다.",
+   "parent": "dev.basics.uv-workspace",
+   "aliases": [
+    "workspace = true",
+    "uv 워크스페이스 의존성",
+    "tool.uv.sources workspace"
+   ],
+   "refs": [
+    "https://docs.astral.sh/uv/concepts/projects/workspaces/"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -8298,6 +8453,152 @@
    "refs": [
     "https://git-scm.com/docs/git-range-diff"
    ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.uv-run-package",
+   "title": "uv run --package",
+   "en": "uv run --package",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "개발 환경",
+   "summary": "워크스페이스 안 어느 폴더에서든 지정한 멤버를 대상으로 명령을 실행하거나 환경을 맞추는 uv 옵션이다.",
+   "parent": "dev.basics.uv-workspace",
+   "aliases": [
+    "uv sync --package",
+    "uv --package 옵션",
+    "워크스페이스 멤버 실행"
+   ],
+   "refs": [
+    "https://docs.astral.sh/uv/concepts/projects/workspaces/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.ruff-add-noqa",
+   "title": "ruff --add-noqa",
+   "en": "ruff --add-noqa",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "개발 환경",
+   "summary": "현재 위반이 있는 줄마다 noqa 주석을 자동으로 붙여 새 규칙을 켠 뒤 새 위반만 막게 하는 ruff 옵션이다.",
+   "parent": "dev.basics.ruff-rule-adoption",
+   "aliases": [
+    "add-noqa",
+    "noqa 자동 추가",
+    "ruff noqa 일괄 추가"
+   ],
+   "refs": [
+    "https://docs.astral.sh/ruff/linter/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.ruff-unused-noqa",
+   "title": "쓰이지 않는 noqa 찾기(RUF100)",
+   "en": "Unused noqa Detection (RUF100)",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "개발 환경",
+   "summary": "더는 아무 위반도 막지 않는 억제 주석을 찾아 알리고 --fix로 지울 수 있게 하는 ruff 규칙이다.",
+   "parent": "dev.basics.ruff-rule-adoption",
+   "aliases": [
+    "RUF100",
+    "unused-noqa",
+    "ruff 불필요한 noqa"
+   ],
+   "refs": [
+    "https://docs.astral.sh/ruff/linter/"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.read-tree-prefix",
+   "title": "git read-tree --prefix",
+   "en": "git read-tree --prefix",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Git",
+   "summary": "다른 브랜치의 트리를 기존 인덱스를 지우지 않고 지정한 하위 폴더 아래에 스테이징하는 read-tree 옵션이다.",
+   "parent": "dev.git.subtree-merge",
+   "aliases": [
+    "read-tree --prefix",
+    "git read-tree",
+    "하위 폴더로 트리 읽기"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/git-read-tree"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.subtree-strategy-option",
+   "title": "-Xsubtree 병합 옵션",
+   "en": "Subtree Merge Strategy Option",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Git",
+   "summary": "병합할 브랜치의 트리를 현재 브랜치의 하위 폴더에 맞춰 옮겨 붙이도록 ort 병합 전략에 주는 옵션이다.",
+   "parent": "dev.git.subtree-merge",
+   "aliases": [
+    "-Xsubtree",
+    "merge -Xsubtree",
+    "subtree 병합 옵션"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/merge-strategies"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.debug.python-safe-path",
+   "title": "-P 옵션과 PYTHONSAFEPATH",
+   "en": "Python Safe Path Option",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "디버깅",
+   "summary": "스크립트 폴더나 현재 폴더를 sys.path 맨 앞에 넣지 않게 해 이름 가림과 코드 주입 위험을 줄이는 파이썬 실행 옵션이다.",
+   "parent": "dev.debug.sys-path-shadowing",
+   "aliases": [
+    "PYTHONSAFEPATH",
+    "python -P",
+    "sys._path0"
+   ],
+   "refs": [
+    "https://docs.python.org/3/using/cmdline.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.debug.pth-file",
+   "title": ".pth 경로 설정 파일",
+   "en": "Path Configuration (.pth) Files",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "디버깅",
+   "summary": "site-packages에 놓여 시작할 때 sys.path에 폴더를 더하는 파일로, 예상 밖 경로가 끼어든 원인이 되기도 한다.",
+   "parent": "dev.debug.sys-path-shadowing",
+   "aliases": [
+    ".pth 파일",
+    "pth file",
+    "site-packages .pth"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/site.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "dev"
   },
   {
@@ -23669,6 +23970,137 @@
    "domain": "plan"
   },
   {
+   "id": "plan.basics.media-alternatives-planning",
+   "title": "영상·음성 콘텐츠의 대체 수단 계획하기",
+   "en": "Planning Audio and Video Media Alternatives",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "영상과 음성 콘텐츠마다 자막·대본·화면 해설 중 무엇이 필요한지 정하고 제작 일정과 계약에 미리 넣는 일이다.",
+   "objectives": [
+    "녹화·실시간, 음성 전용·영상 여부에 따라 자막·대본·화면 해설 중 필요한 대체 수단을 고를 수 있다",
+    "말소리와 시각 정보가 내용 이해에 필요한지 따져 대체 수단이 필요 없다는 안내를 낼지 판단할 수 있다",
+    "자막에서 대본을 만드는 순서로 제작 흐름을 짜고 외주 계약에 접근성 요구사항을 넣을 수 있다"
+   ],
+   "prerequisites": [
+    "fe.basics.accessibility-idea"
+   ],
+   "related": [
+    "fe.html.track-captions"
+   ],
+   "aliases": [
+    "미디어 대체 수단",
+    "media alternatives",
+    "영상 접근성 계획",
+    "오디오 비디오 접근성"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/media/av/planning/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.ai-ux.hax-guidelines",
+   "title": "HAX 가이드라인으로 AI 기능 상호작용 점검하기",
+   "en": "Applying the Guidelines for Human-AI Interaction",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "AI UX 설계",
+   "summary": "Microsoft의 18개 Human-AI 상호작용 가이드라인으로 AI 기능을 처음·사용 중·틀렸을 때·시간이 지나며 단계별로 점검하고 우선순위를 정하는 일이다.",
+   "objectives": [
+    "AI 기능 하나를 처음 만날 때·사용 중·틀렸을 때·시간이 지나며의 네 시점으로 나눠 해당 가이드라인을 고를 수 있다",
+    "HAX Workbook처럼 가이드라인마다 UI·AI·데이터·엔지니어링 요구사항과 노력을 추정할 수 있다",
+    "사용자 영향과 구현 비용을 비교해 먼저 지킬 가이드라인의 순서를 근거를 들어 정할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.ai-ux.feedback-control"
+   ],
+   "related": [
+    "plan.ai-ux.errors-graceful-failure"
+   ],
+   "aliases": [
+    "HAX 가이드라인",
+    "HAX Toolkit",
+    "Human-AI 상호작용 가이드라인",
+    "HAX Workbook",
+    "Guidelines for Human-AI Interaction"
+   ],
+   "refs": [
+    "https://www.microsoft.com/en-us/haxtoolkit/ai-guidelines/",
+    "https://www.microsoft.com/en-us/haxtoolkit/workbook/",
+    "https://www.microsoft.com/en-us/haxtoolkit/library/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.assisted-digital-design",
+   "title": "도움 받는 디지털 이용 경로와 채널 전환 설계",
+   "en": "Designing Assisted Digital Support and Channel Shift",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "온라인 이용이 어려운 사용자를 위해 대면·전화·웹채팅 지원 경로와 제공 기관을 고르고, 사용자를 억지로 밀지 않으며 온라인 이용을 늘리는 설계다.",
+   "objectives": [
+    "조사 결과를 근거로 대면·전화·웹채팅 지원 중 사용자에게 맞는 경로를 고르고 종이 경로를 피하는 이유를 말할 수 있다",
+    "지원 제공 기관이 갖춰야 할 조건(무료 제공·수요 변동 대응·데이터 제공 등)으로 후보를 비교할 수 있다",
+    "오프라인 이용이 많은 원인을 조사해 연락처를 숨기지 않고 온라인 이용을 늘릴 방법을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.contextual-research"
+   ],
+   "related": [
+    "plan.basics.assisted-digital",
+    "plan.basics.digital-take-up"
+   ],
+   "aliases": [
+    "어시스티드 디지털 설계",
+    "디지털 지원 경로 설계",
+    "assisted digital design",
+    "온라인 이용 늘리기"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/helping-people-to-use-your-service/designing-assisted-digital",
+    "https://www.gov.uk/service-manual/helping-people-to-use-your-service/encouraging-people-to-use-your-digital-service"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.user-support-model",
+   "title": "사용자 지원 창구 설계: 수요 추정·서비스 수준·문의 분류",
+   "en": "Setting Up and Managing User Support",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "채널·문의 유형별 수요를 추정해 서비스 수준과 인력을 정하고, 문의를 분류해 서비스 개선의 근거로 쓰는 지원 창구 운영 설계다.",
+   "objectives": [
+    "과거 자료와 비슷한 서비스 자료로 채널·문의 유형별 문의량과 성수기를 추정할 수 있다",
+    "채널마다 서비스 수준과 평균 처리 시간을 정해 필요한 인력을 계산할 수 있다",
+    "문의를 하위 분류로 나누고 영향받는 사용자 비율과 절감 비용으로 개선 순서를 정할 수 있다",
+    "문의를 결함 신호로 보고 사용자가 말한 문제와 실제 원인이 다른 곳(편지·상담 처리 등)을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.success-metrics"
+   ],
+   "related": [
+    "plan.basics.assisted-digital-design"
+   ],
+   "aliases": [
+    "사용자 지원 설계",
+    "헬프데스크 설계",
+    "user support model",
+    "고객 문의 창구 운영",
+    "contact centre planning"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/helping-people-to-use-your-service/set-up-and-manage-user-support"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.design-token-architecture",
    "title": "디자인 토큰 표준과 별칭 계층 설계",
    "en": "Design Token Standard and Alias Layers",
@@ -24358,6 +24790,104 @@
    "domain": "plan"
   },
   {
+   "id": "plan.basics.audio-description",
+   "title": "화면 해설(audio description)",
+   "en": "Audio Description",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "영상 속 동작·장면 전환·화면 글자처럼 소리로 전달되지 않는 시각 정보를 말로 풀어 들려주는 대체 수단이다.",
+   "parent": "plan.basics.media-alternatives-planning",
+   "related": [
+    "plan.basics.descriptive-transcript"
+   ],
+   "aliases": [
+    "화면 해설",
+    "음성 해설",
+    "audio description",
+    "video description",
+    "described video"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/media/av/description/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.descriptive-transcript",
+   "title": "서술형 대본(descriptive transcript)",
+   "en": "Descriptive Transcript",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "말소리와 소리 정보에 영상의 시각 정보 설명까지 글로 담아, 보지도 듣지도 못하는 사용자도 내용을 따라가게 하는 대본이다.",
+   "parent": "plan.basics.media-alternatives-planning",
+   "related": [
+    "plan.basics.audio-description"
+   ],
+   "aliases": [
+    "서술형 대본",
+    "descriptive transcript",
+    "설명 대본",
+    "영상 설명 대본"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/media/av/transcripts/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.ai-ux.update-adapt-cautiously",
+   "title": "AI 동작의 신중한 업데이트와 적응",
+   "en": "Update and Adapt Cautiously (HAX G14)",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "AI UX 설계",
+   "summary": "AI의 동작을 바꾸거나 모델을 갱신할 때 변경의 크기와 속도를 줄이고, 전에 잘하던 일에서 새 오류가 생기지 않는지 확인하라는 지침이다.",
+   "parent": "plan.ai-ux.hax-guidelines",
+   "related": [
+    "plan.ai-ux.notify-users-changes"
+   ],
+   "aliases": [
+    "HAX G14",
+    "update and adapt cautiously",
+    "AI 신중한 업데이트",
+    "모델 업데이트 하위 호환"
+   ],
+   "refs": [
+    "https://www.microsoft.com/en-us/haxtoolkit/guideline/update-and-adapt-cautiously/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.ai-ux.notify-users-changes",
+   "title": "AI 기능 변경 알림",
+   "en": "Notify Users About Changes (HAX G18)",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "AI UX 설계",
+   "summary": "AI 시스템이 기능을 더하거나 모델을 크게 바꿨을 때 사용자에게 알려 기대치를 다시 맞추게 하라는 지침이다.",
+   "parent": "plan.ai-ux.hax-guidelines",
+   "related": [
+    "plan.ai-ux.update-adapt-cautiously",
+    "plan.ai-ux.calibrated-trust"
+   ],
+   "aliases": [
+    "HAX G18",
+    "notify users about changes",
+    "AI 변경 알림",
+    "모델 업데이트 공지"
+   ],
+   "refs": [
+    "https://www.microsoft.com/en-us/haxtoolkit/guideline/notify-users-about-changes/"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.ready-for-dev",
    "title": "Ready for dev 상태",
    "en": "Ready for Dev Status",
@@ -24828,6 +25358,102 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.integrated-description",
+   "title": "제작 단계 통합 해설(integrated description)",
+   "en": "Integrated Description",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "영상을 만들 때 발표자가 화면의 중요한 시각 정보를 직접 말하도록 대본에 넣어 따로 해설을 만들 필요를 없애는 방법이다.",
+   "parent": "plan.basics.media-alternatives-planning",
+   "related": [
+    "plan.basics.audio-description"
+   ],
+   "aliases": [
+    "통합 해설",
+    "integrated description",
+    "대본에 넣는 화면 설명"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/media/av/description/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.channel-shift",
+   "title": "채널 전환(channel shift)",
+   "en": "Channel Shift",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "사용자 필요를 채울 수 있는 범위에서 대면처럼 비싼 이용 경로의 수요를 전화·온라인 같은 싼 경로로 옮기는 일이다.",
+   "parent": "plan.basics.assisted-digital-design",
+   "related": [
+    "plan.basics.digital-take-up",
+    "plan.basics.cost-per-transaction"
+   ],
+   "aliases": [
+    "채널 전환",
+    "channel shift",
+    "이용 경로 전환",
+    "채널 시프트"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/helping-people-to-use-your-service/encouraging-people-to-use-your-digital-service"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.support-service-level",
+   "title": "지원 창구 서비스 수준(service level)",
+   "en": "Support Service Level",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "채널별로 정한 시간 안에 처리하려는 문의의 비율로, 예를 들면 이메일의 80%를 24시간 안에 답하는 식의 목표다.",
+   "parent": "plan.basics.user-support-model",
+   "related": [
+    "plan.basics.average-handling-time"
+   ],
+   "aliases": [
+    "지원 서비스 수준",
+    "응답 서비스 수준",
+    "contact centre service level",
+    "문의 응답 목표"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/helping-people-to-use-your-service/set-up-and-manage-user-support"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.average-handling-time",
+   "title": "평균 처리 시간(AHT)",
+   "en": "Average Handling Time",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "한 채널에서 문의 하나를 처리하는 데 드는 평균 시간으로, 상담원 한 명이 감당할 문의량과 필요 인력을 계산하는 데 쓴다.",
+   "parent": "plan.basics.user-support-model",
+   "related": [
+    "plan.basics.support-service-level"
+   ],
+   "aliases": [
+    "평균 처리 시간",
+    "AHT",
+    "average handling time",
+    "문의 처리 시간"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/helping-people-to-use-your-service/set-up-and-manage-user-support"
+   ],
    "domain": "plan"
   },
   {
@@ -68938,6 +69564,82 @@
    "domain": "rag"
   },
   {
+   "id": "rag.agent.mcp-version-compat",
+   "title": "MCP 버전 협상과 이전 판 호환 설계",
+   "en": "MCP Version Negotiation and Backward Compatibility",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "요청마다 프로토콜 버전을 싣는 최신 MCP와 initialize 핸드셰이크를 쓰는 이전 판이 섞일 때, 상대의 세대를 가려 다시 시도할지 물러설지 정하는 설계다.",
+   "objectives": [
+    "요청의 _meta와 MCP-Protocol-Version 헤더로 버전을 밝히는 방식과 버전 미지원 오류를 받았을 때 supported 목록으로 다시 시도하는 흐름을 설명할 수 있다",
+    "stdio에서는 server/discover 탐침으로, Streamable HTTP에서는 400 응답 본문을 보고 상대가 최신 세대인지 이전 세대인지 가를 수 있다",
+    "알아보는 최신 오류가 오면 initialize로 물러서지 않아야 하는 이유와 특정 오류 코드 하나에 물러서기를 묶으면 안 되는 이유를 말할 수 있다",
+    "호환 표를 보고 클라이언트와 서버 가운데 어느 쪽을 이중 세대로 만들어야 이전 판 사용자가 끊기지 않는지 고를 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.mcp-connect"
+   ],
+   "related": [
+    "rag.agent.mcp-transport",
+    "rag.agent.mcp-protocol"
+   ],
+   "aliases": [
+    "MCP 버전 협상",
+    "MCP version negotiation",
+    "MCP 하위 호환",
+    "MCP backward compatibility",
+    "initialize 없는 MCP"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning",
+    "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio",
+    "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+    "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.deepagents-context-compression",
+   "title": "Deep Agents 컨텍스트 압축 설계: 떠넘기기·요약·격리",
+   "en": "Context Compression Design in Deep Agents",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "오래 도는 Deep Agents가 모델 문맥 창을 넘지 않도록 큰 도구 입출력은 파일로 떠넘기고, 그래도 차면 앞 대화를 요약하고, 무거운 일은 서브에이전트에 맡기는 설계다.",
+   "objectives": [
+    "큰 도구 결과가 파일 경로와 짧은 미리보기로 바뀌는 떠넘기기와 앞 대화를 요약으로 바꾸는 요약이 어떤 순서와 기준으로 일어나는지 설명할 수 있다",
+    "요약은 모델에 보내는 메시지만 바꾸고 저장된 상태의 메시지 기록은 그대로 둔다는 점을 근거로 재실행·평가에 쓸 기록을 어디서 볼지 정할 수 있다",
+    "서브에이전트에 일을 맡겨 중간 도구 호출을 주 에이전트 문맥 밖에 두고, 짧은 보고와 파일 저장을 지시해 문맥이 다시 부푸는 것을 막을 수 있다",
+    "모델 프로필이 없어 요약 기준이 기본값으로 떨어지거나 이미지 같은 멀티모달 내용이 압축되지 않아 문맥이 넘치는 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.deep-agents",
+    "rag.agent.context-engineering-design"
+   ],
+   "related": [
+    "rag.agent.summarization-middleware",
+    "rag.agent.subagents"
+   ],
+   "aliases": [
+    "Deep Agents 컨텍스트 압축",
+    "Deep Agents context compression",
+    "Deep Agents 컨텍스트 엔지니어링",
+    "Deep Agents 요약",
+    "context engineering in Deep Agents"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/deepagents/context-engineering"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
    "id": "rag.agent.agent-server-cron-webhook",
    "title": "Agent Server 예약 실행과 웹훅 설계: 스레드·정리·완료 알림",
    "en": "Designing Agent Server Cron Jobs and Webhooks",
@@ -69000,6 +69702,81 @@
    ],
    "refs": [
     "https://modelcontextprotocol.io/specification/2026-07-28/server/utilities/caching"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-subscriptions-design",
+   "title": "MCP 변경 알림 구독 설계: subscriptions/listen",
+   "en": "Designing MCP Change Notification Subscriptions",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "도구 목록 변경이나 리소스 갱신 알림을 받으려고 오래 열어 두는 구독 스트림을 열고, 받은 알림을 구독별로 나누고, 끊기면 다시 여는 방법을 정하는 설계다.",
+   "objectives": [
+    "알림 필터에 받을 알림 종류만 골라 subscriptions/listen을 열고, 확인 알림에 돌아온 필터와 요청한 필터를 비교해 서버가 빼 버린 종류를 처리할 수 있다",
+    "진행 알림처럼 요청에 딸린 알림은 구독 스트림이 아니라 그 요청의 응답 스트림으로 온다는 점을 근거로 알림이 안 오는 원인을 찾을 수 있다",
+    "여러 구독을 동시에 열 때 subscriptionId로 알림을 나누고, 서버의 정상 종료 응답과 갑작스러운 연결 끊김을 구분해 다시 구독할지 정할 수 있다",
+    "stdio 서버가 다시 시작되면 구독 상태가 남지 않으므로 클라이언트가 구독을 다시 열어야 하는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.mcp-connect"
+   ],
+   "related": [
+    "rag.agent.mcp-caching-design"
+   ],
+   "aliases": [
+    "subscriptions/listen",
+    "MCP 구독",
+    "MCP subscriptions",
+    "MCP 변경 알림",
+    "list_changed 알림 구독",
+    "resources/updated 알림"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/specification/2026-07-28/basic/patterns/subscriptions",
+    "https://modelcontextprotocol.io/specification/2026-07-28/changelog"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-adapter-connections",
+   "title": "LangChain MCP 연결 설계: 세션 수명·서버 묶음·세대",
+   "en": "Designing LangChain MCP Connections",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "LangChain 에이전트에 MCP 서버를 붙일 때 도구 호출마다 연결을 열지 계속 열어 둘지, 여러 서버를 한 묶음으로 둘지 따로 둘지, 어느 프로토콜 세대로 말할지 고르는 설계다.",
+   "objectives": [
+    "도구 호출마다 연결을 열고 닫는 기본 방식과 어댑터 컨텍스트를 열어 둔 채 에이전트를 부르는 방식의 연결 비용과 유휴 연결 손익을 비교해 고를 수 있다",
+    "여러 서버를 MCPConfig 한 묶음으로 둘지 ClientGroup으로 서버마다 따로 연결할지, 서버별 인증·프로토콜 세대·연결 풀 필요를 근거로 고를 수 있다",
+    "이전 세대 서버 하나를 MCPConfig에 넣으면 묶음 전체가 이전 세대로 내려가는 원인을 찾고 별도 어댑터나 ClientGroup으로 연결을 나눠 고칠 수 있다",
+    "도구 목록 캐시의 use·refresh·bypass 중 상황에 맞는 것을 고르고, 캐시가 서버의 신선도 힌트가 있을 때만 동작한다는 점을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.mcp-connect"
+   ],
+   "related": [
+    "rag.agent.mcp-version-compat",
+    "rag.agent.tool-namespacing",
+    "rag.agent.mcp-caching-design"
+   ],
+   "aliases": [
+    "LangChain MCP 연결",
+    "MCPAdapter",
+    "MCPConfig",
+    "ClientGroup",
+    "langchain.mcp 연결",
+    "LangChain MCP connections"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/mcp/connections"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -69293,6 +70070,54 @@
    ],
    "refs": [
     "https://docs.langchain.com/oss/python/deepagents/permissions"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-unsupported-version-error",
+   "title": "MCP 버전 미지원 오류",
+   "en": "MCP UnsupportedProtocolVersionError",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "서버가 요청에 적힌 프로토콜 버전을 지원하지 않을 때 -32022 코드와 함께 지원 버전 목록과 요청 버전을 담아 돌려주는 오류로, 받으면 목록의 버전으로 다시 요청한다.",
+   "parent": "rag.agent.mcp-version-compat",
+   "related": [
+    "rag.agent.mcp-header-mismatch"
+   ],
+   "aliases": [
+    "UnsupportedProtocolVersionError",
+    "MCP -32022",
+    "MCP 버전 미지원"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-server-discover",
+   "title": "MCP 서버 탐색 요청(server/discover)",
+   "en": "MCP server/discover",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "서버가 지원하는 프로토콜 버전·기능·자기 정보를 한 번에 알려 주는 요청으로, 모든 최신 서버가 구현해야 하고 stdio에서는 상대 세대를 가리는 탐침으로 쓴다.",
+   "parent": "rag.agent.mcp-version-compat",
+   "aliases": [
+    "server/discover",
+    "DiscoverResult",
+    "MCP 탐색 요청",
+    "supportedVersions"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/specification/2026-07-28/server/discover"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -69995,6 +70820,149 @@
    ],
    "refs": [
     "https://modelcontextprotocol.io/specification/2026-07-28/server/utilities/caching"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-dual-era",
+   "title": "MCP 이중 세대 구현(dual-era)",
+   "en": "MCP Dual-era Implementation",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "요청마다 버전을 싣는 최신 세대와 initialize 핸드셰이크를 쓰는 이전 세대를 모두 지원해, 어느 쪽 상대와도 연결되게 만든 MCP 클라이언트나 서버다.",
+   "parent": "rag.agent.mcp-version-compat",
+   "aliases": [
+    "dual-era",
+    "MCP 이중 세대",
+    "MCP modern legacy",
+    "MCP 이전 세대 지원"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-header-mismatch",
+   "title": "MCP 헤더 불일치 오류(HeaderMismatch)",
+   "en": "MCP HeaderMismatch Error",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "Streamable HTTP 요청의 MCP 헤더가 빠졌거나 본문 값과 다를 때 서버가 400과 -32020 코드로 거절하는 오류로, 이전 세대 서버의 400과 본문으로 구분한다.",
+   "parent": "rag.agent.mcp-version-compat",
+   "related": [
+    "rag.agent.mcp-unsupported-version-error"
+   ],
+   "aliases": [
+    "HeaderMismatch",
+    "MCP -32020",
+    "MCP 헤더 불일치"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-subscription-id",
+   "title": "MCP 구독 id(subscriptionId)",
+   "en": "MCP subscriptionId",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "구독을 연 subscriptions/listen 요청의 JSON-RPC id를 그대로 쓴 값으로, 그 구독의 확인 알림과 모든 알림의 _meta에 실려 어느 구독의 알림인지 가르게 한다.",
+   "parent": "rag.agent.mcp-subscriptions-design",
+   "aliases": [
+    "subscriptionId",
+    "MCP 구독 id",
+    "io.modelcontextprotocol/subscriptionId",
+    "MCP 구독 식별자"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/specification/2026-07-28/basic/patterns/subscriptions"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-subscription-ack",
+   "title": "MCP 구독 확인 알림(subscriptions/acknowledged)",
+   "en": "MCP Subscription Acknowledgment",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "그 구독에서 가장 먼저 오는 알림으로, 서버가 실제로 보내 주기로 한 알림 종류만 담아 돌려주므로 요청한 필터와 비교해 빠진 종류를 알아낸다.",
+   "parent": "rag.agent.mcp-subscriptions-design",
+   "aliases": [
+    "notifications/subscriptions/acknowledged",
+    "MCP 구독 확인",
+    "subscription acknowledgment",
+    "MCP 구독 승인 필터"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/specification/2026-07-28/basic/patterns/subscriptions"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.tool-result-offloading",
+   "title": "Deep Agents 큰 도구 결과 떠넘기기",
+   "en": "Deep Agents Large Tool Result Offloading",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "도구 결과가 정해진 크기를 넘으면 Deep Agents가 그 내용을 백엔드 파일에 쓰고 대화에는 파일 경로와 앞부분 몇 줄만 남겨, 필요하면 에이전트가 다시 읽게 하는 방식이다.",
+   "parent": "rag.agent.deepagents-context-compression",
+   "aliases": [
+    "Deep Agents offloading",
+    "도구 결과 떠넘기기",
+    "tool result offloading",
+    "Deep Agents 파일 떠넘기기"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/deepagents/context-engineering"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-fleet-era-downgrade",
+   "title": "MCPConfig 서버 묶음의 세대 하향",
+   "en": "MCPConfig Fleet Era Downgrade",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "LangChain MCPConfig에 묶인 서버들은 프로토콜 세대 하나를 함께 쓰므로, 이전 세대만 아는 서버가 하나라도 끼면 묶음 전체가 이전 세대로 내려가는 현상이다.",
+   "parent": "rag.agent.mcp-adapter-connections",
+   "related": [
+    "rag.agent.mcp-dual-era"
+   ],
+   "aliases": [
+    "MCPConfig 세대 하향",
+    "MCP fleet era",
+    "LangChain MCP legacy era",
+    "MCPConfig legacy downgrade"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/mcp/connections"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -86307,6 +87275,137 @@
    "domain": "ops"
   },
   {
+   "id": "ops.linux.systemd-sandboxing",
+   "title": "systemd 서비스 샌드박스로 권한 줄이기",
+   "en": "Hardening systemd Services with Sandboxing Options",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "리눅스",
+   "summary": "유닛 파일의 ProtectSystem·ProtectHome·NoNewPrivileges·PrivateTmp 같은 설정으로 서비스가 건드릴 수 있는 파일과 권한을 줄이는 방법이다.",
+   "objectives": [
+    "ProtectSystem의 true·full·strict가 각각 어느 경로를 읽기 전용으로 만드는지 비교해 서비스에 맞는 값을 고를 수 있다",
+    "ProtectSystem=strict를 켠 뒤 쓰기가 막힌 경로를 ReadWritePaths로 열어 줄 수 있다",
+    "NoNewPrivileges와 CapabilityBoundingSet으로 서비스가 더 높은 권한을 얻지 못하게 막을 수 있다",
+    "systemd-analyze security의 노출 점수를 보고 더 조일 설정을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "ops.linux.systemd-service",
+    "ops.linux.file-permissions"
+   ],
+   "related": [
+    "ops.container.linux-capabilities"
+   ],
+   "aliases": [
+    "systemd 샌드박싱",
+    "systemd hardening",
+    "systemd 보안 설정"
+   ],
+   "refs": [
+    "https://www.freedesktop.org/software/systemd/man/latest/systemd.exec.html",
+    "https://www.freedesktop.org/software/systemd/man/latest/systemd-analyze.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.network.nginx-rate-limiting",
+   "title": "nginx 요청 속도 제한: limit_req",
+   "en": "Rate Limiting Requests in nginx with limit_req",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "네트워크와 앞단",
+   "summary": "limit_req_zone으로 키·공유 메모리·속도를 정하고 limit_req의 burst로 순간 몰림을 받아 주어, 앞단에서 과한 요청을 늦추거나 거절하는 설정이다.",
+   "objectives": [
+    "$binary_remote_addr 같은 키와 영역 크기·rate를 정해 limit_req_zone을 설계할 수 있다",
+    "burst·nodelay·delay 값에 따라 넘친 요청이 지연되는지 거절되는지 설명할 수 있다",
+    "거절 응답 코드를 기본값 503에서 429로 바꾸고 로그와 $limit_req_status로 거절 원인을 찾을 수 있다",
+    "limit_req_dry_run으로 실제로 막기 전에 한도가 적절한지 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.network.nginx-first-config"
+   ],
+   "related": [
+    "be.rest.rate-limit"
+   ],
+   "aliases": [
+    "nginx rate limit",
+    "nginx 속도 제한",
+    "limit_req_zone",
+    "ngx_http_limit_req_module"
+   ],
+   "refs": [
+    "https://nginx.org/en/docs/http/ngx_http_limit_req_module.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.deploy.terraform-refactoring",
+   "title": "Terraform 리팩터링: 주소를 바꿔도 지우지 않기",
+   "en": "Refactoring Terraform Configuration without Destroying Resources",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "배포",
+   "summary": "리소스 이름을 바꾸거나 모듈로 옮길 때 moved·removed 블록과 lifecycle 설정으로 실제 인프라가 지워졌다 다시 만들어지지 않게 하는 방법이다.",
+   "objectives": [
+    "주소가 바뀐 리소스가 plan에서 삭제 후 생성으로 나오는 이유를 상태 파일의 주소로 설명할 수 있다",
+    "moved 블록으로 리소스 이름 변경, 모듈 안으로 옮기기, count·for_each 전환을 처리할 수 있다",
+    "removed 블록의 destroy = false로 리소스를 지우지 않고 Terraform 관리에서만 뺄 수 있다",
+    "prevent_destroy가 막지 못하는 경우(설정 블록 자체를 지운 경우)를 알고 삭제 위험을 점검할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.deploy.terraform-state"
+   ],
+   "aliases": [
+    "Terraform 리팩터링",
+    "Terraform refactoring",
+    "Terraform 리소스 이름 변경",
+    "terraform state mv"
+   ],
+   "refs": [
+    "https://developer.hashicorp.com/terraform/language/modules/develop/refactoring",
+    "https://developer.hashicorp.com/terraform/language/block/removed",
+    "https://developer.hashicorp.com/terraform/language/block/resource"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.namespace-quotas",
+   "title": "네임스페이스 자원 한도: ResourceQuota와 LimitRange",
+   "en": "Namespace Resource Limits with ResourceQuota and LimitRange",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "ResourceQuota로 네임스페이스 전체의 CPU·메모리·객체 수 합계를 묶고, LimitRange로 컨테이너마다 기본값과 최솟값·최댓값을 정해 팀끼리 클러스터를 나눠 쓰는 방법이다.",
+   "objectives": [
+    "팀별 네임스페이스에 requests·limits 합계 한도를 ResourceQuota로 나눠 정할 수 있다",
+    "CPU·메모리 쿼터가 있는 네임스페이스에서 requests·limits가 없는 파드가 거절되는 이유를 설명하고 LimitRange 기본값으로 막을 수 있다",
+    "쿼터 위반으로 Deployment의 파드가 만들어지지 않을 때 kubectl describe로 원인을 찾을 수 있다",
+    "LimitRange 기본 limit이 파드의 request보다 작아 생기는 오류를 알아보고 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "ops.k8s.basics",
+    "ops.container.resource-limits"
+   ],
+   "related": [
+    "ops.k8s.scheduling"
+   ],
+   "aliases": [
+    "ResourceQuota",
+    "LimitRange",
+    "리소스 쿼터",
+    "네임스페이스 쿼터",
+    "Kubernetes 쿼터"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/policy/resource-quotas/",
+    "https://kubernetes.io/docs/concepts/policy/limit-range/"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.network.edge-waf",
    "title": "웹 방화벽(WAF)과 오탐 분석",
    "en": "WAF Rules and False Positives",
@@ -87136,6 +88235,109 @@
    "domain": "ops"
   },
   {
+   "id": "ops.linux.protect-system-strict",
+   "title": "ProtectSystem=strict와 ReadWritePaths",
+   "en": "ProtectSystem=strict and ReadWritePaths",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "리눅스",
+   "summary": "서비스에게 /dev·/proc·/sys를 뺀 파일 시스템 전체를 읽기 전용으로 보이게 하고, 써야 하는 경로만 ReadWritePaths로 골라 여는 조합이다.",
+   "parent": "ops.linux.systemd-sandboxing",
+   "aliases": [
+    "ProtectSystem",
+    "ReadWritePaths",
+    "ProtectSystem strict",
+    "systemd 읽기 전용 파일 시스템"
+   ],
+   "refs": [
+    "https://www.freedesktop.org/software/systemd/man/latest/systemd.exec.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.network.nginx-burst-nodelay",
+   "title": "limit_req의 burst와 nodelay",
+   "en": "burst and nodelay in nginx limit_req",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "네트워크와 앞단",
+   "summary": "burst는 속도를 넘어 기다릴 수 있는 요청 수이고, nodelay는 그 안의 요청을 기다리지 않고 바로 처리하게 하며, burst를 넘으면 둘 다 거절된다.",
+   "parent": "ops.network.nginx-rate-limiting",
+   "aliases": [
+    "nginx burst",
+    "nginx nodelay",
+    "limit_req burst",
+    "burst nodelay"
+   ],
+   "refs": [
+    "https://nginx.org/en/docs/http/ngx_http_limit_req_module.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.deploy.terraform-moved-block",
+   "title": "Terraform moved 블록",
+   "en": "Terraform moved Block",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "배포",
+   "summary": "from에 옛 주소, to에 새 주소를 적어 상태 속 기존 객체를 새 주소로 옮기게 하는 블록으로, 지우면 옛 주소를 쓰던 곳에서 삭제가 계획된다.",
+   "parent": "ops.deploy.terraform-refactoring",
+   "aliases": [
+    "moved block",
+    "moved 블록",
+    "Terraform moved",
+    "Terraform 주소 이동"
+   ],
+   "refs": [
+    "https://developer.hashicorp.com/terraform/language/modules/develop/refactoring"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.limitrange-defaults",
+   "title": "LimitRange 기본 requests·limits 주입",
+   "en": "LimitRange Default Requests and Limits",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "자원 값을 적지 않은 컨테이너에 LimitRange의 default와 defaultRequest를 생성 시점에 채워 넣는 기능으로, 이미 돌고 있는 파드는 바뀌지 않는다.",
+   "parent": "ops.k8s.namespace-quotas",
+   "aliases": [
+    "defaultRequest",
+    "LimitRange default",
+    "LimitRange 기본값",
+    "기본 리소스 요청"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/policy/limit-range/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.quota-exceeded-forbidden",
+   "title": "쿼터 초과로 생긴 403 Forbidden",
+   "en": "ResourceQuota Exceeded: 403 Forbidden",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "생성이나 수정이 ResourceQuota를 넘기면 API 서버가 어긴 한도를 적은 403으로 거절하며, Deployment는 만들어지고 그 파드만 생기지 않아 상태를 따로 봐야 한다.",
+   "parent": "ops.k8s.namespace-quotas",
+   "aliases": [
+    "exceeded quota",
+    "forbidden: exceeded quota"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/policy/resource-quotas/"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.linux.flock",
    "title": "파일 잠금(flock)으로 동시 실행 막기",
    "en": "flock: File Locking Against Concurrent Runs",
@@ -87413,6 +88615,69 @@
    ],
    "refs": [
     "https://docs.docker.com/engine/logging/configure/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.linux.systemd-analyze-security",
+   "title": "systemd-analyze security 노출 점수",
+   "en": "systemd-analyze security Exposure Score",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "리눅스",
+   "summary": "서비스 유닛에 적용된 systemd 샌드박스 설정을 항목별로 점검해 0.0~10.0의 노출 점수로 보여 주는 명령이며, 점수가 높을수록 제한이 적다.",
+   "parent": "ops.linux.systemd-sandboxing",
+   "aliases": [
+    "systemd-analyze security",
+    "systemd 노출 점수",
+    "exposure level",
+    "systemd 보안 점수"
+   ],
+   "refs": [
+    "https://www.freedesktop.org/software/systemd/man/latest/systemd-analyze.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.network.nginx-limit-req-dry-run",
+   "title": "limit_req_dry_run으로 한도 미리 재 보기",
+   "en": "nginx limit_req_dry_run",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "네트워크와 앞단",
+   "summary": "요청을 실제로 막지 않고 넘친 요청만 영역에 세어 두어, $limit_req_status의 DRY_RUN 값으로 한도가 적절한지 먼저 확인하게 하는 nginx 설정이다.",
+   "parent": "ops.network.nginx-rate-limiting",
+   "aliases": [
+    "limit_req_dry_run",
+    "nginx dry run",
+    "$limit_req_status",
+    "속도 제한 시험 모드"
+   ],
+   "refs": [
+    "https://nginx.org/en/docs/http/ngx_http_limit_req_module.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.deploy.terraform-removed-block",
+   "title": "Terraform removed 블록과 destroy = false",
+   "en": "Terraform removed Block with destroy = false",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "배포",
+   "summary": "from에 적은 리소스를 상태에서 빼는 블록으로, lifecycle의 destroy = false를 주면 실제 인프라는 남기고 Terraform 관리만 끝낸다.",
+   "parent": "ops.deploy.terraform-refactoring",
+   "aliases": [
+    "removed block",
+    "removed 블록",
+    "Terraform removed",
+    "destroy = false"
+   ],
+   "refs": [
+    "https://developer.hashicorp.com/terraform/language/block/removed"
    ],
    "domain": "ops"
   },
@@ -94830,6 +96095,114 @@
    "domain": "ml"
   },
   {
+   "id": "ml.supervised.voting-stacking-ensembles",
+   "title": "앙상블 결합 고르기: 투표와 스태킹",
+   "en": "Combining Heterogeneous Models: Voting and Stacking",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "성격이 다른 모델 여러 개를 투표로 합칠지, 예측을 입력으로 받는 메타 모델로 쌓을지 고르고 과적합 위험을 다루는 방법이다.",
+   "objectives": [
+    "성능이 비슷하고 약점이 다른 모델들을 VotingClassifier로 묶을 때 하드 투표와 소프트 투표 중 하나를 근거를 들어 고를 수 있다",
+    "스태킹의 메타 모델이 교차 검증 예측으로 학습되는 이유와 cv='prefit'을 같은 데이터에 쓸 때의 과적합 위험을 설명할 수 있다",
+    "stack_method와 passthrough로 메타 모델에 들어갈 입력을 정할 수 있다",
+    "스태킹이 학습 비용이 큰 이유를 말하고 투표와 견주어 선택할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.supervised.tree-ensembles",
+    "ml.eval.data-splitting-cv"
+   ],
+   "related": [
+    "ml.supervised.ensemble-idea",
+    "ml.supervised.bagging"
+   ],
+   "aliases": [
+    "스태킹 앙상블",
+    "stacking ensemble",
+    "StackingClassifier",
+    "VotingClassifier",
+    "투표 앙상블",
+    "stacked generalization"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/ensemble.html",
+    "https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.StackingClassifier.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.torch-compile-troubleshooting",
+   "title": "torch.compile 문제 진단: 그래프 끊김과 재컴파일",
+   "en": "Troubleshooting torch.compile",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "torch.compile이 기대만큼 빨라지지 않거나 오류를 낼 때 로그로 그래프 끊김과 재컴파일 원인을 찾고 백엔드를 바꿔 가며 문제 단계를 좁히는 방법이다.",
+   "objectives": [
+    "TORCH_LOGS의 graph_breaks와 recompiles 옵션으로 그래프가 끊긴 곳과 실패한 가드를 찾을 수 있다",
+    "텐서 값에 따른 분기나 .item() 같은 코드가 그래프 끊김을 만드는 이유를 설명하고 고칠 방법을 고를 수 있다",
+    "함수에 넘기는 파이썬 int·float 값이 바뀔 때마다 재컴파일이 반복되면 그 값을 텐서로 감싸 해결할 수 있다",
+    "backend를 eager·aot_eager·inductor 순서로 바꿔 오류가 어느 단계에서 생기는지 좁힐 수 있다"
+   ],
+   "prerequisites": [
+    "ml.nn.training-loop"
+   ],
+   "related": [
+    "ml.nn.training-throughput-tuning"
+   ],
+   "aliases": [
+    "torch.compile troubleshooting",
+    "torch.compile 디버깅",
+    "torch.compile 느림",
+    "TORCH_LOGS",
+    "torch.compile backend eager"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/2.15/user_guide/torch_compiler/torch.compiler_troubleshooting.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.backward-nan-debugging",
+   "title": "PyTorch 기울기 이상 찾기: 이상 감지와 기울기 클리핑",
+   "en": "Debugging NaN and Exploding Gradients in PyTorch",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "역전파에서 NaN이나 지나치게 큰 기울기가 나올 때 autograd 이상 감지로 원인 연산을 찾고 기울기 노름 클리핑으로 갱신 크기를 제한하는 방법이다.",
+   "objectives": [
+    "detect_anomaly를 켜고 NaN을 만든 backward 연산과 그 연산을 만든 순전파 위치를 찾을 수 있다",
+    "이상 감지가 실행을 느리게 해 디버깅 때만 켜야 하는 이유를 말할 수 있다",
+    "clip_grad_norm_으로 모든 파라미터 기울기의 전체 노름을 max_norm 이하로 줄이고 돌려받은 노름으로 기울기 크기를 확인할 수 있다",
+    "error_if_nonfinite를 켜 전체 노름이 NaN·inf일 때 학습을 멈추게 할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.nn.training-loop",
+    "ml.training.loss-curve-diagnosis"
+   ],
+   "related": [
+    "ml.training.nan-trap",
+    "ml.nn.mixed-precision-training",
+    "ml.training.vanishing-exploding-gradients"
+   ],
+   "aliases": [
+    "PyTorch NaN 디버깅",
+    "backward NaN",
+    "PyTorch 기울기 폭주",
+    "nan gradient PyTorch"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/2.15/autograd.html",
+    "https://docs.pytorch.org/docs/2.15/generated/torch.nn.utils.clip_grad_norm_.html"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.eval.partial-dependence-ice",
    "title": "부분 의존 그래프와 ICE로 모델 동작 점검",
    "en": "Partial Dependence and ICE Plots",
@@ -94927,6 +96300,40 @@
    ],
    "refs": [
     "https://scikit-learn.org/stable/modules/multiclass.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.semi-supervised-choice",
+   "title": "준지도 학습 고르기: 자기 학습과 레이블 전파",
+   "en": "Choosing Semi-Supervised Methods: Self-Training and Label Propagation",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "정답이 적고 정답 없는 데이터가 많을 때 scikit-learn의 자기 학습과 그래프 기반 레이블 전파 중 무엇을 쓸지 데이터 크기와 잡음을 보고 고르는 방법이다.",
+   "objectives": [
+    "정답 없는 표본을 -1로 표시해 준지도 추정기에 넘길 수 있다",
+    "SelfTrainingClassifier에서 threshold와 k_best 기준을 고르고 확률 보정이 결과를 좌우하는 이유를 설명할 수 있다",
+    "레이블에 잡음이 있을 때 LabelPropagation 대신 LabelSpreading을 고르는 근거를 말할 수 있다",
+    "데이터가 클 때 rbf 대신 knn 커널을 써야 하는 이유를 메모리와 실행 시간으로 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.eval.threshold-confusion-matrix"
+   ],
+   "related": [
+    "ml.basics.semi-supervised-learning",
+    "ml.eval.probability-calibration"
+   ],
+   "aliases": [
+    "sklearn.semi_supervised",
+    "scikit-learn 준지도 학습",
+    "label propagation",
+    "레이블 전파",
+    "LabelPropagation"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/semi_supervised.html"
    ],
    "domain": "ml"
   },
@@ -95431,6 +96838,137 @@
    ],
    "refs": [
     "https://docs.pytorch.org/docs/2.15/data.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.soft-voting",
+   "title": "소프트 투표(확률 평균 투표)",
+   "en": "Soft Voting",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "각 모델이 낸 클래스 확률을 가중 평균한 뒤 가장 높은 클래스를 고르는 투표 방식으로, 모든 모델이 predict_proba를 지원해야 한다.",
+   "parent": "ml.supervised.voting-stacking-ensembles",
+   "aliases": [
+    "soft voting",
+    "voting='soft'",
+    "VotingClassifier soft voting",
+    "확률 평균 투표"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/ensemble.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.stacking-final-estimator",
+   "title": "스태킹 메타 모델(final_estimator)",
+   "en": "Stacking Final Estimator",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "스태킹에서 기본 모델들의 교차 검증 예측을 입력으로 받아 최종 예측을 내는 모델로, 지정하지 않으면 로지스틱 회귀가 쓰인다.",
+   "parent": "ml.supervised.voting-stacking-ensembles",
+   "aliases": [
+    "final_estimator",
+    "stacking meta-learner",
+    "스태킹 메타 학습기",
+    "스태킹 메타 모델"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.StackingClassifier.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.torch-compile-graph-break",
+   "title": "torch.compile 그래프 끊김(graph break)",
+   "en": "torch.compile Graph Break",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "torch.compile이 추적할 수 없는 코드를 만나 그래프를 나누고 그 부분을 컴파일 밖에서 실행하는 일로, 많으면 속도 이득이 줄어든다.",
+   "parent": "ml.nn.torch-compile-troubleshooting",
+   "aliases": [
+    "graph break",
+    "그래프 브레이크",
+    "그래프 끊김",
+    "TORCH_LOGS graph_breaks"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/2.15/user_guide/torch_compiler/torch.compiler_troubleshooting.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.torch-compile-recompilation",
+   "title": "torch.compile 재컴파일과 가드",
+   "en": "torch.compile Recompilation and Guards",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "모양·자료형·상수 값을 확인하는 가드가 모두 실패하면 함수를 다시 컴파일하고, 한도를 넘으면 컴파일 없이 실행되는 동작이다.",
+   "parent": "ml.nn.torch-compile-troubleshooting",
+   "aliases": [
+    "torch.compile recompile",
+    "dynamo guard",
+    "TORCH_LOGS recompiles",
+    "recompile_limit"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/2.15/user_guide/torch_compiler/torch.compiler_troubleshooting.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.detect-anomaly",
+   "title": "autograd 이상 감지(detect_anomaly)",
+   "en": "Autograd Anomaly Detection",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "역전파가 실패하면 원인 연산을 만든 순전파 위치를 보여 주고 backward가 NaN을 내면 오류를 일으키는 PyTorch 디버깅 모드다.",
+   "parent": "ml.nn.backward-nan-debugging",
+   "aliases": [
+    "torch.autograd.detect_anomaly",
+    "set_detect_anomaly",
+    "autograd anomaly mode",
+    "autograd 이상 감지 모드"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/2.15/autograd.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.clip-grad-norm",
+   "title": "기울기 노름 클리핑(clip_grad_norm_)",
+   "en": "Gradient Norm Clipping",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "모든 파라미터 기울기를 한 벡터로 보고 그 노름이 max_norm을 넘으면 제자리에서 줄인 뒤 원래 전체 노름을 돌려주는 PyTorch 함수다.",
+   "parent": "ml.nn.backward-nan-debugging",
+   "aliases": [
+    "clip_grad_norm_",
+    "gradient clipping",
+    "기울기 클리핑",
+    "그래디언트 클리핑",
+    "PyTorch gradient clipping"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/2.15/generated/torch.nn.utils.clip_grad_norm_.html"
    ],
    "domain": "ml"
   },
@@ -95987,6 +97525,48 @@
    "refs": [
     "https://developers.google.com/machine-learning/crash-course/categorical-data/one-hot-encoding",
     "https://scikit-learn.org/stable/modules/feature_extraction.html#feature-hashing"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.self-training-classifier",
+   "title": "SelfTrainingClassifier(자기 학습)",
+   "en": "SelfTrainingClassifier",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "predict_proba가 있는 분류기로 정답 없는 표본을 예측해 확신이 높은 것을 의사 레이블로 더하며 반복 학습하는 scikit-learn 추정기다.",
+   "parent": "ml.supervised.semi-supervised-choice",
+   "aliases": [
+    "self-training",
+    "자기 학습 분류기",
+    "scikit-learn self-training",
+    "의사 레이블 자기 학습"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/generated/sklearn.semi_supervised.SelfTrainingClassifier.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.label-spreading",
+   "title": "LabelSpreading(레이블 확산)",
+   "en": "LabelSpreading",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "유사도 그래프로 레이블을 퍼뜨리되 alpha로 원래 레이블을 얼마나 바꿀지 조절해 레이블 잡음에 더 견디는 준지도 추정기다.",
+   "parent": "ml.supervised.semi-supervised-choice",
+   "aliases": [
+    "label spreading",
+    "레이블 확산",
+    "라벨 확산",
+    "LabelSpreading alpha"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/generated/sklearn.semi_supervised.LabelSpreading.html"
    ],
    "domain": "ml"
   },

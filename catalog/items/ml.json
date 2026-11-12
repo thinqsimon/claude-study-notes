@@ -6913,6 +6913,111 @@
     ]
   },
   {
+    "id": "ml.supervised.voting-stacking-ensembles",
+    "title": "앙상블 결합 고르기: 투표와 스태킹",
+    "en": "Combining Heterogeneous Models: Voting and Stacking",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "성격이 다른 모델 여러 개를 투표로 합칠지, 예측을 입력으로 받는 메타 모델로 쌓을지 고르고 과적합 위험을 다루는 방법이다.",
+    "objectives": [
+      "성능이 비슷하고 약점이 다른 모델들을 VotingClassifier로 묶을 때 하드 투표와 소프트 투표 중 하나를 근거를 들어 고를 수 있다",
+      "스태킹의 메타 모델이 교차 검증 예측으로 학습되는 이유와 cv='prefit'을 같은 데이터에 쓸 때의 과적합 위험을 설명할 수 있다",
+      "stack_method와 passthrough로 메타 모델에 들어갈 입력을 정할 수 있다",
+      "스태킹이 학습 비용이 큰 이유를 말하고 투표와 견주어 선택할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.tree-ensembles",
+      "ml.eval.data-splitting-cv"
+    ],
+    "related": [
+      "ml.supervised.ensemble-idea",
+      "ml.supervised.bagging"
+    ],
+    "aliases": [
+      "스태킹 앙상블",
+      "stacking ensemble",
+      "StackingClassifier",
+      "VotingClassifier",
+      "투표 앙상블",
+      "stacked generalization"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/ensemble.html",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.StackingClassifier.html"
+    ]
+  },
+  {
+    "id": "ml.nn.torch-compile-troubleshooting",
+    "title": "torch.compile 문제 진단: 그래프 끊김과 재컴파일",
+    "en": "Troubleshooting torch.compile",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "torch.compile이 기대만큼 빨라지지 않거나 오류를 낼 때 로그로 그래프 끊김과 재컴파일 원인을 찾고 백엔드를 바꿔 가며 문제 단계를 좁히는 방법이다.",
+    "objectives": [
+      "TORCH_LOGS의 graph_breaks와 recompiles 옵션으로 그래프가 끊긴 곳과 실패한 가드를 찾을 수 있다",
+      "텐서 값에 따른 분기나 .item() 같은 코드가 그래프 끊김을 만드는 이유를 설명하고 고칠 방법을 고를 수 있다",
+      "함수에 넘기는 파이썬 int·float 값이 바뀔 때마다 재컴파일이 반복되면 그 값을 텐서로 감싸 해결할 수 있다",
+      "backend를 eager·aot_eager·inductor 순서로 바꿔 오류가 어느 단계에서 생기는지 좁힐 수 있다"
+    ],
+    "prerequisites": [
+      "ml.nn.training-loop"
+    ],
+    "related": [
+      "ml.nn.training-throughput-tuning"
+    ],
+    "aliases": [
+      "torch.compile troubleshooting",
+      "torch.compile 디버깅",
+      "torch.compile 느림",
+      "TORCH_LOGS",
+      "torch.compile backend eager"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/user_guide/torch_compiler/torch.compiler_troubleshooting.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ml.nn.backward-nan-debugging",
+    "title": "PyTorch 기울기 이상 찾기: 이상 감지와 기울기 클리핑",
+    "en": "Debugging NaN and Exploding Gradients in PyTorch",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "역전파에서 NaN이나 지나치게 큰 기울기가 나올 때 autograd 이상 감지로 원인 연산을 찾고 기울기 노름 클리핑으로 갱신 크기를 제한하는 방법이다.",
+    "objectives": [
+      "detect_anomaly를 켜고 NaN을 만든 backward 연산과 그 연산을 만든 순전파 위치를 찾을 수 있다",
+      "이상 감지가 실행을 느리게 해 디버깅 때만 켜야 하는 이유를 말할 수 있다",
+      "clip_grad_norm_으로 모든 파라미터 기울기의 전체 노름을 max_norm 이하로 줄이고 돌려받은 노름으로 기울기 크기를 확인할 수 있다",
+      "error_if_nonfinite를 켜 전체 노름이 NaN·inf일 때 학습을 멈추게 할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.nn.training-loop",
+      "ml.training.loss-curve-diagnosis"
+    ],
+    "related": [
+      "ml.training.nan-trap",
+      "ml.nn.mixed-precision-training",
+      "ml.training.vanishing-exploding-gradients"
+    ],
+    "aliases": [
+      "PyTorch NaN 디버깅",
+      "backward NaN",
+      "PyTorch 기울기 폭주",
+      "nan gradient PyTorch"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/autograd.html",
+      "https://docs.pytorch.org/docs/2.15/generated/torch.nn.utils.clip_grad_norm_.html"
+    ]
+  },
+  {
     "id": "ml.eval.partial-dependence-ice",
     "title": "부분 의존 그래프와 ICE로 모델 동작 점검",
     "en": "Partial Dependence and ICE Plots",
@@ -7008,6 +7113,39 @@
     ],
     "refs": [
       "https://scikit-learn.org/stable/modules/multiclass.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.semi-supervised-choice",
+    "title": "준지도 학습 고르기: 자기 학습과 레이블 전파",
+    "en": "Choosing Semi-Supervised Methods: Self-Training and Label Propagation",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "정답이 적고 정답 없는 데이터가 많을 때 scikit-learn의 자기 학습과 그래프 기반 레이블 전파 중 무엇을 쓸지 데이터 크기와 잡음을 보고 고르는 방법이다.",
+    "objectives": [
+      "정답 없는 표본을 -1로 표시해 준지도 추정기에 넘길 수 있다",
+      "SelfTrainingClassifier에서 threshold와 k_best 기준을 고르고 확률 보정이 결과를 좌우하는 이유를 설명할 수 있다",
+      "레이블에 잡음이 있을 때 LabelPropagation 대신 LabelSpreading을 고르는 근거를 말할 수 있다",
+      "데이터가 클 때 rbf 대신 knn 커널을 써야 하는 이유를 메모리와 실행 시간으로 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.eval.threshold-confusion-matrix"
+    ],
+    "related": [
+      "ml.basics.semi-supervised-learning",
+      "ml.eval.probability-calibration"
+    ],
+    "aliases": [
+      "sklearn.semi_supervised",
+      "scikit-learn 준지도 학습",
+      "label propagation",
+      "레이블 전파",
+      "LabelPropagation"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/semi_supervised.html"
     ]
   },
   {
@@ -7491,6 +7629,131 @@
     ],
     "refs": [
       "https://docs.pytorch.org/docs/2.15/data.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.soft-voting",
+    "title": "소프트 투표(확률 평균 투표)",
+    "en": "Soft Voting",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "각 모델이 낸 클래스 확률을 가중 평균한 뒤 가장 높은 클래스를 고르는 투표 방식으로, 모든 모델이 predict_proba를 지원해야 한다.",
+    "parent": "ml.supervised.voting-stacking-ensembles",
+    "aliases": [
+      "soft voting",
+      "voting='soft'",
+      "VotingClassifier soft voting",
+      "확률 평균 투표"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/ensemble.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.stacking-final-estimator",
+    "title": "스태킹 메타 모델(final_estimator)",
+    "en": "Stacking Final Estimator",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "스태킹에서 기본 모델들의 교차 검증 예측을 입력으로 받아 최종 예측을 내는 모델로, 지정하지 않으면 로지스틱 회귀가 쓰인다.",
+    "parent": "ml.supervised.voting-stacking-ensembles",
+    "aliases": [
+      "final_estimator",
+      "stacking meta-learner",
+      "스태킹 메타 학습기",
+      "스태킹 메타 모델"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.StackingClassifier.html"
+    ]
+  },
+  {
+    "id": "ml.nn.torch-compile-graph-break",
+    "title": "torch.compile 그래프 끊김(graph break)",
+    "en": "torch.compile Graph Break",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "torch.compile이 추적할 수 없는 코드를 만나 그래프를 나누고 그 부분을 컴파일 밖에서 실행하는 일로, 많으면 속도 이득이 줄어든다.",
+    "parent": "ml.nn.torch-compile-troubleshooting",
+    "aliases": [
+      "graph break",
+      "그래프 브레이크",
+      "그래프 끊김",
+      "TORCH_LOGS graph_breaks"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/user_guide/torch_compiler/torch.compiler_troubleshooting.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ml.nn.torch-compile-recompilation",
+    "title": "torch.compile 재컴파일과 가드",
+    "en": "torch.compile Recompilation and Guards",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "모양·자료형·상수 값을 확인하는 가드가 모두 실패하면 함수를 다시 컴파일하고, 한도를 넘으면 컴파일 없이 실행되는 동작이다.",
+    "parent": "ml.nn.torch-compile-troubleshooting",
+    "aliases": [
+      "torch.compile recompile",
+      "dynamo guard",
+      "TORCH_LOGS recompiles",
+      "recompile_limit"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/user_guide/torch_compiler/torch.compiler_troubleshooting.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ml.nn.detect-anomaly",
+    "title": "autograd 이상 감지(detect_anomaly)",
+    "en": "Autograd Anomaly Detection",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "역전파가 실패하면 원인 연산을 만든 순전파 위치를 보여 주고 backward가 NaN을 내면 오류를 일으키는 PyTorch 디버깅 모드다.",
+    "parent": "ml.nn.backward-nan-debugging",
+    "aliases": [
+      "torch.autograd.detect_anomaly",
+      "set_detect_anomaly",
+      "autograd anomaly mode",
+      "autograd 이상 감지 모드"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/autograd.html"
+    ]
+  },
+  {
+    "id": "ml.nn.clip-grad-norm",
+    "title": "기울기 노름 클리핑(clip_grad_norm_)",
+    "en": "Gradient Norm Clipping",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "모든 파라미터 기울기를 한 벡터로 보고 그 노름이 max_norm을 넘으면 제자리에서 줄인 뒤 원래 전체 노름을 돌려주는 PyTorch 함수다.",
+    "parent": "ml.nn.backward-nan-debugging",
+    "aliases": [
+      "clip_grad_norm_",
+      "gradient clipping",
+      "기울기 클리핑",
+      "그래디언트 클리핑",
+      "PyTorch gradient clipping"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/generated/torch.nn.utils.clip_grad_norm_.html"
     ]
   },
   {
@@ -8022,6 +8285,46 @@
     "refs": [
       "https://developers.google.com/machine-learning/crash-course/categorical-data/one-hot-encoding",
       "https://scikit-learn.org/stable/modules/feature_extraction.html#feature-hashing"
+    ]
+  },
+  {
+    "id": "ml.supervised.self-training-classifier",
+    "title": "SelfTrainingClassifier(자기 학습)",
+    "en": "SelfTrainingClassifier",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "predict_proba가 있는 분류기로 정답 없는 표본을 예측해 확신이 높은 것을 의사 레이블로 더하며 반복 학습하는 scikit-learn 추정기다.",
+    "parent": "ml.supervised.semi-supervised-choice",
+    "aliases": [
+      "self-training",
+      "자기 학습 분류기",
+      "scikit-learn self-training",
+      "의사 레이블 자기 학습"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/generated/sklearn.semi_supervised.SelfTrainingClassifier.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.label-spreading",
+    "title": "LabelSpreading(레이블 확산)",
+    "en": "LabelSpreading",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "유사도 그래프로 레이블을 퍼뜨리되 alpha로 원래 레이블을 얼마나 바꿀지 조절해 레이블 잡음에 더 견디는 준지도 추정기다.",
+    "parent": "ml.supervised.semi-supervised-choice",
+    "aliases": [
+      "label spreading",
+      "레이블 확산",
+      "라벨 확산",
+      "LabelSpreading alpha"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/generated/sklearn.semi_supervised.LabelSpreading.html"
     ]
   },
   {
