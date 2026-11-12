@@ -7712,6 +7712,52 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "rag.eval.ndcg",
+    "title": "nDCG(정규화 할인 누적 이득)",
+    "en": "Normalized Discounted Cumulative Gain",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "검색 내부",
+    "summary": "문서의 관련도 등급과 순위를 함께 보아 위쪽의 좋은 문서에 더 큰 점수를 주고, 이상적인 순서의 점수로 나눠 0~1로 맞춘 순위 품질 지표다.",
+    "related": [
+      "rag.eval.mrr"
+    ],
+    "aliases": [
+      "nDCG@k",
+      "normalized discounted cumulative gain",
+      "DCG 지표",
+      "할인 누적 이득"
+    ],
+    "refs": [
+      "https://www.elastic.co/docs/reference/elasticsearch/rest-apis/search-rank-eval"
+    ]
+  },
+  {
+    "id": "rag.eval.mrr",
+    "title": "평균 역순위(MRR)",
+    "en": "Mean Reciprocal Rank",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "검색 내부",
+    "summary": "질의마다 첫 관련 문서 순위의 역수를 구해 모든 질의에 걸쳐 평균 낸 지표로, 첫 정답이 얼마나 위에 나오는지만 본다.",
+    "related": [
+      "rag.eval.ndcg",
+      "rag.retrieval.mmr"
+    ],
+    "aliases": [
+      "mean reciprocal rank",
+      "MRR@k",
+      "MRR 지표",
+      "검색 MRR",
+      "역순위 평균"
+    ],
+    "refs": [
+      "https://www.elastic.co/docs/reference/elasticsearch/rest-apis/search-rank-eval"
+    ]
+  },
+  {
     "id": "rag.agent.memory-store",
     "title": "장기 기억 스토어",
     "en": "Memory Store",
@@ -8783,6 +8829,107 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "rag.vector-db.product-quantization-internals",
+    "title": "곱 양자화(PQ)의 내부: 부분 공간·코드북·조회표",
+    "en": "Product Quantization Internals",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "벡터 DB",
+    "summary": "벡터를 여러 조각으로 나눠 조각마다 가장 가까운 중심 번호만 저장하고, 질의마다 만든 조회표를 더해 거리를 어림하는 압축 방식의 원리와 손익이다.",
+    "objectives": [
+      "벡터를 m개 부분 벡터로 나누고 부분 공간마다 2^nbits개 중심으로 된 코드북의 번호로 바꾸는 과정과, 질의마다 조회표를 만들어 거리를 합산하는 계산을 설명할 수 있다",
+      "m과 nbits로 벡터당 저장 비트를 계산해 float32 원본과의 압축 비율을 비교할 수 있다",
+      "m·nbits·nlist·nprobe를 키울 때 재현율과 지연·메모리·빌드 시간이 어떻게 바뀌는지 따질 수 있다",
+      "코드북 학습이 필요한 PQ·SQ와 학습이 필요 없는 BQ·RQ의 압축률과 재현율 손익을 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.vector-index.internals"
+    ],
+    "related": [
+      "rag.embedding.quantization",
+      "rag.vector-db.diskann-internals"
+    ],
+    "aliases": [
+      "곱 양자화",
+      "product quantization",
+      "IVF_PQ",
+      "Weaviate PQ",
+      "PQ 압축"
+    ],
+    "refs": [
+      "https://milvus.io/docs/ivf-pq.md",
+      "https://docs.weaviate.io/weaviate/concepts/vector-quantization"
+    ]
+  },
+  {
+    "id": "rag.vector-db.pgvector-index-build",
+    "title": "pgvector HNSW·IVFFlat 색인 구축의 손익",
+    "en": "pgvector HNSW and IVFFlat Index Build Trade-offs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "벡터 DB",
+    "summary": "pgvector에서 HNSW와 IVFFlat 색인을 만들 때 매개변수·메모리·병렬 작업자·양자화 색인이 빌드 시간과 재현율에 주는 손익을 다룬다.",
+    "objectives": [
+      "m과 ef_construction이 HNSW 재현율·빌드 시간·삽입 속도에 주는 영향을 따질 수 있다",
+      "그래프가 maintenance_work_mem에 들어가는지와 병렬 유지 작업자 수를 근거로 HNSW 빌드가 느린 원인을 찾을 수 있다",
+      "IVFFlat을 데이터를 넣은 뒤에 만들어야 하는 이유와 행 수에 따른 lists 시작값, 검색 때 ivfflat.probes를 sqrt(lists)에서 시작하는 이유를 설명할 수 있다",
+      "halfvec 색인과 이진 양자화 뒤 원본 벡터 재순위로 색인 크기와 빌드 시간을 줄이는 손익을 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.vector-index.internals",
+      "rag.vector-db.pgvector-filtered-search"
+    ],
+    "related": [
+      "rag.vector-db.hnsw-ef-search"
+    ],
+    "aliases": [
+      "pgvector 인덱스 빌드",
+      "pgvector index build",
+      "pgvector HNSW 옵션",
+      "pgvector ef_construction",
+      "pgvector halfvec 색인"
+    ],
+    "refs": [
+      "https://github.com/pgvector/pgvector"
+    ]
+  },
+  {
+    "id": "rag.agent.a2a-protocol-internals",
+    "title": "A2A 프로토콜의 구조: 작업 상태·스트리밍·푸시 알림",
+    "en": "A2A Protocol Internals",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "A2A 1.0 명세가 여러 전송 바인딩 위에 작업 상태 기계와 스트리밍·재구독·푸시 알림이라는 갱신 전달 방식을 정의하는 구조를 다룬다.",
+    "objectives": [
+      "A2A 1.0이 JSON-RPC·gRPC·HTTP+JSON 바인딩 위에 같은 연산을 정의하는 구조를 설명할 수 있다",
+      "작업 상태를 진행 중·종료·중단(입력 필요·인증 필요)으로 나누고 상태마다 클라이언트가 할 일을 판단할 수 있다",
+      "스트리밍·SubscribeToTask 재구독·푸시 알림 가운데 연결 유지 비용과 작업 길이에 맞는 갱신 전달 방식을 고를 수 있다",
+      "공개 에이전트 카드와 인증 뒤 받는 확장 에이전트 카드, 카드 서명의 역할을 구분할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.a2a-idea"
+    ],
+    "related": [
+      "rag.agent.mcp-protocol"
+    ],
+    "aliases": [
+      "A2A 명세",
+      "A2A specification",
+      "A2A 1.0",
+      "A2A 작업 상태",
+      "A2A task lifecycle"
+    ],
+    "refs": [
+      "https://a2a-protocol.org/latest/specification/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "rag.vector-db.qdrant-segment-optimizer",
     "title": "Qdrant 세그먼트와 최적화기: 색인·삭제 정리·읽기 쓰기 경합",
     "en": "Qdrant Segments and Optimizers",
@@ -9020,6 +9167,72 @@
     "refs": [
       "https://docs.langchain.com/oss/python/langgraph/checkpointers",
       "https://docs.python.org/3/library/pickle.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.retrieval.opensearch-score-normalization",
+    "title": "OpenSearch 하이브리드 점수 정규화와 결합",
+    "en": "OpenSearch Hybrid Score Normalization and Combination",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "검색 내부",
+    "summary": "척도가 다른 키워드 점수와 벡터 점수를 정규화 프로세서가 질의 단계 뒤에 모아 정규화하고 가중 결합하는 흐름과 그 한계를 다룬다.",
+    "objectives": [
+      "정규화 프로세서가 질의 단계와 가져오기 단계 사이에서 샤드별 점수를 모아 정규화·결합하는 흐름을 설명할 수 있다",
+      "min_max·l2·z_score가 점수 분포와 이상값에 따라 순위를 어떻게 바꾸는지 비교할 수 있다",
+      "한 절에만 나온 문서가 산술 평균 결합에서 점수가 깎이는 이유와 가중치 설정의 효과를 따질 수 있다",
+      "절마다 돌려받은 결과 수가 정규화 통계를 바꾼다는 한계를 근거로 자기 데이터에서 방식을 평가할 계획을 세울 수 있다"
+    ],
+    "prerequisites": [
+      "rag.retrieval.hybrid-rerank"
+    ],
+    "related": [
+      "rag.retrieval.weaviate-relative-score-fusion"
+    ],
+    "aliases": [
+      "normalization-processor",
+      "OpenSearch 정규화 프로세서",
+      "OpenSearch score normalization",
+      "OpenSearch 하이브리드 점수 정규화"
+    ],
+    "refs": [
+      "https://docs.opensearch.org/latest/search-plugins/search-pipelines/normalization-processor/"
+    ]
+  },
+  {
+    "id": "rag.vector-db.elasticsearch-vector-quantization",
+    "title": "Elasticsearch 벡터 양자화(int8·int4·BBQ)",
+    "en": "Elasticsearch dense_vector Quantization",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "Elasticsearch가 dense_vector를 int8·int4·BBQ로 줄이는 방식과 기본값 규칙, 원본으로 다시 채점하는 oversample의 메모리·디스크·재현율 손익을 다룬다.",
+    "objectives": [
+      "int8·int4·bbq 양자화가 차원당 저장 크기와 메모리 절감률을 어떻게 바꾸는지 계산할 수 있다",
+      "버전과 차원 수에 따라 기본 index_options가 달라지는 규칙으로 기존 색인의 메모리 사용을 설명할 수 있다",
+      "rescore_vector의 oversample을 키울 때 샤드마다 원본으로 다시 채점할 후보가 늘어 재현율과 지연이 바뀌는 손익을 따질 수 있다",
+      "원본 벡터를 디스크에 함께 두어 늘어나는 디스크 사용량을 양자화 방식별로 예상할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.vector-index.internals"
+    ],
+    "related": [
+      "rag.vector-db.qdrant-memory-quantization",
+      "rag.embedding.quantization"
+    ],
+    "aliases": [
+      "Elasticsearch 벡터 양자화",
+      "Elasticsearch quantization",
+      "int8_hnsw",
+      "dense_vector index_options",
+      "Elasticsearch rescore_vector"
+    ],
+    "refs": [
+      "https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/dense-vector"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
@@ -9339,6 +9552,114 @@
     ],
     "refs": [
       "https://docs.langchain.com/oss/python/langgraph/checkpointers"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.vector-db.pq-codebook",
+    "title": "PQ 코드북과 부분 벡터 수(m·nbits)",
+    "en": "PQ Codebook, Subvectors and nbits",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "PQ에서 벡터를 몇 조각(m)으로 나누고 조각마다 몇 비트(nbits) 중심 번호로 적을지 정하는 값으로, 벡터 하나에 m×nbits 비트가 든다.",
+    "parent": "rag.vector-db.product-quantization-internals",
+    "aliases": [
+      "PQ 코드북",
+      "PQ codebook",
+      "PQ nbits",
+      "PQ segments",
+      "PQ 부분 벡터"
+    ],
+    "refs": [
+      "https://milvus.io/docs/ivf-pq.md"
+    ]
+  },
+  {
+    "id": "rag.vector-db.ivfflat-lists-probes",
+    "title": "IVFFlat 목록 수와 탐색 목록 수(lists·probes)",
+    "en": "pgvector IVFFlat lists and probes",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "IVFFlat이 벡터를 나눌 목록 수와 검색 때 살펴볼 목록 수로, probes 기본값은 1이며 sqrt(lists)에서 시작하길 권한다.",
+    "parent": "rag.vector-db.pgvector-index-build",
+    "related": [
+      "rag.vector-db.hnsw-ef-search"
+    ],
+    "aliases": [
+      "ivfflat.probes",
+      "IVFFlat lists",
+      "pgvector lists",
+      "pgvector probes"
+    ],
+    "refs": [
+      "https://github.com/pgvector/pgvector"
+    ]
+  },
+  {
+    "id": "rag.retrieval.opensearch-normalization-technique",
+    "title": "OpenSearch 정규화 방식(min_max·l2·z_score)",
+    "en": "OpenSearch Normalization Techniques",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "검색 내부",
+    "summary": "OpenSearch 하이브리드 검색에서 절마다 점수를 0~1로 늘이거나, 노름으로 나누거나, 평균과 표준편차로 바꾸는 세 가지 정규화 방식이다.",
+    "parent": "rag.retrieval.opensearch-score-normalization",
+    "aliases": [
+      "OpenSearch min_max",
+      "OpenSearch z_score",
+      "OpenSearch normalization technique",
+      "OpenSearch l2 정규화"
+    ],
+    "refs": [
+      "https://docs.opensearch.org/latest/search-plugins/search-pipelines/normalization-processor/"
+    ]
+  },
+  {
+    "id": "rag.vector-db.elasticsearch-bbq",
+    "title": "Elasticsearch BBQ(더 나은 이진 양자화)",
+    "en": "Elasticsearch Better Binary Quantization",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "Elasticsearch가 float 벡터를 차원당 1비트로 줄여 메모리를 약 96% 아끼고 원본 벡터로 다시 채점하는 양자화로, 64차원보다 커야 쓸 수 있다.",
+    "parent": "rag.vector-db.elasticsearch-vector-quantization",
+    "aliases": [
+      "Better Binary Quantization",
+      "bbq_hnsw",
+      "bbq_disk",
+      "bbq_flat"
+    ],
+    "refs": [
+      "https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/dense-vector"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.a2a-push-notification",
+    "title": "A2A 푸시 알림(웹훅 전달)",
+    "en": "A2A Push Notifications",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "A2A 원격 에이전트가 작업 갱신을 클라이언트의 웹훅 주소로 POST해 알리는 방식으로, 보내는 쪽은 주소를 검사해 SSRF를 막고 받는 쪽은 중복 전달에 대비한다.",
+    "parent": "rag.agent.a2a-protocol-internals",
+    "aliases": [
+      "A2A push notification",
+      "A2A 웹훅",
+      "A2A webhook",
+      "TaskPushNotificationConfig"
+    ],
+    "refs": [
+      "https://a2a-protocol.org/latest/specification/"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"

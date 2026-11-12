@@ -9167,6 +9167,81 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "ax.governance.benchmark-validity-threats",
+    "title": "벤치마크 평가의 타당성 위협: 오염·평가 부정·평가 인식",
+    "en": "Threats to Benchmark Evaluation Validity",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "모델이 시험 내용을 미리 학습했거나 정답 파일·채점 허점을 찾거나 시험 중임을 알아챌 때 점수가 실제 능력과 어긋나는 원인을 따지고 막는 법이다.",
+    "objectives": [
+      "학습 데이터에 섞인 벤치마크 내용과 형식이 점수를 부풀리는 경로를 설명하고, 데이터 숨기기·제작 시점 이후 데이터·카나리 문자열 중 무엇이 어떤 오염을 잡는지 비교할 수 있다",
+      "정답 정보 유입(solution contamination)과 채점기 공략(grader gaming)을 구분하고, 코딩 도구를 쥔 에이전트 평가에서 이런 부정이 더 잘 일어나는 이유를 분석할 수 있다",
+      "평가 신호에 반응하는 행동이 외부 타당성을 해치는 이유와, 말로 드러난 평가 인식이 없다고 평가 인식이 없다고 볼 수 없는 이유를 설명할 수 있다",
+      "수작업·자동 기록 검토로 오염·부정·풀 수 없는 문항을 찾는 품질 보증 절차를 설계하고, LLM 심판을 쓸 때 사람 판정과 맞춰 보는 검사를 넣을 수 있다"
+    ],
+    "prerequisites": [
+      "ax.governance.ai-risk-measurement"
+    ],
+    "related": [
+      "mlops.eval.llm-benchmark",
+      "llm.basics.verified-eval-score",
+      "ax.coding.test-tampering",
+      "ax.governance.tevv"
+    ],
+    "aliases": [
+      "벤치마크 타당성",
+      "benchmark validity",
+      "평가 타당성 위협",
+      "benchmark validity threats",
+      "벤치마크 점수 왜곡"
+    ],
+    "refs": [
+      "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.800-2.ipd.pdf",
+      "https://www.nist.gov/news-events/news/2026/01/towards-best-practices-automated-benchmark-evaluations"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.governance.high-risk-robustness-cybersecurity",
+    "title": "고위험 AI의 정확성·견고성·사이버보안 요구(EU AI법 제15조)",
+    "en": "Accuracy, Robustness and Cybersecurity of High-Risk AI Systems",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "EU AI법 제15조가 고위험 AI 시스템에 요구하는 수명주기 내내 일관된 정확성, 오류·고장에 대한 복원력, 지속 학습의 편향 되먹임 완화, AI 고유 공격 대응을 기술 설계로 옮기는 법이다.",
+    "objectives": [
+      "사용 설명서에 정확도 수준과 지표를 밝혀야 한다는 요구가 평가 지표 선택과 배포 후 감시 설계에 주는 영향을 분석할 수 있다",
+      "백업·실패 시 안전 계획 같은 기술적 중복이 견고성을 얼마나 높이고 비용을 얼마나 늘리는지 견주어 설계를 고를 수 있다",
+      "배포 뒤에도 계속 학습하는 시스템에서 편향된 출력이 다음 입력으로 돌아오는 경로를 찾아 완화 조치를 정할 수 있다",
+      "데이터 오염·모델 오염·적대적 예제(회피)·기밀성 공격·모델 결함이라는 조문의 공격 목록을 예방·탐지·대응 조치에 짝지을 수 있다"
+    ],
+    "prerequisites": [
+      "ax.governance.ai-act-risk-levels",
+      "ax.security.aml-attack-taxonomy"
+    ],
+    "related": [
+      "ax.governance.high-risk-ai",
+      "ax.security.evasion-defense-tradeoffs",
+      "ax.governance.cyber-ai-profile"
+    ],
+    "aliases": [
+      "AI Act Article 15",
+      "AI법 제15조",
+      "고위험 AI 견고성",
+      "고위험 AI 사이버보안",
+      "high-risk AI robustness"
+    ],
+    "refs": [
+      "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-15"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "ax.security.evasion-defense-tradeoffs",
     "title": "회피 공격 방어의 손익: 적대적 학습·무작위 평활화·형식 검증",
     "en": "Trade-offs of Evasion Attack Mitigations",
@@ -9199,6 +9274,116 @@
       "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2025.pdf",
       "https://csrc.nist.gov/pubs/ai/100/2/e2025/final"
     ]
+  },
+  {
+    "id": "ax.governance.benchmark-uncertainty-claims",
+    "title": "벤치마크 결과의 불확실성 정량화와 제한된 주장",
+    "en": "Uncertainty Quantification and Qualified Claims for Benchmark Results",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "벤치마크 점수에 표준 오차와 가정을 붙여 보고하고, 측정한 범위를 넘는 결론을 내리지 않도록 주장의 폭을 정하는 분석·보고 관행이다.",
+    "objectives": [
+      "문항마다 출력을 다시 뽑을 때 생기는 변동과 문항 표본이 유한해서 생기는 변동을 나눠 불확실성을 보고하는 이유를 설명할 수 있다",
+      "pass@k·평균 점수·Bradley-Terry 계수 같은 집계 방식과 모델링 가정이 평가 목적에 따라 결론과 신뢰 구간을 어떻게 바꾸는지 비교할 수 있다",
+      "두 모델을 견줄 때 짝지은 차이에 대한 검정과 효과 크기를 함께 보고, 프롬프트 형식처럼 정량화하지 않은 변동 요인을 따로 밝힐 수 있다",
+      "비용 통제가 다른 시스템의 결과를 비용과 성능을 함께 보여 주고, 평가 결과를 벗어난 일반화 주장을 걸러 낼 수 있다"
+    ],
+    "prerequisites": [
+      "ax.governance.ai-risk-measurement"
+    ],
+    "related": [
+      "llm.basics.verified-eval-score",
+      "mlops.eval.llm-benchmark"
+    ],
+    "aliases": [
+      "벤치마크 불확실성",
+      "benchmark uncertainty",
+      "평가 결과 표준 오차",
+      "qualified claims",
+      "벤치마크 오차 막대"
+    ],
+    "refs": [
+      "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.800-2.ipd.pdf"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.governance.c2pa-trust-validation",
+    "title": "C2PA 신뢰 모델과 검증 상태",
+    "en": "C2PA Trust Model and Validation States",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "C2PA가 서명자 신원을 신뢰의 기준으로 삼고 하드·소프트 바인딩과 신뢰 목록으로 매니페스트를 Well-Formed·Valid·Trusted로 판정하는 구조와 그 판정이 보증하지 않는 것이다.",
+    "objectives": [
+      "Well-Formed·Valid·Trusted 매니페스트와 Valid 자산이 각각 어떤 검사(서명·타임스탬프·폐기 확인·서명자 신뢰 앵커)를 통과해야 하는지 구분할 수 있다",
+      "바이트 범위 해시·박스 해시 같은 하드 바인딩과 지문·비가시 워터마크 같은 소프트 바인딩이 각각 무엇을 증명하고 왜 소프트 바인딩을 하드 바인딩 대신 쓸 수 없는지 설명할 수 있다",
+      "C2PA 신뢰 목록·사용자 추가 신뢰 앵커·개인 자격 증명 저장소의 쓰임과 위험을 비교해 검증기 신뢰 설정을 정할 수 있다",
+      "Trusted 판정이 서명자 신원을 확인할 뿐 내용의 참·거짓을 판단하지 않는다는 한계를 근거로 출처 표시 UX를 설계할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.governance.synthetic-content-provenance"
+    ],
+    "related": [
+      "ax.governance.content-credentials",
+      "ax.governance.ai-watermarking",
+      "ops.ci.artifact-attestations"
+    ],
+    "aliases": [
+      "C2PA 신뢰 모델",
+      "C2PA trust model",
+      "C2PA 검증 상태",
+      "C2PA validation",
+      "하드 바인딩",
+      "hard binding"
+    ],
+    "refs": [
+      "https://spec.c2pa.org/specifications/specifications/2.2/specs/C2PA_Specification.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.governance.gpai-systemic-risk",
+    "title": "체계적 위험이 있는 범용 AI 모델의 지정과 추가 의무",
+    "en": "General-Purpose AI Models with Systemic Risk",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "EU AI법이 학습 연산량 추정 기준이나 위원회 지정으로 범용 AI 모델을 체계적 위험 모델로 분류하는 절차와, 그 제공자에게 더해지는 평가·사고 보고·사이버보안 의무다.",
+    "objectives": [
+      "고영향 능력 판단과 10^25 FLOP 추정 기준, 위원회 직권·과학 패널 경고에 의한 지정이 어떻게 다른 경로인지 설명할 수 있다",
+      "기준을 넘은 제공자의 2주 안 통지, 체계적 위험이 없다는 반박 제출, 지정 6개월 뒤 재평가 요청의 조건을 근거로 대응 일정을 세울 수 있다",
+      "적대적 시험을 포함한 모델 평가, 체계적 위험 평가와 완화, 심각한 사고 보고, 모델과 물리 기반 시설의 사이버보안 의무를 제53조의 일반 의무와 구분할 수 있다",
+      "행동 강령·조화 표준·다른 적절한 수단 중 어느 경로로 준수를 보일지 각 경로의 적합 추정 범위를 근거로 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.governance.ai-act-risk-levels"
+    ],
+    "related": [
+      "ax.governance.gpai-model",
+      "ax.governance.capability-threshold"
+    ],
+    "aliases": [
+      "체계적 위험 GPAI",
+      "GPAI with systemic risk",
+      "systemic risk GPAI",
+      "AI Act Article 55",
+      "AI Act Article 51",
+      "시스템적 위험 범용 AI"
+    ],
+    "refs": [
+      "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-51",
+      "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-52",
+      "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-55"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "ax.security.model-provenance",
@@ -9416,6 +9601,60 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "ax.governance.benchmark-contamination",
+    "title": "벤치마크 오염(benchmark contamination)",
+    "en": "Benchmark Contamination",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "모델이 벤치마크의 내용이나 프롬프트 형식을 학습 중에 접해 처음 보는 데이터에서보다 높은 점수를 얻게 되는 평가 결과의 왜곡이다.",
+    "parent": "ax.governance.benchmark-validity-threats",
+    "aliases": [
+      "평가 데이터 오염",
+      "test set contamination",
+      "벤치마크 유출",
+      "학습 데이터 벤치마크 혼입"
+    ]
+  },
+  {
+    "id": "ax.governance.evaluation-cheating",
+    "title": "평가 부정(evaluation cheating)",
+    "en": "Evaluation Cheating",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "모델이 시험 문항을 의도하지 않은 방법, 예컨대 정답을 검색하거나 환경에 남은 해답 파일을 찾거나 채점 코드의 허점을 이용해 풀어 측정 타당성을 무너뜨리는 일이다.",
+    "parent": "ax.governance.benchmark-validity-threats",
+    "related": [
+      "ax.coding.test-tampering"
+    ],
+    "aliases": [
+      "evaluation cheating",
+      "벤치마크 부정행위",
+      "평가 치팅",
+      "에이전트 평가 부정"
+    ]
+  },
+  {
+    "id": "ax.governance.evaluation-awareness",
+    "title": "평가 인식(evaluation awareness)",
+    "en": "Evaluation Awareness",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "입력이 평가 상황이라는 단서에 모델의 행동이 달라지는 현상으로, 실제 사용에는 그런 단서가 없으니 평가 결과의 외부 타당성을 해친다.",
+    "parent": "ax.governance.benchmark-validity-threats",
+    "aliases": [
+      "evaluation awareness",
+      "시험 상황 인식",
+      "평가 상황 인식",
+      "verbalized evaluation awareness"
+    ]
+  },
+  {
     "id": "ax.security.ai-bom",
     "title": "AI BOM(ML-BOM)",
     "en": "AI Bill of Materials",
@@ -9598,6 +9837,75 @@
       "관리형 소스 merge",
       "first-wins 관리형 설정",
       "관리형 소스 합치기"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.governance.benchmark-canary-string",
+    "title": "벤치마크 카나리 문자열(canary string)",
+    "en": "Benchmark Canary String",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "벤치마크 데이터에 일부러 넣어 둔 고유한 문자열로, 모델이 이를 알고 있으면 시험 데이터로 학습했다는 노골적인 흔적을 잡을 수 있다.",
+    "parent": "ax.governance.benchmark-validity-threats",
+    "aliases": [
+      "canary string",
+      "벤치마크 카나리",
+      "평가 데이터 카나리 문자열"
+    ]
+  },
+  {
+    "id": "ax.governance.c2pa-soft-binding",
+    "title": "C2PA 소프트 바인딩(soft binding)",
+    "en": "C2PA Soft Binding",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "콘텐츠에서 계산한 지문이나 숨겨 넣은 워터마크로 비트가 달라진 사본에서도 매니페스트를 다시 찾아 잇는 C2PA의 연결 방식으로, 변조 검출용 하드 바인딩을 대신하지 못한다.",
+    "parent": "ax.governance.c2pa-trust-validation",
+    "aliases": [
+      "soft binding",
+      "소프트 바인딩",
+      "C2PA 지문 연결",
+      "soft binding assertion"
+    ]
+  },
+  {
+    "id": "ax.governance.c2pa-trust-list",
+    "title": "C2PA 신뢰 목록(C2PA Trust List)",
+    "en": "C2PA Trust List",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "C2PA가 관리하는 서명용 X.509 인증서 신뢰 앵커 목록으로, 검증기는 이것과 사용자가 더한 앵커로 매니페스트 서명자를 Trusted로 판정할지 정한다.",
+    "parent": "ax.governance.c2pa-trust-validation",
+    "aliases": [
+      "C2PA 신뢰 앵커",
+      "C2PA trust anchors",
+      "C2PA 서명자 신뢰 목록"
+    ]
+  },
+  {
+    "id": "ax.governance.gpai-compute-threshold",
+    "title": "범용 AI 모델의 학습 연산량 추정 기준(10^25 FLOP)",
+    "en": "GPAI Training Compute Threshold (10^25 FLOP)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "누적 학습 연산량이 10^25 부동소수점 연산을 넘는 범용 AI 모델을 고영향 능력이 있다고 추정하는 EU AI법 제51조의 기준으로, 반박할 수 있고 위원회가 바꿀 수 있다.",
+    "parent": "ax.governance.gpai-systemic-risk",
+    "aliases": [
+      "10^25 FLOP",
+      "1e25 FLOP 기준",
+      "AI법 연산량 기준",
+      "AI Act compute threshold",
+      "고영향 능력 추정"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"

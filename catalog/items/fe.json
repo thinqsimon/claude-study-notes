@@ -8808,6 +8808,109 @@
     ]
   },
   {
+    "id": "fe.html.parsing-algorithm",
+    "title": "HTML 파싱 알고리즘: 토큰화와 트리 구성",
+    "en": "HTML Parsing Algorithm: Tokenization and Tree Construction",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "HTML",
+    "summary": "브라우저가 HTML 바이트를 토큰화와 트리 구성 두 상태 기계로 DOM으로 바꾸며 잘못된 마크업까지 정해진 규칙으로 복구하는 과정이다.",
+    "objectives": [
+      "입력 코드 포인트가 토큰화 단계와 트리 구성 단계를 거쳐 Document가 되는 흐름을 상태 기계로 설명할 수 있다",
+      "삽입 모드와 열린 요소 스택, 활성 서식 요소 목록이 잘못 중첩된 태그를 어떻게 복구하는지 설명할 수 있다",
+      "표 안에 잘못 들어간 내용이 표 앞으로 옮겨지는 것처럼 파서의 오류 복구 결과를 명세 규칙으로 예측할 수 있다",
+      "스크립트가 document.write로 입력을 끼워 넣을 때 트리 구성 단계가 재진입하는 흐름을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.html.debugging"
+    ],
+    "related": [
+      "fe.internals.preload-scanner",
+      "fe.internals.render-pipeline"
+    ],
+    "aliases": [
+      "HTML 파서 알고리즘",
+      "HTML parsing algorithm",
+      "HTML 토크나이저",
+      "HTML tokenizer",
+      "삽입 모드",
+      "insertion mode"
+    ],
+    "refs": [
+      "https://html.spec.whatwg.org/multipage/parsing.html",
+      "https://html.spec.whatwg.org/multipage/parsing.html#tree-construction"
+    ]
+  },
+  {
+    "id": "fe.internals.event-dispatch",
+    "title": "DOM 이벤트 디스패치와 섀도 DOM 경계",
+    "en": "DOM Event Dispatch and Shadow DOM Boundaries",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "프론트엔드 내부",
+    "summary": "DOM 표준이 이벤트 경로를 만들고 캡처·버블 단계로 리스너를 부르며 섀도 루트 경계에서 대상을 바꾸는 디스패치 알고리즘이다.",
+    "objectives": [
+      "이벤트 경로를 만든 뒤 캡처 단계는 경로 역순, 버블 단계는 경로 순으로 리스너를 부르는 디스패치 단계를 설명할 수 있다",
+      "composed와 bubbles 값에 따라 이벤트가 섀도 루트를 넘어 바깥 문서로 전파되는지 판단할 수 있다",
+      "섀도 트리 밖 리스너에게 target이 호스트로 바뀌고 닫힌 섀도 트리의 노드가 composedPath()에서 빠지는 이유를 설명할 수 있다",
+      "passive 리스너에서 preventDefault()가 무시되는 규칙과 터치·휠 스크롤 성능의 관계를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.js.dom-events"
+    ],
+    "related": [
+      "fe.js.event-delegation"
+    ],
+    "aliases": [
+      "DOM 이벤트 디스패치",
+      "DOM event dispatch",
+      "이벤트 캡처 단계",
+      "capturing phase",
+      "DOM 이벤트 경로",
+      "event path"
+    ],
+    "refs": [
+      "https://dom.spec.whatwg.org/#dispatching-events",
+      "https://dom.spec.whatwg.org/#observing-event-listeners",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Event/composedPath"
+    ]
+  },
+  {
+    "id": "fe.css.stacking-context-painting-order",
+    "title": "쌓임 맥락과 페인트 순서",
+    "en": "Stacking Contexts and Painting Order",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "CSS",
+    "summary": "CSS가 쌓임 맥락마다 배경·음수 z-index·블록·인라인·양수 z-index 순으로 칠하고 맥락 전체를 한 덩어리로 부모 순서에 넣는 규칙이다.",
+    "objectives": [
+      "한 쌓임 맥락 안에서 배경과 테두리, 음수 z-index, 흐름 속 블록, float, 인라인, z-index 0, 양수 z-index 순으로 칠하는 페인트 순서를 설명할 수 있다",
+      "자식의 z-index가 부모 쌓임 맥락 밖 요소와 직접 비교되지 않는 이유를 맥락이 한 덩어리로 칠해지는 규칙으로 설명할 수 있다",
+      "opacity·transform·isolation·will-change 같은 속성이 새 쌓임 맥락을 만들어 겹침 순서가 바뀌는 경우를 예측할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.css.box-flex"
+    ],
+    "related": [
+      "fe.css.position",
+      "fe.internals.layer-promotion"
+    ],
+    "aliases": [
+      "stacking context",
+      "스태킹 컨텍스트",
+      "painting order",
+      "페인트 순서",
+      "z-index 쌓임 순서"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/CSS22/zindex.html",
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Positioned_layout/Stacking_context"
+    ]
+  },
+  {
     "id": "fe.internals.web-vitals",
     "title": "Core Web Vitals 분석과 최적화",
     "en": "Core Web Vitals Optimization",
@@ -8922,6 +9025,71 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
+  },
+  {
+    "id": "fe.css.flex-layout-algorithm",
+    "title": "Flexbox 레이아웃 알고리즘",
+    "en": "Flexbox Layout Algorithm",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "CSS",
+    "summary": "명세가 flex 기준 크기를 정하고 남거나 모자란 공간을 grow·shrink 비율로 나누며 최소·최대 위반 항목을 고정해 가는 크기 계산 절차다.",
+    "objectives": [
+      "flex 기준 크기와 가설 주 크기를 정한 뒤 줄의 남는 공간을 나누는 레이아웃 알고리즘 단계를 설명할 수 있다",
+      "줄어들 때 flex-shrink에 기준 크기를 곱한 축소 비율을 써서 큰 항목이 더 많이 줄어드는 이유를 설명할 수 있다",
+      "최소·최대 크기를 어긴 항목을 고정하고 남은 항목끼리 다시 나누는 반복을 따라 최종 크기를 계산할 수 있다",
+      "자동 최소 크기가 내용 기반 최소 크기로 정해져 항목이 기대보다 덜 줄어드는 조건을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.css.box-flex"
+    ],
+    "related": [
+      "fe.internals.render-pipeline"
+    ],
+    "aliases": [
+      "flex 레이아웃 알고리즘",
+      "flex layout algorithm",
+      "flex 크기 계산",
+      "flexible length resolution",
+      "flex-shrink 계산"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/css-flexbox-1/#layout-algorithm",
+      "https://www.w3.org/TR/css-flexbox-1/#resolve-flexible-lengths"
+    ]
+  },
+  {
+    "id": "fe.js.object-internal-methods",
+    "title": "JavaScript 객체 내부 메서드와 Proxy",
+    "en": "JavaScript Object Internal Methods and Proxy",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "JavaScript",
+    "summary": "속성 읽기·쓰기·정의가 명세의 내부 메서드로 처리되고 Proxy 트랩이 그 내부 메서드를 가로채되 불변 조건에 묶이는 구조다.",
+    "objectives": [
+      "속성 읽기·쓰기·정의·삭제가 [[Get]]·[[Set]]·[[DefineOwnProperty]]·[[Delete]] 중 어느 내부 메서드로 처리되는지 설명할 수 있다",
+      "[[Set]]과 [[DefineOwnProperty]]의 차이로 클래스 필드가 setter를 부르지 않는 이유를 설명할 수 있다",
+      "Proxy 핸들러의 트랩이 어떤 내부 메서드에 대응하는지와 트랩이 없을 때 대상 객체로 넘어가는 흐름, 트랩 결과가 불변 조건을 어기면 TypeError가 나는 이유를 설명할 수 있다",
+      "배열 같은 이그조틱 객체가 일반 객체와 다른 내부 메서드 때문에 다르게 동작하는 예를 들 수 있다"
+    ],
+    "prerequisites": [
+      "fe.js.objects-first"
+    ],
+    "aliases": [
+      "JavaScript Proxy",
+      "Proxy 트랩",
+      "proxy trap",
+      "객체 내부 메서드",
+      "internal methods",
+      "[[Get]]"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+      "https://tc39.es/ecma262/#sec-proxy-object-internal-methods-and-internal-slots",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect"
+    ]
   },
   {
     "id": "fe.internals.top-level-await",
@@ -9192,6 +9360,172 @@
     ],
     "refs": [
       "https://www.typescriptlang.org/docs/handbook/2/generics.html#variance-annotations"
+    ]
+  },
+  {
+    "id": "fe.html.adoption-agency-algorithm",
+    "title": "입양 기관 알고리즘",
+    "en": "Adoption Agency Algorithm",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "HTML",
+    "summary": "<b><i></b></i>처럼 엇갈린 서식 태그의 끝 태그를 만났을 때 HTML 파서가 요소를 다시 만들고 옮겨 트리를 바로잡는 명세 절차다.",
+    "parent": "fe.html.parsing-algorithm",
+    "aliases": [
+      "adoption agency",
+      "어답션 에이전시 알고리즘",
+      "서식 요소 재배치 알고리즘"
+    ],
+    "refs": [
+      "https://html.spec.whatwg.org/multipage/parsing.html#adoption-agency-algorithm"
+    ]
+  },
+  {
+    "id": "fe.html.foster-parenting",
+    "title": "포스터 페어런팅",
+    "en": "Foster Parenting",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "HTML",
+    "summary": "table 요소 안에 놓일 수 없는 내용을 HTML 파서가 표 바로 앞으로 옮겨 넣는 오류 복구 규칙이다.",
+    "parent": "fe.html.parsing-algorithm",
+    "aliases": [
+      "foster parenting",
+      "HTML foster parent",
+      "표 밖으로 옮겨지는 내용"
+    ],
+    "refs": [
+      "https://html.spec.whatwg.org/multipage/parsing.html#foster-parent",
+      "https://html.spec.whatwg.org/multipage/parsing.html#unexpected-markup-in-tables"
+    ]
+  },
+  {
+    "id": "fe.internals.event-retargeting",
+    "title": "이벤트 재타기팅",
+    "en": "Event Retargeting",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "프론트엔드 내부",
+    "summary": "섀도 트리 안에서 난 이벤트를 바깥 리스너가 받을 때 target과 relatedTarget을 섀도 호스트로 바꿔 안쪽 구조를 감추는 DOM 규칙이다.",
+    "parent": "fe.internals.event-dispatch",
+    "aliases": [
+      "event retargeting",
+      "섀도 DOM 재타기팅",
+      "shadow DOM retargeting",
+      "retarget 알고리즘"
+    ],
+    "refs": [
+      "https://dom.spec.whatwg.org/#retarget"
+    ]
+  },
+  {
+    "id": "fe.internals.event-composed",
+    "title": "Event.composed 플래그",
+    "en": "Event.composed Flag",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "프론트엔드 내부",
+    "summary": "이벤트가 섀도 루트에서 멈출지 경계를 넘어 바깥 DOM까지 전파될지 정하는 값으로, 브라우저가 보내는 UI 이벤트는 대부분 true다.",
+    "parent": "fe.internals.event-dispatch",
+    "aliases": [
+      "composed 이벤트",
+      "composed: true",
+      "composed event"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/API/Event/composed",
+      "https://dom.spec.whatwg.org/#composed-flag"
+    ]
+  },
+  {
+    "id": "fe.css.flex-automatic-minimum-size",
+    "title": "flex 항목의 자동 최소 크기",
+    "en": "Automatic Minimum Size of Flex Items",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "CSS",
+    "summary": "스크롤 컨테이너가 아닌 flex 항목의 min-width·min-height 초깃값 auto가 내용 기반 최소 크기로 계산되어 항목이 내용보다 작게 줄지 않게 하는 규칙이다.",
+    "parent": "fe.css.flex-layout-algorithm",
+    "aliases": [
+      "flex min-width: auto",
+      "content-based minimum size",
+      "내용 기반 최소 크기",
+      "flex 자동 최소 크기"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/css-flexbox-1/#min-size-auto"
+    ]
+  },
+  {
+    "id": "fe.js.proxy-invariants",
+    "title": "Proxy 불변 조건",
+    "en": "Proxy Invariants",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "JavaScript",
+    "summary": "Proxy 트랩의 결과가 대상 객체의 설정 불가 속성이나 확장 불가 상태와 모순되면 엔진이 실행 중 검사로 TypeError를 던지게 하는 명세 규칙이다.",
+    "parent": "fe.js.object-internal-methods",
+    "aliases": [
+      "proxy invariant",
+      "트랩 불변 조건",
+      "내부 메서드 불변 조건",
+      "essential internal method invariants"
+    ],
+    "refs": [
+      "https://tc39.es/ecma262/#sec-invariants-of-the-essential-internal-methods",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy"
+    ]
+  },
+  {
+    "id": "fe.js.exotic-object",
+    "title": "이그조틱 객체",
+    "en": "Exotic Object",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "JavaScript",
+    "summary": "배열·Proxy·바운드 함수처럼 하나 이상의 내부 메서드가 일반 객체의 기본 정의와 다르게 동작하는 ECMAScript 객체다.",
+    "parent": "fe.js.object-internal-methods",
+    "aliases": [
+      "exotic object",
+      "이국적 객체",
+      "Array exotic object",
+      "배열 이그조틱 객체"
+    ],
+    "refs": [
+      "https://tc39.es/ecma262/#exotic-object",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy"
+    ]
+  },
+  {
+    "id": "fe.internals.v8-hidden-classes",
+    "title": "V8 숨은 클래스(Map)와 전이",
+    "en": "V8 Hidden Classes (Maps) and Transitions",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "프론트엔드 내부",
+    "summary": "V8이 같은 속성 구성의 객체에 같은 Map을 붙이고 속성 추가를 전이로 기록해, 속성 추가 순서가 다르면 Map이 갈라지고 최적화 코드가 버려질 수 있다.",
+    "related": [
+      "fe.basics.javascript-engine"
+    ],
+    "aliases": [
+      "hidden class",
+      "히든 클래스",
+      "V8 Map",
+      "V8 object shape",
+      "V8 객체 모양",
+      "Map 전이"
+    ],
+    "refs": [
+      "https://v8.dev/docs/hidden-classes",
+      "https://v8.dev/blog/fast-properties"
     ]
   }
 ]

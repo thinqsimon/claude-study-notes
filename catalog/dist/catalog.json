@@ -1,5 +1,5 @@
 {
- "version": "0.77.0",
+ "version": "0.78.0",
  "domains": [
   {
    "prefix": "dev",
@@ -57166,6 +57166,112 @@
    "domain": "fe"
   },
   {
+   "id": "fe.html.parsing-algorithm",
+   "title": "HTML 파싱 알고리즘: 토큰화와 트리 구성",
+   "en": "HTML Parsing Algorithm: Tokenization and Tree Construction",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "HTML",
+   "summary": "브라우저가 HTML 바이트를 토큰화와 트리 구성 두 상태 기계로 DOM으로 바꾸며 잘못된 마크업까지 정해진 규칙으로 복구하는 과정이다.",
+   "objectives": [
+    "입력 코드 포인트가 토큰화 단계와 트리 구성 단계를 거쳐 Document가 되는 흐름을 상태 기계로 설명할 수 있다",
+    "삽입 모드와 열린 요소 스택, 활성 서식 요소 목록이 잘못 중첩된 태그를 어떻게 복구하는지 설명할 수 있다",
+    "표 안에 잘못 들어간 내용이 표 앞으로 옮겨지는 것처럼 파서의 오류 복구 결과를 명세 규칙으로 예측할 수 있다",
+    "스크립트가 document.write로 입력을 끼워 넣을 때 트리 구성 단계가 재진입하는 흐름을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.html.debugging"
+   ],
+   "related": [
+    "fe.internals.preload-scanner",
+    "fe.internals.render-pipeline"
+   ],
+   "aliases": [
+    "HTML 파서 알고리즘",
+    "HTML parsing algorithm",
+    "HTML 토크나이저",
+    "HTML tokenizer",
+    "삽입 모드",
+    "insertion mode"
+   ],
+   "refs": [
+    "https://html.spec.whatwg.org/multipage/parsing.html",
+    "https://html.spec.whatwg.org/multipage/parsing.html#tree-construction"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.event-dispatch",
+   "title": "DOM 이벤트 디스패치와 섀도 DOM 경계",
+   "en": "DOM Event Dispatch and Shadow DOM Boundaries",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "프론트엔드 내부",
+   "summary": "DOM 표준이 이벤트 경로를 만들고 캡처·버블 단계로 리스너를 부르며 섀도 루트 경계에서 대상을 바꾸는 디스패치 알고리즘이다.",
+   "objectives": [
+    "이벤트 경로를 만든 뒤 캡처 단계는 경로 역순, 버블 단계는 경로 순으로 리스너를 부르는 디스패치 단계를 설명할 수 있다",
+    "composed와 bubbles 값에 따라 이벤트가 섀도 루트를 넘어 바깥 문서로 전파되는지 판단할 수 있다",
+    "섀도 트리 밖 리스너에게 target이 호스트로 바뀌고 닫힌 섀도 트리의 노드가 composedPath()에서 빠지는 이유를 설명할 수 있다",
+    "passive 리스너에서 preventDefault()가 무시되는 규칙과 터치·휠 스크롤 성능의 관계를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.js.dom-events"
+   ],
+   "related": [
+    "fe.js.event-delegation"
+   ],
+   "aliases": [
+    "DOM 이벤트 디스패치",
+    "DOM event dispatch",
+    "이벤트 캡처 단계",
+    "capturing phase",
+    "DOM 이벤트 경로",
+    "event path"
+   ],
+   "refs": [
+    "https://dom.spec.whatwg.org/#dispatching-events",
+    "https://dom.spec.whatwg.org/#observing-event-listeners",
+    "https://developer.mozilla.org/en-US/docs/Web/API/Event/composedPath"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.css.stacking-context-painting-order",
+   "title": "쌓임 맥락과 페인트 순서",
+   "en": "Stacking Contexts and Painting Order",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "CSS",
+   "summary": "CSS가 쌓임 맥락마다 배경·음수 z-index·블록·인라인·양수 z-index 순으로 칠하고 맥락 전체를 한 덩어리로 부모 순서에 넣는 규칙이다.",
+   "objectives": [
+    "한 쌓임 맥락 안에서 배경과 테두리, 음수 z-index, 흐름 속 블록, float, 인라인, z-index 0, 양수 z-index 순으로 칠하는 페인트 순서를 설명할 수 있다",
+    "자식의 z-index가 부모 쌓임 맥락 밖 요소와 직접 비교되지 않는 이유를 맥락이 한 덩어리로 칠해지는 규칙으로 설명할 수 있다",
+    "opacity·transform·isolation·will-change 같은 속성이 새 쌓임 맥락을 만들어 겹침 순서가 바뀌는 경우를 예측할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.css.box-flex"
+   ],
+   "related": [
+    "fe.css.position",
+    "fe.internals.layer-promotion"
+   ],
+   "aliases": [
+    "stacking context",
+    "스태킹 컨텍스트",
+    "painting order",
+    "페인트 순서",
+    "z-index 쌓임 순서"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/CSS22/zindex.html",
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Positioned_layout/Stacking_context"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.internals.web-vitals",
    "title": "Core Web Vitals 분석과 최적화",
    "en": "Core Web Vitals Optimization",
@@ -57283,6 +57389,73 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.css.flex-layout-algorithm",
+   "title": "Flexbox 레이아웃 알고리즘",
+   "en": "Flexbox Layout Algorithm",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "CSS",
+   "summary": "명세가 flex 기준 크기를 정하고 남거나 모자란 공간을 grow·shrink 비율로 나누며 최소·최대 위반 항목을 고정해 가는 크기 계산 절차다.",
+   "objectives": [
+    "flex 기준 크기와 가설 주 크기를 정한 뒤 줄의 남는 공간을 나누는 레이아웃 알고리즘 단계를 설명할 수 있다",
+    "줄어들 때 flex-shrink에 기준 크기를 곱한 축소 비율을 써서 큰 항목이 더 많이 줄어드는 이유를 설명할 수 있다",
+    "최소·최대 크기를 어긴 항목을 고정하고 남은 항목끼리 다시 나누는 반복을 따라 최종 크기를 계산할 수 있다",
+    "자동 최소 크기가 내용 기반 최소 크기로 정해져 항목이 기대보다 덜 줄어드는 조건을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.css.box-flex"
+   ],
+   "related": [
+    "fe.internals.render-pipeline"
+   ],
+   "aliases": [
+    "flex 레이아웃 알고리즘",
+    "flex layout algorithm",
+    "flex 크기 계산",
+    "flexible length resolution",
+    "flex-shrink 계산"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/css-flexbox-1/#layout-algorithm",
+    "https://www.w3.org/TR/css-flexbox-1/#resolve-flexible-lengths"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.js.object-internal-methods",
+   "title": "JavaScript 객체 내부 메서드와 Proxy",
+   "en": "JavaScript Object Internal Methods and Proxy",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "JavaScript",
+   "summary": "속성 읽기·쓰기·정의가 명세의 내부 메서드로 처리되고 Proxy 트랩이 그 내부 메서드를 가로채되 불변 조건에 묶이는 구조다.",
+   "objectives": [
+    "속성 읽기·쓰기·정의·삭제가 [[Get]]·[[Set]]·[[DefineOwnProperty]]·[[Delete]] 중 어느 내부 메서드로 처리되는지 설명할 수 있다",
+    "[[Set]]과 [[DefineOwnProperty]]의 차이로 클래스 필드가 setter를 부르지 않는 이유를 설명할 수 있다",
+    "Proxy 핸들러의 트랩이 어떤 내부 메서드에 대응하는지와 트랩이 없을 때 대상 객체로 넘어가는 흐름, 트랩 결과가 불변 조건을 어기면 TypeError가 나는 이유를 설명할 수 있다",
+    "배열 같은 이그조틱 객체가 일반 객체와 다른 내부 메서드 때문에 다르게 동작하는 예를 들 수 있다"
+   ],
+   "prerequisites": [
+    "fe.js.objects-first"
+   ],
+   "aliases": [
+    "JavaScript Proxy",
+    "Proxy 트랩",
+    "proxy trap",
+    "객체 내부 메서드",
+    "internal methods",
+    "[[Get]]"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "https://tc39.es/ecma262/#sec-proxy-object-internal-methods-and-internal-slots",
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect"
+   ],
    "domain": "fe"
   },
   {
@@ -57566,6 +57739,180 @@
    ],
    "refs": [
     "https://www.typescriptlang.org/docs/handbook/2/generics.html#variance-annotations"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.html.adoption-agency-algorithm",
+   "title": "입양 기관 알고리즘",
+   "en": "Adoption Agency Algorithm",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "HTML",
+   "summary": "<b><i></b></i>처럼 엇갈린 서식 태그의 끝 태그를 만났을 때 HTML 파서가 요소를 다시 만들고 옮겨 트리를 바로잡는 명세 절차다.",
+   "parent": "fe.html.parsing-algorithm",
+   "aliases": [
+    "adoption agency",
+    "어답션 에이전시 알고리즘",
+    "서식 요소 재배치 알고리즘"
+   ],
+   "refs": [
+    "https://html.spec.whatwg.org/multipage/parsing.html#adoption-agency-algorithm"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.html.foster-parenting",
+   "title": "포스터 페어런팅",
+   "en": "Foster Parenting",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "HTML",
+   "summary": "table 요소 안에 놓일 수 없는 내용을 HTML 파서가 표 바로 앞으로 옮겨 넣는 오류 복구 규칙이다.",
+   "parent": "fe.html.parsing-algorithm",
+   "aliases": [
+    "foster parenting",
+    "HTML foster parent",
+    "표 밖으로 옮겨지는 내용"
+   ],
+   "refs": [
+    "https://html.spec.whatwg.org/multipage/parsing.html#foster-parent",
+    "https://html.spec.whatwg.org/multipage/parsing.html#unexpected-markup-in-tables"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.event-retargeting",
+   "title": "이벤트 재타기팅",
+   "en": "Event Retargeting",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "섀도 트리 안에서 난 이벤트를 바깥 리스너가 받을 때 target과 relatedTarget을 섀도 호스트로 바꿔 안쪽 구조를 감추는 DOM 규칙이다.",
+   "parent": "fe.internals.event-dispatch",
+   "aliases": [
+    "event retargeting",
+    "섀도 DOM 재타기팅",
+    "shadow DOM retargeting",
+    "retarget 알고리즘"
+   ],
+   "refs": [
+    "https://dom.spec.whatwg.org/#retarget"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.event-composed",
+   "title": "Event.composed 플래그",
+   "en": "Event.composed Flag",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "이벤트가 섀도 루트에서 멈출지 경계를 넘어 바깥 DOM까지 전파될지 정하는 값으로, 브라우저가 보내는 UI 이벤트는 대부분 true다.",
+   "parent": "fe.internals.event-dispatch",
+   "aliases": [
+    "composed 이벤트",
+    "composed: true",
+    "composed event"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/API/Event/composed",
+    "https://dom.spec.whatwg.org/#composed-flag"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.css.flex-automatic-minimum-size",
+   "title": "flex 항목의 자동 최소 크기",
+   "en": "Automatic Minimum Size of Flex Items",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "CSS",
+   "summary": "스크롤 컨테이너가 아닌 flex 항목의 min-width·min-height 초깃값 auto가 내용 기반 최소 크기로 계산되어 항목이 내용보다 작게 줄지 않게 하는 규칙이다.",
+   "parent": "fe.css.flex-layout-algorithm",
+   "aliases": [
+    "flex min-width: auto",
+    "content-based minimum size",
+    "내용 기반 최소 크기",
+    "flex 자동 최소 크기"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/css-flexbox-1/#min-size-auto"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.js.proxy-invariants",
+   "title": "Proxy 불변 조건",
+   "en": "Proxy Invariants",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "JavaScript",
+   "summary": "Proxy 트랩의 결과가 대상 객체의 설정 불가 속성이나 확장 불가 상태와 모순되면 엔진이 실행 중 검사로 TypeError를 던지게 하는 명세 규칙이다.",
+   "parent": "fe.js.object-internal-methods",
+   "aliases": [
+    "proxy invariant",
+    "트랩 불변 조건",
+    "내부 메서드 불변 조건",
+    "essential internal method invariants"
+   ],
+   "refs": [
+    "https://tc39.es/ecma262/#sec-invariants-of-the-essential-internal-methods",
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.js.exotic-object",
+   "title": "이그조틱 객체",
+   "en": "Exotic Object",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "JavaScript",
+   "summary": "배열·Proxy·바운드 함수처럼 하나 이상의 내부 메서드가 일반 객체의 기본 정의와 다르게 동작하는 ECMAScript 객체다.",
+   "parent": "fe.js.object-internal-methods",
+   "aliases": [
+    "exotic object",
+    "이국적 객체",
+    "Array exotic object",
+    "배열 이그조틱 객체"
+   ],
+   "refs": [
+    "https://tc39.es/ecma262/#exotic-object",
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.v8-hidden-classes",
+   "title": "V8 숨은 클래스(Map)와 전이",
+   "en": "V8 Hidden Classes (Maps) and Transitions",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "V8이 같은 속성 구성의 객체에 같은 Map을 붙이고 속성 추가를 전이로 기록해, 속성 추가 순서가 다르면 Map이 갈라지고 최적화 코드가 버려질 수 있다.",
+   "related": [
+    "fe.basics.javascript-engine"
+   ],
+   "aliases": [
+    "hidden class",
+    "히든 클래스",
+    "V8 Map",
+    "V8 object shape",
+    "V8 객체 모양",
+    "Map 전이"
+   ],
+   "refs": [
+    "https://v8.dev/docs/hidden-classes",
+    "https://v8.dev/blog/fast-properties"
    ],
    "domain": "fe"
   },
@@ -66920,6 +67267,74 @@
    "domain": "llm"
   },
   {
+   "id": "llm.internals.positional-encoding",
+   "title": "위치 인코딩과 길이 외삽: 절대 위치·RoPE·ALiBi",
+   "en": "Positional Encoding and Length Extrapolation",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "LLM 내부",
+   "summary": "어텐션에 순서 정보를 주는 절대 위치 임베딩과 RoPE·ALiBi 같은 상대 위치 방식이 학습 길이보다 긴 입력에서 어떻게 다르게 버티는지와 RoPE 늘리기 설정의 손익을 비교한다.",
+   "objectives": [
+    "위치 정보가 없으면 셀프 어텐션이 단어 순서를 구분하지 못하는 이유와 절대 위치 임베딩이 긴 입력·학습 길이 밖에서 약한 이유를 설명할 수 있다",
+    "RoPE가 쿼리·키 벡터를 위치만큼 회전시키고 ALiBi가 어텐션 점수에 거리 비례 음수를 더하는 방식을 비교해, 둘의 길이 외삽 차이를 근거로 설명할 수 있다",
+    "linear·dynamic·yarn 같은 RoPE 늘리기 방식과 factor·original_max_position_embeddings 설정이 컨텍스트를 몇 배 늘리는지 읽고, 학습 길이를 넘겨 쓸 때의 위험을 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.transformer.attention"
+   ],
+   "related": [
+    "llm.internals.sparse-attention",
+    "llm.basics.context-window"
+   ],
+   "aliases": [
+    "위치 인코딩",
+    "positional encoding",
+    "위치 임베딩",
+    "positional embeddings",
+    "상대 위치 인코딩",
+    "길이 외삽"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/llm_tutorial_optimization",
+    "https://huggingface.co/docs/transformers/main/en/internal/rope_utils"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.kv-head-sharing",
+   "title": "키·값 헤드 공유 어텐션의 손익: MQA·GQA",
+   "en": "Key-Value Head Sharing: MQA and GQA",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "LLM 내부",
+   "summary": "여러 쿼리 헤드가 키·값 헤드를 함께 쓰게 해 KV 캐시 메모리와 디코드 단계 메모리 이동을 줄이는 MQA·GQA가 품질과 무엇을 맞바꾸는지 분석한다.",
+   "objectives": [
+    "층 수·헤드 수·헤드 차원·시퀀스 길이로 KV 캐시 크기를 어림하고, 긴 입력에서 그 크기가 모델 가중치의 절반 가까이까지 커질 수 있음을 계산할 수 있다",
+    "MQA가 키·값 헤드를 하나로 줄여 캐시 메모리와 디코드 단계의 메모리 대역폭 병목을 줄이지만, KV 캐시를 쓰지 않는 한 번의 순전파 최대 메모리는 그대로인 이유를 설명할 수 있다",
+    "GQA가 키·값 헤드를 몇 개 그룹으로 남겨 MQA의 품질 저하를 줄이는 손익과 기존 체크포인트를 적은 계산으로 업트레이닝할 수 있다는 점을 근거로 모델 구조를 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.internals.inference-phases"
+   ],
+   "related": [
+    "llm.internals.kv-cache-strategies",
+    "llm.internals.attention-backends"
+   ],
+   "aliases": [
+    "multi-query attention",
+    "멀티 쿼리 어텐션",
+    "MQA",
+    "키·값 헤드 공유",
+    "KV 헤드 줄이기"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/llm_tutorial_optimization"
+   ],
+   "domain": "llm"
+  },
+  {
    "id": "llm.internals.structured-decoding",
    "title": "구조화 출력의 보장과 한계",
    "en": "Guarantees of Structured Output",
@@ -67116,6 +67531,119 @@
    "domain": "llm"
   },
   {
+   "id": "llm.internals.tokenizer-pipeline",
+   "title": "토크나이저 파이프라인의 내부: 정규화·사전 토큰화·모델·후처리",
+   "en": "Tokenizer Pipeline Internals",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "글이 정규화·사전 토큰화·하위 단어 모델·후처리를 차례로 거쳐 토큰 ID가 되는 과정과 단계마다 고른 방식이 복원 가능성·미등록 토큰·위치 정렬에 주는 영향을 분석한다.",
+   "objectives": [
+    "정규화·사전 토큰화·모델·후처리 네 단계가 각각 무엇을 바꾸고, 정규화 중에도 원문 위치 정렬을 유지해야 하는 이유를 설명할 수 있다",
+    "BERT·GPT-2·T5(SentencePiece)의 사전 토큰화가 공백과 구두점을 다루는 방식을 비교해 어느 토크나이저가 원문으로 되돌릴 수 있는지 판단할 수 있다",
+    "BPE·WordPiece·Unigram이 작은 어휘에서 합쳐 가는지 큰 어휘에서 줄여 가는지와, 학습한 규칙을 차례로 적용하는지 확률이 가장 높은 분할을 고르는지를 비교할 수 있다",
+    "바이트 수준 사전 토큰화가 256자 기본 알파벳으로 미등록 토큰을 없애는 대신 비ASCII 글자를 읽기 어려운 조각으로 만드는 손익을 분석할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.internals.tokenization-sampling",
+    "llm.basics.train-new-tokenizer"
+   ],
+   "related": [
+    "llm.basics.subword-tokenization",
+    "llm.basics.offset-mapping"
+   ],
+   "aliases": [
+    "토크나이저 파이프라인",
+    "tokenization pipeline",
+    "사전 토큰화",
+    "pre-tokenization",
+    "토크나이저 정규화",
+    "Tokenizers 라이브러리 구성 요소"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter6/4",
+    "https://huggingface.co/learn/llm-course/chapter6/8",
+    "https://huggingface.co/docs/tokenizers/components"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.assisted-decoding",
+   "title": "Transformers 보조 디코딩의 방식과 손익",
+   "en": "Assisted Decoding in Transformers",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "도우미가 후보 토큰을 먼저 내고 본 모델이 한 번의 순전파로 확인하는 Transformers의 보조 디코딩 방식들을 추가 메모리·적용 조건·출력 분포 보장으로 비교한다.",
+   "objectives": [
+    "후보 토큰을 본 모델이 한 번에 검증해 비싼 순전파 횟수를 줄이는 원리와, 거절된 자리에서 일반 생성으로 돌아가는 흐름을 설명할 수 있다",
+    "보조 모델·프롬프트 조회·자기 추측(early exit)·MTP 층 방식을 추가 메모리, 필요한 체크포인트, 맞는 작업으로 비교해 고를 수 있다",
+    "토크나이저가 다른 보조 모델을 쓸 때 다시 인코딩과 최장 공통 부분열로 정렬하는 이유와 배치 입력을 받지 못하는 제약을 설명할 수 있다",
+    "정적 앙상블 검증이 수락률을 올리는 대신 본 모델과 같은 출력 분포 보장을 포기하는 손익을 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.internals.inference-phases",
+    "llm.internals.generate-decoding"
+   ],
+   "related": [
+    "mlops.serve.speculative-decoding",
+    "mlops.serve.vllm-speculative-decoding"
+   ],
+   "aliases": [
+    "assisted decoding",
+    "assisted generation",
+    "보조 생성",
+    "assistant_model",
+    "Transformers 추측 디코딩",
+    "보조 모델 디코딩"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/assisted_decoding"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.sft-packing-tradeoffs",
+   "title": "SFT 패킹 전략과 패딩 없는 배치의 손익",
+   "en": "SFT Packing Strategies and Padding-Free Batching",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "길이가 들쭉날쭉한 학습 예시를 자르기·패킹·패딩 없는 배치로 처리할 때 버려지는 토큰, 섞이는 예시, 메모리 사용이 어떻게 갈리는지 TRL 설정 기준으로 비교한다.",
+   "objectives": [
+    "배치 안 가장 긴 예시에 맞춘 패딩이 메모리를 낭비하는 이유와 max_length를 너무 작게·크게 잡을 때 각각 잃는 것을 길이 분포로 판단할 수 있다",
+    "bfd·bfd_split·wrapped 패킹이 넘친 토큰을 버리는지, 나누는지, 예시 경계를 끊는지 비교하고 그 차이가 학습 품질에 주는 영향을 설명할 수 있다",
+    "패딩 없는 배치가 예시를 온전히 둔 채 배치를 한 줄로 펴서 패딩을 없애는 원리와 FlashAttention 계열 어텐션이 필요한 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.finetune.sft-trainer",
+    "llm.internals.attention-backends"
+   ],
+   "related": [
+    "mlops.finetune.packing",
+    "llm.internals.preference-alignment"
+   ],
+   "aliases": [
+    "padding-free",
+    "padding_free",
+    "패딩 없는 배치",
+    "SFT 패킹 전략",
+    "학습 시퀀스 패킹 손익"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/trl/main/en/reducing_memory_usage",
+    "https://huggingface.co/docs/trl/main/en/sft_trainer"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
    "id": "llm.internals.kv-cache",
    "title": "KV 캐시",
    "en": "KV Cache",
@@ -67197,6 +67725,52 @@
    ],
    "refs": [
     "https://huggingface.co/docs/transformers/perplexity"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.rope-scaling",
+   "title": "RoPE 스케일링(rope_parameters)",
+   "en": "RoPE Scaling",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "LLM 내부",
+   "summary": "RoPE 모델 설정의 rope_type과 factor를 바꿔 회전 주파수를 조정해서 사전 학습 때보다 긴 컨텍스트를 받게 하는 Transformers 설정이다.",
+   "parent": "llm.internals.positional-encoding",
+   "aliases": [
+    "RoPE scaling",
+    "rope_parameters",
+    "rope_scaling",
+    "YaRN 스케일링",
+    "NTK-aware scaling",
+    "RoPE 늘리기"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/main/en/internal/rope_utils"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.grouped-query-attention",
+   "title": "그룹 쿼리 어텐션(GQA)",
+   "en": "Grouped-Query Attention",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "LLM 내부",
+   "summary": "쿼리 헤드 여러 개가 키·값 헤드 하나를 그룹으로 나눠 써서 MQA에 가까운 메모리 절약을 얻으면서 품질 손실은 줄이는 어텐션 구조다.",
+   "parent": "llm.internals.kv-head-sharing",
+   "aliases": [
+    "GQA",
+    "grouped-query attention",
+    "그룹드 쿼리 어텐션",
+    "GQA 업트레이닝"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/llm_tutorial_optimization"
    ],
    "domain": "llm"
   },
@@ -67430,6 +68004,120 @@
    "refs": [
     "https://huggingface.co/learn/llm-course/chapter1/6"
    ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.byte-level-bpe",
+   "title": "바이트 수준 BPE(ByteLevel 사전 토큰화)",
+   "en": "Byte-Level BPE",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "글을 바이트로 바꿔 보이는 글자 256개에 대응시킨 뒤 BPE를 돌려, 어떤 글자도 미등록 토큰 없이 나타내는 GPT-2 방식의 토큰화다.",
+   "parent": "llm.internals.tokenizer-pipeline",
+   "aliases": [
+    "byte-level BPE",
+    "ByteLevel pre-tokenizer",
+    "Ġ 공백 표시",
+    "GPT-2 토크나이저 방식",
+    "바이트 단위 BPE"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/tokenizers/components",
+    "https://huggingface.co/learn/llm-course/chapter6/8"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.template-processing",
+   "title": "TemplateProcessing(특수 토큰 후처리 템플릿)",
+   "en": "TemplateProcessing Post-Processor",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "토큰화가 끝난 단일 문장과 문장 쌍 앞뒤에 [CLS]·[SEP] 같은 특수 토큰을 넣고 구간마다 token type ID를 매기는 Tokenizers 후처리기다.",
+   "parent": "llm.internals.tokenizer-pipeline",
+   "aliases": [
+    "TemplateProcessing",
+    "토크나이저 후처리기",
+    "post-processor 템플릿",
+    "특수 토큰 템플릿"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/tokenizers/components",
+    "https://huggingface.co/learn/llm-course/chapter6/8"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.prompt-lookup-decoding",
+   "title": "프롬프트 조회 디코딩(prompt lookup decoding)",
+   "en": "Prompt Lookup Decoding",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "보조 모델 없이 프롬프트에서 겹치는 n-gram을 찾아 그 뒤 토큰을 후보로 내놓아, 요약·번역처럼 입력을 많이 따라 쓰는 생성을 빠르게 하는 방식이다.",
+   "parent": "llm.internals.assisted-decoding",
+   "aliases": [
+    "prompt lookup decoding",
+    "prompt_lookup_num_tokens",
+    "프롬프트 n-gram 조회",
+    "프롬프트 룩업 디코딩"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/assisted_decoding"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.universal-assisted-decoding",
+   "title": "범용 보조 디코딩(UAD)",
+   "en": "Universal Assisted Decoding",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "본 모델과 토크나이저가 다른 작은 모델을 보조로 쓰기 위해 후보를 다시 인코딩하고 최장 공통 부분열로 이어 붙이는 Transformers 보조 디코딩이다.",
+   "parent": "llm.internals.assisted-decoding",
+   "aliases": [
+    "universal assisted decoding",
+    "UAD",
+    "assistant_tokenizer",
+    "다른 토크나이저 보조 모델"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/assisted_decoding"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.bfd-packing",
+   "title": "최적 맞춤 감소 패킹(BFD packing)",
+   "en": "Best-Fit Decreasing Packing",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "학습 예시들을 max_length 길이의 행에 빈칸이 적게 남도록 나눠 담는 TRL의 기본 패킹 방식으로, 넘친 토큰은 버리거나 bfd_split로 나눈다.",
+   "parent": "llm.internals.sft-packing-tradeoffs",
+   "aliases": [
+    "BFD 패킹",
+    "best-fit decreasing",
+    "bfd_split",
+    "packing_strategy=\"bfd\""
+   ],
+   "refs": [
+    "https://huggingface.co/docs/trl/main/en/reducing_memory_usage"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "llm"
   },
   {
@@ -75434,6 +76122,54 @@
    "domain": "rag"
   },
   {
+   "id": "rag.eval.ndcg",
+   "title": "nDCG(정규화 할인 누적 이득)",
+   "en": "Normalized Discounted Cumulative Gain",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "검색 내부",
+   "summary": "문서의 관련도 등급과 순위를 함께 보아 위쪽의 좋은 문서에 더 큰 점수를 주고, 이상적인 순서의 점수로 나눠 0~1로 맞춘 순위 품질 지표다.",
+   "related": [
+    "rag.eval.mrr"
+   ],
+   "aliases": [
+    "nDCG@k",
+    "normalized discounted cumulative gain",
+    "DCG 지표",
+    "할인 누적 이득"
+   ],
+   "refs": [
+    "https://www.elastic.co/docs/reference/elasticsearch/rest-apis/search-rank-eval"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.eval.mrr",
+   "title": "평균 역순위(MRR)",
+   "en": "Mean Reciprocal Rank",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "검색 내부",
+   "summary": "질의마다 첫 관련 문서 순위의 역수를 구해 모든 질의에 걸쳐 평균 낸 지표로, 첫 정답이 얼마나 위에 나오는지만 본다.",
+   "related": [
+    "rag.eval.ndcg",
+    "rag.retrieval.mmr"
+   ],
+   "aliases": [
+    "mean reciprocal rank",
+    "MRR@k",
+    "MRR 지표",
+    "검색 MRR",
+    "역순위 평균"
+   ],
+   "refs": [
+    "https://www.elastic.co/docs/reference/elasticsearch/rest-apis/search-rank-eval"
+   ],
+   "domain": "rag"
+  },
+  {
    "id": "rag.agent.memory-store",
    "title": "장기 기억 스토어",
    "en": "Memory Store",
@@ -76551,6 +77287,110 @@
    "domain": "rag"
   },
   {
+   "id": "rag.vector-db.product-quantization-internals",
+   "title": "곱 양자화(PQ)의 내부: 부분 공간·코드북·조회표",
+   "en": "Product Quantization Internals",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "벡터 DB",
+   "summary": "벡터를 여러 조각으로 나눠 조각마다 가장 가까운 중심 번호만 저장하고, 질의마다 만든 조회표를 더해 거리를 어림하는 압축 방식의 원리와 손익이다.",
+   "objectives": [
+    "벡터를 m개 부분 벡터로 나누고 부분 공간마다 2^nbits개 중심으로 된 코드북의 번호로 바꾸는 과정과, 질의마다 조회표를 만들어 거리를 합산하는 계산을 설명할 수 있다",
+    "m과 nbits로 벡터당 저장 비트를 계산해 float32 원본과의 압축 비율을 비교할 수 있다",
+    "m·nbits·nlist·nprobe를 키울 때 재현율과 지연·메모리·빌드 시간이 어떻게 바뀌는지 따질 수 있다",
+    "코드북 학습이 필요한 PQ·SQ와 학습이 필요 없는 BQ·RQ의 압축률과 재현율 손익을 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.vector-index.internals"
+   ],
+   "related": [
+    "rag.embedding.quantization",
+    "rag.vector-db.diskann-internals"
+   ],
+   "aliases": [
+    "곱 양자화",
+    "product quantization",
+    "IVF_PQ",
+    "Weaviate PQ",
+    "PQ 압축"
+   ],
+   "refs": [
+    "https://milvus.io/docs/ivf-pq.md",
+    "https://docs.weaviate.io/weaviate/concepts/vector-quantization"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.pgvector-index-build",
+   "title": "pgvector HNSW·IVFFlat 색인 구축의 손익",
+   "en": "pgvector HNSW and IVFFlat Index Build Trade-offs",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "벡터 DB",
+   "summary": "pgvector에서 HNSW와 IVFFlat 색인을 만들 때 매개변수·메모리·병렬 작업자·양자화 색인이 빌드 시간과 재현율에 주는 손익을 다룬다.",
+   "objectives": [
+    "m과 ef_construction이 HNSW 재현율·빌드 시간·삽입 속도에 주는 영향을 따질 수 있다",
+    "그래프가 maintenance_work_mem에 들어가는지와 병렬 유지 작업자 수를 근거로 HNSW 빌드가 느린 원인을 찾을 수 있다",
+    "IVFFlat을 데이터를 넣은 뒤에 만들어야 하는 이유와 행 수에 따른 lists 시작값, 검색 때 ivfflat.probes를 sqrt(lists)에서 시작하는 이유를 설명할 수 있다",
+    "halfvec 색인과 이진 양자화 뒤 원본 벡터 재순위로 색인 크기와 빌드 시간을 줄이는 손익을 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.vector-index.internals",
+    "rag.vector-db.pgvector-filtered-search"
+   ],
+   "related": [
+    "rag.vector-db.hnsw-ef-search"
+   ],
+   "aliases": [
+    "pgvector 인덱스 빌드",
+    "pgvector index build",
+    "pgvector HNSW 옵션",
+    "pgvector ef_construction",
+    "pgvector halfvec 색인"
+   ],
+   "refs": [
+    "https://github.com/pgvector/pgvector"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.a2a-protocol-internals",
+   "title": "A2A 프로토콜의 구조: 작업 상태·스트리밍·푸시 알림",
+   "en": "A2A Protocol Internals",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "A2A 1.0 명세가 여러 전송 바인딩 위에 작업 상태 기계와 스트리밍·재구독·푸시 알림이라는 갱신 전달 방식을 정의하는 구조를 다룬다.",
+   "objectives": [
+    "A2A 1.0이 JSON-RPC·gRPC·HTTP+JSON 바인딩 위에 같은 연산을 정의하는 구조를 설명할 수 있다",
+    "작업 상태를 진행 중·종료·중단(입력 필요·인증 필요)으로 나누고 상태마다 클라이언트가 할 일을 판단할 수 있다",
+    "스트리밍·SubscribeToTask 재구독·푸시 알림 가운데 연결 유지 비용과 작업 길이에 맞는 갱신 전달 방식을 고를 수 있다",
+    "공개 에이전트 카드와 인증 뒤 받는 확장 에이전트 카드, 카드 서명의 역할을 구분할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.a2a-idea"
+   ],
+   "related": [
+    "rag.agent.mcp-protocol"
+   ],
+   "aliases": [
+    "A2A 명세",
+    "A2A specification",
+    "A2A 1.0",
+    "A2A 작업 상태",
+    "A2A task lifecycle"
+   ],
+   "refs": [
+    "https://a2a-protocol.org/latest/specification/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
    "id": "rag.vector-db.qdrant-segment-optimizer",
    "title": "Qdrant 세그먼트와 최적화기: 색인·삭제 정리·읽기 쓰기 경합",
    "en": "Qdrant Segments and Optimizers",
@@ -76794,6 +77634,74 @@
    "refs": [
     "https://docs.langchain.com/oss/python/langgraph/checkpointers",
     "https://docs.python.org/3/library/pickle.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.opensearch-score-normalization",
+   "title": "OpenSearch 하이브리드 점수 정규화와 결합",
+   "en": "OpenSearch Hybrid Score Normalization and Combination",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "검색 내부",
+   "summary": "척도가 다른 키워드 점수와 벡터 점수를 정규화 프로세서가 질의 단계 뒤에 모아 정규화하고 가중 결합하는 흐름과 그 한계를 다룬다.",
+   "objectives": [
+    "정규화 프로세서가 질의 단계와 가져오기 단계 사이에서 샤드별 점수를 모아 정규화·결합하는 흐름을 설명할 수 있다",
+    "min_max·l2·z_score가 점수 분포와 이상값에 따라 순위를 어떻게 바꾸는지 비교할 수 있다",
+    "한 절에만 나온 문서가 산술 평균 결합에서 점수가 깎이는 이유와 가중치 설정의 효과를 따질 수 있다",
+    "절마다 돌려받은 결과 수가 정규화 통계를 바꾼다는 한계를 근거로 자기 데이터에서 방식을 평가할 계획을 세울 수 있다"
+   ],
+   "prerequisites": [
+    "rag.retrieval.hybrid-rerank"
+   ],
+   "related": [
+    "rag.retrieval.weaviate-relative-score-fusion"
+   ],
+   "aliases": [
+    "normalization-processor",
+    "OpenSearch 정규화 프로세서",
+    "OpenSearch score normalization",
+    "OpenSearch 하이브리드 점수 정규화"
+   ],
+   "refs": [
+    "https://docs.opensearch.org/latest/search-plugins/search-pipelines/normalization-processor/"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.elasticsearch-vector-quantization",
+   "title": "Elasticsearch 벡터 양자화(int8·int4·BBQ)",
+   "en": "Elasticsearch dense_vector Quantization",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "벡터 DB",
+   "summary": "Elasticsearch가 dense_vector를 int8·int4·BBQ로 줄이는 방식과 기본값 규칙, 원본으로 다시 채점하는 oversample의 메모리·디스크·재현율 손익을 다룬다.",
+   "objectives": [
+    "int8·int4·bbq 양자화가 차원당 저장 크기와 메모리 절감률을 어떻게 바꾸는지 계산할 수 있다",
+    "버전과 차원 수에 따라 기본 index_options가 달라지는 규칙으로 기존 색인의 메모리 사용을 설명할 수 있다",
+    "rescore_vector의 oversample을 키울 때 샤드마다 원본으로 다시 채점할 후보가 늘어 재현율과 지연이 바뀌는 손익을 따질 수 있다",
+    "원본 벡터를 디스크에 함께 두어 늘어나는 디스크 사용량을 양자화 방식별로 예상할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.vector-index.internals"
+   ],
+   "related": [
+    "rag.vector-db.qdrant-memory-quantization",
+    "rag.embedding.quantization"
+   ],
+   "aliases": [
+    "Elasticsearch 벡터 양자화",
+    "Elasticsearch quantization",
+    "int8_hnsw",
+    "dense_vector index_options",
+    "Elasticsearch rescore_vector"
+   ],
+   "refs": [
+    "https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/dense-vector"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -77128,6 +78036,119 @@
    ],
    "refs": [
     "https://docs.langchain.com/oss/python/langgraph/checkpointers"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.pq-codebook",
+   "title": "PQ 코드북과 부분 벡터 수(m·nbits)",
+   "en": "PQ Codebook, Subvectors and nbits",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "벡터 DB",
+   "summary": "PQ에서 벡터를 몇 조각(m)으로 나누고 조각마다 몇 비트(nbits) 중심 번호로 적을지 정하는 값으로, 벡터 하나에 m×nbits 비트가 든다.",
+   "parent": "rag.vector-db.product-quantization-internals",
+   "aliases": [
+    "PQ 코드북",
+    "PQ codebook",
+    "PQ nbits",
+    "PQ segments",
+    "PQ 부분 벡터"
+   ],
+   "refs": [
+    "https://milvus.io/docs/ivf-pq.md"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.ivfflat-lists-probes",
+   "title": "IVFFlat 목록 수와 탐색 목록 수(lists·probes)",
+   "en": "pgvector IVFFlat lists and probes",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "벡터 DB",
+   "summary": "IVFFlat이 벡터를 나눌 목록 수와 검색 때 살펴볼 목록 수로, probes 기본값은 1이며 sqrt(lists)에서 시작하길 권한다.",
+   "parent": "rag.vector-db.pgvector-index-build",
+   "related": [
+    "rag.vector-db.hnsw-ef-search"
+   ],
+   "aliases": [
+    "ivfflat.probes",
+    "IVFFlat lists",
+    "pgvector lists",
+    "pgvector probes"
+   ],
+   "refs": [
+    "https://github.com/pgvector/pgvector"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.opensearch-normalization-technique",
+   "title": "OpenSearch 정규화 방식(min_max·l2·z_score)",
+   "en": "OpenSearch Normalization Techniques",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "검색 내부",
+   "summary": "OpenSearch 하이브리드 검색에서 절마다 점수를 0~1로 늘이거나, 노름으로 나누거나, 평균과 표준편차로 바꾸는 세 가지 정규화 방식이다.",
+   "parent": "rag.retrieval.opensearch-score-normalization",
+   "aliases": [
+    "OpenSearch min_max",
+    "OpenSearch z_score",
+    "OpenSearch normalization technique",
+    "OpenSearch l2 정규화"
+   ],
+   "refs": [
+    "https://docs.opensearch.org/latest/search-plugins/search-pipelines/normalization-processor/"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.elasticsearch-bbq",
+   "title": "Elasticsearch BBQ(더 나은 이진 양자화)",
+   "en": "Elasticsearch Better Binary Quantization",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "벡터 DB",
+   "summary": "Elasticsearch가 float 벡터를 차원당 1비트로 줄여 메모리를 약 96% 아끼고 원본 벡터로 다시 채점하는 양자화로, 64차원보다 커야 쓸 수 있다.",
+   "parent": "rag.vector-db.elasticsearch-vector-quantization",
+   "aliases": [
+    "Better Binary Quantization",
+    "bbq_hnsw",
+    "bbq_disk",
+    "bbq_flat"
+   ],
+   "refs": [
+    "https://www.elastic.co/docs/reference/elasticsearch/mapping-reference/dense-vector"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.a2a-push-notification",
+   "title": "A2A 푸시 알림(웹훅 전달)",
+   "en": "A2A Push Notifications",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "A2A 원격 에이전트가 작업 갱신을 클라이언트의 웹훅 주소로 POST해 알리는 방식으로, 보내는 쪽은 주소를 검사해 SSRF를 막고 받는 쪽은 중복 전달에 대비한다.",
+   "parent": "rag.agent.a2a-protocol-internals",
+   "aliases": [
+    "A2A push notification",
+    "A2A 웹훅",
+    "A2A webhook",
+    "TaskPushNotificationConfig"
+   ],
+   "refs": [
+    "https://a2a-protocol.org/latest/specification/"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -86644,6 +87665,83 @@
    "domain": "ax"
   },
   {
+   "id": "ax.governance.benchmark-validity-threats",
+   "title": "벤치마크 평가의 타당성 위협: 오염·평가 부정·평가 인식",
+   "en": "Threats to Benchmark Evaluation Validity",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "모델이 시험 내용을 미리 학습했거나 정답 파일·채점 허점을 찾거나 시험 중임을 알아챌 때 점수가 실제 능력과 어긋나는 원인을 따지고 막는 법이다.",
+   "objectives": [
+    "학습 데이터에 섞인 벤치마크 내용과 형식이 점수를 부풀리는 경로를 설명하고, 데이터 숨기기·제작 시점 이후 데이터·카나리 문자열 중 무엇이 어떤 오염을 잡는지 비교할 수 있다",
+    "정답 정보 유입(solution contamination)과 채점기 공략(grader gaming)을 구분하고, 코딩 도구를 쥔 에이전트 평가에서 이런 부정이 더 잘 일어나는 이유를 분석할 수 있다",
+    "평가 신호에 반응하는 행동이 외부 타당성을 해치는 이유와, 말로 드러난 평가 인식이 없다고 평가 인식이 없다고 볼 수 없는 이유를 설명할 수 있다",
+    "수작업·자동 기록 검토로 오염·부정·풀 수 없는 문항을 찾는 품질 보증 절차를 설계하고, LLM 심판을 쓸 때 사람 판정과 맞춰 보는 검사를 넣을 수 있다"
+   ],
+   "prerequisites": [
+    "ax.governance.ai-risk-measurement"
+   ],
+   "related": [
+    "mlops.eval.llm-benchmark",
+    "llm.basics.verified-eval-score",
+    "ax.coding.test-tampering",
+    "ax.governance.tevv"
+   ],
+   "aliases": [
+    "벤치마크 타당성",
+    "benchmark validity",
+    "평가 타당성 위협",
+    "benchmark validity threats",
+    "벤치마크 점수 왜곡"
+   ],
+   "refs": [
+    "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.800-2.ipd.pdf",
+    "https://www.nist.gov/news-events/news/2026/01/towards-best-practices-automated-benchmark-evaluations"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.high-risk-robustness-cybersecurity",
+   "title": "고위험 AI의 정확성·견고성·사이버보안 요구(EU AI법 제15조)",
+   "en": "Accuracy, Robustness and Cybersecurity of High-Risk AI Systems",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "EU AI법 제15조가 고위험 AI 시스템에 요구하는 수명주기 내내 일관된 정확성, 오류·고장에 대한 복원력, 지속 학습의 편향 되먹임 완화, AI 고유 공격 대응을 기술 설계로 옮기는 법이다.",
+   "objectives": [
+    "사용 설명서에 정확도 수준과 지표를 밝혀야 한다는 요구가 평가 지표 선택과 배포 후 감시 설계에 주는 영향을 분석할 수 있다",
+    "백업·실패 시 안전 계획 같은 기술적 중복이 견고성을 얼마나 높이고 비용을 얼마나 늘리는지 견주어 설계를 고를 수 있다",
+    "배포 뒤에도 계속 학습하는 시스템에서 편향된 출력이 다음 입력으로 돌아오는 경로를 찾아 완화 조치를 정할 수 있다",
+    "데이터 오염·모델 오염·적대적 예제(회피)·기밀성 공격·모델 결함이라는 조문의 공격 목록을 예방·탐지·대응 조치에 짝지을 수 있다"
+   ],
+   "prerequisites": [
+    "ax.governance.ai-act-risk-levels",
+    "ax.security.aml-attack-taxonomy"
+   ],
+   "related": [
+    "ax.governance.high-risk-ai",
+    "ax.security.evasion-defense-tradeoffs",
+    "ax.governance.cyber-ai-profile"
+   ],
+   "aliases": [
+    "AI Act Article 15",
+    "AI법 제15조",
+    "고위험 AI 견고성",
+    "고위험 AI 사이버보안",
+    "high-risk AI robustness"
+   ],
+   "refs": [
+    "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-15"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
    "id": "ax.security.evasion-defense-tradeoffs",
    "title": "회피 공격 방어의 손익: 적대적 학습·무작위 평활화·형식 검증",
    "en": "Trade-offs of Evasion Attack Mitigations",
@@ -86676,6 +87774,119 @@
     "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2025.pdf",
     "https://csrc.nist.gov/pubs/ai/100/2/e2025/final"
    ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.benchmark-uncertainty-claims",
+   "title": "벤치마크 결과의 불확실성 정량화와 제한된 주장",
+   "en": "Uncertainty Quantification and Qualified Claims for Benchmark Results",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "벤치마크 점수에 표준 오차와 가정을 붙여 보고하고, 측정한 범위를 넘는 결론을 내리지 않도록 주장의 폭을 정하는 분석·보고 관행이다.",
+   "objectives": [
+    "문항마다 출력을 다시 뽑을 때 생기는 변동과 문항 표본이 유한해서 생기는 변동을 나눠 불확실성을 보고하는 이유를 설명할 수 있다",
+    "pass@k·평균 점수·Bradley-Terry 계수 같은 집계 방식과 모델링 가정이 평가 목적에 따라 결론과 신뢰 구간을 어떻게 바꾸는지 비교할 수 있다",
+    "두 모델을 견줄 때 짝지은 차이에 대한 검정과 효과 크기를 함께 보고, 프롬프트 형식처럼 정량화하지 않은 변동 요인을 따로 밝힐 수 있다",
+    "비용 통제가 다른 시스템의 결과를 비용과 성능을 함께 보여 주고, 평가 결과를 벗어난 일반화 주장을 걸러 낼 수 있다"
+   ],
+   "prerequisites": [
+    "ax.governance.ai-risk-measurement"
+   ],
+   "related": [
+    "llm.basics.verified-eval-score",
+    "mlops.eval.llm-benchmark"
+   ],
+   "aliases": [
+    "벤치마크 불확실성",
+    "benchmark uncertainty",
+    "평가 결과 표준 오차",
+    "qualified claims",
+    "벤치마크 오차 막대"
+   ],
+   "refs": [
+    "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.800-2.ipd.pdf"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.c2pa-trust-validation",
+   "title": "C2PA 신뢰 모델과 검증 상태",
+   "en": "C2PA Trust Model and Validation States",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "C2PA가 서명자 신원을 신뢰의 기준으로 삼고 하드·소프트 바인딩과 신뢰 목록으로 매니페스트를 Well-Formed·Valid·Trusted로 판정하는 구조와 그 판정이 보증하지 않는 것이다.",
+   "objectives": [
+    "Well-Formed·Valid·Trusted 매니페스트와 Valid 자산이 각각 어떤 검사(서명·타임스탬프·폐기 확인·서명자 신뢰 앵커)를 통과해야 하는지 구분할 수 있다",
+    "바이트 범위 해시·박스 해시 같은 하드 바인딩과 지문·비가시 워터마크 같은 소프트 바인딩이 각각 무엇을 증명하고 왜 소프트 바인딩을 하드 바인딩 대신 쓸 수 없는지 설명할 수 있다",
+    "C2PA 신뢰 목록·사용자 추가 신뢰 앵커·개인 자격 증명 저장소의 쓰임과 위험을 비교해 검증기 신뢰 설정을 정할 수 있다",
+    "Trusted 판정이 서명자 신원을 확인할 뿐 내용의 참·거짓을 판단하지 않는다는 한계를 근거로 출처 표시 UX를 설계할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.governance.synthetic-content-provenance"
+   ],
+   "related": [
+    "ax.governance.content-credentials",
+    "ax.governance.ai-watermarking",
+    "ops.ci.artifact-attestations"
+   ],
+   "aliases": [
+    "C2PA 신뢰 모델",
+    "C2PA trust model",
+    "C2PA 검증 상태",
+    "C2PA validation",
+    "하드 바인딩",
+    "hard binding"
+   ],
+   "refs": [
+    "https://spec.c2pa.org/specifications/specifications/2.2/specs/C2PA_Specification.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.gpai-systemic-risk",
+   "title": "체계적 위험이 있는 범용 AI 모델의 지정과 추가 의무",
+   "en": "General-Purpose AI Models with Systemic Risk",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "EU AI법이 학습 연산량 추정 기준이나 위원회 지정으로 범용 AI 모델을 체계적 위험 모델로 분류하는 절차와, 그 제공자에게 더해지는 평가·사고 보고·사이버보안 의무다.",
+   "objectives": [
+    "고영향 능력 판단과 10^25 FLOP 추정 기준, 위원회 직권·과학 패널 경고에 의한 지정이 어떻게 다른 경로인지 설명할 수 있다",
+    "기준을 넘은 제공자의 2주 안 통지, 체계적 위험이 없다는 반박 제출, 지정 6개월 뒤 재평가 요청의 조건을 근거로 대응 일정을 세울 수 있다",
+    "적대적 시험을 포함한 모델 평가, 체계적 위험 평가와 완화, 심각한 사고 보고, 모델과 물리 기반 시설의 사이버보안 의무를 제53조의 일반 의무와 구분할 수 있다",
+    "행동 강령·조화 표준·다른 적절한 수단 중 어느 경로로 준수를 보일지 각 경로의 적합 추정 범위를 근거로 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.governance.ai-act-risk-levels"
+   ],
+   "related": [
+    "ax.governance.gpai-model",
+    "ax.governance.capability-threshold"
+   ],
+   "aliases": [
+    "체계적 위험 GPAI",
+    "GPAI with systemic risk",
+    "systemic risk GPAI",
+    "AI Act Article 55",
+    "AI Act Article 51",
+    "시스템적 위험 범용 AI"
+   ],
+   "refs": [
+    "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-51",
+    "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-52",
+    "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-55"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "ax"
   },
   {
@@ -86904,6 +88115,63 @@
    "domain": "ax"
   },
   {
+   "id": "ax.governance.benchmark-contamination",
+   "title": "벤치마크 오염(benchmark contamination)",
+   "en": "Benchmark Contamination",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "모델이 벤치마크의 내용이나 프롬프트 형식을 학습 중에 접해 처음 보는 데이터에서보다 높은 점수를 얻게 되는 평가 결과의 왜곡이다.",
+   "parent": "ax.governance.benchmark-validity-threats",
+   "aliases": [
+    "평가 데이터 오염",
+    "test set contamination",
+    "벤치마크 유출",
+    "학습 데이터 벤치마크 혼입"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.evaluation-cheating",
+   "title": "평가 부정(evaluation cheating)",
+   "en": "Evaluation Cheating",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "모델이 시험 문항을 의도하지 않은 방법, 예컨대 정답을 검색하거나 환경에 남은 해답 파일을 찾거나 채점 코드의 허점을 이용해 풀어 측정 타당성을 무너뜨리는 일이다.",
+   "parent": "ax.governance.benchmark-validity-threats",
+   "related": [
+    "ax.coding.test-tampering"
+   ],
+   "aliases": [
+    "evaluation cheating",
+    "벤치마크 부정행위",
+    "평가 치팅",
+    "에이전트 평가 부정"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.evaluation-awareness",
+   "title": "평가 인식(evaluation awareness)",
+   "en": "Evaluation Awareness",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "입력이 평가 상황이라는 단서에 모델의 행동이 달라지는 현상으로, 실제 사용에는 그런 단서가 없으니 평가 결과의 외부 타당성을 해친다.",
+   "parent": "ax.governance.benchmark-validity-threats",
+   "aliases": [
+    "evaluation awareness",
+    "시험 상황 인식",
+    "평가 상황 인식",
+    "verbalized evaluation awareness"
+   ],
+   "domain": "ax"
+  },
+  {
    "id": "ax.security.ai-bom",
    "title": "AI BOM(ML-BOM)",
    "en": "AI Bill of Materials",
@@ -87094,6 +88362,79 @@
     "관리형 소스 merge",
     "first-wins 관리형 설정",
     "관리형 소스 합치기"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.benchmark-canary-string",
+   "title": "벤치마크 카나리 문자열(canary string)",
+   "en": "Benchmark Canary String",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "벤치마크 데이터에 일부러 넣어 둔 고유한 문자열로, 모델이 이를 알고 있으면 시험 데이터로 학습했다는 노골적인 흔적을 잡을 수 있다.",
+   "parent": "ax.governance.benchmark-validity-threats",
+   "aliases": [
+    "canary string",
+    "벤치마크 카나리",
+    "평가 데이터 카나리 문자열"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.c2pa-soft-binding",
+   "title": "C2PA 소프트 바인딩(soft binding)",
+   "en": "C2PA Soft Binding",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "콘텐츠에서 계산한 지문이나 숨겨 넣은 워터마크로 비트가 달라진 사본에서도 매니페스트를 다시 찾아 잇는 C2PA의 연결 방식으로, 변조 검출용 하드 바인딩을 대신하지 못한다.",
+   "parent": "ax.governance.c2pa-trust-validation",
+   "aliases": [
+    "soft binding",
+    "소프트 바인딩",
+    "C2PA 지문 연결",
+    "soft binding assertion"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.c2pa-trust-list",
+   "title": "C2PA 신뢰 목록(C2PA Trust List)",
+   "en": "C2PA Trust List",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "C2PA가 관리하는 서명용 X.509 인증서 신뢰 앵커 목록으로, 검증기는 이것과 사용자가 더한 앵커로 매니페스트 서명자를 Trusted로 판정할지 정한다.",
+   "parent": "ax.governance.c2pa-trust-validation",
+   "aliases": [
+    "C2PA 신뢰 앵커",
+    "C2PA trust anchors",
+    "C2PA 서명자 신뢰 목록"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.gpai-compute-threshold",
+   "title": "범용 AI 모델의 학습 연산량 추정 기준(10^25 FLOP)",
+   "en": "GPAI Training Compute Threshold (10^25 FLOP)",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "누적 학습 연산량이 10^25 부동소수점 연산을 넘는 범용 AI 모델을 고영향 능력이 있다고 추정하는 EU AI법 제51조의 기준으로, 반박할 수 있고 위원회가 바꿀 수 있다.",
+   "parent": "ax.governance.gpai-systemic-risk",
+   "aliases": [
+    "10^25 FLOP",
+    "1e25 FLOP 기준",
+    "AI법 연산량 기준",
+    "AI Act compute threshold",
+    "고영향 능력 추정"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -105379,6 +106720,144 @@
    "domain": "ml"
   },
   {
+   "id": "ml.nn.ddp-reducer-internals",
+   "title": "DDP 내부: Reducer와 기울기 버킷 통신",
+   "en": "DistributedDataParallel Internals: Reducer and Gradient Buckets",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "DDP가 파라미터별 autograd 훅과 버킷 단위 비동기 all-reduce로 역전파와 통신을 겹치는 방식과 그 설정의 손익을 다룬다.",
+   "objectives": [
+    "DDP가 생성 시 상태를 브로드캐스트하고 Reducer가 파라미터별 autograd 훅으로 버킷 단위 비동기 all-reduce를 시작하는 흐름과, 랭크마다 버킷 순서가 어긋나면 결과가 틀리거나 역전파가 멈추는 이유를 설명할 수 있다",
+    "버킷 크기(bucket_cap_mb)와 파라미터 배정 순서가 역전파·all-reduce 겹침에 주는 영향을 분석할 수 있다",
+    "find_unused_parameters·static_graph·gradient_as_bucket_view가 그래프 탐색 비용과 최대 메모리에 주는 손익을 판단할 수 있다",
+    "no_sync로 기울기 동기화를 미루며 누적하는 방식과, torch.compile이 DDPOptimizer로 버킷 경계에서 그래프를 나눠 통신 겹침을 지키는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.nn.distributed-data-parallel",
+    "ml.nn.autograd-internals"
+   ],
+   "related": [
+    "ml.nn.fsdp-sharding"
+   ],
+   "aliases": [
+    "DDP 내부 구조",
+    "DDP internals",
+    "DDP Reducer",
+    "DDP 통신 겹치기",
+    "DDP allreduce overlap"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/2.15/notes/ddp.html",
+    "https://docs.pytorch.org/docs/2.15/generated/torch.nn.parallel.DistributedDataParallel.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.torch-compile-stack-internals",
+   "title": "torch.compile 컴파일 스택 내부",
+   "en": "torch.compile Internals: TorchDynamo, AOTAutograd and TorchInductor",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "바이트코드에서 FX 그래프를 뽑는 Dynamo, 역전파를 미리 잡는 AOTAutograd, 커널을 만드는 Inductor의 흐름과 컴파일 비용·CUDA 그래프의 손익을 다룬다.",
+   "objectives": [
+    "Dynamo가 FX 그래프·남는 바이트코드·가드를 만들고 AOTAutograd와 Inductor가 순전파·역전파 코드를 생성하는 단계를 설명할 수 있다",
+    "가드 검사와 형상별 특수화가 호출마다의 오버헤드와 재컴파일 비용으로 이어지는 이유를 분석할 수 있다",
+    "지역 컴파일·nested_compile_region·동적 형상이 콜드 스타트 컴파일 시간을 줄이는 손익을 비교할 수 있다",
+    "reduce-overhead 모드의 CUDA 그래프가 CPU 실행 오버헤드를 줄이는 대신 받는 제약을 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.nn.torch-compile-troubleshooting"
+   ],
+   "related": [
+    "mlops.serve.vllm-cudagraph-modes"
+   ],
+   "aliases": [
+    "torch.compile 내부",
+    "torch.compile internals",
+    "TorchInductor",
+    "AOTAutograd",
+    "TorchDynamo"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/2.15/user_guide/torch_compiler/torch.compiler.html",
+    "https://docs.pytorch.org/docs/2.15/user_guide/torch_compiler/compile/programming_model.dynamo_core_concepts.html",
+    "https://docs.pytorch.org/docs/2.15/user_guide/torch_compiler/compile/programming_model.reducing_compile_time.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.hgbt-histogram-internals",
+   "title": "히스토그램 부스팅 내부: 구간화 분할과 뉴턴 부스팅",
+   "en": "Histogram-Based Gradient Boosting Internals",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "특성을 정수 구간으로 한 번만 나눠 히스토그램으로 분할을 찾고 2차 미분으로 잎 값을 정하는 HistGradientBoosting의 내부와 속도·정확도 손익을 다룬다.",
+   "objectives": [
+    "구간화로 정렬을 한 번만 하고 노드 분할 비용이 표본 수에 선형이 되는 이유를 GradientBoosting과 비교해 설명할 수 있다",
+    "max_bins를 줄이면 분할 후보가 줄어 정규화가 되지만 작은 데이터에서 분할점이 거칠어지는 손익을 판단할 수 있다",
+    "기울기와 헤시안으로 잎 값을 구하는 뉴턴 부스팅이 선 탐색을 없애는 원리를 설명할 수 있다",
+    "히스토그램 생성·분할 탐색·예측 중 어느 단계가 OpenMP로 병렬화되는지 구분할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.supervised.hist-gradient-boosting-options",
+    "ml.supervised.cart-tree-internals"
+   ],
+   "related": [
+    "ml.basics.sklearn-parallelism"
+   ],
+   "aliases": [
+    "HGBT 내부",
+    "HistGradientBoosting internals",
+    "뉴턴 부스팅",
+    "Newton boosting",
+    "히스토그램 분할 탐색"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/ensemble.html#why-it-s-faster",
+    "https://scikit-learn.org/stable/modules/ensemble.html#low-level-parallelism"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.basics.sklearn-prediction-latency",
+   "title": "scikit-learn 예측 지연과 처리량의 손익",
+   "en": "Prediction Latency and Throughput in scikit-learn",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "일괄·단건 예측, 입력의 희소 표현, 모델 복잡도, 특성 추출 비용이 scikit-learn 예측 지연과 처리량에 주는 영향을 따지고 줄이는 방법을 다룬다.",
+   "objectives": [
+    "일괄 예측과 단건 예측의 지연 차이를 근거로 서빙 방식을 판단할 수 있다",
+    "희소 비율에 따라 CSR 입력과 밀집 BLAS 연산 중 무엇이 빠른지 판단할 수 있다",
+    "선형 모델·커널 SVM·트리 앙상블의 예측 비용이 무엇에 비례하는지 비교할 수 있다",
+    "유효성 검사 생략·작업 메모리 제한·계수 희소화로 지연을 줄일 때의 위험과 이득을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.sklearn-parallelism"
+   ],
+   "aliases": [
+    "sklearn 예측 지연",
+    "sklearn prediction latency",
+    "sklearn 예측 처리량",
+    "scikit-learn computational performance"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/computing/computational_performance.html"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.training.backprop",
    "title": "역전파와 경사 하강법",
    "en": "Backpropagation and Gradient Descent",
@@ -105671,6 +107150,29 @@
    "domain": "ml"
   },
   {
+   "id": "ml.nn.ddp-gradient-bucket",
+   "title": "DDP 기울기 버킷(bucket_cap_mb)",
+   "en": "DDP Gradient Bucketing",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "DDP가 기울기를 정해진 크기의 묶음으로 모아 묶음마다 all-reduce를 시작하는 단위로, 기본 크기는 25MiB이다.",
+   "parent": "ml.nn.ddp-reducer-internals",
+   "aliases": [
+    "bucket_cap_mb",
+    "DDP 버킷",
+    "DDP gradient bucket",
+    "DDP 버킷 크기"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/2.15/generated/torch.nn.parallel.DistributedDataParallel.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ml"
+  },
+  {
    "id": "ml.eval.equality-of-opportunity",
    "title": "기회 균등(equality of opportunity)",
    "en": "Equality of Opportunity",
@@ -105909,6 +107411,144 @@
    "refs": [
     "https://scikit-learn.org/stable/modules/decomposition.html#incremental-pca",
     "https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.IncrementalPCA.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.ddp-no-sync",
+   "title": "DDP no_sync(동기화 없는 기울기 누적)",
+   "en": "DistributedDataParallel.no_sync",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "딥러닝",
+   "summary": "DDP에서 몇 번의 역전파 동안 프로세스 간 기울기 동기화를 끄고 누적한 뒤, 문맥을 벗어난 첫 역전파에서 한 번에 맞추는 컨텍스트 관리자다.",
+   "parent": "ml.nn.ddp-reducer-internals",
+   "aliases": [
+    "DDP no_sync",
+    "model.no_sync",
+    "DDP 기울기 누적",
+    "DDP gradient accumulation"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/2.15/generated/torch.nn.parallel.DistributedDataParallel.html#torch.nn.parallel.DistributedDataParallel.no_sync"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.dynamo-ddp-optimizer",
+   "title": "TorchDynamo DDPOptimizer(버킷 경계 그래프 분할)",
+   "en": "TorchDynamo DDPOptimizer",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "딥러닝",
+   "summary": "torch.compile이 DDP 모델의 그래프를 버킷 경계에서 나눠 역전파 계산과 all-reduce 통신이 겹치도록 하는 Dynamo 기능이다.",
+   "parent": "ml.nn.ddp-reducer-internals",
+   "related": [
+    "ml.nn.torch-compile-stack-internals"
+   ],
+   "aliases": [
+    "DDPOptimizer",
+    "optimize_ddp",
+    "torch.compile DDP",
+    "DDP와 torch.compile"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/2.15/notes/ddp.html#torchdynamo-ddpoptimizer"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.cudagraph-trees",
+   "title": "CUDAGraph Trees(reduce-overhead 모드)",
+   "en": "CUDAGraph Trees",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "딥러닝",
+   "summary": "torch.compile의 reduce-overhead 모드가 실행 경로마다 CUDA 그래프를 녹화해 메모리 풀 하나를 함께 쓰며 재생하는 방식이다.",
+   "parent": "ml.nn.torch-compile-stack-internals",
+   "related": [
+    "mlops.serve.vllm-cudagraph-modes"
+   ],
+   "aliases": [
+    "CUDA 그래프 트리",
+    "reduce-overhead 모드",
+    "mode=\"reduce-overhead\"",
+    "cudagraph_mark_step_begin"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/2.15/user_guide/torch_compiler/torch.compiler_cudagraph_trees.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.torch-regional-compilation",
+   "title": "torch.compile 지역 컴파일(반복 블록만 컴파일)",
+   "en": "Regional Compilation in torch.compile",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "딥러닝",
+   "summary": "트랜스포머 블록처럼 반복되는 부분만 컴파일해 재사용함으로써 모델 전체를 컴파일할 때보다 콜드 스타트 컴파일 시간을 줄이는 방법이다.",
+   "parent": "ml.nn.torch-compile-stack-internals",
+   "aliases": [
+    "regional compilation",
+    "torch.compile 지역 컴파일",
+    "블록 단위 torch.compile",
+    "반복 블록 컴파일"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/2.15/user_guide/torch_compiler/compile/programming_model.reducing_compile_time.html#regional-compilation"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.hgbt-max-bins",
+   "title": "HistGradientBoosting max_bins(특성 구간 수)",
+   "en": "max_bins in HistGradientBoosting",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "학습 전에 각 특성을 나눌 정수 구간의 최대 개수로, 최대 255이고 결측값용 구간 하나가 따로 붙는다.",
+   "parent": "ml.supervised.hgbt-histogram-internals",
+   "aliases": [
+    "max_bins",
+    "HGBT max_bins",
+    "HGBT 구간 수"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.HistGradientBoostingClassifier.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.basics.sklearn-assume-finite",
+   "title": "scikit-learn assume_finite(유한값 검사 생략)",
+   "en": "assume_finite in scikit-learn",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "입력 전체를 훑는 NaN·무한대 검사를 건너뛰어 예측 지연을 줄이지만 잘못된 입력이면 오류 대신 충돌할 수 있게 하는 scikit-learn 설정이다.",
+   "parent": "ml.basics.sklearn-prediction-latency",
+   "aliases": [
+    "assume_finite",
+    "SKLEARN_ASSUME_FINITE",
+    "sklearn config_context assume_finite"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/generated/sklearn.config_context.html"
    ],
    "domain": "ml"
   },

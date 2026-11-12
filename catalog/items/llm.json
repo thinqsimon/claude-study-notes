@@ -9015,6 +9015,72 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "llm.internals.positional-encoding",
+    "title": "위치 인코딩과 길이 외삽: 절대 위치·RoPE·ALiBi",
+    "en": "Positional Encoding and Length Extrapolation",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM 내부",
+    "summary": "어텐션에 순서 정보를 주는 절대 위치 임베딩과 RoPE·ALiBi 같은 상대 위치 방식이 학습 길이보다 긴 입력에서 어떻게 다르게 버티는지와 RoPE 늘리기 설정의 손익을 비교한다.",
+    "objectives": [
+      "위치 정보가 없으면 셀프 어텐션이 단어 순서를 구분하지 못하는 이유와 절대 위치 임베딩이 긴 입력·학습 길이 밖에서 약한 이유를 설명할 수 있다",
+      "RoPE가 쿼리·키 벡터를 위치만큼 회전시키고 ALiBi가 어텐션 점수에 거리 비례 음수를 더하는 방식을 비교해, 둘의 길이 외삽 차이를 근거로 설명할 수 있다",
+      "linear·dynamic·yarn 같은 RoPE 늘리기 방식과 factor·original_max_position_embeddings 설정이 컨텍스트를 몇 배 늘리는지 읽고, 학습 길이를 넘겨 쓸 때의 위험을 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.transformer.attention"
+    ],
+    "related": [
+      "llm.internals.sparse-attention",
+      "llm.basics.context-window"
+    ],
+    "aliases": [
+      "위치 인코딩",
+      "positional encoding",
+      "위치 임베딩",
+      "positional embeddings",
+      "상대 위치 인코딩",
+      "길이 외삽"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/llm_tutorial_optimization",
+      "https://huggingface.co/docs/transformers/main/en/internal/rope_utils"
+    ]
+  },
+  {
+    "id": "llm.internals.kv-head-sharing",
+    "title": "키·값 헤드 공유 어텐션의 손익: MQA·GQA",
+    "en": "Key-Value Head Sharing: MQA and GQA",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM 내부",
+    "summary": "여러 쿼리 헤드가 키·값 헤드를 함께 쓰게 해 KV 캐시 메모리와 디코드 단계 메모리 이동을 줄이는 MQA·GQA가 품질과 무엇을 맞바꾸는지 분석한다.",
+    "objectives": [
+      "층 수·헤드 수·헤드 차원·시퀀스 길이로 KV 캐시 크기를 어림하고, 긴 입력에서 그 크기가 모델 가중치의 절반 가까이까지 커질 수 있음을 계산할 수 있다",
+      "MQA가 키·값 헤드를 하나로 줄여 캐시 메모리와 디코드 단계의 메모리 대역폭 병목을 줄이지만, KV 캐시를 쓰지 않는 한 번의 순전파 최대 메모리는 그대로인 이유를 설명할 수 있다",
+      "GQA가 키·값 헤드를 몇 개 그룹으로 남겨 MQA의 품질 저하를 줄이는 손익과 기존 체크포인트를 적은 계산으로 업트레이닝할 수 있다는 점을 근거로 모델 구조를 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.internals.inference-phases"
+    ],
+    "related": [
+      "llm.internals.kv-cache-strategies",
+      "llm.internals.attention-backends"
+    ],
+    "aliases": [
+      "multi-query attention",
+      "멀티 쿼리 어텐션",
+      "MQA",
+      "키·값 헤드 공유",
+      "KV 헤드 줄이기"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/llm_tutorial_optimization"
+    ]
+  },
+  {
     "id": "llm.internals.structured-decoding",
     "title": "구조화 출력의 보장과 한계",
     "en": "Guarantees of Structured Output",
@@ -9205,6 +9271,116 @@
     ]
   },
   {
+    "id": "llm.internals.tokenizer-pipeline",
+    "title": "토크나이저 파이프라인의 내부: 정규화·사전 토큰화·모델·후처리",
+    "en": "Tokenizer Pipeline Internals",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "글이 정규화·사전 토큰화·하위 단어 모델·후처리를 차례로 거쳐 토큰 ID가 되는 과정과 단계마다 고른 방식이 복원 가능성·미등록 토큰·위치 정렬에 주는 영향을 분석한다.",
+    "objectives": [
+      "정규화·사전 토큰화·모델·후처리 네 단계가 각각 무엇을 바꾸고, 정규화 중에도 원문 위치 정렬을 유지해야 하는 이유를 설명할 수 있다",
+      "BERT·GPT-2·T5(SentencePiece)의 사전 토큰화가 공백과 구두점을 다루는 방식을 비교해 어느 토크나이저가 원문으로 되돌릴 수 있는지 판단할 수 있다",
+      "BPE·WordPiece·Unigram이 작은 어휘에서 합쳐 가는지 큰 어휘에서 줄여 가는지와, 학습한 규칙을 차례로 적용하는지 확률이 가장 높은 분할을 고르는지를 비교할 수 있다",
+      "바이트 수준 사전 토큰화가 256자 기본 알파벳으로 미등록 토큰을 없애는 대신 비ASCII 글자를 읽기 어려운 조각으로 만드는 손익을 분석할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.internals.tokenization-sampling",
+      "llm.basics.train-new-tokenizer"
+    ],
+    "related": [
+      "llm.basics.subword-tokenization",
+      "llm.basics.offset-mapping"
+    ],
+    "aliases": [
+      "토크나이저 파이프라인",
+      "tokenization pipeline",
+      "사전 토큰화",
+      "pre-tokenization",
+      "토크나이저 정규화",
+      "Tokenizers 라이브러리 구성 요소"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter6/4",
+      "https://huggingface.co/learn/llm-course/chapter6/8",
+      "https://huggingface.co/docs/tokenizers/components"
+    ]
+  },
+  {
+    "id": "llm.internals.assisted-decoding",
+    "title": "Transformers 보조 디코딩의 방식과 손익",
+    "en": "Assisted Decoding in Transformers",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "도우미가 후보 토큰을 먼저 내고 본 모델이 한 번의 순전파로 확인하는 Transformers의 보조 디코딩 방식들을 추가 메모리·적용 조건·출력 분포 보장으로 비교한다.",
+    "objectives": [
+      "후보 토큰을 본 모델이 한 번에 검증해 비싼 순전파 횟수를 줄이는 원리와, 거절된 자리에서 일반 생성으로 돌아가는 흐름을 설명할 수 있다",
+      "보조 모델·프롬프트 조회·자기 추측(early exit)·MTP 층 방식을 추가 메모리, 필요한 체크포인트, 맞는 작업으로 비교해 고를 수 있다",
+      "토크나이저가 다른 보조 모델을 쓸 때 다시 인코딩과 최장 공통 부분열로 정렬하는 이유와 배치 입력을 받지 못하는 제약을 설명할 수 있다",
+      "정적 앙상블 검증이 수락률을 올리는 대신 본 모델과 같은 출력 분포 보장을 포기하는 손익을 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.internals.inference-phases",
+      "llm.internals.generate-decoding"
+    ],
+    "related": [
+      "mlops.serve.speculative-decoding",
+      "mlops.serve.vllm-speculative-decoding"
+    ],
+    "aliases": [
+      "assisted decoding",
+      "assisted generation",
+      "보조 생성",
+      "assistant_model",
+      "Transformers 추측 디코딩",
+      "보조 모델 디코딩"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/assisted_decoding"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.internals.sft-packing-tradeoffs",
+    "title": "SFT 패킹 전략과 패딩 없는 배치의 손익",
+    "en": "SFT Packing Strategies and Padding-Free Batching",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "길이가 들쭉날쭉한 학습 예시를 자르기·패킹·패딩 없는 배치로 처리할 때 버려지는 토큰, 섞이는 예시, 메모리 사용이 어떻게 갈리는지 TRL 설정 기준으로 비교한다.",
+    "objectives": [
+      "배치 안 가장 긴 예시에 맞춘 패딩이 메모리를 낭비하는 이유와 max_length를 너무 작게·크게 잡을 때 각각 잃는 것을 길이 분포로 판단할 수 있다",
+      "bfd·bfd_split·wrapped 패킹이 넘친 토큰을 버리는지, 나누는지, 예시 경계를 끊는지 비교하고 그 차이가 학습 품질에 주는 영향을 설명할 수 있다",
+      "패딩 없는 배치가 예시를 온전히 둔 채 배치를 한 줄로 펴서 패딩을 없애는 원리와 FlashAttention 계열 어텐션이 필요한 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.finetune.sft-trainer",
+      "llm.internals.attention-backends"
+    ],
+    "related": [
+      "mlops.finetune.packing",
+      "llm.internals.preference-alignment"
+    ],
+    "aliases": [
+      "padding-free",
+      "padding_free",
+      "패딩 없는 배치",
+      "SFT 패킹 전략",
+      "학습 시퀀스 패킹 손익"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/trl/main/en/reducing_memory_usage",
+      "https://huggingface.co/docs/trl/main/en/sft_trainer"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "llm.internals.kv-cache",
     "title": "KV 캐시",
     "en": "KV Cache",
@@ -9283,6 +9459,50 @@
     ],
     "refs": [
       "https://huggingface.co/docs/transformers/perplexity"
+    ]
+  },
+  {
+    "id": "llm.internals.rope-scaling",
+    "title": "RoPE 스케일링(rope_parameters)",
+    "en": "RoPE Scaling",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM 내부",
+    "summary": "RoPE 모델 설정의 rope_type과 factor를 바꿔 회전 주파수를 조정해서 사전 학습 때보다 긴 컨텍스트를 받게 하는 Transformers 설정이다.",
+    "parent": "llm.internals.positional-encoding",
+    "aliases": [
+      "RoPE scaling",
+      "rope_parameters",
+      "rope_scaling",
+      "YaRN 스케일링",
+      "NTK-aware scaling",
+      "RoPE 늘리기"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/main/en/internal/rope_utils"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.internals.grouped-query-attention",
+    "title": "그룹 쿼리 어텐션(GQA)",
+    "en": "Grouped-Query Attention",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM 내부",
+    "summary": "쿼리 헤드 여러 개가 키·값 헤드 하나를 그룹으로 나눠 써서 MQA에 가까운 메모리 절약을 얻으면서 품질 손실은 줄이는 어텐션 구조다.",
+    "parent": "llm.internals.kv-head-sharing",
+    "aliases": [
+      "GQA",
+      "grouped-query attention",
+      "그룹드 쿼리 어텐션",
+      "GQA 업트레이닝"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/llm_tutorial_optimization"
     ]
   },
   {
@@ -9505,5 +9725,114 @@
     "refs": [
       "https://huggingface.co/learn/llm-course/chapter1/6"
     ]
+  },
+  {
+    "id": "llm.internals.byte-level-bpe",
+    "title": "바이트 수준 BPE(ByteLevel 사전 토큰화)",
+    "en": "Byte-Level BPE",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "글을 바이트로 바꿔 보이는 글자 256개에 대응시킨 뒤 BPE를 돌려, 어떤 글자도 미등록 토큰 없이 나타내는 GPT-2 방식의 토큰화다.",
+    "parent": "llm.internals.tokenizer-pipeline",
+    "aliases": [
+      "byte-level BPE",
+      "ByteLevel pre-tokenizer",
+      "Ġ 공백 표시",
+      "GPT-2 토크나이저 방식",
+      "바이트 단위 BPE"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/tokenizers/components",
+      "https://huggingface.co/learn/llm-course/chapter6/8"
+    ]
+  },
+  {
+    "id": "llm.internals.template-processing",
+    "title": "TemplateProcessing(특수 토큰 후처리 템플릿)",
+    "en": "TemplateProcessing Post-Processor",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "토큰화가 끝난 단일 문장과 문장 쌍 앞뒤에 [CLS]·[SEP] 같은 특수 토큰을 넣고 구간마다 token type ID를 매기는 Tokenizers 후처리기다.",
+    "parent": "llm.internals.tokenizer-pipeline",
+    "aliases": [
+      "TemplateProcessing",
+      "토크나이저 후처리기",
+      "post-processor 템플릿",
+      "특수 토큰 템플릿"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/tokenizers/components",
+      "https://huggingface.co/learn/llm-course/chapter6/8"
+    ]
+  },
+  {
+    "id": "llm.internals.prompt-lookup-decoding",
+    "title": "프롬프트 조회 디코딩(prompt lookup decoding)",
+    "en": "Prompt Lookup Decoding",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "보조 모델 없이 프롬프트에서 겹치는 n-gram을 찾아 그 뒤 토큰을 후보로 내놓아, 요약·번역처럼 입력을 많이 따라 쓰는 생성을 빠르게 하는 방식이다.",
+    "parent": "llm.internals.assisted-decoding",
+    "aliases": [
+      "prompt lookup decoding",
+      "prompt_lookup_num_tokens",
+      "프롬프트 n-gram 조회",
+      "프롬프트 룩업 디코딩"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/assisted_decoding"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.internals.universal-assisted-decoding",
+    "title": "범용 보조 디코딩(UAD)",
+    "en": "Universal Assisted Decoding",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "본 모델과 토크나이저가 다른 작은 모델을 보조로 쓰기 위해 후보를 다시 인코딩하고 최장 공통 부분열로 이어 붙이는 Transformers 보조 디코딩이다.",
+    "parent": "llm.internals.assisted-decoding",
+    "aliases": [
+      "universal assisted decoding",
+      "UAD",
+      "assistant_tokenizer",
+      "다른 토크나이저 보조 모델"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/assisted_decoding"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.internals.bfd-packing",
+    "title": "최적 맞춤 감소 패킹(BFD packing)",
+    "en": "Best-Fit Decreasing Packing",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "학습 예시들을 max_length 길이의 행에 빈칸이 적게 남도록 나눠 담는 TRL의 기본 패킹 방식으로, 넘친 토큰은 버리거나 bfd_split로 나눈다.",
+    "parent": "llm.internals.sft-packing-tradeoffs",
+    "aliases": [
+      "BFD 패킹",
+      "best-fit decreasing",
+      "bfd_split",
+      "packing_strategy=\"bfd\""
+    ],
+    "refs": [
+      "https://huggingface.co/docs/trl/main/en/reducing_memory_usage"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   }
 ]
