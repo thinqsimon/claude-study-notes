@@ -8169,6 +8169,161 @@
     ]
   },
   {
+    "id": "cs.os.fair-scheduler-internals",
+    "title": "리눅스 공정 스케줄러의 내부: CFS와 EEVDF",
+    "en": "Linux Fair Scheduler Internals: CFS and EEVDF",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "가상 실행 시간으로 공정하게 CPU를 나누던 CFS와, lag와 가상 마감 시각으로 다음 작업을 고르는 EEVDF의 동작과 손익이다.",
+    "objectives": [
+      "CFS가 vruntime 순 레드블랙 트리에서 가장 왼쪽 작업을 고르고 작은 여유 폭으로 지나친 선점을 막는 방식을 설명할 수 있다",
+      "EEVDF가 lag로 적격 작업을 가리고 가상 마감 시각이 가장 이른 작업을 실행하는 방식을 CFS와 비교할 수 있다",
+      "짧은 slice를 요청한 지연 민감 작업이 먼저 실행되는 이유와 그 대가를 따질 수 있다",
+      "cgroup의 cpu.shares 값으로 그룹 사이 CPU 몫이 어떻게 나뉘는지 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.os.multitasking"
+    ],
+    "aliases": [
+      "CFS 스케줄러",
+      "Completely Fair Scheduler",
+      "EEVDF 스케줄러",
+      "리눅스 CPU 스케줄러 내부"
+    ],
+    "refs": [
+      "https://docs.kernel.org/scheduler/sched-design-CFS.html",
+      "https://docs.kernel.org/scheduler/sched-eevdf.html"
+    ]
+  },
+  {
+    "id": "cs.os.fs-journaling",
+    "title": "파일 시스템 저널링: 커밋·체크포인트와 데이터 모드",
+    "en": "File System Journaling: Commit, Checkpoint and Data Modes",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "갱신을 먼저 저널에 쓰고 커밋한 뒤 제자리에 옮겨 크래시 뒤 빠르게 복구하는 방식과, ext4 데이터 모드별 일관성·성능 손익이다.",
+    "objectives": [
+      "저널 쓰기·커밋 블록·체크포인트 순서와 크래시 뒤 커밋된 트랜잭션만 재생하는 복구를 설명할 수 있다",
+      "ext4의 data=journal·ordered·writeback이 크래시 뒤 파일 내용과 성능에 주는 차이를 비교할 수 있다",
+      "commit 주기를 늘리거나 barrier를 끌 때 얻는 성능과 잃을 수 있는 최근 변경을 따질 수 있다",
+      "블록이 재사용될 때 revoke 레코드가 옛 저널 내용의 잘못된 재생을 막는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.os.files-directories"
+    ],
+    "related": [
+      "dev.robust.crash-consistency",
+      "db.internals.wal-replication"
+    ],
+    "aliases": [
+      "파일 시스템 저널링",
+      "filesystem journaling",
+      "ext4 저널링",
+      "저널링 파일 시스템",
+      "journaling file system"
+    ],
+    "refs": [
+      "https://docs.kernel.org/admin-guide/ext4.html",
+      "https://docs.kernel.org/filesystems/ext4/journal.html"
+    ]
+  },
+  {
+    "id": "cs.dsa.open-addressing-probing",
+    "title": "개방 주소 해시 테이블의 탐사와 군집",
+    "en": "Probing and Clustering in Open-Addressed Hash Tables",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "자료구조",
+    "summary": "모든 항목을 표 안에 두고 탐사 순서로 빈 칸을 찾는 해시 테이블이 군집과 삭제 때문에 치르는 비용을 체이닝과 비교한다.",
+    "objectives": [
+      "탐사 순서로 빈 칸을 찾는 방식과 연결 리스트로 충돌을 모으는 체이닝을 적재율과 군집 면에서 비교할 수 있다",
+      "선형 탐사에서 1차 군집이 생겨 적재율이 중간만 되어도 검색이 느려지는 이유를 설명할 수 있다",
+      "탐사 표에서 항목을 지울 때 빈 칸을 만들면 안 되는 이유와 삭제 표시로 칸을 재사용하는 방식을 설명할 수 있다",
+      "체이닝에서 리스트를 복잡한 구조로 바꾸기보다 표를 키워 적재율을 낮추는 편이 나은 이유를 따질 수 있다"
+    ],
+    "prerequisites": [
+      "cs.dsa.hash-table"
+    ],
+    "related": [
+      "cs.dsa.hash-collision"
+    ],
+    "aliases": [
+      "해시 탐사 방식",
+      "hash table probing",
+      "탐사 순서",
+      "probe sequence"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/openAddressing.html",
+      "https://xlinux.nist.gov/dads/HTML/linearprobng.html",
+      "https://xlinux.nist.gov/dads/HTML/chaining.html"
+    ]
+  },
+  {
+    "id": "cs.data.float-summation",
+    "title": "부동소수점 합산 오차와 정확한 합",
+    "en": "Floating-Point Summation Error and Exact Summation",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "연산마다 생기는 반올림이 덧셈을 거듭하며 쌓이고 큰 값이 상쇄될 때 자릿수를 잃는 원리와, 한 번만 반올림하는 합산의 손익이다.",
+    "objectives": [
+      "연산마다 약 2^-53 수준의 반올림이 쌓여 큰 값이 서로 상쇄되는 합에서 단순 덧셈이 맞는 자릿수를 잃는 이유를 설명할 수 있다",
+      "sum과 math.fsum의 반올림 횟수 차이를 근거로 정확도와 속도의 손익을 비교할 수 있다",
+      "math.ulp와 math.nextafter로 계산 결과가 정확한 값에서 몇 ULP 떨어졌는지 잴 수 있다",
+      "math.fma가 곱셈과 덧셈을 한 번만 반올림해 정확도를 높이는 원리를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.data.float-error"
+    ],
+    "aliases": [
+      "math.fsum",
+      "부동소수점 누적 오차",
+      "floating-point summation error",
+      "부동소수점 합산 오차"
+    ],
+    "refs": [
+      "https://docs.python.org/3/tutorial/floatingpoint.html",
+      "https://docs.python.org/3/library/math.html"
+    ]
+  },
+  {
+    "id": "cs.dist.raft-consensus",
+    "title": "Raft 합의: 리더 선출과 로그 복제",
+    "en": "Raft Consensus Algorithm",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "분산 시스템",
+    "summary": "여러 서버가 복제된 로그의 명령 순서에 합의하도록 리더 선출·로그 복제·안전성을 나눠 설계한 합의 알고리즘이다.",
+    "objectives": [
+      "복제된 상태 기계들이 같은 순서의 명령 로그에 합의해야 같은 결과를 내는 이유를 설명할 수 있다",
+      "과반이 살아 있어야 진행하므로 5대 중 2대 장애까지 견디고, 과반을 잃으면 틀린 답 대신 멈추는 손익을 따질 수 있다",
+      "Raft가 합의를 리더 선출·로그 복제·안전성으로 나눈 구조를 Paxos와 비교할 수 있다",
+      "구성원을 바꿀 때 겹치는 과반을 써서 안전을 지키는 이유를 설명할 수 있다"
+    ],
+    "related": [
+      "db.cache.sentinel-quorum",
+      "db.nosql.write-concern-majority"
+    ],
+    "aliases": [
+      "Raft 알고리즘",
+      "Raft consensus",
+      "분산 합의 알고리즘",
+      "복제 로그 합의"
+    ],
+    "refs": [
+      "https://www.usenix.org/conference/atc14/technical-sessions/presentation/ongaro",
+      "https://raft.github.io/"
+    ]
+  },
+  {
     "id": "cs.os.page-replacement",
     "title": "페이지 교체 정책: LRU 근사와 스래싱",
     "en": "Page Replacement Policies: Approximating LRU and Thrashing",
@@ -8256,6 +8411,26 @@
     ]
   },
   {
+    "id": "cs.data.ulp",
+    "title": "ULP(마지막 자리 단위)",
+    "en": "Unit in the Last Place (ULP)",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "부동소수점 수의 가장 낮은 비트가 나타내는 크기로, 계산 오차를 그 수의 칸 몇 개만큼인지로 잴 때 쓴다.",
+    "parent": "cs.data.float-summation",
+    "aliases": [
+      "ULP",
+      "unit in the last place",
+      "math.ulp",
+      "마지막 자리 단위"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/math.html"
+    ]
+  },
+  {
     "id": "cs.os.multi-level-page-table",
     "title": "다단계 페이지 테이블",
     "en": "Multi-level Page Table",
@@ -8323,6 +8498,127 @@
       "클록 교체",
       "second chance",
       "두 번째 기회 알고리즘"
+    ]
+  },
+  {
+    "id": "cs.os.vruntime",
+    "title": "가상 실행 시간(vruntime)",
+    "en": "Virtual Runtime (vruntime)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "작업이 실제로 쓴 CPU 시간을 정규화한 값으로, CFS는 이 값이 가장 작은 작업을 다음에 실행한다.",
+    "parent": "cs.os.fair-scheduler-internals",
+    "aliases": [
+      "vruntime",
+      "가상 실행 시간",
+      "CFS vruntime",
+      "p->se.vruntime"
+    ],
+    "refs": [
+      "https://docs.kernel.org/scheduler/sched-design-CFS.html"
+    ]
+  },
+  {
+    "id": "cs.os.eevdf-lag",
+    "title": "EEVDF 지연값(lag)",
+    "en": "EEVDF Lag",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "작업이 공정한 몫보다 CPU를 덜 받았는지 더 받았는지 나타내는 값으로, 0 이상이면 EEVDF가 실행 후보로 삼는다.",
+    "parent": "cs.os.fair-scheduler-internals",
+    "aliases": [
+      "EEVDF lag",
+      "EEVDF 지연값",
+      "스케줄러 lag 값"
+    ],
+    "refs": [
+      "https://docs.kernel.org/scheduler/sched-eevdf.html"
+    ]
+  },
+  {
+    "id": "cs.os.ordered-journaling",
+    "title": "ordered 저널링(data=ordered)",
+    "en": "Ordered (Metadata) Journaling",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "메타데이터만 저널에 쓰되 관련 데이터 블록을 먼저 제자리에 쓴 뒤 커밋하는 방식으로, ext4의 기본 데이터 모드다.",
+    "parent": "cs.os.fs-journaling",
+    "aliases": [
+      "data=ordered",
+      "ordered 모드",
+      "메타데이터 저널링",
+      "metadata journaling",
+      "ext4 ordered 모드"
+    ],
+    "refs": [
+      "https://docs.kernel.org/admin-guide/ext4.html"
+    ]
+  },
+  {
+    "id": "cs.dsa.linear-probing",
+    "title": "선형 탐사(linear probing)",
+    "en": "Linear Probing",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "자료구조",
+    "summary": "충돌한 항목을 배열에서 바로 다음 빈 칸에 넣는 개방 주소 방식으로, 단순하지만 1차 군집에 약하다.",
+    "parent": "cs.dsa.open-addressing-probing",
+    "aliases": [
+      "linear probing",
+      "선형 조사",
+      "선형 탐사법"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/linearprobng.html"
+    ]
+  },
+  {
+    "id": "cs.dsa.primary-clustering",
+    "title": "1차 군집(primary clustering)",
+    "en": "Primary Clustering",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "자료구조",
+    "summary": "해시 위치 근처에 채워진 칸이 길게 이어져 검색이 그 줄을 따라가느라 느려지는 현상이다.",
+    "parent": "cs.dsa.open-addressing-probing",
+    "related": [
+      "cs.dsa.linear-probing"
+    ],
+    "aliases": [
+      "primary clustering",
+      "1차 클러스터링",
+      "해시 1차 군집"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/primaryClustering.html"
+    ]
+  },
+  {
+    "id": "cs.data.fused-multiply-add",
+    "title": "융합 곱셈-덧셈(FMA)",
+    "en": "Fused Multiply-Add (FMA)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "x*y+z를 무한 정밀도로 계산한 듯 한 번만 반올림하는 IEEE 754 연산으로, 따로 곱하고 더할 때보다 대개 정확하다.",
+    "parent": "cs.data.float-summation",
+    "aliases": [
+      "FMA 연산",
+      "fused multiply-add",
+      "math.fma",
+      "fusedMultiplyAdd"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/math.html"
     ]
   }
 ]

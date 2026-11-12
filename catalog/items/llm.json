@@ -8909,6 +8909,112 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "llm.api.conversation-state-tradeoffs",
+    "title": "대화 상태와 추론 항목 보존의 손익",
+    "en": "Conversation State and Reasoning Item Retention Trade-offs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "대화를 서버에 맡길지 매번 다시 보낼지에 따라 추론 항목이 이어지는 조건과 토큰 비용, 보존 방식이 어떻게 달라지는지 따진다.",
+    "objectives": [
+      "store를 끈 무상태 호출이나 ZDR 조직에서 추론 항목의 암호화된 내용을 다음 요청에 돌려보내 추론을 이어 가는 흐름을 설명할 수 있다",
+      "추론 토큰이 컨텍스트 창과 max_output_tokens를 차지해 보이는 답 없이 status가 incomplete로 끝나는 경로를 분석하고 여유 토큰을 정할 수 있다",
+      "previous_response_id·Conversations API 같은 서버 저장 방식과 출력 항목 전체를 다시 보내는 방식에서 추론 항목이 보존되는 조건과 이전 입력 토큰 과금을 비교할 수 있다",
+      "추론 항목 앞의 이력을 고치면 새 모델이 그 추론을 버릴 수 있다는 점을 근거로 이력 편집 방식을 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.multi-turn",
+      "llm.api.thinking-effort"
+    ],
+    "related": [
+      "llm.internals.context-management",
+      "llm.security.data-residency-retention"
+    ],
+    "aliases": [
+      "대화 상태 손익",
+      "conversation state trade-offs",
+      "무상태 Responses 호출",
+      "추론 항목 보존",
+      "stateless reasoning"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/conversation-state",
+      "https://developers.openai.com/api/docs/guides/reasoning"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.internals.attention-backends",
+    "title": "어텐션 백엔드의 내부와 손익",
+    "en": "Attention Backends Trade-offs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM 내부",
+    "summary": "같은 어텐션 계산을 eager·SDPA·FlashAttention·flex_attention이 어떻게 다르게 수행해 속도·메모리·마스크 호환이 갈리는지 다룬다.",
+    "objectives": [
+      "어텐션 백엔드들이 같은 계산을 하면서 전체 어텐션 행렬을 메모리에 만드는지와 메모리 이동량에서 갈린다는 점을 설명할 수 있다",
+      "attn_implementation과 set_attn_implementation으로 백엔드를 바꾸고, 멀티모달 모델에서 백본마다 다른 백엔드를 지정할 이유를 판단할 수 있다",
+      "백엔드마다 받는 마스크 형식이 달라 직접 만든 4D 마스크나 마스크 함수를 등록하지 않은 커스텀 백엔드에서 제약이 조용히 빠지는 장애를 분석할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.internals.inference-phases"
+    ],
+    "related": [
+      "ml.transformer.attention",
+      "llm.basics.attention-mask"
+    ],
+    "aliases": [
+      "attn_implementation",
+      "어텐션 구현 선택",
+      "attention backend",
+      "AttentionInterface",
+      "Transformers 어텐션 백엔드"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/attention_interface"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.internals.kv-cache-strategies",
+    "title": "KV 캐시 전략의 손익: 동적·고정·오프로딩·양자화",
+    "en": "KV Cache Strategies Trade-offs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM 내부",
+    "summary": "Transformers의 동적·고정 크기·오프로딩·양자화 캐시가 메모리, 생성 속도, 컴파일 호환에서 무엇을 주고받는지 비교한다.",
+    "objectives": [
+      "DynamicCache·StaticCache·QuantizedCache를 예상 메모리 사용량과 torch.compile 호환성으로 비교해 고를 수 있다",
+      "고정 크기 캐시가 디코드 단계 컴파일을 쉽게 하는 대신 마스킹된 자리만큼 어텐션 계산을 낭비하는 손익을 요청 길이 분포로 판단할 수 있다",
+      "캐시 오프로딩과 캐시 양자화가 메모리를 아끼는 대신 처리량·지연을 잃는 조건을 설명하고 메모리 부족 대응 순서를 정할 수 있다",
+      "슬라이딩 윈도·청크 어텐션 층에서 캐시가 창 크기 이상 자라지 않고 crop 되감기가 제한되는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.internals.inference-phases"
+    ],
+    "related": [
+      "mlops.serve.vllm-fp8-kv-cache",
+      "llm.internals.prompt-caching"
+    ],
+    "aliases": [
+      "cache_implementation",
+      "Transformers 캐시 전략",
+      "KV cache strategies",
+      "캐시 클래스 고르기"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/kv_cache",
+      "https://huggingface.co/docs/transformers/cache_explanation"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "llm.internals.structured-decoding",
     "title": "구조화 출력의 보장과 한계",
     "en": "Guarantees of Structured Output",
@@ -9041,6 +9147,64 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "llm.internals.fixed-length-perplexity",
+    "title": "고정 길이 모델의 퍼플렉시티 계산",
+    "en": "Perplexity of Fixed-Length Models",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "입력 길이가 정해진 언어 모델에서 퍼플렉시티를 잴 때 문서를 나누는 방식과 스트라이드가 값과 계산량을 어떻게 바꾸는지 다룬다.",
+    "objectives": [
+      "퍼플렉시티를 토큰당 평균 음의 로그 가능도의 지수로 풀고, 토크나이저가 다른 모델끼리 값을 바로 비교하면 안 되는 이유를 설명할 수 있다",
+      "겹치지 않는 조각으로 계산하면 예측마다 문맥이 짧아져 값이 나빠지는 이유와 슬라이딩 윈도 방식의 계산 비용을 비교할 수 있다",
+      "스트라이드 크기로 정확도와 계산량의 손익을 정하고, 문맥으로만 넣은 토큰의 레이블을 -100으로 가리는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.internals.tokenization-sampling"
+    ],
+    "aliases": [
+      "슬라이딩 윈도 퍼플렉시티",
+      "strided perplexity",
+      "stride 퍼플렉시티 평가",
+      "fixed-length perplexity"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/perplexity"
+    ]
+  },
+  {
+    "id": "llm.internals.sparse-attention",
+    "title": "긴 입력을 위한 희소 어텐션: Longformer·Reformer",
+    "en": "Sparse Attention for Long Inputs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "길이의 제곱으로 자라는 전체 어텐션 대신 일부 토큰 쌍만 계산해 긴 입력을 다루는 방식과 그때 잃는 것을 비교한다.",
+    "objectives": [
+      "전체 어텐션의 연산량이 입력 길이의 제곱으로 자라 긴 글에서 병목이 되는 이유를 설명할 수 있다",
+      "Longformer의 지역 창과 전역 토큰 방식, Reformer의 해시 기반 LSH 어텐션이 무엇을 버리고 무엇을 얻는지 비교할 수 있다",
+      "축 분해 위치 인코딩이 긴 입력에서 위치 인코딩 행렬 크기를 줄이는 원리를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.transformer.attention"
+    ],
+    "related": [
+      "llm.internals.attention-backends"
+    ],
+    "aliases": [
+      "sparse attention",
+      "희소 어텐션",
+      "Longformer 지역 어텐션",
+      "긴 시퀀스 어텐션",
+      "axial positional encoding"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter1/6"
+    ]
+  },
+  {
     "id": "llm.internals.kv-cache",
     "title": "KV 캐시",
     "en": "KV Cache",
@@ -9055,6 +9219,70 @@
       "KV cache",
       "키·값 캐시",
       "attention cache"
+    ]
+  },
+  {
+    "id": "llm.api.encrypted-reasoning",
+    "title": "암호화된 추론 항목(encrypted_content)",
+    "en": "Encrypted Reasoning Items",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "서버에 저장하지 않는 호출에서 추론 항목에 실려 오는 암호화된 내용으로, 다음 요청에 그대로 돌려보내야 모델이 앞선 추론을 이어 쓴다.",
+    "parent": "llm.api.conversation-state-tradeoffs",
+    "aliases": [
+      "encrypted reasoning items",
+      "reasoning.encrypted_content",
+      "암호화 추론 항목",
+      "추론 항목 암호문"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/reasoning"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.internals.flash-attention",
+    "title": "FlashAttention",
+    "en": "FlashAttention",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM 내부",
+    "summary": "어텐션 계산을 작은 블록으로 나눠 GPU 칩 안의 빠른 메모리에서 처리해 메모리 이동을 줄이는 어텐션 커널이다.",
+    "parent": "llm.internals.attention-backends",
+    "aliases": [
+      "플래시 어텐션",
+      "flash_attention_2",
+      "flash_attention_3",
+      "FlashAttention-2"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/attention_interface"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.internals.perplexity",
+    "title": "언어 모델 퍼플렉시티(PPL)",
+    "en": "Language Model Perplexity",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM 내부",
+    "summary": "모델이 각 토큰에 매긴 로그 가능도를 평균해 음수로 바꾼 뒤 지수를 취한 값으로, 작을수록 다음 토큰을 잘 예측한다는 뜻이다.",
+    "parent": "llm.internals.fixed-length-perplexity",
+    "aliases": [
+      "LM perplexity",
+      "당혹도 지표",
+      "언어 모델 당혹도",
+      "perplexity 지표"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/perplexity"
     ]
   },
   {
@@ -9187,6 +9415,95 @@
     ],
     "refs": [
       "https://platform.claude.com/docs/en/build-with-claude/citations"
+    ]
+  },
+  {
+    "id": "llm.api.reasoning-context",
+    "title": "reasoning.context(이전 턴 추론 포함 범위)",
+    "en": "Reasoning Context Mode",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "다음 응답을 만들 때 이번 턴의 추론만 쓸지 앞선 턴의 추론까지 다시 넣을지 정하는 OpenAI Responses의 설정이다.",
+    "parent": "llm.api.conversation-state-tradeoffs",
+    "aliases": [
+      "reasoning.context",
+      "all_turns",
+      "current_turn",
+      "이전 턴 추론 포함"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/reasoning"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.internals.static-cache",
+    "title": "StaticCache(고정 크기 KV 캐시)",
+    "en": "Static KV Cache",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "최대 길이만큼 키·값 자리를 미리 잡아 두어 torch.compile 같은 JIT 최적화를 쓸 수 있게 하는 대신 짧은 요청에서는 계산을 낭비하는 캐시다.",
+    "parent": "llm.internals.kv-cache-strategies",
+    "related": [
+      "ml.nn.torch-compile-recompilation"
+    ],
+    "aliases": [
+      "StaticCache",
+      "static KV cache",
+      "정적 KV 캐시",
+      "cache_implementation static"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/kv_cache"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.internals.cache-offloading",
+    "title": "KV 캐시 오프로딩",
+    "en": "KV Cache Offloading",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "현재 층의 캐시만 GPU에 두고 나머지 층은 CPU로 옮기며 다음 층을 미리 가져와 GPU 메모리를 아끼고 처리량을 조금 잃는 방식이다.",
+    "parent": "llm.internals.kv-cache-strategies",
+    "aliases": [
+      "offloaded cache",
+      "offloaded_static",
+      "캐시 CPU 오프로딩",
+      "cache offloading"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/kv_cache"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.internals.lsh-attention",
+    "title": "LSH 어텐션",
+    "en": "LSH Attention",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "해시 함수로 질의와 가까운 키만 골라 어텐션을 계산하고 여러 해시 결과를 평균해 무작위성을 줄이는 Reformer의 방식이다.",
+    "parent": "llm.internals.sparse-attention",
+    "aliases": [
+      "LSH attention",
+      "Reformer LSH",
+      "해시 기반 어텐션",
+      "locality-sensitive hashing attention"
+    ],
+    "refs": [
+      "https://huggingface.co/learn/llm-course/chapter1/6"
     ]
   }
 ]

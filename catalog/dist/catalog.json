@@ -1,5 +1,5 @@
 {
- "version": "0.74.0",
+ "version": "0.75.0",
  "domains": [
   {
    "prefix": "dev",
@@ -17685,6 +17685,166 @@
    "domain": "cs"
   },
   {
+   "id": "cs.os.fair-scheduler-internals",
+   "title": "리눅스 공정 스케줄러의 내부: CFS와 EEVDF",
+   "en": "Linux Fair Scheduler Internals: CFS and EEVDF",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "가상 실행 시간으로 공정하게 CPU를 나누던 CFS와, lag와 가상 마감 시각으로 다음 작업을 고르는 EEVDF의 동작과 손익이다.",
+   "objectives": [
+    "CFS가 vruntime 순 레드블랙 트리에서 가장 왼쪽 작업을 고르고 작은 여유 폭으로 지나친 선점을 막는 방식을 설명할 수 있다",
+    "EEVDF가 lag로 적격 작업을 가리고 가상 마감 시각이 가장 이른 작업을 실행하는 방식을 CFS와 비교할 수 있다",
+    "짧은 slice를 요청한 지연 민감 작업이 먼저 실행되는 이유와 그 대가를 따질 수 있다",
+    "cgroup의 cpu.shares 값으로 그룹 사이 CPU 몫이 어떻게 나뉘는지 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.os.multitasking"
+   ],
+   "aliases": [
+    "CFS 스케줄러",
+    "Completely Fair Scheduler",
+    "EEVDF 스케줄러",
+    "리눅스 CPU 스케줄러 내부"
+   ],
+   "refs": [
+    "https://docs.kernel.org/scheduler/sched-design-CFS.html",
+    "https://docs.kernel.org/scheduler/sched-eevdf.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.fs-journaling",
+   "title": "파일 시스템 저널링: 커밋·체크포인트와 데이터 모드",
+   "en": "File System Journaling: Commit, Checkpoint and Data Modes",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "갱신을 먼저 저널에 쓰고 커밋한 뒤 제자리에 옮겨 크래시 뒤 빠르게 복구하는 방식과, ext4 데이터 모드별 일관성·성능 손익이다.",
+   "objectives": [
+    "저널 쓰기·커밋 블록·체크포인트 순서와 크래시 뒤 커밋된 트랜잭션만 재생하는 복구를 설명할 수 있다",
+    "ext4의 data=journal·ordered·writeback이 크래시 뒤 파일 내용과 성능에 주는 차이를 비교할 수 있다",
+    "commit 주기를 늘리거나 barrier를 끌 때 얻는 성능과 잃을 수 있는 최근 변경을 따질 수 있다",
+    "블록이 재사용될 때 revoke 레코드가 옛 저널 내용의 잘못된 재생을 막는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.os.files-directories"
+   ],
+   "related": [
+    "dev.robust.crash-consistency",
+    "db.internals.wal-replication"
+   ],
+   "aliases": [
+    "파일 시스템 저널링",
+    "filesystem journaling",
+    "ext4 저널링",
+    "저널링 파일 시스템",
+    "journaling file system"
+   ],
+   "refs": [
+    "https://docs.kernel.org/admin-guide/ext4.html",
+    "https://docs.kernel.org/filesystems/ext4/journal.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dsa.open-addressing-probing",
+   "title": "개방 주소 해시 테이블의 탐사와 군집",
+   "en": "Probing and Clustering in Open-Addressed Hash Tables",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "자료구조",
+   "summary": "모든 항목을 표 안에 두고 탐사 순서로 빈 칸을 찾는 해시 테이블이 군집과 삭제 때문에 치르는 비용을 체이닝과 비교한다.",
+   "objectives": [
+    "탐사 순서로 빈 칸을 찾는 방식과 연결 리스트로 충돌을 모으는 체이닝을 적재율과 군집 면에서 비교할 수 있다",
+    "선형 탐사에서 1차 군집이 생겨 적재율이 중간만 되어도 검색이 느려지는 이유를 설명할 수 있다",
+    "탐사 표에서 항목을 지울 때 빈 칸을 만들면 안 되는 이유와 삭제 표시로 칸을 재사용하는 방식을 설명할 수 있다",
+    "체이닝에서 리스트를 복잡한 구조로 바꾸기보다 표를 키워 적재율을 낮추는 편이 나은 이유를 따질 수 있다"
+   ],
+   "prerequisites": [
+    "cs.dsa.hash-table"
+   ],
+   "related": [
+    "cs.dsa.hash-collision"
+   ],
+   "aliases": [
+    "해시 탐사 방식",
+    "hash table probing",
+    "탐사 순서",
+    "probe sequence"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/openAddressing.html",
+    "https://xlinux.nist.gov/dads/HTML/linearprobng.html",
+    "https://xlinux.nist.gov/dads/HTML/chaining.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.data.float-summation",
+   "title": "부동소수점 합산 오차와 정확한 합",
+   "en": "Floating-Point Summation Error and Exact Summation",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "데이터 표현",
+   "summary": "연산마다 생기는 반올림이 덧셈을 거듭하며 쌓이고 큰 값이 상쇄될 때 자릿수를 잃는 원리와, 한 번만 반올림하는 합산의 손익이다.",
+   "objectives": [
+    "연산마다 약 2^-53 수준의 반올림이 쌓여 큰 값이 서로 상쇄되는 합에서 단순 덧셈이 맞는 자릿수를 잃는 이유를 설명할 수 있다",
+    "sum과 math.fsum의 반올림 횟수 차이를 근거로 정확도와 속도의 손익을 비교할 수 있다",
+    "math.ulp와 math.nextafter로 계산 결과가 정확한 값에서 몇 ULP 떨어졌는지 잴 수 있다",
+    "math.fma가 곱셈과 덧셈을 한 번만 반올림해 정확도를 높이는 원리를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.data.float-error"
+   ],
+   "aliases": [
+    "math.fsum",
+    "부동소수점 누적 오차",
+    "floating-point summation error",
+    "부동소수점 합산 오차"
+   ],
+   "refs": [
+    "https://docs.python.org/3/tutorial/floatingpoint.html",
+    "https://docs.python.org/3/library/math.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dist.raft-consensus",
+   "title": "Raft 합의: 리더 선출과 로그 복제",
+   "en": "Raft Consensus Algorithm",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "분산 시스템",
+   "summary": "여러 서버가 복제된 로그의 명령 순서에 합의하도록 리더 선출·로그 복제·안전성을 나눠 설계한 합의 알고리즘이다.",
+   "objectives": [
+    "복제된 상태 기계들이 같은 순서의 명령 로그에 합의해야 같은 결과를 내는 이유를 설명할 수 있다",
+    "과반이 살아 있어야 진행하므로 5대 중 2대 장애까지 견디고, 과반을 잃으면 틀린 답 대신 멈추는 손익을 따질 수 있다",
+    "Raft가 합의를 리더 선출·로그 복제·안전성으로 나눈 구조를 Paxos와 비교할 수 있다",
+    "구성원을 바꿀 때 겹치는 과반을 써서 안전을 지키는 이유를 설명할 수 있다"
+   ],
+   "related": [
+    "db.cache.sentinel-quorum",
+    "db.nosql.write-concern-majority"
+   ],
+   "aliases": [
+    "Raft 알고리즘",
+    "Raft consensus",
+    "분산 합의 알고리즘",
+    "복제 로그 합의"
+   ],
+   "refs": [
+    "https://www.usenix.org/conference/atc14/technical-sessions/presentation/ongaro",
+    "https://raft.github.io/"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.os.page-replacement",
    "title": "페이지 교체 정책: LRU 근사와 스래싱",
    "en": "Page Replacement Policies: Approximating LRU and Thrashing",
@@ -17776,6 +17936,27 @@
    "domain": "cs"
   },
   {
+   "id": "cs.data.ulp",
+   "title": "ULP(마지막 자리 단위)",
+   "en": "Unit in the Last Place (ULP)",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "데이터 표현",
+   "summary": "부동소수점 수의 가장 낮은 비트가 나타내는 크기로, 계산 오차를 그 수의 칸 몇 개만큼인지로 잴 때 쓴다.",
+   "parent": "cs.data.float-summation",
+   "aliases": [
+    "ULP",
+    "unit in the last place",
+    "math.ulp",
+    "마지막 자리 단위"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/math.html"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.os.multi-level-page-table",
    "title": "다단계 페이지 테이블",
    "en": "Multi-level Page Table",
@@ -17846,6 +18027,133 @@
     "클록 교체",
     "second chance",
     "두 번째 기회 알고리즘"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.vruntime",
+   "title": "가상 실행 시간(vruntime)",
+   "en": "Virtual Runtime (vruntime)",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "작업이 실제로 쓴 CPU 시간을 정규화한 값으로, CFS는 이 값이 가장 작은 작업을 다음에 실행한다.",
+   "parent": "cs.os.fair-scheduler-internals",
+   "aliases": [
+    "vruntime",
+    "가상 실행 시간",
+    "CFS vruntime",
+    "p->se.vruntime"
+   ],
+   "refs": [
+    "https://docs.kernel.org/scheduler/sched-design-CFS.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.eevdf-lag",
+   "title": "EEVDF 지연값(lag)",
+   "en": "EEVDF Lag",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "작업이 공정한 몫보다 CPU를 덜 받았는지 더 받았는지 나타내는 값으로, 0 이상이면 EEVDF가 실행 후보로 삼는다.",
+   "parent": "cs.os.fair-scheduler-internals",
+   "aliases": [
+    "EEVDF lag",
+    "EEVDF 지연값",
+    "스케줄러 lag 값"
+   ],
+   "refs": [
+    "https://docs.kernel.org/scheduler/sched-eevdf.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.ordered-journaling",
+   "title": "ordered 저널링(data=ordered)",
+   "en": "Ordered (Metadata) Journaling",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "메타데이터만 저널에 쓰되 관련 데이터 블록을 먼저 제자리에 쓴 뒤 커밋하는 방식으로, ext4의 기본 데이터 모드다.",
+   "parent": "cs.os.fs-journaling",
+   "aliases": [
+    "data=ordered",
+    "ordered 모드",
+    "메타데이터 저널링",
+    "metadata journaling",
+    "ext4 ordered 모드"
+   ],
+   "refs": [
+    "https://docs.kernel.org/admin-guide/ext4.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dsa.linear-probing",
+   "title": "선형 탐사(linear probing)",
+   "en": "Linear Probing",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "자료구조",
+   "summary": "충돌한 항목을 배열에서 바로 다음 빈 칸에 넣는 개방 주소 방식으로, 단순하지만 1차 군집에 약하다.",
+   "parent": "cs.dsa.open-addressing-probing",
+   "aliases": [
+    "linear probing",
+    "선형 조사",
+    "선형 탐사법"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/linearprobng.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dsa.primary-clustering",
+   "title": "1차 군집(primary clustering)",
+   "en": "Primary Clustering",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "자료구조",
+   "summary": "해시 위치 근처에 채워진 칸이 길게 이어져 검색이 그 줄을 따라가느라 느려지는 현상이다.",
+   "parent": "cs.dsa.open-addressing-probing",
+   "related": [
+    "cs.dsa.linear-probing"
+   ],
+   "aliases": [
+    "primary clustering",
+    "1차 클러스터링",
+    "해시 1차 군집"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/primaryClustering.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.data.fused-multiply-add",
+   "title": "융합 곱셈-덧셈(FMA)",
+   "en": "Fused Multiply-Add (FMA)",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "데이터 표현",
+   "summary": "x*y+z를 무한 정밀도로 계산한 듯 한 번만 반올림하는 IEEE 754 연산으로, 따로 곱하고 더할 때보다 대개 정확하다.",
+   "parent": "cs.data.float-summation",
+   "aliases": [
+    "FMA 연산",
+    "fused multiply-add",
+    "math.fma",
+    "fusedMultiplyAdd"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/math.html"
    ],
    "domain": "cs"
   },
@@ -25010,6 +25318,38 @@
    "domain": "plan"
   },
   {
+   "id": "plan.basics.deceptive-design-patterns",
+   "title": "EDPB 기준으로 기만적 설계 패턴 판단하기",
+   "en": "Deceptive Design Patterns under EDPB Guidelines",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "유럽 개인정보보호이사회(EDPB)가 소셜 미디어 화면을 대상으로 나눈 여섯 범주로, 가입부터 탈퇴까지의 화면이 사용자를 원치 않는 개인정보 결정으로 이끄는지 GDPR 원칙에 비춰 가리는 방법이다.",
+   "objectives": [
+    "과부하·건너뛰기·감정 조종·방해·변덕·어둠 속에 두기 여섯 범주를 구분하고 화면 사례를 범주에 넣을 수 있다",
+    "GDPR 제5조의 공정 처리 원칙과 제25조 설계 단계 보호가 패턴 판정의 출발점이 되는 이유를 설명할 수 있다",
+    "가입·고지·동의 관리·권리 행사·계정 삭제 단계별로 어떤 패턴이 끼어들기 쉬운지 점검할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.error-prevention-design"
+   ],
+   "related": [
+    "plan.basics.web-privacy-principles"
+   ],
+   "aliases": [
+    "다크 패턴",
+    "dark patterns",
+    "기만적 디자인",
+    "deceptive design",
+    "EDPB 03/2022"
+   ],
+   "refs": [
+    "https://www.edpb.europa.eu/our-work-tools/our-documents/guidelines/guidelines-032022-deceptive-design-patterns-social-media_en"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.design-token-architecture",
    "title": "디자인 토큰 표준과 별칭 계층 설계",
    "en": "Design Token Standard and Alias Layers",
@@ -25183,6 +25523,41 @@
    ],
    "refs": [
     "https://help.figma.com/hc/en-us/articles/4404856784663-Swap-libraries"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.codegen-plugin",
+   "title": "Dev Mode 코드 생성 플러그인의 동작과 제약",
+   "en": "Figma Codegen Plugins",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "Dev Mode에서 선택이 바뀔 때마다 generate 이벤트로 3초 안에 코드 조각을 돌려주는 플러그인 방식으로, 기본 코드 조각이 못 하는 프레임워크·메타데이터 출력을 맡는다.",
+   "objectives": [
+    "manifest의 editorType dev, codegen 기능, codegenLanguages 설정이 Dev Mode 코드 패널과 어떻게 이어지는지 설명할 수 있다",
+    "generate 콜백의 3초 제한과 콜백 안에서 showUI를 부를 수 없어 UI를 콜백 밖에서 띄우고 postMessage로 주고받아야 하는 제약이 플러그인 설계에 주는 영향을 판단할 수 있다",
+    "unit·select 환경설정과 action 환경설정이 다시 그리는 방식(자동 재호출과 refresh)의 차이를 설명할 수 있다",
+    "Figma 기본 코드 조각, Code Connect, 코드 생성 플러그인 중 핸드오프 요구에 맞는 쪽을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.dev-mode-handoff"
+   ],
+   "related": [
+    "plan.figma.code-connect",
+    "plan.figma.plugin-sandbox"
+   ],
+   "aliases": [
+    "Figma codegen",
+    "codegen plugin",
+    "figma.codegen",
+    "Dev Mode 코드 생성 플러그인"
+   ],
+   "refs": [
+    "https://developers.figma.com/docs/plugins/codegen-plugins/"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -26391,6 +26766,45 @@
    "domain": "plan"
   },
   {
+   "id": "plan.basics.continuous-prompting",
+   "title": "연속 재요청(continuous prompting)",
+   "en": "Continuous Prompting",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "필요 이상의 개인정보나 추가 처리 동의를 받아 내려고 같은 요청을 거듭 띄우는, EDPB가 과부하 범주에 넣은 기만적 설계 패턴이다.",
+   "parent": "plan.basics.deceptive-design-patterns",
+   "aliases": [
+    "동의 반복 요청",
+    "반복 동의 팝업",
+    "continuous prompting pattern"
+   ],
+   "refs": [
+    "https://www.edpb.europa.eu/our-work-tools/our-documents/guidelines/guidelines-032022-deceptive-design-patterns-social-media_en"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.privacy-maze",
+   "title": "프라이버시 미로(privacy maze)",
+   "en": "Privacy Maze",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "개인정보 설정이나 정보를 찾으려면 전체 개요 없이 여러 페이지를 헤매야 하게 만든, EDPB가 과부하 범주에 넣은 기만적 설계 패턴이다.",
+   "parent": "plan.basics.deceptive-design-patterns",
+   "aliases": [
+    "개인정보 설정 미로",
+    "설정 미로 패턴"
+   ],
+   "refs": [
+    "https://www.edpb.europa.eu/our-work-tools/our-documents/guidelines/guidelines-032022-deceptive-design-patterns-social-media_en"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.basics.wcag-conformance-model",
    "title": "WCAG 2.2 적합성 요구사항과 적합성 주장",
    "en": "WCAG 2.2 Conformance Requirements and Claims",
@@ -26423,6 +26837,38 @@
    "refs": [
     "https://www.w3.org/WAI/WCAG22/Understanding/conformance",
     "https://www.w3.org/TR/WCAG22/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.web-privacy-principles",
+   "title": "W3C 웹 프라이버시 원칙으로 데이터 흐름 판단하기",
+   "en": "W3C Privacy Principles",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "동의 중심 모델의 한계를 짚고 데이터 최소화·목적 제한·전역 옵트아웃·사용자 에이전트의 의무로 웹 서비스의 개인정보 처리를 판단하게 하는 W3C TAG의 원칙 문서다.",
+   "objectives": [
+    "동의 요청을 드물고 의도적이며 일시적으로 두라는 원칙이 왜 동의 중심 설계의 부담 전가를 비판하는지 설명할 수 있다",
+    "전역 옵트아웃 신호를 한 번의 과거 선택이 아니라 매 상호작용마다 다시 확인되는 선호로 다뤄야 하는 이유를 설명할 수 있다",
+    "중앙 옵트아웃 등록부 방식과 사용자 에이전트가 보내는 신호 방식의 손익을 비교할 수 있다",
+    "사용자 에이전트의 보호·신중·정직·충실 의무를 근거로 기능 요구사항의 개인정보 위험을 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.analytics-tool-selection"
+   ],
+   "related": [
+    "plan.basics.research-data-privacy"
+   ],
+   "aliases": [
+    "웹 프라이버시 원칙",
+    "Web Privacy Principles",
+    "TAG 프라이버시 원칙",
+    "W3C 개인정보 원칙"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/privacy-principles/"
    ],
    "domain": "plan"
   },
@@ -26547,6 +26993,71 @@
    "refs": [
     "https://developers.figma.com/docs/rest-api/variables/",
     "https://developers.figma.com/docs/rest-api/variables-endpoints/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.messageformat2",
+   "title": "MessageFormat 2로 번역 가능한 문구 설계하기",
+   "en": "Unicode MessageFormat 2",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "숫자·성별 같은 값에 따라 문장 전체를 변형으로 고르게 하는 Unicode 표준 메시지 문법으로, 문자열 이어 붙이기 대신 번역자가 언어별 문장을 완성하게 한다.",
+   "objectives": [
+    "선언(.input·.local)과 .match 선택자, 변형 키, 반드시 있어야 하는 * 변형으로 이루어진 복합 메시지 구조를 설명할 수 있다",
+    "문구를 조각내 이어 붙이는 방식과 메시지 하나에 변형을 담는 방식의 번역 품질 손익을 비교할 수 있다",
+    "ICU MessageFormat 1과 달리 하위 호환을 목표로 하지 않는 대신 어떤 안정성 약속을 두는지 설명할 수 있다",
+    "오른쪽에서 왼쪽으로 쓰는 값이 자리 표시자에 들어갈 때 양방향 격리가 필요한 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.ui-writing"
+   ],
+   "aliases": [
+    "MessageFormat 2.0",
+    "MF2",
+    "유니코드 메시지 포맷",
+    "ICU MessageFormat 2"
+   ],
+   "refs": [
+    "https://www.unicode.org/reports/tr35/tr35-messageFormat.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.dtcg-resolver",
+   "title": "DTCG 리졸버 모듈로 테마·모드 토큰 해석하기",
+   "en": "Design Tokens Resolver Module",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "토큰 세트와 모디파이어를 정한 순서로 겹친 뒤 별칭을 마지막에 풀어, 테마·크기·브랜드 조합마다 하나의 평탄한 토큰 결과를 내는 DTCG 확장 명세다.",
+   "objectives": [
+    "입력 검증, resolutionOrder에 따른 정렬, 별칭 해석, 최종 결과로 이어지는 해석 단계를 설명할 수 있다",
+    "세트와 모디파이어·컨텍스트의 차이를 Figma 변수 모드와 견주어 설명할 수 있다",
+    "같은 토큰을 덮어쓰는 모디파이어가 겹칠 때 결과가 배열 순서에 묶이는 위험을 보고 서로 직교하는 모디파이어로 나눌 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.design-token-architecture"
+   ],
+   "related": [
+    "plan.figma.multi-brand-extended-collections",
+    "plan.figma.variables-modes"
+   ],
+   "aliases": [
+    "DTCG resolver",
+    "토큰 리졸버",
+    "design token resolver",
+    "리졸버 모듈"
+   ],
+   "refs": [
+    "https://www.designtokens.org/tr/2025.10/resolver/"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -26697,6 +27208,101 @@
    ],
    "refs": [
     "https://www.w3.org/TR/maturity-model/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.global-privacy-control",
+   "title": "글로벌 프라이버시 컨트롤(GPC)",
+   "en": "Global Privacy Control",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "브라우저가 Sec-GPC: 1 헤더와 navigator.globalPrivacyControl로 판매·공유·맞춤 광고 거부 선호를 매 탐색마다 사이트에 알리는 W3C 초안 신호다.",
+   "parent": "plan.basics.web-privacy-principles",
+   "aliases": [
+    "GPC 신호",
+    "Sec-GPC",
+    "navigator.globalPrivacyControl",
+    "전역 옵트아웃 신호"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/gpc/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.mf2-matcher",
+   "title": "MessageFormat 2 매처(.match)와 변형",
+   "en": "MessageFormat 2 Matcher and Variants",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "하나 이상의 선택자 값에 맞는 키를 가진 변형을 고르고, 모든 키가 *인 변형을 빠짐없이 두어 맞는 것이 없을 때 대신 쓰게 하는 MF2의 분기 구조다.",
+   "parent": "plan.basics.messageformat2",
+   "aliases": [
+    "MF2 .match",
+    "MF2 선택자",
+    "MessageFormat selector",
+    "catch-all 변형"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.cldr-plural-category",
+   "title": "CLDR 복수형 범주",
+   "en": "CLDR Plural Categories",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "zero·one·two·few·many·other 여섯 이름으로 언어마다 숫자에 따라 바뀌는 문장 형태를 나눈 CLDR 규칙으로, one이 숫자 1만 뜻하지 않고 other는 언제나 있어야 한다.",
+   "parent": "plan.basics.messageformat2",
+   "aliases": [
+    "복수형 규칙",
+    "plural rules",
+    "plural category",
+    "CLDR plural"
+   ],
+   "refs": [
+    "https://cldr.unicode.org/index/cldr-spec/plural-rules"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.dtcg-modifier-context",
+   "title": "토큰 모디파이어와 컨텍스트",
+   "en": "Resolver Modifiers and Contexts",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "light·dark처럼 이름 붙은 컨텍스트마다 다른 토큰 소스를 두고, 입력이 고른 컨텍스트 하나만 해석에 넣는 DTCG 리졸버의 선택 단위다.",
+   "parent": "plan.figma.dtcg-resolver",
+   "aliases": [
+    "DTCG modifier",
+    "토큰 모디파이어",
+    "resolver context"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.resolution-order",
+   "title": "토큰 해석 순서(resolutionOrder)",
+   "en": "Resolution Order",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "세트와 모디파이어를 나열한 필수 배열로, 같은 토큰이 겹치면 뒤에 온 항목이 이겨 테마 조합의 최종 값을 정한다.",
+   "parent": "plan.figma.dtcg-resolver",
+   "aliases": [
+    "resolutionOrder",
+    "DTCG 해석 순서"
    ],
    "domain": "plan"
   },
@@ -64296,6 +64902,115 @@
    "domain": "llm"
   },
   {
+   "id": "llm.api.conversation-state-tradeoffs",
+   "title": "대화 상태와 추론 항목 보존의 손익",
+   "en": "Conversation State and Reasoning Item Retention Trade-offs",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "대화를 서버에 맡길지 매번 다시 보낼지에 따라 추론 항목이 이어지는 조건과 토큰 비용, 보존 방식이 어떻게 달라지는지 따진다.",
+   "objectives": [
+    "store를 끈 무상태 호출이나 ZDR 조직에서 추론 항목의 암호화된 내용을 다음 요청에 돌려보내 추론을 이어 가는 흐름을 설명할 수 있다",
+    "추론 토큰이 컨텍스트 창과 max_output_tokens를 차지해 보이는 답 없이 status가 incomplete로 끝나는 경로를 분석하고 여유 토큰을 정할 수 있다",
+    "previous_response_id·Conversations API 같은 서버 저장 방식과 출력 항목 전체를 다시 보내는 방식에서 추론 항목이 보존되는 조건과 이전 입력 토큰 과금을 비교할 수 있다",
+    "추론 항목 앞의 이력을 고치면 새 모델이 그 추론을 버릴 수 있다는 점을 근거로 이력 편집 방식을 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.api.multi-turn",
+    "llm.api.thinking-effort"
+   ],
+   "related": [
+    "llm.internals.context-management",
+    "llm.security.data-residency-retention"
+   ],
+   "aliases": [
+    "대화 상태 손익",
+    "conversation state trade-offs",
+    "무상태 Responses 호출",
+    "추론 항목 보존",
+    "stateless reasoning"
+   ],
+   "refs": [
+    "https://developers.openai.com/api/docs/guides/conversation-state",
+    "https://developers.openai.com/api/docs/guides/reasoning"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.attention-backends",
+   "title": "어텐션 백엔드의 내부와 손익",
+   "en": "Attention Backends Trade-offs",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "LLM 내부",
+   "summary": "같은 어텐션 계산을 eager·SDPA·FlashAttention·flex_attention이 어떻게 다르게 수행해 속도·메모리·마스크 호환이 갈리는지 다룬다.",
+   "objectives": [
+    "어텐션 백엔드들이 같은 계산을 하면서 전체 어텐션 행렬을 메모리에 만드는지와 메모리 이동량에서 갈린다는 점을 설명할 수 있다",
+    "attn_implementation과 set_attn_implementation으로 백엔드를 바꾸고, 멀티모달 모델에서 백본마다 다른 백엔드를 지정할 이유를 판단할 수 있다",
+    "백엔드마다 받는 마스크 형식이 달라 직접 만든 4D 마스크나 마스크 함수를 등록하지 않은 커스텀 백엔드에서 제약이 조용히 빠지는 장애를 분석할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.internals.inference-phases"
+   ],
+   "related": [
+    "ml.transformer.attention",
+    "llm.basics.attention-mask"
+   ],
+   "aliases": [
+    "attn_implementation",
+    "어텐션 구현 선택",
+    "attention backend",
+    "AttentionInterface",
+    "Transformers 어텐션 백엔드"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/attention_interface"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.kv-cache-strategies",
+   "title": "KV 캐시 전략의 손익: 동적·고정·오프로딩·양자화",
+   "en": "KV Cache Strategies Trade-offs",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "LLM 내부",
+   "summary": "Transformers의 동적·고정 크기·오프로딩·양자화 캐시가 메모리, 생성 속도, 컴파일 호환에서 무엇을 주고받는지 비교한다.",
+   "objectives": [
+    "DynamicCache·StaticCache·QuantizedCache를 예상 메모리 사용량과 torch.compile 호환성으로 비교해 고를 수 있다",
+    "고정 크기 캐시가 디코드 단계 컴파일을 쉽게 하는 대신 마스킹된 자리만큼 어텐션 계산을 낭비하는 손익을 요청 길이 분포로 판단할 수 있다",
+    "캐시 오프로딩과 캐시 양자화가 메모리를 아끼는 대신 처리량·지연을 잃는 조건을 설명하고 메모리 부족 대응 순서를 정할 수 있다",
+    "슬라이딩 윈도·청크 어텐션 층에서 캐시가 창 크기 이상 자라지 않고 crop 되감기가 제한되는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.internals.inference-phases"
+   ],
+   "related": [
+    "mlops.serve.vllm-fp8-kv-cache",
+    "llm.internals.prompt-caching"
+   ],
+   "aliases": [
+    "cache_implementation",
+    "Transformers 캐시 전략",
+    "KV cache strategies",
+    "캐시 클래스 고르기"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/kv_cache",
+    "https://huggingface.co/docs/transformers/cache_explanation"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
    "id": "llm.internals.structured-decoding",
    "title": "구조화 출력의 보장과 한계",
    "en": "Guarantees of Structured Output",
@@ -64432,6 +65147,66 @@
    "domain": "llm"
   },
   {
+   "id": "llm.internals.fixed-length-perplexity",
+   "title": "고정 길이 모델의 퍼플렉시티 계산",
+   "en": "Perplexity of Fixed-Length Models",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "입력 길이가 정해진 언어 모델에서 퍼플렉시티를 잴 때 문서를 나누는 방식과 스트라이드가 값과 계산량을 어떻게 바꾸는지 다룬다.",
+   "objectives": [
+    "퍼플렉시티를 토큰당 평균 음의 로그 가능도의 지수로 풀고, 토크나이저가 다른 모델끼리 값을 바로 비교하면 안 되는 이유를 설명할 수 있다",
+    "겹치지 않는 조각으로 계산하면 예측마다 문맥이 짧아져 값이 나빠지는 이유와 슬라이딩 윈도 방식의 계산 비용을 비교할 수 있다",
+    "스트라이드 크기로 정확도와 계산량의 손익을 정하고, 문맥으로만 넣은 토큰의 레이블을 -100으로 가리는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.internals.tokenization-sampling"
+   ],
+   "aliases": [
+    "슬라이딩 윈도 퍼플렉시티",
+    "strided perplexity",
+    "stride 퍼플렉시티 평가",
+    "fixed-length perplexity"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/perplexity"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.sparse-attention",
+   "title": "긴 입력을 위한 희소 어텐션: Longformer·Reformer",
+   "en": "Sparse Attention for Long Inputs",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "길이의 제곱으로 자라는 전체 어텐션 대신 일부 토큰 쌍만 계산해 긴 입력을 다루는 방식과 그때 잃는 것을 비교한다.",
+   "objectives": [
+    "전체 어텐션의 연산량이 입력 길이의 제곱으로 자라 긴 글에서 병목이 되는 이유를 설명할 수 있다",
+    "Longformer의 지역 창과 전역 토큰 방식, Reformer의 해시 기반 LSH 어텐션이 무엇을 버리고 무엇을 얻는지 비교할 수 있다",
+    "축 분해 위치 인코딩이 긴 입력에서 위치 인코딩 행렬 크기를 줄이는 원리를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.transformer.attention"
+   ],
+   "related": [
+    "llm.internals.attention-backends"
+   ],
+   "aliases": [
+    "sparse attention",
+    "희소 어텐션",
+    "Longformer 지역 어텐션",
+    "긴 시퀀스 어텐션",
+    "axial positional encoding"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter1/6"
+   ],
+   "domain": "llm"
+  },
+  {
    "id": "llm.internals.kv-cache",
    "title": "KV 캐시",
    "en": "KV Cache",
@@ -64446,6 +65221,73 @@
     "KV cache",
     "키·값 캐시",
     "attention cache"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.encrypted-reasoning",
+   "title": "암호화된 추론 항목(encrypted_content)",
+   "en": "Encrypted Reasoning Items",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "서버에 저장하지 않는 호출에서 추론 항목에 실려 오는 암호화된 내용으로, 다음 요청에 그대로 돌려보내야 모델이 앞선 추론을 이어 쓴다.",
+   "parent": "llm.api.conversation-state-tradeoffs",
+   "aliases": [
+    "encrypted reasoning items",
+    "reasoning.encrypted_content",
+    "암호화 추론 항목",
+    "추론 항목 암호문"
+   ],
+   "refs": [
+    "https://developers.openai.com/api/docs/guides/reasoning"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.flash-attention",
+   "title": "FlashAttention",
+   "en": "FlashAttention",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "LLM 내부",
+   "summary": "어텐션 계산을 작은 블록으로 나눠 GPU 칩 안의 빠른 메모리에서 처리해 메모리 이동을 줄이는 어텐션 커널이다.",
+   "parent": "llm.internals.attention-backends",
+   "aliases": [
+    "플래시 어텐션",
+    "flash_attention_2",
+    "flash_attention_3",
+    "FlashAttention-2"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/attention_interface"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.perplexity",
+   "title": "언어 모델 퍼플렉시티(PPL)",
+   "en": "Language Model Perplexity",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "LLM 내부",
+   "summary": "모델이 각 토큰에 매긴 로그 가능도를 평균해 음수로 바꾼 뒤 지수를 취한 값으로, 작을수록 다음 토큰을 잘 예측한다는 뜻이다.",
+   "parent": "llm.internals.fixed-length-perplexity",
+   "aliases": [
+    "LM perplexity",
+    "당혹도 지표",
+    "언어 모델 당혹도",
+    "perplexity 지표"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/perplexity"
    ],
    "domain": "llm"
   },
@@ -64585,6 +65427,99 @@
    ],
    "refs": [
     "https://platform.claude.com/docs/en/build-with-claude/citations"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.reasoning-context",
+   "title": "reasoning.context(이전 턴 추론 포함 범위)",
+   "en": "Reasoning Context Mode",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM API",
+   "summary": "다음 응답을 만들 때 이번 턴의 추론만 쓸지 앞선 턴의 추론까지 다시 넣을지 정하는 OpenAI Responses의 설정이다.",
+   "parent": "llm.api.conversation-state-tradeoffs",
+   "aliases": [
+    "reasoning.context",
+    "all_turns",
+    "current_turn",
+    "이전 턴 추론 포함"
+   ],
+   "refs": [
+    "https://developers.openai.com/api/docs/guides/reasoning"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.static-cache",
+   "title": "StaticCache(고정 크기 KV 캐시)",
+   "en": "Static KV Cache",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "최대 길이만큼 키·값 자리를 미리 잡아 두어 torch.compile 같은 JIT 최적화를 쓸 수 있게 하는 대신 짧은 요청에서는 계산을 낭비하는 캐시다.",
+   "parent": "llm.internals.kv-cache-strategies",
+   "related": [
+    "ml.nn.torch-compile-recompilation"
+   ],
+   "aliases": [
+    "StaticCache",
+    "static KV cache",
+    "정적 KV 캐시",
+    "cache_implementation static"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/kv_cache"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.cache-offloading",
+   "title": "KV 캐시 오프로딩",
+   "en": "KV Cache Offloading",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "현재 층의 캐시만 GPU에 두고 나머지 층은 CPU로 옮기며 다음 층을 미리 가져와 GPU 메모리를 아끼고 처리량을 조금 잃는 방식이다.",
+   "parent": "llm.internals.kv-cache-strategies",
+   "aliases": [
+    "offloaded cache",
+    "offloaded_static",
+    "캐시 CPU 오프로딩",
+    "cache offloading"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/kv_cache"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.lsh-attention",
+   "title": "LSH 어텐션",
+   "en": "LSH Attention",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "해시 함수로 질의와 가까운 키만 골라 어텐션을 계산하고 여러 해시 결과를 평균해 무작위성을 줄이는 Reformer의 방식이다.",
+   "parent": "llm.internals.sparse-attention",
+   "aliases": [
+    "LSH attention",
+    "Reformer LSH",
+    "해시 기반 어텐션",
+    "locality-sensitive hashing attention"
+   ],
+   "refs": [
+    "https://huggingface.co/learn/llm-course/chapter1/6"
    ],
    "domain": "llm"
   },
@@ -83374,6 +84309,155 @@
    "domain": "ax"
   },
   {
+   "id": "ax.security.aml-attack-taxonomy",
+   "title": "적대적 머신러닝 공격 분류: 목표·능력·지식",
+   "en": "Adversarial Machine Learning Attack Taxonomy",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "NIST AI 100-2가 학습 단계, 공격 목표, 공격자 능력, 공격자 지식의 네 축으로 AI 공격을 나눈 틀로 위협 모형을 세운다.",
+   "objectives": [
+    "공격을 학습 시점과 배포 시점, 가용성·무결성·프라이버시·오용 조장 목표로 나눠 위협 모형을 세울 수 있다",
+    "학습 데이터·모델·시험 데이터·소스 코드 제어와 질의 접근 가운데 어떤 능력이 있어야 각 공격이 가능한지 짚어 막을 지점을 고를 수 있다",
+    "화이트박스·그레이박스·블랙박스 가정이 방어 평가 결과의 의미를 어떻게 바꾸는지 설명할 수 있다",
+    "예측형 AI 분류에 생성형 AI가 더하는 오용 조장 목표와 간접 프롬프트 인젝션을 기존 분류와 연결할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.security.prompt-injection"
+   ],
+   "related": [
+    "ax.security.model-supply-chain",
+    "ax.security.model-extraction",
+    "mlops.guardrail.adversarial-input"
+   ],
+   "aliases": [
+    "NIST AI 100-2",
+    "AML 분류 체계",
+    "적대적 ML 분류",
+    "adversarial ML taxonomy",
+    "AML taxonomy",
+    "적대적 머신러닝"
+   ],
+   "refs": [
+    "https://csrc.nist.gov/pubs/ai/100/2/e2025/final",
+    "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2025.pdf"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.training-data-privacy-attacks",
+   "title": "학습 데이터 프라이버시 공격과 차분 프라이버시의 손익",
+   "en": "Training Data Privacy Attacks and Differential Privacy Trade-offs",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "배포된 모델에 질의해 학습 데이터를 복원·추론하는 공격의 종류와, 차분 프라이버시·감사·언러닝이 막는 범위와 대가를 따진다.",
+   "objectives": [
+    "데이터 복원·소속 추론·분포 속성 추론(property inference)·학습 데이터 추출이 각각 무엇을 알아내며 어떤 접근을 요구하는지 구분할 수 있다",
+    "차분 프라이버시가 소속 추론과 데이터 복원에는 공격 성공의 상한을 주지만 모델 추출에는 보증이 없고 분포 속성 추론에는 효과가 약하다는 점을 근거로 방어 범위를 정할 수 있다",
+    "프라이버시 매개변수를 이론으로만 고르면 유용성을 잃는 까닭과 경험적 프라이버시 감사로 실제 누출을 재는 방법을 설명할 수 있다",
+    "정확 언러닝과 근사 언러닝의 계산 비용과 보증 차이를 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.governance.genai-privacy-lifecycle",
+    "ax.security.aml-attack-taxonomy"
+   ],
+   "related": [
+    "ax.security.model-extraction",
+    "ax.security.sensitive-info-disclosure",
+    "ax.security.embedding-inversion"
+   ],
+   "aliases": [
+    "학습 데이터 프라이버시 공격",
+    "ML privacy attacks",
+    "모델 프라이버시 공격",
+    "데이터 복원 공격",
+    "data reconstruction attack"
+   ],
+   "refs": [
+    "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2025.pdf",
+    "https://csrc.nist.gov/pubs/ai/100/2/e2025/final"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.managed-policy-composition",
+   "title": "Claude Code 관리형 정책의 합성과 실패 처리",
+   "en": "Composing and Failing Safe with Claude Code Managed Policy",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "여러 경로로 배포된 Claude Code 관리형 정책이 어떤 순서로 합쳐지고, 깨진 값과 하위 설정이 정책을 얼마나 바꿀 수 있는지 분석한다.",
+   "objectives": [
+    "원격·MDM·관리형 파일·HKCU 레지스트리의 순위와 first-wins·merge 합성 방식이 실제 적용 정책을 어떻게 바꾸는지 설명할 수 있다",
+    "merge를 켜면 하위 소스의 allow 규칙과 훅이 정책에 더해지는 위험을 근거로 합성 방식을 고를 수 있다",
+    "관리형 값보다 하위의 더 엄격한 값이 이기는 예외와 관리형 전용 잠금 키를 구분해 우회 경로를 찾을 수 있다",
+    "잘못된 관리형 값이 차단 쪽으로 읽히는 키와 버려지는 키를 알고 정책 배포 실패 때의 동작을 예측할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.permission-rule-debugging",
+    "ax.coding.hook-gates"
+   ],
+   "related": [
+    "ax.coding.managed-settings",
+    "ax.coding.hook-fail-open"
+   ],
+   "aliases": [
+    "관리형 정책 합성",
+    "managed policy precedence",
+    "관리형 소스 우선순위",
+    "managed settings sources",
+    "Claude Code 정책 강제"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/managed-settings",
+    "https://code.claude.com/docs/en/settings"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.evasion-defense-tradeoffs",
+   "title": "회피 공격 방어의 손익: 적대적 학습·무작위 평활화·형식 검증",
+   "en": "Trade-offs of Evasion Attack Mitigations",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "적대적 예제를 막는 세 갈래 방어가 정확도·계산 비용·보증 범위에서 무엇을 내주는지 비교해 고르는 일이다.",
+   "objectives": [
+    "적대적 예제 탐지와 기울기 가리기 방어가 더 강한 공격에 뚫려 온 이유를 설명할 수 있다",
+    "적대적 학습·무작위 평활화·형식 검증의 보증 범위와 정확도·학습 비용 손실을 비교해 쓰임새에 맞는 방어를 고를 수 있다",
+    "정확도와 적대적 강건성이 맞바뀌는 관계를 파레토 전선으로 놓고 어떤 성질을 우선할지 근거를 댈 수 있다"
+   ],
+   "prerequisites": [
+    "ax.security.aml-attack-taxonomy",
+    "ml.training.overfitting"
+   ],
+   "related": [
+    "mlops.guardrail.adversarial-input"
+   ],
+   "aliases": [
+    "회피 공격 방어",
+    "evasion attack mitigation",
+    "적대적 예제 방어",
+    "adversarial example defense",
+    "강건성-정확도 손익",
+    "robustness accuracy trade-off"
+   ],
+   "refs": [
+    "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2025.pdf",
+    "https://csrc.nist.gov/pubs/ai/100/2/e2025/final"
+   ],
+   "domain": "ax"
+  },
+  {
    "id": "ax.security.model-provenance",
    "title": "모델 출처 검증",
    "en": "Model Provenance",
@@ -83487,6 +84571,112 @@
    ],
    "refs": [
     "https://code.claude.com/docs/en/self-hosted-environments-identity"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.membership-inference",
+   "title": "소속 추론 공격(membership inference)",
+   "en": "Membership Inference Attack",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "어떤 기록이 모델 학습 데이터에 들어 있었는지를 손실값이나 그림자 모델로 가려내는 프라이버시 공격이다.",
+   "parent": "ax.security.training-data-privacy-attacks",
+   "aliases": [
+    "membership inference attack",
+    "멤버십 추론 공격",
+    "MIA 공격",
+    "학습 데이터 포함 여부 추론",
+    "LiRA 공격"
+   ],
+   "refs": [
+    "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2025.pdf"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.differential-privacy-budget",
+   "title": "차분 프라이버시와 프라이버시 예산(ε)",
+   "en": "Differential Privacy and Privacy Budget",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "한 기록이 들어 있는지를 공격자가 알아낼 수 있는 정도를 ε으로 묶는 정의로, ε을 키울수록 유용성은 오르고 보호는 약해진다.",
+   "parent": "ax.security.training-data-privacy-attacks",
+   "aliases": [
+    "differential privacy",
+    "차분 프라이버시",
+    "privacy budget",
+    "DP-SGD",
+    "엡실론 예산"
+   ],
+   "refs": [
+    "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2025.pdf"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.adaptive-attack",
+   "title": "적응형 공격(adaptive attack)",
+   "en": "Adaptive Attack",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "방어 방식을 알고 그 방어를 뚫도록 맞춰 설계한 공격으로, 새 방어는 알려진 공격이 아니라 이런 공격으로 평가해야 한다.",
+   "parent": "ax.security.evasion-defense-tradeoffs",
+   "aliases": [
+    "adaptive attacks",
+    "적응적 공격",
+    "방어 맞춤 공격",
+    "adaptive adversary"
+   ],
+   "refs": [
+    "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2025.pdf"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.managed-fail-closed-keys",
+   "title": "관리형 설정의 실패 시 차단 키",
+   "en": "Managed Settings Keys That Fail Closed",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "관리형 소스의 값이 깨졌을 때 버리지 않고 가장 엄격한 값이나 빈 허용 목록으로 읽는 Claude Code 키들로, 일부 키는 예외로 버려진다.",
+   "parent": "ax.coding.managed-policy-composition",
+   "aliases": [
+    "managed settings fail closed",
+    "관리형 설정 fail closed",
+    "keys that fail closed",
+    "관리형 값 오류 시 차단"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.managed-only-locks",
+   "title": "관리형 전용 잠금 키(allowManaged…Only)",
+   "en": "Managed-Only Lock Keys",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "관리형 소스에서만 읽히며 권한 규칙·훅·MCP 서버·샌드박스 허용 목록을 관리형 값만 인정하도록 묶는 Claude Code 설정 키들이다.",
+   "parent": "ax.coding.managed-policy-composition",
+   "aliases": [
+    "allowManagedPermissionRulesOnly",
+    "allowManagedHooksOnly",
+    "allowManagedMcpServersOnly",
+    "allowManagedDomainsOnly",
+    "관리형 전용 키"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -83642,6 +84832,47 @@
    ],
    "refs": [
     "https://code.claude.com/docs/en/self-hosted-environments-deploy"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.adversarial-training",
+   "title": "적대적 학습(adversarial training)",
+   "en": "Adversarial Training",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "학습 중에 만든 적대적 예제를 올바른 정답과 함께 학습 데이터에 넣어 강건성을 얻는 방어로, 깨끗한 입력의 정확도와 학습 비용을 대가로 치른다.",
+   "parent": "ax.security.evasion-defense-tradeoffs",
+   "aliases": [
+    "적대적 훈련",
+    "adversarial training defense",
+    "Madry 적대적 학습",
+    "PGD 적대적 학습"
+   ],
+   "refs": [
+    "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2025.pdf"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.managed-sources-behavior",
+   "title": "관리형 소스 합성 방식(managedSourcesBehavior)",
+   "en": "managedSourcesBehavior",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "여러 관리형 소스가 있을 때 가장 높은 소스 하나만 쓸지(first-wins) 모두 합칠지(merge) 정하는 Claude Code 관리형 전용 키다.",
+   "parent": "ax.coding.managed-policy-composition",
+   "aliases": [
+    "managedSourcesBehavior",
+    "관리형 소스 merge",
+    "first-wins 관리형 설정",
+    "관리형 소스 합치기"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -92085,6 +93316,145 @@
    "domain": "ops"
   },
   {
+   "id": "ops.k8s.api-watch-consistency",
+   "title": "Kubernetes API 감시와 resourceVersion",
+   "en": "Kubernetes API Watch and resourceVersion Semantics",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "컨트롤러가 목록을 받은 뒤 resourceVersion부터 변경을 감시하는 방식과 읽기 일관성의 손익을 분석한다.",
+   "objectives": [
+    "목록 조회 후 그 resourceVersion부터 watch를 이어 가는 흐름으로 컨트롤러가 변경을 놓치지 않는 이유를 설명할 수 있다",
+    "resourceVersion을 비울 때(etcd 정족수 읽기, 1.37부터는 조건이 맞으면 감시 캐시), 0으로 줄 때(더 오래된 값도 허용하는 감시 캐시), NotOlderThan으로 줄 때(감시 캐시) 어디서 읽는지와 일관성·etcd 부하 손익을 비교할 수 있다",
+    "감시 기록이 만료되어 410 Gone을 받은 클라이언트가 캐시를 비우고 다시 목록을 받아야 하는 이유를 분석할 수 있다",
+    "감시 캐시를 초기화하는 동안 WATCH와 페이지를 나누지 않았거나 선택자를 건 LIST가 429와 Retry-After를 받는 상황을 진단할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.k8s.basics"
+   ],
+   "aliases": [
+    "쿠버네티스 watch",
+    "Kubernetes watch API",
+    "list-watch",
+    "쿠버네티스 감시 캐시",
+    "kube-apiserver watch cache"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/reference/using-api/api-concepts/",
+    "https://kubernetes.io/docs/concepts/architecture/controller/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.kube-proxy-modes",
+   "title": "kube-proxy 모드와 Service 가상 IP",
+   "en": "kube-proxy Modes and Service Virtual IPs",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "kube-proxy가 iptables·IPVS·nftables로 Service 가상 IP를 파드로 보내는 방식과 규모별 손익을 비교한다.",
+   "objectives": [
+    "iptables 모드의 규칙 수와 minSyncPeriod가 큰 클러스터에서 규칙 반영 지연과 CPU 사용에 주는 영향을 분석할 수 있다",
+    "IPVS가 폐기 예정인 이유와 nftables로 옮길 때 NodePort 주소·방화벽 허용 규칙·conntrack 우회의 차이를 점검할 수 있다",
+    "externalTrafficPolicy와 internalTrafficPolicy를 Local로 둘 때 노드에 준비된 엔드포인트가 없으면 트래픽이 어떻게 되는지 설명할 수 있다",
+    "trafficDistribution으로 같은 영역을 우선할 때 엔드포인트 과부하 위험을 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.k8s.debug-service"
+   ],
+   "related": [
+    "ops.k8s.endpointslice"
+   ],
+   "aliases": [
+    "kube-proxy 모드",
+    "kube-proxy proxy mode",
+    "kube-proxy nftables",
+    "kube-proxy IPVS",
+    "쿠버네티스 가상 IP"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/reference/networking/virtual-ips/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.container.overlay2-storage",
+   "title": "overlay2 저장소 드라이버의 내부",
+   "en": "Inside the overlay2 Storage Driver",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "컨테이너 내부",
+   "summary": "OverlayFS가 읽기 전용 이미지 층과 쓰기 층을 합쳐 보이는 방식과 그 쓰기 비용·POSIX 한계를 분석한다.",
+   "objectives": [
+    "lowerdir·upperdir·merged·workdir로 컨테이너 파일 시스템이 합쳐지는 구조를 설명할 수 있다",
+    "큰 파일을 처음 고칠 때 생기는 지연을 copy-up으로 분석하고 쓰기가 많은 작업을 볼륨으로 옮길지 판단할 수 있다",
+    "docker ps -s의 size와 virtual size 차이로 컨테이너가 실제로 쓰는 디스크 양을 계산할 수 있다",
+    "읽기 전용과 읽기 쓰기로 같은 파일을 연 경우나 아래 층 디렉터리를 rename할 때 생기는 EXDEV 같은 OverlayFS 한계를 진단할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.container.image-layers"
+   ],
+   "related": [
+    "cs.os.copy-on-write"
+   ],
+   "aliases": [
+    "overlay2",
+    "OverlayFS",
+    "도커 저장소 드라이버",
+    "Docker storage driver",
+    "/var/lib/docker/overlay2"
+   ],
+   "refs": [
+    "https://docs.docker.com/engine/storage/drivers/overlayfs-driver/",
+    "https://docs.docker.com/engine/storage/drivers/",
+    "https://docs.kernel.org/filesystems/overlayfs.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.linux.psi-pressure",
+   "title": "PSI로 자원 압박 분석하기",
+   "en": "Pressure Stall Information (PSI)",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "리눅스",
+   "summary": "커널이 CPU·메모리·I/O를 기다리며 멈춘 시간의 비율을 알려 주는 PSI로 자원 경합의 정도와 원인을 가린다.",
+   "objectives": [
+    "some과 full 줄의 차이로 일부 작업만 기다리는 상태와 모든 작업이 멈춘 상태를 구분할 수 있다",
+    "avg10·avg60·avg300과 total 누적값을 비교해 짧은 급증과 오래가는 병목을 가를 수 있다",
+    "cgroup v2의 cpu.pressure·memory.pressure·io.pressure와 kubelet이 내보내는 PSI 지표로 컨테이너별 압박을 분석할 수 있다",
+    "압박 파일에 트리거를 써 두고 poll로 기다려 문턱을 넘을 때 알림을 받을 수 있다"
+   ],
+   "prerequisites": [
+    "ops.container.isolation"
+   ],
+   "related": [
+    "ops.observe.metrics"
+   ],
+   "aliases": [
+    "Linux PSI",
+    "/proc/pressure",
+    "pressure stall",
+    "memory.pressure",
+    "압력 정지 정보"
+   ],
+   "refs": [
+    "https://docs.kernel.org/accounting/psi.html",
+    "https://kubernetes.io/docs/reference/instrumentation/understand-psi-metrics/"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.observe.incident-analysis",
    "title": "장애 분석과 회고",
    "en": "Incident Analysis and Postmortems",
@@ -92286,6 +93656,101 @@
    "domain": "ops"
   },
   {
+   "id": "ops.k8s.api-priority-fairness",
+   "title": "API 우선순위와 공정성(APF)",
+   "en": "API Priority and Fairness",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "kube-apiserver가 요청을 우선순위 수준과 흐름으로 나눠 동시 처리 좌석을 배분하고 공정하게 줄 세우는 방식이다.",
+   "objectives": [
+    "우선순위 수준이 동시성 좌석을 나눠 한 클라이언트의 폭주가 리더 선출과 내장 컨트롤러를 막지 못하게 하는 원리를 설명할 수 있다",
+    "흐름 구분자와 셔플 샤딩, queues·queueLengthLimit·handSize 값이 버스트 허용과 지연·메모리에 주는 손익을 비교할 수 있다",
+    "apiserver_flowcontrol_rejected_requests_total의 reason 레이블로 429 거부가 큐 가득 참인지 대기 시간 초과인지 분석할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.k8s.basics"
+   ],
+   "related": [
+    "ops.k8s.eviction-api"
+   ],
+   "aliases": [
+    "API Priority and Fairness",
+    "Kubernetes APF",
+    "API 서버 흐름 제어",
+    "kube-apiserver 429",
+    "PriorityLevelConfiguration"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/cluster-administration/flow-control/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.resource-version-410-gone",
+   "title": "resourceVersion 만료와 410 Gone",
+   "en": "Expired resourceVersion and 410 Gone",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "API 서버가 보관한 변경 기록보다 오래된 resourceVersion으로 감시나 목록을 요청할 때 돌려주는 응답이다.",
+   "parent": "ops.k8s.api-watch-consistency",
+   "aliases": [
+    "resourceVersion too old",
+    "too old resource version",
+    "watch 410 Gone",
+    "쿠버네티스 410 Gone"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/reference/using-api/api-concepts/#410-gone-responses"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.external-traffic-policy-local",
+   "title": "externalTrafficPolicy: Local",
+   "en": "externalTrafficPolicy Local",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "외부에서 들어온 Service 트래픽을 그 노드의 준비된 엔드포인트로만 보내고, 없으면 전달하지 않게 하는 설정이다.",
+   "parent": "ops.k8s.kube-proxy-modes",
+   "aliases": [
+    "externalTrafficPolicy",
+    "외부 트래픽 정책",
+    "노드 로컬 트래픽 정책"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/reference/networking/virtual-ips/#traffic-policies"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.container.overlay-copy-up",
+   "title": "OverlayFS copy-up",
+   "en": "OverlayFS Copy-up",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "컨테이너 내부",
+   "summary": "아래 이미지 층의 파일을 처음 쓰기용으로 열거나 메타데이터를 바꿀 때 그 파일을 통째로 쓰기 층에 복사하는 동작으로, 큰 파일일수록 첫 쓰기가 느려진다.",
+   "parent": "ops.container.overlay2-storage",
+   "aliases": [
+    "overlay copy-up",
+    "overlay2 copy_up",
+    "카피 업",
+    "쓰기 층으로 복사"
+   ],
+   "refs": [
+    "https://docs.docker.com/engine/storage/drivers/overlayfs-driver/",
+    "https://docs.kernel.org/filesystems/overlayfs.html"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.observe.slo",
    "title": "SLO",
    "en": "Service Level Objective",
@@ -92314,6 +93779,114 @@
    "aliases": [
     "오류 예산",
     "Error Budget"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.watch-bookmark",
+   "title": "감시 북마크(allowWatchBookmarks)",
+   "en": "Watch Bookmarks",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "바뀐 객체가 없어도 어느 resourceVersion까지 보냈는지 알려 주는 BOOKMARK 이벤트로, 감시를 다시 이을 때 410을 덜 만나게 한다.",
+   "parent": "ops.k8s.api-watch-consistency",
+   "aliases": [
+    "allowWatchBookmarks",
+    "BOOKMARK 이벤트",
+    "watch bookmark",
+    "쿠버네티스 감시 북마크"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/reference/using-api/api-concepts/#watch-bookmarks"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.flowschema",
+   "title": "FlowSchema와 matchingPrecedence",
+   "en": "FlowSchema",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "요청의 주체와 대상을 규칙으로 맞춰 우선순위 수준을 정하는 객체로, matchingPrecedence가 작은 것부터 검사해 처음 맞는 것을 쓴다.",
+   "parent": "ops.k8s.api-priority-fairness",
+   "aliases": [
+    "matchingPrecedence",
+    "distinguisherMethod",
+    "흐름 스키마"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/cluster-administration/flow-control/#flowschema"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.container.overlay-whiteout",
+   "title": "화이트아웃 파일과 불투명 디렉터리",
+   "en": "Whiteout Files and Opaque Directories",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "컨테이너 내부",
+   "summary": "아래 층의 파일이나 디렉터리를 지울 때 쓰기 층에 남겨 그 내용을 가리는 표시로, 아래 층 크기는 줄지 않는다.",
+   "parent": "ops.container.overlay2-storage",
+   "aliases": [
+    "whiteout",
+    "OverlayFS whiteout",
+    "opaque directory",
+    "화이트아웃"
+   ],
+   "refs": [
+    "https://docs.docker.com/engine/storage/drivers/overlayfs-driver/",
+    "https://docs.kernel.org/filesystems/overlayfs.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.linux.psi-trigger",
+   "title": "PSI 트리거로 압박 감시하기",
+   "en": "PSI Monitor Triggers",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "리눅스",
+   "summary": "압박 파일에 some 또는 full, 멈춘 시간, 창 길이를 써 두면 그 창 안에서 문턱을 넘을 때 poll로 알려 주는 커널 감시 장치다.",
+   "parent": "ops.linux.psi-pressure",
+   "aliases": [
+    "PSI trigger",
+    "PSI monitor",
+    "PSI 감시",
+    "pressure 트리거"
+   ],
+   "refs": [
+    "https://docs.kernel.org/accounting/psi.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.network.nf-conntrack-table",
+   "title": "연결 추적 테이블(nf_conntrack_max)",
+   "en": "Netfilter Connection Tracking Table",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "네트워크와 앞단",
+   "summary": "netfilter가 연결마다 방향별 항목을 두는 해시 테이블로, 최대 항목 수와 버킷 수, 연결 상태별 유지 시간이 NAT 장비와 노드의 연결 수용량을 정한다.",
+   "related": [
+    "ops.k8s.kube-proxy-modes"
+   ],
+   "aliases": [
+    "nf_conntrack",
+    "nf_conntrack_max",
+    "conntrack 테이블",
+    "연결 추적 테이블",
+    "nf_conntrack_buckets"
+   ],
+   "refs": [
+    "https://docs.kernel.org/networking/nf_conntrack-sysctl.html"
    ],
    "domain": "ops"
   },

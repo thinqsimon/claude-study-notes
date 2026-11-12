@@ -8111,6 +8111,141 @@
     ]
   },
   {
+    "id": "ops.k8s.api-watch-consistency",
+    "title": "Kubernetes API 감시와 resourceVersion",
+    "en": "Kubernetes API Watch and resourceVersion Semantics",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "컨트롤러가 목록을 받은 뒤 resourceVersion부터 변경을 감시하는 방식과 읽기 일관성의 손익을 분석한다.",
+    "objectives": [
+      "목록 조회 후 그 resourceVersion부터 watch를 이어 가는 흐름으로 컨트롤러가 변경을 놓치지 않는 이유를 설명할 수 있다",
+      "resourceVersion을 비울 때(etcd 정족수 읽기, 1.37부터는 조건이 맞으면 감시 캐시), 0으로 줄 때(더 오래된 값도 허용하는 감시 캐시), NotOlderThan으로 줄 때(감시 캐시) 어디서 읽는지와 일관성·etcd 부하 손익을 비교할 수 있다",
+      "감시 기록이 만료되어 410 Gone을 받은 클라이언트가 캐시를 비우고 다시 목록을 받아야 하는 이유를 분석할 수 있다",
+      "감시 캐시를 초기화하는 동안 WATCH와 페이지를 나누지 않았거나 선택자를 건 LIST가 429와 Retry-After를 받는 상황을 진단할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.basics"
+    ],
+    "aliases": [
+      "쿠버네티스 watch",
+      "Kubernetes watch API",
+      "list-watch",
+      "쿠버네티스 감시 캐시",
+      "kube-apiserver watch cache"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/reference/using-api/api-concepts/",
+      "https://kubernetes.io/docs/concepts/architecture/controller/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ops.k8s.kube-proxy-modes",
+    "title": "kube-proxy 모드와 Service 가상 IP",
+    "en": "kube-proxy Modes and Service Virtual IPs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "kube-proxy가 iptables·IPVS·nftables로 Service 가상 IP를 파드로 보내는 방식과 규모별 손익을 비교한다.",
+    "objectives": [
+      "iptables 모드의 규칙 수와 minSyncPeriod가 큰 클러스터에서 규칙 반영 지연과 CPU 사용에 주는 영향을 분석할 수 있다",
+      "IPVS가 폐기 예정인 이유와 nftables로 옮길 때 NodePort 주소·방화벽 허용 규칙·conntrack 우회의 차이를 점검할 수 있다",
+      "externalTrafficPolicy와 internalTrafficPolicy를 Local로 둘 때 노드에 준비된 엔드포인트가 없으면 트래픽이 어떻게 되는지 설명할 수 있다",
+      "trafficDistribution으로 같은 영역을 우선할 때 엔드포인트 과부하 위험을 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.debug-service"
+    ],
+    "related": [
+      "ops.k8s.endpointslice"
+    ],
+    "aliases": [
+      "kube-proxy 모드",
+      "kube-proxy proxy mode",
+      "kube-proxy nftables",
+      "kube-proxy IPVS",
+      "쿠버네티스 가상 IP"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/reference/networking/virtual-ips/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ops.container.overlay2-storage",
+    "title": "overlay2 저장소 드라이버의 내부",
+    "en": "Inside the overlay2 Storage Driver",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "컨테이너 내부",
+    "summary": "OverlayFS가 읽기 전용 이미지 층과 쓰기 층을 합쳐 보이는 방식과 그 쓰기 비용·POSIX 한계를 분석한다.",
+    "objectives": [
+      "lowerdir·upperdir·merged·workdir로 컨테이너 파일 시스템이 합쳐지는 구조를 설명할 수 있다",
+      "큰 파일을 처음 고칠 때 생기는 지연을 copy-up으로 분석하고 쓰기가 많은 작업을 볼륨으로 옮길지 판단할 수 있다",
+      "docker ps -s의 size와 virtual size 차이로 컨테이너가 실제로 쓰는 디스크 양을 계산할 수 있다",
+      "읽기 전용과 읽기 쓰기로 같은 파일을 연 경우나 아래 층 디렉터리를 rename할 때 생기는 EXDEV 같은 OverlayFS 한계를 진단할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.container.image-layers"
+    ],
+    "related": [
+      "cs.os.copy-on-write"
+    ],
+    "aliases": [
+      "overlay2",
+      "OverlayFS",
+      "도커 저장소 드라이버",
+      "Docker storage driver",
+      "/var/lib/docker/overlay2"
+    ],
+    "refs": [
+      "https://docs.docker.com/engine/storage/drivers/overlayfs-driver/",
+      "https://docs.docker.com/engine/storage/drivers/",
+      "https://docs.kernel.org/filesystems/overlayfs.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ops.linux.psi-pressure",
+    "title": "PSI로 자원 압박 분석하기",
+    "en": "Pressure Stall Information (PSI)",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "리눅스",
+    "summary": "커널이 CPU·메모리·I/O를 기다리며 멈춘 시간의 비율을 알려 주는 PSI로 자원 경합의 정도와 원인을 가린다.",
+    "objectives": [
+      "some과 full 줄의 차이로 일부 작업만 기다리는 상태와 모든 작업이 멈춘 상태를 구분할 수 있다",
+      "avg10·avg60·avg300과 total 누적값을 비교해 짧은 급증과 오래가는 병목을 가를 수 있다",
+      "cgroup v2의 cpu.pressure·memory.pressure·io.pressure와 kubelet이 내보내는 PSI 지표로 컨테이너별 압박을 분석할 수 있다",
+      "압박 파일에 트리거를 써 두고 poll로 기다려 문턱을 넘을 때 알림을 받을 수 있다"
+    ],
+    "prerequisites": [
+      "ops.container.isolation"
+    ],
+    "related": [
+      "ops.observe.metrics"
+    ],
+    "aliases": [
+      "Linux PSI",
+      "/proc/pressure",
+      "pressure stall",
+      "memory.pressure",
+      "압력 정지 정보"
+    ],
+    "refs": [
+      "https://docs.kernel.org/accounting/psi.html",
+      "https://kubernetes.io/docs/reference/instrumentation/understand-psi-metrics/"
+    ]
+  },
+  {
     "id": "ops.observe.incident-analysis",
     "title": "장애 분석과 회고",
     "en": "Incident Analysis and Postmortems",
@@ -8305,6 +8440,97 @@
     ]
   },
   {
+    "id": "ops.k8s.api-priority-fairness",
+    "title": "API 우선순위와 공정성(APF)",
+    "en": "API Priority and Fairness",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "kube-apiserver가 요청을 우선순위 수준과 흐름으로 나눠 동시 처리 좌석을 배분하고 공정하게 줄 세우는 방식이다.",
+    "objectives": [
+      "우선순위 수준이 동시성 좌석을 나눠 한 클라이언트의 폭주가 리더 선출과 내장 컨트롤러를 막지 못하게 하는 원리를 설명할 수 있다",
+      "흐름 구분자와 셔플 샤딩, queues·queueLengthLimit·handSize 값이 버스트 허용과 지연·메모리에 주는 손익을 비교할 수 있다",
+      "apiserver_flowcontrol_rejected_requests_total의 reason 레이블로 429 거부가 큐 가득 참인지 대기 시간 초과인지 분석할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.basics"
+    ],
+    "related": [
+      "ops.k8s.eviction-api"
+    ],
+    "aliases": [
+      "API Priority and Fairness",
+      "Kubernetes APF",
+      "API 서버 흐름 제어",
+      "kube-apiserver 429",
+      "PriorityLevelConfiguration"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/cluster-administration/flow-control/"
+    ]
+  },
+  {
+    "id": "ops.k8s.resource-version-410-gone",
+    "title": "resourceVersion 만료와 410 Gone",
+    "en": "Expired resourceVersion and 410 Gone",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "API 서버가 보관한 변경 기록보다 오래된 resourceVersion으로 감시나 목록을 요청할 때 돌려주는 응답이다.",
+    "parent": "ops.k8s.api-watch-consistency",
+    "aliases": [
+      "resourceVersion too old",
+      "too old resource version",
+      "watch 410 Gone",
+      "쿠버네티스 410 Gone"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/reference/using-api/api-concepts/#410-gone-responses"
+    ]
+  },
+  {
+    "id": "ops.k8s.external-traffic-policy-local",
+    "title": "externalTrafficPolicy: Local",
+    "en": "externalTrafficPolicy Local",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "외부에서 들어온 Service 트래픽을 그 노드의 준비된 엔드포인트로만 보내고, 없으면 전달하지 않게 하는 설정이다.",
+    "parent": "ops.k8s.kube-proxy-modes",
+    "aliases": [
+      "externalTrafficPolicy",
+      "외부 트래픽 정책",
+      "노드 로컬 트래픽 정책"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/reference/networking/virtual-ips/#traffic-policies"
+    ]
+  },
+  {
+    "id": "ops.container.overlay-copy-up",
+    "title": "OverlayFS copy-up",
+    "en": "OverlayFS Copy-up",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "컨테이너 내부",
+    "summary": "아래 이미지 층의 파일을 처음 쓰기용으로 열거나 메타데이터를 바꿀 때 그 파일을 통째로 쓰기 층에 복사하는 동작으로, 큰 파일일수록 첫 쓰기가 느려진다.",
+    "parent": "ops.container.overlay2-storage",
+    "aliases": [
+      "overlay copy-up",
+      "overlay2 copy_up",
+      "카피 업",
+      "쓰기 층으로 복사"
+    ],
+    "refs": [
+      "https://docs.docker.com/engine/storage/drivers/overlayfs-driver/",
+      "https://docs.kernel.org/filesystems/overlayfs.html"
+    ]
+  },
+  {
     "id": "ops.observe.slo",
     "title": "SLO",
     "en": "Service Level Objective",
@@ -8332,6 +8558,109 @@
     "aliases": [
       "오류 예산",
       "Error Budget"
+    ]
+  },
+  {
+    "id": "ops.k8s.watch-bookmark",
+    "title": "감시 북마크(allowWatchBookmarks)",
+    "en": "Watch Bookmarks",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "바뀐 객체가 없어도 어느 resourceVersion까지 보냈는지 알려 주는 BOOKMARK 이벤트로, 감시를 다시 이을 때 410을 덜 만나게 한다.",
+    "parent": "ops.k8s.api-watch-consistency",
+    "aliases": [
+      "allowWatchBookmarks",
+      "BOOKMARK 이벤트",
+      "watch bookmark",
+      "쿠버네티스 감시 북마크"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/reference/using-api/api-concepts/#watch-bookmarks"
+    ]
+  },
+  {
+    "id": "ops.k8s.flowschema",
+    "title": "FlowSchema와 matchingPrecedence",
+    "en": "FlowSchema",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "요청의 주체와 대상을 규칙으로 맞춰 우선순위 수준을 정하는 객체로, matchingPrecedence가 작은 것부터 검사해 처음 맞는 것을 쓴다.",
+    "parent": "ops.k8s.api-priority-fairness",
+    "aliases": [
+      "matchingPrecedence",
+      "distinguisherMethod",
+      "흐름 스키마"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/cluster-administration/flow-control/#flowschema"
+    ]
+  },
+  {
+    "id": "ops.container.overlay-whiteout",
+    "title": "화이트아웃 파일과 불투명 디렉터리",
+    "en": "Whiteout Files and Opaque Directories",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "컨테이너 내부",
+    "summary": "아래 층의 파일이나 디렉터리를 지울 때 쓰기 층에 남겨 그 내용을 가리는 표시로, 아래 층 크기는 줄지 않는다.",
+    "parent": "ops.container.overlay2-storage",
+    "aliases": [
+      "whiteout",
+      "OverlayFS whiteout",
+      "opaque directory",
+      "화이트아웃"
+    ],
+    "refs": [
+      "https://docs.docker.com/engine/storage/drivers/overlayfs-driver/",
+      "https://docs.kernel.org/filesystems/overlayfs.html"
+    ]
+  },
+  {
+    "id": "ops.linux.psi-trigger",
+    "title": "PSI 트리거로 압박 감시하기",
+    "en": "PSI Monitor Triggers",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "리눅스",
+    "summary": "압박 파일에 some 또는 full, 멈춘 시간, 창 길이를 써 두면 그 창 안에서 문턱을 넘을 때 poll로 알려 주는 커널 감시 장치다.",
+    "parent": "ops.linux.psi-pressure",
+    "aliases": [
+      "PSI trigger",
+      "PSI monitor",
+      "PSI 감시",
+      "pressure 트리거"
+    ],
+    "refs": [
+      "https://docs.kernel.org/accounting/psi.html"
+    ]
+  },
+  {
+    "id": "ops.network.nf-conntrack-table",
+    "title": "연결 추적 테이블(nf_conntrack_max)",
+    "en": "Netfilter Connection Tracking Table",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "네트워크와 앞단",
+    "summary": "netfilter가 연결마다 방향별 항목을 두는 해시 테이블로, 최대 항목 수와 버킷 수, 연결 상태별 유지 시간이 NAT 장비와 노드의 연결 수용량을 정한다.",
+    "related": [
+      "ops.k8s.kube-proxy-modes"
+    ],
+    "aliases": [
+      "nf_conntrack",
+      "nf_conntrack_max",
+      "conntrack 테이블",
+      "연결 추적 테이블",
+      "nf_conntrack_buckets"
+    ],
+    "refs": [
+      "https://docs.kernel.org/networking/nf_conntrack-sysctl.html"
     ]
   }
 ]
