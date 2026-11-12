@@ -379,7 +379,7 @@ class DicMakerTest(unittest.TestCase):
             self.run_cmd("apply", "--auto", ok=False)
         self.assertIsNotNone(self.run_cmd("status")["run"])   # 판정 파일이 없으면 아무것도 바꾸지 않는다
         self.run_cmd("cancel")
-        self.run_cmd("campaign", "--level", "4", "--total", "10", "--round", "2")
+        self.run_cmd("campaign", "--level", "4", "--total", "10", "--round", "2", "--over-target")
         before = (self.repo / "catalog" / "VERSION").read_text().strip()
         for round_no in (1, 2):
             self.write_draft("mlops", [draft_topic()])
@@ -413,12 +413,13 @@ class DicMakerTest(unittest.TestCase):
         with self.assertRaises(SystemExit):   # 실행이 열려 있으면 캠페인을 열지 않는다
             self.run_cmd("campaign", "--level", "4", "--total", "10", ok=False)
         self.run_cmd("cancel")
-        self.run_cmd("campaign", "--level", "4", "--total", "10")
+        self.run_cmd("campaign", "--level", "4", "--total", "10", "--over-target")
         self.run_cmd("cancel")   # cancel은 회차와 캠페인을 함께 닫는다
         self.assertEqual(self.run_cmd("status")["campaign"]["status"], "cancelled")
 
     def test_cancel_closes_campaign_but_keeps_applied_rounds(self):
-        self.run_cmd("campaign", "--level", "4", "--total", "10", "--round", "1")
+        # 실제 사전이 4단계 목표치에 닿아도 회차 흐름을 시험하도록 목표치 검사를 넘긴다
+        self.run_cmd("campaign", "--level", "4", "--total", "10", "--round", "1", "--over-target")
         self.write_draft("mlops", [draft_topic()])
         self.verdicts(mlops__serve__test_fixture_serving="keep")
         version = self.run_cmd("apply", "--auto")["version"]
