@@ -1,5 +1,5 @@
 {
- "version": "0.78.0",
+ "version": "0.79.0",
  "domains": [
   {
    "prefix": "dev",
@@ -9097,6 +9097,173 @@
    "domain": "dev"
   },
   {
+   "id": "dev.git.index-internals",
+   "title": "Git 인덱스의 내부: 엔트리·확장·racy git",
+   "en": "Git Index Internals: Entries, Extensions and Racy Git",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "Git",
+   "summary": "인덱스 파일이 경로마다 stat 정보·객체 해시·병합 단계를 담고 확장으로 트리 캐시·분할·추적 안 된 파일 캐시를 더하는 구조를 알고 status 속도와 변경 누락을 분석한다.",
+   "objectives": [
+    "인덱스 엔트리의 stat 정보·모드·객체 이름·병합 단계 플래그가 각각 어떤 판단에 쓰이는지 설명할 수 있다",
+    "cache tree·split index·untracked cache·sparse directory 같은 인덱스 확장이 어떤 비용을 줄이고 어떤 조건에 기대는지 비교할 수 있다",
+    "stat 정보가 같아 바뀐 파일을 놓치는 racy git 상황과 Git이 내용 비교로 되돌아가는 방식을 설명할 수 있다",
+    "디렉터리 mtime 갱신을 믿지 못하는 파일 시스템에서 untracked cache가 틀린 결과를 낼 수 있음을 알고 켤지 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.internals"
+   ],
+   "related": [
+    "dev.git.repo-performance"
+   ],
+   "aliases": [
+    "Git 인덱스 형식",
+    "gitformat-index",
+    "Git index format",
+    "스테이징 영역 내부",
+    ".git/index 구조"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/gitformat-index",
+    "https://git-scm.com/docs/racy-git",
+    "https://git-scm.com/docs/git-update-index"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.reachability-internals",
+   "title": "도달 가능성 계산의 내부: 세대 번호와 팩 비트맵",
+   "en": "Git Reachability Internals: Generation Numbers and Pack Bitmaps",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "Git",
+   "summary": "commit-graph의 세대 번호로 기록 탐색을 일찍 끊고 팩 비트맵으로 도달 객체 집합을 비트 연산으로 구하는 방식을 알고 log·fetch·clone의 속도 차이를 분석한다.",
+   "objectives": [
+    "커밋은 자기보다 세대 번호가 작은 커밋에만 닿을 수 있다는 성질로 도달 가능성 검사가 탐색을 줄이는 원리를 설명할 수 있다",
+    "위상 수준(v1)과 보정 커밋 날짜(v2) 세대 번호가 commit-graph의 어느 청크에 저장되는지 구분할 수 있다",
+    "비트맵이 팩이나 multi-pack-index의 객체 순서로 비트를 매기고 EWAH로 압축된다는 점을 알고 객체 세기를 비트 연산으로 바꾸는 손익을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.internals"
+   ],
+   "related": [
+    "dev.git.transfer-protocols"
+   ],
+   "aliases": [
+    "Git 도달 가능성 계산",
+    "Git reachability",
+    "Git 기록 탐색 가속",
+    "커밋 도달 검사"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/gitformat-commit-graph",
+    "https://git-scm.com/docs/bitmap-format",
+    "https://git-scm.com/docs/commit-graph"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.cruft-gc",
+   "title": "도달 불가 객체 정리의 내부: cruft pack과 유예 기간",
+   "en": "Pruning Unreachable Objects: Cruft Packs and the Grace Period",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "Git",
+   "summary": "gc가 도달할 수 없는 객체를 바로 지우지 않고 수정 시각과 유예 기간으로 남겨 두는 이유와, 느슨한 객체 대신 cruft pack에 모으는 손익을 분석한다.",
+   "objectives": [
+    "gc가 동시에 쓰는 다른 프로세스가 아직 참조하지 않은 객체를 지워 저장소를 깨뜨릴 수 있는 경합과 유예 기간이 그 위험을 줄이는 방식을 설명할 수 있다",
+    "도달 불가 객체를 느슨한 객체로 둘 때의 inode·디렉터리 비용과 cruft pack·.mtimes 파일로 객체별 나이를 지키는 방식을 비교할 수 있다",
+    "gc.pruneExpire를 now로 줄일 때 얻는 공간과 잃는 안전을 근거로 정리 설정을 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.internals"
+   ],
+   "related": [
+    "dev.git.dangling-object",
+    "dev.git.repo-performance"
+   ],
+   "aliases": [
+    "Git 객체 가지치기",
+    "gc.pruneExpire",
+    "git prune 유예 기간",
+    "Git unreachable object pruning"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/gitformat-pack",
+    "https://git-scm.com/docs/git-gc"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.debug.descriptor-lookup",
+   "title": "속성 조회의 내부: 디스크립터 프로토콜",
+   "en": "Attribute Lookup Internals: The Descriptor Protocol",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "디버깅",
+   "summary": "점 연산이 MRO에서 찾은 디스크립터와 인스턴스 사전 사이의 우선순위로 값을 정하는 과정을 알고 property·메서드 바인딩·__slots__의 동작과 장애를 분석한다.",
+   "objectives": [
+    "object.__getattribute__가 데이터 디스크립터, 인스턴스 __dict__, 비데이터 디스크립터, 클래스 변수 순으로 찾는 흐름으로 속성 값이 왜 그렇게 나오는지 설명할 수 있다",
+    "함수가 비데이터 디스크립터라서 인스턴스로 꺼낼 때 바운드 메서드가 된다는 점으로 staticmethod·classmethod의 차이를 설명할 수 있다",
+    "__getattr__이 __getattribute__가 AttributeError를 낸 뒤에만 불린다는 점을 근거로 속성 조회 장애를 분석할 수 있다",
+    "__slots__가 멤버 디스크립터로 구현되어 얻는 메모리 이점과 cached_property 같은 도구가 깨지는 손실을 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "be.python.classes",
+    "be.python.decorators"
+   ],
+   "related": [
+    "dev.debug.c3-mro"
+   ],
+   "aliases": [
+    "디스크립터 프로토콜",
+    "descriptor protocol",
+    "파이썬 속성 조회 순서",
+    "attribute lookup order",
+    "__get__ 메서드"
+   ],
+   "refs": [
+    "https://docs.python.org/3/howto/descriptor.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.debug.c3-mro",
+   "title": "다중 상속의 메서드 탐색 순서(MRO)",
+   "en": "Method Resolution Order in Multiple Inheritance",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "디버깅",
+   "summary": "C3 규칙이 부모들의 순서를 합쳐 클래스 탐색 순서를 정하는 과정을 알고 다중 상속에서 엉뚱한 메서드가 불리거나 클래스 정의가 실패하는 원인을 분석한다.",
+   "objectives": [
+    "부모 목록의 선형화를 합치는 merge 절차를 손으로 따라 클래스의 __mro__를 구할 수 있다",
+    "지역 우선순위와 단조성이라는 두 조건이 무엇을 보장하는지 설명하고 Python 2.2 방식이 이를 어겼던 예와 비교할 수 있다",
+    "부모 순서가 서로 어긋나 MRO를 만들 수 없을 때 TypeError가 나는 원인을 찾고 부모 순서를 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "be.python.oop-principles"
+   ],
+   "related": [
+    "dev.debug.descriptor-lookup"
+   ],
+   "aliases": [
+    "MRO",
+    "method resolution order",
+    "__mro__",
+    "메서드 결정 순서",
+    "다중 상속 탐색 순서"
+   ],
+   "refs": [
+    "https://docs.python.org/3/howto/mro.html"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.git.reflog",
    "title": "reflog",
    "en": "Reflog",
@@ -9502,6 +9669,166 @@
    ],
    "refs": [
     "https://git-scm.com/docs/multi-pack-index"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.racy-git",
+   "title": "racy git(경합으로 깨끗해 보이는 엔트리)",
+   "en": "Racy Git",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "Git",
+   "summary": "파일이 인덱스 기록과 같은 시각 안에 크기 변화 없이 고쳐져 stat 정보만으로는 바뀐 줄 모르는 상황과 이를 내용 비교로 막는 Git의 처리다.",
+   "parent": "dev.git.index-internals",
+   "aliases": [
+    "racy git",
+    "racily clean",
+    "레이시 깃",
+    "인덱스 타임스탬프 경합"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/racy-git"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.split-index",
+   "title": "분할 인덱스(split index)",
+   "en": "Git Split Index",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "Git",
+   "summary": "큰 인덱스를 바뀌지 않는 공유 인덱스와 변경만 쌓는 작은 인덱스로 나눠 매번 전체를 다시 쓰는 비용을 줄이는 Git 인덱스 방식이다.",
+   "parent": "dev.git.index-internals",
+   "aliases": [
+    "split index",
+    "core.splitIndex",
+    "sharedindex 파일",
+    "splitIndex.maxPercentChange",
+    "Git 공유 인덱스"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/git-update-index",
+    "https://git-scm.com/docs/gitformat-index"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.generation-number",
+   "title": "세대 번호(generation number)",
+   "en": "Git Generation Number",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "Git",
+   "summary": "commit-graph가 커밋마다 저장하는 값으로, 조상은 항상 더 작은 값을 가져 도달 가능성 검사에서 볼 필요 없는 기록을 잘라 내게 한다.",
+   "parent": "dev.git.reachability-internals",
+   "related": [
+    "dev.git.commit-graph"
+   ],
+   "aliases": [
+    "generation number",
+    "corrected commit date",
+    "보정 커밋 날짜",
+    "topological level",
+    "Git 위상 수준"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/commit-graph",
+    "https://git-scm.com/docs/gitformat-commit-graph"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.reachability-bitmap",
+   "title": "팩 비트맵(reachability bitmap)",
+   "en": "Git Reachability Bitmap",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "Git",
+   "summary": "선택한 커밋마다 거기서 닿는 객체를 팩 순서의 비트로 적어 둔 EWAH 압축 파일로, 객체 집합을 그래프 탐색 대신 비트 연산으로 구하게 한다.",
+   "parent": "dev.git.reachability-internals",
+   "related": [
+    "dev.git.multi-pack-index"
+   ],
+   "aliases": [
+    "pack bitmap",
+    "reachability bitmap",
+    "Git 비트맵 색인",
+    "EWAH 비트맵",
+    ".bitmap 파일"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/bitmap-format"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.cruft-pack",
+   "title": "cruft pack",
+   "en": "Git Cruft Pack",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "Git",
+   "summary": "도달할 수 없는 객체를 한 팩에 모으고 .mtimes 파일에 객체마다 수정 시각을 적어 하나씩 만료되게 하는 Git의 팩이다.",
+   "parent": "dev.git.cruft-gc",
+   "aliases": [
+    "cruft pack",
+    "크러프트 팩",
+    "git repack --cruft",
+    ".mtimes 파일",
+    "gc.cruftPacks"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/gitformat-pack",
+    "https://git-scm.com/docs/git-gc"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.debug.data-descriptor",
+   "title": "데이터 디스크립터와 비데이터 디스크립터",
+   "en": "Data and Non-Data Descriptors",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "디버깅",
+   "summary": "__set__이나 __delete__가 있으면 인스턴스 사전보다 먼저 쓰이고 __get__만 있으면 인스턴스 사전에 가려지는 디스크립터의 두 갈래다.",
+   "parent": "dev.debug.descriptor-lookup",
+   "aliases": [
+    "data descriptor",
+    "non-data descriptor",
+    "비데이터 디스크립터",
+    "데이터 디스크립터 우선순위"
+   ],
+   "refs": [
+    "https://docs.python.org/3/howto/descriptor.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.debug.c3-linearization",
+   "title": "C3 선형화",
+   "en": "C3 Linearization",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "디버깅",
+   "summary": "클래스 자신 뒤에 부모들의 선형화와 부모 목록을 merge해 붙여, 지역 순서와 단조성을 지키는 상위 클래스 순서를 만드는 알고리즘이다.",
+   "parent": "dev.debug.c3-mro",
+   "aliases": [
+    "C3 linearization",
+    "C3 MRO",
+    "C3 알고리즘",
+    "C3 superclass linearization"
+   ],
+   "refs": [
+    "https://docs.python.org/3/howto/mro.html"
    ],
    "domain": "dev"
   },
@@ -14440,6 +14767,39 @@
    "domain": "cs"
   },
   {
+   "id": "cs.dist.why-replicate",
+   "title": "복제는 왜 하나: 같은 데이터를 여러 서버에 두는 이유와 대가",
+   "en": "Why Replicate Data Across Servers",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "분산 시스템",
+   "summary": "한 서버가 죽어도 이어 쓰고 읽기를 나눠 받으려고 같은 데이터를 여러 서버에 두지만, 쓰기를 모든 사본에 맞추는 일이 지연과 오래된 값이라는 대가를 부른다.",
+   "objectives": [
+    "장애 대비와 읽기 부하 분산이라는 두 목적을 들어 복제가 필요한 상황을 설명할 수 있다",
+    "쓰기를 받는 주 서버와 변경을 따라가는 대기 서버의 역할, 웜 스탠바이와 핫 스탠바이의 차이를 구분해 읽기 전용 질의를 대기 서버로 보낼 수 있는 구성을 고를 수 있다",
+    "동기 복제는 느리지만 잃는 쓰기가 없고 비동기 복제는 빠르지만 장애 조치 때 쓰기를 잃거나 오래된 값을 읽을 수 있다는 차이를 말할 수 있다",
+    "비동기 복제의 대기 서버가 조금 오래된 값을 돌려줄 수 있다는 점을 근거로 방금 쓴 값을 읽어야 하는 요청은 주 서버로 보내도록 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "ops.observe.availability-idea"
+   ],
+   "related": [
+    "db.basics.db-replica"
+   ],
+   "aliases": [
+    "데이터 복제 입문",
+    "replication basics",
+    "복제하는 이유",
+    "why replication",
+    "복제의 대가"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/high-availability.html"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.dsa.trie",
    "title": "트라이로 접두사 검색하기",
    "en": "Prefix Search with Tries",
@@ -15513,6 +15873,27 @@
    ],
    "refs": [
     "https://www.rfc-editor.org/rfc/rfc1918.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dist.async-replication",
+   "title": "동기 복제와 비동기 복제",
+   "en": "Synchronous vs Asynchronous Replication",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "분산 시스템",
+   "summary": "모든 사본이 반영한 뒤에 쓰기를 확정하는 동기 복제와 먼저 확정하고 나중에 전하는 비동기 복제로, 안전과 쓰기 지연을 맞바꾼다.",
+   "parent": "cs.dist.why-replicate",
+   "aliases": [
+    "비동기 복제",
+    "asynchronous replication",
+    "동기 복제",
+    "synchronous replication"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/high-availability.html"
    ],
    "domain": "cs"
   },
@@ -18249,6 +18630,111 @@
    "domain": "cs"
   },
   {
+   "id": "cs.dist.linearizable-reads",
+   "title": "합의 클러스터의 읽기: 선형화 읽기와 직렬화 읽기",
+   "en": "Linearizable and Serializable Reads in Consensus Stores",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "분산 시스템",
+   "summary": "Raft 기반 저장소에서 최신 값을 보장하는 읽기는 과반 확인을 거쳐 느리고, 아무 구성원이나 답하는 읽기는 빠르지만 오래된 값을 줄 수 있다는 손익을 분석한다.",
+   "objectives": [
+    "로그에 쓰지 않는 읽기를 리더가 바로 답하면 이미 밀려난 리더가 오래된 값을 줄 수 있는 이유를 설명할 수 있다",
+    "새 리더가 임기 시작에 빈 항목을 커밋하고 읽기 전에 과반과 하트비트를 주고받는 두 장치가 각각 무엇을 막는지 설명할 수 있다",
+    "임대 기반 읽기가 시계 차이의 상한이라는 타이밍 가정에 안전을 맡긴다는 손익을 따질 수 있다",
+    "etcd의 기본 선형화 읽기와 serializable 읽기 모드를 지연·처리량·오래된 값 위험으로 비교해 요청마다 고를 수 있다"
+   ],
+   "prerequisites": [
+    "cs.dist.raft-consensus"
+   ],
+   "related": [
+    "db.internals.isolation-levels"
+   ],
+   "aliases": [
+    "선형화 읽기",
+    "linearizable read",
+    "합의 저장소 읽기 일관성",
+    "etcd serializable 읽기",
+    "Raft 읽기 처리"
+   ],
+   "refs": [
+    "https://raft.github.io/raft.pdf",
+    "https://etcd.io/docs/v3.5/learning/api_guarantees/"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dsa.skip-list-internals",
+   "title": "스킵 리스트의 내부: 확률적 층과 균형 트리와의 손익",
+   "en": "Skip List Internals",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "자료구조",
+   "summary": "정렬된 연결 리스트 위에 무작위로 높이를 정한 층을 쌓아 기대 O(log n) 탐색을 얻는 스킵 리스트의 구조와, 균형 트리 대신 고르는 이유를 분석한다.",
+   "objectives": [
+    "위층에서 시작해 아래층으로 내려가며 찾는 과정과, 넣을 때 무작위로 높이를 정해 그 아래 모든 층에 잇는 과정을 그림으로 설명할 수 있다",
+    "승격 확률 p를 1/2과 1/4로 바꿀 때 노드당 포인터 수와 탐색 시간의 변동이 어떻게 달라지는지 비교할 수 있다",
+    "삽입마다 무작위로 높이만 정하는 구조가 균형 트리에 비해 구현을 단순하게 하고 Java ConcurrentSkipListMap 같은 동시 변형을 가능하게 한다는 손익을 따질 수 있다",
+    "Redis 정렬 집합이 스킵 리스트와 해시 테이블을 함께 써서 점수 범위 조회와 멤버 조회를 모두 빠르게 하는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.dsa.array-vs-linked-list",
+    "cs.dsa.binary-search-tree"
+   ],
+   "related": [
+    "db.internals.btree"
+   ],
+   "aliases": [
+    "skip list internals",
+    "스킵 리스트 구조",
+    "건너뛰기 리스트",
+    "확률적 균형 리스트"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/skiplist.html",
+    "https://ftp.cs.umd.edu/pub/skipLists/skiplists.pdf",
+    "https://redis.io/docs/latest/develop/data-types/sorted-sets/",
+    "https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ConcurrentSkipListMap.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.lang.tracing-gc-cost",
+   "title": "추적 GC의 비용 모델: 힙 여유와 CPU의 손익",
+   "en": "Tracing GC Cost Model and Tuning Trade-offs",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "언어의 실행",
+   "summary": "살아 있는 객체를 뿌리부터 따라가 표시하는 추적 GC에서 수집 빈도가 메모리와 CPU를 맞바꾸는 구조를 Go GC 가이드의 비용 모델로 분석하고, 메모리 한도와 스래싱의 관계를 다룬다.",
+   "objectives": [
+    "GC 한 주기의 CPU 비용이 고정비와 살아 있는 힙 크기에 비례하는 표시 비용으로 이루어진다는 모델로 수집 빈도의 효과를 설명할 수 있다",
+    "GOGC를 두 배로 올리면 힙 여유가 대략 두 배가 되고 GC CPU 비용이 대략 절반이 된다는 손익을 힙 목표 식으로 계산할 수 있다",
+    "살아 있는 힙이 메모리 한도에 다가가면 GC가 쉬지 않고 도는 스래싱이 생기는 이유와 GC CPU 상한이 그 피해를 제한하는 방식을 설명할 수 있다",
+    "짧은 정지, 표시 중 포인터 쓰기의 추가 작업, 할당이 많을 때의 보조 작업 같은 지연 원인을 구분해 할당 줄이기와 설정 조정 중 무엇을 할지 고를 수 있다"
+   ],
+   "prerequisites": [
+    "cs.lang.garbage-collection"
+   ],
+   "related": [
+    "be.python.memory"
+   ],
+   "aliases": [
+    "GC 비용 모델",
+    "GC 튜닝 손익",
+    "GOGC",
+    "GOMEMLIMIT",
+    "Go GC 튜닝"
+   ],
+   "refs": [
+    "https://go.dev/doc/gc-guide"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "cs"
+  },
+  {
    "id": "cs.os.page-replacement",
    "title": "페이지 교체 정책: LRU 근사와 스래싱",
    "en": "Page Replacement Policies: Approximating LRU and Thrashing",
@@ -18420,6 +18906,41 @@
    "domain": "cs"
   },
   {
+   "id": "cs.data.unicode-normalization-internals",
+   "title": "유니코드 정규화의 내부: 분해·정준 순서·조합",
+   "en": "Unicode Normalization Internals",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "데이터 표현",
+   "summary": "UAX #15가 정한 네 정규형이 분해·결합 클래스 정렬·조합을 거쳐 만들어지는 과정과, 빠른 검사·안정성 정책·연결 시 성질이 구현 비용에 주는 영향을 분석한다.",
+   "objectives": [
+    "정준 동등과 호환 동등의 차이를 들어 K 정규형이 원래 구별을 지울 수 있는 경우를 설명할 수 있다",
+    "결합 표시를 결합 클래스로 정렬한 뒤 조합하고 조합 제외 목록이 일부 조합을 막는 과정을 따라갈 수 있다",
+    "빠른 검사의 Yes·No·Maybe 결과로 대부분의 이미 정규화된 글을 전체 정규화 없이 통과시키는 이유를 설명할 수 있다",
+    "정규화된 문자열 둘을 이어도 정규형이 아닐 수 있어 경계 부분만 다시 정규화해야 하는 이유를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.data.identifier-comparison"
+   ],
+   "related": [
+    "be.python.unicode"
+   ],
+   "aliases": [
+    "유니코드 정규화 내부",
+    "Unicode normalization forms",
+    "UAX #15",
+    "정준 분해",
+    "정준 조합"
+   ],
+   "refs": [
+    "https://www.unicode.org/reports/tr15/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "cs"
+  },
+  {
    "id": "cs.os.tlb",
    "title": "TLB(주소 변환 캐시)",
    "en": "Translation Lookaside Buffer (TLB)",
@@ -18492,6 +19013,50 @@
    ],
    "refs": [
     "https://docs.python.org/3/library/math.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dist.linearizability",
+   "title": "선형화 가능성(linearizability)",
+   "en": "Linearizability",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "분산 시스템",
+   "summary": "각 연산이 호출과 응답 사이 어느 한 순간에 정확히 한 번 일어난 것처럼 보여, 실제 시간 순서와 어긋나는 오래된 값을 돌려주지 않는다는 일관성 보장이다.",
+   "parent": "cs.dist.linearizable-reads",
+   "aliases": [
+    "선형화 일관성",
+    "linearizable consistency",
+    "선형화 보장"
+   ],
+   "refs": [
+    "https://raft.github.io/raft.pdf",
+    "https://etcd.io/docs/v3.5/learning/api_guarantees/"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.lang.mark-sweep",
+   "title": "표시-쓸기 수집(mark-sweep)",
+   "en": "Mark-Sweep Garbage Collection",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "언어의 실행",
+   "summary": "뿌리에서 닿는 객체를 모두 표시한 뒤 표시되지 않은 메모리를 할당에 다시 내주는 추적 GC 방식으로, 표시가 끝나야 쓸기를 시작할 수 있다.",
+   "parent": "cs.lang.tracing-gc-cost",
+   "related": [
+    "fe.internals.js-memory-reachability"
+   ],
+   "aliases": [
+    "마크 스윕 GC",
+    "mark-sweep collector",
+    "표시 후 쓸기"
+   ],
+   "refs": [
+    "https://go.dev/doc/gc-guide"
    ],
    "domain": "cs"
   },
@@ -18803,6 +19368,86 @@
    ],
    "refs": [
     "https://github.com/python/cpython/blob/main/Objects/listsort.txt"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dist.leader-lease-read",
+   "title": "리더 임대 읽기(lease read)",
+   "en": "Leader Lease Read",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "분산 시스템",
+   "summary": "리더가 하트비트로 얻은 임대 기간 동안은 과반 확인 없이 읽기에 답하는 방식으로, 빠른 대신 시계 차이가 한정된다는 가정에 안전을 건다.",
+   "parent": "cs.dist.linearizable-reads",
+   "aliases": [
+    "리더 임대",
+    "leader lease",
+    "lease 기반 읽기"
+   ],
+   "refs": [
+    "https://raft.github.io/raft.pdf"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dsa.las-vegas-algorithm",
+   "title": "라스베이거스 알고리즘",
+   "en": "Las Vegas Algorithm",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "자료구조",
+   "summary": "무작위성을 쓰지만 답은 늘 맞고 실행 시간만 운에 따라 달라지는 무작위 알고리즘으로, 답이 근사인 몬테카를로 알고리즘과 대비된다.",
+   "parent": "cs.dsa.skip-list-internals",
+   "aliases": [
+    "라스베가스 알고리즘",
+    "Las Vegas 무작위 알고리즘"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/lasVegas.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.data.canonical-combining-class",
+   "title": "정준 결합 클래스(Canonical_Combining_Class)",
+   "en": "Canonical Combining Class",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "데이터 표현",
+   "summary": "결합 표시마다 붙은 숫자 속성으로, 0은 시작 문자이고 0이 아닌 표시들은 정규화 때 이 값 순서로 다시 정렬된다.",
+   "parent": "cs.data.unicode-normalization-internals",
+   "aliases": [
+    "Canonical_Combining_Class",
+    "결합 클래스",
+    "canonical ordering",
+    "정준 순서 정렬"
+   ],
+   "refs": [
+    "https://www.unicode.org/reports/tr15/"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.data.normalization-quick-check",
+   "title": "정규화 빠른 검사(Quick Check)",
+   "en": "Normalization Quick Check",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "데이터 표현",
+   "summary": "글자별 NFC_QC 같은 속성으로 문자열이 이미 정규형인지 Yes·No·Maybe로 빨리 가르는 검사로, Maybe일 때만 실제로 정규화해 비교한다.",
+   "parent": "cs.data.unicode-normalization-internals",
+   "aliases": [
+    "NFC_QC",
+    "정규화 빠른 확인",
+    "normalization quick check 속성"
+   ],
+   "refs": [
+    "https://www.unicode.org/reports/tr15/"
    ],
    "domain": "cs"
   },
@@ -27624,6 +28269,173 @@
    "domain": "plan"
   },
   {
+   "id": "plan.basics.core-aam-role-mapping",
+   "title": "Core-AAM으로 보는 ARIA 역할의 플랫폼 API 매핑",
+   "en": "ARIA Role Mapping to Platform Accessibility APIs (Core-AAM)",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "브라우저가 ARIA 역할·상태·이벤트를 UIA·AX API·ATK 같은 운영체제 접근성 API로 옮기는 규칙과, 같은 역할이 플랫폼마다 다르게 드러나는 이유를 다룬다.",
+   "objectives": [
+    "같은 ARIA 역할이 UIA·IAccessible2·ATK/AT-SPI·AX API에서 각각 어떤 역할로 드러나는지 매핑 표로 비교할 수 있다",
+    "region·form 역할이 접근 가능한 이름이 있을 때만 랜드마크로 드러나는 규칙을 근거로 화면 구조 설계를 판단할 수 있다",
+    "호스트 언어 속성과 ARIA 속성이 충돌할 때, 그리고 role=none·presentation을 단 요소가 포커스를 받거나 전역 ARIA 속성을 가질 때 브라우저가 어느 쪽 의미를 드러내는지 설명할 수 있다",
+    "aria-hidden=true인 요소에 포커스가 가면 숨김 표시와 함께 다시 노출되는 매핑을 근거로 화면 낭독기 장애 원인을 분석할 수 있다"
+   ],
+   "related": [
+    "plan.basics.accname-computation",
+    "fe.html.accessibility-tree"
+   ],
+   "aliases": [
+    "Core-AAM",
+    "Core Accessibility API Mappings",
+    "접근성 API 매핑",
+    "ARIA 역할 매핑",
+    "accessibility API mapping"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/core-aam-1.2/",
+    "https://www.w3.org/TR/wai-aria-1.2/#conflict_resolution_presentation_none"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.html-aria-author-rules",
+   "title": "ARIA in HTML의 작성자 적합성 규칙",
+   "en": "ARIA in HTML Author Conformance Rules",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "HTML 요소마다 허용되는 ARIA 역할과 속성, 암시적 의미와 겹치는 중복 지정, 이름 붙이기가 금지된 요소를 정한 W3C 권고의 작성자 규칙이다.",
+   "objectives": [
+    "요소별 표에서 허용 역할·금지 속성을 찾아 설계 명세의 ARIA 지정이 규칙에 맞는지 판정할 수 있다",
+    "암시적 의미와 같은 역할을 다시 적는 것이 권장되지 않는 이유와, 목록 표시를 지운 ul에 role=list를 두는 예외를 근거로 설명할 수 있다",
+    "브라우저가 따르는 접근성 API 매핑(Core-AAM·HTML-AAM) 규칙과 작성자가 따르는 ARIA in HTML 규칙의 차이를 구분해 결함의 책임 쪽을 가를 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.core-aam-role-mapping"
+   ],
+   "related": [
+    "plan.basics.accname-computation"
+   ],
+   "aliases": [
+    "ARIA in HTML",
+    "html-aria",
+    "HTML의 ARIA 사용 규칙",
+    "ARIA 작성자 규칙",
+    "암시적 ARIA 의미"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/html-aria/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.wcag2-contrast-algorithm",
+   "title": "WCAG 2 대비 계산식의 근거와 한계",
+   "en": "WCAG 2 Contrast Formula: Rationale and Limits",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "sRGB 상대 휘도로 구하는 WCAG 2 대비비 공식이 4.5:1과 3:1을 어디서 가져왔는지, 반올림·글꼴 굵기·앤티에일리어싱에서 어떤 한계가 생기는지 분석한다.",
+   "objectives": [
+    "상대 휘도와 (L1+0.05)/(L2+0.05) 공식으로 두 색의 대비비를 직접 계산하고 0.05 항의 의미를 설명할 수 있다",
+    "4.5:1이 시력 저하를 보정하려고 3:1에 1.5를 곱한 값이라는 근거와, 문턱값이라 4.499:1을 반올림해 통과시킬 수 없는 이유를 설명할 수 있다",
+    "가는 글꼴과 앤티에일리어싱 때문에 공식은 통과해도 읽기 어려운 경우를 찾아 최소 기준보다 높은 대비를 고를지 판단할 수 있다",
+    "배경색 없이 글자색만 지정하는 실패(F24)와 배경 이미지 위 글자 같은 경계 사례에서 측정 기준을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.color-contrast"
+   ],
+   "related": [
+    "plan.basics.wcag3-conformance"
+   ],
+   "aliases": [
+    "대비비 공식",
+    "WCAG 대비 알고리즘",
+    "contrast ratio formula",
+    "WCAG 2 contrast algorithm",
+    "대비비 계산"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
+    "https://www.w3.org/TR/WCAG22/#dfn-relative-luminance"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.cldr-skeleton-matching",
+   "title": "CLDR 날짜 스켈레톤과 패턴 고르기 알고리즘",
+   "en": "CLDR Date Skeleton Matching",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "어떤 날짜 필드를 보일지만 적은 스켈레톤을 로캘별 availableFormats에서 가장 가까운 패턴으로 바꾸고, 모자란 필드는 붙여 넣는 CLDR의 날짜 형식 선택 규칙이다.",
+   "objectives": [
+    "고정 날짜 패턴 대신 스켈레톤을 명세에 적어야 로캘마다 필드 순서와 구두점이 맞게 바뀌는 이유를 설명할 수 있다",
+    "필드 기호 사이 거리, 너비 조정, 숫자와 글자 표기를 서로 바꾸지 않는 규칙으로 요청 스켈레톤이 어느 패턴에 맞춰지는지 추적할 수 있다",
+    "맞는 항목이 없을 때 날짜 부분과 시간 부분을 따로 맞춘 뒤 dateTimeFormat으로 잇고 appendItems로 빈 필드를 채우는 과정을 설명할 수 있다",
+    "날짜 범위를 보여 줄 때 intervalFormats의 가장 크게 달라진 필드에 따라 반복 부분이 줄어드는 방식을 근거로 범위 표시 문구를 설계할 수 있다"
+   ],
+   "related": [
+    "plan.basics.messageformat2",
+    "plan.basics.bcp47-language-tags"
+   ],
+   "aliases": [
+    "날짜 스켈레톤",
+    "date skeleton",
+    "availableFormats",
+    "CLDR 날짜 형식",
+    "flexible date format"
+   ],
+   "refs": [
+    "https://unicode.org/reports/tr35/tr35-dates.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.rest-api-rate-limits",
+   "title": "Figma REST API 요청 한도 모델과 연동 설계",
+   "en": "Figma REST API Rate Limits and Integration Design",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "Figma와 디자인 시스템",
+   "summary": "Figma REST API가 좌석 유형·엔드포인트 등급·파일의 요금제에 따라 요청 한도를 따로 세는 방식과, 429 응답을 받았을 때와 받지 않도록 설계하는 손익을 다룬다.",
+   "objectives": [
+    "같은 연동이 좌석 유형과 파일이 있는 요금제에 따라 다른 한도를 받는 이유를 토큰 종류별 집계 방식으로 설명할 수 있다",
+    "파일 조회 같은 Tier 1 호출과 변수·댓글 같은 Tier 2 호출의 한도 차이를 근거로 동기화 주기와 호출 순서를 설계할 수 있다",
+    "429 응답의 Retry-After와 X-Figma-Rate-Limit-Type 헤더로 재시도 대기와 좌석 문제를 구분해 장애 원인을 분석할 수 있다",
+    "노드 ID를 한 요청에 묶기와 결과 캐시로 호출 수를 줄일 때 얻는 것과 데이터가 늦어지는 손해를 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.variables-rest-api-sync"
+   ],
+   "related": [
+    "be.rest.rate-limit"
+   ],
+   "aliases": [
+    "Figma rate limit",
+    "Figma API 요청 한도",
+    "Figma REST API 한도",
+    "X-Figma-Rate-Limit-Type"
+   ],
+   "refs": [
+    "https://developers.figma.com/docs/rest-api/rate-limits/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
    "id": "plan.basics.wcag2ict",
    "title": "WCAG2ICT로 앱·문서에 WCAG 적용하기",
    "en": "Applying WCAG to Non-Web ICT with WCAG2ICT",
@@ -27902,6 +28714,70 @@
    ],
    "refs": [
     "https://www.w3.org/WAI/WCAG22/Understanding/conformance"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.presentational-role-conflict",
+   "title": "프레젠테이션 역할 충돌 해소",
+   "en": "Presentational Roles Conflict Resolution",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "role=none이나 presentation을 붙여도 요소가 포커스를 받거나 전역 ARIA 속성을 가지면 브라우저가 그 역할을 무시하고 원래 역할로 노출하는 규칙이다.",
+   "parent": "plan.basics.core-aam-role-mapping",
+   "aliases": [
+    "presentation 역할 충돌",
+    "role none 무시 규칙",
+    "presentational conflict resolution",
+    "프레젠테이션 역할 무시"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/wai-aria-1.2/#conflict_resolution_presentation_none"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.name-prohibited-role",
+   "title": "이름 붙이기가 금지된 역할",
+   "en": "Roles Which Cannot Be Named",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "generic·paragraph·strong·code처럼 작성자가 aria-label이나 aria-labelledby로 이름을 주면 안 되는 역할로, span이나 역할 없는 div에 붙인 라벨은 규칙 위반이다.",
+   "parent": "plan.basics.html-aria-author-rules",
+   "aliases": [
+    "이름 금지 역할",
+    "name prohibited",
+    "naming prohibited",
+    "aria-label 금지 요소"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/wai-aria-1.2/#namefromprohibited",
+    "https://www.w3.org/TR/html-aria/#docconformance-naming"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.relative-luminance",
+   "title": "상대 휘도(relative luminance)",
+   "en": "Relative Luminance",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "sRGB 각 채널을 선형값으로 바꾼 뒤 0.2126·0.7152·0.0722를 곱해 더한 0~1의 밝기로, WCAG 대비비 계산의 입력이며 선형화 문턱은 2021년에 0.03928에서 0.04045로 바뀌었다.",
+   "parent": "plan.basics.wcag2-contrast-algorithm",
+   "aliases": [
+    "상대 휘도",
+    "상대 밝기",
+    "sRGB 휘도",
+    "luminance formula"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/WCAG22/#dfn-relative-luminance"
    ],
    "domain": "plan"
   },
@@ -28276,6 +29152,93 @@
    ],
    "refs": [
     "https://developers.figma.com/docs/plugins/api/properties/figma-skipinvisibleinstancechildren/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.redundant-aria-role",
+   "title": "중복 ARIA 역할(redundant role)",
+   "en": "Redundant ARIA Role",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "button 요소에 role=button을 다시 적듯 HTML의 암시적 의미와 같은 역할을 명시하는 것으로, ARIA in HTML은 이를 권장하지 않는다.",
+   "parent": "plan.basics.html-aria-author-rules",
+   "aliases": [
+    "중복 역할",
+    "redundant role",
+    "불필요한 role 지정",
+    "암시적 역할 중복"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/html-aria/#avoid-specifying-redundant-roles"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.cldr-hour-cycle",
+   "title": "CLDR 시간 주기와 j 기호",
+   "en": "CLDR Hour Cycle and the j Skeleton Symbol",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "h·K는 12시간제, H·k는 24시간제를 뜻하며, 스켈레톤의 j는 지역의 timeData preferred 값으로, C는 allowed 목록의 첫 지원 값으로 바뀌고 hc 로캘 키워드가 이를 덮어쓴다.",
+   "parent": "plan.basics.cldr-skeleton-matching",
+   "aliases": [
+    "시간 주기",
+    "hour cycle",
+    "12시간제 24시간제 선택",
+    "hc 키워드",
+    "timeData preferred"
+   ],
+   "refs": [
+    "https://unicode.org/reports/tr35/tr35-dates.html#Time_Data"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.cldr-greatest-difference",
+   "title": "날짜 범위 형식의 가장 큰 차이 필드",
+   "en": "Interval Format Greatest Difference",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "시작과 끝 날짜 사이에서 가장 큰 단위로 달라진 필드(연·월·일 등)에 따라 intervalFormats의 패턴을 골라 겹치는 부분을 한 번만 쓰는 CLDR 범위 형식의 기준이다.",
+   "parent": "plan.basics.cldr-skeleton-matching",
+   "aliases": [
+    "greatestDifference",
+    "가장 큰 차이 필드",
+    "date interval format",
+    "날짜 구간 형식"
+   ],
+   "refs": [
+    "https://unicode.org/reports/tr35/tr35-dates.html#intervalFormats"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.rate-limit-tier",
+   "title": "Figma API 엔드포인트 등급(Tier)",
+   "en": "Figma API Endpoint Rate Limit Tier",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "Figma REST API 엔드포인트를 파일·이미지 조회의 Tier 1부터 메타데이터·사용자 조회의 Tier 3까지 나눠 등급마다 다른 요청 한도를 주는 구분이다.",
+   "parent": "plan.figma.rest-api-rate-limits",
+   "aliases": [
+    "Figma Tier 1",
+    "Figma 엔드포인트 등급",
+    "Figma rate limit tier",
+    "Figma API 등급"
+   ],
+   "refs": [
+    "https://developers.figma.com/docs/rest-api/rate-limits/"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -47504,6 +48467,109 @@
    "domain": "db"
   },
   {
+   "id": "db.internals.shared-buffers",
+   "title": "PostgreSQL 공유 버퍼와 페이지 교체의 손익",
+   "en": "PostgreSQL Shared Buffers and Page Replacement Trade-offs",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "페이지를 공유 메모리에 올려 두는 shared_buffers가 클록 스윕 사용 횟수로 교체 대상을 고르고 OS 캐시와 메모리를 나누는 구조와 손익을 따진다.",
+   "objectives": [
+    "shared_buffers를 메모리의 약 25%에서 시작하고 40%를 넘겨도 OS 캐시에 기대는 구조 때문에 이득이 적은 까닭을 설명할 수 있다",
+    "pg_buffercache의 usagecount(0~5)와 isdirty, pinning_backends로 버퍼가 교체 후보가 되는 조건을 설명할 수 있다",
+    "pg_stat_io에서 evictions가 많거나 client backend의 writes·fsyncs가 많을 때 shared_buffers나 체크포인트 설정을 의심할 수 있다",
+    "큰 순차 읽기·COPY·VACUUM이 크기가 정해진 링 버퍼를 써서 공유 버퍼를 밀어내지 않는 까닭을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "db.internals.checkpoints"
+   ],
+   "related": [
+    "cs.os.clock-algorithm"
+   ],
+   "aliases": [
+    "shared_buffers",
+    "PostgreSQL 공유 버퍼",
+    "PostgreSQL shared buffers",
+    "PostgreSQL 클록 스윕",
+    "버퍼 링 전략"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/runtime-config-resource.html",
+    "https://www.postgresql.org/docs/current/pgbuffercache.html",
+    "https://www.postgresql.org/docs/current/monitoring-stats.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.cache.redis-replication-internals",
+   "title": "Redis 복제의 내부: 복제 ID·오프셋과 재동기화",
+   "en": "Redis Replication Internals: Replication ID, Offset and Resynchronization",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "캐시",
+   "summary": "복제 ID와 바이트 오프셋 한 쌍으로 자료의 판을 가리키고 PSYNC로 빠진 부분만 받거나 RDB로 전체를 다시 받는 Redis 비동기 복제의 구조를 다룬다.",
+   "objectives": [
+    "백로그가 모자라거나 복제 ID를 모를 때 부분 재동기화 대신 RDB를 만드는 전체 동기화가 일어나는 과정을 설명할 수 있다",
+    "승격된 복제본이 새 복제 ID를 만들고 옛 ID를 보조 ID로 기억해 장애 조치 뒤에도 부분 재동기화를 하는 까닭을 설명할 수 있다",
+    "영속성을 끈 마스터가 자동 재시작하면 빈 자료를 복제해 모든 복제본이 지워지는 장애를 설명하고 막을 수 있다",
+    "WAIT가 확인된 사본 수만 보장할 뿐 장애 조치 때 쓰기 손실을 없애지 못하는 까닭을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "db.cache.redis-persistence"
+   ],
+   "related": [
+    "db.cache.redis-sentinel",
+    "db.internals.wal-replication"
+   ],
+   "aliases": [
+    "Redis 복제",
+    "Redis replication",
+    "Redis 복제 ID",
+    "Redis replication ID",
+    "PSYNC",
+    "Redis 부분 재동기화"
+   ],
+   "refs": [
+    "https://redis.io/docs/latest/operate/oss_and_stack/management/replication/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.nosql.wiredtiger-internals",
+   "title": "WiredTiger 저장 엔진의 내부: 캐시·체크포인트·저널",
+   "en": "WiredTiger Storage Engine Internals: Cache, Checkpoints and Journal",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "NoSQL",
+   "summary": "MongoDB 기본 저장 엔진 WiredTiger가 문서 단위 동시성과 MVCC 스냅숏, 60초 체크포인트와 저널, 내부 캐시와 압축으로 내구성과 메모리를 나누는 구조를 다룬다.",
+   "objectives": [
+    "문서 단위 낙관적 동시성에서 쓰기 충돌이 나면 MongoDB가 한쪽을 투명하게 다시 시도하는 과정을 설명할 수 있다",
+    "60초마다 쓰는 체크포인트와 그 사이를 채우는 저널이 비정상 종료 뒤 복구를 맡는 방식을 설명할 수 있다",
+    "내부 캐시 기본값(RAM−1GB의 50%와 0.256GB 중 큰 값)과 압축된 형식을 담는 파일 시스템 캐시가 메모리를 나누는 방식을 설명할 수 있다",
+    "minSnapshotHistoryWindowInSeconds를 늘리면 WiredTigerHS.wt가 커져 디스크 사용이 느는 손익을 따질 수 있다"
+   ],
+   "prerequisites": [
+    "db.nosql.mongodb-crud"
+   ],
+   "related": [
+    "db.internals.mvcc-vacuum"
+   ],
+   "aliases": [
+    "WiredTiger",
+    "WiredTiger 저장 엔진",
+    "WiredTiger storage engine",
+    "MongoDB 저장 엔진",
+    "MongoDB 체크포인트"
+   ],
+   "refs": [
+    "https://www.mongodb.com/docs/manual/core/wiredtiger/"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.internals.wal-replication",
    "title": "WAL과 복제",
    "en": "WAL and Replication",
@@ -47685,6 +48751,73 @@
    "domain": "db"
   },
   {
+   "id": "db.internals.btree-dedup-deletion",
+   "title": "B-tree 중복 제거와 상향식 삭제의 내부",
+   "en": "B-tree Deduplication and Bottom-up Index Deletion",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "같은 키를 posting list 하나로 묶는 중복 제거와 UPDATE가 남긴 낡은 항목을 페이지 단위로 지우는 상향식 삭제가 페이지 분할을 막는 구조를 다룬다.",
+   "objectives": [
+    "중복 제거가 매 삽입이 아니라 잎 페이지가 넘칠 때 지연 실행되어 키 하나와 정렬된 TID 배열로 합치는 과정을 설명할 수 있다",
+    "numeric·jsonb·float·비결정적 콜레이션 텍스트·INCLUDE 인덱스에서 중복 제거를 쓸 수 없는 까닭을 설명할 수 있다",
+    "인덱스 열을 바꾸지 않는 UPDATE의 버전 증가가 HOT이 안 될 때 상향식 삭제로 분할을 피하는 과정을 설명할 수 있다",
+    "LP_DEAD 표시에 기대는 단순 삭제와 상향식 삭제, VACUUM의 정리 범위와 보장 차이를 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "db.internals.btree",
+    "db.internals.mvcc-vacuum"
+   ],
+   "related": [
+    "db.internals.hot-updates"
+   ],
+   "aliases": [
+    "B-tree 중복 제거",
+    "B-tree deduplication",
+    "posting list 튜플",
+    "상향식 인덱스 삭제",
+    "bottom-up index deletion",
+    "version churn"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/btree.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.partitionwise-join-aggregate",
+   "title": "파티션 단위 조인과 집계의 손익",
+   "en": "Partitionwise Join and Aggregate Trade-offs",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "짝이 맞는 파티션끼리 조인하고 파티션마다 집계하는 계획이 실행을 줄이는 대신 계획 비용과 work_mem 사용을 파티션 수만큼 늘리는 손익을 따진다.",
+   "objectives": [
+    "enable_partitionwise_join이 조인 조건에 파티션 키가 모두 있고 자료형이 같아 자식 파티션이 일대일로 짝지어질 때만 쓰이는 조건을 설명할 수 있다",
+    "GROUP BY에 파티션 키가 없으면 파티션마다 부분 집계만 하고 나중에 마무리하는 까닭을 설명할 수 있다",
+    "두 설정의 기본값이 off인 까닭을 work_mem 노드의 메모리 증가와 계획 CPU 증가로 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "db.internals.partitioning"
+   ],
+   "related": [
+    "db.internals.partition-pruning"
+   ],
+   "aliases": [
+    "partitionwise join",
+    "파티션 와이즈 조인",
+    "enable_partitionwise_join",
+    "enable_partitionwise_aggregate",
+    "파티션 와이즈 집계"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/runtime-config-query.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.internals.xid-wraparound",
    "title": "트랜잭션 ID 겹침과 동결(freeze)",
    "en": "Transaction ID Wraparound and Freezing",
@@ -47768,6 +48901,71 @@
    "refs": [
     "https://www.postgresql.org/docs/current/ddl-partitioning.html#DDL-PARTITION-PRUNING",
     "https://www.postgresql.org/docs/current/runtime-config-query.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.random-page-cost",
+   "title": "random_page_cost: 임의 페이지 읽기 비용",
+   "en": "random_page_cost",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "seq_page_cost 1.0에 견준 임의 페이지 읽기의 플래너 비용으로, 기본 4.0은 임의 읽기 대부분이 캐시에서 온다고 가정한 값이다.",
+   "related": [
+    "db.internals.query-planner",
+    "db.internals.effective-cache-size"
+   ],
+   "aliases": [
+    "PostgreSQL random_page_cost",
+    "random page cost",
+    "임의 페이지 비용 설정"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/runtime-config-query.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.cache.redis-repl-backlog",
+   "title": "Redis 복제 백로그: repl-backlog-size",
+   "en": "Redis Replication Backlog",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "캐시",
+   "summary": "끊겼다 돌아온 복제본에 빠진 명령만 보내려고 마스터가 메모리에 쌓아 두는 복제 스트림 버퍼로, 모자라면 전체 동기화가 일어난다.",
+   "parent": "db.cache.redis-replication-internals",
+   "aliases": [
+    "Redis replication backlog",
+    "repl-backlog-size",
+    "Redis 복제 백로그 크기"
+   ],
+   "refs": [
+    "https://redis.io/docs/latest/operate/oss_and_stack/management/replication/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.nosql.wiredtiger-cache-size",
+   "title": "WiredTiger 캐시 크기: cacheSizeGB",
+   "en": "WiredTiger Cache Size (cacheSizeGB)",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "NoSQL",
+   "summary": "WiredTiger 내부 캐시 크기를 정하는 설정으로, 기본은 RAM−1GB의 50%와 0.256GB 중 큰 값이고 컨테이너에서는 메모리 한도보다 작게 잡는다.",
+   "parent": "db.nosql.wiredtiger-internals",
+   "aliases": [
+    "cacheSizeGB",
+    "wiredTigerCacheSizeGB",
+    "WiredTiger 내부 캐시",
+    "WiredTiger internal cache",
+    "cacheSizePct"
+   ],
+   "refs": [
+    "https://www.mongodb.com/docs/manual/core/wiredtiger/"
    ],
    "domain": "db"
   },
@@ -48004,6 +49202,112 @@
    "refs": [
     "https://www.postgresql.org/docs/current/transaction-iso.html#XACT-SERIALIZABLE",
     "https://www.postgresql.org/docs/current/sql-set-transaction.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.background-writer",
+   "title": "PostgreSQL 백그라운드 라이터(bgwriter)",
+   "en": "PostgreSQL Background Writer",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "더러운 공유 버퍼를 미리 디스크에 써서 백엔드가 직접 쓰지 않게 하는 프로세스로, 한 바퀴에 최대 100버퍼를 쓰고 전체 I/O는 늘 수 있다.",
+   "parent": "db.internals.shared-buffers",
+   "related": [
+    "db.internals.checkpoints"
+   ],
+   "aliases": [
+    "PostgreSQL 백그라운드 라이터",
+    "PostgreSQL background writer",
+    "bgwriter_lru_maxpages",
+    "bgwriter_lru_multiplier",
+    "bgwriter_delay"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/runtime-config-resource.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.pg-buffercache",
+   "title": "pg_buffercache: 공유 버퍼 안 들여다보기",
+   "en": "pg_buffercache",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "공유 버퍼마다 어느 표의 페이지인지와 usagecount·isdirty·pinning_backends를 보여 주는 확장으로, 요약 함수는 전체 뷰보다 싸다.",
+   "parent": "db.internals.shared-buffers",
+   "aliases": [
+    "pg_buffercache_summary",
+    "pg_buffercache_usage_counts",
+    "pg_buffercache_evict",
+    "버퍼 캐시 확장"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/pgbuffercache.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.effective-cache-size",
+   "title": "effective_cache_size: 플래너가 가정하는 캐시 크기",
+   "en": "effective_cache_size",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "메모리를 잡지 않고 한 쿼리가 쓸 수 있다고 가정할 디스크 캐시 크기만 알려 주는 추정용 설정으로, 기본 4GB이고 크면 인덱스 스캔이 유리해진다.",
+   "related": [
+    "db.internals.random-page-cost"
+   ],
+   "aliases": [
+    "PostgreSQL effective_cache_size",
+    "플래너 캐시 크기 가정"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/runtime-config-query.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.deduplicate-items",
+   "title": "deduplicate_items: 인덱스별 중복 제거 끄기",
+   "en": "deduplicate_items",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "B-tree 인덱스마다 중복 제거를 켜고 끄는 저장 매개변수로, 기본은 켜짐이고 중복이 적은 쓰기 위주 부하에서만 끌 이유가 생긴다.",
+   "parent": "db.internals.btree-dedup-deletion",
+   "aliases": [
+    "deduplicate_items = off",
+    "B-tree 중복 제거 끄기"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/btree.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.cache.redis-diskless-sync",
+   "title": "Redis 디스크 없는 복제: repl-diskless-sync",
+   "en": "Redis Diskless Replication",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "캐시",
+   "summary": "전체 동기화 때 RDB를 디스크에 쓰지 않고 자식 프로세스가 네트워크로 바로 복제본에 보내는 방식으로, 디스크가 느린 마스터의 부담을 줄인다.",
+   "parent": "db.cache.redis-replication-internals",
+   "aliases": [
+    "Redis diskless replication",
+    "repl-diskless-sync",
+    "repl-diskless-sync-delay"
+   ],
+   "refs": [
+    "https://redis.io/docs/latest/operate/oss_and_stack/management/replication/"
    ],
    "domain": "db"
   },
@@ -117052,6 +118356,73 @@
    "domain": "mlops"
   },
   {
+   "id": "mlops.serve.gpu-sharing-mig-time-slicing",
+   "title": "GPU 공유 방식의 손익: MIG와 타임 슬라이싱",
+   "en": "GPU Sharing Trade-offs: MIG and Time-Slicing",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "NVIDIA GPU Operator에서 GPU를 하드웨어로 나누는 MIG와 시간을 번갈아 쓰는 타임 슬라이싱을 격리·밀도·재구성 비용으로 비교한다.",
+   "objectives": [
+    "MIG는 메모리와 장애가 격리되고 타임 슬라이싱은 격리되지 않는다는 차이로 모델 서버 배치를 판단할 수 있다",
+    "MIG single 전략과 mixed 전략이 Kubernetes 자원 이름과 노드 레이블을 어떻게 바꾸는지 설명할 수 있다",
+    "MIG 구성 변경이 GPU 파드 중지와 노드 재부팅을 부를 수 있어 노드를 비우고 바꿔야 하는 이유를 설명할 수 있다",
+    "타임 슬라이싱 복제본을 여러 개 요청해도 연산이 비례해 늘지 않는 이유와 지표 수집의 한계를 분석할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.k8s.scheduling"
+   ],
+   "aliases": [
+    "GPU 공유",
+    "GPU sharing",
+    "MIG",
+    "Multi-Instance GPU",
+    "GPU 타임 슬라이싱",
+    "GPU time-slicing"
+   ],
+   "refs": [
+    "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/gpu-sharing.html",
+    "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/gpu-operator-mig.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.feature.feast-point-in-time-join",
+   "title": "Feast 시점 조인과 구체화: 학습·서빙 값 맞추기",
+   "en": "Feast Point-in-Time Joins and Materialization",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "Feast가 엔터티 행의 시각 이전 값만 골라 학습 데이터를 만들고 최신 값을 온라인 저장소로 옮기는 방식과 그 누수 위험을 분석한다.",
+   "objectives": [
+    "get_historical_features가 엔터티 행마다 이벤트 시각 이전 값을 찾는 방식과 TTL 창이 결과를 어떻게 비우는지 설명할 수 있다",
+    "나중에 채우거나 고친 값이 학습 데이터에 섞이는 경로를 찾고 생성 시각 필터로 막는 손익을 판단할 수 있다",
+    "materialize_incremental이 배치 원천의 최신 값을 온라인 저장소로 옮기는 흐름과 푸시 원천을 쓰는 경우를 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.data.training-serving-skew"
+   ],
+   "related": [
+    "mlops.basics.feature-store"
+   ],
+   "aliases": [
+    "Feast point-in-time join",
+    "Feast 시점 조인",
+    "get_historical_features",
+    "Feast materialization",
+    "Feast 구체화"
+   ],
+   "refs": [
+    "https://docs.feast.dev/getting-started/concepts/point-in-time-joins",
+    "https://docs.feast.dev/getting-started/concepts/data-ingestion"
+   ],
+   "domain": "mlops"
+  },
+  {
    "id": "mlops.serve.inference-optimization",
    "title": "모델 서빙과 양자화",
    "en": "Model Serving and Quantization",
@@ -117301,6 +118672,75 @@
    ],
    "refs": [
     "https://docs.sglang.io/docs/advanced_features/hicache_design"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.triton-ensemble-vs-bls",
+   "title": "Triton 모델 파이프라인 고르기: 앙상블과 BLS",
+   "en": "Triton Ensembles vs Business Logic Scripting",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "Triton에서 고정된 데이터 흐름으로 모델을 잇는 앙상블과 Python 코드 안에서 분기·반복으로 다른 모델을 부르는 BLS를 비교해 고른다.",
+   "objectives": [
+    "앙상블 스케줄러가 입력이 준비된 단계부터 내부 요청을 보내는 방식과 instance_group을 쓸 수 없는 이유를 설명할 수 있다",
+    "조건 분기·반복·데이터에 따른 흐름이 필요할 때 앙상블 대신 BLS를 고르는 근거를 판단할 수 있다",
+    "스트리밍 모델이 낀 앙상블에서 단계별 진행 요청 상한이 메모리와 지연 사이에서 무엇을 바꾸는지 분석할 수 있다",
+    "BLS의 순환 호출 교착과 공유 메모리 크기 부족 같은 장애 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.serve.triton-batcher-design"
+   ],
+   "related": [
+    "mlops.serve.kserve-inference-graph"
+   ],
+   "aliases": [
+    "Triton ensemble",
+    "Triton 앙상블",
+    "Triton BLS",
+    "Business Logic Scripting",
+    "ensemble_scheduling"
+   ],
+   "refs": [
+    "https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/user_guide/ensemble_models.html",
+    "https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/python_backend/README.html"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.sglang-cache-aware-routing",
+   "title": "SGLang 모델 게이트웨이 캐시 인식 라우팅의 손익",
+   "en": "SGLang Model Gateway Cache-Aware Routing",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "SGLang 모델 게이트웨이가 접두사 일치와 워커 부하를 함께 보고 요청을 보내는 cache_aware 정책을 다른 정책과 견주어 조정한다.",
+   "objectives": [
+    "cache_aware 정책이 접두사 일치율 기준과 부하 차이 기준 사이에서 워커를 고르는 손익을 설명할 수 있다",
+    "cache_aware·power_of_two·round_robin 정책을 캐시 적중과 부하 균형으로 비교해 고를 수 있다",
+    "게이트웨이를 여러 벌 띄우면 라딕스 트리가 공유되지 않아 캐시 적중이 줄어드는 이유와 세션 고정으로 보완하는 방법을 판단할 수 있다",
+    "특정 워커에 요청이 몰리거나 게이트웨이 메모리가 늘 때 임계값과 트리 크기를 조정해 원인을 좁힐 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.serve.vllm-prefix-cache-ops"
+   ],
+   "related": [
+    "mlops.serve.ray-power-of-two-choices"
+   ],
+   "aliases": [
+    "SGLang cache-aware routing",
+    "SGLang 캐시 인식 라우팅",
+    "sglang_router",
+    "SGLang Model Gateway",
+    "SGLang 라우터"
+   ],
+   "refs": [
+    "https://docs.sglang.io/docs/advanced_features/sgl_model_gateway"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -117692,6 +119132,155 @@
    ],
    "refs": [
     "https://docs.sglang.io/docs/advanced_features/server_arguments"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.mig-strategy",
+   "title": "MIG 전략(single·mixed)",
+   "en": "MIG Strategy (single and mixed)",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "MIG 장치를 모두 nvidia.com/gpu로 보일지, 프로필마다 nvidia.com/mig-1g.10gb 같은 별도 자원으로 보일지 정하는 GPU Operator 설정이다.",
+   "parent": "mlops.serve.gpu-sharing-mig-time-slicing",
+   "aliases": [
+    "mig.strategy",
+    "MIG single strategy",
+    "MIG mixed strategy",
+    "MIG 혼합 전략"
+   ],
+   "refs": [
+    "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/gpu-operator-mig.html"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.gpu-time-slicing-replicas",
+   "title": "타임 슬라이싱 복제본 수(GPU Operator replicas)",
+   "en": "Time-Slicing Replicas",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "GPU 하나를 몇 개의 nvidia.com/gpu 자원으로 광고할지 정하는 타임 슬라이싱 설정으로, 복제본 사이에 메모리 격리는 없다.",
+   "parent": "mlops.serve.gpu-sharing-mig-time-slicing",
+   "aliases": [
+    "timeSlicing replicas",
+    "nvidia.com/gpu.shared",
+    "failRequestsGreaterThanOne",
+    "renameByDefault"
+   ],
+   "refs": [
+    "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/gpu-sharing.html"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.feature.feast-feature-view-ttl",
+   "title": "Feast 피처 뷰 TTL(시점 조인 탐색 창)",
+   "en": "Feast Feature View TTL",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "시점 조인이 각 엔터티 행의 시각에서 얼마나 과거까지 값을 찾을지 정하는 한도로, 질의를 돌린 시각이 기준이 아니다.",
+   "parent": "mlops.feature.feast-point-in-time-join",
+   "aliases": [
+    "Feast TTL",
+    "FeatureView ttl",
+    "피처 뷰 TTL"
+   ],
+   "refs": [
+    "https://docs.feast.dev/getting-started/concepts/point-in-time-joins"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.feature.feast-filter-by-created-timestamp",
+   "title": "filter_by_created_timestamp(Feast)",
+   "en": "filter_by_created_timestamp",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "엔터티 행 시각 이후에 만들어진 피처 값을 시점 조인에서 빼서 백필 값이 학습 데이터로 새지 않게 하는 Feast 옵션이다.",
+   "parent": "mlops.feature.feast-point-in-time-join",
+   "aliases": [
+    "created timestamp filter",
+    "Feast 생성 시각 필터",
+    "Feast 백필 누수"
+   ],
+   "refs": [
+    "https://docs.feast.dev/getting-started/concepts/point-in-time-joins"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.triton-ensemble-max-inflight",
+   "title": "max_inflight_requests(Triton 앙상블)",
+   "en": "Triton Ensemble max_inflight_requests",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "앙상블의 각 단계에 동시에 걸린 내부 요청 수를 묶어, 빠른 상류 단계가 메모리를 채우지 않도록 멈추게 하는 Triton 베타 설정이다.",
+   "parent": "mlops.serve.triton-ensemble-vs-bls",
+   "aliases": [
+    "Triton max_inflight_requests",
+    "앙상블 진행 요청 상한",
+    "ensemble backpressure"
+   ],
+   "refs": [
+    "https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/user_guide/ensemble_models.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.triton-bls-async-exec",
+   "title": "BLS 비동기 실행(Triton async_exec)",
+   "en": "Triton BLS async_exec",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "Triton Python 모델이 다른 모델 요청 여러 개를 기다리지 않고 동시에 보낸 뒤 asyncio로 모아 받는 BLS 호출 방식이다.",
+   "parent": "mlops.serve.triton-ensemble-vs-bls",
+   "aliases": [
+    "async_exec",
+    "BLS async",
+    "Triton BLS 비동기"
+   ],
+   "refs": [
+    "https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/python_backend/README.html"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.sglang-cache-balance-thresholds",
+   "title": "SGLang 캐시 인식 라우팅 임계값",
+   "en": "SGLang Cache-Aware Routing Thresholds",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "캐시 적중으로 칠 최소 접두사 일치율과, 부하 균형으로 넘어갈 워커 사이 부하 차이를 정하는 SGLang 게이트웨이 설정이다.",
+   "parent": "mlops.serve.sglang-cache-aware-routing",
+   "aliases": [
+    "--cache-threshold",
+    "--balance-abs-threshold",
+    "--balance-rel-threshold",
+    "SGLang balance threshold"
+   ],
+   "refs": [
+    "https://docs.sglang.io/docs/advanced_features/sgl_model_gateway"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",

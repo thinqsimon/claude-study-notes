@@ -8490,6 +8490,168 @@
     ]
   },
   {
+    "id": "dev.git.index-internals",
+    "title": "Git 인덱스의 내부: 엔트리·확장·racy git",
+    "en": "Git Index Internals: Entries, Extensions and Racy Git",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "Git",
+    "summary": "인덱스 파일이 경로마다 stat 정보·객체 해시·병합 단계를 담고 확장으로 트리 캐시·분할·추적 안 된 파일 캐시를 더하는 구조를 알고 status 속도와 변경 누락을 분석한다.",
+    "objectives": [
+      "인덱스 엔트리의 stat 정보·모드·객체 이름·병합 단계 플래그가 각각 어떤 판단에 쓰이는지 설명할 수 있다",
+      "cache tree·split index·untracked cache·sparse directory 같은 인덱스 확장이 어떤 비용을 줄이고 어떤 조건에 기대는지 비교할 수 있다",
+      "stat 정보가 같아 바뀐 파일을 놓치는 racy git 상황과 Git이 내용 비교로 되돌아가는 방식을 설명할 수 있다",
+      "디렉터리 mtime 갱신을 믿지 못하는 파일 시스템에서 untracked cache가 틀린 결과를 낼 수 있음을 알고 켤지 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.internals"
+    ],
+    "related": [
+      "dev.git.repo-performance"
+    ],
+    "aliases": [
+      "Git 인덱스 형식",
+      "gitformat-index",
+      "Git index format",
+      "스테이징 영역 내부",
+      ".git/index 구조"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/gitformat-index",
+      "https://git-scm.com/docs/racy-git",
+      "https://git-scm.com/docs/git-update-index"
+    ]
+  },
+  {
+    "id": "dev.git.reachability-internals",
+    "title": "도달 가능성 계산의 내부: 세대 번호와 팩 비트맵",
+    "en": "Git Reachability Internals: Generation Numbers and Pack Bitmaps",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "Git",
+    "summary": "commit-graph의 세대 번호로 기록 탐색을 일찍 끊고 팩 비트맵으로 도달 객체 집합을 비트 연산으로 구하는 방식을 알고 log·fetch·clone의 속도 차이를 분석한다.",
+    "objectives": [
+      "커밋은 자기보다 세대 번호가 작은 커밋에만 닿을 수 있다는 성질로 도달 가능성 검사가 탐색을 줄이는 원리를 설명할 수 있다",
+      "위상 수준(v1)과 보정 커밋 날짜(v2) 세대 번호가 commit-graph의 어느 청크에 저장되는지 구분할 수 있다",
+      "비트맵이 팩이나 multi-pack-index의 객체 순서로 비트를 매기고 EWAH로 압축된다는 점을 알고 객체 세기를 비트 연산으로 바꾸는 손익을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.internals"
+    ],
+    "related": [
+      "dev.git.transfer-protocols"
+    ],
+    "aliases": [
+      "Git 도달 가능성 계산",
+      "Git reachability",
+      "Git 기록 탐색 가속",
+      "커밋 도달 검사"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/gitformat-commit-graph",
+      "https://git-scm.com/docs/bitmap-format",
+      "https://git-scm.com/docs/commit-graph"
+    ]
+  },
+  {
+    "id": "dev.git.cruft-gc",
+    "title": "도달 불가 객체 정리의 내부: cruft pack과 유예 기간",
+    "en": "Pruning Unreachable Objects: Cruft Packs and the Grace Period",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "Git",
+    "summary": "gc가 도달할 수 없는 객체를 바로 지우지 않고 수정 시각과 유예 기간으로 남겨 두는 이유와, 느슨한 객체 대신 cruft pack에 모으는 손익을 분석한다.",
+    "objectives": [
+      "gc가 동시에 쓰는 다른 프로세스가 아직 참조하지 않은 객체를 지워 저장소를 깨뜨릴 수 있는 경합과 유예 기간이 그 위험을 줄이는 방식을 설명할 수 있다",
+      "도달 불가 객체를 느슨한 객체로 둘 때의 inode·디렉터리 비용과 cruft pack·.mtimes 파일로 객체별 나이를 지키는 방식을 비교할 수 있다",
+      "gc.pruneExpire를 now로 줄일 때 얻는 공간과 잃는 안전을 근거로 정리 설정을 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.internals"
+    ],
+    "related": [
+      "dev.git.dangling-object",
+      "dev.git.repo-performance"
+    ],
+    "aliases": [
+      "Git 객체 가지치기",
+      "gc.pruneExpire",
+      "git prune 유예 기간",
+      "Git unreachable object pruning"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/gitformat-pack",
+      "https://git-scm.com/docs/git-gc"
+    ]
+  },
+  {
+    "id": "dev.debug.descriptor-lookup",
+    "title": "속성 조회의 내부: 디스크립터 프로토콜",
+    "en": "Attribute Lookup Internals: The Descriptor Protocol",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "점 연산이 MRO에서 찾은 디스크립터와 인스턴스 사전 사이의 우선순위로 값을 정하는 과정을 알고 property·메서드 바인딩·__slots__의 동작과 장애를 분석한다.",
+    "objectives": [
+      "object.__getattribute__가 데이터 디스크립터, 인스턴스 __dict__, 비데이터 디스크립터, 클래스 변수 순으로 찾는 흐름으로 속성 값이 왜 그렇게 나오는지 설명할 수 있다",
+      "함수가 비데이터 디스크립터라서 인스턴스로 꺼낼 때 바운드 메서드가 된다는 점으로 staticmethod·classmethod의 차이를 설명할 수 있다",
+      "__getattr__이 __getattribute__가 AttributeError를 낸 뒤에만 불린다는 점을 근거로 속성 조회 장애를 분석할 수 있다",
+      "__slots__가 멤버 디스크립터로 구현되어 얻는 메모리 이점과 cached_property 같은 도구가 깨지는 손실을 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "be.python.classes",
+      "be.python.decorators"
+    ],
+    "related": [
+      "dev.debug.c3-mro"
+    ],
+    "aliases": [
+      "디스크립터 프로토콜",
+      "descriptor protocol",
+      "파이썬 속성 조회 순서",
+      "attribute lookup order",
+      "__get__ 메서드"
+    ],
+    "refs": [
+      "https://docs.python.org/3/howto/descriptor.html"
+    ]
+  },
+  {
+    "id": "dev.debug.c3-mro",
+    "title": "다중 상속의 메서드 탐색 순서(MRO)",
+    "en": "Method Resolution Order in Multiple Inheritance",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "C3 규칙이 부모들의 순서를 합쳐 클래스 탐색 순서를 정하는 과정을 알고 다중 상속에서 엉뚱한 메서드가 불리거나 클래스 정의가 실패하는 원인을 분석한다.",
+    "objectives": [
+      "부모 목록의 선형화를 합치는 merge 절차를 손으로 따라 클래스의 __mro__를 구할 수 있다",
+      "지역 우선순위와 단조성이라는 두 조건이 무엇을 보장하는지 설명하고 Python 2.2 방식이 이를 어겼던 예와 비교할 수 있다",
+      "부모 순서가 서로 어긋나 MRO를 만들 수 없을 때 TypeError가 나는 원인을 찾고 부모 순서를 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "be.python.oop-principles"
+    ],
+    "related": [
+      "dev.debug.descriptor-lookup"
+    ],
+    "aliases": [
+      "MRO",
+      "method resolution order",
+      "__mro__",
+      "메서드 결정 순서",
+      "다중 상속 탐색 순서"
+    ],
+    "refs": [
+      "https://docs.python.org/3/howto/mro.html"
+    ]
+  },
+  {
     "id": "dev.git.reflog",
     "title": "reflog",
     "en": "Reflog",
@@ -8877,6 +9039,159 @@
     ],
     "refs": [
       "https://git-scm.com/docs/multi-pack-index"
+    ]
+  },
+  {
+    "id": "dev.git.racy-git",
+    "title": "racy git(경합으로 깨끗해 보이는 엔트리)",
+    "en": "Racy Git",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Git",
+    "summary": "파일이 인덱스 기록과 같은 시각 안에 크기 변화 없이 고쳐져 stat 정보만으로는 바뀐 줄 모르는 상황과 이를 내용 비교로 막는 Git의 처리다.",
+    "parent": "dev.git.index-internals",
+    "aliases": [
+      "racy git",
+      "racily clean",
+      "레이시 깃",
+      "인덱스 타임스탬프 경합"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/racy-git"
+    ]
+  },
+  {
+    "id": "dev.git.split-index",
+    "title": "분할 인덱스(split index)",
+    "en": "Git Split Index",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Git",
+    "summary": "큰 인덱스를 바뀌지 않는 공유 인덱스와 변경만 쌓는 작은 인덱스로 나눠 매번 전체를 다시 쓰는 비용을 줄이는 Git 인덱스 방식이다.",
+    "parent": "dev.git.index-internals",
+    "aliases": [
+      "split index",
+      "core.splitIndex",
+      "sharedindex 파일",
+      "splitIndex.maxPercentChange",
+      "Git 공유 인덱스"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/git-update-index",
+      "https://git-scm.com/docs/gitformat-index"
+    ]
+  },
+  {
+    "id": "dev.git.generation-number",
+    "title": "세대 번호(generation number)",
+    "en": "Git Generation Number",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Git",
+    "summary": "commit-graph가 커밋마다 저장하는 값으로, 조상은 항상 더 작은 값을 가져 도달 가능성 검사에서 볼 필요 없는 기록을 잘라 내게 한다.",
+    "parent": "dev.git.reachability-internals",
+    "related": [
+      "dev.git.commit-graph"
+    ],
+    "aliases": [
+      "generation number",
+      "corrected commit date",
+      "보정 커밋 날짜",
+      "topological level",
+      "Git 위상 수준"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/commit-graph",
+      "https://git-scm.com/docs/gitformat-commit-graph"
+    ]
+  },
+  {
+    "id": "dev.git.reachability-bitmap",
+    "title": "팩 비트맵(reachability bitmap)",
+    "en": "Git Reachability Bitmap",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Git",
+    "summary": "선택한 커밋마다 거기서 닿는 객체를 팩 순서의 비트로 적어 둔 EWAH 압축 파일로, 객체 집합을 그래프 탐색 대신 비트 연산으로 구하게 한다.",
+    "parent": "dev.git.reachability-internals",
+    "related": [
+      "dev.git.multi-pack-index"
+    ],
+    "aliases": [
+      "pack bitmap",
+      "reachability bitmap",
+      "Git 비트맵 색인",
+      "EWAH 비트맵",
+      ".bitmap 파일"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/bitmap-format"
+    ]
+  },
+  {
+    "id": "dev.git.cruft-pack",
+    "title": "cruft pack",
+    "en": "Git Cruft Pack",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Git",
+    "summary": "도달할 수 없는 객체를 한 팩에 모으고 .mtimes 파일에 객체마다 수정 시각을 적어 하나씩 만료되게 하는 Git의 팩이다.",
+    "parent": "dev.git.cruft-gc",
+    "aliases": [
+      "cruft pack",
+      "크러프트 팩",
+      "git repack --cruft",
+      ".mtimes 파일",
+      "gc.cruftPacks"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/gitformat-pack",
+      "https://git-scm.com/docs/git-gc"
+    ]
+  },
+  {
+    "id": "dev.debug.data-descriptor",
+    "title": "데이터 디스크립터와 비데이터 디스크립터",
+    "en": "Data and Non-Data Descriptors",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "__set__이나 __delete__가 있으면 인스턴스 사전보다 먼저 쓰이고 __get__만 있으면 인스턴스 사전에 가려지는 디스크립터의 두 갈래다.",
+    "parent": "dev.debug.descriptor-lookup",
+    "aliases": [
+      "data descriptor",
+      "non-data descriptor",
+      "비데이터 디스크립터",
+      "데이터 디스크립터 우선순위"
+    ],
+    "refs": [
+      "https://docs.python.org/3/howto/descriptor.html"
+    ]
+  },
+  {
+    "id": "dev.debug.c3-linearization",
+    "title": "C3 선형화",
+    "en": "C3 Linearization",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "클래스 자신 뒤에 부모들의 선형화와 부모 목록을 merge해 붙여, 지역 순서와 단조성을 지키는 상위 클래스 순서를 만드는 알고리즘이다.",
+    "parent": "dev.debug.c3-mro",
+    "aliases": [
+      "C3 linearization",
+      "C3 MRO",
+      "C3 알고리즘",
+      "C3 superclass linearization"
+    ],
+    "refs": [
+      "https://docs.python.org/3/howto/mro.html"
     ]
   }
 ]

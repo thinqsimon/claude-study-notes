@@ -8472,6 +8472,168 @@
     ]
   },
   {
+    "id": "plan.basics.core-aam-role-mapping",
+    "title": "Core-AAM으로 보는 ARIA 역할의 플랫폼 API 매핑",
+    "en": "ARIA Role Mapping to Platform Accessibility APIs (Core-AAM)",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "브라우저가 ARIA 역할·상태·이벤트를 UIA·AX API·ATK 같은 운영체제 접근성 API로 옮기는 규칙과, 같은 역할이 플랫폼마다 다르게 드러나는 이유를 다룬다.",
+    "objectives": [
+      "같은 ARIA 역할이 UIA·IAccessible2·ATK/AT-SPI·AX API에서 각각 어떤 역할로 드러나는지 매핑 표로 비교할 수 있다",
+      "region·form 역할이 접근 가능한 이름이 있을 때만 랜드마크로 드러나는 규칙을 근거로 화면 구조 설계를 판단할 수 있다",
+      "호스트 언어 속성과 ARIA 속성이 충돌할 때, 그리고 role=none·presentation을 단 요소가 포커스를 받거나 전역 ARIA 속성을 가질 때 브라우저가 어느 쪽 의미를 드러내는지 설명할 수 있다",
+      "aria-hidden=true인 요소에 포커스가 가면 숨김 표시와 함께 다시 노출되는 매핑을 근거로 화면 낭독기 장애 원인을 분석할 수 있다"
+    ],
+    "related": [
+      "plan.basics.accname-computation",
+      "fe.html.accessibility-tree"
+    ],
+    "aliases": [
+      "Core-AAM",
+      "Core Accessibility API Mappings",
+      "접근성 API 매핑",
+      "ARIA 역할 매핑",
+      "accessibility API mapping"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/core-aam-1.2/",
+      "https://www.w3.org/TR/wai-aria-1.2/#conflict_resolution_presentation_none"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "plan.basics.html-aria-author-rules",
+    "title": "ARIA in HTML의 작성자 적합성 규칙",
+    "en": "ARIA in HTML Author Conformance Rules",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "HTML 요소마다 허용되는 ARIA 역할과 속성, 암시적 의미와 겹치는 중복 지정, 이름 붙이기가 금지된 요소를 정한 W3C 권고의 작성자 규칙이다.",
+    "objectives": [
+      "요소별 표에서 허용 역할·금지 속성을 찾아 설계 명세의 ARIA 지정이 규칙에 맞는지 판정할 수 있다",
+      "암시적 의미와 같은 역할을 다시 적는 것이 권장되지 않는 이유와, 목록 표시를 지운 ul에 role=list를 두는 예외를 근거로 설명할 수 있다",
+      "브라우저가 따르는 접근성 API 매핑(Core-AAM·HTML-AAM) 규칙과 작성자가 따르는 ARIA in HTML 규칙의 차이를 구분해 결함의 책임 쪽을 가를 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.core-aam-role-mapping"
+    ],
+    "related": [
+      "plan.basics.accname-computation"
+    ],
+    "aliases": [
+      "ARIA in HTML",
+      "html-aria",
+      "HTML의 ARIA 사용 규칙",
+      "ARIA 작성자 규칙",
+      "암시적 ARIA 의미"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/html-aria/"
+    ]
+  },
+  {
+    "id": "plan.basics.wcag2-contrast-algorithm",
+    "title": "WCAG 2 대비 계산식의 근거와 한계",
+    "en": "WCAG 2 Contrast Formula: Rationale and Limits",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "sRGB 상대 휘도로 구하는 WCAG 2 대비비 공식이 4.5:1과 3:1을 어디서 가져왔는지, 반올림·글꼴 굵기·앤티에일리어싱에서 어떤 한계가 생기는지 분석한다.",
+    "objectives": [
+      "상대 휘도와 (L1+0.05)/(L2+0.05) 공식으로 두 색의 대비비를 직접 계산하고 0.05 항의 의미를 설명할 수 있다",
+      "4.5:1이 시력 저하를 보정하려고 3:1에 1.5를 곱한 값이라는 근거와, 문턱값이라 4.499:1을 반올림해 통과시킬 수 없는 이유를 설명할 수 있다",
+      "가는 글꼴과 앤티에일리어싱 때문에 공식은 통과해도 읽기 어려운 경우를 찾아 최소 기준보다 높은 대비를 고를지 판단할 수 있다",
+      "배경색 없이 글자색만 지정하는 실패(F24)와 배경 이미지 위 글자 같은 경계 사례에서 측정 기준을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.color-contrast"
+    ],
+    "related": [
+      "plan.basics.wcag3-conformance"
+    ],
+    "aliases": [
+      "대비비 공식",
+      "WCAG 대비 알고리즘",
+      "contrast ratio formula",
+      "WCAG 2 contrast algorithm",
+      "대비비 계산"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
+      "https://www.w3.org/TR/WCAG22/#dfn-relative-luminance"
+    ]
+  },
+  {
+    "id": "plan.basics.cldr-skeleton-matching",
+    "title": "CLDR 날짜 스켈레톤과 패턴 고르기 알고리즘",
+    "en": "CLDR Date Skeleton Matching",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "어떤 날짜 필드를 보일지만 적은 스켈레톤을 로캘별 availableFormats에서 가장 가까운 패턴으로 바꾸고, 모자란 필드는 붙여 넣는 CLDR의 날짜 형식 선택 규칙이다.",
+    "objectives": [
+      "고정 날짜 패턴 대신 스켈레톤을 명세에 적어야 로캘마다 필드 순서와 구두점이 맞게 바뀌는 이유를 설명할 수 있다",
+      "필드 기호 사이 거리, 너비 조정, 숫자와 글자 표기를 서로 바꾸지 않는 규칙으로 요청 스켈레톤이 어느 패턴에 맞춰지는지 추적할 수 있다",
+      "맞는 항목이 없을 때 날짜 부분과 시간 부분을 따로 맞춘 뒤 dateTimeFormat으로 잇고 appendItems로 빈 필드를 채우는 과정을 설명할 수 있다",
+      "날짜 범위를 보여 줄 때 intervalFormats의 가장 크게 달라진 필드에 따라 반복 부분이 줄어드는 방식을 근거로 범위 표시 문구를 설계할 수 있다"
+    ],
+    "related": [
+      "plan.basics.messageformat2",
+      "plan.basics.bcp47-language-tags"
+    ],
+    "aliases": [
+      "날짜 스켈레톤",
+      "date skeleton",
+      "availableFormats",
+      "CLDR 날짜 형식",
+      "flexible date format"
+    ],
+    "refs": [
+      "https://unicode.org/reports/tr35/tr35-dates.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "plan.figma.rest-api-rate-limits",
+    "title": "Figma REST API 요청 한도 모델과 연동 설계",
+    "en": "Figma REST API Rate Limits and Integration Design",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Figma REST API가 좌석 유형·엔드포인트 등급·파일의 요금제에 따라 요청 한도를 따로 세는 방식과, 429 응답을 받았을 때와 받지 않도록 설계하는 손익을 다룬다.",
+    "objectives": [
+      "같은 연동이 좌석 유형과 파일이 있는 요금제에 따라 다른 한도를 받는 이유를 토큰 종류별 집계 방식으로 설명할 수 있다",
+      "파일 조회 같은 Tier 1 호출과 변수·댓글 같은 Tier 2 호출의 한도 차이를 근거로 동기화 주기와 호출 순서를 설계할 수 있다",
+      "429 응답의 Retry-After와 X-Figma-Rate-Limit-Type 헤더로 재시도 대기와 좌석 문제를 구분해 장애 원인을 분석할 수 있다",
+      "노드 ID를 한 요청에 묶기와 결과 캐시로 호출 수를 줄일 때 얻는 것과 데이터가 늦어지는 손해를 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.variables-rest-api-sync"
+    ],
+    "related": [
+      "be.rest.rate-limit"
+    ],
+    "aliases": [
+      "Figma rate limit",
+      "Figma API 요청 한도",
+      "Figma REST API 한도",
+      "X-Figma-Rate-Limit-Type"
+    ],
+    "refs": [
+      "https://developers.figma.com/docs/rest-api/rate-limits/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "plan.basics.wcag2ict",
     "title": "WCAG2ICT로 앱·문서에 WCAG 적용하기",
     "en": "Applying WCAG to Non-Web ICT with WCAG2ICT",
@@ -8742,6 +8904,67 @@
     ],
     "refs": [
       "https://www.w3.org/WAI/WCAG22/Understanding/conformance"
+    ]
+  },
+  {
+    "id": "plan.basics.presentational-role-conflict",
+    "title": "프레젠테이션 역할 충돌 해소",
+    "en": "Presentational Roles Conflict Resolution",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "role=none이나 presentation을 붙여도 요소가 포커스를 받거나 전역 ARIA 속성을 가지면 브라우저가 그 역할을 무시하고 원래 역할로 노출하는 규칙이다.",
+    "parent": "plan.basics.core-aam-role-mapping",
+    "aliases": [
+      "presentation 역할 충돌",
+      "role none 무시 규칙",
+      "presentational conflict resolution",
+      "프레젠테이션 역할 무시"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/wai-aria-1.2/#conflict_resolution_presentation_none"
+    ]
+  },
+  {
+    "id": "plan.basics.name-prohibited-role",
+    "title": "이름 붙이기가 금지된 역할",
+    "en": "Roles Which Cannot Be Named",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "generic·paragraph·strong·code처럼 작성자가 aria-label이나 aria-labelledby로 이름을 주면 안 되는 역할로, span이나 역할 없는 div에 붙인 라벨은 규칙 위반이다.",
+    "parent": "plan.basics.html-aria-author-rules",
+    "aliases": [
+      "이름 금지 역할",
+      "name prohibited",
+      "naming prohibited",
+      "aria-label 금지 요소"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/wai-aria-1.2/#namefromprohibited",
+      "https://www.w3.org/TR/html-aria/#docconformance-naming"
+    ]
+  },
+  {
+    "id": "plan.basics.relative-luminance",
+    "title": "상대 휘도(relative luminance)",
+    "en": "Relative Luminance",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "sRGB 각 채널을 선형값으로 바꾼 뒤 0.2126·0.7152·0.0722를 곱해 더한 0~1의 밝기로, WCAG 대비비 계산의 입력이며 선형화 문턱은 2021년에 0.03928에서 0.04045로 바뀌었다.",
+    "parent": "plan.basics.wcag2-contrast-algorithm",
+    "aliases": [
+      "상대 휘도",
+      "상대 밝기",
+      "sRGB 휘도",
+      "luminance formula"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/WCAG22/#dfn-relative-luminance"
     ]
   },
   {
@@ -9098,6 +9321,89 @@
     ],
     "refs": [
       "https://developers.figma.com/docs/plugins/api/properties/figma-skipinvisibleinstancechildren/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "plan.basics.redundant-aria-role",
+    "title": "중복 ARIA 역할(redundant role)",
+    "en": "Redundant ARIA Role",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "button 요소에 role=button을 다시 적듯 HTML의 암시적 의미와 같은 역할을 명시하는 것으로, ARIA in HTML은 이를 권장하지 않는다.",
+    "parent": "plan.basics.html-aria-author-rules",
+    "aliases": [
+      "중복 역할",
+      "redundant role",
+      "불필요한 role 지정",
+      "암시적 역할 중복"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/html-aria/#avoid-specifying-redundant-roles"
+    ]
+  },
+  {
+    "id": "plan.basics.cldr-hour-cycle",
+    "title": "CLDR 시간 주기와 j 기호",
+    "en": "CLDR Hour Cycle and the j Skeleton Symbol",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "h·K는 12시간제, H·k는 24시간제를 뜻하며, 스켈레톤의 j는 지역의 timeData preferred 값으로, C는 allowed 목록의 첫 지원 값으로 바뀌고 hc 로캘 키워드가 이를 덮어쓴다.",
+    "parent": "plan.basics.cldr-skeleton-matching",
+    "aliases": [
+      "시간 주기",
+      "hour cycle",
+      "12시간제 24시간제 선택",
+      "hc 키워드",
+      "timeData preferred"
+    ],
+    "refs": [
+      "https://unicode.org/reports/tr35/tr35-dates.html#Time_Data"
+    ]
+  },
+  {
+    "id": "plan.basics.cldr-greatest-difference",
+    "title": "날짜 범위 형식의 가장 큰 차이 필드",
+    "en": "Interval Format Greatest Difference",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "시작과 끝 날짜 사이에서 가장 큰 단위로 달라진 필드(연·월·일 등)에 따라 intervalFormats의 패턴을 골라 겹치는 부분을 한 번만 쓰는 CLDR 범위 형식의 기준이다.",
+    "parent": "plan.basics.cldr-skeleton-matching",
+    "aliases": [
+      "greatestDifference",
+      "가장 큰 차이 필드",
+      "date interval format",
+      "날짜 구간 형식"
+    ],
+    "refs": [
+      "https://unicode.org/reports/tr35/tr35-dates.html#intervalFormats"
+    ]
+  },
+  {
+    "id": "plan.figma.rate-limit-tier",
+    "title": "Figma API 엔드포인트 등급(Tier)",
+    "en": "Figma API Endpoint Rate Limit Tier",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Figma REST API 엔드포인트를 파일·이미지 조회의 Tier 1부터 메타데이터·사용자 조회의 Tier 3까지 나눠 등급마다 다른 요청 한도를 주는 구분이다.",
+    "parent": "plan.figma.rest-api-rate-limits",
+    "aliases": [
+      "Figma Tier 1",
+      "Figma 엔드포인트 등급",
+      "Figma rate limit tier",
+      "Figma API 등급"
+    ],
+    "refs": [
+      "https://developers.figma.com/docs/rest-api/rate-limits/"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
