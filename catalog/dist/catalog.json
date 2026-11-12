@@ -1,5 +1,5 @@
 {
- "version": "0.65.0",
+ "version": "0.66.0",
  "domains": [
   {
    "prefix": "dev",
@@ -56728,6 +56728,157 @@
    "domain": "llm"
   },
   {
+   "id": "llm.api.realtime-voice-connection",
+   "title": "브라우저 음성 대화의 Realtime 연결 설계",
+   "en": "Designing OpenAI Realtime API Connections for Browser Voice Apps",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "음성 대화 기능을 만들 때 WebRTC·WebSocket 중 연결 방식을 고르고, 키와 도구 실행을 서버에 두는 구조로 지연과 보안을 함께 맞추는 설계다.",
+   "objectives": [
+    "브라우저·모바일 클라이언트에는 WebRTC를, 서버 사이 연결에는 WebSocket을 고르는 근거를 성능의 일관성과 표준 키를 둘 위치로 말할 수 있다",
+    "내 서버가 SDP를 대신 보내는 방식과 임시 클라이언트 키로 브라우저가 직접 붙는 방식 중 세션 시작 경로와 키 노출 위험을 따져 고를 수 있다",
+    "도구 실행과 업무 로직을 call_id로 붙는 사이드밴드 연결로 서버에 두어, 키와 업무 규칙을 브라우저에 드러내지 않는 구성을 고를 수 있다",
+    "사용자 말을 자주 끊거나 늦게 답하는 원인을 턴 감지 방식과 설정값에서 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "llm.api.text-to-speech",
+    "be.async.realtime-choice"
+   ],
+   "related": [
+    "llm.api.speech-to-text",
+    "llm.api.latency-design"
+   ],
+   "aliases": [
+    "OpenAI Realtime API",
+    "Realtime API 연결",
+    "실시간 음성 대화 API",
+    "음성 에이전트 연결 설계"
+   ],
+   "refs": [
+    "https://developers.openai.com/api/docs/guides/realtime",
+    "https://developers.openai.com/api/docs/guides/voice-webrtc?api=realtime",
+    "https://developers.openai.com/api/docs/guides/voice-websockets?api=realtime",
+    "https://developers.openai.com/api/docs/guides/voice-server-controls?api=realtime"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.chat-output-debugging",
+   "title": "오픈 채팅 모델 출력 이상 진단: 템플릿·특수 토큰·패딩",
+   "en": "Diagnosing Bad Outputs from Open Chat Models: Templates, Special Tokens and Padding",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "Transformers로 오픈 채팅 모델을 돌릴 때 답 대신 질문을 이어 쓰거나 묶음 결과가 깨지는 원인을 채팅 템플릿·특수 토큰·패딩 방향에서 찾는 일이다.",
+   "objectives": [
+    "모델이 답하지 않고 사용자 말을 이어 쓰는 원인을 채팅 템플릿을 쓰지 않았거나 add_generation_prompt를 빠뜨린 데서 찾을 수 있다",
+    "템플릿을 문자열로 만든 뒤 다시 토큰화해 BOS·EOS가 두 번 들어간 문제를 찾고, 토큰화를 템플릿에 맡길지 add_special_tokens=False를 줄지 고를 수 있다",
+    "여러 프롬프트를 한 묶음으로 생성할 때 오른쪽 패딩 때문에 결과가 깨지는 원인을 찾아 왼쪽 패딩과 pad 토큰 설정으로 고칠 수 있다",
+    "같은 기반 모델에서 나온 채팅 모델도 템플릿이 달라 모델을 바꾸면 출력이 나빠질 수 있다는 근거를 들어 템플릿을 모델의 토크나이저에서 가져와야 하는 까닭을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.internals.generate-decoding",
+    "llm.basics.tokenizer-batching"
+   ],
+   "related": [
+    "mlops.finetune.chat-template",
+    "llm.prompt.prefill",
+    "llm.basics.special-tokens"
+   ],
+   "aliases": [
+    "채팅 템플릿 오류",
+    "chat template mismatch",
+    "오픈 모델 이상 출력",
+    "generate 출력 이상 진단",
+    "apply_chat_template 문제"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/chat_templating",
+    "https://huggingface.co/docs/transformers/llm_tutorial"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.google-cloud-claude-choice",
+   "title": "Google Cloud에서 Claude 쓰는 방식 고르기",
+   "en": "Choosing How to Use Claude on Google Cloud",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "Claude를 Google Cloud 프로젝트로 쓸 때 Anthropic 운영과 Google 운영 중 하나를 고르고, 엔드포인트 유형과 빠지는 기능을 따져 이전 오류를 막는 설계다.",
+   "objectives": [
+    "Anthropic 운영과 Google 운영의 요청 형식·청구·속도 제한 주체 차이를 비교해 팀 상황에 맞는 쪽을 고를 수 있다",
+    "global·multi-region·regional 엔드포인트 가운데 데이터 위치 요구와 10% 추가 요금, 지원 모델을 따져 하나를 고를 수 있다",
+    "Claude API에서 옮긴 코드가 Google 운영에서 실패할 때 Files API·배치·서버 쪽 대체 모델처럼 지원되지 않는 기능이나 모델 ID 형식에서 원인을 찾을 수 있다",
+    "요청 URL 호스트나 SDK 클라이언트 이름으로 지금 쓰는 방식을 판별하고 속도 제한 문의처를 정할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.api.model-ids",
+    "llm.security.data-residency-retention"
+   ],
+   "related": [
+    "llm.api.model-migration",
+    "llm.api.errors-rate-limits"
+   ],
+   "aliases": [
+    "Claude on Vertex AI",
+    "Vertex AI Claude",
+    "Google Cloud Claude",
+    "AnthropicVertex",
+    "Agent Platform Claude"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/overview",
+    "https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.hf-provider-routing",
+   "title": "Inference Providers 제공자 선택과 청구 방식 고르기",
+   "en": "Choosing Provider Routing and Billing in Hugging Face Inference Providers",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "Hugging Face 라우터로 오픈 모델을 부를 때 속도·가격·지정 제공자 중 선택 정책과 HF 청구·자체 키 청구를 따져, 비용과 장애 대응을 맞추는 설계다.",
+   "objectives": [
+    "기본 :fastest와 :cheapest, :preferred, 제공자 이름 지정 중에서 처리량·출력 토큰 가격·일관성을 따져 정책을 고를 수 있다",
+    "제공자를 못 박으면 자동 선택의 대체 경로를 잃는다는 손익을 들어 장애 때 요청이 실패한 원인을 찾을 수 있다",
+    "HF가 청구하는 라우팅과 자체 제공자 키 중에서 월 크레딧 적용 여부와 청구 주체를 따져 하나를 고를 수 있다",
+    "OpenAI 호환 주소가 채팅 작업만 받는다는 점을 알고 임베딩·이미지 작업에 InferenceClient를 써야 하는 근거를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.model-selection"
+   ],
+   "related": [
+    "llm.basics.inference-providers",
+    "llm.api.spend-limit"
+   ],
+   "aliases": [
+    "HF 라우터 정책",
+    "Inference Providers routing",
+    "허깅페이스 제공자 선택",
+    "HF custom provider key",
+    "Inference Providers 청구"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/inference-providers/index",
+    "https://huggingface.co/docs/inference-providers/pricing"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
    "id": "llm.api.spend-limit",
    "title": "지출 한도",
    "en": "Spend Limit",
@@ -57023,6 +57174,57 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.realtime-client-secret",
+   "title": "Realtime 임시 클라이언트 키",
+   "en": "OpenAI Realtime Ephemeral Client Secret",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "서버가 표준 API 키로 발급해 브라우저에 넘기는 짧은 수명의 Realtime 접속 키로, 기본 10분이고 10초에서 2시간 사이로 정한다.",
+   "parent": "llm.api.realtime-voice-connection",
+   "related": [
+    "llm.api.realtime-sideband"
+   ],
+   "aliases": [
+    "Realtime ephemeral key",
+    "Realtime 임시 키",
+    "realtime client_secrets",
+    "OpenAI 에페메럴 토큰"
+   ],
+   "refs": [
+    "https://developers.openai.com/api/reference/resources/realtime/subresources/client_secrets/methods/create",
+    "https://developers.openai.com/api/docs/guides/voice-webrtc?api=realtime"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.left-padding-generation",
+   "title": "생성용 왼쪽 패딩(padding_side=\"left\")",
+   "en": "Left Padding for Batched Generation in Transformers",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 기초",
+   "summary": "디코더 전용 모델로 여러 프롬프트를 한 번에 생성할 때 패딩을 앞쪽에 붙여 모델이 패딩 토큰 뒤에서 이어 쓰지 않게 하는 토크나이저 설정이다.",
+   "parent": "llm.basics.chat-output-debugging",
+   "related": [
+    "llm.basics.padding-truncation"
+   ],
+   "aliases": [
+    "padding_side left",
+    "tokenizer padding_side=left",
+    "배치 생성 패딩 방향",
+    "생성용 패딩 방향"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/llm_tutorial"
+   ],
    "domain": "llm"
   },
   {
@@ -57466,6 +57668,153 @@
    ],
    "refs": [
     "https://platform.claude.com/docs/en/build-with-claude/prompt-caching"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.realtime-sideband",
+   "title": "Realtime 사이드밴드 연결",
+   "en": "OpenAI Realtime Sideband Server Connection",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM API",
+   "summary": "사용자 기기가 음성을 주고받는 Realtime 세션에 서버가 call_id로 따로 붙어 지시 변경·도구 호출 응답·대화 감시를 맡는 두 번째 연결이다.",
+   "parent": "llm.api.realtime-voice-connection",
+   "related": [
+    "llm.api.realtime-client-secret"
+   ],
+   "aliases": [
+    "sideband connection",
+    "Realtime 서버 제어 연결",
+    "Realtime call_id 연결",
+    "Realtime server-side controls"
+   ],
+   "refs": [
+    "https://developers.openai.com/api/docs/guides/voice-server-controls?api=realtime"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.realtime-turn-detection",
+   "title": "음성 턴 감지(server_vad·semantic_vad)",
+   "en": "Realtime Turn Detection with server_vad and semantic_vad",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM API",
+   "summary": "Realtime 세션에서 사용자가 말을 끝냈는지 침묵 길이로 볼지 말의 내용으로 볼지 정하는 설정으로, 끊김과 응답 지연의 손익을 가른다.",
+   "parent": "llm.api.realtime-voice-connection",
+   "aliases": [
+    "turn detection",
+    "음성 활동 감지",
+    "Realtime VAD",
+    "silence_duration_ms",
+    "semantic VAD eagerness"
+   ],
+   "refs": [
+    "https://developers.openai.com/api/docs/guides/realtime-vad"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.duplicate-special-tokens",
+   "title": "채팅 템플릿 뒤 특수 토큰 중복",
+   "en": "Duplicated BOS/EOS Tokens After apply_chat_template",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "이미 특수 토큰을 넣은 채팅 템플릿 문자열을 토크나이저에 다시 넣어 BOS·EOS가 두 번 붙고 모델 성능이 떨어지는 실수다.",
+   "parent": "llm.basics.chat-output-debugging",
+   "related": [
+    "llm.basics.special-tokens",
+    "mlops.finetune.chat-template"
+   ],
+   "aliases": [
+    "BOS 중복",
+    "special token duplication",
+    "add_special_tokens=False",
+    "특수 토큰 두 번 붙음"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/chat_templating"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.vertex-endpoint-types",
+   "title": "Vertex Claude 엔드포인트 유형",
+   "en": "Global, Multi-Region and Regional Endpoints for Claude on Google Cloud",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM API",
+   "summary": "Google 운영 Claude에서 요청이 갈 지역 범위를 정하는 엔드포인트 종류로, 좁힐수록 데이터 위치는 묶이지만 10% 더 비싸고 쓸 수 있는 모델이 준다.",
+   "parent": "llm.api.google-cloud-claude-choice",
+   "related": [
+    "llm.api.inference-geo"
+   ],
+   "aliases": [
+    "Vertex global endpoint",
+    "Vertex 리전 엔드포인트",
+    "Claude multi-region endpoint",
+    "aiplatform.us.rep.googleapis.com"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.hf-routing-policy-suffix",
+   "title": "HF 제공자 선택 정책 접미사",
+   "en": "Hugging Face Inference Providers Routing Policy Suffixes",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "Hugging Face 라우터에 보낼 모델 이름 뒤에 붙여 처리량이 가장 높은 곳, 출력 토큰이 가장 싼 곳, 내 선호 순서 중 어디로 보낼지 정하는 표기다.",
+   "parent": "llm.basics.hf-provider-routing",
+   "aliases": [
+    ":fastest 정책",
+    ":cheapest 정책",
+    "HF provider policy",
+    "모델 이름 접미사 라우팅"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/inference-providers/index"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.basics.hf-bill-to",
+   "title": "조직 청구 지정(X-HF-Bill-To)",
+   "en": "Billing Inference to an Organization with X-HF-Bill-To",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 기초",
+   "summary": "각자 토큰으로 부른 Inference Providers 요청을 개인이 아니라 Team·Enterprise 조직이나 리소스 그룹에 청구하도록 지정하는 헤더와 bill_to 설정이다.",
+   "parent": "llm.basics.hf-provider-routing",
+   "aliases": [
+    "X-HF-Bill-To 헤더",
+    "HF bill_to",
+    "허깅페이스 조직 청구",
+    "Inference Providers 조직 결제"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/inference-providers/pricing"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -64875,6 +65224,155 @@
    "domain": "rag"
   },
   {
+   "id": "rag.agent.long-term-memory-design",
+   "title": "에이전트 장기 기억 설계: 담는 모양과 쓰는 시점",
+   "en": "Designing Long-Term Agent Memory: Shape and Write Timing",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "장기 기억을 프로필 하나로 둘지 작은 문서 모음으로 둘지, 대화 도중에 쓸지 뒤에서 따로 쓸지 정하고 그 손익과 공유 범위를 따지는 설계다.",
+   "objectives": [
+    "사용자 정보를 프로필 문서 하나로 고쳐 쓸지 작은 기억 문서 모음으로 쌓을지 정보 손실·중복·검색 방식을 근거로 고를 수 있다",
+    "기억을 응답 경로에서 바로 쓸지 백그라운드 작업으로 미룰지 응답 지연·반영 시점·기억 품질을 따져 고를 수 있다",
+    "기억이 다음 대화에서 안 보이거나 엉뚱한 기억이 검색될 때 네임스페이스·임베딩 대상 필드·쓰기 주기 가운데 원인을 찾을 수 있다",
+    "여러 사용자가 함께 쓰는 기억에 주입된 지시가 다른 사용자에게 퍼지는 위험을 알고 읽기 전용 범위를 정할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.memory-overview",
+    "rag.agent.checkpoint-persistence"
+   ],
+   "related": [
+    "rag.agent.memory-store",
+    "rag.agent.store-namespace-isolation",
+    "llm.tools.memory-tool"
+   ],
+   "aliases": [
+    "장기 기억 설계",
+    "long-term memory design",
+    "에이전트 기억 쓰기 설계",
+    "LangGraph 장기 기억 설계",
+    "기억 저장 방식 고르기"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/concepts/memory",
+    "https://docs.langchain.com/oss/python/langgraph/stores",
+    "https://docs.langchain.com/oss/python/deepagents/going-to-production"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.context-engineering-design",
+   "title": "에이전트 컨텍스트 설계: 모델·도구·수명 주기 컨텍스트",
+   "en": "Context Engineering Design for LangChain Agents",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "에이전트가 틀린 행동을 할 때 모델 탓보다 빠진 정보를 먼저 의심하고, 정보를 런타임 컨텍스트·상태·스토어 중 어디에 두고 한 번만 바꿀지 저장할지 정하는 설계다.",
+   "objectives": [
+    "에이전트의 잘못된 행동이 모델 능력 문제인지 모델 호출에 들어간 지시·메시지·도구·형식 문제인지 기록을 보고 가려낼 수 있다",
+    "사용자 ID·권한·대화 중 파일·사용자 선호 같은 정보를 런타임 컨텍스트·상태·스토어 가운데 어디에 둘지 수명과 범위를 근거로 고를 수 있다",
+    "미들웨어로 바꾼 내용이 이번 호출에만 적용되는지 상태에 남는지 구분해, 다음 턴에 변경이 사라지거나 계속 남는 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "rag.basics.context-engineering",
+    "rag.agent.middleware"
+   ],
+   "related": [
+    "llm.internals.context-management",
+    "rag.agent.runtime-context",
+    "rag.agent.dynamic-prompt",
+    "rag.agent.dynamic-tool-selection"
+   ],
+   "aliases": [
+    "에이전트 컨텍스트 설계",
+    "context engineering in agents",
+    "LangChain 컨텍스트 엔지니어링",
+    "모델 컨텍스트와 도구 컨텍스트",
+    "수명 주기 컨텍스트"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/context-engineering"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.sandbox-backend-design",
+   "title": "에이전트 코드 실행 샌드박스 설계: 배치와 수명",
+   "en": "Designing Code Execution Sandboxes for Deep Agents",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "셸 명령을 실행하는 Deep Agents 에이전트를 웹 서비스에 붙일 때 샌드박스를 어디에 두고 대화마다 새로 만들지 공유할지 정하는 설계다.",
+   "objectives": [
+    "에이전트를 샌드박스 안에서 돌릴지 샌드박스를 도구로 부를지 키 노출·업데이트·실패 시 상태 보존·지연을 근거로 고를 수 있다",
+    "샌드박스를 스레드마다 만들지 어시스턴트 단위로 공유할지 정하고, 유휴 시간 제한과 정리 방법으로 비용과 쌓이는 상태를 줄일 수 있다",
+    "실행 도구가 보이지 않거나 큰 출력이 잘리는 문제의 원인을 백엔드 종류와 출력 처리 방식에서 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.deep-agents"
+   ],
+   "related": [
+    "ax.coding.agent-sandbox",
+    "llm.tools.code-execution-tool",
+    "rag.agent.deepagent-backend",
+    "ax.security.agent-secure-deployment"
+   ],
+   "aliases": [
+    "Deep Agents 샌드박스",
+    "Deep Agents sandbox",
+    "에이전트 샌드박스 백엔드",
+    "sandbox backend",
+    "샌드박스 백엔드 설계"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/deepagents/sandboxes",
+    "https://docs.langchain.com/oss/python/deepagents/going-to-production"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.frontend-stream-rejoin",
+   "title": "에이전트 스트림 끊고 다시 붙기: 화면과 서버 실행 분리",
+   "en": "Joining and Rejoining Agent Streams from the Frontend",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "웹 화면이 닫히거나 네트워크가 바뀌어도 서버의 에이전트 실행은 계속되게 하고, 저장한 스레드 ID로 다시 붙어 이어 받도록 useStream을 구성하는 설계다.",
+   "objectives": [
+    "사용자가 페이지를 떠날 때 실행을 끝낼지 이어 갈지에 따라 disconnect와 stop 가운데 무엇을 불러야 하는지 근거를 말할 수 있다",
+    "새로 고침 뒤 대화를 이어 받지 못하는 원인을 스레드 ID 저장 위치·만료된 스레드·Agent Server 유무에서 찾을 수 있다",
+    "다시 붙기가 오래 걸리거나 실행이 이미 끝났을 때 기록 조회로 대신하고 연결 상태를 화면에 보이는 방식을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.streaming",
+    "rag.agent.local-server-studio"
+   ],
+   "related": [
+    "rag.agent.double-texting",
+    "rag.agent.agent-server-deploy",
+    "rag.agent.checkpoint-persistence"
+   ],
+   "aliases": [
+    "스트림 다시 붙기",
+    "join rejoin streams",
+    "useStream 재접속",
+    "에이전트 스트림 재연결",
+    "LangGraph useStream rejoin"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langchain/frontend/join-rejoin"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
    "id": "rag.retrieval.reranking",
    "title": "재순위",
    "en": "Reranking",
@@ -65521,6 +66019,138 @@
    "refs": [
     "https://qdrant.tech/documentation/manage-data/storage/",
     "https://qdrant.tech/documentation/ops-optimization/optimize/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.memory-profile-collection",
+   "title": "기억 프로필과 기억 컬렉션",
+   "en": "Memory Profile vs Memory Collection",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "사실 기억을 계속 고쳐 쓰는 JSON 문서 하나로 둘지, 범위가 좁은 문서를 계속 쌓는 모음으로 둘지 고르는 두 가지 저장 모양이다.",
+   "parent": "rag.agent.long-term-memory-design",
+   "aliases": [
+    "memory collection",
+    "프로필형 기억",
+    "컬렉션형 기억",
+    "사용자 프로필 기억"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.memory-write-timing",
+   "title": "핫 패스 기억 쓰기와 백그라운드 기억 쓰기",
+   "en": "Hot-Path vs Background Memory Writes",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "에이전트가 답하는 도중에 기억을 저장해 바로 쓰게 할지, 따로 도는 작업이 나중에 모아 저장해 응답을 늦추지 않을지 정하는 선택이다.",
+   "parent": "rag.agent.long-term-memory-design",
+   "aliases": [
+    "hot path memory",
+    "background memory",
+    "핫 패스 기억",
+    "백그라운드 기억 쓰기",
+    "기억 쓰기 시점"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.store-semantic-index",
+   "title": "스토어 의미 검색 인덱스(index: embed·dims·fields)",
+   "en": "LangGraph Store Semantic Search Index",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "LangGraph 스토어를 만들 때 임베딩 모델·차원·임베딩할 필드를 정해 기억을 뜻으로 찾게 하는 설정이며, 저장할 때 index=False로 빼면 검색되지 않는다.",
+   "parent": "rag.agent.long-term-memory-design",
+   "aliases": [
+    "LangGraph store index",
+    "스토어 의미 검색",
+    "store semantic search",
+    "스토어 임베딩 설정",
+    "store index fields"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.transient-persistent-context",
+   "title": "일시적 컨텍스트 변경과 영구 컨텍스트 변경",
+   "en": "Transient vs Persistent Context Updates in LangChain Agents",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "이번 모델 호출에 보이는 내용만 바꾸고 저장된 상태는 그대로 두는 변경과, 상태에 기록해 다음 턴에도 남는 변경을 구분하는 말이다.",
+   "parent": "rag.agent.context-engineering-design",
+   "aliases": [
+    "transient context",
+    "persistent context",
+    "일시적 컨텍스트",
+    "영구 컨텍스트",
+    "wrap_model_call 일시 변경"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.sandbox-integration-pattern",
+   "title": "샌드박스 안 에이전트와 도구형 샌드박스",
+   "en": "Agent-in-Sandbox vs Sandbox-as-Tool Pattern",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "에이전트 자체를 샌드박스 안에서 돌리는 방식과, 에이전트는 서버에 두고 실행할 때만 샌드박스 API를 부르는 방식을 나누는 두 배치 패턴이다.",
+   "parent": "rag.agent.sandbox-backend-design",
+   "aliases": [
+    "agent in sandbox",
+    "sandbox as tool",
+    "도구형 샌드박스",
+    "샌드박스 배치 패턴"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.sandbox-scope",
+   "title": "스레드 범위 샌드박스와 어시스턴트 범위 샌드박스",
+   "en": "Thread-Scoped vs Assistant-Scoped Sandboxes",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "대화(스레드)마다 깨끗한 샌드박스를 따로 쓰게 할지, 한 어시스턴트의 모든 대화가 설치한 패키지와 파일을 함께 쓰게 할지 정하는 범위 선택이다.",
+   "parent": "rag.agent.sandbox-backend-design",
+   "aliases": [
+    "thread-scoped sandbox",
+    "assistant-scoped sandbox",
+    "스레드별 샌드박스",
+    "샌드박스 유휴 TTL"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.stream-disconnect-vs-stop",
+   "title": "useStream disconnect와 stop의 차이",
+   "en": "useStream disconnect() vs stop()",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "disconnect는 화면만 스트림에서 떼고 서버 실행은 계속 두지만, stop은 기본으로 서버의 실행 중인 런까지 취소한다는 차이다.",
+   "parent": "rag.agent.frontend-stream-rejoin",
+   "aliases": [
+    "stream.disconnect",
+    "stream.stop",
+    "useStream disconnect",
+    "스트림 연결 끊기",
+    "런 취소와 연결 끊기"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -73070,6 +73700,153 @@
    "domain": "ax"
   },
   {
+   "id": "ax.coding.claude-code-auth-precedence",
+   "title": "Claude Code 인증 우선순위와 꼬인 로그인 원인 찾기",
+   "en": "Claude Code Authentication Precedence and Login Troubleshooting",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "여러 자격 증명이 함께 있을 때 Claude Code가 고르는 순서를 알고, 구독 대신 API 키가 쓰이거나 로그인이 막히는 원인을 찾는다.",
+   "objectives": [
+    "클라우드 공급자 변수, 베어러 토큰, API 키, apiKeyHelper, 장기 OAuth 토큰, 프로필, /login 구독의 순서를 근거로 실제로 쓰인 자격 증명을 찾을 수 있다",
+    "구독이 있는데 ANTHROPIC_API_KEY가 남아 인증이 실패하거나 API로 과금되는 원인을 /status로 찾을 수 있다",
+    "CI와 스크립트에서 장기 OAuth 토큰, API 키, apiKeyHelper 가운데 bare 모드 지원과 쓸 수 있는 기능을 따져 고를 수 있다",
+    "관리형 설정의 로그인 방식·조직 강제가 환경 변수 자격 증명까지 막는다는 점을 근거로 팀 배포 정책을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.agent-first",
+    "llm.api.api-key-create"
+   ],
+   "related": [
+    "ax.coding.llm-gateway-routing",
+    "ax.coding.headless-mode"
+   ],
+   "aliases": [
+    "Claude Code 인증 우선순위",
+    "Claude Code authentication precedence",
+    "Claude Code 로그인 문제",
+    "Claude Code 자격 증명 순서"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/authentication"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.claude-code-bedrock",
+   "title": "Bedrock에서 Claude Code 운영: 모델 고정과 IAM",
+   "en": "Running Claude Code on Amazon Bedrock: Model Pinning and IAM",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "Amazon Bedrock으로 Claude Code를 팀에 배포할 때 자격 증명 체인, 모델 고정, 추론 프로필, IAM 권한을 정하고 리전·권한·스트리밍 오류의 원인을 찾는다.",
+   "objectives": [
+    "모델을 고정하지 않으면 별칭이 내장 기본값으로 풀려 더 비싼 모델로 과금되거나 다른 모델로 대체된다는 점을 근거로 고정 방식을 고를 수 있다",
+    "교차 리전 추론 프로필 접두사, 애플리케이션 추론 프로필 ARN, modelOverrides 가운데 조직 요구에 맞는 것을 고를 수 있다",
+    "on-demand throughput isn't supported 오류, SSO 로그인 탭 반복, 게이트웨이가 바꾼 스트리밍 Content-Type 오류의 원인을 찾을 수 있다",
+    "Invoke API와 Mantle 엔드포인트의 IAM 동작이 다르다는 점을 근거로 403 오류의 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.agent-first",
+    "ops.basics.aws-cli-first"
+   ],
+   "related": [
+    "ax.coding.llm-gateway-routing",
+    "ax.coding.agent-team-cost-control"
+   ],
+   "aliases": [
+    "Claude Code Bedrock",
+    "CLAUDE_CODE_USE_BEDROCK",
+    "Claude Code on Amazon Bedrock",
+    "/setup-bedrock"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/amazon-bedrock"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.agent-secure-deployment",
+   "title": "에이전트 배포의 격리 수준 고르기와 자격 증명 숨기기",
+   "en": "Securely Deploying Claude Agent SDK: Isolation and Credential Proxies",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "Claude Code나 Agent SDK 에이전트를 서버에 올릴 때 위협에 맞는 격리 기술을 고르고, 자격 증명을 경계 밖 프록시에 두어 새지 않게 설계한다.",
+   "objectives": [
+    "샌드박스 런타임, 강화한 컨테이너, gVisor, 마이크로 VM의 격리 강도와 성능·운영 부담을 견주어 배포 환경에 맞는 것을 고를 수 있다",
+    "에이전트에 키를 직접 주지 않고 경계 밖 프록시가 자격 증명을 넣게 하는 근거를 말할 수 있다",
+    "HTTPS_PROXY만으로는 다른 서비스 요청에 자격 증명을 넣을 수 없는 이유를 들어 커스텀 도구와 TLS 종료 프록시 가운데 고를 수 있다",
+    "허용 도메인을 통한 유출, 공유 커널, 마운트한 비밀 파일처럼 격리 뒤에도 남는 위험을 근거와 함께 말할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.devcontainer",
+    "ax.coding.agent-prompt-injection",
+    "rag.agent.claude-agent-sdk-quickstart"
+   ],
+   "related": [
+    "ax.coding.sandbox-internals",
+    "ax.security.agent-identity-delegation",
+    "ax.coding.agent-sandbox"
+   ],
+   "aliases": [
+    "에이전트 보안 배포",
+    "Agent SDK 보안 배포",
+    "Agent SDK secure deployment",
+    "에이전트 격리 기술 비교",
+    "샌드박스 비밀값"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/agent-sdk/secure-deployment"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.copilot-setup-steps",
+   "title": "Copilot 클라우드 에이전트 환경 맞추기: setup steps",
+   "en": "Customizing the Copilot Cloud Agent Environment with copilot-setup-steps",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "copilot-setup-steps.yml로 Copilot 클라우드 에이전트의 의존성 설치·러너·프록시를 정하고, 설정이 무시되거나 중간에 실패한 원인을 찾는다.",
+   "objectives": [
+    "설정 파일이 무시되는 원인을 세션이 GitHub Actions에서 도는지 클라우드 샌드박스에서 도는지, 기본 브랜치 여부, 작업 이름, Copilot이 인정하는 작업 키에서 찾을 수 있다",
+    "설정 단계가 실패하면 남은 단계를 건너뛰고 그 상태로 일을 시작한다는 점을 근거로 에이전트 PR의 빌드 실패 원인을 찾을 수 있다",
+    "GitHub 호스트 러너, 큰 러너, 자체 호스팅 러너 가운데 고르고 내장 방화벽을 못 쓸 때 대신 둘 네트워크 통제를 정할 수 있다",
+    "프록시·인증서 변수를 Copilot 에이전트 변수·비밀값으로 둘지 러너 이미지에 둘지 고를 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.copilot-cloud-agent-safeguards",
+    "ops.ci.workflow-basics"
+   ],
+   "related": [
+    "ax.coding.copilot-agent-firewall",
+    "ax.coding.cloud-setup-script"
+   ],
+   "aliases": [
+    "copilot-setup-steps.yml",
+    "Copilot setup steps",
+    "Copilot 에이전트 환경 설정",
+    "Copilot 클라우드 에이전트 사전 설치"
+   ],
+   "refs": [
+    "https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/customize-the-agent-environment"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
    "id": "ax.coding.subagent",
    "title": "하위 에이전트",
    "en": "Subagent",
@@ -73451,6 +74228,90 @@
    "domain": "ax"
   },
   {
+   "id": "ax.coding.claude-code-oauth-token",
+   "title": "Claude Code 장기 OAuth 토큰(setup-token)",
+   "en": "Claude Code Long-Lived OAuth Token (claude setup-token)",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "claude setup-token이 만든 1년짜리 구독 토큰을 CLAUDE_CODE_OAUTH_TOKEN에 넣어 CI에서 쓰며, 모델 요청만 되고 bare 모드는 읽지 않는다.",
+   "parent": "ax.coding.claude-code-auth-precedence",
+   "related": [
+    "ax.coding.bare-mode"
+   ],
+   "aliases": [
+    "claude setup-token",
+    "CLAUDE_CODE_OAUTH_TOKEN",
+    "Claude Code CI 토큰",
+    "Claude Code 1년 토큰"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/authentication"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.third-party-model-pinning",
+   "title": "Claude Code 서드파티 배포의 모델 고정",
+   "en": "Claude Code Model Pinning on Third-Party Providers",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "ANTHROPIC_DEFAULT_OPUS_MODEL 같은 변수로 opus·sonnet 별칭이 가리킬 공급자 모델 ID를 정해, 사용자가 새 모델로 넘어가는 시점을 조직이 정하게 하는 설정이다.",
+   "parent": "ax.coding.claude-code-bedrock",
+   "related": [
+    "llm.api.model-snapshot",
+    "ax.coding.model-command"
+   ],
+   "aliases": [
+    "ANTHROPIC_DEFAULT_OPUS_MODEL",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL",
+    "Claude Code Bedrock 모델 고정",
+    "Claude Code modelOverrides"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/amazon-bedrock"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.credential-injection-proxy",
+   "title": "에이전트 자격 증명 주입 프록시",
+   "en": "Credential-Injecting Proxy for AI Agents",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "에이전트는 자격 증명 없이 요청을 보내고 보안 경계 밖의 프록시가 키를 붙여 전달해, 에이전트가 키를 보지 못하고 요청도 허용 목록·기록으로 통제하는 방식이다.",
+   "parent": "ax.security.agent-secure-deployment",
+   "related": [
+    "ax.security.task-scoped-credentials",
+    "ax.coding.api-key-helper",
+    "rag.agent.sandbox-backend-design"
+   ],
+   "aliases": [
+    "에이전트 자격 증명 프록시",
+    "credential injection proxy",
+    "Envoy credential_injector",
+    "에이전트 키 주입 프록시",
+    "sandbox auth proxy",
+    "샌드박스 인증 프록시"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/agent-sdk/secure-deployment"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
    "id": "ax.coding.hook-event",
    "title": "훅 이벤트와 매처",
    "en": "Hook Events and Matchers",
@@ -73750,6 +74611,127 @@
    ],
    "refs": [
     "https://docs.github.com/en/code-security/responsible-use/security-and-quality-ai-features"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.force-login-org",
+   "title": "Claude Code 로그인 조직 강제(forceLoginOrgUUID)",
+   "en": "Claude Code forceLoginOrgUUID and forceLoginMethod",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "관리형 설정에 조직 ID와 로그인 방식을 넣어 다른 조직의 claude.ai 로그인과 환경 변수 자격 증명을 시작할 때 막는 Claude Code 설정이다.",
+   "parent": "ax.coding.claude-code-auth-precedence",
+   "related": [
+    "ax.coding.managed-settings"
+   ],
+   "aliases": [
+    "forceLoginOrgUUID",
+    "forceLoginMethod",
+    "Claude Code 로그인 조직 제한",
+    "Claude Code 조직 로그인 강제"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/authentication"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.bedrock-region-prefix",
+   "title": "Claude Code Bedrock 추론 프로필 접두사",
+   "en": "Claude Code Bedrock Cross-Region Inference Profile Prefix",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "Claude Code가 리전에 따라 us.·eu.·apac.·global. 같은 접두사를 붙여 기본 모델의 추론 프로필 ID를 고르며, 프로필 조회가 안 될 때 계정에 없는 접두사면 400 오류가 난다.",
+   "parent": "ax.coding.claude-code-bedrock",
+   "aliases": [
+    "ANTHROPIC_BEDROCK_REGION_PREFIX",
+    "Claude Code 교차 리전 추론 프로필",
+    "Claude Code Bedrock 리전 접두사"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/amazon-bedrock"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.agent-mount-secret-exposure",
+   "title": "에이전트 마운트에 딸려 가는 자격 증명 파일",
+   "en": "Credential Files Exposed Through Agent Workspace Mounts",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "코드 폴더를 읽기 전용으로 붙여도 .env, ~/.aws, .npmrc, 개인 키 같은 파일이 함께 들어가면 에이전트가 읽어 유출할 수 있다는 점이다.",
+   "parent": "ax.security.agent-secure-deployment",
+   "related": [
+    "ax.security.sensitive-info-disclosure"
+   ],
+   "aliases": [
+    "에이전트 마운트 비밀 노출",
+    "읽기 전용 마운트 비밀 파일",
+    "에이전트 컨테이너 마운트 점검"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/agent-sdk/secure-deployment"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.copilot-self-hosted-runner",
+   "title": "Copilot 클라우드 에이전트용 자체 호스팅 러너",
+   "en": "Self-Hosted Runners for Copilot Cloud Agent",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "Copilot 클라우드 에이전트를 회사 러너에서 돌리는 방식으로, 한 번 쓰고 버리는 러너를 쓰고 내장 방화벽을 끈 대신 네트워크를 직접 막아야 한다.",
+   "parent": "ax.coding.copilot-setup-steps",
+   "related": [
+    "ops.ci.runner",
+    "ax.coding.copilot-agent-firewall"
+   ],
+   "aliases": [
+    "Copilot 에이전트 자체 호스팅 러너",
+    "Copilot ARC 러너",
+    "Copilot agent self-hosted runner"
+   ],
+   "refs": [
+    "https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/customize-the-agent-environment"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.copilot-setup-steps-recognition",
+   "title": "copilot-setup-steps가 적용되는 조건",
+   "en": "copilot-setup-steps Workflow Recognition Rules",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "설정 파일은 GitHub Actions에서 도는 세션에만 쓰이며, 기본 브랜치에 있고 작업 이름이 copilot-setup-steps여야 하며 정해진 키만 반영된다.",
+   "parent": "ax.coding.copilot-setup-steps",
+   "aliases": [
+    "copilot-setup-steps 작업 이름",
+    "copilot-setup-steps 무시됨",
+    "Copilot setup steps 적용 조건"
+   ],
+   "refs": [
+    "https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/customize-the-agent-environment"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -88636,6 +89618,144 @@
    "domain": "ml"
   },
   {
+   "id": "ml.eval.sklearn-random-state-control",
+   "title": "scikit-learn 무작위성 제어: random_state 고르기",
+   "en": "Controlling Randomness with random_state in scikit-learn",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "모델 평가",
+   "summary": "추정기와 교차 검증 분할기의 random_state에 정수·RandomState 인스턴스·None 중 무엇을 줄지에 따라 재현성과 평가 신뢰도가 달라진다.",
+   "objectives": [
+    "정수와 RandomState 인스턴스가 fit·split을 거듭 부를 때 다르게 동작하는 이유를 근거로 재현용과 견고성 확인용 설정을 고를 수 있다",
+    "분할기에 RandomState 인스턴스를 줘 두 모델이 서로 다른 폴드로 평가된 탓에 폴드별 비교가 틀어진 원인을 찾을 수 있다",
+    "교차 검증 점수가 실행마다 흔들릴 때 추정기·분할기·복제 중 어디서 난수가 들어왔는지 가려낼 수 있다"
+   ],
+   "prerequisites": [
+    "ml.eval.data-splitting-cv"
+   ],
+   "related": [
+    "cs.algo.random-seed",
+    "mlops.track.reproducible-training"
+   ],
+   "aliases": [
+    "scikit-learn 난수 제어",
+    "controlling randomness",
+    "사이킷런 재현성",
+    "RandomState 인스턴스 전달"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/common_pitfalls.html#controlling-randomness"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.pytorch-reproducibility",
+   "title": "PyTorch 학습 결과 재현: 시드와 결정적 알고리즘",
+   "en": "Reproducible PyTorch Runs: Seeds and Deterministic Algorithms",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "시드 고정만으로는 같은 결과가 나오지 않는 이유를 알고 cuDNN 벤치마크·결정적 알고리즘·DataLoader 워커 설정을 속도와 맞바꿔 고른다.",
+   "objectives": [
+    "torch·random·NumPy 시드를 모두 고정했는데도 GPU 실행 결과가 달라지는 원인을 cuDNN 알고리즘 선택과 비결정적 연산에서 찾을 수 있다",
+    "결정적 알고리즘을 켤 때 생기는 RuntimeError와 속도 저하를 근거로 디버깅용과 운영 학습용 설정을 고를 수 있다",
+    "DataLoader 워커의 증강 난수와 섞기 순서가 실행마다 달라지는 원인을 찾아 워커 시드와 Generator로 고칠 수 있다",
+    "PyTorch 버전·플랫폼·CPU와 GPU 사이에서는 같은 결과가 보장되지 않는다는 한계를 근거로 재현 범위를 정할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.nn.training-loop",
+    "ml.nn.dataset-dataloader"
+   ],
+   "related": [
+    "mlops.track.reproducible-training",
+    "cs.algo.random-seed"
+   ],
+   "aliases": [
+    "PyTorch 재현성",
+    "PyTorch reproducibility",
+    "결정적 학습",
+    "deterministic training"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/stable/notes/randomness.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.hist-gradient-boosting-options",
+   "title": "HistGradientBoosting 설계 선택: 범주·결측·제약",
+   "en": "Configuring HistGradientBoosting: Categorical, Missing-Value, and Constraint Options",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "히스토그램 그래디언트 부스팅에서 범주 특성을 원-핫·순서형·네이티브 분할 중 무엇으로 넣을지, 결측값과 단조·상호작용 제약을 어떻게 쓸지 고른다.",
+   "objectives": [
+    "원-핫·순서형 인코딩과 categorical_features 네이티브 분할의 트리 깊이·순서 가정 차이를 근거로 범주 특성 처리 방식을 고를 수 있다",
+    "범주 수가 max_bins보다 작아야 한다는 제약과 학습 때 없던 범주가 결측으로 처리되는 동작에서 학습 실패나 예측 이상의 원인을 찾을 수 있다",
+    "결측값을 대체하지 않고 넘길 때 분할마다 결측 방향이 정해지는 방식을 알고 대체 단계를 뺄지 판단할 수 있다",
+    "가격이 오르면 수요가 줄어야 하는 식의 사전 지식을 monotonic_cst와 interaction_cst로 넣을지와 그 한계를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.supervised.tree-ensembles",
+    "ml.data.missing-values"
+   ],
+   "related": [
+    "ml.data.target-encoding-high-cardinality",
+    "ml.data.ordinal-encoding"
+   ],
+   "aliases": [
+    "히스토그램 그래디언트 부스팅",
+    "histogram-based gradient boosting",
+    "HGBT 설정",
+    "HistGradientBoostingRegressor"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/ensemble.html#histogram-based-gradient-boosting"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.basics.recsys-mf-vs-softmax-dnn",
+   "title": "추천 모델 고르기: 행렬 분해와 소프트맥스 DNN",
+   "en": "Choosing Recommendation Models: Matrix Factorization vs Softmax DNN",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "행렬 분해와 소프트맥스 DNN을 부가 특성·새 사용자·접힘·학습과 서빙 비용으로 견주어 후보 생성과 점수 매기기 단계에 맞는 모델을 고른다.",
+   "objectives": [
+    "관측된 칸만 맞추는 목적 함수와 빈칸 가중치를 둔 가중 행렬 분해의 차이를 근거로 목적 함수를 고를 수 있다",
+    "부가 특성·새 사용자·서빙 때 쿼리 임베딩 계산 비용을 따져 후보 생성과 점수 매기기에 각각 어느 모델을 둘지 근거를 말할 수 있다",
+    "엉뚱한 무리의 항목이 높은 점수로 추천될 때 접힘을 의심하고 네거티브 샘플링이나 빈칸 가중치 조정으로 원인을 좁힐 수 있다",
+    "정적 임베딩은 미리 계산해 두고 큰 코퍼스는 근사 최근접 이웃으로 찾는 서빙 방식을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "ml.basics.recommendation-systems",
+    "ml.nn.embedding-layer"
+   ],
+   "related": [
+    "ml.basics.collaborative-filtering",
+    "ml.basics.candidate-generation",
+    "ml.basics.content-based-filtering"
+   ],
+   "aliases": [
+    "추천 모델 선택",
+    "행렬 분해 대 DNN 추천",
+    "softmax DNN 추천",
+    "two-tower 추천 모델"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/recommendation/collaborative/matrix",
+    "https://developers.google.com/machine-learning/recommendation/dnn/softmax",
+    "https://developers.google.com/machine-learning/recommendation/dnn/training",
+    "https://developers.google.com/machine-learning/recommendation/dnn/retrieval"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.eval.partial-dependence-ice",
    "title": "부분 의존 그래프와 ICE로 모델 동작 점검",
    "en": "Partial Dependence and ICE Plots",
@@ -89395,6 +90515,174 @@
    ],
    "refs": [
     "https://docs.pytorch.org/docs/2.15/amp.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.randomstate-statistical-clone",
+   "title": "RandomState 공유 복제(통계적 복제)",
+   "en": "Statistical Clones Sharing a RandomState Instance",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "모델 평가",
+   "summary": "RandomState 인스턴스를 받은 추정기를 clone하면 같은 난수 생성기를 함께 써 서로의 무작위성에 영향을 주는, 똑같지 않은 복제본이 된다.",
+   "parent": "ml.eval.sklearn-random-state-control",
+   "aliases": [
+    "통계적 복제",
+    "statistical clone",
+    "RandomState 공유",
+    "clone 난수 공유"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/common_pitfalls.html#cloning"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.use-deterministic-algorithms",
+   "title": "torch.use_deterministic_algorithms",
+   "en": "torch.use_deterministic_algorithms (Deterministic Mode)",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "딥러닝",
+   "summary": "켜면 PyTorch가 가능한 연산을 결정적 구현으로 바꾸고, 결정적 대안이 없는 연산을 만나면 RuntimeError를 내게 하는 전역 설정이다.",
+   "parent": "ml.nn.pytorch-reproducibility",
+   "aliases": [
+    "use_deterministic_algorithms",
+    "결정적 알고리즘 모드",
+    "deterministic algorithms",
+    "PyTorch 결정적 모드"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/stable/notes/randomness.html#avoiding-nondeterministic-algorithms"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.cudnn-benchmark",
+   "title": "cuDNN 벤치마크 모드(cudnn.benchmark)",
+   "en": "cuDNN Convolution Benchmarking (torch.backends.cudnn.benchmark)",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "딥러닝",
+   "summary": "입력 크기마다 합성곱 알고리즘 여러 개를 재 보고 가장 빠른 것을 골라 쓰는 설정으로, 빨라지는 대신 실행마다 결과가 달라질 수 있다.",
+   "parent": "ml.nn.pytorch-reproducibility",
+   "aliases": [
+    "cudnn.benchmark",
+    "cuDNN benchmark",
+    "cuDNN 벤치마크",
+    "합성곱 알고리즘 벤치마킹"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/stable/notes/randomness.html#cuda-convolution-benchmarking"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.dataloader-worker-seeding",
+   "title": "DataLoader 워커 시드 고정(worker_init_fn)",
+   "en": "Seeding DataLoader Workers with worker_init_fn and generator",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "딥러닝",
+   "summary": "여러 워커로 데이터를 읽을 때 worker_init_fn으로 워커마다 NumPy·random 시드를 맞추고 generator로 섞기 순서를 고정하는 방법이다.",
+   "parent": "ml.nn.pytorch-reproducibility",
+   "aliases": [
+    "worker_init_fn",
+    "DataLoader 워커 시드",
+    "seed_worker",
+    "DataLoader generator 시드"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/stable/notes/randomness.html#dataloader"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.native-categorical-splits",
+   "title": "부스팅 트리의 네이티브 범주 분할",
+   "en": "Native Categorical Feature Support in HistGradientBoosting",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "범주 특성을 인코딩하지 않고 categorical_features로 지정해 트리가 범주 묶음 단위로 직접 나누게 하는 기능으로, 원-핫보다 얕은 트리로 같은 분할을 만든다.",
+   "parent": "ml.supervised.hist-gradient-boosting-options",
+   "aliases": [
+    "categorical_features",
+    "네이티브 범주 지원",
+    "native categorical support",
+    "categorical_features='from_dtype'"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/ensemble.html#categorical-features-support"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.monotonic-constraints",
+   "title": "단조 제약(monotonic_cst)",
+   "en": "Monotonic Constraints in Gradient Boosting (monotonic_cst)",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "특성이 커질 때 예측이 늘기만 하거나 줄기만 하도록 특성마다 1·-1·0으로 정해 주는 부스팅 제약으로, 다중 분류와 범주 특성에는 쓸 수 없다.",
+   "parent": "ml.supervised.hist-gradient-boosting-options",
+   "aliases": [
+    "monotonic_cst",
+    "단조성 제약",
+    "monotonic constraint",
+    "단조 증가 제약"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/ensemble.html#monotonic-constraints"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.basics.wals",
+   "title": "WALS(가중 교대 최소 제곱)",
+   "en": "Weighted Alternating Least Squares (WALS)",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "사용자 행렬과 항목 행렬을 번갈아 고정하며 가중 제곱 오차를 줄이는 행렬 분해 학습법으로, SGD보다 빨리 수렴하지만 제곱 손실에만 쓴다.",
+   "parent": "ml.basics.recsys-mf-vs-softmax-dnn",
+   "aliases": [
+    "WALS",
+    "가중 교대 최소 제곱",
+    "weighted alternating least squares",
+    "교대 최소 제곱 행렬 분해"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/recommendation/collaborative/matrix",
+    "https://developers.google.com/machine-learning/glossary#weighted-alternating-least-squares-wals"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.basics.recommendation-folding",
+   "title": "추천 임베딩의 접힘(folding)",
+   "en": "Folding in Recommendation Embeddings",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "서로 관계없는 사용자·항목 무리의 임베딩이 같은 자리에 겹쳐 엉뚱한 항목이 높은 점수를 받는 현상으로, 음성 예를 섞어 학습해 줄인다.",
+   "parent": "ml.basics.recsys-mf-vs-softmax-dnn",
+   "aliases": [
+    "임베딩 접힘",
+    "embedding folding",
+    "추천 접힘 현상"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/recommendation/dnn/training"
    ],
    "domain": "ml"
   },
@@ -96806,6 +98094,118 @@
    "domain": "mlops"
   },
   {
+   "id": "mlops.serve.vllm-speculative-decoding",
+   "title": "vLLM 추측 디코딩 고르기: 방법과 수락률",
+   "en": "Choosing Speculative Decoding Methods in vLLM",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "vLLM에서 초안 모델·EAGLE·MTP 같은 모델 기반 방법과 n-gram·suffix 같은 가벼운 방법 중 트래픽에 맞는 것을 고르고, 수락 지표로 효과를 확인하는 운영법이다.",
+   "objectives": [
+    "요청량(QPS)과 남는 GPU 메모리를 보고 모델 기반 방법과 추가 모델 없는 n-gram·suffix 방법 중 무엇을 쓸지 고를 수 있다",
+    "요청량이 많을 때 추측 디코딩의 이득이 줄어드는 이유를 메모리 병목과 계산 병목의 차이로 근거를 말할 수 있다",
+    "속도가 기대만큼 오르지 않을 때 수락 길이·수락률 지표를 보고 num_speculative_tokens나 방법이 맞지 않는지 원인을 찾을 수 있다",
+    "추측 디코딩을 켠 뒤 출력이 조금 달라지는 이유를 수치 정밀도와 손실 있는 검증(FLy)으로 구분해 말할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.serve.vllm-openai-server",
+    "mlops.serve.llm-server-speedups-picture"
+   ],
+   "related": [
+    "mlops.serve.speculative-decoding",
+    "mlops.serve.vllm-latency-tuning",
+    "llm.internals.ttft-tpot"
+   ],
+   "aliases": [
+    "vLLM 추측 디코딩",
+    "vLLM speculative decoding",
+    "vLLM spec decode",
+    "speculative_config",
+    "--speculative-config"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/features/speculative_decoding/",
+    "https://docs.vllm.ai/en/latest/features/speculative_decoding/acceptance_metrics/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.evidently-test-conditions",
+   "title": "Evidently 테스트 조건 설계: 기준 비교와 경고 단계",
+   "en": "Designing Evidently Test Conditions",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "Evidently 지표에 통과·실패 조건을 걸 때 고정 값과 기준 데이터 대비 값 중 무엇을 쓸지, 실패와 경고를 어떻게 나눌지 정해 데이터 점검을 경보로 바꾸는 설계다.",
+   "objectives": [
+    "지표마다 고정 임계값과 기준 데이터 대비 상대·절대 조건 중 무엇이 맞는지 고를 수 있다",
+    "is_critical로 실패와 경고를 나누고 단계별 조건을 겹쳐 경보 피로를 줄이는 근거를 말할 수 있다",
+    "조건을 직접 적지 않은 테스트가 실패할 때 기준 데이터가 있는지 없는지에 따라 자동 조건이 어떻게 정해졌는지 보고 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.observe.evidently-drift-report"
+   ],
+   "related": [
+    "mlops.basics.data-checks",
+    "mlops.serve.pre-serving-validation",
+    "mlops.observe.drift-detection"
+   ],
+   "aliases": [
+    "Evidently 테스트",
+    "Evidently tests",
+    "Evidently 테스트 조건",
+    "Evidently test conditions",
+    "include_tests"
+   ],
+   "refs": [
+    "https://docs.evidentlyai.com/docs/library/tests"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.ray-serve-autoscaling",
+   "title": "Ray Serve 자동 확장 조정: 목표 요청 수와 대기 시간",
+   "en": "Tuning Ray Serve Autoscaling",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "Ray Serve가 레플리카당 진행 중 요청 수를 목표로 복제본을 늘리고 줄일 때, 목표값·상한·확장 대기 시간을 조정해 지연 급증과 복제본 출렁임을 막는 운영법이다.",
+   "objectives": [
+    "지연 목표와 부하 시험 결과를 근거로 target_ongoing_requests를 정하고 max_ongoing_requests를 그보다 얼마나 높게 둘지 고를 수 있다",
+    "몰림 때 지연이 튀는지, 복제본 수가 오르내리며 출렁이는지 보고 확장 대기 시간·배율·관찰 창 중 무엇이 원인인지 찾을 수 있다",
+    "num_replicas=\"auto\" 없이 autoscaling_config를 직접 쓰면 max_replicas 기본값이 1이라 복제본이 늘지 않는 원인을 찾을 수 있다",
+    "min_replicas를 0으로 둘 때 비용 절감과 첫 요청 지연을 비교하고 0으로 줄이는 대기 시간을 따로 둘지 근거를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.serve.ray-serve-load-shedding"
+   ],
+   "related": [
+    "mlops.serve.kserve-autoscaling",
+    "ops.k8s.hpa-tuning",
+    "mlops.serve.scale-to-zero"
+   ],
+   "aliases": [
+    "Ray Serve 오토스케일링",
+    "Ray Serve autoscaling",
+    "Ray Serve 자동 확장",
+    "Ray Serve autoscaling_config"
+   ],
+   "refs": [
+    "https://docs.ray.io/en/latest/serve/autoscaling-guide.html",
+    "https://docs.ray.io/en/latest/serve/advanced-guides/advanced-autoscaling.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
    "id": "mlops.serve.kserve-canary-rollout",
    "title": "KServe로 모델 카나리 출시하고 되돌리기",
    "en": "Canary Rollout and Rollback with KServe",
@@ -97018,6 +98418,42 @@
    ],
    "refs": [
     "https://langfuse.com/docs/prompt-management/features/caching"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.kserve-modelcar",
+   "title": "KServe 모델 저장 방식 고르기: 내려받기와 Modelcar",
+   "en": "Choosing KServe Model Storage: Storage Initializer vs Modelcars",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "KServe에서 시작할 때마다 저장소에서 모델을 내려받을지, 모델을 OCI 이미지로 만들어 노드 이미지 캐시를 쓸지 골라 시작 시간과 디스크 중복을 줄이는 설계다.",
+   "objectives": [
+    "큰 LLM을 자동 확장할 때 저장소 내려받기와 OCI 이미지(Modelcar) 중 무엇이 시작 시간과 디스크 사용에 유리한지 근거를 말할 수 있다",
+    "확장할 때마다 모델을 다시 받는 원인을 이미지 태그와 끌어오기 정책에서 찾을 수 있다",
+    "Modelcar를 켤 때 필요한 설정(enableModelcar, oci:// 주소, 프로세스 이름공간 공유)을 보고 파드가 모델을 못 읽는 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.serve.kserve-autoscaling"
+   ],
+   "related": [
+    "mlops.serve.model-cold-start",
+    "mlops.serve.build-docker"
+   ],
+   "aliases": [
+    "KServe Modelcar",
+    "KServe Modelcars",
+    "KServe OCI 모델 저장",
+    "KServe OCI model storage",
+    "oci:// storageUri"
+   ],
+   "refs": [
+    "https://kserve.github.io/website/docs/model-serving/storage/providers/oci",
+    "https://kserve.github.io/website/docs/model-serving/storage/overview"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -97240,6 +98676,75 @@
    ],
    "refs": [
     "https://docs.ray.io/en/latest/serve/production-guide/best-practices.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.num-speculative-tokens",
+   "title": "추측 토큰 수(num_speculative_tokens)",
+   "en": "vLLM num_speculative_tokens",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "vLLM 추측 디코딩에서 한 단계에 미리 제안할 토큰 수로, 이 값이 한 번 검증에서 얻을 수 있는 토큰 수의 상한을 정한다.",
+   "parent": "mlops.serve.vllm-speculative-decoding",
+   "aliases": [
+    "num_speculative_tokens",
+    "추측 토큰 수",
+    "vLLM 제안 토큰 수"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/features/speculative_decoding/",
+    "https://docs.vllm.ai/en/latest/features/speculative_decoding/acceptance_metrics/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.spec-decode-acceptance-metrics",
+   "title": "추측 디코딩 수락 지표(수락 길이·수락률)",
+   "en": "vLLM Speculative Decoding Acceptance Metrics",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "제안한 초안 토큰 중 몇 개가 받아들여졌는지를 요청별 mean_acceptance_length·draft_acceptance_rate와 서버 전체 카운터로 보여 주는 vLLM 지표다.",
+   "parent": "mlops.serve.vllm-speculative-decoding",
+   "aliases": [
+    "mean_acceptance_length",
+    "draft_acceptance_rate",
+    "추측 디코딩 수락률",
+    "spec decode acceptance rate",
+    "--per-request-spec-decode-metrics"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/features/speculative_decoding/acceptance_metrics/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.ray-target-ongoing-requests",
+   "title": "target_ongoing_requests(Ray Serve 확장 목표)",
+   "en": "Ray Serve target_ongoing_requests",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "Ray Serve 자동 확장이 레플리카마다 평균으로 맞추려는 진행 중 요청 수로, 낮출수록 복제본을 더 많이 띄워 지연을 줄인다.",
+   "parent": "mlops.serve.ray-serve-autoscaling",
+   "aliases": [
+    "target_ongoing_requests",
+    "Ray Serve 목표 요청 수",
+    "Ray Serve 확장 목표"
+   ],
+   "refs": [
+    "https://docs.ray.io/en/latest/serve/advanced-guides/advanced-autoscaling.html"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -97698,6 +99203,121 @@
    ],
    "refs": [
     "https://docs.ray.io/en/latest/serve/advanced-guides/performance.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.kserve-storage-initializer",
+   "title": "스토리지 이니셜라이저(KServe 모델 내려받기 컨테이너)",
+   "en": "KServe Storage Initializer",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "KServe 파드가 뜰 때 init 컨테이너로 먼저 돌아 S3·GCS·Hugging Face 등에서 모델 파일을 받아 모델 서버가 읽을 폴더에 놓는 구성 요소다.",
+   "parent": "mlops.serve.kserve-modelcar",
+   "aliases": [
+    "storage initializer",
+    "스토리지 이니셜라이저",
+    "KServe storage-initializer",
+    "KServe 모델 다운로드 init 컨테이너"
+   ],
+   "refs": [
+    "https://kserve.github.io/website/docs/model-serving/storage/overview"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.modelcar-image-tag-cache",
+   "title": "Modelcar 이미지 태그와 노드 캐시",
+   "en": "Modelcar Image Tags and Pull Policy",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "Modelcar 이미지에 고정 태그를 쓰면 노드에 받아 둔 이미지를 다시 쓰고, latest나 태그 없음이면 파드가 뜰 때마다 다시 받는 규칙이다.",
+   "parent": "mlops.serve.kserve-modelcar",
+   "aliases": [
+    "Modelcar 이미지 태그",
+    "Modelcar pull policy",
+    "Modelcar latest 태그",
+    "모델 이미지 캐시"
+   ],
+   "refs": [
+    "https://kserve.github.io/website/docs/model-serving/storage/providers/oci"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.evidently-is-critical",
+   "title": "is_critical(Evidently 실패와 경고 나누기)",
+   "en": "Evidently is_critical Test Flag",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "Evidently 테스트 조건이 어긋났을 때 False로 두면 실패 대신 경고로 표시해, 실패에만 걸린 경보가 울리지 않게 하는 설정이다.",
+   "parent": "mlops.observe.evidently-test-conditions",
+   "aliases": [
+    "is_critical",
+    "Evidently 경고 테스트",
+    "Evidently warning test",
+    "Evidently 비치명 테스트"
+   ],
+   "refs": [
+    "https://docs.evidentlyai.com/docs/library/tests"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.evidently-reference-condition",
+   "title": "기준 데이터 대비 테스트 조건(Evidently Reference)",
+   "en": "Evidently Reference-Based Test Conditions",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "고정 숫자 대신 기준 데이터에서 잰 값을 기준으로 비율(relative)이나 차이(absolute)만큼 벗어나면 실패시키는 Evidently 테스트 조건이다.",
+   "parent": "mlops.observe.evidently-test-conditions",
+   "aliases": [
+    "Evidently Reference relative",
+    "Reference(relative=)",
+    "Evidently 상대 조건",
+    "기준 대비 조건"
+   ],
+   "refs": [
+    "https://docs.evidentlyai.com/docs/library/tests"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.ray-scaling-delays",
+   "title": "Ray Serve 확장·축소 대기 시간(upscale_delay_s)",
+   "en": "Ray Serve upscale_delay_s and downscale_delay_s",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "부하가 높거나 낮은 상태가 얼마나 이어져야 복제본을 늘리거나 줄일지 정하는 Ray Serve 설정으로, 기본은 늘리기 30초·줄이기 600초다.",
+   "parent": "mlops.serve.ray-serve-autoscaling",
+   "aliases": [
+    "upscale_delay_s",
+    "downscale_delay_s",
+    "downscale_to_zero_delay_s",
+    "Ray Serve 축소 대기 시간"
+   ],
+   "refs": [
+    "https://docs.ray.io/en/latest/serve/advanced-guides/advanced-autoscaling.html"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",

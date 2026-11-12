@@ -6913,6 +6913,151 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "rag.agent.long-term-memory-design",
+    "title": "에이전트 장기 기억 설계: 담는 모양과 쓰는 시점",
+    "en": "Designing Long-Term Agent Memory: Shape and Write Timing",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "장기 기억을 프로필 하나로 둘지 작은 문서 모음으로 둘지, 대화 도중에 쓸지 뒤에서 따로 쓸지 정하고 그 손익과 공유 범위를 따지는 설계다.",
+    "objectives": [
+      "사용자 정보를 프로필 문서 하나로 고쳐 쓸지 작은 기억 문서 모음으로 쌓을지 정보 손실·중복·검색 방식을 근거로 고를 수 있다",
+      "기억을 응답 경로에서 바로 쓸지 백그라운드 작업으로 미룰지 응답 지연·반영 시점·기억 품질을 따져 고를 수 있다",
+      "기억이 다음 대화에서 안 보이거나 엉뚱한 기억이 검색될 때 네임스페이스·임베딩 대상 필드·쓰기 주기 가운데 원인을 찾을 수 있다",
+      "여러 사용자가 함께 쓰는 기억에 주입된 지시가 다른 사용자에게 퍼지는 위험을 알고 읽기 전용 범위를 정할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.memory-overview",
+      "rag.agent.checkpoint-persistence"
+    ],
+    "related": [
+      "rag.agent.memory-store",
+      "rag.agent.store-namespace-isolation",
+      "llm.tools.memory-tool"
+    ],
+    "aliases": [
+      "장기 기억 설계",
+      "long-term memory design",
+      "에이전트 기억 쓰기 설계",
+      "LangGraph 장기 기억 설계",
+      "기억 저장 방식 고르기"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/concepts/memory",
+      "https://docs.langchain.com/oss/python/langgraph/stores",
+      "https://docs.langchain.com/oss/python/deepagents/going-to-production"
+    ]
+  },
+  {
+    "id": "rag.agent.context-engineering-design",
+    "title": "에이전트 컨텍스트 설계: 모델·도구·수명 주기 컨텍스트",
+    "en": "Context Engineering Design for LangChain Agents",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "에이전트가 틀린 행동을 할 때 모델 탓보다 빠진 정보를 먼저 의심하고, 정보를 런타임 컨텍스트·상태·스토어 중 어디에 두고 한 번만 바꿀지 저장할지 정하는 설계다.",
+    "objectives": [
+      "에이전트의 잘못된 행동이 모델 능력 문제인지 모델 호출에 들어간 지시·메시지·도구·형식 문제인지 기록을 보고 가려낼 수 있다",
+      "사용자 ID·권한·대화 중 파일·사용자 선호 같은 정보를 런타임 컨텍스트·상태·스토어 가운데 어디에 둘지 수명과 범위를 근거로 고를 수 있다",
+      "미들웨어로 바꾼 내용이 이번 호출에만 적용되는지 상태에 남는지 구분해, 다음 턴에 변경이 사라지거나 계속 남는 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "rag.basics.context-engineering",
+      "rag.agent.middleware"
+    ],
+    "related": [
+      "llm.internals.context-management",
+      "rag.agent.runtime-context",
+      "rag.agent.dynamic-prompt",
+      "rag.agent.dynamic-tool-selection"
+    ],
+    "aliases": [
+      "에이전트 컨텍스트 설계",
+      "context engineering in agents",
+      "LangChain 컨텍스트 엔지니어링",
+      "모델 컨텍스트와 도구 컨텍스트",
+      "수명 주기 컨텍스트"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/context-engineering"
+    ]
+  },
+  {
+    "id": "rag.agent.sandbox-backend-design",
+    "title": "에이전트 코드 실행 샌드박스 설계: 배치와 수명",
+    "en": "Designing Code Execution Sandboxes for Deep Agents",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "셸 명령을 실행하는 Deep Agents 에이전트를 웹 서비스에 붙일 때 샌드박스를 어디에 두고 대화마다 새로 만들지 공유할지 정하는 설계다.",
+    "objectives": [
+      "에이전트를 샌드박스 안에서 돌릴지 샌드박스를 도구로 부를지 키 노출·업데이트·실패 시 상태 보존·지연을 근거로 고를 수 있다",
+      "샌드박스를 스레드마다 만들지 어시스턴트 단위로 공유할지 정하고, 유휴 시간 제한과 정리 방법으로 비용과 쌓이는 상태를 줄일 수 있다",
+      "실행 도구가 보이지 않거나 큰 출력이 잘리는 문제의 원인을 백엔드 종류와 출력 처리 방식에서 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.deep-agents"
+    ],
+    "related": [
+      "ax.coding.agent-sandbox",
+      "llm.tools.code-execution-tool",
+      "rag.agent.deepagent-backend",
+      "ax.security.agent-secure-deployment"
+    ],
+    "aliases": [
+      "Deep Agents 샌드박스",
+      "Deep Agents sandbox",
+      "에이전트 샌드박스 백엔드",
+      "sandbox backend",
+      "샌드박스 백엔드 설계"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/deepagents/sandboxes",
+      "https://docs.langchain.com/oss/python/deepagents/going-to-production"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.frontend-stream-rejoin",
+    "title": "에이전트 스트림 끊고 다시 붙기: 화면과 서버 실행 분리",
+    "en": "Joining and Rejoining Agent Streams from the Frontend",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "웹 화면이 닫히거나 네트워크가 바뀌어도 서버의 에이전트 실행은 계속되게 하고, 저장한 스레드 ID로 다시 붙어 이어 받도록 useStream을 구성하는 설계다.",
+    "objectives": [
+      "사용자가 페이지를 떠날 때 실행을 끝낼지 이어 갈지에 따라 disconnect와 stop 가운데 무엇을 불러야 하는지 근거를 말할 수 있다",
+      "새로 고침 뒤 대화를 이어 받지 못하는 원인을 스레드 ID 저장 위치·만료된 스레드·Agent Server 유무에서 찾을 수 있다",
+      "다시 붙기가 오래 걸리거나 실행이 이미 끝났을 때 기록 조회로 대신하고 연결 상태를 화면에 보이는 방식을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.streaming",
+      "rag.agent.local-server-studio"
+    ],
+    "related": [
+      "rag.agent.double-texting",
+      "rag.agent.agent-server-deploy",
+      "rag.agent.checkpoint-persistence"
+    ],
+    "aliases": [
+      "스트림 다시 붙기",
+      "join rejoin streams",
+      "useStream 재접속",
+      "에이전트 스트림 재연결",
+      "LangGraph useStream rejoin"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langchain/frontend/join-rejoin"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "rag.retrieval.reranking",
     "title": "재순위",
     "en": "Reranking",
@@ -7531,6 +7676,131 @@
     "refs": [
       "https://qdrant.tech/documentation/manage-data/storage/",
       "https://qdrant.tech/documentation/ops-optimization/optimize/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.memory-profile-collection",
+    "title": "기억 프로필과 기억 컬렉션",
+    "en": "Memory Profile vs Memory Collection",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "사실 기억을 계속 고쳐 쓰는 JSON 문서 하나로 둘지, 범위가 좁은 문서를 계속 쌓는 모음으로 둘지 고르는 두 가지 저장 모양이다.",
+    "parent": "rag.agent.long-term-memory-design",
+    "aliases": [
+      "memory collection",
+      "프로필형 기억",
+      "컬렉션형 기억",
+      "사용자 프로필 기억"
+    ]
+  },
+  {
+    "id": "rag.agent.memory-write-timing",
+    "title": "핫 패스 기억 쓰기와 백그라운드 기억 쓰기",
+    "en": "Hot-Path vs Background Memory Writes",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "에이전트가 답하는 도중에 기억을 저장해 바로 쓰게 할지, 따로 도는 작업이 나중에 모아 저장해 응답을 늦추지 않을지 정하는 선택이다.",
+    "parent": "rag.agent.long-term-memory-design",
+    "aliases": [
+      "hot path memory",
+      "background memory",
+      "핫 패스 기억",
+      "백그라운드 기억 쓰기",
+      "기억 쓰기 시점"
+    ]
+  },
+  {
+    "id": "rag.agent.store-semantic-index",
+    "title": "스토어 의미 검색 인덱스(index: embed·dims·fields)",
+    "en": "LangGraph Store Semantic Search Index",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "LangGraph 스토어를 만들 때 임베딩 모델·차원·임베딩할 필드를 정해 기억을 뜻으로 찾게 하는 설정이며, 저장할 때 index=False로 빼면 검색되지 않는다.",
+    "parent": "rag.agent.long-term-memory-design",
+    "aliases": [
+      "LangGraph store index",
+      "스토어 의미 검색",
+      "store semantic search",
+      "스토어 임베딩 설정",
+      "store index fields"
+    ]
+  },
+  {
+    "id": "rag.agent.transient-persistent-context",
+    "title": "일시적 컨텍스트 변경과 영구 컨텍스트 변경",
+    "en": "Transient vs Persistent Context Updates in LangChain Agents",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "이번 모델 호출에 보이는 내용만 바꾸고 저장된 상태는 그대로 두는 변경과, 상태에 기록해 다음 턴에도 남는 변경을 구분하는 말이다.",
+    "parent": "rag.agent.context-engineering-design",
+    "aliases": [
+      "transient context",
+      "persistent context",
+      "일시적 컨텍스트",
+      "영구 컨텍스트",
+      "wrap_model_call 일시 변경"
+    ]
+  },
+  {
+    "id": "rag.agent.sandbox-integration-pattern",
+    "title": "샌드박스 안 에이전트와 도구형 샌드박스",
+    "en": "Agent-in-Sandbox vs Sandbox-as-Tool Pattern",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "에이전트 자체를 샌드박스 안에서 돌리는 방식과, 에이전트는 서버에 두고 실행할 때만 샌드박스 API를 부르는 방식을 나누는 두 배치 패턴이다.",
+    "parent": "rag.agent.sandbox-backend-design",
+    "aliases": [
+      "agent in sandbox",
+      "sandbox as tool",
+      "도구형 샌드박스",
+      "샌드박스 배치 패턴"
+    ]
+  },
+  {
+    "id": "rag.agent.sandbox-scope",
+    "title": "스레드 범위 샌드박스와 어시스턴트 범위 샌드박스",
+    "en": "Thread-Scoped vs Assistant-Scoped Sandboxes",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "대화(스레드)마다 깨끗한 샌드박스를 따로 쓰게 할지, 한 어시스턴트의 모든 대화가 설치한 패키지와 파일을 함께 쓰게 할지 정하는 범위 선택이다.",
+    "parent": "rag.agent.sandbox-backend-design",
+    "aliases": [
+      "thread-scoped sandbox",
+      "assistant-scoped sandbox",
+      "스레드별 샌드박스",
+      "샌드박스 유휴 TTL"
+    ]
+  },
+  {
+    "id": "rag.agent.stream-disconnect-vs-stop",
+    "title": "useStream disconnect와 stop의 차이",
+    "en": "useStream disconnect() vs stop()",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "disconnect는 화면만 스트림에서 떼고 서버 실행은 계속 두지만, stop은 기본으로 서버의 실행 중인 런까지 취소한다는 차이다.",
+    "parent": "rag.agent.frontend-stream-rejoin",
+    "aliases": [
+      "stream.disconnect",
+      "stream.stop",
+      "useStream disconnect",
+      "스트림 연결 끊기",
+      "런 취소와 연결 끊기"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"

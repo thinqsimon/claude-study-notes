@@ -7101,6 +7101,153 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "llm.api.realtime-voice-connection",
+    "title": "브라우저 음성 대화의 Realtime 연결 설계",
+    "en": "Designing OpenAI Realtime API Connections for Browser Voice Apps",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "음성 대화 기능을 만들 때 WebRTC·WebSocket 중 연결 방식을 고르고, 키와 도구 실행을 서버에 두는 구조로 지연과 보안을 함께 맞추는 설계다.",
+    "objectives": [
+      "브라우저·모바일 클라이언트에는 WebRTC를, 서버 사이 연결에는 WebSocket을 고르는 근거를 성능의 일관성과 표준 키를 둘 위치로 말할 수 있다",
+      "내 서버가 SDP를 대신 보내는 방식과 임시 클라이언트 키로 브라우저가 직접 붙는 방식 중 세션 시작 경로와 키 노출 위험을 따져 고를 수 있다",
+      "도구 실행과 업무 로직을 call_id로 붙는 사이드밴드 연결로 서버에 두어, 키와 업무 규칙을 브라우저에 드러내지 않는 구성을 고를 수 있다",
+      "사용자 말을 자주 끊거나 늦게 답하는 원인을 턴 감지 방식과 설정값에서 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.text-to-speech",
+      "be.async.realtime-choice"
+    ],
+    "related": [
+      "llm.api.speech-to-text",
+      "llm.api.latency-design"
+    ],
+    "aliases": [
+      "OpenAI Realtime API",
+      "Realtime API 연결",
+      "실시간 음성 대화 API",
+      "음성 에이전트 연결 설계"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/realtime",
+      "https://developers.openai.com/api/docs/guides/voice-webrtc?api=realtime",
+      "https://developers.openai.com/api/docs/guides/voice-websockets?api=realtime",
+      "https://developers.openai.com/api/docs/guides/voice-server-controls?api=realtime"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.basics.chat-output-debugging",
+    "title": "오픈 채팅 모델 출력 이상 진단: 템플릿·특수 토큰·패딩",
+    "en": "Diagnosing Bad Outputs from Open Chat Models: Templates, Special Tokens and Padding",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "Transformers로 오픈 채팅 모델을 돌릴 때 답 대신 질문을 이어 쓰거나 묶음 결과가 깨지는 원인을 채팅 템플릿·특수 토큰·패딩 방향에서 찾는 일이다.",
+    "objectives": [
+      "모델이 답하지 않고 사용자 말을 이어 쓰는 원인을 채팅 템플릿을 쓰지 않았거나 add_generation_prompt를 빠뜨린 데서 찾을 수 있다",
+      "템플릿을 문자열로 만든 뒤 다시 토큰화해 BOS·EOS가 두 번 들어간 문제를 찾고, 토큰화를 템플릿에 맡길지 add_special_tokens=False를 줄지 고를 수 있다",
+      "여러 프롬프트를 한 묶음으로 생성할 때 오른쪽 패딩 때문에 결과가 깨지는 원인을 찾아 왼쪽 패딩과 pad 토큰 설정으로 고칠 수 있다",
+      "같은 기반 모델에서 나온 채팅 모델도 템플릿이 달라 모델을 바꾸면 출력이 나빠질 수 있다는 근거를 들어 템플릿을 모델의 토크나이저에서 가져와야 하는 까닭을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.internals.generate-decoding",
+      "llm.basics.tokenizer-batching"
+    ],
+    "related": [
+      "mlops.finetune.chat-template",
+      "llm.prompt.prefill",
+      "llm.basics.special-tokens"
+    ],
+    "aliases": [
+      "채팅 템플릿 오류",
+      "chat template mismatch",
+      "오픈 모델 이상 출력",
+      "generate 출력 이상 진단",
+      "apply_chat_template 문제"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/chat_templating",
+      "https://huggingface.co/docs/transformers/llm_tutorial"
+    ]
+  },
+  {
+    "id": "llm.api.google-cloud-claude-choice",
+    "title": "Google Cloud에서 Claude 쓰는 방식 고르기",
+    "en": "Choosing How to Use Claude on Google Cloud",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "Claude를 Google Cloud 프로젝트로 쓸 때 Anthropic 운영과 Google 운영 중 하나를 고르고, 엔드포인트 유형과 빠지는 기능을 따져 이전 오류를 막는 설계다.",
+    "objectives": [
+      "Anthropic 운영과 Google 운영의 요청 형식·청구·속도 제한 주체 차이를 비교해 팀 상황에 맞는 쪽을 고를 수 있다",
+      "global·multi-region·regional 엔드포인트 가운데 데이터 위치 요구와 10% 추가 요금, 지원 모델을 따져 하나를 고를 수 있다",
+      "Claude API에서 옮긴 코드가 Google 운영에서 실패할 때 Files API·배치·서버 쪽 대체 모델처럼 지원되지 않는 기능이나 모델 ID 형식에서 원인을 찾을 수 있다",
+      "요청 URL 호스트나 SDK 클라이언트 이름으로 지금 쓰는 방식을 판별하고 속도 제한 문의처를 정할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.model-ids",
+      "llm.security.data-residency-retention"
+    ],
+    "related": [
+      "llm.api.model-migration",
+      "llm.api.errors-rate-limits"
+    ],
+    "aliases": [
+      "Claude on Vertex AI",
+      "Vertex AI Claude",
+      "Google Cloud Claude",
+      "AnthropicVertex",
+      "Agent Platform Claude"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/overview",
+      "https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.basics.hf-provider-routing",
+    "title": "Inference Providers 제공자 선택과 청구 방식 고르기",
+    "en": "Choosing Provider Routing and Billing in Hugging Face Inference Providers",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "Hugging Face 라우터로 오픈 모델을 부를 때 속도·가격·지정 제공자 중 선택 정책과 HF 청구·자체 키 청구를 따져, 비용과 장애 대응을 맞추는 설계다.",
+    "objectives": [
+      "기본 :fastest와 :cheapest, :preferred, 제공자 이름 지정 중에서 처리량·출력 토큰 가격·일관성을 따져 정책을 고를 수 있다",
+      "제공자를 못 박으면 자동 선택의 대체 경로를 잃는다는 손익을 들어 장애 때 요청이 실패한 원인을 찾을 수 있다",
+      "HF가 청구하는 라우팅과 자체 제공자 키 중에서 월 크레딧 적용 여부와 청구 주체를 따져 하나를 고를 수 있다",
+      "OpenAI 호환 주소가 채팅 작업만 받는다는 점을 알고 임베딩·이미지 작업에 InferenceClient를 써야 하는 근거를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.model-selection"
+    ],
+    "related": [
+      "llm.basics.inference-providers",
+      "llm.api.spend-limit"
+    ],
+    "aliases": [
+      "HF 라우터 정책",
+      "Inference Providers routing",
+      "허깅페이스 제공자 선택",
+      "HF custom provider key",
+      "Inference Providers 청구"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/inference-providers/index",
+      "https://huggingface.co/docs/inference-providers/pricing"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "llm.api.spend-limit",
     "title": "지출 한도",
     "en": "Spend Limit",
@@ -7385,6 +7532,55 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.api.realtime-client-secret",
+    "title": "Realtime 임시 클라이언트 키",
+    "en": "OpenAI Realtime Ephemeral Client Secret",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "서버가 표준 API 키로 발급해 브라우저에 넘기는 짧은 수명의 Realtime 접속 키로, 기본 10분이고 10초에서 2시간 사이로 정한다.",
+    "parent": "llm.api.realtime-voice-connection",
+    "related": [
+      "llm.api.realtime-sideband"
+    ],
+    "aliases": [
+      "Realtime ephemeral key",
+      "Realtime 임시 키",
+      "realtime client_secrets",
+      "OpenAI 에페메럴 토큰"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/reference/resources/realtime/subresources/client_secrets/methods/create",
+      "https://developers.openai.com/api/docs/guides/voice-webrtc?api=realtime"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.basics.left-padding-generation",
+    "title": "생성용 왼쪽 패딩(padding_side=\"left\")",
+    "en": "Left Padding for Batched Generation in Transformers",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 기초",
+    "summary": "디코더 전용 모델로 여러 프롬프트를 한 번에 생성할 때 패딩을 앞쪽에 붙여 모델이 패딩 토큰 뒤에서 이어 쓰지 않게 하는 토크나이저 설정이다.",
+    "parent": "llm.basics.chat-output-debugging",
+    "related": [
+      "llm.basics.padding-truncation"
+    ],
+    "aliases": [
+      "padding_side left",
+      "tokenizer padding_side=left",
+      "배치 생성 패딩 방향",
+      "생성용 패딩 방향"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/llm_tutorial"
+    ]
   },
   {
     "id": "llm.api.usage-tier",
@@ -7810,6 +8006,147 @@
     ],
     "refs": [
       "https://platform.claude.com/docs/en/build-with-claude/prompt-caching"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.api.realtime-sideband",
+    "title": "Realtime 사이드밴드 연결",
+    "en": "OpenAI Realtime Sideband Server Connection",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "사용자 기기가 음성을 주고받는 Realtime 세션에 서버가 call_id로 따로 붙어 지시 변경·도구 호출 응답·대화 감시를 맡는 두 번째 연결이다.",
+    "parent": "llm.api.realtime-voice-connection",
+    "related": [
+      "llm.api.realtime-client-secret"
+    ],
+    "aliases": [
+      "sideband connection",
+      "Realtime 서버 제어 연결",
+      "Realtime call_id 연결",
+      "Realtime server-side controls"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/voice-server-controls?api=realtime"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.api.realtime-turn-detection",
+    "title": "음성 턴 감지(server_vad·semantic_vad)",
+    "en": "Realtime Turn Detection with server_vad and semantic_vad",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "Realtime 세션에서 사용자가 말을 끝냈는지 침묵 길이로 볼지 말의 내용으로 볼지 정하는 설정으로, 끊김과 응답 지연의 손익을 가른다.",
+    "parent": "llm.api.realtime-voice-connection",
+    "aliases": [
+      "turn detection",
+      "음성 활동 감지",
+      "Realtime VAD",
+      "silence_duration_ms",
+      "semantic VAD eagerness"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/realtime-vad"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.basics.duplicate-special-tokens",
+    "title": "채팅 템플릿 뒤 특수 토큰 중복",
+    "en": "Duplicated BOS/EOS Tokens After apply_chat_template",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "이미 특수 토큰을 넣은 채팅 템플릿 문자열을 토크나이저에 다시 넣어 BOS·EOS가 두 번 붙고 모델 성능이 떨어지는 실수다.",
+    "parent": "llm.basics.chat-output-debugging",
+    "related": [
+      "llm.basics.special-tokens",
+      "mlops.finetune.chat-template"
+    ],
+    "aliases": [
+      "BOS 중복",
+      "special token duplication",
+      "add_special_tokens=False",
+      "특수 토큰 두 번 붙음"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/chat_templating"
+    ]
+  },
+  {
+    "id": "llm.api.vertex-endpoint-types",
+    "title": "Vertex Claude 엔드포인트 유형",
+    "en": "Global, Multi-Region and Regional Endpoints for Claude on Google Cloud",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "Google 운영 Claude에서 요청이 갈 지역 범위를 정하는 엔드포인트 종류로, 좁힐수록 데이터 위치는 묶이지만 10% 더 비싸고 쓸 수 있는 모델이 준다.",
+    "parent": "llm.api.google-cloud-claude-choice",
+    "related": [
+      "llm.api.inference-geo"
+    ],
+    "aliases": [
+      "Vertex global endpoint",
+      "Vertex 리전 엔드포인트",
+      "Claude multi-region endpoint",
+      "aiplatform.us.rep.googleapis.com"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.basics.hf-routing-policy-suffix",
+    "title": "HF 제공자 선택 정책 접미사",
+    "en": "Hugging Face Inference Providers Routing Policy Suffixes",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "Hugging Face 라우터에 보낼 모델 이름 뒤에 붙여 처리량이 가장 높은 곳, 출력 토큰이 가장 싼 곳, 내 선호 순서 중 어디로 보낼지 정하는 표기다.",
+    "parent": "llm.basics.hf-provider-routing",
+    "aliases": [
+      ":fastest 정책",
+      ":cheapest 정책",
+      "HF provider policy",
+      "모델 이름 접미사 라우팅"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/inference-providers/index"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.basics.hf-bill-to",
+    "title": "조직 청구 지정(X-HF-Bill-To)",
+    "en": "Billing Inference to an Organization with X-HF-Bill-To",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 기초",
+    "summary": "각자 토큰으로 부른 Inference Providers 요청을 개인이 아니라 Team·Enterprise 조직이나 리소스 그룹에 청구하도록 지정하는 헤더와 bill_to 설정이다.",
+    "parent": "llm.basics.hf-provider-routing",
+    "aliases": [
+      "X-HF-Bill-To 헤더",
+      "HF bill_to",
+      "허깅페이스 조직 청구",
+      "Inference Providers 조직 결제"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/inference-providers/pricing"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"

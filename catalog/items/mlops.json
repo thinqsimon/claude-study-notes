@@ -6924,6 +6924,115 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "mlops.serve.vllm-speculative-decoding",
+    "title": "vLLM 추측 디코딩 고르기: 방법과 수락률",
+    "en": "Choosing Speculative Decoding Methods in vLLM",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "vLLM에서 초안 모델·EAGLE·MTP 같은 모델 기반 방법과 n-gram·suffix 같은 가벼운 방법 중 트래픽에 맞는 것을 고르고, 수락 지표로 효과를 확인하는 운영법이다.",
+    "objectives": [
+      "요청량(QPS)과 남는 GPU 메모리를 보고 모델 기반 방법과 추가 모델 없는 n-gram·suffix 방법 중 무엇을 쓸지 고를 수 있다",
+      "요청량이 많을 때 추측 디코딩의 이득이 줄어드는 이유를 메모리 병목과 계산 병목의 차이로 근거를 말할 수 있다",
+      "속도가 기대만큼 오르지 않을 때 수락 길이·수락률 지표를 보고 num_speculative_tokens나 방법이 맞지 않는지 원인을 찾을 수 있다",
+      "추측 디코딩을 켠 뒤 출력이 조금 달라지는 이유를 수치 정밀도와 손실 있는 검증(FLy)으로 구분해 말할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.vllm-openai-server",
+      "mlops.serve.llm-server-speedups-picture"
+    ],
+    "related": [
+      "mlops.serve.speculative-decoding",
+      "mlops.serve.vllm-latency-tuning",
+      "llm.internals.ttft-tpot"
+    ],
+    "aliases": [
+      "vLLM 추측 디코딩",
+      "vLLM speculative decoding",
+      "vLLM spec decode",
+      "speculative_config",
+      "--speculative-config"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/features/speculative_decoding/",
+      "https://docs.vllm.ai/en/latest/features/speculative_decoding/acceptance_metrics/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.observe.evidently-test-conditions",
+    "title": "Evidently 테스트 조건 설계: 기준 비교와 경고 단계",
+    "en": "Designing Evidently Test Conditions",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "Evidently 지표에 통과·실패 조건을 걸 때 고정 값과 기준 데이터 대비 값 중 무엇을 쓸지, 실패와 경고를 어떻게 나눌지 정해 데이터 점검을 경보로 바꾸는 설계다.",
+    "objectives": [
+      "지표마다 고정 임계값과 기준 데이터 대비 상대·절대 조건 중 무엇이 맞는지 고를 수 있다",
+      "is_critical로 실패와 경고를 나누고 단계별 조건을 겹쳐 경보 피로를 줄이는 근거를 말할 수 있다",
+      "조건을 직접 적지 않은 테스트가 실패할 때 기준 데이터가 있는지 없는지에 따라 자동 조건이 어떻게 정해졌는지 보고 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.observe.evidently-drift-report"
+    ],
+    "related": [
+      "mlops.basics.data-checks",
+      "mlops.serve.pre-serving-validation",
+      "mlops.observe.drift-detection"
+    ],
+    "aliases": [
+      "Evidently 테스트",
+      "Evidently tests",
+      "Evidently 테스트 조건",
+      "Evidently test conditions",
+      "include_tests"
+    ],
+    "refs": [
+      "https://docs.evidentlyai.com/docs/library/tests"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.ray-serve-autoscaling",
+    "title": "Ray Serve 자동 확장 조정: 목표 요청 수와 대기 시간",
+    "en": "Tuning Ray Serve Autoscaling",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "Ray Serve가 레플리카당 진행 중 요청 수를 목표로 복제본을 늘리고 줄일 때, 목표값·상한·확장 대기 시간을 조정해 지연 급증과 복제본 출렁임을 막는 운영법이다.",
+    "objectives": [
+      "지연 목표와 부하 시험 결과를 근거로 target_ongoing_requests를 정하고 max_ongoing_requests를 그보다 얼마나 높게 둘지 고를 수 있다",
+      "몰림 때 지연이 튀는지, 복제본 수가 오르내리며 출렁이는지 보고 확장 대기 시간·배율·관찰 창 중 무엇이 원인인지 찾을 수 있다",
+      "num_replicas=\"auto\" 없이 autoscaling_config를 직접 쓰면 max_replicas 기본값이 1이라 복제본이 늘지 않는 원인을 찾을 수 있다",
+      "min_replicas를 0으로 둘 때 비용 절감과 첫 요청 지연을 비교하고 0으로 줄이는 대기 시간을 따로 둘지 근거를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.ray-serve-load-shedding"
+    ],
+    "related": [
+      "mlops.serve.kserve-autoscaling",
+      "ops.k8s.hpa-tuning",
+      "mlops.serve.scale-to-zero"
+    ],
+    "aliases": [
+      "Ray Serve 오토스케일링",
+      "Ray Serve autoscaling",
+      "Ray Serve 자동 확장",
+      "Ray Serve autoscaling_config"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/serve/autoscaling-guide.html",
+      "https://docs.ray.io/en/latest/serve/advanced-guides/advanced-autoscaling.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "mlops.serve.kserve-canary-rollout",
     "title": "KServe로 모델 카나리 출시하고 되돌리기",
     "en": "Canary Rollout and Rollback with KServe",
@@ -7131,6 +7240,41 @@
     ],
     "refs": [
       "https://langfuse.com/docs/prompt-management/features/caching"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.kserve-modelcar",
+    "title": "KServe 모델 저장 방식 고르기: 내려받기와 Modelcar",
+    "en": "Choosing KServe Model Storage: Storage Initializer vs Modelcars",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "KServe에서 시작할 때마다 저장소에서 모델을 내려받을지, 모델을 OCI 이미지로 만들어 노드 이미지 캐시를 쓸지 골라 시작 시간과 디스크 중복을 줄이는 설계다.",
+    "objectives": [
+      "큰 LLM을 자동 확장할 때 저장소 내려받기와 OCI 이미지(Modelcar) 중 무엇이 시작 시간과 디스크 사용에 유리한지 근거를 말할 수 있다",
+      "확장할 때마다 모델을 다시 받는 원인을 이미지 태그와 끌어오기 정책에서 찾을 수 있다",
+      "Modelcar를 켤 때 필요한 설정(enableModelcar, oci:// 주소, 프로세스 이름공간 공유)을 보고 파드가 모델을 못 읽는 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.kserve-autoscaling"
+    ],
+    "related": [
+      "mlops.serve.model-cold-start",
+      "mlops.serve.build-docker"
+    ],
+    "aliases": [
+      "KServe Modelcar",
+      "KServe Modelcars",
+      "KServe OCI 모델 저장",
+      "KServe OCI model storage",
+      "oci:// storageUri"
+    ],
+    "refs": [
+      "https://kserve.github.io/website/docs/model-serving/storage/providers/oci",
+      "https://kserve.github.io/website/docs/model-serving/storage/overview"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
@@ -7344,6 +7488,72 @@
     ],
     "refs": [
       "https://docs.ray.io/en/latest/serve/production-guide/best-practices.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.num-speculative-tokens",
+    "title": "추측 토큰 수(num_speculative_tokens)",
+    "en": "vLLM num_speculative_tokens",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "vLLM 추측 디코딩에서 한 단계에 미리 제안할 토큰 수로, 이 값이 한 번 검증에서 얻을 수 있는 토큰 수의 상한을 정한다.",
+    "parent": "mlops.serve.vllm-speculative-decoding",
+    "aliases": [
+      "num_speculative_tokens",
+      "추측 토큰 수",
+      "vLLM 제안 토큰 수"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/features/speculative_decoding/",
+      "https://docs.vllm.ai/en/latest/features/speculative_decoding/acceptance_metrics/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.spec-decode-acceptance-metrics",
+    "title": "추측 디코딩 수락 지표(수락 길이·수락률)",
+    "en": "vLLM Speculative Decoding Acceptance Metrics",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "제안한 초안 토큰 중 몇 개가 받아들여졌는지를 요청별 mean_acceptance_length·draft_acceptance_rate와 서버 전체 카운터로 보여 주는 vLLM 지표다.",
+    "parent": "mlops.serve.vllm-speculative-decoding",
+    "aliases": [
+      "mean_acceptance_length",
+      "draft_acceptance_rate",
+      "추측 디코딩 수락률",
+      "spec decode acceptance rate",
+      "--per-request-spec-decode-metrics"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/features/speculative_decoding/acceptance_metrics/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.ray-target-ongoing-requests",
+    "title": "target_ongoing_requests(Ray Serve 확장 목표)",
+    "en": "Ray Serve target_ongoing_requests",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "Ray Serve 자동 확장이 레플리카마다 평균으로 맞추려는 진행 중 요청 수로, 낮출수록 복제본을 더 많이 띄워 지연을 줄인다.",
+    "parent": "mlops.serve.ray-serve-autoscaling",
+    "aliases": [
+      "target_ongoing_requests",
+      "Ray Serve 목표 요청 수",
+      "Ray Serve 확장 목표"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/serve/advanced-guides/advanced-autoscaling.html"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
@@ -7782,6 +7992,116 @@
     ],
     "refs": [
       "https://docs.ray.io/en/latest/serve/advanced-guides/performance.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.kserve-storage-initializer",
+    "title": "스토리지 이니셜라이저(KServe 모델 내려받기 컨테이너)",
+    "en": "KServe Storage Initializer",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "KServe 파드가 뜰 때 init 컨테이너로 먼저 돌아 S3·GCS·Hugging Face 등에서 모델 파일을 받아 모델 서버가 읽을 폴더에 놓는 구성 요소다.",
+    "parent": "mlops.serve.kserve-modelcar",
+    "aliases": [
+      "storage initializer",
+      "스토리지 이니셜라이저",
+      "KServe storage-initializer",
+      "KServe 모델 다운로드 init 컨테이너"
+    ],
+    "refs": [
+      "https://kserve.github.io/website/docs/model-serving/storage/overview"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.modelcar-image-tag-cache",
+    "title": "Modelcar 이미지 태그와 노드 캐시",
+    "en": "Modelcar Image Tags and Pull Policy",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Modelcar 이미지에 고정 태그를 쓰면 노드에 받아 둔 이미지를 다시 쓰고, latest나 태그 없음이면 파드가 뜰 때마다 다시 받는 규칙이다.",
+    "parent": "mlops.serve.kserve-modelcar",
+    "aliases": [
+      "Modelcar 이미지 태그",
+      "Modelcar pull policy",
+      "Modelcar latest 태그",
+      "모델 이미지 캐시"
+    ],
+    "refs": [
+      "https://kserve.github.io/website/docs/model-serving/storage/providers/oci"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.observe.evidently-is-critical",
+    "title": "is_critical(Evidently 실패와 경고 나누기)",
+    "en": "Evidently is_critical Test Flag",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Evidently 테스트 조건이 어긋났을 때 False로 두면 실패 대신 경고로 표시해, 실패에만 걸린 경보가 울리지 않게 하는 설정이다.",
+    "parent": "mlops.observe.evidently-test-conditions",
+    "aliases": [
+      "is_critical",
+      "Evidently 경고 테스트",
+      "Evidently warning test",
+      "Evidently 비치명 테스트"
+    ],
+    "refs": [
+      "https://docs.evidentlyai.com/docs/library/tests"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.observe.evidently-reference-condition",
+    "title": "기준 데이터 대비 테스트 조건(Evidently Reference)",
+    "en": "Evidently Reference-Based Test Conditions",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "고정 숫자 대신 기준 데이터에서 잰 값을 기준으로 비율(relative)이나 차이(absolute)만큼 벗어나면 실패시키는 Evidently 테스트 조건이다.",
+    "parent": "mlops.observe.evidently-test-conditions",
+    "aliases": [
+      "Evidently Reference relative",
+      "Reference(relative=)",
+      "Evidently 상대 조건",
+      "기준 대비 조건"
+    ],
+    "refs": [
+      "https://docs.evidentlyai.com/docs/library/tests"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.ray-scaling-delays",
+    "title": "Ray Serve 확장·축소 대기 시간(upscale_delay_s)",
+    "en": "Ray Serve upscale_delay_s and downscale_delay_s",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "부하가 높거나 낮은 상태가 얼마나 이어져야 복제본을 늘리거나 줄일지 정하는 Ray Serve 설정으로, 기본은 늘리기 30초·줄이기 600초다.",
+    "parent": "mlops.serve.ray-serve-autoscaling",
+    "aliases": [
+      "upscale_delay_s",
+      "downscale_delay_s",
+      "downscale_to_zero_delay_s",
+      "Ray Serve 축소 대기 시간"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/serve/advanced-guides/advanced-autoscaling.html"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"

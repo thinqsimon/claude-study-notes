@@ -6675,6 +6675,140 @@
     ]
   },
   {
+    "id": "ml.eval.sklearn-random-state-control",
+    "title": "scikit-learn 무작위성 제어: random_state 고르기",
+    "en": "Controlling Randomness with random_state in scikit-learn",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "모델 평가",
+    "summary": "추정기와 교차 검증 분할기의 random_state에 정수·RandomState 인스턴스·None 중 무엇을 줄지에 따라 재현성과 평가 신뢰도가 달라진다.",
+    "objectives": [
+      "정수와 RandomState 인스턴스가 fit·split을 거듭 부를 때 다르게 동작하는 이유를 근거로 재현용과 견고성 확인용 설정을 고를 수 있다",
+      "분할기에 RandomState 인스턴스를 줘 두 모델이 서로 다른 폴드로 평가된 탓에 폴드별 비교가 틀어진 원인을 찾을 수 있다",
+      "교차 검증 점수가 실행마다 흔들릴 때 추정기·분할기·복제 중 어디서 난수가 들어왔는지 가려낼 수 있다"
+    ],
+    "prerequisites": [
+      "ml.eval.data-splitting-cv"
+    ],
+    "related": [
+      "cs.algo.random-seed",
+      "mlops.track.reproducible-training"
+    ],
+    "aliases": [
+      "scikit-learn 난수 제어",
+      "controlling randomness",
+      "사이킷런 재현성",
+      "RandomState 인스턴스 전달"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/common_pitfalls.html#controlling-randomness"
+    ]
+  },
+  {
+    "id": "ml.nn.pytorch-reproducibility",
+    "title": "PyTorch 학습 결과 재현: 시드와 결정적 알고리즘",
+    "en": "Reproducible PyTorch Runs: Seeds and Deterministic Algorithms",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "시드 고정만으로는 같은 결과가 나오지 않는 이유를 알고 cuDNN 벤치마크·결정적 알고리즘·DataLoader 워커 설정을 속도와 맞바꿔 고른다.",
+    "objectives": [
+      "torch·random·NumPy 시드를 모두 고정했는데도 GPU 실행 결과가 달라지는 원인을 cuDNN 알고리즘 선택과 비결정적 연산에서 찾을 수 있다",
+      "결정적 알고리즘을 켤 때 생기는 RuntimeError와 속도 저하를 근거로 디버깅용과 운영 학습용 설정을 고를 수 있다",
+      "DataLoader 워커의 증강 난수와 섞기 순서가 실행마다 달라지는 원인을 찾아 워커 시드와 Generator로 고칠 수 있다",
+      "PyTorch 버전·플랫폼·CPU와 GPU 사이에서는 같은 결과가 보장되지 않는다는 한계를 근거로 재현 범위를 정할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.nn.training-loop",
+      "ml.nn.dataset-dataloader"
+    ],
+    "related": [
+      "mlops.track.reproducible-training",
+      "cs.algo.random-seed"
+    ],
+    "aliases": [
+      "PyTorch 재현성",
+      "PyTorch reproducibility",
+      "결정적 학습",
+      "deterministic training"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/stable/notes/randomness.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.hist-gradient-boosting-options",
+    "title": "HistGradientBoosting 설계 선택: 범주·결측·제약",
+    "en": "Configuring HistGradientBoosting: Categorical, Missing-Value, and Constraint Options",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "히스토그램 그래디언트 부스팅에서 범주 특성을 원-핫·순서형·네이티브 분할 중 무엇으로 넣을지, 결측값과 단조·상호작용 제약을 어떻게 쓸지 고른다.",
+    "objectives": [
+      "원-핫·순서형 인코딩과 categorical_features 네이티브 분할의 트리 깊이·순서 가정 차이를 근거로 범주 특성 처리 방식을 고를 수 있다",
+      "범주 수가 max_bins보다 작아야 한다는 제약과 학습 때 없던 범주가 결측으로 처리되는 동작에서 학습 실패나 예측 이상의 원인을 찾을 수 있다",
+      "결측값을 대체하지 않고 넘길 때 분할마다 결측 방향이 정해지는 방식을 알고 대체 단계를 뺄지 판단할 수 있다",
+      "가격이 오르면 수요가 줄어야 하는 식의 사전 지식을 monotonic_cst와 interaction_cst로 넣을지와 그 한계를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.tree-ensembles",
+      "ml.data.missing-values"
+    ],
+    "related": [
+      "ml.data.target-encoding-high-cardinality",
+      "ml.data.ordinal-encoding"
+    ],
+    "aliases": [
+      "히스토그램 그래디언트 부스팅",
+      "histogram-based gradient boosting",
+      "HGBT 설정",
+      "HistGradientBoostingRegressor"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/ensemble.html#histogram-based-gradient-boosting"
+    ]
+  },
+  {
+    "id": "ml.basics.recsys-mf-vs-softmax-dnn",
+    "title": "추천 모델 고르기: 행렬 분해와 소프트맥스 DNN",
+    "en": "Choosing Recommendation Models: Matrix Factorization vs Softmax DNN",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "행렬 분해와 소프트맥스 DNN을 부가 특성·새 사용자·접힘·학습과 서빙 비용으로 견주어 후보 생성과 점수 매기기 단계에 맞는 모델을 고른다.",
+    "objectives": [
+      "관측된 칸만 맞추는 목적 함수와 빈칸 가중치를 둔 가중 행렬 분해의 차이를 근거로 목적 함수를 고를 수 있다",
+      "부가 특성·새 사용자·서빙 때 쿼리 임베딩 계산 비용을 따져 후보 생성과 점수 매기기에 각각 어느 모델을 둘지 근거를 말할 수 있다",
+      "엉뚱한 무리의 항목이 높은 점수로 추천될 때 접힘을 의심하고 네거티브 샘플링이나 빈칸 가중치 조정으로 원인을 좁힐 수 있다",
+      "정적 임베딩은 미리 계산해 두고 큰 코퍼스는 근사 최근접 이웃으로 찾는 서빙 방식을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "ml.basics.recommendation-systems",
+      "ml.nn.embedding-layer"
+    ],
+    "related": [
+      "ml.basics.collaborative-filtering",
+      "ml.basics.candidate-generation",
+      "ml.basics.content-based-filtering"
+    ],
+    "aliases": [
+      "추천 모델 선택",
+      "행렬 분해 대 DNN 추천",
+      "softmax DNN 추천",
+      "two-tower 추천 모델"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/recommendation/collaborative/matrix",
+      "https://developers.google.com/machine-learning/recommendation/dnn/softmax",
+      "https://developers.google.com/machine-learning/recommendation/dnn/training",
+      "https://developers.google.com/machine-learning/recommendation/dnn/retrieval"
+    ]
+  },
+  {
     "id": "ml.eval.partial-dependence-ice",
     "title": "부분 의존 그래프와 ICE로 모델 동작 점검",
     "en": "Partial Dependence and ICE Plots",
@@ -7403,6 +7537,166 @@
     ],
     "refs": [
       "https://docs.pytorch.org/docs/2.15/amp.html"
+    ]
+  },
+  {
+    "id": "ml.eval.randomstate-statistical-clone",
+    "title": "RandomState 공유 복제(통계적 복제)",
+    "en": "Statistical Clones Sharing a RandomState Instance",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "모델 평가",
+    "summary": "RandomState 인스턴스를 받은 추정기를 clone하면 같은 난수 생성기를 함께 써 서로의 무작위성에 영향을 주는, 똑같지 않은 복제본이 된다.",
+    "parent": "ml.eval.sklearn-random-state-control",
+    "aliases": [
+      "통계적 복제",
+      "statistical clone",
+      "RandomState 공유",
+      "clone 난수 공유"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/common_pitfalls.html#cloning"
+    ]
+  },
+  {
+    "id": "ml.nn.use-deterministic-algorithms",
+    "title": "torch.use_deterministic_algorithms",
+    "en": "torch.use_deterministic_algorithms (Deterministic Mode)",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "켜면 PyTorch가 가능한 연산을 결정적 구현으로 바꾸고, 결정적 대안이 없는 연산을 만나면 RuntimeError를 내게 하는 전역 설정이다.",
+    "parent": "ml.nn.pytorch-reproducibility",
+    "aliases": [
+      "use_deterministic_algorithms",
+      "결정적 알고리즘 모드",
+      "deterministic algorithms",
+      "PyTorch 결정적 모드"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/stable/notes/randomness.html#avoiding-nondeterministic-algorithms"
+    ]
+  },
+  {
+    "id": "ml.nn.cudnn-benchmark",
+    "title": "cuDNN 벤치마크 모드(cudnn.benchmark)",
+    "en": "cuDNN Convolution Benchmarking (torch.backends.cudnn.benchmark)",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "입력 크기마다 합성곱 알고리즘 여러 개를 재 보고 가장 빠른 것을 골라 쓰는 설정으로, 빨라지는 대신 실행마다 결과가 달라질 수 있다.",
+    "parent": "ml.nn.pytorch-reproducibility",
+    "aliases": [
+      "cudnn.benchmark",
+      "cuDNN benchmark",
+      "cuDNN 벤치마크",
+      "합성곱 알고리즘 벤치마킹"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/stable/notes/randomness.html#cuda-convolution-benchmarking"
+    ]
+  },
+  {
+    "id": "ml.nn.dataloader-worker-seeding",
+    "title": "DataLoader 워커 시드 고정(worker_init_fn)",
+    "en": "Seeding DataLoader Workers with worker_init_fn and generator",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "여러 워커로 데이터를 읽을 때 worker_init_fn으로 워커마다 NumPy·random 시드를 맞추고 generator로 섞기 순서를 고정하는 방법이다.",
+    "parent": "ml.nn.pytorch-reproducibility",
+    "aliases": [
+      "worker_init_fn",
+      "DataLoader 워커 시드",
+      "seed_worker",
+      "DataLoader generator 시드"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/stable/notes/randomness.html#dataloader"
+    ]
+  },
+  {
+    "id": "ml.supervised.native-categorical-splits",
+    "title": "부스팅 트리의 네이티브 범주 분할",
+    "en": "Native Categorical Feature Support in HistGradientBoosting",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "범주 특성을 인코딩하지 않고 categorical_features로 지정해 트리가 범주 묶음 단위로 직접 나누게 하는 기능으로, 원-핫보다 얕은 트리로 같은 분할을 만든다.",
+    "parent": "ml.supervised.hist-gradient-boosting-options",
+    "aliases": [
+      "categorical_features",
+      "네이티브 범주 지원",
+      "native categorical support",
+      "categorical_features='from_dtype'"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/ensemble.html#categorical-features-support"
+    ]
+  },
+  {
+    "id": "ml.supervised.monotonic-constraints",
+    "title": "단조 제약(monotonic_cst)",
+    "en": "Monotonic Constraints in Gradient Boosting (monotonic_cst)",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "특성이 커질 때 예측이 늘기만 하거나 줄기만 하도록 특성마다 1·-1·0으로 정해 주는 부스팅 제약으로, 다중 분류와 범주 특성에는 쓸 수 없다.",
+    "parent": "ml.supervised.hist-gradient-boosting-options",
+    "aliases": [
+      "monotonic_cst",
+      "단조성 제약",
+      "monotonic constraint",
+      "단조 증가 제약"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/ensemble.html#monotonic-constraints"
+    ]
+  },
+  {
+    "id": "ml.basics.wals",
+    "title": "WALS(가중 교대 최소 제곱)",
+    "en": "Weighted Alternating Least Squares (WALS)",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "사용자 행렬과 항목 행렬을 번갈아 고정하며 가중 제곱 오차를 줄이는 행렬 분해 학습법으로, SGD보다 빨리 수렴하지만 제곱 손실에만 쓴다.",
+    "parent": "ml.basics.recsys-mf-vs-softmax-dnn",
+    "aliases": [
+      "WALS",
+      "가중 교대 최소 제곱",
+      "weighted alternating least squares",
+      "교대 최소 제곱 행렬 분해"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/recommendation/collaborative/matrix",
+      "https://developers.google.com/machine-learning/glossary#weighted-alternating-least-squares-wals"
+    ]
+  },
+  {
+    "id": "ml.basics.recommendation-folding",
+    "title": "추천 임베딩의 접힘(folding)",
+    "en": "Folding in Recommendation Embeddings",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "서로 관계없는 사용자·항목 무리의 임베딩이 같은 자리에 겹쳐 엉뚱한 항목이 높은 점수를 받는 현상으로, 음성 예를 섞어 학습해 줄인다.",
+    "parent": "ml.basics.recsys-mf-vs-softmax-dnn",
+    "aliases": [
+      "임베딩 접힘",
+      "embedding folding",
+      "추천 접힘 현상"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/recommendation/dnn/training"
     ]
   },
   {
