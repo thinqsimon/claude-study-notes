@@ -8530,6 +8530,127 @@
     ]
   },
   {
+    "id": "db.internals.parallel-query",
+    "title": "PostgreSQL 병렬 쿼리의 내부",
+    "en": "PostgreSQL Parallel Query",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "DB 내부",
+    "summary": "리더 프로세스가 백그라운드 작업자를 띄워 계획의 일부를 나눠 돌리고 Gather 노드로 결과를 모으는 방식과, 그 이득과 비용을 따진다.",
+    "objectives": [
+      "실행 계획의 Gather와 Gather Merge가 결과를 모으는 방식의 차이를 설명할 수 있다",
+      "계획된 작업자 수보다 적게 뜨는 까닭을 max_parallel_workers와 max_worker_processes로 설명할 수 있다",
+      "PARALLEL UNSAFE·RESTRICTED 함수가 병렬 계획을 막거나 리더에만 남기는 경우를 구분할 수 있다"
+    ],
+    "prerequisites": [
+      "db.internals.query-planner"
+    ],
+    "aliases": [
+      "병렬 쿼리",
+      "parallel query",
+      "Gather 노드",
+      "Parallel Seq Scan",
+      "PostgreSQL 병렬 처리"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/parallel-query.html",
+      "https://www.postgresql.org/docs/current/how-parallel-query-works.html",
+      "https://www.postgresql.org/docs/current/parallel-safety.html"
+    ]
+  },
+  {
+    "id": "db.internals.toast",
+    "title": "TOAST: 큰 값을 따로 저장하는 방식",
+    "en": "TOAST (The Oversized-Attribute Storage Technique)",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "DB 내부",
+    "summary": "한 페이지에 들어가지 않는 큰 열 값을 압축하거나 조각내 별도 TOAST 표에 두고 본문 행에는 포인터만 남기는 PostgreSQL 저장 방식이다.",
+    "objectives": [
+      "행이 약 2kB를 넘을 때 값이 압축되거나 바깥으로 옮겨지는 과정을 설명할 수 있다",
+      "PLAIN·EXTENDED·EXTERNAL·MAIN 저장 전략의 손익을 비교할 수 있다",
+      "큰 열을 고르지 않는 쿼리와 다른 열만 바꾸는 UPDATE가 TOAST 비용을 피하는 까닭을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "db.sql.data-types"
+    ],
+    "aliases": [
+      "TOAST 표",
+      "TOAST table",
+      "PostgreSQL TOAST",
+      "pg_toast",
+      "out-of-line 저장"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/storage-toast.html"
+    ]
+  },
+  {
+    "id": "db.internals.hot-updates",
+    "title": "HOT 갱신: 인덱스를 건드리지 않는 UPDATE",
+    "en": "Heap-Only Tuple (HOT) Updates",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "DB 내부",
+    "summary": "인덱스 열을 바꾸지 않고 같은 페이지에 빈자리가 있을 때 새 행 버전을 인덱스 항목 없이 이어 붙여 쓰기와 정리 비용을 줄이는 PostgreSQL 최적화다.",
+    "objectives": [
+      "UPDATE가 HOT으로 처리되는 두 조건을 설명할 수 있다",
+      "HOT 사슬의 중간 버전이 VACUUM 없이도 평소 접근 중에 정리되는 원리를 설명할 수 있다",
+      "pg_stat_user_tables의 n_tup_hot_upd 비율로 HOT이 잘 되는지 판단하고 fillfactor 조정 여부를 정할 수 있다"
+    ],
+    "prerequisites": [
+      "db.internals.mvcc-vacuum"
+    ],
+    "aliases": [
+      "HOT update",
+      "HOT 업데이트",
+      "heap-only tuple",
+      "n_tup_hot_upd",
+      "HOT 사슬"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/storage-hot.html",
+      "https://www.postgresql.org/docs/current/sql-createtable.html"
+    ]
+  },
+  {
+    "id": "db.internals.index-access-methods",
+    "title": "B-tree 밖 인덱스의 구조와 손익: GIN·GiST·BRIN",
+    "en": "PostgreSQL Index Access Methods: GIN, GiST, BRIN",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "DB 내부",
+    "summary": "역색인인 GIN, 범용 탐색 트리인 GiST·SP-GiST, 블록 범위 요약인 BRIN, Hash가 각각 맡는 연산자와 크기·갱신 비용을 비교해 인덱스 종류를 고른다.",
+    "objectives": [
+      "배열·문서 포함 검사, 기하·최근접 검색, 물리 순서와 맞는 큰 표에 각각 맞는 인덱스 종류를 고를 수 있다",
+      "BRIN이 작지만 열 값과 물리 행 순서가 맞을 때만 효과가 있는 까닭을 설명할 수 있다",
+      "GIN의 빠른 갱신(pending list)이 쓰기 속도와 검색 응답 시간 사이에서 만드는 손익을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "db.internals.btree",
+      "db.internals.index-design"
+    ],
+    "related": [
+      "db.internals.btree"
+    ],
+    "aliases": [
+      "GIN 인덱스",
+      "GiST 인덱스",
+      "BRIN 인덱스",
+      "SP-GiST",
+      "index access method"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/indexes-types.html",
+      "https://www.postgresql.org/docs/current/gin.html",
+      "https://www.postgresql.org/docs/current/brin.html"
+    ]
+  },
+  {
     "id": "db.internals.wal-replication",
     "title": "WAL과 복제",
     "en": "WAL and Replication",
@@ -8607,6 +8728,150 @@
     "refs": [
       "https://www.postgresql.org/docs/current/ddl-partitioning.html",
       "https://docs.citusdata.com/en/stable/get_started/what_is_citus.html"
+    ]
+  },
+  {
+    "id": "db.internals.xid-wraparound",
+    "title": "트랜잭션 ID 겹침과 동결(freeze)",
+    "en": "Transaction ID Wraparound and Freezing",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "DB 내부",
+    "summary": "32비트 트랜잭션 ID는 모듈러로 비교되어 약 20억 트랜잭션 안에 VACUUM이 옛 행을 동결해야 하며, 남은 ID가 300만 개 아래면 쓰기를 거부한다.",
+    "parent": "db.internals.mvcc-vacuum",
+    "aliases": [
+      "XID wraparound",
+      "트랜잭션 ID 랩어라운드",
+      "relfrozenxid",
+      "autovacuum_freeze_max_age",
+      "VACUUM FREEZE",
+      "anti-wraparound vacuum"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/routine-vacuuming.html"
+    ]
+  },
+  {
+    "id": "db.internals.synchronous-commit",
+    "title": "synchronous_commit과 비동기 커밋",
+    "en": "synchronous_commit and Asynchronous Commit",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "DB 내부",
+    "summary": "WAL을 디스크에 쓰기 전에 커밋 성공을 돌려줘 짧은 트랜잭션을 빠르게 하는 대신, 충돌 때 최근 커밋 몇 개를 잃을 수 있게 하는 설정으로 트랜잭션마다 바꿀 수 있다.",
+    "parent": "db.internals.wal-replication",
+    "aliases": [
+      "synchronous_commit",
+      "비동기 커밋",
+      "asynchronous commit",
+      "synchronous_commit off"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/wal-async-commit.html"
+    ]
+  },
+  {
+    "id": "db.internals.fillfactor",
+    "title": "fillfactor: 페이지에 남겨 둘 빈자리",
+    "en": "fillfactor",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "DB 내부",
+    "summary": "INSERT가 표 페이지를 몇 퍼센트까지만 채울지 정하는 저장 매개변수로, 기본값 100보다 낮추면 같은 페이지 갱신과 HOT 갱신이 쉬워진다.",
+    "parent": "db.internals.hot-updates",
+    "aliases": [
+      "PostgreSQL fillfactor",
+      "채움 비율",
+      "fillfactor 저장 매개변수"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/sql-createtable.html",
+      "https://www.postgresql.org/docs/current/storage-hot.html"
+    ]
+  },
+  {
+    "id": "db.internals.max-parallel-workers-per-gather",
+    "title": "max_parallel_workers_per_gather",
+    "en": "max_parallel_workers_per_gather",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "DB 내부",
+    "summary": "Gather 노드 하나가 쓸 수 있는 병렬 작업자 수의 상한으로, 기본값은 2이고 0이면 병렬 쿼리를 끈다.",
+    "parent": "db.internals.parallel-query",
+    "aliases": [
+      "병렬 작업자 수 설정",
+      "parallel workers per gather"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/runtime-config-resource.html",
+      "https://www.postgresql.org/docs/current/how-parallel-query-works.html"
+    ]
+  },
+  {
+    "id": "db.internals.toast-storage-strategy",
+    "title": "TOAST 저장 전략: SET STORAGE와 압축 방식",
+    "en": "TOAST Storage Strategy and Compression",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "DB 내부",
+    "summary": "열마다 PLAIN·EXTENDED·EXTERNAL·MAIN 가운데 압축과 바깥 저장 여부를 고르고, COMPRESSION이나 default_toast_compression으로 pglz와 lz4를 정하는 설정이다.",
+    "parent": "db.internals.toast",
+    "aliases": [
+      "SET STORAGE",
+      "STORAGE EXTERNAL",
+      "default_toast_compression",
+      "TOAST 압축"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/storage-toast.html",
+      "https://www.postgresql.org/docs/current/runtime-config-client.html"
+    ]
+  },
+  {
+    "id": "db.internals.gin-pending-list",
+    "title": "GIN 빠른 갱신과 pending list",
+    "en": "GIN Fast Update and Pending List",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "DB 내부",
+    "summary": "GIN이 새 항목을 정렬하지 않은 임시 목록에 모았다가 VACUUM이나 gin_pending_list_limit(기본 4MB) 초과 때 한꺼번에 본 구조로 옮기는 방식으로, 목록이 크면 검색이 느려진다.",
+    "parent": "db.internals.index-access-methods",
+    "aliases": [
+      "gin_pending_list_limit",
+      "fastupdate",
+      "GIN fastupdate",
+      "gin_clean_pending_list"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/gin.html",
+      "https://www.postgresql.org/docs/current/runtime-config-client.html"
+    ]
+  },
+  {
+    "id": "db.internals.extended-statistics",
+    "title": "확장 통계: CREATE STATISTICS",
+    "en": "Extended Statistics (CREATE STATISTICS)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "DB 내부",
+    "summary": "열끼리 독립이라고 가정해 행 수를 잘못 추정하는 플래너에게 함수 종속·여러 열의 고유값 수·값 조합 MCV 목록을 모아 주는 PostgreSQL 통계 객체다.",
+    "parent": "db.internals.query-planner",
+    "aliases": [
+      "CREATE STATISTICS",
+      "다중 열 통계",
+      "functional dependencies 통계",
+      "ndistinct 통계",
+      "pg_statistic_ext"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/planner-stats.html"
     ]
   }
 ]

@@ -8029,5 +8029,300 @@
       "https://redis.io/docs/latest/develop/data-types/probabilistic/cuckoo-filter/",
       "https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/"
     ]
+  },
+  {
+    "id": "cs.os.address-translation-internals",
+    "title": "주소 변환의 내부: TLB와 다단계 페이지 테이블",
+    "en": "Address Translation Internals: TLBs and Multi-level Page Tables",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "가상 주소를 실제 주소로 바꾸는 하드웨어 캐시 TLB와 페이지 테이블 구조가 메모리 사용량과 변환 비용을 어떻게 맞바꾸는지 분석한다.",
+    "objectives": [
+      "TLB 적중과 실패 때 일어나는 일을 단계별로 설명하고 TLB 실패를 하드웨어가 처리하는 방식과 운영체제가 처리하는 방식의 손익을 비교할 수 있다",
+      "문맥 교환 때 TLB를 비우는 방식과 주소 공간 식별자(ASID)를 붙이는 방식의 비용 차이를 설명할 수 있다",
+      "접근하는 페이지 수가 TLB가 덮는 범위를 넘을 때 성능이 떨어지는 이유를 알고 큰 페이지가 그 범위를 넓히는 원리를 설명할 수 있다",
+      "다단계 페이지 테이블이 테이블 크기를 줄이는 대신 TLB 실패 때 메모리 접근을 늘리는 시간·공간 손익을 따질 수 있다"
+    ],
+    "prerequisites": [
+      "cs.os.virtual-memory"
+    ],
+    "related": [
+      "cs.os.page-fault",
+      "cs.arch.memory-hierarchy"
+    ],
+    "aliases": [
+      "주소 변환",
+      "address translation",
+      "페이지 테이블 구조",
+      "page table walk",
+      "페이지 테이블 탐색"
+    ],
+    "refs": [
+      "https://docs.kernel.org/mm/page_tables.html",
+      "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-tlbs.pdf",
+      "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-smalltables.pdf"
+    ]
+  },
+  {
+    "id": "cs.arch.cache-coherence-false-sharing",
+    "title": "멀티코어 캐시 일관성과 거짓 공유",
+    "en": "Multicore Cache Coherence and False Sharing",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "컴퓨터 구조",
+    "summary": "코어마다 따로 둔 캐시를 하드웨어가 일관되게 맞추는 방식과, 그 때문에 서로 무관한 데이터가 한 캐시 라인에 있을 때 생기는 거짓 공유의 비용을 분석한다.",
+    "objectives": [
+      "여러 CPU의 캐시가 같은 주소의 옛 값을 볼 수 있는 이유와 버스 감시로 사본을 무효화하거나 갱신하는 원리를 설명할 수 있다",
+      "캐시 일관성이 있어도 공유 자료구조를 고칠 때 잠금이 필요한 이유를 설명할 수 있다",
+      "자주 쓰이는 값과 읽기 위주 값이 한 캐시 라인에 있을 때 코어 수가 늘수록 느려지는 원인을 perf c2c 같은 도구로 찾을 수 있다",
+      "핫 데이터를 따로 정렬하기, 쓰기 전에 읽어 보기, CPU별 데이터로 나누기 같은 대책의 메모리·복잡도 비용을 비교해 고를 수 있다"
+    ],
+    "prerequisites": [
+      "cs.arch.memory-hierarchy",
+      "cs.os.process-vs-thread"
+    ],
+    "related": [
+      "cs.os.mutex-lock"
+    ],
+    "aliases": [
+      "캐시 일관성",
+      "cache coherence",
+      "버스 스누핑",
+      "bus snooping"
+    ],
+    "refs": [
+      "https://docs.kernel.org/kernel-hacking/false-sharing.html",
+      "https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched-multi.pdf"
+    ]
+  },
+  {
+    "id": "cs.os.lock-implementation",
+    "title": "잠금의 구현: 스핀락·원자 명령·futex",
+    "en": "Implementing Locks: Spin Locks, Atomic Instructions and Futexes",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "뮤텍스가 하드웨어 원자 명령과 커널의 대기 기능으로 어떻게 만들어지는지 보고, 돌며 기다리기와 잠들어 기다리기의 손익을 분석한다.",
+    "objectives": [
+      "test-and-set과 compare-and-swap으로 스핀락을 만드는 원리를 설명할 수 있다",
+      "스핀락이 CPU 하나에서는 시간 조각을 낭비하고 여러 CPU에서 짧은 임계 구역에는 잘 맞는 이유를 정확성·공정성·성능 기준으로 따질 수 있다",
+      "경쟁이 없을 때는 사용자 공간의 원자 명령만 쓰고 경쟁할 때만 커널에서 잠드는 futex 기반 잠금의 동작을 설명할 수 있다",
+      "잠시 돌다가 잠드는 2단계 잠금이 어떤 작업 부하에서 이득인지 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.os.mutex-lock"
+    ],
+    "related": [
+      "be.async.semaphore",
+      "cs.os.condition-variable"
+    ],
+    "aliases": [
+      "스핀락",
+      "spin lock",
+      "spinlock",
+      "락 구현",
+      "lock implementation"
+    ],
+    "refs": [
+      "https://pages.cs.wisc.edu/~remzi/OSTEP/threads-locks.pdf",
+      "https://man7.org/linux/man-pages/man2/futex.2.html"
+    ]
+  },
+  {
+    "id": "cs.algo.amortized-analysis",
+    "title": "분할 상환 분석: 동적 배열이 평균 O(1)인 이유",
+    "en": "Amortized Analysis of Dynamic Arrays",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "알고리즘과 복잡도",
+    "summary": "가끔 O(n)이 드는 크기 조정을 여러 연산에 나눠 셈하는 분할 상환 분석으로, 동적 배열의 끝 붙이기가 평균 O(1)인 근거와 그 한계를 분석한다.",
+    "objectives": [
+      "연산 k번의 총비용이 k·T(n) 이하일 때 분할 상환 비용이 T(n)이라는 정의로 동적 배열 끝 붙이기가 분할 상환 O(1)임을 보일 수 있다",
+      "꽉 찼을 때 크기에 비례한 여유 공간을 잡는 이유와 한 번의 호출은 여전히 O(n)일 수 있다는 점을 들어 지연에 민감한 코드의 위험을 설명할 수 있다",
+      "줄일 때의 기준 비율을 늘릴 때보다 낮게 두어 삽입·삭제가 번갈아 와도 크기 조정이 반복되지 않게 하는 원리를 설명할 수 있다",
+      "분할 상환 비용과 평균 경우 비용의 차이를 알고 리스트와 딕셔너리의 복잡도 표기를 바르게 읽을 수 있다"
+    ],
+    "prerequisites": [
+      "cs.algo.big-o-estimate"
+    ],
+    "related": [
+      "cs.dsa.dynamic-array",
+      "cs.dsa.hash-table"
+    ],
+    "aliases": [
+      "분할 상환",
+      "amortized analysis",
+      "amortized O(1)",
+      "상각 분석",
+      "분할 상환 비용",
+      "amortized cost"
+    ],
+    "refs": [
+      "https://xlinux.nist.gov/dads/HTML/amortizdcost.html",
+      "https://docs.python.org/3/builtins/time-complexity.html",
+      "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec2/"
+    ]
+  },
+  {
+    "id": "cs.os.page-replacement",
+    "title": "페이지 교체 정책: LRU 근사와 스래싱",
+    "en": "Page Replacement Policies: Approximating LRU and Thrashing",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "메모리가 모자랄 때 어느 페이지를 내보낼지 정하는 정책들을 비교하고, 정확한 LRU 대신 근사를 쓰는 이유와 메모리가 넘칠 때 생기는 스래싱을 분석한다.",
+    "objectives": [
+      "최적·FIFO·무작위·LRU 정책을 작업 부하별 적중률로 비교하고 순환 순차 접근에서 LRU와 FIFO가 무너지는 이유를 설명할 수 있다",
+      "정확한 LRU의 기록 비용 때문에 사용 비트와 클록 알고리즘으로 근사하는 손익을 설명할 수 있다",
+      "더티 페이지를 내보내려면 디스크 쓰기가 필요해 깨끗한 페이지를 먼저 고르는 이유를 설명할 수 있다",
+      "작업 집합이 메모리를 넘을 때 생기는 스래싱과 이에 대한 승인 제어·OOM killer 방식의 차이를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.os.virtual-memory",
+      "cs.arch.memory-hierarchy"
+    ],
+    "related": [
+      "cs.os.oom-killer",
+      "cs.os.page-fault",
+      "db.cache.redis-eviction"
+    ],
+    "aliases": [
+      "페이지 교체",
+      "page replacement",
+      "페이지 교체 알고리즘",
+      "LRU 근사",
+      "페이지 교체 정책"
+    ],
+    "refs": [
+      "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys-policy.pdf"
+    ]
+  },
+  {
+    "id": "cs.os.tlb",
+    "title": "TLB(주소 변환 캐시)",
+    "en": "Translation Lookaside Buffer (TLB)",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "최근 쓴 가상 페이지와 실제 프레임의 대응을 담아 두는 CPU 안의 작은 캐시로, 적중하면 페이지 테이블을 읽지 않고 주소를 바꾼다.",
+    "parent": "cs.os.address-translation-internals",
+    "aliases": [
+      "TLB",
+      "translation lookaside buffer",
+      "TLB 미스",
+      "TLB miss",
+      "TLB 플러시"
+    ]
+  },
+  {
+    "id": "cs.arch.false-sharing",
+    "title": "거짓 공유(false sharing)",
+    "en": "False Sharing",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "컴퓨터 구조",
+    "summary": "서로 다른 코어가 쓰는 무관한 데이터가 한 캐시 라인에 있어, 한쪽의 쓰기가 다른 쪽 캐시 사본을 계속 무효화해 느려지는 현상이다.",
+    "parent": "cs.arch.cache-coherence-false-sharing",
+    "aliases": [
+      "false sharing",
+      "거짓 공유"
+    ]
+  },
+  {
+    "id": "cs.os.compare-and-swap",
+    "title": "비교 후 교환(CAS)",
+    "en": "Compare-and-Swap (CAS)",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "메모리 값이 기대한 값과 같을 때만 새 값으로 바꾸고 원래 값을 돌려주는 원자 명령으로, 스핀락과 잠금 없는 자료구조의 바탕이 된다.",
+    "parent": "cs.os.lock-implementation",
+    "aliases": [
+      "compare-and-swap",
+      "compare-and-exchange",
+      "CAS 연산",
+      "CAS 명령",
+      "cmpxchg",
+      "비교 후 교환"
+    ]
+  },
+  {
+    "id": "cs.os.multi-level-page-table",
+    "title": "다단계 페이지 테이블",
+    "en": "Multi-level Page Table",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "페이지 테이블을 페이지 크기 조각으로 나누고 페이지 디렉터리로 가리켜 쓰지 않는 부분의 테이블을 만들지 않는 구조다.",
+    "parent": "cs.os.address-translation-internals",
+    "aliases": [
+      "multi-level page table",
+      "페이지 디렉터리",
+      "page directory",
+      "계층형 페이지 테이블",
+      "hierarchical page table"
+    ]
+  },
+  {
+    "id": "cs.arch.cache-line",
+    "title": "캐시 라인",
+    "en": "Cache Line",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "컴퓨터 구조",
+    "summary": "주 메모리와 CPU 캐시 사이를 오가는 데이터의 단위로, 흔히 64바이트 이상이며 일관성 유지도 이 단위로 이루어진다.",
+    "parent": "cs.arch.cache-coherence-false-sharing",
+    "aliases": [
+      "cache line",
+      "캐시 라인",
+      "캐시 블록",
+      "cache block"
+    ]
+  },
+  {
+    "id": "cs.os.futex",
+    "title": "futex(빠른 사용자 공간 잠금)",
+    "en": "Futex (Fast Userspace Mutex)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "경쟁이 없으면 메모리의 정수 하나를 원자 명령으로만 바꾸고, 기다려야 할 때만 값이 그대로인지 확인하며 커널에서 잠드는 리눅스의 대기 기능이다.",
+    "parent": "cs.os.lock-implementation",
+    "aliases": [
+      "futex",
+      "FUTEX_WAIT",
+      "FUTEX_WAKE",
+      "fast userspace mutex",
+      "futex(2)"
+    ]
+  },
+  {
+    "id": "cs.os.clock-algorithm",
+    "title": "클록 알고리즘(페이지 교체)",
+    "en": "Clock Page Replacement Algorithm",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "페이지를 원형으로 돌며 사용 비트가 1이면 0으로 지우고 넘어가고 0인 페이지를 내보내 LRU를 싸게 흉내 내는 교체 방식이다.",
+    "parent": "cs.os.page-replacement",
+    "aliases": [
+      "clock algorithm",
+      "클록 교체",
+      "second chance",
+      "두 번째 기회 알고리즘"
+    ]
   }
 ]

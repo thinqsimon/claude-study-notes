@@ -1,5 +1,10 @@
 # 개념사전 변경 내역
 
+## 0.73.0
+
+- dic-maker 캠페인 1회차로 5단계에 주제 23개, 용어 35개를 더했다
+- 분야별: cs 12개, plan 12개, db 11개, rag 12개, ax 11개
+
 ## 0.72.1
 
 - MCP 명세 2026-07-28판에 맞춰 기존 MCP 항목 9개를 고쳤다. `rag.agent.mcp-protocol-version`·`mcp-transport`·`mcp-protocol`은 요청마다 버전을 싣는 상태 없는 구조와 HTTP+SSE 지원 중단을, tasks 계열은 공식 확장과 `tasks/get` 폴링을, `mcp-elicitation`은 MRTR 방식을 반영했고 refs를 최신판으로 바꿨다.

@@ -8181,6 +8181,204 @@
     ]
   },
   {
+    "id": "plan.figma.library-publish-webhook",
+    "title": "Figma LIBRARY_PUBLISH 웹훅",
+    "en": "Figma LIBRARY_PUBLISH Webhook Event",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "라이브러리를 게시하면 만든·바뀐·지운 컴포넌트·스타일·변수 목록을 보내는 Figma 웹훅 이벤트로, 한 번 게시가 자산 종류와 개수에 따라 여러 이벤트로 나뉠 수 있다.",
+    "related": [
+      "be.integrate.webhook",
+      "plan.figma.publish-library"
+    ],
+    "aliases": [
+      "LIBRARY_PUBLISH",
+      "라이브러리 게시 웹훅"
+    ],
+    "refs": [
+      "https://developers.figma.com/docs/rest-api/webhooks-events/",
+      "https://developers.figma.com/docs/rest-api/webhooks/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "plan.basics.wcag-conformance-model",
+    "title": "WCAG 2.2 적합성 요구사항과 적합성 주장",
+    "en": "WCAG 2.2 Conformance Requirements and Claims",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "전체 페이지·완전한 절차·접근성 지원 기술·비간섭 같은 다섯 요구사항으로 WCAG 적합성이 성립하는 조건과, 이를 공개하는 주장의 구성을 따지는 규칙이다.",
+    "objectives": [
+      "다섯 적합성 요구사항을 근거로 결제 절차 중 한 페이지만 실패할 때 어느 페이지까지 적합성을 잃는지 판단할 수 있다",
+      "기술 사용이 접근성 지원으로 인정되려면 보조기술 호환성과 사용자 에이전트 제공이 함께 필요하다는 조건으로 기술 선택의 손익을 따질 수 있다",
+      "적합성 주장의 필수 구성 요소와 제3자 콘텐츠 부분 적합성 진술을 구분해 공개할 범위를 정할 수 있다",
+      "적합한 대체 버전을 두는 방식이 지켜야 할 조건과 직접 고치는 방식의 손익을 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.accessibility-testing-strategy"
+    ],
+    "related": [
+      "plan.basics.wcag-em",
+      "plan.basics.accessibility-statement"
+    ],
+    "aliases": [
+      "WCAG 적합성",
+      "WCAG conformance",
+      "적합성 요구사항",
+      "conformance requirements",
+      "WCAG 적합성 주장",
+      "conformance claim"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/WCAG22/Understanding/conformance",
+      "https://www.w3.org/TR/WCAG22/"
+    ]
+  },
+  {
+    "id": "plan.basics.wcag2ict",
+    "title": "WCAG2ICT로 앱·문서에 WCAG 적용하기",
+    "en": "Applying WCAG to Non-Web ICT with WCAG2ICT",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "웹 페이지를 전제로 쓴 WCAG 성공 기준을 문서와 웹이 아닌 소프트웨어에 옮길 때 용어를 어떻게 바꾸고 어떤 기준을 다르게 읽는지 정리한 W3C 그룹 노트다.",
+    "objectives": [
+      "웹 페이지를 문서나 소프트웨어 프로그램으로, 웹 페이지 묶음을 문서·프로그램 묶음으로 바꿔 읽는 규칙으로 앱의 적합성 단위를 정할 수 있다",
+      "묶음 조건이 맞지 않으면 건너뛰기·여러 경로·일관된 내비게이션 같은 기준이 어떻게 달라지는지 따질 수 있다",
+      "키오스크처럼 보조기술을 붙일 수 없는 닫힌 기능에서는 WCAG만으로 접근성이 보장되지 않는다는 한계를 판단할 수 있다",
+      "WCAG2ICT가 요구사항이 아닌 안내이고 어떤 기준을 적용할지는 Section 508·EN 301 549 같은 정책이 정한다는 관계를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.wcag-conformance-model"
+    ],
+    "aliases": [
+      "WCAG2ICT",
+      "비웹 ICT 접근성",
+      "앱 접근성 WCAG 적용",
+      "non-web software accessibility"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/wcag2ict-22/"
+    ]
+  },
+  {
+    "id": "plan.basics.wcag3-conformance",
+    "title": "WCAG 3 초안의 구조와 적합성 모델",
+    "en": "WCAG 3 Draft Structure and Conformance Model",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "결과 문장 지침, 핵심·보충 요구사항, 어서션, 피해 정도 꼬리표와 보고 단계로 짠 WCAG 3 초안의 틀을 WCAG 2의 A·AA·AAA 모델과 비교한다.",
+    "objectives": [
+      "모든 핵심 요구사항을 충족해야 적합하고, 그 위 단계에서 보충 요구사항과 어서션이 더해지는 WCAG 3 초안의 보고 구조를 설명할 수 있다",
+      "신체 피해·위험·장벽·불편 꼬리표로 핵심 요구사항 위반의 심각도를 나누는 방식이 WCAG 2의 수준 구분과 어떻게 다른지 비교할 수 있다",
+      "WCAG 3가 WCAG 2를 대체하지 않고 완성 후에도 몇 년간 WCAG 2가 유지된다는 점을 근거로 지금 어느 기준에 맞춰 기획할지 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.wcag-conformance-model"
+    ],
+    "aliases": [
+      "WCAG 3",
+      "WCAG 3.0",
+      "W3C Accessibility Guidelines 3",
+      "WCAG 3 적합성"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/standards-guidelines/wcag/wcag3-intro/",
+      "https://www.w3.org/TR/wcag-3.0/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "plan.basics.accessibility-maturity-model",
+    "title": "접근성 성숙도 모델로 조직 역량 진단하기",
+    "en": "Assessing Organizations with the Accessibility Maturity Model",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "한 제품의 시점 검사 대신 일곱 차원을 네 단계로 매겨 조직이 접근성을 꾸준히 만들어 낼 역량이 있는지 증거로 진단하는 W3C 그룹 노트다.",
+    "objectives": [
+      "적합성 검사가 한 시점의 제품을 보고 성숙도 모델은 조직의 지속 역량을 본다는 차이로 두 진단의 쓰임을 구분할 수 있다",
+      "소통·감독과 문화·개발 수명 주기·지식과 기술·인력·조달·지원 일곱 차원에서 비활성·착수·통합·최적화 단계를 증빙으로 판정할 수 있다",
+      "진단 결과로 시정 계획을 세우고 다시 평가하는 주기를 설계하고, 모델을 조직에 맞게 고칠 때 바꾼 내용을 기록할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.accessibility-testing-strategy"
+    ],
+    "related": [
+      "plan.basics.wcag-em"
+    ],
+    "aliases": [
+      "접근성 성숙도 모델",
+      "Accessibility Maturity Model",
+      "W3C AMM"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/maturity-model/"
+    ]
+  },
+  {
+    "id": "plan.figma.variables-rest-api-sync",
+    "title": "Figma 변수 REST API로 코드 토큰과 동기화하기",
+    "en": "Syncing Code Tokens with the Figma Variables REST API",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "변수 REST API의 읽기·원자적 쓰기 규칙과 게시 변수 식별자의 수명을 알고, 코드 저장소와 Figma 사이 토큰 동기화를 어떤 방향과 비용으로 짤지 판단한다.",
+    "objectives": [
+      "한 요청의 변경이 모두 반영되거나 하나도 반영되지 않는 쓰기와 임시 ID 규칙으로 컬렉션·모드·변수를 한 번에 만드는 요청을 설계하고 400 오류의 원인을 찾을 수 있다",
+      "로컬 변수와 게시 변수의 응답 차이, 변하지 않는 key와 다시 게시할 때마다 바뀌는 subscribed_id로 코드 쪽 토큰과 연결할 식별자를 고를 수 있다",
+      "변수 타입·컬렉션은 만든 뒤 바꿀 수 없고 원격 변수는 원래 파일에서만 고칠 수 있는 제약, API로 바꾼 값도 게시해야 다른 파일에 퍼지는 점을 반영해 동기화 흐름을 짤 수 있다",
+      "Enterprise 플랜과 Full 좌석이 필요한 비용, 요청 크기·컬렉션당 모드 수 한도를 근거로 REST API와 플러그인 방식 중 무엇을 쓸지 고를 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.design-token-architecture",
+      "plan.figma.variable-scoping-code-syntax"
+    ],
+    "related": [
+      "plan.figma.code-connect"
+    ],
+    "aliases": [
+      "Figma Variables API",
+      "Figma 변수 API",
+      "Figma 변수 REST API",
+      "Figma 토큰 동기화"
+    ],
+    "refs": [
+      "https://developers.figma.com/docs/rest-api/variables/",
+      "https://developers.figma.com/docs/rest-api/variables-endpoints/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "plan.basics.accessibility-supported",
+    "title": "접근성 지원 기술 사용(accessibility supported)",
+    "en": "Accessibility Supported Ways of Using Technologies",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "어떤 기술을 쓰는 방식이 사용자의 보조기술과 실제로 맞물리는지 검증되고 그런 사용자 에이전트를 쉽게 구할 수 있을 때만 WCAG 적합성의 근거로 삼을 수 있다는 조건이다.",
+    "parent": "plan.basics.wcag-conformance-model",
+    "aliases": [
+      "접근성 지원 기술"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/WCAG22/Understanding/conformance"
+    ]
+  },
+  {
     "id": "plan.figma.library-analytics",
     "title": "라이브러리 분석(library analytics)",
     "en": "Library Analytics",
@@ -8201,5 +8399,107 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-05"
+  },
+  {
+    "id": "plan.basics.non-interference",
+    "title": "비간섭 요구사항(non-interference)",
+    "en": "WCAG Non-Interference Requirement",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "적합성 근거로 삼지 않은 콘텐츠라도 소리 제어·키보드 갇힘·번쩍임·멈춤 기준 네 가지는 지켜 나머지 페이지 이용을 막지 않아야 한다는 WCAG 적합성 요구사항이다.",
+    "parent": "plan.basics.wcag-conformance-model",
+    "related": [
+      "plan.basics.three-flashes",
+      "plan.basics.pause-stop-hide"
+    ],
+    "aliases": [
+      "비간섭",
+      "WCAG 비간섭",
+      "WCAG non-interference"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/WCAG22/Understanding/conformance"
+    ]
+  },
+  {
+    "id": "plan.basics.partial-conformance-statement",
+    "title": "부분 적합성 진술",
+    "en": "Statement of Partial Conformance",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "작성자가 통제할 수 없는 제3자 위젯·게시물 때문에만 실패한 페이지를 그 부분을 밝혀 비적합으로 진술하는 방식으로, 적합 주장을 대신하지 못한다.",
+    "parent": "plan.basics.wcag-conformance-model",
+    "related": [
+      "plan.basics.accessibility-statement"
+    ],
+    "aliases": [
+      "부분 적합성",
+      "partial conformance",
+      "제3자 콘텐츠 부분 적합성"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/WCAG22/Understanding/conformance"
+    ]
+  },
+  {
+    "id": "plan.basics.closed-functionality",
+    "title": "닫힌 기능(closed functionality)",
+    "en": "Closed Functionality",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "키오스크·ATM·스마트 TV처럼 사용자가 보조기술을 붙이거나 설치할 수 없게 만든 기기의 성질로, WCAG 기준만으로는 접근성을 보장하지 못한다.",
+    "parent": "plan.basics.wcag2ict",
+    "aliases": [
+      "closed functionality",
+      "폐쇄형 기능"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/wcag2ict-22/"
+    ]
+  },
+  {
+    "id": "plan.basics.wcag3-assertion",
+    "title": "WCAG 3 어서션(assertion)",
+    "en": "WCAG 3 Assertion",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "쉬운 말 검토·사용성 테스트를 했다는 식으로 조직이 수행한 절차를 공개 정보와 함께 선언하는 WCAG 3 초안의 조항으로, 결과 검사가 아닌 과정 주장이다.",
+    "parent": "plan.basics.wcag3-conformance",
+    "aliases": [
+      "WCAG 3 assertion",
+      "WCAG 3 어서션",
+      "접근성 어서션"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/wcag-3.0/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "plan.basics.amm-proof-points",
+    "title": "성숙도 증빙(proof points)",
+    "en": "Accessibility Maturity Proof Points",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "절차 문서·교육 기록·적합성 보고서처럼 접근성 성숙도 단계를 판정할 근거가 되는 문서 증거로, 최적화 단계에서는 모두 갖춰야 한다.",
+    "parent": "plan.basics.accessibility-maturity-model",
+    "aliases": [
+      "접근성 성숙도 증빙",
+      "W3C 성숙도 모델 증빙"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/maturity-model/"
+    ]
   }
 ]

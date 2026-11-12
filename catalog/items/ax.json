@@ -8909,6 +8909,153 @@
     "checked_at": "2026-11-04"
   },
   {
+    "id": "ax.coding.session-persistence-internals",
+    "title": "에이전트 세션 저장과 이어가기의 내부와 손익",
+    "en": "Agent Session Persistence and Resume Internals",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "코딩 에이전트가 대화를 줄 단위 기록으로 남기고 이어가기 때 무엇을 되살리고 무엇을 버리는지 알고, 비용·보안·운영의 손익을 따져 저장 방식을 정한다.",
+    "objectives": [
+      "세션 기록 JSONL이 메시지·도구 호출과 결과·모델 요청·메타데이터를 줄마다 담고 형식이 버전마다 바뀐다는 점을 근거로 직접 파싱 대신 /export·claude -p --resume·훅의 transcript_path 가운데 알맞은 쪽을 고를 수 있다",
+      "이어가기가 대화·모델·에이전트·일부 권한 모드는 되살리지만 파일 상태·실행 옵션·중단된 도구 호출은 되살리지 않고, 압축된 세션은 마지막 요약부터 열린다는 점으로 이어 간 세션의 이상 동작 원인을 찾을 수 있다",
+      "오래 쉰 세션을 이어 갈지 결과만 새 세션에 넘길지 고를 수 있다",
+      "기록이 로컬에 평문으로 기본 30일 남는 위험을 보존 기간 설정·기록 쓰기 끄기·외부 저장소의 자체 보존 규칙과 견주어 저장 정책을 정할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.session-resume",
+      "ax.coding.claude-code-context-window"
+    ],
+    "related": [
+      "ax.coding.session-transcript",
+      "ax.coding.agent-data-usage",
+      "llm.internals.context-management",
+      "ax.coding.agent-prompt-cache-layers"
+    ],
+    "aliases": [
+      "세션 저장 내부",
+      "session persistence",
+      "Claude Code 세션 복원",
+      "에이전트 대화 기록 저장",
+      "Agent SDK resume"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/sessions",
+      "https://code.claude.com/docs/en/agent-sdk/sessions",
+      "https://code.claude.com/docs/en/data-usage",
+      "https://genai.owasp.org/llmrisk/llm022025-sensitive-information-disclosure/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.coding.agent-prompt-cache-layers",
+    "title": "코딩 에이전트 프롬프트 캐시의 층과 무효화 손익",
+    "en": "Prompt Cache Layers and Invalidation in Coding Agents",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "Claude Code가 요청을 시스템 프롬프트·프로젝트 문맥·대화 순으로 쌓아 앞부분 캐시를 재사용하는 구조를 알고, 어떤 행동이 캐시를 깨 비용과 지연을 키우는지 따진다.",
+    "objectives": [
+      "시스템 프롬프트·프로젝트 문맥·대화 세 층의 순서와 접두사 정확 일치 규칙으로 어떤 변경이 캐시 전체를 무효화하고 어떤 변경은 대화 층만 다시 쓰는지 설명할 수 있다",
+      "모델·노력 수준·빠른 모드 전환, 도구 검색이 꺼져 도구 정의가 앞에 실릴 때의 MCP 서버 연결·도구 전체 거부, 압축이 다음 요청을 비싸게 만드는 이유를 알고 작업 중 변경 시점을 정할 수 있다",
+      "5분과 1시간 캐시 수명의 쓰기 단가와 유휴 시간을 견주어 주 대화와 하위 에이전트의 수명 설정을 정할 수 있다",
+      "cache_creation·cache_read 토큰과 /usage의 캐시 줄로 적중률이 낮은 원인을 찾고, 게이트웨이가 cache_control 표시를 지우는 경우를 가려낼 수 있다"
+    ],
+    "prerequisites": [
+      "llm.internals.prompt-caching",
+      "ax.coding.claude-code-context-window"
+    ],
+    "related": [
+      "ax.coding.agent-team-cost-control",
+      "ax.coding.llm-gateway-routing"
+    ],
+    "aliases": [
+      "Claude Code 프롬프트 캐시",
+      "Claude Code prompt caching"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/prompt-caching"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.coding.agent-sdk-hosting",
+    "title": "Agent SDK 호스팅: 하위 프로세스 구조와 테넌트 격리",
+    "en": "Hosting the Agent SDK: Subprocess Model and Tenant Isolation",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "Agent SDK가 세션마다 로컬 상태를 가진 CLI 하위 프로세스를 띄운다는 구조에서 출발해 세션 패턴·확장·테넌트 격리의 손익을 따져 배포를 설계한다.",
+    "objectives": [
+      "query()가 세션마다 claude CLI 하위 프로세스를 띄우고 기록·CLAUDE.md·작업 폴더를 로컬 디스크에 둔다는 구조에서 재시작·축소·노드 이동 때 무엇이 사라지는지 설명할 수 있다",
+      "일회성·장기 실행·하이브리드·다중 에이전트 컨테이너 패턴을 작업 성격과 유휴 시간에 맞춰 고르고 하이브리드에 세션 저장소가 꼭 필요한 이유를 말할 수 있다",
+      "공유 컨테이너에서 설정·CLAUDE.md·자동 메모리를 통한 테넌트 간 문맥 누수를 settingSources·CLAUDE_CONFIG_DIR·테넌트별 작업 폴더·egress 규칙으로 막을 수 있다",
+      "세션당 최대 메모리로 호스트당 에이전트 수를 계산하고, 세션 전체 시간 제한이 없는 한계를 maxTurns와 하위 프로세스 재활용으로 보완할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.claude-agent-sdk-quickstart",
+      "ax.security.agent-secure-deployment"
+    ],
+    "related": [
+      "be.run.scaling"
+    ],
+    "aliases": [
+      "Agent SDK hosting",
+      "Agent SDK 배포",
+      "Claude Agent SDK 호스팅",
+      "에이전트 다중 테넌트 격리",
+      "SDK 하위 프로세스 구조"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/agent-sdk/hosting",
+      "https://code.claude.com/docs/en/agent-sdk/session-storage"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.coding.self-hosted-env-trust",
+    "title": "자체 호스팅 클라우드 세션 실행기의 신뢰 경계와 강화",
+    "en": "Trust Boundaries and Hardening for Self-Hosted Claude Code Environments",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "Claude Code 클라우드 세션을 우리 인프라의 실행기에서 돌릴 때 누가 코드를 실행할 수 있는지 경계를 긋고, 격리·egress·자격 증명·세션 신원 검증의 손익을 따진다.",
+    "objectives": [
+      "조직 구성원과 Claude Tag 접근 허용 대상이 모두 실행기 호스트에 코드를 보낼 수 있다는 신뢰 경계를 근거로 호스트에 둘 데이터와 자격 증명을 정할 수 있다",
+      "세션당 일회용 컨테이너, 환경 시크릿을 따로 두는 온디맨드 실행기, 클라우드 메타데이터 엔드포인트 차단, 기본 거부 egress가 각각 막는 위험과 운영 비용을 견줄 수 있다",
+      "세션 접근 토큰을 접두사·서명·발급자·대상·역할·만료 순으로 검증하고, 세션 안의 어떤 코드든 토큰을 꺼내 쓸 수 있고 폐기 목록이 없다는 한계에 맞춰 파생 자격 증명을 좁힐 수 있다",
+      "git 자격 증명을 실행기 관리 서명, 이미지에 넣은 좁은 자격 증명, Anthropic 관리 git 프록시 가운데 무엇으로 줄지 데이터가 머무는 곳과 제약을 근거로 고를 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.cloud-sessions",
+      "ax.security.agent-identity-delegation"
+    ],
+    "related": [
+      "ax.coding.copilot-self-hosted-runner",
+      "ax.security.task-scoped-credentials",
+      "ax.coding.sandbox-internals"
+    ],
+    "aliases": [
+      "self-hosted environments",
+      "자체 호스팅 환경",
+      "Claude Code 자체 호스팅 실행기",
+      "--lock-to-account"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/self-hosted-environments-deploy",
+      "https://code.claude.com/docs/en/self-hosted-environments-identity"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "ax.security.model-provenance",
     "title": "모델 출처 검증",
     "en": "Model Provenance",
@@ -8943,6 +9090,84 @@
       "backdoor trigger",
       "모델 백도어"
     ]
+  },
+  {
+    "id": "ax.coding.session-store-adapter",
+    "title": "세션 저장소 어댑터(SessionStore)",
+    "en": "SessionStore Adapter",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "Agent SDK가 로컬에 먼저 쓴 세션 기록을 객체 저장소·키값 저장소·DB로 복사해 다른 호스트에서도 이어 가게 하는 append·load 인터페이스다.",
+    "parent": "ax.coding.session-persistence-internals",
+    "related": [
+      "ax.coding.agent-sdk-hosting"
+    ],
+    "aliases": [
+      "SessionStore",
+      "session_store",
+      "세션 미러 저장소",
+      "mirror_error",
+      "Agent SDK 세션 저장소"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/agent-sdk/session-storage"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.coding.sdk-tenant-context-leak",
+    "title": "공유 컨테이너의 테넌트 문맥 누수",
+    "en": "Cross-Tenant Context Leakage in Shared Agent Containers",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "한 컨테이너가 여러 테넌트의 에이전트를 돌릴 때 파일에서 읽는 설정·CLAUDE.md·자동 메모리가 다른 테넌트 세션의 문맥으로 섞여 드는 위험이다.",
+    "parent": "ax.coding.agent-sdk-hosting",
+    "related": [
+      "ax.security.sensitive-info-disclosure"
+    ],
+    "aliases": [
+      "테넌트 문맥 누수",
+      "cross-tenant leakage",
+      "settingSources 격리",
+      "CLAUDE_CODE_DISABLE_AUTO_MEMORY"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/agent-sdk/hosting",
+      "https://genai.owasp.org/llmrisk/llm022025-sensitive-information-disclosure/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.coding.session-access-token",
+    "title": "자체 호스팅 세션 접근 토큰",
+    "en": "Self-Hosted Session Access Token",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "자체 호스팅 환경의 각 세션에 주어지는 서명된 JWT로, 내부 서비스가 요청이 우리 환경의 세션에서 왔는지와 세션을 만든 사용자를 확인하게 해 준다.",
+    "parent": "ax.coding.self-hosted-env-trust",
+    "related": [
+      "be.auth.jwt-attacks"
+    ],
+    "aliases": [
+      "CLAUDE_CODE_SESSION_ACCESS_TOKEN",
+      "sk-ant-cc 토큰",
+      "Claude Code 세션 JWT",
+      "session_worker 토큰",
+      "ccr JWKS"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/self-hosted-environments-identity"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "ax.security.ai-bom",
@@ -9001,5 +9226,95 @@
       "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2025.pdf",
       "https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/"
     ]
+  },
+  {
+    "id": "ax.coding.resume-compaction-boundary",
+    "title": "이어가기의 압축 경계",
+    "en": "Compaction Boundary on Resume",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "압축된 세션을 이어 가면 마지막 요약과 그 뒤 메시지만 다시 불러오고, 요약된 이전 메시지는 기록 파일에 남아 있어도 모델에 보내지 않는 경계다.",
+    "parent": "ax.coding.session-persistence-internals",
+    "related": [
+      "ax.coding.compact-command"
+    ],
+    "aliases": [
+      "Conversation compacted 경계",
+      "압축 후 이어가기",
+      "post-compaction chain",
+      "getSessionMessages 압축"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/sessions",
+      "https://code.claude.com/docs/en/agent-sdk/session-storage"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.coding.prompt-cache-ttl-bucket",
+    "title": "Claude Code 캐시 수명 버킷(promptCacheTtl)",
+    "en": "Claude Code Prompt Cache TTL Buckets",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "주 대화와 그 밖의 요청(하위 에이전트·압축·세션 제목 등)에 5분 또는 1시간 캐시 수명을 따로 매기는 Claude Code 규칙과 그 설정이다.",
+    "parent": "ax.coding.agent-prompt-cache-layers",
+    "aliases": [
+      "promptCacheTtl",
+      "subagentPromptCacheTtl",
+      "CLAUDE_CODE_PROMPT_CACHE_TTL",
+      "FORCE_PROMPT_CACHING_5M",
+      "Claude Code 캐시 TTL 설정"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/prompt-caching"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.coding.prompt-cache-scope",
+    "title": "Claude Code 프롬프트 캐시 공유 범위",
+    "en": "Claude Code Prompt Cache Scope",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "시스템 프롬프트에 자동 메모리 경로가, 대화 첫머리에 작업 폴더·git 상태가 들어가 캐시가 사실상 한 기계의 한 폴더 안에서만 공유되는 범위다.",
+    "parent": "ax.coding.agent-prompt-cache-layers",
+    "aliases": [
+      "세션 간 캐시 공유",
+      "Claude Code 캐시 공유",
+      "Claude Code 캐시 범위"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/prompt-caching"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.coding.runner-environment-secret",
+    "title": "자체 호스팅 환경 시크릿(environment secret)",
+    "en": "Self-Hosted Environment Secret",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "실행기를 자체 호스팅 환경에 등록하는 비밀값으로, 고정 실행기에서는 같은 호스트의 세션이 읽을 수 있어 온디맨드 실행기와 교체 절차로 지킨다.",
+    "parent": "ax.coding.self-hosted-env-trust",
+    "aliases": [
+      "claude-runner-environment-secret",
+      "Claude Code 자체 호스팅 환경 시크릿"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/self-hosted-environments-deploy"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   }
 ]

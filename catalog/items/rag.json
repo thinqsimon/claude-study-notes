@@ -8675,6 +8675,186 @@
     ]
   },
   {
+    "id": "rag.agent.pregel-runtime",
+    "title": "LangGraph 실행 엔진의 내부: Pregel 단계와 채널",
+    "en": "LangGraph Runtime Internals: Pregel Steps and Channels",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "컴파일된 그래프가 Pregel 객체가 되어 계획·실행·갱신 단계를 되풀이하며 채널로 값을 주고받는 LangGraph의 실행 모델이다.",
+    "objectives": [
+      "한 단계의 계획·실행·갱신 과정에서 병렬 노드의 쓰기가 다음 단계에야 보이는 이유를 BSP 모델로 설명할 수 있다",
+      "LastValue·Topic·BinaryOperatorAggregate 채널이 같은 단계의 여러 쓰기를 어떻게 다루는지 비교해 상태 칸에 맞는 채널을 고를 수 있다",
+      "크고 자주 쓰이는 상태 칸을 DeltaChannel로 바꿀 때 체크포인트 크기와 읽기 지연, 버전 되돌리기 제약 사이의 손익을 따질 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.graph-api",
+      "rag.agent.checkpoint-persistence"
+    ],
+    "related": [
+      "rag.agent.state-reducer",
+      "rag.agent.recursion-limit"
+    ],
+    "aliases": [
+      "LangGraph Pregel",
+      "LangGraph runtime",
+      "LangGraph 런타임",
+      "Pregel 런타임",
+      "LangGraph 채널"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/pregel",
+      "https://docs.langchain.com/oss/python/langgraph/graph-api"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.vector-db.qdrant-replication-consistency",
+    "title": "Qdrant 샤드·복제와 일관성의 손익",
+    "en": "Qdrant Sharding, Replication and Consistency Trade-offs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "벡터 DB",
+    "summary": "Qdrant 클러스터에서 샤드 수·복제 수와 쓰기 확인 수·읽기 일관성·쓰기 순서를 정해 가용성과 일관성, 지연 사이의 균형을 잡는 일이다.",
+    "objectives": [
+      "샤드 수와 복제 수, 사용자 지정 샤드 키가 물리 샤드 수와 저장 비용을 어떻게 늘리는지 계산할 수 있다",
+      "write_consistency_factor와 읽기 consistency 값을 올렸을 때 얻는 일관성과 잃는 가용성·지연을 따질 수 있다",
+      "weak·medium·strong 쓰기 순서가 리더 장애 때 어떻게 다르게 동작하는지 설명하고 작업 부하에 맞게 고를 수 있다",
+      "복제본 사이에서 검색 결과가 오락가락할 때 원인을 기본 일관성 수준에서 찾고 읽기 친화 헤더나 일관성 설정으로 대응할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.vector-db.basics"
+    ],
+    "related": [
+      "rag.vector-db.multitenancy-design",
+      "rag.vector-db.qdrant-memory-quantization"
+    ],
+    "aliases": [
+      "Qdrant 분산 배포",
+      "Qdrant distributed deployment",
+      "Qdrant 복제",
+      "Qdrant replication",
+      "Qdrant 샤딩",
+      "Qdrant sharding"
+    ],
+    "refs": [
+      "https://qdrant.tech/documentation/scaling/distributed_deployment/",
+      "https://qdrant.tech/documentation/scaling/consistency-guarantees/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.vector-db.qdrant-segment-optimizer",
+    "title": "Qdrant 세그먼트와 최적화기: 색인·삭제 정리·읽기 쓰기 경합",
+    "en": "Qdrant Segments and Optimizers",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "Qdrant가 샤드를 세그먼트로 나누어 뒤에서 색인을 만들고 삭제를 정리하고 합치는 과정과, 그 작업이 검색과 자원을 다투는 문제를 다룬다.",
+    "objectives": [
+      "추가 가능 세그먼트와 색인된 세그먼트의 차이로 indexing_threshold 아래의 작은 세그먼트가 색인 없이 검색되는 이유를 설명할 수 있다",
+      "삭제 표시와 vacuum, 병합 최적화기가 메모리와 세그먼트 수에 주는 영향을 따질 수 있다",
+      "대량 쓰기 중 검색 지연이 늘 때 색인 안 된 큰 세그먼트, 최적화기 CPU 예산, 세그먼트 크기 가운데 원인을 찾고 고칠 순서를 정할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.vector-db.basics"
+    ],
+    "related": [
+      "rag.vector-db.qdrant-memory-quantization",
+      "rag.vector-index.internals"
+    ],
+    "aliases": [
+      "Qdrant 최적화기",
+      "Qdrant optimizer",
+      "Qdrant 세그먼트",
+      "Qdrant segment",
+      "Qdrant 읽기 쓰기 경합",
+      "Qdrant read-write contention"
+    ],
+    "refs": [
+      "https://qdrant.tech/documentation/ops-optimization/optimizer/",
+      "https://qdrant.tech/documentation/ops-optimization/read-write-contention/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.vector-db.pinecone-serverless-internals",
+    "title": "Pinecone 서버리스의 내부: 요청 로그·멤테이블·슬랩",
+    "en": "Pinecone Serverless Architecture Internals",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "Pinecone 서버리스가 쓰기를 로그와 멤테이블에 먼저 받고 객체 저장소의 불변 슬랩으로 옮긴 뒤 읽기 때 둘을 합치는 구조와 그 손익을 다룬다.",
+    "objectives": [
+      "쓰기가 요청 로그에 남은 순간 응답하고 색인은 뒤에서 만드는 흐름을 따라가며 막 쓴 데이터가 검색되는 이유를 설명할 수 있다",
+      "작은 슬랩을 가볍게 색인하고 커지면 합쳐 다시 색인하는 방식이 색인 비용을 어떻게 나누는지 설명할 수 있다",
+      "캐시에 없는 슬랩을 객체 저장소에서 가져와 캐시하는 경로로 첫 조회 지연을 설명할 수 있다",
+      "읽기 경로와 쓰기 경로를 나눈 구조의 장점과 비용을 단일 노드 벡터 DB와 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.vector-db.basics"
+    ],
+    "related": [
+      "rag.vector-db.pinecone-namespace",
+      "rag.vector-index.internals"
+    ],
+    "aliases": [
+      "Pinecone serverless",
+      "Pinecone 서버리스",
+      "Pinecone architecture",
+      "Pinecone 아키텍처",
+      "Pinecone slab"
+    ],
+    "refs": [
+      "https://docs.pinecone.io/guides/get-started/architecture"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.retrieval.late-interaction-multivector",
+    "title": "멀티벡터와 늦은 상호작용 검색",
+    "en": "Multivector Late-Interaction Retrieval",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "검색 내부",
+    "summary": "문서를 토큰마다 벡터 하나씩 담은 행렬로 저장하고 MaxSim으로 점수를 내는 ColBERT식 검색의 원리와 저장·색인 비용을 다룬다.",
+    "objectives": [
+      "단일 벡터가 토큰 정보를 뭉개 긴 문서에서 세부를 놓치는 문제를 멀티벡터가 어떻게 줄이는지 설명할 수 있다",
+      "MaxSim 점수가 질의 벡터마다 가장 비슷한 문서 벡터를 골라 더하는 계산임을 설명할 수 있다",
+      "멀티벡터 칸에 HNSW를 끄고 밀집 벡터로 후보를 먼저 뽑은 뒤 멀티벡터로 재순위하는 구성이 메모리와 적재 속도에 주는 이득을 따질 수 있다",
+      "점 하나에 담을 수 있는 하위 벡터 수 한도를 넘을 때 풀링과 문서 분할 가운데 하나를 고를 수 있다"
+    ],
+    "prerequisites": [
+      "rag.retrieval.hybrid-rerank"
+    ],
+    "related": [
+      "rag.retrieval.reranking",
+      "rag.embedding.model-tradeoffs"
+    ],
+    "aliases": [
+      "late interaction",
+      "늦은 상호작용",
+      "ColBERT",
+      "Qdrant multivector",
+      "Qdrant 멀티벡터"
+    ],
+    "refs": [
+      "https://qdrant.tech/documentation/manage-data/vectors/",
+      "https://qdrant.tech/documentation/tutorials-search-engineering/using-multivector-representations/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "rag.vector-index.recall",
     "title": "재현율",
     "en": "Recall",
@@ -8687,6 +8867,48 @@
     "aliases": [
       "재현율",
       "recall"
+    ]
+  },
+  {
+    "id": "rag.agent.super-step",
+    "title": "LangGraph 슈퍼스텝",
+    "en": "LangGraph Super-step",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "병렬로 도는 노드들이 함께 묶이는 LangGraph 실행의 한 단위로, 체크포인트가 이 경계에서 저장되고 재귀 한도도 이 수로 센다.",
+    "parent": "rag.agent.pregel-runtime",
+    "related": [
+      "rag.agent.recursion-limit"
+    ],
+    "aliases": [
+      "super-step",
+      "superstep",
+      "슈퍼 스텝",
+      "Pregel 슈퍼스텝"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/graph-api"
+    ]
+  },
+  {
+    "id": "rag.vector-db.qdrant-write-consistency-factor",
+    "title": "Qdrant write_consistency_factor",
+    "en": "Qdrant Write Consistency Factor",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "벡터 DB",
+    "summary": "쓰기 응답을 돌려주기 전에 몇 개의 복제본이 확인해야 하는지 정하는 Qdrant 컬렉션 설정으로, 높이면 활성 복제본이 모자랄 때 쓰기가 실패한다.",
+    "parent": "rag.vector-db.qdrant-replication-consistency",
+    "aliases": [
+      "write_consistency_factor",
+      "Qdrant 쓰기 일관성",
+      "Qdrant write consistency"
+    ],
+    "refs": [
+      "https://qdrant.tech/documentation/scaling/consistency-guarantees/"
     ]
   },
   {
@@ -8709,6 +8931,115 @@
     ],
     "refs": [
       "https://sbert.net/examples/sentence_transformer/applications/embedding-quantization/README.html"
+    ]
+  },
+  {
+    "id": "rag.agent.delta-channel",
+    "title": "LangGraph 델타 채널(DeltaChannel)",
+    "en": "LangGraph DeltaChannel",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "누적값 전체 대신 단계마다의 변경분만 체크포인트에 남기고 읽을 때 다시 합치는 LangGraph의 베타 채널이다.",
+    "parent": "rag.agent.pregel-runtime",
+    "related": [
+      "rag.agent.state-reducer"
+    ],
+    "aliases": [
+      "DeltaChannel",
+      "델타 채널",
+      "snapshot_frequency"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/pregel"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.vector-db.qdrant-read-consistency",
+    "title": "Qdrant 읽기 일관성(consistency)",
+    "en": "Qdrant Read Consistency",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "검색 요청마다 몇 개의 복제본에 물어 어떤 점을 돌려줄지 all·majority·quorum·숫자로 고르는 Qdrant 읽기 설정이다.",
+    "parent": "rag.vector-db.qdrant-replication-consistency",
+    "related": [
+      "rag.vector-db.qdrant-write-ordering"
+    ],
+    "aliases": [
+      "Qdrant read consistency",
+      "Qdrant 읽기 일관성 수준",
+      "Qdrant quorum 읽기"
+    ],
+    "refs": [
+      "https://qdrant.tech/documentation/scaling/consistency-guarantees/"
+    ]
+  },
+  {
+    "id": "rag.vector-db.qdrant-write-ordering",
+    "title": "Qdrant 쓰기 순서 보장(ordering)",
+    "en": "Qdrant Write Ordering",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "복제본들이 쓰기를 같은 순서로 적용하도록 weak·medium·strong 가운데 고르는 Qdrant 쓰기 설정으로, 강할수록 리더 장애 때 쓰기를 못 할 수 있다.",
+    "parent": "rag.vector-db.qdrant-replication-consistency",
+    "related": [
+      "rag.vector-db.qdrant-read-consistency"
+    ],
+    "aliases": [
+      "Qdrant write ordering",
+      "Qdrant ordering",
+      "Qdrant 쓰기 순서"
+    ],
+    "refs": [
+      "https://qdrant.tech/documentation/scaling/consistency-guarantees/"
+    ]
+  },
+  {
+    "id": "rag.vector-db.qdrant-prevent-unoptimized",
+    "title": "Qdrant 미색인 점 미루기(prevent_unoptimized)",
+    "en": "Qdrant prevent_unoptimized",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "색인이 안 된 큰 세그먼트를 검색이 훑지 않도록 새 점을 색인 뒤까지 숨기는 Qdrant 실험 설정으로, 검색은 빨라지지만 wait=true 쓰기가 오래 막힐 수 있다.",
+    "parent": "rag.vector-db.qdrant-segment-optimizer",
+    "aliases": [
+      "prevent_unoptimized",
+      "Qdrant deferred points",
+      "Qdrant 지연 점"
+    ],
+    "refs": [
+      "https://qdrant.tech/documentation/ops-optimization/read-write-contention/",
+      "https://qdrant.tech/documentation/ops-optimization/optimizer/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.retrieval.maxsim",
+    "title": "MaxSim 점수",
+    "en": "MaxSim Score",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "검색 내부",
+    "summary": "질의의 각 벡터마다 문서 벡터 가운데 가장 높은 유사도를 골라 모두 더해 점 하나의 점수를 내는 멀티벡터 비교 방식이다.",
+    "parent": "rag.retrieval.late-interaction-multivector",
+    "aliases": [
+      "MaxSim",
+      "max_sim",
+      "Qdrant max_sim"
+    ],
+    "refs": [
+      "https://qdrant.tech/documentation/manage-data/vectors/"
     ]
   }
 ]

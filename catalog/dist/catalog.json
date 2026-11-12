@@ -1,5 +1,5 @@
 {
- "version": "0.72.1",
+ "version": "0.73.0",
  "domains": [
   {
    "prefix": "dev",
@@ -17175,6 +17175,313 @@
    "domain": "cs"
   },
   {
+   "id": "cs.os.address-translation-internals",
+   "title": "주소 변환의 내부: TLB와 다단계 페이지 테이블",
+   "en": "Address Translation Internals: TLBs and Multi-level Page Tables",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "가상 주소를 실제 주소로 바꾸는 하드웨어 캐시 TLB와 페이지 테이블 구조가 메모리 사용량과 변환 비용을 어떻게 맞바꾸는지 분석한다.",
+   "objectives": [
+    "TLB 적중과 실패 때 일어나는 일을 단계별로 설명하고 TLB 실패를 하드웨어가 처리하는 방식과 운영체제가 처리하는 방식의 손익을 비교할 수 있다",
+    "문맥 교환 때 TLB를 비우는 방식과 주소 공간 식별자(ASID)를 붙이는 방식의 비용 차이를 설명할 수 있다",
+    "접근하는 페이지 수가 TLB가 덮는 범위를 넘을 때 성능이 떨어지는 이유를 알고 큰 페이지가 그 범위를 넓히는 원리를 설명할 수 있다",
+    "다단계 페이지 테이블이 테이블 크기를 줄이는 대신 TLB 실패 때 메모리 접근을 늘리는 시간·공간 손익을 따질 수 있다"
+   ],
+   "prerequisites": [
+    "cs.os.virtual-memory"
+   ],
+   "related": [
+    "cs.os.page-fault",
+    "cs.arch.memory-hierarchy"
+   ],
+   "aliases": [
+    "주소 변환",
+    "address translation",
+    "페이지 테이블 구조",
+    "page table walk",
+    "페이지 테이블 탐색"
+   ],
+   "refs": [
+    "https://docs.kernel.org/mm/page_tables.html",
+    "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-tlbs.pdf",
+    "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-smalltables.pdf"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.arch.cache-coherence-false-sharing",
+   "title": "멀티코어 캐시 일관성과 거짓 공유",
+   "en": "Multicore Cache Coherence and False Sharing",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "컴퓨터 구조",
+   "summary": "코어마다 따로 둔 캐시를 하드웨어가 일관되게 맞추는 방식과, 그 때문에 서로 무관한 데이터가 한 캐시 라인에 있을 때 생기는 거짓 공유의 비용을 분석한다.",
+   "objectives": [
+    "여러 CPU의 캐시가 같은 주소의 옛 값을 볼 수 있는 이유와 버스 감시로 사본을 무효화하거나 갱신하는 원리를 설명할 수 있다",
+    "캐시 일관성이 있어도 공유 자료구조를 고칠 때 잠금이 필요한 이유를 설명할 수 있다",
+    "자주 쓰이는 값과 읽기 위주 값이 한 캐시 라인에 있을 때 코어 수가 늘수록 느려지는 원인을 perf c2c 같은 도구로 찾을 수 있다",
+    "핫 데이터를 따로 정렬하기, 쓰기 전에 읽어 보기, CPU별 데이터로 나누기 같은 대책의 메모리·복잡도 비용을 비교해 고를 수 있다"
+   ],
+   "prerequisites": [
+    "cs.arch.memory-hierarchy",
+    "cs.os.process-vs-thread"
+   ],
+   "related": [
+    "cs.os.mutex-lock"
+   ],
+   "aliases": [
+    "캐시 일관성",
+    "cache coherence",
+    "버스 스누핑",
+    "bus snooping"
+   ],
+   "refs": [
+    "https://docs.kernel.org/kernel-hacking/false-sharing.html",
+    "https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched-multi.pdf"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.lock-implementation",
+   "title": "잠금의 구현: 스핀락·원자 명령·futex",
+   "en": "Implementing Locks: Spin Locks, Atomic Instructions and Futexes",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "뮤텍스가 하드웨어 원자 명령과 커널의 대기 기능으로 어떻게 만들어지는지 보고, 돌며 기다리기와 잠들어 기다리기의 손익을 분석한다.",
+   "objectives": [
+    "test-and-set과 compare-and-swap으로 스핀락을 만드는 원리를 설명할 수 있다",
+    "스핀락이 CPU 하나에서는 시간 조각을 낭비하고 여러 CPU에서 짧은 임계 구역에는 잘 맞는 이유를 정확성·공정성·성능 기준으로 따질 수 있다",
+    "경쟁이 없을 때는 사용자 공간의 원자 명령만 쓰고 경쟁할 때만 커널에서 잠드는 futex 기반 잠금의 동작을 설명할 수 있다",
+    "잠시 돌다가 잠드는 2단계 잠금이 어떤 작업 부하에서 이득인지 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.os.mutex-lock"
+   ],
+   "related": [
+    "be.async.semaphore",
+    "cs.os.condition-variable"
+   ],
+   "aliases": [
+    "스핀락",
+    "spin lock",
+    "spinlock",
+    "락 구현",
+    "lock implementation"
+   ],
+   "refs": [
+    "https://pages.cs.wisc.edu/~remzi/OSTEP/threads-locks.pdf",
+    "https://man7.org/linux/man-pages/man2/futex.2.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.algo.amortized-analysis",
+   "title": "분할 상환 분석: 동적 배열이 평균 O(1)인 이유",
+   "en": "Amortized Analysis of Dynamic Arrays",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "알고리즘과 복잡도",
+   "summary": "가끔 O(n)이 드는 크기 조정을 여러 연산에 나눠 셈하는 분할 상환 분석으로, 동적 배열의 끝 붙이기가 평균 O(1)인 근거와 그 한계를 분석한다.",
+   "objectives": [
+    "연산 k번의 총비용이 k·T(n) 이하일 때 분할 상환 비용이 T(n)이라는 정의로 동적 배열 끝 붙이기가 분할 상환 O(1)임을 보일 수 있다",
+    "꽉 찼을 때 크기에 비례한 여유 공간을 잡는 이유와 한 번의 호출은 여전히 O(n)일 수 있다는 점을 들어 지연에 민감한 코드의 위험을 설명할 수 있다",
+    "줄일 때의 기준 비율을 늘릴 때보다 낮게 두어 삽입·삭제가 번갈아 와도 크기 조정이 반복되지 않게 하는 원리를 설명할 수 있다",
+    "분할 상환 비용과 평균 경우 비용의 차이를 알고 리스트와 딕셔너리의 복잡도 표기를 바르게 읽을 수 있다"
+   ],
+   "prerequisites": [
+    "cs.algo.big-o-estimate"
+   ],
+   "related": [
+    "cs.dsa.dynamic-array",
+    "cs.dsa.hash-table"
+   ],
+   "aliases": [
+    "분할 상환",
+    "amortized analysis",
+    "amortized O(1)",
+    "상각 분석",
+    "분할 상환 비용",
+    "amortized cost"
+   ],
+   "refs": [
+    "https://xlinux.nist.gov/dads/HTML/amortizdcost.html",
+    "https://docs.python.org/3/builtins/time-complexity.html",
+    "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/resources/mit6_006s20_lec2/"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.page-replacement",
+   "title": "페이지 교체 정책: LRU 근사와 스래싱",
+   "en": "Page Replacement Policies: Approximating LRU and Thrashing",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "메모리가 모자랄 때 어느 페이지를 내보낼지 정하는 정책들을 비교하고, 정확한 LRU 대신 근사를 쓰는 이유와 메모리가 넘칠 때 생기는 스래싱을 분석한다.",
+   "objectives": [
+    "최적·FIFO·무작위·LRU 정책을 작업 부하별 적중률로 비교하고 순환 순차 접근에서 LRU와 FIFO가 무너지는 이유를 설명할 수 있다",
+    "정확한 LRU의 기록 비용 때문에 사용 비트와 클록 알고리즘으로 근사하는 손익을 설명할 수 있다",
+    "더티 페이지를 내보내려면 디스크 쓰기가 필요해 깨끗한 페이지를 먼저 고르는 이유를 설명할 수 있다",
+    "작업 집합이 메모리를 넘을 때 생기는 스래싱과 이에 대한 승인 제어·OOM killer 방식의 차이를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.os.virtual-memory",
+    "cs.arch.memory-hierarchy"
+   ],
+   "related": [
+    "cs.os.oom-killer",
+    "cs.os.page-fault",
+    "db.cache.redis-eviction"
+   ],
+   "aliases": [
+    "페이지 교체",
+    "page replacement",
+    "페이지 교체 알고리즘",
+    "LRU 근사",
+    "페이지 교체 정책"
+   ],
+   "refs": [
+    "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys-policy.pdf"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.tlb",
+   "title": "TLB(주소 변환 캐시)",
+   "en": "Translation Lookaside Buffer (TLB)",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "최근 쓴 가상 페이지와 실제 프레임의 대응을 담아 두는 CPU 안의 작은 캐시로, 적중하면 페이지 테이블을 읽지 않고 주소를 바꾼다.",
+   "parent": "cs.os.address-translation-internals",
+   "aliases": [
+    "TLB",
+    "translation lookaside buffer",
+    "TLB 미스",
+    "TLB miss",
+    "TLB 플러시"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.arch.false-sharing",
+   "title": "거짓 공유(false sharing)",
+   "en": "False Sharing",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "컴퓨터 구조",
+   "summary": "서로 다른 코어가 쓰는 무관한 데이터가 한 캐시 라인에 있어, 한쪽의 쓰기가 다른 쪽 캐시 사본을 계속 무효화해 느려지는 현상이다.",
+   "parent": "cs.arch.cache-coherence-false-sharing",
+   "aliases": [
+    "false sharing",
+    "거짓 공유"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.compare-and-swap",
+   "title": "비교 후 교환(CAS)",
+   "en": "Compare-and-Swap (CAS)",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "메모리 값이 기대한 값과 같을 때만 새 값으로 바꾸고 원래 값을 돌려주는 원자 명령으로, 스핀락과 잠금 없는 자료구조의 바탕이 된다.",
+   "parent": "cs.os.lock-implementation",
+   "aliases": [
+    "compare-and-swap",
+    "compare-and-exchange",
+    "CAS 연산",
+    "CAS 명령",
+    "cmpxchg",
+    "비교 후 교환"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.multi-level-page-table",
+   "title": "다단계 페이지 테이블",
+   "en": "Multi-level Page Table",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "페이지 테이블을 페이지 크기 조각으로 나누고 페이지 디렉터리로 가리켜 쓰지 않는 부분의 테이블을 만들지 않는 구조다.",
+   "parent": "cs.os.address-translation-internals",
+   "aliases": [
+    "multi-level page table",
+    "페이지 디렉터리",
+    "page directory",
+    "계층형 페이지 테이블",
+    "hierarchical page table"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.arch.cache-line",
+   "title": "캐시 라인",
+   "en": "Cache Line",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "컴퓨터 구조",
+   "summary": "주 메모리와 CPU 캐시 사이를 오가는 데이터의 단위로, 흔히 64바이트 이상이며 일관성 유지도 이 단위로 이루어진다.",
+   "parent": "cs.arch.cache-coherence-false-sharing",
+   "aliases": [
+    "cache line",
+    "캐시 라인",
+    "캐시 블록",
+    "cache block"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.futex",
+   "title": "futex(빠른 사용자 공간 잠금)",
+   "en": "Futex (Fast Userspace Mutex)",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "경쟁이 없으면 메모리의 정수 하나를 원자 명령으로만 바꾸고, 기다려야 할 때만 값이 그대로인지 확인하며 커널에서 잠드는 리눅스의 대기 기능이다.",
+   "parent": "cs.os.lock-implementation",
+   "aliases": [
+    "futex",
+    "FUTEX_WAIT",
+    "FUTEX_WAKE",
+    "fast userspace mutex",
+    "futex(2)"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.clock-algorithm",
+   "title": "클록 알고리즘(페이지 교체)",
+   "en": "Clock Page Replacement Algorithm",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "페이지를 원형으로 돌며 사용 비트가 1이면 0으로 지우고 넘어가고 0인 페이지를 내보내 LRU를 싸게 흉내 내는 교체 방식이다.",
+   "parent": "cs.os.page-replacement",
+   "aliases": [
+    "clock algorithm",
+    "클록 교체",
+    "second chance",
+    "두 번째 기회 알고리즘"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "plan.basics.problem-first",
    "title": "문제부터 정의하기",
    "en": "Starting from the Problem",
@@ -25691,6 +25998,211 @@
    "domain": "plan"
   },
   {
+   "id": "plan.figma.library-publish-webhook",
+   "title": "Figma LIBRARY_PUBLISH 웹훅",
+   "en": "Figma LIBRARY_PUBLISH Webhook Event",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "라이브러리를 게시하면 만든·바뀐·지운 컴포넌트·스타일·변수 목록을 보내는 Figma 웹훅 이벤트로, 한 번 게시가 자산 종류와 개수에 따라 여러 이벤트로 나뉠 수 있다.",
+   "related": [
+    "be.integrate.webhook",
+    "plan.figma.publish-library"
+   ],
+   "aliases": [
+    "LIBRARY_PUBLISH",
+    "라이브러리 게시 웹훅"
+   ],
+   "refs": [
+    "https://developers.figma.com/docs/rest-api/webhooks-events/",
+    "https://developers.figma.com/docs/rest-api/webhooks/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.wcag-conformance-model",
+   "title": "WCAG 2.2 적합성 요구사항과 적합성 주장",
+   "en": "WCAG 2.2 Conformance Requirements and Claims",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "전체 페이지·완전한 절차·접근성 지원 기술·비간섭 같은 다섯 요구사항으로 WCAG 적합성이 성립하는 조건과, 이를 공개하는 주장의 구성을 따지는 규칙이다.",
+   "objectives": [
+    "다섯 적합성 요구사항을 근거로 결제 절차 중 한 페이지만 실패할 때 어느 페이지까지 적합성을 잃는지 판단할 수 있다",
+    "기술 사용이 접근성 지원으로 인정되려면 보조기술 호환성과 사용자 에이전트 제공이 함께 필요하다는 조건으로 기술 선택의 손익을 따질 수 있다",
+    "적합성 주장의 필수 구성 요소와 제3자 콘텐츠 부분 적합성 진술을 구분해 공개할 범위를 정할 수 있다",
+    "적합한 대체 버전을 두는 방식이 지켜야 할 조건과 직접 고치는 방식의 손익을 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.accessibility-testing-strategy"
+   ],
+   "related": [
+    "plan.basics.wcag-em",
+    "plan.basics.accessibility-statement"
+   ],
+   "aliases": [
+    "WCAG 적합성",
+    "WCAG conformance",
+    "적합성 요구사항",
+    "conformance requirements",
+    "WCAG 적합성 주장",
+    "conformance claim"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/conformance",
+    "https://www.w3.org/TR/WCAG22/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.wcag2ict",
+   "title": "WCAG2ICT로 앱·문서에 WCAG 적용하기",
+   "en": "Applying WCAG to Non-Web ICT with WCAG2ICT",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "웹 페이지를 전제로 쓴 WCAG 성공 기준을 문서와 웹이 아닌 소프트웨어에 옮길 때 용어를 어떻게 바꾸고 어떤 기준을 다르게 읽는지 정리한 W3C 그룹 노트다.",
+   "objectives": [
+    "웹 페이지를 문서나 소프트웨어 프로그램으로, 웹 페이지 묶음을 문서·프로그램 묶음으로 바꿔 읽는 규칙으로 앱의 적합성 단위를 정할 수 있다",
+    "묶음 조건이 맞지 않으면 건너뛰기·여러 경로·일관된 내비게이션 같은 기준이 어떻게 달라지는지 따질 수 있다",
+    "키오스크처럼 보조기술을 붙일 수 없는 닫힌 기능에서는 WCAG만으로 접근성이 보장되지 않는다는 한계를 판단할 수 있다",
+    "WCAG2ICT가 요구사항이 아닌 안내이고 어떤 기준을 적용할지는 Section 508·EN 301 549 같은 정책이 정한다는 관계를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.wcag-conformance-model"
+   ],
+   "aliases": [
+    "WCAG2ICT",
+    "비웹 ICT 접근성",
+    "앱 접근성 WCAG 적용",
+    "non-web software accessibility"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/wcag2ict-22/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.wcag3-conformance",
+   "title": "WCAG 3 초안의 구조와 적합성 모델",
+   "en": "WCAG 3 Draft Structure and Conformance Model",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "결과 문장 지침, 핵심·보충 요구사항, 어서션, 피해 정도 꼬리표와 보고 단계로 짠 WCAG 3 초안의 틀을 WCAG 2의 A·AA·AAA 모델과 비교한다.",
+   "objectives": [
+    "모든 핵심 요구사항을 충족해야 적합하고, 그 위 단계에서 보충 요구사항과 어서션이 더해지는 WCAG 3 초안의 보고 구조를 설명할 수 있다",
+    "신체 피해·위험·장벽·불편 꼬리표로 핵심 요구사항 위반의 심각도를 나누는 방식이 WCAG 2의 수준 구분과 어떻게 다른지 비교할 수 있다",
+    "WCAG 3가 WCAG 2를 대체하지 않고 완성 후에도 몇 년간 WCAG 2가 유지된다는 점을 근거로 지금 어느 기준에 맞춰 기획할지 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.wcag-conformance-model"
+   ],
+   "aliases": [
+    "WCAG 3",
+    "WCAG 3.0",
+    "W3C Accessibility Guidelines 3",
+    "WCAG 3 적합성"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/standards-guidelines/wcag/wcag3-intro/",
+    "https://www.w3.org/TR/wcag-3.0/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.accessibility-maturity-model",
+   "title": "접근성 성숙도 모델로 조직 역량 진단하기",
+   "en": "Assessing Organizations with the Accessibility Maturity Model",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "한 제품의 시점 검사 대신 일곱 차원을 네 단계로 매겨 조직이 접근성을 꾸준히 만들어 낼 역량이 있는지 증거로 진단하는 W3C 그룹 노트다.",
+   "objectives": [
+    "적합성 검사가 한 시점의 제품을 보고 성숙도 모델은 조직의 지속 역량을 본다는 차이로 두 진단의 쓰임을 구분할 수 있다",
+    "소통·감독과 문화·개발 수명 주기·지식과 기술·인력·조달·지원 일곱 차원에서 비활성·착수·통합·최적화 단계를 증빙으로 판정할 수 있다",
+    "진단 결과로 시정 계획을 세우고 다시 평가하는 주기를 설계하고, 모델을 조직에 맞게 고칠 때 바꾼 내용을 기록할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.accessibility-testing-strategy"
+   ],
+   "related": [
+    "plan.basics.wcag-em"
+   ],
+   "aliases": [
+    "접근성 성숙도 모델",
+    "Accessibility Maturity Model",
+    "W3C AMM"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/maturity-model/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.variables-rest-api-sync",
+   "title": "Figma 변수 REST API로 코드 토큰과 동기화하기",
+   "en": "Syncing Code Tokens with the Figma Variables REST API",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "변수 REST API의 읽기·원자적 쓰기 규칙과 게시 변수 식별자의 수명을 알고, 코드 저장소와 Figma 사이 토큰 동기화를 어떤 방향과 비용으로 짤지 판단한다.",
+   "objectives": [
+    "한 요청의 변경이 모두 반영되거나 하나도 반영되지 않는 쓰기와 임시 ID 규칙으로 컬렉션·모드·변수를 한 번에 만드는 요청을 설계하고 400 오류의 원인을 찾을 수 있다",
+    "로컬 변수와 게시 변수의 응답 차이, 변하지 않는 key와 다시 게시할 때마다 바뀌는 subscribed_id로 코드 쪽 토큰과 연결할 식별자를 고를 수 있다",
+    "변수 타입·컬렉션은 만든 뒤 바꿀 수 없고 원격 변수는 원래 파일에서만 고칠 수 있는 제약, API로 바꾼 값도 게시해야 다른 파일에 퍼지는 점을 반영해 동기화 흐름을 짤 수 있다",
+    "Enterprise 플랜과 Full 좌석이 필요한 비용, 요청 크기·컬렉션당 모드 수 한도를 근거로 REST API와 플러그인 방식 중 무엇을 쓸지 고를 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.design-token-architecture",
+    "plan.figma.variable-scoping-code-syntax"
+   ],
+   "related": [
+    "plan.figma.code-connect"
+   ],
+   "aliases": [
+    "Figma Variables API",
+    "Figma 변수 API",
+    "Figma 변수 REST API",
+    "Figma 토큰 동기화"
+   ],
+   "refs": [
+    "https://developers.figma.com/docs/rest-api/variables/",
+    "https://developers.figma.com/docs/rest-api/variables-endpoints/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.accessibility-supported",
+   "title": "접근성 지원 기술 사용(accessibility supported)",
+   "en": "Accessibility Supported Ways of Using Technologies",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "어떤 기술을 쓰는 방식이 사용자의 보조기술과 실제로 맞물리는지 검증되고 그런 사용자 에이전트를 쉽게 구할 수 있을 때만 WCAG 적합성의 근거로 삼을 수 있다는 조건이다.",
+   "parent": "plan.basics.wcag-conformance-model",
+   "aliases": [
+    "접근성 지원 기술"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/conformance"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.library-analytics",
    "title": "라이브러리 분석(library analytics)",
    "en": "Library Analytics",
@@ -25711,6 +26223,113 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-05",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.non-interference",
+   "title": "비간섭 요구사항(non-interference)",
+   "en": "WCAG Non-Interference Requirement",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "적합성 근거로 삼지 않은 콘텐츠라도 소리 제어·키보드 갇힘·번쩍임·멈춤 기준 네 가지는 지켜 나머지 페이지 이용을 막지 않아야 한다는 WCAG 적합성 요구사항이다.",
+   "parent": "plan.basics.wcag-conformance-model",
+   "related": [
+    "plan.basics.three-flashes",
+    "plan.basics.pause-stop-hide"
+   ],
+   "aliases": [
+    "비간섭",
+    "WCAG 비간섭",
+    "WCAG non-interference"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/conformance"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.partial-conformance-statement",
+   "title": "부분 적합성 진술",
+   "en": "Statement of Partial Conformance",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "작성자가 통제할 수 없는 제3자 위젯·게시물 때문에만 실패한 페이지를 그 부분을 밝혀 비적합으로 진술하는 방식으로, 적합 주장을 대신하지 못한다.",
+   "parent": "plan.basics.wcag-conformance-model",
+   "related": [
+    "plan.basics.accessibility-statement"
+   ],
+   "aliases": [
+    "부분 적합성",
+    "partial conformance",
+    "제3자 콘텐츠 부분 적합성"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/conformance"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.closed-functionality",
+   "title": "닫힌 기능(closed functionality)",
+   "en": "Closed Functionality",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "키오스크·ATM·스마트 TV처럼 사용자가 보조기술을 붙이거나 설치할 수 없게 만든 기기의 성질로, WCAG 기준만으로는 접근성을 보장하지 못한다.",
+   "parent": "plan.basics.wcag2ict",
+   "aliases": [
+    "closed functionality",
+    "폐쇄형 기능"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/wcag2ict-22/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.wcag3-assertion",
+   "title": "WCAG 3 어서션(assertion)",
+   "en": "WCAG 3 Assertion",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "쉬운 말 검토·사용성 테스트를 했다는 식으로 조직이 수행한 절차를 공개 정보와 함께 선언하는 WCAG 3 초안의 조항으로, 결과 검사가 아닌 과정 주장이다.",
+   "parent": "plan.basics.wcag3-conformance",
+   "aliases": [
+    "WCAG 3 assertion",
+    "WCAG 3 어서션",
+    "접근성 어서션"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/wcag-3.0/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.amm-proof-points",
+   "title": "성숙도 증빙(proof points)",
+   "en": "Accessibility Maturity Proof Points",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "절차 문서·교육 기록·적합성 보고서처럼 접근성 성숙도 단계를 판정할 근거가 되는 문서 증거로, 최적화 단계에서는 모두 갖춰야 한다.",
+   "parent": "plan.basics.accessibility-maturity-model",
+   "aliases": [
+    "접근성 성숙도 증빙",
+    "W3C 성숙도 모델 증빙"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/maturity-model/"
+   ],
    "domain": "plan"
   },
   {
@@ -44455,6 +45074,131 @@
    "domain": "db"
   },
   {
+   "id": "db.internals.parallel-query",
+   "title": "PostgreSQL 병렬 쿼리의 내부",
+   "en": "PostgreSQL Parallel Query",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "리더 프로세스가 백그라운드 작업자를 띄워 계획의 일부를 나눠 돌리고 Gather 노드로 결과를 모으는 방식과, 그 이득과 비용을 따진다.",
+   "objectives": [
+    "실행 계획의 Gather와 Gather Merge가 결과를 모으는 방식의 차이를 설명할 수 있다",
+    "계획된 작업자 수보다 적게 뜨는 까닭을 max_parallel_workers와 max_worker_processes로 설명할 수 있다",
+    "PARALLEL UNSAFE·RESTRICTED 함수가 병렬 계획을 막거나 리더에만 남기는 경우를 구분할 수 있다"
+   ],
+   "prerequisites": [
+    "db.internals.query-planner"
+   ],
+   "aliases": [
+    "병렬 쿼리",
+    "parallel query",
+    "Gather 노드",
+    "Parallel Seq Scan",
+    "PostgreSQL 병렬 처리"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/parallel-query.html",
+    "https://www.postgresql.org/docs/current/how-parallel-query-works.html",
+    "https://www.postgresql.org/docs/current/parallel-safety.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.toast",
+   "title": "TOAST: 큰 값을 따로 저장하는 방식",
+   "en": "TOAST (The Oversized-Attribute Storage Technique)",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "한 페이지에 들어가지 않는 큰 열 값을 압축하거나 조각내 별도 TOAST 표에 두고 본문 행에는 포인터만 남기는 PostgreSQL 저장 방식이다.",
+   "objectives": [
+    "행이 약 2kB를 넘을 때 값이 압축되거나 바깥으로 옮겨지는 과정을 설명할 수 있다",
+    "PLAIN·EXTENDED·EXTERNAL·MAIN 저장 전략의 손익을 비교할 수 있다",
+    "큰 열을 고르지 않는 쿼리와 다른 열만 바꾸는 UPDATE가 TOAST 비용을 피하는 까닭을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "db.sql.data-types"
+   ],
+   "aliases": [
+    "TOAST 표",
+    "TOAST table",
+    "PostgreSQL TOAST",
+    "pg_toast",
+    "out-of-line 저장"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/storage-toast.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.hot-updates",
+   "title": "HOT 갱신: 인덱스를 건드리지 않는 UPDATE",
+   "en": "Heap-Only Tuple (HOT) Updates",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "인덱스 열을 바꾸지 않고 같은 페이지에 빈자리가 있을 때 새 행 버전을 인덱스 항목 없이 이어 붙여 쓰기와 정리 비용을 줄이는 PostgreSQL 최적화다.",
+   "objectives": [
+    "UPDATE가 HOT으로 처리되는 두 조건을 설명할 수 있다",
+    "HOT 사슬의 중간 버전이 VACUUM 없이도 평소 접근 중에 정리되는 원리를 설명할 수 있다",
+    "pg_stat_user_tables의 n_tup_hot_upd 비율로 HOT이 잘 되는지 판단하고 fillfactor 조정 여부를 정할 수 있다"
+   ],
+   "prerequisites": [
+    "db.internals.mvcc-vacuum"
+   ],
+   "aliases": [
+    "HOT update",
+    "HOT 업데이트",
+    "heap-only tuple",
+    "n_tup_hot_upd",
+    "HOT 사슬"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/storage-hot.html",
+    "https://www.postgresql.org/docs/current/sql-createtable.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.index-access-methods",
+   "title": "B-tree 밖 인덱스의 구조와 손익: GIN·GiST·BRIN",
+   "en": "PostgreSQL Index Access Methods: GIN, GiST, BRIN",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "역색인인 GIN, 범용 탐색 트리인 GiST·SP-GiST, 블록 범위 요약인 BRIN, Hash가 각각 맡는 연산자와 크기·갱신 비용을 비교해 인덱스 종류를 고른다.",
+   "objectives": [
+    "배열·문서 포함 검사, 기하·최근접 검색, 물리 순서와 맞는 큰 표에 각각 맞는 인덱스 종류를 고를 수 있다",
+    "BRIN이 작지만 열 값과 물리 행 순서가 맞을 때만 효과가 있는 까닭을 설명할 수 있다",
+    "GIN의 빠른 갱신(pending list)이 쓰기 속도와 검색 응답 시간 사이에서 만드는 손익을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "db.internals.btree",
+    "db.internals.index-design"
+   ],
+   "related": [
+    "db.internals.btree"
+   ],
+   "aliases": [
+    "GIN 인덱스",
+    "GiST 인덱스",
+    "BRIN 인덱스",
+    "SP-GiST",
+    "index access method"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/indexes-types.html",
+    "https://www.postgresql.org/docs/current/gin.html",
+    "https://www.postgresql.org/docs/current/brin.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.internals.wal-replication",
    "title": "WAL과 복제",
    "en": "WAL and Replication",
@@ -44534,6 +45278,157 @@
    "refs": [
     "https://www.postgresql.org/docs/current/ddl-partitioning.html",
     "https://docs.citusdata.com/en/stable/get_started/what_is_citus.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.xid-wraparound",
+   "title": "트랜잭션 ID 겹침과 동결(freeze)",
+   "en": "Transaction ID Wraparound and Freezing",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "32비트 트랜잭션 ID는 모듈러로 비교되어 약 20억 트랜잭션 안에 VACUUM이 옛 행을 동결해야 하며, 남은 ID가 300만 개 아래면 쓰기를 거부한다.",
+   "parent": "db.internals.mvcc-vacuum",
+   "aliases": [
+    "XID wraparound",
+    "트랜잭션 ID 랩어라운드",
+    "relfrozenxid",
+    "autovacuum_freeze_max_age",
+    "VACUUM FREEZE",
+    "anti-wraparound vacuum"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/routine-vacuuming.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.synchronous-commit",
+   "title": "synchronous_commit과 비동기 커밋",
+   "en": "synchronous_commit and Asynchronous Commit",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "WAL을 디스크에 쓰기 전에 커밋 성공을 돌려줘 짧은 트랜잭션을 빠르게 하는 대신, 충돌 때 최근 커밋 몇 개를 잃을 수 있게 하는 설정으로 트랜잭션마다 바꿀 수 있다.",
+   "parent": "db.internals.wal-replication",
+   "aliases": [
+    "synchronous_commit",
+    "비동기 커밋",
+    "asynchronous commit",
+    "synchronous_commit off"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/wal-async-commit.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.fillfactor",
+   "title": "fillfactor: 페이지에 남겨 둘 빈자리",
+   "en": "fillfactor",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "INSERT가 표 페이지를 몇 퍼센트까지만 채울지 정하는 저장 매개변수로, 기본값 100보다 낮추면 같은 페이지 갱신과 HOT 갱신이 쉬워진다.",
+   "parent": "db.internals.hot-updates",
+   "aliases": [
+    "PostgreSQL fillfactor",
+    "채움 비율",
+    "fillfactor 저장 매개변수"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/sql-createtable.html",
+    "https://www.postgresql.org/docs/current/storage-hot.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.max-parallel-workers-per-gather",
+   "title": "max_parallel_workers_per_gather",
+   "en": "max_parallel_workers_per_gather",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "Gather 노드 하나가 쓸 수 있는 병렬 작업자 수의 상한으로, 기본값은 2이고 0이면 병렬 쿼리를 끈다.",
+   "parent": "db.internals.parallel-query",
+   "aliases": [
+    "병렬 작업자 수 설정",
+    "parallel workers per gather"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/runtime-config-resource.html",
+    "https://www.postgresql.org/docs/current/how-parallel-query-works.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.toast-storage-strategy",
+   "title": "TOAST 저장 전략: SET STORAGE와 압축 방식",
+   "en": "TOAST Storage Strategy and Compression",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "열마다 PLAIN·EXTENDED·EXTERNAL·MAIN 가운데 압축과 바깥 저장 여부를 고르고, COMPRESSION이나 default_toast_compression으로 pglz와 lz4를 정하는 설정이다.",
+   "parent": "db.internals.toast",
+   "aliases": [
+    "SET STORAGE",
+    "STORAGE EXTERNAL",
+    "default_toast_compression",
+    "TOAST 압축"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/storage-toast.html",
+    "https://www.postgresql.org/docs/current/runtime-config-client.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.gin-pending-list",
+   "title": "GIN 빠른 갱신과 pending list",
+   "en": "GIN Fast Update and Pending List",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "GIN이 새 항목을 정렬하지 않은 임시 목록에 모았다가 VACUUM이나 gin_pending_list_limit(기본 4MB) 초과 때 한꺼번에 본 구조로 옮기는 방식으로, 목록이 크면 검색이 느려진다.",
+   "parent": "db.internals.index-access-methods",
+   "aliases": [
+    "gin_pending_list_limit",
+    "fastupdate",
+    "GIN fastupdate",
+    "gin_clean_pending_list"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/gin.html",
+    "https://www.postgresql.org/docs/current/runtime-config-client.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.extended-statistics",
+   "title": "확장 통계: CREATE STATISTICS",
+   "en": "Extended Statistics (CREATE STATISTICS)",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "열끼리 독립이라고 가정해 행 수를 잘못 추정하는 플래너에게 함수 종속·여러 열의 고유값 수·값 조합 MCV 목록을 모아 주는 PostgreSQL 통계 객체다.",
+   "parent": "db.internals.query-planner",
+   "aliases": [
+    "CREATE STATISTICS",
+    "다중 열 통계",
+    "functional dependencies 통계",
+    "ndistinct 통계",
+    "pg_statistic_ext"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/planner-stats.html"
    ],
    "domain": "db"
   },
@@ -71826,6 +72721,191 @@
    "domain": "rag"
   },
   {
+   "id": "rag.agent.pregel-runtime",
+   "title": "LangGraph 실행 엔진의 내부: Pregel 단계와 채널",
+   "en": "LangGraph Runtime Internals: Pregel Steps and Channels",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "컴파일된 그래프가 Pregel 객체가 되어 계획·실행·갱신 단계를 되풀이하며 채널로 값을 주고받는 LangGraph의 실행 모델이다.",
+   "objectives": [
+    "한 단계의 계획·실행·갱신 과정에서 병렬 노드의 쓰기가 다음 단계에야 보이는 이유를 BSP 모델로 설명할 수 있다",
+    "LastValue·Topic·BinaryOperatorAggregate 채널이 같은 단계의 여러 쓰기를 어떻게 다루는지 비교해 상태 칸에 맞는 채널을 고를 수 있다",
+    "크고 자주 쓰이는 상태 칸을 DeltaChannel로 바꿀 때 체크포인트 크기와 읽기 지연, 버전 되돌리기 제약 사이의 손익을 따질 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.graph-api",
+    "rag.agent.checkpoint-persistence"
+   ],
+   "related": [
+    "rag.agent.state-reducer",
+    "rag.agent.recursion-limit"
+   ],
+   "aliases": [
+    "LangGraph Pregel",
+    "LangGraph runtime",
+    "LangGraph 런타임",
+    "Pregel 런타임",
+    "LangGraph 채널"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/pregel",
+    "https://docs.langchain.com/oss/python/langgraph/graph-api"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.qdrant-replication-consistency",
+   "title": "Qdrant 샤드·복제와 일관성의 손익",
+   "en": "Qdrant Sharding, Replication and Consistency Trade-offs",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "벡터 DB",
+   "summary": "Qdrant 클러스터에서 샤드 수·복제 수와 쓰기 확인 수·읽기 일관성·쓰기 순서를 정해 가용성과 일관성, 지연 사이의 균형을 잡는 일이다.",
+   "objectives": [
+    "샤드 수와 복제 수, 사용자 지정 샤드 키가 물리 샤드 수와 저장 비용을 어떻게 늘리는지 계산할 수 있다",
+    "write_consistency_factor와 읽기 consistency 값을 올렸을 때 얻는 일관성과 잃는 가용성·지연을 따질 수 있다",
+    "weak·medium·strong 쓰기 순서가 리더 장애 때 어떻게 다르게 동작하는지 설명하고 작업 부하에 맞게 고를 수 있다",
+    "복제본 사이에서 검색 결과가 오락가락할 때 원인을 기본 일관성 수준에서 찾고 읽기 친화 헤더나 일관성 설정으로 대응할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.vector-db.basics"
+   ],
+   "related": [
+    "rag.vector-db.multitenancy-design",
+    "rag.vector-db.qdrant-memory-quantization"
+   ],
+   "aliases": [
+    "Qdrant 분산 배포",
+    "Qdrant distributed deployment",
+    "Qdrant 복제",
+    "Qdrant replication",
+    "Qdrant 샤딩",
+    "Qdrant sharding"
+   ],
+   "refs": [
+    "https://qdrant.tech/documentation/scaling/distributed_deployment/",
+    "https://qdrant.tech/documentation/scaling/consistency-guarantees/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.qdrant-segment-optimizer",
+   "title": "Qdrant 세그먼트와 최적화기: 색인·삭제 정리·읽기 쓰기 경합",
+   "en": "Qdrant Segments and Optimizers",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "벡터 DB",
+   "summary": "Qdrant가 샤드를 세그먼트로 나누어 뒤에서 색인을 만들고 삭제를 정리하고 합치는 과정과, 그 작업이 검색과 자원을 다투는 문제를 다룬다.",
+   "objectives": [
+    "추가 가능 세그먼트와 색인된 세그먼트의 차이로 indexing_threshold 아래의 작은 세그먼트가 색인 없이 검색되는 이유를 설명할 수 있다",
+    "삭제 표시와 vacuum, 병합 최적화기가 메모리와 세그먼트 수에 주는 영향을 따질 수 있다",
+    "대량 쓰기 중 검색 지연이 늘 때 색인 안 된 큰 세그먼트, 최적화기 CPU 예산, 세그먼트 크기 가운데 원인을 찾고 고칠 순서를 정할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.vector-db.basics"
+   ],
+   "related": [
+    "rag.vector-db.qdrant-memory-quantization",
+    "rag.vector-index.internals"
+   ],
+   "aliases": [
+    "Qdrant 최적화기",
+    "Qdrant optimizer",
+    "Qdrant 세그먼트",
+    "Qdrant segment",
+    "Qdrant 읽기 쓰기 경합",
+    "Qdrant read-write contention"
+   ],
+   "refs": [
+    "https://qdrant.tech/documentation/ops-optimization/optimizer/",
+    "https://qdrant.tech/documentation/ops-optimization/read-write-contention/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.pinecone-serverless-internals",
+   "title": "Pinecone 서버리스의 내부: 요청 로그·멤테이블·슬랩",
+   "en": "Pinecone Serverless Architecture Internals",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "벡터 DB",
+   "summary": "Pinecone 서버리스가 쓰기를 로그와 멤테이블에 먼저 받고 객체 저장소의 불변 슬랩으로 옮긴 뒤 읽기 때 둘을 합치는 구조와 그 손익을 다룬다.",
+   "objectives": [
+    "쓰기가 요청 로그에 남은 순간 응답하고 색인은 뒤에서 만드는 흐름을 따라가며 막 쓴 데이터가 검색되는 이유를 설명할 수 있다",
+    "작은 슬랩을 가볍게 색인하고 커지면 합쳐 다시 색인하는 방식이 색인 비용을 어떻게 나누는지 설명할 수 있다",
+    "캐시에 없는 슬랩을 객체 저장소에서 가져와 캐시하는 경로로 첫 조회 지연을 설명할 수 있다",
+    "읽기 경로와 쓰기 경로를 나눈 구조의 장점과 비용을 단일 노드 벡터 DB와 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.vector-db.basics"
+   ],
+   "related": [
+    "rag.vector-db.pinecone-namespace",
+    "rag.vector-index.internals"
+   ],
+   "aliases": [
+    "Pinecone serverless",
+    "Pinecone 서버리스",
+    "Pinecone architecture",
+    "Pinecone 아키텍처",
+    "Pinecone slab"
+   ],
+   "refs": [
+    "https://docs.pinecone.io/guides/get-started/architecture"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.late-interaction-multivector",
+   "title": "멀티벡터와 늦은 상호작용 검색",
+   "en": "Multivector Late-Interaction Retrieval",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "검색 내부",
+   "summary": "문서를 토큰마다 벡터 하나씩 담은 행렬로 저장하고 MaxSim으로 점수를 내는 ColBERT식 검색의 원리와 저장·색인 비용을 다룬다.",
+   "objectives": [
+    "단일 벡터가 토큰 정보를 뭉개 긴 문서에서 세부를 놓치는 문제를 멀티벡터가 어떻게 줄이는지 설명할 수 있다",
+    "MaxSim 점수가 질의 벡터마다 가장 비슷한 문서 벡터를 골라 더하는 계산임을 설명할 수 있다",
+    "멀티벡터 칸에 HNSW를 끄고 밀집 벡터로 후보를 먼저 뽑은 뒤 멀티벡터로 재순위하는 구성이 메모리와 적재 속도에 주는 이득을 따질 수 있다",
+    "점 하나에 담을 수 있는 하위 벡터 수 한도를 넘을 때 풀링과 문서 분할 가운데 하나를 고를 수 있다"
+   ],
+   "prerequisites": [
+    "rag.retrieval.hybrid-rerank"
+   ],
+   "related": [
+    "rag.retrieval.reranking",
+    "rag.embedding.model-tradeoffs"
+   ],
+   "aliases": [
+    "late interaction",
+    "늦은 상호작용",
+    "ColBERT",
+    "Qdrant multivector",
+    "Qdrant 멀티벡터"
+   ],
+   "refs": [
+    "https://qdrant.tech/documentation/manage-data/vectors/",
+    "https://qdrant.tech/documentation/tutorials-search-engineering/using-multivector-representations/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
    "id": "rag.vector-index.recall",
    "title": "재현율",
    "en": "Recall",
@@ -71838,6 +72918,50 @@
    "aliases": [
     "재현율",
     "recall"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.super-step",
+   "title": "LangGraph 슈퍼스텝",
+   "en": "LangGraph Super-step",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "병렬로 도는 노드들이 함께 묶이는 LangGraph 실행의 한 단위로, 체크포인트가 이 경계에서 저장되고 재귀 한도도 이 수로 센다.",
+   "parent": "rag.agent.pregel-runtime",
+   "related": [
+    "rag.agent.recursion-limit"
+   ],
+   "aliases": [
+    "super-step",
+    "superstep",
+    "슈퍼 스텝",
+    "Pregel 슈퍼스텝"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/graph-api"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.qdrant-write-consistency-factor",
+   "title": "Qdrant write_consistency_factor",
+   "en": "Qdrant Write Consistency Factor",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "벡터 DB",
+   "summary": "쓰기 응답을 돌려주기 전에 몇 개의 복제본이 확인해야 하는지 정하는 Qdrant 컬렉션 설정으로, 높이면 활성 복제본이 모자랄 때 쓰기가 실패한다.",
+   "parent": "rag.vector-db.qdrant-replication-consistency",
+   "aliases": [
+    "write_consistency_factor",
+    "Qdrant 쓰기 일관성",
+    "Qdrant write consistency"
+   ],
+   "refs": [
+    "https://qdrant.tech/documentation/scaling/consistency-guarantees/"
    ],
    "domain": "rag"
   },
@@ -71861,6 +72985,120 @@
    ],
    "refs": [
     "https://sbert.net/examples/sentence_transformer/applications/embedding-quantization/README.html"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.delta-channel",
+   "title": "LangGraph 델타 채널(DeltaChannel)",
+   "en": "LangGraph DeltaChannel",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "누적값 전체 대신 단계마다의 변경분만 체크포인트에 남기고 읽을 때 다시 합치는 LangGraph의 베타 채널이다.",
+   "parent": "rag.agent.pregel-runtime",
+   "related": [
+    "rag.agent.state-reducer"
+   ],
+   "aliases": [
+    "DeltaChannel",
+    "델타 채널",
+    "snapshot_frequency"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/pregel"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.qdrant-read-consistency",
+   "title": "Qdrant 읽기 일관성(consistency)",
+   "en": "Qdrant Read Consistency",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "벡터 DB",
+   "summary": "검색 요청마다 몇 개의 복제본에 물어 어떤 점을 돌려줄지 all·majority·quorum·숫자로 고르는 Qdrant 읽기 설정이다.",
+   "parent": "rag.vector-db.qdrant-replication-consistency",
+   "related": [
+    "rag.vector-db.qdrant-write-ordering"
+   ],
+   "aliases": [
+    "Qdrant read consistency",
+    "Qdrant 읽기 일관성 수준",
+    "Qdrant quorum 읽기"
+   ],
+   "refs": [
+    "https://qdrant.tech/documentation/scaling/consistency-guarantees/"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.qdrant-write-ordering",
+   "title": "Qdrant 쓰기 순서 보장(ordering)",
+   "en": "Qdrant Write Ordering",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "벡터 DB",
+   "summary": "복제본들이 쓰기를 같은 순서로 적용하도록 weak·medium·strong 가운데 고르는 Qdrant 쓰기 설정으로, 강할수록 리더 장애 때 쓰기를 못 할 수 있다.",
+   "parent": "rag.vector-db.qdrant-replication-consistency",
+   "related": [
+    "rag.vector-db.qdrant-read-consistency"
+   ],
+   "aliases": [
+    "Qdrant write ordering",
+    "Qdrant ordering",
+    "Qdrant 쓰기 순서"
+   ],
+   "refs": [
+    "https://qdrant.tech/documentation/scaling/consistency-guarantees/"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.qdrant-prevent-unoptimized",
+   "title": "Qdrant 미색인 점 미루기(prevent_unoptimized)",
+   "en": "Qdrant prevent_unoptimized",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "벡터 DB",
+   "summary": "색인이 안 된 큰 세그먼트를 검색이 훑지 않도록 새 점을 색인 뒤까지 숨기는 Qdrant 실험 설정으로, 검색은 빨라지지만 wait=true 쓰기가 오래 막힐 수 있다.",
+   "parent": "rag.vector-db.qdrant-segment-optimizer",
+   "aliases": [
+    "prevent_unoptimized",
+    "Qdrant deferred points",
+    "Qdrant 지연 점"
+   ],
+   "refs": [
+    "https://qdrant.tech/documentation/ops-optimization/read-write-contention/",
+    "https://qdrant.tech/documentation/ops-optimization/optimizer/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.maxsim",
+   "title": "MaxSim 점수",
+   "en": "MaxSim Score",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "검색 내부",
+   "summary": "질의의 각 벡터마다 문서 벡터 가운데 가장 높은 유사도를 골라 모두 더해 점 하나의 점수를 내는 멀티벡터 비교 방식이다.",
+   "parent": "rag.retrieval.late-interaction-multivector",
+   "aliases": [
+    "MaxSim",
+    "max_sim",
+    "Qdrant max_sim"
+   ],
+   "refs": [
+    "https://qdrant.tech/documentation/manage-data/vectors/"
    ],
    "domain": "rag"
   },
@@ -81110,6 +82348,157 @@
    "domain": "ax"
   },
   {
+   "id": "ax.coding.session-persistence-internals",
+   "title": "에이전트 세션 저장과 이어가기의 내부와 손익",
+   "en": "Agent Session Persistence and Resume Internals",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "코딩 에이전트가 대화를 줄 단위 기록으로 남기고 이어가기 때 무엇을 되살리고 무엇을 버리는지 알고, 비용·보안·운영의 손익을 따져 저장 방식을 정한다.",
+   "objectives": [
+    "세션 기록 JSONL이 메시지·도구 호출과 결과·모델 요청·메타데이터를 줄마다 담고 형식이 버전마다 바뀐다는 점을 근거로 직접 파싱 대신 /export·claude -p --resume·훅의 transcript_path 가운데 알맞은 쪽을 고를 수 있다",
+    "이어가기가 대화·모델·에이전트·일부 권한 모드는 되살리지만 파일 상태·실행 옵션·중단된 도구 호출은 되살리지 않고, 압축된 세션은 마지막 요약부터 열린다는 점으로 이어 간 세션의 이상 동작 원인을 찾을 수 있다",
+    "오래 쉰 세션을 이어 갈지 결과만 새 세션에 넘길지 고를 수 있다",
+    "기록이 로컬에 평문으로 기본 30일 남는 위험을 보존 기간 설정·기록 쓰기 끄기·외부 저장소의 자체 보존 규칙과 견주어 저장 정책을 정할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.session-resume",
+    "ax.coding.claude-code-context-window"
+   ],
+   "related": [
+    "ax.coding.session-transcript",
+    "ax.coding.agent-data-usage",
+    "llm.internals.context-management",
+    "ax.coding.agent-prompt-cache-layers"
+   ],
+   "aliases": [
+    "세션 저장 내부",
+    "session persistence",
+    "Claude Code 세션 복원",
+    "에이전트 대화 기록 저장",
+    "Agent SDK resume"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/sessions",
+    "https://code.claude.com/docs/en/agent-sdk/sessions",
+    "https://code.claude.com/docs/en/data-usage",
+    "https://genai.owasp.org/llmrisk/llm022025-sensitive-information-disclosure/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.agent-prompt-cache-layers",
+   "title": "코딩 에이전트 프롬프트 캐시의 층과 무효화 손익",
+   "en": "Prompt Cache Layers and Invalidation in Coding Agents",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "Claude Code가 요청을 시스템 프롬프트·프로젝트 문맥·대화 순으로 쌓아 앞부분 캐시를 재사용하는 구조를 알고, 어떤 행동이 캐시를 깨 비용과 지연을 키우는지 따진다.",
+   "objectives": [
+    "시스템 프롬프트·프로젝트 문맥·대화 세 층의 순서와 접두사 정확 일치 규칙으로 어떤 변경이 캐시 전체를 무효화하고 어떤 변경은 대화 층만 다시 쓰는지 설명할 수 있다",
+    "모델·노력 수준·빠른 모드 전환, 도구 검색이 꺼져 도구 정의가 앞에 실릴 때의 MCP 서버 연결·도구 전체 거부, 압축이 다음 요청을 비싸게 만드는 이유를 알고 작업 중 변경 시점을 정할 수 있다",
+    "5분과 1시간 캐시 수명의 쓰기 단가와 유휴 시간을 견주어 주 대화와 하위 에이전트의 수명 설정을 정할 수 있다",
+    "cache_creation·cache_read 토큰과 /usage의 캐시 줄로 적중률이 낮은 원인을 찾고, 게이트웨이가 cache_control 표시를 지우는 경우를 가려낼 수 있다"
+   ],
+   "prerequisites": [
+    "llm.internals.prompt-caching",
+    "ax.coding.claude-code-context-window"
+   ],
+   "related": [
+    "ax.coding.agent-team-cost-control",
+    "ax.coding.llm-gateway-routing"
+   ],
+   "aliases": [
+    "Claude Code 프롬프트 캐시",
+    "Claude Code prompt caching"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/prompt-caching"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.agent-sdk-hosting",
+   "title": "Agent SDK 호스팅: 하위 프로세스 구조와 테넌트 격리",
+   "en": "Hosting the Agent SDK: Subprocess Model and Tenant Isolation",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "Agent SDK가 세션마다 로컬 상태를 가진 CLI 하위 프로세스를 띄운다는 구조에서 출발해 세션 패턴·확장·테넌트 격리의 손익을 따져 배포를 설계한다.",
+   "objectives": [
+    "query()가 세션마다 claude CLI 하위 프로세스를 띄우고 기록·CLAUDE.md·작업 폴더를 로컬 디스크에 둔다는 구조에서 재시작·축소·노드 이동 때 무엇이 사라지는지 설명할 수 있다",
+    "일회성·장기 실행·하이브리드·다중 에이전트 컨테이너 패턴을 작업 성격과 유휴 시간에 맞춰 고르고 하이브리드에 세션 저장소가 꼭 필요한 이유를 말할 수 있다",
+    "공유 컨테이너에서 설정·CLAUDE.md·자동 메모리를 통한 테넌트 간 문맥 누수를 settingSources·CLAUDE_CONFIG_DIR·테넌트별 작업 폴더·egress 규칙으로 막을 수 있다",
+    "세션당 최대 메모리로 호스트당 에이전트 수를 계산하고, 세션 전체 시간 제한이 없는 한계를 maxTurns와 하위 프로세스 재활용으로 보완할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.claude-agent-sdk-quickstart",
+    "ax.security.agent-secure-deployment"
+   ],
+   "related": [
+    "be.run.scaling"
+   ],
+   "aliases": [
+    "Agent SDK hosting",
+    "Agent SDK 배포",
+    "Claude Agent SDK 호스팅",
+    "에이전트 다중 테넌트 격리",
+    "SDK 하위 프로세스 구조"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/agent-sdk/hosting",
+    "https://code.claude.com/docs/en/agent-sdk/session-storage"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.self-hosted-env-trust",
+   "title": "자체 호스팅 클라우드 세션 실행기의 신뢰 경계와 강화",
+   "en": "Trust Boundaries and Hardening for Self-Hosted Claude Code Environments",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "Claude Code 클라우드 세션을 우리 인프라의 실행기에서 돌릴 때 누가 코드를 실행할 수 있는지 경계를 긋고, 격리·egress·자격 증명·세션 신원 검증의 손익을 따진다.",
+   "objectives": [
+    "조직 구성원과 Claude Tag 접근 허용 대상이 모두 실행기 호스트에 코드를 보낼 수 있다는 신뢰 경계를 근거로 호스트에 둘 데이터와 자격 증명을 정할 수 있다",
+    "세션당 일회용 컨테이너, 환경 시크릿을 따로 두는 온디맨드 실행기, 클라우드 메타데이터 엔드포인트 차단, 기본 거부 egress가 각각 막는 위험과 운영 비용을 견줄 수 있다",
+    "세션 접근 토큰을 접두사·서명·발급자·대상·역할·만료 순으로 검증하고, 세션 안의 어떤 코드든 토큰을 꺼내 쓸 수 있고 폐기 목록이 없다는 한계에 맞춰 파생 자격 증명을 좁힐 수 있다",
+    "git 자격 증명을 실행기 관리 서명, 이미지에 넣은 좁은 자격 증명, Anthropic 관리 git 프록시 가운데 무엇으로 줄지 데이터가 머무는 곳과 제약을 근거로 고를 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.cloud-sessions",
+    "ax.security.agent-identity-delegation"
+   ],
+   "related": [
+    "ax.coding.copilot-self-hosted-runner",
+    "ax.security.task-scoped-credentials",
+    "ax.coding.sandbox-internals"
+   ],
+   "aliases": [
+    "self-hosted environments",
+    "자체 호스팅 환경",
+    "Claude Code 자체 호스팅 실행기",
+    "--lock-to-account"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/self-hosted-environments-deploy",
+    "https://code.claude.com/docs/en/self-hosted-environments-identity"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
    "id": "ax.security.model-provenance",
    "title": "모델 출처 검증",
    "en": "Model Provenance",
@@ -81145,6 +82534,87 @@
     "backdoor trigger",
     "모델 백도어"
    ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.session-store-adapter",
+   "title": "세션 저장소 어댑터(SessionStore)",
+   "en": "SessionStore Adapter",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "Agent SDK가 로컬에 먼저 쓴 세션 기록을 객체 저장소·키값 저장소·DB로 복사해 다른 호스트에서도 이어 가게 하는 append·load 인터페이스다.",
+   "parent": "ax.coding.session-persistence-internals",
+   "related": [
+    "ax.coding.agent-sdk-hosting"
+   ],
+   "aliases": [
+    "SessionStore",
+    "session_store",
+    "세션 미러 저장소",
+    "mirror_error",
+    "Agent SDK 세션 저장소"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/agent-sdk/session-storage"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.sdk-tenant-context-leak",
+   "title": "공유 컨테이너의 테넌트 문맥 누수",
+   "en": "Cross-Tenant Context Leakage in Shared Agent Containers",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "한 컨테이너가 여러 테넌트의 에이전트를 돌릴 때 파일에서 읽는 설정·CLAUDE.md·자동 메모리가 다른 테넌트 세션의 문맥으로 섞여 드는 위험이다.",
+   "parent": "ax.coding.agent-sdk-hosting",
+   "related": [
+    "ax.security.sensitive-info-disclosure"
+   ],
+   "aliases": [
+    "테넌트 문맥 누수",
+    "cross-tenant leakage",
+    "settingSources 격리",
+    "CLAUDE_CODE_DISABLE_AUTO_MEMORY"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/agent-sdk/hosting",
+    "https://genai.owasp.org/llmrisk/llm022025-sensitive-information-disclosure/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.session-access-token",
+   "title": "자체 호스팅 세션 접근 토큰",
+   "en": "Self-Hosted Session Access Token",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "자체 호스팅 환경의 각 세션에 주어지는 서명된 JWT로, 내부 서비스가 요청이 우리 환경의 세션에서 왔는지와 세션을 만든 사용자를 확인하게 해 준다.",
+   "parent": "ax.coding.self-hosted-env-trust",
+   "related": [
+    "be.auth.jwt-attacks"
+   ],
+   "aliases": [
+    "CLAUDE_CODE_SESSION_ACCESS_TOKEN",
+    "sk-ant-cc 토큰",
+    "Claude Code 세션 JWT",
+    "session_worker 토큰",
+    "ccr JWKS"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/self-hosted-environments-identity"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "ax"
   },
   {
@@ -81206,6 +82676,100 @@
     "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2025.pdf",
     "https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/"
    ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.resume-compaction-boundary",
+   "title": "이어가기의 압축 경계",
+   "en": "Compaction Boundary on Resume",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "압축된 세션을 이어 가면 마지막 요약과 그 뒤 메시지만 다시 불러오고, 요약된 이전 메시지는 기록 파일에 남아 있어도 모델에 보내지 않는 경계다.",
+   "parent": "ax.coding.session-persistence-internals",
+   "related": [
+    "ax.coding.compact-command"
+   ],
+   "aliases": [
+    "Conversation compacted 경계",
+    "압축 후 이어가기",
+    "post-compaction chain",
+    "getSessionMessages 압축"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/sessions",
+    "https://code.claude.com/docs/en/agent-sdk/session-storage"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.prompt-cache-ttl-bucket",
+   "title": "Claude Code 캐시 수명 버킷(promptCacheTtl)",
+   "en": "Claude Code Prompt Cache TTL Buckets",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "주 대화와 그 밖의 요청(하위 에이전트·압축·세션 제목 등)에 5분 또는 1시간 캐시 수명을 따로 매기는 Claude Code 규칙과 그 설정이다.",
+   "parent": "ax.coding.agent-prompt-cache-layers",
+   "aliases": [
+    "promptCacheTtl",
+    "subagentPromptCacheTtl",
+    "CLAUDE_CODE_PROMPT_CACHE_TTL",
+    "FORCE_PROMPT_CACHING_5M",
+    "Claude Code 캐시 TTL 설정"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/prompt-caching"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.prompt-cache-scope",
+   "title": "Claude Code 프롬프트 캐시 공유 범위",
+   "en": "Claude Code Prompt Cache Scope",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "시스템 프롬프트에 자동 메모리 경로가, 대화 첫머리에 작업 폴더·git 상태가 들어가 캐시가 사실상 한 기계의 한 폴더 안에서만 공유되는 범위다.",
+   "parent": "ax.coding.agent-prompt-cache-layers",
+   "aliases": [
+    "세션 간 캐시 공유",
+    "Claude Code 캐시 공유",
+    "Claude Code 캐시 범위"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/prompt-caching"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.runner-environment-secret",
+   "title": "자체 호스팅 환경 시크릿(environment secret)",
+   "en": "Self-Hosted Environment Secret",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "실행기를 자체 호스팅 환경에 등록하는 비밀값으로, 고정 실행기에서는 같은 호스트의 세션이 읽을 수 있어 온디맨드 실행기와 교체 절차로 지킨다.",
+   "parent": "ax.coding.self-hosted-env-trust",
+   "aliases": [
+    "claude-runner-environment-secret",
+    "Claude Code 자체 호스팅 환경 시크릿"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/self-hosted-environments-deploy"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "ax"
   },
   {
