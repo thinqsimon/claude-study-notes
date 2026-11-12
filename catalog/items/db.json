@@ -8651,6 +8651,71 @@
     ]
   },
   {
+    "id": "db.internals.checkpoints",
+    "title": "PostgreSQL 체크포인트와 WAL 쓰기 비용",
+    "en": "PostgreSQL Checkpoints and WAL Write Cost",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "DB 내부",
+    "summary": "더러운 페이지를 디스크에 내려 복구 시작점을 앞당기는 체크포인트가 간격에 따라 I/O 급증과 WAL 양 사이에서 만드는 손익을 따진다.",
+    "objectives": [
+      "checkpoint_timeout(기본 5분)과 max_wal_size(기본 1GB) 가운데 먼저 닿는 쪽이 체크포인트를 일으키는 과정을 설명할 수 있다",
+      "체크포인트 간격을 줄이면 복구는 빨라지지만 전체 페이지 쓰기 때문에 WAL과 디스크 I/O가 늘어나는 까닭을 설명할 수 있다",
+      "checkpoint_warning 로그 메시지를 보고 큰 COPY 같은 작업 중 max_wal_size가 너무 작은지 판단할 수 있다",
+      "대기 서버의 restartpoint가 주 서버 체크포인트보다 잦을 수 없어 복구 중 max_wal_size를 넘을 수 있는 까닭을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "db.internals.wal-replication"
+    ],
+    "aliases": [
+      "PostgreSQL 체크포인트",
+      "PostgreSQL checkpoint",
+      "checkpoint_timeout",
+      "max_wal_size",
+      "restartpoint"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/wal-configuration.html",
+      "https://www.postgresql.org/docs/current/runtime-config-wal.html"
+    ]
+  },
+  {
+    "id": "db.internals.replication-slots",
+    "title": "복제 슬롯과 논리 디코딩의 내부",
+    "en": "Replication Slots and Logical Decoding Internals",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "DB 내부",
+    "summary": "소비자가 받아 갈 때까지 WAL과 카탈로그 행을 붙잡아 두는 복제 슬롯이 끊김 없는 복제를 보장하는 대신 디스크 고갈과 VACUUM 정체를 부르는 구조를 다룬다.",
+    "objectives": [
+      "WAL을 행 단위 변경으로 풀어내는 논리 디코딩과 출력 플러그인의 역할을 설명할 수 있다",
+      "쓰이지 않는 슬롯이 WAL과 xmin·catalog_xmin을 붙잡아 pg_wal이 차거나 트랜잭션 ID 겹침 위험이 커지는 과정을 설명할 수 있다",
+      "pg_replication_slots의 wal_status·safe_wal_size·invalidation_reason으로 위험한 슬롯을 찾을 수 있다",
+      "장애 전환 뒤에도 논리 복제를 이으려면 failover 슬롯과 sync_replication_slots 같은 조건이 필요한 까닭을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "db.internals.wal-replication",
+      "db.internals.mvcc-vacuum"
+    ],
+    "related": [
+      "db.sql.logical-replication"
+    ],
+    "aliases": [
+      "복제 슬롯",
+      "replication slot",
+      "논리 디코딩",
+      "logical decoding",
+      "pg_replication_slots"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/logicaldecoding-explanation.html",
+      "https://www.postgresql.org/docs/current/warm-standby.html",
+      "https://www.postgresql.org/docs/current/view-pg-replication-slots.html"
+    ]
+  },
+  {
     "id": "db.internals.wal-replication",
     "title": "WAL과 복제",
     "en": "WAL and Replication",
@@ -8731,6 +8796,101 @@
     ]
   },
   {
+    "id": "db.internals.jit",
+    "title": "PostgreSQL JIT 컴파일의 손익",
+    "en": "PostgreSQL JIT Compilation Trade-offs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "DB 내부",
+    "summary": "LLVM으로 식 평가와 튜플 풀기를 기계어로 만들어 긴 분석 쿼리를 빠르게 하는 대신, 컴파일 시간이 짧은 쿼리에서는 손해가 되는 구조를 따진다.",
+    "objectives": [
+      "JIT가 빠르게 하는 식 평가·튜플 변형·인라인·최적화를 구분해 설명할 수 있다",
+      "플래너의 추정 총비용과 세 임계값으로 JIT·인라인·최적화 여부가 정해지는 과정을 설명할 수 있다",
+      "EXPLAIN ANALYZE의 JIT 절에서 Options와 Timing을 읽어 컴파일 시간이 실행 시간보다 큰 경우를 찾을 수 있다",
+      "일반 계획을 쓰는 준비된 문장에서는 PREPARE 때의 설정이 JIT 여부를 정한다는 점을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "db.internals.query-planner"
+    ],
+    "related": [
+      "cs.lang.jit-compiler"
+    ],
+    "aliases": [
+      "PostgreSQL JIT",
+      "jit = off",
+      "PostgreSQL 쿼리 JIT"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/jit-reason.html",
+      "https://www.postgresql.org/docs/current/jit-decision.html"
+    ]
+  },
+  {
+    "id": "db.internals.join-order-search",
+    "title": "조인 순서 탐색: 완전 탐색과 GEQO",
+    "en": "Join Order Search: Exhaustive Planning and GEQO",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "DB 내부",
+    "summary": "표가 늘수록 조인 순서 경우의 수가 지수로 커져 PostgreSQL이 FROM 항목 12개부터 유전 알고리즘 GEQO로 바꾸며, 계획 시간과 계획 품질을 맞바꾸는 구조를 다룬다.",
+    "objectives": [
+      "조인 순서 경우의 수가 지수로 늘어 표가 많을 때 완전 탐색이 비현실적인 까닭을 설명할 수 있다",
+      "GEQO가 조인 순서를 정수 문자열로 표현하고 비용이 낮은 후보를 조합해 계획을 찾는 방식을 설명할 수 있다",
+      "geqo_seed가 같으면 같은 계획이 나오고 바꾸면 다른 계획이 나올 수 있는 까닭을 설명할 수 있다",
+      "join_collapse_limit과 from_collapse_limit을 줄이면 계획 시간이 줄지만 더 나쁜 계획이 나올 수 있는 손익을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "db.internals.query-planner"
+    ],
+    "aliases": [
+      "GEQO",
+      "유전 질의 최적화",
+      "genetic query optimizer",
+      "geqo_threshold",
+      "PostgreSQL 조인 순서 탐색"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/geqo-pg-intro.html",
+      "https://www.postgresql.org/docs/current/explicit-joins.html",
+      "https://www.postgresql.org/docs/current/runtime-config-query.html"
+    ]
+  },
+  {
+    "id": "db.internals.ssi",
+    "title": "직렬화 가능 스냅숏 격리(SSI)의 내부",
+    "en": "Serializable Snapshot Isolation (SSI) Internals",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "DB 내부",
+    "summary": "PostgreSQL Serializable이 막지 않는 술어 잠금으로 동시 트랜잭션의 읽기·쓰기 의존을 추적해 직렬 순서와 어긋날 때만 한쪽을 취소하는 방식과 그 비용을 다룬다.",
+    "objectives": [
+      "술어 잠금이 대기나 교착 상태를 만들지 않고 읽기·쓰기 의존만 기록하는 까닭을 설명할 수 있다",
+      "pg_locks에서 SIReadLock을 찾아 어떤 표·페이지·튜플 단위로 잠금이 잡혔는지 확인할 수 있다",
+      "술어 잠금이 페이지나 표 단위로 합쳐지거나 순차 탐색이 표 단위 잠금을 잡을 때 직렬화 실패가 늘어나는 까닭을 설명할 수 있다",
+      "READ ONLY 선언, 짧은 트랜잭션, 불필요한 SELECT FOR UPDATE 제거가 SSI 비용을 줄이는 근거를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "db.internals.isolation-levels"
+    ],
+    "related": [
+      "db.internals.locks",
+      "db.sql.transaction-retry"
+    ],
+    "aliases": [
+      "PostgreSQL SSI",
+      "Serializable Snapshot Isolation",
+      "SIReadLock",
+      "직렬화 가능 스냅숏 격리"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/transaction-iso.html#XACT-SERIALIZABLE",
+      "https://www.postgresql.org/docs/current/runtime-config-locks.html"
+    ]
+  },
+  {
     "id": "db.internals.xid-wraparound",
     "title": "트랜잭션 ID 겹침과 동결(freeze)",
     "en": "Transaction ID Wraparound and Freezing",
@@ -8770,6 +8930,47 @@
     ],
     "refs": [
       "https://www.postgresql.org/docs/current/wal-async-commit.html"
+    ]
+  },
+  {
+    "id": "db.internals.max-slot-wal-keep-size",
+    "title": "max_slot_wal_keep_size: 슬롯이 붙잡을 WAL 상한",
+    "en": "max_slot_wal_keep_size",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "DB 내부",
+    "summary": "복제 슬롯이 pg_wal에 남겨 둘 WAL 양의 상한으로, 기본값 -1은 무제한이고 상한을 넘은 슬롯은 필요한 WAL을 잃어 lost 상태가 될 수 있다.",
+    "parent": "db.internals.replication-slots",
+    "aliases": [
+      "max_slot_wal_keep_size",
+      "슬롯 WAL 보존 상한",
+      "wal_status lost"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/runtime-config-replication.html",
+      "https://www.postgresql.org/docs/current/view-pg-replication-slots.html"
+    ]
+  },
+  {
+    "id": "db.internals.partition-pruning",
+    "title": "파티션 정리: 계획 시점과 실행 시점",
+    "en": "Partition Pruning: Planning-Time and Execution-Time",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "DB 내부",
+    "summary": "파티션 경계로 조건에 맞지 않는 파티션을 계획 때나 실행 중에 빼는 최적화로, EXPLAIN에 Subplans Removed나 (never executed)로 드러난다.",
+    "parent": "db.internals.partitioning",
+    "aliases": [
+      "partition pruning",
+      "파티션 프루닝",
+      "enable_partition_pruning",
+      "Subplans Removed"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/ddl-partitioning.html#DDL-PARTITION-PRUNING",
+      "https://www.postgresql.org/docs/current/runtime-config-query.html"
     ]
   },
   {
@@ -8872,6 +9073,129 @@
     ],
     "refs": [
       "https://www.postgresql.org/docs/current/planner-stats.html"
+    ]
+  },
+  {
+    "id": "db.internals.full-page-writes",
+    "title": "full_page_writes: 전체 페이지 기록",
+    "en": "full_page_writes (Full-Page Images in WAL)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "DB 내부",
+    "summary": "체크포인트 뒤 처음 바뀌는 페이지 전체를 WAL에 남겨 반쯤 쓰인 페이지를 복구하게 하는 설정으로, 기본값은 on이고 끄면 장애 뒤 데이터가 깨질 수 있다.",
+    "parent": "db.internals.checkpoints",
+    "aliases": [
+      "full_page_writes",
+      "전체 페이지 이미지",
+      "full page image",
+      "wal_compression"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/runtime-config-wal.html",
+      "https://www.postgresql.org/docs/current/wal-configuration.html"
+    ]
+  },
+  {
+    "id": "db.internals.checkpoint-completion-target",
+    "title": "checkpoint_completion_target",
+    "en": "checkpoint_completion_target",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "DB 내부",
+    "summary": "체크포인트의 페이지 쓰기를 다음 체크포인트까지 시간의 몇 분의 일에 걸쳐 나눌지 정하는 값으로, 기본값 0.9에서 낮추면 I/O가 짧게 몰린다.",
+    "parent": "db.internals.checkpoints",
+    "aliases": [
+      "checkpoint_completion_target",
+      "체크포인트 완료 목표",
+      "체크포인트 I/O 분산"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/runtime-config-wal.html",
+      "https://www.postgresql.org/docs/current/wal-configuration.html"
+    ]
+  },
+  {
+    "id": "db.internals.jit-above-cost",
+    "title": "jit_above_cost와 JIT 비용 임계값",
+    "en": "jit_above_cost and JIT Cost Thresholds",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "DB 내부",
+    "summary": "추정 비용이 기본 100000을 넘으면 JIT를 켜고, 기본 500000을 넘으면 인라인과 비싼 최적화까지 하게 하는 세 가지 설정이다.",
+    "parent": "db.internals.jit",
+    "aliases": [
+      "jit_above_cost",
+      "jit_inline_above_cost",
+      "jit_optimize_above_cost"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/runtime-config-query.html",
+      "https://www.postgresql.org/docs/current/jit-decision.html"
+    ]
+  },
+  {
+    "id": "db.internals.join-collapse-limit",
+    "title": "join_collapse_limit: 명시 조인 순서 고정",
+    "en": "join_collapse_limit",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "DB 내부",
+    "summary": "FULL JOIN을 뺀 명시 JOIN을 FROM 목록으로 펴서 순서를 바꿀 수 있게 하는 항목 수 상한으로, 기본값은 from_collapse_limit과 같은 8이고 1이면 쓴 순서대로 조인한다.",
+    "parent": "db.internals.join-order-search",
+    "aliases": [
+      "join_collapse_limit",
+      "from_collapse_limit",
+      "조인 순서 고정"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/runtime-config-query.html",
+      "https://www.postgresql.org/docs/current/explicit-joins.html"
+    ]
+  },
+  {
+    "id": "db.internals.predicate-lock-promotion",
+    "title": "술어 잠금 승격: max_pred_locks 설정",
+    "en": "Predicate Lock Promotion (max_pred_locks_*)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "DB 내부",
+    "summary": "튜플 술어 잠금이 한 페이지에 2개(max_pred_locks_per_page)를 넘거나 한 표에 일정 수를 넘으면 더 굵은 잠금으로 합쳐져 메모리는 아끼지만 직렬화 실패가 늘 수 있다.",
+    "parent": "db.internals.ssi",
+    "aliases": [
+      "max_pred_locks_per_transaction",
+      "max_pred_locks_per_relation",
+      "max_pred_locks_per_page",
+      "술어 잠금 승격"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/runtime-config-locks.html",
+      "https://www.postgresql.org/docs/current/transaction-iso.html#XACT-SERIALIZABLE"
+    ]
+  },
+  {
+    "id": "db.internals.serializable-deferrable",
+    "title": "SERIALIZABLE READ ONLY DEFERRABLE",
+    "en": "Deferrable Read-Only Serializable Transactions",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "DB 내부",
+    "summary": "시작할 때 안전한 스냅숏을 얻을 때까지 기다린 뒤 술어 잠금 없이 돌아 직렬화 실패로 취소되지 않는 읽기 전용 Serializable 트랜잭션이다.",
+    "parent": "db.internals.ssi",
+    "aliases": [
+      "READ ONLY DEFERRABLE",
+      "DEFERRABLE 트랜잭션",
+      "deferrable transaction",
+      "안전한 스냅숏"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/transaction-iso.html#XACT-SERIALIZABLE",
+      "https://www.postgresql.org/docs/current/sql-set-transaction.html"
     ]
   }
 ]

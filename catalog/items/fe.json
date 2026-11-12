@@ -7130,6 +7130,41 @@
     ]
   },
   {
+    "id": "fe.react.transitions",
+    "title": "React Transition과 중단 가능한 렌더링",
+    "en": "React Transitions and Interruptible Rendering",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "React",
+    "summary": "일부 상태 업데이트를 Transition으로 표시해 배경에서 렌더링하고, 더 새로운 입력이 오면 그 렌더링을 중단하게 하는 React의 업데이트 방식이다.",
+    "objectives": [
+      "Transition으로 표시된 업데이트가 사용자 입력을 막지 않고 새 업데이트에 의해 중단되는 이유를 설명할 수 있다",
+      "await 뒤나 setTimeout 안의 상태 업데이트가 Transition으로 취급되지 않는 원인을 찾을 수 있다",
+      "Transition 중에 이미 보인 내용은 Suspense 대체 UI로 바뀌지 않는다는 점을 근거로 로딩 표시 방식을 고를 수 있다",
+      "useDeferredValue의 배경 렌더링과 디바운스·스로틀의 차이를 근거로 느린 화면을 다룰 방법을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "fe.internals.react-memoization"
+    ],
+    "related": [
+      "fe.react.suspense-boundary",
+      "fe.internals.react-reconciliation"
+    ],
+    "aliases": [
+      "React Transition",
+      "useTransition",
+      "startTransition",
+      "비차단 상태 업데이트"
+    ],
+    "refs": [
+      "https://react.dev/reference/react/useTransition",
+      "https://react.dev/reference/react/useDeferredValue"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "fe.internals.service-worker-caching",
     "title": "서비스 워커 캐싱 전략 고르기",
     "en": "Choosing Service Worker Caching Strategies",
@@ -8019,6 +8054,44 @@
     ]
   },
   {
+    "id": "fe.react.use-deferred-value",
+    "title": "useDeferredValue",
+    "en": "useDeferredValue",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "React",
+    "summary": "값의 뒤처진 버전을 돌려주어 먼저 옛 값으로 렌더링하고 새 값은 중단 가능한 배경 렌더링으로 그리게 하는 React Hook이다.",
+    "parent": "fe.react.transitions",
+    "aliases": [
+      "useDeferredValue 훅",
+      "React 지연 값"
+    ],
+    "refs": [
+      "https://react.dev/reference/react/useDeferredValue"
+    ]
+  },
+  {
+    "id": "fe.security.subresource-integrity",
+    "title": "하위 리소스 무결성(SRI)",
+    "en": "Subresource Integrity",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "프론트엔드 내부",
+    "summary": "CDN 같은 제3자에게서 받은 스크립트·스타일시트가 integrity 속성의 해시와 맞는지 브라우저가 확인하고, 다르면 불러오지 않는 방어 기법이다.",
+    "aliases": [
+      "SRI",
+      "integrity 속성",
+      "integrity attribute"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Subresource_Integrity"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "fe.internals.server-only",
     "title": "server-only와 client-only",
     "en": "server-only and client-only",
@@ -8392,6 +8465,27 @@
     ]
   },
   {
+    "id": "fe.internals.import-map",
+    "title": "가져오기 맵(import map)",
+    "en": "Import Map",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "프론트엔드 내부",
+    "summary": "script type=\"importmap\" 안의 JSON으로 import 문과 import()의 모듈 지정자를 어떤 URL로 풀지 정하는 브라우저 기능이다.",
+    "related": [
+      "fe.internals.module-graph-evaluation"
+    ],
+    "aliases": [
+      "import map",
+      "importmap",
+      "임포트 맵"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script/type/importmap"
+    ]
+  },
+  {
     "id": "fe.internals.render-pipeline",
     "title": "브라우저 렌더링 파이프라인",
     "en": "Browser Rendering Pipeline",
@@ -8623,6 +8717,97 @@
     ]
   },
   {
+    "id": "fe.internals.shared-memory-atomics",
+    "title": "SharedArrayBuffer와 Atomics로 스레드 간 메모리 공유",
+    "en": "Shared Memory with SharedArrayBuffer and Atomics",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "프론트엔드 내부",
+    "summary": "메인 스레드와 워커가 같은 메모리 블록을 함께 읽고 쓰게 하고, 원자적 연산으로 그 접근을 동기화하는 구조다.",
+    "objectives": [
+      "SharedArrayBuffer를 postMessage로 보낼 때 복사·전송과 달리 같은 메모리를 가리키게 된다는 점을 설명할 수 있다",
+      "교차 출처 격리가 없으면 SharedArrayBuffer 생성자가 숨겨지는 이유를 Spectre 대응과 연결해 설명할 수 있다",
+      "동기화 없이 여러 에이전트가 같은 바이트를 쓸 때 생기는 문제를 Atomics 연산으로 막는 방법을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "fe.internals.web-workers",
+      "fe.security.cross-origin-isolation"
+    ],
+    "related": [
+      "fe.internals.transferable-objects",
+      "fe.internals.structured-clone"
+    ],
+    "aliases": [
+      "SharedArrayBuffer",
+      "Atomics 객체",
+      "JavaScript 공유 메모리",
+      "JS shared memory"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics"
+    ]
+  },
+  {
+    "id": "fe.internals.streams-backpressure",
+    "title": "Streams API의 역압과 내부 큐",
+    "en": "Backpressure and Internal Queues in the Streams API",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "프론트엔드 내부",
+    "summary": "파이프 체인의 아래쪽이 바쁘면 위쪽 생산을 늦추도록 내부 큐와 큐 전략으로 신호를 보내는 Streams API의 흐름 제어다.",
+    "objectives": [
+      "ReadableStream·WritableStream·TransformStream이 pipeThrough와 pipeTo로 이어질 때 데이터가 흐르는 길을 설명할 수 있다",
+      "desiredSize가 0 이하가 되는 상황을 보고 원본에 생산을 멈추라고 알려야 하는지 판단할 수 있다",
+      "스트림 잠금과 tee()로 하나의 응답 본문을 두 곳에서 읽는 방법의 차이를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.internals.event-loop"
+    ],
+    "related": [
+      "be.run.backpressure"
+    ],
+    "aliases": [
+      "Streams API 역압",
+      "스트림 역압",
+      "pipeThrough"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/API/Streams_API/Concepts"
+    ]
+  },
+  {
+    "id": "fe.internals.module-graph-evaluation",
+    "title": "ES 모듈 그래프의 연결과 평가",
+    "en": "Linking and Evaluating the ES Module Graph",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "프론트엔드 내부",
+    "summary": "불러온 모듈들을 깊이 우선으로 연결한 뒤 순환은 강하게 연결된 묶음으로 함께 평가하고, 최상위 await가 있으면 비동기로 평가하는 표준 절차다.",
+    "objectives": [
+      "Cyclic Module Record의 상태가 unlinked에서 linked, evaluated로 바뀌는 순서를 설명할 수 있다",
+      "순환 import에 든 모듈들이 같은 순환 루트를 공유해 함께 상태를 바꾸는 이유를 설명할 수 있다",
+      "최상위 await가 있는 모듈이 그것을 불러오는 모듈의 평가만 늦추고 무관한 모듈은 늦추지 않는다는 점을 근거로 로딩 지연을 분석할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.js.modules"
+    ],
+    "aliases": [
+      "ES 모듈 그래프",
+      "ES module graph",
+      "Cyclic Module Record",
+      "순환 모듈 평가",
+      "모듈 연결 단계"
+    ],
+    "refs": [
+      "https://tc39.es/ecma262/multipage/ecmascript-language-scripts-and-modules.html#sec-cyclic-module-records",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
+    ]
+  },
+  {
     "id": "fe.internals.web-vitals",
     "title": "Core Web Vitals 분석과 최적화",
     "en": "Core Web Vitals Optimization",
@@ -8704,6 +8889,56 @@
     ],
     "refs": [
       "https://web.dev/articles/why-coop-coep"
+    ]
+  },
+  {
+    "id": "fe.security.permissions-policy",
+    "title": "Permissions Policy로 브라우저 기능 위임 제한",
+    "en": "Permissions Policy",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "프론트엔드 내부",
+    "summary": "문서와 그 안의 iframe이 카메라·위치·전체 화면 같은 브라우저 기능을 쓸 수 있는지 헤더와 allow 속성으로 정하는 정책이다.",
+    "objectives": [
+      "Permissions-Policy 헤더의 허용 목록과 iframe allow 속성이 합쳐져 iframe의 실제 정책이 정해지는 규칙을 설명할 수 있다",
+      "부모가 끈 기능을 자식 iframe이 다시 켤 수 없다는 점을 근거로 서드파티 임베드에 줄 기능을 정할 수 있다",
+      "정책으로 막힌 기능에서 Permissions API가 묻지 않고 denied를 돌려주는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.security.browser-model"
+    ],
+    "related": [
+      "fe.internals.third-party-scripts"
+    ],
+    "aliases": [
+      "Permissions-Policy",
+      "권한 정책 헤더",
+      "iframe allow 속성",
+      "Feature Policy"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Permissions_Policy"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "fe.internals.top-level-await",
+    "title": "최상위 await",
+    "en": "Top-level await",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "프론트엔드 내부",
+    "summary": "모듈 맨 바깥에서 await를 써서 모듈을 비동기 함수처럼 만들며, 그 모듈을 불러오는 쪽은 끝날 때까지 평가를 기다린다.",
+    "parent": "fe.internals.module-graph-evaluation",
+    "aliases": [
+      "top-level await",
+      "모듈 최상위 await"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#top-level_await"
     ]
   },
   {
@@ -8896,6 +9131,67 @@
     "refs": [
       "https://www.typescriptlang.org/tsconfig/",
       "https://www.typescriptlang.org/docs/handbook/type-compatibility.html"
+    ]
+  },
+  {
+    "id": "fe.internals.atomics-wait-notify",
+    "title": "Atomics.wait와 Atomics.notify",
+    "en": "Atomics.wait and Atomics.notify",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "프론트엔드 내부",
+    "summary": "공유 메모리의 한 칸 값이 바뀔 때까지 에이전트를 재우고 다른 쪽에서 깨우는 짝이며, 메인 스레드에서는 대신 waitAsync를 쓴다.",
+    "parent": "fe.internals.shared-memory-atomics",
+    "aliases": [
+      "Atomics.wait",
+      "Atomics.notify",
+      "Atomics.waitAsync"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics"
+    ]
+  },
+  {
+    "id": "fe.internals.high-water-mark",
+    "title": "큐 전략과 highWaterMark",
+    "en": "Queuing Strategy and High Water Mark",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "프론트엔드 내부",
+    "summary": "스트림 내부 큐가 담고 싶어 하는 청크 크기의 상한으로, 이 값에서 큐에 쌓인 양을 뺀 desiredSize가 역압을 걸 때를 정한다.",
+    "parent": "fe.internals.streams-backpressure",
+    "aliases": [
+      "highWaterMark",
+      "high water mark",
+      "desiredSize",
+      "스트림 큐 전략"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/API/Streams_API/Concepts"
+    ]
+  },
+  {
+    "id": "fe.ts.variance-annotations",
+    "title": "변성 주석 in·out",
+    "en": "Variance Annotations",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "TypeScript",
+    "summary": "제네릭 타입 매개변수에 in·out을 붙여 공변·반공변을 밝히는 표기로, 구조적 비교 결과는 바꾸지 못하고 드문 순환 타입에서만 쓴다.",
+    "related": [
+      "fe.ts.strict-function-types",
+      "fe.ts.type-compatibility-soundness"
+    ],
+    "aliases": [
+      "variance annotation",
+      "in out 수정자",
+      "in·out 변성 주석"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/2/generics.html#variance-annotations"
     ]
   }
 ]

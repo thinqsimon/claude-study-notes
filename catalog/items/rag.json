@@ -8748,6 +8748,41 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "rag.vector-db.filtered-hnsw-internals",
+    "title": "필터 걸린 HNSW 검색의 내부: 추가 간선·ACORN·전체 스캔 전환",
+    "en": "Internals of Filtered HNSW Search",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "벡터 DB",
+    "summary": "조건에 맞는 점만 HNSW 그래프에서 찾을 때 그래프가 끊기는 문제를 추가 간선·두 단계 이웃 탐색·전체 스캔 전환으로 푸는 방식과 그 손익이다.",
+    "objectives": [
+      "허용 목록을 들고 그래프를 훑는 스위핑 방식이 제한이 센 필터에서 느려지거나 결과가 모자라는 까닭을 설명할 수 있다",
+      "Qdrant가 페이로드 값마다 HNSW에 간선을 더하는 방식과, 페이로드 인덱스를 데이터보다 먼저 만들어야 하는 까닭을 말할 수 있다",
+      "ACORN식 다중 홉 이웃 탐색과 필터 맞는 진입점 추가가 정확도와 속도에 주는 손익을 따질 수 있다",
+      "필터에 맞는 점의 추정 규모가 기준(Qdrant full_scan_threshold는 벡터 KB 단위, Weaviate는 flatSearchCutoff)보다 작을 때 전체 스캔으로 바꾸는 판단을 설정값과 함께 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.vector-index.internals"
+    ],
+    "related": [
+      "rag.vector-db.pgvector-filtered-search",
+      "rag.vector-db.qdrant-tenant-index"
+    ],
+    "aliases": [
+      "filterable HNSW",
+      "필터 HNSW",
+      "필터 벡터 검색 내부",
+      "Weaviate filterStrategy"
+    ],
+    "refs": [
+      "https://qdrant.tech/documentation/manage-data/indexing/",
+      "https://docs.weaviate.io/weaviate/concepts/filtering"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "rag.vector-db.qdrant-segment-optimizer",
     "title": "Qdrant 세그먼트와 최적화기: 색인·삭제 정리·읽기 쓰기 경합",
     "en": "Qdrant Segments and Optimizers",
@@ -8850,6 +8885,141 @@
     "refs": [
       "https://qdrant.tech/documentation/manage-data/vectors/",
       "https://qdrant.tech/documentation/tutorials-search-engineering/using-multivector-representations/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.vector-db.diskann-internals",
+    "title": "DiskANN의 내부: 디스크 그래프와 메모리 PQ 코드",
+    "en": "DiskANN Internals in Milvus",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "그래프와 원본 벡터는 SSD에 두고 압축한 PQ 코드만 메모리에 올려 RAM보다 큰 데이터를 근사 검색하는 색인으로, 디스크 읽기와 재현율을 맞바꾼다.",
+    "objectives": [
+      "Vamana 그래프·메모리의 PQ 코드·디스크의 원본 벡터가 검색 한 번에서 각각 하는 일을 순서대로 설명할 수 있다",
+      "max_degree·search_list_size·pq_code_budget_gb_ratio가 재현율·메모리·빌드 시간에 주는 영향을 따질 수 있다",
+      "검색 시 search_list·캐시 예산·beam_width_ratio로 디스크 I/O와 재현율을 맞바꾸는 판단을 말할 수 있다",
+      "데이터가 RAM에 들어가는지와 NVMe SSD가 있는지를 근거로 HNSW와 DiskANN 중 하나를 고를 수 있다"
+    ],
+    "prerequisites": [
+      "rag.vector-index.internals"
+    ],
+    "related": [
+      "rag.vector-db.qdrant-memory-quantization"
+    ],
+    "aliases": [
+      "DiskANN",
+      "디스크 기반 ANN",
+      "disk-based vector index",
+      "Milvus DiskANN"
+    ],
+    "refs": [
+      "https://milvus.io/docs/diskann.md"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.vector-db.milvus-architecture",
+    "title": "Milvus 분산 구조: 저장과 계산의 분리",
+    "en": "Milvus Distributed Architecture",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "상태 없는 프록시·코디네이터·작업 노드와 메타·객체 저장소·WAL을 나눠, 쓰기·검색·색인 만들기를 따로 늘리게 한 Milvus의 구조다.",
+    "objectives": [
+      "접근 계층·코디네이터·스트리밍 노드·쿼리 노드·데이터 노드가 쓰기와 검색 한 번에서 맡는 일을 따라갈 수 있다",
+      "새로 들어온 데이터와 봉인된 과거 데이터가 서로 다른 노드에서 검색되는 까닭과 색인이 바뀌어 끼워지는 과정을 설명할 수 있다",
+      "etcd·객체 저장소·WAL 저장소 가운데 어느 것이 멈추면 무엇이 영향을 받는지 따질 수 있다",
+      "일관성 수준을 높이면 검색이 기다리는 까닭을 보장 타임스탬프로 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.vector-db.basics"
+    ],
+    "related": [
+      "rag.vector-db.pinecone-serverless-internals",
+      "rag.vector-db.qdrant-replication-consistency"
+    ],
+    "aliases": [
+      "Milvus 아키텍처",
+      "Milvus architecture",
+      "Milvus 구조",
+      "Milvus 스트리밍 노드"
+    ],
+    "refs": [
+      "https://milvus.io/docs/architecture_overview.md",
+      "https://milvus.io/docs/consistency.md"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.vector-db.weaviate-index-types",
+    "title": "Weaviate 벡터 색인 종류 비교: flat·HNSW·dynamic",
+    "en": "Weaviate Vector Index Types and Trade-offs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "디스크 기반 전수 비교인 flat, 메모리 그래프인 HNSW, 개수에 따라 넘어가는 dynamic, 군집과 양자화로 메모리를 줄인 HFresh의 메모리·속도 손익을 비교한다.",
+    "objectives": [
+      "flat 색인의 검색 시간이 개수에 비례하고 HNSW는 로그에 가깝게 늘어나는 차이를 메모리 사용량과 함께 설명할 수 있다",
+      "dynamic 색인이 기준 개수에서 HNSW로 넘어가고 되돌아가지 않으며 비동기 색인이 필요하다는 점을 근거로 멀티테넌트 배치를 판단할 수 있다",
+      "HFresh가 중심점 색인과 디스크 게시 목록에 서로 다른 비트의 양자화를 써서 메모리를 줄이고 속도를 내주는 손익을 따질 수 있다"
+    ],
+    "prerequisites": [
+      "rag.vector-index.internals"
+    ],
+    "related": [
+      "rag.vector-db.multitenancy-design"
+    ],
+    "aliases": [
+      "Weaviate vector index",
+      "Weaviate 색인 종류",
+      "Weaviate dynamic index",
+      "Weaviate flat index",
+      "HFresh"
+    ],
+    "refs": [
+      "https://docs.weaviate.io/weaviate/concepts/vector-index"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.checkpoint-serializer-internals",
+    "title": "LangGraph 체크포인트 직렬화와 암호화의 내부",
+    "en": "LangGraph Checkpoint Serialization and Saver Interface",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "체크포인터가 채널 값을 직렬화기로 바꿔 저장하고 BaseCheckpointSaver의 메서드로 읽고 쓰는 방식과, pickle 대체·AES 암호화를 켤 때의 손익을 다룬다.",
+    "objectives": [
+      "JsonPlusSerializer가 msgpack과 JSON으로 다루는 값과 다루지 못하는 값을 구분하고, pickle_fallback을 켤 때 신뢰할 수 없는 저장소에서 생기는 위험을 따질 수 있다",
+      "EncryptedSerializer를 serde에 넣어 저장 상태를 암호화할 때 키를 어디서 읽는지와 다른 암호 방식으로 바꾸는 길을 설명할 수 있다",
+      "put·put_writes·get_tuple·list가 get_state·get_state_history와 어떻게 이어지는지 따라가 직접 만든 저장소의 오류를 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.checkpoint-persistence"
+    ],
+    "related": [
+      "rag.agent.pending-writes",
+      "rag.agent.pregel-runtime"
+    ],
+    "aliases": [
+      "JsonPlusSerializer",
+      "LangGraph serde",
+      "체크포인트 직렬화",
+      "BaseCheckpointSaver"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/checkpointers",
+      "https://docs.python.org/3/library/pickle.html"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
@@ -9041,5 +9211,136 @@
     "refs": [
       "https://qdrant.tech/documentation/manage-data/vectors/"
     ]
+  },
+  {
+    "id": "rag.vector-db.acorn-filter-search",
+    "title": "ACORN 필터 탐색",
+    "en": "ACORN Filtered Graph Search",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "필터에 걸러진 직접 이웃 대신 그 너머 이웃까지 살펴 끊긴 그래프 영역으로 건너가는 HNSW 탐색 방식으로, Weaviate 1.34부터 기본이고 Qdrant에도 있다.",
+    "parent": "rag.vector-db.filtered-hnsw-internals",
+    "aliases": [
+      "ACORN",
+      "ACORN 탐색",
+      "acorn filter strategy",
+      "두 단계 이웃 탐색"
+    ],
+    "refs": [
+      "https://docs.weaviate.io/weaviate/concepts/filtering",
+      "https://qdrant.tech/documentation/manage-data/indexing/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.vector-db.vamana-graph",
+    "title": "Vamana 그래프",
+    "en": "Vamana Graph",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "무작위 연결에서 시작해 쓸데없는 간선을 덜어 내고 먼 곳으로 건너가는 지름길 간선을 더해 만드는 DiskANN의 단층 근접 그래프다.",
+    "parent": "rag.vector-db.diskann-internals",
+    "aliases": [
+      "Vamana",
+      "Vamana graph index",
+      "DiskANN 그래프"
+    ],
+    "refs": [
+      "https://milvus.io/docs/diskann.md"
+    ]
+  },
+  {
+    "id": "rag.vector-db.milvus-growing-sealed-segment",
+    "title": "Milvus growing 세그먼트와 sealed 세그먼트",
+    "en": "Milvus Growing and Sealed Segments",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "막 들어온 데이터는 스트리밍 노드의 growing 세그먼트에서 바로 검색되고, 가득 차면 봉인돼 데이터 노드가 색인을 만든 뒤 쿼리 노드가 객체 저장소에서 올려 검색한다.",
+    "parent": "rag.vector-db.milvus-architecture",
+    "aliases": [
+      "growing segment",
+      "sealed segment",
+      "Milvus 세그먼트",
+      "봉인된 세그먼트"
+    ],
+    "refs": [
+      "https://milvus.io/docs/architecture_overview.md"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.vector-db.milvus-guarantee-timestamp",
+    "title": "Milvus 보장 타임스탬프(GuaranteeTs)",
+    "en": "Milvus Guarantee Timestamp",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "검색 전에 쿼리 노드가 어느 시점까지의 데이터를 봐야 하는지 알려 주는 값으로, Strong·Bounded·Session·Eventually 일관성 수준이 이 값을 다르게 잡는다.",
+    "parent": "rag.vector-db.milvus-architecture",
+    "aliases": [
+      "GuaranteeTs",
+      "guarantee timestamp",
+      "Milvus 일관성 수준",
+      "Milvus consistency level"
+    ],
+    "refs": [
+      "https://milvus.io/docs/consistency.md"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.retrieval.weaviate-relative-score-fusion",
+    "title": "Weaviate 상대 점수 결합(relativeScoreFusion)",
+    "en": "Weaviate Relative Score Fusion",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "검색 내부",
+    "summary": "벡터 검색과 BM25 결과의 점수를 각각 최고 1·최저 0으로 맞춘 뒤 alpha 비율로 더하는 하이브리드 점수 결합으로, 순위만 쓰는 rankedFusion보다 원래 점수 차를 더 남긴다.",
+    "related": [
+      "rag.retrieval.hybrid-rerank"
+    ],
+    "aliases": [
+      "relativeScoreFusion",
+      "relative score fusion",
+      "Weaviate 하이브리드 alpha"
+    ],
+    "refs": [
+      "https://docs.weaviate.io/weaviate/concepts/search/hybrid-search"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.encrypted-serializer",
+    "title": "LangGraph 체크포인트 암호화(EncryptedSerializer)",
+    "en": "LangGraph EncryptedSerializer",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "체크포인터의 serde 인자에 넣어 저장되는 상태를 AES로 암호화하는 직렬화기로, 키는 LANGGRAPH_AES_KEY 환경 변수나 인자로 받는다.",
+    "parent": "rag.agent.checkpoint-serializer-internals",
+    "aliases": [
+      "EncryptedSerializer",
+      "LANGGRAPH_AES_KEY",
+      "체크포인트 암호화",
+      "from_pycryptodome_aes"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/checkpointers"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   }
 ]

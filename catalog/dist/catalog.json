@@ -1,5 +1,5 @@
 {
- "version": "0.75.0",
+ "version": "0.76.0",
  "domains": [
   {
    "prefix": "dev",
@@ -8692,6 +8692,44 @@
    "domain": "dev"
   },
   {
+   "id": "dev.debug.profiler-models",
+   "title": "결정적 프로파일링과 샘플링 프로파일링의 손익",
+   "en": "Deterministic vs Statistical Profiling in Python",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "디버깅",
+   "summary": "모든 호출 이벤트를 재는 추적 프로파일러와 바깥에서 호출 스택을 주기적으로 읽는 샘플링 프로파일러의 정확도·부담·쓰임새를 비교한다.",
+   "objectives": [
+    "호출·반환·예외 이벤트마다 시간을 재는 결정적 프로파일링과 주기적으로 스택을 읽는 통계적 프로파일링의 차이를 설명할 수 있다",
+    "profiling.tracing이 정확한 호출 횟수를 주는 대신 실행 부담이 있고 profiling.sampling이 부담 없이 붙는 대신 짧은 함수를 놓치고 상대 비율만 준다는 손익으로 도구를 고를 수 있다",
+    "샘플 수와 간격이 추정 시간의 오차를 정한다는 점을 알고 짧은 실행이나 1~2% 차이를 샘플링 결과로 판단하지 않을 수 있다",
+    "파이썬 3.15에서 profile 모듈이 폐지 예정이 되고 cProfile이 profiling.tracing의 별칭이 된 변화를 알고 기존 코드의 이전 방향을 정할 수 있다"
+   ],
+   "prerequisites": [
+    "be.run.performance"
+   ],
+   "related": [
+    "dev.debug.trace-monitoring"
+   ],
+   "aliases": [
+    "결정적 프로파일링",
+    "deterministic profiling",
+    "통계적 프로파일링",
+    "statistical profiling",
+    "profiling.tracing",
+    "PEP 799"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/profile.html",
+    "https://docs.python.org/3/library/profiling.sampling.html",
+    "https://peps.python.org/pep-0799/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "dev"
+  },
+  {
    "id": "dev.robust.crash-consistency",
    "title": "크래시 일관성: 쓰기 순서와 커밋 지점",
    "en": "Crash Consistency: Write Ordering and the Commit Point",
@@ -8916,6 +8954,149 @@
    "domain": "dev"
   },
   {
+   "id": "dev.git.ref-storage",
+   "title": "참조 저장소의 내부: files 백엔드와 reftable",
+   "en": "Git Reference Backends: files and reftable",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "Git",
+   "summary": "참조를 낱개 파일과 packed-refs로 두는 files 방식과 불변 표를 쌓는 reftable 방식의 조회·갱신 비용을 비교하고 전환 손익을 판단한다.",
+   "objectives": [
+    "낱개 참조 파일과 packed-refs가 참조 수가 많을 때 inode·시스템 호출·전체 파일 다시 쓰기 비용을 키우는 이유를 설명할 수 있다",
+    "reftable이 블록·접두사 압축·재시작 지점으로 이진 탐색하고 tables.list 교체로 갱신을 원자적으로 끝내는 구조를 설명할 수 있다",
+    "git refs migrate의 --ref-format·--dry-run과 워크트리·동시 쓰기 제약을 알고 백엔드 전환 여부를 판단할 수 있다",
+    "pack-refs --auto가 files에서는 묶기, reftable에서는 기하 수열 압축으로 동작하는 차이를 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.internals"
+   ],
+   "related": [
+    "dev.git.repo-performance"
+   ],
+   "aliases": [
+    "reftable",
+    "참조 백엔드",
+    "ref backend",
+    "git refs migrate",
+    "--ref-format"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/reftable",
+    "https://git-scm.com/docs/git-refs",
+    "https://git-scm.com/docs/git-pack-refs"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "dev"
+  },
+  {
+   "id": "dev.debug.linux-perf-python",
+   "title": "리눅스 perf로 파이썬 함수 보기",
+   "en": "Python Support for the Linux perf Profiler",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "디버깅",
+   "summary": "네이티브 프로파일러가 파이썬 함수를 구분하지 못하는 이유와 트램폴린·perf 맵·JIT 덤프로 이름을 보이게 하는 방식, 그 부담을 비교한다.",
+   "objectives": [
+    "모든 파이썬 함수가 같은 평가 루프 C 함수로 실행되어 perf 호출 기록에 파이썬 이름이 나오지 않는 이유를 설명할 수 있다",
+    "함수마다 끼우는 트램폴린과 perf 맵 파일이 perf에 파이썬 함수 이름을 알려 주는 원리를 설명할 수 있다",
+    "프레임 포인터가 있는 빌드의 perf 맵 방식과 프레임 포인터가 없을 때 쓰는 JIT 방식(-X perf_jit, perf inject --jit)의 요구 조건과 부담을 비교할 수 있다",
+    "sysconfig로 프레임 포인터와 트램폴린 지원 여부를 확인해 호출 기록이 비거나 끊기는 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "be.run.performance"
+   ],
+   "related": [
+    "dev.debug.profiler-models"
+   ],
+   "aliases": [
+    "perf profiler 파이썬",
+    "Linux perf Python",
+    "perf 프로파일러 지원",
+    "perf_profiling",
+    "-X perf_jit"
+   ],
+   "refs": [
+    "https://docs.python.org/3/howto/perf_profiling.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "dev"
+  },
+  {
+   "id": "dev.debug.pyc-invalidation",
+   "title": "바이트코드 캐시 무효화: 타임스탬프와 해시 기반 pyc",
+   "en": "Cached Bytecode Invalidation: Timestamp and Hash-Based pycs",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "디버깅",
+   "summary": "import가 __pycache__의 pyc를 다시 쓸지 정하는 방식, 원본 시각·크기 비교와 내용 해시 비교의 비용과 재현 가능 빌드에서의 손익을 분석한다.",
+   "objectives": [
+    "__pycache__와 인터프리터 태그가 붙은 pyc 이름이 여러 파이썬 버전의 캐시 충돌을 막는 이유와 원본 없이 남은 캐시가 무시되는 규칙을 설명할 수 있다",
+    "pyc 머리말의 플래그 필드에 따라 원본 수정 시각·크기를 비교하는 방식과 원본 해시를 비교하는 방식이 갈리는 구조를 설명할 수 있다",
+    "타임스탬프 방식이 기본인 이유(해시 계산 비용)와 해시 방식이 재현 가능 빌드에 필요한 이유를 비교할 수 있다",
+    "SOURCE_DATE_EPOCH와 invalidation_mode, --check-hash-based-pycs가 어떤 pyc를 만들고 검사할지 정하는 방식을 알고 오래된 캐시가 쓰이는 장애를 분석할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.debug.import-system"
+   ],
+   "related": [
+    "cs.lang.bytecode"
+   ],
+   "aliases": [
+    "pyc 무효화",
+    "bytecode cache invalidation",
+    "__pycache__",
+    "PEP 552",
+    "deterministic pycs"
+   ],
+   "refs": [
+    "https://docs.python.org/3/reference/import.html#cached-bytecode-invalidation",
+    "https://peps.python.org/pep-0552/",
+    "https://peps.python.org/pep-3147/",
+    "https://docs.python.org/3/library/py_compile.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.test.pytest-hook-internals",
+   "title": "pytest 플러그인 훅의 내부: 호출 순서와 래퍼",
+   "en": "pytest Plugin Hooks: Call Order and Wrappers (pluggy)",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "테스트",
+   "summary": "pytest가 pluggy로 훅 구현을 등록하고 부르는 순서, 첫 결과 훅과 래퍼의 동작을 알고 플러그인끼리 부딪치는 문제를 분석한다.",
+   "objectives": [
+    "훅 구현이 나중에 등록된 것부터 불리고 tryfirst·trylast가 그 순서를 앞뒤로 옮기는 규칙으로 여러 플러그인의 실행 순서를 설명할 수 있다",
+    "보통 훅이 None이 아닌 결과를 모두 모으고 firstresult 훅은 첫 결과에서 멈춘다는 차이로 다른 구현이 불리지 않는 원인을 찾을 수 있다",
+    "훅 구현이 명세보다 적은 인자만 받아도 되는 규칙이 플러그인의 앞쪽 호환을 지키는 원리를 설명할 수 있다",
+    "pytest_addhooks로 새 훅 명세를 더하고 conftest가 불리는 시점의 제약을 알고 훅 설계를 고를 수 있다"
+   ],
+   "prerequisites": [
+    "dev.test.fixture-scope-isolation"
+   ],
+   "related": [
+    "dev.test.assert-rewriting"
+   ],
+   "aliases": [
+    "pytest 훅",
+    "pytest hooks",
+    "pluggy",
+    "hookimpl",
+    "tryfirst",
+    "firstresult"
+   ],
+   "refs": [
+    "https://docs.pytest.org/en/stable/how-to/writing_hook_functions.html",
+    "https://pluggy.readthedocs.io/en/stable/"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.git.reflog",
    "title": "reflog",
    "en": "Reflog",
@@ -8954,6 +9135,28 @@
    "refs": [
     "https://git-scm.com/docs/git-merge-base"
    ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.debug.tachyon-sampler",
+   "title": "profiling.sampling(Tachyon)",
+   "en": "profiling.sampling Statistical Profiler (Tachyon)",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "디버깅",
+   "summary": "파이썬 3.15 표준 라이브러리의 샘플링 프로파일러로, 실행 중인 프로세스의 메모리에서 호출 스택을 주기적으로 읽어 코드 수정 없이 붙는다.",
+   "parent": "dev.debug.profiler-models",
+   "aliases": [
+    "Tachyon 프로파일러",
+    "python -m profiling.sampling",
+    "Tachyon sampling profiler"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/profiling.sampling.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "dev"
   },
   {
@@ -9172,6 +9375,133 @@
    ],
    "refs": [
     "https://docs.pytest.org/en/stable/how-to/assert.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.packed-refs",
+   "title": "packed-refs 파일",
+   "en": "packed-refs File",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "Git",
+   "summary": "여러 참조를 한 파일에 모아 두고, 같은 이름의 낱개 참조 파일이 있으면 그쪽을 먼저 쓰는 Git의 files 백엔드 저장 방식이다.",
+   "parent": "dev.git.ref-storage",
+   "aliases": [
+    "git pack-refs",
+    ".git/packed-refs",
+    "묶인 참조"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/git-pack-refs"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.reftable-stack",
+   "title": "reftable 테이블 스택(tables.list)",
+   "en": "reftable Table Stack (tables.list)",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "Git",
+   "summary": "불변 reftable 파일을 오래된 것부터 tables.list에 쌓아 두고 새 파일을 더해 갱신하며 뒤에서부터 찾는 구조다.",
+   "parent": "dev.git.ref-storage",
+   "aliases": [
+    "tables.list",
+    "reftable 압축",
+    "reftable compaction",
+    "tables.list.lock"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/reftable"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.debug.perf-trampoline",
+   "title": "perf 트램폴린(-X perf)",
+   "en": "Python perf Trampoline (-X perf)",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "디버깅",
+   "summary": "파이썬 함수마다 작은 기계어 조각을 끼우고 perf 맵 파일에 대응을 적어 네이티브 프로파일러가 파이썬 함수 이름을 보게 하는 CPython 기능이다.",
+   "parent": "dev.debug.linux-perf-python",
+   "aliases": [
+    "-X perf",
+    "PYTHONPERFSUPPORT",
+    "activate_stack_trampoline"
+   ],
+   "refs": [
+    "https://docs.python.org/3/howto/perf_profiling.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.debug.hash-based-pyc",
+   "title": "해시 기반 pyc(checked·unchecked)",
+   "en": "Hash-Based pyc Files (Checked and Unchecked)",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "디버깅",
+   "summary": "원본 수정 시각 대신 원본 내용의 해시를 담는 pyc로, 불러올 때 원본을 해시해 비교하는 checked와 비교 없이 쓰는 unchecked가 있다.",
+   "parent": "dev.debug.pyc-invalidation",
+   "aliases": [
+    "hash-based pyc",
+    "unchecked-hash",
+    "checked-hash",
+    "PycInvalidationMode",
+    "--check-hash-based-pycs"
+   ],
+   "refs": [
+    "https://peps.python.org/pep-0552/"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.test.pytest-hook-wrapper",
+   "title": "pytest 훅 래퍼(wrapper=True)",
+   "en": "pytest Hook Wrapper",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "테스트",
+   "summary": "한 번 yield하는 제너레이터로 다른 훅 구현들의 앞뒤를 감싸 결과나 예외를 받아 바꿀 수 있는 pytest 훅 구현이다.",
+   "parent": "dev.test.pytest-hook-internals",
+   "aliases": [
+    "hookimpl(wrapper=True)",
+    "hookwrapper",
+    "훅 래퍼",
+    "hook wrapper"
+   ],
+   "refs": [
+    "https://docs.pytest.org/en/stable/how-to/writing_hook_functions.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.multi-pack-index",
+   "title": "다중 팩 색인(multi-pack-index)",
+   "en": "Git multi-pack-index (MIDX)",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "Git",
+   "summary": "여러 packfile에 흩어진 객체를 하나의 정렬된 색인으로 묶어 팩 수와 상관없이 로그 시간에 찾게 하는 Git 파일이다.",
+   "related": [
+    "dev.git.packfile"
+   ],
+   "aliases": [
+    "MIDX",
+    "git multi-pack-index",
+    "core.multiPackIndex",
+    "멀티 팩 인덱스"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/multi-pack-index"
    ],
    "domain": "dev"
   },
@@ -46173,6 +46503,73 @@
    "domain": "db"
   },
   {
+   "id": "db.internals.checkpoints",
+   "title": "PostgreSQL 체크포인트와 WAL 쓰기 비용",
+   "en": "PostgreSQL Checkpoints and WAL Write Cost",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "더러운 페이지를 디스크에 내려 복구 시작점을 앞당기는 체크포인트가 간격에 따라 I/O 급증과 WAL 양 사이에서 만드는 손익을 따진다.",
+   "objectives": [
+    "checkpoint_timeout(기본 5분)과 max_wal_size(기본 1GB) 가운데 먼저 닿는 쪽이 체크포인트를 일으키는 과정을 설명할 수 있다",
+    "체크포인트 간격을 줄이면 복구는 빨라지지만 전체 페이지 쓰기 때문에 WAL과 디스크 I/O가 늘어나는 까닭을 설명할 수 있다",
+    "checkpoint_warning 로그 메시지를 보고 큰 COPY 같은 작업 중 max_wal_size가 너무 작은지 판단할 수 있다",
+    "대기 서버의 restartpoint가 주 서버 체크포인트보다 잦을 수 없어 복구 중 max_wal_size를 넘을 수 있는 까닭을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "db.internals.wal-replication"
+   ],
+   "aliases": [
+    "PostgreSQL 체크포인트",
+    "PostgreSQL checkpoint",
+    "checkpoint_timeout",
+    "max_wal_size",
+    "restartpoint"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/wal-configuration.html",
+    "https://www.postgresql.org/docs/current/runtime-config-wal.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.replication-slots",
+   "title": "복제 슬롯과 논리 디코딩의 내부",
+   "en": "Replication Slots and Logical Decoding Internals",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "소비자가 받아 갈 때까지 WAL과 카탈로그 행을 붙잡아 두는 복제 슬롯이 끊김 없는 복제를 보장하는 대신 디스크 고갈과 VACUUM 정체를 부르는 구조를 다룬다.",
+   "objectives": [
+    "WAL을 행 단위 변경으로 풀어내는 논리 디코딩과 출력 플러그인의 역할을 설명할 수 있다",
+    "쓰이지 않는 슬롯이 WAL과 xmin·catalog_xmin을 붙잡아 pg_wal이 차거나 트랜잭션 ID 겹침 위험이 커지는 과정을 설명할 수 있다",
+    "pg_replication_slots의 wal_status·safe_wal_size·invalidation_reason으로 위험한 슬롯을 찾을 수 있다",
+    "장애 전환 뒤에도 논리 복제를 이으려면 failover 슬롯과 sync_replication_slots 같은 조건이 필요한 까닭을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "db.internals.wal-replication",
+    "db.internals.mvcc-vacuum"
+   ],
+   "related": [
+    "db.sql.logical-replication"
+   ],
+   "aliases": [
+    "복제 슬롯",
+    "replication slot",
+    "논리 디코딩",
+    "logical decoding",
+    "pg_replication_slots"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/logicaldecoding-explanation.html",
+    "https://www.postgresql.org/docs/current/warm-standby.html",
+    "https://www.postgresql.org/docs/current/view-pg-replication-slots.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.internals.wal-replication",
    "title": "WAL과 복제",
    "en": "WAL and Replication",
@@ -46256,6 +46653,104 @@
    "domain": "db"
   },
   {
+   "id": "db.internals.jit",
+   "title": "PostgreSQL JIT 컴파일의 손익",
+   "en": "PostgreSQL JIT Compilation Trade-offs",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "LLVM으로 식 평가와 튜플 풀기를 기계어로 만들어 긴 분석 쿼리를 빠르게 하는 대신, 컴파일 시간이 짧은 쿼리에서는 손해가 되는 구조를 따진다.",
+   "objectives": [
+    "JIT가 빠르게 하는 식 평가·튜플 변형·인라인·최적화를 구분해 설명할 수 있다",
+    "플래너의 추정 총비용과 세 임계값으로 JIT·인라인·최적화 여부가 정해지는 과정을 설명할 수 있다",
+    "EXPLAIN ANALYZE의 JIT 절에서 Options와 Timing을 읽어 컴파일 시간이 실행 시간보다 큰 경우를 찾을 수 있다",
+    "일반 계획을 쓰는 준비된 문장에서는 PREPARE 때의 설정이 JIT 여부를 정한다는 점을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "db.internals.query-planner"
+   ],
+   "related": [
+    "cs.lang.jit-compiler"
+   ],
+   "aliases": [
+    "PostgreSQL JIT",
+    "jit = off",
+    "PostgreSQL 쿼리 JIT"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/jit-reason.html",
+    "https://www.postgresql.org/docs/current/jit-decision.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.join-order-search",
+   "title": "조인 순서 탐색: 완전 탐색과 GEQO",
+   "en": "Join Order Search: Exhaustive Planning and GEQO",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "표가 늘수록 조인 순서 경우의 수가 지수로 커져 PostgreSQL이 FROM 항목 12개부터 유전 알고리즘 GEQO로 바꾸며, 계획 시간과 계획 품질을 맞바꾸는 구조를 다룬다.",
+   "objectives": [
+    "조인 순서 경우의 수가 지수로 늘어 표가 많을 때 완전 탐색이 비현실적인 까닭을 설명할 수 있다",
+    "GEQO가 조인 순서를 정수 문자열로 표현하고 비용이 낮은 후보를 조합해 계획을 찾는 방식을 설명할 수 있다",
+    "geqo_seed가 같으면 같은 계획이 나오고 바꾸면 다른 계획이 나올 수 있는 까닭을 설명할 수 있다",
+    "join_collapse_limit과 from_collapse_limit을 줄이면 계획 시간이 줄지만 더 나쁜 계획이 나올 수 있는 손익을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "db.internals.query-planner"
+   ],
+   "aliases": [
+    "GEQO",
+    "유전 질의 최적화",
+    "genetic query optimizer",
+    "geqo_threshold",
+    "PostgreSQL 조인 순서 탐색"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/geqo-pg-intro.html",
+    "https://www.postgresql.org/docs/current/explicit-joins.html",
+    "https://www.postgresql.org/docs/current/runtime-config-query.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.ssi",
+   "title": "직렬화 가능 스냅숏 격리(SSI)의 내부",
+   "en": "Serializable Snapshot Isolation (SSI) Internals",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "PostgreSQL Serializable이 막지 않는 술어 잠금으로 동시 트랜잭션의 읽기·쓰기 의존을 추적해 직렬 순서와 어긋날 때만 한쪽을 취소하는 방식과 그 비용을 다룬다.",
+   "objectives": [
+    "술어 잠금이 대기나 교착 상태를 만들지 않고 읽기·쓰기 의존만 기록하는 까닭을 설명할 수 있다",
+    "pg_locks에서 SIReadLock을 찾아 어떤 표·페이지·튜플 단위로 잠금이 잡혔는지 확인할 수 있다",
+    "술어 잠금이 페이지나 표 단위로 합쳐지거나 순차 탐색이 표 단위 잠금을 잡을 때 직렬화 실패가 늘어나는 까닭을 설명할 수 있다",
+    "READ ONLY 선언, 짧은 트랜잭션, 불필요한 SELECT FOR UPDATE 제거가 SSI 비용을 줄이는 근거를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "db.internals.isolation-levels"
+   ],
+   "related": [
+    "db.internals.locks",
+    "db.sql.transaction-retry"
+   ],
+   "aliases": [
+    "PostgreSQL SSI",
+    "Serializable Snapshot Isolation",
+    "SIReadLock",
+    "직렬화 가능 스냅숏 격리"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/transaction-iso.html#XACT-SERIALIZABLE",
+    "https://www.postgresql.org/docs/current/runtime-config-locks.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.internals.xid-wraparound",
    "title": "트랜잭션 ID 겹침과 동결(freeze)",
    "en": "Transaction ID Wraparound and Freezing",
@@ -46296,6 +46791,49 @@
    ],
    "refs": [
     "https://www.postgresql.org/docs/current/wal-async-commit.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.max-slot-wal-keep-size",
+   "title": "max_slot_wal_keep_size: 슬롯이 붙잡을 WAL 상한",
+   "en": "max_slot_wal_keep_size",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "복제 슬롯이 pg_wal에 남겨 둘 WAL 양의 상한으로, 기본값 -1은 무제한이고 상한을 넘은 슬롯은 필요한 WAL을 잃어 lost 상태가 될 수 있다.",
+   "parent": "db.internals.replication-slots",
+   "aliases": [
+    "max_slot_wal_keep_size",
+    "슬롯 WAL 보존 상한",
+    "wal_status lost"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/runtime-config-replication.html",
+    "https://www.postgresql.org/docs/current/view-pg-replication-slots.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.partition-pruning",
+   "title": "파티션 정리: 계획 시점과 실행 시점",
+   "en": "Partition Pruning: Planning-Time and Execution-Time",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "파티션 경계로 조건에 맞지 않는 파티션을 계획 때나 실행 중에 빼는 최적화로, EXPLAIN에 Subplans Removed나 (never executed)로 드러난다.",
+   "parent": "db.internals.partitioning",
+   "aliases": [
+    "partition pruning",
+    "파티션 프루닝",
+    "enable_partition_pruning",
+    "Subplans Removed"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/ddl-partitioning.html#DDL-PARTITION-PRUNING",
+    "https://www.postgresql.org/docs/current/runtime-config-query.html"
    ],
    "domain": "db"
   },
@@ -46403,6 +46941,135 @@
    ],
    "refs": [
     "https://www.postgresql.org/docs/current/planner-stats.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.full-page-writes",
+   "title": "full_page_writes: 전체 페이지 기록",
+   "en": "full_page_writes (Full-Page Images in WAL)",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "체크포인트 뒤 처음 바뀌는 페이지 전체를 WAL에 남겨 반쯤 쓰인 페이지를 복구하게 하는 설정으로, 기본값은 on이고 끄면 장애 뒤 데이터가 깨질 수 있다.",
+   "parent": "db.internals.checkpoints",
+   "aliases": [
+    "full_page_writes",
+    "전체 페이지 이미지",
+    "full page image",
+    "wal_compression"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/runtime-config-wal.html",
+    "https://www.postgresql.org/docs/current/wal-configuration.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.checkpoint-completion-target",
+   "title": "checkpoint_completion_target",
+   "en": "checkpoint_completion_target",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "체크포인트의 페이지 쓰기를 다음 체크포인트까지 시간의 몇 분의 일에 걸쳐 나눌지 정하는 값으로, 기본값 0.9에서 낮추면 I/O가 짧게 몰린다.",
+   "parent": "db.internals.checkpoints",
+   "aliases": [
+    "checkpoint_completion_target",
+    "체크포인트 완료 목표",
+    "체크포인트 I/O 분산"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/runtime-config-wal.html",
+    "https://www.postgresql.org/docs/current/wal-configuration.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.jit-above-cost",
+   "title": "jit_above_cost와 JIT 비용 임계값",
+   "en": "jit_above_cost and JIT Cost Thresholds",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "추정 비용이 기본 100000을 넘으면 JIT를 켜고, 기본 500000을 넘으면 인라인과 비싼 최적화까지 하게 하는 세 가지 설정이다.",
+   "parent": "db.internals.jit",
+   "aliases": [
+    "jit_above_cost",
+    "jit_inline_above_cost",
+    "jit_optimize_above_cost"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/runtime-config-query.html",
+    "https://www.postgresql.org/docs/current/jit-decision.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.join-collapse-limit",
+   "title": "join_collapse_limit: 명시 조인 순서 고정",
+   "en": "join_collapse_limit",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "FULL JOIN을 뺀 명시 JOIN을 FROM 목록으로 펴서 순서를 바꿀 수 있게 하는 항목 수 상한으로, 기본값은 from_collapse_limit과 같은 8이고 1이면 쓴 순서대로 조인한다.",
+   "parent": "db.internals.join-order-search",
+   "aliases": [
+    "join_collapse_limit",
+    "from_collapse_limit",
+    "조인 순서 고정"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/runtime-config-query.html",
+    "https://www.postgresql.org/docs/current/explicit-joins.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.predicate-lock-promotion",
+   "title": "술어 잠금 승격: max_pred_locks 설정",
+   "en": "Predicate Lock Promotion (max_pred_locks_*)",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "튜플 술어 잠금이 한 페이지에 2개(max_pred_locks_per_page)를 넘거나 한 표에 일정 수를 넘으면 더 굵은 잠금으로 합쳐져 메모리는 아끼지만 직렬화 실패가 늘 수 있다.",
+   "parent": "db.internals.ssi",
+   "aliases": [
+    "max_pred_locks_per_transaction",
+    "max_pred_locks_per_relation",
+    "max_pred_locks_per_page",
+    "술어 잠금 승격"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/runtime-config-locks.html",
+    "https://www.postgresql.org/docs/current/transaction-iso.html#XACT-SERIALIZABLE"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.serializable-deferrable",
+   "title": "SERIALIZABLE READ ONLY DEFERRABLE",
+   "en": "Deferrable Read-Only Serializable Transactions",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "시작할 때 안전한 스냅숏을 얻을 때까지 기다린 뒤 술어 잠금 없이 돌아 직렬화 실패로 취소되지 않는 읽기 전용 Serializable 트랜잭션이다.",
+   "parent": "db.internals.ssi",
+   "aliases": [
+    "READ ONLY DEFERRABLE",
+    "DEFERRABLE 트랜잭션",
+    "deferrable transaction",
+    "안전한 스냅숏"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/transaction-iso.html#XACT-SERIALIZABLE",
+    "https://www.postgresql.org/docs/current/sql-set-transaction.html"
    ],
    "domain": "db"
   },
@@ -53817,6 +54484,42 @@
    "domain": "fe"
   },
   {
+   "id": "fe.react.transitions",
+   "title": "React Transition과 중단 가능한 렌더링",
+   "en": "React Transitions and Interruptible Rendering",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "React",
+   "summary": "일부 상태 업데이트를 Transition으로 표시해 배경에서 렌더링하고, 더 새로운 입력이 오면 그 렌더링을 중단하게 하는 React의 업데이트 방식이다.",
+   "objectives": [
+    "Transition으로 표시된 업데이트가 사용자 입력을 막지 않고 새 업데이트에 의해 중단되는 이유를 설명할 수 있다",
+    "await 뒤나 setTimeout 안의 상태 업데이트가 Transition으로 취급되지 않는 원인을 찾을 수 있다",
+    "Transition 중에 이미 보인 내용은 Suspense 대체 UI로 바뀌지 않는다는 점을 근거로 로딩 표시 방식을 고를 수 있다",
+    "useDeferredValue의 배경 렌더링과 디바운스·스로틀의 차이를 근거로 느린 화면을 다룰 방법을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "fe.internals.react-memoization"
+   ],
+   "related": [
+    "fe.react.suspense-boundary",
+    "fe.internals.react-reconciliation"
+   ],
+   "aliases": [
+    "React Transition",
+    "useTransition",
+    "startTransition",
+    "비차단 상태 업데이트"
+   ],
+   "refs": [
+    "https://react.dev/reference/react/useTransition",
+    "https://react.dev/reference/react/useDeferredValue"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "fe"
+  },
+  {
    "id": "fe.internals.service-worker-caching",
    "title": "서비스 워커 캐싱 전략 고르기",
    "en": "Choosing Service Worker Caching Strategies",
@@ -54744,6 +55447,46 @@
    "domain": "fe"
   },
   {
+   "id": "fe.react.use-deferred-value",
+   "title": "useDeferredValue",
+   "en": "useDeferredValue",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "React",
+   "summary": "값의 뒤처진 버전을 돌려주어 먼저 옛 값으로 렌더링하고 새 값은 중단 가능한 배경 렌더링으로 그리게 하는 React Hook이다.",
+   "parent": "fe.react.transitions",
+   "aliases": [
+    "useDeferredValue 훅",
+    "React 지연 값"
+   ],
+   "refs": [
+    "https://react.dev/reference/react/useDeferredValue"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.security.subresource-integrity",
+   "title": "하위 리소스 무결성(SRI)",
+   "en": "Subresource Integrity",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "프론트엔드 내부",
+   "summary": "CDN 같은 제3자에게서 받은 스크립트·스타일시트가 integrity 속성의 해시와 맞는지 브라우저가 확인하고, 다르면 불러오지 않는 방어 기법이다.",
+   "aliases": [
+    "SRI",
+    "integrity 속성",
+    "integrity attribute"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Subresource_Integrity"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "fe"
+  },
+  {
    "id": "fe.internals.server-only",
    "title": "server-only와 client-only",
    "en": "server-only and client-only",
@@ -55134,6 +55877,28 @@
    "domain": "fe"
   },
   {
+   "id": "fe.internals.import-map",
+   "title": "가져오기 맵(import map)",
+   "en": "Import Map",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "script type=\"importmap\" 안의 JSON으로 import 문과 import()의 모듈 지정자를 어떤 URL로 풀지 정하는 브라우저 기능이다.",
+   "related": [
+    "fe.internals.module-graph-evaluation"
+   ],
+   "aliases": [
+    "import map",
+    "importmap",
+    "임포트 맵"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script/type/importmap"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.internals.render-pipeline",
    "title": "브라우저 렌더링 파이프라인",
    "en": "Browser Rendering Pipeline",
@@ -55373,6 +56138,100 @@
    "domain": "fe"
   },
   {
+   "id": "fe.internals.shared-memory-atomics",
+   "title": "SharedArrayBuffer와 Atomics로 스레드 간 메모리 공유",
+   "en": "Shared Memory with SharedArrayBuffer and Atomics",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "프론트엔드 내부",
+   "summary": "메인 스레드와 워커가 같은 메모리 블록을 함께 읽고 쓰게 하고, 원자적 연산으로 그 접근을 동기화하는 구조다.",
+   "objectives": [
+    "SharedArrayBuffer를 postMessage로 보낼 때 복사·전송과 달리 같은 메모리를 가리키게 된다는 점을 설명할 수 있다",
+    "교차 출처 격리가 없으면 SharedArrayBuffer 생성자가 숨겨지는 이유를 Spectre 대응과 연결해 설명할 수 있다",
+    "동기화 없이 여러 에이전트가 같은 바이트를 쓸 때 생기는 문제를 Atomics 연산으로 막는 방법을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "fe.internals.web-workers",
+    "fe.security.cross-origin-isolation"
+   ],
+   "related": [
+    "fe.internals.transferable-objects",
+    "fe.internals.structured-clone"
+   ],
+   "aliases": [
+    "SharedArrayBuffer",
+    "Atomics 객체",
+    "JavaScript 공유 메모리",
+    "JS shared memory"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer",
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.streams-backpressure",
+   "title": "Streams API의 역압과 내부 큐",
+   "en": "Backpressure and Internal Queues in the Streams API",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "프론트엔드 내부",
+   "summary": "파이프 체인의 아래쪽이 바쁘면 위쪽 생산을 늦추도록 내부 큐와 큐 전략으로 신호를 보내는 Streams API의 흐름 제어다.",
+   "objectives": [
+    "ReadableStream·WritableStream·TransformStream이 pipeThrough와 pipeTo로 이어질 때 데이터가 흐르는 길을 설명할 수 있다",
+    "desiredSize가 0 이하가 되는 상황을 보고 원본에 생산을 멈추라고 알려야 하는지 판단할 수 있다",
+    "스트림 잠금과 tee()로 하나의 응답 본문을 두 곳에서 읽는 방법의 차이를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.internals.event-loop"
+   ],
+   "related": [
+    "be.run.backpressure"
+   ],
+   "aliases": [
+    "Streams API 역압",
+    "스트림 역압",
+    "pipeThrough"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/API/Streams_API/Concepts"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.module-graph-evaluation",
+   "title": "ES 모듈 그래프의 연결과 평가",
+   "en": "Linking and Evaluating the ES Module Graph",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "프론트엔드 내부",
+   "summary": "불러온 모듈들을 깊이 우선으로 연결한 뒤 순환은 강하게 연결된 묶음으로 함께 평가하고, 최상위 await가 있으면 비동기로 평가하는 표준 절차다.",
+   "objectives": [
+    "Cyclic Module Record의 상태가 unlinked에서 linked, evaluated로 바뀌는 순서를 설명할 수 있다",
+    "순환 import에 든 모듈들이 같은 순환 루트를 공유해 함께 상태를 바꾸는 이유를 설명할 수 있다",
+    "최상위 await가 있는 모듈이 그것을 불러오는 모듈의 평가만 늦추고 무관한 모듈은 늦추지 않는다는 점을 근거로 로딩 지연을 분석할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.js.modules"
+   ],
+   "aliases": [
+    "ES 모듈 그래프",
+    "ES module graph",
+    "Cyclic Module Record",
+    "순환 모듈 평가",
+    "모듈 연결 단계"
+   ],
+   "refs": [
+    "https://tc39.es/ecma262/multipage/ecmascript-language-scripts-and-modules.html#sec-cyclic-module-records",
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.internals.web-vitals",
    "title": "Core Web Vitals 분석과 최적화",
    "en": "Core Web Vitals Optimization",
@@ -55456,6 +56315,58 @@
    ],
    "refs": [
     "https://web.dev/articles/why-coop-coep"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.security.permissions-policy",
+   "title": "Permissions Policy로 브라우저 기능 위임 제한",
+   "en": "Permissions Policy",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "문서와 그 안의 iframe이 카메라·위치·전체 화면 같은 브라우저 기능을 쓸 수 있는지 헤더와 allow 속성으로 정하는 정책이다.",
+   "objectives": [
+    "Permissions-Policy 헤더의 허용 목록과 iframe allow 속성이 합쳐져 iframe의 실제 정책이 정해지는 규칙을 설명할 수 있다",
+    "부모가 끈 기능을 자식 iframe이 다시 켤 수 없다는 점을 근거로 서드파티 임베드에 줄 기능을 정할 수 있다",
+    "정책으로 막힌 기능에서 Permissions API가 묻지 않고 denied를 돌려주는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.security.browser-model"
+   ],
+   "related": [
+    "fe.internals.third-party-scripts"
+   ],
+   "aliases": [
+    "Permissions-Policy",
+    "권한 정책 헤더",
+    "iframe allow 속성",
+    "Feature Policy"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Permissions_Policy"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.top-level-await",
+   "title": "최상위 await",
+   "en": "Top-level await",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "프론트엔드 내부",
+   "summary": "모듈 맨 바깥에서 await를 써서 모듈을 비동기 함수처럼 만들며, 그 모듈을 불러오는 쪽은 끝날 때까지 평가를 기다린다.",
+   "parent": "fe.internals.module-graph-evaluation",
+   "aliases": [
+    "top-level await",
+    "모듈 최상위 await"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#top-level_await"
    ],
    "domain": "fe"
   },
@@ -55657,6 +56568,70 @@
    "refs": [
     "https://www.typescriptlang.org/tsconfig/",
     "https://www.typescriptlang.org/docs/handbook/type-compatibility.html"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.atomics-wait-notify",
+   "title": "Atomics.wait와 Atomics.notify",
+   "en": "Atomics.wait and Atomics.notify",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "공유 메모리의 한 칸 값이 바뀔 때까지 에이전트를 재우고 다른 쪽에서 깨우는 짝이며, 메인 스레드에서는 대신 waitAsync를 쓴다.",
+   "parent": "fe.internals.shared-memory-atomics",
+   "aliases": [
+    "Atomics.wait",
+    "Atomics.notify",
+    "Atomics.waitAsync"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.high-water-mark",
+   "title": "큐 전략과 highWaterMark",
+   "en": "Queuing Strategy and High Water Mark",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "스트림 내부 큐가 담고 싶어 하는 청크 크기의 상한으로, 이 값에서 큐에 쌓인 양을 뺀 desiredSize가 역압을 걸 때를 정한다.",
+   "parent": "fe.internals.streams-backpressure",
+   "aliases": [
+    "highWaterMark",
+    "high water mark",
+    "desiredSize",
+    "스트림 큐 전략"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/API/Streams_API/Concepts"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.ts.variance-annotations",
+   "title": "변성 주석 in·out",
+   "en": "Variance Annotations",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "TypeScript",
+   "summary": "제네릭 타입 매개변수에 in·out을 붙여 공변·반공변을 밝히는 표기로, 구조적 비교 결과는 바꾸지 못하고 드문 순환 타입에서만 쓴다.",
+   "related": [
+    "fe.ts.strict-function-types",
+    "fe.ts.type-compatibility-soundness"
+   ],
+   "aliases": [
+    "variance annotation",
+    "in out 수정자",
+    "in·out 변성 주석"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/docs/handbook/2/generics.html#variance-annotations"
    ],
    "domain": "fe"
   },
@@ -74606,6 +75581,42 @@
    "domain": "rag"
   },
   {
+   "id": "rag.vector-db.filtered-hnsw-internals",
+   "title": "필터 걸린 HNSW 검색의 내부: 추가 간선·ACORN·전체 스캔 전환",
+   "en": "Internals of Filtered HNSW Search",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "벡터 DB",
+   "summary": "조건에 맞는 점만 HNSW 그래프에서 찾을 때 그래프가 끊기는 문제를 추가 간선·두 단계 이웃 탐색·전체 스캔 전환으로 푸는 방식과 그 손익이다.",
+   "objectives": [
+    "허용 목록을 들고 그래프를 훑는 스위핑 방식이 제한이 센 필터에서 느려지거나 결과가 모자라는 까닭을 설명할 수 있다",
+    "Qdrant가 페이로드 값마다 HNSW에 간선을 더하는 방식과, 페이로드 인덱스를 데이터보다 먼저 만들어야 하는 까닭을 말할 수 있다",
+    "ACORN식 다중 홉 이웃 탐색과 필터 맞는 진입점 추가가 정확도와 속도에 주는 손익을 따질 수 있다",
+    "필터에 맞는 점의 추정 규모가 기준(Qdrant full_scan_threshold는 벡터 KB 단위, Weaviate는 flatSearchCutoff)보다 작을 때 전체 스캔으로 바꾸는 판단을 설정값과 함께 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.vector-index.internals"
+   ],
+   "related": [
+    "rag.vector-db.pgvector-filtered-search",
+    "rag.vector-db.qdrant-tenant-index"
+   ],
+   "aliases": [
+    "filterable HNSW",
+    "필터 HNSW",
+    "필터 벡터 검색 내부",
+    "Weaviate filterStrategy"
+   ],
+   "refs": [
+    "https://qdrant.tech/documentation/manage-data/indexing/",
+    "https://docs.weaviate.io/weaviate/concepts/filtering"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
    "id": "rag.vector-db.qdrant-segment-optimizer",
    "title": "Qdrant 세그먼트와 최적화기: 색인·삭제 정리·읽기 쓰기 경합",
    "en": "Qdrant Segments and Optimizers",
@@ -74710,6 +75721,145 @@
    "refs": [
     "https://qdrant.tech/documentation/manage-data/vectors/",
     "https://qdrant.tech/documentation/tutorials-search-engineering/using-multivector-representations/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.diskann-internals",
+   "title": "DiskANN의 내부: 디스크 그래프와 메모리 PQ 코드",
+   "en": "DiskANN Internals in Milvus",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "벡터 DB",
+   "summary": "그래프와 원본 벡터는 SSD에 두고 압축한 PQ 코드만 메모리에 올려 RAM보다 큰 데이터를 근사 검색하는 색인으로, 디스크 읽기와 재현율을 맞바꾼다.",
+   "objectives": [
+    "Vamana 그래프·메모리의 PQ 코드·디스크의 원본 벡터가 검색 한 번에서 각각 하는 일을 순서대로 설명할 수 있다",
+    "max_degree·search_list_size·pq_code_budget_gb_ratio가 재현율·메모리·빌드 시간에 주는 영향을 따질 수 있다",
+    "검색 시 search_list·캐시 예산·beam_width_ratio로 디스크 I/O와 재현율을 맞바꾸는 판단을 말할 수 있다",
+    "데이터가 RAM에 들어가는지와 NVMe SSD가 있는지를 근거로 HNSW와 DiskANN 중 하나를 고를 수 있다"
+   ],
+   "prerequisites": [
+    "rag.vector-index.internals"
+   ],
+   "related": [
+    "rag.vector-db.qdrant-memory-quantization"
+   ],
+   "aliases": [
+    "DiskANN",
+    "디스크 기반 ANN",
+    "disk-based vector index",
+    "Milvus DiskANN"
+   ],
+   "refs": [
+    "https://milvus.io/docs/diskann.md"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.milvus-architecture",
+   "title": "Milvus 분산 구조: 저장과 계산의 분리",
+   "en": "Milvus Distributed Architecture",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "벡터 DB",
+   "summary": "상태 없는 프록시·코디네이터·작업 노드와 메타·객체 저장소·WAL을 나눠, 쓰기·검색·색인 만들기를 따로 늘리게 한 Milvus의 구조다.",
+   "objectives": [
+    "접근 계층·코디네이터·스트리밍 노드·쿼리 노드·데이터 노드가 쓰기와 검색 한 번에서 맡는 일을 따라갈 수 있다",
+    "새로 들어온 데이터와 봉인된 과거 데이터가 서로 다른 노드에서 검색되는 까닭과 색인이 바뀌어 끼워지는 과정을 설명할 수 있다",
+    "etcd·객체 저장소·WAL 저장소 가운데 어느 것이 멈추면 무엇이 영향을 받는지 따질 수 있다",
+    "일관성 수준을 높이면 검색이 기다리는 까닭을 보장 타임스탬프로 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.vector-db.basics"
+   ],
+   "related": [
+    "rag.vector-db.pinecone-serverless-internals",
+    "rag.vector-db.qdrant-replication-consistency"
+   ],
+   "aliases": [
+    "Milvus 아키텍처",
+    "Milvus architecture",
+    "Milvus 구조",
+    "Milvus 스트리밍 노드"
+   ],
+   "refs": [
+    "https://milvus.io/docs/architecture_overview.md",
+    "https://milvus.io/docs/consistency.md"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.weaviate-index-types",
+   "title": "Weaviate 벡터 색인 종류 비교: flat·HNSW·dynamic",
+   "en": "Weaviate Vector Index Types and Trade-offs",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "벡터 DB",
+   "summary": "디스크 기반 전수 비교인 flat, 메모리 그래프인 HNSW, 개수에 따라 넘어가는 dynamic, 군집과 양자화로 메모리를 줄인 HFresh의 메모리·속도 손익을 비교한다.",
+   "objectives": [
+    "flat 색인의 검색 시간이 개수에 비례하고 HNSW는 로그에 가깝게 늘어나는 차이를 메모리 사용량과 함께 설명할 수 있다",
+    "dynamic 색인이 기준 개수에서 HNSW로 넘어가고 되돌아가지 않으며 비동기 색인이 필요하다는 점을 근거로 멀티테넌트 배치를 판단할 수 있다",
+    "HFresh가 중심점 색인과 디스크 게시 목록에 서로 다른 비트의 양자화를 써서 메모리를 줄이고 속도를 내주는 손익을 따질 수 있다"
+   ],
+   "prerequisites": [
+    "rag.vector-index.internals"
+   ],
+   "related": [
+    "rag.vector-db.multitenancy-design"
+   ],
+   "aliases": [
+    "Weaviate vector index",
+    "Weaviate 색인 종류",
+    "Weaviate dynamic index",
+    "Weaviate flat index",
+    "HFresh"
+   ],
+   "refs": [
+    "https://docs.weaviate.io/weaviate/concepts/vector-index"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.checkpoint-serializer-internals",
+   "title": "LangGraph 체크포인트 직렬화와 암호화의 내부",
+   "en": "LangGraph Checkpoint Serialization and Saver Interface",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "체크포인터가 채널 값을 직렬화기로 바꿔 저장하고 BaseCheckpointSaver의 메서드로 읽고 쓰는 방식과, pickle 대체·AES 암호화를 켤 때의 손익을 다룬다.",
+   "objectives": [
+    "JsonPlusSerializer가 msgpack과 JSON으로 다루는 값과 다루지 못하는 값을 구분하고, pickle_fallback을 켤 때 신뢰할 수 없는 저장소에서 생기는 위험을 따질 수 있다",
+    "EncryptedSerializer를 serde에 넣어 저장 상태를 암호화할 때 키를 어디서 읽는지와 다른 암호 방식으로 바꾸는 길을 설명할 수 있다",
+    "put·put_writes·get_tuple·list가 get_state·get_state_history와 어떻게 이어지는지 따라가 직접 만든 저장소의 오류를 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.checkpoint-persistence"
+   ],
+   "related": [
+    "rag.agent.pending-writes",
+    "rag.agent.pregel-runtime"
+   ],
+   "aliases": [
+    "JsonPlusSerializer",
+    "LangGraph serde",
+    "체크포인트 직렬화",
+    "BaseCheckpointSaver"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/checkpointers",
+    "https://docs.python.org/3/library/pickle.html"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -74910,6 +76060,143 @@
    "refs": [
     "https://qdrant.tech/documentation/manage-data/vectors/"
    ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.acorn-filter-search",
+   "title": "ACORN 필터 탐색",
+   "en": "ACORN Filtered Graph Search",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "벡터 DB",
+   "summary": "필터에 걸러진 직접 이웃 대신 그 너머 이웃까지 살펴 끊긴 그래프 영역으로 건너가는 HNSW 탐색 방식으로, Weaviate 1.34부터 기본이고 Qdrant에도 있다.",
+   "parent": "rag.vector-db.filtered-hnsw-internals",
+   "aliases": [
+    "ACORN",
+    "ACORN 탐색",
+    "acorn filter strategy",
+    "두 단계 이웃 탐색"
+   ],
+   "refs": [
+    "https://docs.weaviate.io/weaviate/concepts/filtering",
+    "https://qdrant.tech/documentation/manage-data/indexing/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.vamana-graph",
+   "title": "Vamana 그래프",
+   "en": "Vamana Graph",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "벡터 DB",
+   "summary": "무작위 연결에서 시작해 쓸데없는 간선을 덜어 내고 먼 곳으로 건너가는 지름길 간선을 더해 만드는 DiskANN의 단층 근접 그래프다.",
+   "parent": "rag.vector-db.diskann-internals",
+   "aliases": [
+    "Vamana",
+    "Vamana graph index",
+    "DiskANN 그래프"
+   ],
+   "refs": [
+    "https://milvus.io/docs/diskann.md"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.milvus-growing-sealed-segment",
+   "title": "Milvus growing 세그먼트와 sealed 세그먼트",
+   "en": "Milvus Growing and Sealed Segments",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "벡터 DB",
+   "summary": "막 들어온 데이터는 스트리밍 노드의 growing 세그먼트에서 바로 검색되고, 가득 차면 봉인돼 데이터 노드가 색인을 만든 뒤 쿼리 노드가 객체 저장소에서 올려 검색한다.",
+   "parent": "rag.vector-db.milvus-architecture",
+   "aliases": [
+    "growing segment",
+    "sealed segment",
+    "Milvus 세그먼트",
+    "봉인된 세그먼트"
+   ],
+   "refs": [
+    "https://milvus.io/docs/architecture_overview.md"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.milvus-guarantee-timestamp",
+   "title": "Milvus 보장 타임스탬프(GuaranteeTs)",
+   "en": "Milvus Guarantee Timestamp",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "벡터 DB",
+   "summary": "검색 전에 쿼리 노드가 어느 시점까지의 데이터를 봐야 하는지 알려 주는 값으로, Strong·Bounded·Session·Eventually 일관성 수준이 이 값을 다르게 잡는다.",
+   "parent": "rag.vector-db.milvus-architecture",
+   "aliases": [
+    "GuaranteeTs",
+    "guarantee timestamp",
+    "Milvus 일관성 수준",
+    "Milvus consistency level"
+   ],
+   "refs": [
+    "https://milvus.io/docs/consistency.md"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.weaviate-relative-score-fusion",
+   "title": "Weaviate 상대 점수 결합(relativeScoreFusion)",
+   "en": "Weaviate Relative Score Fusion",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "검색 내부",
+   "summary": "벡터 검색과 BM25 결과의 점수를 각각 최고 1·최저 0으로 맞춘 뒤 alpha 비율로 더하는 하이브리드 점수 결합으로, 순위만 쓰는 rankedFusion보다 원래 점수 차를 더 남긴다.",
+   "related": [
+    "rag.retrieval.hybrid-rerank"
+   ],
+   "aliases": [
+    "relativeScoreFusion",
+    "relative score fusion",
+    "Weaviate 하이브리드 alpha"
+   ],
+   "refs": [
+    "https://docs.weaviate.io/weaviate/concepts/search/hybrid-search"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.encrypted-serializer",
+   "title": "LangGraph 체크포인트 암호화(EncryptedSerializer)",
+   "en": "LangGraph EncryptedSerializer",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "체크포인터의 serde 인자에 넣어 저장되는 상태를 AES로 암호화하는 직렬화기로, 키는 LANGGRAPH_AES_KEY 환경 변수나 인자로 받는다.",
+   "parent": "rag.agent.checkpoint-serializer-internals",
+   "aliases": [
+    "EncryptedSerializer",
+    "LANGGRAPH_AES_KEY",
+    "체크포인트 암호화",
+    "from_pycryptodome_aes"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/checkpointers"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "rag"
   },
   {
@@ -102712,6 +103999,129 @@
    "domain": "ml"
   },
   {
+   "id": "ml.supervised.cart-tree-internals",
+   "title": "결정 트리 내부: CART 분할 탐색과 비용 복잡도 가지치기",
+   "en": "Decision Tree Internals: CART Split Search and Cost-Complexity Pruning",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "scikit-learn 결정 트리가 불순도를 줄이는 이진 분할을 찾는 비용과 다 자란 나무를 가지치기로 줄이는 원리다.",
+   "objectives": [
+    "CART와 ID3·C4.5의 차이와 scikit-learn이 쓰는 방식을 설명할 수 있다",
+    "splitter 선택에 따른 학습·추론 계산 비용을 비교할 수 있다",
+    "유효 알파로 가장 약한 가지부터 잘라 나가는 비용 복잡도 가지치기를 설명할 수 있다",
+    "결측값이 분할에서 어느 쪽 자식으로 보내지는지 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.supervised.sklearn-decision-tree"
+   ],
+   "aliases": [
+    "CART 알고리즘",
+    "CART algorithm",
+    "트리 분할 탐색"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/tree.html#tree-algorithms-id3-c4-5-c5-0-and-cart",
+    "https://scikit-learn.org/stable/modules/tree.html#minimal-cost-complexity-pruning"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.unsupervised.kmeans-algorithm-variants",
+   "title": "K-평균 알고리즘 변형: Lloyd·Elkan·미니배치의 손익",
+   "en": "K-means Algorithm Variants: Lloyd, Elkan and Mini-Batch Trade-offs",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "같은 관성 목표를 푸는 Lloyd·Elkan·미니배치 K-평균이 속도·메모리·결과 품질에서 어떻게 다른지 따지는 주제다.",
+   "objectives": [
+    "Lloyd 알고리즘의 할당·갱신 반복과 평균 계산 복잡도를 설명할 수 있다",
+    "삼각 부등식을 쓰는 Elkan 방식의 이점과 추가 메모리 비용을 비교할 수 있다",
+    "MiniBatchKMeans가 얻는 속도와 잃는 품질을 근거로 둘 중 하나를 고를 수 있다",
+    "초기화 방식과 n_init이 국소 최솟값 문제에 주는 영향을 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.unsupervised.kmeans-clustering"
+   ],
+   "aliases": [
+    "K-평균 알고리즘 비교",
+    "Lloyd 알고리즘",
+    "Lloyd's algorithm",
+    "KMeans algorithm 파라미터",
+    "K-평균 내부 동작"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/clustering.html#k-means",
+    "https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html",
+    "https://scikit-learn.org/stable/modules/generated/sklearn.cluster.MiniBatchKMeans.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.unsupervised.pca-svd-solvers",
+   "title": "PCA 솔버 고르기: 전체·무작위 SVD와 증분 PCA",
+   "en": "PCA Solvers: Full SVD, Covariance Eigendecomposition, Randomized SVD and Incremental PCA",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "데이터 모양과 남길 성분 수에 따라 PCA 계산 방식을 바꿔 시간·메모리·수치 안정성을 맞바꾸는 주제다.",
+   "objectives": [
+    "svd_solver='auto'가 데이터 모양에 따라 어떤 솔버를 고르는지 설명할 수 있다",
+    "전체 SVD와 무작위 SVD의 시간·메모리 복잡도를 비교할 수 있다",
+    "공분산 고윳값 분해가 빠른 조건과 수치 안정성 손해를 판단할 수 있다",
+    "메모리에 다 올라가지 않는 데이터에 IncrementalPCA를 쓸지 정할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.unsupervised.pca-dimensionality-reduction"
+   ],
+   "aliases": [
+    "PCA 솔버",
+    "svd_solver",
+    "PCA solver choice",
+    "PCA 계산 방식 비교"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/decomposition.html#principal-component-analysis-pca",
+    "https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.basics.sklearn-parallelism",
+   "title": "scikit-learn 병렬 처리: joblib·OpenMP·BLAS",
+   "en": "scikit-learn Parallelism: joblib, OpenMP and BLAS Threads",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "scikit-learn이 joblib 프로세스, OpenMP 스레드, BLAS 스레드라는 세 층으로 병렬화하는 방식과 이들이 겹칠 때의 비용을 따지는 주제다.",
+   "objectives": [
+    "n_jobs가 다루는 joblib 병렬과 환경 변수로 다루는 OpenMP·BLAS 병렬을 구분할 수 있다",
+    "loky와 threading 백엔드의 차이와 메모리 공유 방식을 설명할 수 있다",
+    "스레드가 CPU보다 많아지는 과다 구독의 원인을 찾고 줄일 수 있다",
+    "threadpoolctl로 실제 쓰는 BLAS 라이브러리와 스레드 수를 확인할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.os.process-vs-thread"
+   ],
+   "related": [
+    "ml.nn.training-throughput-tuning"
+   ],
+   "aliases": [
+    "scikit-learn n_jobs",
+    "sklearn 병렬 처리",
+    "joblib 병렬",
+    "threadpoolctl"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/computing/parallelism.html"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.training.backprop",
    "title": "역전파와 경사 하강법",
    "en": "Backpropagation and Gradient Descent",
@@ -102888,6 +104298,118 @@
    ],
    "refs": [
     "https://docs.pytorch.org/docs/2.15/checkpoint.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.ccp-alpha",
+   "title": "비용 복잡도 가지치기(ccp_alpha)",
+   "en": "Minimal Cost-Complexity Pruning (ccp_alpha)",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "잎 개수에 벌점 알파를 곱해 더한 비용으로 유효 알파가 가장 작은 가지부터 잘라 나무를 줄이는 사후 가지치기다.",
+   "parent": "ml.supervised.cart-tree-internals",
+   "related": [
+    "ml.supervised.tree-max-depth"
+   ],
+   "aliases": [
+    "ccp_alpha",
+    "cost_complexity_pruning_path",
+    "유효 알파"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/tree.html#minimal-cost-complexity-pruning",
+    "https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html",
+    "https://scikit-learn.org/stable/auto_examples/tree/plot_cost_complexity_pruning.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.unsupervised.minibatch-kmeans",
+   "title": "MiniBatchKMeans(미니배치 K-평균)",
+   "en": "Mini-Batch K-means",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "무작위 미니배치로 군집 중심을 흐르는 평균처럼 갱신해 큰 데이터에서 빠르게 수렴하는 대신 결과가 조금 나빠질 수 있는 K-평균이다.",
+   "parent": "ml.unsupervised.kmeans-algorithm-variants",
+   "aliases": [
+    "MiniBatchKMeans",
+    "미니배치 K-평균",
+    "mini-batch k-means",
+    "미니배치 군집화"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/clustering.html#mini-batch-k-means",
+    "https://scikit-learn.org/stable/modules/generated/sklearn.cluster.MiniBatchKMeans.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.unsupervised.kmeans-plus-plus",
+   "title": "k-means++ 초기화",
+   "en": "k-means++ Initialization",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "관성 기여도에 비례하는 확률로 서로 멀리 떨어진 초기 중심을 뽑아 국소 최솟값에 빠질 위험을 줄이는 초기화다.",
+   "parent": "ml.unsupervised.kmeans-algorithm-variants",
+   "aliases": [
+    "k-means++",
+    "kmeans++",
+    "kmeans_plusplus",
+    "init='k-means++'",
+    "케이민즈 플러스플러스"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/clustering.html#k-means",
+    "https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.unsupervised.randomized-svd",
+   "title": "무작위 SVD(randomized SVD)",
+   "en": "Randomized SVD",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "무작위 투영으로 상위 특잇값 벡터만 근사해 남길 성분이 적을 때 전체 SVD보다 훨씬 적은 시간과 메모리로 PCA를 푸는 방법이다.",
+   "parent": "ml.unsupervised.pca-svd-solvers",
+   "aliases": [
+    "svd_solver='randomized'",
+    "randomized_svd",
+    "무작위 특잇값 분해",
+    "Halko 알고리즘"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/decomposition.html#pca-using-randomized-svd",
+    "https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.basics.thread-oversubscription",
+   "title": "스레드 과다 구독(oversubscription)",
+   "en": "Thread Oversubscription",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "n_jobs 프로세스마다 OpenMP·BLAS 스레드를 다시 띄워 CPU 수보다 많은 스레드가 돌며 스케줄링 비용으로 오히려 느려지는 현상이다.",
+   "parent": "ml.basics.sklearn-parallelism",
+   "aliases": [
+    "스레드 과잉",
+    "중첩 병렬 과부하",
+    "CPU 스레드 과다 구독"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/computing/parallelism.html#oversubscription-spawning-too-many-threads"
    ],
    "domain": "ml"
   },
@@ -103088,6 +104610,49 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
+   "domain": "ml"
+  },
+  {
+   "id": "ml.unsupervised.elkan-kmeans",
+   "title": "Elkan K-평균(삼각 부등식 가속)",
+   "en": "Elkan K-means",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "삼각 부등식으로 필요 없는 거리 계산을 건너뛰지만 표본×군집 크기의 배열을 더 쓰는 K-평균 방식이다.",
+   "parent": "ml.unsupervised.kmeans-algorithm-variants",
+   "aliases": [
+    "algorithm='elkan'",
+    "엘칸 알고리즘",
+    "Elkan algorithm",
+    "삼각 부등식 K-평균"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.unsupervised.incremental-pca",
+   "title": "IncrementalPCA(증분 PCA)",
+   "en": "Incremental PCA",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "데이터를 미니배치로 나눠 성분을 점점 갱신해 메모리 사용량이 전체 표본 수가 아닌 배치 크기에 따르는 PCA다.",
+   "parent": "ml.unsupervised.pca-svd-solvers",
+   "aliases": [
+    "IncrementalPCA",
+    "증분 PCA",
+    "out-of-core PCA",
+    "PCA partial_fit"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/decomposition.html#incremental-pca",
+    "https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.IncrementalPCA.html"
+   ],
    "domain": "ml"
   },
   {

@@ -8484,6 +8484,125 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "ml.supervised.cart-tree-internals",
+    "title": "결정 트리 내부: CART 분할 탐색과 비용 복잡도 가지치기",
+    "en": "Decision Tree Internals: CART Split Search and Cost-Complexity Pruning",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "scikit-learn 결정 트리가 불순도를 줄이는 이진 분할을 찾는 비용과 다 자란 나무를 가지치기로 줄이는 원리다.",
+    "objectives": [
+      "CART와 ID3·C4.5의 차이와 scikit-learn이 쓰는 방식을 설명할 수 있다",
+      "splitter 선택에 따른 학습·추론 계산 비용을 비교할 수 있다",
+      "유효 알파로 가장 약한 가지부터 잘라 나가는 비용 복잡도 가지치기를 설명할 수 있다",
+      "결측값이 분할에서 어느 쪽 자식으로 보내지는지 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.sklearn-decision-tree"
+    ],
+    "aliases": [
+      "CART 알고리즘",
+      "CART algorithm",
+      "트리 분할 탐색"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/tree.html#tree-algorithms-id3-c4-5-c5-0-and-cart",
+      "https://scikit-learn.org/stable/modules/tree.html#minimal-cost-complexity-pruning"
+    ]
+  },
+  {
+    "id": "ml.unsupervised.kmeans-algorithm-variants",
+    "title": "K-평균 알고리즘 변형: Lloyd·Elkan·미니배치의 손익",
+    "en": "K-means Algorithm Variants: Lloyd, Elkan and Mini-Batch Trade-offs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "같은 관성 목표를 푸는 Lloyd·Elkan·미니배치 K-평균이 속도·메모리·결과 품질에서 어떻게 다른지 따지는 주제다.",
+    "objectives": [
+      "Lloyd 알고리즘의 할당·갱신 반복과 평균 계산 복잡도를 설명할 수 있다",
+      "삼각 부등식을 쓰는 Elkan 방식의 이점과 추가 메모리 비용을 비교할 수 있다",
+      "MiniBatchKMeans가 얻는 속도와 잃는 품질을 근거로 둘 중 하나를 고를 수 있다",
+      "초기화 방식과 n_init이 국소 최솟값 문제에 주는 영향을 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.unsupervised.kmeans-clustering"
+    ],
+    "aliases": [
+      "K-평균 알고리즘 비교",
+      "Lloyd 알고리즘",
+      "Lloyd's algorithm",
+      "KMeans algorithm 파라미터",
+      "K-평균 내부 동작"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/clustering.html#k-means",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.cluster.MiniBatchKMeans.html"
+    ]
+  },
+  {
+    "id": "ml.unsupervised.pca-svd-solvers",
+    "title": "PCA 솔버 고르기: 전체·무작위 SVD와 증분 PCA",
+    "en": "PCA Solvers: Full SVD, Covariance Eigendecomposition, Randomized SVD and Incremental PCA",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "데이터 모양과 남길 성분 수에 따라 PCA 계산 방식을 바꿔 시간·메모리·수치 안정성을 맞바꾸는 주제다.",
+    "objectives": [
+      "svd_solver='auto'가 데이터 모양에 따라 어떤 솔버를 고르는지 설명할 수 있다",
+      "전체 SVD와 무작위 SVD의 시간·메모리 복잡도를 비교할 수 있다",
+      "공분산 고윳값 분해가 빠른 조건과 수치 안정성 손해를 판단할 수 있다",
+      "메모리에 다 올라가지 않는 데이터에 IncrementalPCA를 쓸지 정할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.unsupervised.pca-dimensionality-reduction"
+    ],
+    "aliases": [
+      "PCA 솔버",
+      "svd_solver",
+      "PCA solver choice",
+      "PCA 계산 방식 비교"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/decomposition.html#principal-component-analysis-pca",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html"
+    ]
+  },
+  {
+    "id": "ml.basics.sklearn-parallelism",
+    "title": "scikit-learn 병렬 처리: joblib·OpenMP·BLAS",
+    "en": "scikit-learn Parallelism: joblib, OpenMP and BLAS Threads",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "scikit-learn이 joblib 프로세스, OpenMP 스레드, BLAS 스레드라는 세 층으로 병렬화하는 방식과 이들이 겹칠 때의 비용을 따지는 주제다.",
+    "objectives": [
+      "n_jobs가 다루는 joblib 병렬과 환경 변수로 다루는 OpenMP·BLAS 병렬을 구분할 수 있다",
+      "loky와 threading 백엔드의 차이와 메모리 공유 방식을 설명할 수 있다",
+      "스레드가 CPU보다 많아지는 과다 구독의 원인을 찾고 줄일 수 있다",
+      "threadpoolctl로 실제 쓰는 BLAS 라이브러리와 스레드 수를 확인할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.os.process-vs-thread"
+    ],
+    "related": [
+      "ml.nn.training-throughput-tuning"
+    ],
+    "aliases": [
+      "scikit-learn n_jobs",
+      "sklearn 병렬 처리",
+      "joblib 병렬",
+      "threadpoolctl"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/computing/parallelism.html"
+    ]
+  },
+  {
     "id": "ml.training.backprop",
     "title": "역전파와 경사 하강법",
     "en": "Backpropagation and Gradient Descent",
@@ -8655,6 +8774,113 @@
     ],
     "refs": [
       "https://docs.pytorch.org/docs/2.15/checkpoint.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.ccp-alpha",
+    "title": "비용 복잡도 가지치기(ccp_alpha)",
+    "en": "Minimal Cost-Complexity Pruning (ccp_alpha)",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "잎 개수에 벌점 알파를 곱해 더한 비용으로 유효 알파가 가장 작은 가지부터 잘라 나무를 줄이는 사후 가지치기다.",
+    "parent": "ml.supervised.cart-tree-internals",
+    "related": [
+      "ml.supervised.tree-max-depth"
+    ],
+    "aliases": [
+      "ccp_alpha",
+      "cost_complexity_pruning_path",
+      "유효 알파"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/tree.html#minimal-cost-complexity-pruning",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html",
+      "https://scikit-learn.org/stable/auto_examples/tree/plot_cost_complexity_pruning.html"
+    ]
+  },
+  {
+    "id": "ml.unsupervised.minibatch-kmeans",
+    "title": "MiniBatchKMeans(미니배치 K-평균)",
+    "en": "Mini-Batch K-means",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "무작위 미니배치로 군집 중심을 흐르는 평균처럼 갱신해 큰 데이터에서 빠르게 수렴하는 대신 결과가 조금 나빠질 수 있는 K-평균이다.",
+    "parent": "ml.unsupervised.kmeans-algorithm-variants",
+    "aliases": [
+      "MiniBatchKMeans",
+      "미니배치 K-평균",
+      "mini-batch k-means",
+      "미니배치 군집화"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/clustering.html#mini-batch-k-means",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.cluster.MiniBatchKMeans.html"
+    ]
+  },
+  {
+    "id": "ml.unsupervised.kmeans-plus-plus",
+    "title": "k-means++ 초기화",
+    "en": "k-means++ Initialization",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "관성 기여도에 비례하는 확률로 서로 멀리 떨어진 초기 중심을 뽑아 국소 최솟값에 빠질 위험을 줄이는 초기화다.",
+    "parent": "ml.unsupervised.kmeans-algorithm-variants",
+    "aliases": [
+      "k-means++",
+      "kmeans++",
+      "kmeans_plusplus",
+      "init='k-means++'",
+      "케이민즈 플러스플러스"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/clustering.html#k-means",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html"
+    ]
+  },
+  {
+    "id": "ml.unsupervised.randomized-svd",
+    "title": "무작위 SVD(randomized SVD)",
+    "en": "Randomized SVD",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "무작위 투영으로 상위 특잇값 벡터만 근사해 남길 성분이 적을 때 전체 SVD보다 훨씬 적은 시간과 메모리로 PCA를 푸는 방법이다.",
+    "parent": "ml.unsupervised.pca-svd-solvers",
+    "aliases": [
+      "svd_solver='randomized'",
+      "randomized_svd",
+      "무작위 특잇값 분해",
+      "Halko 알고리즘"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/decomposition.html#pca-using-randomized-svd",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html"
+    ]
+  },
+  {
+    "id": "ml.basics.thread-oversubscription",
+    "title": "스레드 과다 구독(oversubscription)",
+    "en": "Thread Oversubscription",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "n_jobs 프로세스마다 OpenMP·BLAS 스레드를 다시 띄워 CPU 수보다 많은 스레드가 돌며 스케줄링 비용으로 오히려 느려지는 현상이다.",
+    "parent": "ml.basics.sklearn-parallelism",
+    "aliases": [
+      "스레드 과잉",
+      "중첩 병렬 과부하",
+      "CPU 스레드 과다 구독"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/computing/parallelism.html#oversubscription-spawning-too-many-threads"
     ]
   },
   {
@@ -8846,5 +9072,46 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ml.unsupervised.elkan-kmeans",
+    "title": "Elkan K-평균(삼각 부등식 가속)",
+    "en": "Elkan K-means",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "삼각 부등식으로 필요 없는 거리 계산을 건너뛰지만 표본×군집 크기의 배열을 더 쓰는 K-평균 방식이다.",
+    "parent": "ml.unsupervised.kmeans-algorithm-variants",
+    "aliases": [
+      "algorithm='elkan'",
+      "엘칸 알고리즘",
+      "Elkan algorithm",
+      "삼각 부등식 K-평균"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html"
+    ]
+  },
+  {
+    "id": "ml.unsupervised.incremental-pca",
+    "title": "IncrementalPCA(증분 PCA)",
+    "en": "Incremental PCA",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "데이터를 미니배치로 나눠 성분을 점점 갱신해 메모리 사용량이 전체 표본 수가 아닌 배치 크기에 따르는 PCA다.",
+    "parent": "ml.unsupervised.pca-svd-solvers",
+    "aliases": [
+      "IncrementalPCA",
+      "증분 PCA",
+      "out-of-core PCA",
+      "PCA partial_fit"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/decomposition.html#incremental-pca",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.IncrementalPCA.html"
+    ]
   }
 ]

@@ -8096,6 +8096,43 @@
     ]
   },
   {
+    "id": "dev.debug.profiler-models",
+    "title": "결정적 프로파일링과 샘플링 프로파일링의 손익",
+    "en": "Deterministic vs Statistical Profiling in Python",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "디버깅",
+    "summary": "모든 호출 이벤트를 재는 추적 프로파일러와 바깥에서 호출 스택을 주기적으로 읽는 샘플링 프로파일러의 정확도·부담·쓰임새를 비교한다.",
+    "objectives": [
+      "호출·반환·예외 이벤트마다 시간을 재는 결정적 프로파일링과 주기적으로 스택을 읽는 통계적 프로파일링의 차이를 설명할 수 있다",
+      "profiling.tracing이 정확한 호출 횟수를 주는 대신 실행 부담이 있고 profiling.sampling이 부담 없이 붙는 대신 짧은 함수를 놓치고 상대 비율만 준다는 손익으로 도구를 고를 수 있다",
+      "샘플 수와 간격이 추정 시간의 오차를 정한다는 점을 알고 짧은 실행이나 1~2% 차이를 샘플링 결과로 판단하지 않을 수 있다",
+      "파이썬 3.15에서 profile 모듈이 폐지 예정이 되고 cProfile이 profiling.tracing의 별칭이 된 변화를 알고 기존 코드의 이전 방향을 정할 수 있다"
+    ],
+    "prerequisites": [
+      "be.run.performance"
+    ],
+    "related": [
+      "dev.debug.trace-monitoring"
+    ],
+    "aliases": [
+      "결정적 프로파일링",
+      "deterministic profiling",
+      "통계적 프로파일링",
+      "statistical profiling",
+      "profiling.tracing",
+      "PEP 799"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/profile.html",
+      "https://docs.python.org/3/library/profiling.sampling.html",
+      "https://peps.python.org/pep-0799/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "dev.robust.crash-consistency",
     "title": "크래시 일관성: 쓰기 순서와 커밋 지점",
     "en": "Crash Consistency: Write Ordering and the Commit Point",
@@ -8314,6 +8351,145 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "dev.git.ref-storage",
+    "title": "참조 저장소의 내부: files 백엔드와 reftable",
+    "en": "Git Reference Backends: files and reftable",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "Git",
+    "summary": "참조를 낱개 파일과 packed-refs로 두는 files 방식과 불변 표를 쌓는 reftable 방식의 조회·갱신 비용을 비교하고 전환 손익을 판단한다.",
+    "objectives": [
+      "낱개 참조 파일과 packed-refs가 참조 수가 많을 때 inode·시스템 호출·전체 파일 다시 쓰기 비용을 키우는 이유를 설명할 수 있다",
+      "reftable이 블록·접두사 압축·재시작 지점으로 이진 탐색하고 tables.list 교체로 갱신을 원자적으로 끝내는 구조를 설명할 수 있다",
+      "git refs migrate의 --ref-format·--dry-run과 워크트리·동시 쓰기 제약을 알고 백엔드 전환 여부를 판단할 수 있다",
+      "pack-refs --auto가 files에서는 묶기, reftable에서는 기하 수열 압축으로 동작하는 차이를 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.internals"
+    ],
+    "related": [
+      "dev.git.repo-performance"
+    ],
+    "aliases": [
+      "reftable",
+      "참조 백엔드",
+      "ref backend",
+      "git refs migrate",
+      "--ref-format"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/reftable",
+      "https://git-scm.com/docs/git-refs",
+      "https://git-scm.com/docs/git-pack-refs"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "dev.debug.linux-perf-python",
+    "title": "리눅스 perf로 파이썬 함수 보기",
+    "en": "Python Support for the Linux perf Profiler",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "네이티브 프로파일러가 파이썬 함수를 구분하지 못하는 이유와 트램폴린·perf 맵·JIT 덤프로 이름을 보이게 하는 방식, 그 부담을 비교한다.",
+    "objectives": [
+      "모든 파이썬 함수가 같은 평가 루프 C 함수로 실행되어 perf 호출 기록에 파이썬 이름이 나오지 않는 이유를 설명할 수 있다",
+      "함수마다 끼우는 트램폴린과 perf 맵 파일이 perf에 파이썬 함수 이름을 알려 주는 원리를 설명할 수 있다",
+      "프레임 포인터가 있는 빌드의 perf 맵 방식과 프레임 포인터가 없을 때 쓰는 JIT 방식(-X perf_jit, perf inject --jit)의 요구 조건과 부담을 비교할 수 있다",
+      "sysconfig로 프레임 포인터와 트램폴린 지원 여부를 확인해 호출 기록이 비거나 끊기는 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "be.run.performance"
+    ],
+    "related": [
+      "dev.debug.profiler-models"
+    ],
+    "aliases": [
+      "perf profiler 파이썬",
+      "Linux perf Python",
+      "perf 프로파일러 지원",
+      "perf_profiling",
+      "-X perf_jit"
+    ],
+    "refs": [
+      "https://docs.python.org/3/howto/perf_profiling.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "dev.debug.pyc-invalidation",
+    "title": "바이트코드 캐시 무효화: 타임스탬프와 해시 기반 pyc",
+    "en": "Cached Bytecode Invalidation: Timestamp and Hash-Based pycs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "import가 __pycache__의 pyc를 다시 쓸지 정하는 방식, 원본 시각·크기 비교와 내용 해시 비교의 비용과 재현 가능 빌드에서의 손익을 분석한다.",
+    "objectives": [
+      "__pycache__와 인터프리터 태그가 붙은 pyc 이름이 여러 파이썬 버전의 캐시 충돌을 막는 이유와 원본 없이 남은 캐시가 무시되는 규칙을 설명할 수 있다",
+      "pyc 머리말의 플래그 필드에 따라 원본 수정 시각·크기를 비교하는 방식과 원본 해시를 비교하는 방식이 갈리는 구조를 설명할 수 있다",
+      "타임스탬프 방식이 기본인 이유(해시 계산 비용)와 해시 방식이 재현 가능 빌드에 필요한 이유를 비교할 수 있다",
+      "SOURCE_DATE_EPOCH와 invalidation_mode, --check-hash-based-pycs가 어떤 pyc를 만들고 검사할지 정하는 방식을 알고 오래된 캐시가 쓰이는 장애를 분석할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.debug.import-system"
+    ],
+    "related": [
+      "cs.lang.bytecode"
+    ],
+    "aliases": [
+      "pyc 무효화",
+      "bytecode cache invalidation",
+      "__pycache__",
+      "PEP 552",
+      "deterministic pycs"
+    ],
+    "refs": [
+      "https://docs.python.org/3/reference/import.html#cached-bytecode-invalidation",
+      "https://peps.python.org/pep-0552/",
+      "https://peps.python.org/pep-3147/",
+      "https://docs.python.org/3/library/py_compile.html"
+    ]
+  },
+  {
+    "id": "dev.test.pytest-hook-internals",
+    "title": "pytest 플러그인 훅의 내부: 호출 순서와 래퍼",
+    "en": "pytest Plugin Hooks: Call Order and Wrappers (pluggy)",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "테스트",
+    "summary": "pytest가 pluggy로 훅 구현을 등록하고 부르는 순서, 첫 결과 훅과 래퍼의 동작을 알고 플러그인끼리 부딪치는 문제를 분석한다.",
+    "objectives": [
+      "훅 구현이 나중에 등록된 것부터 불리고 tryfirst·trylast가 그 순서를 앞뒤로 옮기는 규칙으로 여러 플러그인의 실행 순서를 설명할 수 있다",
+      "보통 훅이 None이 아닌 결과를 모두 모으고 firstresult 훅은 첫 결과에서 멈춘다는 차이로 다른 구현이 불리지 않는 원인을 찾을 수 있다",
+      "훅 구현이 명세보다 적은 인자만 받아도 되는 규칙이 플러그인의 앞쪽 호환을 지키는 원리를 설명할 수 있다",
+      "pytest_addhooks로 새 훅 명세를 더하고 conftest가 불리는 시점의 제약을 알고 훅 설계를 고를 수 있다"
+    ],
+    "prerequisites": [
+      "dev.test.fixture-scope-isolation"
+    ],
+    "related": [
+      "dev.test.assert-rewriting"
+    ],
+    "aliases": [
+      "pytest 훅",
+      "pytest hooks",
+      "pluggy",
+      "hookimpl",
+      "tryfirst",
+      "firstresult"
+    ],
+    "refs": [
+      "https://docs.pytest.org/en/stable/how-to/writing_hook_functions.html",
+      "https://pluggy.readthedocs.io/en/stable/"
+    ]
+  },
+  {
     "id": "dev.git.reflog",
     "title": "reflog",
     "en": "Reflog",
@@ -8351,6 +8527,27 @@
     "refs": [
       "https://git-scm.com/docs/git-merge-base"
     ]
+  },
+  {
+    "id": "dev.debug.tachyon-sampler",
+    "title": "profiling.sampling(Tachyon)",
+    "en": "profiling.sampling Statistical Profiler (Tachyon)",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "디버깅",
+    "summary": "파이썬 3.15 표준 라이브러리의 샘플링 프로파일러로, 실행 중인 프로세스의 메모리에서 호출 스택을 주기적으로 읽어 코드 수정 없이 붙는다.",
+    "parent": "dev.debug.profiler-models",
+    "aliases": [
+      "Tachyon 프로파일러",
+      "python -m profiling.sampling",
+      "Tachyon sampling profiler"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/profiling.sampling.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "dev.git.packfile",
@@ -8559,6 +8756,127 @@
     ],
     "refs": [
       "https://docs.pytest.org/en/stable/how-to/assert.html"
+    ]
+  },
+  {
+    "id": "dev.git.packed-refs",
+    "title": "packed-refs 파일",
+    "en": "packed-refs File",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Git",
+    "summary": "여러 참조를 한 파일에 모아 두고, 같은 이름의 낱개 참조 파일이 있으면 그쪽을 먼저 쓰는 Git의 files 백엔드 저장 방식이다.",
+    "parent": "dev.git.ref-storage",
+    "aliases": [
+      "git pack-refs",
+      ".git/packed-refs",
+      "묶인 참조"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/git-pack-refs"
+    ]
+  },
+  {
+    "id": "dev.git.reftable-stack",
+    "title": "reftable 테이블 스택(tables.list)",
+    "en": "reftable Table Stack (tables.list)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Git",
+    "summary": "불변 reftable 파일을 오래된 것부터 tables.list에 쌓아 두고 새 파일을 더해 갱신하며 뒤에서부터 찾는 구조다.",
+    "parent": "dev.git.ref-storage",
+    "aliases": [
+      "tables.list",
+      "reftable 압축",
+      "reftable compaction",
+      "tables.list.lock"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/reftable"
+    ]
+  },
+  {
+    "id": "dev.debug.perf-trampoline",
+    "title": "perf 트램폴린(-X perf)",
+    "en": "Python perf Trampoline (-X perf)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "파이썬 함수마다 작은 기계어 조각을 끼우고 perf 맵 파일에 대응을 적어 네이티브 프로파일러가 파이썬 함수 이름을 보게 하는 CPython 기능이다.",
+    "parent": "dev.debug.linux-perf-python",
+    "aliases": [
+      "-X perf",
+      "PYTHONPERFSUPPORT",
+      "activate_stack_trampoline"
+    ],
+    "refs": [
+      "https://docs.python.org/3/howto/perf_profiling.html"
+    ]
+  },
+  {
+    "id": "dev.debug.hash-based-pyc",
+    "title": "해시 기반 pyc(checked·unchecked)",
+    "en": "Hash-Based pyc Files (Checked and Unchecked)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "원본 수정 시각 대신 원본 내용의 해시를 담는 pyc로, 불러올 때 원본을 해시해 비교하는 checked와 비교 없이 쓰는 unchecked가 있다.",
+    "parent": "dev.debug.pyc-invalidation",
+    "aliases": [
+      "hash-based pyc",
+      "unchecked-hash",
+      "checked-hash",
+      "PycInvalidationMode",
+      "--check-hash-based-pycs"
+    ],
+    "refs": [
+      "https://peps.python.org/pep-0552/"
+    ]
+  },
+  {
+    "id": "dev.test.pytest-hook-wrapper",
+    "title": "pytest 훅 래퍼(wrapper=True)",
+    "en": "pytest Hook Wrapper",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "테스트",
+    "summary": "한 번 yield하는 제너레이터로 다른 훅 구현들의 앞뒤를 감싸 결과나 예외를 받아 바꿀 수 있는 pytest 훅 구현이다.",
+    "parent": "dev.test.pytest-hook-internals",
+    "aliases": [
+      "hookimpl(wrapper=True)",
+      "hookwrapper",
+      "훅 래퍼",
+      "hook wrapper"
+    ],
+    "refs": [
+      "https://docs.pytest.org/en/stable/how-to/writing_hook_functions.html"
+    ]
+  },
+  {
+    "id": "dev.git.multi-pack-index",
+    "title": "다중 팩 색인(multi-pack-index)",
+    "en": "Git multi-pack-index (MIDX)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Git",
+    "summary": "여러 packfile에 흩어진 객체를 하나의 정렬된 색인으로 묶어 팩 수와 상관없이 로그 시간에 찾게 하는 Git 파일이다.",
+    "related": [
+      "dev.git.packfile"
+    ],
+    "aliases": [
+      "MIDX",
+      "git multi-pack-index",
+      "core.multiPackIndex",
+      "멀티 팩 인덱스"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/multi-pack-index"
     ]
   }
 ]
