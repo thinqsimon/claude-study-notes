@@ -1,5 +1,5 @@
 {
- "version": "0.79.0",
+ "version": "0.80.0",
  "domains": [
   {
    "prefix": "dev",
@@ -38687,6 +38687,68 @@
    "domain": "be"
   },
   {
+   "id": "be.http.cache-keys",
+   "title": "HTTP 캐시 키와 무효화 규칙",
+   "en": "HTTP Cache Keys and Invalidation",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "HTTP",
+   "summary": "캐시가 메서드·URI와 Vary로 저장 응답을 고르고 안전하지 않은 메서드 뒤에 지우는 규칙과 그 보안상 함정을 다룬다.",
+   "objectives": [
+    "기본 캐시 키가 메서드와 대상 URI로 정해지고 Vary가 키를 넓히는 과정을 설명할 수 있다",
+    "Vary에 넣는 헤더가 적중률과 잘못된 응답 재사용에 주는 손익을 따질 수 있다",
+    "PUT·POST·DELETE 같은 안전하지 않은 메서드에 오류가 아닌(2xx·3xx) 응답이 오면 대상 URI와 같은 출처의 Location·Content-Location을 무효화하는 범위와, 요청이 지나간 캐시에만 미친다는 한계를 설명할 수 있다",
+    "캐시 포이즈닝과 민감한 응답 캐싱이 생기는 원인을 분석할 수 있다"
+   ],
+   "prerequisites": [
+    "be.http.caching"
+   ],
+   "aliases": [
+    "HTTP 캐시 키",
+    "HTTP cache key",
+    "HTTP 캐시 무효화",
+    "RFC 9111 캐시 키"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9111.html",
+    "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Vary"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.security.h2-dos",
+   "title": "HTTP/2 서비스 거부와 자원 한도",
+   "en": "HTTP/2 Denial-of-Service Considerations",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "웹 보안",
+   "summary": "응답 의무가 있는 제어 프레임과 스트림 리셋을 악용해 서버 자원을 소모시키는 HTTP/2 공격과 그 한도 설정을 다룬다.",
+   "objectives": [
+    "SETTINGS·PING·작은 WINDOW_UPDATE·RST_STREAM이 공격에 쓰일 수 있는 이유를 설명할 수 있다",
+    "프레임 사용량을 추적해 한도를 넘으면 ENHANCE_YOUR_CALM으로 연결을 끊는 방어의 손익을 따질 수 있다",
+    "필드 블록 크기를 SETTINGS_MAX_HEADER_LIST_SIZE와 431 응답으로 제한하는 방법을 설명할 수 있다",
+    "Rapid Reset이 요청 취소로 많은 스트림을 빠르게 리셋해 서버 자원을 소모시키는 원리를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "be.http.versions",
+    "be.run.load-control"
+   ],
+   "aliases": [
+    "HTTP/2 DoS",
+    "HTTP/2 서비스 거부",
+    "ENHANCE_YOUR_CALM",
+    "HTTP/2 프레임 남용"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9113.html#section-10.5",
+    "https://www.cisa.gov/news-events/alerts/2023/10/10/http2-rapid-reset-vulnerability-cve-2023-44487",
+    "https://cveawg.mitre.org/api/cve/CVE-2023-44487"
+   ],
+   "domain": "be"
+  },
+  {
    "id": "be.async.asgi",
    "title": "ASGI: 파이썬 비동기 서버의 약속",
    "en": "ASGI Specification",
@@ -39043,6 +39105,99 @@
    "domain": "be"
   },
   {
+   "id": "be.http.h2-flow-control",
+   "title": "HTTP/2 흐름 제어의 동작",
+   "en": "HTTP/2 Flow Control",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "HTTP",
+   "summary": "수신자가 스트림과 연결마다 받을 양을 알려 주는 HTTP/2의 크레딧 방식이 처리량과 교착에 주는 영향을 다룬다.",
+   "objectives": [
+    "스트림 창과 연결 창이 DATA 프레임에만 적용되는 이유를 설명할 수 있다",
+    "창 크기가 대역폭 지연 곱보다 작을 때 처리량이 묶이는 원리를 따질 수 있다",
+    "SETTINGS_INITIAL_WINDOW_SIZE를 바꿀 때 열린 스트림의 창이 음수가 될 수 있음을 설명할 수 있다",
+    "WINDOW_UPDATE를 제때 처리하지 않아 연결이 교착되는 경우를 분석할 수 있다"
+   ],
+   "prerequisites": [
+    "be.http.versions",
+    "cs.net.tcp-zero-window"
+   ],
+   "aliases": [
+    "HTTP/2 흐름 제어",
+    "HTTP/2 flow control",
+    "h2 흐름 제어",
+    "HTTP/2 플로 컨트롤",
+    "SETTINGS_INITIAL_WINDOW_SIZE"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9113.html#section-5.2"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.http.extensible-priorities",
+   "title": "HTTP 확장 우선순위 체계",
+   "en": "Extensible Prioritization Scheme for HTTP",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "HTTP",
+   "summary": "RFC 7540의 의존성 트리 대신 긴급도와 점진 여부 두 값으로 응답 순서를 알리는 HTTP/2·HTTP/3 공통 체계다.",
+   "objectives": [
+    "RFC 7540 스트림 우선순위가 폐기된 이유를 설명할 수 있다",
+    "urgency(0~7, 기본 3)와 incremental 값에 따라 서버가 응답을 보내는 순서를 추론할 수 있다",
+    "종단 간 Priority 헤더와 홉 단위 PRIORITY_UPDATE 프레임의 쓰임을 구분할 수 있다",
+    "여러 클라이언트를 합치는 중개자에서 우선순위가 공정성을 해치는 경우를 따질 수 있다"
+   ],
+   "prerequisites": [
+    "be.http.versions"
+   ],
+   "aliases": [
+    "HTTP 확장 우선순위",
+    "RFC 9218",
+    "extensible priorities",
+    "HTTP 응답 우선순위",
+    "PRIORITY_UPDATE"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9218.html",
+    "https://www.rfc-editor.org/rfc/rfc9113.html#section-5.3"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.http.header-compression",
+   "title": "HPACK과 QPACK 헤더 압축",
+   "en": "HTTP Field Compression: HPACK and QPACK",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "HTTP",
+   "summary": "정적 표와 동적 표로 반복되는 헤더를 줄이는 HTTP/2·HTTP/3 압축의 구조와 순서 보장·보안의 손익을 다룬다.",
+   "objectives": [
+    "정적 표, 동적 표, 허프만 부호화가 헤더 크기를 줄이는 방식을 설명할 수 있다",
+    "QUIC에서 HPACK을 그대로 쓰면 헤드 오브 라인 블로킹이 생기는 이유와 QPACK의 인코더·디코더 스트림이 이를 줄이는 방식을 설명할 수 있다",
+    "QPACK의 Required Insert Count 때문에 스트림이 막히는 조건과 SETTINGS_QPACK_BLOCKED_STREAMS의 역할을 설명할 수 있다",
+    "동적 표 상태를 추측하는 CRIME류 공격과 never-indexed 리터럴로 민감한 헤더를 지키는 방법을 따질 수 있다"
+   ],
+   "prerequisites": [
+    "be.http.versions",
+    "be.http.headers-body"
+   ],
+   "aliases": [
+    "HTTP 헤더 압축",
+    "HTTP header compression",
+    "HTTP 필드 압축",
+    "HTTP field compression"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc7541.html",
+    "https://www.rfc-editor.org/rfc/rfc9204.html"
+   ],
+   "domain": "be"
+  },
+  {
    "id": "be.http.tls-term",
    "title": "TLS",
    "en": "Transport Layer Security",
@@ -39135,6 +39290,71 @@
    "parent": "be.security.threat-modeling",
    "aliases": [
     "STRIDE"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.http.vary",
+   "title": "Vary 헤더",
+   "en": "Vary Header",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "HTTP",
+   "summary": "응답이 어떤 요청 헤더에 따라 달라지는지 알려 캐시가 그 값마다 응답을 따로 저장하게 하는 헤더다.",
+   "parent": "be.http.cache-keys",
+   "aliases": [
+    "Vary",
+    "Vary: Accept-Encoding",
+    "Vary: *"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Vary",
+    "https://www.rfc-editor.org/rfc/rfc9111.html"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.security.cache-poisoning",
+   "title": "웹 캐시 포이즈닝",
+   "en": "Web Cache Poisoning",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "웹 보안",
+   "summary": "공격자가 꾸민 응답을 공유 캐시에 저장시켜 같은 키로 요청하는 여러 사용자에게 퍼뜨리는 공격이다.",
+   "parent": "be.http.cache-keys",
+   "related": [
+    "be.security.request-smuggling"
+   ],
+   "aliases": [
+    "HTTP 캐시 포이즈닝",
+    "HTTP cache poisoning",
+    "HTTP 캐시 오염"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9111.html"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.security.rapid-reset",
+   "title": "HTTP/2 Rapid Reset",
+   "en": "HTTP/2 Rapid Reset (CVE-2023-44487)",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "웹 보안",
+   "summary": "요청 취소로 많은 스트림을 빠르게 리셋해 서버 자원을 소모시키는 HTTP/2 서비스 거부 공격으로, 2023년에 실제로 악용됐다.",
+   "parent": "be.security.h2-dos",
+   "aliases": [
+    "Rapid Reset",
+    "CVE-2023-44487",
+    "HTTP/2 래피드 리셋"
+   ],
+   "refs": [
+    "https://www.cisa.gov/news-events/alerts/2023/10/10/http2-rapid-reset-vulnerability-cve-2023-44487",
+    "https://cveawg.mitre.org/api/cve/CVE-2023-44487"
    ],
    "domain": "be"
   },
@@ -39397,6 +39617,87 @@
     "https://www.rfc-editor.org/rfc/rfc8470",
     "https://www.rfc-editor.org/rfc/rfc8446",
     "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/425"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.http.window-update",
+   "title": "WINDOW_UPDATE 프레임",
+   "en": "WINDOW_UPDATE Frame",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "HTTP",
+   "summary": "HTTP/2에서 수신자가 스트림이나 연결의 흐름 제어 창을 늘려 상대가 DATA를 더 보내게 하는 프레임이다.",
+   "parent": "be.http.h2-flow-control",
+   "aliases": [
+    "WINDOW_UPDATE",
+    "HTTP/2 창 갱신 프레임",
+    "flow-control window update"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9113.html#section-6.9"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.http.priority-header",
+   "title": "Priority 헤더",
+   "en": "Priority Header Field",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "HTTP",
+   "summary": "요청과 응답에 u(긴급도)와 i(점진 처리)를 실어 응답 우선순위를 알리는 종단 간 HTTP 헤더다.",
+   "parent": "be.http.extensible-priorities",
+   "aliases": [
+    "Priority 헤더",
+    "Priority header",
+    "HTTP Priority 필드",
+    "u=3 우선순위"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9218.html"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.http.hpack",
+   "title": "HPACK",
+   "en": "HPACK",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "HTTP",
+   "summary": "61개 항목의 정적 표와 FIFO 동적 표, 허프만 부호로 헤더를 압축하는 HTTP/2의 헤더 압축 형식이다.",
+   "parent": "be.http.header-compression",
+   "aliases": [
+    "HPACK",
+    "RFC 7541",
+    "HTTP/2 HPACK"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc7541.html"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.http.qpack",
+   "title": "QPACK",
+   "en": "QPACK",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "HTTP",
+   "summary": "스트림 사이 전달 순서가 보장되지 않는 QUIC에 맞게 동적 표 갱신을 별도 인코더·디코더 스트림으로 보내는 HTTP/3의 헤더 압축 형식이다.",
+   "parent": "be.http.header-compression",
+   "aliases": [
+    "QPACK",
+    "RFC 9204",
+    "HTTP/3 QPACK"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9204.html"
    ],
    "domain": "be"
   },
@@ -58576,6 +58877,75 @@
    "domain": "fe"
   },
   {
+   "id": "fe.ts.conditional-type-distribution",
+   "title": "조건부 타입의 분배와 infer 추론",
+   "en": "Distributive Conditional Types and infer",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "TypeScript",
+   "summary": "검사 대상이 맨 타입 매개변수인 조건부 타입이 유니언 멤버마다 따로 적용되고, infer로 구조 안의 타입을 뽑아내는 TypeScript 타입 수준 계산 규칙이다.",
+   "objectives": [
+    "맨 타입 매개변수를 검사하는 조건부 타입에 유니언을 넣으면 멤버마다 적용된 결과의 유니언이 나오는 분배를 설명하고, extends 양쪽을 대괄호로 감싸 분배를 막을 수 있다",
+    "같은 infer 변수에 후보가 여럿이면 공변 자리에서는 유니언, 반공변 자리에서는 교차 타입으로 합쳐지는 규칙으로 추론 결과를 예측할 수 있다",
+    "infer로 선언한 타입 변수가 extends 절에서만 쓰이고 참 분기에서 참조되는 규칙에 따라 반환값·요소 타입을 뽑는 조건부 타입을 분석할 수 있다",
+    "오버로드된 함수에서 추론이 마지막 시그니처만 쓰여 인수별 오버로드 해석이 일어나지 않는 한계를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.ts.union-narrowing",
+    "fe.ts.type-compatibility-soundness"
+   ],
+   "related": [
+    "fe.ts.generics"
+   ],
+   "aliases": [
+    "분배 조건부 타입",
+    "distributive conditional type",
+    "TypeScript 조건부 타입",
+    "TS conditional types"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/docs/handbook/2/conditional-types.html",
+    "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-8.html"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.css.cascade-sorting-order",
+   "title": "캐스케이드 정렬 기준: 출처·맥락·레이어·명시도",
+   "en": "CSS Cascade Sorting Order",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "CSS",
+   "summary": "명세가 겹친 선언을 출처와 중요도, 캡슐화 맥락, 요소 직접 스타일, 레이어, 명시도, 등장 순서의 차례로 비교해 이길 값을 고르는 절차다.",
+   "objectives": [
+    "트랜지션부터 일반 사용자 에이전트 선언까지 여덟 단계의 출처·중요도 순서를 근거로 !important가 출처 순위를 뒤집는 방식을 설명할 수 있다",
+    "섀도 트리처럼 캡슐화 맥락이 다른 두 선언에서 일반 규칙은 바깥 맥락이, important 규칙은 안쪽 맥락이 이기는 까닭을 설명할 수 있다",
+    "명시도를 ID·클래스·타입 세 성분으로 세고 :is()·:not()·:has()는 가장 높은 인수를, :where()는 0을 쓰는 규칙으로 두 선택자의 우열을 계산할 수 있다",
+    "revert가 출처 단위로, revert-layer가 레이어 단위로 캐스케이드를 되돌리는 차이를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.css.cascade-layers",
+    "fe.css.selectors-first"
+   ],
+   "related": [
+    "fe.css.specificity"
+   ],
+   "aliases": [
+    "캐스케이드 정렬 순서",
+    "cascade sorting order",
+    "캐스케이드 출처 순서",
+    "cascade origins"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/css-cascade-5/#cascade-sort",
+    "https://www.w3.org/TR/css-cascade-5/#defaulting-keywords",
+    "https://www.w3.org/TR/selectors-4/#specificity-rules"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.internals.web-vitals",
    "title": "Core Web Vitals 분석과 최적화",
    "en": "Core Web Vitals Optimization",
@@ -58763,6 +59133,78 @@
    "domain": "fe"
   },
   {
+   "id": "fe.css.grid-track-sizing",
+   "title": "CSS Grid 트랙 크기 알고리즘",
+   "en": "CSS Grid Track Sizing Algorithm",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "CSS",
+   "summary": "명세가 열을 먼저, 행을 다음에 정하며 트랙마다 기본 크기와 성장 한계를 두고 내용 기여·남는 공간·fr 비율로 크기를 키워 가는 절차다.",
+   "objectives": [
+    "열을 먼저 정하고 행을 정한 뒤 항목의 min-content 기여가 바뀌면 한 번 더 다시 계산하는 그리드 크기 알고리즘의 순서를 설명할 수 있다",
+    "한 트랙에만 걸친 항목부터 처리하고 여러 트랙에 걸친 항목은 걸친 트랙 수가 작은 것부터 남는 크기를 나눠 주는 내재 크기 해결 단계를 따라갈 수 있다",
+    "fr 트랙이 다른 트랙을 최대로 늘린 뒤 남는 공간을 flex 계수 비율로 나눠 받고, 계수 합이 1보다 작으면 남는 공간 일부만 받는 까닭을 설명할 수 있다",
+    "auto 트랙이 맨 마지막에 남는 양수 공간을 고르게 나눠 받아 늘어나는 조건을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.css.box-flex",
+    "fe.css.responsive-design"
+   ],
+   "related": [
+    "fe.css.flex-layout-algorithm",
+    "fe.css.grid"
+   ],
+   "aliases": [
+    "그리드 트랙 크기 계산",
+    "grid track sizing",
+    "그리드 크기 알고리즘",
+    "grid sizing algorithm"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/css-grid-1/#algo-grid-sizing",
+    "https://www.w3.org/TR/css-grid-1/#algo-track-sizing"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.css.value-processing",
+   "title": "CSS 값 처리 단계: 선언값에서 실제값까지",
+   "en": "CSS Value Processing Stages",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "CSS",
+   "summary": "속성값이 선언값·캐스케이드값·지정값·계산값·사용값·실제값을 차례로 거치며 상속과 레이아웃, 기기 제약을 반영해 가는 과정이다.",
+   "objectives": [
+    "선언값에서 실제값까지 여섯 단계가 각각 무엇을 정하는지 설명할 수 있다",
+    "자식에게 상속되는 것은 계산값이고 width의 퍼센트처럼 레이아웃이 필요한 값은 사용값 단계에서야 길이로 바뀐다는 점으로 상속 결과를 설명할 수 있다",
+    "테두리 두께를 정수 픽셀로 맞추는 것처럼 실제값이 사용값과 달라질 수 있는 까닭을 설명할 수 있다",
+    "getComputedStyle이 돌려주는 해석값이 대부분 속성에서는 계산값이지만 색 속성과, 렌더링된 요소의 width·height·margin·padding에서는 사용값이라는 차이를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.css.debugging",
+    "fe.css.box-flex"
+   ],
+   "related": [
+    "fe.internals.render-pipeline",
+    "fe.css.cascade-sorting-order"
+   ],
+   "aliases": [
+    "CSS 값 처리",
+    "CSS value processing",
+    "CSS 계산값",
+    "CSS computed value",
+    "CSS 사용값",
+    "CSS used value"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/css-cascade-5/#value-stages",
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascade/Property_value_processing"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.internals.top-level-await",
    "title": "최상위 await",
    "en": "Top-level await",
@@ -58778,6 +59220,27 @@
    ],
    "refs": [
     "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#top-level_await"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.css.functional-pseudo-specificity",
+   "title": ":is()·:not()·:has()·:where()의 명시도",
+   "en": "Specificity of :is(), :not(), :has() and :where()",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "CSS",
+   "summary": ":is()·:not()·:has()는 인수 목록 중 가장 높은 선택자의 명시도를 갖고, :where()는 인수와 상관없이 명시도가 0이 되는 규칙이다.",
+   "parent": "fe.css.cascade-sorting-order",
+   "aliases": [
+    ":where 명시도 0",
+    "where() specificity",
+    ":is() 명시도",
+    "is() specificity"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/selectors-4/#specificity-rules"
    ],
    "domain": "fe"
   },
@@ -59217,6 +59680,121 @@
    "refs": [
     "https://v8.dev/docs/hidden-classes",
     "https://v8.dev/blog/fast-properties"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.css.grid-base-size-growth-limit",
+   "title": "그리드 트랙의 기본 크기와 성장 한계",
+   "en": "Grid Track Base Size and Growth Limit",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "CSS",
+   "summary": "트랙 크기 알고리즘에서 트랙이 지금 가진 크기와 그 크기가 자랄 수 있는 목표 최대치를 나타내는 두 값이다.",
+   "parent": "fe.css.grid-track-sizing",
+   "aliases": [
+    "grid base size",
+    "grid growth limit",
+    "트랙 성장 한계",
+    "트랙 기본 크기"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/css-grid-1/#algo-terms",
+    "https://www.w3.org/TR/css-grid-1/#algo-init"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.css.grid-find-fr-size",
+   "title": "fr 하나의 크기 찾기",
+   "en": "Find the Size of an fr",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "CSS",
+   "summary": "flex 아닌 트랙의 기본 크기를 뺀 남는 공간을 flex 계수 합(1 미만이면 1)으로 나누고, 그 값×계수가 기본 크기보다 작은 트랙은 고정으로 돌려 다시 계산하는 절차다.",
+   "parent": "fe.css.grid-track-sizing",
+   "aliases": [
+    "flex fraction",
+    "fr 크기 계산",
+    "hypothetical fr size",
+    "가설 fr 크기"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/css-grid-1/#algo-find-fr-size",
+    "https://www.w3.org/TR/css-grid-1/#algo-flex-tracks"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.ts.infer-candidate-variance",
+   "title": "infer 후보의 유니언·교차 합성",
+   "en": "Union and Intersection of infer Candidates",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "TypeScript",
+   "summary": "같은 infer 변수에 후보가 여럿이면 공변 자리에서는 유니언으로, 반공변 자리(함수 매개변수)에서는 교차 타입으로 합쳐 추론하는 규칙이다.",
+   "parent": "fe.ts.conditional-type-distribution",
+   "related": [
+    "fe.ts.strict-function-types",
+    "fe.ts.variance-annotations"
+   ],
+   "aliases": [
+    "infer 다중 후보",
+    "contravariant infer",
+    "반공변 위치 추론",
+    "infer 교차 타입 추론"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-8.html"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.css.revert-layer",
+   "title": "revert-layer 키워드",
+   "en": "revert-layer Keyword",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "CSS",
+   "summary": "속성값을 현재 캐스케이드 레이어가 없었던 것처럼 바로 아래 레이어의 값으로 되돌리고, 아래 레이어가 없으면 앞 출처로 넘기는 키워드다.",
+   "parent": "fe.css.cascade-sorting-order",
+   "related": [
+    "fe.css.cascade-layers"
+   ],
+   "aliases": [
+    "CSS revert-layer",
+    "레이어 되돌리기",
+    "rolling back cascade layers"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/css-cascade-5/#revert-layer"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.css.resolved-value",
+   "title": "해석값(resolved value)",
+   "en": "Resolved Value",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "CSS",
+   "summary": "getComputedStyle()이 돌려주는 값으로, 색·width·margin 등 일부 속성은 사용값이고 나머지 속성은 계산값이다.",
+   "parent": "fe.css.value-processing",
+   "aliases": [
+    "resolved value",
+    "CSS 해석값",
+    "getComputedStyle 반환값"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascade/Property_value_processing",
+    "https://www.w3.org/TR/cssom-1/#resolved-values"
    ],
    "domain": "fe"
   },
@@ -68639,6 +69217,122 @@
    "domain": "llm"
   },
   {
+   "id": "llm.internals.weight-quantization-schemes",
+   "title": "가중치 양자화의 내부: 사상·세분도·자료형·보정",
+   "en": "Weight Quantization Internals: Mapping, Granularity, Data Types and Calibration",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "LLM 내부",
+   "summary": "가중치를 적은 비트로 옮기는 사상 방식, 스케일을 나누는 단위, int·FP8·FP4 자료형, 보정 데이터 사용 여부가 메모리·속도·정확도를 어떻게 가르는지 분석한다.",
+   "objectives": [
+    "대칭·비대칭 아핀 양자화가 스케일과 영점으로 값을 옮기고 되돌리는 과정과 반올림 오차가 생기는 이유를 설명할 수 있다",
+    "텐서별·채널별·그룹별 스케일이 이상값 하나가 범위를 넓히는 문제와 스케일 저장 비용 사이에서 갈리는 손익을 분석할 수 있다",
+    "가중치 전용 방식은 메모리에 묶인 디코드에서, 가중치·활성화 방식은 계산에 묶인 프리필·큰 배치에서 빨라지기 쉬운 이유를 근거로 방식을 비교할 수 있다",
+    "보정 없이 불러오며 양자화하는 방식과 GPTQ·AWQ처럼 보정 데이터로 층을 다루는 방식, QAT의 정확도·준비 시간 손익을 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.serve.quantization-picture",
+    "llm.internals.inference-phases"
+   ],
+   "related": [
+    "mlops.serve.inference-optimization",
+    "llm.internals.kv-cache-strategies"
+   ],
+   "aliases": [
+    "가중치 양자화",
+    "weight quantization",
+    "아핀 양자화",
+    "affine quantization",
+    "가중치 전용 양자화",
+    "weight-only quantization"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/main/en/quantization/concept_guide",
+    "https://huggingface.co/docs/transformers/main/en/quantization/selecting"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.moe-experts",
+   "title": "전문가 혼합(MoE) 계산의 내부와 손익",
+   "en": "Mixture-of-Experts Computation Internals and Trade-offs",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "LLM 내부",
+   "summary": "라우터가 토큰마다 k개 전문가를 골라 계산하는 MoE가 전체 매개변수와 토큰당 계산량을 어떻게 떼어 놓는지와, 전문가 행렬곱 백엔드의 속도·메모리 손익을 분석한다.",
+   "objectives": [
+    "토큰마다 라우터가 상위 k개 전문가를 골라 라우팅 가중치로 합치는 구조 때문에 모든 전문가를 메모리에 올려야 하지만 계산량은 일부 전문가 몫만 드는 이유를 설명할 수 있다",
+    "학습 중 전문가 쏠림을 보조 부하 분산 손실과 라우터 잡음으로 누르는 원리와 추론에서는 라우터 로짓을 돌려받지 않는 이유를 설명할 수 있다",
+    "eager·batched_mm·grouped_mm 전문가 백엔드가 매개변수 복제 여부와 입력 크기에 따라 GPU·CPU에서 속도와 메모리가 갈리는 손익을 비교할 수 있다",
+    "torch.compile과 CUDA 그래프를 쓸 때 백엔드마다 지원하는 모드·자료형·fullgraph가 다른 제약을 근거로 백엔드를 고를 수 있다"
+   ],
+   "prerequisites": [
+    "ml.transformer.attention",
+    "llm.internals.inference-phases"
+   ],
+   "related": [
+    "mlops.serve.vllm-data-expert-parallel",
+    "llm.internals.attention-backends"
+   ],
+   "aliases": [
+    "전문가 혼합",
+    "Mixture of Experts",
+    "희소 MoE",
+    "sparse MoE",
+    "MoE 라우팅"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/main/en/experts_interface",
+    "https://huggingface.co/docs/transformers/main/en/model_doc/mixtral"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.continuous-batching-internals",
+   "title": "Transformers 연속 배칭의 내부: 페이지 캐시·입장 제어",
+   "en": "Transformers Continuous Batching Internals",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "LLM 내부",
+   "summary": "Transformers의 연속 배칭이 페이지 단위 KV 캐시 풀, 토큰·캐시 예산을 보는 스케줄러, 캐시가 찰 때의 오프로딩으로 처리량과 지연을 어떻게 맞바꾸는지 분석한다.",
+   "objectives": [
+    "KV 캐시를 청크·블록·페이지로 나눈 공유 풀이 길이가 다른 요청의 단편화를 막는 원리와 page_size를 키우고 줄일 때의 낭비·관리 비용 손익을 설명할 수 있다",
+    "스케줄러가 토큰 예산·캐시 예산·요청 수 상한으로 배치를 채우는 방식과 FIFO·prefill_first 정책, 긴 프롬프트를 나누는 청크 프리필의 효과를 비교할 수 있다",
+    "max_batch_tokens와 KV 블록 수가 같은 메모리 예산을 나눠 쓰는 관계를 근거로 프리필 처리량과 동시 요청 수 사이에서 설정을 판단할 수 있다",
+    "캐시가 찰 때 CPU 오프로딩과 프롬프트를 다시 계산하는 경로가 갈리는 조건, 접두사 블록 공유가 슬라이딩 어텐션 모델에서 꺼지는 이유를 분석할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.internals.inference-phases",
+    "llm.internals.kv-cache-strategies"
+   ],
+   "related": [
+    "mlops.serve.continuous-batching",
+    "mlops.serve.chunked-prefill",
+    "mlops.serve.prefix-caching"
+   ],
+   "aliases": [
+    "Transformers 연속 배칭",
+    "generate_batch",
+    "ContinuousBatchingManager",
+    "ContinuousBatchingConfig",
+    "Transformers paged KV cache"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/main/en/continuous_batching_architecture",
+    "https://huggingface.co/docs/transformers/main/en/continuous_batching"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
    "id": "llm.internals.structured-decoding",
    "title": "구조화 출력의 보장과 한계",
    "en": "Guarantees of Structured Output",
@@ -68945,6 +69639,42 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.generation-watermarking",
+   "title": "생성 단계 텍스트 워터마크의 내부: 그린 리스트와 SynthID Text",
+   "en": "Generation-Time Text Watermarking Internals",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "다음 토큰 로짓을 살짝 바꿔 글에 신호를 심는 그린 리스트 방식과 SynthID Text의 원리, 검출에 필요한 조건과 품질·견고성 손익을 분석한다.",
+   "objectives": [
+    "앞 토큰을 해시해 고른 그린 토큰에 로짓 편향을 더하는 방식에서 greenlist_ratio·bias·context_width가 글 품질과 견고성을 어떻게 바꾸는지 설명할 수 있다",
+    "lefthash와 selfhash 시드 방식이 그린 토큰을 정하는 기준과 selfhash가 느려지는 이유를 비교할 수 있다",
+    "검출기가 생성 때와 똑같은 워터마크 설정·어휘 크기·장치를 받아야 그린 리스트를 재현할 수 있고, 프롬프트를 빼고 z 임계값으로 민감도를 조절해야 하는 이유를 설명할 수 있다",
+    "그린 리스트 검출과 g-값을 학습한 베이지안 검출기로 판정하는 SynthID Text 검출의 준비 비용 차이를 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.internals.tokenization-sampling",
+    "ax.governance.synthetic-content-provenance"
+   ],
+   "related": [
+    "ax.governance.ai-watermarking",
+    "llm.basics.claude-text-watermark"
+   ],
+   "aliases": [
+    "텍스트 워터마크 내부",
+    "그린 리스트 워터마크",
+    "green list watermark",
+    "WatermarkingConfig",
+    "WatermarkDetector",
+    "로짓 워터마크"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/main/en/internal/generation_utils"
+   ],
    "domain": "llm"
   },
   {
@@ -69422,6 +70152,160 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.quantization-group-size",
+   "title": "그룹별 양자화 스케일(group_size)",
+   "en": "Per-Group Quantization Scales",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "128개처럼 이어진 가중치 묶음마다 스케일을 하나씩 두어 이상값의 영향을 그 묶음 안에 가두는 방식으로, 묶음이 작을수록 스케일 저장이 늘어난다.",
+   "parent": "llm.internals.weight-quantization-schemes",
+   "aliases": [
+    "그룹별 양자화",
+    "per-group quantization",
+    "블록별 양자화",
+    "per-block quantization",
+    "GPTQ group_size"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/main/en/quantization/concept_guide"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.block-scaled-fp4",
+   "title": "블록 스케일 FP4 형식(MXFP4·NVFP4)",
+   "en": "Block-Scaled FP4 Formats (MXFP4, NVFP4)",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "값이 ±0·0.5·1·1.5·2·3·4·6뿐인 E2M1 FP4에 작은 블록마다 스케일을 붙인 형식으로, MXFP4는 32개마다 2의 거듭제곱, NVFP4는 16개마다 FP8 스케일을 쓴다.",
+   "parent": "llm.internals.weight-quantization-schemes",
+   "aliases": [
+    "MXFP4",
+    "NVFP4",
+    "E2M1",
+    "microscaling format"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/main/en/quantization/concept_guide",
+    "https://huggingface.co/docs/transformers/main/en/quantization/selecting"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.router-aux-loss",
+   "title": "MoE 부하 분산 보조 손실(router_aux_loss_coef)",
+   "en": "MoE Load-Balancing Auxiliary Loss",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "MoE 학습에서 토큰이 일부 전문가에 몰리는 것을 벌하려고 주 손실에 더하는 손실로, Mixtral 설정의 기본 계수는 0.001이다.",
+   "parent": "llm.internals.moe-experts",
+   "aliases": [
+    "부하 분산 보조 손실",
+    "MoE load balancing loss",
+    "router_aux_loss_coef",
+    "MoE aux loss"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/main/en/model_doc/mixtral"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.grouped-mm-experts",
+   "title": "grouped_mm 전문가 백엔드와 디코드 전환",
+   "en": "grouped_mm Experts Backend and Decode-Stage Switching",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "토큰을 고른 전문가 순으로 정렬해 묶음 행렬곱 한 번으로 계산하는 Transformers MoE 백엔드로, GPU 디코드 단계에서는 batched_mm으로 자동 전환된다.",
+   "parent": "llm.internals.moe-experts",
+   "aliases": [
+    "grouped_mm",
+    "Transformers grouped_mm",
+    "grouped_mm experts backend",
+    "전문가 묶음 행렬곱"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/main/en/experts_interface"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.cb-soft-reset",
+   "title": "소프트 리셋(Transformers 연속 배칭 재대기)",
+   "en": "Soft Reset in Transformers Continuous Batching",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "KV 캐시를 CPU로 옮길 수 없을 때 생성한 토큰을 프롬프트 뒤에 붙이고 캐시 블록을 비운 채 요청을 대기열로 돌려보내는 방식으로, 재개할 때 다시 프리필한다.",
+   "parent": "llm.internals.continuous-batching-internals",
+   "aliases": [
+    "Transformers soft reset",
+    "연속 배칭 소프트 리셋"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/main/en/continuous_batching_architecture"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.cb-safety-margin",
+   "title": "연속 배칭 입장 여유분(safety_margin)",
+   "en": "Continuous Batching Admission Safety Margin",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "남은 KV 캐시가 전체의 정해진 비율 아래로 떨어지면 새 프리필을 받지 않고 진행 중인 디코드만 이어 가게 하는 Transformers 스케줄러 값이다.",
+   "parent": "llm.internals.continuous-batching-internals",
+   "aliases": [
+    "Transformers safety_margin",
+    "입장 여유분",
+    "admission safety margin"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/main/en/continuous_batching_architecture",
+    "https://huggingface.co/docs/transformers/main/en/continuous_batching"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.synthid-bayesian-detector",
+   "title": "SynthID Text 베이지안 검출기",
+   "en": "SynthID Text Bayesian Detector",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "SynthID Text로 생성한 글의 g-값에서 베이즈 규칙으로 워터마크가 있을 사후 확률을 계산하는 검출기로, 미리 학습한 검출기 모듈이 있어야 쓸 수 있다.",
+   "parent": "llm.internals.generation-watermarking",
+   "aliases": [
+    "SynthID Text detector",
+    "BayesianDetectorModel",
+    "SynthIDTextWatermarkDetector",
+    "SynthID 검출기",
+    "g-value 검출"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/main/en/internal/generation_utils"
+   ],
    "domain": "llm"
   },
   {
@@ -78695,6 +79579,119 @@
    "domain": "rag"
   },
   {
+   "id": "rag.retrieval.bm25-scoring-internals",
+   "title": "BM25 점수의 내부: IDF·k1 포화·b 길이 정규화",
+   "en": "BM25 Scoring Internals in Lucene and Elasticsearch",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "검색 내부",
+   "summary": "Lucene과 Elasticsearch가 IDF, 낱말 빈도 포화, 문서 길이 정규화로 BM25 점수를 내는 방식과 샤드별 통계, 대안 유사도의 손익을 다룬다.",
+   "objectives": [
+    "Lucene BM25Similarity의 IDF가 docCount와 docFreq로 계산되고 평균 필드 길이가 sumTotalTermFreq를 docCount로 나눈 값임을 근거로 희귀어와 흔한 낱말의 점수 차를 설명할 수 있다",
+    "k1(기본 1.2)과 b(기본 0.75)를 바꿀 때 반복 낱말과 긴 문서의 점수가 어떻게 달라지는지 따져 필드별 유사도 설정을 정할 수 있다",
+    "query_then_fetch가 샤드마다 다른 낱말 통계로 점수를 매겨 같은 문서의 순위가 흔들리는 원인을 찾고 dfs_query_then_fetch의 정확도와 속도 손익을 따질 수 있다",
+    "BM25와 DFR·IB·LM Dirichlet·LM Jelinek Mercer 같은 대안 유사도의 매개변수를 비교해 바꿀 근거를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.retrieval.keyword-vs-vector",
+    "rag.retrieval.quality"
+   ],
+   "related": [
+    "rag.retrieval.hybrid-rerank"
+   ],
+   "aliases": [
+    "BM25 내부",
+    "BM25 scoring",
+    "BM25 점수 계산",
+    "Lucene BM25Similarity",
+    "Elasticsearch similarity"
+   ],
+   "refs": [
+    "https://www.elastic.co/docs/reference/elasticsearch/index-settings/similarity",
+    "https://lucene.apache.org/core/9_12_0/core/org/apache/lucene/search/similarities/BM25Similarity.html",
+    "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.learned-sparse-internals",
+   "title": "학습된 희소 검색의 내부: 낱말 확장·가지치기·두 단계 점수",
+   "en": "Learned Sparse Retrieval Internals",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "검색 내부",
+   "summary": "ELSER 같은 희소 모델이 문서를 가중 낱말로 확장해 역색인에 넣고, 질의 낱말을 가지치기하거나 두 단계로 점수 매겨 속도와 관련성을 맞바꾸는 구조를 다룬다.",
+   "objectives": [
+    "ELSER가 만든 확장 낱말이 동의어가 아니라 학습된 가중치이고 낮은 가중치 낱말이 밀집 벡터처럼 얽혀 있어 낱말 하나를 해석하면 오해할 수 있음을 설명할 수 있다",
+    "필드 앞 512토큰만 인코딩하는 ELSER의 제약을 근거로 긴 필드를 512토큰 미만 덩어리로 나눠야 하는 까닭을 말할 수 있다",
+    "Elasticsearch sparse_vector 질의의 가지치기가 빈도와 가중치 두 기준을 모두 만족하는 낱말만 빼고 샤드마다 따로 일어난다는 점에서 재채점 질의가 필요한 원인을 찾을 수 있다",
+    "OpenSearch doc-only 모드와 bi-encoder 모드, 두 단계 처리기의 지연 감소와 관련성 손익을 비교해 구성을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "rag.embedding.sparse-encoder",
+    "rag.retrieval.quality"
+   ],
+   "related": [
+    "rag.retrieval.hybrid-rerank",
+    "rag.retrieval.bm25-scoring-internals"
+   ],
+   "aliases": [
+    "learned sparse retrieval",
+    "ELSER",
+    "Elastic Learned Sparse EncodeR",
+    "neural sparse search",
+    "OpenSearch 신경 희소 검색"
+   ],
+   "refs": [
+    "https://www.elastic.co/docs/explore-analyze/machine-learning/nlp/ml-nlp-elser",
+    "https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-sparse-vector-query",
+    "https://docs.opensearch.org/latest/vector-search/ai-search/neural-sparse-with-pipelines/",
+    "https://docs.opensearch.org/latest/search-plugins/search-pipelines/neural-sparse-query-two-phase-processor/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-client-registration",
+   "title": "MCP 클라이언트 등록 방식 비교: CIMD·사전 등록·DCR",
+   "en": "MCP Client Registration Mechanisms Compared",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "MCP 2026-07-28판 인가 명세가 정한 세 가지 client_id 획득 방식의 우선순위와, 인가 서버 묶임·SSRF·localhost 사칭 같은 보안 손익을 다룬다.",
+   "objectives": [
+    "사전 등록·Client ID Metadata Document·동적 클라이언트 등록의 우선순위와 인가 서버 메타데이터의 client_id_metadata_document_supported·registration_endpoint로 고르는 흐름을 설명할 수 있다",
+    "HTTPS URL을 client_id로 쓰는 CIMD가 인가 서버가 바뀌어도 재등록이 필요 없는 반면, 사전 등록·DCR 자격 증명은 발급한 인가 서버의 issuer에 묶여야 하는 까닭을 비교할 수 있다",
+    "인가 서버가 클라이언트 메타데이터 문서를 가져올 때의 SSRF 위험과 CIMD만으로 막지 못하는 localhost 리다이렉트 사칭에 맞는 방어를 고를 수 있다",
+    "DCR이 지원 중단된 뒤에도 OIDC 서버에서 application_type 누락으로 등록이 거부되는 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.mcp-auth-design"
+   ],
+   "related": [
+    "rag.agent.mcp-security-threats",
+    "be.security.ssrf"
+   ],
+   "aliases": [
+    "MCP 클라이언트 등록",
+    "MCP client registration",
+    "MCP 동적 클라이언트 등록",
+    "MCP DCR"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization/client-registration",
+    "https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization/security-considerations",
+    "https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
    "id": "rag.vector-db.qdrant-segment-optimizer",
    "title": "Qdrant 세그먼트와 최적화기: 색인·삭제 정리·읽기 쓰기 경합",
    "en": "Qdrant Segments and Optimizers",
@@ -79009,6 +80006,38 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.multi-field-bm25f",
+   "title": "여러 필드 점수 결합과 BM25F 근사",
+   "en": "Multi-Field Lexical Scoring and BM25F",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "검색 내부",
+   "summary": "제목·본문처럼 여러 텍스트 필드에 걸친 질의를 필드 중심으로 점수 매길지, 필드를 하나로 합친 듯 BM25F 근사로 매길지의 손익을 다룬다.",
+   "objectives": [
+    "best_fields·most_fields는 필드마다, combined_fields는 낱말마다 operator와 minimum_should_match를 적용하는 차이로 결과가 달라지는 원인을 찾을 수 있다",
+    "combined_fields가 필드들의 낱말·컬렉션 통계를 한 필드처럼 합쳐 BM25F에 가깝게 점수를 내는 방식과 cross_fields와의 차이를 설명할 수 있다",
+    "같은 검색 분석기를 쓰는 text 필드만, BM25 유사도만 허용하는 combined_fields의 제약과 필드 수×낱말 수가 max_clause_count에 걸리는 비용을 따져 질의 방식을 고를 수 있다",
+    "1.0 이상의 필드 가중치가 합친 필드에서 낱말을 반복한 것처럼 작동한다는 점을 근거로 제목 가중치의 영향을 예측할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.retrieval.bm25-scoring-internals"
+   ],
+   "related": [
+    "rag.retrieval.keyword-vs-vector"
+   ],
+   "aliases": [
+    "combined_fields",
+    "BM25F",
+    "여러 필드 검색 점수",
+    "다중 필드 BM25"
+   ],
+   "refs": [
+    "https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-combined-fields-query"
+   ],
    "domain": "rag"
   },
   {
@@ -79453,6 +80482,173 @@
    ],
    "refs": [
     "https://a2a-protocol.org/latest/specification/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.bm25-k1",
+   "title": "BM25 낱말 빈도 포화 매개변수(k1)",
+   "en": "BM25 k1 Term Frequency Saturation",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "검색 내부",
+   "summary": "같은 낱말이 문서에 여러 번 나올 때 점수가 얼마나 빨리 더 오르지 않게 되는지 정하는 BM25 매개변수로, Lucene 기본값은 1.2다.",
+   "parent": "rag.retrieval.bm25-scoring-internals",
+   "related": [
+    "rag.retrieval.bm25-b"
+   ],
+   "aliases": [
+    "BM25 k1",
+    "k1 포화",
+    "term frequency saturation",
+    "낱말 빈도 포화"
+   ],
+   "refs": [
+    "https://lucene.apache.org/core/9_12_0/core/org/apache/lucene/search/similarities/BM25Similarity.html"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.bm25-b",
+   "title": "BM25 문서 길이 정규화 매개변수(b)",
+   "en": "BM25 b Length Normalization",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "검색 내부",
+   "summary": "문서 길이가 평균보다 길수록 낱말 빈도 점수를 얼마나 깎을지 0에서 1 사이로 정하는 BM25 매개변수로, Lucene 기본값은 0.75다.",
+   "parent": "rag.retrieval.bm25-scoring-internals",
+   "related": [
+    "rag.retrieval.bm25-k1"
+   ],
+   "aliases": [
+    "BM25 b",
+    "BM25 길이 정규화",
+    "필드 길이 정규화"
+   ],
+   "refs": [
+    "https://lucene.apache.org/core/9_12_0/core/org/apache/lucene/search/similarities/BM25Similarity.html"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.dfs-query-then-fetch",
+   "title": "전체 샤드 낱말 통계 점수(dfs_query_then_fetch)",
+   "en": "dfs_query_then_fetch",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "검색 내부",
+   "summary": "샤드마다 따로 쓰던 낱말·문서 빈도를 모든 샤드에서 모아 점수를 매기는 Elasticsearch 검색 방식으로, 대개 더 정확하지만 더 느리다.",
+   "parent": "rag.retrieval.bm25-scoring-internals",
+   "aliases": [
+    "dfs_query_then_fetch",
+    "Elasticsearch DFS 검색",
+    "DFS query then fetch"
+   ],
+   "refs": [
+    "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.sparse-token-pruning",
+   "title": "희소 벡터 질의 낱말 가지치기(pruning_config)",
+   "en": "Sparse Vector Query Token Pruning",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "검색 내부",
+   "summary": "필드 평균보다 지나치게 흔하면서 가중치도 낮은 질의 낱말을 빼서 Elasticsearch sparse_vector 질의를 빠르게 하는 설정이다.",
+   "parent": "rag.retrieval.learned-sparse-internals",
+   "related": [
+    "rag.retrieval.neural-sparse-two-phase"
+   ],
+   "aliases": [
+    "pruning_config",
+    "tokens_freq_ratio_threshold",
+    "tokens_weight_threshold",
+    "only_score_pruned_tokens",
+    "희소 질의 가지치기"
+   ],
+   "refs": [
+    "https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-sparse-vector-query"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.neural-sparse-two-phase",
+   "title": "OpenSearch 신경 희소 두 단계 처리기",
+   "en": "OpenSearch Neural Sparse Two-Phase Processor",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "검색 내부",
+   "summary": "가중치 높은 낱말로 먼저 상위 문서를 고르고 낮은 낱말로 그 문서들만 다시 점수 매겨 신경 희소 검색의 지연을 줄이는 OpenSearch 검색 처리기다.",
+   "parent": "rag.retrieval.learned-sparse-internals",
+   "related": [
+    "rag.retrieval.sparse-token-pruning"
+   ],
+   "aliases": [
+    "neural_sparse_two_phase_processor",
+    "OpenSearch two-phase processor",
+    "신경 희소 두 단계 검색"
+   ],
+   "refs": [
+    "https://docs.opensearch.org/latest/search-plugins/search-pipelines/neural-sparse-query-two-phase-processor/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.blockmax-wand",
+   "title": "BlockMax WAND 상위 k 가지치기",
+   "en": "BlockMax WAND",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "검색 내부",
+   "summary": "역색인을 블록으로 나눠 질의와 관련 없는 블록을 건너뛰어 BM25·하이브리드 검색에서 점수를 매길 문서 수를 줄이는 WAND 변형 알고리즘이다.",
+   "related": [
+    "rag.retrieval.bm25-scoring-internals"
+   ],
+   "aliases": [
+    "BlockMax WAND",
+    "블록맥스 WAND",
+    "Weaviate BlockMax WAND",
+    "Block-Max WAND"
+   ],
+   "refs": [
+    "https://docs.weaviate.io/weaviate/concepts/indexing/inverted-index"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-client-id-metadata-document",
+   "title": "MCP 클라이언트 ID 메타데이터 문서(CIMD)",
+   "en": "Client ID Metadata Document (CIMD)",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "클라이언트가 HTTPS URL을 client_id로 내고 그 주소에 client_name·redirect_uris를 담은 JSON을 두어, 인가 서버가 가져가 검증하게 하는 등록 방식이다.",
+   "parent": "rag.agent.mcp-client-registration",
+   "aliases": [
+    "CIMD",
+    "Client ID Metadata Documents",
+    "client_id_metadata_document_supported",
+    "클라이언트 메타데이터 문서"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization/client-registration"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -98393,6 +99589,79 @@
    "domain": "ops"
   },
   {
+   "id": "ops.container.cgroup-v2-memory-controller",
+   "title": "cgroup v2 메모리 컨트롤러의 보호와 조절",
+   "en": "cgroup v2 Memory Controller Protection and Throttling",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "컨테이너 내부",
+   "summary": "memory.min·low로 회수를 막고 memory.high로 조절하며 memory.max에서 OOM을 부르는 cgroup v2 메모리 경계의 동작과 손익을 분석한다.",
+   "objectives": [
+    "memory.min과 memory.low가 회수에서 보호하는 강도의 차이와, 보호분을 다 써도 회수할 메모리가 없을 때 OOM killer가 도는 조건을 설명할 수 있다",
+    "memory.high를 넘으면 OOM 없이 조절과 강한 회수 압박을 받고 memory.max에서는 그 cgroup 안에서 OOM killer가 도는 차이로 장애 양상을 구분할 수 있다",
+    "조상의 값이 자손의 실효 보호를 제한하고 부모 보호가 초과 약정되면 사용량에 비례해 나뉘는 방식, memory_recursiveprot 마운트 옵션의 효과를 설명할 수 있다",
+    "프로세스를 다른 cgroup으로 옮겨도 이미 청구된 메모리는 따라가지 않는다는 소유 규칙으로 사용량 집계를 해석할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.container.isolation",
+    "ops.container.resource-limits"
+   ],
+   "related": [
+    "ops.linux.psi-pressure",
+    "ops.k8s.node-pressure-eviction"
+   ],
+   "aliases": [
+    "cgroup v2 memory controller",
+    "cgroup 메모리 컨트롤러",
+    "cgroup v2 메모리 컨트롤러",
+    "memory.max"
+   ],
+   "refs": [
+    "https://docs.kernel.org/admin-guide/cgroup-v2.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.container.oci-image-manifest",
+   "title": "OCI 이미지 매니페스트와 콘텐츠 주소 지정",
+   "en": "OCI Image Manifest and Content Addressing",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "컨테이너 내부",
+   "summary": "이미지를 설정과 레이어를 가리키는 디스크립터 묶음으로 적고 다이제스트로 내용을 식별하는 OCI 이미지 명세의 구조를 분석한다.",
+   "objectives": [
+    "매니페스트의 config·layers·subject가 모두 mediaType·digest·size를 가진 디스크립터라는 점과, layers가 기반 레이어부터 쌓는 순서로 적힌다는 점을 설명할 수 있다",
+    "다이제스트 문법과 등록된 알고리즘(sha256 필수, sha512·blake3 선택)을 들고, 신뢰할 수 없는 곳에서 받은 내용을 크기 먼저 확인한 뒤 해시로 검증해야 하는 이유를 설명할 수 있다",
+    "이미지 인덱스가 platform(architecture·os·variant)별 매니페스트를 고르는 방식과, 여러 항목이 맞으면 첫 항목을 쓰는 규칙을 설명할 수 있다",
+    "artifactType과 빈 디스크립터로 이미지가 아닌 결과물을 같은 형식에 담는 방법을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.container.image-layers",
+    "ops.docker.image-tag"
+   ],
+   "related": [
+    "ops.container.overlay2-storage",
+    "ops.ci.artifact-attestations"
+   ],
+   "aliases": [
+    "OCI image spec",
+    "OCI 이미지 명세",
+    "OCI 매니페스트",
+    "OCI image manifest",
+    "이미지 매니페스트"
+   ],
+   "refs": [
+    "https://github.com/opencontainers/image-spec/blob/main/manifest.md",
+    "https://github.com/opencontainers/image-spec/blob/main/descriptor.md",
+    "https://github.com/opencontainers/image-spec/blob/main/image-index.md"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ops"
+  },
+  {
    "id": "ops.observe.incident-analysis",
    "title": "장애 분석과 회고",
    "en": "Incident Analysis and Postmortems",
@@ -98730,6 +99999,109 @@
    "domain": "ops"
   },
   {
+   "id": "ops.container.oci-distribution",
+   "title": "OCI 배포 명세: 레지스트리 API의 내부",
+   "en": "OCI Distribution Specification",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "컨테이너 내부",
+   "summary": "레지스트리가 매니페스트와 블롭을 다이제스트로 주고받고 업로드를 나눠 받으며 참조자를 찾아 주는 OCI 배포 명세의 HTTP 동작을 분석한다.",
+   "objectives": [
+    "태그 또는 다이제스트로 매니페스트를 받고 다이제스트로 블롭을 받는 pull 흐름과 HEAD로 존재를 확인하는 방식을 설명할 수 있다",
+    "한 번에 올리기, PATCH로 나눠 올리기, 같은 레지스트리의 다른 저장소에서 블롭을 마운트하기를 비교하고 각각 어떤 상황에서 전송을 줄이는지 설명할 수 있다",
+    "subject를 가진 매니페스트를 referrers API로 찾고, API가 404일 때 다이제스트에서 만든 태그로 대신하는 방식과 그때 클라이언트가 져야 할 책임을 설명할 수 있다",
+    "태그·매니페스트·블롭 삭제가 202로 받아들여지거나 레지스트리 설정에 따라 거부될 수 있다는 점으로 정리 작업의 실패를 분석할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.docker.build-tag-push",
+    "ops.container.image-layers"
+   ],
+   "related": [
+    "ops.k8s.imagepullbackoff",
+    "ops.ci.artifact-attestations"
+   ],
+   "aliases": [
+    "OCI distribution spec",
+    "OCI 배포 명세",
+    "레지스트리 HTTP API",
+    "registry API v2"
+   ],
+   "refs": [
+    "https://github.com/opencontainers/distribution-spec/blob/main/spec.md"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.memory-manager",
+   "title": "kubelet 메모리 관리자와 NUMA 메모리 보장",
+   "en": "kubelet Memory Manager",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "Guaranteed 파드의 메모리와 hugepages를 최소한의 NUMA 노드에 묶어 주는 kubelet 메모리 관리자의 동작과 예약 메모리 제약을 분석한다.",
+   "objectives": [
+    "Static 정책이 Guaranteed 파드에만 NUMA 힌트를 내고 메모리를 내부 노드 맵에 예약하며 cpuset.mems를 적용하는 동작을 설명할 수 있다",
+    "요청이 NUMA 노드 하나를 넘으면 여러 NUMA 노드로 묶음을 만드는 방식과, 힌트와 토폴로지 관리자 정책에 따라 파드가 승인되거나 거부되는 흐름을 설명할 수 있다",
+    "NUMA 노드별 reservedMemory 합이 kubeReserved·systemReserved·evictionHard의 memory.available 합과 같아야 하며, 기본 100Mi 축출 임계값을 빼면 kubelet이 메모리 관리자를 시작하지 못하는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.k8s.cpu-topology-manager",
+    "ops.k8s.node-pressure-eviction"
+   ],
+   "related": [
+    "ops.container.cgroup-v2-memory-controller"
+   ],
+   "aliases": [
+    "Kubernetes Memory Manager",
+    "kubelet memory manager",
+    "kubelet 메모리 관리자",
+    "memoryManagerPolicy"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/tasks/administer-cluster/memory-manager/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.etcd-membership-learner",
+   "title": "etcd 멤버 변경과 learner",
+   "en": "etcd Runtime Reconfiguration and Learner",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "멤버를 더하거나 뺄 때 쿼럼 크기가 바뀌어 생기는 위험과 투표하지 않는 learner로 그 위험을 줄이는 etcd 설계의 손익을 분석한다.",
+   "objectives": [
+    "빈 새 멤버가 리더에 몰고 오는 부하, 분할된 클러스터에 멤버를 더해 쿼럼을 잃는 경우, 잘못된 피어 URL로 되돌릴 수 없게 되는 경우를 들어 멤버 추가의 위험을 설명할 수 있다",
+    "learner가 투표하지 않아 쿼럼 크기를 바꾸지 않고, 리더의 로그를 따라잡은 뒤에만 승격되며, 리더십을 넘겨받을 수 없고 직렬화 읽기와 멤버 상태 API 외의 요청은 거부하는 성질을 설명할 수 있다",
+    "멤버 변경을 한 번에 하나씩, 쿼럼이 살아 있을 때만 하고 strict reconfig check가 쿼럼을 깨는 변경을 막는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.k8s.etcd-compaction-defrag"
+   ],
+   "related": [
+    "cs.dist.raft-consensus",
+    "cs.dist.majority-quorum"
+   ],
+   "aliases": [
+    "etcd runtime reconfiguration",
+    "etcd 멤버 추가",
+    "etcd member add",
+    "etcd 멤버 변경"
+   ],
+   "refs": [
+    "https://etcd.io/docs/v3.6/learning/design-learner/",
+    "https://etcd.io/docs/v3.6/op-guide/runtime-configuration/"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.k8s.resource-version-410-gone",
    "title": "resourceVersion 만료와 410 Gone",
    "en": "Expired resourceVersion and 410 Gone",
@@ -98789,6 +100161,72 @@
    "refs": [
     "https://docs.docker.com/engine/storage/drivers/overlayfs-driver/",
     "https://docs.kernel.org/filesystems/overlayfs.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.container.memory-high-throttle",
+   "title": "memory.high 조절 한도",
+   "en": "memory.high Throttle Limit",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "컨테이너 내부",
+   "summary": "넘으면 OOM killer 대신 프로세스를 늦추고 강하게 회수하는 cgroup v2의 메모리 조절 한도다.",
+   "parent": "ops.container.cgroup-v2-memory-controller",
+   "related": [
+    "ops.container.oom-killed"
+   ],
+   "aliases": [
+    "memory.high",
+    "cgroup memory.high",
+    "메모리 조절 한도",
+    "memory high throttling"
+   ],
+   "refs": [
+    "https://docs.kernel.org/admin-guide/cgroup-v2.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.container.oci-image-index",
+   "title": "OCI 이미지 인덱스",
+   "en": "OCI Image Index",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "컨테이너 내부",
+   "summary": "플랫폼별 이미지 매니페스트 여러 개를 platform 필드와 함께 나열해 한 이름으로 여러 아키텍처를 내놓게 하는 OCI 문서다.",
+   "parent": "ops.container.oci-image-manifest",
+   "aliases": [
+    "image index",
+    "OCI image index",
+    "multi-platform image index",
+    "manifest list"
+   ],
+   "refs": [
+    "https://github.com/opencontainers/image-spec/blob/main/image-index.md"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.container.oci-descriptor",
+   "title": "OCI 디스크립터와 다이제스트",
+   "en": "OCI Content Descriptor and Digest",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "컨테이너 내부",
+   "summary": "mediaType·digest·size로 다른 내용을 가리키는 OCI의 참조 단위이며, 다이제스트는 알고리즘:인코딩 값 형식의 내용 해시다.",
+   "parent": "ops.container.oci-image-manifest",
+   "aliases": [
+    "OCI descriptor",
+    "content descriptor",
+    "이미지 다이제스트",
+    "image digest"
+   ],
+   "refs": [
+    "https://github.com/opencontainers/image-spec/blob/main/descriptor.md"
    ],
    "domain": "ops"
   },
@@ -99076,6 +100514,114 @@
    ],
    "refs": [
     "https://etcd.io/docs/v3.6/op-guide/maintenance/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.container.memory-min-low",
+   "title": "memory.min과 memory.low 회수 보호",
+   "en": "memory.min and memory.low Reclaim Protection",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "컨테이너 내부",
+   "summary": "memory.min은 어떤 경우에도, memory.low는 보호 안 된 쪽에 회수할 메모리가 남은 동안만 그 cgroup의 메모리를 회수에서 지킨다.",
+   "parent": "ops.container.cgroup-v2-memory-controller",
+   "aliases": [
+    "memory.min",
+    "memory.low",
+    "cgroup 메모리 보호",
+    "cgroup memory protection"
+   ],
+   "refs": [
+    "https://docs.kernel.org/admin-guide/cgroup-v2.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.container.memory-oom-group",
+   "title": "memory.oom.group 묶음 종료",
+   "en": "memory.oom.group",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "컨테이너 내부",
+   "summary": "켜면 OOM 때 그 cgroup과 자손의 작업을 모두 함께 죽이거나 하나도 죽이지 않게 하는 cgroup v2 설정이다.",
+   "related": [
+    "ops.container.cgroup-v2-memory-controller",
+    "ops.container.oom-killed"
+   ],
+   "aliases": [
+    "memory.oom.group",
+    "cgroup OOM 그룹 종료",
+    "oom.group"
+   ],
+   "refs": [
+    "https://docs.kernel.org/admin-guide/cgroup-v2.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.container.oci-referrers-api",
+   "title": "OCI referrers API",
+   "en": "OCI Referrers API",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "컨테이너 내부",
+   "summary": "주어진 다이제스트를 subject로 가리키는 서명·SBOM 같은 매니페스트를 이미지 인덱스로 돌려주는 레지스트리 엔드포인트다.",
+   "parent": "ops.container.oci-distribution",
+   "aliases": [
+    "referrers API",
+    "OCI referrers",
+    "레지스트리 참조자 조회"
+   ],
+   "refs": [
+    "https://github.com/opencontainers/distribution-spec/blob/main/spec.md"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.reserved-memory",
+   "title": "kubelet reservedMemory 설정",
+   "en": "kubelet reservedMemory",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "NUMA 노드별로 워크로드에 주지 않을 메모리를 적는 kubelet 설정이며 메모리 관리자 Static 정책에서는 반드시 넣어야 한다.",
+   "parent": "ops.k8s.memory-manager",
+   "aliases": [
+    "reservedMemory",
+    "--reserved-memory",
+    "NUMA 예약 메모리"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/tasks/administer-cluster/memory-manager/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.etcd-learner",
+   "title": "etcd learner 멤버",
+   "en": "etcd Learner Member",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "리더의 로그를 받기만 하고 투표하지 않아 쿼럼 크기를 바꾸지 않다가 따라잡은 뒤 승격되는 etcd 멤버다.",
+   "parent": "ops.k8s.etcd-membership-learner",
+   "aliases": [
+    "etcd learner",
+    "member add --learner",
+    "etcdctl member promote"
+   ],
+   "refs": [
+    "https://etcd.io/docs/v3.6/learning/design-learner/"
    ],
    "domain": "ops"
   },

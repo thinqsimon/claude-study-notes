@@ -8316,6 +8316,77 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "ops.container.cgroup-v2-memory-controller",
+    "title": "cgroup v2 메모리 컨트롤러의 보호와 조절",
+    "en": "cgroup v2 Memory Controller Protection and Throttling",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "컨테이너 내부",
+    "summary": "memory.min·low로 회수를 막고 memory.high로 조절하며 memory.max에서 OOM을 부르는 cgroup v2 메모리 경계의 동작과 손익을 분석한다.",
+    "objectives": [
+      "memory.min과 memory.low가 회수에서 보호하는 강도의 차이와, 보호분을 다 써도 회수할 메모리가 없을 때 OOM killer가 도는 조건을 설명할 수 있다",
+      "memory.high를 넘으면 OOM 없이 조절과 강한 회수 압박을 받고 memory.max에서는 그 cgroup 안에서 OOM killer가 도는 차이로 장애 양상을 구분할 수 있다",
+      "조상의 값이 자손의 실효 보호를 제한하고 부모 보호가 초과 약정되면 사용량에 비례해 나뉘는 방식, memory_recursiveprot 마운트 옵션의 효과를 설명할 수 있다",
+      "프로세스를 다른 cgroup으로 옮겨도 이미 청구된 메모리는 따라가지 않는다는 소유 규칙으로 사용량 집계를 해석할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.container.isolation",
+      "ops.container.resource-limits"
+    ],
+    "related": [
+      "ops.linux.psi-pressure",
+      "ops.k8s.node-pressure-eviction"
+    ],
+    "aliases": [
+      "cgroup v2 memory controller",
+      "cgroup 메모리 컨트롤러",
+      "cgroup v2 메모리 컨트롤러",
+      "memory.max"
+    ],
+    "refs": [
+      "https://docs.kernel.org/admin-guide/cgroup-v2.html"
+    ]
+  },
+  {
+    "id": "ops.container.oci-image-manifest",
+    "title": "OCI 이미지 매니페스트와 콘텐츠 주소 지정",
+    "en": "OCI Image Manifest and Content Addressing",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "컨테이너 내부",
+    "summary": "이미지를 설정과 레이어를 가리키는 디스크립터 묶음으로 적고 다이제스트로 내용을 식별하는 OCI 이미지 명세의 구조를 분석한다.",
+    "objectives": [
+      "매니페스트의 config·layers·subject가 모두 mediaType·digest·size를 가진 디스크립터라는 점과, layers가 기반 레이어부터 쌓는 순서로 적힌다는 점을 설명할 수 있다",
+      "다이제스트 문법과 등록된 알고리즘(sha256 필수, sha512·blake3 선택)을 들고, 신뢰할 수 없는 곳에서 받은 내용을 크기 먼저 확인한 뒤 해시로 검증해야 하는 이유를 설명할 수 있다",
+      "이미지 인덱스가 platform(architecture·os·variant)별 매니페스트를 고르는 방식과, 여러 항목이 맞으면 첫 항목을 쓰는 규칙을 설명할 수 있다",
+      "artifactType과 빈 디스크립터로 이미지가 아닌 결과물을 같은 형식에 담는 방법을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.container.image-layers",
+      "ops.docker.image-tag"
+    ],
+    "related": [
+      "ops.container.overlay2-storage",
+      "ops.ci.artifact-attestations"
+    ],
+    "aliases": [
+      "OCI image spec",
+      "OCI 이미지 명세",
+      "OCI 매니페스트",
+      "OCI image manifest",
+      "이미지 매니페스트"
+    ],
+    "refs": [
+      "https://github.com/opencontainers/image-spec/blob/main/manifest.md",
+      "https://github.com/opencontainers/image-spec/blob/main/descriptor.md",
+      "https://github.com/opencontainers/image-spec/blob/main/image-index.md"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "ops.observe.incident-analysis",
     "title": "장애 분석과 회고",
     "en": "Incident Analysis and Postmortems",
@@ -8642,6 +8713,106 @@
     ]
   },
   {
+    "id": "ops.container.oci-distribution",
+    "title": "OCI 배포 명세: 레지스트리 API의 내부",
+    "en": "OCI Distribution Specification",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "컨테이너 내부",
+    "summary": "레지스트리가 매니페스트와 블롭을 다이제스트로 주고받고 업로드를 나눠 받으며 참조자를 찾아 주는 OCI 배포 명세의 HTTP 동작을 분석한다.",
+    "objectives": [
+      "태그 또는 다이제스트로 매니페스트를 받고 다이제스트로 블롭을 받는 pull 흐름과 HEAD로 존재를 확인하는 방식을 설명할 수 있다",
+      "한 번에 올리기, PATCH로 나눠 올리기, 같은 레지스트리의 다른 저장소에서 블롭을 마운트하기를 비교하고 각각 어떤 상황에서 전송을 줄이는지 설명할 수 있다",
+      "subject를 가진 매니페스트를 referrers API로 찾고, API가 404일 때 다이제스트에서 만든 태그로 대신하는 방식과 그때 클라이언트가 져야 할 책임을 설명할 수 있다",
+      "태그·매니페스트·블롭 삭제가 202로 받아들여지거나 레지스트리 설정에 따라 거부될 수 있다는 점으로 정리 작업의 실패를 분석할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.docker.build-tag-push",
+      "ops.container.image-layers"
+    ],
+    "related": [
+      "ops.k8s.imagepullbackoff",
+      "ops.ci.artifact-attestations"
+    ],
+    "aliases": [
+      "OCI distribution spec",
+      "OCI 배포 명세",
+      "레지스트리 HTTP API",
+      "registry API v2"
+    ],
+    "refs": [
+      "https://github.com/opencontainers/distribution-spec/blob/main/spec.md"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ops.k8s.memory-manager",
+    "title": "kubelet 메모리 관리자와 NUMA 메모리 보장",
+    "en": "kubelet Memory Manager",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "Guaranteed 파드의 메모리와 hugepages를 최소한의 NUMA 노드에 묶어 주는 kubelet 메모리 관리자의 동작과 예약 메모리 제약을 분석한다.",
+    "objectives": [
+      "Static 정책이 Guaranteed 파드에만 NUMA 힌트를 내고 메모리를 내부 노드 맵에 예약하며 cpuset.mems를 적용하는 동작을 설명할 수 있다",
+      "요청이 NUMA 노드 하나를 넘으면 여러 NUMA 노드로 묶음을 만드는 방식과, 힌트와 토폴로지 관리자 정책에 따라 파드가 승인되거나 거부되는 흐름을 설명할 수 있다",
+      "NUMA 노드별 reservedMemory 합이 kubeReserved·systemReserved·evictionHard의 memory.available 합과 같아야 하며, 기본 100Mi 축출 임계값을 빼면 kubelet이 메모리 관리자를 시작하지 못하는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.cpu-topology-manager",
+      "ops.k8s.node-pressure-eviction"
+    ],
+    "related": [
+      "ops.container.cgroup-v2-memory-controller"
+    ],
+    "aliases": [
+      "Kubernetes Memory Manager",
+      "kubelet memory manager",
+      "kubelet 메모리 관리자",
+      "memoryManagerPolicy"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/tasks/administer-cluster/memory-manager/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ops.k8s.etcd-membership-learner",
+    "title": "etcd 멤버 변경과 learner",
+    "en": "etcd Runtime Reconfiguration and Learner",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "멤버를 더하거나 뺄 때 쿼럼 크기가 바뀌어 생기는 위험과 투표하지 않는 learner로 그 위험을 줄이는 etcd 설계의 손익을 분석한다.",
+    "objectives": [
+      "빈 새 멤버가 리더에 몰고 오는 부하, 분할된 클러스터에 멤버를 더해 쿼럼을 잃는 경우, 잘못된 피어 URL로 되돌릴 수 없게 되는 경우를 들어 멤버 추가의 위험을 설명할 수 있다",
+      "learner가 투표하지 않아 쿼럼 크기를 바꾸지 않고, 리더의 로그를 따라잡은 뒤에만 승격되며, 리더십을 넘겨받을 수 없고 직렬화 읽기와 멤버 상태 API 외의 요청은 거부하는 성질을 설명할 수 있다",
+      "멤버 변경을 한 번에 하나씩, 쿼럼이 살아 있을 때만 하고 strict reconfig check가 쿼럼을 깨는 변경을 막는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.etcd-compaction-defrag"
+    ],
+    "related": [
+      "cs.dist.raft-consensus",
+      "cs.dist.majority-quorum"
+    ],
+    "aliases": [
+      "etcd runtime reconfiguration",
+      "etcd 멤버 추가",
+      "etcd member add",
+      "etcd 멤버 변경"
+    ],
+    "refs": [
+      "https://etcd.io/docs/v3.6/learning/design-learner/",
+      "https://etcd.io/docs/v3.6/op-guide/runtime-configuration/"
+    ]
+  },
+  {
     "id": "ops.k8s.resource-version-410-gone",
     "title": "resourceVersion 만료와 410 Gone",
     "en": "Expired resourceVersion and 410 Gone",
@@ -8699,6 +8870,69 @@
     "refs": [
       "https://docs.docker.com/engine/storage/drivers/overlayfs-driver/",
       "https://docs.kernel.org/filesystems/overlayfs.html"
+    ]
+  },
+  {
+    "id": "ops.container.memory-high-throttle",
+    "title": "memory.high 조절 한도",
+    "en": "memory.high Throttle Limit",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "컨테이너 내부",
+    "summary": "넘으면 OOM killer 대신 프로세스를 늦추고 강하게 회수하는 cgroup v2의 메모리 조절 한도다.",
+    "parent": "ops.container.cgroup-v2-memory-controller",
+    "related": [
+      "ops.container.oom-killed"
+    ],
+    "aliases": [
+      "memory.high",
+      "cgroup memory.high",
+      "메모리 조절 한도",
+      "memory high throttling"
+    ],
+    "refs": [
+      "https://docs.kernel.org/admin-guide/cgroup-v2.html"
+    ]
+  },
+  {
+    "id": "ops.container.oci-image-index",
+    "title": "OCI 이미지 인덱스",
+    "en": "OCI Image Index",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "컨테이너 내부",
+    "summary": "플랫폼별 이미지 매니페스트 여러 개를 platform 필드와 함께 나열해 한 이름으로 여러 아키텍처를 내놓게 하는 OCI 문서다.",
+    "parent": "ops.container.oci-image-manifest",
+    "aliases": [
+      "image index",
+      "OCI image index",
+      "multi-platform image index",
+      "manifest list"
+    ],
+    "refs": [
+      "https://github.com/opencontainers/image-spec/blob/main/image-index.md"
+    ]
+  },
+  {
+    "id": "ops.container.oci-descriptor",
+    "title": "OCI 디스크립터와 다이제스트",
+    "en": "OCI Content Descriptor and Digest",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "컨테이너 내부",
+    "summary": "mediaType·digest·size로 다른 내용을 가리키는 OCI의 참조 단위이며, 다이제스트는 알고리즘:인코딩 값 형식의 내용 해시다.",
+    "parent": "ops.container.oci-image-manifest",
+    "aliases": [
+      "OCI descriptor",
+      "content descriptor",
+      "이미지 다이제스트",
+      "image digest"
+    ],
+    "refs": [
+      "https://github.com/opencontainers/image-spec/blob/main/descriptor.md"
     ]
   },
   {
@@ -8972,6 +9206,109 @@
     ],
     "refs": [
       "https://etcd.io/docs/v3.6/op-guide/maintenance/"
+    ]
+  },
+  {
+    "id": "ops.container.memory-min-low",
+    "title": "memory.min과 memory.low 회수 보호",
+    "en": "memory.min and memory.low Reclaim Protection",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "컨테이너 내부",
+    "summary": "memory.min은 어떤 경우에도, memory.low는 보호 안 된 쪽에 회수할 메모리가 남은 동안만 그 cgroup의 메모리를 회수에서 지킨다.",
+    "parent": "ops.container.cgroup-v2-memory-controller",
+    "aliases": [
+      "memory.min",
+      "memory.low",
+      "cgroup 메모리 보호",
+      "cgroup memory protection"
+    ],
+    "refs": [
+      "https://docs.kernel.org/admin-guide/cgroup-v2.html"
+    ]
+  },
+  {
+    "id": "ops.container.memory-oom-group",
+    "title": "memory.oom.group 묶음 종료",
+    "en": "memory.oom.group",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "컨테이너 내부",
+    "summary": "켜면 OOM 때 그 cgroup과 자손의 작업을 모두 함께 죽이거나 하나도 죽이지 않게 하는 cgroup v2 설정이다.",
+    "related": [
+      "ops.container.cgroup-v2-memory-controller",
+      "ops.container.oom-killed"
+    ],
+    "aliases": [
+      "memory.oom.group",
+      "cgroup OOM 그룹 종료",
+      "oom.group"
+    ],
+    "refs": [
+      "https://docs.kernel.org/admin-guide/cgroup-v2.html"
+    ]
+  },
+  {
+    "id": "ops.container.oci-referrers-api",
+    "title": "OCI referrers API",
+    "en": "OCI Referrers API",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "컨테이너 내부",
+    "summary": "주어진 다이제스트를 subject로 가리키는 서명·SBOM 같은 매니페스트를 이미지 인덱스로 돌려주는 레지스트리 엔드포인트다.",
+    "parent": "ops.container.oci-distribution",
+    "aliases": [
+      "referrers API",
+      "OCI referrers",
+      "레지스트리 참조자 조회"
+    ],
+    "refs": [
+      "https://github.com/opencontainers/distribution-spec/blob/main/spec.md"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ops.k8s.reserved-memory",
+    "title": "kubelet reservedMemory 설정",
+    "en": "kubelet reservedMemory",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "NUMA 노드별로 워크로드에 주지 않을 메모리를 적는 kubelet 설정이며 메모리 관리자 Static 정책에서는 반드시 넣어야 한다.",
+    "parent": "ops.k8s.memory-manager",
+    "aliases": [
+      "reservedMemory",
+      "--reserved-memory",
+      "NUMA 예약 메모리"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/tasks/administer-cluster/memory-manager/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ops.k8s.etcd-learner",
+    "title": "etcd learner 멤버",
+    "en": "etcd Learner Member",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "리더의 로그를 받기만 하고 투표하지 않아 쿼럼 크기를 바꾸지 않다가 따라잡은 뒤 승격되는 etcd 멤버다.",
+    "parent": "ops.k8s.etcd-membership-learner",
+    "aliases": [
+      "etcd learner",
+      "member add --learner",
+      "etcdctl member promote"
+    ],
+    "refs": [
+      "https://etcd.io/docs/v3.6/learning/design-learner/"
     ]
   }
 ]

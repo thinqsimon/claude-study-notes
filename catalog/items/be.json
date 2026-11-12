@@ -9054,6 +9054,66 @@
     ]
   },
   {
+    "id": "be.http.cache-keys",
+    "title": "HTTP 캐시 키와 무효화 규칙",
+    "en": "HTTP Cache Keys and Invalidation",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "HTTP",
+    "summary": "캐시가 메서드·URI와 Vary로 저장 응답을 고르고 안전하지 않은 메서드 뒤에 지우는 규칙과 그 보안상 함정을 다룬다.",
+    "objectives": [
+      "기본 캐시 키가 메서드와 대상 URI로 정해지고 Vary가 키를 넓히는 과정을 설명할 수 있다",
+      "Vary에 넣는 헤더가 적중률과 잘못된 응답 재사용에 주는 손익을 따질 수 있다",
+      "PUT·POST·DELETE 같은 안전하지 않은 메서드에 오류가 아닌(2xx·3xx) 응답이 오면 대상 URI와 같은 출처의 Location·Content-Location을 무효화하는 범위와, 요청이 지나간 캐시에만 미친다는 한계를 설명할 수 있다",
+      "캐시 포이즈닝과 민감한 응답 캐싱이 생기는 원인을 분석할 수 있다"
+    ],
+    "prerequisites": [
+      "be.http.caching"
+    ],
+    "aliases": [
+      "HTTP 캐시 키",
+      "HTTP cache key",
+      "HTTP 캐시 무효화",
+      "RFC 9111 캐시 키"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9111.html",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Vary"
+    ]
+  },
+  {
+    "id": "be.security.h2-dos",
+    "title": "HTTP/2 서비스 거부와 자원 한도",
+    "en": "HTTP/2 Denial-of-Service Considerations",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "웹 보안",
+    "summary": "응답 의무가 있는 제어 프레임과 스트림 리셋을 악용해 서버 자원을 소모시키는 HTTP/2 공격과 그 한도 설정을 다룬다.",
+    "objectives": [
+      "SETTINGS·PING·작은 WINDOW_UPDATE·RST_STREAM이 공격에 쓰일 수 있는 이유를 설명할 수 있다",
+      "프레임 사용량을 추적해 한도를 넘으면 ENHANCE_YOUR_CALM으로 연결을 끊는 방어의 손익을 따질 수 있다",
+      "필드 블록 크기를 SETTINGS_MAX_HEADER_LIST_SIZE와 431 응답으로 제한하는 방법을 설명할 수 있다",
+      "Rapid Reset이 요청 취소로 많은 스트림을 빠르게 리셋해 서버 자원을 소모시키는 원리를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "be.http.versions",
+      "be.run.load-control"
+    ],
+    "aliases": [
+      "HTTP/2 DoS",
+      "HTTP/2 서비스 거부",
+      "ENHANCE_YOUR_CALM",
+      "HTTP/2 프레임 남용"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9113.html#section-10.5",
+      "https://www.cisa.gov/news-events/alerts/2023/10/10/http2-rapid-reset-vulnerability-cve-2023-44487",
+      "https://cveawg.mitre.org/api/cve/CVE-2023-44487"
+    ]
+  },
+  {
     "id": "be.async.asgi",
     "title": "ASGI: 파이썬 비동기 서버의 약속",
     "en": "ASGI Specification",
@@ -9399,6 +9459,96 @@
     ]
   },
   {
+    "id": "be.http.h2-flow-control",
+    "title": "HTTP/2 흐름 제어의 동작",
+    "en": "HTTP/2 Flow Control",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "HTTP",
+    "summary": "수신자가 스트림과 연결마다 받을 양을 알려 주는 HTTP/2의 크레딧 방식이 처리량과 교착에 주는 영향을 다룬다.",
+    "objectives": [
+      "스트림 창과 연결 창이 DATA 프레임에만 적용되는 이유를 설명할 수 있다",
+      "창 크기가 대역폭 지연 곱보다 작을 때 처리량이 묶이는 원리를 따질 수 있다",
+      "SETTINGS_INITIAL_WINDOW_SIZE를 바꿀 때 열린 스트림의 창이 음수가 될 수 있음을 설명할 수 있다",
+      "WINDOW_UPDATE를 제때 처리하지 않아 연결이 교착되는 경우를 분석할 수 있다"
+    ],
+    "prerequisites": [
+      "be.http.versions",
+      "cs.net.tcp-zero-window"
+    ],
+    "aliases": [
+      "HTTP/2 흐름 제어",
+      "HTTP/2 flow control",
+      "h2 흐름 제어",
+      "HTTP/2 플로 컨트롤",
+      "SETTINGS_INITIAL_WINDOW_SIZE"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9113.html#section-5.2"
+    ]
+  },
+  {
+    "id": "be.http.extensible-priorities",
+    "title": "HTTP 확장 우선순위 체계",
+    "en": "Extensible Prioritization Scheme for HTTP",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "HTTP",
+    "summary": "RFC 7540의 의존성 트리 대신 긴급도와 점진 여부 두 값으로 응답 순서를 알리는 HTTP/2·HTTP/3 공통 체계다.",
+    "objectives": [
+      "RFC 7540 스트림 우선순위가 폐기된 이유를 설명할 수 있다",
+      "urgency(0~7, 기본 3)와 incremental 값에 따라 서버가 응답을 보내는 순서를 추론할 수 있다",
+      "종단 간 Priority 헤더와 홉 단위 PRIORITY_UPDATE 프레임의 쓰임을 구분할 수 있다",
+      "여러 클라이언트를 합치는 중개자에서 우선순위가 공정성을 해치는 경우를 따질 수 있다"
+    ],
+    "prerequisites": [
+      "be.http.versions"
+    ],
+    "aliases": [
+      "HTTP 확장 우선순위",
+      "RFC 9218",
+      "extensible priorities",
+      "HTTP 응답 우선순위",
+      "PRIORITY_UPDATE"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9218.html",
+      "https://www.rfc-editor.org/rfc/rfc9113.html#section-5.3"
+    ]
+  },
+  {
+    "id": "be.http.header-compression",
+    "title": "HPACK과 QPACK 헤더 압축",
+    "en": "HTTP Field Compression: HPACK and QPACK",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "HTTP",
+    "summary": "정적 표와 동적 표로 반복되는 헤더를 줄이는 HTTP/2·HTTP/3 압축의 구조와 순서 보장·보안의 손익을 다룬다.",
+    "objectives": [
+      "정적 표, 동적 표, 허프만 부호화가 헤더 크기를 줄이는 방식을 설명할 수 있다",
+      "QUIC에서 HPACK을 그대로 쓰면 헤드 오브 라인 블로킹이 생기는 이유와 QPACK의 인코더·디코더 스트림이 이를 줄이는 방식을 설명할 수 있다",
+      "QPACK의 Required Insert Count 때문에 스트림이 막히는 조건과 SETTINGS_QPACK_BLOCKED_STREAMS의 역할을 설명할 수 있다",
+      "동적 표 상태를 추측하는 CRIME류 공격과 never-indexed 리터럴로 민감한 헤더를 지키는 방법을 따질 수 있다"
+    ],
+    "prerequisites": [
+      "be.http.versions",
+      "be.http.headers-body"
+    ],
+    "aliases": [
+      "HTTP 헤더 압축",
+      "HTTP header compression",
+      "HTTP 필드 압축",
+      "HTTP field compression"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc7541.html",
+      "https://www.rfc-editor.org/rfc/rfc9204.html"
+    ]
+  },
+  {
     "id": "be.http.tls-term",
     "title": "TLS",
     "en": "Transport Layer Security",
@@ -9486,6 +9636,68 @@
     "parent": "be.security.threat-modeling",
     "aliases": [
       "STRIDE"
+    ]
+  },
+  {
+    "id": "be.http.vary",
+    "title": "Vary 헤더",
+    "en": "Vary Header",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "HTTP",
+    "summary": "응답이 어떤 요청 헤더에 따라 달라지는지 알려 캐시가 그 값마다 응답을 따로 저장하게 하는 헤더다.",
+    "parent": "be.http.cache-keys",
+    "aliases": [
+      "Vary",
+      "Vary: Accept-Encoding",
+      "Vary: *"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Vary",
+      "https://www.rfc-editor.org/rfc/rfc9111.html"
+    ]
+  },
+  {
+    "id": "be.security.cache-poisoning",
+    "title": "웹 캐시 포이즈닝",
+    "en": "Web Cache Poisoning",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "웹 보안",
+    "summary": "공격자가 꾸민 응답을 공유 캐시에 저장시켜 같은 키로 요청하는 여러 사용자에게 퍼뜨리는 공격이다.",
+    "parent": "be.http.cache-keys",
+    "related": [
+      "be.security.request-smuggling"
+    ],
+    "aliases": [
+      "HTTP 캐시 포이즈닝",
+      "HTTP cache poisoning",
+      "HTTP 캐시 오염"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9111.html"
+    ]
+  },
+  {
+    "id": "be.security.rapid-reset",
+    "title": "HTTP/2 Rapid Reset",
+    "en": "HTTP/2 Rapid Reset (CVE-2023-44487)",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "웹 보안",
+    "summary": "요청 취소로 많은 스트림을 빠르게 리셋해 서버 자원을 소모시키는 HTTP/2 서비스 거부 공격으로, 2023년에 실제로 악용됐다.",
+    "parent": "be.security.h2-dos",
+    "aliases": [
+      "Rapid Reset",
+      "CVE-2023-44487",
+      "HTTP/2 래피드 리셋"
+    ],
+    "refs": [
+      "https://www.cisa.gov/news-events/alerts/2023/10/10/http2-rapid-reset-vulnerability-cve-2023-44487",
+      "https://cveawg.mitre.org/api/cve/CVE-2023-44487"
     ]
   },
   {
@@ -9734,6 +9946,83 @@
       "https://www.rfc-editor.org/rfc/rfc8470",
       "https://www.rfc-editor.org/rfc/rfc8446",
       "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/425"
+    ]
+  },
+  {
+    "id": "be.http.window-update",
+    "title": "WINDOW_UPDATE 프레임",
+    "en": "WINDOW_UPDATE Frame",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "HTTP",
+    "summary": "HTTP/2에서 수신자가 스트림이나 연결의 흐름 제어 창을 늘려 상대가 DATA를 더 보내게 하는 프레임이다.",
+    "parent": "be.http.h2-flow-control",
+    "aliases": [
+      "WINDOW_UPDATE",
+      "HTTP/2 창 갱신 프레임",
+      "flow-control window update"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9113.html#section-6.9"
+    ]
+  },
+  {
+    "id": "be.http.priority-header",
+    "title": "Priority 헤더",
+    "en": "Priority Header Field",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "HTTP",
+    "summary": "요청과 응답에 u(긴급도)와 i(점진 처리)를 실어 응답 우선순위를 알리는 종단 간 HTTP 헤더다.",
+    "parent": "be.http.extensible-priorities",
+    "aliases": [
+      "Priority 헤더",
+      "Priority header",
+      "HTTP Priority 필드",
+      "u=3 우선순위"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9218.html"
+    ]
+  },
+  {
+    "id": "be.http.hpack",
+    "title": "HPACK",
+    "en": "HPACK",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "HTTP",
+    "summary": "61개 항목의 정적 표와 FIFO 동적 표, 허프만 부호로 헤더를 압축하는 HTTP/2의 헤더 압축 형식이다.",
+    "parent": "be.http.header-compression",
+    "aliases": [
+      "HPACK",
+      "RFC 7541",
+      "HTTP/2 HPACK"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc7541.html"
+    ]
+  },
+  {
+    "id": "be.http.qpack",
+    "title": "QPACK",
+    "en": "QPACK",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "HTTP",
+    "summary": "스트림 사이 전달 순서가 보장되지 않는 QUIC에 맞게 동적 표 갱신을 별도 인코더·디코더 스트림으로 보내는 HTTP/3의 헤더 압축 형식이다.",
+    "parent": "be.http.header-compression",
+    "aliases": [
+      "QPACK",
+      "RFC 9204",
+      "HTTP/3 QPACK"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9204.html"
     ]
   }
 ]

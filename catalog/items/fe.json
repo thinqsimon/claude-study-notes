@@ -8911,6 +8911,73 @@
     ]
   },
   {
+    "id": "fe.ts.conditional-type-distribution",
+    "title": "조건부 타입의 분배와 infer 추론",
+    "en": "Distributive Conditional Types and infer",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "TypeScript",
+    "summary": "검사 대상이 맨 타입 매개변수인 조건부 타입이 유니언 멤버마다 따로 적용되고, infer로 구조 안의 타입을 뽑아내는 TypeScript 타입 수준 계산 규칙이다.",
+    "objectives": [
+      "맨 타입 매개변수를 검사하는 조건부 타입에 유니언을 넣으면 멤버마다 적용된 결과의 유니언이 나오는 분배를 설명하고, extends 양쪽을 대괄호로 감싸 분배를 막을 수 있다",
+      "같은 infer 변수에 후보가 여럿이면 공변 자리에서는 유니언, 반공변 자리에서는 교차 타입으로 합쳐지는 규칙으로 추론 결과를 예측할 수 있다",
+      "infer로 선언한 타입 변수가 extends 절에서만 쓰이고 참 분기에서 참조되는 규칙에 따라 반환값·요소 타입을 뽑는 조건부 타입을 분석할 수 있다",
+      "오버로드된 함수에서 추론이 마지막 시그니처만 쓰여 인수별 오버로드 해석이 일어나지 않는 한계를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.ts.union-narrowing",
+      "fe.ts.type-compatibility-soundness"
+    ],
+    "related": [
+      "fe.ts.generics"
+    ],
+    "aliases": [
+      "분배 조건부 타입",
+      "distributive conditional type",
+      "TypeScript 조건부 타입",
+      "TS conditional types"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/2/conditional-types.html",
+      "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-8.html"
+    ]
+  },
+  {
+    "id": "fe.css.cascade-sorting-order",
+    "title": "캐스케이드 정렬 기준: 출처·맥락·레이어·명시도",
+    "en": "CSS Cascade Sorting Order",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "CSS",
+    "summary": "명세가 겹친 선언을 출처와 중요도, 캡슐화 맥락, 요소 직접 스타일, 레이어, 명시도, 등장 순서의 차례로 비교해 이길 값을 고르는 절차다.",
+    "objectives": [
+      "트랜지션부터 일반 사용자 에이전트 선언까지 여덟 단계의 출처·중요도 순서를 근거로 !important가 출처 순위를 뒤집는 방식을 설명할 수 있다",
+      "섀도 트리처럼 캡슐화 맥락이 다른 두 선언에서 일반 규칙은 바깥 맥락이, important 규칙은 안쪽 맥락이 이기는 까닭을 설명할 수 있다",
+      "명시도를 ID·클래스·타입 세 성분으로 세고 :is()·:not()·:has()는 가장 높은 인수를, :where()는 0을 쓰는 규칙으로 두 선택자의 우열을 계산할 수 있다",
+      "revert가 출처 단위로, revert-layer가 레이어 단위로 캐스케이드를 되돌리는 차이를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.css.cascade-layers",
+      "fe.css.selectors-first"
+    ],
+    "related": [
+      "fe.css.specificity"
+    ],
+    "aliases": [
+      "캐스케이드 정렬 순서",
+      "cascade sorting order",
+      "캐스케이드 출처 순서",
+      "cascade origins"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/css-cascade-5/#cascade-sort",
+      "https://www.w3.org/TR/css-cascade-5/#defaulting-keywords",
+      "https://www.w3.org/TR/selectors-4/#specificity-rules"
+    ]
+  },
+  {
     "id": "fe.internals.web-vitals",
     "title": "Core Web Vitals 분석과 최적화",
     "en": "Core Web Vitals Optimization",
@@ -9092,6 +9159,76 @@
     ]
   },
   {
+    "id": "fe.css.grid-track-sizing",
+    "title": "CSS Grid 트랙 크기 알고리즘",
+    "en": "CSS Grid Track Sizing Algorithm",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "CSS",
+    "summary": "명세가 열을 먼저, 행을 다음에 정하며 트랙마다 기본 크기와 성장 한계를 두고 내용 기여·남는 공간·fr 비율로 크기를 키워 가는 절차다.",
+    "objectives": [
+      "열을 먼저 정하고 행을 정한 뒤 항목의 min-content 기여가 바뀌면 한 번 더 다시 계산하는 그리드 크기 알고리즘의 순서를 설명할 수 있다",
+      "한 트랙에만 걸친 항목부터 처리하고 여러 트랙에 걸친 항목은 걸친 트랙 수가 작은 것부터 남는 크기를 나눠 주는 내재 크기 해결 단계를 따라갈 수 있다",
+      "fr 트랙이 다른 트랙을 최대로 늘린 뒤 남는 공간을 flex 계수 비율로 나눠 받고, 계수 합이 1보다 작으면 남는 공간 일부만 받는 까닭을 설명할 수 있다",
+      "auto 트랙이 맨 마지막에 남는 양수 공간을 고르게 나눠 받아 늘어나는 조건을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.css.box-flex",
+      "fe.css.responsive-design"
+    ],
+    "related": [
+      "fe.css.flex-layout-algorithm",
+      "fe.css.grid"
+    ],
+    "aliases": [
+      "그리드 트랙 크기 계산",
+      "grid track sizing",
+      "그리드 크기 알고리즘",
+      "grid sizing algorithm"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/css-grid-1/#algo-grid-sizing",
+      "https://www.w3.org/TR/css-grid-1/#algo-track-sizing"
+    ]
+  },
+  {
+    "id": "fe.css.value-processing",
+    "title": "CSS 값 처리 단계: 선언값에서 실제값까지",
+    "en": "CSS Value Processing Stages",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "CSS",
+    "summary": "속성값이 선언값·캐스케이드값·지정값·계산값·사용값·실제값을 차례로 거치며 상속과 레이아웃, 기기 제약을 반영해 가는 과정이다.",
+    "objectives": [
+      "선언값에서 실제값까지 여섯 단계가 각각 무엇을 정하는지 설명할 수 있다",
+      "자식에게 상속되는 것은 계산값이고 width의 퍼센트처럼 레이아웃이 필요한 값은 사용값 단계에서야 길이로 바뀐다는 점으로 상속 결과를 설명할 수 있다",
+      "테두리 두께를 정수 픽셀로 맞추는 것처럼 실제값이 사용값과 달라질 수 있는 까닭을 설명할 수 있다",
+      "getComputedStyle이 돌려주는 해석값이 대부분 속성에서는 계산값이지만 색 속성과, 렌더링된 요소의 width·height·margin·padding에서는 사용값이라는 차이를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.css.debugging",
+      "fe.css.box-flex"
+    ],
+    "related": [
+      "fe.internals.render-pipeline",
+      "fe.css.cascade-sorting-order"
+    ],
+    "aliases": [
+      "CSS 값 처리",
+      "CSS value processing",
+      "CSS 계산값",
+      "CSS computed value",
+      "CSS 사용값",
+      "CSS used value"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/css-cascade-5/#value-stages",
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascade/Property_value_processing"
+    ]
+  },
+  {
     "id": "fe.internals.top-level-await",
     "title": "최상위 await",
     "en": "Top-level await",
@@ -9107,6 +9244,26 @@
     ],
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#top-level_await"
+    ]
+  },
+  {
+    "id": "fe.css.functional-pseudo-specificity",
+    "title": ":is()·:not()·:has()·:where()의 명시도",
+    "en": "Specificity of :is(), :not(), :has() and :where()",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "CSS",
+    "summary": ":is()·:not()·:has()는 인수 목록 중 가장 높은 선택자의 명시도를 갖고, :where()는 인수와 상관없이 명시도가 0이 되는 규칙이다.",
+    "parent": "fe.css.cascade-sorting-order",
+    "aliases": [
+      ":where 명시도 0",
+      "where() specificity",
+      ":is() 명시도",
+      "is() specificity"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/selectors-4/#specificity-rules"
     ]
   },
   {
@@ -9526,6 +9683,116 @@
     "refs": [
       "https://v8.dev/docs/hidden-classes",
       "https://v8.dev/blog/fast-properties"
+    ]
+  },
+  {
+    "id": "fe.css.grid-base-size-growth-limit",
+    "title": "그리드 트랙의 기본 크기와 성장 한계",
+    "en": "Grid Track Base Size and Growth Limit",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "CSS",
+    "summary": "트랙 크기 알고리즘에서 트랙이 지금 가진 크기와 그 크기가 자랄 수 있는 목표 최대치를 나타내는 두 값이다.",
+    "parent": "fe.css.grid-track-sizing",
+    "aliases": [
+      "grid base size",
+      "grid growth limit",
+      "트랙 성장 한계",
+      "트랙 기본 크기"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/css-grid-1/#algo-terms",
+      "https://www.w3.org/TR/css-grid-1/#algo-init"
+    ]
+  },
+  {
+    "id": "fe.css.grid-find-fr-size",
+    "title": "fr 하나의 크기 찾기",
+    "en": "Find the Size of an fr",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "CSS",
+    "summary": "flex 아닌 트랙의 기본 크기를 뺀 남는 공간을 flex 계수 합(1 미만이면 1)으로 나누고, 그 값×계수가 기본 크기보다 작은 트랙은 고정으로 돌려 다시 계산하는 절차다.",
+    "parent": "fe.css.grid-track-sizing",
+    "aliases": [
+      "flex fraction",
+      "fr 크기 계산",
+      "hypothetical fr size",
+      "가설 fr 크기"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/css-grid-1/#algo-find-fr-size",
+      "https://www.w3.org/TR/css-grid-1/#algo-flex-tracks"
+    ]
+  },
+  {
+    "id": "fe.ts.infer-candidate-variance",
+    "title": "infer 후보의 유니언·교차 합성",
+    "en": "Union and Intersection of infer Candidates",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "TypeScript",
+    "summary": "같은 infer 변수에 후보가 여럿이면 공변 자리에서는 유니언으로, 반공변 자리(함수 매개변수)에서는 교차 타입으로 합쳐 추론하는 규칙이다.",
+    "parent": "fe.ts.conditional-type-distribution",
+    "related": [
+      "fe.ts.strict-function-types",
+      "fe.ts.variance-annotations"
+    ],
+    "aliases": [
+      "infer 다중 후보",
+      "contravariant infer",
+      "반공변 위치 추론",
+      "infer 교차 타입 추론"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-8.html"
+    ]
+  },
+  {
+    "id": "fe.css.revert-layer",
+    "title": "revert-layer 키워드",
+    "en": "revert-layer Keyword",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "CSS",
+    "summary": "속성값을 현재 캐스케이드 레이어가 없었던 것처럼 바로 아래 레이어의 값으로 되돌리고, 아래 레이어가 없으면 앞 출처로 넘기는 키워드다.",
+    "parent": "fe.css.cascade-sorting-order",
+    "related": [
+      "fe.css.cascade-layers"
+    ],
+    "aliases": [
+      "CSS revert-layer",
+      "레이어 되돌리기",
+      "rolling back cascade layers"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/css-cascade-5/#revert-layer"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "fe.css.resolved-value",
+    "title": "해석값(resolved value)",
+    "en": "Resolved Value",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "CSS",
+    "summary": "getComputedStyle()이 돌려주는 값으로, 색·width·margin 등 일부 속성은 사용값이고 나머지 속성은 계산값이다.",
+    "parent": "fe.css.value-processing",
+    "aliases": [
+      "resolved value",
+      "CSS 해석값",
+      "getComputedStyle 반환값"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascade/Property_value_processing",
+      "https://www.w3.org/TR/cssom-1/#resolved-values"
     ]
   }
 ]

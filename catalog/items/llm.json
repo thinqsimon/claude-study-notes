@@ -9081,6 +9081,119 @@
     ]
   },
   {
+    "id": "llm.internals.weight-quantization-schemes",
+    "title": "가중치 양자화의 내부: 사상·세분도·자료형·보정",
+    "en": "Weight Quantization Internals: Mapping, Granularity, Data Types and Calibration",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM 내부",
+    "summary": "가중치를 적은 비트로 옮기는 사상 방식, 스케일을 나누는 단위, int·FP8·FP4 자료형, 보정 데이터 사용 여부가 메모리·속도·정확도를 어떻게 가르는지 분석한다.",
+    "objectives": [
+      "대칭·비대칭 아핀 양자화가 스케일과 영점으로 값을 옮기고 되돌리는 과정과 반올림 오차가 생기는 이유를 설명할 수 있다",
+      "텐서별·채널별·그룹별 스케일이 이상값 하나가 범위를 넓히는 문제와 스케일 저장 비용 사이에서 갈리는 손익을 분석할 수 있다",
+      "가중치 전용 방식은 메모리에 묶인 디코드에서, 가중치·활성화 방식은 계산에 묶인 프리필·큰 배치에서 빨라지기 쉬운 이유를 근거로 방식을 비교할 수 있다",
+      "보정 없이 불러오며 양자화하는 방식과 GPTQ·AWQ처럼 보정 데이터로 층을 다루는 방식, QAT의 정확도·준비 시간 손익을 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.quantization-picture",
+      "llm.internals.inference-phases"
+    ],
+    "related": [
+      "mlops.serve.inference-optimization",
+      "llm.internals.kv-cache-strategies"
+    ],
+    "aliases": [
+      "가중치 양자화",
+      "weight quantization",
+      "아핀 양자화",
+      "affine quantization",
+      "가중치 전용 양자화",
+      "weight-only quantization"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/main/en/quantization/concept_guide",
+      "https://huggingface.co/docs/transformers/main/en/quantization/selecting"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.internals.moe-experts",
+    "title": "전문가 혼합(MoE) 계산의 내부와 손익",
+    "en": "Mixture-of-Experts Computation Internals and Trade-offs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM 내부",
+    "summary": "라우터가 토큰마다 k개 전문가를 골라 계산하는 MoE가 전체 매개변수와 토큰당 계산량을 어떻게 떼어 놓는지와, 전문가 행렬곱 백엔드의 속도·메모리 손익을 분석한다.",
+    "objectives": [
+      "토큰마다 라우터가 상위 k개 전문가를 골라 라우팅 가중치로 합치는 구조 때문에 모든 전문가를 메모리에 올려야 하지만 계산량은 일부 전문가 몫만 드는 이유를 설명할 수 있다",
+      "학습 중 전문가 쏠림을 보조 부하 분산 손실과 라우터 잡음으로 누르는 원리와 추론에서는 라우터 로짓을 돌려받지 않는 이유를 설명할 수 있다",
+      "eager·batched_mm·grouped_mm 전문가 백엔드가 매개변수 복제 여부와 입력 크기에 따라 GPU·CPU에서 속도와 메모리가 갈리는 손익을 비교할 수 있다",
+      "torch.compile과 CUDA 그래프를 쓸 때 백엔드마다 지원하는 모드·자료형·fullgraph가 다른 제약을 근거로 백엔드를 고를 수 있다"
+    ],
+    "prerequisites": [
+      "ml.transformer.attention",
+      "llm.internals.inference-phases"
+    ],
+    "related": [
+      "mlops.serve.vllm-data-expert-parallel",
+      "llm.internals.attention-backends"
+    ],
+    "aliases": [
+      "전문가 혼합",
+      "Mixture of Experts",
+      "희소 MoE",
+      "sparse MoE",
+      "MoE 라우팅"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/main/en/experts_interface",
+      "https://huggingface.co/docs/transformers/main/en/model_doc/mixtral"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.internals.continuous-batching-internals",
+    "title": "Transformers 연속 배칭의 내부: 페이지 캐시·입장 제어",
+    "en": "Transformers Continuous Batching Internals",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM 내부",
+    "summary": "Transformers의 연속 배칭이 페이지 단위 KV 캐시 풀, 토큰·캐시 예산을 보는 스케줄러, 캐시가 찰 때의 오프로딩으로 처리량과 지연을 어떻게 맞바꾸는지 분석한다.",
+    "objectives": [
+      "KV 캐시를 청크·블록·페이지로 나눈 공유 풀이 길이가 다른 요청의 단편화를 막는 원리와 page_size를 키우고 줄일 때의 낭비·관리 비용 손익을 설명할 수 있다",
+      "스케줄러가 토큰 예산·캐시 예산·요청 수 상한으로 배치를 채우는 방식과 FIFO·prefill_first 정책, 긴 프롬프트를 나누는 청크 프리필의 효과를 비교할 수 있다",
+      "max_batch_tokens와 KV 블록 수가 같은 메모리 예산을 나눠 쓰는 관계를 근거로 프리필 처리량과 동시 요청 수 사이에서 설정을 판단할 수 있다",
+      "캐시가 찰 때 CPU 오프로딩과 프롬프트를 다시 계산하는 경로가 갈리는 조건, 접두사 블록 공유가 슬라이딩 어텐션 모델에서 꺼지는 이유를 분석할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.internals.inference-phases",
+      "llm.internals.kv-cache-strategies"
+    ],
+    "related": [
+      "mlops.serve.continuous-batching",
+      "mlops.serve.chunked-prefill",
+      "mlops.serve.prefix-caching"
+    ],
+    "aliases": [
+      "Transformers 연속 배칭",
+      "generate_batch",
+      "ContinuousBatchingManager",
+      "ContinuousBatchingConfig",
+      "Transformers paged KV cache"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/main/en/continuous_batching_architecture",
+      "https://huggingface.co/docs/transformers/main/en/continuous_batching"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "llm.internals.structured-decoding",
     "title": "구조화 출력의 보장과 한계",
     "en": "Guarantees of Structured Output",
@@ -9379,6 +9492,41 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.internals.generation-watermarking",
+    "title": "생성 단계 텍스트 워터마크의 내부: 그린 리스트와 SynthID Text",
+    "en": "Generation-Time Text Watermarking Internals",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "다음 토큰 로짓을 살짝 바꿔 글에 신호를 심는 그린 리스트 방식과 SynthID Text의 원리, 검출에 필요한 조건과 품질·견고성 손익을 분석한다.",
+    "objectives": [
+      "앞 토큰을 해시해 고른 그린 토큰에 로짓 편향을 더하는 방식에서 greenlist_ratio·bias·context_width가 글 품질과 견고성을 어떻게 바꾸는지 설명할 수 있다",
+      "lefthash와 selfhash 시드 방식이 그린 토큰을 정하는 기준과 selfhash가 느려지는 이유를 비교할 수 있다",
+      "검출기가 생성 때와 똑같은 워터마크 설정·어휘 크기·장치를 받아야 그린 리스트를 재현할 수 있고, 프롬프트를 빼고 z 임계값으로 민감도를 조절해야 하는 이유를 설명할 수 있다",
+      "그린 리스트 검출과 g-값을 학습한 베이지안 검출기로 판정하는 SynthID Text 검출의 준비 비용 차이를 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.internals.tokenization-sampling",
+      "ax.governance.synthetic-content-provenance"
+    ],
+    "related": [
+      "ax.governance.ai-watermarking",
+      "llm.basics.claude-text-watermark"
+    ],
+    "aliases": [
+      "텍스트 워터마크 내부",
+      "그린 리스트 워터마크",
+      "green list watermark",
+      "WatermarkingConfig",
+      "WatermarkDetector",
+      "로짓 워터마크"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/main/en/internal/generation_utils"
+    ]
   },
   {
     "id": "llm.internals.kv-cache",
@@ -9834,5 +9982,152 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.internals.quantization-group-size",
+    "title": "그룹별 양자화 스케일(group_size)",
+    "en": "Per-Group Quantization Scales",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "128개처럼 이어진 가중치 묶음마다 스케일을 하나씩 두어 이상값의 영향을 그 묶음 안에 가두는 방식으로, 묶음이 작을수록 스케일 저장이 늘어난다.",
+    "parent": "llm.internals.weight-quantization-schemes",
+    "aliases": [
+      "그룹별 양자화",
+      "per-group quantization",
+      "블록별 양자화",
+      "per-block quantization",
+      "GPTQ group_size"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/main/en/quantization/concept_guide"
+    ]
+  },
+  {
+    "id": "llm.internals.block-scaled-fp4",
+    "title": "블록 스케일 FP4 형식(MXFP4·NVFP4)",
+    "en": "Block-Scaled FP4 Formats (MXFP4, NVFP4)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "값이 ±0·0.5·1·1.5·2·3·4·6뿐인 E2M1 FP4에 작은 블록마다 스케일을 붙인 형식으로, MXFP4는 32개마다 2의 거듭제곱, NVFP4는 16개마다 FP8 스케일을 쓴다.",
+    "parent": "llm.internals.weight-quantization-schemes",
+    "aliases": [
+      "MXFP4",
+      "NVFP4",
+      "E2M1",
+      "microscaling format"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/main/en/quantization/concept_guide",
+      "https://huggingface.co/docs/transformers/main/en/quantization/selecting"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.internals.router-aux-loss",
+    "title": "MoE 부하 분산 보조 손실(router_aux_loss_coef)",
+    "en": "MoE Load-Balancing Auxiliary Loss",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "MoE 학습에서 토큰이 일부 전문가에 몰리는 것을 벌하려고 주 손실에 더하는 손실로, Mixtral 설정의 기본 계수는 0.001이다.",
+    "parent": "llm.internals.moe-experts",
+    "aliases": [
+      "부하 분산 보조 손실",
+      "MoE load balancing loss",
+      "router_aux_loss_coef",
+      "MoE aux loss"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/main/en/model_doc/mixtral"
+    ]
+  },
+  {
+    "id": "llm.internals.grouped-mm-experts",
+    "title": "grouped_mm 전문가 백엔드와 디코드 전환",
+    "en": "grouped_mm Experts Backend and Decode-Stage Switching",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "토큰을 고른 전문가 순으로 정렬해 묶음 행렬곱 한 번으로 계산하는 Transformers MoE 백엔드로, GPU 디코드 단계에서는 batched_mm으로 자동 전환된다.",
+    "parent": "llm.internals.moe-experts",
+    "aliases": [
+      "grouped_mm",
+      "Transformers grouped_mm",
+      "grouped_mm experts backend",
+      "전문가 묶음 행렬곱"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/main/en/experts_interface"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.internals.cb-soft-reset",
+    "title": "소프트 리셋(Transformers 연속 배칭 재대기)",
+    "en": "Soft Reset in Transformers Continuous Batching",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "KV 캐시를 CPU로 옮길 수 없을 때 생성한 토큰을 프롬프트 뒤에 붙이고 캐시 블록을 비운 채 요청을 대기열로 돌려보내는 방식으로, 재개할 때 다시 프리필한다.",
+    "parent": "llm.internals.continuous-batching-internals",
+    "aliases": [
+      "Transformers soft reset",
+      "연속 배칭 소프트 리셋"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/main/en/continuous_batching_architecture"
+    ]
+  },
+  {
+    "id": "llm.internals.cb-safety-margin",
+    "title": "연속 배칭 입장 여유분(safety_margin)",
+    "en": "Continuous Batching Admission Safety Margin",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "남은 KV 캐시가 전체의 정해진 비율 아래로 떨어지면 새 프리필을 받지 않고 진행 중인 디코드만 이어 가게 하는 Transformers 스케줄러 값이다.",
+    "parent": "llm.internals.continuous-batching-internals",
+    "aliases": [
+      "Transformers safety_margin",
+      "입장 여유분",
+      "admission safety margin"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/main/en/continuous_batching_architecture",
+      "https://huggingface.co/docs/transformers/main/en/continuous_batching"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.internals.synthid-bayesian-detector",
+    "title": "SynthID Text 베이지안 검출기",
+    "en": "SynthID Text Bayesian Detector",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "SynthID Text로 생성한 글의 g-값에서 베이즈 규칙으로 워터마크가 있을 사후 확률을 계산하는 검출기로, 미리 학습한 검출기 모듈이 있어야 쓸 수 있다.",
+    "parent": "llm.internals.generation-watermarking",
+    "aliases": [
+      "SynthID Text detector",
+      "BayesianDetectorModel",
+      "SynthIDTextWatermarkDetector",
+      "SynthID 검출기",
+      "g-value 검출"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/main/en/internal/generation_utils"
+    ]
   }
 ]

@@ -8930,6 +8930,116 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "rag.retrieval.bm25-scoring-internals",
+    "title": "BM25 점수의 내부: IDF·k1 포화·b 길이 정규화",
+    "en": "BM25 Scoring Internals in Lucene and Elasticsearch",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "검색 내부",
+    "summary": "Lucene과 Elasticsearch가 IDF, 낱말 빈도 포화, 문서 길이 정규화로 BM25 점수를 내는 방식과 샤드별 통계, 대안 유사도의 손익을 다룬다.",
+    "objectives": [
+      "Lucene BM25Similarity의 IDF가 docCount와 docFreq로 계산되고 평균 필드 길이가 sumTotalTermFreq를 docCount로 나눈 값임을 근거로 희귀어와 흔한 낱말의 점수 차를 설명할 수 있다",
+      "k1(기본 1.2)과 b(기본 0.75)를 바꿀 때 반복 낱말과 긴 문서의 점수가 어떻게 달라지는지 따져 필드별 유사도 설정을 정할 수 있다",
+      "query_then_fetch가 샤드마다 다른 낱말 통계로 점수를 매겨 같은 문서의 순위가 흔들리는 원인을 찾고 dfs_query_then_fetch의 정확도와 속도 손익을 따질 수 있다",
+      "BM25와 DFR·IB·LM Dirichlet·LM Jelinek Mercer 같은 대안 유사도의 매개변수를 비교해 바꿀 근거를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.retrieval.keyword-vs-vector",
+      "rag.retrieval.quality"
+    ],
+    "related": [
+      "rag.retrieval.hybrid-rerank"
+    ],
+    "aliases": [
+      "BM25 내부",
+      "BM25 scoring",
+      "BM25 점수 계산",
+      "Lucene BM25Similarity",
+      "Elasticsearch similarity"
+    ],
+    "refs": [
+      "https://www.elastic.co/docs/reference/elasticsearch/index-settings/similarity",
+      "https://lucene.apache.org/core/9_12_0/core/org/apache/lucene/search/similarities/BM25Similarity.html",
+      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search"
+    ]
+  },
+  {
+    "id": "rag.retrieval.learned-sparse-internals",
+    "title": "학습된 희소 검색의 내부: 낱말 확장·가지치기·두 단계 점수",
+    "en": "Learned Sparse Retrieval Internals",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "검색 내부",
+    "summary": "ELSER 같은 희소 모델이 문서를 가중 낱말로 확장해 역색인에 넣고, 질의 낱말을 가지치기하거나 두 단계로 점수 매겨 속도와 관련성을 맞바꾸는 구조를 다룬다.",
+    "objectives": [
+      "ELSER가 만든 확장 낱말이 동의어가 아니라 학습된 가중치이고 낮은 가중치 낱말이 밀집 벡터처럼 얽혀 있어 낱말 하나를 해석하면 오해할 수 있음을 설명할 수 있다",
+      "필드 앞 512토큰만 인코딩하는 ELSER의 제약을 근거로 긴 필드를 512토큰 미만 덩어리로 나눠야 하는 까닭을 말할 수 있다",
+      "Elasticsearch sparse_vector 질의의 가지치기가 빈도와 가중치 두 기준을 모두 만족하는 낱말만 빼고 샤드마다 따로 일어난다는 점에서 재채점 질의가 필요한 원인을 찾을 수 있다",
+      "OpenSearch doc-only 모드와 bi-encoder 모드, 두 단계 처리기의 지연 감소와 관련성 손익을 비교해 구성을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "rag.embedding.sparse-encoder",
+      "rag.retrieval.quality"
+    ],
+    "related": [
+      "rag.retrieval.hybrid-rerank",
+      "rag.retrieval.bm25-scoring-internals"
+    ],
+    "aliases": [
+      "learned sparse retrieval",
+      "ELSER",
+      "Elastic Learned Sparse EncodeR",
+      "neural sparse search",
+      "OpenSearch 신경 희소 검색"
+    ],
+    "refs": [
+      "https://www.elastic.co/docs/explore-analyze/machine-learning/nlp/ml-nlp-elser",
+      "https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-sparse-vector-query",
+      "https://docs.opensearch.org/latest/vector-search/ai-search/neural-sparse-with-pipelines/",
+      "https://docs.opensearch.org/latest/search-plugins/search-pipelines/neural-sparse-query-two-phase-processor/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.mcp-client-registration",
+    "title": "MCP 클라이언트 등록 방식 비교: CIMD·사전 등록·DCR",
+    "en": "MCP Client Registration Mechanisms Compared",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "MCP 2026-07-28판 인가 명세가 정한 세 가지 client_id 획득 방식의 우선순위와, 인가 서버 묶임·SSRF·localhost 사칭 같은 보안 손익을 다룬다.",
+    "objectives": [
+      "사전 등록·Client ID Metadata Document·동적 클라이언트 등록의 우선순위와 인가 서버 메타데이터의 client_id_metadata_document_supported·registration_endpoint로 고르는 흐름을 설명할 수 있다",
+      "HTTPS URL을 client_id로 쓰는 CIMD가 인가 서버가 바뀌어도 재등록이 필요 없는 반면, 사전 등록·DCR 자격 증명은 발급한 인가 서버의 issuer에 묶여야 하는 까닭을 비교할 수 있다",
+      "인가 서버가 클라이언트 메타데이터 문서를 가져올 때의 SSRF 위험과 CIMD만으로 막지 못하는 localhost 리다이렉트 사칭에 맞는 방어를 고를 수 있다",
+      "DCR이 지원 중단된 뒤에도 OIDC 서버에서 application_type 누락으로 등록이 거부되는 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.mcp-auth-design"
+    ],
+    "related": [
+      "rag.agent.mcp-security-threats",
+      "be.security.ssrf"
+    ],
+    "aliases": [
+      "MCP 클라이언트 등록",
+      "MCP client registration",
+      "MCP 동적 클라이언트 등록",
+      "MCP DCR"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization/client-registration",
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization/security-considerations",
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "rag.vector-db.qdrant-segment-optimizer",
     "title": "Qdrant 세그먼트와 최적화기: 색인·삭제 정리·읽기 쓰기 경합",
     "en": "Qdrant Segments and Optimizers",
@@ -9236,6 +9346,37 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.retrieval.multi-field-bm25f",
+    "title": "여러 필드 점수 결합과 BM25F 근사",
+    "en": "Multi-Field Lexical Scoring and BM25F",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "검색 내부",
+    "summary": "제목·본문처럼 여러 텍스트 필드에 걸친 질의를 필드 중심으로 점수 매길지, 필드를 하나로 합친 듯 BM25F 근사로 매길지의 손익을 다룬다.",
+    "objectives": [
+      "best_fields·most_fields는 필드마다, combined_fields는 낱말마다 operator와 minimum_should_match를 적용하는 차이로 결과가 달라지는 원인을 찾을 수 있다",
+      "combined_fields가 필드들의 낱말·컬렉션 통계를 한 필드처럼 합쳐 BM25F에 가깝게 점수를 내는 방식과 cross_fields와의 차이를 설명할 수 있다",
+      "같은 검색 분석기를 쓰는 text 필드만, BM25 유사도만 허용하는 combined_fields의 제약과 필드 수×낱말 수가 max_clause_count에 걸리는 비용을 따져 질의 방식을 고를 수 있다",
+      "1.0 이상의 필드 가중치가 합친 필드에서 낱말을 반복한 것처럼 작동한다는 점을 근거로 제목 가중치의 영향을 예측할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.retrieval.bm25-scoring-internals"
+    ],
+    "related": [
+      "rag.retrieval.keyword-vs-vector"
+    ],
+    "aliases": [
+      "combined_fields",
+      "BM25F",
+      "여러 필드 검색 점수",
+      "다중 필드 BM25"
+    ],
+    "refs": [
+      "https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-combined-fields-query"
+    ]
   },
   {
     "id": "rag.vector-index.recall",
@@ -9660,6 +9801,166 @@
     ],
     "refs": [
       "https://a2a-protocol.org/latest/specification/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.retrieval.bm25-k1",
+    "title": "BM25 낱말 빈도 포화 매개변수(k1)",
+    "en": "BM25 k1 Term Frequency Saturation",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "검색 내부",
+    "summary": "같은 낱말이 문서에 여러 번 나올 때 점수가 얼마나 빨리 더 오르지 않게 되는지 정하는 BM25 매개변수로, Lucene 기본값은 1.2다.",
+    "parent": "rag.retrieval.bm25-scoring-internals",
+    "related": [
+      "rag.retrieval.bm25-b"
+    ],
+    "aliases": [
+      "BM25 k1",
+      "k1 포화",
+      "term frequency saturation",
+      "낱말 빈도 포화"
+    ],
+    "refs": [
+      "https://lucene.apache.org/core/9_12_0/core/org/apache/lucene/search/similarities/BM25Similarity.html"
+    ]
+  },
+  {
+    "id": "rag.retrieval.bm25-b",
+    "title": "BM25 문서 길이 정규화 매개변수(b)",
+    "en": "BM25 b Length Normalization",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "검색 내부",
+    "summary": "문서 길이가 평균보다 길수록 낱말 빈도 점수를 얼마나 깎을지 0에서 1 사이로 정하는 BM25 매개변수로, Lucene 기본값은 0.75다.",
+    "parent": "rag.retrieval.bm25-scoring-internals",
+    "related": [
+      "rag.retrieval.bm25-k1"
+    ],
+    "aliases": [
+      "BM25 b",
+      "BM25 길이 정규화",
+      "필드 길이 정규화"
+    ],
+    "refs": [
+      "https://lucene.apache.org/core/9_12_0/core/org/apache/lucene/search/similarities/BM25Similarity.html"
+    ]
+  },
+  {
+    "id": "rag.retrieval.dfs-query-then-fetch",
+    "title": "전체 샤드 낱말 통계 점수(dfs_query_then_fetch)",
+    "en": "dfs_query_then_fetch",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "검색 내부",
+    "summary": "샤드마다 따로 쓰던 낱말·문서 빈도를 모든 샤드에서 모아 점수를 매기는 Elasticsearch 검색 방식으로, 대개 더 정확하지만 더 느리다.",
+    "parent": "rag.retrieval.bm25-scoring-internals",
+    "aliases": [
+      "dfs_query_then_fetch",
+      "Elasticsearch DFS 검색",
+      "DFS query then fetch"
+    ],
+    "refs": [
+      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search"
+    ]
+  },
+  {
+    "id": "rag.retrieval.sparse-token-pruning",
+    "title": "희소 벡터 질의 낱말 가지치기(pruning_config)",
+    "en": "Sparse Vector Query Token Pruning",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "검색 내부",
+    "summary": "필드 평균보다 지나치게 흔하면서 가중치도 낮은 질의 낱말을 빼서 Elasticsearch sparse_vector 질의를 빠르게 하는 설정이다.",
+    "parent": "rag.retrieval.learned-sparse-internals",
+    "related": [
+      "rag.retrieval.neural-sparse-two-phase"
+    ],
+    "aliases": [
+      "pruning_config",
+      "tokens_freq_ratio_threshold",
+      "tokens_weight_threshold",
+      "only_score_pruned_tokens",
+      "희소 질의 가지치기"
+    ],
+    "refs": [
+      "https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-sparse-vector-query"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.retrieval.neural-sparse-two-phase",
+    "title": "OpenSearch 신경 희소 두 단계 처리기",
+    "en": "OpenSearch Neural Sparse Two-Phase Processor",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "검색 내부",
+    "summary": "가중치 높은 낱말로 먼저 상위 문서를 고르고 낮은 낱말로 그 문서들만 다시 점수 매겨 신경 희소 검색의 지연을 줄이는 OpenSearch 검색 처리기다.",
+    "parent": "rag.retrieval.learned-sparse-internals",
+    "related": [
+      "rag.retrieval.sparse-token-pruning"
+    ],
+    "aliases": [
+      "neural_sparse_two_phase_processor",
+      "OpenSearch two-phase processor",
+      "신경 희소 두 단계 검색"
+    ],
+    "refs": [
+      "https://docs.opensearch.org/latest/search-plugins/search-pipelines/neural-sparse-query-two-phase-processor/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.retrieval.blockmax-wand",
+    "title": "BlockMax WAND 상위 k 가지치기",
+    "en": "BlockMax WAND",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "검색 내부",
+    "summary": "역색인을 블록으로 나눠 질의와 관련 없는 블록을 건너뛰어 BM25·하이브리드 검색에서 점수를 매길 문서 수를 줄이는 WAND 변형 알고리즘이다.",
+    "related": [
+      "rag.retrieval.bm25-scoring-internals"
+    ],
+    "aliases": [
+      "BlockMax WAND",
+      "블록맥스 WAND",
+      "Weaviate BlockMax WAND",
+      "Block-Max WAND"
+    ],
+    "refs": [
+      "https://docs.weaviate.io/weaviate/concepts/indexing/inverted-index"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.mcp-client-id-metadata-document",
+    "title": "MCP 클라이언트 ID 메타데이터 문서(CIMD)",
+    "en": "Client ID Metadata Document (CIMD)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "클라이언트가 HTTPS URL을 client_id로 내고 그 주소에 client_name·redirect_uris를 담은 JSON을 두어, 인가 서버가 가져가 검증하게 하는 등록 방식이다.",
+    "parent": "rag.agent.mcp-client-registration",
+    "aliases": [
+      "CIMD",
+      "Client ID Metadata Documents",
+      "client_id_metadata_document_supported",
+      "클라이언트 메타데이터 문서"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization/client-registration"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
