@@ -6954,6 +6954,153 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "llm.api.deferred-processing-choice",
+    "title": "급하지 않은 LLM 작업의 처리 방식 고르기",
+    "en": "Choosing Flex, Batch, or Background Processing for Non-Urgent LLM Jobs",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "바로 답이 필요 없는 작업을 동기 호출·flex·배치·background 중 어디로 보낼지 비용·대기 시간·실패 방식·보관 기간으로 따져 고르는 설계다.",
+    "objectives": [
+      "작업마다 허용 대기 시간과 비용을 따져 동기 호출·flex 처리·배치 API·background 모드 중 하나를 고를 수 있다",
+      "flex 요청이 429 Resource Unavailable로 실패한 원인을 알고 백오프 재시도와 표준 처리로 다시 보내기 중 무엇을 할지 근거를 말할 수 있다",
+      "결과를 폴링으로 받을지 웹훅으로 받을지 고르고, 웹훅의 재전송과 중복 전달을 webhook-id로 거르는 이유를 말할 수 있다",
+      "배치의 24시간 처리 만료와 29일 결과 보관, background 응답의 store 설정과 무보존 프로젝트의 약 10분 보관 차이로 결과가 사라진 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.errors-rate-limits"
+    ],
+    "related": [
+      "llm.api.batch-api",
+      "llm.api.latency-design"
+    ],
+    "aliases": [
+      "비동기 LLM 처리 선택",
+      "flex vs batch",
+      "LLM 작업 처리 방식",
+      "저비용 LLM 처리",
+      "LLM 비동기 작업 설계"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/flex-processing",
+      "https://developers.openai.com/api/docs/guides/background",
+      "https://developers.openai.com/api/docs/guides/webhooks",
+      "https://platform.claude.com/docs/en/build-with-claude/batch-processing"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.security.abuse-prevention",
+    "title": "LLM 기능의 오남용 대응 설계",
+    "en": "Designing Abuse Prevention for LLM Features",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 보안",
+    "summary": "사용자별 식별값 보내기, 입력·출력 길이 제한, 사전 검사, 반복 위반자 제재, 신고 창구를 겹쳐 한 사용자의 악용이 서비스 전체를 막지 않게 하는 설계다.",
+    "objectives": [
+      "사용자마다 해시한 식별값을 요청에 실어 보내면 한 사용자의 위반이 조직 전체 차단으로 번지는 일을 줄이는 근거를 말할 수 있다",
+      "입력 길이 제한·출력 토큰 상한·자유 입력 대신 선택형 입력 중 기능의 위험에 맞는 제한을 고를 수 있다",
+      "같은 사용자가 거절이나 차단을 되풀이해 일으키는 기록을 찾아 경고·속도 제한·이용 정지 중 대응을 고를 수 있다",
+      "작은 모델로 입력을 먼저 검사할 때 검사 요청 자체가 거절되면 유해 판정으로 다뤄야 하는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.security.prompt-injection"
+    ],
+    "related": [
+      "llm.api.moderation-api",
+      "mlops.guardrail.input-output-guardrails",
+      "be.security.business-flow"
+    ],
+    "aliases": [
+      "LLM 오남용 방지",
+      "LLM abuse prevention",
+      "AI 기능 악용 대응",
+      "LLM 안전 모범 사례",
+      "반복 위반자 차단"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/safety-best-practices",
+      "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.prompt.search-result-blocks",
+    "title": "검색 결과 블록으로 RAG 답에 출처 붙이기",
+    "en": "Citing RAG Results with Claude search_result Blocks",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "프롬프트",
+    "summary": "직접 찾은 문서를 search_result 블록으로 넘겨 답의 주장마다 내 자료의 출처와 제목이 붙게 하고, 넘기는 위치와 쪼개는 크기를 고르는 설계다.",
+    "objectives": [
+      "검색을 도구로 맡겨 tool_result로 넘길지 미리 찾은 결과를 사용자 메시지에 바로 넣을지 근거를 들어 고를 수 있다",
+      "tool_result 안에 search_result와 다른 블록을 섞거나 결과마다 인용 설정이 달라 나는 검증 오류의 원인을 찾을 수 있다",
+      "결과 본문을 작은 블록 여러 개로 나눌지 하나로 합칠지 인용 범위의 정밀도와 길이의 손익으로 정할 수 있다",
+      "인용이 거의 붙지 않을 때 JSON만 달라는 지시나 꺼진 citations 설정 같은 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "llm.prompt.grounded-answers",
+      "llm.tools.function-calling"
+    ],
+    "related": [
+      "llm.prompt.citations",
+      "llm.api.document-block"
+    ],
+    "aliases": [
+      "search_result 블록",
+      "검색 결과 인용",
+      "RAG 출처 표시",
+      "search result content block",
+      "RAG 인용 붙이기"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/search-results"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.api.structured-output-limits",
+    "title": "구조화 출력 스키마 복잡도와 첫 요청 지연 진단",
+    "en": "Diagnosing Claude Structured Output Schema Limits and Compilation Latency",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "스키마가 문법으로 컴파일되는 과정의 한도와 캐시를 알고, 너무 복잡하다는 400 오류와 첫 요청만 느린 현상의 원인을 찾아 스키마를 고치는 일이다.",
+    "objectives": [
+      "Schema is too complex 400 오류의 원인을 strict 도구 수·선택 매개변수 수·union 타입 수에서 찾을 수 있다",
+      "strict 도구 줄이기·필수 매개변수로 바꾸기·중첩 펴기·요청 나누기 중 어느 것부터 할지 근거를 말할 수 있다",
+      "첫 요청만 느린 이유를 문법 컴파일과 그 캐시로 설명하고, 스키마의 어떤 변경이 다시 느리게 만드는지 판단할 수 있다",
+      "최종 답의 형식을 고정할 JSON 출력과 도구 인자를 고정할 strict 도구 중 무엇을 쓸지, 둘을 함께 쓸지 고를 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.structured-output-parse"
+    ],
+    "related": [
+      "llm.internals.structured-decoding",
+      "llm.tools.strict-tool-use",
+      "llm.internals.prompt-caching"
+    ],
+    "aliases": [
+      "Schema is too complex",
+      "스키마 복잡도 한도",
+      "구조화 출력 오류 진단",
+      "structured outputs limits",
+      "문법 컴파일 지연"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/structured-outputs"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "llm.api.spend-limit",
     "title": "지출 한도",
     "en": "Spend Limit",
@@ -7218,6 +7365,28 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "llm.internals.cache-breakpoint",
+    "title": "캐시 중단점(cache_control)",
+    "en": "Claude Prompt Cache Breakpoint (cache_control)",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 내부",
+    "summary": "요청 블록에 cache_control을 달아 그 블록까지를 캐시할 접두부로 정하는 표시로, 요청마다 바뀌지 않는 부분의 끝에 둬야 적중하며 최대 4개까지 쓴다.",
+    "parent": "llm.internals.prompt-caching",
+    "aliases": [
+      "cache breakpoint",
+      "캐시 브레이크포인트",
+      "cache_control 블록",
+      "프롬프트 캐시 중단점"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-caching"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "llm.api.usage-tier",
     "title": "사용 등급(usage tier)",
     "en": "Usage Tier",
@@ -7467,6 +7636,180 @@
     ],
     "refs": [
       "https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.api.flex-processing",
+    "title": "flex 처리(OpenAI Flex processing)",
+    "en": "OpenAI Flex Processing",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "OpenAI 요청에 service_tier를 flex로 주면 배치 요금으로 싸게 처리되는 대신 응답이 느리고 자원이 모자라면 429로 거절될 수 있는 처리 등급이다.",
+    "parent": "llm.api.deferred-processing-choice",
+    "related": [
+      "llm.api.batch-api"
+    ],
+    "aliases": [
+      "Flex processing",
+      "service_tier flex",
+      "OpenAI flex 등급",
+      "flex 요금 처리"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/flex-processing"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.api.background-mode",
+    "title": "background 모드(OpenAI Responses)",
+    "en": "OpenAI Responses Background Mode",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "Responses API에 background를 true로 주면 응답 생성이 서버에서 따로 돌아 연결이 끊겨도 이어지고, 상태를 폴링하거나 취소할 수 있는 방식이다.",
+    "parent": "llm.api.deferred-processing-choice",
+    "related": [
+      "llm.api.stream-interruption-recovery"
+    ],
+    "aliases": [
+      "OpenAI background mode",
+      "background=true 응답",
+      "백그라운드 응답 생성",
+      "Responses 백그라운드 모드"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/background"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.security.safety-identifier",
+    "title": "safety_identifier(OpenAI 사용자 안전 식별자)",
+    "en": "OpenAI safety_identifier",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 보안",
+    "summary": "OpenAI 요청마다 최종 사용자를 가리키는 해시값을 실어 보내 공급자가 오남용을 사용자 단위로 찾고 조직 전체 차단을 피하게 돕는 매개변수다.",
+    "parent": "llm.security.abuse-prevention",
+    "aliases": [
+      "safety identifier",
+      "OpenAI 안전 식별자",
+      "OpenAI-Safety-Identifier 헤더",
+      "사용자 해시 식별자"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/safety-best-practices"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.security.harmlessness-screen",
+    "title": "무해성 사전 검사(harmlessness screen)",
+    "en": "Harmlessness Screen with a Lightweight Model",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 보안",
+    "summary": "사용자 입력을 본 대화에 넣기 전에 작은 모델이 구조화 출력으로 유해 여부만 분류하게 하고, 검사 요청이 거절되면 유해로 보는 앞단 검사다.",
+    "parent": "llm.security.abuse-prevention",
+    "related": [
+      "llm.api.moderation-api",
+      "llm.security.prompt-injection"
+    ],
+    "aliases": [
+      "harmlessness screen",
+      "무해성 검사",
+      "작은 모델 사전 검사",
+      "입력 사전 분류 검사"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.prompt.search-result-location",
+    "title": "search_result_location(검색 결과 인용 위치)",
+    "en": "Claude search_result_location Citation",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "프롬프트",
+    "summary": "search_result 블록을 근거로 쓴 답 문장에 붙는 인용 객체로, 몇 번째 검색 결과의 어느 블록 범위를 인용했는지와 원문·출처·제목을 담는다.",
+    "parent": "llm.prompt.search-result-blocks",
+    "related": [
+      "llm.prompt.citations"
+    ],
+    "aliases": [
+      "search_result_index",
+      "검색 결과 인용 객체",
+      "search result citation",
+      "검색 인용 위치"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/search-results"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.api.grammar-cache",
+    "title": "구조화 출력 문법 캐시",
+    "en": "Claude Structured Output Grammar Cache",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "JSON 스키마를 처음 쓸 때 컴파일한 문법을 마지막 사용부터 24시간 보관해 다음 요청의 지연을 없애는 캐시로, 스키마 구조나 도구 묶음을 바꾸면 깨진다.",
+    "parent": "llm.api.structured-output-limits",
+    "related": [
+      "llm.internals.prompt-caching"
+    ],
+    "aliases": [
+      "grammar cache",
+      "스키마 컴파일 캐시",
+      "컴파일된 문법 캐시",
+      "structured outputs grammar caching"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/structured-outputs"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.internals.cache-ttl-1h",
+    "title": "1시간 캐시 TTL",
+    "en": "Claude 1-Hour Prompt Cache TTL",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "cache_control에 ttl 1h를 주면 기본 5분 대신 한 시간 캐시가 남는 대신 쓰기 요금이 기본 입력의 2배가 되는 선택으로, 5분보다 긴 간격의 재사용에 맞다.",
+    "parent": "llm.internals.prompt-caching",
+    "related": [
+      "llm.api.batch-api"
+    ],
+    "aliases": [
+      "1h cache",
+      "1시간 캐시",
+      "extended cache TTL",
+      "ttl 1h 캐시",
+      "확장 캐시 수명"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-caching"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"

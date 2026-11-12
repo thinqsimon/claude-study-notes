@@ -6573,6 +6573,108 @@
     ]
   },
   {
+    "id": "ml.data.target-encoding-high-cardinality",
+    "title": "고카디널리티 범주 특성: 타깃 인코딩과 교차 적합",
+    "en": "Target Encoding for High-Cardinality Categorical Features",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "우편번호처럼 값 종류가 아주 많은 범주를 정답 평균으로 바꾸되, 교차 적합으로 정답이 특성에 새지 않게 하는 인코딩 설계다.",
+    "objectives": [
+      "범주 종류 수와 데이터 양을 근거로 원-핫 인코딩과 타깃 인코딩 중 하나를 고를 수 있다",
+      "fit().transform()으로 학습 데이터를 인코딩했을 때 학습 점수만 오르고 테스트 점수가 떨어지는 원인을 찾을 수 있다",
+      "드물게 나오는 범주와 처음 보는 범주가 어떤 값으로 바뀌는지 근거를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.data.numeric-categorical-preprocessing",
+      "ml.eval.data-splitting-cv"
+    ],
+    "related": [
+      "ml.data.one-hot-encoding",
+      "ml.data.oov-category"
+    ],
+    "aliases": [
+      "고카디널리티 범주",
+      "high-cardinality categorical",
+      "범주 종류가 많은 특성",
+      "타깃 인코딩 누수"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/preprocessing.html#target-encoder",
+      "https://scikit-learn.org/stable/auto_examples/preprocessing/plot_target_encoder_cross_val.html"
+    ]
+  },
+  {
+    "id": "ml.eval.feature-importance-pitfalls",
+    "title": "특성 중요도의 함정: 불순도 중요도와 순열 중요도",
+    "en": "Pitfalls of Impurity-Based and Permutation Feature Importance",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "모델 평가",
+    "summary": "트리의 불순도 중요도는 과적합과 값 종류가 많은 특성에 치우치고 순열 중요도는 상관된 특성에서 낮게 나오므로, 결과를 믿기 전에 따져 본다.",
+    "objectives": [
+      "무작위 특성이 불순도 중요도 상위에 오를 때 원인을 과적합과 고카디널리티 편향에서 찾을 수 있다",
+      "순열 중요도를 학습 세트와 테스트 세트 중 어디서 계산할지 고르고 근거를 말할 수 있다",
+      "정확도는 높은데 모든 특성의 순열 중요도가 낮게 나올 때 상관된 특성을 원인으로 진단할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.tree-ensembles"
+    ],
+    "related": [
+      "ml.eval.permutation-importance",
+      "ml.eval.multicollinearity",
+      "ml.eval.partial-dependence-ice"
+    ],
+    "aliases": [
+      "특성 중요도 해석",
+      "feature importance pitfalls",
+      "특성 중요도 함정",
+      "중요도 편향"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/permutation_importance.html",
+      "https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance.html",
+      "https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance_multicollinear.html"
+    ]
+  },
+  {
+    "id": "ml.nn.mixed-precision-training",
+    "title": "혼합 정밀도 학습: autocast·GradScaler와 문제 진단",
+    "en": "Automatic Mixed Precision Training in PyTorch",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "행렬 곱 같은 연산만 낮은 정밀도로 돌려 학습을 빠르게 하되, 기울기 언더플로와 오버플로를 손실 스케일링과 자료형 선택으로 막는 설계다.",
+    "objectives": [
+      "장치와 모델에 맞춰 float16과 bfloat16 중 하나를 고르고 GradScaler가 필요한지 근거를 말할 수 있다",
+      "autocast를 순전파와 손실 계산에만 씌우고 backward는 밖에서 하는 이유를 말할 수 있다",
+      "혼합 정밀도에서 손실이 inf·NaN이 되거나 가중치가 갱신되지 않을 때 원인을 찾을 수 있다",
+      "기울기 클리핑이나 누적을 함께 쓸 때 unscale_와 update를 부를 위치를 고를 수 있다"
+    ],
+    "prerequisites": [
+      "ml.nn.training-loop"
+    ],
+    "related": [
+      "ml.training.nan-trap",
+      "ml.nn.cuda-out-of-memory",
+      "ml.training.vanishing-exploding-gradients"
+    ],
+    "aliases": [
+      "혼합 정밀도",
+      "mixed precision",
+      "AMP 학습",
+      "torch.amp",
+      "automatic mixed precision"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/amp.html",
+      "https://docs.pytorch.org/docs/2.15/notes/amp_examples.html"
+    ]
+  },
+  {
     "id": "ml.eval.partial-dependence-ice",
     "title": "부분 의존 그래프와 ICE로 모델 동작 점검",
     "en": "Partial Dependence and ICE Plots",
@@ -6601,6 +6703,40 @@
     ],
     "refs": [
       "https://scikit-learn.org/stable/modules/partial_dependence.html"
+    ]
+  },
+  {
+    "id": "ml.eval.nested-cross-validation",
+    "title": "중첩 교차 검증: 튜닝과 성능 추정 분리하기",
+    "en": "Nested Cross-Validation",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "모델 평가",
+    "summary": "안쪽 교차 검증으로 하이퍼파라미터를 고르고 바깥쪽 교차 검증으로 그 고르는 과정 전체의 성능을 재서, 튜닝 점수의 낙관을 걷어 낸다.",
+    "objectives": [
+      "GridSearchCV의 best_score_를 최종 성능으로 보고하면 안 되는 근거를 말할 수 있다",
+      "데이터가 적어 테스트 세트를 따로 떼기 어려울 때 중첩 교차 검증을 쓸지 고를 수 있다",
+      "중첩 점수와 비중첩 점수의 차이가 클 때 데이터 크기와 모델 안정성에서 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.hyperparameter-search",
+      "ml.eval.data-splitting-cv"
+    ],
+    "related": [
+      "ml.eval.learning-validation-curves",
+      "ml.eval.cross-validation"
+    ],
+    "aliases": [
+      "중첩 교차 검증",
+      "nested cross-validation",
+      "nested CV",
+      "비중첩 교차 검증",
+      "non-nested cross-validation"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/auto_examples/model_selection/plot_nested_cross_validation_iris.html",
+      "https://scikit-learn.org/stable/modules/grid_search.html"
     ]
   },
   {
@@ -6874,6 +7010,122 @@
     ]
   },
   {
+    "id": "ml.data.target-encoder",
+    "title": "타깃 인코딩(TargetEncoder)",
+    "en": "Target Encoding (TargetEncoder)",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "범주 값마다 그 범주에 속한 예시의 정답 평균을 계산해 숫자 하나(다중 분류는 클래스별 값)로 바꾸는 인코딩이다.",
+    "parent": "ml.data.target-encoding-high-cardinality",
+    "related": [
+      "ml.data.one-hot-encoding",
+      "ml.data.ordinal-encoding"
+    ],
+    "aliases": [
+      "타깃 인코딩",
+      "target encoding",
+      "TargetEncoder",
+      "타겟 인코딩",
+      "평균 타깃 인코딩"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/preprocessing.html#target-encoder"
+    ]
+  },
+  {
+    "id": "ml.data.cross-fitting",
+    "title": "교차 적합(cross fitting)",
+    "en": "Cross Fitting in Target Encoding",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "학습 데이터를 여러 조각으로 나눠 각 조각을 나머지 조각에서 배운 값으로 인코딩해 자기 정답이 특성에 섞이지 않게 하는 방법이다.",
+    "parent": "ml.data.target-encoding-high-cardinality",
+    "related": [
+      "ml.eval.cross-validation"
+    ],
+    "aliases": [
+      "교차 적합",
+      "TargetEncoder fit_transform",
+      "교차 적합 인코딩",
+      "out-of-fold encoding"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/preprocessing.html#target-encoder",
+      "https://scikit-learn.org/stable/auto_examples/preprocessing/plot_target_encoder_cross_val.html"
+    ]
+  },
+  {
+    "id": "ml.eval.mdi-importance",
+    "title": "불순도 기반 특성 중요도(MDI)",
+    "en": "Mean Decrease in Impurity (MDI) Importance",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "모델 평가",
+    "summary": "트리가 분할할 때 각 특성이 불순도를 얼마나 줄였는지 학습 데이터로 모아 계산한 중요도로, feature_importances_로 나온다.",
+    "parent": "ml.eval.feature-importance-pitfalls",
+    "related": [
+      "ml.eval.permutation-importance"
+    ],
+    "aliases": [
+      "MDI 중요도",
+      "mean decrease in impurity",
+      "불순도 감소 중요도",
+      "feature_importances_",
+      "impurity-based importance"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/permutation_importance.html",
+      "https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance.html"
+    ]
+  },
+  {
+    "id": "ml.nn.autocast",
+    "title": "torch.autocast(연산별 자동 정밀도 전환)",
+    "en": "torch.autocast",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "감싼 구역에서 행렬 곱·합성곱은 낮은 정밀도로, softmax·손실처럼 민감한 연산은 float32로 자동으로 골라 돌리는 PyTorch 문맥이다.",
+    "parent": "ml.nn.mixed-precision-training",
+    "aliases": [
+      "torch.autocast",
+      "autocast 문맥",
+      "자동 캐스팅",
+      "torch.amp.autocast"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/amp.html"
+    ]
+  },
+  {
+    "id": "ml.nn.grad-scaler",
+    "title": "GradScaler(손실 스케일링)",
+    "en": "Gradient Scaling with GradScaler",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "float16 기울기가 0으로 사라지지 않게 손실을 키워 역전파하고, inf·NaN이 나오면 그 스텝을 건너뛰고 배율을 줄이는 도구다.",
+    "parent": "ml.nn.mixed-precision-training",
+    "aliases": [
+      "GradScaler",
+      "torch.amp.GradScaler",
+      "손실 스케일링",
+      "loss scaling",
+      "기울기 스케일링"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/amp.html",
+      "https://docs.pytorch.org/docs/2.15/notes/amp_examples.html"
+    ]
+  },
+  {
     "id": "ml.eval.roc-auc",
     "title": "ROC 곡선과 AUC",
     "en": "ROC Curve and AUC",
@@ -7085,6 +7337,72 @@
     ],
     "refs": [
       "https://docs.pytorch.org/docs/stable/notes/cuda.html#memory-management"
+    ]
+  },
+  {
+    "id": "ml.data.target-encoding-smoothing",
+    "title": "타깃 인코딩 평활화(smooth)",
+    "en": "Target Encoding Smoothing",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "예시가 적은 범주의 정답 평균을 전체 평균 쪽으로 끌어당겨, 몇 개 안 되는 예시에 인코딩 값이 휘둘리지 않게 하는 조정이다.",
+    "parent": "ml.data.target-encoding-high-cardinality",
+    "aliases": [
+      "타깃 인코딩 평활화",
+      "target encoding smoothing",
+      "TargetEncoder smooth",
+      "전체 평균으로 수축"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/preprocessing.html#target-encoder"
+    ]
+  },
+  {
+    "id": "ml.eval.correlated-feature-clustering",
+    "title": "상관 특성 군집으로 중요도 보기",
+    "en": "Clustering Correlated Features for Permutation Importance",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "모델 평가",
+    "summary": "순위 상관으로 특성을 계층 군집으로 묶고 군집마다 하나만 남겨 다시 학습해, 서로 가려진 순열 중요도를 읽을 수 있게 하는 방법이다.",
+    "parent": "ml.eval.feature-importance-pitfalls",
+    "related": [
+      "ml.eval.multicollinearity",
+      "ml.data.correlation-coefficient"
+    ],
+    "aliases": [
+      "상관 특성 군집화",
+      "correlated feature clustering",
+      "스피어만 계층 군집",
+      "multicollinear permutation importance"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance_multicollinear.html"
+    ]
+  },
+  {
+    "id": "ml.nn.bfloat16-float16",
+    "title": "bfloat16과 float16",
+    "en": "bfloat16 vs float16",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "둘 다 16비트 부동소수점이지만 bfloat16은 표현 범위가 넓어 손실 스케일링 없이도 쓰기 쉽고, float16은 범위가 좁아 넘침과 언더플로에 약하다.",
+    "parent": "ml.nn.mixed-precision-training",
+    "aliases": [
+      "bfloat16",
+      "bf16",
+      "fp16",
+      "반정밀도",
+      "half precision",
+      "torch.float16"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/amp.html"
     ]
   },
   {

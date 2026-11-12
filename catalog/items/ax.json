@@ -6666,6 +6666,41 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "ax.security.vector-embedding-weaknesses",
+    "title": "RAG 벡터 저장소의 보안 약점 막기",
+    "en": "Securing RAG Against Vector and Embedding Weaknesses",
+    "kind": "topic",
+    "level": 4,
+    "importance": 1,
+    "group": "AI 보안과 윤리",
+    "summary": "RAG에서 임베딩을 만들고 저장하고 꺼내는 단계마다 생기는 권한 누출·문서 오염·역추론 위험을 가려 막을 장치를 고른다.",
+    "objectives": [
+      "공유 벡터 DB에서 다른 사용자·테넌트의 자료가 답에 섞인 원인을 권한 분리와 검색 필터 설계에서 찾을 수 있다",
+      "숨은 글자로 지시를 심은 문서가 지식 베이스에 들어오는 경로를 찾아 수집 단계의 검증 방법을 고를 수 있다",
+      "임베딩 역추론 위험을 근거로 임베딩 저장소를 원문과 같은 수준으로 보호해야 하는 이유를 말할 수 있다",
+      "검색 기록을 남겨 이상한 답이 어떤 문서 검색에서 시작됐는지 추적할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.vector-db.basics",
+      "ax.security.sensitive-info-disclosure"
+    ],
+    "related": [
+      "ax.security.rag-access-control",
+      "ax.security.data-poisoning",
+      "llm.security.indirect-injection",
+      "be.arch.multi-tenancy"
+    ],
+    "aliases": [
+      "RAG 벡터 저장소 보안",
+      "벡터 임베딩 취약점",
+      "RAG 보안 약점",
+      "벡터 DB 보안"
+    ],
+    "refs": [
+      "https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/"
+    ]
+  },
+  {
     "id": "ax.coding.subagents-permission-modes",
     "title": "하위 에이전트 병렬 실행과 권한 모드",
     "en": "Parallel Subagents and Permission Modes",
@@ -6954,6 +6989,114 @@
     "refs": [
       "https://docs.github.com/en/copilot/concepts/security-governance-and-network-settings/content-exclusion",
       "https://docs.github.com/en/copilot/how-tos/configure-content-exclusion/exclude-content-from-copilot"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.coding.enterprise-network-config",
+    "title": "회사 네트워크에서 Claude Code 연결 문제 찾기",
+    "en": "Diagnosing Claude Code Behind Corporate Proxies and TLS Inspection",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "프록시·사설 CA·mTLS 설정이 어디서 읽히는지와 열어 둘 주소를 알고, 사내망에서 나는 연결·인증서 오류의 원인을 찾는다.",
+    "objectives": [
+      "TLS 검사 프록시 뒤의 인증서 오류가 OS 인증서 저장소, 내장 CA 묶음, 추가 CA 파일 가운데 어느 쪽 문제인지 가릴 수 있다",
+      "--debug 로그와 /status의 프록시·mTLS 행으로 네트워크 설정이 실제로 적용됐는지 확인할 수 있다",
+      "백그라운드 에이전트까지 같은 설정이 닿도록 셸 export 대신 settings의 env 블록이나 관리형 설정에 두는 근거를 말할 수 있다",
+      "방화벽 허용 목록에 넣을 필수 호스트와 끌 수 있는 부가 통신을 구분해 고를 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.agent-first",
+      "be.http.proxy-idea"
+    ],
+    "related": [
+      "ax.coding.nonessential-traffic-optout",
+      "ax.coding.managed-settings",
+      "be.http.forward-proxy"
+    ],
+    "aliases": [
+      "Claude Code 사내 프록시",
+      "Claude Code 인증서 오류",
+      "Claude Code 프록시 설정",
+      "enterprise network configuration",
+      "CLAUDE_CODE_CERT_STORE"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/network-config"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.coding.llm-gateway-routing",
+    "title": "LLM 게이트웨이 뒤에서 Claude Code 운영하기",
+    "en": "Running Claude Code Through an LLM Gateway",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "자격 증명 변수와 헤더 전달 규칙, 구독과의 관계를 알고 게이트웨이를 둘지 고르며, 오류가 클라이언트와 게이트웨이 중 어디서 났는지 찾는다.",
+    "objectives": [
+      "자격 증명 보관·사용량 귀속·감사 기록을 한곳에 모으는 이점과 게이트웨이를 계속 갱신해야 하는 운영 부담을 견주어 도입 여부를 고를 수 있다",
+      "게이트웨이가 읽는 헤더에 맞춰 베어러 토큰 변수, API 키 변수, apiKeyHelper 가운데 무엇을 쓸지 고를 수 있다",
+      "/status와 curl 시험 요청으로 401·400·403 오류가 자격 증명, 걸러진 기능 헤더, 앞단 웹 방화벽 가운데 어디서 왔는지 찾을 수 있다",
+      "기준 URL만 바꾸고 게이트웨이 자격 증명을 주지 않으면 기존 로그인과 그 과금 방식이 그대로 쓰인다는 점을 근거로 배포 설정을 점검할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.ai-gateway-quickstart",
+      "ax.coding.agent-first"
+    ],
+    "related": [
+      "ax.coding.agent-team-cost-control",
+      "ax.coding.managed-settings",
+      "ax.coding.enterprise-network-config"
+    ],
+    "aliases": [
+      "Claude Code LLM 게이트웨이",
+      "Claude Code 게이트웨이 연결",
+      "ANTHROPIC_BASE_URL",
+      "Claude Code gateway"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/llm-gateway",
+      "https://code.claude.com/docs/en/llm-gateway-connect",
+      "https://code.claude.com/docs/en/llm-gateway-protocol"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.coding.code-security-ai-review",
+    "title": "코드 보안 AI 제안 검토: Copilot Autofix",
+    "en": "Reviewing GitHub Code Security AI Suggestions",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "CodeQL 경고 수정안과 AI 비밀값 탐지가 무엇을 보고 만들어지며 어디서 틀리는지 알고, 받아들이기 전의 검토와 CI 확인 절차를 정한다.",
+    "objectives": [
+      "수정안이 경고 위치 주변 코드와 쿼리 설명만 보고 만들어진다는 점을 근거로 여러 파일에 걸친 흐름의 수정안을 더 의심해야 하는 이유를 말할 수 있다",
+      "수정안이 동작을 바꾸거나 일부만 고치거나 의존성을 더한 경우를 테스트·CI·의존성 검토로 찾아낼 수 있다",
+      "AI 비밀값 탐지가 놓치는 경우와 오탐을 알고 다른 비밀값 차단 장치와 겹쳐 둘 설계를 고를 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.review-ai-code"
+    ],
+    "related": [
+      "ax.coding.security-guidance",
+      "ax.security.hallucinated-package",
+      "dev.git.push-protection"
+    ],
+    "aliases": [
+      "코드 보안 AI 기능 검토",
+      "AI 보안 수정 제안 검토",
+      "GitHub Code Security AI"
+    ],
+    "refs": [
+      "https://docs.github.com/en/code-security/responsible-use/security-and-quality-ai-features"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
@@ -7261,6 +7404,68 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "ax.coding.api-key-helper",
+    "title": "Claude Code 자격 증명 도우미(apiKeyHelper)",
+    "en": "Claude Code apiKeyHelper",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 네이티브 개발",
+    "summary": "금고나 SSO 명령에서 자격 증명을 받아 오는 명령을 설정에 두면 Claude Code가 결과를 기본 5분 캐시하고 두 인증 헤더에 함께 실어 보내는 장치다.",
+    "parent": "ax.coding.llm-gateway-routing",
+    "aliases": [
+      "apiKeyHelper",
+      "CLAUDE_CODE_API_KEY_HELPER_TTL_MS",
+      "Claude Code API 키 도우미",
+      "apiKeyHelper 스크립트"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/llm-gateway-connect"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.security.embedding-inversion",
+    "title": "임베딩 역추론 공격",
+    "en": "Embedding Inversion Attack",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "저장된 임베딩 벡터만으로 원래 글의 상당 부분을 되살려 내는 공격으로, 임베딩도 원문처럼 민감 정보로 다뤄야 하는 근거가 된다.",
+    "parent": "ax.security.vector-embedding-weaknesses",
+    "aliases": [
+      "embedding inversion",
+      "임베딩 역변환 공격",
+      "임베딩 원문 복원"
+    ],
+    "refs": [
+      "https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/"
+    ]
+  },
+  {
+    "id": "ax.coding.copilot-autofix",
+    "title": "Copilot Autofix(코드 스캐닝 수정 제안)",
+    "en": "Copilot Autofix for Code Scanning",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "CodeQL 경고마다 고친 코드와 설명을 PR이나 경고 화면에 제안하는 GitHub 기능으로, Copilot 구독 없이도 쓰이며 사람이 받아들여야 반영된다.",
+    "parent": "ax.coding.code-security-ai-review",
+    "aliases": [
+      "Autofix for code scanning",
+      "CodeQL 자동 수정",
+      "코드 스캐닝 자동 수정"
+    ],
+    "refs": [
+      "https://docs.github.com/en/code-security/responsible-use/security-and-quality-ai-features"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "ax.coding.hook-event",
     "title": "훅 이벤트와 매처",
     "en": "Hook Events and Matchers",
@@ -7430,6 +7635,123 @@
       "Paths to exclude",
       "콘텐츠 제외 패턴",
       "Copilot 제외 경로"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.coding.mtls-client-cert-rotation",
+    "title": "Claude Code mTLS 클라이언트 인증서 교체",
+    "en": "Claude Code mTLS Client Certificate Rotation",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "클라이언트 인증서와 키 파일을 같은 경로에서 바꾸면 연결 오류 뒤 재시도나 설정 재적용 때 새 쌍을 읽는 동작으로, 파일 변경을 감시하지는 않는다.",
+    "parent": "ax.coding.enterprise-network-config",
+    "aliases": [
+      "CLAUDE_CODE_CLIENT_CERT",
+      "Claude Code mTLS 인증서 교체",
+      "Claude Code 클라이언트 인증서 갱신"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/network-config"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.coding.stream-idle-watchdog",
+    "title": "스트리밍 유휴 감시 타이머",
+    "en": "Claude Code Streaming Idle Watchdogs",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "모델 응답 스트림이 정해진 시간 동안 조용하면 끊고 재시도하게 하는 타이머들로, ping을 버리는 게이트웨이 뒤에서 응답이 중간에 끊기는 원인이 된다.",
+    "parent": "ax.coding.enterprise-network-config",
+    "related": [
+      "ax.coding.llm-gateway-routing"
+    ],
+    "aliases": [
+      "CLAUDE_STREAM_IDLE_TIMEOUT_MS",
+      "CLAUDE_STREAM_FIRST_BYTE_TIMEOUT_MS",
+      "Claude Code 스트림 워치독",
+      "streaming idle watchdog"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/network-config",
+      "https://code.claude.com/docs/en/llm-gateway-protocol"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.coding.process-wrapper",
+    "title": "회사 런처로 감싸 실행(processWrapper)",
+    "en": "Claude Code Process Wrapper for Corporate Launchers",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "백그라운드 서비스와 에이전트 세션처럼 Claude Code가 자기 바이너리로 띄우는 프로세스를 회사 런처를 거쳐 시작하게 하는 설정이다.",
+    "parent": "ax.coding.enterprise-network-config",
+    "related": [
+      "ax.coding.managed-settings"
+    ],
+    "aliases": [
+      "CLAUDE_CODE_PROCESS_WRAPPER",
+      "Claude Code 회사 런처",
+      "Claude Code corporate launcher"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/corporate-launcher",
+      "https://code.claude.com/docs/en/network-config"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.coding.gateway-beta-header-forwarding",
+    "title": "게이트웨이의 기능 헤더 그대로 전달하기",
+    "en": "Forwarding Claude Code Beta Headers Through a Gateway",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "Claude Code가 보내는 기능 요청 헤더와 본문 필드를 게이트웨이가 값별로 걸러 내면 기능이 조용히 꺼지거나 400 오류가 나므로 그대로 넘겨야 한다는 규칙이다.",
+    "parent": "ax.coding.llm-gateway-routing",
+    "aliases": [
+      "게이트웨이 베타 헤더",
+      "gateway feature pass-through",
+      "CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/llm-gateway-protocol"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.coding.generic-secret-detection",
+    "title": "AI 일반 비밀값 탐지",
+    "en": "Copilot Generic Secret Detection",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "정해진 형식이 없는 비밀번호 같은 비밀값을 패턴 대신 AI 모델로 찾아 비밀값 스캐닝의 Generic 경고로 보여 주는 GitHub 기능이다.",
+    "parent": "ax.coding.code-security-ai-review",
+    "related": [
+      "dev.git.push-protection"
+    ],
+    "aliases": [
+      "generic secret detection",
+      "AI 비밀값 스캔",
+      "비정형 비밀값 탐지"
+    ],
+    "refs": [
+      "https://docs.github.com/en/code-security/responsible-use/security-and-quality-ai-features"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"

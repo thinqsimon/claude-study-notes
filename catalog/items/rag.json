@@ -6770,6 +6770,149 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "rag.agent.time-travel-debugging",
+    "title": "타임 트래블로 에이전트 실패 재현과 갈래 실험",
+    "en": "Debugging Agent Runs with LangGraph Replay and Fork",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "지난 체크포인트에서 그대로 다시 돌리거나 상태를 고쳐 새 갈래를 내 에이전트가 어디서 잘못 갔는지 찾는 디버깅 방법이다.",
+    "objectives": [
+      "상태 기록에서 next 값으로 문제 노드 직전의 체크포인트를 골라 실패를 다시 일으켜 원인을 찾을 수 있다",
+      "같은 입력으로 다시 돌리는 replay와 상태를 고쳐 이어 가는 fork 가운데 확인하려는 가설에 맞는 쪽을 고를 수 있다",
+      "다시 돌린 뒤 결과가 달라지거나 결제·메일 같은 부작용이 두 번 일어나는 원인을 체크포인트 뒤 노드의 재실행에서 찾을 수 있다",
+      "병렬 갈래 뒤에 상태를 고칠 때 InvalidUpdateError가 나는 까닭을 말하고 as_node를 정해 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.checkpoint-persistence"
+    ],
+    "related": [
+      "rag.basics.time-travel",
+      "rag.agent.fault-tolerance-design",
+      "rag.agent.interrupt"
+    ],
+    "aliases": [
+      "에이전트 실행 다시 돌리기",
+      "체크포인트에서 갈래 내기",
+      "LangGraph 디버깅 replay fork",
+      "LangGraph 타임 트래블 디버깅"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/use-time-travel"
+    ]
+  },
+  {
+    "id": "rag.agent.mcp-tasks-design",
+    "title": "MCP Tasks로 오래 걸리는 도구 호출 설계",
+    "en": "Designing Long-Running MCP Calls with the Tasks Extension",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "응답을 붙잡고 기다리는 대신 서버가 작업 핸들을 돌려주고 클라이언트가 상태를 물어 결과를 받는 MCP 확장의 쓰임과 손익을 고르는 방법이다.",
+    "objectives": [
+      "연결 시간 제한·끊김·사람 승인 대기 같은 조건을 근거로 도구 호출을 바로 응답할지 Tasks로 돌려줄지 고를 수 있다",
+      "클라이언트가 요청 _meta에 tasks 확장을 선언하지 않아 서버가 작업을 돌려주지 못하는 원인을 찾을 수 있다",
+      "taskId를 오래 남는 곳에 저장해 클라이언트가 다시 시작한 뒤에도 tasks/get으로 결과를 이어 받도록 설계할 수 있다",
+      "취소가 협조적이라 tasks/cancel 뒤에도 작업이 completed로 끝날 수 있음을 알고 부작용 처리를 정할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.mcp-connect"
+    ],
+    "related": [
+      "rag.agent.mcp-tasks",
+      "rag.agent.mcp-elicitation",
+      "rag.agent.async-subagent",
+      "rag.agent.mcp-transport"
+    ],
+    "aliases": [
+      "MCP Tasks 설계",
+      "MCP 장기 실행 도구",
+      "MCP 작업 폴링 설계",
+      "MCP 도구 호출 비동기화"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/extensions/tasks/overview"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.agent-server-access-control",
+    "title": "Agent Server 사용자별 접근 제어: 인증 처리기와 소유자 필터",
+    "en": "Per-User Access Control in LangSmith Agent Server",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "LangSmith Agent Server에 인증 처리기와 자원별 인가 처리기를 붙여 스레드·어시스턴트·스토어를 사용자마다 나누고 남의 대화가 보이는 원인을 찾는 설계다.",
+    "objectives": [
+      "자체 호스팅 Agent Server는 기본 인증이 없다는 점을 근거로 인증 처리기를 넣을지와 어떤 신원 값을 돌려줄지 정할 수 있다",
+      "스레드를 만들 때 owner 메타데이터를 넣고 읽기·검색에 소유자 필터를 돌려주는 방식으로 사용자별 격리를 설계할 수 있다",
+      "전역 거부 처리기를 두었는데 특정 작업만 막히거나 뚫리는 원인을 더 구체적인 처리기가 이긴다는 규칙에서 찾을 수 있다",
+      "스토어는 필터가 아니라 네임스페이스로 나눠야 해 한 사용자의 기억이 다른 사용자에게 보이는 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.agent-server-deploy"
+    ],
+    "related": [
+      "rag.agent.memory-store",
+      "ax.security.rag-access-control",
+      "rag.agent.mcp-auth-design"
+    ],
+    "aliases": [
+      "LangGraph 커스텀 인증",
+      "Agent Server custom auth",
+      "langgraph_sdk Auth",
+      "auth.authenticate",
+      "LangGraph 스레드 소유자 필터"
+    ],
+    "refs": [
+      "https://docs.langchain.com/langsmith/auth",
+      "https://docs.langchain.com/langsmith/store-auth"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.vector-db.qdrant-memory-quantization",
+    "title": "Qdrant 메모리 계층과 양자화 고르기: 메모리·속도·정확도",
+    "en": "Choosing Qdrant Memory Tiers and Quantization",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "벡터 DB",
+    "summary": "원본 벡터·양자화 벡터·HNSW 인덱스를 RAM과 디스크 중 어디에 둘지와 양자화·재채점을 정해 메모리 예산 안에서 속도와 정확도를 맞추는 설계다.",
+    "objectives": [
+      "메모리가 적고 빨라야 하는지, 메모리가 적고 정확해야 하는지, 둘 다 넉넉한지에 따라 원본 벡터·양자화 벡터·인덱스를 둘 메모리 계층을 고를 수 있다",
+      "원본과 인덱스를 디스크로 옮긴 뒤 검색이 느려진 원인을 디스크 IOPS와 첫 접근 캐시에서 찾을 수 있다",
+      "양자화 뒤 재현율이 떨어질 때 재채점·더 많은 비트·hnsw_ef 가운데 무엇을 바꿀지 exact 검색과 비교해 근거를 말할 수 있다",
+      "지연을 줄일지 처리량을 늘릴지에 따라 세그먼트 수를 정할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.vector-db.basics"
+    ],
+    "related": [
+      "rag.embedding.quantization",
+      "rag.vector-db.hnsw-ef-search",
+      "rag.vector-index.internals"
+    ],
+    "aliases": [
+      "Qdrant 메모리 최적화",
+      "Qdrant optimization",
+      "Qdrant 디스크 저장",
+      "Qdrant 양자화 설정",
+      "Qdrant memory budget"
+    ],
+    "refs": [
+      "https://qdrant.tech/documentation/ops-optimization/optimize/",
+      "https://qdrant.tech/documentation/manage-data/storage/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "rag.retrieval.reranking",
     "title": "재순위",
     "en": "Reranking",
@@ -6913,6 +7056,75 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.state-history",
+    "title": "상태 기록 조회(get_state_history)",
+    "en": "LangGraph get_state_history",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "한 스레드의 체크포인트를 최신부터 돌려주며 각 지점의 next와 checkpoint_id가 든 설정으로 되돌아갈 자리를 고르게 하는 LangGraph 함수다.",
+    "parent": "rag.agent.time-travel-debugging",
+    "related": [
+      "rag.agent.checkpointer"
+    ],
+    "aliases": [
+      "get_state_history",
+      "LangGraph 상태 기록",
+      "LangGraph state history",
+      "체크포인트 목록 조회"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/use-time-travel"
+    ]
+  },
+  {
+    "id": "rag.agent.store-namespace-isolation",
+    "title": "스토어 네임스페이스 사용자 격리",
+    "en": "Agent Server Store Namespace Isolation per User",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "Agent Server의 장기 기억 스토어는 기본으로 모든 호출자가 함께 쓰므로, 스토어 인가 처리기에서 네임스페이스 앞에 사용자 신원을 붙여 사용자마다 나누는 방법이다.",
+    "parent": "rag.agent.agent-server-access-control",
+    "related": [
+      "rag.agent.memory-store"
+    ],
+    "aliases": [
+      "auth.on.store",
+      "스토어 사용자별 격리",
+      "store namespace isolation",
+      "LangGraph 스토어 네임스페이스 접두어"
+    ],
+    "refs": [
+      "https://docs.langchain.com/langsmith/store-auth"
+    ]
+  },
+  {
+    "id": "rag.vector-db.qdrant-collection-alias",
+    "title": "Qdrant 컬렉션 별칭 전환",
+    "en": "Qdrant Collection Alias Switching",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "벡터 DB",
+    "summary": "새 임베딩으로 만든 두 번째 컬렉션을 뒤에서 채운 뒤, 검색이 가리키는 Qdrant 별칭을 한 요청에서 지우고 다시 만들어 서비스를 멈추지 않고 옮기는 방법이다.",
+    "related": [
+      "rag.embedding.model-tradeoffs"
+    ],
+    "aliases": [
+      "Qdrant collection alias",
+      "Qdrant 별칭",
+      "create_alias",
+      "Qdrant 무중단 재색인",
+      "Qdrant 컬렉션 교체"
+    ],
+    "refs": [
+      "https://qdrant.tech/documentation/manage-data/collections/"
+    ]
   },
   {
     "id": "rag.agent.memory-store",
@@ -7202,6 +7414,123 @@
     ],
     "refs": [
       "https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.update-state-as-node",
+    "title": "상태 고쳐 갈래 내기(update_state와 as_node)",
+    "en": "LangGraph update_state with as_node",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "지난 체크포인트에 새 값을 써 원래 기록은 두고 새 갈래 체크포인트를 만들며, as_node로 어느 노드가 쓴 값인지 정해 다음에 돌 노드를 정한다.",
+    "parent": "rag.agent.time-travel-debugging",
+    "related": [
+      "rag.agent.state-reducer"
+    ],
+    "aliases": [
+      "update_state",
+      "as_node",
+      "LangGraph 상태 수정",
+      "LangGraph fork 상태 수정"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/use-time-travel"
+    ]
+  },
+  {
+    "id": "rag.agent.mcp-create-task-result",
+    "title": "MCP 작업 핸들 응답(CreateTaskResult)",
+    "en": "MCP CreateTaskResult",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "오래 걸릴 요청에 MCP 서버가 최종 결과 대신 돌려주는 resultType이 task인 응답으로, taskId·상태·보존 시간·권장 조회 간격을 담는다.",
+    "parent": "rag.agent.mcp-tasks-design",
+    "related": [
+      "rag.agent.call-tool-result"
+    ],
+    "aliases": [
+      "CreateTaskResult",
+      "MCP taskId",
+      "MCP 작업 핸들",
+      "pollIntervalMs"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/extensions/tasks/overview"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.mcp-task-input-required",
+    "title": "MCP 작업의 입력 대기 상태(input_required)",
+    "en": "MCP Task input_required Status and tasks/update",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "MCP 작업이 사용자 확인 같은 입력이 필요해 멈춘 상태로, tasks/get 응답의 inputRequests를 보고 클라이언트가 tasks/update로 답해야 다시 진행된다.",
+    "parent": "rag.agent.mcp-tasks-design",
+    "related": [
+      "rag.agent.mcp-elicitation",
+      "rag.agent.interrupt"
+    ],
+    "aliases": [
+      "input_required",
+      "tasks/update",
+      "inputRequests",
+      "MCP 작업 입력 대기"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/extensions/tasks/overview"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.auth-handler-specificity",
+    "title": "인가 처리기 우선순위(@auth.on 구체성 규칙)",
+    "en": "Agent Server Authorization Handler Specificity",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "LangSmith Agent Server에서 전역·자원·작업 단위 인가 처리기 가운데 요청에 맞는 가장 구체적인 하나만 돌고 더 넓은 처리기는 건너뛰는 규칙이다.",
+    "parent": "rag.agent.agent-server-access-control",
+    "aliases": [
+      "@auth.on",
+      "auth.on.threads",
+      "Agent Server 인가 처리기",
+      "LangGraph authorization handler"
+    ],
+    "refs": [
+      "https://docs.langchain.com/langsmith/auth"
+    ]
+  },
+  {
+    "id": "rag.vector-db.qdrant-memory-tier",
+    "title": "Qdrant 메모리 계층(cached·cold·pinned)",
+    "en": "Qdrant Memory Tier Setting",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "Qdrant에서 벡터·페이로드·인덱스를 시작할 때 미리 메모리에 올릴지(cached), 쓸 때만 읽을지(cold), 양자화 벡터를 RAM에 고정할지(pinned) 정하는 memory 설정이다.",
+    "parent": "rag.vector-db.qdrant-memory-quantization",
+    "aliases": [
+      "Qdrant memory 설정",
+      "Qdrant cold tier",
+      "Qdrant cached tier",
+      "Qdrant pinned 양자화"
+    ],
+    "refs": [
+      "https://qdrant.tech/documentation/manage-data/storage/",
+      "https://qdrant.tech/documentation/ops-optimization/optimize/"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"

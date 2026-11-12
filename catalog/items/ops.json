@@ -6353,6 +6353,138 @@
     ]
   },
   {
+    "id": "ops.k8s.disruption-budget",
+    "title": "노드 비우기와 PodDisruptionBudget",
+    "en": "Voluntary Disruptions and PodDisruptionBudgets",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "노드 업그레이드·비우기 같은 계획된 중단에서 동시에 내려가는 파드 수를 PDB로 묶고, 드레인이 멈출 때 원인을 찾는 일이다.",
+    "objectives": [
+      "앱 성격(무상태 웹, 단일 인스턴스, 쿼럼 기반)에 맞춰 minAvailable과 maxUnavailable 중 하나와 값을 고르고 근거를 말할 수 있다",
+      "PDB가 막아 주는 중단(드레인·축출)과 막지 못하는 중단(노드 장애, 디플로이먼트·파드 직접 삭제)을 가를 수 있다",
+      "kubectl drain이 끝나지 않을 때 PDB 상태의 허용 중단 수와 준비되지 않은 파드를 보고 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.basics"
+    ],
+    "related": [
+      "ops.k8s.pod-graceful-termination",
+      "ops.deploy.zero-downtime"
+    ],
+    "aliases": [
+      "PodDisruptionBudget",
+      "파드 중단 예산",
+      "kubectl drain",
+      "노드 드레인",
+      "자발적 중단"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/workloads/pods/disruptions/",
+      "https://kubernetes.io/docs/tasks/run-application/configure-pdb/"
+    ]
+  },
+  {
+    "id": "ops.deploy.terraform-state",
+    "title": "Terraform 상태 파일과 원격 백엔드",
+    "en": "Terraform State and Remote Backends",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "배포",
+    "summary": "실제 인프라와 설정을 잇는 상태 파일을 어디에 두고 잠그고 지킬지 정하고, 상태와 실제가 어긋날 때 원인을 찾는 일이다.",
+    "objectives": [
+      "로컬 상태 파일과 원격 백엔드(S3·HCP Terraform 등) 중 팀 작업에 맞는 쪽을 잠금·암호화·버전 관리 근거로 고를 수 있다",
+      "설정에 넣은 비밀값이 상태·계획 파일에 평문으로 남는 경로를 찾고 sensitive와 ephemeral 값의 차이로 막는 방법을 고를 수 있다",
+      "plan에 뜻밖의 변경이 나올 때 콘솔에서 손으로 바꾼 드리프트인지 설정 변경인지 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "ops.basics.iac-idea"
+    ],
+    "related": [
+      "ops.basics.environment-drift"
+    ],
+    "aliases": [
+      "Terraform state",
+      "테라폼 상태",
+      "terraform.tfstate",
+      "Terraform 원격 백엔드",
+      "Terraform backend",
+      "tfstate"
+    ],
+    "refs": [
+      "https://developer.hashicorp.com/terraform/language/state",
+      "https://developer.hashicorp.com/terraform/language/manage-sensitive-data",
+      "https://developer.hashicorp.com/terraform/language/backend/s3"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ops.observe.metric-cardinality",
+    "title": "지표 레이블 설계와 카디널리티",
+    "en": "Metric Label Design and Cardinality",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "관측",
+    "summary": "레이블 값 조합마다 시계열이 하나씩 생기는 성질을 알고, 어떤 값을 레이블로 둘지 정해 Prometheus 메모리 폭증을 막는다.",
+    "objectives": [
+      "사용자 ID·이메일·전체 URL처럼 값이 끝없이 늘어나는 차원을 레이블에서 빼야 하는 근거를 시계열 수로 말할 수 있다",
+      "따로 만든 지표 여러 개와 레이블 하나 붙인 지표 중 합산·비교에 맞는 쪽을 고를 수 있다",
+      "Prometheus 메모리 사용이 갑자기 늘 때 시계열 수가 많은 지표와 레이블을 찾아 원인을 짚을 수 있다"
+    ],
+    "prerequisites": [
+      "ops.observe.metrics"
+    ],
+    "aliases": [
+      "카디널리티 폭증",
+      "Prometheus high cardinality",
+      "label cardinality",
+      "레이블 카디널리티",
+      "Prometheus 레이블 설계"
+    ],
+    "refs": [
+      "https://prometheus.io/docs/practices/naming/",
+      "https://prometheus.io/docs/practices/instrumentation/"
+    ]
+  },
+  {
+    "id": "ops.k8s.pod-security-standards",
+    "title": "파드 보안 표준과 securityContext",
+    "en": "Pod Security Standards and securityContext",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "Privileged·Baseline·Restricted 세 단계 중 네임스페이스에 맞는 것을 고르고, securityContext로 root 실행·권한 상승을 막는다.",
+    "objectives": [
+      "앱 네임스페이스와 시스템 구성 요소 네임스페이스에 각각 어떤 보안 표준 단계를 둘지 고르고 근거를 말할 수 있다",
+      "Restricted를 통과하도록 runAsNonRoot·allowPrivilegeEscalation·capabilities drop ALL·seccompProfile을 파드와 컨테이너 수준에 나눠 정할 수 있다",
+      "디플로이먼트는 만들어졌는데 파드가 생기지 않을 때 레플리카셋 이벤트의 PodSecurity 위반을 보고 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.basics"
+    ],
+    "related": [
+      "ops.container.linux-capabilities",
+      "ops.k8s.secrets-security"
+    ],
+    "aliases": [
+      "Pod Security Standards",
+      "파드 보안 표준",
+      "Kubernetes PSS",
+      "securityContext",
+      "Restricted 프로필",
+      "allowPrivilegeEscalation"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/security/pod-security-standards/",
+      "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+    ]
+  },
+  {
     "id": "ops.network.edge-waf",
     "title": "웹 방화벽(WAF)과 오탐 분석",
     "en": "WAF Rules and False Positives",
@@ -6857,6 +6989,74 @@
     ]
   },
   {
+    "id": "ops.k8s.eviction-api",
+    "title": "축출 API와 429 응답",
+    "en": "Kubernetes API-Initiated Eviction",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "PDB와 종료 유예 시간을 지키며 파드를 내리는 API로, 예산을 넘으면 429, PDB가 겹치는 등 설정이 잘못되면 500을 돌려준다.",
+    "parent": "ops.k8s.disruption-budget",
+    "related": [
+      "ops.k8s.termination-grace-period"
+    ],
+    "aliases": [
+      "Eviction API",
+      "축출 API",
+      "API-initiated eviction",
+      "pods/eviction",
+      "API 시작 축출"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/scheduling-eviction/api-eviction/"
+    ]
+  },
+  {
+    "id": "ops.deploy.terraform-state-locking",
+    "title": "Terraform 상태 잠금과 force-unlock",
+    "en": "Terraform State Locking",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "배포",
+    "summary": "상태를 쓰는 작업 동안 백엔드가 잠금을 걸어 동시 적용을 막는 장치로, 잠금이 남으면 자기 잠금일 때만 force-unlock으로 푼다.",
+    "parent": "ops.deploy.terraform-state",
+    "aliases": [
+      "state locking",
+      "상태 잠금",
+      "terraform force-unlock",
+      "use_lockfile",
+      "tflock"
+    ],
+    "refs": [
+      "https://developer.hashicorp.com/terraform/language/state/locking",
+      "https://developer.hashicorp.com/terraform/language/backend/s3"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ops.k8s.pod-security-admission-modes",
+    "title": "Pod Security Admission 모드",
+    "en": "Pod Security Admission Modes",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "네임스페이스 레이블로 위반 파드를 거부(enforce)하거나 감사 기록(audit)·경고(warn)만 남기게 하는 방식으로, enforce는 파드에만 걸린다.",
+    "parent": "ops.k8s.pod-security-standards",
+    "aliases": [
+      "Pod Security Admission",
+      "파드 보안 어드미션",
+      "pod-security.kubernetes.io/enforce",
+      "PodSecurity 어드미션"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/security/pod-security-admission/"
+    ]
+  },
+  {
     "id": "ops.linux.flock",
     "title": "파일 잠금(flock)으로 동시 실행 막기",
     "en": "flock: File Locking Against Concurrent Runs",
@@ -6907,6 +7107,114 @@
     "refs": [
       "https://docs.docker.com/engine/security/",
       "https://docs.docker.com/engine/containers/run/"
+    ]
+  },
+  {
+    "id": "ops.k8s.unhealthy-pod-eviction-policy",
+    "title": "PDB의 준비 안 된 파드 축출 정책",
+    "en": "PDB unhealthyPodEvictionPolicy",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "Ready가 아닌 파드를 예산이 충분할 때만 축출할지(IfHealthyBudget) 언제나 축출할지(AlwaysAllow) 정하는 PDB 설정이다.",
+    "parent": "ops.k8s.disruption-budget",
+    "related": [
+      "ops.k8s.crashloopbackoff"
+    ],
+    "aliases": [
+      "unhealthyPodEvictionPolicy",
+      "IfHealthyBudget",
+      "AlwaysAllow 축출 정책"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/tasks/run-application/configure-pdb/"
+    ]
+  },
+  {
+    "id": "ops.deploy.terraform-drift-refresh-only",
+    "title": "Terraform 드리프트와 refresh-only 계획",
+    "en": "Detecting Terraform Drift with Refresh-Only Mode",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "배포",
+    "summary": "Terraform 밖에서 바뀐 인프라를 plan -refresh-only로 확인하고, 받아들일지(상태·설정 반영) 되돌릴지(일반 apply) 고르는 방법이다.",
+    "parent": "ops.deploy.terraform-state",
+    "related": [
+      "ops.basics.environment-drift"
+    ],
+    "aliases": [
+      "Terraform drift",
+      "인프라 드리프트 감지",
+      "terraform plan -refresh-only",
+      "refresh-only 모드"
+    ],
+    "refs": [
+      "https://developer.hashicorp.com/terraform/tutorials/state/resource-drift"
+    ]
+  },
+  {
+    "id": "ops.observe.recording-rule",
+    "title": "Prometheus 기록 규칙(recording rule)",
+    "en": "Prometheus Recording Rules",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "관측",
+    "summary": "자주 쓰거나 무거운 PromQL 결과를 미리 계산해 새 시계열로 저장하는 규칙으로, level:metric:operations 이름과 비율은 분자·분모를 따로 집계한다.",
+    "related": [
+      "ops.observe.symptom-alerting"
+    ],
+    "aliases": [
+      "recording rule",
+      "기록 규칙",
+      "Prometheus 레코딩 룰",
+      "level:metric:operations"
+    ],
+    "refs": [
+      "https://prometheus.io/docs/prometheus/latest/configuration/recording_rules/",
+      "https://prometheus.io/docs/practices/rules/"
+    ]
+  },
+  {
+    "id": "ops.observe.scrape-limits",
+    "title": "스크랩 한도: sample_limit과 label_limit",
+    "en": "Prometheus Scrape Limits",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "관측",
+    "summary": "한 대상이 보내는 샘플 수·레이블 수에 상한을 두는 스크랩 설정으로, 넘으면 그 스크랩 전체가 실패해 대상이 내려간 것처럼 보인다.",
+    "parent": "ops.observe.metric-cardinality",
+    "aliases": [
+      "sample_limit",
+      "label_limit",
+      "스크랩 한도",
+      "scrape limit",
+      "label_value_length_limit"
+    ],
+    "refs": [
+      "https://prometheus.io/docs/prometheus/latest/configuration/configuration/"
+    ]
+  },
+  {
+    "id": "ops.k8s.read-only-root-filesystem",
+    "title": "읽기 전용 루트 파일 시스템(readOnlyRootFilesystem)",
+    "en": "Kubernetes readOnlyRootFilesystem",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "컨테이너 루트 파일 시스템을 읽기 전용으로 올려 침입자의 파일 변경을 막는 설정으로, 앱이 쓰는 경로에는 emptyDir 같은 볼륨을 따로 붙인다.",
+    "parent": "ops.k8s.pod-security-standards",
+    "aliases": [
+      "readOnlyRootFilesystem",
+      "읽기 전용 루트",
+      "read-only root filesystem"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
     ]
   },
   {
