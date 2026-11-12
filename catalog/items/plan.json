@@ -6329,6 +6329,134 @@
     ]
   },
   {
+    "id": "plan.basics.session-timeout-design",
+    "title": "세션 시간 제한과 재인증 설계",
+    "en": "Designing Time Limits and Re-authentication (WCAG 2.2.1, 2.2.5, 2.2.6)",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "보안상 필요한 시간 제한을 두면서도 사용자가 시간을 늘리거나 다시 로그인한 뒤 입력한 내용을 잃지 않게 하는 설계다.",
+    "objectives": [
+      "시간 제한에 끄기·조정·연장 중 어떤 선택지를 줄지 고르고 실시간·필수·20시간 예외에 드는지 판단할 수 있다",
+      "보안 때문에 세션을 끝내야 할 때 재인증 뒤 입력 데이터를 잃지 않게 하는 방식을 고를 수 있다",
+      "비활동 시간 경고를 과정 처음에 보여 줄지, 데이터를 20시간 넘게 보관할지를 개인정보 손익과 함께 근거로 말할 수 있다"
+    ],
+    "prerequisites": [
+      "be.auth.session-cookie"
+    ],
+    "related": [
+      "be.auth.session-cookie"
+    ],
+    "aliases": [
+      "세션 만료 설계",
+      "로그아웃 타이머 설계",
+      "시간 제한 접근성",
+      "session timeout UX"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/WCAG22/Understanding/timing-adjustable.html",
+      "https://www.w3.org/WAI/WCAG22/Understanding/re-authenticating.html",
+      "https://www.w3.org/WAI/WCAG22/Understanding/timeouts.html"
+    ]
+  },
+  {
+    "id": "plan.basics.accessible-authentication",
+    "title": "인지 기능 테스트 없이 로그인하는 흐름 설계",
+    "en": "Accessible Authentication Design (WCAG 3.3.8, 3.3.9)",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "비밀번호 기억·문자 옮겨 적기·퍼즐 풀기를 못 해도 로그인의 모든 단계를 마칠 길을 두고 보안 방식과 함께 고르는 설계다.",
+    "objectives": [
+      "다단계 인증을 포함한 로그인 각 단계에 인지 기능 테스트가 있는지 찾고 대안 경로나 보조 수단을 고를 수 있다",
+      "붙여넣기 차단이나 비밀번호 일부 문자만 입력시키는 방식이 비밀번호 관리자를 막아 기준을 어기는 원인을 찾을 수 있다",
+      "CAPTCHA 종류마다 AA(3.3.8)와 AAA(3.3.9)에서 허용되는지 판단할 수 있다",
+      "이메일 로그인 링크와 WebAuthn 기기 인증을 접근성과 보안 면에서 비교해 근거를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "be.auth.mfa-idea"
+    ],
+    "related": [
+      "be.auth.login-abuse"
+    ],
+    "aliases": [
+      "접근 가능한 인증",
+      "접근성 있는 로그인",
+      "accessible authentication",
+      "SC 3.3.8"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-minimum.html",
+      "https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-enhanced.html"
+    ]
+  },
+  {
+    "id": "plan.basics.motion-and-flash-design",
+    "title": "움직임·번쩍임·자동 갱신을 다루는 화면 설계",
+    "en": "Designing Motion, Flashing and Auto-updating Content (WCAG 2.2.2, 2.3.1, 2.3.3)",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "자동 슬라이드·자동 갱신·상호작용 애니메이션·번쩍임을 사용자가 멈추거나 끌 수 있고 해를 주지 않게 정하는 설계다.",
+    "objectives": [
+      "자동으로 움직이거나 갱신되는 요소에 멈춤·숨김·갱신 빈도 조절 중 무엇이 필요한지 5초 기준과 필수 예외로 판단할 수 있다",
+      "스크롤 연동·패럴랙스 같은 상호작용 애니메이션을 prefers-reduced-motion이나 사이트 설정으로 끌 방식을 고를 수 있다",
+      "번쩍이는 영상·효과가 초당 3회와 일반·빨강 번쩍임 임계를 넘는지 찾아 고칠 곳을 정할 수 있다",
+      "이 기준들이 적합성 판정에 쓰지 않는 콘텐츠에도 적용되는 이유(비간섭)를 근거로 말할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.prototype-interactions"
+    ],
+    "aliases": [
+      "모션 접근성",
+      "애니메이션 접근성",
+      "자동 재생 콘텐츠 설계",
+      "motion accessibility"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html",
+      "https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold.html",
+      "https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html"
+    ]
+  },
+  {
+    "id": "plan.basics.accessibility-testing-strategy",
+    "title": "접근성 검사 방법 고르기와 감사 시점",
+    "en": "Choosing Accessibility Evaluation Methods and Audit Timing",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "자동 도구·수동 점검·보조기기 테스트·장애 사용자 조사·적합성 감사를 개발 단계마다 섞어 접근성 문제를 찾는 방법이다.",
+    "objectives": [
+      "자동 검사 도구만으로 놓치는 문제를 알고 수동 점검과 보조기기 테스트를 어디에 더할지 고를 수 있다",
+      "알파·베타·라이브 단계마다 어떤 검사를 언제 할지와 감사를 공개 베타 전에 받는 근거를 말할 수 있다",
+      "WCAG-EM 절차로 평가 범위와 표본 화면을 정하고 감사 결과의 한계를 해석할 수 있다",
+      "감사 결과로 접근성 성명에 적을 현재 수준·남은 문제·고칠 계획을 정할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.usability-testing",
+      "plan.basics.color-contrast"
+    ],
+    "aliases": [
+      "접근성 검사 계획",
+      "접근성 평가 방법 선택",
+      "accessibility evaluation",
+      "서비스 단계별 접근성 검사",
+      "접근성 감사",
+      "accessibility audit"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/helping-people-to-use-your-service/testing-for-accessibility",
+      "https://www.gov.uk/service-manual/helping-people-to-use-your-service/making-your-service-accessible-an-introduction",
+      "https://www.w3.org/WAI/test-evaluate/",
+      "https://www.w3.org/WAI/test-evaluate/conformance/wcag-em/"
+    ]
+  },
+  {
     "id": "plan.figma.design-token-architecture",
     "title": "디자인 토큰 표준과 별칭 계층 설계",
     "en": "Design Token Standard and Alias Layers",
@@ -6606,6 +6734,83 @@
     ]
   },
   {
+    "id": "plan.basics.timing-adjustable",
+    "title": "시간 제한 조정(Timing Adjustable)",
+    "en": "WCAG 2.2.1 Timing Adjustable",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "시간 제한이 있으면 끄기, 기본값의 10배까지 조정, 20초 이상 주는 경고 뒤 연장 중 하나를 제공하게 하는 A 단계 기준이다.",
+    "parent": "plan.basics.session-timeout-design",
+    "aliases": [
+      "시간 제한 연장",
+      "세션 만료 경고",
+      "SC 2.2.1"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/WCAG22/Understanding/timing-adjustable.html"
+    ]
+  },
+  {
+    "id": "plan.basics.cognitive-function-test",
+    "title": "인지 기능 테스트(cognitive function test)",
+    "en": "Cognitive Function Test in Authentication",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "로그인에서 정보를 기억하거나 옮겨 적거나 계산·퍼즐을 풀게 하는 과제로, 이름·이메일 입력은 여기에 들지 않는다.",
+    "parent": "plan.basics.accessible-authentication",
+    "aliases": [
+      "인지 기능 시험",
+      "로그인 퍼즐",
+      "비밀번호 기억 요구"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-minimum.html"
+    ]
+  },
+  {
+    "id": "plan.basics.pause-stop-hide",
+    "title": "멈춤·정지·숨김(Pause, Stop, Hide)",
+    "en": "WCAG 2.2.2 Pause, Stop, Hide",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "저절로 시작해 5초 넘게 움직이거나 자동 갱신되는 콘텐츠를 사용자가 멈추거나 숨길 수 있게 하는 A 단계 기준이다.",
+    "parent": "plan.basics.motion-and-flash-design",
+    "aliases": [
+      "자동 슬라이드 멈춤",
+      "캐러셀 정지 버튼",
+      "SC 2.2.2"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html"
+    ]
+  },
+  {
+    "id": "plan.basics.three-flashes",
+    "title": "초당 3회 번쩍임 기준",
+    "en": "WCAG 2.3.1 Three Flashes or Below Threshold",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "어떤 1초 동안에도 3번 넘게 번쩍이지 않거나 일반·빨강 번쩍임 임계 아래에 머물게 하는 A 단계 기준이다.",
+    "parent": "plan.basics.motion-and-flash-design",
+    "aliases": [
+      "번쩍임 기준",
+      "flash threshold",
+      "빨강 번쩍임 임계",
+      "SC 2.3.1"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold.html"
+    ]
+  },
+  {
     "id": "plan.figma.ready-for-dev",
     "title": "Ready for dev 상태",
     "en": "Ready for Dev Status",
@@ -6784,6 +6989,84 @@
     "refs": [
       "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html"
     ]
+  },
+  {
+    "id": "plan.basics.reauth-data-preservation",
+    "title": "재인증 뒤 입력 데이터 보존",
+    "en": "WCAG 2.2.5 Re-authenticating",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "인증 세션이 만료돼 다시 로그인해도 하던 일을 입력 데이터 손실 없이 이어 가게 하는 AAA 단계 기준이다.",
+    "parent": "plan.basics.session-timeout-design",
+    "aliases": [
+      "재로그인 후 이어 하기",
+      "재인증 데이터 보존",
+      "SC 2.2.5"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/WCAG22/Understanding/re-authenticating.html"
+    ]
+  },
+  {
+    "id": "plan.basics.accessible-auth-enhanced",
+    "title": "강화된 접근 가능한 인증(AAA)",
+    "en": "WCAG 3.3.9 Accessible Authentication (Enhanced)",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "3.3.8의 사물 인식·개인 콘텐츠 예외를 없애 그림 고르기 CAPTCHA도 예외로 인정하지 않는 AAA 단계 인증 기준이다.",
+    "parent": "plan.basics.accessible-authentication",
+    "aliases": [
+      "접근 가능한 인증 AAA",
+      "SC 3.3.9"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-enhanced.html"
+    ]
+  },
+  {
+    "id": "plan.basics.wcag-em",
+    "title": "WCAG-EM 적합성 평가 방법론",
+    "en": "WCAG-EM Conformance Evaluation Methodology",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "범위 정하기·탐색·표본 고르기·평가·보고 다섯 단계로 WCAG 적합성을 판단하는 W3C 그룹 노트로 2026년 7월 2.0이 나왔다.",
+    "parent": "plan.basics.accessibility-testing-strategy",
+    "aliases": [
+      "WCAG 평가 방법론",
+      "접근성 적합성 평가",
+      "WCAG-EM 2.0"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/test-evaluate/conformance/wcag-em/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "plan.basics.accessibility-statement",
+    "title": "접근성 성명(accessibility statement)",
+    "en": "Accessibility Statement for Public Services",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "서비스의 접근성 수준, 남은 문제, 고칠 계획을 공개하는 문서로 영국 공공 서비스는 공개 베타 때 내고 해마다 검토한다.",
+    "parent": "plan.basics.accessibility-testing-strategy",
+    "aliases": [
+      "접근성 성명서",
+      "접근성 진술서"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/helping-people-to-use-your-service/making-your-service-accessible-an-introduction"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "plan.figma.library-analytics",

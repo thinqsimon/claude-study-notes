@@ -6734,6 +6734,138 @@
     ]
   },
   {
+    "id": "db.sql.pitr",
+    "title": "PostgreSQL 시점 복구: WAL 아카이브와 베이스 백업",
+    "en": "PostgreSQL Point-in-Time Recovery with WAL Archiving",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "베이스 백업에 보관해 둔 WAL을 다시 적용해, 실수로 지우기 직전 같은 원하는 시각으로 DB 클러스터를 되돌린다.",
+    "objectives": [
+      "pg_dump 백업과 WAL 아카이브 기반 시점 복구 중 복구 목표와 범위에 맞는 쪽을 고를 수 있다",
+      "아카이브 명령이 계속 실패해 pg_wal이 차오르는 원인을 로그와 설정에서 찾을 수 있다",
+      "recovery.signal과 복구 목표 시각을 두어 지정한 시점까지 복구하고 결과를 확인할 수 있다",
+      "베이스 백업이 끝난 시각보다 이른 시점으로는 되돌릴 수 없는 이유를 근거로 백업 주기를 정할 수 있다"
+    ],
+    "prerequisites": [
+      "db.sql.pg-dump-restore"
+    ],
+    "related": [
+      "db.internals.wal-replication"
+    ],
+    "aliases": [
+      "PostgreSQL PITR",
+      "시점 복구",
+      "point-in-time recovery",
+      "WAL 아카이브",
+      "continuous archiving",
+      "PostgreSQL 연속 아카이브"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/continuous-archiving.html",
+      "https://www.postgresql.org/docs/current/runtime-config-wal.html"
+    ]
+  },
+  {
+    "id": "db.sql.pgbouncer-pool-modes",
+    "title": "PgBouncer 풀 모드 고르기: session과 transaction",
+    "en": "Choosing PgBouncer Pool Modes",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "앱과 PostgreSQL 사이에 PgBouncer를 두어 연결 수를 줄이되, 풀 모드에 따라 쓸 수 없게 되는 세션 기능을 따져 고른다.",
+    "objectives": [
+      "session·transaction·statement 풀 모드의 손익을 따져 앱에 맞는 모드를 고를 수 있다",
+      "transaction 모드에서 SET·LISTEN·세션 권고 잠금이 기대대로 동작하지 않는 원인을 찾을 수 있다",
+      "준비된 문장 오류가 날 때 PgBouncer 버전과 max_prepared_statements 설정을 근거로 원인을 찾을 수 있다",
+      "default_pool_size와 max_client_conn을 DB의 연결 한도에 맞춰 정한 근거를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "db.sql.psycopg-basics"
+    ],
+    "related": [
+      "db.orm.connection-pool"
+    ],
+    "aliases": [
+      "PgBouncer",
+      "PgBouncer 풀 모드",
+      "pool_mode",
+      "PostgreSQL 커넥션 풀러",
+      "PgBouncer 풀링"
+    ],
+    "refs": [
+      "https://www.pgbouncer.org/features.html",
+      "https://www.pgbouncer.org/config.html"
+    ]
+  },
+  {
+    "id": "db.nosql.mongodb-schema-design",
+    "title": "MongoDB 스키마 설계: 중첩과 참조 고르기",
+    "en": "MongoDB Schema Design: Embedding vs. Referencing",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "NoSQL",
+    "summary": "함께 읽고 함께 바뀌는지, 얼마나 커지는지를 따져 관련 자료를 한 문서에 넣을지 다른 컬렉션에서 참조할지 정한다.",
+    "objectives": [
+      "읽기 방식·갱신 빈도·자식 수를 근거로 중첩과 참조 중 하나를 고를 수 있다",
+      "한 문서 쓰기의 원자성과 여러 문서 트랜잭션의 비용을 비교해 설계 근거를 말할 수 있다",
+      "끝없이 커지는 배열 때문에 문서가 크기 한도에 다가가거나 느려지는 원인을 찾을 수 있다",
+      "자주 쓰는 일부만 넣는 부분 집합 패턴과 $lookup 참조 중 상황에 맞는 쪽을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "db.nosql.mongodb-crud"
+    ],
+    "related": [
+      "db.nosql.embedded-document",
+      "db.nosql.document-reference"
+    ],
+    "aliases": [
+      "MongoDB 스키마 설계",
+      "MongoDB schema design",
+      "embed vs reference",
+      "MongoDB 데이터 모델 설계"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/data-modeling/best-practices/#link-related-data",
+      "https://www.mongodb.com/docs/manual/data-modeling/design-antipatterns/unbounded-arrays/"
+    ]
+  },
+  {
+    "id": "db.nosql.mongodb-index-explain",
+    "title": "MongoDB 복합 인덱스 설계와 explain 읽기",
+    "en": "MongoDB Compound Index Design and explain()",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "NoSQL",
+    "summary": "explain(\"executionStats\")로 살펴본 키·문서 수를 근거로 복합 인덱스의 필드 순서를 정하고 느린 쿼리의 원인을 찾는다.",
+    "objectives": [
+      "explain 결과의 COLLSCAN과 IXSCAN, 검사한 키·문서 수와 반환 수를 비교해 느린 원인을 찾을 수 있다",
+      "같음·정렬·범위 조건을 보고 복합 인덱스의 필드 순서를 고르고 근거를 말할 수 있다",
+      "hint()로 두 인덱스를 비교해 더 적게 훑는 쪽을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "db.nosql.mongodb-crud"
+    ],
+    "related": [
+      "db.internals.index-design"
+    ],
+    "aliases": [
+      "MongoDB 인덱스",
+      "MongoDB index",
+      "MongoDB explain",
+      "MongoDB 복합 인덱스",
+      "MongoDB executionStats"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/tutorial/analyze-query-plan/",
+      "https://www.mongodb.com/docs/manual/tutorial/equality-sort-range-guideline/"
+    ]
+  },
+  {
     "id": "db.cache.redis",
     "title": "Redis",
     "en": "Redis",
@@ -7015,6 +7147,85 @@
     ]
   },
   {
+    "id": "db.sql.archive-command",
+    "title": "archive_command: WAL 세그먼트 보관 명령",
+    "en": "PostgreSQL archive_command",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "다 찬 WAL 파일마다 실행되는 셸 명령으로, 성공일 때만 0을 돌려줘야 하며 실패가 이어지면 pg_wal이 계속 커진다.",
+    "parent": "db.sql.pitr",
+    "aliases": [
+      "archive_mode",
+      "PostgreSQL archive_command",
+      "WAL 아카이브 명령"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/runtime-config-wal.html#GUC-ARCHIVE-COMMAND"
+    ]
+  },
+  {
+    "id": "db.sql.pgbouncer-transaction-pooling",
+    "title": "PgBouncer 트랜잭션 풀링",
+    "en": "PgBouncer Transaction Pooling",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "트랜잭션이 끝날 때마다 서버 연결을 풀에 돌려주는 PgBouncer 모드로, 연결은 아끼지만 세션에 남는 상태를 믿으면 안 된다.",
+    "parent": "db.sql.pgbouncer-pool-modes",
+    "aliases": [
+      "트랜잭션 풀링",
+      "transaction pooling",
+      "pool_mode = transaction",
+      "PgBouncer transaction mode"
+    ],
+    "refs": [
+      "https://www.pgbouncer.org/features.html"
+    ]
+  },
+  {
+    "id": "db.nosql.unbounded-arrays",
+    "title": "끝없이 커지는 배열(unbounded arrays)",
+    "en": "MongoDB Unbounded Arrays Anti-Pattern",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "NoSQL",
+    "summary": "개수 제한 없이 원소가 쌓이는 배열을 문서에 넣는 안티패턴으로, 16MB 문서 한도에 닿거나 인덱스 성능을 떨어뜨린다.",
+    "parent": "db.nosql.mongodb-schema-design",
+    "aliases": [
+      "unbounded arrays",
+      "MongoDB 무한 배열",
+      "MongoDB 16MB 문서 제한",
+      "BSON 문서 크기 제한"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/data-modeling/design-antipatterns/unbounded-arrays/"
+    ]
+  },
+  {
+    "id": "db.nosql.esr-guideline",
+    "title": "ESR 규칙: 같음·정렬·범위 순서",
+    "en": "MongoDB ESR (Equality, Sort, Range) Guideline",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "NoSQL",
+    "summary": "MongoDB 복합 인덱스에 같음 조건 필드, 정렬 필드, 범위 조건 필드 순으로 키를 두어 메모리 정렬과 불필요한 탐색을 줄이는 지침이다.",
+    "parent": "db.nosql.mongodb-index-explain",
+    "aliases": [
+      "ESR 규칙",
+      "ESR rule",
+      "Equality Sort Range",
+      "MongoDB ESR"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/tutorial/equality-sort-range-guideline/"
+    ]
+  },
+  {
     "id": "db.cache.aof-rewrite",
     "title": "AOF 다시 쓰기(BGREWRITEAOF)",
     "en": "Redis AOF Rewrite",
@@ -7054,6 +7265,87 @@
     ],
     "refs": [
       "https://www.sqlite.org/wal.html"
+    ]
+  },
+  {
+    "id": "db.sql.recovery-target-time",
+    "title": "recovery_target_time: 복구를 멈출 시각",
+    "en": "PostgreSQL recovery_target_time",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "SQL",
+    "summary": "아카이브 복구를 어느 시각에서 멈출지 정하는 설정으로, recovery.signal 파일과 recovery_target_action을 함께 쓴다.",
+    "parent": "db.sql.pitr",
+    "aliases": [
+      "recovery.signal",
+      "recovery_target_action",
+      "PostgreSQL 복구 목표 시각"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/runtime-config-wal.html#GUC-RECOVERY-TARGET-TIME"
+    ]
+  },
+  {
+    "id": "db.sql.pgbouncer-max-prepared-statements",
+    "title": "PgBouncer max_prepared_statements",
+    "en": "PgBouncer max_prepared_statements",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "SQL",
+    "summary": "transaction 모드에서도 프로토콜 수준 준비된 문장을 쓰게 해 주는 설정으로 1.21에 생겼고 1.24부터 기본값이 200이다.",
+    "parent": "db.sql.pgbouncer-pool-modes",
+    "aliases": [
+      "max_prepared_statements",
+      "PgBouncer prepared statements",
+      "PgBouncer 준비된 문장"
+    ],
+    "refs": [
+      "https://www.pgbouncer.org/config.html",
+      "https://www.pgbouncer.org/changelog.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "db.nosql.subset-pattern",
+    "title": "부분 집합 패턴(subset pattern)",
+    "en": "MongoDB Subset Pattern",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "NoSQL",
+    "summary": "큰 배열 중 자주 쓰는 몇 개만 본 문서에 넣고 나머지는 다른 컬렉션에 두어, 자주 읽는 자료가 메모리에 머물게 하는 설계다.",
+    "parent": "db.nosql.mongodb-schema-design",
+    "aliases": [
+      "subset pattern",
+      "서브셋 패턴",
+      "MongoDB 부분 집합 패턴"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/data-modeling/design-patterns/group-data/subset-pattern/"
+    ]
+  },
+  {
+    "id": "db.nosql.collscan-ixscan",
+    "title": "COLLSCAN과 IXSCAN: explain의 탐색 단계",
+    "en": "MongoDB COLLSCAN and IXSCAN Stages",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "NoSQL",
+    "summary": "explain 결과에서 컬렉션 전체를 훑었는지(COLLSCAN) 인덱스를 썼는지(IXSCAN) 알려 주는 단계 이름이다.",
+    "parent": "db.nosql.mongodb-index-explain",
+    "aliases": [
+      "COLLSCAN",
+      "IXSCAN",
+      "MongoDB 컬렉션 스캔",
+      "totalDocsExamined",
+      "totalKeysExamined"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/tutorial/analyze-query-plan/"
     ]
   },
   {

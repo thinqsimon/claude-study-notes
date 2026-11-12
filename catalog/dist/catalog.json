@@ -1,5 +1,5 @@
 {
- "version": "0.62.0",
+ "version": "0.63.0",
  "domains": [
   {
    "prefix": "dev",
@@ -14083,6 +14083,137 @@
    "domain": "cs"
   },
   {
+   "id": "cs.data.grapheme-length",
+   "title": "글자 수 세기와 자르기: 코드 단위·코드 포인트·문자소",
+   "en": "Counting and Truncating Text by Grapheme Clusters",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "데이터 표현",
+   "summary": "사람이 보는 한 글자는 코드 포인트 여럿일 수 있어, 글자 수 제한과 자르기를 문자소 단위로 할지 바이트로 할지 골라야 한다.",
+   "objectives": [
+    "이모지가 섞인 문자열의 length가 보이는 글자 수보다 큰 원인을 UTF-16 코드 단위로 설명할 수 있다",
+    "닉네임·미리보기를 자를 때 문자소 경계 안에서 잘라 깨진 글자가 생기는 원인을 찾을 수 있다",
+    "화면 글자 수 제한은 문자소로, 저장 크기 제한은 UTF-8 바이트로 따로 두는 설계의 근거를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "be.python.unicode"
+   ],
+   "aliases": [
+    "문자열 길이 세기",
+    "이모지 글자 수",
+    "string length emoji",
+    "글자 수 제한",
+    "문자열 자르기 깨짐"
+   ],
+   "refs": [
+    "https://www.unicode.org/reports/tr29/",
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/length"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.data.unicode-confusables",
+   "title": "닮은 글자 속임수: 유니코드 혼동 문자",
+   "en": "Unicode Confusables and Spoofing Detection",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "데이터 표현",
+   "summary": "라틴 c와 키릴 с처럼 다른 글자가 똑같이 보여 사용자명·도메인을 사칭할 수 있으므로 혼동 판별과 문자 체계 제한으로 막는다.",
+   "objectives": [
+    "눈으로 같은 두 이름이 다른 계정으로 가입되는 원인을 서로 다른 문자 체계의 닮은 글자로 찾을 수 있다",
+    "가입 시 골격(skeleton)이 같은 기존 이름이 있으면 막는 방식과, 골격은 화면에 보여 주지 않고 저장했다면 유니코드 버전이 바뀔 때 다시 계산해야 하는 근거를 말할 수 있다",
+    "사용자명에 허용할 제한 수준(ASCII만·한 문자 체계·라틴+한글 등)을 서비스 사용자층에 맞게 고를 수 있다"
+   ],
+   "prerequisites": [
+    "be.python.unicode"
+   ],
+   "related": [
+    "cs.data.grapheme-length"
+   ],
+   "aliases": [
+    "혼동 문자",
+    "동형 문자 공격",
+    "homoglyph attack",
+    "IDN 스푸핑",
+    "IDN homograph",
+    "유니코드 사칭"
+   ],
+   "refs": [
+    "https://www.unicode.org/reports/tr39/"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.listen-backlog",
+   "title": "연결 대기열이 넘칠 때: listen backlog",
+   "en": "TCP Listen Backlog and Accept Queue Overflow",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "네트워크",
+   "summary": "서버가 accept로 꺼내기 전의 연결은 커널 대기열에 쌓이고, 이 대기열이 차면 몰릴 때 새 연결이 늦거나 거부된다.",
+   "objectives": [
+    "부하가 몰릴 때만 연결이 늦어지거나 거부되는 원인을 완성된 연결 대기열과 미완성 연결 대기열이 찬 것으로 찾을 수 있다",
+    "listen에 준 backlog가 somaxconn보다 크면 말없이 줄어든다는 근거로 설정값이 먹지 않는 이유를 말할 수 있다",
+    "대기열을 늘리는 것과 accept를 빨리 하도록 서버를 고치는 것 중 무엇을 먼저 할지, tcp_abort_on_overflow를 켜지 않는 근거와 함께 고를 수 있다"
+   ],
+   "prerequisites": [
+    "cs.net.tcp-vs-udp"
+   ],
+   "related": [
+    "cs.net.connection-errors"
+   ],
+   "aliases": [
+    "listen backlog",
+    "백로그 큐",
+    "accept queue",
+    "수락 대기열",
+    "SYN backlog",
+    "연결 대기열"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man2/listen.2.html",
+    "https://man7.org/linux/man-pages/man7/tcp.7.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.tcp-keepalive",
+   "title": "유휴 연결이 끊길 때: TCP keepalive",
+   "en": "Idle Connection Drops and TCP Keepalive",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "네트워크",
+   "summary": "오래 쉬는 TCP 연결은 중간 NAT가 상태를 지워 말없이 끊길 수 있어, keepalive 간격과 시간 제한을 그보다 짧게 맞춘다.",
+   "objectives": [
+    "한동안 쓰지 않던 DB·웹소켓 연결이 다음 요청에서 멈추거나 재설정되는 원인을 NAT의 유휴 시간 제한으로 찾을 수 있다",
+    "리눅스 기본값(2시간 뒤 75초 간격 9번)이 왜 이런 끊김을 막지 못하는지 근거를 말할 수 있다",
+    "SO_KEEPALIVE와 TCP_KEEPIDLE·TCP_KEEPINTVL·TCP_KEEPCNT를 소켓별로 줄일지, 응용 계층 ping을 쓸지 고를 수 있다",
+    "보낸 데이터가 확인되지 않을 때 끊는 TCP_USER_TIMEOUT과 keepalive의 역할 차이를 구분할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.net.tcp-vs-udp"
+   ],
+   "related": [
+    "cs.net.connection-errors"
+   ],
+   "aliases": [
+    "TCP keepalive",
+    "TCP 킵얼라이브",
+    "SO_KEEPALIVE",
+    "tcp_keepalive_time",
+    "유휴 연결 끊김"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man7/tcp.7.html",
+    "https://www.rfc-editor.org/rfc/rfc5382.html"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.net.nagle-delayed-ack",
    "title": "Nagle 알고리즘과 지연 ACK의 지연",
    "en": "Nagle's Algorithm, Delayed ACK, and TCP_NODELAY",
@@ -14391,6 +14522,50 @@
    "domain": "cs"
   },
   {
+   "id": "cs.data.grapheme-cluster",
+   "title": "문자소 클러스터",
+   "en": "Extended Grapheme Cluster",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "데이터 표현",
+   "summary": "가족 이모지나 국기처럼 코드 포인트 여럿이 모여 사람 눈에 한 글자로 보이는 단위다.",
+   "parent": "cs.data.grapheme-length",
+   "aliases": [
+    "grapheme cluster",
+    "문자소",
+    "사용자 인식 문자",
+    "user-perceived character",
+    "Intl.Segmenter grapheme"
+   ],
+   "refs": [
+    "https://www.unicode.org/reports/tr29/"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.data.utf16-surrogate-pair",
+   "title": "UTF-16 코드 단위와 대리 쌍",
+   "en": "UTF-16 Code Units and Surrogate Pairs",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "데이터 표현",
+   "summary": "기본 다국어 평면 밖 글자를 UTF-16 코드 단위 두 개로 담는 방식으로, JavaScript 문자열 length가 글자 수와 달라지는 까닭이다.",
+   "parent": "cs.data.grapheme-length",
+   "aliases": [
+    "surrogate pair",
+    "서로게이트 쌍",
+    "대리 쌍",
+    "UTF-16 code unit",
+    "UTF-16 코드 단위"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String#utf-16_characters_unicode_code_points_and_grapheme_clusters"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.algo.atomic-group-possessive",
    "title": "원자 그룹과 소유 수량자",
    "en": "Atomic Groups and Possessive Quantifiers",
@@ -14471,6 +14646,129 @@
    ],
    "refs": [
     "https://www.rfc-editor.org/rfc/rfc9293",
+    "https://man7.org/linux/man-pages/man7/tcp.7.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.data.confusable-skeleton",
+   "title": "혼동 판별 골격(skeleton)",
+   "en": "Confusable Skeleton (UTS #39)",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "데이터 표현",
+   "summary": "닮은 글자를 대표 글자로 바꿔 만든 비교용 문자열로, 두 문자열의 골격이 같으면 혼동될 수 있다고 본다.",
+   "parent": "cs.data.unicode-confusables",
+   "aliases": [
+    "skeleton 함수",
+    "confusable skeleton",
+    "혼동 골격",
+    "confusables.txt"
+   ],
+   "refs": [
+    "https://www.unicode.org/reports/tr39/"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.data.mixed-script-detection",
+   "title": "혼합 문자 체계 탐지",
+   "en": "Mixed-Script Detection",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "데이터 표현",
+   "summary": "문자열 속 글자들이 공통으로 속하는 문자 체계가 없으면 라틴과 키릴처럼 섞인 것으로 보고 사칭 의심으로 거르는 검사다.",
+   "parent": "cs.data.unicode-confusables",
+   "aliases": [
+    "mixed-script",
+    "혼합 스크립트",
+    "mixed script detection",
+    "restriction level",
+    "문자 체계 제한 수준"
+   ],
+   "refs": [
+    "https://www.unicode.org/reports/tr39/"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.somaxconn",
+   "title": "somaxconn(backlog 상한)",
+   "en": "net.core.somaxconn",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "네트워크",
+   "summary": "listen에 준 backlog 값을 말없이 잘라 내는 리눅스 커널 상한으로, 5.4부터 기본값이 128에서 4096이 되었다.",
+   "parent": "cs.net.listen-backlog",
+   "aliases": [
+    "net.core.somaxconn",
+    "/proc/sys/net/core/somaxconn",
+    "SOMAXCONN"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man2/listen.2.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.syn-cookies",
+   "title": "SYN 쿠키",
+   "en": "TCP SYN Cookies",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "네트워크",
+   "summary": "미완성 연결 대기열이 넘칠 때 상태를 저장하지 않고 응답에 정보를 담아 SYN 폭주 공격을 견디는 리눅스 TCP 기능이다.",
+   "parent": "cs.net.listen-backlog",
+   "aliases": [
+    "SYN cookies",
+    "tcp_syncookies",
+    "SYN 쿠키 방어"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man7/tcp.7.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.nat-idle-timeout",
+   "title": "NAT 유휴 시간 제한",
+   "en": "NAT Established-Connection Idle Timeout",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "네트워크",
+   "summary": "NAT가 오가는 패킷이 없는 TCP 연결의 변환 상태를 지우기까지 기다리는 시간으로, RFC 5382는 2시간 4분 이상을 요구한다.",
+   "parent": "cs.net.tcp-keepalive",
+   "aliases": [
+    "NAT idle timeout",
+    "NAT 타임아웃",
+    "NAT 세션 만료",
+    "established connection idle-timeout"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc5382.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.tcp-user-timeout",
+   "title": "TCP_USER_TIMEOUT",
+   "en": "TCP_USER_TIMEOUT Socket Option",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "네트워크",
+   "summary": "보낸 데이터가 이 시간 동안 확인 응답을 못 받으면 연결을 강제로 닫고 ETIMEDOUT을 돌려주게 하는 리눅스 소켓 옵션이다.",
+   "parent": "cs.net.tcp-keepalive",
+   "aliases": [
+    "TCP user timeout",
+    "TCP 사용자 시간 제한"
+   ],
+   "refs": [
     "https://man7.org/linux/man-pages/man7/tcp.7.html"
    ],
    "domain": "cs"
@@ -21065,6 +21363,138 @@
    "domain": "plan"
   },
   {
+   "id": "plan.basics.session-timeout-design",
+   "title": "세션 시간 제한과 재인증 설계",
+   "en": "Designing Time Limits and Re-authentication (WCAG 2.2.1, 2.2.5, 2.2.6)",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "보안상 필요한 시간 제한을 두면서도 사용자가 시간을 늘리거나 다시 로그인한 뒤 입력한 내용을 잃지 않게 하는 설계다.",
+   "objectives": [
+    "시간 제한에 끄기·조정·연장 중 어떤 선택지를 줄지 고르고 실시간·필수·20시간 예외에 드는지 판단할 수 있다",
+    "보안 때문에 세션을 끝내야 할 때 재인증 뒤 입력 데이터를 잃지 않게 하는 방식을 고를 수 있다",
+    "비활동 시간 경고를 과정 처음에 보여 줄지, 데이터를 20시간 넘게 보관할지를 개인정보 손익과 함께 근거로 말할 수 있다"
+   ],
+   "prerequisites": [
+    "be.auth.session-cookie"
+   ],
+   "related": [
+    "be.auth.session-cookie"
+   ],
+   "aliases": [
+    "세션 만료 설계",
+    "로그아웃 타이머 설계",
+    "시간 제한 접근성",
+    "session timeout UX"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/timing-adjustable.html",
+    "https://www.w3.org/WAI/WCAG22/Understanding/re-authenticating.html",
+    "https://www.w3.org/WAI/WCAG22/Understanding/timeouts.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.accessible-authentication",
+   "title": "인지 기능 테스트 없이 로그인하는 흐름 설계",
+   "en": "Accessible Authentication Design (WCAG 3.3.8, 3.3.9)",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "비밀번호 기억·문자 옮겨 적기·퍼즐 풀기를 못 해도 로그인의 모든 단계를 마칠 길을 두고 보안 방식과 함께 고르는 설계다.",
+   "objectives": [
+    "다단계 인증을 포함한 로그인 각 단계에 인지 기능 테스트가 있는지 찾고 대안 경로나 보조 수단을 고를 수 있다",
+    "붙여넣기 차단이나 비밀번호 일부 문자만 입력시키는 방식이 비밀번호 관리자를 막아 기준을 어기는 원인을 찾을 수 있다",
+    "CAPTCHA 종류마다 AA(3.3.8)와 AAA(3.3.9)에서 허용되는지 판단할 수 있다",
+    "이메일 로그인 링크와 WebAuthn 기기 인증을 접근성과 보안 면에서 비교해 근거를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "be.auth.mfa-idea"
+   ],
+   "related": [
+    "be.auth.login-abuse"
+   ],
+   "aliases": [
+    "접근 가능한 인증",
+    "접근성 있는 로그인",
+    "accessible authentication",
+    "SC 3.3.8"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-minimum.html",
+    "https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-enhanced.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.motion-and-flash-design",
+   "title": "움직임·번쩍임·자동 갱신을 다루는 화면 설계",
+   "en": "Designing Motion, Flashing and Auto-updating Content (WCAG 2.2.2, 2.3.1, 2.3.3)",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "자동 슬라이드·자동 갱신·상호작용 애니메이션·번쩍임을 사용자가 멈추거나 끌 수 있고 해를 주지 않게 정하는 설계다.",
+   "objectives": [
+    "자동으로 움직이거나 갱신되는 요소에 멈춤·숨김·갱신 빈도 조절 중 무엇이 필요한지 5초 기준과 필수 예외로 판단할 수 있다",
+    "스크롤 연동·패럴랙스 같은 상호작용 애니메이션을 prefers-reduced-motion이나 사이트 설정으로 끌 방식을 고를 수 있다",
+    "번쩍이는 영상·효과가 초당 3회와 일반·빨강 번쩍임 임계를 넘는지 찾아 고칠 곳을 정할 수 있다",
+    "이 기준들이 적합성 판정에 쓰지 않는 콘텐츠에도 적용되는 이유(비간섭)를 근거로 말할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.prototype-interactions"
+   ],
+   "aliases": [
+    "모션 접근성",
+    "애니메이션 접근성",
+    "자동 재생 콘텐츠 설계",
+    "motion accessibility"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html",
+    "https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold.html",
+    "https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.accessibility-testing-strategy",
+   "title": "접근성 검사 방법 고르기와 감사 시점",
+   "en": "Choosing Accessibility Evaluation Methods and Audit Timing",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "자동 도구·수동 점검·보조기기 테스트·장애 사용자 조사·적합성 감사를 개발 단계마다 섞어 접근성 문제를 찾는 방법이다.",
+   "objectives": [
+    "자동 검사 도구만으로 놓치는 문제를 알고 수동 점검과 보조기기 테스트를 어디에 더할지 고를 수 있다",
+    "알파·베타·라이브 단계마다 어떤 검사를 언제 할지와 감사를 공개 베타 전에 받는 근거를 말할 수 있다",
+    "WCAG-EM 절차로 평가 범위와 표본 화면을 정하고 감사 결과의 한계를 해석할 수 있다",
+    "감사 결과로 접근성 성명에 적을 현재 수준·남은 문제·고칠 계획을 정할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.usability-testing",
+    "plan.basics.color-contrast"
+   ],
+   "aliases": [
+    "접근성 검사 계획",
+    "접근성 평가 방법 선택",
+    "accessibility evaluation",
+    "서비스 단계별 접근성 검사",
+    "접근성 감사",
+    "accessibility audit"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/helping-people-to-use-your-service/testing-for-accessibility",
+    "https://www.gov.uk/service-manual/helping-people-to-use-your-service/making-your-service-accessible-an-introduction",
+    "https://www.w3.org/WAI/test-evaluate/",
+    "https://www.w3.org/WAI/test-evaluate/conformance/wcag-em/"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.design-token-architecture",
    "title": "디자인 토큰 표준과 별칭 계층 설계",
    "en": "Design Token Standard and Alias Layers",
@@ -21353,6 +21783,87 @@
    "domain": "plan"
   },
   {
+   "id": "plan.basics.timing-adjustable",
+   "title": "시간 제한 조정(Timing Adjustable)",
+   "en": "WCAG 2.2.1 Timing Adjustable",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "시간 제한이 있으면 끄기, 기본값의 10배까지 조정, 20초 이상 주는 경고 뒤 연장 중 하나를 제공하게 하는 A 단계 기준이다.",
+   "parent": "plan.basics.session-timeout-design",
+   "aliases": [
+    "시간 제한 연장",
+    "세션 만료 경고",
+    "SC 2.2.1"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/timing-adjustable.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.cognitive-function-test",
+   "title": "인지 기능 테스트(cognitive function test)",
+   "en": "Cognitive Function Test in Authentication",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "로그인에서 정보를 기억하거나 옮겨 적거나 계산·퍼즐을 풀게 하는 과제로, 이름·이메일 입력은 여기에 들지 않는다.",
+   "parent": "plan.basics.accessible-authentication",
+   "aliases": [
+    "인지 기능 시험",
+    "로그인 퍼즐",
+    "비밀번호 기억 요구"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-minimum.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.pause-stop-hide",
+   "title": "멈춤·정지·숨김(Pause, Stop, Hide)",
+   "en": "WCAG 2.2.2 Pause, Stop, Hide",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "저절로 시작해 5초 넘게 움직이거나 자동 갱신되는 콘텐츠를 사용자가 멈추거나 숨길 수 있게 하는 A 단계 기준이다.",
+   "parent": "plan.basics.motion-and-flash-design",
+   "aliases": [
+    "자동 슬라이드 멈춤",
+    "캐러셀 정지 버튼",
+    "SC 2.2.2"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.three-flashes",
+   "title": "초당 3회 번쩍임 기준",
+   "en": "WCAG 2.3.1 Three Flashes or Below Threshold",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "어떤 1초 동안에도 3번 넘게 번쩍이지 않거나 일반·빨강 번쩍임 임계 아래에 머물게 하는 A 단계 기준이다.",
+   "parent": "plan.basics.motion-and-flash-design",
+   "aliases": [
+    "번쩍임 기준",
+    "flash threshold",
+    "빨강 번쩍임 임계",
+    "SC 2.3.1"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold.html"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.ready-for-dev",
    "title": "Ready for dev 상태",
    "en": "Ready for Dev Status",
@@ -21539,6 +22050,88 @@
    "refs": [
     "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html"
    ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.reauth-data-preservation",
+   "title": "재인증 뒤 입력 데이터 보존",
+   "en": "WCAG 2.2.5 Re-authenticating",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "인증 세션이 만료돼 다시 로그인해도 하던 일을 입력 데이터 손실 없이 이어 가게 하는 AAA 단계 기준이다.",
+   "parent": "plan.basics.session-timeout-design",
+   "aliases": [
+    "재로그인 후 이어 하기",
+    "재인증 데이터 보존",
+    "SC 2.2.5"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/re-authenticating.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.accessible-auth-enhanced",
+   "title": "강화된 접근 가능한 인증(AAA)",
+   "en": "WCAG 3.3.9 Accessible Authentication (Enhanced)",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "3.3.8의 사물 인식·개인 콘텐츠 예외를 없애 그림 고르기 CAPTCHA도 예외로 인정하지 않는 AAA 단계 인증 기준이다.",
+   "parent": "plan.basics.accessible-authentication",
+   "aliases": [
+    "접근 가능한 인증 AAA",
+    "SC 3.3.9"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-enhanced.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.wcag-em",
+   "title": "WCAG-EM 적합성 평가 방법론",
+   "en": "WCAG-EM Conformance Evaluation Methodology",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "범위 정하기·탐색·표본 고르기·평가·보고 다섯 단계로 WCAG 적합성을 판단하는 W3C 그룹 노트로 2026년 7월 2.0이 나왔다.",
+   "parent": "plan.basics.accessibility-testing-strategy",
+   "aliases": [
+    "WCAG 평가 방법론",
+    "접근성 적합성 평가",
+    "WCAG-EM 2.0"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/test-evaluate/conformance/wcag-em/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.accessibility-statement",
+   "title": "접근성 성명(accessibility statement)",
+   "en": "Accessibility Statement for Public Services",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "서비스의 접근성 수준, 남은 문제, 고칠 계획을 공개하는 문서로 영국 공공 서비스는 공개 베타 때 내고 해마다 검토한다.",
+   "parent": "plan.basics.accessibility-testing-strategy",
+   "aliases": [
+    "접근성 성명서",
+    "접근성 진술서"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/helping-people-to-use-your-service/making-your-service-accessible-an-introduction"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "plan"
   },
   {
@@ -38430,6 +39023,142 @@
    "domain": "db"
   },
   {
+   "id": "db.sql.pitr",
+   "title": "PostgreSQL 시점 복구: WAL 아카이브와 베이스 백업",
+   "en": "PostgreSQL Point-in-Time Recovery with WAL Archiving",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "베이스 백업에 보관해 둔 WAL을 다시 적용해, 실수로 지우기 직전 같은 원하는 시각으로 DB 클러스터를 되돌린다.",
+   "objectives": [
+    "pg_dump 백업과 WAL 아카이브 기반 시점 복구 중 복구 목표와 범위에 맞는 쪽을 고를 수 있다",
+    "아카이브 명령이 계속 실패해 pg_wal이 차오르는 원인을 로그와 설정에서 찾을 수 있다",
+    "recovery.signal과 복구 목표 시각을 두어 지정한 시점까지 복구하고 결과를 확인할 수 있다",
+    "베이스 백업이 끝난 시각보다 이른 시점으로는 되돌릴 수 없는 이유를 근거로 백업 주기를 정할 수 있다"
+   ],
+   "prerequisites": [
+    "db.sql.pg-dump-restore"
+   ],
+   "related": [
+    "db.internals.wal-replication"
+   ],
+   "aliases": [
+    "PostgreSQL PITR",
+    "시점 복구",
+    "point-in-time recovery",
+    "WAL 아카이브",
+    "continuous archiving",
+    "PostgreSQL 연속 아카이브"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/continuous-archiving.html",
+    "https://www.postgresql.org/docs/current/runtime-config-wal.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.pgbouncer-pool-modes",
+   "title": "PgBouncer 풀 모드 고르기: session과 transaction",
+   "en": "Choosing PgBouncer Pool Modes",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "앱과 PostgreSQL 사이에 PgBouncer를 두어 연결 수를 줄이되, 풀 모드에 따라 쓸 수 없게 되는 세션 기능을 따져 고른다.",
+   "objectives": [
+    "session·transaction·statement 풀 모드의 손익을 따져 앱에 맞는 모드를 고를 수 있다",
+    "transaction 모드에서 SET·LISTEN·세션 권고 잠금이 기대대로 동작하지 않는 원인을 찾을 수 있다",
+    "준비된 문장 오류가 날 때 PgBouncer 버전과 max_prepared_statements 설정을 근거로 원인을 찾을 수 있다",
+    "default_pool_size와 max_client_conn을 DB의 연결 한도에 맞춰 정한 근거를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "db.sql.psycopg-basics"
+   ],
+   "related": [
+    "db.orm.connection-pool"
+   ],
+   "aliases": [
+    "PgBouncer",
+    "PgBouncer 풀 모드",
+    "pool_mode",
+    "PostgreSQL 커넥션 풀러",
+    "PgBouncer 풀링"
+   ],
+   "refs": [
+    "https://www.pgbouncer.org/features.html",
+    "https://www.pgbouncer.org/config.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.nosql.mongodb-schema-design",
+   "title": "MongoDB 스키마 설계: 중첩과 참조 고르기",
+   "en": "MongoDB Schema Design: Embedding vs. Referencing",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "NoSQL",
+   "summary": "함께 읽고 함께 바뀌는지, 얼마나 커지는지를 따져 관련 자료를 한 문서에 넣을지 다른 컬렉션에서 참조할지 정한다.",
+   "objectives": [
+    "읽기 방식·갱신 빈도·자식 수를 근거로 중첩과 참조 중 하나를 고를 수 있다",
+    "한 문서 쓰기의 원자성과 여러 문서 트랜잭션의 비용을 비교해 설계 근거를 말할 수 있다",
+    "끝없이 커지는 배열 때문에 문서가 크기 한도에 다가가거나 느려지는 원인을 찾을 수 있다",
+    "자주 쓰는 일부만 넣는 부분 집합 패턴과 $lookup 참조 중 상황에 맞는 쪽을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "db.nosql.mongodb-crud"
+   ],
+   "related": [
+    "db.nosql.embedded-document",
+    "db.nosql.document-reference"
+   ],
+   "aliases": [
+    "MongoDB 스키마 설계",
+    "MongoDB schema design",
+    "embed vs reference",
+    "MongoDB 데이터 모델 설계"
+   ],
+   "refs": [
+    "https://www.mongodb.com/docs/manual/data-modeling/best-practices/#link-related-data",
+    "https://www.mongodb.com/docs/manual/data-modeling/design-antipatterns/unbounded-arrays/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.nosql.mongodb-index-explain",
+   "title": "MongoDB 복합 인덱스 설계와 explain 읽기",
+   "en": "MongoDB Compound Index Design and explain()",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "NoSQL",
+   "summary": "explain(\"executionStats\")로 살펴본 키·문서 수를 근거로 복합 인덱스의 필드 순서를 정하고 느린 쿼리의 원인을 찾는다.",
+   "objectives": [
+    "explain 결과의 COLLSCAN과 IXSCAN, 검사한 키·문서 수와 반환 수를 비교해 느린 원인을 찾을 수 있다",
+    "같음·정렬·범위 조건을 보고 복합 인덱스의 필드 순서를 고르고 근거를 말할 수 있다",
+    "hint()로 두 인덱스를 비교해 더 적게 훑는 쪽을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "db.nosql.mongodb-crud"
+   ],
+   "related": [
+    "db.internals.index-design"
+   ],
+   "aliases": [
+    "MongoDB 인덱스",
+    "MongoDB index",
+    "MongoDB explain",
+    "MongoDB 복합 인덱스",
+    "MongoDB executionStats"
+   ],
+   "refs": [
+    "https://www.mongodb.com/docs/manual/tutorial/analyze-query-plan/",
+    "https://www.mongodb.com/docs/manual/tutorial/equality-sort-range-guideline/"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.cache.redis",
    "title": "Redis",
    "en": "Redis",
@@ -38725,6 +39454,89 @@
    "domain": "db"
   },
   {
+   "id": "db.sql.archive-command",
+   "title": "archive_command: WAL 세그먼트 보관 명령",
+   "en": "PostgreSQL archive_command",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "다 찬 WAL 파일마다 실행되는 셸 명령으로, 성공일 때만 0을 돌려줘야 하며 실패가 이어지면 pg_wal이 계속 커진다.",
+   "parent": "db.sql.pitr",
+   "aliases": [
+    "archive_mode",
+    "PostgreSQL archive_command",
+    "WAL 아카이브 명령"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/runtime-config-wal.html#GUC-ARCHIVE-COMMAND"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.pgbouncer-transaction-pooling",
+   "title": "PgBouncer 트랜잭션 풀링",
+   "en": "PgBouncer Transaction Pooling",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "트랜잭션이 끝날 때마다 서버 연결을 풀에 돌려주는 PgBouncer 모드로, 연결은 아끼지만 세션에 남는 상태를 믿으면 안 된다.",
+   "parent": "db.sql.pgbouncer-pool-modes",
+   "aliases": [
+    "트랜잭션 풀링",
+    "transaction pooling",
+    "pool_mode = transaction",
+    "PgBouncer transaction mode"
+   ],
+   "refs": [
+    "https://www.pgbouncer.org/features.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.nosql.unbounded-arrays",
+   "title": "끝없이 커지는 배열(unbounded arrays)",
+   "en": "MongoDB Unbounded Arrays Anti-Pattern",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "NoSQL",
+   "summary": "개수 제한 없이 원소가 쌓이는 배열을 문서에 넣는 안티패턴으로, 16MB 문서 한도에 닿거나 인덱스 성능을 떨어뜨린다.",
+   "parent": "db.nosql.mongodb-schema-design",
+   "aliases": [
+    "unbounded arrays",
+    "MongoDB 무한 배열",
+    "MongoDB 16MB 문서 제한",
+    "BSON 문서 크기 제한"
+   ],
+   "refs": [
+    "https://www.mongodb.com/docs/manual/data-modeling/design-antipatterns/unbounded-arrays/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.nosql.esr-guideline",
+   "title": "ESR 규칙: 같음·정렬·범위 순서",
+   "en": "MongoDB ESR (Equality, Sort, Range) Guideline",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "NoSQL",
+   "summary": "MongoDB 복합 인덱스에 같음 조건 필드, 정렬 필드, 범위 조건 필드 순으로 키를 두어 메모리 정렬과 불필요한 탐색을 줄이는 지침이다.",
+   "parent": "db.nosql.mongodb-index-explain",
+   "aliases": [
+    "ESR 규칙",
+    "ESR rule",
+    "Equality Sort Range",
+    "MongoDB ESR"
+   ],
+   "refs": [
+    "https://www.mongodb.com/docs/manual/tutorial/equality-sort-range-guideline/"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.cache.aof-rewrite",
    "title": "AOF 다시 쓰기(BGREWRITEAOF)",
    "en": "Redis AOF Rewrite",
@@ -38765,6 +39577,91 @@
    ],
    "refs": [
     "https://www.sqlite.org/wal.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.recovery-target-time",
+   "title": "recovery_target_time: 복구를 멈출 시각",
+   "en": "PostgreSQL recovery_target_time",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "SQL",
+   "summary": "아카이브 복구를 어느 시각에서 멈출지 정하는 설정으로, recovery.signal 파일과 recovery_target_action을 함께 쓴다.",
+   "parent": "db.sql.pitr",
+   "aliases": [
+    "recovery.signal",
+    "recovery_target_action",
+    "PostgreSQL 복구 목표 시각"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/runtime-config-wal.html#GUC-RECOVERY-TARGET-TIME"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.pgbouncer-max-prepared-statements",
+   "title": "PgBouncer max_prepared_statements",
+   "en": "PgBouncer max_prepared_statements",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "SQL",
+   "summary": "transaction 모드에서도 프로토콜 수준 준비된 문장을 쓰게 해 주는 설정으로 1.21에 생겼고 1.24부터 기본값이 200이다.",
+   "parent": "db.sql.pgbouncer-pool-modes",
+   "aliases": [
+    "max_prepared_statements",
+    "PgBouncer prepared statements",
+    "PgBouncer 준비된 문장"
+   ],
+   "refs": [
+    "https://www.pgbouncer.org/config.html",
+    "https://www.pgbouncer.org/changelog.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "db"
+  },
+  {
+   "id": "db.nosql.subset-pattern",
+   "title": "부분 집합 패턴(subset pattern)",
+   "en": "MongoDB Subset Pattern",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "NoSQL",
+   "summary": "큰 배열 중 자주 쓰는 몇 개만 본 문서에 넣고 나머지는 다른 컬렉션에 두어, 자주 읽는 자료가 메모리에 머물게 하는 설계다.",
+   "parent": "db.nosql.mongodb-schema-design",
+   "aliases": [
+    "subset pattern",
+    "서브셋 패턴",
+    "MongoDB 부분 집합 패턴"
+   ],
+   "refs": [
+    "https://www.mongodb.com/docs/manual/data-modeling/design-patterns/group-data/subset-pattern/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.nosql.collscan-ixscan",
+   "title": "COLLSCAN과 IXSCAN: explain의 탐색 단계",
+   "en": "MongoDB COLLSCAN and IXSCAN Stages",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "NoSQL",
+   "summary": "explain 결과에서 컬렉션 전체를 훑었는지(COLLSCAN) 인덱스를 썼는지(IXSCAN) 알려 주는 단계 이름이다.",
+   "parent": "db.nosql.mongodb-index-explain",
+   "aliases": [
+    "COLLSCAN",
+    "IXSCAN",
+    "MongoDB 컬렉션 스캔",
+    "totalDocsExamined",
+    "totalKeysExamined"
+   ],
+   "refs": [
+    "https://www.mongodb.com/docs/manual/tutorial/analyze-query-plan/"
    ],
    "domain": "db"
   },
@@ -45940,6 +46837,148 @@
    "domain": "fe"
   },
   {
+   "id": "fe.html.accessibility-audit",
+   "title": "자동·수동 점검으로 접근성 문제 원인 찾기",
+   "en": "Diagnosing Accessibility Issues with Automated and Manual Testing",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "HTML",
+   "summary": "Lighthouse 같은 자동 검사로 1차 문제를 찾고, 키보드·확대 점검과 DevTools 접근성 트리로 자동 검사가 놓친 원인을 좁혀 가는 일이다.",
+   "objectives": [
+    "Lighthouse 접근성 보고서의 항목을 읽고 이름 없는 버튼, 낮은 대비 같은 실패의 원인 요소를 찾을 수 있다",
+    "DevTools 접근성 탭에서 요소의 역할·이름·상태를 확인해 스크린 리더가 엉뚱하게 읽는 원인을 찾을 수 있다",
+    "탭 순서가 화면 순서와 어긋날 때 양수 tabindex나 DOM 순서에서 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "fe.html.accessible-markup"
+   ],
+   "related": [
+    "fe.basics.wcag"
+   ],
+   "aliases": [
+    "접근성 디버깅",
+    "accessibility debugging",
+    "Lighthouse 접근성 검사",
+    "DevTools 접근성 탭"
+   ],
+   "refs": [
+    "https://web.dev/learn/accessibility/test-automated",
+    "https://web.dev/learn/accessibility/test-manual",
+    "https://developer.chrome.com/docs/devtools/accessibility/reference"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.deployment-options",
+   "title": "Next.js 배포 방식 고르기",
+   "en": "Choosing a Next.js Deployment Option",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "Next.js",
+   "summary": "Node.js 서버·Docker·정적 내보내기·플랫폼 어댑터 중 쓰는 기능과 인프라에 맞는 배포 방식을 고르고, 여러 인스턴스 운영의 함정을 피하는 일이다.",
+   "objectives": [
+    "서버가 필요한 기능(쿠키, Proxy, ISR, Server Actions)을 쓰는지를 근거로 Node.js 서버·Docker·정적 내보내기 중 하나를 고를 수 있다",
+    "인스턴스를 여러 대 띄울 때 공유 캐시 핸들러, 같은 Server Actions 암호화 키, deploymentId가 왜 필요한지 근거를 말할 수 있다",
+    "\"Failed to find Server Action\" 오류나 오래된 페이지가 인스턴스마다 다르게 보일 때 키·캐시 불일치에서 원인을 찾을 수 있다",
+    "리버스 프록시 뒤에서 스트리밍이 한꺼번에 도착할 때 응답 버퍼링에서 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "fe.internals.rendering-strategy",
+    "ops.deploy.first-deploy"
+   ],
+   "related": [
+    "fe.next.caching-revalidation",
+    "fe.next.streaming-suspense"
+   ],
+   "aliases": [
+    "Next.js 배포",
+    "Next.js deployment",
+    "Next.js 셀프 호스팅",
+    "self-hosting Next.js",
+    "next start 배포"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/getting-started/deploying",
+    "https://nextjs.org/docs/app/guides/self-hosting"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.ts.module-settings",
+   "title": "TypeScript module·moduleResolution 고르기",
+   "en": "Choosing TypeScript Module and moduleResolution Settings",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "TypeScript",
+   "summary": "코드를 실행하는 쪽이 번들러인지 Node.js인지, 라이브러리인지에 맞춰 module·moduleResolution을 골라 타입 검사는 통과하고 실행에서 깨지는 일을 막는 설계다.",
+   "objectives": [
+    "번들러 앱, Node.js 앱, 배포할 라이브러리 각각에 맞는 module·moduleResolution 조합을 고를 수 있다",
+    "TypeScript가 import 경로를 바꾸지 않고 실행 환경의 해석 규칙을 흉내 낸다는 점을 근거로 설정이 실행 환경과 맞아야 하는 이유를 말할 수 있다",
+    "타입 검사는 통과했는데 Node.js에서 ERR_MODULE_NOT_FOUND가 날 때 확장자 없는 상대 경로와 bundler 해석에서 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "fe.js.modules",
+    "fe.ts.object-types"
+   ],
+   "related": [
+    "fe.ts.tsconfig"
+   ],
+   "aliases": [
+    "TypeScript 모듈 설정",
+    "TS module 옵션",
+    "TypeScript module resolution",
+    "모듈 해석 설정"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/docs/handbook/modules/guides/choosing-compiler-options.html",
+    "https://www.typescriptlang.org/docs/handbook/modules/theory.html"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.third-party-scripts",
+   "title": "서드파티 스크립트 불러오는 방식 고르기",
+   "en": "Loading Third-Party Scripts Efficiently",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "프론트엔드 내부",
+   "summary": "분석·광고·채팅 위젯 같은 외부 스크립트를 async·defer·지연 로딩·파사드·next/script 전략 중 무엇으로 불러올지 정해 첫 화면과 반응 속도를 지키는 설계다.",
+   "objectives": [
+    "스크립트가 일찍 실행돼야 하는지와 실행 순서가 중요한지를 근거로 async와 defer 중 하나를 고를 수 있다",
+    "중요한 외부 출처에만 preconnect를 쓰고 나머지는 dns-prefetch나 지연 로딩으로 미루는 근거를 말할 수 있다",
+    "Next.js에서 스크립트를 전체 레이아웃이 아닌 필요한 레이아웃에 두고 beforeInteractive·afterInteractive·lazyOnload 중 전략을 고를 수 있다",
+    "셀프 호스팅과 공급자 CDN의 유지 보수·캐시 제어 손익을 비교해 고를 수 있다"
+   ],
+   "prerequisites": [
+    "fe.basics.web-performance-idea",
+    "fe.next.routes-layouts"
+   ],
+   "related": [
+    "fe.next.code-splitting",
+    "fe.internals.web-vitals"
+   ],
+   "aliases": [
+    "서드파티 스크립트",
+    "third-party script",
+    "외부 스크립트 로딩",
+    "제3자 자바스크립트",
+    "third-party JavaScript"
+   ],
+   "refs": [
+    "https://web.dev/articles/efficiently-load-third-party-javascript",
+    "https://nextjs.org/docs/app/guides/scripts"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "fe"
+  },
+  {
    "id": "fe.next.data-access-layer",
    "title": "데이터 접근 계층(DAL)",
    "en": "Data Access Layer in Next.js",
@@ -46338,6 +47377,146 @@
    "domain": "fe"
   },
   {
+   "id": "fe.html.accessibility-tree",
+   "title": "접근성 트리",
+   "en": "Accessibility Tree",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "HTML",
+   "summary": "브라우저가 DOM에서 만들어 보조 기술에 넘기는 구조로, 요소마다 이름·역할·상태·설명을 담는다.",
+   "parent": "fe.html.accessibility-audit",
+   "aliases": [
+    "accessibility tree",
+    "접근성 트리 보기",
+    "AX 트리"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Glossary/Accessibility_tree",
+    "https://developer.chrome.com/docs/devtools/accessibility/reference"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.html.accessible-name",
+   "title": "접근 가능한 이름",
+   "en": "Accessible Name",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "HTML",
+   "summary": "보조 기술이 요소를 부를 때 쓰는 이름으로, 요소 내용·연결된 label·alt·aria-labelledby·aria-label에서 얻는다.",
+   "parent": "fe.html.accessibility-audit",
+   "related": [
+    "fe.html.accessibility-tree"
+   ],
+   "aliases": [
+    "accessible name",
+    "접근성 이름",
+    "accessible name computation"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Glossary/Accessible_name"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.output-standalone",
+   "title": "output: 'standalone' 빌드",
+   "en": "Next.js Standalone Output",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Next.js",
+   "summary": "빌드가 실행에 필요한 파일만 추적해 .next/standalone에 모으고 server.js를 만들어, node_modules를 따로 설치하지 않고 띄우게 하는 설정이다.",
+   "parent": "fe.next.deployment-options",
+   "aliases": [
+    "standalone 출력",
+    "standalone output",
+    "output standalone",
+    "출력 파일 추적",
+    "output file tracing"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/output",
+    "https://nextjs.org/docs/app/getting-started/deploying"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.static-export",
+   "title": "Next.js 정적 내보내기",
+   "en": "Next.js Static Export",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Next.js",
+   "summary": "output: 'export'로 빌드 때 모든 경로를 HTML 파일로 만들어 아무 정적 호스팅에 올리는 방식으로, 요청 시점이 필요한 기능은 쓸 수 없다.",
+   "parent": "fe.next.deployment-options",
+   "related": [
+    "fe.next.isr"
+   ],
+   "aliases": [
+    "정적 내보내기",
+    "static export",
+    "output export",
+    "next export"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/guides/static-exports"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.ts.module-resolution-bundler",
+   "title": "moduleResolution: bundler",
+   "en": "Bundler Module Resolution in TypeScript",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "TypeScript",
+   "summary": "번들러의 경로 해석을 흉내 내 확장자 없는 상대 import를 허용하는 설정으로, 번들 없이 Node.js에서 돌리는 코드에 쓰면 실행 때 깨질 수 있다.",
+   "parent": "fe.ts.module-settings",
+   "aliases": [
+    "bundler 모듈 해석",
+    "moduleResolution bundler",
+    "bundler resolution"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/docs/handbook/modules/theory.html",
+    "https://www.typescriptlang.org/docs/handbook/modules/guides/choosing-compiler-options.html"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.script-strategy",
+   "title": "next/script의 strategy 속성",
+   "en": "Next.js Script Loading Strategy",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Next.js",
+   "summary": "Script 컴포넌트가 외부 스크립트를 하이드레이션 전(beforeInteractive)·직후(afterInteractive)·유휴 시간(lazyOnload) 중 언제 불러올지 정하는 속성이다.",
+   "parent": "fe.internals.third-party-scripts",
+   "aliases": [
+    "Script strategy",
+    "next/script strategy",
+    "lazyOnload",
+    "afterInteractive",
+    "beforeInteractive"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/guides/scripts"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "fe"
+  },
+  {
    "id": "fe.internals.server-only",
    "title": "server-only와 client-only",
    "en": "server-only and client-only",
@@ -46418,6 +47597,49 @@
    "refs": [
     "https://developer.chrome.com/docs/devtools/settings/ignore-list"
    ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.third-party-facade",
+   "title": "서드파티 임베드 파사드",
+   "en": "Third-Party Embed Facade",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "동영상 플레이어·채팅 위젯 자리에 가벼운 정적 모양만 먼저 보여 주고, 사용자가 누를 때 진짜 임베드를 불러오는 기법이다.",
+   "parent": "fe.internals.third-party-scripts",
+   "aliases": [
+    "파사드 패턴 임베드",
+    "embed facade",
+    "third-party facade",
+    "임베드 지연 로딩"
+   ],
+   "refs": [
+    "https://developer.chrome.com/docs/lighthouse/performance/third-party-facades"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.bfcache",
+   "title": "뒤로/앞으로 캐시(bfcache)",
+   "en": "Back/Forward Cache",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "떠난 페이지를 자바스크립트 상태째 메모리에 두었다가 뒤로·앞으로 이동 때 바로 되살리는 브라우저 기능으로, unload 리스너나 no-store 응답이 이를 막을 수 있다.",
+   "aliases": [
+    "bfcache",
+    "back/forward cache",
+    "back-forward cache",
+    "뒤로 가기 캐시"
+   ],
+   "refs": [
+    "https://web.dev/articles/bfcache"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "fe"
   },
   {
@@ -92284,6 +93506,116 @@
    "domain": "mlops"
   },
   {
+   "id": "mlops.serve.vllm-prefix-cache-ops",
+   "title": "vLLM 접두사 캐시 운영: 적중률과 요청별 격리",
+   "en": "Operating vLLM Prefix Caching: Hit Rate and Cache Isolation",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "고정된 앞부분을 공유하도록 프롬프트를 짜 접두사 캐시 적중을 늘리고, 적중률 지표로 효과를 확인하며, cache_salt로 사용자 사이 재사용을 막는 운영법이다.",
+   "objectives": [
+    "시스템 프롬프트·긴 문서·대화 기록의 배치를 보고 접두사 캐시가 첫 토큰 지연을 줄일지, 생성 위주라 효과가 적을지 근거를 말할 수 있다",
+    "적중 횟수와 조회 횟수 지표로 구간별 적중률을 계산해 낮은 적중률의 원인을 공유 접두사 부족과 블록 축출 가운데서 찾을 수 있다",
+    "지연 차이로 남의 캐시 내용을 짐작하는 공격을 설명하고 cache_salt를 사용자나 테넌트 단위로 줄지 고를 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.serve.llm-server-speedups-picture",
+    "mlops.serve.vllm-openai-server"
+   ],
+   "related": [
+    "mlops.serve.prefix-caching",
+    "llm.internals.prompt-caching",
+    "mlops.serve.vllm-latency-tuning",
+    "llm.internals.kv-cache"
+   ],
+   "aliases": [
+    "vLLM 접두사 캐시",
+    "vLLM prefix caching",
+    "--enable-prefix-caching",
+    "APC 운영"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/features/automatic_prefix_caching/",
+    "https://docs.vllm.ai/en/latest/design/prefix_caching/",
+    "https://docs.vllm.ai/en/latest/usage/metrics/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.vllm-server-hardening",
+   "title": "vLLM 서버 배포 보안: 키 범위와 노출 포트",
+   "en": "Securing a vLLM Deployment: API Key Scope and Exposed Ports",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "vLLM의 API 키가 일부 경로만 지키고 노드 간 통신은 기본으로 보호되지 않는다는 점을 알고, 방화벽·역방향 프록시·환경 변수로 서버를 닫는 배포법이다.",
+   "objectives": [
+    "--api-key가 지키는 경로와 지키지 않는 경로를 구분해 /metrics·/tokenize 같은 경로가 열려 있는 원인을 찾을 수 있다",
+    "노드 간 통신 포트와 API 포트를 나눠 방화벽과 역방향 프록시 허용 목록 가운데 어디서 막을지 근거를 들어 고를 수 있다",
+    "개발 모드·실행 중 LoRA 갱신·미디어 URL 가져오기처럼 위험한 설정을 운영 환경에서 끄거나 제한할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.serve.vllm-openai-server"
+   ],
+   "related": [
+    "be.security.ssrf",
+    "mlops.serve.runtime-lora-loading",
+    "mlops.guardrail.unbounded-consumption"
+   ],
+   "aliases": [
+    "vLLM 보안",
+    "vLLM security",
+    "vLLM 서버 보안 설정",
+    "vLLM hardening"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/usage/security/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.ray-serve-load-shedding",
+   "title": "Ray Serve 과부하 대응: 대기열 상한과 시간 제한",
+   "en": "Ray Serve Overload Handling: Queue Limits and Request Timeouts",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "레플리카당 동시 요청 상한, 핸들별 대기열 상한, HTTP 요청 시간 제한을 조합해 몰린 요청을 503·408로 빨리 돌려보내고 느린 요청이 레플리카를 막지 않게 한다.",
+   "objectives": [
+    "max_ongoing_requests와 max_queued_requests를 바꿀 때 지연·메모리·거절 비율이 어떻게 바뀌는지 근거를 말할 수 있다",
+    "클라이언트가 받은 503과 408을 보고 대기열이 찬 것인지 요청 시간이 넘은 것인지 원인을 찾을 수 있다",
+    "부하 차단 응답을 429와 Retry-After로 바꿀지, 클라이언트 재시도에 시간 제한을 둘지 고를 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.serve.local-model-serving"
+   ],
+   "related": [
+    "be.run.load-control",
+    "mlops.serve.ray-serve-dynamic-batching",
+    "mlops.serve.kserve-autoscaling"
+   ],
+   "aliases": [
+    "Ray Serve 과부하",
+    "Ray Serve load shedding",
+    "Ray Serve 부하 차단",
+    "Ray Serve overload"
+   ],
+   "refs": [
+    "https://docs.ray.io/en/latest/serve/production-guide/best-practices.html",
+    "https://docs.ray.io/en/latest/serve/advanced-guides/performance.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
    "id": "mlops.serve.kserve-canary-rollout",
    "title": "KServe로 모델 카나리 출시하고 되돌리기",
    "en": "Canary Rollout and Rollback with KServe",
@@ -92469,6 +93801,39 @@
    "domain": "mlops"
   },
   {
+   "id": "mlops.prompt.langfuse-prompt-cache",
+   "title": "Langfuse 프롬프트 캐시로 장애 견디기",
+   "en": "Langfuse Prompt Caching and Fallback for Availability",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "Langfuse SDK가 프롬프트를 캐시해 만료 뒤에도 옛 값을 먼저 주고 뒤에서 새로 받는 방식을 알고, 캐시 수명·미리 받기·대체 프롬프트로 지연과 장애 대비를 정한다.",
+   "objectives": [
+    "캐시 수명을 늘리거나 0으로 둘 때 새 버전 반영 시간과 호출 지연이 어떻게 바뀌는지 근거를 말할 수 있다",
+    "프롬프트를 바꿨는데 앱에 바로 반영되지 않는 원인을 만료 뒤 옛 값을 먼저 주는 동작에서 찾을 수 있다",
+    "Langfuse API가 멈췄을 때 캐시·시작 시 미리 받기·대체 프롬프트 가운데 무엇이 앱을 지키는지 따져 조합을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.prompt.register-load"
+   ],
+   "related": [
+    "mlops.prompt.registry",
+    "mlops.observe.langfuse-tracing-quickstart"
+   ],
+   "aliases": [
+    "Langfuse 프롬프트 캐시",
+    "Langfuse prompt caching",
+    "Langfuse 프롬프트 관리 캐시"
+   ],
+   "refs": [
+    "https://langfuse.com/docs/prompt-management/features/caching"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
    "id": "mlops.eval.llm-judge",
    "title": "LLM 심판(LLM-as-a-judge)",
    "en": "LLM-as-a-Judge",
@@ -92615,6 +93980,79 @@
     "https://docs.vllm.ai/en/latest/configuration/optimization.html",
     "https://docs.vllm.ai/en/latest/usage/metrics.html"
    ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.vllm-cache-salt",
+   "title": "cache_salt(접두사 캐시 격리 값)",
+   "en": "vLLM cache_salt for Prefix Cache Isolation",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "요청에 넣으면 첫 블록 해시에 섞여 같은 값을 가진 요청끼리만 캐시된 KV 블록을 다시 쓰게 하는 vLLM 요청 값이다.",
+   "parent": "mlops.serve.vllm-prefix-cache-ops",
+   "related": [
+    "mlops.serve.prefix-caching"
+   ],
+   "aliases": [
+    "cache_salt",
+    "캐시 솔트",
+    "접두사 캐시 격리",
+    "prefix cache isolation"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/design/prefix_caching/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.vllm-api-key-scope",
+   "title": "vLLM --api-key 적용 범위",
+   "en": "vLLM --api-key Endpoint Scope",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "--api-key나 VLLM_API_KEY는 /v1 같은 정해진 경로 접두사에만 키를 요구하고 /metrics·/health·/tokenize 등은 키 없이 열어 둔다.",
+   "parent": "mlops.serve.vllm-server-hardening",
+   "related": [
+    "be.security.api-key"
+   ],
+   "aliases": [
+    "VLLM_API_KEY",
+    "vLLM API 키 범위",
+    "vLLM api-key scope"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/usage/security/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.ray-max-queued-requests",
+   "title": "max_queued_requests와 BackPressureError",
+   "en": "Ray Serve max_queued_requests and BackPressureError",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "배포 핸들마다 쌓을 수 있는 요청 수의 상한으로, 넘치면 새 요청은 바로 BackPressureError가 되고 HTTP로는 기본 503을 받는다.",
+   "parent": "mlops.serve.ray-serve-load-shedding",
+   "aliases": [
+    "max_queued_requests",
+    "BackPressureError",
+    "Ray Serve 대기열 상한"
+   ],
+   "refs": [
+    "https://docs.ray.io/en/latest/serve/production-guide/best-practices.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "mlops"
   },
   {
@@ -92957,6 +94395,119 @@
    ],
    "refs": [
     "https://kserve.github.io/website/docs/reference/crd-api"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.prefix-cache-hit-rate",
+   "title": "접두사 캐시 적중률(prefix_cache_hits·queries)",
+   "en": "vLLM Prefix Cache Hit Rate Metrics",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "조회한 토큰 수와 그중 캐시에 있던 토큰 수를 따로 세는 두 카운터로, 원하는 구간의 비율을 PromQL로 계산해 접두사 캐시 효과를 본다.",
+   "parent": "mlops.serve.vllm-prefix-cache-ops",
+   "aliases": [
+    "vllm:prefix_cache_hits",
+    "vllm:prefix_cache_queries",
+    "prefix cache hit rate",
+    "접두사 캐시 적중률"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/usage/metrics/",
+    "https://docs.vllm.ai/en/latest/design/metrics/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.vllm-server-dev-mode",
+   "title": "VLLM_SERVER_DEV_MODE(개발용 엔드포인트)",
+   "en": "vLLM Server Development Mode Endpoints",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "켜면 /collective_rpc·/sleep·/reset_prefix_cache 같은 개발용 엔드포인트가 열리는 환경 변수로, 위험하므로 운영 서버에서는 켜지 않는다.",
+   "parent": "mlops.serve.vllm-server-hardening",
+   "aliases": [
+    "VLLM_SERVER_DEV_MODE",
+    "/collective_rpc",
+    "vLLM 개발 모드",
+    "vLLM dev endpoints"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/usage/security/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.prompt.langfuse-cache-ttl",
+   "title": "cache_ttl_seconds(Langfuse 프롬프트 캐시 수명)",
+   "en": "Langfuse Prompt cache_ttl_seconds",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "get_prompt에 주는 캐시 수명으로, 기본은 60초이고 만료 뒤에는 옛 프롬프트를 먼저 돌려주며 뒤에서 새로 받고 0이면 매번 API를 부른다.",
+   "parent": "mlops.prompt.langfuse-prompt-cache",
+   "aliases": [
+    "cache_ttl_seconds",
+    "cacheTtlSeconds",
+    "Langfuse 캐시 TTL"
+   ],
+   "refs": [
+    "https://langfuse.com/docs/prompt-management/features/caching"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.prompt.langfuse-fallback-prompt",
+   "title": "대체 프롬프트(Langfuse fallback)",
+   "en": "Langfuse Fallback Prompt",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "SDK 캐시에 프롬프트가 없고 Langfuse API에도 닿지 못할 때만 get_prompt가 대신 돌려주도록 코드에 넣어 두는 프롬프트다.",
+   "parent": "mlops.prompt.langfuse-prompt-cache",
+   "aliases": [
+    "Langfuse fallback prompt",
+    "Langfuse 대체 프롬프트",
+    "get_prompt fallback"
+   ],
+   "refs": [
+    "https://langfuse.com/docs/prompt-management/features/caching"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.ray-request-timeout",
+   "title": "request_timeout_s(Ray Serve 요청 시간 제한)",
+   "en": "Ray Serve request_timeout_s",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "Serve 설정의 http_options에 두는 클러스터 전체 시간 제한으로, 넘긴 요청은 408로 끝나고 요청 헤더로 요청마다 바꿀 수도 있다.",
+   "parent": "mlops.serve.ray-serve-load-shedding",
+   "aliases": [
+    "request_timeout_s",
+    "x-request-timeout-seconds",
+    "Ray Serve 요청 타임아웃"
+   ],
+   "refs": [
+    "https://docs.ray.io/en/latest/serve/advanced-guides/performance.html"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",

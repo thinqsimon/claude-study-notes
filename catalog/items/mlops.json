@@ -6817,6 +6817,113 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "mlops.serve.vllm-prefix-cache-ops",
+    "title": "vLLM 접두사 캐시 운영: 적중률과 요청별 격리",
+    "en": "Operating vLLM Prefix Caching: Hit Rate and Cache Isolation",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "고정된 앞부분을 공유하도록 프롬프트를 짜 접두사 캐시 적중을 늘리고, 적중률 지표로 효과를 확인하며, cache_salt로 사용자 사이 재사용을 막는 운영법이다.",
+    "objectives": [
+      "시스템 프롬프트·긴 문서·대화 기록의 배치를 보고 접두사 캐시가 첫 토큰 지연을 줄일지, 생성 위주라 효과가 적을지 근거를 말할 수 있다",
+      "적중 횟수와 조회 횟수 지표로 구간별 적중률을 계산해 낮은 적중률의 원인을 공유 접두사 부족과 블록 축출 가운데서 찾을 수 있다",
+      "지연 차이로 남의 캐시 내용을 짐작하는 공격을 설명하고 cache_salt를 사용자나 테넌트 단위로 줄지 고를 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.llm-server-speedups-picture",
+      "mlops.serve.vllm-openai-server"
+    ],
+    "related": [
+      "mlops.serve.prefix-caching",
+      "llm.internals.prompt-caching",
+      "mlops.serve.vllm-latency-tuning",
+      "llm.internals.kv-cache"
+    ],
+    "aliases": [
+      "vLLM 접두사 캐시",
+      "vLLM prefix caching",
+      "--enable-prefix-caching",
+      "APC 운영"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/features/automatic_prefix_caching/",
+      "https://docs.vllm.ai/en/latest/design/prefix_caching/",
+      "https://docs.vllm.ai/en/latest/usage/metrics/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.vllm-server-hardening",
+    "title": "vLLM 서버 배포 보안: 키 범위와 노출 포트",
+    "en": "Securing a vLLM Deployment: API Key Scope and Exposed Ports",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "vLLM의 API 키가 일부 경로만 지키고 노드 간 통신은 기본으로 보호되지 않는다는 점을 알고, 방화벽·역방향 프록시·환경 변수로 서버를 닫는 배포법이다.",
+    "objectives": [
+      "--api-key가 지키는 경로와 지키지 않는 경로를 구분해 /metrics·/tokenize 같은 경로가 열려 있는 원인을 찾을 수 있다",
+      "노드 간 통신 포트와 API 포트를 나눠 방화벽과 역방향 프록시 허용 목록 가운데 어디서 막을지 근거를 들어 고를 수 있다",
+      "개발 모드·실행 중 LoRA 갱신·미디어 URL 가져오기처럼 위험한 설정을 운영 환경에서 끄거나 제한할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.vllm-openai-server"
+    ],
+    "related": [
+      "be.security.ssrf",
+      "mlops.serve.runtime-lora-loading",
+      "mlops.guardrail.unbounded-consumption"
+    ],
+    "aliases": [
+      "vLLM 보안",
+      "vLLM security",
+      "vLLM 서버 보안 설정",
+      "vLLM hardening"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/usage/security/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.ray-serve-load-shedding",
+    "title": "Ray Serve 과부하 대응: 대기열 상한과 시간 제한",
+    "en": "Ray Serve Overload Handling: Queue Limits and Request Timeouts",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "레플리카당 동시 요청 상한, 핸들별 대기열 상한, HTTP 요청 시간 제한을 조합해 몰린 요청을 503·408로 빨리 돌려보내고 느린 요청이 레플리카를 막지 않게 한다.",
+    "objectives": [
+      "max_ongoing_requests와 max_queued_requests를 바꿀 때 지연·메모리·거절 비율이 어떻게 바뀌는지 근거를 말할 수 있다",
+      "클라이언트가 받은 503과 408을 보고 대기열이 찬 것인지 요청 시간이 넘은 것인지 원인을 찾을 수 있다",
+      "부하 차단 응답을 429와 Retry-After로 바꿀지, 클라이언트 재시도에 시간 제한을 둘지 고를 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.local-model-serving"
+    ],
+    "related": [
+      "be.run.load-control",
+      "mlops.serve.ray-serve-dynamic-batching",
+      "mlops.serve.kserve-autoscaling"
+    ],
+    "aliases": [
+      "Ray Serve 과부하",
+      "Ray Serve load shedding",
+      "Ray Serve 부하 차단",
+      "Ray Serve overload"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/serve/production-guide/best-practices.html",
+      "https://docs.ray.io/en/latest/serve/advanced-guides/performance.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "mlops.serve.kserve-canary-rollout",
     "title": "KServe로 모델 카나리 출시하고 되돌리기",
     "en": "Canary Rollout and Rollback with KServe",
@@ -6997,6 +7104,38 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "mlops.prompt.langfuse-prompt-cache",
+    "title": "Langfuse 프롬프트 캐시로 장애 견디기",
+    "en": "Langfuse Prompt Caching and Fallback for Availability",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Langfuse SDK가 프롬프트를 캐시해 만료 뒤에도 옛 값을 먼저 주고 뒤에서 새로 받는 방식을 알고, 캐시 수명·미리 받기·대체 프롬프트로 지연과 장애 대비를 정한다.",
+    "objectives": [
+      "캐시 수명을 늘리거나 0으로 둘 때 새 버전 반영 시간과 호출 지연이 어떻게 바뀌는지 근거를 말할 수 있다",
+      "프롬프트를 바꿨는데 앱에 바로 반영되지 않는 원인을 만료 뒤 옛 값을 먼저 주는 동작에서 찾을 수 있다",
+      "Langfuse API가 멈췄을 때 캐시·시작 시 미리 받기·대체 프롬프트 가운데 무엇이 앱을 지키는지 따져 조합을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.prompt.register-load"
+    ],
+    "related": [
+      "mlops.prompt.registry",
+      "mlops.observe.langfuse-tracing-quickstart"
+    ],
+    "aliases": [
+      "Langfuse 프롬프트 캐시",
+      "Langfuse prompt caching",
+      "Langfuse 프롬프트 관리 캐시"
+    ],
+    "refs": [
+      "https://langfuse.com/docs/prompt-management/features/caching"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "mlops.eval.llm-judge",
     "title": "LLM 심판(LLM-as-a-judge)",
     "en": "LLM-as-a-Judge",
@@ -7138,6 +7277,76 @@
       "https://docs.vllm.ai/en/latest/configuration/optimization.html",
       "https://docs.vllm.ai/en/latest/usage/metrics.html"
     ]
+  },
+  {
+    "id": "mlops.serve.vllm-cache-salt",
+    "title": "cache_salt(접두사 캐시 격리 값)",
+    "en": "vLLM cache_salt for Prefix Cache Isolation",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "요청에 넣으면 첫 블록 해시에 섞여 같은 값을 가진 요청끼리만 캐시된 KV 블록을 다시 쓰게 하는 vLLM 요청 값이다.",
+    "parent": "mlops.serve.vllm-prefix-cache-ops",
+    "related": [
+      "mlops.serve.prefix-caching"
+    ],
+    "aliases": [
+      "cache_salt",
+      "캐시 솔트",
+      "접두사 캐시 격리",
+      "prefix cache isolation"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/design/prefix_caching/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.vllm-api-key-scope",
+    "title": "vLLM --api-key 적용 범위",
+    "en": "vLLM --api-key Endpoint Scope",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "--api-key나 VLLM_API_KEY는 /v1 같은 정해진 경로 접두사에만 키를 요구하고 /metrics·/health·/tokenize 등은 키 없이 열어 둔다.",
+    "parent": "mlops.serve.vllm-server-hardening",
+    "related": [
+      "be.security.api-key"
+    ],
+    "aliases": [
+      "VLLM_API_KEY",
+      "vLLM API 키 범위",
+      "vLLM api-key scope"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/usage/security/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.ray-max-queued-requests",
+    "title": "max_queued_requests와 BackPressureError",
+    "en": "Ray Serve max_queued_requests and BackPressureError",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "배포 핸들마다 쌓을 수 있는 요청 수의 상한으로, 넘치면 새 요청은 바로 BackPressureError가 되고 HTTP로는 기본 503을 받는다.",
+    "parent": "mlops.serve.ray-serve-load-shedding",
+    "aliases": [
+      "max_queued_requests",
+      "BackPressureError",
+      "Ray Serve 대기열 상한"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/serve/production-guide/best-practices.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "mlops.prompt.alias",
@@ -7465,6 +7674,114 @@
     ],
     "refs": [
       "https://kserve.github.io/website/docs/reference/crd-api"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.prefix-cache-hit-rate",
+    "title": "접두사 캐시 적중률(prefix_cache_hits·queries)",
+    "en": "vLLM Prefix Cache Hit Rate Metrics",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "조회한 토큰 수와 그중 캐시에 있던 토큰 수를 따로 세는 두 카운터로, 원하는 구간의 비율을 PromQL로 계산해 접두사 캐시 효과를 본다.",
+    "parent": "mlops.serve.vllm-prefix-cache-ops",
+    "aliases": [
+      "vllm:prefix_cache_hits",
+      "vllm:prefix_cache_queries",
+      "prefix cache hit rate",
+      "접두사 캐시 적중률"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/usage/metrics/",
+      "https://docs.vllm.ai/en/latest/design/metrics/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.vllm-server-dev-mode",
+    "title": "VLLM_SERVER_DEV_MODE(개발용 엔드포인트)",
+    "en": "vLLM Server Development Mode Endpoints",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "켜면 /collective_rpc·/sleep·/reset_prefix_cache 같은 개발용 엔드포인트가 열리는 환경 변수로, 위험하므로 운영 서버에서는 켜지 않는다.",
+    "parent": "mlops.serve.vllm-server-hardening",
+    "aliases": [
+      "VLLM_SERVER_DEV_MODE",
+      "/collective_rpc",
+      "vLLM 개발 모드",
+      "vLLM dev endpoints"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/usage/security/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.prompt.langfuse-cache-ttl",
+    "title": "cache_ttl_seconds(Langfuse 프롬프트 캐시 수명)",
+    "en": "Langfuse Prompt cache_ttl_seconds",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "get_prompt에 주는 캐시 수명으로, 기본은 60초이고 만료 뒤에는 옛 프롬프트를 먼저 돌려주며 뒤에서 새로 받고 0이면 매번 API를 부른다.",
+    "parent": "mlops.prompt.langfuse-prompt-cache",
+    "aliases": [
+      "cache_ttl_seconds",
+      "cacheTtlSeconds",
+      "Langfuse 캐시 TTL"
+    ],
+    "refs": [
+      "https://langfuse.com/docs/prompt-management/features/caching"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.prompt.langfuse-fallback-prompt",
+    "title": "대체 프롬프트(Langfuse fallback)",
+    "en": "Langfuse Fallback Prompt",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "SDK 캐시에 프롬프트가 없고 Langfuse API에도 닿지 못할 때만 get_prompt가 대신 돌려주도록 코드에 넣어 두는 프롬프트다.",
+    "parent": "mlops.prompt.langfuse-prompt-cache",
+    "aliases": [
+      "Langfuse fallback prompt",
+      "Langfuse 대체 프롬프트",
+      "get_prompt fallback"
+    ],
+    "refs": [
+      "https://langfuse.com/docs/prompt-management/features/caching"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.ray-request-timeout",
+    "title": "request_timeout_s(Ray Serve 요청 시간 제한)",
+    "en": "Ray Serve request_timeout_s",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Serve 설정의 http_options에 두는 클러스터 전체 시간 제한으로, 넘긴 요청은 408로 끝나고 요청 헤더로 요청마다 바꿀 수도 있다.",
+    "parent": "mlops.serve.ray-serve-load-shedding",
+    "aliases": [
+      "request_timeout_s",
+      "x-request-timeout-seconds",
+      "Ray Serve 요청 타임아웃"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/serve/advanced-guides/performance.html"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"

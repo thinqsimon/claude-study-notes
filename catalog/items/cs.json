@@ -6254,6 +6254,133 @@
     ]
   },
   {
+    "id": "cs.data.grapheme-length",
+    "title": "글자 수 세기와 자르기: 코드 단위·코드 포인트·문자소",
+    "en": "Counting and Truncating Text by Grapheme Clusters",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "사람이 보는 한 글자는 코드 포인트 여럿일 수 있어, 글자 수 제한과 자르기를 문자소 단위로 할지 바이트로 할지 골라야 한다.",
+    "objectives": [
+      "이모지가 섞인 문자열의 length가 보이는 글자 수보다 큰 원인을 UTF-16 코드 단위로 설명할 수 있다",
+      "닉네임·미리보기를 자를 때 문자소 경계 안에서 잘라 깨진 글자가 생기는 원인을 찾을 수 있다",
+      "화면 글자 수 제한은 문자소로, 저장 크기 제한은 UTF-8 바이트로 따로 두는 설계의 근거를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "be.python.unicode"
+    ],
+    "aliases": [
+      "문자열 길이 세기",
+      "이모지 글자 수",
+      "string length emoji",
+      "글자 수 제한",
+      "문자열 자르기 깨짐"
+    ],
+    "refs": [
+      "https://www.unicode.org/reports/tr29/",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/length"
+    ]
+  },
+  {
+    "id": "cs.data.unicode-confusables",
+    "title": "닮은 글자 속임수: 유니코드 혼동 문자",
+    "en": "Unicode Confusables and Spoofing Detection",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "라틴 c와 키릴 с처럼 다른 글자가 똑같이 보여 사용자명·도메인을 사칭할 수 있으므로 혼동 판별과 문자 체계 제한으로 막는다.",
+    "objectives": [
+      "눈으로 같은 두 이름이 다른 계정으로 가입되는 원인을 서로 다른 문자 체계의 닮은 글자로 찾을 수 있다",
+      "가입 시 골격(skeleton)이 같은 기존 이름이 있으면 막는 방식과, 골격은 화면에 보여 주지 않고 저장했다면 유니코드 버전이 바뀔 때 다시 계산해야 하는 근거를 말할 수 있다",
+      "사용자명에 허용할 제한 수준(ASCII만·한 문자 체계·라틴+한글 등)을 서비스 사용자층에 맞게 고를 수 있다"
+    ],
+    "prerequisites": [
+      "be.python.unicode"
+    ],
+    "related": [
+      "cs.data.grapheme-length"
+    ],
+    "aliases": [
+      "혼동 문자",
+      "동형 문자 공격",
+      "homoglyph attack",
+      "IDN 스푸핑",
+      "IDN homograph",
+      "유니코드 사칭"
+    ],
+    "refs": [
+      "https://www.unicode.org/reports/tr39/"
+    ]
+  },
+  {
+    "id": "cs.net.listen-backlog",
+    "title": "연결 대기열이 넘칠 때: listen backlog",
+    "en": "TCP Listen Backlog and Accept Queue Overflow",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "서버가 accept로 꺼내기 전의 연결은 커널 대기열에 쌓이고, 이 대기열이 차면 몰릴 때 새 연결이 늦거나 거부된다.",
+    "objectives": [
+      "부하가 몰릴 때만 연결이 늦어지거나 거부되는 원인을 완성된 연결 대기열과 미완성 연결 대기열이 찬 것으로 찾을 수 있다",
+      "listen에 준 backlog가 somaxconn보다 크면 말없이 줄어든다는 근거로 설정값이 먹지 않는 이유를 말할 수 있다",
+      "대기열을 늘리는 것과 accept를 빨리 하도록 서버를 고치는 것 중 무엇을 먼저 할지, tcp_abort_on_overflow를 켜지 않는 근거와 함께 고를 수 있다"
+    ],
+    "prerequisites": [
+      "cs.net.tcp-vs-udp"
+    ],
+    "related": [
+      "cs.net.connection-errors"
+    ],
+    "aliases": [
+      "listen backlog",
+      "백로그 큐",
+      "accept queue",
+      "수락 대기열",
+      "SYN backlog",
+      "연결 대기열"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man2/listen.2.html",
+      "https://man7.org/linux/man-pages/man7/tcp.7.html"
+    ]
+  },
+  {
+    "id": "cs.net.tcp-keepalive",
+    "title": "유휴 연결이 끊길 때: TCP keepalive",
+    "en": "Idle Connection Drops and TCP Keepalive",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "오래 쉬는 TCP 연결은 중간 NAT가 상태를 지워 말없이 끊길 수 있어, keepalive 간격과 시간 제한을 그보다 짧게 맞춘다.",
+    "objectives": [
+      "한동안 쓰지 않던 DB·웹소켓 연결이 다음 요청에서 멈추거나 재설정되는 원인을 NAT의 유휴 시간 제한으로 찾을 수 있다",
+      "리눅스 기본값(2시간 뒤 75초 간격 9번)이 왜 이런 끊김을 막지 못하는지 근거를 말할 수 있다",
+      "SO_KEEPALIVE와 TCP_KEEPIDLE·TCP_KEEPINTVL·TCP_KEEPCNT를 소켓별로 줄일지, 응용 계층 ping을 쓸지 고를 수 있다",
+      "보낸 데이터가 확인되지 않을 때 끊는 TCP_USER_TIMEOUT과 keepalive의 역할 차이를 구분할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.net.tcp-vs-udp"
+    ],
+    "related": [
+      "cs.net.connection-errors"
+    ],
+    "aliases": [
+      "TCP keepalive",
+      "TCP 킵얼라이브",
+      "SO_KEEPALIVE",
+      "tcp_keepalive_time",
+      "유휴 연결 끊김"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man7/tcp.7.html",
+      "https://www.rfc-editor.org/rfc/rfc5382.html"
+    ]
+  },
+  {
     "id": "cs.net.nagle-delayed-ack",
     "title": "Nagle 알고리즘과 지연 ACK의 지연",
     "en": "Nagle's Algorithm, Delayed ACK, and TCP_NODELAY",
@@ -6549,6 +6676,48 @@
     ]
   },
   {
+    "id": "cs.data.grapheme-cluster",
+    "title": "문자소 클러스터",
+    "en": "Extended Grapheme Cluster",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "가족 이모지나 국기처럼 코드 포인트 여럿이 모여 사람 눈에 한 글자로 보이는 단위다.",
+    "parent": "cs.data.grapheme-length",
+    "aliases": [
+      "grapheme cluster",
+      "문자소",
+      "사용자 인식 문자",
+      "user-perceived character",
+      "Intl.Segmenter grapheme"
+    ],
+    "refs": [
+      "https://www.unicode.org/reports/tr29/"
+    ]
+  },
+  {
+    "id": "cs.data.utf16-surrogate-pair",
+    "title": "UTF-16 코드 단위와 대리 쌍",
+    "en": "UTF-16 Code Units and Surrogate Pairs",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "기본 다국어 평면 밖 글자를 UTF-16 코드 단위 두 개로 담는 방식으로, JavaScript 문자열 length가 글자 수와 달라지는 까닭이다.",
+    "parent": "cs.data.grapheme-length",
+    "aliases": [
+      "surrogate pair",
+      "서로게이트 쌍",
+      "대리 쌍",
+      "UTF-16 code unit",
+      "UTF-16 코드 단위"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String#utf-16_characters_unicode_code_points_and_grapheme_clusters"
+    ]
+  },
+  {
     "id": "cs.algo.atomic-group-possessive",
     "title": "원자 그룹과 소유 수량자",
     "en": "Atomic Groups and Possessive Quantifiers",
@@ -6626,6 +6795,123 @@
     ],
     "refs": [
       "https://www.rfc-editor.org/rfc/rfc9293",
+      "https://man7.org/linux/man-pages/man7/tcp.7.html"
+    ]
+  },
+  {
+    "id": "cs.data.confusable-skeleton",
+    "title": "혼동 판별 골격(skeleton)",
+    "en": "Confusable Skeleton (UTS #39)",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "닮은 글자를 대표 글자로 바꿔 만든 비교용 문자열로, 두 문자열의 골격이 같으면 혼동될 수 있다고 본다.",
+    "parent": "cs.data.unicode-confusables",
+    "aliases": [
+      "skeleton 함수",
+      "confusable skeleton",
+      "혼동 골격",
+      "confusables.txt"
+    ],
+    "refs": [
+      "https://www.unicode.org/reports/tr39/"
+    ]
+  },
+  {
+    "id": "cs.data.mixed-script-detection",
+    "title": "혼합 문자 체계 탐지",
+    "en": "Mixed-Script Detection",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "문자열 속 글자들이 공통으로 속하는 문자 체계가 없으면 라틴과 키릴처럼 섞인 것으로 보고 사칭 의심으로 거르는 검사다.",
+    "parent": "cs.data.unicode-confusables",
+    "aliases": [
+      "mixed-script",
+      "혼합 스크립트",
+      "mixed script detection",
+      "restriction level",
+      "문자 체계 제한 수준"
+    ],
+    "refs": [
+      "https://www.unicode.org/reports/tr39/"
+    ]
+  },
+  {
+    "id": "cs.net.somaxconn",
+    "title": "somaxconn(backlog 상한)",
+    "en": "net.core.somaxconn",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "listen에 준 backlog 값을 말없이 잘라 내는 리눅스 커널 상한으로, 5.4부터 기본값이 128에서 4096이 되었다.",
+    "parent": "cs.net.listen-backlog",
+    "aliases": [
+      "net.core.somaxconn",
+      "/proc/sys/net/core/somaxconn",
+      "SOMAXCONN"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man2/listen.2.html"
+    ]
+  },
+  {
+    "id": "cs.net.syn-cookies",
+    "title": "SYN 쿠키",
+    "en": "TCP SYN Cookies",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "미완성 연결 대기열이 넘칠 때 상태를 저장하지 않고 응답에 정보를 담아 SYN 폭주 공격을 견디는 리눅스 TCP 기능이다.",
+    "parent": "cs.net.listen-backlog",
+    "aliases": [
+      "SYN cookies",
+      "tcp_syncookies",
+      "SYN 쿠키 방어"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man7/tcp.7.html"
+    ]
+  },
+  {
+    "id": "cs.net.nat-idle-timeout",
+    "title": "NAT 유휴 시간 제한",
+    "en": "NAT Established-Connection Idle Timeout",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "NAT가 오가는 패킷이 없는 TCP 연결의 변환 상태를 지우기까지 기다리는 시간으로, RFC 5382는 2시간 4분 이상을 요구한다.",
+    "parent": "cs.net.tcp-keepalive",
+    "aliases": [
+      "NAT idle timeout",
+      "NAT 타임아웃",
+      "NAT 세션 만료",
+      "established connection idle-timeout"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc5382.html"
+    ]
+  },
+  {
+    "id": "cs.net.tcp-user-timeout",
+    "title": "TCP_USER_TIMEOUT",
+    "en": "TCP_USER_TIMEOUT Socket Option",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "보낸 데이터가 이 시간 동안 확인 응답을 못 받으면 연결을 강제로 닫고 ETIMEDOUT을 돌려주게 하는 리눅스 소켓 옵션이다.",
+    "parent": "cs.net.tcp-keepalive",
+    "aliases": [
+      "TCP user timeout",
+      "TCP 사용자 시간 제한"
+    ],
+    "refs": [
       "https://man7.org/linux/man-pages/man7/tcp.7.html"
     ]
   }

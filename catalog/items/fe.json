@@ -6684,6 +6684,144 @@
     ]
   },
   {
+    "id": "fe.html.accessibility-audit",
+    "title": "자동·수동 점검으로 접근성 문제 원인 찾기",
+    "en": "Diagnosing Accessibility Issues with Automated and Manual Testing",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "HTML",
+    "summary": "Lighthouse 같은 자동 검사로 1차 문제를 찾고, 키보드·확대 점검과 DevTools 접근성 트리로 자동 검사가 놓친 원인을 좁혀 가는 일이다.",
+    "objectives": [
+      "Lighthouse 접근성 보고서의 항목을 읽고 이름 없는 버튼, 낮은 대비 같은 실패의 원인 요소를 찾을 수 있다",
+      "DevTools 접근성 탭에서 요소의 역할·이름·상태를 확인해 스크린 리더가 엉뚱하게 읽는 원인을 찾을 수 있다",
+      "탭 순서가 화면 순서와 어긋날 때 양수 tabindex나 DOM 순서에서 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "fe.html.accessible-markup"
+    ],
+    "related": [
+      "fe.basics.wcag"
+    ],
+    "aliases": [
+      "접근성 디버깅",
+      "accessibility debugging",
+      "Lighthouse 접근성 검사",
+      "DevTools 접근성 탭"
+    ],
+    "refs": [
+      "https://web.dev/learn/accessibility/test-automated",
+      "https://web.dev/learn/accessibility/test-manual",
+      "https://developer.chrome.com/docs/devtools/accessibility/reference"
+    ]
+  },
+  {
+    "id": "fe.next.deployment-options",
+    "title": "Next.js 배포 방식 고르기",
+    "en": "Choosing a Next.js Deployment Option",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "Next.js",
+    "summary": "Node.js 서버·Docker·정적 내보내기·플랫폼 어댑터 중 쓰는 기능과 인프라에 맞는 배포 방식을 고르고, 여러 인스턴스 운영의 함정을 피하는 일이다.",
+    "objectives": [
+      "서버가 필요한 기능(쿠키, Proxy, ISR, Server Actions)을 쓰는지를 근거로 Node.js 서버·Docker·정적 내보내기 중 하나를 고를 수 있다",
+      "인스턴스를 여러 대 띄울 때 공유 캐시 핸들러, 같은 Server Actions 암호화 키, deploymentId가 왜 필요한지 근거를 말할 수 있다",
+      "\"Failed to find Server Action\" 오류나 오래된 페이지가 인스턴스마다 다르게 보일 때 키·캐시 불일치에서 원인을 찾을 수 있다",
+      "리버스 프록시 뒤에서 스트리밍이 한꺼번에 도착할 때 응답 버퍼링에서 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "fe.internals.rendering-strategy",
+      "ops.deploy.first-deploy"
+    ],
+    "related": [
+      "fe.next.caching-revalidation",
+      "fe.next.streaming-suspense"
+    ],
+    "aliases": [
+      "Next.js 배포",
+      "Next.js deployment",
+      "Next.js 셀프 호스팅",
+      "self-hosting Next.js",
+      "next start 배포"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/getting-started/deploying",
+      "https://nextjs.org/docs/app/guides/self-hosting"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "fe.ts.module-settings",
+    "title": "TypeScript module·moduleResolution 고르기",
+    "en": "Choosing TypeScript Module and moduleResolution Settings",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "TypeScript",
+    "summary": "코드를 실행하는 쪽이 번들러인지 Node.js인지, 라이브러리인지에 맞춰 module·moduleResolution을 골라 타입 검사는 통과하고 실행에서 깨지는 일을 막는 설계다.",
+    "objectives": [
+      "번들러 앱, Node.js 앱, 배포할 라이브러리 각각에 맞는 module·moduleResolution 조합을 고를 수 있다",
+      "TypeScript가 import 경로를 바꾸지 않고 실행 환경의 해석 규칙을 흉내 낸다는 점을 근거로 설정이 실행 환경과 맞아야 하는 이유를 말할 수 있다",
+      "타입 검사는 통과했는데 Node.js에서 ERR_MODULE_NOT_FOUND가 날 때 확장자 없는 상대 경로와 bundler 해석에서 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "fe.js.modules",
+      "fe.ts.object-types"
+    ],
+    "related": [
+      "fe.ts.tsconfig"
+    ],
+    "aliases": [
+      "TypeScript 모듈 설정",
+      "TS module 옵션",
+      "TypeScript module resolution",
+      "모듈 해석 설정"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/modules/guides/choosing-compiler-options.html",
+      "https://www.typescriptlang.org/docs/handbook/modules/theory.html"
+    ]
+  },
+  {
+    "id": "fe.internals.third-party-scripts",
+    "title": "서드파티 스크립트 불러오는 방식 고르기",
+    "en": "Loading Third-Party Scripts Efficiently",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "프론트엔드 내부",
+    "summary": "분석·광고·채팅 위젯 같은 외부 스크립트를 async·defer·지연 로딩·파사드·next/script 전략 중 무엇으로 불러올지 정해 첫 화면과 반응 속도를 지키는 설계다.",
+    "objectives": [
+      "스크립트가 일찍 실행돼야 하는지와 실행 순서가 중요한지를 근거로 async와 defer 중 하나를 고를 수 있다",
+      "중요한 외부 출처에만 preconnect를 쓰고 나머지는 dns-prefetch나 지연 로딩으로 미루는 근거를 말할 수 있다",
+      "Next.js에서 스크립트를 전체 레이아웃이 아닌 필요한 레이아웃에 두고 beforeInteractive·afterInteractive·lazyOnload 중 전략을 고를 수 있다",
+      "셀프 호스팅과 공급자 CDN의 유지 보수·캐시 제어 손익을 비교해 고를 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.web-performance-idea",
+      "fe.next.routes-layouts"
+    ],
+    "related": [
+      "fe.next.code-splitting",
+      "fe.internals.web-vitals"
+    ],
+    "aliases": [
+      "서드파티 스크립트",
+      "third-party script",
+      "외부 스크립트 로딩",
+      "제3자 자바스크립트",
+      "third-party JavaScript"
+    ],
+    "refs": [
+      "https://web.dev/articles/efficiently-load-third-party-javascript",
+      "https://nextjs.org/docs/app/guides/scripts"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "fe.next.data-access-layer",
     "title": "데이터 접근 계층(DAL)",
     "en": "Data Access Layer in Next.js",
@@ -7065,6 +7203,140 @@
     ]
   },
   {
+    "id": "fe.html.accessibility-tree",
+    "title": "접근성 트리",
+    "en": "Accessibility Tree",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "HTML",
+    "summary": "브라우저가 DOM에서 만들어 보조 기술에 넘기는 구조로, 요소마다 이름·역할·상태·설명을 담는다.",
+    "parent": "fe.html.accessibility-audit",
+    "aliases": [
+      "accessibility tree",
+      "접근성 트리 보기",
+      "AX 트리"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/Accessibility_tree",
+      "https://developer.chrome.com/docs/devtools/accessibility/reference"
+    ]
+  },
+  {
+    "id": "fe.html.accessible-name",
+    "title": "접근 가능한 이름",
+    "en": "Accessible Name",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "HTML",
+    "summary": "보조 기술이 요소를 부를 때 쓰는 이름으로, 요소 내용·연결된 label·alt·aria-labelledby·aria-label에서 얻는다.",
+    "parent": "fe.html.accessibility-audit",
+    "related": [
+      "fe.html.accessibility-tree"
+    ],
+    "aliases": [
+      "accessible name",
+      "접근성 이름",
+      "accessible name computation"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/Accessible_name"
+    ]
+  },
+  {
+    "id": "fe.next.output-standalone",
+    "title": "output: 'standalone' 빌드",
+    "en": "Next.js Standalone Output",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Next.js",
+    "summary": "빌드가 실행에 필요한 파일만 추적해 .next/standalone에 모으고 server.js를 만들어, node_modules를 따로 설치하지 않고 띄우게 하는 설정이다.",
+    "parent": "fe.next.deployment-options",
+    "aliases": [
+      "standalone 출력",
+      "standalone output",
+      "output standalone",
+      "출력 파일 추적",
+      "output file tracing"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/api-reference/config/next-config-js/output",
+      "https://nextjs.org/docs/app/getting-started/deploying"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "fe.next.static-export",
+    "title": "Next.js 정적 내보내기",
+    "en": "Next.js Static Export",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Next.js",
+    "summary": "output: 'export'로 빌드 때 모든 경로를 HTML 파일로 만들어 아무 정적 호스팅에 올리는 방식으로, 요청 시점이 필요한 기능은 쓸 수 없다.",
+    "parent": "fe.next.deployment-options",
+    "related": [
+      "fe.next.isr"
+    ],
+    "aliases": [
+      "정적 내보내기",
+      "static export",
+      "output export",
+      "next export"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/guides/static-exports"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "fe.ts.module-resolution-bundler",
+    "title": "moduleResolution: bundler",
+    "en": "Bundler Module Resolution in TypeScript",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "TypeScript",
+    "summary": "번들러의 경로 해석을 흉내 내 확장자 없는 상대 import를 허용하는 설정으로, 번들 없이 Node.js에서 돌리는 코드에 쓰면 실행 때 깨질 수 있다.",
+    "parent": "fe.ts.module-settings",
+    "aliases": [
+      "bundler 모듈 해석",
+      "moduleResolution bundler",
+      "bundler resolution"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/modules/theory.html",
+      "https://www.typescriptlang.org/docs/handbook/modules/guides/choosing-compiler-options.html"
+    ]
+  },
+  {
+    "id": "fe.next.script-strategy",
+    "title": "next/script의 strategy 속성",
+    "en": "Next.js Script Loading Strategy",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Next.js",
+    "summary": "Script 컴포넌트가 외부 스크립트를 하이드레이션 전(beforeInteractive)·직후(afterInteractive)·유휴 시간(lazyOnload) 중 언제 불러올지 정하는 속성이다.",
+    "parent": "fe.internals.third-party-scripts",
+    "aliases": [
+      "Script strategy",
+      "next/script strategy",
+      "lazyOnload",
+      "afterInteractive",
+      "beforeInteractive"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/guides/scripts"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "fe.internals.server-only",
     "title": "server-only와 client-only",
     "en": "server-only and client-only",
@@ -7142,6 +7414,47 @@
     "refs": [
       "https://developer.chrome.com/docs/devtools/settings/ignore-list"
     ]
+  },
+  {
+    "id": "fe.internals.third-party-facade",
+    "title": "서드파티 임베드 파사드",
+    "en": "Third-Party Embed Facade",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "프론트엔드 내부",
+    "summary": "동영상 플레이어·채팅 위젯 자리에 가벼운 정적 모양만 먼저 보여 주고, 사용자가 누를 때 진짜 임베드를 불러오는 기법이다.",
+    "parent": "fe.internals.third-party-scripts",
+    "aliases": [
+      "파사드 패턴 임베드",
+      "embed facade",
+      "third-party facade",
+      "임베드 지연 로딩"
+    ],
+    "refs": [
+      "https://developer.chrome.com/docs/lighthouse/performance/third-party-facades"
+    ]
+  },
+  {
+    "id": "fe.internals.bfcache",
+    "title": "뒤로/앞으로 캐시(bfcache)",
+    "en": "Back/Forward Cache",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "프론트엔드 내부",
+    "summary": "떠난 페이지를 자바스크립트 상태째 메모리에 두었다가 뒤로·앞으로 이동 때 바로 되살리는 브라우저 기능으로, unload 리스너나 no-store 응답이 이를 막을 수 있다.",
+    "aliases": [
+      "bfcache",
+      "back/forward cache",
+      "back-forward cache",
+      "뒤로 가기 캐시"
+    ],
+    "refs": [
+      "https://web.dev/articles/bfcache"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "fe.internals.render-pipeline",
