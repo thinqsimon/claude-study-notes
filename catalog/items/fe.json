@@ -6402,6 +6402,43 @@
     ]
   },
   {
+    "id": "fe.internals.performance-panel-debugging",
+    "title": "성능 패널로 느린 상호작용 원인 찾기",
+    "en": "Diagnosing Slow Interactions with the DevTools Performance Panel",
+    "kind": "topic",
+    "level": 4,
+    "importance": 1,
+    "group": "프론트엔드 내부",
+    "summary": "CPU를 느리게 걸고 기록한 성능 추적에서 긴 작업과 레이아웃 경고를 찾아 버벅임을 일으킨 코드 줄까지 좁혀 가는 진단법이다.",
+    "objectives": [
+      "CPU 스로틀링을 걸고 성능 추적을 기록해 저사양 기기의 버벅임을 재연할 수 있다",
+      "플레임 차트에서 빨간 삼각형이 붙은 긴 작업을 찾아 원인이 된 함수와 소스 줄을 짚을 수 있다",
+      "느린 상호작용이 입력 지연·처리 시간·표시 지연 중 어디서 생겼는지 구분해 고칠 곳을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "fe.js.promises-async"
+    ],
+    "related": [
+      "fe.internals.web-vitals",
+      "fe.internals.memory-leak-debugging",
+      "fe.internals.event-loop"
+    ],
+    "aliases": [
+      "성능 패널",
+      "Performance panel",
+      "성능 추적 기록",
+      "performance trace",
+      "플레임 차트",
+      "flame chart"
+    ],
+    "refs": [
+      "https://developer.chrome.com/docs/devtools/performance",
+      "https://web.dev/articles/optimize-inp"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "fe.internals.server-client-boundary",
     "title": "서버 컴포넌트와 클라이언트 컴포넌트 경계 정하기",
     "en": "Choosing the Server and Client Component Boundary",
@@ -6820,6 +6857,138 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
+  },
+  {
+    "id": "fe.ts.declaration-files",
+    "title": "라이브러리 타입 선언 찾기와 보강하기",
+    "en": "Finding and Augmenting Library Type Declarations",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "TypeScript",
+    "summary": "가져온 패키지의 타입이 없거나 모자랄 때 내장 타입, @types 패키지, 직접 쓴 선언 파일, 모듈 보강 가운데 맞는 길을 고르는 일이다.",
+    "objectives": [
+      "TypeScript가 패키지 타입을 node_modules와 @types에서 찾는 순서로 타입을 못 찾는 원인을 찾을 수 있다",
+      "내장 타입·@types 패키지·직접 쓴 선언 파일 중 무엇을 쓸지 고를 수 있다",
+      "패키지를 공개할 때 @types 의존성을 dependencies와 devDependencies 중 어디에 둘지 근거를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.ts.module-settings",
+      "fe.ts.object-types"
+    ],
+    "related": [
+      "fe.ts.tsconfig"
+    ],
+    "aliases": [
+      "타입 선언 파일",
+      "declaration file",
+      ".d.ts 파일",
+      "앰비언트 모듈 선언",
+      "ambient module declaration",
+      "와일드카드 모듈 선언"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/declaration-files/consumption.html",
+      "https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html",
+      "https://www.typescriptlang.org/docs/handbook/modules/reference.html"
+    ]
+  },
+  {
+    "id": "fe.internals.web-workers",
+    "title": "Web Worker로 무거운 계산 옮기기",
+    "en": "Offloading Heavy Work to Dedicated Web Workers",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "프론트엔드 내부",
+    "summary": "무거운 계산을 별도 스레드의 워커로 옮겨 화면 반응성을 지키되, DOM 접근 불가와 메시지 복사 비용이라는 제약을 따져 쓰는 설계다.",
+    "objectives": [
+      "어떤 작업을 워커로 옮길 수 있고 무엇은 메인 스레드에 남겨야 하는지 DOM 접근 제약으로 고를 수 있다",
+      "큰 데이터를 보낼 때 복사와 전송 중 무엇을 쓸지 근거를 말할 수 있다",
+      "postMessage에서 생기는 DataCloneError나 워커 오류의 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "fe.js.promises-async"
+    ],
+    "related": [
+      "fe.internals.event-loop",
+      "fe.internals.performance-panel-debugging"
+    ],
+    "aliases": [
+      "웹 워커",
+      "web worker",
+      "전용 워커",
+      "dedicated worker",
+      "워커 스레드 분리"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Transferable_objects"
+    ]
+  },
+  {
+    "id": "fe.css.component-extension-forking",
+    "title": "디자인 시스템 컴포넌트 확장과 포크 고르기",
+    "en": "Extending, Modifying and Forking Design System Components",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "CSS",
+    "summary": "공용 디자인 시스템 컴포넌트를 바꿔야 할 때 덮어쓰기 클래스·수정자·포크 중 무엇을 쓸지 업데이트 안전성과 접근성을 따져 고르는 일이다.",
+    "objectives": [
+      "기존 오버라이드 클래스, 자기 접두사를 붙인 수정자 클래스, 포크 가운데 바꿀 범위에 맞는 방법을 골라 근거를 말할 수 있다",
+      "공용 클래스 이름을 직접 겨냥한 스타일이 디자인 시스템 업데이트 뒤 깨지는 원인을 찾을 수 있다",
+      "포크로 얻는 안정성과 잃는 업스트림 업데이트를 비교하고, 수정한 컴포넌트도 WCAG 2.2 AA를 다시 확인해야 하는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.design-system-idea"
+    ],
+    "related": [
+      "plan.figma.detach-instance"
+    ],
+    "aliases": [
+      "디자인 시스템 컴포넌트 확장",
+      "디자인 시스템 컴포넌트 수정",
+      "디자인 시스템 커스터마이징",
+      "extending design system components"
+    ],
+    "refs": [
+      "https://design-system.service.gov.uk/get-started/extending-and-modifying-components/"
+    ]
+  },
+  {
+    "id": "fe.internals.service-worker-caching",
+    "title": "서비스 워커 캐싱 전략 고르기",
+    "en": "Choosing Service Worker Caching Strategies",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "프론트엔드 내부",
+    "summary": "요청마다 캐시 우선·네트워크 우선·stale-while-revalidate 등을 골라 오프라인 동작과 최신성 사이의 손익을 맞추는 설계다.",
+    "objectives": [
+      "자원 종류에 따라 캐시 우선과 네트워크 우선 중 하나를 고르고 근거를 말할 수 있다",
+      "캐시와 네트워크가 모두 실패할 때 보여 줄 대체 응답을 설계할 수 있다",
+      "새 서비스 워커가 적용되지 않는 원인을 생명주기의 대기 상태로 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.js.promises-async"
+    ],
+    "related": [
+      "fe.basics.service-worker",
+      "fe.next.caching-revalidation"
+    ],
+    "aliases": [
+      "서비스 워커 캐싱",
+      "service worker caching",
+      "캐시 우선 전략",
+      "cache first",
+      "네트워크 우선 전략",
+      "network first"
+    ],
+    "refs": [
+      "https://web.dev/articles/offline-cookbook",
+      "https://web.dev/articles/service-worker-lifecycle"
+    ]
   },
   {
     "id": "fe.next.data-access-layer",
@@ -7337,6 +7506,119 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "fe.internals.forced-reflow",
+    "title": "강제 동기 레이아웃",
+    "en": "Forced Synchronous Layout",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "프론트엔드 내부",
+    "summary": "스타일을 바꾼 직후 offsetHeight 같은 레이아웃 값을 읽어 브라우저가 레이아웃을 즉시 다시 계산하게 만드는 일로, 반복문 안에서 되풀이되면 레이아웃 스래싱이 된다.",
+    "parent": "fe.internals.performance-panel-debugging",
+    "related": [
+      "fe.internals.render-pipeline"
+    ],
+    "aliases": [
+      "강제 리플로",
+      "forced reflow",
+      "레이아웃 스래싱",
+      "layout thrashing",
+      "강제 레이아웃"
+    ],
+    "refs": [
+      "https://web.dev/articles/avoid-large-complex-layouts-and-layout-thrashing",
+      "https://developer.chrome.com/docs/devtools/performance"
+    ]
+  },
+  {
+    "id": "fe.internals.inp-subparts",
+    "title": "INP 세 구간: 입력 지연·처리 시간·표시 지연",
+    "en": "INP Subparts: Input Delay, Processing Duration, Presentation Delay",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "프론트엔드 내부",
+    "summary": "한 상호작용의 지연을 콜백 시작 전 대기, 콜백 실행, 다음 화면 그리기까지로 나눠 어느 쪽을 줄일지 정하게 해 주는 구분이다.",
+    "parent": "fe.internals.performance-panel-debugging",
+    "related": [
+      "fe.internals.web-vitals"
+    ],
+    "aliases": [
+      "INP 하위 구간",
+      "INP subparts",
+      "INP 입력 지연",
+      "INP 표시 지연",
+      "presentation delay",
+      "processing duration"
+    ],
+    "refs": [
+      "https://web.dev/articles/optimize-inp"
+    ]
+  },
+  {
+    "id": "fe.ts.types-packages",
+    "title": "@types 패키지",
+    "en": "DefinitelyTyped @types Packages",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "TypeScript",
+    "summary": "자체 타입이 없는 JavaScript 패키지를 위해 DefinitelyTyped에서 따로 배포하는 타입 선언 패키지로, 이름은 @types/패키지명 꼴이다.",
+    "parent": "fe.ts.declaration-files",
+    "aliases": [
+      "DefinitelyTyped",
+      "타입 선언 패키지",
+      "@types/패키지명"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/declaration-files/consumption.html",
+      "https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html"
+    ]
+  },
+  {
+    "id": "fe.internals.structured-clone",
+    "title": "구조화된 복제 알고리즘",
+    "en": "Structured Clone Algorithm",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "프론트엔드 내부",
+    "summary": "postMessage·structuredClone·IndexedDB가 값을 복사할 때 쓰는 규칙으로, 함수와 DOM 노드는 오류를 내고 클래스 인스턴스는 메서드를 잃는다.",
+    "parent": "fe.internals.web-workers",
+    "related": [
+      "fe.js.json-stringify-parse"
+    ],
+    "aliases": [
+      "structuredClone",
+      "구조적 복제",
+      "structured clone",
+      "DataCloneError"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm"
+    ]
+  },
+  {
+    "id": "fe.css.component-fork",
+    "title": "디자인 시스템 컴포넌트 포크",
+    "en": "Forking a Design System Component",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "CSS",
+    "summary": "공용 컴포넌트의 소스를 복사해 이름과 접두사를 모두 바꾼 새 컴포넌트로 따로 관리하는 방식으로, 안정적이지만 원본 업데이트를 더는 받지 못한다.",
+    "parent": "fe.css.component-extension-forking",
+    "aliases": [
+      "컴포넌트 포크",
+      "component fork",
+      "포크한 컴포넌트",
+      "forked component"
+    ],
+    "refs": [
+      "https://design-system.service.gov.uk/get-started/extending-and-modifying-components/"
+    ]
+  },
+  {
     "id": "fe.internals.server-only",
     "title": "server-only와 client-only",
     "en": "server-only and client-only",
@@ -7455,6 +7737,99 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
+  },
+  {
+    "id": "fe.internals.service-worker-lifecycle",
+    "title": "서비스 워커 생명주기와 업데이트 대기",
+    "en": "Service Worker Lifecycle and Update Waiting",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "프론트엔드 내부",
+    "summary": "설치된 새 서비스 워커가 기존 워커가 다룬 탭이 모두 닫힐 때까지 기다렸다가 활성화되는 흐름으로, 새로고침만으로 갱신되지 않는 원인이 된다.",
+    "parent": "fe.internals.service-worker-caching",
+    "related": [
+      "fe.basics.service-worker"
+    ],
+    "aliases": [
+      "서비스 워커 업데이트",
+      "service worker update",
+      "skipWaiting",
+      "clients.claim",
+      "서비스 워커 대기 상태"
+    ],
+    "refs": [
+      "https://web.dev/articles/service-worker-lifecycle"
+    ]
+  },
+  {
+    "id": "fe.internals.offline-fallback",
+    "title": "오프라인 대체 응답",
+    "en": "Service Worker Offline Fallback Response",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "프론트엔드 내부",
+    "summary": "캐시와 네트워크가 모두 실패할 때 서비스 워커가 미리 캐시해 둔 오프라인 안내 페이지나 기본 이미지를 대신 돌려주는 방식이다.",
+    "parent": "fe.internals.service-worker-caching",
+    "aliases": [
+      "오프라인 대체 페이지",
+      "offline fallback page",
+      "오프라인 안내 페이지",
+      "generic fallback"
+    ],
+    "refs": [
+      "https://web.dev/articles/offline-cookbook"
+    ]
+  },
+  {
+    "id": "fe.ts.module-augmentation",
+    "title": "모듈 보강과 전역 보강",
+    "en": "TypeScript Module and Global Augmentation",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "TypeScript",
+    "summary": "declare module이나 declare global로 이미 있는 모듈이나 전역 인터페이스에 멤버를 덧붙이는 기법으로, 새 최상위 선언은 추가할 수 없다.",
+    "parent": "fe.ts.declaration-files",
+    "related": [
+      "fe.ts.object-types"
+    ],
+    "aliases": [
+      "모듈 보강",
+      "module augmentation",
+      "전역 보강",
+      "global augmentation",
+      "declare global",
+      "인터페이스 병합"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/declaration-merging.html"
+    ]
+  },
+  {
+    "id": "fe.internals.transferable-objects",
+    "title": "전송 가능 객체",
+    "en": "Transferable Objects",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "프론트엔드 내부",
+    "summary": "ArrayBuffer 같은 자원을 복사하지 않고 다른 스레드로 옮기는 방식으로, 빠르지만 보낸 쪽 객체는 비워져 더 쓸 수 없다.",
+    "parent": "fe.internals.web-workers",
+    "related": [
+      "fe.internals.structured-clone"
+    ],
+    "aliases": [
+      "Transferable",
+      "transferable objects",
+      "transfer 목록",
+      "zero-copy 전송",
+      "ArrayBuffer 전송"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Transferable_objects"
+    ]
   },
   {
     "id": "fe.internals.render-pipeline",

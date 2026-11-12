@@ -1,5 +1,5 @@
 {
- "version": "0.64.0",
+ "version": "0.65.0",
  "domains": [
   {
    "prefix": "dev",
@@ -6804,6 +6804,77 @@
    "domain": "dev"
   },
   {
+   "id": "dev.git.advanced-merge",
+   "title": "꼬인 병합 다루기: 충돌 진단과 병합 되돌리기",
+   "en": "Advanced Merging: Diagnosing Conflicts and Undoing Merges",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "Git",
+   "summary": "공통 조상을 함께 보는 충돌 표시와 충돌 파일만 고른 기록으로 원인을 찾고, 공유된 병합은 reset 대신 revert로 되돌리는 방법이다.",
+   "objectives": [
+    "diff3 충돌 표시와 git diff --base·--ours·--theirs로 양쪽이 원래 줄을 어떻게 바꿨는지 보고 충돌 원인을 찾을 수 있다",
+    "git log --merge로 충돌 파일을 건드린 커밋만 골라 어느 변경이 부딪혔는지 근거를 말할 수 있다",
+    "병합이 이미 공유됐는지에 따라 reset과 revert -m 1 가운데 되돌리는 방법을 고를 수 있다",
+    "되돌린 병합 뒤 다시 병합해도 변경이 들어오지 않는 원인을 찾고 되돌림을 되돌려 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.merge-conflict",
+    "dev.git.undo-commits"
+   ],
+   "related": [
+    "dev.git.rerere",
+    "dev.git.ours-theirs"
+   ],
+   "aliases": [
+    "고급 병합",
+    "advanced merging",
+    "충돌 원인 찾기",
+    "git log --merge",
+    "병합 커밋 되돌리기",
+    "undo a merge"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.debug.faulthandler-devmode",
+   "title": "멈추거나 죽는 파이썬 진단: faulthandler와 개발 모드",
+   "en": "Diagnosing Hangs and Crashes with faulthandler and Python Development Mode",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "디버깅",
+   "summary": "치명적 신호·시간 초과·사용자 신호 때 모든 스레드의 호출 위치를 찍는 faulthandler와 비싼 검사를 켜는 개발 모드로 멈춤과 충돌 원인을 찾는 법이다.",
+   "objectives": [
+    "세그먼트 폴트로 죽는 프로그램에서 -X faulthandler로 죽은 위치의 파이썬 호출 기록을 얻어 원인을 찾을 수 있다",
+    "응답 없이 멈춘 작업에 dump_traceback_later나 신호 등록을 걸어 어느 스레드가 어디서 막혔는지 찾을 수 있다",
+    "-X dev가 켜는 경고·메모리 할당 검사·asyncio 디버그를 알고 개발과 테스트에만 켜는 근거를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.debug.pdb"
+   ],
+   "related": [
+    "dev.debug.remote-attach",
+    "dev.test.warnings-as-errors"
+   ],
+   "aliases": [
+    "faulthandler",
+    "파이썬 개발 모드",
+    "Python Development Mode",
+    "멈춘 프로그램 진단",
+    "세그먼트 폴트 추적",
+    "-X faulthandler"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/faulthandler.html",
+    "https://docs.python.org/3/library/devmode.html"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.git.large-repo-clone",
    "title": "큰 저장소 가볍게 받기: 얕은·부분 클론과 sparse-checkout",
    "en": "Shallow Clone, Partial Clone, and Sparse Checkout for Large Repositories",
@@ -6900,6 +6971,74 @@
     "https://hypothesis.readthedocs.io/en/latest/quickstart.html",
     "https://hypothesis.readthedocs.io/en/latest/tutorial/replaying-failures.html"
    ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.repo-performance",
+   "title": "큰 저장소의 Git 속도: fsmonitor와 maintenance",
+   "en": "Speeding Up Git in Large Repositories: fsmonitor and maintenance",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "Git",
+   "summary": "파일 변경 감시 데몬으로 status의 작업 폴더 훑기를 줄이고, 백그라운드 maintenance로 commit-graph·팩 정리를 미리 해 큰 저장소의 Git을 빠르게 하는 법이다.",
+   "objectives": [
+    "git status가 느린 원인이 작업 폴더 전체 훑기인지 보고 core.fsmonitor를 켤지 고를 수 있다",
+    "네트워크 드라이브나 inotify 감시 한도 때문에 fsmonitor가 실패하는 원인을 찾을 수 있다",
+    "git maintenance의 gc·geometric·incremental 전략을 비교해 큰 저장소에 맞는 정리 방식을 근거와 함께 고를 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.three-states"
+   ],
+   "related": [
+    "dev.git.large-repo-clone"
+   ],
+   "aliases": [
+    "Git 성능 개선",
+    "느린 git status",
+    "Git performance",
+    "큰 저장소 성능"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/git-fsmonitor--daemon",
+    "https://git-scm.com/docs/git-maintenance"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.merge-queue",
+   "title": "병합 큐로 main 깨짐 막기",
+   "en": "Merge Queue",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "Git",
+   "summary": "GitHub 병합 큐가 대기 중인 풀 리퀘스트를 최신 대상 브랜치와 앞선 PR에 합친 상태로 다시 검사해, 따로는 통과한 변경끼리 main을 깨는 일을 막는 방식이다.",
+   "objectives": [
+    "브랜치 최신 상태 요구와 병합 큐를 비교해 PR이 많은 저장소에 어느 쪽을 쓸지 근거를 말할 수 있다",
+    "PR이 큐에 들어가도 필수 검사가 보고되지 않아 병합이 실패하는 원인을 찾을 수 있다",
+    "빌드 동시 실행 수와 묶음 크기, 실패한 PR 묶기 허용 여부의 손익을 따져 큐 설정을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.merge-methods",
+    "dev.git.pr-review"
+   ],
+   "related": [
+    "dev.git.branch-protection"
+   ],
+   "aliases": [
+    "병합 큐",
+    "머지 큐",
+    "GitHub merge queue",
+    "Require merge queue"
+   ],
+   "refs": [
+    "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "dev"
   },
   {
@@ -7159,6 +7298,77 @@
    "domain": "dev"
   },
   {
+   "id": "dev.git.conflict-style-diff3",
+   "title": "충돌 표시 형식: diff3와 zdiff3",
+   "en": "merge.conflictStyle diff3 and zdiff3",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Git",
+   "summary": "충돌 표시에 |||||||와 공통 조상의 원래 내용을 더해 보여 주는 설정으로, zdiff3는 양쪽이 같은 앞뒤 줄을 충돌 구역 밖으로 뺀다.",
+   "parent": "dev.git.advanced-merge",
+   "aliases": [
+    "merge.conflictStyle",
+    "conflictstyle diff3",
+    "zdiff3",
+    "checkout --conflict=diff3",
+    "diff3 충돌 표시"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/git-merge",
+    "https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.revert-merge-remerge",
+   "title": "병합을 되돌린 뒤 다시 병합하기",
+   "en": "Re-merging After Reverting a Merge",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Git",
+   "summary": "revert -m으로 되돌린 브랜치를 다시 병합하면 이미 병합된 것으로 보아 예전 변경이 빠지므로, 되돌림 커밋을 먼저 되돌려야 한다.",
+   "parent": "dev.git.advanced-merge",
+   "related": [
+    "dev.git.revert"
+   ],
+   "aliases": [
+    "되돌린 병합 다시 병합",
+    "revert the revert",
+    "되돌림 되돌리기",
+    "reverted merge re-merge"
+   ],
+   "refs": [
+    "https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.debug.python-dev-mode",
+   "title": "파이썬 개발 모드(-X dev)",
+   "en": "Python Development Mode (-X dev)",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "디버깅",
+   "summary": "시작할 때 -X dev나 PYTHONDEVMODE=1로 켜며, 기본 경고 표시·메모리 할당 검사·faulthandler·asyncio 디버그를 한꺼번에 켠다.",
+   "parent": "dev.debug.faulthandler-devmode",
+   "related": [
+    "dev.test.warning-filter-option"
+   ],
+   "aliases": [
+    "-X dev",
+    "PYTHONDEVMODE",
+    "sys.flags.dev_mode",
+    "파이썬 dev 모드"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/devmode.html"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.robust.fsync",
    "title": "fsync",
    "en": "fsync",
@@ -7358,6 +7568,122 @@
    "refs": [
     "https://hypothesis.readthedocs.io/en/latest/tutorial/replaying-failures.html"
    ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.debug.dump-traceback-later",
+   "title": "시간 초과 때 호출 기록 찍기: dump_traceback_later",
+   "en": "faulthandler.dump_traceback_later",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "디버깅",
+   "summary": "정한 초가 지나면 감시 스레드가 모든 스레드의 호출 기록을 찍는 함수로, repeat로 되풀이하고 exit로 곧바로 끝낼 수도 있다.",
+   "parent": "dev.debug.faulthandler-devmode",
+   "aliases": [
+    "dump_traceback_later",
+    "cancel_dump_traceback_later",
+    "멈춤 감시 타이머",
+    "faulthandler 타이머"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/faulthandler.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.fsmonitor",
+   "title": "Git 파일 시스템 감시(fsmonitor)",
+   "en": "Git Built-in File System Monitor (core.fsmonitor)",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Git",
+   "summary": "운영체제의 파일 변경 알림을 받는 백그라운드 데몬이 바뀐 파일을 알려 주어 git status가 작업 폴더 전체를 훑지 않게 한다.",
+   "parent": "dev.git.repo-performance",
+   "aliases": [
+    "core.fsmonitor",
+    "fsmonitor--daemon",
+    "fsmonitor 데몬",
+    "파일 변경 감시 데몬"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/git-fsmonitor--daemon"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.maintenance",
+   "title": "git maintenance",
+   "en": "git maintenance",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Git",
+   "summary": "commit-graph 갱신·미리 가져오기·작은 팩 합치기 같은 정리 작업을 시간표에 맞춰 백그라운드에서 돌려 다른 Git 명령을 빠르게 하는 명령이다.",
+   "parent": "dev.git.repo-performance",
+   "aliases": [
+    "git maintenance start",
+    "maintenance.strategy",
+    "Git 백그라운드 유지 보수",
+    "incremental maintenance",
+    "geometric repacking"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/git-maintenance"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.commit-graph",
+   "title": "커밋 그래프 파일(commit-graph)",
+   "en": "Commit-Graph File",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Git",
+   "summary": "커밋의 부모와 세대 번호를 미리 모아 둔 색인 파일로, 커밋 객체를 하나씩 풀지 않고 기록을 훑게 해 경로를 지정한 log 등을 빠르게 한다.",
+   "parent": "dev.git.repo-performance",
+   "related": [
+    "dev.git.maintenance"
+   ],
+   "aliases": [
+    "git commit-graph",
+    "commit-graph write",
+    "changed-path Bloom filter",
+    "커밋 그래프 색인"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/git-commit-graph",
+    "https://git-scm.com/docs/commit-graph",
+    "https://git-scm.com/docs/git-maintenance"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.merge-group-event",
+   "title": "merge_group 워크플로 트리거",
+   "en": "merge_group Workflow Event",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Git",
+   "summary": "병합 큐가 묶음 검사를 요청할 때 GitHub Actions 워크플로를 돌리는 이벤트로, pull_request만 있으면 큐에서 필수 검사가 보고되지 않는다.",
+   "parent": "dev.git.merge-queue",
+   "aliases": [
+    "merge_group",
+    "checks_requested",
+    "merge_group 이벤트",
+    "gh-readonly-queue"
+   ],
+   "refs": [
+    "https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows",
+    "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "dev"
   },
   {
@@ -14214,6 +14540,151 @@
    "domain": "cs"
   },
   {
+   "id": "cs.net.time-wait-addr-in-use",
+   "title": "TIME_WAIT과 주소 사용 중 오류(EADDRINUSE)",
+   "en": "TCP TIME-WAIT State and Address-Already-in-Use Errors",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "네트워크",
+   "summary": "먼저 연결을 닫은 쪽이 한동안 TIME_WAIT에 머무는 이유를 알고, 서버 재시작 때 나는 주소 사용 중 오류와 TIME_WAIT 누적의 원인을 가린다.",
+   "objectives": [
+    "TIME_WAIT 소켓이 많이 쌓인 쪽이 연결을 먼저 닫는 쪽이라는 규칙으로 어느 프로그램이 연결을 끊고 있는지 찾을 수 있다",
+    "서버를 다시 띄울 때 나는 Address already in use가 닫힌 지 얼마 안 된 주소 때문인지, 아직 수신 중인 다른 프로세스 때문인지 가를 수 있다",
+    "SO_REUSEADDR이 닫힌 지 얼마 안 된 주소의 bind는 허용해도 활성 수신 소켓이 있는 주소는 허용하지 않는다는 근거로 설정 여부를 고를 수 있다",
+    "tcp_tw_reuse 같은 커널 값을 바꾸기 전에 TIME_WAIT이 늦게 도착한 옛 연결의 세그먼트를 막는 장치라는 근거로 위험을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.net.tcp-vs-udp",
+    "cs.net.connection-errors"
+   ],
+   "related": [
+    "cs.net.listen-backlog",
+    "ops.network.ss-listening"
+   ],
+   "aliases": [
+    "Address already in use",
+    "주소 사용 중 오류",
+    "포트 이미 사용 중",
+    "port already in use"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9293",
+    "https://man7.org/linux/man-pages/man7/socket.7.html",
+    "https://man7.org/linux/man-pages/man7/ip.7.html",
+    "https://man7.org/linux/man-pages/man2/bind.2.html",
+    "https://man7.org/linux/man-pages/man7/tcp.7.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.fork-with-threads",
+   "title": "스레드가 있는 프로세스의 fork와 시작 방식",
+   "en": "Forking a Multithreaded Process and Process Start Methods",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "fork한 자식에는 호출한 스레드 하나만 남고 잠금 상태는 그대로 복사되므로, 스레드를 쓰는 프로그램에서는 자식 프로세스 시작 방식을 골라야 한다.",
+   "objectives": [
+    "fork 뒤 자식이 멈추는 원인을, 다른 스레드가 쥐고 있던 잠금이 잠긴 채 복사되고 그 스레드는 자식에 없다는 점에서 찾을 수 있다",
+    "fork 뒤 exec 전의 자식에서는 비동기 시그널 안전 함수만 안전하다는 근거로 자식에서 할 일을 줄일 수 있다",
+    "spawn·fork·forkserver 시작 방식의 손익(속도, 물려받는 자원, 스레드 안전)을 비교해 고를 수 있다",
+    "쓰기 시 복사 덕분에 fork 직후 메모리가 바로 두 배가 되지 않는다는 점으로 fork 기반 워커의 메모리 사용을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.os.process-vs-thread",
+    "cs.os.mutex-lock"
+   ],
+   "related": [
+    "be.async.gil",
+    "cs.os.signals"
+   ],
+   "aliases": [
+    "멀티스레드 fork",
+    "fork after threads",
+    "fork 교착",
+    "multiprocessing 시작 방식",
+    "프로세스 시작 방식"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man2/fork.2.html",
+    "https://docs.python.org/3/library/multiprocessing.html#contexts-and-start-methods",
+    "https://man7.org/linux/man-pages/man7/signal-safety.7.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.toctou",
+   "title": "확인과 사용 사이의 틈: 파일 경로 TOCTOU",
+   "en": "Time-of-Check to Time-of-Use (TOCTOU) Races on File Paths",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "파일을 먼저 검사하고 나중에 여는 사이에 경로가 바뀔 수 있으므로, 검사와 사용을 한 번의 호출로 묶어 경쟁과 링크 바꿔치기를 막는다.",
+   "objectives": [
+    "존재 확인이나 access 검사 뒤에 open하는 코드에서, 그 틈에 파일이 생기거나 심볼릭 링크로 바뀌어 생기는 보안 구멍을 찾을 수 있다",
+    "있는지 확인하고 만드는 두 단계 대신 O_CREAT와 O_EXCL로 한 번에 만드는 방식을 고르고 그 근거를 말할 수 있다",
+    "마지막 경로 요소의 심볼릭 링크를 막는 O_NOFOLLOW가 앞쪽 디렉터리의 링크는 막지 못한다는 한계를 알고 디렉터리 기술자 기반 *at 호출이 필요한 경우를 고를 수 있다"
+   ],
+   "prerequisites": [
+    "cs.os.hard-vs-symbolic-link",
+    "cs.os.mutex-lock"
+   ],
+   "related": [
+    "be.async.race-condition",
+    "dev.robust.atomic-replace",
+    "be.security.input-output"
+   ],
+   "aliases": [
+    "time of check to time of use",
+    "검사 후 사용 경쟁",
+    "파일 경쟁 조건"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man2/access.2.html",
+    "https://man7.org/linux/man-pages/man2/open.2.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.data.identifier-comparison",
+   "title": "사용자 이름 같음 판정: 대소문자와 정규화",
+   "en": "Comparing Unicode Identifiers: Case Mapping and Normalization",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "데이터 표현",
+   "summary": "사용자 이름이 같은지 판정할 때 대소문자 처리와 유니코드 정규화를 정해진 순서로 적용한 뒤 바이트로 비교해 중복 가입과 잘못된 일치를 막는다.",
+   "objectives": [
+    "lower()와 casefold()가 ß 같은 글자에서 다르게 동작한다는 근거로 대소문자 무시 비교에 쓸 함수를 고를 수 있다",
+    "대소문자 접기 뒤 결과가 정규형이 아닐 수 있어 정규화를 다시 적용해야 하는 이유를 말할 수 있다",
+    "PRECIS의 대소문자 매핑 프로필과 보존 프로필의 손익을 들어 사용자 이름 규칙을 고를 수 있다",
+    "규칙을 적용한 문자열끼리 바이트 단위로 비교해야 하고 한 번 적용으로 안정되지 않을 수 있다는 점으로 같은 이름이 둘 가입되는 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "be.python.unicode"
+   ],
+   "related": [
+    "cs.data.unicode-confusables",
+    "cs.data.grapheme-length"
+   ],
+   "aliases": [
+    "대소문자 무시 비교",
+    "caseless comparison",
+    "case-insensitive comparison",
+    "사용자명 정규화",
+    "username normalization"
+   ],
+   "refs": [
+    "https://docs.python.org/3/howto/unicode.html#comparing-strings",
+    "https://docs.python.org/3/library/stdtypes.html#str.casefold",
+    "https://www.rfc-editor.org/rfc/rfc8265.html"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.net.nagle-delayed-ack",
    "title": "Nagle 알고리즘과 지연 ACK의 지연",
    "en": "Nagle's Algorithm, Delayed ACK, and TCP_NODELAY",
@@ -14566,6 +15037,95 @@
    "domain": "cs"
   },
   {
+   "id": "cs.net.time-wait",
+   "title": "TIME_WAIT 상태",
+   "en": "TCP TIME-WAIT State",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "네트워크",
+   "summary": "TCP 연결을 먼저 닫은 쪽이 상대가 마지막 확인을 받았는지와 옛 세그먼트가 사라졌는지를 위해 최대 세그먼트 수명의 두 배 동안 머무는 상태다.",
+   "parent": "cs.net.time-wait-addr-in-use",
+   "aliases": [
+    "TIME-WAIT",
+    "TIME_WAIT 소켓",
+    "타임 웨이트 상태",
+    "2MSL 대기"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9293"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.so-reuseaddr",
+   "title": "SO_REUSEADDR(로컬 주소 재사용 옵션)",
+   "en": "SO_REUSEADDR Socket Option",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "네트워크",
+   "summary": "닫힌 지 얼마 안 된 로컬 주소에도 bind를 허용하되, 그 주소에 활성 수신 소켓이 있으면 여전히 막는 소켓 옵션이다.",
+   "parent": "cs.net.time-wait-addr-in-use",
+   "aliases": [
+    "SO_REUSEADDR 옵션",
+    "reuse address 옵션",
+    "주소 재사용 옵션",
+    "allow_reuse_address"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man7/socket.7.html",
+    "https://man7.org/linux/man-pages/man7/ip.7.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.o-excl",
+   "title": "배타적 생성(O_CREAT | O_EXCL)",
+   "en": "Exclusive File Creation with O_CREAT | O_EXCL",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "파일이 이미 있으면 EEXIST로 실패하고 경로가 심볼릭 링크여도 따라가지 않아, 확인과 생성을 한 번에 하는 open 플래그 조합이다.",
+   "parent": "cs.os.toctou",
+   "related": [
+    "dev.robust.tempfile"
+   ],
+   "aliases": [
+    "O_EXCL",
+    "O_CREAT|O_EXCL",
+    "배타적 파일 생성",
+    "exclusive create"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man2/open.2.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.data.case-folding",
+   "title": "대소문자 접기(case folding)",
+   "en": "Unicode Case Folding",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "데이터 표현",
+   "summary": "대소문자 구별을 모두 없애 비교용 형태로 바꾸는 유니코드 변환으로, 소문자 변환보다 강해 ß를 ss로 바꾼다.",
+   "parent": "cs.data.identifier-comparison",
+   "aliases": [
+    "casefold",
+    "str.casefold",
+    "케이스 폴딩",
+    "대소문자 폴딩"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/stdtypes.html#str.casefold",
+    "https://docs.python.org/3/howto/unicode.html#comparing-strings"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.algo.atomic-group-possessive",
    "title": "원자 그룹과 소유 수량자",
    "en": "Atomic Groups and Possessive Quantifiers",
@@ -14770,6 +15330,100 @@
    ],
    "refs": [
     "https://man7.org/linux/man-pages/man7/tcp.7.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.copy-on-write",
+   "title": "fork의 쓰기 시 복사 페이지",
+   "en": "Copy-on-Write Pages",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "fork한 부모와 자식이 메모리 페이지를 함께 쓰다가 어느 쪽이 그 페이지에 쓸 때에야 복사본을 만드는 방식이다.",
+   "parent": "cs.os.fork-with-threads",
+   "related": [
+    "cs.os.virtual-memory"
+   ],
+   "aliases": [
+    "fork 쓰기 시 복사",
+    "copy-on-write 페이지",
+    "COW 페이지",
+    "CoW fork"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man2/fork.2.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.async-signal-safe",
+   "title": "비동기 시그널 안전 함수",
+   "en": "Async-Signal-Safe Functions",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "시그널 핸들러 안이나 멀티스레드 프로그램에서 fork한 자식이 exec하기 전에도 안전하게 부를 수 있도록 POSIX가 정한 함수들이다.",
+   "parent": "cs.os.fork-with-threads",
+   "related": [
+    "cs.os.signal-handler"
+   ],
+   "aliases": [
+    "async-signal-safe",
+    "시그널 안전 함수",
+    "signal-safety",
+    "AS-safe 함수"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man7/signal-safety.7.html",
+    "https://man7.org/linux/man-pages/man2/fork.2.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.o-nofollow",
+   "title": "O_NOFOLLOW(마지막 심볼릭 링크 거부)",
+   "en": "O_NOFOLLOW Open Flag",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "경로의 마지막 요소가 심볼릭 링크면 ELOOP로 실패하게 하는 open 플래그로, 앞쪽 디렉터리의 링크는 그대로 따라간다.",
+   "parent": "cs.os.toctou",
+   "related": [
+    "cs.os.dangling-symlink"
+   ],
+   "aliases": [
+    "O_NOFOLLOW",
+    "nofollow 플래그",
+    "심볼릭 링크 따라가지 않기",
+    "symlink 거부 플래그"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man2/open.2.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.data.precis-username",
+   "title": "PRECIS 사용자 이름 프로필(RFC 8265)",
+   "en": "PRECIS Username Profiles (RFC 8265)",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "데이터 표현",
+   "summary": "사용자 이름에 너비 매핑·소문자 매핑·NFC 정규화·방향 규칙을 차례로 적용하고 바이트로 비교하도록 정한 IETF 규칙이다.",
+   "parent": "cs.data.identifier-comparison",
+   "aliases": [
+    "RFC 8265",
+    "UsernameCaseMapped",
+    "UsernameCasePreserved",
+    "PRECIS 프로필"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc8265.html"
    ],
    "domain": "cs"
   },
@@ -21495,6 +22149,71 @@
    "domain": "plan"
   },
   {
+   "id": "plan.basics.usability-benchmarking",
+   "title": "사용성 벤치마킹으로 서비스 전체 쉬움 재기",
+   "en": "Usability Benchmarking a Website or Whole Service",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "30~60명에게 같은 과제 묶음을 원격으로 시켜 완료율·소요 시간·체감 난이도를 재고, 회차를 거듭해 서비스가 쉬워졌는지 비교하는 방법이다.",
+   "objectives": [
+    "단일 거래는 성과 지표와 사용성 테스트로, 여러 거래에 걸친 여정이나 비거래 웹사이트는 벤치마킹으로 재는 식으로 측정 방법을 고를 수 있다",
+    "정답이 분명하고 로그인이 필요 없으며 회차마다 그대로 쓸 수 있는 과제를 고른 근거를 말할 수 있다",
+    "회차 사이 점수 변화가 디자인 개선 때문인지, 과제·콘텐츠·사용자 행동 변화 때문인지 원인을 찾을 수 있다",
+    "체감 난이도와 실제 결과의 차이, 클릭 경로, 웹 분석을 맞대어 사용자가 실패한 이유를 진단할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.usability-testing",
+    "plan.basics.success-metrics"
+   ],
+   "related": [
+    "plan.basics.completion-rate"
+   ],
+   "aliases": [
+    "사용성 벤치마킹",
+    "usability benchmarking",
+    "사용성 벤치마크",
+    "원격 사용성 벤치마크"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/measuring-success/usability-benchmarking-a-website-or-whole-service"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.analytics-tool-selection",
+   "title": "웹 분석 도구 고르기: 비용·데이터 소유·개인정보",
+   "en": "Choosing Digital Analytics Tools",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "서비스 성과를 잴 웹 분석 도구를 기능·총비용·데이터 소유와 보관·샘플링·API·개인정보 설정을 따져 고르는 일이다.",
+   "objectives": [
+    "퍼널·목표 측정, A/B 시험, 세분화 같은 필요 기능과 총소유비용을 근거로 분석 도구를 고를 수 있다",
+    "공급사 호스팅과 자체 호스팅 가운데 보안·비용·데이터 보관 기간을 따져 고를 수 있다",
+    "샘플링이나 내보내기 제한 때문에 보고서 숫자가 어긋나는 원인을 찾을 수 있다",
+    "개인 식별 정보 수집 끄기, 데이터 공유 끄기, IP 주소 익명화 같은 개인정보 설정이 빠졌는지 점검할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.success-metrics"
+   ],
+   "related": [
+    "plan.basics.data-minimisation"
+   ],
+   "aliases": [
+    "분석 도구 선택",
+    "analytics tool selection",
+    "웹 분석 도구",
+    "digital analytics tools"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/measuring-success/choosing-digital-analytics-tools"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.design-token-architecture",
    "title": "디자인 토큰 표준과 별칭 계층 설계",
    "en": "Design Token Standard and Alias Layers",
@@ -21601,6 +22320,41 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-05",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.multi-brand-extended-collections",
+   "title": "확장 컬렉션으로 여러 브랜드 테마 설계하기",
+   "en": "Multi-Brand Theming with Figma Extended Collections",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "부모 변수 컬렉션을 브랜드마다 확장해 값만 덮어쓰게 하는 Figma 기능의 상속 규칙과 이전 절차를 알고 브랜드 테마 구조를 고른다(Enterprise·Government·Education(K-12) 플랜).",
+   "objectives": [
+    "브랜드를 한 컬렉션의 모드로 둘지, 컬렉션을 따로 둘지, 확장 컬렉션으로 둘지 상속과 관리 부담을 근거로 고를 수 있다",
+    "확장 컬렉션에서 변수·모드를 더하거나 이름·범위를 바꿀 수 없다는 제약을 반영해 부모 컬렉션에서 할 일을 나눌 수 있다",
+    "부모 색을 바꿨는데 어떤 브랜드에 반영되지 않거나 라이브러리 업데이트 뒤 모드가 풀린 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.design-token-architecture"
+   ],
+   "related": [
+    "plan.figma.variables-modes"
+   ],
+   "aliases": [
+    "멀티 브랜드 디자인 시스템",
+    "multi-brand design system",
+    "브랜드 테마 변수",
+    "Figma 확장 컬렉션",
+    "Figma extended collections",
+    "extend collection"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/36346281624471-Extend-a-variable-collection"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "plan"
   },
   {
@@ -21860,6 +22614,47 @@
    ],
    "refs": [
     "https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.false-success",
+   "title": "거짓 성공(false success)",
+   "en": "False Success in Task-Based Testing",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "참여자는 과제를 해냈다고 믿지만 실제로는 틀린 답에 도달한 경우로, 체감 결과와 실제 결과를 따로 재야 드러난다.",
+   "parent": "plan.basics.usability-benchmarking",
+   "aliases": [
+    "거짓 과제 성공",
+    "false task success",
+    "잘못된 성공",
+    "오인 성공"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/measuring-success/usability-benchmarking-a-website-or-whole-service"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.time-on-task",
+   "title": "과제 수행 시간(time on task)",
+   "en": "Time on Task",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "참여자가 한 과제를 끝내기까지 걸린 시간으로, 과제별 평균을 내어 회차 사이에 서비스가 빨라졌는지 비교한다.",
+   "parent": "plan.basics.usability-benchmarking",
+   "aliases": [
+    "과제 소요 시간",
+    "과제 완료 시간",
+    "사용성 과제 시간"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/measuring-success/usability-benchmarking-a-website-or-whole-service"
    ],
    "domain": "plan"
   },
@@ -22132,6 +22927,50 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.extended-collection-override",
+   "title": "확장 컬렉션 변수 오버라이드와 되돌리기",
+   "en": "Variable Overrides in Extended Collections",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "확장 컬렉션에서 바꾼 변수 값은 부모가 바뀌어도 남고 Reset change로 부모 값에 되돌리며, 색은 불투명도와 한 덩어리로 덮어써진다.",
+   "parent": "plan.figma.multi-brand-extended-collections",
+   "aliases": [
+    "확장 컬렉션 오버라이드",
+    "extended collection override",
+    "Reset change",
+    "브랜드 변수 덮어쓰기"
+   ],
+   "refs": [
+    "https://help.figma.com/hc/en-us/articles/36346281624471-Extend-a-variable-collection"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.ip-anonymisation",
+   "title": "분석 도구의 IP 주소 익명화",
+   "en": "IP Address Anonymisation in Analytics",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "웹 분석 도구가 IPv4 주소의 마지막 옥텟과 IPv6 주소의 뒤쪽 10옥텟을 지우고 저장하게 해 방문자를 특정하기 어렵게 하는 설정이다.",
+   "parent": "plan.basics.analytics-tool-selection",
+   "aliases": [
+    "IP 익명화",
+    "IP anonymization",
+    "IP anonymisation",
+    "IP 마스킹"
+   ],
+   "refs": [
+    "https://www.gov.uk/service-manual/measuring-success/choosing-digital-analytics-tools"
+   ],
    "domain": "plan"
   },
   {
@@ -39159,6 +39998,128 @@
    "domain": "db"
   },
   {
+   "id": "db.sql.row-level-security",
+   "title": "행 수준 보안(RLS)으로 테넌트별 행 나누기",
+   "en": "PostgreSQL Row-Level Security Policies",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "표에 정책을 걸어 역할마다 보고 고칠 수 있는 행을 DB가 직접 거르게 하는 PostgreSQL 기능이다.",
+   "objectives": [
+    "테넌트 조건을 앱 코드에만 둘 때와 RLS 정책으로 DB에도 걸 때의 손익을 따져 고를 수 있다",
+    "RLS를 켰는데 행이 하나도 안 보이거나 반대로 모두 보이는 원인을 기본 거부와 정책 우회 역할에서 찾을 수 있다",
+    "읽기 정책과 쓰기 정책을 따로 두어야 하는 근거를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "db.sql.roles-privileges"
+   ],
+   "related": [
+    "be.arch.multi-tenancy"
+   ],
+   "aliases": [
+    "PostgreSQL 행 수준 보안",
+    "row level security",
+    "PostgreSQL RLS",
+    "CREATE POLICY",
+    "행 보안 정책"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/ddl-rowsecurity.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.ssl-connection",
+   "title": "PostgreSQL 연결 암호화: sslmode와 hostssl",
+   "en": "PostgreSQL SSL Connections: sslmode and pg_hba.conf hostssl",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "앱과 PostgreSQL 사이를 TLS로 암호화하고 서버를 검증하도록 클라이언트 sslmode와 서버 pg_hba.conf를 맞추는 설정이다.",
+   "objectives": [
+    "배포 환경에 맞는 sslmode를 고르고 기본값 prefer로 두면 안 되는 근거를 말할 수 있다",
+    "pg_hba.conf에서 원격 접속을 hostssl로만 받도록 정하고 연결 거부 오류의 원인을 줄 순서에서 찾을 수 있다",
+    "인증서 검증 실패가 루트 CA 파일과 호스트 이름 중 어느 쪽 문제인지 가릴 수 있다"
+   ],
+   "prerequisites": [
+    "db.sql.psycopg-basics"
+   ],
+   "aliases": [
+    "PostgreSQL SSL",
+    "PostgreSQL TLS 연결",
+    "DB 연결 암호화",
+    "libpq SSL"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/libpq-ssl.html",
+    "https://www.postgresql.org/docs/current/auth-pg-hba-conf.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.nosql.mongodb-write-concern-read-preference",
+   "title": "MongoDB 쓰기 확인 수준과 읽기 노드 선택",
+   "en": "MongoDB Write Concern and Read Preference",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "NoSQL",
+   "summary": "레플리카 셋에서 쓰기를 몇 개 노드가 받아야 성공으로 볼지와 읽기를 어느 노드로 보낼지 정해 내구성·지연·최신성을 맞바꾸는 설정이다.",
+   "objectives": [
+    "주 노드 장애 뒤 사라진 쓰기의 원인을 w 값에서 찾을 수 있다",
+    "secondary 쪽 읽기를 쓸 때 오래된 데이터를 견딜 수 있는지 따져 read preference를 고를 수 있다",
+    "wtimeout 오류가 났을 때 쓰기가 취소된 것이 아님을 근거로 재시도 방식을 정할 수 있다"
+   ],
+   "prerequisites": [
+    "db.nosql.mongodb-crud"
+   ],
+   "aliases": [
+    "MongoDB 쓰기 확인 수준",
+    "MongoDB write concern",
+    "MongoDB read preference",
+    "MongoDB 읽기 노드 선택"
+   ],
+   "refs": [
+    "https://www.mongodb.com/docs/manual/reference/write-concern/",
+    "https://www.mongodb.com/docs/manual/core/read-preference/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "db"
+  },
+  {
+   "id": "db.cache.redis-cluster-keys",
+   "title": "Redis Cluster 키 분산: 해시 슬롯과 다중 키 명령",
+   "en": "Redis Cluster Key Distribution: Hash Slots and Multi-Key Commands",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "캐시",
+   "summary": "Redis Cluster가 키를 16384개 해시 슬롯으로 나눠 노드에 흩는 방식과, 그 때문에 생기는 다중 키 명령 제약과 리다이렉트를 다룬다.",
+   "objectives": [
+    "단일 Redis에서 되던 MSET·트랜잭션·Lua 스크립트가 클러스터에서 실패하는 원인을 키의 슬롯에서 찾을 수 있다",
+    "함께 다뤄야 할 키에 해시 태그를 붙일지, 한 슬롯에 몰리는 손해를 감수할지 근거를 말할 수 있다",
+    "비동기 복제 때문에 확인받은 쓰기도 잃을 수 있음을 알고 클러스터를 캐시와 저장소 중 어디에 쓸지 고를 수 있다"
+   ],
+   "prerequisites": [
+    "db.cache.redis-data-types"
+   ],
+   "aliases": [
+    "Redis Cluster",
+    "레디스 클러스터",
+    "Redis 해시 슬롯",
+    "Redis hash slot",
+    "Redis 샤딩"
+   ],
+   "refs": [
+    "https://redis.io/docs/latest/operate/oss_and_stack/management/scaling/",
+    "https://redis.io/docs/latest/operate/oss_and_stack/reference/cluster-spec/"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.cache.redis",
    "title": "Redis",
    "en": "Redis",
@@ -39537,6 +40498,106 @@
    "domain": "db"
   },
   {
+   "id": "db.sql.force-row-level-security",
+   "title": "FORCE ROW LEVEL SECURITY: 표 주인에게도 정책 걸기",
+   "en": "PostgreSQL ALTER TABLE FORCE ROW LEVEL SECURITY",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "보통 정책을 건너뛰는 표 주인도 RLS 정책을 따르게 만드는 표 설정으로, 앱이 표 주인 계정으로 접속할 때 필요하다.",
+   "parent": "db.sql.row-level-security",
+   "aliases": [
+    "FORCE ROW LEVEL SECURITY",
+    "표 주인 RLS 우회",
+    "RLS 강제 적용"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/ddl-rowsecurity.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.policy-using-with-check",
+   "title": "RLS 정책의 USING과 WITH CHECK",
+   "en": "PostgreSQL Policy USING and WITH CHECK Clauses",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "USING은 이미 있는 행 중 보이고 고칠 수 있는 행을, WITH CHECK는 새로 쓰는 행이 지켜야 할 조건을 정하는 RLS 정책의 두 식이다.",
+   "parent": "db.sql.row-level-security",
+   "aliases": [
+    "USING 절 정책",
+    "WITH CHECK 정책",
+    "RLS WITH CHECK"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/ddl-rowsecurity.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.sslmode-verify-full",
+   "title": "sslmode=verify-full: 서버 인증서와 이름 확인",
+   "en": "libpq sslmode verify-full",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "암호화에 더해 서버 인증서가 믿는 CA에서 왔고 접속한 호스트 이름과 맞는지까지 확인해 중간자 공격을 막는 libpq 연결 설정이다.",
+   "parent": "db.sql.ssl-connection",
+   "aliases": [
+    "verify-full",
+    "sslmode verify-full",
+    "sslmode=verify-full"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/libpq-ssl.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.nosql.write-concern-majority",
+   "title": "w: \"majority\": 과반 노드 확인 쓰기",
+   "en": "MongoDB Majority Write Concern",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "NoSQL",
+   "summary": "데이터를 가진 투표 노드의 과반이 받은 뒤에야 쓰기 성공을 알려, 주 노드가 바뀌어도 그 쓰기가 롤백되지 않게 하는 MongoDB 설정이다.",
+   "parent": "db.nosql.mongodb-write-concern-read-preference",
+   "aliases": [
+    "w majority",
+    "majority write concern",
+    "과반 쓰기 확인"
+   ],
+   "refs": [
+    "https://www.mongodb.com/docs/manual/reference/write-concern/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.cache.redis-hash-tag",
+   "title": "Redis 해시 태그: {}로 같은 슬롯에 키 모으기",
+   "en": "Redis Cluster Hash Tags",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "캐시",
+   "summary": "키 이름의 중괄호 안 부분만 해시하게 해 여러 키를 같은 슬롯에 두는 Redis Cluster 규칙으로, 다중 키 명령을 쓸 수 있게 해 준다.",
+   "parent": "db.cache.redis-cluster-keys",
+   "aliases": [
+    "Redis 해시 태그",
+    "Redis hash tag",
+    "user:{id} 키 이름"
+   ],
+   "refs": [
+    "https://redis.io/docs/latest/operate/oss_and_stack/reference/cluster-spec/"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.cache.aof-rewrite",
    "title": "AOF 다시 쓰기(BGREWRITEAOF)",
    "en": "Redis AOF Rewrite",
@@ -39662,6 +40723,66 @@
    ],
    "refs": [
     "https://www.mongodb.com/docs/manual/tutorial/analyze-query-plan/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.pg-hba-hostssl",
+   "title": "pg_hba.conf의 hostssl 줄",
+   "en": "pg_hba.conf hostssl Records",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "SQL",
+   "summary": "SSL로 맺은 TCP 연결에만 맞는 pg_hba.conf 줄 종류로, 원격 줄을 이것만 두면 암호화하지 않은 접속은 거부된다.",
+   "parent": "db.sql.ssl-connection",
+   "aliases": [
+    "hostssl",
+    "pg_hba.conf hostssl",
+    "hostnossl reject"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/auth-pg-hba-conf.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.nosql.read-preference-secondary",
+   "title": "secondary 읽기와 maxStalenessSeconds",
+   "en": "MongoDB Secondary Read Preference and maxStalenessSeconds",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "NoSQL",
+   "summary": "읽기를 secondary 노드로 보내 주 노드 부하를 덜지만 복제가 늦은 데이터를 받을 수 있어, maxStalenessSeconds로 너무 뒤처진 노드를 빼는 설정이다.",
+   "parent": "db.nosql.mongodb-write-concern-read-preference",
+   "aliases": [
+    "secondaryPreferred",
+    "maxStalenessSeconds",
+    "MongoDB 오래된 읽기"
+   ],
+   "refs": [
+    "https://www.mongodb.com/docs/manual/core/read-preference/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.cache.redis-moved-redirect",
+   "title": "MOVED 오류: 클러스터의 다른 노드로 보내기",
+   "en": "Redis Cluster MOVED Redirection",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "캐시",
+   "summary": "요청한 키의 슬롯을 맡지 않은 노드가 슬롯 번호와 담당 노드 주소를 돌려주는 Redis Cluster 응답으로, 클러스터를 모르는 클라이언트에서는 오류로 드러난다.",
+   "parent": "db.cache.redis-cluster-keys",
+   "aliases": [
+    "MOVED redirection",
+    "Redis MOVED 오류",
+    "-MOVED 응답"
+   ],
+   "refs": [
+    "https://redis.io/docs/latest/operate/oss_and_stack/reference/cluster-spec/"
    ],
    "domain": "db"
   },
@@ -46547,6 +47668,44 @@
    "domain": "fe"
   },
   {
+   "id": "fe.internals.performance-panel-debugging",
+   "title": "성능 패널로 느린 상호작용 원인 찾기",
+   "en": "Diagnosing Slow Interactions with the DevTools Performance Panel",
+   "kind": "topic",
+   "level": 4,
+   "importance": 1,
+   "group": "프론트엔드 내부",
+   "summary": "CPU를 느리게 걸고 기록한 성능 추적에서 긴 작업과 레이아웃 경고를 찾아 버벅임을 일으킨 코드 줄까지 좁혀 가는 진단법이다.",
+   "objectives": [
+    "CPU 스로틀링을 걸고 성능 추적을 기록해 저사양 기기의 버벅임을 재연할 수 있다",
+    "플레임 차트에서 빨간 삼각형이 붙은 긴 작업을 찾아 원인이 된 함수와 소스 줄을 짚을 수 있다",
+    "느린 상호작용이 입력 지연·처리 시간·표시 지연 중 어디서 생겼는지 구분해 고칠 곳을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "fe.js.promises-async"
+   ],
+   "related": [
+    "fe.internals.web-vitals",
+    "fe.internals.memory-leak-debugging",
+    "fe.internals.event-loop"
+   ],
+   "aliases": [
+    "성능 패널",
+    "Performance panel",
+    "성능 추적 기록",
+    "performance trace",
+    "플레임 차트",
+    "flame chart"
+   ],
+   "refs": [
+    "https://developer.chrome.com/docs/devtools/performance",
+    "https://web.dev/articles/optimize-inp"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "fe"
+  },
+  {
    "id": "fe.internals.server-client-boundary",
    "title": "서버 컴포넌트와 클라이언트 컴포넌트 경계 정하기",
    "en": "Choosing the Server and Client Component Boundary",
@@ -46976,6 +48135,142 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.ts.declaration-files",
+   "title": "라이브러리 타입 선언 찾기와 보강하기",
+   "en": "Finding and Augmenting Library Type Declarations",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "TypeScript",
+   "summary": "가져온 패키지의 타입이 없거나 모자랄 때 내장 타입, @types 패키지, 직접 쓴 선언 파일, 모듈 보강 가운데 맞는 길을 고르는 일이다.",
+   "objectives": [
+    "TypeScript가 패키지 타입을 node_modules와 @types에서 찾는 순서로 타입을 못 찾는 원인을 찾을 수 있다",
+    "내장 타입·@types 패키지·직접 쓴 선언 파일 중 무엇을 쓸지 고를 수 있다",
+    "패키지를 공개할 때 @types 의존성을 dependencies와 devDependencies 중 어디에 둘지 근거를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.ts.module-settings",
+    "fe.ts.object-types"
+   ],
+   "related": [
+    "fe.ts.tsconfig"
+   ],
+   "aliases": [
+    "타입 선언 파일",
+    "declaration file",
+    ".d.ts 파일",
+    "앰비언트 모듈 선언",
+    "ambient module declaration",
+    "와일드카드 모듈 선언"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/docs/handbook/declaration-files/consumption.html",
+    "https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html",
+    "https://www.typescriptlang.org/docs/handbook/modules/reference.html"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.web-workers",
+   "title": "Web Worker로 무거운 계산 옮기기",
+   "en": "Offloading Heavy Work to Dedicated Web Workers",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "프론트엔드 내부",
+   "summary": "무거운 계산을 별도 스레드의 워커로 옮겨 화면 반응성을 지키되, DOM 접근 불가와 메시지 복사 비용이라는 제약을 따져 쓰는 설계다.",
+   "objectives": [
+    "어떤 작업을 워커로 옮길 수 있고 무엇은 메인 스레드에 남겨야 하는지 DOM 접근 제약으로 고를 수 있다",
+    "큰 데이터를 보낼 때 복사와 전송 중 무엇을 쓸지 근거를 말할 수 있다",
+    "postMessage에서 생기는 DataCloneError나 워커 오류의 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "fe.js.promises-async"
+   ],
+   "related": [
+    "fe.internals.event-loop",
+    "fe.internals.performance-panel-debugging"
+   ],
+   "aliases": [
+    "웹 워커",
+    "web worker",
+    "전용 워커",
+    "dedicated worker",
+    "워커 스레드 분리"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers",
+    "https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Transferable_objects"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.css.component-extension-forking",
+   "title": "디자인 시스템 컴포넌트 확장과 포크 고르기",
+   "en": "Extending, Modifying and Forking Design System Components",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "CSS",
+   "summary": "공용 디자인 시스템 컴포넌트를 바꿔야 할 때 덮어쓰기 클래스·수정자·포크 중 무엇을 쓸지 업데이트 안전성과 접근성을 따져 고르는 일이다.",
+   "objectives": [
+    "기존 오버라이드 클래스, 자기 접두사를 붙인 수정자 클래스, 포크 가운데 바꿀 범위에 맞는 방법을 골라 근거를 말할 수 있다",
+    "공용 클래스 이름을 직접 겨냥한 스타일이 디자인 시스템 업데이트 뒤 깨지는 원인을 찾을 수 있다",
+    "포크로 얻는 안정성과 잃는 업스트림 업데이트를 비교하고, 수정한 컴포넌트도 WCAG 2.2 AA를 다시 확인해야 하는 이유를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.design-system-idea"
+   ],
+   "related": [
+    "plan.figma.detach-instance"
+   ],
+   "aliases": [
+    "디자인 시스템 컴포넌트 확장",
+    "디자인 시스템 컴포넌트 수정",
+    "디자인 시스템 커스터마이징",
+    "extending design system components"
+   ],
+   "refs": [
+    "https://design-system.service.gov.uk/get-started/extending-and-modifying-components/"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.service-worker-caching",
+   "title": "서비스 워커 캐싱 전략 고르기",
+   "en": "Choosing Service Worker Caching Strategies",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "요청마다 캐시 우선·네트워크 우선·stale-while-revalidate 등을 골라 오프라인 동작과 최신성 사이의 손익을 맞추는 설계다.",
+   "objectives": [
+    "자원 종류에 따라 캐시 우선과 네트워크 우선 중 하나를 고르고 근거를 말할 수 있다",
+    "캐시와 네트워크가 모두 실패할 때 보여 줄 대체 응답을 설계할 수 있다",
+    "새 서비스 워커가 적용되지 않는 원인을 생명주기의 대기 상태로 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.js.promises-async"
+   ],
+   "related": [
+    "fe.basics.service-worker",
+    "fe.next.caching-revalidation"
+   ],
+   "aliases": [
+    "서비스 워커 캐싱",
+    "service worker caching",
+    "캐시 우선 전략",
+    "cache first",
+    "네트워크 우선 전략",
+    "network first"
+   ],
+   "refs": [
+    "https://web.dev/articles/offline-cookbook",
+    "https://web.dev/articles/service-worker-lifecycle"
+   ],
    "domain": "fe"
   },
   {
@@ -47517,6 +48812,124 @@
    "domain": "fe"
   },
   {
+   "id": "fe.internals.forced-reflow",
+   "title": "강제 동기 레이아웃",
+   "en": "Forced Synchronous Layout",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "프론트엔드 내부",
+   "summary": "스타일을 바꾼 직후 offsetHeight 같은 레이아웃 값을 읽어 브라우저가 레이아웃을 즉시 다시 계산하게 만드는 일로, 반복문 안에서 되풀이되면 레이아웃 스래싱이 된다.",
+   "parent": "fe.internals.performance-panel-debugging",
+   "related": [
+    "fe.internals.render-pipeline"
+   ],
+   "aliases": [
+    "강제 리플로",
+    "forced reflow",
+    "레이아웃 스래싱",
+    "layout thrashing",
+    "강제 레이아웃"
+   ],
+   "refs": [
+    "https://web.dev/articles/avoid-large-complex-layouts-and-layout-thrashing",
+    "https://developer.chrome.com/docs/devtools/performance"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.inp-subparts",
+   "title": "INP 세 구간: 입력 지연·처리 시간·표시 지연",
+   "en": "INP Subparts: Input Delay, Processing Duration, Presentation Delay",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "프론트엔드 내부",
+   "summary": "한 상호작용의 지연을 콜백 시작 전 대기, 콜백 실행, 다음 화면 그리기까지로 나눠 어느 쪽을 줄일지 정하게 해 주는 구분이다.",
+   "parent": "fe.internals.performance-panel-debugging",
+   "related": [
+    "fe.internals.web-vitals"
+   ],
+   "aliases": [
+    "INP 하위 구간",
+    "INP subparts",
+    "INP 입력 지연",
+    "INP 표시 지연",
+    "presentation delay",
+    "processing duration"
+   ],
+   "refs": [
+    "https://web.dev/articles/optimize-inp"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.ts.types-packages",
+   "title": "@types 패키지",
+   "en": "DefinitelyTyped @types Packages",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "TypeScript",
+   "summary": "자체 타입이 없는 JavaScript 패키지를 위해 DefinitelyTyped에서 따로 배포하는 타입 선언 패키지로, 이름은 @types/패키지명 꼴이다.",
+   "parent": "fe.ts.declaration-files",
+   "aliases": [
+    "DefinitelyTyped",
+    "타입 선언 패키지",
+    "@types/패키지명"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/docs/handbook/declaration-files/consumption.html",
+    "https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.structured-clone",
+   "title": "구조화된 복제 알고리즘",
+   "en": "Structured Clone Algorithm",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "프론트엔드 내부",
+   "summary": "postMessage·structuredClone·IndexedDB가 값을 복사할 때 쓰는 규칙으로, 함수와 DOM 노드는 오류를 내고 클래스 인스턴스는 메서드를 잃는다.",
+   "parent": "fe.internals.web-workers",
+   "related": [
+    "fe.js.json-stringify-parse"
+   ],
+   "aliases": [
+    "structuredClone",
+    "구조적 복제",
+    "structured clone",
+    "DataCloneError"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.css.component-fork",
+   "title": "디자인 시스템 컴포넌트 포크",
+   "en": "Forking a Design System Component",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "CSS",
+   "summary": "공용 컴포넌트의 소스를 복사해 이름과 접두사를 모두 바꾼 새 컴포넌트로 따로 관리하는 방식으로, 안정적이지만 원본 업데이트를 더는 받지 못한다.",
+   "parent": "fe.css.component-extension-forking",
+   "aliases": [
+    "컴포넌트 포크",
+    "component fork",
+    "포크한 컴포넌트",
+    "forked component"
+   ],
+   "refs": [
+    "https://design-system.service.gov.uk/get-started/extending-and-modifying-components/"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.internals.server-only",
    "title": "server-only와 client-only",
    "en": "server-only and client-only",
@@ -47640,6 +49053,103 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.service-worker-lifecycle",
+   "title": "서비스 워커 생명주기와 업데이트 대기",
+   "en": "Service Worker Lifecycle and Update Waiting",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "설치된 새 서비스 워커가 기존 워커가 다룬 탭이 모두 닫힐 때까지 기다렸다가 활성화되는 흐름으로, 새로고침만으로 갱신되지 않는 원인이 된다.",
+   "parent": "fe.internals.service-worker-caching",
+   "related": [
+    "fe.basics.service-worker"
+   ],
+   "aliases": [
+    "서비스 워커 업데이트",
+    "service worker update",
+    "skipWaiting",
+    "clients.claim",
+    "서비스 워커 대기 상태"
+   ],
+   "refs": [
+    "https://web.dev/articles/service-worker-lifecycle"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.offline-fallback",
+   "title": "오프라인 대체 응답",
+   "en": "Service Worker Offline Fallback Response",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "캐시와 네트워크가 모두 실패할 때 서비스 워커가 미리 캐시해 둔 오프라인 안내 페이지나 기본 이미지를 대신 돌려주는 방식이다.",
+   "parent": "fe.internals.service-worker-caching",
+   "aliases": [
+    "오프라인 대체 페이지",
+    "offline fallback page",
+    "오프라인 안내 페이지",
+    "generic fallback"
+   ],
+   "refs": [
+    "https://web.dev/articles/offline-cookbook"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.ts.module-augmentation",
+   "title": "모듈 보강과 전역 보강",
+   "en": "TypeScript Module and Global Augmentation",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "TypeScript",
+   "summary": "declare module이나 declare global로 이미 있는 모듈이나 전역 인터페이스에 멤버를 덧붙이는 기법으로, 새 최상위 선언은 추가할 수 없다.",
+   "parent": "fe.ts.declaration-files",
+   "related": [
+    "fe.ts.object-types"
+   ],
+   "aliases": [
+    "모듈 보강",
+    "module augmentation",
+    "전역 보강",
+    "global augmentation",
+    "declare global",
+    "인터페이스 병합"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/docs/handbook/declaration-merging.html"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.transferable-objects",
+   "title": "전송 가능 객체",
+   "en": "Transferable Objects",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "ArrayBuffer 같은 자원을 복사하지 않고 다른 스레드로 옮기는 방식으로, 빠르지만 보낸 쪽 객체는 비워져 더 쓸 수 없다.",
+   "parent": "fe.internals.web-workers",
+   "related": [
+    "fe.internals.structured-clone"
+   ],
+   "aliases": [
+    "Transferable",
+    "transferable objects",
+    "transfer 목록",
+    "zero-copy 전송",
+    "ArrayBuffer 전송"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Transferable_objects"
+   ],
    "domain": "fe"
   },
   {

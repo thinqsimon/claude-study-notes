@@ -6285,6 +6285,75 @@
     ]
   },
   {
+    "id": "dev.git.advanced-merge",
+    "title": "꼬인 병합 다루기: 충돌 진단과 병합 되돌리기",
+    "en": "Advanced Merging: Diagnosing Conflicts and Undoing Merges",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "Git",
+    "summary": "공통 조상을 함께 보는 충돌 표시와 충돌 파일만 고른 기록으로 원인을 찾고, 공유된 병합은 reset 대신 revert로 되돌리는 방법이다.",
+    "objectives": [
+      "diff3 충돌 표시와 git diff --base·--ours·--theirs로 양쪽이 원래 줄을 어떻게 바꿨는지 보고 충돌 원인을 찾을 수 있다",
+      "git log --merge로 충돌 파일을 건드린 커밋만 골라 어느 변경이 부딪혔는지 근거를 말할 수 있다",
+      "병합이 이미 공유됐는지에 따라 reset과 revert -m 1 가운데 되돌리는 방법을 고를 수 있다",
+      "되돌린 병합 뒤 다시 병합해도 변경이 들어오지 않는 원인을 찾고 되돌림을 되돌려 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.merge-conflict",
+      "dev.git.undo-commits"
+    ],
+    "related": [
+      "dev.git.rerere",
+      "dev.git.ours-theirs"
+    ],
+    "aliases": [
+      "고급 병합",
+      "advanced merging",
+      "충돌 원인 찾기",
+      "git log --merge",
+      "병합 커밋 되돌리기",
+      "undo a merge"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging"
+    ]
+  },
+  {
+    "id": "dev.debug.faulthandler-devmode",
+    "title": "멈추거나 죽는 파이썬 진단: faulthandler와 개발 모드",
+    "en": "Diagnosing Hangs and Crashes with faulthandler and Python Development Mode",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "디버깅",
+    "summary": "치명적 신호·시간 초과·사용자 신호 때 모든 스레드의 호출 위치를 찍는 faulthandler와 비싼 검사를 켜는 개발 모드로 멈춤과 충돌 원인을 찾는 법이다.",
+    "objectives": [
+      "세그먼트 폴트로 죽는 프로그램에서 -X faulthandler로 죽은 위치의 파이썬 호출 기록을 얻어 원인을 찾을 수 있다",
+      "응답 없이 멈춘 작업에 dump_traceback_later나 신호 등록을 걸어 어느 스레드가 어디서 막혔는지 찾을 수 있다",
+      "-X dev가 켜는 경고·메모리 할당 검사·asyncio 디버그를 알고 개발과 테스트에만 켜는 근거를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.debug.pdb"
+    ],
+    "related": [
+      "dev.debug.remote-attach",
+      "dev.test.warnings-as-errors"
+    ],
+    "aliases": [
+      "faulthandler",
+      "파이썬 개발 모드",
+      "Python Development Mode",
+      "멈춘 프로그램 진단",
+      "세그먼트 폴트 추적",
+      "-X faulthandler"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/faulthandler.html",
+      "https://docs.python.org/3/library/devmode.html"
+    ]
+  },
+  {
     "id": "dev.git.large-repo-clone",
     "title": "큰 저장소 가볍게 받기: 얕은·부분 클론과 sparse-checkout",
     "en": "Shallow Clone, Partial Clone, and Sparse Checkout for Large Repositories",
@@ -6379,6 +6448,72 @@
       "https://hypothesis.readthedocs.io/en/latest/quickstart.html",
       "https://hypothesis.readthedocs.io/en/latest/tutorial/replaying-failures.html"
     ]
+  },
+  {
+    "id": "dev.git.repo-performance",
+    "title": "큰 저장소의 Git 속도: fsmonitor와 maintenance",
+    "en": "Speeding Up Git in Large Repositories: fsmonitor and maintenance",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "Git",
+    "summary": "파일 변경 감시 데몬으로 status의 작업 폴더 훑기를 줄이고, 백그라운드 maintenance로 commit-graph·팩 정리를 미리 해 큰 저장소의 Git을 빠르게 하는 법이다.",
+    "objectives": [
+      "git status가 느린 원인이 작업 폴더 전체 훑기인지 보고 core.fsmonitor를 켤지 고를 수 있다",
+      "네트워크 드라이브나 inotify 감시 한도 때문에 fsmonitor가 실패하는 원인을 찾을 수 있다",
+      "git maintenance의 gc·geometric·incremental 전략을 비교해 큰 저장소에 맞는 정리 방식을 근거와 함께 고를 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.three-states"
+    ],
+    "related": [
+      "dev.git.large-repo-clone"
+    ],
+    "aliases": [
+      "Git 성능 개선",
+      "느린 git status",
+      "Git performance",
+      "큰 저장소 성능"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/git-fsmonitor--daemon",
+      "https://git-scm.com/docs/git-maintenance"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "dev.git.merge-queue",
+    "title": "병합 큐로 main 깨짐 막기",
+    "en": "Merge Queue",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "Git",
+    "summary": "GitHub 병합 큐가 대기 중인 풀 리퀘스트를 최신 대상 브랜치와 앞선 PR에 합친 상태로 다시 검사해, 따로는 통과한 변경끼리 main을 깨는 일을 막는 방식이다.",
+    "objectives": [
+      "브랜치 최신 상태 요구와 병합 큐를 비교해 PR이 많은 저장소에 어느 쪽을 쓸지 근거를 말할 수 있다",
+      "PR이 큐에 들어가도 필수 검사가 보고되지 않아 병합이 실패하는 원인을 찾을 수 있다",
+      "빌드 동시 실행 수와 묶음 크기, 실패한 PR 묶기 허용 여부의 손익을 따져 큐 설정을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.merge-methods",
+      "dev.git.pr-review"
+    ],
+    "related": [
+      "dev.git.branch-protection"
+    ],
+    "aliases": [
+      "병합 큐",
+      "머지 큐",
+      "GitHub merge queue",
+      "Require merge queue"
+    ],
+    "refs": [
+      "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "dev.test.e2e",
@@ -6624,6 +6759,74 @@
     ]
   },
   {
+    "id": "dev.git.conflict-style-diff3",
+    "title": "충돌 표시 형식: diff3와 zdiff3",
+    "en": "merge.conflictStyle diff3 and zdiff3",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Git",
+    "summary": "충돌 표시에 |||||||와 공통 조상의 원래 내용을 더해 보여 주는 설정으로, zdiff3는 양쪽이 같은 앞뒤 줄을 충돌 구역 밖으로 뺀다.",
+    "parent": "dev.git.advanced-merge",
+    "aliases": [
+      "merge.conflictStyle",
+      "conflictstyle diff3",
+      "zdiff3",
+      "checkout --conflict=diff3",
+      "diff3 충돌 표시"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/git-merge",
+      "https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging"
+    ]
+  },
+  {
+    "id": "dev.git.revert-merge-remerge",
+    "title": "병합을 되돌린 뒤 다시 병합하기",
+    "en": "Re-merging After Reverting a Merge",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Git",
+    "summary": "revert -m으로 되돌린 브랜치를 다시 병합하면 이미 병합된 것으로 보아 예전 변경이 빠지므로, 되돌림 커밋을 먼저 되돌려야 한다.",
+    "parent": "dev.git.advanced-merge",
+    "related": [
+      "dev.git.revert"
+    ],
+    "aliases": [
+      "되돌린 병합 다시 병합",
+      "revert the revert",
+      "되돌림 되돌리기",
+      "reverted merge re-merge"
+    ],
+    "refs": [
+      "https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging"
+    ]
+  },
+  {
+    "id": "dev.debug.python-dev-mode",
+    "title": "파이썬 개발 모드(-X dev)",
+    "en": "Python Development Mode (-X dev)",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "디버깅",
+    "summary": "시작할 때 -X dev나 PYTHONDEVMODE=1로 켜며, 기본 경고 표시·메모리 할당 검사·faulthandler·asyncio 디버그를 한꺼번에 켠다.",
+    "parent": "dev.debug.faulthandler-devmode",
+    "related": [
+      "dev.test.warning-filter-option"
+    ],
+    "aliases": [
+      "-X dev",
+      "PYTHONDEVMODE",
+      "sys.flags.dev_mode",
+      "파이썬 dev 모드"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/devmode.html"
+    ]
+  },
+  {
     "id": "dev.robust.fsync",
     "title": "fsync",
     "en": "fsync",
@@ -6814,6 +7017,117 @@
     "refs": [
       "https://hypothesis.readthedocs.io/en/latest/tutorial/replaying-failures.html"
     ]
+  },
+  {
+    "id": "dev.debug.dump-traceback-later",
+    "title": "시간 초과 때 호출 기록 찍기: dump_traceback_later",
+    "en": "faulthandler.dump_traceback_later",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "정한 초가 지나면 감시 스레드가 모든 스레드의 호출 기록을 찍는 함수로, repeat로 되풀이하고 exit로 곧바로 끝낼 수도 있다.",
+    "parent": "dev.debug.faulthandler-devmode",
+    "aliases": [
+      "dump_traceback_later",
+      "cancel_dump_traceback_later",
+      "멈춤 감시 타이머",
+      "faulthandler 타이머"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/faulthandler.html"
+    ]
+  },
+  {
+    "id": "dev.git.fsmonitor",
+    "title": "Git 파일 시스템 감시(fsmonitor)",
+    "en": "Git Built-in File System Monitor (core.fsmonitor)",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Git",
+    "summary": "운영체제의 파일 변경 알림을 받는 백그라운드 데몬이 바뀐 파일을 알려 주어 git status가 작업 폴더 전체를 훑지 않게 한다.",
+    "parent": "dev.git.repo-performance",
+    "aliases": [
+      "core.fsmonitor",
+      "fsmonitor--daemon",
+      "fsmonitor 데몬",
+      "파일 변경 감시 데몬"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/git-fsmonitor--daemon"
+    ]
+  },
+  {
+    "id": "dev.git.maintenance",
+    "title": "git maintenance",
+    "en": "git maintenance",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Git",
+    "summary": "commit-graph 갱신·미리 가져오기·작은 팩 합치기 같은 정리 작업을 시간표에 맞춰 백그라운드에서 돌려 다른 Git 명령을 빠르게 하는 명령이다.",
+    "parent": "dev.git.repo-performance",
+    "aliases": [
+      "git maintenance start",
+      "maintenance.strategy",
+      "Git 백그라운드 유지 보수",
+      "incremental maintenance",
+      "geometric repacking"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/git-maintenance"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "dev.git.commit-graph",
+    "title": "커밋 그래프 파일(commit-graph)",
+    "en": "Commit-Graph File",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Git",
+    "summary": "커밋의 부모와 세대 번호를 미리 모아 둔 색인 파일로, 커밋 객체를 하나씩 풀지 않고 기록을 훑게 해 경로를 지정한 log 등을 빠르게 한다.",
+    "parent": "dev.git.repo-performance",
+    "related": [
+      "dev.git.maintenance"
+    ],
+    "aliases": [
+      "git commit-graph",
+      "commit-graph write",
+      "changed-path Bloom filter",
+      "커밋 그래프 색인"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/git-commit-graph",
+      "https://git-scm.com/docs/commit-graph",
+      "https://git-scm.com/docs/git-maintenance"
+    ]
+  },
+  {
+    "id": "dev.git.merge-group-event",
+    "title": "merge_group 워크플로 트리거",
+    "en": "merge_group Workflow Event",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Git",
+    "summary": "병합 큐가 묶음 검사를 요청할 때 GitHub Actions 워크플로를 돌리는 이벤트로, pull_request만 있으면 큐에서 필수 검사가 보고되지 않는다.",
+    "parent": "dev.git.merge-queue",
+    "aliases": [
+      "merge_group",
+      "checks_requested",
+      "merge_group 이벤트",
+      "gh-readonly-queue"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows",
+      "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "dev.git.internals",

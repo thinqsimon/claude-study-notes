@@ -6866,6 +6866,124 @@
     ]
   },
   {
+    "id": "db.sql.row-level-security",
+    "title": "행 수준 보안(RLS)으로 테넌트별 행 나누기",
+    "en": "PostgreSQL Row-Level Security Policies",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "표에 정책을 걸어 역할마다 보고 고칠 수 있는 행을 DB가 직접 거르게 하는 PostgreSQL 기능이다.",
+    "objectives": [
+      "테넌트 조건을 앱 코드에만 둘 때와 RLS 정책으로 DB에도 걸 때의 손익을 따져 고를 수 있다",
+      "RLS를 켰는데 행이 하나도 안 보이거나 반대로 모두 보이는 원인을 기본 거부와 정책 우회 역할에서 찾을 수 있다",
+      "읽기 정책과 쓰기 정책을 따로 두어야 하는 근거를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "db.sql.roles-privileges"
+    ],
+    "related": [
+      "be.arch.multi-tenancy"
+    ],
+    "aliases": [
+      "PostgreSQL 행 수준 보안",
+      "row level security",
+      "PostgreSQL RLS",
+      "CREATE POLICY",
+      "행 보안 정책"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/ddl-rowsecurity.html"
+    ]
+  },
+  {
+    "id": "db.sql.ssl-connection",
+    "title": "PostgreSQL 연결 암호화: sslmode와 hostssl",
+    "en": "PostgreSQL SSL Connections: sslmode and pg_hba.conf hostssl",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "앱과 PostgreSQL 사이를 TLS로 암호화하고 서버를 검증하도록 클라이언트 sslmode와 서버 pg_hba.conf를 맞추는 설정이다.",
+    "objectives": [
+      "배포 환경에 맞는 sslmode를 고르고 기본값 prefer로 두면 안 되는 근거를 말할 수 있다",
+      "pg_hba.conf에서 원격 접속을 hostssl로만 받도록 정하고 연결 거부 오류의 원인을 줄 순서에서 찾을 수 있다",
+      "인증서 검증 실패가 루트 CA 파일과 호스트 이름 중 어느 쪽 문제인지 가릴 수 있다"
+    ],
+    "prerequisites": [
+      "db.sql.psycopg-basics"
+    ],
+    "aliases": [
+      "PostgreSQL SSL",
+      "PostgreSQL TLS 연결",
+      "DB 연결 암호화",
+      "libpq SSL"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/libpq-ssl.html",
+      "https://www.postgresql.org/docs/current/auth-pg-hba-conf.html"
+    ]
+  },
+  {
+    "id": "db.nosql.mongodb-write-concern-read-preference",
+    "title": "MongoDB 쓰기 확인 수준과 읽기 노드 선택",
+    "en": "MongoDB Write Concern and Read Preference",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "NoSQL",
+    "summary": "레플리카 셋에서 쓰기를 몇 개 노드가 받아야 성공으로 볼지와 읽기를 어느 노드로 보낼지 정해 내구성·지연·최신성을 맞바꾸는 설정이다.",
+    "objectives": [
+      "주 노드 장애 뒤 사라진 쓰기의 원인을 w 값에서 찾을 수 있다",
+      "secondary 쪽 읽기를 쓸 때 오래된 데이터를 견딜 수 있는지 따져 read preference를 고를 수 있다",
+      "wtimeout 오류가 났을 때 쓰기가 취소된 것이 아님을 근거로 재시도 방식을 정할 수 있다"
+    ],
+    "prerequisites": [
+      "db.nosql.mongodb-crud"
+    ],
+    "aliases": [
+      "MongoDB 쓰기 확인 수준",
+      "MongoDB write concern",
+      "MongoDB read preference",
+      "MongoDB 읽기 노드 선택"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/reference/write-concern/",
+      "https://www.mongodb.com/docs/manual/core/read-preference/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "db.cache.redis-cluster-keys",
+    "title": "Redis Cluster 키 분산: 해시 슬롯과 다중 키 명령",
+    "en": "Redis Cluster Key Distribution: Hash Slots and Multi-Key Commands",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "캐시",
+    "summary": "Redis Cluster가 키를 16384개 해시 슬롯으로 나눠 노드에 흩는 방식과, 그 때문에 생기는 다중 키 명령 제약과 리다이렉트를 다룬다.",
+    "objectives": [
+      "단일 Redis에서 되던 MSET·트랜잭션·Lua 스크립트가 클러스터에서 실패하는 원인을 키의 슬롯에서 찾을 수 있다",
+      "함께 다뤄야 할 키에 해시 태그를 붙일지, 한 슬롯에 몰리는 손해를 감수할지 근거를 말할 수 있다",
+      "비동기 복제 때문에 확인받은 쓰기도 잃을 수 있음을 알고 클러스터를 캐시와 저장소 중 어디에 쓸지 고를 수 있다"
+    ],
+    "prerequisites": [
+      "db.cache.redis-data-types"
+    ],
+    "aliases": [
+      "Redis Cluster",
+      "레디스 클러스터",
+      "Redis 해시 슬롯",
+      "Redis hash slot",
+      "Redis 샤딩"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/operate/oss_and_stack/management/scaling/",
+      "https://redis.io/docs/latest/operate/oss_and_stack/reference/cluster-spec/"
+    ]
+  },
+  {
     "id": "db.cache.redis",
     "title": "Redis",
     "en": "Redis",
@@ -7226,6 +7344,101 @@
     ]
   },
   {
+    "id": "db.sql.force-row-level-security",
+    "title": "FORCE ROW LEVEL SECURITY: 표 주인에게도 정책 걸기",
+    "en": "PostgreSQL ALTER TABLE FORCE ROW LEVEL SECURITY",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "보통 정책을 건너뛰는 표 주인도 RLS 정책을 따르게 만드는 표 설정으로, 앱이 표 주인 계정으로 접속할 때 필요하다.",
+    "parent": "db.sql.row-level-security",
+    "aliases": [
+      "FORCE ROW LEVEL SECURITY",
+      "표 주인 RLS 우회",
+      "RLS 강제 적용"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/ddl-rowsecurity.html"
+    ]
+  },
+  {
+    "id": "db.sql.policy-using-with-check",
+    "title": "RLS 정책의 USING과 WITH CHECK",
+    "en": "PostgreSQL Policy USING and WITH CHECK Clauses",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "USING은 이미 있는 행 중 보이고 고칠 수 있는 행을, WITH CHECK는 새로 쓰는 행이 지켜야 할 조건을 정하는 RLS 정책의 두 식이다.",
+    "parent": "db.sql.row-level-security",
+    "aliases": [
+      "USING 절 정책",
+      "WITH CHECK 정책",
+      "RLS WITH CHECK"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/ddl-rowsecurity.html"
+    ]
+  },
+  {
+    "id": "db.sql.sslmode-verify-full",
+    "title": "sslmode=verify-full: 서버 인증서와 이름 확인",
+    "en": "libpq sslmode verify-full",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "암호화에 더해 서버 인증서가 믿는 CA에서 왔고 접속한 호스트 이름과 맞는지까지 확인해 중간자 공격을 막는 libpq 연결 설정이다.",
+    "parent": "db.sql.ssl-connection",
+    "aliases": [
+      "verify-full",
+      "sslmode verify-full",
+      "sslmode=verify-full"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/libpq-ssl.html"
+    ]
+  },
+  {
+    "id": "db.nosql.write-concern-majority",
+    "title": "w: \"majority\": 과반 노드 확인 쓰기",
+    "en": "MongoDB Majority Write Concern",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "NoSQL",
+    "summary": "데이터를 가진 투표 노드의 과반이 받은 뒤에야 쓰기 성공을 알려, 주 노드가 바뀌어도 그 쓰기가 롤백되지 않게 하는 MongoDB 설정이다.",
+    "parent": "db.nosql.mongodb-write-concern-read-preference",
+    "aliases": [
+      "w majority",
+      "majority write concern",
+      "과반 쓰기 확인"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/reference/write-concern/"
+    ]
+  },
+  {
+    "id": "db.cache.redis-hash-tag",
+    "title": "Redis 해시 태그: {}로 같은 슬롯에 키 모으기",
+    "en": "Redis Cluster Hash Tags",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "캐시",
+    "summary": "키 이름의 중괄호 안 부분만 해시하게 해 여러 키를 같은 슬롯에 두는 Redis Cluster 규칙으로, 다중 키 명령을 쓸 수 있게 해 준다.",
+    "parent": "db.cache.redis-cluster-keys",
+    "aliases": [
+      "Redis 해시 태그",
+      "Redis hash tag",
+      "user:{id} 키 이름"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/operate/oss_and_stack/reference/cluster-spec/"
+    ]
+  },
+  {
     "id": "db.cache.aof-rewrite",
     "title": "AOF 다시 쓰기(BGREWRITEAOF)",
     "en": "Redis AOF Rewrite",
@@ -7346,6 +7559,63 @@
     ],
     "refs": [
       "https://www.mongodb.com/docs/manual/tutorial/analyze-query-plan/"
+    ]
+  },
+  {
+    "id": "db.sql.pg-hba-hostssl",
+    "title": "pg_hba.conf의 hostssl 줄",
+    "en": "pg_hba.conf hostssl Records",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "SQL",
+    "summary": "SSL로 맺은 TCP 연결에만 맞는 pg_hba.conf 줄 종류로, 원격 줄을 이것만 두면 암호화하지 않은 접속은 거부된다.",
+    "parent": "db.sql.ssl-connection",
+    "aliases": [
+      "hostssl",
+      "pg_hba.conf hostssl",
+      "hostnossl reject"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/auth-pg-hba-conf.html"
+    ]
+  },
+  {
+    "id": "db.nosql.read-preference-secondary",
+    "title": "secondary 읽기와 maxStalenessSeconds",
+    "en": "MongoDB Secondary Read Preference and maxStalenessSeconds",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "NoSQL",
+    "summary": "읽기를 secondary 노드로 보내 주 노드 부하를 덜지만 복제가 늦은 데이터를 받을 수 있어, maxStalenessSeconds로 너무 뒤처진 노드를 빼는 설정이다.",
+    "parent": "db.nosql.mongodb-write-concern-read-preference",
+    "aliases": [
+      "secondaryPreferred",
+      "maxStalenessSeconds",
+      "MongoDB 오래된 읽기"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/core/read-preference/"
+    ]
+  },
+  {
+    "id": "db.cache.redis-moved-redirect",
+    "title": "MOVED 오류: 클러스터의 다른 노드로 보내기",
+    "en": "Redis Cluster MOVED Redirection",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "캐시",
+    "summary": "요청한 키의 슬롯을 맡지 않은 노드가 슬롯 번호와 담당 노드 주소를 돌려주는 Redis Cluster 응답으로, 클러스터를 모르는 클라이언트에서는 오류로 드러난다.",
+    "parent": "db.cache.redis-cluster-keys",
+    "aliases": [
+      "MOVED redirection",
+      "Redis MOVED 오류",
+      "-MOVED 응답"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/operate/oss_and_stack/reference/cluster-spec/"
     ]
   },
   {

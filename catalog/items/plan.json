@@ -6457,6 +6457,69 @@
     ]
   },
   {
+    "id": "plan.basics.usability-benchmarking",
+    "title": "사용성 벤치마킹으로 서비스 전체 쉬움 재기",
+    "en": "Usability Benchmarking a Website or Whole Service",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "30~60명에게 같은 과제 묶음을 원격으로 시켜 완료율·소요 시간·체감 난이도를 재고, 회차를 거듭해 서비스가 쉬워졌는지 비교하는 방법이다.",
+    "objectives": [
+      "단일 거래는 성과 지표와 사용성 테스트로, 여러 거래에 걸친 여정이나 비거래 웹사이트는 벤치마킹으로 재는 식으로 측정 방법을 고를 수 있다",
+      "정답이 분명하고 로그인이 필요 없으며 회차마다 그대로 쓸 수 있는 과제를 고른 근거를 말할 수 있다",
+      "회차 사이 점수 변화가 디자인 개선 때문인지, 과제·콘텐츠·사용자 행동 변화 때문인지 원인을 찾을 수 있다",
+      "체감 난이도와 실제 결과의 차이, 클릭 경로, 웹 분석을 맞대어 사용자가 실패한 이유를 진단할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.usability-testing",
+      "plan.basics.success-metrics"
+    ],
+    "related": [
+      "plan.basics.completion-rate"
+    ],
+    "aliases": [
+      "사용성 벤치마킹",
+      "usability benchmarking",
+      "사용성 벤치마크",
+      "원격 사용성 벤치마크"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/measuring-success/usability-benchmarking-a-website-or-whole-service"
+    ]
+  },
+  {
+    "id": "plan.basics.analytics-tool-selection",
+    "title": "웹 분석 도구 고르기: 비용·데이터 소유·개인정보",
+    "en": "Choosing Digital Analytics Tools",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "서비스 성과를 잴 웹 분석 도구를 기능·총비용·데이터 소유와 보관·샘플링·API·개인정보 설정을 따져 고르는 일이다.",
+    "objectives": [
+      "퍼널·목표 측정, A/B 시험, 세분화 같은 필요 기능과 총소유비용을 근거로 분석 도구를 고를 수 있다",
+      "공급사 호스팅과 자체 호스팅 가운데 보안·비용·데이터 보관 기간을 따져 고를 수 있다",
+      "샘플링이나 내보내기 제한 때문에 보고서 숫자가 어긋나는 원인을 찾을 수 있다",
+      "개인 식별 정보 수집 끄기, 데이터 공유 끄기, IP 주소 익명화 같은 개인정보 설정이 빠졌는지 점검할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.success-metrics"
+    ],
+    "related": [
+      "plan.basics.data-minimisation"
+    ],
+    "aliases": [
+      "분석 도구 선택",
+      "analytics tool selection",
+      "웹 분석 도구",
+      "digital analytics tools"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/measuring-success/choosing-digital-analytics-tools"
+    ]
+  },
+  {
     "id": "plan.figma.design-token-architecture",
     "title": "디자인 토큰 표준과 별칭 계층 설계",
     "en": "Design Token Standard and Alias Layers",
@@ -6561,6 +6624,40 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-05"
+  },
+  {
+    "id": "plan.figma.multi-brand-extended-collections",
+    "title": "확장 컬렉션으로 여러 브랜드 테마 설계하기",
+    "en": "Multi-Brand Theming with Figma Extended Collections",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "부모 변수 컬렉션을 브랜드마다 확장해 값만 덮어쓰게 하는 Figma 기능의 상속 규칙과 이전 절차를 알고 브랜드 테마 구조를 고른다(Enterprise·Government·Education(K-12) 플랜).",
+    "objectives": [
+      "브랜드를 한 컬렉션의 모드로 둘지, 컬렉션을 따로 둘지, 확장 컬렉션으로 둘지 상속과 관리 부담을 근거로 고를 수 있다",
+      "확장 컬렉션에서 변수·모드를 더하거나 이름·범위를 바꿀 수 없다는 제약을 반영해 부모 컬렉션에서 할 일을 나눌 수 있다",
+      "부모 색을 바꿨는데 어떤 브랜드에 반영되지 않거나 라이브러리 업데이트 뒤 모드가 풀린 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.design-token-architecture"
+    ],
+    "related": [
+      "plan.figma.variables-modes"
+    ],
+    "aliases": [
+      "멀티 브랜드 디자인 시스템",
+      "multi-brand design system",
+      "브랜드 테마 변수",
+      "Figma 확장 컬렉션",
+      "Figma extended collections",
+      "extend collection"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/36346281624471-Extend-a-variable-collection"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "plan.figma.variables-modes",
@@ -6808,6 +6905,45 @@
     ],
     "refs": [
       "https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold.html"
+    ]
+  },
+  {
+    "id": "plan.basics.false-success",
+    "title": "거짓 성공(false success)",
+    "en": "False Success in Task-Based Testing",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "참여자는 과제를 해냈다고 믿지만 실제로는 틀린 답에 도달한 경우로, 체감 결과와 실제 결과를 따로 재야 드러난다.",
+    "parent": "plan.basics.usability-benchmarking",
+    "aliases": [
+      "거짓 과제 성공",
+      "false task success",
+      "잘못된 성공",
+      "오인 성공"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/measuring-success/usability-benchmarking-a-website-or-whole-service"
+    ]
+  },
+  {
+    "id": "plan.basics.time-on-task",
+    "title": "과제 수행 시간(time on task)",
+    "en": "Time on Task",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "참여자가 한 과제를 끝내기까지 걸린 시간으로, 과제별 평균을 내어 회차 사이에 서비스가 빨라졌는지 비교한다.",
+    "parent": "plan.basics.usability-benchmarking",
+    "aliases": [
+      "과제 소요 시간",
+      "과제 완료 시간",
+      "사용성 과제 시간"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/measuring-success/usability-benchmarking-a-website-or-whole-service"
     ]
   },
   {
@@ -7067,6 +7203,48 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
+  },
+  {
+    "id": "plan.figma.extended-collection-override",
+    "title": "확장 컬렉션 변수 오버라이드와 되돌리기",
+    "en": "Variable Overrides in Extended Collections",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "확장 컬렉션에서 바꾼 변수 값은 부모가 바뀌어도 남고 Reset change로 부모 값에 되돌리며, 색은 불투명도와 한 덩어리로 덮어써진다.",
+    "parent": "plan.figma.multi-brand-extended-collections",
+    "aliases": [
+      "확장 컬렉션 오버라이드",
+      "extended collection override",
+      "Reset change",
+      "브랜드 변수 덮어쓰기"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/36346281624471-Extend-a-variable-collection"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "plan.basics.ip-anonymisation",
+    "title": "분석 도구의 IP 주소 익명화",
+    "en": "IP Address Anonymisation in Analytics",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "웹 분석 도구가 IPv4 주소의 마지막 옥텟과 IPv6 주소의 뒤쪽 10옥텟을 지우고 저장하게 해 방문자를 특정하기 어렵게 하는 설정이다.",
+    "parent": "plan.basics.analytics-tool-selection",
+    "aliases": [
+      "IP 익명화",
+      "IP anonymization",
+      "IP anonymisation",
+      "IP 마스킹"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/measuring-success/choosing-digital-analytics-tools"
+    ]
   },
   {
     "id": "plan.figma.library-analytics",

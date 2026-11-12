@@ -6381,6 +6381,147 @@
     ]
   },
   {
+    "id": "cs.net.time-wait-addr-in-use",
+    "title": "TIME_WAIT과 주소 사용 중 오류(EADDRINUSE)",
+    "en": "TCP TIME-WAIT State and Address-Already-in-Use Errors",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "먼저 연결을 닫은 쪽이 한동안 TIME_WAIT에 머무는 이유를 알고, 서버 재시작 때 나는 주소 사용 중 오류와 TIME_WAIT 누적의 원인을 가린다.",
+    "objectives": [
+      "TIME_WAIT 소켓이 많이 쌓인 쪽이 연결을 먼저 닫는 쪽이라는 규칙으로 어느 프로그램이 연결을 끊고 있는지 찾을 수 있다",
+      "서버를 다시 띄울 때 나는 Address already in use가 닫힌 지 얼마 안 된 주소 때문인지, 아직 수신 중인 다른 프로세스 때문인지 가를 수 있다",
+      "SO_REUSEADDR이 닫힌 지 얼마 안 된 주소의 bind는 허용해도 활성 수신 소켓이 있는 주소는 허용하지 않는다는 근거로 설정 여부를 고를 수 있다",
+      "tcp_tw_reuse 같은 커널 값을 바꾸기 전에 TIME_WAIT이 늦게 도착한 옛 연결의 세그먼트를 막는 장치라는 근거로 위험을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.net.tcp-vs-udp",
+      "cs.net.connection-errors"
+    ],
+    "related": [
+      "cs.net.listen-backlog",
+      "ops.network.ss-listening"
+    ],
+    "aliases": [
+      "Address already in use",
+      "주소 사용 중 오류",
+      "포트 이미 사용 중",
+      "port already in use"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9293",
+      "https://man7.org/linux/man-pages/man7/socket.7.html",
+      "https://man7.org/linux/man-pages/man7/ip.7.html",
+      "https://man7.org/linux/man-pages/man2/bind.2.html",
+      "https://man7.org/linux/man-pages/man7/tcp.7.html"
+    ]
+  },
+  {
+    "id": "cs.os.fork-with-threads",
+    "title": "스레드가 있는 프로세스의 fork와 시작 방식",
+    "en": "Forking a Multithreaded Process and Process Start Methods",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "fork한 자식에는 호출한 스레드 하나만 남고 잠금 상태는 그대로 복사되므로, 스레드를 쓰는 프로그램에서는 자식 프로세스 시작 방식을 골라야 한다.",
+    "objectives": [
+      "fork 뒤 자식이 멈추는 원인을, 다른 스레드가 쥐고 있던 잠금이 잠긴 채 복사되고 그 스레드는 자식에 없다는 점에서 찾을 수 있다",
+      "fork 뒤 exec 전의 자식에서는 비동기 시그널 안전 함수만 안전하다는 근거로 자식에서 할 일을 줄일 수 있다",
+      "spawn·fork·forkserver 시작 방식의 손익(속도, 물려받는 자원, 스레드 안전)을 비교해 고를 수 있다",
+      "쓰기 시 복사 덕분에 fork 직후 메모리가 바로 두 배가 되지 않는다는 점으로 fork 기반 워커의 메모리 사용을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.os.process-vs-thread",
+      "cs.os.mutex-lock"
+    ],
+    "related": [
+      "be.async.gil",
+      "cs.os.signals"
+    ],
+    "aliases": [
+      "멀티스레드 fork",
+      "fork after threads",
+      "fork 교착",
+      "multiprocessing 시작 방식",
+      "프로세스 시작 방식"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man2/fork.2.html",
+      "https://docs.python.org/3/library/multiprocessing.html#contexts-and-start-methods",
+      "https://man7.org/linux/man-pages/man7/signal-safety.7.html"
+    ]
+  },
+  {
+    "id": "cs.os.toctou",
+    "title": "확인과 사용 사이의 틈: 파일 경로 TOCTOU",
+    "en": "Time-of-Check to Time-of-Use (TOCTOU) Races on File Paths",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "파일을 먼저 검사하고 나중에 여는 사이에 경로가 바뀔 수 있으므로, 검사와 사용을 한 번의 호출로 묶어 경쟁과 링크 바꿔치기를 막는다.",
+    "objectives": [
+      "존재 확인이나 access 검사 뒤에 open하는 코드에서, 그 틈에 파일이 생기거나 심볼릭 링크로 바뀌어 생기는 보안 구멍을 찾을 수 있다",
+      "있는지 확인하고 만드는 두 단계 대신 O_CREAT와 O_EXCL로 한 번에 만드는 방식을 고르고 그 근거를 말할 수 있다",
+      "마지막 경로 요소의 심볼릭 링크를 막는 O_NOFOLLOW가 앞쪽 디렉터리의 링크는 막지 못한다는 한계를 알고 디렉터리 기술자 기반 *at 호출이 필요한 경우를 고를 수 있다"
+    ],
+    "prerequisites": [
+      "cs.os.hard-vs-symbolic-link",
+      "cs.os.mutex-lock"
+    ],
+    "related": [
+      "be.async.race-condition",
+      "dev.robust.atomic-replace",
+      "be.security.input-output"
+    ],
+    "aliases": [
+      "time of check to time of use",
+      "검사 후 사용 경쟁",
+      "파일 경쟁 조건"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man2/access.2.html",
+      "https://man7.org/linux/man-pages/man2/open.2.html"
+    ]
+  },
+  {
+    "id": "cs.data.identifier-comparison",
+    "title": "사용자 이름 같음 판정: 대소문자와 정규화",
+    "en": "Comparing Unicode Identifiers: Case Mapping and Normalization",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "사용자 이름이 같은지 판정할 때 대소문자 처리와 유니코드 정규화를 정해진 순서로 적용한 뒤 바이트로 비교해 중복 가입과 잘못된 일치를 막는다.",
+    "objectives": [
+      "lower()와 casefold()가 ß 같은 글자에서 다르게 동작한다는 근거로 대소문자 무시 비교에 쓸 함수를 고를 수 있다",
+      "대소문자 접기 뒤 결과가 정규형이 아닐 수 있어 정규화를 다시 적용해야 하는 이유를 말할 수 있다",
+      "PRECIS의 대소문자 매핑 프로필과 보존 프로필의 손익을 들어 사용자 이름 규칙을 고를 수 있다",
+      "규칙을 적용한 문자열끼리 바이트 단위로 비교해야 하고 한 번 적용으로 안정되지 않을 수 있다는 점으로 같은 이름이 둘 가입되는 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "be.python.unicode"
+    ],
+    "related": [
+      "cs.data.unicode-confusables",
+      "cs.data.grapheme-length"
+    ],
+    "aliases": [
+      "대소문자 무시 비교",
+      "caseless comparison",
+      "case-insensitive comparison",
+      "사용자명 정규화",
+      "username normalization"
+    ],
+    "refs": [
+      "https://docs.python.org/3/howto/unicode.html#comparing-strings",
+      "https://docs.python.org/3/library/stdtypes.html#str.casefold",
+      "https://www.rfc-editor.org/rfc/rfc8265.html"
+    ]
+  },
+  {
     "id": "cs.net.nagle-delayed-ack",
     "title": "Nagle 알고리즘과 지연 ACK의 지연",
     "en": "Nagle's Algorithm, Delayed ACK, and TCP_NODELAY",
@@ -6718,6 +6859,91 @@
     ]
   },
   {
+    "id": "cs.net.time-wait",
+    "title": "TIME_WAIT 상태",
+    "en": "TCP TIME-WAIT State",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "TCP 연결을 먼저 닫은 쪽이 상대가 마지막 확인을 받았는지와 옛 세그먼트가 사라졌는지를 위해 최대 세그먼트 수명의 두 배 동안 머무는 상태다.",
+    "parent": "cs.net.time-wait-addr-in-use",
+    "aliases": [
+      "TIME-WAIT",
+      "TIME_WAIT 소켓",
+      "타임 웨이트 상태",
+      "2MSL 대기"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9293"
+    ]
+  },
+  {
+    "id": "cs.net.so-reuseaddr",
+    "title": "SO_REUSEADDR(로컬 주소 재사용 옵션)",
+    "en": "SO_REUSEADDR Socket Option",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "닫힌 지 얼마 안 된 로컬 주소에도 bind를 허용하되, 그 주소에 활성 수신 소켓이 있으면 여전히 막는 소켓 옵션이다.",
+    "parent": "cs.net.time-wait-addr-in-use",
+    "aliases": [
+      "SO_REUSEADDR 옵션",
+      "reuse address 옵션",
+      "주소 재사용 옵션",
+      "allow_reuse_address"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man7/socket.7.html",
+      "https://man7.org/linux/man-pages/man7/ip.7.html"
+    ]
+  },
+  {
+    "id": "cs.os.o-excl",
+    "title": "배타적 생성(O_CREAT | O_EXCL)",
+    "en": "Exclusive File Creation with O_CREAT | O_EXCL",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "파일이 이미 있으면 EEXIST로 실패하고 경로가 심볼릭 링크여도 따라가지 않아, 확인과 생성을 한 번에 하는 open 플래그 조합이다.",
+    "parent": "cs.os.toctou",
+    "related": [
+      "dev.robust.tempfile"
+    ],
+    "aliases": [
+      "O_EXCL",
+      "O_CREAT|O_EXCL",
+      "배타적 파일 생성",
+      "exclusive create"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man2/open.2.html"
+    ]
+  },
+  {
+    "id": "cs.data.case-folding",
+    "title": "대소문자 접기(case folding)",
+    "en": "Unicode Case Folding",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "데이터 표현",
+    "summary": "대소문자 구별을 모두 없애 비교용 형태로 바꾸는 유니코드 변환으로, 소문자 변환보다 강해 ß를 ss로 바꾼다.",
+    "parent": "cs.data.identifier-comparison",
+    "aliases": [
+      "casefold",
+      "str.casefold",
+      "케이스 폴딩",
+      "대소문자 폴딩"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/stdtypes.html#str.casefold",
+      "https://docs.python.org/3/howto/unicode.html#comparing-strings"
+    ]
+  },
+  {
     "id": "cs.algo.atomic-group-possessive",
     "title": "원자 그룹과 소유 수량자",
     "en": "Atomic Groups and Possessive Quantifiers",
@@ -6913,6 +7139,96 @@
     ],
     "refs": [
       "https://man7.org/linux/man-pages/man7/tcp.7.html"
+    ]
+  },
+  {
+    "id": "cs.os.copy-on-write",
+    "title": "fork의 쓰기 시 복사 페이지",
+    "en": "Copy-on-Write Pages",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "fork한 부모와 자식이 메모리 페이지를 함께 쓰다가 어느 쪽이 그 페이지에 쓸 때에야 복사본을 만드는 방식이다.",
+    "parent": "cs.os.fork-with-threads",
+    "related": [
+      "cs.os.virtual-memory"
+    ],
+    "aliases": [
+      "fork 쓰기 시 복사",
+      "copy-on-write 페이지",
+      "COW 페이지",
+      "CoW fork"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man2/fork.2.html"
+    ]
+  },
+  {
+    "id": "cs.os.async-signal-safe",
+    "title": "비동기 시그널 안전 함수",
+    "en": "Async-Signal-Safe Functions",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "시그널 핸들러 안이나 멀티스레드 프로그램에서 fork한 자식이 exec하기 전에도 안전하게 부를 수 있도록 POSIX가 정한 함수들이다.",
+    "parent": "cs.os.fork-with-threads",
+    "related": [
+      "cs.os.signal-handler"
+    ],
+    "aliases": [
+      "async-signal-safe",
+      "시그널 안전 함수",
+      "signal-safety",
+      "AS-safe 함수"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man7/signal-safety.7.html",
+      "https://man7.org/linux/man-pages/man2/fork.2.html"
+    ]
+  },
+  {
+    "id": "cs.os.o-nofollow",
+    "title": "O_NOFOLLOW(마지막 심볼릭 링크 거부)",
+    "en": "O_NOFOLLOW Open Flag",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "경로의 마지막 요소가 심볼릭 링크면 ELOOP로 실패하게 하는 open 플래그로, 앞쪽 디렉터리의 링크는 그대로 따라간다.",
+    "parent": "cs.os.toctou",
+    "related": [
+      "cs.os.dangling-symlink"
+    ],
+    "aliases": [
+      "O_NOFOLLOW",
+      "nofollow 플래그",
+      "심볼릭 링크 따라가지 않기",
+      "symlink 거부 플래그"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man2/open.2.html"
+    ]
+  },
+  {
+    "id": "cs.data.precis-username",
+    "title": "PRECIS 사용자 이름 프로필(RFC 8265)",
+    "en": "PRECIS Username Profiles (RFC 8265)",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "사용자 이름에 너비 매핑·소문자 매핑·NFC 정규화·방향 규칙을 차례로 적용하고 바이트로 비교하도록 정한 IETF 규칙이다.",
+    "parent": "cs.data.identifier-comparison",
+    "aliases": [
+      "RFC 8265",
+      "UsernameCaseMapped",
+      "UsernameCasePreserved",
+      "PRECIS 프로필"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc8265.html"
     ]
   }
 ]
