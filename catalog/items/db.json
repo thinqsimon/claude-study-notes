@@ -7234,6 +7234,75 @@
     ]
   },
   {
+    "id": "db.sql.logical-replication",
+    "title": "PostgreSQL 논리 복제: 발행과 구독",
+    "en": "PostgreSQL Logical Replication: Publications and Subscriptions",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "SQL",
+    "summary": "디스크 블록이 아니라 행 변경을 발행·구독으로 보내 일부 표만 다른 서버나 다른 주 버전으로 옮기는 PostgreSQL 복제 방식이다.",
+    "objectives": [
+      "일부 표만 보내기·주 버전이 다른 서버로 옮기기·여러 DB 모으기 같은 쓰임을 근거로 논리 복제와 물리 복제 중 하나를 고를 수 있다",
+      "wal_level=logical·CREATE PUBLICATION·CREATE SUBSCRIPTION 순서로 복제를 세우고 처음 복사 뒤 변경이 이어지는지 확인할 수 있다",
+      "기본 키가 없는 표에서 UPDATE·DELETE가 발행 쪽에서 오류를 내면 복제 식별자 설정이 원인인지 찾을 수 있다",
+      "DDL과 시퀀스 값이 복제되지 않는다는 점을 근거로 스키마 변경과 전환 직전 시퀀스 맞추기 절차를 짤 수 있다"
+    ],
+    "prerequisites": [
+      "db.postgres.first-run",
+      "db.sql.alter-table"
+    ],
+    "related": [
+      "db.internals.wal-replication",
+      "db.sql.pitr"
+    ],
+    "aliases": [
+      "논리 복제",
+      "logical replication",
+      "PostgreSQL 논리 복제",
+      "CREATE PUBLICATION",
+      "CREATE SUBSCRIPTION",
+      "발행과 구독"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/logical-replication.html",
+      "https://www.postgresql.org/docs/current/logical-replication-quick-setup.html",
+      "https://www.postgresql.org/docs/current/logical-replication-restrictions.html"
+    ]
+  },
+  {
+    "id": "db.orm.alembic-offline-sql",
+    "title": "Alembic 오프라인 모드로 마이그레이션 SQL 만들기",
+    "en": "Alembic Offline Mode: Generating Migration SQL Scripts",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "ORM",
+    "summary": "DB에 바로 적용하지 않고 --sql로 마이그레이션을 SQL 파일로 뽑아 검토·승인을 거쳐 운영 DB에 돌리는 Alembic 배포 방식이다.",
+    "objectives": [
+      "DDL 권한이 막힌 운영 환경에서 alembic upgrade --sql로 스크립트를 뽑아 검토용으로 넘기는 배포 절차를 짤 수 있다",
+      "오프라인 모드는 현재 버전을 DB에서 읽지 못해 처음부터 출력한다는 점을 알고 start:end 범위를 지정할 수 있다",
+      "마이그레이션 안에서 SELECT로 행을 읽어 쓰는 코드가 --sql에서 실패하는 원인을 찾고 Alembic 지시문으로 바꿀 수 있다",
+      "env.py의 context.is_offline_mode() 분기가 온라인·오프라인 실행을 어떻게 가르는지 읽을 수 있다"
+    ],
+    "prerequisites": [
+      "db.orm.alembic-basics"
+    ],
+    "related": [
+      "db.internals.online-schema-change"
+    ],
+    "aliases": [
+      "Alembic offline mode",
+      "alembic --sql",
+      "Alembic 오프라인 모드",
+      "alembic upgrade --sql",
+      "마이그레이션 SQL 스크립트 생성"
+    ],
+    "refs": [
+      "https://alembic.sqlalchemy.org/en/latest/offline.html"
+    ]
+  },
+  {
     "id": "db.cache.redis",
     "title": "Redis",
     "en": "Redis",
@@ -7851,6 +7920,78 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "db.orm.raiseload",
+    "title": "raiseload: 지연 로딩을 오류로 막기",
+    "en": "SQLAlchemy raiseload",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "ORM",
+    "summary": "관계 속성에 처음 접근할 때 SELECT를 내보내는 대신 예외를 일으켜 뜻하지 않은 N+1 지연 로딩을 드러내는 SQLAlchemy 로딩 옵션이다.",
+    "parent": "db.orm.n-plus-one",
+    "related": [
+      "db.orm.eager-loading"
+    ],
+    "aliases": [
+      "raiseload",
+      "lazy=\"raise\"",
+      "raise_on_sql",
+      "raiseload(\"*\")",
+      "SQLAlchemy raise loading"
+    ],
+    "refs": [
+      "https://docs.sqlalchemy.org/en/20/orm/queryguide/relationships.html#preventing-unwanted-lazy-loads-using-raiseload"
+    ]
+  },
+  {
+    "id": "db.sql.deadlock-detected",
+    "title": "deadlock_detected(40P01)",
+    "en": "PostgreSQL Deadlock Detected Error (SQLSTATE 40P01)",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "두 트랜잭션이 서로의 잠금을 기다릴 때 PostgreSQL이 한쪽을 취소하며 내는 오류로, 어느 쪽이 취소될지 알 수 없으니 트랜잭션 전체를 다시 시도한다.",
+    "parent": "db.sql.transaction-retry",
+    "related": [
+      "db.sql.serialization-failure",
+      "db.internals.locks"
+    ],
+    "aliases": [
+      "SQLSTATE 40P01",
+      "deadlock_detected",
+      "PostgreSQL deadlock detected",
+      "교착 상태 오류"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/mvcc-serialization-failure-handling.html",
+      "https://www.postgresql.org/docs/current/explicit-locking.html#LOCKING-DEADLOCKS"
+    ]
+  },
+  {
+    "id": "db.sql.lock-timeout",
+    "title": "lock_timeout: 잠금 대기 끊기",
+    "en": "PostgreSQL lock_timeout",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "문장이 표·행 같은 객체의 잠금을 정한 시간보다 오래 기다리면 취소하는 PostgreSQL 설정으로, 운영 중 DDL이 뒤 쿼리를 줄줄이 막는 일을 줄인다.",
+    "parent": "db.internals.online-schema-change",
+    "related": [
+      "db.sql.statement-timeout"
+    ],
+    "aliases": [
+      "lock_timeout",
+      "PostgreSQL lock_timeout",
+      "SET lock_timeout",
+      "잠금 대기 시간 제한"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-LOCK-TIMEOUT"
+    ]
+  },
+  {
     "id": "db.cache.aof-rewrite",
     "title": "AOF 다시 쓰기(BGREWRITEAOF)",
     "en": "Redis AOF Rewrite",
@@ -8193,6 +8334,69 @@
     ],
     "refs": [
       "https://redis.io/docs/latest/develop/reference/client-side-caching/#broadcasting-mode"
+    ]
+  },
+  {
+    "id": "db.sql.replica-identity",
+    "title": "REPLICA IDENTITY: 복제할 행을 찾는 열",
+    "en": "PostgreSQL Replica Identity",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "SQL",
+    "summary": "논리 복제에서 구독 쪽이 바꿀 행을 찾는 열로, 기본은 기본 키이고 없으면 UPDATE·DELETE를 발행할 수 없다.",
+    "parent": "db.sql.logical-replication",
+    "aliases": [
+      "REPLICA IDENTITY",
+      "복제 식별자",
+      "REPLICA IDENTITY FULL",
+      "replica identity index"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/logical-replication-publication.html"
+    ]
+  },
+  {
+    "id": "db.cache.redis-lfu-eviction",
+    "title": "LFU 축출: allkeys-lfu와 lfu-decay-time",
+    "en": "Redis LFU Eviction",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "캐시",
+    "summary": "키마다 접근 빈도를 근사로 세어 드물게 쓰인 키부터 지우는 Redis 축출 방식으로, 카운터의 포화와 감쇠를 설정으로 조절한다.",
+    "parent": "db.cache.redis-eviction",
+    "aliases": [
+      "allkeys-lfu",
+      "volatile-lfu",
+      "Redis LFU",
+      "lfu-log-factor",
+      "lfu-decay-time"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/develop/reference/eviction/#lfu-eviction"
+    ]
+  },
+  {
+    "id": "db.cache.redis-tracking-optin",
+    "title": "OPTIN 추적 모드와 CLIENT CACHING YES",
+    "en": "Redis Opt-in Client Tracking",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "캐시",
+    "summary": "읽은 키를 모두 추적하지 않고 CLIENT CACHING YES를 붙인 다음 명령의 키만 추적하게 해 서버 메모리와 무효화 메시지를 줄이는 Redis 추적 모드다.",
+    "parent": "db.cache.redis-client-side-caching",
+    "related": [
+      "db.cache.redis-tracking-bcast"
+    ],
+    "aliases": [
+      "CLIENT TRACKING OPTIN",
+      "CLIENT CACHING YES",
+      "Redis opt-in caching"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/develop/reference/client-side-caching/#opt-in-and-opt-out-caching"
     ]
   },
   {

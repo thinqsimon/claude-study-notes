@@ -7211,6 +7211,79 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "mlops.eval.mlflow-judge-align",
+    "title": "MLflow 심판 정렬: 사람 피드백으로 LLM 심판 고치기",
+    "en": "Aligning MLflow LLM Judges with Human Feedback",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "같은 트레이스에 쌓인 심판 점수와 사람 평가를 짝지어 align()으로 심판 지시를 다듬고, 다듬은 심판을 등록해 운영 평가에 다시 쓰는 방법이다.",
+    "objectives": [
+      "심판 이름과 사람 피드백 이름이 정확히 같아야 짝이 지어진다는 점을 알고, 정렬에 쓸 트레이스가 모자라거나 짝이 안 맞는 원인을 찾을 수 있다",
+      "긍정·부정 예시의 비율과 여러 검토자의 기준표를 갖춰 정렬용 피드백을 모으는 절차를 설계할 수 있다",
+      "MemAlign·SIMBA·GEPA 가운데 속도·비용과 반복 개선의 무게를 따져 옵티마이저를 고를 수 있다",
+      "정렬 전후 심판이 사람 라벨과 얼마나 맞는지 비교해 정렬한 심판을 등록할지 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.eval.make-judge",
+      "mlops.eval.human-annotation"
+    ],
+    "related": [
+      "mlops.eval.judge-alignment",
+      "mlops.prompt.gepa-optimizer",
+      "mlops.eval.llm-judge"
+    ],
+    "aliases": [
+      "MLflow judge alignment",
+      "MLflow 심판 정렬",
+      "judge.align()",
+      "MLflow align 심판",
+      "aligned judge"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/llm-judge/alignment/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.eval.mlflow-compare-evaluations",
+    "title": "MLflow 평가 런 비교: 짝지은 행으로 회귀 판단하기",
+    "en": "Comparing MLflow Evaluation Runs with Paired Tests",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "기준 런과 후보 런을 같은 평가 세트의 행끼리 짝지어 차이·신뢰구간·p값을 보고, 평균만 볼 때 놓치는 개선과 회귀를 가려내는 방법이다.",
+    "objectives": [
+      "compare_evaluations로 기준 런과 후보 런의 행별 차이와 신뢰구간·p값을 읽고 개선인지 잡음인지 판단할 수 있다",
+      "같은 데이터와 같은 스코어러로 평가하지 않았거나 행이 짝지어지지 않아 insufficient_pairs가 나오는 원인을 찾을 수 있다",
+      "assert_improved와 낮을수록 좋은 지표 설정으로 CI에서 후보 변경을 막는 관문을 만들 수 있다",
+      "LLM 심판의 잡음과 여러 지표 동시 비교의 함정을 고려해 A/A 실행과 표본 크기를 정할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.eval.llm-regression",
+      "mlops.eval.first-eval"
+    ],
+    "related": [
+      "mlops.eval.llm-regression",
+      "mlops.serve.model-ab-test"
+    ],
+    "aliases": [
+      "compare_evaluations",
+      "MLflow 평가 비교",
+      "MLflow evaluation comparison",
+      "assert_improved",
+      "평가 런 비교"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/eval-monitor/comparing-evaluation-runs/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "mlops.serve.kserve-canary-rollout",
     "title": "KServe로 모델 카나리 출시하고 되돌리기",
     "en": "Canary Rollout and Rollback with KServe",
@@ -7886,6 +7959,82 @@
     ],
     "refs": [
       "https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-spans.md"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.eval.mlflow-pytest-regression",
+    "title": "MLflow pytest 회귀 시험(@mlflow.test)",
+    "en": "MLflow pytest Regression Tests (@mlflow.test)",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "pytest 함수 안에서 mlflow.genai.evaluate 결과의 통과 여부를 단언해, 스코어러 하나라도 실패하면 풀 리퀘스트 검사가 막히게 하는 MLflow의 회귀 시험 방식이다.",
+    "parent": "mlops.eval.llm-regression",
+    "related": [
+      "mlops.eval.mlflow-compare-evaluations"
+    ],
+    "aliases": [
+      "@mlflow.test",
+      "mlflow.pytest.plugin",
+      "MLflow 회귀 테스트",
+      "MLflow regression testing"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/eval-monitor/regression-testing/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.observe.traces-to-eval-dataset",
+    "title": "트레이스로 평가 데이터셋 늘리기(merge_records)",
+    "en": "Adding Traces to an Evaluation Dataset (merge_records)",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "search_traces로 고른 운영 트레이스에 기대값을 달고 merge_records로 MLflow 평가 데이터셋에 넣어, 실제로 실패한 요청을 다음 평가 문제로 만드는 방법이다.",
+    "parent": "mlops.observe.llm-tracing",
+    "related": [
+      "mlops.eval.eval-dataset"
+    ],
+    "aliases": [
+      "merge_records",
+      "MLflow 평가 데이터셋 만들기",
+      "mlflow.genai.datasets",
+      "트레이스로 평가 세트 만들기"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/datasets/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.prompt.mlflow-prompt-cache-ttl",
+    "title": "MLflow 프롬프트 캐시 수명(별칭·버전별 TTL)",
+    "en": "MLflow Prompt Cache TTL",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "load_prompt로 불러온 프롬프트를 버전으로 부르면 무기한, 별칭으로 부르면 기본 60초 캐시하는 MLflow 동작으로, 다른 곳에서 옮긴 별칭이 늦게 반영되는 원인이 된다.",
+    "parent": "mlops.prompt.registry",
+    "related": [
+      "mlops.prompt.langfuse-cache-ttl",
+      "mlops.prompt.alias"
+    ],
+    "aliases": [
+      "MLFLOW_ALIAS_PROMPT_CACHE_TTL_SECONDS",
+      "MLFLOW_VERSION_PROMPT_CACHE_TTL_SECONDS",
+      "MLflow 프롬프트 캐시",
+      "MLflow prompt cache"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/prompt-registry/"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
@@ -8751,6 +8900,54 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.eval.memalign-optimizer",
+    "title": "MemAlign 옵티마이저(MLflow 심판 정렬)",
+    "en": "MemAlign Optimizer",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "사람 피드백에서 뽑은 일반 지침과 심판이 틀렸던 구체 사례를 두 가지 기억에 나눠 두고 채점 때 꺼내 쓰게 하는 MLflow의 기본 심판 정렬 옵티마이저다.",
+    "parent": "mlops.eval.mlflow-judge-align",
+    "related": [
+      "mlops.prompt.gepa-optimizer"
+    ],
+    "aliases": [
+      "MemAlign",
+      "MemAlignOptimizer",
+      "MLflow MemAlign",
+      "MemAlign 의미 기억·일화 기억"
+    ],
+    "refs": [
+      "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/llm-judge/memalign/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.observe.trace-context-trust-boundary",
+    "title": "트레이스 컨텍스트 전파의 신뢰 경계",
+    "en": "Trust Boundaries for Trace Context Propagation",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "믿을 수 없는 곳에서 들어온 추적 헤더는 무시하거나 걸러 내고, 외부로 나가는 요청에는 내부 트레이스 ID와 배기지를 싣지 않으며, 배기지에 비밀값과 개인정보를 넣지 않는 OpenTelemetry의 전파 주의점이다.",
+    "parent": "mlops.observe.distributed-trace-propagation",
+    "related": [
+      "mlops.observe.traceparent-header"
+    ],
+    "aliases": [
+      "OpenTelemetry context propagation security",
+      "OTel 전파 보안",
+      "OTel baggage 보안",
+      "트레이스 헤더 위조"
+    ],
+    "refs": [
+      "https://opentelemetry.io/docs/concepts/context-propagation/"
+    ]
   },
   {
     "id": "mlops.serve.inference-optimization",

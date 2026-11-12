@@ -6621,6 +6621,82 @@
     ]
   },
   {
+    "id": "cs.net.dual-stack-connect",
+    "title": "이중 스택 연결: 주소 선택과 Happy Eyeballs",
+    "en": "Dual-Stack Connections: Address Selection and Happy Eyeballs",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "이름 하나가 IPv6·IPv4 주소를 함께 돌려줄 때 어느 주소부터 어떻게 시도하느냐에 따라 연결 거부나 긴 지연이 생기는 원리와 그 진단이다.",
+    "objectives": [
+      "기본 주소 선택 규칙이 ::1과 IPv6를 IPv4보다 앞에 둔다는 점과 주소 목록을 차례로 시도하는 방식을 근거로, 127.0.0.1에만 묶인 서버에 localhost로 붙을 때 먼저 연결 거부가 나는 원인을 설명할 수 있다",
+      "IPv6 경로가 막힌 망에서 주소를 하나씩 시도하면 시간 초과만큼 늦어지는 문제를, 짧은 간격으로 다음 주소를 겹쳐 시도하는 Happy Eyeballs와 비교해 클라이언트 연결 방식을 고를 수 있다",
+      "IPv6 소켓이 IPv4 연결을 IPv4 매핑 주소로 받는지 IPV6_V6ONLY 설정으로 확인해, 한 소켓으로 두 주소 계열을 받을지 계열마다 소켓을 따로 둘지 정할 수 있다",
+      "Happy Eyeballs가 IPv6 쪽의 지속 장애를 사용자에게서 가린다는 점을 알고 IPv6 연결을 따로 감시해야 하는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.net.ip-cidr",
+      "cs.net.connection-errors"
+    ],
+    "related": [
+      "ops.network.bind-address",
+      "cs.net.ipv6-notation",
+      "cs.net.connection-refused"
+    ],
+    "aliases": [
+      "dual stack",
+      "이중 스택",
+      "IPv6 우선 연결",
+      "localhost ::1 연결 거부",
+      "주소 선택 규칙"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc8305.html",
+      "https://www.rfc-editor.org/rfc/rfc6724.html",
+      "https://man7.org/linux/man-pages/man3/getaddrinfo.3.html",
+      "https://man7.org/linux/man-pages/man2/IPV6_V6ONLY.2const.html"
+    ]
+  },
+  {
+    "id": "cs.os.memory-usage-metrics",
+    "title": "메모리 사용량 읽기: RSS·PSS·MemAvailable",
+    "en": "Reading Memory Usage: Virtual Size, RSS, PSS, and MemAvailable",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "가상 크기·상주 크기·비례 몫·사용 가능 메모리가 각각 무엇을 세는지 구분해, 숫자가 큰 프로세스나 남은 메모리가 적어 보이는 서버가 정말 메모리가 모자란지 판단한다.",
+    "objectives": [
+      "가상 크기(VmSize)는 매핑만 된 주소 공간까지 세고 상주 크기(VmRSS)는 지금 RAM에 있는 몫만 센다는 점을 근거로 가상 크기가 큰 프로세스의 실제 사용량을 판단할 수 있다",
+      "공유 라이브러리와 공유 메모리가 프로세스마다 RSS에 겹쳐 세어진다는 점을 근거로 여러 워커의 RSS 합이 실제보다 큰 이유를 설명하고 PSS로 총사용량을 어림할 수 있다",
+      "MemFree가 작아도 회수할 수 있는 페이지 캐시가 있으면 여유가 있다는 점을 근거로 MemAvailable로 새 프로그램을 띄울 여유를 판단할 수 있다",
+      "status·statm의 RSS 값은 근사치이고 smaps·smaps_rollup은 정확하지만 느리다는 손익을 근거로 감시와 정밀 분석에 쓸 값을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "cs.os.virtual-memory"
+    ],
+    "related": [
+      "cs.os.oom-killer",
+      "be.python.memory",
+      "ops.linux.process-list-kill"
+    ],
+    "aliases": [
+      "메모리 사용량 지표",
+      "프로세스 메모리 측정",
+      "VSZ와 RSS",
+      "VmRSS",
+      "/proc/meminfo"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man5/proc_pid_status.5.html",
+      "https://man7.org/linux/man-pages/man5/proc_pid_statm.5.html",
+      "https://man7.org/linux/man-pages/man5/proc_pid_smaps.5.html",
+      "https://man7.org/linux/man-pages/man5/proc_meminfo.5.html",
+      "https://docs.kernel.org/filesystems/proc.html"
+    ]
+  },
+  {
     "id": "cs.net.nagle-delayed-ack",
     "title": "Nagle 알고리즘과 지연 ACK의 지연",
     "en": "Nagle's Algorithm, Delayed ACK, and TCP_NODELAY",
@@ -7266,6 +7342,66 @@
     ]
   },
   {
+    "id": "cs.net.happy-eyeballs",
+    "title": "Happy Eyeballs(주소 계열 경주 연결)",
+    "en": "Happy Eyeballs",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "IPv6와 IPv4 주소를 섞어 정렬한 뒤 앞 시도가 끝나기를 기다리지 않고 짧은 간격으로 다음 주소를 겹쳐 시도해 먼저 맺어진 연결을 쓰는 방식이다.",
+    "parent": "cs.net.dual-stack-connect",
+    "aliases": [
+      "해피 아이볼",
+      "RFC 8305",
+      "Happy Eyeballs v2",
+      "연결 시도 지연"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc8305.html"
+    ]
+  },
+  {
+    "id": "cs.os.resident-set-size",
+    "title": "상주 집합 크기(RSS)",
+    "en": "Resident Set Size (RSS)",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "프로세스의 주소 공간 가운데 지금 실제 RAM에 올라와 있는 몫으로, 익명·파일 매핑·공유 메모리 몫의 합이다.",
+    "parent": "cs.os.memory-usage-metrics",
+    "aliases": [
+      "RSS 메모리",
+      "상주 메모리",
+      "resident memory",
+      "RES 메모리"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man5/proc_pid_status.5.html"
+    ]
+  },
+  {
+    "id": "cs.os.mem-available",
+    "title": "MemAvailable(사용 가능 메모리 추정치)",
+    "en": "MemAvailable",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "빈 메모리에 회수할 수 있는 페이지 캐시와 슬랩까지 더해, 스왑 없이 새 프로그램에 줄 수 있는 메모리를 커널이 어림한 값이다.",
+    "parent": "cs.os.memory-usage-metrics",
+    "aliases": [
+      "사용 가능 메모리",
+      "available memory",
+      "MemFree와 MemAvailable"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man5/proc_meminfo.5.html",
+      "https://docs.kernel.org/filesystems/proc.html"
+    ]
+  },
+  {
     "id": "cs.algo.atomic-group-possessive",
     "title": "원자 그룹과 소유 수량자",
     "en": "Atomic Groups and Possessive Quantifiers",
@@ -7806,6 +7942,92 @@
     ],
     "refs": [
       "https://www.rfc-editor.org/rfc/rfc9293.html"
+    ]
+  },
+  {
+    "id": "cs.net.ipv6-v6only",
+    "title": "IPV6_V6ONLY(IPv6 전용 소켓 옵션)",
+    "en": "IPV6_V6ONLY Socket Option",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "켜면 IPv6 소켓이 IPv6만 받아 같은 포트에 IPv4 소켓을 따로 둘 수 있고, 끄면(리눅스 기본값) IPv4 연결도 ::ffff: 매핑 주소로 함께 받는 소켓 옵션이다.",
+    "parent": "cs.net.dual-stack-connect",
+    "aliases": [
+      "V6ONLY",
+      "bindv6only",
+      "IPv6 전용 소켓",
+      "IPv4-mapped IPv6 소켓"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man2/IPV6_V6ONLY.2const.html",
+      "https://man7.org/linux/man-pages/man7/ipv6.7.html"
+    ]
+  },
+  {
+    "id": "cs.os.proportional-set-size",
+    "title": "비례 집합 크기(PSS)",
+    "en": "Proportional Set Size (PSS)",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "공유 페이지를 함께 쓰는 프로세스 수로 나눈 몫만 더한 메모리 사용량으로, 여러 프로세스의 값을 더해도 겹쳐 세지 않는다.",
+    "parent": "cs.os.memory-usage-metrics",
+    "aliases": [
+      "PSS 메모리",
+      "Pss 값"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man5/proc_pid_smaps.5.html",
+      "https://docs.kernel.org/filesystems/proc.html"
+    ]
+  },
+  {
+    "id": "cs.dsa.scalable-bloom-filter",
+    "title": "확장형 블룸 필터(하위 필터 쌓기)",
+    "en": "Scalable Bloom Filter",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "자료구조",
+    "summary": "예상 용량에 다다르면 하위 필터를 새로 쌓아 거짓 양성률을 지키되, 조회할 때 쌓인 필터를 모두 봐야 해 느려지는 블룸 필터다.",
+    "parent": "cs.dsa.bloom-filter",
+    "related": [
+      "cs.dsa.bloom-false-positive"
+    ],
+    "aliases": [
+      "블룸 필터 확장",
+      "블룸 필터 하위 필터",
+      "sub-filter stacking",
+      "블룸 필터 EXPANSION"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/"
+    ]
+  },
+  {
+    "id": "cs.dsa.cuckoo-filter",
+    "title": "쿠쿠 필터",
+    "en": "Cuckoo Filter",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "자료구조",
+    "summary": "두 해시 함수가 고른 버킷에 값의 지문을 넣는 확률적 소속 검사 자료구조로, 블룸 필터와 달리 원소를 지울 수 있지만 가득 차면 넣기가 실패할 수 있다.",
+    "parent": "cs.dsa.bloom-filter",
+    "related": [
+      "cs.dsa.scalable-bloom-filter"
+    ],
+    "aliases": [
+      "cuckoo filter",
+      "쿠쿠필터",
+      "삭제 가능한 확률적 필터"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/develop/data-types/probabilistic/cuckoo-filter/",
+      "https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/"
     ]
   }
 ]

@@ -1,5 +1,5 @@
 {
- "version": "0.71.0",
+ "version": "0.72.0",
  "domains": [
   {
    "prefix": "dev",
@@ -15702,6 +15702,84 @@
    "domain": "cs"
   },
   {
+   "id": "cs.net.dual-stack-connect",
+   "title": "이중 스택 연결: 주소 선택과 Happy Eyeballs",
+   "en": "Dual-Stack Connections: Address Selection and Happy Eyeballs",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "네트워크",
+   "summary": "이름 하나가 IPv6·IPv4 주소를 함께 돌려줄 때 어느 주소부터 어떻게 시도하느냐에 따라 연결 거부나 긴 지연이 생기는 원리와 그 진단이다.",
+   "objectives": [
+    "기본 주소 선택 규칙이 ::1과 IPv6를 IPv4보다 앞에 둔다는 점과 주소 목록을 차례로 시도하는 방식을 근거로, 127.0.0.1에만 묶인 서버에 localhost로 붙을 때 먼저 연결 거부가 나는 원인을 설명할 수 있다",
+    "IPv6 경로가 막힌 망에서 주소를 하나씩 시도하면 시간 초과만큼 늦어지는 문제를, 짧은 간격으로 다음 주소를 겹쳐 시도하는 Happy Eyeballs와 비교해 클라이언트 연결 방식을 고를 수 있다",
+    "IPv6 소켓이 IPv4 연결을 IPv4 매핑 주소로 받는지 IPV6_V6ONLY 설정으로 확인해, 한 소켓으로 두 주소 계열을 받을지 계열마다 소켓을 따로 둘지 정할 수 있다",
+    "Happy Eyeballs가 IPv6 쪽의 지속 장애를 사용자에게서 가린다는 점을 알고 IPv6 연결을 따로 감시해야 하는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.net.ip-cidr",
+    "cs.net.connection-errors"
+   ],
+   "related": [
+    "ops.network.bind-address",
+    "cs.net.ipv6-notation",
+    "cs.net.connection-refused"
+   ],
+   "aliases": [
+    "dual stack",
+    "이중 스택",
+    "IPv6 우선 연결",
+    "localhost ::1 연결 거부",
+    "주소 선택 규칙"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc8305.html",
+    "https://www.rfc-editor.org/rfc/rfc6724.html",
+    "https://man7.org/linux/man-pages/man3/getaddrinfo.3.html",
+    "https://man7.org/linux/man-pages/man2/IPV6_V6ONLY.2const.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.memory-usage-metrics",
+   "title": "메모리 사용량 읽기: RSS·PSS·MemAvailable",
+   "en": "Reading Memory Usage: Virtual Size, RSS, PSS, and MemAvailable",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "가상 크기·상주 크기·비례 몫·사용 가능 메모리가 각각 무엇을 세는지 구분해, 숫자가 큰 프로세스나 남은 메모리가 적어 보이는 서버가 정말 메모리가 모자란지 판단한다.",
+   "objectives": [
+    "가상 크기(VmSize)는 매핑만 된 주소 공간까지 세고 상주 크기(VmRSS)는 지금 RAM에 있는 몫만 센다는 점을 근거로 가상 크기가 큰 프로세스의 실제 사용량을 판단할 수 있다",
+    "공유 라이브러리와 공유 메모리가 프로세스마다 RSS에 겹쳐 세어진다는 점을 근거로 여러 워커의 RSS 합이 실제보다 큰 이유를 설명하고 PSS로 총사용량을 어림할 수 있다",
+    "MemFree가 작아도 회수할 수 있는 페이지 캐시가 있으면 여유가 있다는 점을 근거로 MemAvailable로 새 프로그램을 띄울 여유를 판단할 수 있다",
+    "status·statm의 RSS 값은 근사치이고 smaps·smaps_rollup은 정확하지만 느리다는 손익을 근거로 감시와 정밀 분석에 쓸 값을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "cs.os.virtual-memory"
+   ],
+   "related": [
+    "cs.os.oom-killer",
+    "be.python.memory",
+    "ops.linux.process-list-kill"
+   ],
+   "aliases": [
+    "메모리 사용량 지표",
+    "프로세스 메모리 측정",
+    "VSZ와 RSS",
+    "VmRSS",
+    "/proc/meminfo"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man5/proc_pid_status.5.html",
+    "https://man7.org/linux/man-pages/man5/proc_pid_statm.5.html",
+    "https://man7.org/linux/man-pages/man5/proc_pid_smaps.5.html",
+    "https://man7.org/linux/man-pages/man5/proc_meminfo.5.html",
+    "https://docs.kernel.org/filesystems/proc.html"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.net.nagle-delayed-ack",
    "title": "Nagle 알고리즘과 지연 ACK의 지연",
    "en": "Nagle's Algorithm, Delayed ACK, and TCP_NODELAY",
@@ -16374,6 +16452,69 @@
    "domain": "cs"
   },
   {
+   "id": "cs.net.happy-eyeballs",
+   "title": "Happy Eyeballs(주소 계열 경주 연결)",
+   "en": "Happy Eyeballs",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "네트워크",
+   "summary": "IPv6와 IPv4 주소를 섞어 정렬한 뒤 앞 시도가 끝나기를 기다리지 않고 짧은 간격으로 다음 주소를 겹쳐 시도해 먼저 맺어진 연결을 쓰는 방식이다.",
+   "parent": "cs.net.dual-stack-connect",
+   "aliases": [
+    "해피 아이볼",
+    "RFC 8305",
+    "Happy Eyeballs v2",
+    "연결 시도 지연"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc8305.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.resident-set-size",
+   "title": "상주 집합 크기(RSS)",
+   "en": "Resident Set Size (RSS)",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "프로세스의 주소 공간 가운데 지금 실제 RAM에 올라와 있는 몫으로, 익명·파일 매핑·공유 메모리 몫의 합이다.",
+   "parent": "cs.os.memory-usage-metrics",
+   "aliases": [
+    "RSS 메모리",
+    "상주 메모리",
+    "resident memory",
+    "RES 메모리"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man5/proc_pid_status.5.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.mem-available",
+   "title": "MemAvailable(사용 가능 메모리 추정치)",
+   "en": "MemAvailable",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "운영체제",
+   "summary": "빈 메모리에 회수할 수 있는 페이지 캐시와 슬랩까지 더해, 스왑 없이 새 프로그램에 줄 수 있는 메모리를 커널이 어림한 값이다.",
+   "parent": "cs.os.memory-usage-metrics",
+   "aliases": [
+    "사용 가능 메모리",
+    "available memory",
+    "MemFree와 MemAvailable"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man5/proc_meminfo.5.html",
+    "https://docs.kernel.org/filesystems/proc.html"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.algo.atomic-group-possessive",
    "title": "원자 그룹과 소유 수량자",
    "en": "Atomic Groups and Possessive Quantifiers",
@@ -16940,6 +17081,96 @@
    ],
    "refs": [
     "https://www.rfc-editor.org/rfc/rfc9293.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.net.ipv6-v6only",
+   "title": "IPV6_V6ONLY(IPv6 전용 소켓 옵션)",
+   "en": "IPV6_V6ONLY Socket Option",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "네트워크",
+   "summary": "켜면 IPv6 소켓이 IPv6만 받아 같은 포트에 IPv4 소켓을 따로 둘 수 있고, 끄면(리눅스 기본값) IPv4 연결도 ::ffff: 매핑 주소로 함께 받는 소켓 옵션이다.",
+   "parent": "cs.net.dual-stack-connect",
+   "aliases": [
+    "V6ONLY",
+    "bindv6only",
+    "IPv6 전용 소켓",
+    "IPv4-mapped IPv6 소켓"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man2/IPV6_V6ONLY.2const.html",
+    "https://man7.org/linux/man-pages/man7/ipv6.7.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.proportional-set-size",
+   "title": "비례 집합 크기(PSS)",
+   "en": "Proportional Set Size (PSS)",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "공유 페이지를 함께 쓰는 프로세스 수로 나눈 몫만 더한 메모리 사용량으로, 여러 프로세스의 값을 더해도 겹쳐 세지 않는다.",
+   "parent": "cs.os.memory-usage-metrics",
+   "aliases": [
+    "PSS 메모리",
+    "Pss 값"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man5/proc_pid_smaps.5.html",
+    "https://docs.kernel.org/filesystems/proc.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dsa.scalable-bloom-filter",
+   "title": "확장형 블룸 필터(하위 필터 쌓기)",
+   "en": "Scalable Bloom Filter",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "자료구조",
+   "summary": "예상 용량에 다다르면 하위 필터를 새로 쌓아 거짓 양성률을 지키되, 조회할 때 쌓인 필터를 모두 봐야 해 느려지는 블룸 필터다.",
+   "parent": "cs.dsa.bloom-filter",
+   "related": [
+    "cs.dsa.bloom-false-positive"
+   ],
+   "aliases": [
+    "블룸 필터 확장",
+    "블룸 필터 하위 필터",
+    "sub-filter stacking",
+    "블룸 필터 EXPANSION"
+   ],
+   "refs": [
+    "https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.dsa.cuckoo-filter",
+   "title": "쿠쿠 필터",
+   "en": "Cuckoo Filter",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "자료구조",
+   "summary": "두 해시 함수가 고른 버킷에 값의 지문을 넣는 확률적 소속 검사 자료구조로, 블룸 필터와 달리 원소를 지울 수 있지만 가득 차면 넣기가 실패할 수 있다.",
+   "parent": "cs.dsa.bloom-filter",
+   "related": [
+    "cs.dsa.scalable-bloom-filter"
+   ],
+   "aliases": [
+    "cuckoo filter",
+    "쿠쿠필터",
+    "삭제 가능한 확률적 필터"
+   ],
+   "refs": [
+    "https://redis.io/docs/latest/develop/data-types/probabilistic/cuckoo-filter/",
+    "https://redis.io/docs/latest/develop/data-types/probabilistic/bloom-filter/"
    ],
    "domain": "cs"
   },
@@ -42861,6 +43092,77 @@
    "domain": "db"
   },
   {
+   "id": "db.sql.logical-replication",
+   "title": "PostgreSQL 논리 복제: 발행과 구독",
+   "en": "PostgreSQL Logical Replication: Publications and Subscriptions",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "SQL",
+   "summary": "디스크 블록이 아니라 행 변경을 발행·구독으로 보내 일부 표만 다른 서버나 다른 주 버전으로 옮기는 PostgreSQL 복제 방식이다.",
+   "objectives": [
+    "일부 표만 보내기·주 버전이 다른 서버로 옮기기·여러 DB 모으기 같은 쓰임을 근거로 논리 복제와 물리 복제 중 하나를 고를 수 있다",
+    "wal_level=logical·CREATE PUBLICATION·CREATE SUBSCRIPTION 순서로 복제를 세우고 처음 복사 뒤 변경이 이어지는지 확인할 수 있다",
+    "기본 키가 없는 표에서 UPDATE·DELETE가 발행 쪽에서 오류를 내면 복제 식별자 설정이 원인인지 찾을 수 있다",
+    "DDL과 시퀀스 값이 복제되지 않는다는 점을 근거로 스키마 변경과 전환 직전 시퀀스 맞추기 절차를 짤 수 있다"
+   ],
+   "prerequisites": [
+    "db.postgres.first-run",
+    "db.sql.alter-table"
+   ],
+   "related": [
+    "db.internals.wal-replication",
+    "db.sql.pitr"
+   ],
+   "aliases": [
+    "논리 복제",
+    "logical replication",
+    "PostgreSQL 논리 복제",
+    "CREATE PUBLICATION",
+    "CREATE SUBSCRIPTION",
+    "발행과 구독"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/logical-replication.html",
+    "https://www.postgresql.org/docs/current/logical-replication-quick-setup.html",
+    "https://www.postgresql.org/docs/current/logical-replication-restrictions.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.orm.alembic-offline-sql",
+   "title": "Alembic 오프라인 모드로 마이그레이션 SQL 만들기",
+   "en": "Alembic Offline Mode: Generating Migration SQL Scripts",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "ORM",
+   "summary": "DB에 바로 적용하지 않고 --sql로 마이그레이션을 SQL 파일로 뽑아 검토·승인을 거쳐 운영 DB에 돌리는 Alembic 배포 방식이다.",
+   "objectives": [
+    "DDL 권한이 막힌 운영 환경에서 alembic upgrade --sql로 스크립트를 뽑아 검토용으로 넘기는 배포 절차를 짤 수 있다",
+    "오프라인 모드는 현재 버전을 DB에서 읽지 못해 처음부터 출력한다는 점을 알고 start:end 범위를 지정할 수 있다",
+    "마이그레이션 안에서 SELECT로 행을 읽어 쓰는 코드가 --sql에서 실패하는 원인을 찾고 Alembic 지시문으로 바꿀 수 있다",
+    "env.py의 context.is_offline_mode() 분기가 온라인·오프라인 실행을 어떻게 가르는지 읽을 수 있다"
+   ],
+   "prerequisites": [
+    "db.orm.alembic-basics"
+   ],
+   "related": [
+    "db.internals.online-schema-change"
+   ],
+   "aliases": [
+    "Alembic offline mode",
+    "alembic --sql",
+    "Alembic 오프라인 모드",
+    "alembic upgrade --sql",
+    "마이그레이션 SQL 스크립트 생성"
+   ],
+   "refs": [
+    "https://alembic.sqlalchemy.org/en/latest/offline.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.cache.redis",
    "title": "Redis",
    "en": "Redis",
@@ -43509,6 +43811,81 @@
    "domain": "db"
   },
   {
+   "id": "db.orm.raiseload",
+   "title": "raiseload: 지연 로딩을 오류로 막기",
+   "en": "SQLAlchemy raiseload",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "ORM",
+   "summary": "관계 속성에 처음 접근할 때 SELECT를 내보내는 대신 예외를 일으켜 뜻하지 않은 N+1 지연 로딩을 드러내는 SQLAlchemy 로딩 옵션이다.",
+   "parent": "db.orm.n-plus-one",
+   "related": [
+    "db.orm.eager-loading"
+   ],
+   "aliases": [
+    "raiseload",
+    "lazy=\"raise\"",
+    "raise_on_sql",
+    "raiseload(\"*\")",
+    "SQLAlchemy raise loading"
+   ],
+   "refs": [
+    "https://docs.sqlalchemy.org/en/20/orm/queryguide/relationships.html#preventing-unwanted-lazy-loads-using-raiseload"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.deadlock-detected",
+   "title": "deadlock_detected(40P01)",
+   "en": "PostgreSQL Deadlock Detected Error (SQLSTATE 40P01)",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "두 트랜잭션이 서로의 잠금을 기다릴 때 PostgreSQL이 한쪽을 취소하며 내는 오류로, 어느 쪽이 취소될지 알 수 없으니 트랜잭션 전체를 다시 시도한다.",
+   "parent": "db.sql.transaction-retry",
+   "related": [
+    "db.sql.serialization-failure",
+    "db.internals.locks"
+   ],
+   "aliases": [
+    "SQLSTATE 40P01",
+    "deadlock_detected",
+    "PostgreSQL deadlock detected",
+    "교착 상태 오류"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/mvcc-serialization-failure-handling.html",
+    "https://www.postgresql.org/docs/current/explicit-locking.html#LOCKING-DEADLOCKS"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.lock-timeout",
+   "title": "lock_timeout: 잠금 대기 끊기",
+   "en": "PostgreSQL lock_timeout",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "SQL",
+   "summary": "문장이 표·행 같은 객체의 잠금을 정한 시간보다 오래 기다리면 취소하는 PostgreSQL 설정으로, 운영 중 DDL이 뒤 쿼리를 줄줄이 막는 일을 줄인다.",
+   "parent": "db.internals.online-schema-change",
+   "related": [
+    "db.sql.statement-timeout"
+   ],
+   "aliases": [
+    "lock_timeout",
+    "PostgreSQL lock_timeout",
+    "SET lock_timeout",
+    "잠금 대기 시간 제한"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-LOCK-TIMEOUT"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.cache.aof-rewrite",
    "title": "AOF 다시 쓰기(BGREWRITEAOF)",
    "en": "Redis AOF Rewrite",
@@ -43867,6 +44244,72 @@
    ],
    "refs": [
     "https://redis.io/docs/latest/develop/reference/client-side-caching/#broadcasting-mode"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.sql.replica-identity",
+   "title": "REPLICA IDENTITY: 복제할 행을 찾는 열",
+   "en": "PostgreSQL Replica Identity",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "SQL",
+   "summary": "논리 복제에서 구독 쪽이 바꿀 행을 찾는 열로, 기본은 기본 키이고 없으면 UPDATE·DELETE를 발행할 수 없다.",
+   "parent": "db.sql.logical-replication",
+   "aliases": [
+    "REPLICA IDENTITY",
+    "복제 식별자",
+    "REPLICA IDENTITY FULL",
+    "replica identity index"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/logical-replication-publication.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.cache.redis-lfu-eviction",
+   "title": "LFU 축출: allkeys-lfu와 lfu-decay-time",
+   "en": "Redis LFU Eviction",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "캐시",
+   "summary": "키마다 접근 빈도를 근사로 세어 드물게 쓰인 키부터 지우는 Redis 축출 방식으로, 카운터의 포화와 감쇠를 설정으로 조절한다.",
+   "parent": "db.cache.redis-eviction",
+   "aliases": [
+    "allkeys-lfu",
+    "volatile-lfu",
+    "Redis LFU",
+    "lfu-log-factor",
+    "lfu-decay-time"
+   ],
+   "refs": [
+    "https://redis.io/docs/latest/develop/reference/eviction/#lfu-eviction"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.cache.redis-tracking-optin",
+   "title": "OPTIN 추적 모드와 CLIENT CACHING YES",
+   "en": "Redis Opt-in Client Tracking",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "캐시",
+   "summary": "읽은 키를 모두 추적하지 않고 CLIENT CACHING YES를 붙인 다음 명령의 키만 추적하게 해 서버 메모리와 무효화 메시지를 줄이는 Redis 추적 모드다.",
+   "parent": "db.cache.redis-client-side-caching",
+   "related": [
+    "db.cache.redis-tracking-bcast"
+   ],
+   "aliases": [
+    "CLIENT TRACKING OPTIN",
+    "CLIENT CACHING YES",
+    "Redis opt-in caching"
+   ],
+   "refs": [
+    "https://redis.io/docs/latest/develop/reference/client-side-caching/#opt-in-and-opt-out-caching"
    ],
    "domain": "db"
   },
@@ -51433,6 +51876,74 @@
    "domain": "fe"
   },
   {
+   "id": "fe.next.prefetching",
+   "title": "Next.js 프리페칭 범위 정하기",
+   "en": "Controlling Prefetching in Next.js",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "Next.js",
+   "summary": "링크가 화면에 들어올 때 다음 라우트를 얼마나 미리 받아 둘지 정해, 즉시 이동하는 느낌과 낭비되는 요청 사이에서 균형을 잡는 설계다.",
+   "objectives": [
+    "정적 라우트와 동적 라우트에서 기본 프리페치가 무엇을 미리 받는지 loading.js 유무에 따라 설명할 수 있다",
+    "무한 스크롤 목록처럼 링크가 많은 화면에서 프리페치를 끌지, 마우스를 올렸을 때만 할지 골라 근거를 말할 수 있다",
+    "분석 이벤트가 페이지를 열지 않았는데도 기록될 때 프리페치 중 실행된 레이아웃·페이지의 부수 효과에서 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "fe.next.routes-layouts"
+   ],
+   "related": [
+    "fe.next.code-splitting",
+    "fe.next.link-component"
+   ],
+   "aliases": [
+    "Next.js 프리페칭",
+    "Next.js prefetching",
+    "라우트 프리페치",
+    "route prefetching"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/guides/prefetching"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.css.cascade-layers",
+   "title": "캐스케이드 레이어로 CSS 우선순위 설계하기",
+   "en": "Designing CSS Precedence with Cascade Layers",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "CSS",
+   "summary": "리셋·외부 라이브러리·컴포넌트·유틸리티 스타일을 @layer로 나누고 그 순서로 우선순위를 정해, 명시도 경쟁 없이 덮어쓰기를 관리하는 방법이다.",
+   "objectives": [
+    "리셋·외부 라이브러리·컴포넌트·유틸리티 스타일의 레이어 순서를 정하고 그 순서가 명시도보다 먼저 적용된다는 점을 근거로 설명할 수 있다",
+    "레이어 안 규칙이 명시도가 더 높은데도 레이어 밖 스타일에 지는 원인을 찾을 수 있다",
+    "!important 선언에서는 레이어 순서가 뒤집힌다는 규칙으로 덮어쓰기 실패를 설명할 수 있다",
+    "팀이나 외부 라이브러리의 레이어 이름이 부딪힐 때 중첩 레이어로 나눌지 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.css.selectors-first",
+    "fe.css.debugging"
+   ],
+   "related": [
+    "fe.css.specificity",
+    "fe.css.component-extension-forking"
+   ],
+   "aliases": [
+    "CSS 캐스케이드 레이어",
+    "CSS cascade layers",
+    "@layer",
+    "CSS 레이어 순서"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Cascade_layers"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.internals.service-worker-caching",
    "title": "서비스 워커 캐싱 전략 고르기",
    "en": "Choosing Service Worker Caching Strategies",
@@ -52283,6 +52794,82 @@
    "domain": "fe"
   },
   {
+   "id": "fe.next.link-prefetch-prop",
+   "title": "Link의 prefetch 속성",
+   "en": "The prefetch Prop of next/link",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Next.js",
+   "summary": "Link가 가리키는 라우트를 운영 환경에서 미리 받을지, 받는다면 전체를 받을지 정하는 값으로 auto·true·false를 쓴다.",
+   "parent": "fe.next.prefetching",
+   "related": [
+    "fe.next.link-component"
+   ],
+   "aliases": [
+    "Next.js prefetch 속성",
+    "next/link prefetch",
+    "prefetch={false}",
+    "Link prefetch prop"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/api-reference/components/link"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.generate-static-params",
+   "title": "generateStaticParams",
+   "en": "generateStaticParams in Next.js",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Next.js",
+   "summary": "동적 세그먼트 값 목록을 돌려주어 빌드 때 미리 만들 경로를 정하는 함수로, 나머지 경로는 첫 방문 때 만들고 Cache Components에서는 빈 배열이 빌드 오류가 된다.",
+   "parent": "fe.internals.rendering-strategy",
+   "related": [
+    "fe.next.isr",
+    "fe.next.dynamic-segment"
+   ],
+   "aliases": [
+    "Next.js generateStaticParams",
+    "정적 경로 미리 만들기",
+    "빌드 시 동적 경로 생성"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/api-reference/functions/generate-static-params"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.ts.module-nodenext",
+   "title": "module: nodenext",
+   "en": "TypeScript nodenext Module Mode",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "TypeScript",
+   "summary": "Node.js의 ESM·CommonJS 이중 체계를 흉내 내는 설정으로, 파일 확장자와 package.json의 type으로 파일마다 형식을 정하고 ESM의 상대 import에는 확장자를 요구한다.",
+   "parent": "fe.ts.module-settings",
+   "related": [
+    "fe.ts.module-resolution-bundler"
+   ],
+   "aliases": [
+    "TS nodenext",
+    "module nodenext",
+    "TypeScript nodenext 설정"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/docs/handbook/modules/reference.html#node16-node18-node20-nodenext",
+    "https://www.typescriptlang.org/docs/handbook/modules/guides/choosing-compiler-options.html"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.internals.server-only",
    "title": "server-only와 client-only",
    "en": "server-only and client-only",
@@ -52578,6 +53165,98 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.css.import-layer",
+   "title": "@import layer()로 외부 CSS를 레이어에 넣기",
+   "en": "Importing Style Sheets into Cascade Layers",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "CSS",
+   "summary": "@import에 layer()를 붙여 외부 스타일시트 전체를 이름 있는 레이어나 이름 없는 레이어에 넣는 문법으로, 다른 규칙보다 앞에 써야 한다.",
+   "parent": "fe.css.cascade-layers",
+   "aliases": [
+    "@import layer",
+    "import layer()",
+    "CSS 레이어로 가져오기"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@import"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.react.context-value-memo",
+   "title": "Context 값 메모이제이션",
+   "en": "Memoizing Context Values",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "React",
+   "summary": "Provider에 넘기는 객체와 함수를 useMemo·useCallback으로 감싸, Provider가 다시 렌더링될 때마다 Context를 읽는 모든 컴포넌트가 함께 다시 렌더링되는 일을 막는 방법이다.",
+   "parent": "fe.internals.react-memoization",
+   "related": [
+    "fe.react.context",
+    "fe.react.state-placement"
+   ],
+   "aliases": [
+    "Context 리렌더링 최적화",
+    "Context value useMemo",
+    "Provider 값 메모이제이션"
+   ],
+   "refs": [
+    "https://react.dev/reference/react/useContext"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.preload-pattern",
+   "title": "preload 함수로 데이터 요청 앞당기기",
+   "en": "Preloading Data in Next.js",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Next.js",
+   "summary": "데이터 함수를 await 없이 먼저 불러 두고 같은 함수를 쓰는 컴포넌트가 그 요청을 다시 쓰게 해, 앞선 작업에 막혀 늦게 시작되는 요청을 앞당기는 방법이다.",
+   "parent": "fe.next.server-data-fetching",
+   "related": [
+    "fe.next.request-memoization"
+   ],
+   "aliases": [
+    "Next.js preload 패턴",
+    "Next.js 데이터 프리로드",
+    "preload pattern"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/getting-started/fetching-data"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.css.prefixed-modifier-class",
+   "title": "자기 접두사를 붙인 BEM 수정자 클래스",
+   "en": "Prefixed BEM Modifier Classes",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "CSS",
+   "summary": "공용 디자인 시스템의 클래스를 직접 덮어쓰지 않고 app- 같은 자기 접두사와 -- 수정자 이름을 붙인 클래스로 작은 변형만 더하는 방식이다.",
+   "parent": "fe.css.component-extension-forking",
+   "related": [
+    "fe.css.component-fork"
+   ],
+   "aliases": [
+    "BEM 수정자 클래스",
+    "BEM modifier class",
+    "디자인 시스템 수정자 클래스"
+   ],
+   "refs": [
+    "https://design-system.service.gov.uk/get-started/extending-and-modifying-components/"
+   ],
    "domain": "fe"
   },
   {
@@ -78808,6 +79487,80 @@
    "domain": "ax"
   },
   {
+   "id": "ax.governance.ai-risk-measurement",
+   "title": "AI 기능의 위험 측정 계획 세우기",
+   "en": "Measuring AI Risks with the AI RMF MEASURE Function",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "NIST AI RMF의 MEASURE 기능을 따라 큰 AI 위험마다 지표와 평가 방법을 고르고, 배포 전후로 재고 추적하는 계획을 세운다.",
+   "objectives": [
+    "가장 중요한 AI 위험마다 측정 지표를 고르고, 잴 수 없는 위험은 그 사실을 기록할 수 있다",
+    "배포 환경과 비슷한 조건의 성능 평가와 운영 중 감시를 함께 담은 측정 계획을 세울 수 있다",
+    "안전·보안·개인정보·공정성 같은 신뢰성 특성마다 무엇을 평가해 남길지 고를 수 있다",
+    "사용자가 문제를 알리고 결과에 이의를 걸 수 있는 경로를 두어 새로 생기는 위험을 추적할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.governance.ai-risk-framing",
+    "ax.governance.genai-profile"
+   ],
+   "related": [
+    "ax.governance.tevv",
+    "ax.governance.post-deployment-ai-management",
+    "ax.governance.ai-red-teaming"
+   ],
+   "aliases": [
+    "AI RMF MEASURE",
+    "AI 위험 측정",
+    "AI 위험 지표",
+    "AI risk measurement",
+    "MEASURE 기능"
+   ],
+   "refs": [
+    "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+    "https://www.nist.gov/itl/ai-risk-management-framework"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.misinformation-safeguards",
+   "title": "LLM 기능의 잘못된 정보를 줄이는 설계",
+   "en": "Designing Safeguards Against LLM Misinformation",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "LLM 기능이 내놓는 사실 오류와 근거 없는 주장을 줄이려고 검색 근거, 자동 검증, 사람 확인, 화면 안내를 위험 크기에 맞게 조합한다.",
+   "objectives": [
+    "사실 오류·근거 없는 주장·전문성 과장·위험한 코드 제안 가운데 기능마다 어떤 위험이 큰지 가릴 수 있다",
+    "신뢰할 수 있는 자료 검색, 핵심 출력 자동 검증, 사람의 사실 확인 중 기능의 위험 크기에 맞는 조합을 고를 수 있다",
+    "AI 생성 표시·신뢰도 안내·쓰임 범위 안내 같은 화면 설계로 사용자의 과의존을 줄이는 방법을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "ax.security.misinformation"
+   ],
+   "related": [
+    "llm.prompt.grounded-answers",
+    "ax.security.hallucinated-package",
+    "ax.governance.automation-bias",
+    "ax.governance.ai-disclosure-labelling"
+   ],
+   "aliases": [
+    "LLM09 대응",
+    "LLM 오정보 대책",
+    "misinformation mitigation",
+    "AI 답 사실 확인 설계",
+    "LLM 출력 자동 검증"
+   ],
+   "refs": [
+    "https://genai.owasp.org/llmrisk/llm092025-misinformation/"
+   ],
+   "domain": "ax"
+  },
+  {
    "id": "ax.governance.ssdf-ai-profile",
    "title": "AI 모델 개발에 보안 개발 관행 적용하기",
    "en": "SSDF Community Profile for AI Model Development (SP 800-218A)",
@@ -79393,6 +80146,109 @@
    ],
    "refs": [
     "https://code.claude.com/docs/en/sandboxing"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.context-aware-output-encoding",
+   "title": "LLM 출력의 쓰임새별 인코딩",
+   "en": "Context-Aware Output Encoding for LLM Output",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "모델의 답이 들어갈 곳에 맞춰 화면에는 HTML 인코딩, 쿼리에는 매개변수화처럼 다른 처리를 골라 실행·렌더링 공격을 막는 방법이다.",
+   "parent": "ax.security.model-output-handling",
+   "related": [
+    "be.security.input-output",
+    "be.security.xss",
+    "be.security.csp"
+   ],
+   "aliases": [
+    "context-aware output encoding",
+    "LLM 출력 인코딩",
+    "LLM 출력 이스케이프",
+    "컨텍스트별 출력 인코딩"
+   ],
+   "refs": [
+    "https://genai.owasp.org/llmrisk/llm052025-improper-output-handling/"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.rag-hidden-text-poisoning",
+   "title": "숨은 글자로 RAG 문서 오염시키기",
+   "en": "Hidden-Text Poisoning of RAG Documents",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "흰 바탕에 흰 글씨처럼 사람 눈에 안 보이게 지시를 심은 문서가 지식 베이스에 들어가 RAG 답을 공격자 뜻대로 바꾸는 공격이다.",
+   "parent": "ax.security.vector-embedding-weaknesses",
+   "related": [
+    "llm.security.indirect-injection",
+    "ax.security.data-poisoning"
+   ],
+   "aliases": [
+    "hidden text poisoning",
+    "RAG 문서 숨은 지시",
+    "RAG 숨은 글자 오염"
+   ],
+   "refs": [
+    "https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.ai-risk-response-options",
+   "title": "AI 위험 대응 선택지(완화·이전·회피·수용)",
+   "en": "AI Risk Response Options",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "우선순위가 높은 AI 위험마다 줄이기·넘기기·피하기·받아들이기 중 하나를 골라 대응 계획과 함께 문서로 남기는 NIST AI RMF MANAGE의 선택지다.",
+   "parent": "ax.governance.post-deployment-ai-management",
+   "related": [
+    "ax.governance.residual-risk",
+    "ax.governance.risk-tolerance"
+   ],
+   "aliases": [
+    "AI risk response",
+    "AI 위험 대응 전략",
+    "위험 완화 이전 회피 수용",
+    "MANAGE 1.3"
+   ],
+   "refs": [
+    "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.third-party-ai-risk-monitoring",
+   "title": "외부 AI 모델·서비스 위험 정기 점검",
+   "en": "Third-Party AI Risk Monitoring",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "가져다 쓰는 외부 모델·데이터·AI 서비스와 개발에 쓴 사전 학습 모델의 위험을 운영 중에도 정기적으로 살피고, 통제와 그 기록을 남기는 활동이다.",
+   "parent": "ax.governance.post-deployment-ai-management",
+   "related": [
+    "ax.security.model-supply-chain"
+   ],
+   "aliases": [
+    "third-party AI risk",
+    "외부 모델 위험 감시",
+    "사전 학습 모델 모니터링",
+    "MANAGE 3.2"
+   ],
+   "refs": [
+    "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -80036,6 +80892,56 @@
     "Cyber AI 초점 영역",
     "AI-enabled cyber defense",
     "Cyber AI Profile focus areas"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.rag-knowledge-conflict",
+   "title": "RAG 지식 충돌",
+   "en": "Federation Knowledge Conflict in RAG",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "여러 출처에서 모은 검색 자료끼리 내용이 어긋나거나, 모델이 검색한 새 자료 대신 학습 때 배운 옛 지식을 따라 답이 틀어지는 문제다.",
+   "related": [
+    "rag.retrieval.quality"
+   ],
+   "aliases": [
+    "knowledge conflict",
+    "federation knowledge conflict",
+    "RAG 자료 충돌",
+    "검색 자료 모순"
+   ],
+   "refs": [
+    "https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/"
+   ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.governance.cyber-ai-proposed-priority",
+   "title": "Cyber AI Profile 제안 우선순위",
+   "en": "Cyber AI Profile Proposed Priority",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "AI 보안과 윤리",
+   "summary": "CSF 2.0 하위 범주마다 초점 영역별로 1(높음)·2(보통)·3(기초)을 붙여 먼저 손댈 곳을 고르게 하는 표시로, 난이도를 뜻하지 않고 3도 낮은 순위가 아니다.",
+   "parent": "ax.governance.cyber-ai-profile",
+   "related": [
+    "ax.governance.cyber-ai-focus-areas"
+   ],
+   "aliases": [
+    "Proposed Priority",
+    "Cyber AI 우선순위",
+    "High Moderate Foundational",
+    "Foundational Priority"
+   ],
+   "refs": [
+    "https://nvlpubs.nist.gov/nistpubs/ir/2025/NIST.IR.8596.iprd.pdf",
+    "https://csrc.nist.gov/pubs/ir/8596/iprd"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -105273,6 +106179,81 @@
    "domain": "mlops"
   },
   {
+   "id": "mlops.eval.mlflow-judge-align",
+   "title": "MLflow 심판 정렬: 사람 피드백으로 LLM 심판 고치기",
+   "en": "Aligning MLflow LLM Judges with Human Feedback",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "같은 트레이스에 쌓인 심판 점수와 사람 평가를 짝지어 align()으로 심판 지시를 다듬고, 다듬은 심판을 등록해 운영 평가에 다시 쓰는 방법이다.",
+   "objectives": [
+    "심판 이름과 사람 피드백 이름이 정확히 같아야 짝이 지어진다는 점을 알고, 정렬에 쓸 트레이스가 모자라거나 짝이 안 맞는 원인을 찾을 수 있다",
+    "긍정·부정 예시의 비율과 여러 검토자의 기준표를 갖춰 정렬용 피드백을 모으는 절차를 설계할 수 있다",
+    "MemAlign·SIMBA·GEPA 가운데 속도·비용과 반복 개선의 무게를 따져 옵티마이저를 고를 수 있다",
+    "정렬 전후 심판이 사람 라벨과 얼마나 맞는지 비교해 정렬한 심판을 등록할지 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.eval.make-judge",
+    "mlops.eval.human-annotation"
+   ],
+   "related": [
+    "mlops.eval.judge-alignment",
+    "mlops.prompt.gepa-optimizer",
+    "mlops.eval.llm-judge"
+   ],
+   "aliases": [
+    "MLflow judge alignment",
+    "MLflow 심판 정렬",
+    "judge.align()",
+    "MLflow align 심판",
+    "aligned judge"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/llm-judge/alignment/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.eval.mlflow-compare-evaluations",
+   "title": "MLflow 평가 런 비교: 짝지은 행으로 회귀 판단하기",
+   "en": "Comparing MLflow Evaluation Runs with Paired Tests",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "기준 런과 후보 런을 같은 평가 세트의 행끼리 짝지어 차이·신뢰구간·p값을 보고, 평균만 볼 때 놓치는 개선과 회귀를 가려내는 방법이다.",
+   "objectives": [
+    "compare_evaluations로 기준 런과 후보 런의 행별 차이와 신뢰구간·p값을 읽고 개선인지 잡음인지 판단할 수 있다",
+    "같은 데이터와 같은 스코어러로 평가하지 않았거나 행이 짝지어지지 않아 insufficient_pairs가 나오는 원인을 찾을 수 있다",
+    "assert_improved와 낮을수록 좋은 지표 설정으로 CI에서 후보 변경을 막는 관문을 만들 수 있다",
+    "LLM 심판의 잡음과 여러 지표 동시 비교의 함정을 고려해 A/A 실행과 표본 크기를 정할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.eval.llm-regression",
+    "mlops.eval.first-eval"
+   ],
+   "related": [
+    "mlops.eval.llm-regression",
+    "mlops.serve.model-ab-test"
+   ],
+   "aliases": [
+    "compare_evaluations",
+    "MLflow 평가 비교",
+    "MLflow evaluation comparison",
+    "assert_improved",
+    "평가 런 비교"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/eval-monitor/comparing-evaluation-runs/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
    "id": "mlops.serve.kserve-canary-rollout",
    "title": "KServe로 모델 카나리 출시하고 되돌리기",
    "en": "Canary Rollout and Rollback with KServe",
@@ -105971,6 +106952,85 @@
    ],
    "refs": [
     "https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-spans.md"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.eval.mlflow-pytest-regression",
+   "title": "MLflow pytest 회귀 시험(@mlflow.test)",
+   "en": "MLflow pytest Regression Tests (@mlflow.test)",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "pytest 함수 안에서 mlflow.genai.evaluate 결과의 통과 여부를 단언해, 스코어러 하나라도 실패하면 풀 리퀘스트 검사가 막히게 하는 MLflow의 회귀 시험 방식이다.",
+   "parent": "mlops.eval.llm-regression",
+   "related": [
+    "mlops.eval.mlflow-compare-evaluations"
+   ],
+   "aliases": [
+    "@mlflow.test",
+    "mlflow.pytest.plugin",
+    "MLflow 회귀 테스트",
+    "MLflow regression testing"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/eval-monitor/regression-testing/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.traces-to-eval-dataset",
+   "title": "트레이스로 평가 데이터셋 늘리기(merge_records)",
+   "en": "Adding Traces to an Evaluation Dataset (merge_records)",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "search_traces로 고른 운영 트레이스에 기대값을 달고 merge_records로 MLflow 평가 데이터셋에 넣어, 실제로 실패한 요청을 다음 평가 문제로 만드는 방법이다.",
+   "parent": "mlops.observe.llm-tracing",
+   "related": [
+    "mlops.eval.eval-dataset"
+   ],
+   "aliases": [
+    "merge_records",
+    "MLflow 평가 데이터셋 만들기",
+    "mlflow.genai.datasets",
+    "트레이스로 평가 세트 만들기"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/datasets/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.prompt.mlflow-prompt-cache-ttl",
+   "title": "MLflow 프롬프트 캐시 수명(별칭·버전별 TTL)",
+   "en": "MLflow Prompt Cache TTL",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "load_prompt로 불러온 프롬프트를 버전으로 부르면 무기한, 별칭으로 부르면 기본 60초 캐시하는 MLflow 동작으로, 다른 곳에서 옮긴 별칭이 늦게 반영되는 원인이 된다.",
+   "parent": "mlops.prompt.registry",
+   "related": [
+    "mlops.prompt.langfuse-cache-ttl",
+    "mlops.prompt.alias"
+   ],
+   "aliases": [
+    "MLFLOW_ALIAS_PROMPT_CACHE_TTL_SECONDS",
+    "MLFLOW_VERSION_PROMPT_CACHE_TTL_SECONDS",
+    "MLflow 프롬프트 캐시",
+    "MLflow prompt cache"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/prompt-registry/"
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
@@ -106875,6 +107935,56 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.eval.memalign-optimizer",
+   "title": "MemAlign 옵티마이저(MLflow 심판 정렬)",
+   "en": "MemAlign Optimizer",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "사람 피드백에서 뽑은 일반 지침과 심판이 틀렸던 구체 사례를 두 가지 기억에 나눠 두고 채점 때 꺼내 쓰게 하는 MLflow의 기본 심판 정렬 옵티마이저다.",
+   "parent": "mlops.eval.mlflow-judge-align",
+   "related": [
+    "mlops.prompt.gepa-optimizer"
+   ],
+   "aliases": [
+    "MemAlign",
+    "MemAlignOptimizer",
+    "MLflow MemAlign",
+    "MemAlign 의미 기억·일화 기억"
+   ],
+   "refs": [
+    "https://mlflow.org/docs/latest/genai/eval-monitor/scorers/llm-judge/memalign/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.trace-context-trust-boundary",
+   "title": "트레이스 컨텍스트 전파의 신뢰 경계",
+   "en": "Trust Boundaries for Trace Context Propagation",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "믿을 수 없는 곳에서 들어온 추적 헤더는 무시하거나 걸러 내고, 외부로 나가는 요청에는 내부 트레이스 ID와 배기지를 싣지 않으며, 배기지에 비밀값과 개인정보를 넣지 않는 OpenTelemetry의 전파 주의점이다.",
+   "parent": "mlops.observe.distributed-trace-propagation",
+   "related": [
+    "mlops.observe.traceparent-header"
+   ],
+   "aliases": [
+    "OpenTelemetry context propagation security",
+    "OTel 전파 보안",
+    "OTel baggage 보안",
+    "트레이스 헤더 위조"
+   ],
+   "refs": [
+    "https://opentelemetry.io/docs/concepts/context-propagation/"
+   ],
    "domain": "mlops"
   },
   {

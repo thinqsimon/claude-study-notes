@@ -7064,6 +7064,72 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "fe.next.prefetching",
+    "title": "Next.js 프리페칭 범위 정하기",
+    "en": "Controlling Prefetching in Next.js",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "Next.js",
+    "summary": "링크가 화면에 들어올 때 다음 라우트를 얼마나 미리 받아 둘지 정해, 즉시 이동하는 느낌과 낭비되는 요청 사이에서 균형을 잡는 설계다.",
+    "objectives": [
+      "정적 라우트와 동적 라우트에서 기본 프리페치가 무엇을 미리 받는지 loading.js 유무에 따라 설명할 수 있다",
+      "무한 스크롤 목록처럼 링크가 많은 화면에서 프리페치를 끌지, 마우스를 올렸을 때만 할지 골라 근거를 말할 수 있다",
+      "분석 이벤트가 페이지를 열지 않았는데도 기록될 때 프리페치 중 실행된 레이아웃·페이지의 부수 효과에서 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "fe.next.routes-layouts"
+    ],
+    "related": [
+      "fe.next.code-splitting",
+      "fe.next.link-component"
+    ],
+    "aliases": [
+      "Next.js 프리페칭",
+      "Next.js prefetching",
+      "라우트 프리페치",
+      "route prefetching"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/guides/prefetching"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "fe.css.cascade-layers",
+    "title": "캐스케이드 레이어로 CSS 우선순위 설계하기",
+    "en": "Designing CSS Precedence with Cascade Layers",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "CSS",
+    "summary": "리셋·외부 라이브러리·컴포넌트·유틸리티 스타일을 @layer로 나누고 그 순서로 우선순위를 정해, 명시도 경쟁 없이 덮어쓰기를 관리하는 방법이다.",
+    "objectives": [
+      "리셋·외부 라이브러리·컴포넌트·유틸리티 스타일의 레이어 순서를 정하고 그 순서가 명시도보다 먼저 적용된다는 점을 근거로 설명할 수 있다",
+      "레이어 안 규칙이 명시도가 더 높은데도 레이어 밖 스타일에 지는 원인을 찾을 수 있다",
+      "!important 선언에서는 레이어 순서가 뒤집힌다는 규칙으로 덮어쓰기 실패를 설명할 수 있다",
+      "팀이나 외부 라이브러리의 레이어 이름이 부딪힐 때 중첩 레이어로 나눌지 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.css.selectors-first",
+      "fe.css.debugging"
+    ],
+    "related": [
+      "fe.css.specificity",
+      "fe.css.component-extension-forking"
+    ],
+    "aliases": [
+      "CSS 캐스케이드 레이어",
+      "CSS cascade layers",
+      "@layer",
+      "CSS 레이어 순서"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Cascade_layers"
+    ]
+  },
+  {
     "id": "fe.internals.service-worker-caching",
     "title": "서비스 워커 캐싱 전략 고르기",
     "en": "Choosing Service Worker Caching Strategies",
@@ -7879,6 +7945,79 @@
     ]
   },
   {
+    "id": "fe.next.link-prefetch-prop",
+    "title": "Link의 prefetch 속성",
+    "en": "The prefetch Prop of next/link",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Next.js",
+    "summary": "Link가 가리키는 라우트를 운영 환경에서 미리 받을지, 받는다면 전체를 받을지 정하는 값으로 auto·true·false를 쓴다.",
+    "parent": "fe.next.prefetching",
+    "related": [
+      "fe.next.link-component"
+    ],
+    "aliases": [
+      "Next.js prefetch 속성",
+      "next/link prefetch",
+      "prefetch={false}",
+      "Link prefetch prop"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/api-reference/components/link"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "fe.next.generate-static-params",
+    "title": "generateStaticParams",
+    "en": "generateStaticParams in Next.js",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Next.js",
+    "summary": "동적 세그먼트 값 목록을 돌려주어 빌드 때 미리 만들 경로를 정하는 함수로, 나머지 경로는 첫 방문 때 만들고 Cache Components에서는 빈 배열이 빌드 오류가 된다.",
+    "parent": "fe.internals.rendering-strategy",
+    "related": [
+      "fe.next.isr",
+      "fe.next.dynamic-segment"
+    ],
+    "aliases": [
+      "Next.js generateStaticParams",
+      "정적 경로 미리 만들기",
+      "빌드 시 동적 경로 생성"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/api-reference/functions/generate-static-params"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "fe.ts.module-nodenext",
+    "title": "module: nodenext",
+    "en": "TypeScript nodenext Module Mode",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "TypeScript",
+    "summary": "Node.js의 ESM·CommonJS 이중 체계를 흉내 내는 설정으로, 파일 확장자와 package.json의 type으로 파일마다 형식을 정하고 ESM의 상대 import에는 확장자를 요구한다.",
+    "parent": "fe.ts.module-settings",
+    "related": [
+      "fe.ts.module-resolution-bundler"
+    ],
+    "aliases": [
+      "TS nodenext",
+      "module nodenext",
+      "TypeScript nodenext 설정"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/modules/reference.html#node16-node18-node20-nodenext",
+      "https://www.typescriptlang.org/docs/handbook/modules/guides/choosing-compiler-options.html"
+    ]
+  },
+  {
     "id": "fe.internals.server-only",
     "title": "server-only와 client-only",
     "en": "server-only and client-only",
@@ -8162,6 +8301,94 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
+  },
+  {
+    "id": "fe.css.import-layer",
+    "title": "@import layer()로 외부 CSS를 레이어에 넣기",
+    "en": "Importing Style Sheets into Cascade Layers",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "CSS",
+    "summary": "@import에 layer()를 붙여 외부 스타일시트 전체를 이름 있는 레이어나 이름 없는 레이어에 넣는 문법으로, 다른 규칙보다 앞에 써야 한다.",
+    "parent": "fe.css.cascade-layers",
+    "aliases": [
+      "@import layer",
+      "import layer()",
+      "CSS 레이어로 가져오기"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@import"
+    ]
+  },
+  {
+    "id": "fe.react.context-value-memo",
+    "title": "Context 값 메모이제이션",
+    "en": "Memoizing Context Values",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "React",
+    "summary": "Provider에 넘기는 객체와 함수를 useMemo·useCallback으로 감싸, Provider가 다시 렌더링될 때마다 Context를 읽는 모든 컴포넌트가 함께 다시 렌더링되는 일을 막는 방법이다.",
+    "parent": "fe.internals.react-memoization",
+    "related": [
+      "fe.react.context",
+      "fe.react.state-placement"
+    ],
+    "aliases": [
+      "Context 리렌더링 최적화",
+      "Context value useMemo",
+      "Provider 값 메모이제이션"
+    ],
+    "refs": [
+      "https://react.dev/reference/react/useContext"
+    ]
+  },
+  {
+    "id": "fe.next.preload-pattern",
+    "title": "preload 함수로 데이터 요청 앞당기기",
+    "en": "Preloading Data in Next.js",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Next.js",
+    "summary": "데이터 함수를 await 없이 먼저 불러 두고 같은 함수를 쓰는 컴포넌트가 그 요청을 다시 쓰게 해, 앞선 작업에 막혀 늦게 시작되는 요청을 앞당기는 방법이다.",
+    "parent": "fe.next.server-data-fetching",
+    "related": [
+      "fe.next.request-memoization"
+    ],
+    "aliases": [
+      "Next.js preload 패턴",
+      "Next.js 데이터 프리로드",
+      "preload pattern"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/getting-started/fetching-data"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "fe.css.prefixed-modifier-class",
+    "title": "자기 접두사를 붙인 BEM 수정자 클래스",
+    "en": "Prefixed BEM Modifier Classes",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "CSS",
+    "summary": "공용 디자인 시스템의 클래스를 직접 덮어쓰지 않고 app- 같은 자기 접두사와 -- 수정자 이름을 붙인 클래스로 작은 변형만 더하는 방식이다.",
+    "parent": "fe.css.component-extension-forking",
+    "related": [
+      "fe.css.component-fork"
+    ],
+    "aliases": [
+      "BEM 수정자 클래스",
+      "BEM modifier class",
+      "디자인 시스템 수정자 클래스"
+    ],
+    "refs": [
+      "https://design-system.service.gov.uk/get-started/extending-and-modifying-components/"
+    ]
   },
   {
     "id": "fe.internals.render-pipeline",
