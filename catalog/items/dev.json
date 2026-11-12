@@ -6222,6 +6222,69 @@
     ]
   },
   {
+    "id": "dev.test.fixture-scope-isolation",
+    "title": "픽스처 범위 고르기와 테스트 사이 상태 누수 막기",
+    "en": "Choosing pytest Fixture Scope and Preventing State Leaks",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "테스트",
+    "summary": "픽스처를 테스트마다 새로 만들지 모듈·세션 단위로 나눠 쓸지 속도와 격리를 따져 고르고, 정리가 빠져 상태가 새는 원인을 찾는다.",
+    "objectives": [
+      "비싼 준비물에 function·module·session 중 어느 범위가 알맞은지 고르고 근거를 말할 수 있다",
+      "넓은 범위 픽스처가 테스트 사이에 상태를 남겨 순서에 따라 결과가 바뀌는 원인을 찾을 수 있다",
+      "준비 도중 실패해도 뒷정리가 남지 않도록 픽스처를 한 가지 변경과 그 정리로 나누는 구조를 고를 수 있다"
+    ],
+    "prerequisites": [
+      "be.test.pytest-fixtures"
+    ],
+    "related": [
+      "dev.test.flaky",
+      "be.test.db-isolation"
+    ],
+    "aliases": [
+      "pytest 픽스처 범위",
+      "픽스처 상태 공유",
+      "safe teardown",
+      "픽스처 정리 순서"
+    ],
+    "refs": [
+      "https://docs.pytest.org/en/stable/how-to/fixtures.html"
+    ]
+  },
+  {
+    "id": "dev.debug.remote-attach",
+    "title": "실행 중인 파이썬 프로세스에 디버거 붙이기",
+    "en": "Attaching a Debugger to a Running Python Process with debugpy",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "디버깅",
+    "summary": "launch 대신 attach 구성과 debugpy로 컨테이너·원격 서버·이미 돌고 있는 프로세스에 VS Code 디버거를 연결하고 포트 노출 위험을 다룬다.",
+    "objectives": [
+      "프로그램을 디버거가 직접 띄울지(launch) 이미 도는 프로세스에 붙을지(attach) 상황에 맞게 고를 수 있다",
+      "원격에서 중단점이 걸리지 않을 때 경로 대응(pathMappings)이나 justMyCode 설정에서 원인을 찾을 수 있다",
+      "디버그 포트를 0.0.0.0에 열지 SSH 터널로 넘길지 보안 근거를 들어 고를 수 있다"
+    ],
+    "prerequisites": [
+      "dev.debug.vscode-python"
+    ],
+    "related": [
+      "dev.debug.pdb",
+      "dev.debug.launch-json"
+    ],
+    "aliases": [
+      "원격 파이썬 디버깅",
+      "remote debugging Python",
+      "attach 디버깅",
+      "프로세스에 디버거 붙이기",
+      "Attach using Process ID"
+    ],
+    "refs": [
+      "https://code.visualstudio.com/docs/python/debugging"
+    ]
+  },
+  {
     "id": "dev.git.large-repo-clone",
     "title": "큰 저장소 가볍게 받기: 얕은·부분 클론과 sparse-checkout",
     "en": "Shallow Clone, Partial Clone, and Sparse Checkout for Large Repositories",
@@ -6248,6 +6311,73 @@
       "https://git-scm.com/docs/partial-clone",
       "https://git-scm.com/docs/git-sparse-checkout",
       "https://git-scm.com/docs/git-clone"
+    ]
+  },
+  {
+    "id": "dev.git.lfs",
+    "title": "큰 바이너리 파일 다루기: Git LFS",
+    "en": "Managing Large Binary Files with Git LFS",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "Git",
+    "summary": "큰 파일은 저장소 밖에 두고 포인터만 커밋하는 Git LFS를 쓸지 따지고, 이미 들어간 파일을 옮길 때 기록 재작성과 협업 영향을 판단한다.",
+    "objectives": [
+      "모델·미디어 같은 큰 파일을 일반 Git에 둘지 LFS로 옮길지 용량 제한과 비용을 들어 고를 수 있다",
+      "클론한 파일이 내용 대신 version·oid·size 몇 줄만 보일 때 LFS 미설치나 객체 미전송에서 원인을 찾을 수 있다",
+      "기존 기록을 LFS로 옮길 때 기록을 다시 쓸지 새 커밋 하나로 바꿀지 협업자 영향을 근거로 고를 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.remotes"
+    ],
+    "related": [
+      "dev.git.large-repo-clone",
+      "dev.git.filter-repo"
+    ],
+    "aliases": [
+      "Git Large File Storage",
+      "git lfs track",
+      "LFS 저장소",
+      "대용량 파일 Git"
+    ],
+    "refs": [
+      "https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage",
+      "https://docs.github.com/en/repositories/working-with-files/managing-large-files/collaboration-with-git-large-file-storage",
+      "https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-migrate.adoc"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "dev.test.property-based",
+    "title": "속성 기반 테스트: Hypothesis",
+    "en": "Property-Based Testing with Hypothesis",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "테스트",
+    "summary": "손으로 고른 예시 대신 모든 입력에서 지켜야 할 성질을 적고 Hypothesis가 입력을 만들어 반례를 찾게 하며, 찾은 실패를 다시 돌려 고친다.",
+    "objectives": [
+      "예시 기반 테스트로 충분한 곳과 속성 기반 테스트가 경계값을 더 잘 찾는 곳을 고를 수 있다",
+      "Hypothesis가 보고한 반례에서 코드가 어떤 입력 성질을 놓쳤는지 원인을 찾을 수 있다",
+      "CI에서 나온 실패를 예제 데이터베이스·@reproduce_failure·@example 중 무엇으로 재현하고 고정할지 근거를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "be.test.pytest-fixtures"
+    ],
+    "related": [
+      "dev.test.tdd"
+    ],
+    "aliases": [
+      "property-based testing",
+      "속성 기반 테스트",
+      "Hypothesis 테스트",
+      "hypothesis @given"
+    ],
+    "refs": [
+      "https://hypothesis.readthedocs.io/en/latest/tutorial/introduction.html",
+      "https://hypothesis.readthedocs.io/en/latest/quickstart.html",
+      "https://hypothesis.readthedocs.io/en/latest/tutorial/replaying-failures.html"
     ]
   },
   {
@@ -6434,6 +6564,66 @@
     ]
   },
   {
+    "id": "dev.test.fixture-scope",
+    "title": "픽스처 범위(scope)",
+    "en": "pytest Fixture Scope",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "테스트",
+    "summary": "픽스처를 언제 만들고 언제 없앨지 정하는 단위로, function·class·module·package·session 가운데 고른다.",
+    "parent": "dev.test.fixture-scope-isolation",
+    "aliases": [
+      "fixture scope",
+      "scope=\"session\"",
+      "scope=\"module\"",
+      "세션 범위 픽스처"
+    ],
+    "refs": [
+      "https://docs.pytest.org/en/stable/how-to/fixtures.html#fixture-scopes"
+    ]
+  },
+  {
+    "id": "dev.test.yield-fixture-teardown",
+    "title": "yield 픽스처와 정리 순서",
+    "en": "Yield Fixture Teardown Order",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "테스트",
+    "summary": "yield 뒤의 코드가 정리로 돌고 나중에 준비된 픽스처부터 거꾸로 정리되며, yield 전에 실패하면 그 픽스처의 정리는 돌지 않는다.",
+    "parent": "dev.test.fixture-scope-isolation",
+    "aliases": [
+      "yield fixture",
+      "yield 픽스처",
+      "request.addfinalizer",
+      "addfinalizer"
+    ],
+    "refs": [
+      "https://docs.pytest.org/en/stable/how-to/fixtures.html#yield-fixtures-recommended"
+    ]
+  },
+  {
+    "id": "dev.debug.debugpy-listen",
+    "title": "debugpy --listen과 --wait-for-client",
+    "en": "debugpy --listen and --wait-for-client",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "디버깅",
+    "summary": "파이썬 프로그램 안에 디버그 서버를 열어 두고 편집기가 붙을 때까지 첫 줄 실행을 미루게 하는 debugpy의 실행 방식이다.",
+    "parent": "dev.debug.remote-attach",
+    "aliases": [
+      "python -m debugpy",
+      "debugpy.listen",
+      "debugpy.wait_for_client",
+      "debugpy --pid"
+    ],
+    "refs": [
+      "https://code.visualstudio.com/docs/python/debugging"
+    ]
+  },
+  {
     "id": "dev.robust.fsync",
     "title": "fsync",
     "en": "fsync",
@@ -6527,6 +6717,102 @@
     ],
     "refs": [
       "https://git-scm.com/docs/git-sparse-checkout"
+    ]
+  },
+  {
+    "id": "dev.debug.path-mappings",
+    "title": "pathMappings로 원격 경로 맞추기",
+    "en": "Debugger pathMappings (localRoot and remoteRoot)",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "편집기의 로컬 폴더와 원격·컨테이너의 코드 폴더를 짝지어 중단점이 올바른 파일에 걸리게 하는 attach 구성 설정이다.",
+    "parent": "dev.debug.remote-attach",
+    "aliases": [
+      "localRoot",
+      "remoteRoot",
+      "디버거 경로 매핑",
+      "debug path mapping"
+    ],
+    "refs": [
+      "https://code.visualstudio.com/docs/python/debugging"
+    ]
+  },
+  {
+    "id": "dev.git.lfs-pointer",
+    "title": "LFS 포인터 파일",
+    "en": "Git LFS Pointer File",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Git",
+    "summary": "저장소에 실제 파일 대신 들어가는 짧은 텍스트로, LFS 규격 버전·SHA-256 oid·파일 크기를 담아 실제 내용을 찾는 데 쓴다.",
+    "parent": "dev.git.lfs",
+    "aliases": [
+      "Git LFS pointer",
+      "LFS pointer file",
+      "LFS 포인터"
+    ],
+    "refs": [
+      "https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage"
+    ]
+  },
+  {
+    "id": "dev.git.lfs-migrate",
+    "title": "git lfs migrate",
+    "en": "git lfs migrate",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Git",
+    "summary": "이미 커밋된 큰 파일을 LFS 포인터로 바꾸거나 되돌리는 명령으로, import·export는 기록을 다시 써 강제 푸시가 필요하다.",
+    "parent": "dev.git.lfs",
+    "aliases": [
+      "lfs migrate import",
+      "git lfs migrate info",
+      "lfs migrate --no-rewrite"
+    ],
+    "refs": [
+      "https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-migrate.adoc"
+    ]
+  },
+  {
+    "id": "dev.test.hypothesis-explicit-example",
+    "title": "@example로 회귀 사례 고정",
+    "en": "Hypothesis @example Decorator",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "테스트",
+    "summary": "생성된 입력과 함께 매번 먼저 돌릴 입력을 직접 지정하는 Hypothesis 데코레이터로, 한 번 찾은 반례를 테스트에 영구히 남길 때 쓴다.",
+    "parent": "dev.test.property-based",
+    "aliases": [
+      "hypothesis.example",
+      "Hypothesis explicit example",
+      "명시적 예제"
+    ],
+    "refs": [
+      "https://hypothesis.readthedocs.io/en/latest/tutorial/replaying-failures.html"
+    ]
+  },
+  {
+    "id": "dev.test.hypothesis-database",
+    "title": "Hypothesis 예제 데이터베이스",
+    "en": "Hypothesis Example Database",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "테스트",
+    "summary": "실패한 입력을 .hypothesis 폴더 같은 저장소에 남겨 다음 실행에서 먼저 다시 돌리는 장치로, 버전이 바뀌면 무효가 될 수 있다.",
+    "parent": "dev.test.property-based",
+    "aliases": [
+      ".hypothesis 폴더",
+      "DirectoryBasedExampleDatabase",
+      "GitHubArtifactDatabase"
+    ],
+    "refs": [
+      "https://hypothesis.readthedocs.io/en/latest/tutorial/replaying-failures.html"
     ]
   },
   {

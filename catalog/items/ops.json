@@ -6216,6 +6216,143 @@
     ]
   },
   {
+    "id": "ops.observe.symptom-alerting",
+    "title": "증상 기반 알림 설계: 경보 규칙과 Alertmanager",
+    "en": "Symptom-Based Alerting with Prometheus Rules and Alertmanager",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "관측",
+    "summary": "사용자가 겪는 증상에 경보를 걸고, 대기 시간과 묶음·억제로 소음을 줄여 꼭 사람이 볼 일만 호출하게 만드는 설계다.",
+    "objectives": [
+      "원인 지표와 증상 지표 중 어느 쪽에 호출 경보를 걸지 근거를 들어 고를 수 있다",
+      "경보 규칙의 for·keep_firing_for 값을 정해 깜박이는 경보를 줄일 수 있다",
+      "장애 한 번에 경보가 수십 개 오는 원인을 Alertmanager 묶음·억제 설정에서 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "ops.observe.metrics"
+    ],
+    "related": [
+      "ops.observe.slo-design",
+      "ops.observe.alert-fatigue"
+    ],
+    "aliases": [
+      "증상 기반 알림",
+      "symptom-based alerting",
+      "Prometheus 경보 규칙",
+      "Prometheus alerting rules",
+      "호출 경보 설계",
+      "paging alert"
+    ],
+    "refs": [
+      "https://sre.google/sre-book/monitoring-distributed-systems/",
+      "https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/",
+      "https://prometheus.io/docs/alerting/latest/alertmanager/"
+    ]
+  },
+  {
+    "id": "ops.k8s.hpa-tuning",
+    "title": "HPA 스케일링 설계와 진단",
+    "en": "Tuning and Troubleshooting the Horizontal Pod Autoscaler",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "HPA가 요청값 대비 사용률로 복제 수를 계산하는 방식을 알고, 늘고 줄어드는 속도와 매니페스트 충돌을 조정해 출렁임을 막는 일이다.",
+    "objectives": [
+      "CPU 사용률 목표가 계산되지 않을 때 리소스 요청값 누락이나 Metrics Server 부재에서 원인을 찾을 수 있다",
+      "스케일 다운 안정화 기간과 스케일링 정책 값을 서비스 부하 모양에 맞춰 고를 수 있다",
+      "배포할 때마다 파드 수가 되돌아가는 원인을 매니페스트의 replicas 필드에서 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.basics",
+      "ops.basics.autoscaling-idea"
+    ],
+    "related": [
+      "ops.container.resource-limits",
+      "ops.k8s.scheduling"
+    ],
+    "aliases": [
+      "HPA 튜닝",
+      "HPA tuning",
+      "HPA 스케일링 정책",
+      "HPA behavior",
+      "오토스케일러 진단"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/workloads/autoscaling/horizontal-pod-autoscale/",
+      "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ops.k8s.network-policy",
+    "title": "NetworkPolicy로 파드 간 통신 막기",
+    "en": "Restricting Pod Traffic with Kubernetes NetworkPolicy",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "기본으로 모두 열린 파드 간 통신을 레이블 선택자로 골라 허용하는 규칙을 쓰고, 정책이 안 먹거나 너무 넓게 열린 원인을 찾는 일이다.",
+    "objectives": [
+      "네임스페이스에 기본 거부 정책을 두고 필요한 통신만 여는 설계의 근거를 말할 수 있다",
+      "정책을 만들었는데 통신이 막히지 않는 원인을 네트워크 플러그인 지원 여부에서 찾을 수 있다",
+      "이그레스를 막은 뒤 이름 풀이가 실패하는 원인을 DNS 허용 규칙 누락에서 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.basics"
+    ],
+    "related": [
+      "ops.network.firewall-idea",
+      "ops.network.security-group"
+    ],
+    "aliases": [
+      "네트워크 정책",
+      "Kubernetes NetworkPolicy",
+      "k8s 네트워크 정책",
+      "파드 네트워크 격리",
+      "pod network isolation"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/services-networking/network-policies/"
+    ]
+  },
+  {
+    "id": "ops.k8s.secrets-security",
+    "title": "Kubernetes Secret 안전하게 다루기",
+    "en": "Securing Kubernetes Secrets",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "base64일 뿐인 Secret을 저장 시 암호화·최소 RBAC·네임스페이스 분리·외부 비밀 저장소로 지키고, 새는 경로를 찾는 일이다.",
+    "objectives": [
+      "Secret 매니페스트를 저장소에 올리면 안 되는 근거를 base64 인코딩의 성질로 말할 수 있다",
+      "list·watch 권한이나 파드 생성 권한으로 Secret 값이 새는 경로를 찾을 수 있다",
+      "클러스터 안 Secret과 외부 비밀 저장소(Secrets Store CSI Driver) 중 하나를 손익을 따져 고를 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.configmap-intro",
+      "ops.k8s.basics"
+    ],
+    "related": [
+      "be.security.secrets-handling",
+      "ops.ci.environment-secrets"
+    ],
+    "aliases": [
+      "쿠버네티스 시크릿",
+      "Kubernetes Secret",
+      "k8s Secret 보안",
+      "Secret RBAC",
+      "Secrets Store CSI Driver"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/security/secrets-good-practices/",
+      "https://kubernetes.io/docs/concepts/configuration/secret/"
+    ]
+  },
+  {
     "id": "ops.network.edge-waf",
     "title": "웹 방화벽(WAF)과 오탐 분석",
     "en": "WAF Rules and False Positives",
@@ -6547,6 +6684,177 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ops.observe.alert-for-duration",
+    "title": "경보 대기 시간(for)과 pending 상태",
+    "en": "Prometheus Alert for Duration and Pending State",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "관측",
+    "summary": "조건이 정한 시간 동안 계속 참이어야 경보를 pending에서 firing으로 올리는 for 절과, 조건이 풀린 뒤에도 정한 시간만큼 firing을 유지하는 keep_firing_for 설정이다.",
+    "parent": "ops.observe.symptom-alerting",
+    "aliases": [
+      "for 절",
+      "alert for clause",
+      "pending 경보",
+      "pending alert",
+      "keep_firing_for"
+    ],
+    "refs": [
+      "https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/"
+    ]
+  },
+  {
+    "id": "ops.observe.alertmanager-inhibition",
+    "title": "Alertmanager 묶음과 억제",
+    "en": "Alertmanager Grouping and Inhibition",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "관측",
+    "summary": "비슷한 경보를 한 알림으로 묶고, 상위 경보가 울리는 동안 그에 딸린 경보를 잠재워 장애 한 번에 알림이 쏟아지지 않게 하는 기능이다.",
+    "parent": "ops.observe.symptom-alerting",
+    "aliases": [
+      "경보 억제",
+      "alert inhibition",
+      "inhibit_rules",
+      "경보 묶음",
+      "alert grouping",
+      "group_by"
+    ],
+    "refs": [
+      "https://prometheus.io/docs/alerting/latest/alertmanager/"
+    ]
+  },
+  {
+    "id": "ops.k8s.hpa-scale-down-stabilization",
+    "title": "HPA 스케일 다운 안정화 기간",
+    "en": "HPA Scale-Down Stabilization Window",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "최근 일정 시간의 권장 복제 수 중 가장 큰 값을 따라 줄이게 해서, 부하가 잠깐 내려갔다고 파드를 바로 없애지 않게 하는 설정이다.",
+    "parent": "ops.k8s.hpa-tuning",
+    "aliases": [
+      "stabilizationWindowSeconds",
+      "scale-down stabilization",
+      "HPA 쿨다운"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/workloads/autoscaling/horizontal-pod-autoscale/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ops.k8s.hpa-replicas-conflict",
+    "title": "HPA와 매니페스트 replicas 충돌",
+    "en": "HPA and Manifest spec.replicas Conflict",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "HPA가 맡은 디플로이먼트 매니페스트에 replicas를 남겨 두면 apply할 때마다 파드 수가 그 값으로 되돌아가 HPA와 다투는 문제다.",
+    "parent": "ops.k8s.hpa-tuning",
+    "aliases": [
+      "replicas 필드 충돌",
+      "spec.replicas 제거",
+      "HPA replicas thrashing",
+      "edit-last-applied"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/workloads/autoscaling/horizontal-pod-autoscale/"
+    ]
+  },
+  {
+    "id": "ops.k8s.default-deny-network-policy",
+    "title": "기본 거부 NetworkPolicy",
+    "en": "Default Deny-All NetworkPolicy",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "빈 podSelector로 네임스페이스의 모든 파드를 골라 들어오거나 나가는 통신을 기본으로 막고, 허용 정책만 따로 더하게 하는 출발점 정책이다.",
+    "parent": "ops.k8s.network-policy",
+    "aliases": [
+      "default-deny-all",
+      "deny-all 정책",
+      "기본 차단 NetworkPolicy",
+      "빈 podSelector"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/services-networking/network-policies/"
+    ]
+  },
+  {
+    "id": "ops.k8s.network-policy-selector-and-or",
+    "title": "NetworkPolicy 선택자의 AND와 OR",
+    "en": "NetworkPolicy from/to Selector AND vs OR",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "namespaceSelector와 podSelector를 from의 한 항목에 같이 쓰면 둘 다 맞아야 하고, 항목을 나누면 어느 하나만 맞아도 허용돼 정책이 넓어진다.",
+    "parent": "ops.k8s.network-policy",
+    "aliases": [
+      "namespaceSelector podSelector 조합",
+      "NetworkPolicy from 규칙",
+      "선택자 AND OR",
+      "NetworkPolicy 대시 실수"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/services-networking/network-policies/"
+    ]
+  },
+  {
+    "id": "ops.k8s.secret-encryption-at-rest",
+    "title": "Secret 저장 시 암호화(EncryptionConfiguration)",
+    "en": "Encrypting Secret Data at Rest in etcd",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "API 서버가 etcd에 쓰는 Secret을 암호화하게 하는 설정으로, 첫 제공자가 identity이거나 켜기 전에 쓴 Secret은 다시 쓰기 전까지 평문으로 남는다.",
+    "parent": "ops.k8s.secrets-security",
+    "aliases": [
+      "EncryptionConfiguration",
+      "--encryption-provider-config",
+      "etcd 암호화",
+      "etcd encryption at rest",
+      "KMS 제공자"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ops.k8s.startup-probe",
+    "title": "시작 프로브(startupProbe)",
+    "en": "Kubernetes Startup Probe",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "느리게 뜨는 컨테이너가 성공할 때까지 라이브니스·레디니스 검사를 미뤄, 시작 중에 재시작당하는 일을 막는 Kubernetes 프로브다.",
+    "related": [
+      "be.error.health-check",
+      "ops.k8s.crashloopbackoff"
+    ],
+    "aliases": [
+      "startupProbe",
+      "startup probe",
+      "스타트업 프로브",
+      "시작 검사 프로브"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/",
+      "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/"
+    ]
   },
   {
     "id": "ops.linux.flock",

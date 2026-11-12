@@ -1,5 +1,5 @@
 {
- "version": "0.61.0",
+ "version": "0.62.0",
  "domains": [
   {
    "prefix": "dev",
@@ -6739,6 +6739,71 @@
    "domain": "dev"
   },
   {
+   "id": "dev.test.fixture-scope-isolation",
+   "title": "픽스처 범위 고르기와 테스트 사이 상태 누수 막기",
+   "en": "Choosing pytest Fixture Scope and Preventing State Leaks",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "테스트",
+   "summary": "픽스처를 테스트마다 새로 만들지 모듈·세션 단위로 나눠 쓸지 속도와 격리를 따져 고르고, 정리가 빠져 상태가 새는 원인을 찾는다.",
+   "objectives": [
+    "비싼 준비물에 function·module·session 중 어느 범위가 알맞은지 고르고 근거를 말할 수 있다",
+    "넓은 범위 픽스처가 테스트 사이에 상태를 남겨 순서에 따라 결과가 바뀌는 원인을 찾을 수 있다",
+    "준비 도중 실패해도 뒷정리가 남지 않도록 픽스처를 한 가지 변경과 그 정리로 나누는 구조를 고를 수 있다"
+   ],
+   "prerequisites": [
+    "be.test.pytest-fixtures"
+   ],
+   "related": [
+    "dev.test.flaky",
+    "be.test.db-isolation"
+   ],
+   "aliases": [
+    "pytest 픽스처 범위",
+    "픽스처 상태 공유",
+    "safe teardown",
+    "픽스처 정리 순서"
+   ],
+   "refs": [
+    "https://docs.pytest.org/en/stable/how-to/fixtures.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.debug.remote-attach",
+   "title": "실행 중인 파이썬 프로세스에 디버거 붙이기",
+   "en": "Attaching a Debugger to a Running Python Process with debugpy",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "디버깅",
+   "summary": "launch 대신 attach 구성과 debugpy로 컨테이너·원격 서버·이미 돌고 있는 프로세스에 VS Code 디버거를 연결하고 포트 노출 위험을 다룬다.",
+   "objectives": [
+    "프로그램을 디버거가 직접 띄울지(launch) 이미 도는 프로세스에 붙을지(attach) 상황에 맞게 고를 수 있다",
+    "원격에서 중단점이 걸리지 않을 때 경로 대응(pathMappings)이나 justMyCode 설정에서 원인을 찾을 수 있다",
+    "디버그 포트를 0.0.0.0에 열지 SSH 터널로 넘길지 보안 근거를 들어 고를 수 있다"
+   ],
+   "prerequisites": [
+    "dev.debug.vscode-python"
+   ],
+   "related": [
+    "dev.debug.pdb",
+    "dev.debug.launch-json"
+   ],
+   "aliases": [
+    "원격 파이썬 디버깅",
+    "remote debugging Python",
+    "attach 디버깅",
+    "프로세스에 디버거 붙이기",
+    "Attach using Process ID"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/python/debugging"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.git.large-repo-clone",
    "title": "큰 저장소 가볍게 받기: 얕은·부분 클론과 sparse-checkout",
    "en": "Shallow Clone, Partial Clone, and Sparse Checkout for Large Repositories",
@@ -6765,6 +6830,75 @@
     "https://git-scm.com/docs/partial-clone",
     "https://git-scm.com/docs/git-sparse-checkout",
     "https://git-scm.com/docs/git-clone"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.lfs",
+   "title": "큰 바이너리 파일 다루기: Git LFS",
+   "en": "Managing Large Binary Files with Git LFS",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "Git",
+   "summary": "큰 파일은 저장소 밖에 두고 포인터만 커밋하는 Git LFS를 쓸지 따지고, 이미 들어간 파일을 옮길 때 기록 재작성과 협업 영향을 판단한다.",
+   "objectives": [
+    "모델·미디어 같은 큰 파일을 일반 Git에 둘지 LFS로 옮길지 용량 제한과 비용을 들어 고를 수 있다",
+    "클론한 파일이 내용 대신 version·oid·size 몇 줄만 보일 때 LFS 미설치나 객체 미전송에서 원인을 찾을 수 있다",
+    "기존 기록을 LFS로 옮길 때 기록을 다시 쓸지 새 커밋 하나로 바꿀지 협업자 영향을 근거로 고를 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.remotes"
+   ],
+   "related": [
+    "dev.git.large-repo-clone",
+    "dev.git.filter-repo"
+   ],
+   "aliases": [
+    "Git Large File Storage",
+    "git lfs track",
+    "LFS 저장소",
+    "대용량 파일 Git"
+   ],
+   "refs": [
+    "https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage",
+    "https://docs.github.com/en/repositories/working-with-files/managing-large-files/collaboration-with-git-large-file-storage",
+    "https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-migrate.adoc"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "dev"
+  },
+  {
+   "id": "dev.test.property-based",
+   "title": "속성 기반 테스트: Hypothesis",
+   "en": "Property-Based Testing with Hypothesis",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "테스트",
+   "summary": "손으로 고른 예시 대신 모든 입력에서 지켜야 할 성질을 적고 Hypothesis가 입력을 만들어 반례를 찾게 하며, 찾은 실패를 다시 돌려 고친다.",
+   "objectives": [
+    "예시 기반 테스트로 충분한 곳과 속성 기반 테스트가 경계값을 더 잘 찾는 곳을 고를 수 있다",
+    "Hypothesis가 보고한 반례에서 코드가 어떤 입력 성질을 놓쳤는지 원인을 찾을 수 있다",
+    "CI에서 나온 실패를 예제 데이터베이스·@reproduce_failure·@example 중 무엇으로 재현하고 고정할지 근거를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "be.test.pytest-fixtures"
+   ],
+   "related": [
+    "dev.test.tdd"
+   ],
+   "aliases": [
+    "property-based testing",
+    "속성 기반 테스트",
+    "Hypothesis 테스트",
+    "hypothesis @given"
+   ],
+   "refs": [
+    "https://hypothesis.readthedocs.io/en/latest/tutorial/introduction.html",
+    "https://hypothesis.readthedocs.io/en/latest/quickstart.html",
+    "https://hypothesis.readthedocs.io/en/latest/tutorial/replaying-failures.html"
    ],
    "domain": "dev"
   },
@@ -6962,6 +7096,69 @@
    "domain": "dev"
   },
   {
+   "id": "dev.test.fixture-scope",
+   "title": "픽스처 범위(scope)",
+   "en": "pytest Fixture Scope",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "테스트",
+   "summary": "픽스처를 언제 만들고 언제 없앨지 정하는 단위로, function·class·module·package·session 가운데 고른다.",
+   "parent": "dev.test.fixture-scope-isolation",
+   "aliases": [
+    "fixture scope",
+    "scope=\"session\"",
+    "scope=\"module\"",
+    "세션 범위 픽스처"
+   ],
+   "refs": [
+    "https://docs.pytest.org/en/stable/how-to/fixtures.html#fixture-scopes"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.test.yield-fixture-teardown",
+   "title": "yield 픽스처와 정리 순서",
+   "en": "Yield Fixture Teardown Order",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "테스트",
+   "summary": "yield 뒤의 코드가 정리로 돌고 나중에 준비된 픽스처부터 거꾸로 정리되며, yield 전에 실패하면 그 픽스처의 정리는 돌지 않는다.",
+   "parent": "dev.test.fixture-scope-isolation",
+   "aliases": [
+    "yield fixture",
+    "yield 픽스처",
+    "request.addfinalizer",
+    "addfinalizer"
+   ],
+   "refs": [
+    "https://docs.pytest.org/en/stable/how-to/fixtures.html#yield-fixtures-recommended"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.debug.debugpy-listen",
+   "title": "debugpy --listen과 --wait-for-client",
+   "en": "debugpy --listen and --wait-for-client",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "디버깅",
+   "summary": "파이썬 프로그램 안에 디버그 서버를 열어 두고 편집기가 붙을 때까지 첫 줄 실행을 미루게 하는 debugpy의 실행 방식이다.",
+   "parent": "dev.debug.remote-attach",
+   "aliases": [
+    "python -m debugpy",
+    "debugpy.listen",
+    "debugpy.wait_for_client",
+    "debugpy --pid"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/python/debugging"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.robust.fsync",
    "title": "fsync",
    "en": "fsync",
@@ -7059,6 +7256,107 @@
    ],
    "refs": [
     "https://git-scm.com/docs/git-sparse-checkout"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.debug.path-mappings",
+   "title": "pathMappings로 원격 경로 맞추기",
+   "en": "Debugger pathMappings (localRoot and remoteRoot)",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "디버깅",
+   "summary": "편집기의 로컬 폴더와 원격·컨테이너의 코드 폴더를 짝지어 중단점이 올바른 파일에 걸리게 하는 attach 구성 설정이다.",
+   "parent": "dev.debug.remote-attach",
+   "aliases": [
+    "localRoot",
+    "remoteRoot",
+    "디버거 경로 매핑",
+    "debug path mapping"
+   ],
+   "refs": [
+    "https://code.visualstudio.com/docs/python/debugging"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.lfs-pointer",
+   "title": "LFS 포인터 파일",
+   "en": "Git LFS Pointer File",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Git",
+   "summary": "저장소에 실제 파일 대신 들어가는 짧은 텍스트로, LFS 규격 버전·SHA-256 oid·파일 크기를 담아 실제 내용을 찾는 데 쓴다.",
+   "parent": "dev.git.lfs",
+   "aliases": [
+    "Git LFS pointer",
+    "LFS pointer file",
+    "LFS 포인터"
+   ],
+   "refs": [
+    "https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.lfs-migrate",
+   "title": "git lfs migrate",
+   "en": "git lfs migrate",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Git",
+   "summary": "이미 커밋된 큰 파일을 LFS 포인터로 바꾸거나 되돌리는 명령으로, import·export는 기록을 다시 써 강제 푸시가 필요하다.",
+   "parent": "dev.git.lfs",
+   "aliases": [
+    "lfs migrate import",
+    "git lfs migrate info",
+    "lfs migrate --no-rewrite"
+   ],
+   "refs": [
+    "https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-migrate.adoc"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.test.hypothesis-explicit-example",
+   "title": "@example로 회귀 사례 고정",
+   "en": "Hypothesis @example Decorator",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "테스트",
+   "summary": "생성된 입력과 함께 매번 먼저 돌릴 입력을 직접 지정하는 Hypothesis 데코레이터로, 한 번 찾은 반례를 테스트에 영구히 남길 때 쓴다.",
+   "parent": "dev.test.property-based",
+   "aliases": [
+    "hypothesis.example",
+    "Hypothesis explicit example",
+    "명시적 예제"
+   ],
+   "refs": [
+    "https://hypothesis.readthedocs.io/en/latest/tutorial/replaying-failures.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.test.hypothesis-database",
+   "title": "Hypothesis 예제 데이터베이스",
+   "en": "Hypothesis Example Database",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "테스트",
+   "summary": "실패한 입력을 .hypothesis 폴더 같은 저장소에 남겨 다음 실행에서 먼저 다시 돌리는 장치로, 버전이 바뀌면 무효가 될 수 있다.",
+   "parent": "dev.test.property-based",
+   "aliases": [
+    ".hypothesis 폴더",
+    "DirectoryBasedExampleDatabase",
+    "GitHubArtifactDatabase"
+   ],
+   "refs": [
+    "https://hypothesis.readthedocs.io/en/latest/tutorial/replaying-failures.html"
    ],
    "domain": "dev"
   },
@@ -45046,6 +45344,30 @@
    "domain": "fe"
   },
   {
+   "id": "fe.react.use-optimistic",
+   "title": "useOptimistic으로 낙관적 업데이트하기",
+   "en": "Optimistic Updates with useOptimistic",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "React",
+   "summary": "Action이 끝나기 전에 결과를 미리 화면에 보이고, 끝나거나 실패하면 실제 상태로 돌아가게 하는 React 훅이다.",
+   "related": [
+    "fe.next.server-actions",
+    "fe.react.use-action-state"
+   ],
+   "aliases": [
+    "낙관적 업데이트",
+    "optimistic update",
+    "optimistic UI",
+    "낙관적 UI"
+   ],
+   "refs": [
+    "https://react.dev/reference/react/useOptimistic"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.html.constraint-validation",
    "title": "Constraint Validation API",
    "en": "Constraint Validation API",
@@ -45254,6 +45576,77 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.hydration-errors",
+   "title": "하이드레이션 오류 원인 찾기",
+   "en": "Diagnosing React Hydration Mismatch Errors",
+   "kind": "topic",
+   "level": 4,
+   "importance": 1,
+   "group": "Next.js",
+   "summary": "서버가 만든 HTML과 브라우저의 첫 렌더 결과가 달라 생기는 하이드레이션 오류의 원인을 가려내고 알맞은 해결법을 고르는 일이다.",
+   "objectives": [
+    "잘못된 태그 중첩·렌더 중 window 검사·Date 사용·브라우저 확장 가운데 하이드레이션 오류의 원인을 찾을 수 있다",
+    "useEffect 두 번 렌더링·SSR 끄기·suppressHydrationWarning 가운데 상황에 맞는 해결법을 고르고 근거를 말할 수 있다",
+    "불일치를 내버려 두면 느려지거나 이벤트 핸들러가 엉뚱한 요소에 붙을 수 있다는 위험을 근거로 오류를 버그로 다뤄야 하는 이유를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.internals.rendering-strategy",
+    "fe.react.use-effect"
+   ],
+   "related": [
+    "fe.internals.server-components",
+    "fe.internals.server-client-boundary"
+   ],
+   "aliases": [
+    "하이드레이션 오류",
+    "hydration error",
+    "hydration mismatch",
+    "하이드레이션 불일치",
+    "Text content does not match server-rendered HTML"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/messages/react-hydration-error",
+    "https://react.dev/reference/react-dom/client/hydrateRoot"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.react.state-placement",
+   "title": "상태를 둘 곳 고르기: 컴포넌트·Context·URL",
+   "en": "Choosing Where React State Lives",
+   "kind": "topic",
+   "level": 4,
+   "importance": 1,
+   "group": "React",
+   "summary": "한 컴포넌트 지역 상태, 끌어올린 상태, Context와 reducer, URL 검색 매개변수 가운데 데이터마다 둘 곳을 고르고 그 손익을 따지는 일이다.",
+   "objectives": [
+    "props 전달·children으로 컴포넌트 빼기·Context 가운데 먼 컴포넌트에 데이터를 넘길 방법을 고르고 근거를 말할 수 있다",
+    "reducer와 Context를 묶고 상태와 dispatch를 다른 Context로 나눌지 판단할 수 있다",
+    "검색어·페이지 번호처럼 공유·북마크·서버 렌더링이 필요한 값을 URL 검색 매개변수에 둘지 고를 수 있다"
+   ],
+   "prerequisites": [
+    "fe.react.state-structure",
+    "fe.next.routes-layouts"
+   ],
+   "related": [
+    "fe.react.context",
+    "fe.react.lifting-state",
+    "fe.react.reducer"
+   ],
+   "aliases": [
+    "상태 위치 정하기",
+    "state placement",
+    "상태 관리 위치",
+    "Context 남용"
+   ],
+   "refs": [
+    "https://react.dev/learn/passing-data-deeply-with-context",
+    "https://react.dev/learn/scaling-up-with-reducer-and-context",
+    "https://nextjs.org/learn/dashboard-app/adding-search-and-pagination"
+   ],
    "domain": "fe"
   },
   {
@@ -45481,6 +45874,68 @@
     "https://nextjs.org/docs/app/guides/lazy-loading",
     "https://react.dev/reference/react/lazy",
     "https://web.dev/articles/reduce-javascript-payloads-with-code-splitting"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.memory-leak-debugging",
+   "title": "개발자 도구로 브라우저 메모리 누수 찾기",
+   "en": "Finding Browser Memory Leaks with DevTools",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "프론트엔드 내부",
+   "summary": "작업 관리자·Performance 패널·Memory 패널로 쌓이기만 하는 메모리를 찾아 그 메모리를 붙잡고 있는 코드를 추적하는 방법이다.",
+   "objectives": [
+    "메모리 누수·메모리 팽창·잦은 가비지 컬렉션 가운데 증상이 어느 쪽인지 가려낼 수 있다",
+    "작업 관리자·Performance 패널 메모리 기록·힙 스냅샷·할당 타임라인 가운데 상황에 맞는 도구를 고를 수 있다",
+    "힙 스냅샷 비교와 Retainers 정보로 해제되지 않는 객체를 붙잡은 참조를 찾아 누수 원인을 말할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.basics.browser-devtools",
+    "fe.react.use-effect"
+   ],
+   "aliases": [
+    "JS 메모리 누수",
+    "DevTools 메모리 패널",
+    "Memory panel",
+    "memory bloat",
+    "메모리 팽창"
+   ],
+   "refs": [
+    "https://developer.chrome.com/docs/devtools/memory-problems",
+    "https://developer.chrome.com/docs/devtools/memory-problems/heap-snapshots"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.production-source-maps",
+   "title": "운영 번들 오류를 소스 맵으로 추적하기",
+   "en": "Debugging Production Bundles with Source Maps",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "프론트엔드 내부",
+   "summary": "압축·번들된 배포 코드의 오류를 소스 맵으로 원본 파일에 이어 디버깅하고, 운영에 소스 맵을 내보낼지 손익을 따지는 일이다.",
+   "objectives": [
+    "DevTools가 sourceMappingURL로 원본 파일을 찾았는지 확인해 중단점과 콘솔 오류 위치가 엉뚱한 원인을 찾을 수 있다",
+    "소스 코드 노출과 빌드 시간·메모리 증가를 근거로 운영 빌드에 브라우저 소스 맵을 켤지 고를 수 있다",
+    "무시 목록으로 라이브러리 코드를 건너뛰어 내 코드에서 오류 원인을 좁힐 수 있다"
+   ],
+   "prerequisites": [
+    "fe.basics.browser-devtools",
+    "fe.js.troubleshooting"
+   ],
+   "aliases": [
+    "소스 맵",
+    "source map",
+    "sourceMappingURL",
+    "압축된 코드 디버깅"
+   ],
+   "refs": [
+    "https://developer.chrome.com/docs/devtools/javascript/source-maps",
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/productionBrowserSourceMaps",
+    "https://developer.chrome.com/docs/devtools/settings/ignore-list"
    ],
    "domain": "fe"
   },
@@ -45777,6 +46232,112 @@
    "domain": "fe"
   },
   {
+   "id": "fe.react.suppress-hydration-warning",
+   "title": "suppressHydrationWarning",
+   "en": "suppressHydrationWarning Attribute",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "React",
+   "summary": "시각처럼 서버와 브라우저에서 어쩔 수 없이 다른 한 요소의 불일치 경고를 끄는 탈출구로, 한 단계 깊이에만 듣고 텍스트를 고쳐 주지 않는다.",
+   "parent": "fe.next.hydration-errors",
+   "aliases": [
+    "하이드레이션 경고 끄기",
+    "suppress hydration warning"
+   ],
+   "refs": [
+    "https://react.dev/reference/react-dom/client/hydrateRoot",
+    "https://nextjs.org/docs/messages/react-hydration-error"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.react.two-pass-rendering",
+   "title": "두 번 렌더링으로 브라우저 전용 내용 보이기",
+   "en": "Two-Pass Rendering for Browser-Only Content",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "React",
+   "summary": "첫 렌더는 서버 HTML과 똑같이 그리고 Effect에서 플래그를 켜 다시 그리는 방식으로, 불일치는 없애지만 하이드레이션이 느려지고 화면이 바뀌어 보일 수 있다.",
+   "parent": "fe.next.hydration-errors",
+   "aliases": [
+    "two-pass rendering",
+    "isClient 플래그",
+    "이중 패스 렌더링"
+   ],
+   "refs": [
+    "https://react.dev/reference/react-dom/client/hydrateRoot",
+    "https://nextjs.org/docs/messages/react-hydration-error"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.heap-snapshot",
+   "title": "힙 스냅샷",
+   "en": "JavaScript Heap Snapshot",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "프론트엔드 내부",
+   "summary": "가비지 컬렉션 뒤 살아 있는 JS 객체와 DOM 노드를 찍은 사진으로, 동작 전후 두 장을 비교하면 해제되지 않은 객체가 드러난다.",
+   "parent": "fe.internals.memory-leak-debugging",
+   "aliases": [
+    "heap snapshot",
+    "스냅샷 비교",
+    "retained size",
+    "보유 크기"
+   ],
+   "refs": [
+    "https://developer.chrome.com/docs/devtools/memory-problems/heap-snapshots"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.detached-dom",
+   "title": "분리된 DOM 요소",
+   "en": "Detached DOM Elements",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "프론트엔드 내부",
+   "summary": "페이지에서 빠졌는데 JavaScript 변수나 부모 링크가 아직 참조해 메모리에서 풀리지 않는 DOM 노드로, 흔한 누수 원인이다.",
+   "parent": "fe.internals.memory-leak-debugging",
+   "aliases": [
+    "detached DOM",
+    "detached element",
+    "떨어져 나간 DOM 노드",
+    "분리된 DOM 트리"
+   ],
+   "refs": [
+    "https://developer.chrome.com/docs/devtools/memory-problems/heap-snapshots",
+    "https://developer.chrome.com/docs/devtools/memory-problems"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.url-search-params-state",
+   "title": "URL 검색 매개변수에 둔 상태",
+   "en": "URL Search Params as UI State",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Next.js",
+   "summary": "검색어·필터·페이지를 URL 쿼리에 두어 공유와 서버 렌더링을 얻는 방식으로, 서버에선 searchParams prop, 클라이언트에선 useSearchParams로 읽는다.",
+   "parent": "fe.react.state-placement",
+   "aliases": [
+    "URL 상태",
+    "URL state",
+    "쿼리스트링 상태",
+    "검색 조건을 URL에 저장"
+   ],
+   "refs": [
+    "https://nextjs.org/learn/dashboard-app/adding-search-and-pagination",
+    "https://nextjs.org/docs/app/api-reference/functions/use-search-params"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.internals.server-only",
    "title": "server-only와 client-only",
    "en": "server-only and client-only",
@@ -45816,6 +46377,46 @@
    ],
    "refs": [
     "https://nextjs.org/docs/app/api-reference/file-conventions/loading"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.next.production-browser-source-maps",
+   "title": "productionBrowserSourceMaps",
+   "en": "Next.js productionBrowserSourceMaps Option",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Next.js",
+   "summary": "소스 노출을 막으려 운영 빌드에서 꺼 둔 브라우저 소스 맵을 켜는 Next.js 설정으로, 켜면 JS 옆에 맵을 내보내고 빌드 시간과 메모리가 는다.",
+   "parent": "fe.internals.production-source-maps",
+   "aliases": [
+    "운영 소스 맵 설정",
+    "production source maps"
+   ],
+   "refs": [
+    "https://nextjs.org/docs/app/api-reference/config/next-config-js/productionBrowserSourceMaps"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.devtools-ignore-list",
+   "title": "DevTools 무시 목록",
+   "en": "Chrome DevTools Ignore List",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "디버거가 건너뛸 스크립트를 정하는 DevTools 설정으로, node_modules가 기본으로 들어가고 소스 맵의 ignoreList로 프레임워크 코드도 더할 수 있다.",
+   "parent": "fe.internals.production-source-maps",
+   "aliases": [
+    "ignore list",
+    "ignoreList",
+    "디버거 무시 목록",
+    "Ignore Listing"
+   ],
+   "refs": [
+    "https://developer.chrome.com/docs/devtools/settings/ignore-list"
    ],
    "domain": "fe"
   },
@@ -53090,6 +53691,160 @@
    "domain": "llm"
   },
   {
+   "id": "llm.api.stream-interruption-recovery",
+   "title": "끊긴 LLM 스트림 이어 받기 설계",
+   "en": "Recovering Interrupted Claude Streaming Responses",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "스트리밍 도중 오류 이벤트나 연결 끊김이 나면 받은 부분을 살려 이어 받을지 처음부터 다시 보낼지 정하는 설계다.",
+   "objectives": [
+    "스트림 안에 온 overloaded_error 같은 오류 이벤트와 네트워크 끊김을 구분해 이어 받기와 전체 재요청 중 하나를 고를 수 있다",
+    "모델 세대에 따라 이어 받기 요청을 미리 채운 assistant 메시지로 만들지 이어 쓰라는 user 메시지로 만들지 근거를 말할 수 있다",
+    "tool_use·thinking 블록은 일부만 살릴 수 없다는 점을 알고 마지막 text 블록부터 다시 받도록 범위를 정할 수 있다",
+    "ping이나 새로 생긴 이벤트 타입을 처리하지 못해 스트림 처리 코드가 멈추는 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "llm.api.sdk-streaming",
+    "llm.api.errors-rate-limits"
+   ],
+   "related": [
+    "llm.api.response-streaming",
+    "llm.tools.truncated-tool-use",
+    "llm.prompt.prefill"
+   ],
+   "aliases": [
+    "스트림 이어 받기",
+    "스트리밍 오류 복구",
+    "streaming error recovery",
+    "끊긴 스트림 복구",
+    "스트림 중단 복구"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/streaming",
+    "https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.thinking-roundtrip-errors",
+   "title": "thinking 블록 왕복 오류 진단",
+   "en": "Diagnosing Claude Thinking Block Round-Trip Errors",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "생각 기능과 도구 호출을 함께 쓸 때 thinking 블록을 돌려보내는 방식이 틀려 나는 400 오류와 캐시 실패의 원인을 찾아 고친다.",
+   "objectives": [
+    "thinking 블록을 고칠 수 없다는 400이 assistant 메시지를 다시 조립하거나 redacted_thinking을 걸러 낸 코드에서 온다는 것을 찾아 고칠 수 있다",
+    "서명이 무효라는 400이 system·tools·이전 턴을 바꾼 데서 온다는 점을 알고 이력을 덧붙이기만 하는 방식과 drop_block 중 대처를 고를 수 있다",
+    "강제 tool_choice가 모델에 따라 400이 되거나 생각을 건너뛰게 하는 이유를 말하고 auto와 프롬프트 지시로 바꿀 수 있다",
+    "대화 중 thinking 설정이나 effort를 바꿔 캐시 읽기 토큰이 0으로 떨어지는 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "llm.api.thinking-effort",
+    "llm.tools.function-calling"
+   ],
+   "related": [
+    "llm.api.thinking-block",
+    "llm.tools.tool-choice",
+    "llm.internals.prompt-caching"
+   ],
+   "aliases": [
+    "thinking 블록 오류",
+    "thinking blocks cannot be modified",
+    "Invalid signature in thinking block",
+    "thinking 서명 오류",
+    "thinking troubleshooting"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/thinking-troubleshooting",
+    "https://platform.claude.com/docs/en/build-with-claude/thinking-tool-workflows",
+    "https://platform.claude.com/docs/en/build-with-claude/preserved-thinking"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.refusal-fallback-design",
+   "title": "거절된 요청을 대체 모델로 넘기는 설계",
+   "en": "Designing Claude Refusal Fallback",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "안전 분류기가 거절한 요청을 다른 Claude 모델로 다시 보내는 세 방식 가운데 하나를 고르고, 비용·이력·모니터링 함정을 피하는 설계다.",
+   "objectives": [
+    "서버 쪽 fallbacks·SDK 미들웨어·직접 재시도 가운데 플랫폼과 통제 수준에 맞는 방식을 근거를 들어 고를 수 있다",
+    "거절이 HTTP 200으로 와서 오류율 감시에 잡히지 않는 이유를 말하고 거절과 대체 응답을 따로 세는 지표를 둘 수 있다",
+    "대체가 일어난 뒤 다음 턴에 fallback 블록과 이전 모델의 thinking·tool_use 블록 가운데 무엇을 남길지 정할 수 있다",
+    "reasoning_extraction 거절은 다시 보내도 소용없고 생각을 출력에 쓰라는 프롬프트를 고쳐야 한다는 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "llm.api.errors-rate-limits",
+    "llm.basics.model-selection"
+   ],
+   "related": [
+    "llm.api.refusal-response",
+    "llm.internals.prompt-caching"
+   ],
+   "aliases": [
+    "거절 대체 모델",
+    "refusal fallback",
+    "모델 거절 재시도",
+    "BetaRefusalFallbackMiddleware",
+    "stop_reason refusal 처리"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.multi-window-tasks",
+   "title": "여러 컨텍스트 창에 걸친 긴 작업 설계",
+   "en": "Designing Claude Tasks Across Multiple Context Windows",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM 내부",
+   "summary": "한 컨텍스트 창에 다 담을 수 없는 긴 에이전트 작업을 진행 기록 파일과 메모리로 나눠 이어 가고, 새로 시작할지 압축할지 정하는 설계다.",
+   "objectives": [
+    "창을 비울 때 완전히 새 창으로 시작할지 컴팩션으로 이어 갈지 작업 상태가 파일에 남아 있는지를 근거로 고를 수 있다",
+    "테스트 상태는 구조화 파일, 진행 메모는 자유 글, 변경 이력은 git으로 나눠 남기는 상태 관리 방식을 정할 수 있다",
+    "메모리 도구 핸들러에서 /memories 밖으로 나가는 경로 공격을 막는 검사를 넣을 수 있다",
+    "모델이 컨텍스트 한도에 가까워지며 일을 일찍 끝내는 원인을 찾아 프롬프트로 바로잡을 수 있다"
+   ],
+   "prerequisites": [
+    "llm.internals.context-management",
+    "llm.tools.function-calling"
+   ],
+   "related": [
+    "llm.internals.compaction",
+    "rag.agent.memory-store"
+   ],
+   "aliases": [
+    "긴 작업 상태 관리",
+    "multi-context window workflow",
+    "진행 기록 파일",
+    "progress.txt",
+    "long-horizon task"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+    "https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
    "id": "llm.api.spend-limit",
    "title": "지출 한도",
    "en": "Spend Limit",
@@ -53286,6 +54041,85 @@
    "domain": "llm"
   },
   {
+   "id": "llm.api.thinking-display",
+   "title": "thinking 표시 방식(display)",
+   "en": "Claude Thinking Display Setting",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "thinking 블록에 요약 글을 담을지 비워 둘지 정하는 설정으로, 비워 두면 첫 글자가 빨리 오고 서명만 남아 그대로 돌려보내면 된다.",
+   "parent": "llm.api.thinking-roundtrip-errors",
+   "related": [
+    "llm.api.thinking-block"
+   ],
+   "aliases": [
+    "display omitted",
+    "display summarized",
+    "빈 thinking 필드",
+    "thinking 요약 표시",
+    "thinking display"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/thinking",
+    "https://platform.claude.com/docs/en/build-with-claude/thinking-troubleshooting"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.server-side-fallback",
+   "title": "서버 쪽 대체 모델(fallbacks 파라미터)",
+   "en": "Claude Server-Side Fallback",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "LLM API",
+   "summary": "요청에 fallbacks를 넣으면 거절됐을 때 API가 같은 호출 안에서 추천 모델이나 지정한 모델로 다시 답하게 하고 fallback 블록으로 경계를 알린다.",
+   "parent": "llm.api.refusal-fallback-design",
+   "aliases": [
+    "fallbacks 파라미터",
+    "server-side fallback",
+    "fallback 콘텐츠 블록",
+    "server-side-fallback-2026-07-01"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.tools.memory-tool",
+   "title": "메모리 도구(Claude memory tool)",
+   "en": "Claude Memory Tool",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "도구 호출",
+   "summary": "Claude가 /memories 아래 파일을 만들고 읽어 대화가 바뀌어도 배운 것을 이어 쓰게 하는 클라이언트 쪽 도구로, 저장과 경로 검사는 앱이 맡는다.",
+   "parent": "llm.internals.multi-window-tasks",
+   "related": [
+    "rag.agent.memory-store",
+    "llm.internals.compaction"
+   ],
+   "aliases": [
+    "memory tool",
+    "memory_20250818",
+    "Claude 메모리 도구",
+    "/memories 디렉터리",
+    "BetaLocalFilesystemMemoryTool"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
    "id": "llm.api.usage-tier",
    "title": "사용 등급(usage tier)",
    "en": "Usage Tier",
@@ -53417,6 +54251,137 @@
    "refs": [
     "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons"
    ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.tools.eager-input-streaming",
+   "title": "세밀한 도구 입력 스트리밍(eager_input_streaming)",
+   "en": "Claude Fine-Grained Tool Streaming",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "도구 호출",
+   "summary": "도구 정의에 eager_input_streaming을 켜면 서버 검증 없이 도구 입력 조각을 바로 받아 빨라지지만, 깨진 JSON이 올 수 있어 파싱을 감싸야 한다.",
+   "related": [
+    "llm.tools.truncated-tool-use",
+    "llm.tools.strict-tool-use"
+   ],
+   "aliases": [
+    "eager_input_streaming",
+    "fine-grained tool streaming",
+    "세밀한 도구 스트리밍",
+    "INVALID_JSON 도구 결과"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.thinking-block-binding",
+   "title": "thinking 블록 바인딩",
+   "en": "Claude Thinking Block Binding",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM API",
+   "summary": "돌려보낸 thinking 블록은 앞선 system·tools·메시지가 그대로일 때만 쓰이며, 어긋날 때 오류를 낼지 그 블록만 버릴지를 정하는 설정이다.",
+   "parent": "llm.api.thinking-roundtrip-errors",
+   "related": [
+    "llm.api.thinking-block"
+   ],
+   "aliases": [
+    "prefix_mismatch_behavior",
+    "block_binding",
+    "drop_block",
+    "input_transformations",
+    "thinking 접두어 검사"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/preserved-thinking",
+    "https://platform.claude.com/docs/en/build-with-claude/thinking-troubleshooting"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.interleaved-thinking",
+   "title": "도구 호출 사이 생각(interleaved thinking)",
+   "en": "Claude Interleaved Thinking",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM API",
+   "summary": "한 assistant 턴 안에서 도구 결과를 받을 때마다 다시 생각하고 다음 행동을 정하는 방식으로, adaptive 모드에서는 자동으로 켜진다.",
+   "parent": "llm.api.thinking-roundtrip-errors",
+   "related": [
+    "llm.tools.function-calling"
+   ],
+   "aliases": [
+    "interleaved thinking",
+    "인터리브드 사고",
+    "도구 사이 사고",
+    "interleaved-thinking-2025-05-14"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/thinking-tool-workflows",
+    "https://platform.claude.com/docs/en/build-with-claude/extended-thinking"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.fallback-credit",
+   "title": "대체 크레딧(fallback credit)",
+   "en": "Claude Fallback Credit",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM API",
+   "summary": "거절 응답에 담긴 토큰을 5분 안에 다른 모델 재시도에 붙이면 새 모델의 프롬프트 캐시를 처음부터 쓰는 비용을 돌려받는 장치다.",
+   "parent": "llm.api.refusal-fallback-design",
+   "related": [
+    "llm.internals.prompt-caching"
+   ],
+   "aliases": [
+    "fallback_credit_token",
+    "fallback-credit-2026-07-01",
+    "fallback_has_prefill_claim",
+    "대체 재시도 크레딧"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/fallback-credit",
+    "https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.api.fallback-sticky-routing",
+   "title": "대체 모델 고정 라우팅(sticky routing)",
+   "en": "Claude Fallback Sticky Routing",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM API",
+   "summary": "한 번 대체 모델로 넘어간 대화는 약 1시간 동안 다음 요청도 처음부터 그 모델로 보내 같은 거절 비용을 반복하지 않게 하는 동작이다.",
+   "parent": "llm.api.refusal-fallback-design",
+   "aliases": [
+    "fallback sticky routing",
+    "대체 모델 고정",
+    "BetaFallbackState",
+    "대체 모델 유지"
+   ],
+   "refs": [
+    "https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "llm"
   },
   {
@@ -75699,6 +76664,147 @@
    "domain": "ops"
   },
   {
+   "id": "ops.observe.symptom-alerting",
+   "title": "증상 기반 알림 설계: 경보 규칙과 Alertmanager",
+   "en": "Symptom-Based Alerting with Prometheus Rules and Alertmanager",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "관측",
+   "summary": "사용자가 겪는 증상에 경보를 걸고, 대기 시간과 묶음·억제로 소음을 줄여 꼭 사람이 볼 일만 호출하게 만드는 설계다.",
+   "objectives": [
+    "원인 지표와 증상 지표 중 어느 쪽에 호출 경보를 걸지 근거를 들어 고를 수 있다",
+    "경보 규칙의 for·keep_firing_for 값을 정해 깜박이는 경보를 줄일 수 있다",
+    "장애 한 번에 경보가 수십 개 오는 원인을 Alertmanager 묶음·억제 설정에서 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "ops.observe.metrics"
+   ],
+   "related": [
+    "ops.observe.slo-design",
+    "ops.observe.alert-fatigue"
+   ],
+   "aliases": [
+    "증상 기반 알림",
+    "symptom-based alerting",
+    "Prometheus 경보 규칙",
+    "Prometheus alerting rules",
+    "호출 경보 설계",
+    "paging alert"
+   ],
+   "refs": [
+    "https://sre.google/sre-book/monitoring-distributed-systems/",
+    "https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/",
+    "https://prometheus.io/docs/alerting/latest/alertmanager/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.hpa-tuning",
+   "title": "HPA 스케일링 설계와 진단",
+   "en": "Tuning and Troubleshooting the Horizontal Pod Autoscaler",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "HPA가 요청값 대비 사용률로 복제 수를 계산하는 방식을 알고, 늘고 줄어드는 속도와 매니페스트 충돌을 조정해 출렁임을 막는 일이다.",
+   "objectives": [
+    "CPU 사용률 목표가 계산되지 않을 때 리소스 요청값 누락이나 Metrics Server 부재에서 원인을 찾을 수 있다",
+    "스케일 다운 안정화 기간과 스케일링 정책 값을 서비스 부하 모양에 맞춰 고를 수 있다",
+    "배포할 때마다 파드 수가 되돌아가는 원인을 매니페스트의 replicas 필드에서 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "ops.k8s.basics",
+    "ops.basics.autoscaling-idea"
+   ],
+   "related": [
+    "ops.container.resource-limits",
+    "ops.k8s.scheduling"
+   ],
+   "aliases": [
+    "HPA 튜닝",
+    "HPA tuning",
+    "HPA 스케일링 정책",
+    "HPA behavior",
+    "오토스케일러 진단"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/workloads/autoscaling/horizontal-pod-autoscale/",
+    "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.network-policy",
+   "title": "NetworkPolicy로 파드 간 통신 막기",
+   "en": "Restricting Pod Traffic with Kubernetes NetworkPolicy",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "기본으로 모두 열린 파드 간 통신을 레이블 선택자로 골라 허용하는 규칙을 쓰고, 정책이 안 먹거나 너무 넓게 열린 원인을 찾는 일이다.",
+   "objectives": [
+    "네임스페이스에 기본 거부 정책을 두고 필요한 통신만 여는 설계의 근거를 말할 수 있다",
+    "정책을 만들었는데 통신이 막히지 않는 원인을 네트워크 플러그인 지원 여부에서 찾을 수 있다",
+    "이그레스를 막은 뒤 이름 풀이가 실패하는 원인을 DNS 허용 규칙 누락에서 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "ops.k8s.basics"
+   ],
+   "related": [
+    "ops.network.firewall-idea",
+    "ops.network.security-group"
+   ],
+   "aliases": [
+    "네트워크 정책",
+    "Kubernetes NetworkPolicy",
+    "k8s 네트워크 정책",
+    "파드 네트워크 격리",
+    "pod network isolation"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/services-networking/network-policies/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.secrets-security",
+   "title": "Kubernetes Secret 안전하게 다루기",
+   "en": "Securing Kubernetes Secrets",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "base64일 뿐인 Secret을 저장 시 암호화·최소 RBAC·네임스페이스 분리·외부 비밀 저장소로 지키고, 새는 경로를 찾는 일이다.",
+   "objectives": [
+    "Secret 매니페스트를 저장소에 올리면 안 되는 근거를 base64 인코딩의 성질로 말할 수 있다",
+    "list·watch 권한이나 파드 생성 권한으로 Secret 값이 새는 경로를 찾을 수 있다",
+    "클러스터 안 Secret과 외부 비밀 저장소(Secrets Store CSI Driver) 중 하나를 손익을 따져 고를 수 있다"
+   ],
+   "prerequisites": [
+    "ops.k8s.configmap-intro",
+    "ops.k8s.basics"
+   ],
+   "related": [
+    "be.security.secrets-handling",
+    "ops.ci.environment-secrets"
+   ],
+   "aliases": [
+    "쿠버네티스 시크릿",
+    "Kubernetes Secret",
+    "k8s Secret 보안",
+    "Secret RBAC",
+    "Secrets Store CSI Driver"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/security/secrets-good-practices/",
+    "https://kubernetes.io/docs/concepts/configuration/secret/"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.network.edge-waf",
    "title": "웹 방화벽(WAF)과 오탐 분석",
    "en": "WAF Rules and False Positives",
@@ -76043,6 +77149,185 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.observe.alert-for-duration",
+   "title": "경보 대기 시간(for)과 pending 상태",
+   "en": "Prometheus Alert for Duration and Pending State",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "관측",
+   "summary": "조건이 정한 시간 동안 계속 참이어야 경보를 pending에서 firing으로 올리는 for 절과, 조건이 풀린 뒤에도 정한 시간만큼 firing을 유지하는 keep_firing_for 설정이다.",
+   "parent": "ops.observe.symptom-alerting",
+   "aliases": [
+    "for 절",
+    "alert for clause",
+    "pending 경보",
+    "pending alert",
+    "keep_firing_for"
+   ],
+   "refs": [
+    "https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.observe.alertmanager-inhibition",
+   "title": "Alertmanager 묶음과 억제",
+   "en": "Alertmanager Grouping and Inhibition",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "관측",
+   "summary": "비슷한 경보를 한 알림으로 묶고, 상위 경보가 울리는 동안 그에 딸린 경보를 잠재워 장애 한 번에 알림이 쏟아지지 않게 하는 기능이다.",
+   "parent": "ops.observe.symptom-alerting",
+   "aliases": [
+    "경보 억제",
+    "alert inhibition",
+    "inhibit_rules",
+    "경보 묶음",
+    "alert grouping",
+    "group_by"
+   ],
+   "refs": [
+    "https://prometheus.io/docs/alerting/latest/alertmanager/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.hpa-scale-down-stabilization",
+   "title": "HPA 스케일 다운 안정화 기간",
+   "en": "HPA Scale-Down Stabilization Window",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "최근 일정 시간의 권장 복제 수 중 가장 큰 값을 따라 줄이게 해서, 부하가 잠깐 내려갔다고 파드를 바로 없애지 않게 하는 설정이다.",
+   "parent": "ops.k8s.hpa-tuning",
+   "aliases": [
+    "stabilizationWindowSeconds",
+    "scale-down stabilization",
+    "HPA 쿨다운"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/workloads/autoscaling/horizontal-pod-autoscale/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.hpa-replicas-conflict",
+   "title": "HPA와 매니페스트 replicas 충돌",
+   "en": "HPA and Manifest spec.replicas Conflict",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "HPA가 맡은 디플로이먼트 매니페스트에 replicas를 남겨 두면 apply할 때마다 파드 수가 그 값으로 되돌아가 HPA와 다투는 문제다.",
+   "parent": "ops.k8s.hpa-tuning",
+   "aliases": [
+    "replicas 필드 충돌",
+    "spec.replicas 제거",
+    "HPA replicas thrashing",
+    "edit-last-applied"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/workloads/autoscaling/horizontal-pod-autoscale/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.default-deny-network-policy",
+   "title": "기본 거부 NetworkPolicy",
+   "en": "Default Deny-All NetworkPolicy",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "빈 podSelector로 네임스페이스의 모든 파드를 골라 들어오거나 나가는 통신을 기본으로 막고, 허용 정책만 따로 더하게 하는 출발점 정책이다.",
+   "parent": "ops.k8s.network-policy",
+   "aliases": [
+    "default-deny-all",
+    "deny-all 정책",
+    "기본 차단 NetworkPolicy",
+    "빈 podSelector"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/services-networking/network-policies/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.network-policy-selector-and-or",
+   "title": "NetworkPolicy 선택자의 AND와 OR",
+   "en": "NetworkPolicy from/to Selector AND vs OR",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "namespaceSelector와 podSelector를 from의 한 항목에 같이 쓰면 둘 다 맞아야 하고, 항목을 나누면 어느 하나만 맞아도 허용돼 정책이 넓어진다.",
+   "parent": "ops.k8s.network-policy",
+   "aliases": [
+    "namespaceSelector podSelector 조합",
+    "NetworkPolicy from 규칙",
+    "선택자 AND OR",
+    "NetworkPolicy 대시 실수"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/services-networking/network-policies/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.secret-encryption-at-rest",
+   "title": "Secret 저장 시 암호화(EncryptionConfiguration)",
+   "en": "Encrypting Secret Data at Rest in etcd",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "API 서버가 etcd에 쓰는 Secret을 암호화하게 하는 설정으로, 첫 제공자가 identity이거나 켜기 전에 쓴 Secret은 다시 쓰기 전까지 평문으로 남는다.",
+   "parent": "ops.k8s.secrets-security",
+   "aliases": [
+    "EncryptionConfiguration",
+    "--encryption-provider-config",
+    "etcd 암호화",
+    "etcd encryption at rest",
+    "KMS 제공자"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.startup-probe",
+   "title": "시작 프로브(startupProbe)",
+   "en": "Kubernetes Startup Probe",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "느리게 뜨는 컨테이너가 성공할 때까지 라이브니스·레디니스 검사를 미뤄, 시작 중에 재시작당하는 일을 막는 Kubernetes 프로브다.",
+   "related": [
+    "be.error.health-check",
+    "ops.k8s.crashloopbackoff"
+   ],
+   "aliases": [
+    "startupProbe",
+    "startup probe",
+    "스타트업 프로브",
+    "시작 검사 프로브"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/",
+    "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/"
+   ],
    "domain": "ops"
   },
   {
@@ -83056,6 +84341,146 @@
    "domain": "ml"
   },
   {
+   "id": "ml.eval.decision-threshold-tuning",
+   "title": "분류 임계값 튜닝: 비용에 맞는 기준점 찾기",
+   "en": "Tuning the Decision Threshold of a Classifier",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "모델 평가",
+   "summary": "학습이 끝난 분류기의 확률은 그대로 두고, 학습에 쓰지 않은 데이터에서 업무 비용 지표가 가장 좋은 기준점을 골라 예측 라벨만 바꾼다.",
+   "objectives": [
+    "기본 기준점 0.5가 서비스의 오류 비용에 맞지 않는 경우를 찾아 기준점을 다시 정할 근거를 말할 수 있다",
+    "기준점을 고를 지표로 기본값 대신 업무 비용을 반영한 점수 함수를 고르고 관심 클래스(pos_label)를 맞게 지정할 수 있다",
+    "모델을 학습한 데이터로 기준점까지 고르면 점수가 부풀려지는 원인을 찾고 교차 검증이나 따로 둔 검증 세트로 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "ml.eval.threshold-confusion-matrix",
+    "ml.eval.metrics-tradeoffs"
+   ],
+   "related": [
+    "ml.eval.roc-auc",
+    "ml.eval.probability-calibration"
+   ],
+   "aliases": [
+    "임계값 튜닝",
+    "threshold tuning",
+    "decision threshold tuning",
+    "기준점 조정",
+    "컷오프 튜닝",
+    "cut-off tuning"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/classification_threshold.html",
+    "https://developers.google.com/machine-learning/crash-course/classification/thresholding"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.learning-validation-curves",
+   "title": "학습 곡선과 검증 곡선으로 편향·분산 진단",
+   "en": "Diagnosing Bias and Variance with Learning and Validation Curves",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "모델 평가",
+   "summary": "학습 데이터 양이나 하이퍼파라미터 값에 따라 학습 점수와 검증 점수를 함께 그려 과소적합·과적합을 가리고 데이터를 더 모을지 판단한다.",
+   "objectives": [
+    "학습 점수와 검증 점수가 둘 다 낮은지, 학습 점수만 높은지를 보고 과소적합과 과적합 중 원인을 찾을 수 있다",
+    "학습 곡선에서 두 점수가 낮은 값으로 이미 모였는지를 근거로 데이터를 더 모을지 모델을 바꿀지 고를 수 있다",
+    "검증 곡선으로 고른 하이퍼파라미터의 검증 점수가 낙관적인 이유를 말하고 따로 둔 테스트 세트로 최종 성능을 잴 수 있다"
+   ],
+   "prerequisites": [
+    "ml.eval.data-splitting-cv",
+    "ml.training.regularization"
+   ],
+   "related": [
+    "ml.training.loss-curve-diagnosis",
+    "ml.training.overfitting",
+    "ml.supervised.hyperparameter-search"
+   ],
+   "aliases": [
+    "learning_curve",
+    "LearningCurveDisplay",
+    "데이터 양별 점수 곡선",
+    "편향 분산 진단",
+    "bias-variance diagnosis"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/learning_curve.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.cuda-out-of-memory",
+   "title": "PyTorch GPU 메모리 부족 원인 찾기",
+   "en": "Diagnosing CUDA Out-of-Memory Errors in PyTorch",
+   "kind": "topic",
+   "level": 4,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "CUDA out of memory 오류가 날 때 그래프가 남은 손실 누적, 붙잡힌 텐서, 큰 층과 긴 시퀀스, 캐싱 할당기 때문에 생긴 착시를 하나씩 가려낸다.",
+   "objectives": [
+    "학습 루프에서 손실 텐서를 그대로 더해 계산 기록이 쌓이는 코드를 찾아 고칠 수 있다",
+    "nvidia-smi 사용량과 memory_allocated·memory_reserved 값을 비교해 실제 텐서 사용량과 캐시 보유량을 구별할 수 있다",
+    "empty_cache가 PyTorch가 쓸 메모리를 늘리지 않는 이유를 말하고 층 크기·시퀀스 길이·체크포인팅 중 줄일 곳을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "ml.nn.training-loop",
+    "ml.nn.tensor-basics"
+   ],
+   "related": [
+    "ml.nn.autograd",
+    "ml.nn.no-grad",
+    "ml.nn.tensor-device"
+   ],
+   "aliases": [
+    "CUDA out of memory",
+    "CUDA OOM",
+    "GPU 메모리 부족",
+    "GPU OOM",
+    "PyTorch 메모리 부족",
+    "cuda runtime error out of memory"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/stable/notes/faq.html#my-model-reports-cuda-runtime-error-2-out-of-memory",
+    "https://docs.pytorch.org/docs/stable/notes/cuda.html#memory-management"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.partial-dependence-ice",
+   "title": "부분 의존 그래프와 ICE로 모델 동작 점검",
+   "en": "Partial Dependence and ICE Plots",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "모델 평가",
+   "summary": "한두 특성 값을 바꿔 가며 예측이 평균적으로, 그리고 샘플마다 어떻게 변하는지 그려 모델이 특성을 어떻게 쓰는지 점검한다.",
+   "objectives": [
+    "평균 효과를 볼지 샘플별 차이를 볼지에 따라 PDP와 ICE 중 무엇을 그릴지 고를 수 있다",
+    "PDP는 평평한데 ICE 선들이 갈라질 때 특성 간 상호작용이 평균에 가려졌다는 근거를 말할 수 있다",
+    "서로 상관된 특성에서 그래프가 실제로 없는 데이터 조합을 평가해 오해를 낳는 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "ml.supervised.tree-ensembles"
+   ],
+   "related": [
+    "ml.eval.permutation-importance",
+    "ml.eval.linear-coefficient-interpretation"
+   ],
+   "aliases": [
+    "부분 의존 그래프",
+    "partial dependence plot",
+    "PartialDependenceDisplay",
+    "부분 의존도"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/partial_dependence.html"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.nn.activation-function",
    "title": "활성화 함수",
    "en": "Activation Function",
@@ -83205,6 +84630,135 @@
    ],
    "refs": [
     "https://developers.google.com/machine-learning/glossary#generalization-curve"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.precision-recall-curve",
+   "title": "정밀도-재현율 곡선(PR 곡선)",
+   "en": "Precision-Recall Curve",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "모델 평가",
+   "summary": "기준점을 바꿔 가며 재현율을 가로축, 정밀도를 세로축에 그린 곡선으로, 클래스가 크게 불균형할 때 ROC보다 모델 비교에 나을 수 있다.",
+   "parent": "ml.eval.decision-threshold-tuning",
+   "related": [
+    "ml.eval.roc-auc",
+    "ml.eval.metrics-tradeoffs"
+   ],
+   "aliases": [
+    "PR 곡선",
+    "PR curve",
+    "precision_recall_curve",
+    "PR AUC",
+    "평균 정밀도",
+    "average precision"
+   ],
+   "refs": [
+    "https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc",
+    "https://developers.google.com/machine-learning/glossary#precision-recall-curve",
+    "https://scikit-learn.org/stable/modules/model_evaluation.html#precision-recall-and-f-measures"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.validation-curve",
+   "title": "검증 곡선(하이퍼파라미터별 점수 곡선)",
+   "en": "Validation Curve",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "모델 평가",
+   "summary": "하이퍼파라미터 하나의 값을 바꿔 가며 학습 점수와 검증 점수를 함께 그려 그 값에서 과소적합인지 과적합인지 보는 곡선이다.",
+   "parent": "ml.eval.learning-validation-curves",
+   "related": [
+    "ml.training.generalization-curve"
+   ],
+   "aliases": [
+    "validation curve",
+    "validation_curve",
+    "ValidationCurveDisplay",
+    "하이퍼파라미터별 점수 곡선"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/learning_curve.html#validation-curve"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.group-kfold",
+   "title": "그룹 단위 교차 검증(GroupKFold)",
+   "en": "Group K-Fold Cross-Validation",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "모델 평가",
+   "summary": "같은 사용자·환자처럼 한 그룹에서 나온 샘플이 학습 쪽과 검증 쪽에 함께 들어가지 않게 그룹째 폴드를 나누는 교차 검증이다.",
+   "parent": "ml.eval.data-splitting-cv",
+   "related": [
+    "ml.eval.cross-validation"
+   ],
+   "aliases": [
+    "GroupKFold",
+    "StratifiedGroupKFold",
+    "그룹 교차 검증",
+    "그룹 k겹",
+    "group k-fold"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/cross_validation.html#group-k-fold"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.time-series-split",
+   "title": "시간 순서 교차 검증(TimeSeriesSplit)",
+   "en": "Time Series Cross-Validation",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "모델 평가",
+   "summary": "앞 시점의 데이터로 학습하고 바로 뒤 시점으로 검증하도록 폴드를 시간 순서대로 늘려 가며 나누어 미래 정보가 학습에 새지 않게 하는 교차 검증이다.",
+   "parent": "ml.eval.data-splitting-cv",
+   "related": [
+    "ml.eval.cross-validation"
+   ],
+   "aliases": [
+    "TimeSeriesSplit",
+    "시계열 교차 검증",
+    "시간 순 분할",
+    "time series cross-validation",
+    "시계열 분할"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/cross_validation.html#time-series-split"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.accumulated-autograd-history",
+   "title": "손실 누적으로 쌓이는 계산 기록",
+   "en": "Accumulating Autograd History Across Iterations",
+   "kind": "term",
+   "level": 4,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "학습 루프에서 기울기가 붙은 손실 텐서를 그대로 더해 두면 반복마다 계산 그래프가 이어져 GPU 메모리가 계속 늘어나는 실수로, 숫자로 바꿔 더하면 막는다.",
+   "parent": "ml.nn.cuda-out-of-memory",
+   "related": [
+    "ml.nn.autograd",
+    "ml.nn.no-grad"
+   ],
+   "aliases": [
+    "total_loss += loss",
+    "loss.item()",
+    "계산 그래프 누적",
+    "autograd history accumulation",
+    "손실 텐서 누적"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/stable/notes/faq.html#my-model-reports-cuda-runtime-error-2-out-of-memory"
    ],
    "domain": "ml"
   },
@@ -83361,6 +84915,74 @@
    ],
    "refs": [
     "https://scikit-learn.org/stable/auto_examples/inspection/plot_linear_model_coefficient_interpretation.html#interpreting-coefficients-scale-matters"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.tuned-threshold-classifier",
+   "title": "TunedThresholdClassifierCV",
+   "en": "TunedThresholdClassifierCV",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "모델 평가",
+   "summary": "내부 교차 검증으로 정한 점수 함수를 가장 좋게 만드는 기준점을 찾아, 학습된 분류기의 예측 라벨을 그 기준점으로 내게 하는 scikit-learn 도구다.",
+   "parent": "ml.eval.decision-threshold-tuning",
+   "related": [
+    "ml.eval.cross-validation"
+   ],
+   "aliases": [
+    "TunedThresholdClassifierCV",
+    "FixedThresholdClassifier",
+    "임계값 자동 튜닝"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/classification_threshold.html#post-tuning-the-decision-threshold"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.eval.ice-plot",
+   "title": "개별 조건부 기대(ICE) 그래프",
+   "en": "Individual Conditional Expectation (ICE) Plot",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "모델 평가",
+   "summary": "특성 하나의 값을 바꿀 때 샘플마다 예측이 어떻게 변하는지 한 줄씩 그린 그래프로, 이 선들의 평균이 부분 의존 그래프다.",
+   "parent": "ml.eval.partial-dependence-ice",
+   "aliases": [
+    "ICE plot",
+    "ICE 그래프",
+    "개별 조건부 기대",
+    "individual conditional expectation",
+    "centered ICE"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/partial_dependence.html#individual-conditional-expectation-ice-plot"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.cuda-caching-allocator",
+   "title": "PyTorch CUDA 캐싱 할당기",
+   "en": "PyTorch CUDA Caching Allocator",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "딥러닝",
+   "summary": "PyTorch가 해제된 GPU 메모리를 바로 돌려주지 않고 다시 쓰려고 쥐고 있는 방식으로, 그래서 nvidia-smi 사용량이 실제 텐서 사용량보다 크게 보인다.",
+   "parent": "ml.nn.cuda-out-of-memory",
+   "aliases": [
+    "caching allocator",
+    "캐싱 할당기",
+    "memory_allocated",
+    "memory_reserved",
+    "torch.cuda.empty_cache",
+    "PYTORCH_CUDA_ALLOC_CONF"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/stable/notes/cuda.html#memory-management"
    ],
    "domain": "ml"
   },

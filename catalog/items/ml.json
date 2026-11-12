@@ -6468,6 +6468,142 @@
     ]
   },
   {
+    "id": "ml.eval.decision-threshold-tuning",
+    "title": "분류 임계값 튜닝: 비용에 맞는 기준점 찾기",
+    "en": "Tuning the Decision Threshold of a Classifier",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "모델 평가",
+    "summary": "학습이 끝난 분류기의 확률은 그대로 두고, 학습에 쓰지 않은 데이터에서 업무 비용 지표가 가장 좋은 기준점을 골라 예측 라벨만 바꾼다.",
+    "objectives": [
+      "기본 기준점 0.5가 서비스의 오류 비용에 맞지 않는 경우를 찾아 기준점을 다시 정할 근거를 말할 수 있다",
+      "기준점을 고를 지표로 기본값 대신 업무 비용을 반영한 점수 함수를 고르고 관심 클래스(pos_label)를 맞게 지정할 수 있다",
+      "모델을 학습한 데이터로 기준점까지 고르면 점수가 부풀려지는 원인을 찾고 교차 검증이나 따로 둔 검증 세트로 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "ml.eval.threshold-confusion-matrix",
+      "ml.eval.metrics-tradeoffs"
+    ],
+    "related": [
+      "ml.eval.roc-auc",
+      "ml.eval.probability-calibration"
+    ],
+    "aliases": [
+      "임계값 튜닝",
+      "threshold tuning",
+      "decision threshold tuning",
+      "기준점 조정",
+      "컷오프 튜닝",
+      "cut-off tuning"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/classification_threshold.html",
+      "https://developers.google.com/machine-learning/crash-course/classification/thresholding"
+    ]
+  },
+  {
+    "id": "ml.eval.learning-validation-curves",
+    "title": "학습 곡선과 검증 곡선으로 편향·분산 진단",
+    "en": "Diagnosing Bias and Variance with Learning and Validation Curves",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "모델 평가",
+    "summary": "학습 데이터 양이나 하이퍼파라미터 값에 따라 학습 점수와 검증 점수를 함께 그려 과소적합·과적합을 가리고 데이터를 더 모을지 판단한다.",
+    "objectives": [
+      "학습 점수와 검증 점수가 둘 다 낮은지, 학습 점수만 높은지를 보고 과소적합과 과적합 중 원인을 찾을 수 있다",
+      "학습 곡선에서 두 점수가 낮은 값으로 이미 모였는지를 근거로 데이터를 더 모을지 모델을 바꿀지 고를 수 있다",
+      "검증 곡선으로 고른 하이퍼파라미터의 검증 점수가 낙관적인 이유를 말하고 따로 둔 테스트 세트로 최종 성능을 잴 수 있다"
+    ],
+    "prerequisites": [
+      "ml.eval.data-splitting-cv",
+      "ml.training.regularization"
+    ],
+    "related": [
+      "ml.training.loss-curve-diagnosis",
+      "ml.training.overfitting",
+      "ml.supervised.hyperparameter-search"
+    ],
+    "aliases": [
+      "learning_curve",
+      "LearningCurveDisplay",
+      "데이터 양별 점수 곡선",
+      "편향 분산 진단",
+      "bias-variance diagnosis"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/learning_curve.html"
+    ]
+  },
+  {
+    "id": "ml.nn.cuda-out-of-memory",
+    "title": "PyTorch GPU 메모리 부족 원인 찾기",
+    "en": "Diagnosing CUDA Out-of-Memory Errors in PyTorch",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "CUDA out of memory 오류가 날 때 그래프가 남은 손실 누적, 붙잡힌 텐서, 큰 층과 긴 시퀀스, 캐싱 할당기 때문에 생긴 착시를 하나씩 가려낸다.",
+    "objectives": [
+      "학습 루프에서 손실 텐서를 그대로 더해 계산 기록이 쌓이는 코드를 찾아 고칠 수 있다",
+      "nvidia-smi 사용량과 memory_allocated·memory_reserved 값을 비교해 실제 텐서 사용량과 캐시 보유량을 구별할 수 있다",
+      "empty_cache가 PyTorch가 쓸 메모리를 늘리지 않는 이유를 말하고 층 크기·시퀀스 길이·체크포인팅 중 줄일 곳을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "ml.nn.training-loop",
+      "ml.nn.tensor-basics"
+    ],
+    "related": [
+      "ml.nn.autograd",
+      "ml.nn.no-grad",
+      "ml.nn.tensor-device"
+    ],
+    "aliases": [
+      "CUDA out of memory",
+      "CUDA OOM",
+      "GPU 메모리 부족",
+      "GPU OOM",
+      "PyTorch 메모리 부족",
+      "cuda runtime error out of memory"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/stable/notes/faq.html#my-model-reports-cuda-runtime-error-2-out-of-memory",
+      "https://docs.pytorch.org/docs/stable/notes/cuda.html#memory-management"
+    ]
+  },
+  {
+    "id": "ml.eval.partial-dependence-ice",
+    "title": "부분 의존 그래프와 ICE로 모델 동작 점검",
+    "en": "Partial Dependence and ICE Plots",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "모델 평가",
+    "summary": "한두 특성 값을 바꿔 가며 예측이 평균적으로, 그리고 샘플마다 어떻게 변하는지 그려 모델이 특성을 어떻게 쓰는지 점검한다.",
+    "objectives": [
+      "평균 효과를 볼지 샘플별 차이를 볼지에 따라 PDP와 ICE 중 무엇을 그릴지 고를 수 있다",
+      "PDP는 평평한데 ICE 선들이 갈라질 때 특성 간 상호작용이 평균에 가려졌다는 근거를 말할 수 있다",
+      "서로 상관된 특성에서 그래프가 실제로 없는 데이터 조합을 평가해 오해를 낳는 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.tree-ensembles"
+    ],
+    "related": [
+      "ml.eval.permutation-importance",
+      "ml.eval.linear-coefficient-interpretation"
+    ],
+    "aliases": [
+      "부분 의존 그래프",
+      "partial dependence plot",
+      "PartialDependenceDisplay",
+      "부분 의존도"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/partial_dependence.html"
+    ]
+  },
+  {
     "id": "ml.nn.activation-function",
     "title": "활성화 함수",
     "en": "Activation Function",
@@ -6611,6 +6747,130 @@
     ],
     "refs": [
       "https://developers.google.com/machine-learning/glossary#generalization-curve"
+    ]
+  },
+  {
+    "id": "ml.eval.precision-recall-curve",
+    "title": "정밀도-재현율 곡선(PR 곡선)",
+    "en": "Precision-Recall Curve",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "모델 평가",
+    "summary": "기준점을 바꿔 가며 재현율을 가로축, 정밀도를 세로축에 그린 곡선으로, 클래스가 크게 불균형할 때 ROC보다 모델 비교에 나을 수 있다.",
+    "parent": "ml.eval.decision-threshold-tuning",
+    "related": [
+      "ml.eval.roc-auc",
+      "ml.eval.metrics-tradeoffs"
+    ],
+    "aliases": [
+      "PR 곡선",
+      "PR curve",
+      "precision_recall_curve",
+      "PR AUC",
+      "평균 정밀도",
+      "average precision"
+    ],
+    "refs": [
+      "https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc",
+      "https://developers.google.com/machine-learning/glossary#precision-recall-curve",
+      "https://scikit-learn.org/stable/modules/model_evaluation.html#precision-recall-and-f-measures"
+    ]
+  },
+  {
+    "id": "ml.eval.validation-curve",
+    "title": "검증 곡선(하이퍼파라미터별 점수 곡선)",
+    "en": "Validation Curve",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "모델 평가",
+    "summary": "하이퍼파라미터 하나의 값을 바꿔 가며 학습 점수와 검증 점수를 함께 그려 그 값에서 과소적합인지 과적합인지 보는 곡선이다.",
+    "parent": "ml.eval.learning-validation-curves",
+    "related": [
+      "ml.training.generalization-curve"
+    ],
+    "aliases": [
+      "validation curve",
+      "validation_curve",
+      "ValidationCurveDisplay",
+      "하이퍼파라미터별 점수 곡선"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/learning_curve.html#validation-curve"
+    ]
+  },
+  {
+    "id": "ml.eval.group-kfold",
+    "title": "그룹 단위 교차 검증(GroupKFold)",
+    "en": "Group K-Fold Cross-Validation",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "모델 평가",
+    "summary": "같은 사용자·환자처럼 한 그룹에서 나온 샘플이 학습 쪽과 검증 쪽에 함께 들어가지 않게 그룹째 폴드를 나누는 교차 검증이다.",
+    "parent": "ml.eval.data-splitting-cv",
+    "related": [
+      "ml.eval.cross-validation"
+    ],
+    "aliases": [
+      "GroupKFold",
+      "StratifiedGroupKFold",
+      "그룹 교차 검증",
+      "그룹 k겹",
+      "group k-fold"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/cross_validation.html#group-k-fold"
+    ]
+  },
+  {
+    "id": "ml.eval.time-series-split",
+    "title": "시간 순서 교차 검증(TimeSeriesSplit)",
+    "en": "Time Series Cross-Validation",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "모델 평가",
+    "summary": "앞 시점의 데이터로 학습하고 바로 뒤 시점으로 검증하도록 폴드를 시간 순서대로 늘려 가며 나누어 미래 정보가 학습에 새지 않게 하는 교차 검증이다.",
+    "parent": "ml.eval.data-splitting-cv",
+    "related": [
+      "ml.eval.cross-validation"
+    ],
+    "aliases": [
+      "TimeSeriesSplit",
+      "시계열 교차 검증",
+      "시간 순 분할",
+      "time series cross-validation",
+      "시계열 분할"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/cross_validation.html#time-series-split"
+    ]
+  },
+  {
+    "id": "ml.nn.accumulated-autograd-history",
+    "title": "손실 누적으로 쌓이는 계산 기록",
+    "en": "Accumulating Autograd History Across Iterations",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "학습 루프에서 기울기가 붙은 손실 텐서를 그대로 더해 두면 반복마다 계산 그래프가 이어져 GPU 메모리가 계속 늘어나는 실수로, 숫자로 바꿔 더하면 막는다.",
+    "parent": "ml.nn.cuda-out-of-memory",
+    "related": [
+      "ml.nn.autograd",
+      "ml.nn.no-grad"
+    ],
+    "aliases": [
+      "total_loss += loss",
+      "loss.item()",
+      "계산 그래프 누적",
+      "autograd history accumulation",
+      "손실 텐서 누적"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/stable/notes/faq.html#my-model-reports-cuda-runtime-error-2-out-of-memory"
     ]
   },
   {
@@ -6760,6 +7020,71 @@
     ],
     "refs": [
       "https://scikit-learn.org/stable/auto_examples/inspection/plot_linear_model_coefficient_interpretation.html#interpreting-coefficients-scale-matters"
+    ]
+  },
+  {
+    "id": "ml.eval.tuned-threshold-classifier",
+    "title": "TunedThresholdClassifierCV",
+    "en": "TunedThresholdClassifierCV",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "모델 평가",
+    "summary": "내부 교차 검증으로 정한 점수 함수를 가장 좋게 만드는 기준점을 찾아, 학습된 분류기의 예측 라벨을 그 기준점으로 내게 하는 scikit-learn 도구다.",
+    "parent": "ml.eval.decision-threshold-tuning",
+    "related": [
+      "ml.eval.cross-validation"
+    ],
+    "aliases": [
+      "TunedThresholdClassifierCV",
+      "FixedThresholdClassifier",
+      "임계값 자동 튜닝"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/classification_threshold.html#post-tuning-the-decision-threshold"
+    ]
+  },
+  {
+    "id": "ml.eval.ice-plot",
+    "title": "개별 조건부 기대(ICE) 그래프",
+    "en": "Individual Conditional Expectation (ICE) Plot",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "모델 평가",
+    "summary": "특성 하나의 값을 바꿀 때 샘플마다 예측이 어떻게 변하는지 한 줄씩 그린 그래프로, 이 선들의 평균이 부분 의존 그래프다.",
+    "parent": "ml.eval.partial-dependence-ice",
+    "aliases": [
+      "ICE plot",
+      "ICE 그래프",
+      "개별 조건부 기대",
+      "individual conditional expectation",
+      "centered ICE"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/partial_dependence.html#individual-conditional-expectation-ice-plot"
+    ]
+  },
+  {
+    "id": "ml.nn.cuda-caching-allocator",
+    "title": "PyTorch CUDA 캐싱 할당기",
+    "en": "PyTorch CUDA Caching Allocator",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "PyTorch가 해제된 GPU 메모리를 바로 돌려주지 않고 다시 쓰려고 쥐고 있는 방식으로, 그래서 nvidia-smi 사용량이 실제 텐서 사용량보다 크게 보인다.",
+    "parent": "ml.nn.cuda-out-of-memory",
+    "aliases": [
+      "caching allocator",
+      "캐싱 할당기",
+      "memory_allocated",
+      "memory_reserved",
+      "torch.cuda.empty_cache",
+      "PYTORCH_CUDA_ALLOC_CONF"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/stable/notes/cuda.html#memory-management"
     ]
   },
   {

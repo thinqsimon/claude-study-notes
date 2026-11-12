@@ -6107,6 +6107,29 @@
     ]
   },
   {
+    "id": "fe.react.use-optimistic",
+    "title": "useOptimistic으로 낙관적 업데이트하기",
+    "en": "Optimistic Updates with useOptimistic",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "React",
+    "summary": "Action이 끝나기 전에 결과를 미리 화면에 보이고, 끝나거나 실패하면 실제 상태로 돌아가게 하는 React 훅이다.",
+    "related": [
+      "fe.next.server-actions",
+      "fe.react.use-action-state"
+    ],
+    "aliases": [
+      "낙관적 업데이트",
+      "optimistic update",
+      "optimistic UI",
+      "낙관적 UI"
+    ],
+    "refs": [
+      "https://react.dev/reference/react/useOptimistic"
+    ]
+  },
+  {
     "id": "fe.html.constraint-validation",
     "title": "Constraint Validation API",
     "en": "Constraint Validation API",
@@ -6308,6 +6331,75 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
+  },
+  {
+    "id": "fe.next.hydration-errors",
+    "title": "하이드레이션 오류 원인 찾기",
+    "en": "Diagnosing React Hydration Mismatch Errors",
+    "kind": "topic",
+    "level": 4,
+    "importance": 1,
+    "group": "Next.js",
+    "summary": "서버가 만든 HTML과 브라우저의 첫 렌더 결과가 달라 생기는 하이드레이션 오류의 원인을 가려내고 알맞은 해결법을 고르는 일이다.",
+    "objectives": [
+      "잘못된 태그 중첩·렌더 중 window 검사·Date 사용·브라우저 확장 가운데 하이드레이션 오류의 원인을 찾을 수 있다",
+      "useEffect 두 번 렌더링·SSR 끄기·suppressHydrationWarning 가운데 상황에 맞는 해결법을 고르고 근거를 말할 수 있다",
+      "불일치를 내버려 두면 느려지거나 이벤트 핸들러가 엉뚱한 요소에 붙을 수 있다는 위험을 근거로 오류를 버그로 다뤄야 하는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.internals.rendering-strategy",
+      "fe.react.use-effect"
+    ],
+    "related": [
+      "fe.internals.server-components",
+      "fe.internals.server-client-boundary"
+    ],
+    "aliases": [
+      "하이드레이션 오류",
+      "hydration error",
+      "hydration mismatch",
+      "하이드레이션 불일치",
+      "Text content does not match server-rendered HTML"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/messages/react-hydration-error",
+      "https://react.dev/reference/react-dom/client/hydrateRoot"
+    ]
+  },
+  {
+    "id": "fe.react.state-placement",
+    "title": "상태를 둘 곳 고르기: 컴포넌트·Context·URL",
+    "en": "Choosing Where React State Lives",
+    "kind": "topic",
+    "level": 4,
+    "importance": 1,
+    "group": "React",
+    "summary": "한 컴포넌트 지역 상태, 끌어올린 상태, Context와 reducer, URL 검색 매개변수 가운데 데이터마다 둘 곳을 고르고 그 손익을 따지는 일이다.",
+    "objectives": [
+      "props 전달·children으로 컴포넌트 빼기·Context 가운데 먼 컴포넌트에 데이터를 넘길 방법을 고르고 근거를 말할 수 있다",
+      "reducer와 Context를 묶고 상태와 dispatch를 다른 Context로 나눌지 판단할 수 있다",
+      "검색어·페이지 번호처럼 공유·북마크·서버 렌더링이 필요한 값을 URL 검색 매개변수에 둘지 고를 수 있다"
+    ],
+    "prerequisites": [
+      "fe.react.state-structure",
+      "fe.next.routes-layouts"
+    ],
+    "related": [
+      "fe.react.context",
+      "fe.react.lifting-state",
+      "fe.react.reducer"
+    ],
+    "aliases": [
+      "상태 위치 정하기",
+      "state placement",
+      "상태 관리 위치",
+      "Context 남용"
+    ],
+    "refs": [
+      "https://react.dev/learn/passing-data-deeply-with-context",
+      "https://react.dev/learn/scaling-up-with-reducer-and-context",
+      "https://nextjs.org/learn/dashboard-app/adding-search-and-pagination"
+    ]
   },
   {
     "id": "fe.internals.server-client-boundary",
@@ -6529,6 +6621,66 @@
       "https://nextjs.org/docs/app/guides/lazy-loading",
       "https://react.dev/reference/react/lazy",
       "https://web.dev/articles/reduce-javascript-payloads-with-code-splitting"
+    ]
+  },
+  {
+    "id": "fe.internals.memory-leak-debugging",
+    "title": "개발자 도구로 브라우저 메모리 누수 찾기",
+    "en": "Finding Browser Memory Leaks with DevTools",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "프론트엔드 내부",
+    "summary": "작업 관리자·Performance 패널·Memory 패널로 쌓이기만 하는 메모리를 찾아 그 메모리를 붙잡고 있는 코드를 추적하는 방법이다.",
+    "objectives": [
+      "메모리 누수·메모리 팽창·잦은 가비지 컬렉션 가운데 증상이 어느 쪽인지 가려낼 수 있다",
+      "작업 관리자·Performance 패널 메모리 기록·힙 스냅샷·할당 타임라인 가운데 상황에 맞는 도구를 고를 수 있다",
+      "힙 스냅샷 비교와 Retainers 정보로 해제되지 않는 객체를 붙잡은 참조를 찾아 누수 원인을 말할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.browser-devtools",
+      "fe.react.use-effect"
+    ],
+    "aliases": [
+      "JS 메모리 누수",
+      "DevTools 메모리 패널",
+      "Memory panel",
+      "memory bloat",
+      "메모리 팽창"
+    ],
+    "refs": [
+      "https://developer.chrome.com/docs/devtools/memory-problems",
+      "https://developer.chrome.com/docs/devtools/memory-problems/heap-snapshots"
+    ]
+  },
+  {
+    "id": "fe.internals.production-source-maps",
+    "title": "운영 번들 오류를 소스 맵으로 추적하기",
+    "en": "Debugging Production Bundles with Source Maps",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "프론트엔드 내부",
+    "summary": "압축·번들된 배포 코드의 오류를 소스 맵으로 원본 파일에 이어 디버깅하고, 운영에 소스 맵을 내보낼지 손익을 따지는 일이다.",
+    "objectives": [
+      "DevTools가 sourceMappingURL로 원본 파일을 찾았는지 확인해 중단점과 콘솔 오류 위치가 엉뚱한 원인을 찾을 수 있다",
+      "소스 코드 노출과 빌드 시간·메모리 증가를 근거로 운영 빌드에 브라우저 소스 맵을 켤지 고를 수 있다",
+      "무시 목록으로 라이브러리 코드를 건너뛰어 내 코드에서 오류 원인을 좁힐 수 있다"
+    ],
+    "prerequisites": [
+      "fe.basics.browser-devtools",
+      "fe.js.troubleshooting"
+    ],
+    "aliases": [
+      "소스 맵",
+      "source map",
+      "sourceMappingURL",
+      "압축된 코드 디버깅"
+    ],
+    "refs": [
+      "https://developer.chrome.com/docs/devtools/javascript/source-maps",
+      "https://nextjs.org/docs/app/api-reference/config/next-config-js/productionBrowserSourceMaps",
+      "https://developer.chrome.com/docs/devtools/settings/ignore-list"
     ]
   },
   {
@@ -6812,6 +6964,107 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "fe.react.suppress-hydration-warning",
+    "title": "suppressHydrationWarning",
+    "en": "suppressHydrationWarning Attribute",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "React",
+    "summary": "시각처럼 서버와 브라우저에서 어쩔 수 없이 다른 한 요소의 불일치 경고를 끄는 탈출구로, 한 단계 깊이에만 듣고 텍스트를 고쳐 주지 않는다.",
+    "parent": "fe.next.hydration-errors",
+    "aliases": [
+      "하이드레이션 경고 끄기",
+      "suppress hydration warning"
+    ],
+    "refs": [
+      "https://react.dev/reference/react-dom/client/hydrateRoot",
+      "https://nextjs.org/docs/messages/react-hydration-error"
+    ]
+  },
+  {
+    "id": "fe.react.two-pass-rendering",
+    "title": "두 번 렌더링으로 브라우저 전용 내용 보이기",
+    "en": "Two-Pass Rendering for Browser-Only Content",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "React",
+    "summary": "첫 렌더는 서버 HTML과 똑같이 그리고 Effect에서 플래그를 켜 다시 그리는 방식으로, 불일치는 없애지만 하이드레이션이 느려지고 화면이 바뀌어 보일 수 있다.",
+    "parent": "fe.next.hydration-errors",
+    "aliases": [
+      "two-pass rendering",
+      "isClient 플래그",
+      "이중 패스 렌더링"
+    ],
+    "refs": [
+      "https://react.dev/reference/react-dom/client/hydrateRoot",
+      "https://nextjs.org/docs/messages/react-hydration-error"
+    ]
+  },
+  {
+    "id": "fe.internals.heap-snapshot",
+    "title": "힙 스냅샷",
+    "en": "JavaScript Heap Snapshot",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "프론트엔드 내부",
+    "summary": "가비지 컬렉션 뒤 살아 있는 JS 객체와 DOM 노드를 찍은 사진으로, 동작 전후 두 장을 비교하면 해제되지 않은 객체가 드러난다.",
+    "parent": "fe.internals.memory-leak-debugging",
+    "aliases": [
+      "heap snapshot",
+      "스냅샷 비교",
+      "retained size",
+      "보유 크기"
+    ],
+    "refs": [
+      "https://developer.chrome.com/docs/devtools/memory-problems/heap-snapshots"
+    ]
+  },
+  {
+    "id": "fe.internals.detached-dom",
+    "title": "분리된 DOM 요소",
+    "en": "Detached DOM Elements",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "프론트엔드 내부",
+    "summary": "페이지에서 빠졌는데 JavaScript 변수나 부모 링크가 아직 참조해 메모리에서 풀리지 않는 DOM 노드로, 흔한 누수 원인이다.",
+    "parent": "fe.internals.memory-leak-debugging",
+    "aliases": [
+      "detached DOM",
+      "detached element",
+      "떨어져 나간 DOM 노드",
+      "분리된 DOM 트리"
+    ],
+    "refs": [
+      "https://developer.chrome.com/docs/devtools/memory-problems/heap-snapshots",
+      "https://developer.chrome.com/docs/devtools/memory-problems"
+    ]
+  },
+  {
+    "id": "fe.next.url-search-params-state",
+    "title": "URL 검색 매개변수에 둔 상태",
+    "en": "URL Search Params as UI State",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Next.js",
+    "summary": "검색어·필터·페이지를 URL 쿼리에 두어 공유와 서버 렌더링을 얻는 방식으로, 서버에선 searchParams prop, 클라이언트에선 useSearchParams로 읽는다.",
+    "parent": "fe.react.state-placement",
+    "aliases": [
+      "URL 상태",
+      "URL state",
+      "쿼리스트링 상태",
+      "검색 조건을 URL에 저장"
+    ],
+    "refs": [
+      "https://nextjs.org/learn/dashboard-app/adding-search-and-pagination",
+      "https://nextjs.org/docs/app/api-reference/functions/use-search-params"
+    ]
+  },
+  {
     "id": "fe.internals.server-only",
     "title": "server-only와 client-only",
     "en": "server-only and client-only",
@@ -6850,6 +7103,44 @@
     ],
     "refs": [
       "https://nextjs.org/docs/app/api-reference/file-conventions/loading"
+    ]
+  },
+  {
+    "id": "fe.next.production-browser-source-maps",
+    "title": "productionBrowserSourceMaps",
+    "en": "Next.js productionBrowserSourceMaps Option",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Next.js",
+    "summary": "소스 노출을 막으려 운영 빌드에서 꺼 둔 브라우저 소스 맵을 켜는 Next.js 설정으로, 켜면 JS 옆에 맵을 내보내고 빌드 시간과 메모리가 는다.",
+    "parent": "fe.internals.production-source-maps",
+    "aliases": [
+      "운영 소스 맵 설정",
+      "production source maps"
+    ],
+    "refs": [
+      "https://nextjs.org/docs/app/api-reference/config/next-config-js/productionBrowserSourceMaps"
+    ]
+  },
+  {
+    "id": "fe.internals.devtools-ignore-list",
+    "title": "DevTools 무시 목록",
+    "en": "Chrome DevTools Ignore List",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "프론트엔드 내부",
+    "summary": "디버거가 건너뛸 스크립트를 정하는 DevTools 설정으로, node_modules가 기본으로 들어가고 소스 맵의 ignoreList로 프레임워크 코드도 더할 수 있다.",
+    "parent": "fe.internals.production-source-maps",
+    "aliases": [
+      "ignore list",
+      "ignoreList",
+      "디버거 무시 목록",
+      "Ignore Listing"
+    ],
+    "refs": [
+      "https://developer.chrome.com/docs/devtools/settings/ignore-list"
     ]
   },
   {

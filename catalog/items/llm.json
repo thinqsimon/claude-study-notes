@@ -6804,6 +6804,156 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "llm.api.stream-interruption-recovery",
+    "title": "끊긴 LLM 스트림 이어 받기 설계",
+    "en": "Recovering Interrupted Claude Streaming Responses",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "스트리밍 도중 오류 이벤트나 연결 끊김이 나면 받은 부분을 살려 이어 받을지 처음부터 다시 보낼지 정하는 설계다.",
+    "objectives": [
+      "스트림 안에 온 overloaded_error 같은 오류 이벤트와 네트워크 끊김을 구분해 이어 받기와 전체 재요청 중 하나를 고를 수 있다",
+      "모델 세대에 따라 이어 받기 요청을 미리 채운 assistant 메시지로 만들지 이어 쓰라는 user 메시지로 만들지 근거를 말할 수 있다",
+      "tool_use·thinking 블록은 일부만 살릴 수 없다는 점을 알고 마지막 text 블록부터 다시 받도록 범위를 정할 수 있다",
+      "ping이나 새로 생긴 이벤트 타입을 처리하지 못해 스트림 처리 코드가 멈추는 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.sdk-streaming",
+      "llm.api.errors-rate-limits"
+    ],
+    "related": [
+      "llm.api.response-streaming",
+      "llm.tools.truncated-tool-use",
+      "llm.prompt.prefill"
+    ],
+    "aliases": [
+      "스트림 이어 받기",
+      "스트리밍 오류 복구",
+      "streaming error recovery",
+      "끊긴 스트림 복구",
+      "스트림 중단 복구"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/streaming",
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.api.thinking-roundtrip-errors",
+    "title": "thinking 블록 왕복 오류 진단",
+    "en": "Diagnosing Claude Thinking Block Round-Trip Errors",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "생각 기능과 도구 호출을 함께 쓸 때 thinking 블록을 돌려보내는 방식이 틀려 나는 400 오류와 캐시 실패의 원인을 찾아 고친다.",
+    "objectives": [
+      "thinking 블록을 고칠 수 없다는 400이 assistant 메시지를 다시 조립하거나 redacted_thinking을 걸러 낸 코드에서 온다는 것을 찾아 고칠 수 있다",
+      "서명이 무효라는 400이 system·tools·이전 턴을 바꾼 데서 온다는 점을 알고 이력을 덧붙이기만 하는 방식과 drop_block 중 대처를 고를 수 있다",
+      "강제 tool_choice가 모델에 따라 400이 되거나 생각을 건너뛰게 하는 이유를 말하고 auto와 프롬프트 지시로 바꿀 수 있다",
+      "대화 중 thinking 설정이나 effort를 바꿔 캐시 읽기 토큰이 0으로 떨어지는 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.thinking-effort",
+      "llm.tools.function-calling"
+    ],
+    "related": [
+      "llm.api.thinking-block",
+      "llm.tools.tool-choice",
+      "llm.internals.prompt-caching"
+    ],
+    "aliases": [
+      "thinking 블록 오류",
+      "thinking blocks cannot be modified",
+      "Invalid signature in thinking block",
+      "thinking 서명 오류",
+      "thinking troubleshooting"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/thinking-troubleshooting",
+      "https://platform.claude.com/docs/en/build-with-claude/thinking-tool-workflows",
+      "https://platform.claude.com/docs/en/build-with-claude/preserved-thinking"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.api.refusal-fallback-design",
+    "title": "거절된 요청을 대체 모델로 넘기는 설계",
+    "en": "Designing Claude Refusal Fallback",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "안전 분류기가 거절한 요청을 다른 Claude 모델로 다시 보내는 세 방식 가운데 하나를 고르고, 비용·이력·모니터링 함정을 피하는 설계다.",
+    "objectives": [
+      "서버 쪽 fallbacks·SDK 미들웨어·직접 재시도 가운데 플랫폼과 통제 수준에 맞는 방식을 근거를 들어 고를 수 있다",
+      "거절이 HTTP 200으로 와서 오류율 감시에 잡히지 않는 이유를 말하고 거절과 대체 응답을 따로 세는 지표를 둘 수 있다",
+      "대체가 일어난 뒤 다음 턴에 fallback 블록과 이전 모델의 thinking·tool_use 블록 가운데 무엇을 남길지 정할 수 있다",
+      "reasoning_extraction 거절은 다시 보내도 소용없고 생각을 출력에 쓰라는 프롬프트를 고쳐야 한다는 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.errors-rate-limits",
+      "llm.basics.model-selection"
+    ],
+    "related": [
+      "llm.api.refusal-response",
+      "llm.internals.prompt-caching"
+    ],
+    "aliases": [
+      "거절 대체 모델",
+      "refusal fallback",
+      "모델 거절 재시도",
+      "BetaRefusalFallbackMiddleware",
+      "stop_reason refusal 처리"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.internals.multi-window-tasks",
+    "title": "여러 컨텍스트 창에 걸친 긴 작업 설계",
+    "en": "Designing Claude Tasks Across Multiple Context Windows",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 내부",
+    "summary": "한 컨텍스트 창에 다 담을 수 없는 긴 에이전트 작업을 진행 기록 파일과 메모리로 나눠 이어 가고, 새로 시작할지 압축할지 정하는 설계다.",
+    "objectives": [
+      "창을 비울 때 완전히 새 창으로 시작할지 컴팩션으로 이어 갈지 작업 상태가 파일에 남아 있는지를 근거로 고를 수 있다",
+      "테스트 상태는 구조화 파일, 진행 메모는 자유 글, 변경 이력은 git으로 나눠 남기는 상태 관리 방식을 정할 수 있다",
+      "메모리 도구 핸들러에서 /memories 밖으로 나가는 경로 공격을 막는 검사를 넣을 수 있다",
+      "모델이 컨텍스트 한도에 가까워지며 일을 일찍 끝내는 원인을 찾아 프롬프트로 바로잡을 수 있다"
+    ],
+    "prerequisites": [
+      "llm.internals.context-management",
+      "llm.tools.function-calling"
+    ],
+    "related": [
+      "llm.internals.compaction",
+      "rag.agent.memory-store"
+    ],
+    "aliases": [
+      "긴 작업 상태 관리",
+      "multi-context window workflow",
+      "진행 기록 파일",
+      "progress.txt",
+      "long-horizon task"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "llm.api.spend-limit",
     "title": "지출 한도",
     "en": "Spend Limit",
@@ -6992,6 +7142,82 @@
     ]
   },
   {
+    "id": "llm.api.thinking-display",
+    "title": "thinking 표시 방식(display)",
+    "en": "Claude Thinking Display Setting",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "thinking 블록에 요약 글을 담을지 비워 둘지 정하는 설정으로, 비워 두면 첫 글자가 빨리 오고 서명만 남아 그대로 돌려보내면 된다.",
+    "parent": "llm.api.thinking-roundtrip-errors",
+    "related": [
+      "llm.api.thinking-block"
+    ],
+    "aliases": [
+      "display omitted",
+      "display summarized",
+      "빈 thinking 필드",
+      "thinking 요약 표시",
+      "thinking display"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/thinking",
+      "https://platform.claude.com/docs/en/build-with-claude/thinking-troubleshooting"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.api.server-side-fallback",
+    "title": "서버 쪽 대체 모델(fallbacks 파라미터)",
+    "en": "Claude Server-Side Fallback",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "요청에 fallbacks를 넣으면 거절됐을 때 API가 같은 호출 안에서 추천 모델이나 지정한 모델로 다시 답하게 하고 fallback 블록으로 경계를 알린다.",
+    "parent": "llm.api.refusal-fallback-design",
+    "aliases": [
+      "fallbacks 파라미터",
+      "server-side fallback",
+      "fallback 콘텐츠 블록",
+      "server-side-fallback-2026-07-01"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.tools.memory-tool",
+    "title": "메모리 도구(Claude memory tool)",
+    "en": "Claude Memory Tool",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "도구 호출",
+    "summary": "Claude가 /memories 아래 파일을 만들고 읽어 대화가 바뀌어도 배운 것을 이어 쓰게 하는 클라이언트 쪽 도구로, 저장과 경로 검사는 앱이 맡는다.",
+    "parent": "llm.internals.multi-window-tasks",
+    "related": [
+      "rag.agent.memory-store",
+      "llm.internals.compaction"
+    ],
+    "aliases": [
+      "memory tool",
+      "memory_20250818",
+      "Claude 메모리 도구",
+      "/memories 디렉터리",
+      "BetaLocalFilesystemMemoryTool"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "llm.api.usage-tier",
     "title": "사용 등급(usage tier)",
     "en": "Usage Tier",
@@ -7118,6 +7344,132 @@
     "refs": [
       "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons"
     ]
+  },
+  {
+    "id": "llm.tools.eager-input-streaming",
+    "title": "세밀한 도구 입력 스트리밍(eager_input_streaming)",
+    "en": "Claude Fine-Grained Tool Streaming",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "도구 호출",
+    "summary": "도구 정의에 eager_input_streaming을 켜면 서버 검증 없이 도구 입력 조각을 바로 받아 빨라지지만, 깨진 JSON이 올 수 있어 파싱을 감싸야 한다.",
+    "related": [
+      "llm.tools.truncated-tool-use",
+      "llm.tools.strict-tool-use"
+    ],
+    "aliases": [
+      "eager_input_streaming",
+      "fine-grained tool streaming",
+      "세밀한 도구 스트리밍",
+      "INVALID_JSON 도구 결과"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.api.thinking-block-binding",
+    "title": "thinking 블록 바인딩",
+    "en": "Claude Thinking Block Binding",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "돌려보낸 thinking 블록은 앞선 system·tools·메시지가 그대로일 때만 쓰이며, 어긋날 때 오류를 낼지 그 블록만 버릴지를 정하는 설정이다.",
+    "parent": "llm.api.thinking-roundtrip-errors",
+    "related": [
+      "llm.api.thinking-block"
+    ],
+    "aliases": [
+      "prefix_mismatch_behavior",
+      "block_binding",
+      "drop_block",
+      "input_transformations",
+      "thinking 접두어 검사"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/preserved-thinking",
+      "https://platform.claude.com/docs/en/build-with-claude/thinking-troubleshooting"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.api.interleaved-thinking",
+    "title": "도구 호출 사이 생각(interleaved thinking)",
+    "en": "Claude Interleaved Thinking",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "한 assistant 턴 안에서 도구 결과를 받을 때마다 다시 생각하고 다음 행동을 정하는 방식으로, adaptive 모드에서는 자동으로 켜진다.",
+    "parent": "llm.api.thinking-roundtrip-errors",
+    "related": [
+      "llm.tools.function-calling"
+    ],
+    "aliases": [
+      "interleaved thinking",
+      "인터리브드 사고",
+      "도구 사이 사고",
+      "interleaved-thinking-2025-05-14"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/thinking-tool-workflows",
+      "https://platform.claude.com/docs/en/build-with-claude/extended-thinking"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.api.fallback-credit",
+    "title": "대체 크레딧(fallback credit)",
+    "en": "Claude Fallback Credit",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "거절 응답에 담긴 토큰을 5분 안에 다른 모델 재시도에 붙이면 새 모델의 프롬프트 캐시를 처음부터 쓰는 비용을 돌려받는 장치다.",
+    "parent": "llm.api.refusal-fallback-design",
+    "related": [
+      "llm.internals.prompt-caching"
+    ],
+    "aliases": [
+      "fallback_credit_token",
+      "fallback-credit-2026-07-01",
+      "fallback_has_prefill_claim",
+      "대체 재시도 크레딧"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/fallback-credit",
+      "https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.api.fallback-sticky-routing",
+    "title": "대체 모델 고정 라우팅(sticky routing)",
+    "en": "Claude Fallback Sticky Routing",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "한 번 대체 모델로 넘어간 대화는 약 1시간 동안 다음 요청도 처음부터 그 모델로 보내 같은 거절 비용을 반복하지 않게 하는 동작이다.",
+    "parent": "llm.api.refusal-fallback-design",
+    "aliases": [
+      "fallback sticky routing",
+      "대체 모델 고정",
+      "BetaFallbackState",
+      "대체 모델 유지"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "llm.internals.tokenization-sampling",
