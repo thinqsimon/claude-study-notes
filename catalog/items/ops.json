@@ -6485,6 +6485,149 @@
     ]
   },
   {
+    "id": "ops.k8s.rbac-least-privilege",
+    "title": "Kubernetes RBAC 최소 권한 설계",
+    "en": "Kubernetes RBAC Least-Privilege Design",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "Role·ClusterRole과 바인딩 범위를 골라 사람과 서비스 어카운트에 꼭 필요한 API 권한만 주는 설계다.",
+    "objectives": [
+      "Role·ClusterRole과 RoleBinding·ClusterRoleBinding 가운데 권한 범위에 맞는 조합을 고를 수 있다",
+      "와일드카드와 escalate·bind·impersonate 동사, 서비스 어카운트 토큰 요청 권한이 왜 권한 상승 경로가 되는지 근거를 말할 수 있다",
+      "403 Forbidden이 난 요청이 어느 주체·동사·리소스 권한이 빠져서인지 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.basics"
+    ],
+    "related": [
+      "be.auth.role-check",
+      "ops.k8s.secrets-security"
+    ],
+    "aliases": [
+      "Kubernetes RBAC",
+      "쿠버네티스 RBAC",
+      "k8s RBAC",
+      "Kubernetes 최소 권한",
+      "Role과 ClusterRole"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+      "https://kubernetes.io/docs/concepts/security/rbac-good-practices/"
+    ]
+  },
+  {
+    "id": "ops.k8s.gateway-api",
+    "title": "Gateway API로 외부 트래픽 받기: Ingress와 비교",
+    "en": "Kubernetes Gateway API Compared with Ingress",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "GatewayClass·Gateway·HTTPRoute로 진입점과 라우팅을 역할별로 나누는 방식으로, 기능이 동결된 Ingress의 후속이다.",
+    "objectives": [
+      "Ingress와 Gateway API 가운데 새 클러스터에 맞는 쪽을 고르고 근거를 말할 수 있다",
+      "Gateway 소유자와 라우트 소유자가 나눠 맡는 설정(리스너·TLS·allowedRoutes와 HTTPRoute)을 구분할 수 있다",
+      "HTTPRoute가 Gateway에 붙지 않거나 백엔드로 가지 않을 때 parentRefs·허용 네임스페이스·교차 참조에서 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.basics"
+    ],
+    "related": [
+      "be.arch.api-gateway",
+      "be.http.reverse-proxy"
+    ],
+    "aliases": [
+      "Kubernetes Gateway API",
+      "쿠버네티스 Gateway API",
+      "k8s Gateway API",
+      "Ingress에서 Gateway API로 이전",
+      "GatewayClass"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/services-networking/gateway/",
+      "https://kubernetes.io/docs/concepts/services-networking/ingress/",
+      "https://gateway-api.sigs.k8s.io/guides/getting-started/migrating-from-ingress/",
+      "https://gateway-api.sigs.k8s.io/guides/user-guides/multiple-ns/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ops.ci.artifact-attestations",
+    "title": "아티팩트 증명으로 빌드 출처 검증하기",
+    "en": "GitHub Artifact Attestations for Build Provenance",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "CI/CD",
+    "summary": "GitHub Actions에서 배포물에 서명된 빌드 출처를 붙이고, 받는 쪽이 저장소·워크플로를 대조해 바꿔치기를 막는 방법이다.",
+    "objectives": [
+      "릴리스 바이너리·컨테이너 이미지 가운데 증명을 붙일 대상과 필요한 워크플로 권한을 고를 수 있다",
+      "증명이 보장하는 것(출처·무결성)과 보장하지 않는 것(안전성)을 구분해 근거를 말할 수 있다",
+      "재사용 워크플로로 빌드를 분리할 때 SLSA 빌드 수준이 오르는 근거와 그에 맞는 검증 조건을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "ops.ci.oidc-cloud-deploy",
+      "ops.docker.build-tag-push"
+    ],
+    "related": [
+      "be.security.integrity",
+      "be.security.supply-chain"
+    ],
+    "aliases": [
+      "GitHub artifact attestations",
+      "아티팩트 증명",
+      "빌드 출처 증명",
+      "GitHub build provenance",
+      "actions/attest"
+    ],
+    "refs": [
+      "https://docs.github.com/en/actions/concepts/security/artifact-attestations",
+      "https://docs.github.com/en/actions/how-tos/secure-your-work/use-artifact-attestations/use-artifact-attestations"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ops.network.nginx-upstream-timeouts",
+    "title": "nginx 업스트림 시간 제한과 재시도로 502·504 진단",
+    "en": "nginx Upstream Timeouts, Retries and 502/504 Diagnosis",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "네트워크와 앞단",
+    "summary": "nginx가 뒤 서버에 붙고 기다리고 다음 서버로 넘기는 설정을 맞춰, 502·504가 어느 구간에서 났는지 가려내는 방법이다.",
+    "objectives": [
+      "connect·send·read 시간 제한이 각각 어느 구간을 재는지 구분하고 느린 API에 맞는 값을 고를 수 있다",
+      "proxy_next_upstream과 max_fails·fail_timeout을 조합할 때 POST 중복 실행 위험의 근거를 말할 수 있다",
+      "502와 504가 연결 실패·응답 대기 초과·업스트림 키프얼라이브 설정 중 어디서 왔는지 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "be.http.proxy-headers",
+      "ops.network.nginx-first-config"
+    ],
+    "related": [
+      "be.http.gateway-errors",
+      "be.integrate.resilience",
+      "cs.net.tcp-keepalive"
+    ],
+    "aliases": [
+      "nginx 업스트림 타임아웃",
+      "nginx proxy timeout",
+      "nginx 504 Gateway Timeout",
+      "nginx 502 원인",
+      "nginx upstream keepalive"
+    ],
+    "refs": [
+      "https://nginx.org/en/docs/http/ngx_http_proxy_module.html",
+      "https://nginx.org/en/docs/http/ngx_http_upstream_module.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "ops.network.edge-waf",
     "title": "웹 방화벽(WAF)과 오탐 분석",
     "en": "WAF Rules and False Positives",
@@ -7057,6 +7200,146 @@
     ]
   },
   {
+    "id": "ops.k8s.rolebinding-clusterrole",
+    "title": "RoleBinding으로 ClusterRole 묶기",
+    "en": "RoleBinding Referencing a ClusterRole",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "공통 ClusterRole을 RoleBinding으로 참조하면 그 권한이 바인딩이 있는 네임스페이스 안에서만 주어진다.",
+    "parent": "ops.k8s.rbac-least-privilege",
+    "aliases": [
+      "Kubernetes RoleBinding",
+      "롤바인딩",
+      "RoleBinding 범위"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/reference/access-authn-authz/rbac/"
+    ]
+  },
+  {
+    "id": "ops.k8s.automount-sa-token",
+    "title": "서비스 어카운트 토큰 자동 마운트 끄기",
+    "en": "Disabling automountServiceAccountToken",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "API를 부르지 않는 파드에는 automountServiceAccountToken: false로 토큰을 넣지 않고, 파드 설정이 계정 설정보다 우선한다.",
+    "parent": "ops.k8s.rbac-least-privilege",
+    "aliases": [
+      "automountServiceAccountToken",
+      "서비스 어카운트 토큰 마운트",
+      "Kubernetes ServiceAccount token automount"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
+      "https://kubernetes.io/docs/concepts/security/rbac-good-practices/"
+    ]
+  },
+  {
+    "id": "ops.k8s.auth-can-i",
+    "title": "kubectl auth can-i로 권한 확인",
+    "en": "kubectl auth can-i",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "주체·동사·리소스를 넣어 허용 여부를 묻는 명령으로, --as로 서비스 어카운트 입장에서 권한을 미리 점검한다.",
+    "parent": "ops.k8s.rbac-least-privilege",
+    "aliases": [
+      "kubectl auth can-i",
+      "auth can-i",
+      "can-i --as",
+      "Kubernetes 권한 확인 명령"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_auth/kubectl_auth_can-i/"
+    ]
+  },
+  {
+    "id": "ops.k8s.httproute",
+    "title": "HTTPRoute와 parentRefs",
+    "en": "Gateway API HTTPRoute",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "parentRefs로 붙을 Gateway를 고르고 호스트·경로·헤더 조건과 가중치를 준 backendRefs로 요청을 나누는 라우팅 리소스다.",
+    "parent": "ops.k8s.gateway-api",
+    "aliases": [
+      "HTTPRoute",
+      "Gateway API HTTPRoute",
+      "parentRefs",
+      "HTTPRoute backendRefs"
+    ],
+    "refs": [
+      "https://gateway-api.sigs.k8s.io/reference/api-types/httproute/",
+      "https://gateway-api.sigs.k8s.io/guides/user-guides/http-routing/"
+    ]
+  },
+  {
+    "id": "ops.ci.gh-attestation-verify",
+    "title": "gh attestation verify로 출처 확인",
+    "en": "gh attestation verify",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "CI/CD",
+    "summary": "파일이나 oci:// 이미지의 증명을 --repo·--owner와 서명 워크플로 조건으로 대조해 기대한 곳에서 빌드됐는지 확인하는 명령이다.",
+    "parent": "ops.ci.artifact-attestations",
+    "aliases": [
+      "gh attestation verify",
+      "GitHub CLI 증명 검증",
+      "attestation verify --signer-workflow"
+    ],
+    "refs": [
+      "https://cli.github.com/manual/gh_attestation_verify",
+      "https://docs.github.com/en/actions/how-tos/secure-your-work/use-artifact-attestations/use-artifact-attestations"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ops.network.nginx-proxy-read-timeout",
+    "title": "proxy_read_timeout",
+    "en": "nginx proxy_read_timeout",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "네트워크와 앞단",
+    "summary": "nginx가 업스트림 응답을 읽을 때 두 번의 읽기 사이 공백을 재는 시간 제한으로, 넘으면 연결을 끊고 504로 이어진다.",
+    "parent": "ops.network.nginx-upstream-timeouts",
+    "aliases": [
+      "proxy_read_timeout",
+      "nginx read timeout",
+      "nginx 응답 대기 시간 제한"
+    ],
+    "refs": [
+      "https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout"
+    ]
+  },
+  {
+    "id": "ops.network.nginx-proxy-next-upstream",
+    "title": "proxy_next_upstream: 다음 서버로 넘기기",
+    "en": "nginx proxy_next_upstream",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "네트워크와 앞단",
+    "summary": "오류·시간 초과·지정한 상태 코드에서 요청을 다음 업스트림으로 다시 보내는 nginx 설정이며 POST는 기본으로 넘기지 않는다.",
+    "parent": "ops.network.nginx-upstream-timeouts",
+    "aliases": [
+      "proxy_next_upstream",
+      "nginx 업스트림 재시도",
+      "nginx next upstream"
+    ],
+    "refs": [
+      "https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream"
+    ]
+  },
+  {
     "id": "ops.linux.flock",
     "title": "파일 잠금(flock)으로 동시 실행 막기",
     "en": "flock: File Locking Against Concurrent Runs",
@@ -7215,6 +7498,25 @@
     ],
     "refs": [
       "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+    ]
+  },
+  {
+    "id": "ops.k8s.referencegrant",
+    "title": "ReferenceGrant: 다른 네임스페이스 참조 허락",
+    "en": "Gateway API ReferenceGrant",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "라우트가 다른 네임스페이스의 Service나 Secret을 가리키려면 대상 쪽 소유자가 자기 네임스페이스에 만들어 두는 허가서다.",
+    "parent": "ops.k8s.gateway-api",
+    "aliases": [
+      "ReferenceGrant",
+      "Gateway API ReferenceGrant",
+      "Gateway API 교차 네임스페이스 참조"
+    ],
+    "refs": [
+      "https://gateway-api.sigs.k8s.io/reference/api-types/referencegrant/"
     ]
   },
   {

@@ -6354,6 +6354,139 @@
     ]
   },
   {
+    "id": "dev.git.rulesets",
+    "title": "룰셋으로 브랜치 규칙 겹쳐 걸기",
+    "en": "GitHub Repository Rulesets",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "Git",
+    "summary": "여러 룰셋과 브랜치 보호 규칙이 한 브랜치에 겹치면 우선순위 없이 합쳐져 가장 엄격한 값이 적용되고, 룰셋은 끄거나 우회자를 정할 수 있다.",
+    "objectives": [
+      "브랜치 보호 규칙과 룰셋 중 무엇을 쓸지 겹쳐 걸기·공개 범위·상태 전환을 근거로 고를 수 있다",
+      "여러 규칙이 합쳐질 때 실제로 적용되는 조건을 따져 병합이 막힌 원인을 찾을 수 있다",
+      "우회 목록에 누구를 어떤 방식으로 둘지 감사 기록을 근거로 정할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.branching-workflows"
+    ],
+    "related": [
+      "dev.git.branch-protection",
+      "dev.git.merge-queue"
+    ],
+    "aliases": [
+      "GitHub 룰셋",
+      "repository rulesets",
+      "저장소 룰셋",
+      "branch rulesets",
+      "브랜치 룰셋"
+    ],
+    "refs": [
+      "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets",
+      "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "dev.test.pytest-import-mode",
+    "title": "테스트 import 오류 원인 찾기: import 모드와 rootdir",
+    "en": "pytest Import Modes and rootdir",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "테스트",
+    "summary": "pytest는 기본 prepend 모드에서 테스트 폴더를 sys.path 앞에 넣고 append·importlib 모드는 달리 동작해, 이름 충돌과 import 결과가 갈린다.",
+    "objectives": [
+      "prepend·append·importlib 중 프로젝트 구조에 맞는 import 모드를 고를 수 있다",
+      "같은 이름 테스트 파일 충돌이나 설치본 대신 로컬 소스가 import되는 원인을 찾을 수 있다",
+      "pytest와 python -m pytest의 결과가 다른 근거를 sys.path로 말할 수 있다"
+    ],
+    "prerequisites": [
+      "be.python.project-layout",
+      "dev.test.pytest-select"
+    ],
+    "related": [
+      "dev.basics.python-m"
+    ],
+    "aliases": [
+      "pytest import mode",
+      "pytest sys.path",
+      "pytest 모듈 못 찾음",
+      "테스트 import 오류"
+    ],
+    "refs": [
+      "https://docs.pytest.org/en/stable/explanation/pythonpath.html",
+      "https://docs.pytest.org/en/stable/reference/customize.html"
+    ]
+  },
+  {
+    "id": "dev.git.conditional-config-safe-dir",
+    "title": "조건부 Git 설정과 저장소 소유권 검사",
+    "en": "Conditional Git Config and safe.directory",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "Git",
+    "summary": "includeIf로 폴더·브랜치·원격 주소에 따라 설정 파일을 바꿔 끼우고, safe.directory로 다른 사용자 소유 저장소를 믿을지 정한다.",
+    "objectives": [
+      "회사·개인 저장소마다 다른 이메일이 들어가도록 gitdir·hasconfig 등 맞는 조건을 고를 수 있다",
+      "--show-scope와 --show-origin으로 잘못된 설정 값이 어느 범위·파일에서 왔는지 원인을 찾을 수 있다",
+      "다른 사용자 소유 저장소를 Git이 거부하는 이유와 safe.directory를 *가 아닌 경로로 좁혀야 하는 근거를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.first-setup"
+    ],
+    "related": [
+      "dev.git.config-levels"
+    ],
+    "aliases": [
+      "Git 조건부 설정",
+      "Git conditional includes",
+      "작업용 Git 이메일 분리",
+      "git config --show-scope"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/git-config"
+    ]
+  },
+  {
+    "id": "dev.git.automation-access",
+    "title": "자동화의 GitHub 접근 수단 고르기",
+    "en": "Choosing GitHub Access for Automation",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "Git",
+    "summary": "서버나 스크립트가 저장소에 접근할 때 배포 키·세분화 PAT·GitHub App 설치 토큰·머신 사용자 중 범위·만료·계정 연결을 따져 고른다.",
+    "objectives": [
+      "배포 키·세분화 PAT·GitHub App 설치 토큰·머신 사용자·SSH 에이전트 전달의 범위와 만료 차이를 근거로 자동화에 맞는 수단을 고를 수 있다",
+      "만든 사람이 떠나도 살아 있는 키처럼 접근 수단이 남기는 위험을 찾을 수 있다",
+      "세분화 PAT가 조직 승인 대기나 접근 제한으로 막힐 때 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.remotes",
+      "ops.linux.ssh-key-login"
+    ],
+    "related": [
+      "ops.ci.github-token",
+      "dev.git.credential-helper"
+    ],
+    "aliases": [
+      "GitHub 자동화 인증",
+      "배포 서버 GitHub 접근",
+      "GitHub machine user",
+      "머신 사용자"
+    ],
+    "refs": [
+      "https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys",
+      "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens",
+      "https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-an-installation-access-token-for-a-github-app"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "dev.git.large-repo-clone",
     "title": "큰 저장소 가볍게 받기: 얕은·부분 클론과 sparse-checkout",
     "en": "Shallow Clone, Partial Clone, and Sparse Checkout for Large Repositories",
@@ -6827,6 +6960,28 @@
     ]
   },
   {
+    "id": "dev.git.fine-grained-pat",
+    "title": "세분화된 개인 액세스 토큰",
+    "en": "Fine-grained Personal Access Token",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "Git",
+    "summary": "소유자 하나와 고른 저장소, 권한별 읽기·쓰기 수준으로 좁혀 만드는 GitHub 토큰으로, 조직이 승인을 요구하면 승인 전엔 공개 자료만 읽는다.",
+    "parent": "dev.git.automation-access",
+    "aliases": [
+      "fine-grained PAT",
+      "GitHub fine-grained token",
+      "세분화 PAT",
+      "GitHub 세분화 토큰"
+    ],
+    "refs": [
+      "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "dev.robust.fsync",
     "title": "fsync",
     "en": "fsync",
@@ -7125,6 +7280,151 @@
     "refs": [
       "https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows",
       "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "dev.git.ruleset-bypass",
+    "title": "룰셋 우회 목록",
+    "en": "Ruleset Bypass List",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Git",
+    "summary": "룰셋을 건너뛸 수 있는 역할·팀·GitHub App·Dependabot을 정하는 목록으로, 항상 허용하거나 풀 리퀘스트를 거칠 때만 허용한다.",
+    "parent": "dev.git.rulesets",
+    "aliases": [
+      "ruleset bypass list",
+      "룰셋 우회",
+      "ruleset bypass",
+      "For pull requests only"
+    ],
+    "refs": [
+      "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "dev.test.import-mode-importlib",
+    "title": "importlib import 모드",
+    "en": "pytest importlib Import Mode",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "테스트",
+    "summary": "sys.path를 건드리지 않고 rootdir 기준 경로로 모듈 이름을 만들어 같은 파일 이름을 허용하지만, 테스트끼리는 서로 import할 수 없다.",
+    "parent": "dev.test.pytest-import-mode",
+    "aliases": [
+      "--import-mode=importlib",
+      "import-mode importlib",
+      "pytest importlib 모드"
+    ],
+    "refs": [
+      "https://docs.pytest.org/en/stable/explanation/pythonpath.html"
+    ]
+  },
+  {
+    "id": "dev.test.pytest-rootdir",
+    "title": "pytest rootdir와 설정 파일 찾기",
+    "en": "pytest rootdir and configfile",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "테스트",
+    "summary": "인자의 공통 조상부터 위로 pytest.toml·pytest.ini·pyproject.toml·tox.ini·setup.cfg를 찾아 정하는 기준 폴더로, sys.path는 바꾸지 않는다.",
+    "parent": "dev.test.pytest-import-mode",
+    "aliases": [
+      "pytest rootdir",
+      "--rootdir",
+      "pytest configfile",
+      "pytest 설정 파일 탐색"
+    ],
+    "refs": [
+      "https://docs.pytest.org/en/stable/reference/customize.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "dev.git.include-if",
+    "title": "includeIf 조건부 포함",
+    "en": "Git includeIf Conditional Include",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Git",
+    "summary": "gitdir·worktree·onbranch·hasconfig:remote.*.url 조건이 맞을 때만 다른 설정 파일을 읽어 들이는 Git 설정 구문이다.",
+    "parent": "dev.git.conditional-config-safe-dir",
+    "aliases": [
+      "includeIf",
+      "includeIf gitdir",
+      "Git 조건부 포함",
+      "hasconfig:remote"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/git-config"
+    ]
+  },
+  {
+    "id": "dev.git.safe-directory",
+    "title": "safe.directory 저장소 신뢰 목록",
+    "en": "Git safe.directory",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Git",
+    "summary": "다른 사용자 소유 저장소를 Git이 읽도록 허용하는 목록으로, 저장소가 스스로 못 바꾸게 system·global·명령 범위에서만 인정된다.",
+    "parent": "dev.git.conditional-config-safe-dir",
+    "aliases": [
+      "safe.directory",
+      "git safe directory",
+      "저장소 소유권 검사",
+      "Git 소유권 검사"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/git-config"
+    ]
+  },
+  {
+    "id": "dev.git.deploy-key",
+    "title": "GitHub 배포 키(deploy key)",
+    "en": "GitHub Deploy Key",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Git",
+    "summary": "한 저장소에만 붙는 SSH 키로 기본은 읽기 전용이고, 만료가 없으며 사람 계정에 묶이지 않아 만든 사람이 빠져도 동작한다.",
+    "parent": "dev.git.automation-access",
+    "aliases": [
+      "GitHub deploy key",
+      "GitHub 배포 키",
+      "저장소 배포 키",
+      "읽기 전용 배포 키"
+    ],
+    "refs": [
+      "https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys"
+    ]
+  },
+  {
+    "id": "dev.git.app-installation-token",
+    "title": "GitHub App 설치 액세스 토큰",
+    "en": "GitHub App Installation Access Token",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Git",
+    "summary": "앱 개인 키로 서명한 JWT로 받아 1시간 뒤 만료되는 토큰으로, 저장소와 권한을 앱이 받은 범위 안에서 더 좁힐 수 있다.",
+    "parent": "dev.git.automation-access",
+    "aliases": [
+      "installation access token",
+      "설치 액세스 토큰",
+      "GitHub App 토큰",
+      "ghs_ 토큰"
+    ],
+    "refs": [
+      "https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-an-installation-access-token-for-a-github-app"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"

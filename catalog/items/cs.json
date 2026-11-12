@@ -6522,6 +6522,105 @@
     ]
   },
   {
+    "id": "cs.os.zombie-reaping",
+    "title": "좀비 프로세스와 컨테이너의 PID 1",
+    "en": "Zombie Processes and Child Reaping by PID 1",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "끝난 자식을 부모가 wait로 거두지 않으면 좀비가 쌓이고, 컨테이너의 PID 1은 고아 거두기와 시그널 처리를 직접 맡아야 한다는 원리다.",
+    "objectives": [
+      "ps에 defunct로 남는 프로세스가 늘어나는 원인을 부모가 wait를 부르지 않는 데서 찾을 수 있다",
+      "컨테이너 안 앱이 docker stop의 SIGTERM에 반응하지 않고 시간 초과 뒤 강제 종료되는 원인을 PID 1의 시그널 규칙에서 찾을 수 있다",
+      "앱을 PID 1로 직접 띄울지, 자식을 거두는 작은 init을 앞에 둘지 고아 프로세스와 시그널 처리를 근거로 고를 수 있다"
+    ],
+    "prerequisites": [
+      "cs.os.process-vs-thread",
+      "cs.os.signals"
+    ],
+    "related": [
+      "ops.linux.process-signals",
+      "ops.k8s.pod-graceful-termination",
+      "ops.docker.exec-shell-form"
+    ],
+    "aliases": [
+      "좀비 프로세스 정리",
+      "zombie reaping",
+      "컨테이너 PID 1 문제",
+      "PID 1 signal handling"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man2/wait.2.html",
+      "https://man7.org/linux/man-pages/man7/pid_namespaces.7.html"
+    ]
+  },
+  {
+    "id": "cs.os.oom-killer",
+    "title": "메모리 부족 강제 종료: OOM killer와 오버커밋",
+    "en": "Linux OOM Killer and Memory Overcommit",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "리눅스가 메모리를 실제보다 많이 약속했다가 모자라면 점수가 높은 프로세스를 골라 죽이는 원리로, 로그 없이 사라지는 서버를 진단한다.",
+    "objectives": [
+      "서버 프로세스가 오류 로그 없이 SIGKILL로 끝난 원인이 OOM killer인지 커널 로그와 메모리 제한으로 가릴 수 있다",
+      "malloc이 성공했는데도 나중에 프로세스가 죽는 이유를 오버커밋 정책(overcommit_memory 0·1·2)으로 설명할 수 있다",
+      "oom_score_adj로 어떤 프로세스를 먼저 희생시킬지 정하는 손익을 근거로 말할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.os.virtual-memory"
+    ],
+    "related": [
+      "ops.container.oom-killed",
+      "ops.container.resource-limits",
+      "ops.container.isolation"
+    ],
+    "aliases": [
+      "OOM 희생 프로세스 선택",
+      "OOM victim selection",
+      "badness 점수",
+      "OOM badness score"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man5/proc_pid_oom_score_adj.5.html",
+      "https://man7.org/linux/man-pages/man5/proc_sys_vm.5.html"
+    ]
+  },
+  {
+    "id": "cs.net.tcp-message-boundary",
+    "title": "TCP 바이트 스트림과 메시지 경계 나누기",
+    "en": "TCP Byte Streams and Application Message Framing",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "TCP는 보낸 단위를 지키지 않는 바이트 흐름이라, 길이 머리나 구분자로 메시지 경계를 직접 정하고 부분 읽기·쓰기를 반복 처리해야 한다.",
+    "objectives": [
+      "소켓에서 메시지가 둘로 쪼개지거나 두 개가 붙어 오는 오류의 원인을 TCP에 메시지 경계가 없다는 데서 찾을 수 있다",
+      "길이 머리, 구분자, 연결 하나에 메시지 하나 중 프레이밍 방식을 메시지 크기와 이진 데이터 여부를 근거로 고를 수 있다",
+      "recv가 요청보다 적게 돌려주거나 0을 돌려줄 때 반복해 읽을지 연결 종료로 볼지 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.net.tcp-vs-udp"
+    ],
+    "related": [
+      "cs.net.nagle-delayed-ack"
+    ],
+    "aliases": [
+      "메시지 프레이밍",
+      "message framing",
+      "TCP 메시지 경계",
+      "TCP 패킷 쪼개짐"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9293.html#section-3.7",
+      "https://man7.org/linux/man-pages/man2/recv.2.html",
+      "https://www.rfc-editor.org/rfc/rfc5531.html#section-11"
+    ]
+  },
+  {
     "id": "cs.net.nagle-delayed-ack",
     "title": "Nagle 알고리즘과 지연 ACK의 지연",
     "en": "Nagle's Algorithm, Delayed ACK, and TCP_NODELAY",
@@ -6550,6 +6649,37 @@
     "refs": [
       "https://www.rfc-editor.org/rfc/rfc9293",
       "https://man7.org/linux/man-pages/man7/tcp.7.html"
+    ]
+  },
+  {
+    "id": "cs.os.eintr-restart",
+    "title": "시그널에 끊긴 시스템 호출: EINTR와 SA_RESTART",
+    "en": "Signal-Interrupted System Calls: EINTR and SA_RESTART",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "막혀 있던 호출이 시그널 처리기 때문에 EINTR로 실패하거나 자동으로 다시 시작되는 규칙으로, 뜻밖의 호출 실패를 진단한다.",
+    "objectives": [
+      "SIGCHLD나 타이머 시그널을 받은 뒤 read·accept·poll이 EINTR로 실패한 원인을 시그널 처리기와 SA_RESTART 여부에서 찾을 수 있다",
+      "SA_RESTART를 켜도 poll·epoll_wait·sleep·타임아웃 걸린 소켓 호출은 다시 시작되지 않는다는 근거로 재시도 반복문을 둘 곳을 고를 수 있다",
+      "Python 3.5부터 끊긴 호출을 자동으로 다시 하므로 InterruptedError가 보이는 경우를 처리기가 예외를 낸 때로 좁힐 수 있다"
+    ],
+    "prerequisites": [
+      "cs.os.signals"
+    ],
+    "related": [
+      "cs.os.async-signal-safe"
+    ],
+    "aliases": [
+      "시스템 호출 중단",
+      "interrupted system call",
+      "시스템 호출 재시작",
+      "syscall restart"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man7/signal.7.html",
+      "https://docs.python.org/3/library/exceptions.html#InterruptedError"
     ]
   },
   {
@@ -6944,6 +7074,66 @@
     ]
   },
   {
+    "id": "cs.os.zombie-process",
+    "title": "좀비 프로세스(defunct)",
+    "en": "Zombie Process (Defunct Child)",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "끝났지만 부모가 아직 종료 상태를 거두지 않아 프로세스 표의 자리를 차지한 채 남은 자식 프로세스다.",
+    "parent": "cs.os.zombie-reaping",
+    "aliases": [
+      "defunct 프로세스",
+      "defunct process",
+      "zombie child",
+      "거두지 않은 자식 프로세스"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man2/wait.2.html"
+    ]
+  },
+  {
+    "id": "cs.os.memory-overcommit",
+    "title": "메모리 오버커밋",
+    "en": "Linux Virtual Memory Overcommit",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "커널이 실제 RAM과 스왑보다 많은 가상 메모리 할당을 허락하는 정책으로, overcommit_memory 값으로 방식을 고른다.",
+    "parent": "cs.os.oom-killer",
+    "aliases": [
+      "overcommit_memory",
+      "메모리 과다 할당",
+      "vm.overcommit_memory"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man5/proc_sys_vm.5.html"
+    ]
+  },
+  {
+    "id": "cs.net.short-read-write",
+    "title": "부분 읽기와 부분 쓰기(short read/write)",
+    "en": "Short Reads and Short Writes on Sockets and Files",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "네트워크",
+    "summary": "read·recv·write가 오류 없이 요청한 바이트보다 적게 처리하고 돌아오는 경우로, 남은 만큼 다시 호출해야 한다.",
+    "parent": "cs.net.tcp-message-boundary",
+    "aliases": [
+      "short read",
+      "short write",
+      "부분 쓰기",
+      "소켓 부분 읽기"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man2/write.2.html",
+      "https://man7.org/linux/man-pages/man2/recv.2.html"
+    ]
+  },
+  {
     "id": "cs.algo.atomic-group-possessive",
     "title": "원자 그룹과 소유 수량자",
     "en": "Atomic Groups and Possessive Quantifiers",
@@ -7229,6 +7419,102 @@
     ],
     "refs": [
       "https://www.rfc-editor.org/rfc/rfc8265.html"
+    ]
+  },
+  {
+    "id": "cs.os.child-subreaper",
+    "title": "자식 거두미(child subreaper)",
+    "en": "Child Subreaper Process",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "부모를 잃은 자손 프로세스를 init 대신 넘겨받아 wait로 거두도록 prctl로 지정한 프로세스다.",
+    "parent": "cs.os.zombie-reaping",
+    "aliases": [
+      "PR_SET_CHILD_SUBREAPER",
+      "subreaper",
+      "서브리퍼"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man2/PR_SET_CHILD_SUBREAPER.2const.html"
+    ]
+  },
+  {
+    "id": "cs.os.oom-score-adj",
+    "title": "OOM 점수 조정(oom_score_adj)",
+    "en": "oom_score_adj (OOM Victim Score Adjustment)",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "-1000부터 1000까지의 값을 badness 점수에 더해 OOM killer가 그 프로세스를 고를 가능성을 높이거나 낮추는 /proc 설정이다.",
+    "parent": "cs.os.oom-killer",
+    "aliases": [
+      "oom_score_adj",
+      "OOM 점수",
+      "oom score"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man5/proc_pid_oom_score_adj.5.html"
+    ]
+  },
+  {
+    "id": "cs.net.length-prefix-framing",
+    "title": "길이 머리 프레이밍",
+    "en": "Length-Prefixed Message Framing",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "메시지 앞에 고정 크기의 길이 값을 붙여 받는 쪽이 그만큼만 읽고 다음 메시지로 넘어가게 하는 경계 표시 방식이다.",
+    "parent": "cs.net.tcp-message-boundary",
+    "aliases": [
+      "length prefix",
+      "길이 접두",
+      "record marking",
+      "length-prefixed"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc5531.html#section-11"
+    ]
+  },
+  {
+    "id": "cs.os.eintr",
+    "title": "EINTR(시그널로 끊긴 호출 오류)",
+    "en": "EINTR Error (Interrupted System Call)",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "막혀 있던 시스템 호출이 데이터를 옮기기 전에 시그널 처리기가 실행되어 실패했다는 errno 값이다.",
+    "parent": "cs.os.eintr-restart",
+    "aliases": [
+      "EINTR",
+      "InterruptedError",
+      "Interrupted system call"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man7/signal.7.html",
+      "https://man7.org/linux/man-pages/man2/write.2.html"
+    ]
+  },
+  {
+    "id": "cs.os.sa-restart",
+    "title": "SA_RESTART(끊긴 호출 자동 재시작)",
+    "en": "SA_RESTART Flag of sigaction",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "sigaction으로 처리기를 달 때 켜면 처리기가 끝난 뒤 일부 막힌 호출을 EINTR 없이 다시 시작하게 하는 플래그다.",
+    "parent": "cs.os.eintr-restart",
+    "aliases": [
+      "SA_RESTART",
+      "시스템 호출 자동 재시작 플래그"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man7/signal.7.html"
     ]
   }
 ]

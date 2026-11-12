@@ -6520,6 +6520,134 @@
     ]
   },
   {
+    "id": "plan.basics.benefits-mapping",
+    "title": "편익 지도와 경제 모델로 투자 근거 세우기",
+    "en": "Benefits Mapping and Economic Modelling for Services",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "디스커버리에서 잰 기준선과 편익 지도·경제 모델로 계속 만들지, 멈출지, 방향을 바꿀지 판단하는 방법이다.",
+    "objectives": [
+      "디스커버리에서 찾은 문제(동인)에서 가능하게 하는 변화·중간 편익·최종 편익·전략 목표로 이어지는 편익 지도를 그려 기능이 왜 필요한지 근거를 말할 수 있다",
+      "알파 끝 경제 모델에서 최선·최악 이용률과 가장 위험한 가정을 바꿔 보며 해법을 고를 수 있다",
+      "베타 끝에 실제 편익과 알파 때의 예측을 비교해 라이브로 갈지, 멈출지, 방향을 바꿀지 근거를 말할 수 있다",
+      "편익 추정이 부풀려진 원인을 낙관 편향과 빠진 비용 항목에서 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.success-metrics",
+      "plan.basics.discovery-alpha"
+    ],
+    "aliases": [
+      "편익 측정",
+      "measuring service benefits",
+      "편익 실현",
+      "benefits realisation",
+      "서비스 경제 모델"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/measuring-success/measuring-service-benefits"
+    ]
+  },
+  {
+    "id": "plan.basics.ab-testing-design",
+    "title": "A/B 테스트 설계와 결과 판단",
+    "en": "Designing and Judging A/B Tests of Design Changes",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "가설을 세우고 원래 안과 바꾼 안에 사용자를 무작위로 나눠, 충분한 표본으로 행동 차이를 재고 채택을 정하는 실험 설계다.",
+    "objectives": [
+      "문제 영역에서 가설을 세우고 원래 안과 바꾼 안, 비교할 행동 지표를 고를 수 있다",
+      "월 방문자 수와 기대 변화 크기로 표본과 실행 기간이 충분한지 근거를 말할 수 있다",
+      "결과가 결론을 못 냈을 때 표본 크기와 가설을 다시 보고 새 변형안으로 실험을 이어 갈지 판단할 수 있다",
+      "정량 데이터로 확실한 답을 주는 장점과, 설정이 복잡하고 많은 사용자가 필요한 단점을 따져 A/B 테스트를 쓸지 고를 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.success-metrics",
+      "plan.basics.usability-testing"
+    ],
+    "related": [
+      "mlops.serve.model-ab-test"
+    ],
+    "aliases": [
+      "A/B 테스트",
+      "A/B testing",
+      "split testing",
+      "분할 테스트",
+      "디자인 A/B 테스트"
+    ],
+    "refs": [
+      "https://www.gov.uk/guidance/ab-testing-comparative-studies"
+    ]
+  },
+  {
+    "id": "plan.basics.research-data-privacy",
+    "title": "사용자 조사 자료와 참여자 개인정보 관리",
+    "en": "Managing User Research Data and Participant Privacy",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "녹화·메모·모집 정보를 개인정보로 보고 승인된 저장소, 접근 제한, 보관 기간, 익명화, 외부 업체 계약으로 다루는 조사 운영이다.",
+    "objectives": [
+      "녹화·메모·스크리너 응답 가운데 무엇이 개인정보이고 민감 정보인지 구분해 저장 위치와 접근 범위를 고를 수 있다",
+      "보관 기간과 삭제 절차, 참여자별로 찾고 지울 수 있는 파일 이름 규칙을 정하고 근거를 말할 수 있다",
+      "공유할 인용·화면·영상을 완전히 익명화할지, 식별 정보만 가릴지 고를 수 있다",
+      "모집 업체·전사 서비스 같은 외부 업체에 자료가 넘어갈 때 동의서와 계약에서 빠진 곳을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.recruit-participants",
+      "plan.basics.research-analysis"
+    ],
+    "related": [
+      "ax.governance.pseudonymized-data"
+    ],
+    "aliases": [
+      "조사 자료 관리",
+      "user research data",
+      "참여자 개인정보",
+      "participant privacy",
+      "리서치 데이터 보안"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/user-research/managing-user-research-data-participant-privacy"
+    ]
+  },
+  {
+    "id": "plan.figma.external-sharing-controls",
+    "title": "Figma 외부 공유 통제: 비밀번호·복사 제한·관리자 권한",
+    "en": "Controlling External Access to Figma Files",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "유료 요금제에서 링크 비밀번호, 보기 사용자의 복사·내보내기 제한, 관리자 권한 변경을 조합해 외부에 보이는 디자인 파일을 지키는 운영이다.",
+    "objectives": [
+      "외부 검토자에게 파일을 보일 때 링크 비밀번호와 이메일 초대 가운데 무엇을 쓸지 근거를 말할 수 있다",
+      "보기 사용자의 복사·복제·내보내기를 막는 설정이 누구에게 적용되고 무엇을 막지 못하는지 판단할 수 있다",
+      "비밀번호를 걸었는데도 어떤 사람이 묻지 않고 들어오는 원인을 폴더 권한과 직접 초대에서 찾을 수 있다",
+      "관리자가 소유권 없이 바꿀 수 있는 권한과 바꿀 수 없는 권한을 구분해 접근 정리 절차를 고를 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.share-files"
+    ],
+    "aliases": [
+      "Figma 공유 보안",
+      "Figma 외부 공유",
+      "피그마 공유 제한",
+      "Figma sharing controls"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/5726720100247-Add-password-protection-to-files-and-prototypes",
+      "https://help.figma.com/hc/en-us/articles/360040045574-Restrict-copying-and-sharing-on-files",
+      "https://help.figma.com/hc/en-us/articles/40588724979607"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "plan.figma.design-token-architecture",
     "title": "디자인 토큰 표준과 별칭 계층 설계",
     "en": "Design Token Standard and Alias Layers",
@@ -6947,6 +7075,112 @@
     ]
   },
   {
+    "id": "plan.basics.benefits-map",
+    "title": "편익 지도(benefits map)",
+    "en": "Benefits Map",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "동인·가능하게 하는 변화·중간 편익·최종 편익·전략 목표를 화살표로 이어 작업이 낳는 효과를 보이는 흐름도다.",
+    "parent": "plan.basics.benefits-mapping",
+    "aliases": [
+      "편익 지도",
+      "benefits map",
+      "편익 맵",
+      "benefit map"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/measuring-success/measuring-service-benefits"
+    ]
+  },
+  {
+    "id": "plan.basics.cashable-benefits",
+    "title": "현금화 편익과 비현금화 편익",
+    "en": "Cashable and Non-cashable Benefits",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "절감·수입처럼 바로 쓸 돈이 생기는 편익과, 당장 돈은 안 생겨도 나중 비용을 막는 편익을 나눠 셈하는 구분이다.",
+    "parent": "plan.basics.benefits-mapping",
+    "related": [
+      "plan.basics.cost-per-transaction"
+    ],
+    "aliases": [
+      "cashable benefits",
+      "non-cashable benefits",
+      "현금화 편익",
+      "비현금화 편익"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/measuring-success/measuring-service-benefits"
+    ]
+  },
+  {
+    "id": "plan.basics.control-and-variation",
+    "title": "대조안과 변형안(control and variation)",
+    "en": "Control and Variation in A/B Tests",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "A/B 테스트에서 지금 쓰는 원래 화면(A)을 기준으로 두고, 가설을 확인하려고 바꾼 화면(B)과 결과를 견주는 두 갈래다.",
+    "parent": "plan.basics.ab-testing-design",
+    "aliases": [
+      "대조안",
+      "변형안",
+      "A/B 대조안",
+      "test variation"
+    ],
+    "refs": [
+      "https://www.gov.uk/guidance/ab-testing-comparative-studies"
+    ]
+  },
+  {
+    "id": "plan.basics.research-data-retention",
+    "title": "조사 자료 보관 기간과 삭제 절차",
+    "en": "Retention Period for User Research Data",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "조사 원자료를 얼마 동안 둘지 미리 정하고, 기간이 끝나거나 쓸모가 없어지면 지우는 절차다.",
+    "parent": "plan.basics.research-data-privacy",
+    "aliases": [
+      "조사 자료 보관 기간",
+      "research data retention",
+      "리서치 자료 삭제",
+      "조사 녹화 삭제"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/user-research/managing-user-research-data-participant-privacy"
+    ]
+  },
+  {
+    "id": "plan.basics.research-anonymisation",
+    "title": "조사 자료 익명화와 식별 정보 가리기",
+    "en": "Anonymising User Research Outputs",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "널리 공유할 인용·화면·영상은 사람을 알아볼 수 없게 완전히 익명화하고, 그럴 수 없으면 이름·연락처를 흐리거나 지우는 처리다.",
+    "parent": "plan.basics.research-data-privacy",
+    "related": [
+      "ax.governance.pseudonymized-data"
+    ],
+    "aliases": [
+      "조사 자료 익명화",
+      "research anonymisation",
+      "anonymising research data",
+      "인용문 익명화"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/user-research/managing-user-research-data-participant-privacy"
+    ]
+  },
+  {
     "id": "plan.figma.ready-for-dev",
     "title": "Ready for dev 상태",
     "en": "Ready for Dev Status",
@@ -7245,6 +7479,75 @@
     "refs": [
       "https://www.gov.uk/service-manual/measuring-success/choosing-digital-analytics-tools"
     ]
+  },
+  {
+    "id": "plan.basics.benefit-sensitivity-analysis",
+    "title": "편익 추정의 민감도 분석",
+    "en": "Sensitivity Analysis of Benefit Estimates",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "이용률의 최선·최악과 가장 불확실한 가정을 바꿔 넣어 경제 모델의 결론이 얼마나 흔들리는지 보는 점검이다.",
+    "parent": "plan.basics.benefits-mapping",
+    "related": [
+      "plan.basics.riskiest-assumption"
+    ],
+    "aliases": [
+      "편익 민감도 분석",
+      "benefits sensitivity analysis",
+      "최선·최악 시나리오 분석"
+    ],
+    "refs": [
+      "https://www.gov.uk/service-manual/measuring-success/measuring-service-benefits"
+    ]
+  },
+  {
+    "id": "plan.figma.password-protected-link",
+    "title": "Figma 비밀번호 보호 링크",
+    "en": "Password-Protected Figma Files and Prototypes",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "링크가 있는 누구나 열 수 있게 둔 파일·프로토타입에 비밀번호를 걸어, 직접 초대받지 않은 사람만 비밀번호를 묻게 하는 유료 요금제 설정이다.",
+    "parent": "plan.figma.external-sharing-controls",
+    "aliases": [
+      "Figma 비밀번호 보호",
+      "Figma password protection",
+      "피그마 링크 비밀번호",
+      "프로토타입 비밀번호"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/5726720100247-Add-password-protection-to-files-and-prototypes"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "plan.figma.restrict-viewer-copying",
+    "title": "Figma 보기 사용자의 복사·내보내기 제한",
+    "en": "Restricting Viewers from Copying and Exporting Figma Files",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "보기 권한 사용자 전원이 캔버스 복사, 파일 복제, 에셋 내보내기, 로컬 저장을 못 하게 파일마다 끄는 공유 고급 설정이다.",
+    "parent": "plan.figma.external-sharing-controls",
+    "related": [
+      "plan.figma.can-view-can-edit"
+    ],
+    "aliases": [
+      "Figma 복사 제한",
+      "Figma restrict copying",
+      "피그마 내보내기 제한",
+      "viewers can copy share export"
+    ],
+    "refs": [
+      "https://help.figma.com/hc/en-us/articles/360040045574-Restrict-copying-and-sharing-on-files"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "plan.figma.library-analytics",

@@ -6984,6 +6984,140 @@
     ]
   },
   {
+    "id": "db.sql.skip-locked-job-queue",
+    "title": "SKIP LOCKED로 PostgreSQL 작업 큐 만들기",
+    "en": "Building a Job Queue on PostgreSQL with SKIP LOCKED",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "여러 워커가 한 작업 표에서 서로 겹치지 않게 일을 가져가도록 행 잠금 옵션과 권고 잠금을 골라 쓰는 설계다.",
+    "objectives": [
+      "여러 워커가 같은 작업을 집어 가는 원인을 찾고 FOR UPDATE SKIP LOCKED로 막는 근거를 말할 수 있다",
+      "잠긴 행을 기다릴지, NOWAIT로 바로 실패할지, SKIP LOCKED로 건너뛸지 상황에 맞게 고를 수 있다",
+      "정기 작업을 한 곳에서만 돌릴 때 세션 단위와 트랜잭션 단위 권고 잠금 중 하나를 고르고 근거를 말할 수 있다",
+      "LIMIT과 함께 쓴 권고 잠금 함수가 풀리지 않는 잠금을 남기는 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "db.internals.transaction-basics",
+      "db.sql.psycopg-basics"
+    ],
+    "related": [
+      "be.async.task-queue",
+      "db.internals.locks",
+      "db.cache.redis-distributed-lock"
+    ],
+    "aliases": [
+      "PostgreSQL 작업 큐",
+      "Postgres job queue",
+      "DB 테이블 작업 큐",
+      "PostgreSQL queue table"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/sql-select.html",
+      "https://www.postgresql.org/docs/current/explicit-locking.html"
+    ]
+  },
+  {
+    "id": "db.sql.transaction-retry",
+    "title": "직렬화 실패와 교착 오류 다시 시도하기",
+    "en": "Retrying PostgreSQL Transactions after Serialization Failures",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "동시 실행 때문에 PostgreSQL이 트랜잭션을 취소했을 때 어떤 오류를 다시 시도하고 무엇을 처음부터 다시 돌릴지 정하는 방법이다.",
+    "objectives": [
+      "SQLSTATE 40001·40P01은 다시 시도하고 23505·23P01은 상황을 따져 보는 근거를 말할 수 있다",
+      "실패한 문장만이 아니라 값을 정한 앱 코드까지 포함한 트랜잭션 전체를 다시 돌려야 하는 이유를 말할 수 있다",
+      "경합이 심하면 재시도가 여러 번 필요하거나 끝내 성공하지 못할 수 있음을 알고 재시도 횟수 상한과 대기 간격을 정할 수 있다",
+      "Repeatable Read·Serializable을 고르면 재시도 코드가 꼭 필요해지는 근거를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "db.internals.transaction-basics"
+    ],
+    "related": [
+      "db.internals.isolation-levels",
+      "db.internals.locks",
+      "be.integrate.resilience"
+    ],
+    "aliases": [
+      "트랜잭션 재시도",
+      "transaction retry",
+      "PostgreSQL 재시도 로직",
+      "serialization failure retry"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/mvcc-serialization-failure-handling.html"
+    ]
+  },
+  {
+    "id": "db.cache.redis-distributed-lock",
+    "title": "Redis 분산 잠금: SET NX PX와 안전한 해제",
+    "en": "Distributed Locks with Redis",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "캐시",
+    "summary": "여러 서버의 프로세스가 한 자원을 번갈아 쓰도록 Redis 키에 만료와 고유 값을 붙여 잠그고, 장애 때 깨지는 지점을 따져 쓰는 방법이다.",
+    "objectives": [
+      "SET 키 고유값 NX PX로 잠그고 값이 같을 때만 지워 남의 잠금을 풀지 않게 하는 근거를 말할 수 있다",
+      "만료 시간보다 작업이 길어져 두 프로세스가 함께 잠금을 쥐는 원인을 찾을 수 있다",
+      "복제본으로 장애 조치하는 단일 Redis 잠금이 비동기 복제 때문에 상호 배제를 깨는 경우를 근거로 Redlock이나 다른 방식을 고를 수 있다",
+      "오래 걸리는 작업에 펜싱 토큰이나 잠금 연장이 필요한지 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "db.cache.redis-first-run"
+    ],
+    "related": [
+      "db.sql.skip-locked-job-queue",
+      "be.async.race-condition",
+      "db.cache.redis-sentinel"
+    ],
+    "aliases": [
+      "Redis 분산 락",
+      "Redis distributed lock",
+      "Redis 잠금",
+      "Redis lock"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/develop/clients/patterns/distributed-locks/",
+      "https://redis.io/docs/latest/commands/set/"
+    ]
+  },
+  {
+    "id": "db.cache.redis-sentinel",
+    "title": "Redis Sentinel로 장애 조치하기",
+    "en": "Redis High Availability with Sentinel",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "캐시",
+    "summary": "클러스터 없이 쓰는 Redis에서 Sentinel이 주 서버 장애를 감지해 복제본을 올리고 클라이언트에 새 주소를 알려 주게 하는 구성이다.",
+    "objectives": [
+      "Sentinel을 서로 다른 장비에 셋 이상 두어야 하는 근거를 말할 수 있다",
+      "장애 조치 뒤 앱이 옛 주 서버에 계속 붙는 원인을 찾고 Sentinel에 주 서버 주소를 묻는 연결 방식으로 고칠 수 있다",
+      "비동기 복제 때문에 확인받은 쓰기가 장애 조치 중 사라질 수 있음을 알고 그 창을 줄이는 설정을 고를 수 있다",
+      "Docker 포트 매핑이나 NAT 환경에서 Sentinel 자동 발견이 깨지는 원인을 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "db.cache.redis-first-run"
+    ],
+    "related": [
+      "db.cache.redis-cluster-keys",
+      "db.cache.redis-persistence"
+    ],
+    "aliases": [
+      "Redis Sentinel",
+      "레디스 센티널",
+      "Sentinel 장애 조치",
+      "Sentinel failover"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/operate/oss_and_stack/management/sentinel/"
+    ]
+  },
+  {
     "id": "db.cache.redis",
     "title": "Redis",
     "en": "Redis",
@@ -7439,6 +7573,50 @@
     ]
   },
   {
+    "id": "db.sql.skip-locked",
+    "title": "FOR UPDATE SKIP LOCKED",
+    "en": "PostgreSQL FOR UPDATE SKIP LOCKED",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "잠그려는 행이 이미 다른 트랜잭션에 잠겨 있으면 기다리지 않고 건너뛰는 SELECT 잠금 옵션으로, 여러 소비자가 큐 표를 나눠 읽을 때 쓴다.",
+    "parent": "db.sql.skip-locked-job-queue",
+    "related": [
+      "db.sql.nowait-locking"
+    ],
+    "aliases": [
+      "SKIP LOCKED",
+      "잠긴 행 건너뛰기",
+      "SKIP LOCKED 큐"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/sql-select.html"
+    ]
+  },
+  {
+    "id": "db.sql.serialization-failure",
+    "title": "serialization_failure(40001)",
+    "en": "PostgreSQL Serialization Failure (SQLSTATE 40001)",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "Repeatable Read나 Serializable 트랜잭션이 이상 현상을 막으려고 취소될 때 PostgreSQL이 내는 오류로, 트랜잭션 전체를 다시 시도하면 된다.",
+    "parent": "db.sql.transaction-retry",
+    "related": [
+      "db.internals.isolation-levels"
+    ],
+    "aliases": [
+      "SQLSTATE 40001",
+      "serialization_failure",
+      "직렬화 실패 오류"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/mvcc-serialization-failure-handling.html"
+    ]
+  },
+  {
     "id": "db.cache.aof-rewrite",
     "title": "AOF 다시 쓰기(BGREWRITEAOF)",
     "en": "Redis AOF Rewrite",
@@ -7616,6 +7794,133 @@
     ],
     "refs": [
       "https://redis.io/docs/latest/operate/oss_and_stack/reference/cluster-spec/"
+    ]
+  },
+  {
+    "id": "db.sql.nowait-locking",
+    "title": "NOWAIT: 잠긴 행을 기다리지 않고 오류 내기",
+    "en": "PostgreSQL NOWAIT Locking Option",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "SQL",
+    "summary": "SELECT FOR UPDATE 등이 바로 잠글 수 없는 행을 만나면 기다리는 대신 즉시 오류를 내게 하는 옵션으로, 표 수준 잠금은 따로 기다린다.",
+    "parent": "db.sql.skip-locked-job-queue",
+    "related": [
+      "db.sql.skip-locked",
+      "db.sql.statement-timeout"
+    ],
+    "aliases": [
+      "FOR UPDATE NOWAIT",
+      "NOWAIT 잠금",
+      "PostgreSQL NOWAIT"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/sql-select.html"
+    ]
+  },
+  {
+    "id": "db.sql.pg-advisory-lock",
+    "title": "PostgreSQL 권고 잠금: pg_advisory_lock",
+    "en": "PostgreSQL Advisory Lock Functions",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "SQL",
+    "summary": "앱이 정한 숫자 키에 거는 PostgreSQL 잠금으로, 서버가 뜻을 강제하지 않으며 세션 단위는 직접 풀거나 연결이 끊길 때 풀린다.",
+    "parent": "db.sql.skip-locked-job-queue",
+    "related": [
+      "dev.robust.advisory-lock",
+      "db.sql.pgbouncer-pool-modes"
+    ],
+    "aliases": [
+      "pg_advisory_lock",
+      "pg_try_advisory_lock",
+      "pg_advisory_xact_lock",
+      "PostgreSQL 권고 잠금"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/functions-admin.html",
+      "https://www.postgresql.org/docs/current/explicit-locking.html"
+    ]
+  },
+  {
+    "id": "db.cache.redlock",
+    "title": "Redlock: 독립된 여러 Redis에 과반 잠금",
+    "en": "Redlock Algorithm",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "캐시",
+    "summary": "복제 없이 독립된 Redis 주 서버 여러 대에 같은 키를 걸어 과반에서, 유효 시간 안에 성공해야 잠금을 얻은 것으로 보는 분산 잠금 방식이다.",
+    "parent": "db.cache.redis-distributed-lock",
+    "aliases": [
+      "Redlock",
+      "레드락",
+      "Redlock 알고리즘"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/develop/clients/patterns/distributed-locks/"
+    ]
+  },
+  {
+    "id": "db.cache.redis-delex",
+    "title": "DELEX IFEQ: 값이 같을 때만 키 지우기",
+    "en": "Redis DELEX Command with IFEQ",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "캐시",
+    "summary": "Redis 8.4에 생긴 명령으로, 키의 값이 준 값과 같을 때만 지워 자기가 건 잠금만 풀게 하며 이전 버전에서는 Lua 스크립트로 같은 일을 한다.",
+    "parent": "db.cache.redis-distributed-lock",
+    "aliases": [
+      "DELEX",
+      "DELEX IFEQ",
+      "Redis 조건부 삭제"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/commands/delex/",
+      "https://redis.io/docs/latest/develop/clients/patterns/distributed-locks/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "db.cache.sentinel-quorum",
+    "title": "Sentinel 쿼럼과 과반 승인",
+    "en": "Redis Sentinel Quorum and Majority Authorization",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "캐시",
+    "summary": "쿼럼은 주 서버가 죽었다고 판정하는 데 필요한 Sentinel 수이고, 실제 장애 조치는 전체 Sentinel 과반의 표를 얻은 리더만 시작한다.",
+    "parent": "db.cache.redis-sentinel",
+    "aliases": [
+      "Sentinel quorum",
+      "센티널 쿼럼",
+      "sentinel monitor quorum"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/operate/oss_and_stack/management/sentinel/"
+    ]
+  },
+  {
+    "id": "db.cache.min-replicas-to-write",
+    "title": "min-replicas-to-write: 복제본이 없으면 쓰기 멈추기",
+    "en": "Redis min-replicas-to-write and min-replicas-max-lag",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "캐시",
+    "summary": "주 서버가 정한 시간 안에 응답하는 복제본이 정한 수보다 적으면 쓰기를 거부하게 해, 분할된 옛 주 서버에 쌓였다 사라지는 쓰기를 줄이는 설정이다.",
+    "parent": "db.cache.redis-sentinel",
+    "aliases": [
+      "min-replicas-to-write",
+      "min-replicas-max-lag",
+      "Redis 최소 복제본 쓰기"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/operate/oss_and_stack/management/sentinel/"
     ]
   },
   {
