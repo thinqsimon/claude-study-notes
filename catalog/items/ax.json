@@ -7390,6 +7390,77 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "ax.governance.ssdf-ai-profile",
+    "title": "AI 모델 개발에 보안 개발 관행 적용하기",
+    "en": "SSDF Community Profile for AI Model Development (SP 800-218A)",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "NIST SP 800-218A를 따라 보안 소프트웨어 개발 관행(SSDF)에 모델 가중치 보호, 학습 데이터 무결성 확인, 입출력 감시 같은 AI 전용 과제를 더해 개발 과정을 점검한다.",
+    "objectives": [
+      "SSDF의 네 묶음(조직 준비·소프트웨어 보호·안전한 소프트웨어 생산·취약점 대응)에 AI 모델 개발 과제가 어떻게 더해지는지 설명할 수 있다",
+      "모델 가중치와 학습·시험·미세 조정 데이터를 따로 두고 최소 권한으로 접근을 막는 저장 설계를 고를 수 있다",
+      "학습 데이터를 쓰기 전에 오염·편향·변조 흔적과 출처를 확인하는 단계를 개발 흐름에 넣을 수 있다",
+      "High·Medium·Low 우선순위를 출발점으로 삼아 자기 조직에 맞게 과제의 순서를 정할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.governance.genai-profile"
+    ],
+    "related": [
+      "ax.security.model-supply-chain",
+      "ax.security.data-poisoning",
+      "be.security.supply-chain"
+    ],
+    "aliases": [
+      "SP 800-218A",
+      "AI SSDF 프로필",
+      "SSDF community profile",
+      "생성형 AI 보안 개발 관행",
+      "secure AI model development"
+    ],
+    "refs": [
+      "https://csrc.nist.gov/pubs/sp/800/218/a/final",
+      "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-218A.pdf"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.governance.cyber-ai-profile",
+    "title": "사이버보안 프레임워크로 AI 보안 우선순위 정하기",
+    "en": "NIST Cyber AI Profile (NIST IR 8596)",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "NIST Cyber AI Profile 초안을 따라 CSF 2.0의 결과 항목마다 AI 시스템 보호, AI를 쓴 방어, AI를 쓴 공격 대비의 우선순위를 정해 기존 보안 체계에 AI를 넣는다.",
+    "objectives": [
+      "Secure·Defend·Thwart 세 초점 영역이 각각 어떤 질문을 다루고 서로 어떻게 기대는지 설명할 수 있다",
+      "CSF 2.0의 하위 범주마다 붙은 제안 우선순위와 고려 사항을 읽고 자기 조직에서 먼저 할 일을 고를 수 있다",
+      "기존 보안 관행으로 충분한 항목과 AI 때문에 따로 손봐야 하는 항목을 가를 수 있다"
+    ],
+    "prerequisites": [
+      "ax.governance.genai-profile"
+    ],
+    "related": [
+      "ax.governance.ai-offensive-cyber",
+      "ax.governance.post-deployment-ai-management"
+    ],
+    "aliases": [
+      "Cyber AI Profile",
+      "NIST IR 8596",
+      "사이버 AI 프로필",
+      "CSF AI 프로필",
+      "Cybersecurity Framework Profile for AI"
+    ],
+    "refs": [
+      "https://csrc.nist.gov/pubs/ir/8596/iprd"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "ax.coding.subagent",
     "title": "하위 에이전트",
     "en": "Subagent",
@@ -8434,6 +8505,68 @@
     ],
     "refs": [
       "https://learn.chatgpt.com/docs/agent-approvals-security"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.governance.ssdf",
+    "title": "SSDF(보안 소프트웨어 개발 프레임워크)",
+    "en": "Secure Software Development Framework (SP 800-218)",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "조직 준비, 소프트웨어 보호, 안전한 소프트웨어 생산, 취약점 대응의 네 묶음으로 개발 과정의 보안 관행을 정리한 NIST 프레임워크다.",
+    "parent": "ax.governance.ssdf-ai-profile",
+    "aliases": [
+      "SP 800-218",
+      "Secure Software Development Framework",
+      "보안 개발 프레임워크",
+      "NIST SSDF"
+    ],
+    "refs": [
+      "https://csrc.nist.gov/pubs/sp/800/218/final"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ax.security.model-weight-protection",
+    "title": "모델 가중치 보호",
+    "en": "Model Weight Protection",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "모델 가중치와 설정값을 학습 데이터와 따로 두고 최소 권한, 해시·서명, 암호화로 도난과 변조를 막는 관행이다.",
+    "parent": "ax.governance.ssdf-ai-profile",
+    "related": [
+      "ax.security.model-extraction",
+      "ax.security.model-provenance"
+    ],
+    "aliases": [
+      "가중치 보호",
+      "model weights security",
+      "PS.1.3",
+      "모델 가중치 접근 제한"
+    ]
+  },
+  {
+    "id": "ax.governance.cyber-ai-focus-areas",
+    "title": "Cyber AI Profile 세 초점 영역",
+    "en": "Cyber AI Profile Focus Areas (Secure, Defend, Thwart)",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "AI 시스템 구성 요소 보호(Secure), AI를 쓴 사이버 방어(Defend), AI를 쓴 공격 막기(Thwart)로 AI 관련 보안 위험을 나눠 보는 NIST의 세 관점이다.",
+    "parent": "ax.governance.cyber-ai-profile",
+    "aliases": [
+      "Secure Defend Thwart",
+      "Cyber AI 초점 영역",
+      "AI-enabled cyber defense",
+      "Cyber AI Profile focus areas"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"

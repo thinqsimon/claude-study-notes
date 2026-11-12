@@ -6558,6 +6558,37 @@
     ]
   },
   {
+    "id": "db.sql.blocked-query-diagnosis",
+    "title": "막힌 쿼리 찾기: pg_stat_activity와 pg_locks",
+    "en": "Diagnosing Blocked Queries in PostgreSQL",
+    "kind": "topic",
+    "level": 4,
+    "importance": 1,
+    "group": "SQL",
+    "summary": "멈춘 듯한 쿼리가 무엇을 기다리고 누가 막고 있는지 시스템 뷰와 함수로 찾아내는 방법이다.",
+    "objectives": [
+      "pg_stat_activity의 state와 wait_event_type으로 잠금을 기다리는 세션을 골라낼 수 있다",
+      "pg_blocking_pids()로 기다리는 세션을 막는 세션을 찾을 수 있다",
+      "pg_locks의 granted 열로 잠금을 쥔 쪽과 기다리는 쪽을 구분할 수 있다",
+      "pg_locks를 자기 자신과 조인하는 대신 pg_blocking_pids()를 쓰는 까닭을 설명할 수 있다"
+    ],
+    "related": [
+      "db.internals.locks",
+      "db.sql.nowait-locking"
+    ],
+    "aliases": [
+      "pg_stat_activity",
+      "pg_locks",
+      "잠금 대기 세션 찾기",
+      "blocking query",
+      "막힌 쿼리"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/monitoring-stats.html",
+      "https://www.postgresql.org/docs/current/view-pg-locks.html"
+    ]
+  },
+  {
     "id": "db.cache.response-caching",
     "title": "응답 캐시로 부하와 비용 줄이기",
     "en": "Caching to Reduce Load and Cost",
@@ -7086,6 +7117,62 @@
     ]
   },
   {
+    "id": "db.sql.hot-standby-conflicts",
+    "title": "읽기 복제본의 쿼리 충돌: 핫 스탠바이 취소 오류",
+    "en": "Hot Standby Query Conflicts",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "읽기 전용 대기 서버에서 WAL 재생과 실행 중 쿼리가 부딪쳐 쿼리가 취소되는 까닭과 그 대처를 다룬다.",
+    "objectives": [
+      "VACUUM 정리나 배타 잠금 같은 원인으로 대기 서버 쿼리가 취소되는 경우를 구분할 수 있다",
+      "hot_standby_feedback을 켰을 때 주 서버에 생기는 표 부풀음과 맞바꾸는 손익을 설명할 수 있다",
+      "보고용 대기 서버와 장애 조치용 대기 서버에 맞는 max_standby_streaming_delay 값을 고를 수 있다",
+      "pg_stat_database_conflicts로 원인별 취소 횟수를 확인할 수 있다"
+    ],
+    "related": [
+      "db.internals.wal-replication"
+    ],
+    "aliases": [
+      "hot standby",
+      "핫 스탠바이",
+      "conflict with recovery",
+      "복구 충돌",
+      "standby query cancel"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/hot-standby.html"
+    ]
+  },
+  {
+    "id": "db.orm.alembic-branches",
+    "title": "Alembic 여러 head 다루기: merge와 브랜치 라벨",
+    "en": "Alembic Branches and Multiple Heads",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "ORM",
+    "summary": "두 사람이 같은 리비전에서 마이그레이션을 따로 만들어 head가 둘이 될 때 원인을 알고 합치거나 나눠 관리하는 법이다.",
+    "objectives": [
+      "upgrade head가 여러 head 때문에 실패하는 까닭을 설명할 수 있다",
+      "alembic merge로 down_revision에 두 head를 담은 합치기 리비전을 만들 수 있다",
+      "branch_labels와 depends_on 가운데 마이그레이션 흐름을 나눠 둘지 이어 둘지 고를 수 있다"
+    ],
+    "prerequisites": [
+      "db.orm.alembic-basics"
+    ],
+    "aliases": [
+      "multiple heads",
+      "여러 head",
+      "Alembic 브랜치",
+      "Alembic 여러 head 오류"
+    ],
+    "refs": [
+      "https://alembic.sqlalchemy.org/en/latest/branches.html"
+    ]
+  },
+  {
     "id": "db.cache.redis-sentinel",
     "title": "Redis Sentinel로 장애 조치하기",
     "en": "Redis High Availability with Sentinel",
@@ -7115,6 +7202,35 @@
     ],
     "refs": [
       "https://redis.io/docs/latest/operate/oss_and_stack/management/sentinel/"
+    ]
+  },
+  {
+    "id": "db.cache.redis-client-side-caching",
+    "title": "Redis 클라이언트 측 캐싱: CLIENT TRACKING과 무효화",
+    "en": "Redis Client-Side Caching",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "캐시",
+    "summary": "앱 메모리에 Redis 값을 두고 서버가 보내는 무효화 메시지로 낡은 값을 지우는 캐시 방식과 그 선택지를 다룬다.",
+    "objectives": [
+      "기본 추적 모드와 브로드캐스트 모드의 서버 메모리와 메시지 양을 견주어 고를 수 있다",
+      "무효화 메시지를 다른 연결로 받을 때 생기는 경쟁 상태를 자리표시 값으로 막을 수 있다",
+      "무효화 연결이 끊겼을 때 로컬 캐시를 비워야 하는 까닭을 설명할 수 있다",
+      "자주 읽히고 적당히 바뀌는 키만 로컬에 두도록 캐시 대상을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "db.cache.response-caching"
+    ],
+    "aliases": [
+      "client-side caching",
+      "클라이언트 측 캐싱",
+      "Redis 로컬 캐시",
+      "CLIENT TRACKING",
+      "Redis 무효화 메시지"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/develop/reference/client-side-caching/"
     ]
   },
   {
@@ -7617,6 +7733,124 @@
     ]
   },
   {
+    "id": "db.sql.hot-standby-feedback",
+    "title": "hot_standby_feedback",
+    "en": "hot_standby_feedback",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "대기 서버가 아직 필요한 가장 오래된 트랜잭션을 주 서버에 알려 VACUUM이 그 행을 지우지 않게 하는 설정이다.",
+    "parent": "db.sql.hot-standby-conflicts",
+    "aliases": [
+      "hot standby feedback",
+      "스탠바이 피드백"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/hot-standby.html"
+    ]
+  },
+  {
+    "id": "db.sql.max-standby-streaming-delay",
+    "title": "max_standby_streaming_delay: 재생을 미루는 한도",
+    "en": "max_standby_streaming_delay",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "스트리밍으로 받은 WAL 재생이 충돌 쿼리를 취소하기 전에 기다릴 수 있는 최대 시간이다.",
+    "parent": "db.sql.hot-standby-conflicts",
+    "aliases": [
+      "standby streaming delay",
+      "스탠바이 지연 한도"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/hot-standby.html"
+    ]
+  },
+  {
+    "id": "db.orm.alembic-merge",
+    "title": "alembic merge: 갈라진 head 합치기",
+    "en": "alembic merge",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "ORM",
+    "summary": "여러 head를 down_revision으로 함께 가리키는 빈 리비전을 만들어 마이그레이션 흐름을 하나로 다시 모으는 명령이다.",
+    "parent": "db.orm.alembic-branches",
+    "aliases": [
+      "merge revision",
+      "합치기 리비전",
+      "alembic merge heads"
+    ],
+    "refs": [
+      "https://alembic.sqlalchemy.org/en/latest/branches.html#merging-branches"
+    ]
+  },
+  {
+    "id": "db.sql.pg-blocking-pids",
+    "title": "pg_blocking_pids(): 나를 막는 세션 번호",
+    "en": "pg_blocking_pids()",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "주어진 서버 프로세스가 잠금을 얻지 못하게 막는 세션들의 프로세스 번호를 배열로 돌려주는 함수다.",
+    "parent": "db.sql.blocked-query-diagnosis",
+    "aliases": [
+      "pg_blocking_pids",
+      "blocking pids",
+      "잠금 막는 세션"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/functions-info.html"
+    ]
+  },
+  {
+    "id": "db.sql.wait-event",
+    "title": "wait_event_type과 wait_event: 세션이 기다리는 것",
+    "en": "PostgreSQL Wait Events",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "pg_stat_activity에서 세션이 잠금·입출력·클라이언트 가운데 무엇을 기다리는지 종류와 지점으로 보여 주는 열이다.",
+    "parent": "db.sql.blocked-query-diagnosis",
+    "aliases": [
+      "wait_event_type",
+      "PostgreSQL wait event",
+      "대기 이벤트"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/monitoring-stats.html#WAIT-EVENT-TABLE"
+    ]
+  },
+  {
+    "id": "db.sql.scram-sha-256",
+    "title": "scram-sha-256: PostgreSQL 비밀번호 인증 방식",
+    "en": "PostgreSQL SCRAM-SHA-256 Authentication",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "SQL",
+    "summary": "비밀번호를 해시로 저장하고 도청을 막는 PostgreSQL의 비밀번호 인증 방식으로, 낡은 md5를 대신한다.",
+    "related": [
+      "db.sql.ssl-connection",
+      "db.sql.pg-hba-hostssl"
+    ],
+    "aliases": [
+      "PostgreSQL SCRAM 인증",
+      "PostgreSQL SCRAM",
+      "pg_hba scram-sha-256",
+      "md5에서 SCRAM으로 옮기기"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/auth-password.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "db.cache.aof-rewrite",
     "title": "AOF 다시 쓰기(BGREWRITEAOF)",
     "en": "Redis AOF Rewrite",
@@ -7921,6 +8155,44 @@
     ],
     "refs": [
       "https://redis.io/docs/latest/operate/oss_and_stack/management/sentinel/"
+    ]
+  },
+  {
+    "id": "db.orm.alembic-depends-on",
+    "title": "Alembic depends_on: 브랜치 사이의 의존",
+    "en": "Alembic depends_on",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "ORM",
+    "summary": "두 마이그레이션 흐름을 합치지 않고도 한 리비전이 다른 흐름의 리비전이 먼저 적용되도록 요구하게 하는 속성이다.",
+    "parent": "db.orm.alembic-branches",
+    "aliases": [
+      "--depends-on",
+      "branch dependency",
+      "브랜치 의존"
+    ],
+    "refs": [
+      "https://alembic.sqlalchemy.org/en/latest/branches.html#branch-dependencies"
+    ]
+  },
+  {
+    "id": "db.cache.redis-tracking-bcast",
+    "title": "브로드캐스트 추적 모드: BCAST와 PREFIX",
+    "en": "Redis Tracking Broadcasting Mode",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "캐시",
+    "summary": "서버가 클라이언트별 키를 기억하지 않고 등록된 접두어에 맞는 키가 바뀔 때마다 구독한 클라이언트 모두에 무효화를 보내는 모드다.",
+    "parent": "db.cache.redis-client-side-caching",
+    "aliases": [
+      "BCAST 모드",
+      "CLIENT TRACKING BCAST",
+      "broadcasting mode"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/develop/reference/client-side-caching/#broadcasting-mode"
     ]
   },
   {

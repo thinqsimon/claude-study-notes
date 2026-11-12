@@ -7350,6 +7350,120 @@
     ]
   },
   {
+    "id": "llm.prompt.model-upgrade-retune",
+    "title": "Claude 모델 업그레이드 뒤 프롬프트 재조정",
+    "en": "Retuning Prompts When Upgrading Claude Models",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "프롬프트",
+    "summary": "이전 모델에 맞춰 넣은 강한 지시와 보조 장치가 새 모델에서 과잉 호출·긴 생각·거절을 부르는지 찾아 걷어 내고 다시 평가하는 일이다.",
+    "objectives": [
+      "이전 모델용으로 넣은 CRITICAL·MUST 같은 강한 도구 지시 때문에 새 모델이 도구를 지나치게 부르는 원인을 찾아 문구를 누그러뜨릴 수 있다",
+      "effort 단계 이름이 모델마다 같은 생각 양을 뜻하지 않는다는 점을 알고 이전 값을 그대로 쓰지 않고 평가로 다시 정할 수 있다",
+      "답 본문에 추론을 쓰라는 지시가 reasoning_extraction 거절을 부르는 원인을 찾아 요약된 thinking 블록 읽기로 바꿀 수 있다",
+      "모델별 프롬프팅 가이드에서 증상에 맞는 절을 찾아 이전 모델용 보조 장치가 아직 필요한지 다시 시험할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.prompt.prompt-structure",
+      "llm.api.thinking-effort"
+    ],
+    "related": [
+      "llm.api.model-migration",
+      "llm.api.refusal-fallback-design",
+      "mlops.prompt.model-migration-rewrite"
+    ],
+    "aliases": [
+      "프롬프트 재조정",
+      "Claude 프롬프트 마이그레이션",
+      "모델 업그레이드 프롬프트",
+      "anti-laziness prompting",
+      "모델별 프롬프팅 가이드"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#migration-considerations",
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.prompt.agent-action-scope",
+    "title": "에이전트 행동 범위 정하는 시스템 프롬프트",
+    "en": "Scoping Agent Actions in Claude System Prompts",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "프롬프트",
+    "summary": "에이전트가 제안만 할지 바로 고칠지, 어떤 행동 앞에서 멈춰 물을지, 요청 밖 작업을 얼마나 할지를 시스템 프롬프트로 정하고 그 한계를 아는 설계다.",
+    "objectives": [
+      "\"고칠 점을 제안해 줘\" 같은 요청에 모델이 제안만 하고 고치지 않는 원인을 알고 기본 동작을 실행 쪽이나 신중 쪽으로 정하는 지시를 고를 수 있다",
+      "되돌릴 수 있는 로컬 작업과 되돌리기 어렵거나 공유 시스템에 닿는 작업을 나눠 확인을 받을 행동 목록을 정할 수 있다",
+      "요청하지 않은 파일·추상화·방어 코드를 덧붙이는 과잉 구현을 알아보고 범위를 좁히는 지시를 넣을 수 있다",
+      "프롬프트 지시는 강제력이 없다는 점을 근거로 돈을 옮기는 도구 같은 위험한 호출에 사람 승인 단계를 따로 둘 수 있다"
+    ],
+    "prerequisites": [
+      "llm.tools.function-calling",
+      "llm.prompt.prompt-structure"
+    ],
+    "related": [
+      "ax.basics.agent-action-confirmation",
+      "llm.security.agent-boundaries",
+      "rag.agent.reliability"
+    ],
+    "aliases": [
+      "에이전트 행동 범위",
+      "agent action scope",
+      "에이전트 자율성 지시",
+      "balancing autonomy and safety",
+      "에이전트 실행 기본값 지시"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#balancing-autonomy-and-safety",
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#overeagerness"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.api.agent-token-budget",
+    "title": "에이전트 루프의 토큰 예산 설계",
+    "en": "Sizing Agent Loop Work with Task Budgets, Effort, and max_tokens",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "여러 요청에 걸친 에이전트 루프 전체의 권고 예산, 단계마다의 생각 깊이, 요청당 강제 상한을 나눠 정해 비용과 마무리 방식을 맞추는 설계다.",
+    "objectives": [
+      "루프 전체 권고치인 task_budget, 단계별 깊이인 effort, 요청당 강제 상한인 max_tokens의 역할을 구분해 조합을 정할 수 있다",
+      "예산 없이 대표 작업을 돌려 작업당 토큰 분포를 재고 그 상위값에서 출발해 예산을 정할 수 있다",
+      "예산이 작업에 비해 너무 작아 모델이 시작을 거절하거나 일찍 멈추는 증상을 알아보고 예산부터 늘려 원인을 가를 수 있다",
+      "예산이나 effort 값을 요청마다 바꾸면 프롬프트 캐시가 깨지는 이유를 설명하고 바꿀 방법을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "llm.api.thinking-effort",
+      "llm.internals.context-management"
+    ],
+    "related": [
+      "llm.internals.prompt-caching",
+      "llm.internals.multi-window-tasks",
+      "llm.api.latency-design"
+    ],
+    "aliases": [
+      "에이전트 토큰 예산",
+      "agent token budget",
+      "에이전트 비용 상한",
+      "작업 예산 설계",
+      "agentic loop budget"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/task-budgets",
+      "https://platform.claude.com/docs/en/build-with-claude/effort-per-message"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "llm.basics.hub-model-load-errors",
     "title": "Hub 모델 불러오기와 추론 오류 읽기",
     "en": "Debugging Hub Model Loading and Pipeline Errors",
@@ -7381,6 +7495,39 @@
     "refs": [
       "https://huggingface.co/learn/llm-course/chapter8/2"
     ]
+  },
+  {
+    "id": "llm.tools.custom-tool-grammar",
+    "title": "자유 형식 도구 입력과 문법 제약 고르기",
+    "en": "Choosing Free-Form Custom Tools and Grammar Constraints in OpenAI",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "도구 호출",
+    "summary": "코드·수식처럼 JSON으로 감싸기 어색한 도구 입력을 OpenAI custom tool의 자유 텍스트로 받을지, Lark·정규식 문법으로 모양을 묶을지 정하고 문법 오류를 좁혀 가는 설계다.",
+    "objectives": [
+      "코드나 수식처럼 JSON에 담기 어색한 입력에 JSON 함수 대신 custom tool을 쓸지 근거를 들어 고를 수 있다",
+      "입력 형식을 text와 grammar 중에서 정하고 regex 문법이 Python re가 아닌 Rust regex 문법이라 생기는 오류를 찾을 수 있다",
+      "문법이 거절되거나 출력이 길게 반복될 때 문법 줄이기·유한 수량자 쓰기·설명과 예시 보태기 순서로 원인을 좁힐 수 있다"
+    ],
+    "prerequisites": [
+      "llm.tools.function-calling"
+    ],
+    "related": [
+      "llm.tools.strict-tool-use",
+      "llm.api.structured-output-limits"
+    ],
+    "aliases": [
+      "OpenAI custom tools",
+      "OpenAI 자유 형식 도구",
+      "CFG 도구",
+      "context-free grammar tool"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/function-calling#custom-tools"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "llm.api.spend-limit",
@@ -7796,6 +7943,101 @@
     "refs": [
       "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls"
     ]
+  },
+  {
+    "id": "llm.prompt.tool-overtriggering",
+    "title": "도구 과잉 호출(overtriggering)",
+    "en": "Tool Overtriggering",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "프롬프트",
+    "summary": "예전 모델의 소극성을 메우려 넣은 강한 도구 지시를 새 모델이 지나치게 따라 필요 없을 때도 도구를 부르는 현상이다.",
+    "parent": "llm.prompt.model-upgrade-retune",
+    "related": [
+      "llm.tools.tool-choice"
+    ],
+    "aliases": [
+      "overtriggering",
+      "tool overtriggering",
+      "도구 남용 호출",
+      "과잉 도구 사용"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#tool-usage"
+    ]
+  },
+  {
+    "id": "llm.prompt.overeagerness",
+    "title": "과잉 구현 경향(overeagerness)",
+    "en": "Overeagerness",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "프롬프트",
+    "summary": "에이전트가 요청하지 않은 파일·추상화·설정 가능성·방어 코드를 덧붙여 작업 범위를 넘기는 경향이다.",
+    "parent": "llm.prompt.agent-action-scope",
+    "aliases": [
+      "overeagerness",
+      "에이전트 과잉 구현",
+      "요청 밖 변경",
+      "범위 넘는 수정"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#overeagerness"
+    ]
+  },
+  {
+    "id": "llm.tools.progress-report-stop",
+    "title": "진행 보고로 끝난 턴(무인 에이전트 조기 멈춤)",
+    "en": "Progress-Report End of Turn in Unattended Agents",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "도구 호출",
+    "summary": "모델이 도구 호출 없이 진행 상황만 적고 end_turn으로 턴을 끝냈는데 무인 루프가 이를 작업 완료로 보고 멈추는 현상이다.",
+    "parent": "llm.tools.tool-loop-stop-handling",
+    "related": [
+      "llm.tools.empty-end-turn"
+    ],
+    "aliases": [
+      "에이전트 조기 멈춤",
+      "진행 보고 후 멈춤",
+      "early stop end_turn",
+      "무인 에이전트 조기 종료"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5#unattended-agentic-runs"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.api.task-budget",
+    "title": "task_budget(Claude 작업 예산)",
+    "en": "Task Budget",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM API",
+    "summary": "한 에이전트 턴 동안 생각·도구 호출·도구 결과·출력에 쓸 토큰을 output_config에 권고치로 주면 모델이 남은 양을 보며 일을 마무리하는 베타 설정이다.",
+    "parent": "llm.api.agent-token-budget",
+    "related": [
+      "llm.api.effort",
+      "llm.internals.max-tokens"
+    ],
+    "aliases": [
+      "task_budget",
+      "task budgets",
+      "Claude 작업 예산",
+      "에이전트 작업 예산",
+      "task-budgets-2026-03-13"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/task-budgets"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "llm.api.usage-tier",
@@ -8444,6 +8686,98 @@
     ],
     "refs": [
       "https://developers.openai.com/api/docs/guides/predicted-outputs"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.prompt.default-to-action",
+    "title": "적극 실행 지시(default_to_action)",
+    "en": "Default-to-Action Instruction",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "프롬프트",
+    "summary": "의도가 애매할 때 제안에 그치지 말고 가장 쓸모 있는 행동을 골라 실행하라고 시스템 프롬프트에 넣는 지시 블록으로, 반대로 신중하게 묻게 하는 블록과 짝을 이룬다.",
+    "parent": "llm.prompt.agent-action-scope",
+    "aliases": [
+      "default_to_action",
+      "Claude 실행 기본값 지시",
+      "proactive action prompt",
+      "적극 행동 프롬프트"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#tool-usage"
+    ]
+  },
+  {
+    "id": "llm.tools.grammar-format",
+    "title": "문법 형식(OpenAI custom tool grammar)",
+    "en": "Grammar Format for OpenAI Custom Tools",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "도구 호출",
+    "summary": "custom tool의 format을 grammar로 두고 Lark나 정규식 문법을 주어 모델이 내는 자유 텍스트 입력의 모양을 묶는 설정이다.",
+    "parent": "llm.tools.custom-tool-grammar",
+    "aliases": [
+      "OpenAI Lark 문법",
+      "OpenAI CFG",
+      "custom tool grammar",
+      "문법 제약 도구 입력"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/function-calling#custom-tools"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.tools.allowed-tools",
+    "title": "allowed_tools(OpenAI 호출 가능 도구 좁히기)",
+    "en": "OpenAI allowed_tools",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "도구 호출",
+    "summary": "보내는 도구 목록은 그대로 두고 이번 요청에서 부를 수 있는 도구만 tool_choice로 좁혀 프롬프트 캐시를 지키는 OpenAI 설정이다.",
+    "related": [
+      "llm.tools.tool-choice",
+      "llm.internals.prompt-caching"
+    ],
+    "aliases": [
+      "OpenAI allowed tools",
+      "tool_choice allowed_tools",
+      "OpenAI 도구 부분 허용"
+    ],
+    "refs": [
+      "https://developers.openai.com/api/docs/guides/function-calling"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "llm.api.per-message-effort",
+    "title": "메시지별 effort 변경",
+    "en": "Per-Message Effort",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM API",
+    "summary": "대화 중간에 내용이 빈 system 메시지에 새 effort를 담아 이후 턴의 생각 깊이를 바꾸고, 맨 위 설정은 그대로 둬 캐시를 지키는 베타 기능이다.",
+    "parent": "llm.api.agent-token-budget",
+    "related": [
+      "llm.api.effort",
+      "llm.internals.prompt-caching"
+    ],
+    "aliases": [
+      "메시지별 effort",
+      "대화 중 effort 변경",
+      "mid-conversation-output-config",
+      "Claude per-message effort"
+    ],
+    "refs": [
+      "https://platform.claude.com/docs/en/build-with-claude/effort-per-message"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"

@@ -7176,6 +7176,41 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "mlops.observe.otel-genai-conventions",
+    "title": "OpenTelemetry GenAI 규약으로 LLM 관측 맞추기",
+    "en": "OpenTelemetry GenAI Semantic Conventions",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "LLM 호출 스팬과 지표의 이름·속성을 도구와 제공자에 상관없이 같게 남기고, 프롬프트 내용 기록 여부를 환경에 맞게 정하는 규약이다.",
+    "objectives": [
+      "gen_ai.operation.name·gen_ai.provider.name·gen_ai.request.model 같은 공통 속성으로 여러 제공자의 LLM 호출 스팬을 같은 형식으로 남길 수 있다",
+      "OTel 계측이 내용 속성을 기본으로 남기지 않는다는 점을 알고, 스팬 속성 기록과 외부 저장소 업로드 후 참조 남기기 가운데 환경에 맞는 opt-in 방식을 고를 수 있다",
+      "클라이언트 쪽 지표와 모델 서버 쪽 지표(time_to_first_token·time_per_output_token)를 구분해 지연 원인을 나눠 볼 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.observe.llm-tracing"
+    ],
+    "related": [
+      "mlops.observe.trace-redaction",
+      "mlops.observe.otlp-export"
+    ],
+    "aliases": [
+      "GenAI 시맨틱 규약",
+      "GenAI semantic conventions",
+      "gen_ai 속성",
+      "OTel GenAI 규약",
+      "GenAI semconv"
+    ],
+    "refs": [
+      "https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-spans.md",
+      "https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-metrics.md"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "mlops.serve.kserve-canary-rollout",
     "title": "KServe로 모델 카나리 출시하고 되돌리기",
     "en": "Canary Rollout and Rollback with KServe",
@@ -7418,6 +7453,111 @@
     "refs": [
       "https://kserve.github.io/website/docs/model-serving/storage/providers/oci",
       "https://kserve.github.io/website/docs/model-serving/storage/overview"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.vllm-disagg-prefill",
+    "title": "vLLM 프리필·디코드 분리: KV 커넥터와 지연 조정",
+    "en": "vLLM Disaggregated Prefill",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "프리필과 디코드를 다른 vLLM 인스턴스에서 돌리고 KV 캐시를 커넥터로 넘겨, 첫 토큰 지연과 토큰 사이 지연을 따로 조정하는 배포 방식이다.",
+    "objectives": [
+      "프리필과 디코드 인스턴스에 서로 다른 병렬 설정을 주면 TTFT와 ITL을 따로 조정할 수 있는 이유를 설명할 수 있다",
+      "분리 프리필은 처리량을 늘리지 않는다는 점을 근거로 도입 여부를 판단할 수 있다",
+      "꼬리 ITL을 줄이는 방법으로 청크 프리필과 분리 프리필을 비교할 수 있다",
+      "--kv-transfer-config로 KV 커넥터와 kv_role을 지정해 프리필 인스턴스와 디코드 인스턴스를 띄울 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.vllm-latency-tuning",
+      "mlops.serve.vllm-parallelism"
+    ],
+    "related": [
+      "mlops.serve.chunked-prefill"
+    ],
+    "aliases": [
+      "분리 프리필",
+      "disaggregated prefill",
+      "disaggregated prefilling",
+      "프리필 디코드 분리",
+      "vLLM PD 분리"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/features/disagg_prefill/",
+      "https://docs.vllm.ai/en/latest/features/nixl_connector_usage/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.vllm-data-expert-parallel",
+    "title": "vLLM 데이터 병렬과 전문가 병렬: MoE 모델 배포 고르기",
+    "en": "vLLM Data and Expert Parallel Deployment",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "가중치를 복제해 요청을 나눠 받는 데이터 병렬과 MoE 전문가를 GPU에 나눠 두는 전문가 병렬을 텐서 병렬과 섞어 vLLM 배포를 짜는 방법이다.",
+    "objectives": [
+      "데이터 병렬이 가중치를 복제해 독립된 요청 묶음을 처리하는 방식임을 텐서 병렬과 비교해 설명할 수 있다",
+      "MoE 모델에서 --enable-expert-parallel을 켜면 전문가 층이 TP×DP 크기의 전문가 병렬 그룹으로 바뀌고 어텐션 층은 TP를 따른다는 것을 설명할 수 있다",
+      "내부·하이브리드·외부 부하 분산 중 노드 수와 라우터 유무에 맞는 방식을 고를 수 있다",
+      "--max-num-seqs는 랭크별, --max-num-queued-reqs는 서버 전체에 적용된다는 점을 알고 대기열 상한을 정할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.vllm-parallelism"
+    ],
+    "related": [
+      "mlops.serve.tensor-parallelism"
+    ],
+    "aliases": [
+      "vLLM 데이터 병렬",
+      "vLLM data parallel",
+      "vLLM 전문가 병렬",
+      "vLLM expert parallelism",
+      "--data-parallel-size",
+      "--enable-expert-parallel"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/serving/data_parallel_deployment/",
+      "https://docs.vllm.ai/en/latest/serving/expert_parallel_deployment/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.vllm-sleep-mode",
+    "title": "vLLM 슬립 모드로 GPU 메모리 비우기: 레벨 1과 레벨 2",
+    "en": "vLLM Sleep Mode",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "vLLM 서버를 끄지 않고 가중치와 KV 캐시를 CPU로 내리거나 버려 GPU를 학습 같은 다른 작업에 잠시 내주는 기능이다.",
+    "objectives": [
+      "레벨 1과 레벨 2가 가중치와 KV 캐시를 어떻게 처리하는지 비교해 같은 모델을 다시 쓸 때와 가중치를 바꿀 때 알맞은 레벨을 고를 수 있다",
+      "RLHF처럼 학습과 추론이 GPU를 나눠 쓰는 흐름에서 레벨 2와 가중치 다시 불러오기를 이어 쓸 수 있다",
+      "부분 깨우기로 가중치 갱신 중 메모리 부족을 피할 수 있다",
+      "슬립 엔드포인트가 VLLM_SERVER_DEV_MODE에서만 열리며 사용자에게 노출하면 안 되는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.vllm-server-hardening"
+    ],
+    "related": [
+      "mlops.serve.vllm-server-dev-mode"
+    ],
+    "aliases": [
+      "vLLM sleep mode",
+      "vLLM 슬립",
+      "--enable-sleep-mode",
+      "vLLM wake_up"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/features/sleep_mode/"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
@@ -7724,6 +7864,31 @@
     "refs": [
       "https://www.w3.org/TR/trace-context/"
     ]
+  },
+  {
+    "id": "mlops.observe.genai-content-capture",
+    "title": "GenAI 내용 기록 선택(content capture opt-in)",
+    "en": "GenAI Content Capture Opt-In",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "프롬프트·응답·시스템 지시 같은 민감하고 큰 내용은 기본으로 남기지 않고, 사용자가 켤 때만 스팬이나 이벤트에 기록하게 하는 OpenTelemetry GenAI 규약의 설정이다.",
+    "parent": "mlops.observe.otel-genai-conventions",
+    "related": [
+      "mlops.observe.trace-redaction"
+    ],
+    "aliases": [
+      "GenAI content capture",
+      "gen_ai.input.messages",
+      "gen_ai.output.messages",
+      "OTel 프롬프트 내용 기록"
+    ],
+    "refs": [
+      "https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-spans.md"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "mlops.prompt.alias",
@@ -8428,6 +8593,161 @@
     ],
     "refs": [
       "https://docs.vllm.ai/en/latest/usage/metrics/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.observe.genai-usage-token-attributes",
+    "title": "gen_ai.usage 토큰 속성",
+    "en": "GenAI Usage Token Attributes",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "제공자가 알려 준 입력·출력 토큰 수를 LLM 호출 스팬에 정해진 이름으로 남기는 OpenTelemetry GenAI 속성으로, 캐시 읽기 토큰은 입력 토큰에 포함해 센다.",
+    "parent": "mlops.observe.otel-genai-conventions",
+    "related": [
+      "mlops.observe.token-usage-cost"
+    ],
+    "aliases": [
+      "gen_ai.usage.input_tokens",
+      "gen_ai.usage.output_tokens",
+      "GenAI 토큰 사용량 속성"
+    ],
+    "refs": [
+      "https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/client-inference.md"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.vllm-kv-connector",
+    "title": "vLLM KV 커넥터(KV connector)",
+    "en": "vLLM KV Connector",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "프리필 인스턴스가 만든 KV 캐시를 디코드 인스턴스나 CPU 메모리로 옮기는 vLLM 부품으로, --kv-transfer-config로 고른다.",
+    "parent": "mlops.serve.vllm-disagg-prefill",
+    "aliases": [
+      "vLLM KV connector",
+      "NixlConnector",
+      "--kv-transfer-config",
+      "KV 전송 커넥터"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/features/disagg_prefill/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.vllm-kv-role",
+    "title": "kv_role(kv_producer·kv_consumer)",
+    "en": "vLLM KV Role",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "분리 프리필에서 인스턴스가 KV 캐시를 만들어 보내는 쪽인지 받아서 디코드하는 쪽인지 정하는 vLLM KV 전송 설정 값이다.",
+    "parent": "mlops.serve.vllm-disagg-prefill",
+    "aliases": [
+      "vLLM kv_role",
+      "kv_producer",
+      "kv_consumer",
+      "프리필러 디코더 역할"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/features/nixl_connector_usage/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.vllm-dp-load-balancing",
+    "title": "vLLM 데이터 병렬 부하 분산(내부·하이브리드·외부)",
+    "en": "vLLM Data Parallel Load Balancing",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "데이터 병렬 vLLM에서 요청을 엔진에 나누는 방식으로, 엔드포인트 하나에서 내장 분산하거나 노드마다 API 서버를 두거나 랭크마다 엔드포인트를 열고 바깥 라우터에 맡긴다.",
+    "parent": "mlops.serve.vllm-data-expert-parallel",
+    "aliases": [
+      "vLLM DP load balancing",
+      "--data-parallel-hybrid-lb",
+      "--data-parallel-external-lb",
+      "vLLM 외부 부하 분산"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/serving/data_parallel_deployment/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.vllm-eplb",
+    "title": "EPLB(vLLM 전문가 병렬 부하 분산기)",
+    "en": "Expert Parallel Load Balancer (EPLB)",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "MoE 모델에서 토큰이 일부 전문가에 몰려 GPU 부하가 치우칠 때 전문가 배치를 랭크 사이에서 다시 나누는 vLLM 기능으로, 여분 전문가만큼 GPU 메모리를 더 쓴다.",
+    "parent": "mlops.serve.vllm-data-expert-parallel",
+    "aliases": [
+      "EPLB",
+      "--enable-eplb",
+      "expert parallel load balancer",
+      "vLLM 전문가 부하 분산"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/serving/expert_parallel_deployment/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.vllm-sleep-level",
+    "title": "vLLM 슬립 레벨(level 1·level 2)",
+    "en": "vLLM Sleep Levels",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "레벨 1은 가중치를 CPU 메모리로 내리고 KV 캐시를 버리며, 레벨 2는 가중치와 KV 캐시를 모두 버리고 나머지 GPU 할당만 CPU에 남기는 vLLM 슬립 단계다.",
+    "parent": "mlops.serve.vllm-sleep-mode",
+    "aliases": [
+      "vLLM sleep level",
+      "sleep level 1",
+      "sleep level 2",
+      "vLLM 슬립 레벨 2"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/features/sleep_mode/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.vllm-partial-wake-up",
+    "title": "vLLM 부분 깨우기(wake_up tags)",
+    "en": "vLLM Partial Wake-Up",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "슬립 상태의 vLLM에서 가중치나 KV 캐시 중 필요한 쪽만 먼저 GPU로 되살려, 가중치 갱신 중 메모리 부족을 피하는 방법이다.",
+    "parent": "mlops.serve.vllm-sleep-mode",
+    "aliases": [
+      "vLLM partial wake up",
+      "wake_up tags",
+      "vLLM 부분 깨우기"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/features/sleep_mode/"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"

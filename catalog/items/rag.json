@@ -7095,6 +7095,74 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "rag.agent.mcp-mrtr-design",
+    "title": "MCP 다중 왕복 요청(MRTR) 설계",
+    "en": "MCP Multi Round-Trip Requests Design",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "서버가 추가 입력이 필요할 때 결과로 요청을 돌려주고 클라이언트가 원래 요청을 다시 보내게 해, 서버가 상태를 들고 있지 않아도 되게 만드는 최신 MCP 패턴이다.",
+    "objectives": [
+      "InputRequiredResult로 끝난 요청과 inputResponses를 실은 재요청이 서로 독립된 요청인 이유를 설명할 수 있다",
+      "requestState를 공격자가 바꿀 수 있는 입력으로 보고 무결성 보호와 사용자·만료·원래 요청 확인을 넣는 설계를 고를 수 있다",
+      "클라이언트가 선언하지 않은 기능을 inputRequests에 넣거나 재요청에서 requestState를 바꾸는 오류를 찾아낼 수 있다",
+      "필요한 입력이 빠진 재요청에 오류 대신 새 InputRequiredResult를 돌려주는 처리를 고를 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.mcp-build-server"
+    ],
+    "related": [
+      "rag.agent.mcp-elicitation",
+      "rag.agent.mcp-task-input-required"
+    ],
+    "aliases": [
+      "MRTR",
+      "다중 왕복 요청",
+      "Multi Round-Trip Requests",
+      "MCP input_required 결과"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic/patterns/mrtr"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.deepagents-permissions-design",
+    "title": "Deep Agents 파일 권한 규칙 설계",
+    "en": "Deep Agents Filesystem Permissions Design",
+    "kind": "topic",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "Deep Agents의 내장 파일 도구에 경로별 허용·거부·승인 대기 규칙을 걸 때, 규칙 순서와 기본값과 규칙이 닿지 않는 도구를 따져 안전한 구성을 고르는 설계다.",
+    "objectives": [
+      "먼저 맞는 규칙이 이기는 평가 순서 때문에 넓은 허용 규칙 뒤의 거부 규칙이 동작하지 않는 오류를 찾아낼 수 있다",
+      "규칙이 없으면 허용되는 기본값을 막으려고 전체 거부 규칙과 좁은 허용 규칙을 함께 두는 구성을 고를 수 있다",
+      "경로 규칙이 사용자 정의 도구·MCP 도구·execute를 쓰는 샌드박스를 막지 못하는 이유와 CompositeBackend 경로 단위로 범위를 정해야 하는 까닭을 설명할 수 있다",
+      "서브에이전트에 permissions를 주면 부모 규칙을 합치지 않고 대체한다는 점을 이용해 읽기 전용 서브에이전트를 설계할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.deep-agents"
+    ],
+    "related": [
+      "rag.agent.sandbox-backend-design",
+      "rag.agent.hitl-middleware"
+    ],
+    "aliases": [
+      "Deep Agents 권한",
+      "Deep Agents permissions",
+      "FilesystemPermission",
+      "Deep Agents 파일 권한"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/deepagents/permissions"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "rag.agent.agent-server-cron-webhook",
     "title": "Agent Server 예약 실행과 웹훅 설계: 스레드·정리·완료 알림",
     "en": "Designing Agent Server Cron Jobs and Webhooks",
@@ -7126,6 +7194,36 @@
     "refs": [
       "https://docs.langchain.com/langsmith/cron-jobs",
       "https://docs.langchain.com/langsmith/use-webhooks"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.mcp-caching-design",
+    "title": "MCP 결과 캐시 설계: ttlMs·cacheScope·변경 알림",
+    "en": "MCP Result Caching Design",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "도구 목록이나 리소스 읽기 결과에 서버가 붙인 신선도와 공유 범위 힌트를 보고, 클라이언트와 게이트웨이가 결과를 얼마나 오래, 누구와 나눠 쓸지 정하는 설계다.",
+    "objectives": [
+      "ttlMs로 결과가 신선한지 판단하고 만료를 백그라운드 폴링 주기로 쓰지 않아야 하는 이유를 설명할 수 있다",
+      "사용자마다 달라지는 결과에 private, 모두에게 같은 도구 목록에 public을 고르고 public 응답이 다른 토큰과 공유될 수 있는 위험을 말할 수 있다",
+      "list_changed 알림이 신선한 캐시를 바로 무효화하는 흐름과 페이지마다 따로 캐시되는 목록의 일관성 문제를 설명할 수 있다",
+      "다중 왕복 재요청 결과를 캐시하면 안 되는 이유를 캐시 키로 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.mcp-connect"
+    ],
+    "aliases": [
+      "MCP 캐싱",
+      "MCP caching",
+      "MCP 결과 캐시",
+      "CacheableResult"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/specification/2026-07-28/server/utilities/caching"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
@@ -7343,6 +7441,72 @@
     "refs": [
       "https://qdrant.tech/documentation/manage-data/collections/"
     ]
+  },
+  {
+    "id": "rag.agent.mcp-input-required-result",
+    "title": "MCP 입력 요청 결과(InputRequiredResult)",
+    "en": "MCP InputRequiredResult",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "resultType이 input_required인 중간 결과로, 서버가 더 받아야 할 입력 요청과 되돌려 받을 상태를 담아 원래 요청을 끝낸다.",
+    "parent": "rag.agent.mcp-mrtr-design",
+    "related": [
+      "rag.agent.mcp-task-input-required"
+    ],
+    "aliases": [
+      "InputRequiredResult",
+      "inputResponses",
+      "MCP 입력 요청 결과"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic/patterns/mrtr"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.mcp-request-state",
+    "title": "MCP 요청 상태값(requestState) 무결성 보호",
+    "en": "MCP requestState Integrity Protection",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "서버가 다중 왕복 요청 사이의 맥락을 담아 클라이언트에게 맡기는 불투명한 문자열로, 클라이언트를 거쳐 오므로 서명이나 암호화로 변조와 재사용을 막아야 한다.",
+    "parent": "rag.agent.mcp-mrtr-design",
+    "aliases": [
+      "requestState",
+      "MCP 요청 상태값",
+      "requestState HMAC"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic/patterns/mrtr"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.permission-first-match",
+    "title": "Deep Agents 권한 규칙의 먼저 맞는 규칙 우선",
+    "en": "Deep Agents First-Match-Wins Permission Rules",
+    "kind": "term",
+    "level": 4,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "Deep Agents 파일 권한 규칙은 적은 순서대로 보고 처음 맞는 규칙 하나로 결과를 정하므로, 좁은 규칙을 넓은 규칙보다 앞에 둬야 한다.",
+    "parent": "rag.agent.deepagents-permissions-design",
+    "aliases": [
+      "Deep Agents first-match-wins",
+      "Deep Agents 규칙 순서",
+      "Deep Agents 권한 평가 순서"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/deepagents/permissions"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "rag.agent.memory-store",
@@ -7968,6 +8132,48 @@
     ],
     "refs": [
       "https://docs.langchain.com/langsmith/use-webhooks"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.mcp-cache-scope",
+    "title": "MCP 캐시 공유 범위(cacheScope public·private)",
+    "en": "MCP cacheScope",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "MCP 결과를 모든 사용자가 나눠 써도 되는지, 같은 인가 맥락 안에서만 다시 써야 하는지를 서버가 알려 주는 값이다.",
+    "parent": "rag.agent.mcp-caching-design",
+    "aliases": [
+      "cacheScope",
+      "MCP 캐시 범위",
+      "MCP private 캐시"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/specification/2026-07-28/server/utilities/caching"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.mcp-ttl-ms",
+    "title": "MCP 결과 신선도 힌트(ttlMs)",
+    "en": "MCP ttlMs Freshness Hint",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "서버가 결과를 몇 밀리초 동안 다시 받지 않아도 되는지 알려 주는 값으로, 내용이 바뀌지 않는다는 보장이 아니라 다시 가져올 시점의 힌트다.",
+    "parent": "rag.agent.mcp-caching-design",
+    "aliases": [
+      "ttlMs",
+      "MCP TTL",
+      "MCP 신선도 힌트"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/specification/2026-07-28/server/utilities/caching"
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
