@@ -8819,6 +8819,180 @@
     ]
   },
   {
+    "id": "dev.git.partial-clone-internals",
+    "title": "부분 클론의 내부: promisor 객체와 지연 가져오기",
+    "en": "Partial Clone Internals: Promisor Objects and Dynamic Fetching",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "Git",
+    "summary": "부분 클론이 빠진 객체를 promisor 표시로 손상과 구분하고, 필요할 때 원격에서 가져오는 방식과 그 비용을 분석한다.",
+    "objectives": [
+      "promisor 팩 옆의 .promisor 표시 파일, 그리고 그 팩이 가리키거나 다른 promisor 객체가 가리키는 객체를 promisor 객체로 보는 규칙으로 일부러 빠진 객체와 저장소 손상이 어떻게 구분되는지 설명할 수 있다",
+      "repack과 gc가 promisor 팩을 건드리지 않고 나머지 객체만 다시 묶어 두 구획으로 다룬다는 점으로 부분 클론 저장소의 정리 결과를 분석할 수 있다",
+      "빠진 객체를 하나씩 받는 동적 가져오기가 객체마다 fetch-pack을 따로 불러 느리다는 점을 알고, checkout의 일괄 미리 받기와 rev-list --missing=print로 모아 받는 방식을 비교할 수 있다",
+      "promisor 원격이 여럿일 때 extensions.partialClone의 원격은 마지막에, 나머지는 설정 파일 순서로 시도되고 동적 가져오기가 프로토콜 v0로 ref 광고를 매번 받는다는 한계를 근거로 캐시 서버 구성을 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.git.large-repo-clone",
+      "dev.git.internals"
+    ],
+    "related": [
+      "dev.git.cruft-gc",
+      "dev.git.transfer-protocols"
+    ],
+    "aliases": [
+      "부분 클론 내부",
+      "partial clone internals",
+      "promisor 객체",
+      "promisor object",
+      "promisor 팩",
+      "Git 동적 객체 가져오기"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/partial-clone"
+    ]
+  },
+  {
+    "id": "dev.debug.free-threading-refcount",
+    "title": "자유 스레딩 빌드의 참조 카운트: 불멸화·편향·지연",
+    "en": "Reference Counting in Free-Threaded CPython",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "GIL 없는 CPython이 불멸화·편향·지연·스레드별 참조 카운트로 경합을 줄이는 대신 메모리 해제가 늦어지는 손익을 분석한다.",
+    "objectives": [
+      "편향 참조 카운트가 객체를 소유한 스레드의 빠른 경로와 다른 스레드의 느린 경로를 나누고, queued 상태가 되면 해제가 eval breaker 시점까지 미뤄질 수 있다는 점으로 객체가 기본 빌드보다 오래 사는 이유를 설명할 수 있다",
+      "지연 참조 카운트가 걸린 객체(모듈, 모듈 최상위 함수, 클래스 본문의 메서드, 디스크립터, threading.local 객체)는 카운트가 0이 되어도 다음 GC 실행 때 해제된다는 점으로 메모리 해제 시점을 분석할 수 있다",
+      "3.14 기준 불멸화 대상(코드 상수와 sys.intern 문자열)과 힙 타입·코드 객체·모듈 __dict__의 스레드별 카운트가 경합을 줄이는 대신 해제를 늦추고, gc.collect()가 이를 합쳐 풀어 준다는 점을 근거로 메모리 사용 증가를 진단할 수 있다"
+    ],
+    "prerequisites": [
+      "be.async.gil",
+      "cs.lang.garbage-collection"
+    ],
+    "related": [
+      "dev.debug.cpython-allocator",
+      "dev.debug.cyclic-gc-internals"
+    ],
+    "aliases": [
+      "자유 스레딩 참조 카운트",
+      "free-threaded reference counting",
+      "free-threaded CPython 메모리",
+      "GIL 없는 빌드 참조 카운트"
+    ],
+    "refs": [
+      "https://docs.python.org/3/howto/free-threading-python.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "dev.debug.subinterpreter-isolation",
+    "title": "하위 인터프리터의 격리: 인터프리터별 GIL과 객체 공유",
+    "en": "Subinterpreter Isolation: Per-Interpreter GIL and Object Sharing",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "한 프로세스의 여러 인터프리터가 각자 GIL로 병렬 실행되는 구조와, 격리를 지키려고 객체 공유를 제한하는 손익을 분석한다.",
+    "objectives": [
+      "3.12부터 PyInterpreterConfig의 gil을 PyInterpreterConfig_OWN_GIL로 두면 하위 인터프리터가 자기 GIL로 병렬 실행되고, 이때 use_main_obmalloc은 0, check_multi_interp_extensions는 1이어야 한다는 제약을 설명할 수 있다",
+      "다단계 초기화 확장은 인터프리터마다 모듈 객체를 따로 만들고 단일 단계 초기화 확장은 첫 import 때 저장한 딕셔너리의 얕은 복사본을 나눠 쓴다는 차이로 확장 모듈이 오동작하는 원인을 분석할 수 있다",
+      "concurrent.interpreters(3.14)에서 객체가 기본적으로 pickle 복사로 넘어가고 가변 데이터는 memoryview와 Queue만 나눈다는 점을 근거로 스레드·프로세스와 공유 비용을 비교할 수 있다",
+      "같은 프로세스의 인터프리터는 확장 모듈과 os.close 같은 저수준 연산 때문에 완전히 격리되지 않고 PyGILState API가 깨질 수 있다는 점을 근거로 보안 경계로 쓰지 않는 판단을 할 수 있다"
+    ],
+    "prerequisites": [
+      "be.async.gil"
+    ],
+    "related": [
+      "dev.debug.free-threading-refcount"
+    ],
+    "aliases": [
+      "하위 인터프리터",
+      "서브인터프리터",
+      "subinterpreter",
+      "concurrent.interpreters",
+      "다중 인터프리터",
+      "multiple interpreters"
+    ],
+    "refs": [
+      "https://docs.python.org/3/c-api/subinterpreters.html",
+      "https://docs.python.org/3/library/concurrent.interpreters.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "dev.basics.build-backend-interface",
+    "title": "빌드 백엔드 인터페이스: PEP 517·660 훅",
+    "en": "Build Backend Interface: PEP 517 Hooks and PEP 660 Editable Installs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "개발 환경",
+    "summary": "pip·uv 같은 프런트엔드가 빌드 백엔드의 훅을 하위 프로세스로 불러 sdist·wheel·편집 가능 wheel을 만드는 구조와 그 한계를 분석한다.",
+    "objectives": [
+      "프런트엔드가 [build-system] 요구 사항을 갖춘 환경에서 훅마다 새 하위 프로세스로 백엔드를 부르는 이유와, 백엔드가 표준 라이브러리와 선언한 요구 사항 밖의 패키지를 가정하면 안 된다는 규칙을 설명할 수 있다",
+      "필수 훅(build_wheel·build_sdist)과 선택 훅(get_requires_for_build_wheel·prepare_metadata_for_build_wheel)의 역할, 그리고 메타데이터 훅이 없으면 프런트엔드가 wheel을 빌드해 메타데이터를 읽는다는 대체 경로로 빌드 지연을 분석할 수 있다",
+      "sdist를 먼저 만들고 푼 트리에서 wheel을 빌드하는 경로와 소스 트리에서 바로 빌드하는 경로의 차이를 알고 두 결과가 어긋나는 문제를 찾을 수 있다",
+      "build_editable이 .pth 파일·대리 모듈·심볼릭 링크 같은 방식으로 소스 트리를 가리키는 일회용 wheel을 만든다는 점과, 진입점·의존성을 바꾸거나 C 확장 같은 비Python 코드를 바꾸면 다시 설치하거나 빌드해야 한다는 한계를 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "be.python.project-layout",
+      "be.python.venv-packages"
+    ],
+    "related": [
+      "dev.basics.uv-workspace"
+    ],
+    "aliases": [
+      "PEP 517",
+      "빌드 백엔드 훅",
+      "build backend hooks",
+      "파이썬 빌드 백엔드",
+      "Python build backend",
+      "build_wheel 훅"
+    ],
+    "refs": [
+      "https://peps.python.org/pep-0517/",
+      "https://peps.python.org/pep-0660/",
+      "https://packaging.python.org/en/latest/specifications/pyproject-toml/"
+    ]
+  },
+  {
+    "id": "dev.basics.typing-variance",
+    "title": "파이썬 타입 검사의 변성: 변성 추론과 Protocol",
+    "en": "Variance in Python Type Checking: Inference and Protocols",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "개발 환경",
+    "summary": "typing 명세가 제네릭의 공변·반공변·불변을 정하고 추론하는 절차와 Protocol의 구조적 할당 규칙으로 타입 검사 오류를 분석한다.",
+    "objectives": [
+      "list[Employee]를 받는 함수가 Employee를 넣으면 list[Manager]를 넘긴 호출자의 보장이 깨진다는 예로 가변 컨테이너가 불변이고 Sequence·Mapping 같은 읽기 전용 컨테이너가 공변인 이유를 설명할 수 있다",
+      "대상 매개변수를 object로 둔 upper 특수화와 자기 자신으로 둔 lower 특수화 중 어느 쪽이 다른 쪽에 할당되는지로 공변·반공변·불변을 정하는 변성 추론 절차를 따라 클래스의 변성을 판정할 수 있다",
+      "Protocol이 MRO가 아니라 모든 멤버의 타입으로 할당 가능성을 정하고, 가변 속성이 있으면 불변이 되며 선언한 변성이 정의와 맞지 않으면 검사기가 경고한다는 규칙으로 검사 오류를 분석할 수 있다"
+    ],
+    "prerequisites": [
+      "be.python.typing-advanced"
+    ],
+    "related": [
+      "fe.ts.variance-annotations",
+      "fe.ts.type-compatibility-soundness"
+    ],
+    "aliases": [
+      "파이썬 변성",
+      "Python variance",
+      "파이썬 공변과 반공변",
+      "Python covariance and contravariance",
+      "typing Protocol 할당 규칙"
+    ],
+    "refs": [
+      "https://typing.python.org/en/latest/spec/generics.html",
+      "https://typing.python.org/en/latest/spec/protocol.html"
+    ]
+  },
+  {
     "id": "dev.git.reflog",
     "title": "reflog",
     "en": "Reflog",
@@ -9500,6 +9674,154 @@
     ],
     "refs": [
       "https://git-scm.com/docs/git-pack-objects"
+    ]
+  },
+  {
+    "id": "dev.git.promisor-remote",
+    "title": "promisor 원격(promisor remote)",
+    "en": "Git Promisor Remote",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Git",
+    "summary": "부분 클론에서 빠진 객체를 요청하면 내주겠다고 약속하는 원격으로, remote.<name>.promisor로 표시한다.",
+    "parent": "dev.git.partial-clone-internals",
+    "related": [
+      "dev.git.partial-clone"
+    ],
+    "aliases": [
+      "promisor remote",
+      "remote.<name>.promisor",
+      "extensions.partialClone"
+    ],
+    "refs": [
+      "https://git-scm.com/docs/partial-clone"
+    ]
+  },
+  {
+    "id": "dev.debug.biased-refcount",
+    "title": "편향 참조 카운트(biased reference counting)",
+    "en": "Biased Reference Counting",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "객체를 소유한 스레드는 빠른 경로로, 다른 스레드는 느린 경로로 참조 카운트를 바꾸는 자유 스레딩 CPython의 방식으로, 객체 해제가 늦어질 수 있다.",
+    "parent": "dev.debug.free-threading-refcount",
+    "aliases": [
+      "biased reference counting",
+      "편향 참조 카운팅",
+      "CPython 편향 참조 카운트"
+    ],
+    "refs": [
+      "https://docs.python.org/3/howto/free-threading-python.html"
+    ]
+  },
+  {
+    "id": "dev.debug.immortal-object",
+    "title": "불멸 객체(immortal object)",
+    "en": "Immortal Object",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "참조 카운트가 바뀌지 않아 인터프리터가 도는 동안 해제되지 않는 CPython 객체로, None과 True가 그 예다.",
+    "parent": "dev.debug.free-threading-refcount",
+    "related": [
+      "cs.lang.reference-counting"
+    ],
+    "aliases": [
+      "immortal object",
+      "불멸화된 객체",
+      "sys._is_immortal",
+      "PEP 683 불멸 객체"
+    ],
+    "refs": [
+      "https://docs.python.org/3/glossary.html#term-immortal",
+      "https://docs.python.org/3/howto/free-threading-python.html"
+    ]
+  },
+  {
+    "id": "dev.debug.per-interpreter-gil",
+    "title": "인터프리터별 GIL(PEP 684)",
+    "en": "Per-Interpreter GIL",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "3.12부터 하위 인터프리터가 주 인터프리터와 GIL을 나눠 쓰지 않고 자기 GIL을 가져 여러 코어에서 함께 돌 수 있게 한 방식이다.",
+    "parent": "dev.debug.subinterpreter-isolation",
+    "related": [
+      "be.async.gil-term"
+    ],
+    "aliases": [
+      "per-interpreter GIL",
+      "인터프리터별 GIL",
+      "PyInterpreterConfig_OWN_GIL",
+      "PEP 684"
+    ],
+    "refs": [
+      "https://docs.python.org/3/c-api/subinterpreters.html"
+    ]
+  },
+  {
+    "id": "dev.basics.build-isolation",
+    "title": "빌드 격리(build isolation)",
+    "en": "Python Build Isolation",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "개발 환경",
+    "summary": "빌드마다 선언한 빌드 요구 사항만 깔린 별도 환경을 만들어 백엔드를 돌리는 방식으로, PEP 517은 이를 권고로만 둔다.",
+    "parent": "dev.basics.build-backend-interface",
+    "aliases": [
+      "build isolation",
+      "빌드 격리",
+      "--no-build-isolation",
+      "격리된 빌드 환경"
+    ],
+    "refs": [
+      "https://peps.python.org/pep-0517/"
+    ]
+  },
+  {
+    "id": "dev.basics.editable-wheel",
+    "title": "편집 가능 wheel(PEP 660)",
+    "en": "Editable Wheel",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "개발 환경",
+    "summary": "build_editable 훅이 소스 트리를 가리키도록 만들어 설치 후 버리는 wheel로, 배포하거나 캐시하지 않는다.",
+    "parent": "dev.basics.build-backend-interface",
+    "aliases": [
+      "editable wheel",
+      "build_editable",
+      "PEP 660",
+      "PEP 660 편집 가능 wheel"
+    ],
+    "refs": [
+      "https://peps.python.org/pep-0660/"
+    ]
+  },
+  {
+    "id": "dev.basics.variance-inference",
+    "title": "변성 추론(PEP 695 타입 매개변수)",
+    "en": "Variance Inference for Type Parameters",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "개발 환경",
+    "summary": "PEP 695 문법의 타입 매개변수나 infer_variance=True인 TypeVar의 변성을 검사기가 클래스 정의로부터 정하는 규칙이다.",
+    "parent": "dev.basics.typing-variance",
+    "aliases": [
+      "Python variance inference",
+      "infer_variance",
+      "PEP 695 변성 추론",
+      "타입 매개변수 변성 추론"
+    ],
+    "refs": [
+      "https://typing.python.org/en/latest/spec/generics.html"
     ]
   }
 ]

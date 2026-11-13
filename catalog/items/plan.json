@@ -7122,6 +7122,42 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "plan.figma.plugin-data-storage",
+    "title": "Figma 플러그인 데이터 저장 위치의 손익",
+    "en": "Figma Plugin Data Storage Trade-offs",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "플러그인 정보를 문서 노드에 비공개로 둘지, 다른 플러그인과 공유할지, 사용자 기기에 둘지를 범위·크기·보안 성질로 견주는 Figma Plugin API 설계다.",
+    "objectives": [
+      "setPluginData·setSharedPluginData·clientStorage가 각각 문서와 함께 가는지, 사용자 기기에만 남는지에 따라 협업자 간 공유 여부가 달라지는 점을 설명할 수 있다",
+      "노드 데이터의 항목당 100kB 문자열 제한과 clientStorage의 플러그인당 5MB 한도, 지원 자료형 차이를 근거로 저장 위치를 고를 수 있다",
+      "비공개 플러그인 데이터도 .fig 파일을 풀면 보이고 clientStorage도 사용자에게는 감춰지지 않으며 캐시 삭제로 사라질 수 있다는 점을 근거로 민감한 값을 두지 않을 곳을 판단할 수 있다",
+      "플러그인 ID가 바뀌면 비공개 데이터와 clientStorage를 읽을 수 없게 되는 위험을 배포 설계에 반영할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.codegen-plugin"
+    ],
+    "related": [
+      "plan.figma.plugin-sandbox",
+      "plan.figma.plugin-traversal-performance"
+    ],
+    "aliases": [
+      "Figma 플러그인 저장소",
+      "Figma setPluginData",
+      "Figma 플러그인 데이터",
+      "plugin data storage"
+    ],
+    "refs": [
+      "https://developers.figma.com/docs/plugins/api/properties/nodes-setplugindata/",
+      "https://developers.figma.com/docs/plugins/api/properties/nodes-setsharedplugindata/",
+      "https://developers.figma.com/docs/plugins/api/figma-clientStorage/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
     "id": "plan.figma.variables-modes",
     "title": "Figma 변수와 모드",
     "en": "Figma Variables and Modes",
@@ -8307,6 +8343,47 @@
     ]
   },
   {
+    "id": "plan.figma.shared-plugin-data",
+    "title": "Figma 공유 플러그인 데이터(sharedPluginData)",
+    "en": "Figma Shared Plugin Data",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "네임스페이스를 붙여 노드·스타일에 저장하고 어느 플러그인이나 읽을 수 있게 하는 공개 데이터로, 항목당 100kB 문자열까지 담는다.",
+    "parent": "plan.figma.plugin-data-storage",
+    "aliases": [
+      "setSharedPluginData",
+      "getSharedPluginData",
+      "Figma 플러그인 간 데이터 공유"
+    ],
+    "refs": [
+      "https://developers.figma.com/docs/plugins/api/properties/nodes-setsharedplugindata/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "plan.figma.client-storage",
+    "title": "Figma clientStorage",
+    "en": "Figma clientStorage",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "플러그인이 문서가 아닌 사용자 기기에 비동기로 값을 저장하는 공간으로, 플러그인마다 5MB까지 쓰고 다른 사용자와 동기화되지 않는다.",
+    "parent": "plan.figma.plugin-data-storage",
+    "aliases": [
+      "figma.clientStorage",
+      "Figma 플러그인 로컬 저장소"
+    ],
+    "refs": [
+      "https://developers.figma.com/docs/plugins/api/figma-clientStorage/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
     "id": "plan.basics.wcag-conformance-model",
     "title": "WCAG 2.2 적합성 요구사항과 적합성 주장",
     "en": "WCAG 2.2 Conformance Requirements and Claims",
@@ -8769,6 +8846,104 @@
     "checked_at": "2026-11-13"
   },
   {
+    "id": "plan.basics.live-region-semantics",
+    "title": "라이브 영역 알림의 의미 모델: 정중함·원자성·변경 종류",
+    "en": "Live Region Semantics: Politeness, Atomicity and Relevant Changes",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "포커스 밖에서 바뀐 내용을 보조기기가 언제, 얼마만큼, 어떤 변경일 때 읽을지를 aria-live·aria-atomic·aria-relevant·aria-busy가 정하는 WAI-ARIA 1.2 규칙이다.",
+    "objectives": [
+      "off·polite·assertive가 알림 시점과 대기 중인 알림 처리에 주는 차이를 근거로 assertive를 꼭 필요한 중단에만 써야 하는 이유를 설명할 수 있다",
+      "aria-atomic과 aria-relevant 값이 가장 가까운 조상에서 정해지는 방식과, 바뀐 노드만 읽을지 영역 전체를 읽을지에 따른 손익을 비교할 수 있다",
+      "여러 번 나눠 바뀌는 영역에 aria-busy를 걸어 변경을 한 번에 처리하게 하는 방식과 그 한계를 판단할 수 있다",
+      "결과·대기·진행·오류를 알리는 문구가 WCAG 4.1.3 상태 메시지에 해당하는지, 포커스 이동 같은 맥락 변경이라 해당하지 않는지 가를 수 있다"
+    ],
+    "prerequisites": [
+      "fe.html.accessible-markup"
+    ],
+    "related": [
+      "fe.html.aria-live",
+      "plan.basics.composite-widget-focus"
+    ],
+    "aliases": [
+      "라이브 영역 알림 설계",
+      "live region politeness",
+      "알림 정중함 수준"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/wai-aria-1.2/",
+      "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-relevant",
+      "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html"
+    ]
+  },
+  {
+    "id": "plan.basics.sample-size-power",
+    "title": "표본 크기와 검정력 계산: α·β·검출할 차이",
+    "en": "Sample Size and Statistical Power Calculation",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "유의수준 α, 놓칠 위험 β, 검출할 차이 δ, 변동성으로 필요한 표본 수를 계산하고 그 사이의 손익을 따지는 NIST 통계 핸드북의 방법이다.",
+    "objectives": [
+      "평균이 기준값에서 δ만큼 바뀌었는지 보는 검정에서 표본 수가 α와 β의 임계값 합의 제곱과 (σ/δ)²에 비례하는 구조를 근거로 검출할 차이를 절반으로 줄이면 표본이 약 네 배 드는 이유를 설명할 수 있다",
+      "양측 검정은 α/2를, 단측 검정은 α를 쓰는 차이가 필요한 표본 수에 주는 영향을 비교할 수 있다",
+      "불량률 같은 비율이 기준 비율 p0에서 p1로 바뀌었는지 보는 검정에서 표본 수를 구하고 1/δ를 더하는 연속성 보정을 쓸지 판단할 수 있다",
+      "σ를 모를 때 t 분포로 바꾸고 자유도가 표본 수에 달려 있어 반복 계산해야 하는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.ab-testing-design"
+    ],
+    "related": [
+      "plan.basics.usability-benchmarking"
+    ],
+    "aliases": [
+      "표본 크기 계산",
+      "sample size calculation",
+      "검정력 분석",
+      "power analysis"
+    ],
+    "refs": [
+      "https://www.itl.nist.gov/div898/handbook/prc/section2/prc222.htm",
+      "https://www.itl.nist.gov/div898/handbook/prc/section2/prc242.htm",
+      "https://www.itl.nist.gov/div898/handbook/prc/section1/prc131.htm"
+    ]
+  },
+  {
+    "id": "plan.basics.inert-hidden-modal",
+    "title": "aria-hidden·inert·aria-modal 범위 비교",
+    "en": "Removing Content from Interaction: aria-hidden, inert and aria-modal",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "보조기기에만 숨기는 aria-hidden, 포커스·입력·보조기기 노출을 모두 막는 HTML inert, 모달 밖을 이용 불가로 알리는 aria-modal의 범위와 손익을 견주는 표준 규칙이다.",
+    "objectives": [
+      "aria-hidden이 접근성 API 노출만 바꾸고 inert는 포인터 입력·텍스트 선택·편집·페이지 내 찾기·포커스까지 막는 차이를 설명할 수 있다",
+      "showModal로 연 대화상자가 문서를 막힌 상태로 만들어 대화상자 밖 노드를 모두 inert로 만드는 방식과, aria-modal만 단 경우 작성자가 따로 지켜야 할 것을 비교할 수 있다",
+      "보이는 내용을 inert로 만들거나 aria-hidden으로 숨기면 일부 사용자가 그 내용을 쓰지 못하게 되는 위험을 근거로 적용 범위를 판단할 수 있다",
+      "로딩 중인 영역은 inert, 개별 입력 칸은 disabled처럼 상황에 맞는 수단을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "fe.html.accessible-markup"
+    ],
+    "related": [
+      "plan.basics.composite-widget-focus",
+      "plan.basics.core-aam-role-mapping"
+    ],
+    "aliases": [
+      "aria-hidden과 inert 차이",
+      "inert vs aria-hidden",
+      "모달 바깥 비활성화"
+    ],
+    "refs": [
+      "https://html.spec.whatwg.org/multipage/interaction.html",
+      "https://www.w3.org/TR/wai-aria-1.2/"
+    ]
+  },
+  {
     "id": "plan.basics.wcag2ict",
     "title": "WCAG2ICT로 앱·문서에 WCAG 적용하기",
     "en": "Applying WCAG to Non-Web ICT with WCAG2ICT",
@@ -9055,6 +9230,40 @@
     ]
   },
   {
+    "id": "plan.figma.plugin-change-events",
+    "title": "Figma 플러그인 변경 감지 이벤트의 범위와 비용",
+    "en": "Figma Plugin Change Events: Scope and Cost",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "documentchange·stylechange·페이지별 nodechange 중 무엇으로 문서 변경을 들을지, 일괄 비동기 전달과 동적 페이지 로딩 비용을 근거로 고르는 Figma Plugin API 설계다.",
+    "objectives": [
+      "documentchange 콜백이 동기로 불리지 않고 여러 변경이 묶여 한 번만 올 수 있으며, 콜백 안에서 플러그인이 한 변경과 스타일·메인 컴포넌트로 생긴 하위 변경은 보고되지 않는 점을 근거로 변경 추적 로직의 빈틈을 분석할 수 있다",
+      "dynamic-page 문서 접근에서 documentchange를 쓰려면 loadAllPagesAsync가 먼저 필요해 생기는 지연과, stylechange나 PageNode의 nodechange로 범위를 좁히는 대안의 손익을 비교할 수 있다",
+      "변경 항목의 type과 origin(LOCAL·REMOTE)을 보고 내 편집과 다른 사용자 편집을 나눠 처리하고, 처리 전에 지워진 노드가 RemovedNode로 오는 경우를 다룰 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.plugin-traversal-performance"
+    ],
+    "related": [
+      "plan.figma.dynamic-page-loading",
+      "plan.figma.plugin-data-storage"
+    ],
+    "aliases": [
+      "Figma documentchange",
+      "Figma nodechange",
+      "Figma 문서 변경 이벤트",
+      "figma.on documentchange"
+    ],
+    "refs": [
+      "https://developers.figma.com/docs/plugins/api/properties/figma-on/",
+      "https://developers.figma.com/docs/plugins/api/DocumentChange/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
     "id": "plan.basics.accessibility-supported",
     "title": "접근성 지원 기술 사용(accessibility supported)",
     "en": "Accessibility Supported Ways of Using Technologies",
@@ -9153,6 +9362,63 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-13"
+  },
+  {
+    "id": "plan.basics.status-message",
+    "title": "상태 메시지(Status Messages)",
+    "en": "Status Messages (WCAG 4.1.3)",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "동작 결과·대기·진행·오류를 알리되 맥락을 바꾸지 않는 내용 변경으로, WCAG 4.1.3은 포커스를 옮기지 않고도 보조기기가 알 수 있게 하라고 요구한다.",
+    "parent": "plan.basics.live-region-semantics",
+    "aliases": [
+      "WCAG 4.1.3",
+      "status messages",
+      "상태 알림 기준"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html"
+    ]
+  },
+  {
+    "id": "plan.basics.statistical-power",
+    "title": "통계적 검정력(1−β)",
+    "en": "Statistical Power",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "실제로 차이가 있을 때 검정이 그 차이를 찾아낼 확률로, 차이를 놓칠 위험 β를 1에서 뺀 값이다.",
+    "parent": "plan.basics.sample-size-power",
+    "aliases": [
+      "검정력",
+      "statistical power",
+      "1-β"
+    ],
+    "refs": [
+      "https://www.itl.nist.gov/div898/handbook/prc/section2/prc242.htm"
+    ]
+  },
+  {
+    "id": "plan.basics.inert-attribute",
+    "title": "HTML inert 속성",
+    "en": "HTML inert Attribute",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "요소와 그 자손을 포커스·클릭·선택·편집·페이지 내 찾기에서 빼고 보조기기에도 노출하지 않게 하는 HTML 불리언 속성이다.",
+    "parent": "plan.basics.inert-hidden-modal",
+    "aliases": [
+      "inert attribute",
+      "inert 서브트리",
+      "비활성 서브트리"
+    ],
+    "refs": [
+      "https://html.spec.whatwg.org/multipage/interaction.html"
+    ]
   },
   {
     "id": "plan.figma.library-analytics",
@@ -9737,5 +10003,47 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-13"
+  },
+  {
+    "id": "plan.basics.aria-atomic",
+    "title": "aria-atomic",
+    "en": "aria-atomic",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "라이브 영역이 바뀔 때 보조기기가 바뀐 노드만 읽을지(false, 기본값) 영역 전체를 라벨과 함께 읽을지(true)를 정하는 ARIA 속성이다.",
+    "parent": "plan.basics.live-region-semantics",
+    "related": [
+      "plan.basics.aria-relevant"
+    ],
+    "aliases": [
+      "원자적 알림",
+      "라이브 영역 전체 읽기"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/wai-aria-1.2/"
+    ]
+  },
+  {
+    "id": "plan.basics.aria-relevant",
+    "title": "aria-relevant",
+    "en": "aria-relevant",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "라이브 영역에서 노드 추가·삭제·텍스트 변경 중 무엇을 알릴지 정하는 ARIA 속성으로, 지정이 없으면 additions text로 본다.",
+    "parent": "plan.basics.live-region-semantics",
+    "related": [
+      "plan.basics.aria-atomic"
+    ],
+    "aliases": [
+      "알릴 변경 종류",
+      "aria-relevant removals"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-relevant"
+    ]
   }
 ]

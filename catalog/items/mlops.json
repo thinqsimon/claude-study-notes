@@ -9451,6 +9451,75 @@
     ]
   },
   {
+    "id": "mlops.serve.vllm-prefix-cache-internals",
+    "title": "vLLM 접두사 캐시의 내부: 블록 해시와 LRU 축출",
+    "en": "vLLM Automatic Prefix Caching Internals",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "vLLM이 꽉 찬 KV 블록마다 앞 블록 해시를 이어 붙인 해시로 재사용을 찾고, 참조 수가 0인 블록을 빈 블록 큐의 앞에서부터 축출하는 구조를 분석한다.",
+    "objectives": [
+      "블록 해시가 부모 해시·블록 토큰·추가 키(LoRA ID·멀티모달 해시·cache_salt)로 이루어져 앞부분 전체가 같아야 적중하는 이유를 설명할 수 있다",
+      "덜 찬 마지막 블록은 캐시되지 않고, v1의 덧붙이기 전용 블록 테이블 때문에 같은 내용이 두 번 캐시될 수 있다는 점으로 적중률이 기대보다 낮은 원인을 분석할 수 있다",
+      "요청이 끝나면 블록을 역순으로 빈 블록 큐 끝에 넣어 접두사의 끝 블록부터 축출되는 순서와 참조 수의 역할을 설명할 수 있다",
+      "sha256·sha256_cbor·xxhash 해시 방식의 재현성·속도·충돌 위험을 비교해 다중 테넌트 환경에 맞는 방식을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.vllm-prefix-cache-ops"
+    ],
+    "related": [
+      "llm.internals.kv-cache",
+      "mlops.serve.vllm-hybrid-kv-cache"
+    ],
+    "aliases": [
+      "vLLM APC 내부",
+      "vLLM prefix caching internals",
+      "vLLM 접두사 캐시 설계",
+      "vLLM 빈 블록 큐"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/design/prefix_caching/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.observe.evidently-drift-method-selection",
+    "title": "Evidently 드리프트 검정 자동 선택: 표본 크기와 임계값의 뜻",
+    "en": "Evidently Default Drift Method Selection",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "Evidently가 열 유형·기준 데이터 크기·고유값 수로 K-S·카이제곱·Z 검정이나 Wasserstein·Jensen-Shannon 거리를 고르고, 방법마다 임계값을 다르게 읽는 규칙을 분석한다.",
+    "objectives": [
+      "기준 데이터가 1000개 이하인지, 열이 수치형·범주형인지, 수치형이라도 고유값이 5개 이하인지에 따라 기본 방법이 어떻게 갈리는지 설명할 수 있다",
+      "p값 검정은 임계값보다 작을 때, 거리 방법은 임계값 이상일 때 드리프트로 본다는 차이로 임계값을 바꿀 때 결과가 어느 쪽으로 움직일지 판단할 수 있다",
+      "텍스트 열을 기준·현재 문장을 가려내는 분류기의 ROC AUC로 판정하는 방식과, 작은 데이터에서 무작위 분류기 분포의 백분위를 쓰는 이유를 설명할 수 있다",
+      "drift_share로 데이터셋 전체 드리프트를 정하는 규칙과 열별 방법·임계값을 바꾸는 손익을 따질 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.observe.evidently-test-conditions",
+      "mlops.observe.drift-detection"
+    ],
+    "related": [
+      "mlops.observe.evidently-data-drift-preset"
+    ],
+    "aliases": [
+      "Evidently 드리프트 방법",
+      "Evidently drift method",
+      "Evidently stattest",
+      "Evidently 기본 드리프트 알고리즘"
+    ],
+    "refs": [
+      "https://docs.evidentlyai.com/metrics/explainer_drift",
+      "https://docs.evidentlyai.com/metrics/customize_data_drift"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "mlops.serve.inference-optimization",
     "title": "모델 서빙과 양자화",
     "en": "Model Serving and Quantization",
@@ -9896,6 +9965,73 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-13"
+  },
+  {
+    "id": "mlops.serve.vllm-torch-compile-integration",
+    "title": "vLLM torch.compile 내부: 컴파일 캐시와 조각 그래프",
+    "en": "vLLM torch.compile Integration Internals",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "vLLM이 모델을 어텐션에서 잘라 조각마다 Inductor로 컴파일하고 그 결과를 디스크에 캐시해 시작 시간과 실행 속도를 맞바꾸는 구조를 분석한다.",
+    "objectives": [
+      "어텐션을 사용자 정의 연산으로 감싸 한 그래프로 잡은 뒤 splitting_ops에서 잘라, 가운데 층들이 같은 컴파일 결과를 나눠 쓰는 구조를 설명할 수 있다",
+      "컴파일 캐시 디렉터리가 vLLM 설정·PyTorch 컴파일러 설정·모델 forward 코드로 정해진다는 점으로 캐시를 다른 배포에 옮겨 쓸 수 있는 조건과 다시 컴파일되는 경우를 판단할 수 있다",
+      "동적 형상 처리 방식(BACKED·UNBACKED·BACKED_SIZE_OBLIVIOUS)이 가드를 다루는 차이와 그 안전성·최적화 손익을 비교할 수 있다",
+      "compile_sizes로 크기별 정적 컴파일과 자동 튜닝을 켰을 때 첫 실행 시간이 늘어나는 대신 얻는 속도 이득을 따질 수 있다"
+    ],
+    "prerequisites": [
+      "ml.nn.torch-compile-troubleshooting",
+      "mlops.serve.vllm-v1-process-architecture"
+    ],
+    "related": [
+      "mlops.serve.vllm-cudagraph-modes"
+    ],
+    "aliases": [
+      "vLLM torch.compile",
+      "vLLM 컴파일 통합",
+      "vLLM piecewise compile",
+      "vLLM 조각 컴파일"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/design/torch_compile/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.triton-response-cache",
+    "title": "Triton 응답 캐시의 손익: 요청 해시와 로컬·Redis 캐시",
+    "en": "Triton Response Cache Trade-offs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Triton이 모델 이름·버전·입력 텐서의 해시로 같은 요청의 결과를 돌려주는 응답 캐시가 언제 이득이고 언제 손해인지, 로컬과 Redis 구현을 비교해 따진다.",
+    "objectives": [
+      "요청 해시가 모델 이름·버전·입력 텐서로 만들어지고 64비트 해시 충돌 시 엉뚱한 결과가 돌아올 수 있다는 위험을 설명할 수 있다",
+      "CPU 메모리 밖의 입력·출력 텐서, 실패한 요청, 시퀀스 배처, 디커플드 모델이 캐시되지 않는 조건으로 적중이 없는 원인을 분석할 수 있다",
+      "최상위 앙상블 캐시가 구성 모델 모두가 지원할 때만 되고, 앙상블에서 놓쳐도 구성 모델 캐시에서 적중할 수 있는 동작을 설명할 수 있다",
+      "로컬 캐시와 Redis 캐시를 재시작 뒤 유지·여러 인스턴스 공유·Redis 장애 시 동작으로 비교하고, 중복 요청 비율과 모델 비용으로 캐시를 켤지 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.triton-ensemble-vs-bls"
+    ],
+    "related": [
+      "mlops.serve.triton-batcher-design"
+    ],
+    "aliases": [
+      "Triton response cache",
+      "Triton 응답 캐시",
+      "Triton 추론 결과 캐시",
+      "Triton Redis cache"
+    ],
+    "refs": [
+      "https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/user_guide/response_cache.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   },
   {
     "id": "mlops.observe.data-drift",
@@ -10590,5 +10726,139 @@
     "refs": [
       "https://docs.ray.io/en/latest/ray-core/scheduling/placement-group.html"
     ]
+  },
+  {
+    "id": "mlops.serve.vllm-block-hash-chain",
+    "title": "vLLM 블록 해시 연쇄(부모 해시·추가 키)",
+    "en": "vLLM KV Block Hash Chain",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "꽉 찬 KV 블록마다 앞 블록의 해시, 블록 안 토큰, LoRA ID·멀티모달 입력 해시·cache_salt 같은 추가 키를 함께 해시해 접두사 전체를 하나의 키로 나타내는 방식이다.",
+    "parent": "mlops.serve.vllm-prefix-cache-internals",
+    "related": [
+      "mlops.serve.vllm-cache-salt"
+    ],
+    "aliases": [
+      "vLLM block hash",
+      "vLLM 블록 해시",
+      "parent block hash",
+      "부모 블록 해시"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/design/prefix_caching/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.vllm-prefix-hash-algo",
+    "title": "vLLM 블록 해시 방식(prefix-caching-hash-algo)",
+    "en": "vLLM Prefix Caching Hash Algorithm",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "블록 해시를 sha256·sha256_cbor·xxhash·xxhash_cbor 중 무엇으로 만들지 정하는 vLLM 옵션으로, 재현성·속도·충돌 위험을 맞바꾼다.",
+    "parent": "mlops.serve.vllm-prefix-cache-internals",
+    "aliases": [
+      "prefix-caching-hash-algo",
+      "prefix_caching_hash_algo",
+      "sha256_cbor",
+      "xxhash_cbor"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/design/prefix_caching/",
+      "https://docs.vllm.ai/en/latest/configuration/engine_args/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.vllm-compile-cache-dir",
+    "title": "vLLM 컴파일 결과 캐시(torch_compile_cache)",
+    "en": "vLLM torch.compile Cache Directory",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "vLLM이 Inductor 컴파일 결과를 ~/.cache/vllm/torch_compile_cache/ 아래에 설정·코드별 디렉터리로 저장해 다음 시작 때 컴파일을 건너뛰게 하는 캐시로, 환경 변수로 끌 수 있다.",
+    "parent": "mlops.serve.vllm-torch-compile-integration",
+    "aliases": [
+      "VLLM_DISABLE_COMPILE_CACHE",
+      "torch_compile_cache",
+      "vLLM torch.compile cache"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/design/torch_compile/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.vllm-dynamic-shapes-type",
+    "title": "vLLM 동적 형상 방식(DynamicShapesConfig type)",
+    "en": "vLLM Dynamic Shapes Configuration",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "vLLM이 torch.compile 가드를 다루는 방식을 BACKED·UNBACKED·BACKED_SIZE_OBLIVIOUS 중에서 고르는 설정으로, 속도와 안전성을 맞바꾼다.",
+    "parent": "mlops.serve.vllm-torch-compile-integration",
+    "aliases": [
+      "DynamicShapesConfig",
+      "BACKED_SIZE_OBLIVIOUS",
+      "vLLM guard dropping",
+      "vLLM 가드 제거"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/design/torch_compile/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.observe.evidently-drift-share",
+    "title": "drift_share(Evidently 데이터셋 드리프트 비율)",
+    "en": "Evidently drift_share",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "드리프트가 난 열의 비율이 이 값에 이르면 데이터셋 전체를 드리프트로 판정하게 하는 Evidently 데이터셋 수준 설정으로, 기본값은 0.5다.",
+    "parent": "mlops.observe.evidently-drift-method-selection",
+    "aliases": [
+      "drift_share",
+      "Evidently 드리프트 열 비율",
+      "dataset drift share"
+    ],
+    "refs": [
+      "https://docs.evidentlyai.com/metrics/customize_data_drift"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.observe.evidently-text-domain-classifier",
+    "title": "텍스트 드리프트 판별 분류기(Evidently)",
+    "en": "Evidently Text Drift Domain Classifier",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "기준 텍스트와 현재 텍스트를 가려내도록 이진 분류기를 학습해 그 ROC AUC가 임계값을 넘으면 텍스트 열에 드리프트가 있다고 보는 Evidently의 방식이다.",
+    "parent": "mlops.observe.evidently-drift-method-selection",
+    "aliases": [
+      "perc_text_content_drift",
+      "abs_text_content_drift",
+      "Evidently text drift",
+      "Evidently 텍스트 드리프트"
+    ],
+    "refs": [
+      "https://docs.evidentlyai.com/metrics/explainer_drift"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   }
 ]

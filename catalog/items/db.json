@@ -8398,6 +8398,27 @@
     ]
   },
   {
+    "id": "db.internals.hash-mem-multiplier",
+    "title": "hash_mem_multiplier: 해시 연산에 더 주는 메모리",
+    "en": "PostgreSQL hash_mem_multiplier",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "DB 내부",
+    "summary": "해시 조인·해시 집계 같은 해시 연산이 work_mem의 몇 배(기본 2.0)까지 쓰고 나서 임시 파일로 넘길지 정하는 PostgreSQL 설정이다.",
+    "related": [
+      "db.internals.query-planner",
+      "db.internals.parallel-query"
+    ],
+    "aliases": [
+      "hash_mem_multiplier",
+      "PostgreSQL 해시 메모리 배수"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/runtime-config-resource.html"
+    ]
+  },
+  {
     "id": "db.internals.query-planner",
     "title": "PostgreSQL 실행 계획과 비용 추정",
     "en": "Query Plans and Cost Estimation",
@@ -8851,6 +8872,142 @@
     ]
   },
   {
+    "id": "db.cache.redis-key-expiration",
+    "title": "Redis 키 만료의 내부: 수동 만료와 능동 만료",
+    "en": "Redis Key Expiration Internals: Passive and Active Expiry",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "캐시",
+    "summary": "Redis는 접근할 때 지우는 수동 만료와 무작위 표본을 주기적으로 검사하는 능동 만료를 함께 써서 만료된 키를 치운다.",
+    "objectives": [
+      "다시 읽히지 않는 만료 키가 수동 만료만으로는 메모리에 남는 까닭과 능동 만료가 표본 검사로 이를 메우는 방식을 설명할 수 있다",
+      "만료 시각이 절대 Unix 타임스탬프로 저장되어 RDB를 시계가 어긋난 서버로 옮기거나 시스템 시각을 바꾸면 키가 한꺼번에 만료될 수 있음을 설명할 수 있다",
+      "마스터가 만료 시 DEL을 만들어 AOF와 복제본에 보내고 복제본은 스스로 만료하지 않는 설계가 일관성을 지키는 방식을 설명할 수 있다",
+      "hz·active-expire-effort·lazyfree-lazy-expire가 CPU·지연·메모리 사이에서 만드는 손익을 따질 수 있다"
+    ],
+    "prerequisites": [
+      "db.cache.redis-eviction",
+      "db.cache.redis-persistence"
+    ],
+    "related": [
+      "db.cache.redis-replication-internals"
+    ],
+    "aliases": [
+      "Redis 키 만료",
+      "Redis key expiration",
+      "Redis 능동 만료",
+      "Redis active expiry",
+      "Redis 수동 만료"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/commands/expire/",
+      "https://raw.githubusercontent.com/redis/redis/8.10/redis.conf"
+    ]
+  },
+  {
+    "id": "db.nosql.mongodb-replication-internals",
+    "title": "MongoDB 복제의 내부: oplog·선출·롤백",
+    "en": "MongoDB Replication Internals: Oplog, Elections and Rollbacks",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "NoSQL",
+    "summary": "MongoDB 레플리카 셋은 멱등인 oplog 항목을 복제하고, 하트비트로 장애를 알아 선출하며, 과반에 닿지 않은 쓰기는 롤백한다.",
+    "objectives": [
+      "oplog 항목이 멱등이라 다시 적용해도 안전하고, 연결이 끊긴 secondary는 oplog 창 안에 돌아와야만 복제로 따라잡을 수 있음을 설명할 수 있다",
+      "하트비트와 electionTimeoutMillis가 장애 감지와 선출 시간을 정하고, 선출 동안에는 쓰기를 받지 못하는 손익을 설명할 수 있다",
+      "가장 높은 optime을 가진 멤버만 primary가 될 수 있고, 소수 쪽에 남은 primary는 물러나는 규칙을 네트워크 분할에 적용해 설명할 수 있다",
+      "과반에 복제되지 않은 쓰기가 옛 primary에서 롤백되어 <dbpath>/rollback 아래 파일로 남는 과정을 설명하고, 투표 멤버의 저널링을 켜고 w: \"majority\"를 쓰면 확인된 쓰기의 롤백을 막을 수 있음을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "db.nosql.mongodb-write-concern-read-preference"
+    ],
+    "related": [
+      "db.cache.redis-replication-internals",
+      "db.nosql.wiredtiger-internals"
+    ],
+    "aliases": [
+      "MongoDB 복제",
+      "MongoDB replication",
+      "MongoDB 레플리카 셋",
+      "MongoDB replica set",
+      "MongoDB 선출",
+      "MongoDB 롤백"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/core/replica-set-oplog/",
+      "https://www.mongodb.com/docs/manual/core/replica-set-elections/",
+      "https://www.mongodb.com/docs/manual/core/replica-set-rollbacks/"
+    ]
+  },
+  {
+    "id": "db.internals.row-estimation",
+    "title": "PostgreSQL 행 수 추정: MCV·히스토그램·선택도",
+    "en": "PostgreSQL Row Estimation: MCVs, Histograms and Selectivity",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "DB 내부",
+    "summary": "PostgreSQL 플래너는 pg_statistic의 최빈값 목록과 히스토그램, n_distinct로 조건마다 선택도를 계산해 예상 행 수를 낸다.",
+    "objectives": [
+      "범위 조건의 선택도를 히스토그램 구간 안의 선형 보간으로, 같음 조건의 선택도를 최빈값 빈도나 n_distinct로 계산하는 과정을 따라갈 수 있다",
+      "여러 조건의 선택도를 서로 독립이라 보고 곱하기 때문에 열끼리 상관이 있으면 행 수를 크게 낮춰 잡는 원인을 설명할 수 있다",
+      "조인 선택도가 null_frac과 n_distinct, 양쪽의 최빈값 목록으로 정해지며 조인 방식과 따로 추정된다는 점을 설명할 수 있다",
+      "reltuples를 현재 페이지 수에 맞춰 늘려 잡는 방식과 ANALYZE 표본 추출 때문에 추정치가 실행마다 조금씩 바뀌는 까닭을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "db.internals.query-planner"
+    ],
+    "related": [
+      "db.internals.extended-statistics"
+    ],
+    "aliases": [
+      "PostgreSQL 행 수 추정",
+      "PostgreSQL row estimation",
+      "PostgreSQL 선택도",
+      "PostgreSQL selectivity"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/row-estimation-examples.html",
+      "https://www.postgresql.org/docs/current/planner-stats.html"
+    ]
+  },
+  {
+    "id": "db.orm.session-identity-map-flush",
+    "title": "SQLAlchemy Session의 identity map과 flush",
+    "en": "SQLAlchemy Session Internals: Identity Map, Autoflush and Expiration",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "ORM",
+    "summary": "SQLAlchemy Session은 기본 키마다 객체 하나를 identity map에 두고, 질의 전에 변경을 flush하며, 롤백 때와 기본 설정의 커밋 때 객체를 만료시킨다.",
+    "objectives": [
+      "identity map 때문에 같은 행을 두 번 조회해도 같은 객체가 돌아오고 이미 읽은 속성은 새 질의 결과로 덮이지 않아 오래된 값이 남을 수 있음을 설명할 수 있다",
+      "질의·지연 로딩 전에 일어나는 autoflush와 commit 때 늘 일어나는 flush의 시점을 설명하고, flush가 실패하면 rollback() 전까지 Session을 쓸 수 없는 까닭을 설명할 수 있다",
+      "기본 설정(expire_on_commit=True)의 commit 뒤와 모든 rollback 뒤 객체가 만료되어 다음 접근 때 SELECT가 나가는 손익과, expire()·refresh()·populate_existing의 차이를 설명할 수 있다",
+      "Session 안의 객체가 약하게 참조되어 바뀌지 않은 persistent 객체는 애플리케이션이 참조를 놓으면 사라질 수 있음을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "db.orm.n-plus-one"
+    ],
+    "related": [
+      "db.orm.async-expire-on-commit",
+      "be.arch.unit-of-work"
+    ],
+    "aliases": [
+      "SQLAlchemy identity map",
+      "SQLAlchemy 아이덴티티 맵",
+      "SQLAlchemy autoflush",
+      "SQLAlchemy flush",
+      "SQLAlchemy 객체 상태"
+    ],
+    "refs": [
+      "https://docs.sqlalchemy.org/en/20/orm/session_basics.html",
+      "https://docs.sqlalchemy.org/en/20/orm/session_state_management.html"
+    ]
+  },
+  {
     "id": "db.internals.wal-replication",
     "title": "WAL과 복제",
     "en": "WAL and Replication",
@@ -9228,6 +9385,34 @@
     ]
   },
   {
+    "id": "db.internals.hash-index",
+    "title": "PostgreSQL 해시 인덱스의 내부와 손익",
+    "en": "PostgreSQL Hash Index Internals and Trade-offs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "DB 내부",
+    "summary": "PostgreSQL 해시 인덱스는 값 대신 4바이트 해시만 버킷 페이지에 담아 같음 검색을 빠르게 하지만 범위·고유·다중 열을 지원하지 않는다.",
+    "objectives": [
+      "메타 페이지·기본 버킷 페이지·넘침 페이지·비트맵 페이지가 맡는 일을 설명할 수 있다",
+      "해시값만 저장해 긴 값에서 B-tree보다 작아지는 대신 모든 검색이 손실 검색이 되고 = 연산자만 쓸 수 있는 손익을 설명할 수 있다",
+      "값이 한쪽에 몰리면 넘침 페이지 사슬이 길어져 B-tree보다 블록 접근이 많아질 수 있음을 근거로 해시 인덱스가 맞는 열을 고를 수 있다",
+      "버킷 분할이 삽입하는 세션에서 일어나고 버킷 수는 줄지 않아 REINDEX로만 인덱스를 줄일 수 있는 운영 비용을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "db.internals.btree",
+      "db.internals.index-access-methods"
+    ],
+    "aliases": [
+      "PostgreSQL 해시 인덱스",
+      "PostgreSQL hash index",
+      "USING hash 인덱스"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/hash-index.html"
+    ]
+  },
+  {
     "id": "db.internals.xid-wraparound",
     "title": "트랜잭션 ID 겹침과 동결(freeze)",
     "en": "Transaction ID Wraparound and Freezing",
@@ -9417,6 +9602,44 @@
     ],
     "refs": [
       "https://www.mongodb.com/docs/manual/reference/read-concern-majority/"
+    ]
+  },
+  {
+    "id": "db.nosql.oplog-window",
+    "title": "oplog 창: secondary가 따라잡을 수 있는 시간",
+    "en": "MongoDB Oplog Window",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "NoSQL",
+    "summary": "oplog의 가장 새 항목과 가장 옛 항목 사이의 시간으로, 끊긴 secondary는 이 안에 다시 이어져야 복제로 따라잡는다.",
+    "parent": "db.nosql.mongodb-replication-internals",
+    "aliases": [
+      "oplog window",
+      "MongoDB oplog 창"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/core/replica-set-oplog/"
+    ]
+  },
+  {
+    "id": "db.internals.most-common-values",
+    "title": "최빈값 목록(MCV)과 most_common_freqs",
+    "en": "PostgreSQL Most Common Values (MCV) List",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "DB 내부",
+    "summary": "ANALYZE가 열마다 자주 나오는 값과 그 빈도를 pg_stats에 적어 두는 목록으로, 같음 조건의 선택도를 이 빈도로 바로 정한다.",
+    "parent": "db.internals.row-estimation",
+    "aliases": [
+      "most_common_vals",
+      "most_common_freqs",
+      "PostgreSQL MCV 목록",
+      "PostgreSQL MCV list"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/row-estimation-examples.html"
     ]
   },
   {
@@ -9845,6 +10068,78 @@
     ],
     "refs": [
       "https://redis.io/docs/latest/operate/oss_and_stack/management/optimization/memory-optimization/"
+    ]
+  },
+  {
+    "id": "db.cache.active-expire-effort",
+    "title": "active-expire-effort: Redis 능동 만료의 노력 수준",
+    "en": "Redis active-expire-effort",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "캐시",
+    "summary": "기본값 1에서 최대 10까지 올려 능동 만료 주기가 더 애쓰게 하며, CPU와 지연을 더 쓰는 대신 메모리에 남는 만료 키를 줄인다.",
+    "parent": "db.cache.redis-key-expiration",
+    "aliases": [
+      "active-expire-effort",
+      "Redis 만료 노력 수준"
+    ],
+    "refs": [
+      "https://raw.githubusercontent.com/redis/redis/8.10/redis.conf"
+    ]
+  },
+  {
+    "id": "db.cache.lazyfree-lazy-expire",
+    "title": "lazyfree-lazy-expire: 만료 키를 백그라운드에서 지우기",
+    "en": "Redis lazyfree-lazy-expire",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "캐시",
+    "summary": "기본값 no에서는 만료된 키를 DEL처럼 막으며 지우고, yes로 바꾸면 UNLINK처럼 백그라운드 스레드가 메모리를 돌려받는다.",
+    "parent": "db.cache.redis-key-expiration",
+    "aliases": [
+      "lazyfree-lazy-expire",
+      "Redis 만료 키 지연 해제"
+    ],
+    "refs": [
+      "https://raw.githubusercontent.com/redis/redis/8.10/redis.conf"
+    ]
+  },
+  {
+    "id": "db.nosql.election-timeout-millis",
+    "title": "electionTimeoutMillis: MongoDB 선출 대기 시간",
+    "en": "MongoDB electionTimeoutMillis",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "NoSQL",
+    "summary": "secondary가 primary와 이 시간(기본 10초)보다 오래 연결이 끊기면 선출을 시작하게 하는 레플리카 셋 설정이다.",
+    "parent": "db.nosql.mongodb-replication-internals",
+    "aliases": [
+      "electionTimeoutMillis",
+      "MongoDB 선출 제한 시간"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/core/replica-set-elections/"
+    ]
+  },
+  {
+    "id": "db.internals.hash-overflow-page",
+    "title": "해시 인덱스 넘침 페이지",
+    "en": "Hash Index Overflow Page",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "DB 내부",
+    "summary": "PostgreSQL 해시 인덱스에서 기본 버킷 페이지가 차면 그 버킷에 사슬로 이어 붙이는 페이지로, 검색은 사슬 전체를 읽는다.",
+    "parent": "db.internals.hash-index",
+    "aliases": [
+      "hash overflow page",
+      "PostgreSQL 해시 넘침 페이지"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/hash-index.html"
     ]
   }
 ]

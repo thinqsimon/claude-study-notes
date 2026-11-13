@@ -1,5 +1,5 @@
 {
- "version": "0.83.0",
+ "version": "0.84.0",
  "domains": [
   {
    "prefix": "dev",
@@ -9436,6 +9436,185 @@
    "domain": "dev"
   },
   {
+   "id": "dev.git.partial-clone-internals",
+   "title": "부분 클론의 내부: promisor 객체와 지연 가져오기",
+   "en": "Partial Clone Internals: Promisor Objects and Dynamic Fetching",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "Git",
+   "summary": "부분 클론이 빠진 객체를 promisor 표시로 손상과 구분하고, 필요할 때 원격에서 가져오는 방식과 그 비용을 분석한다.",
+   "objectives": [
+    "promisor 팩 옆의 .promisor 표시 파일, 그리고 그 팩이 가리키거나 다른 promisor 객체가 가리키는 객체를 promisor 객체로 보는 규칙으로 일부러 빠진 객체와 저장소 손상이 어떻게 구분되는지 설명할 수 있다",
+    "repack과 gc가 promisor 팩을 건드리지 않고 나머지 객체만 다시 묶어 두 구획으로 다룬다는 점으로 부분 클론 저장소의 정리 결과를 분석할 수 있다",
+    "빠진 객체를 하나씩 받는 동적 가져오기가 객체마다 fetch-pack을 따로 불러 느리다는 점을 알고, checkout의 일괄 미리 받기와 rev-list --missing=print로 모아 받는 방식을 비교할 수 있다",
+    "promisor 원격이 여럿일 때 extensions.partialClone의 원격은 마지막에, 나머지는 설정 파일 순서로 시도되고 동적 가져오기가 프로토콜 v0로 ref 광고를 매번 받는다는 한계를 근거로 캐시 서버 구성을 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "dev.git.large-repo-clone",
+    "dev.git.internals"
+   ],
+   "related": [
+    "dev.git.cruft-gc",
+    "dev.git.transfer-protocols"
+   ],
+   "aliases": [
+    "부분 클론 내부",
+    "partial clone internals",
+    "promisor 객체",
+    "promisor object",
+    "promisor 팩",
+    "Git 동적 객체 가져오기"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/partial-clone"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.debug.free-threading-refcount",
+   "title": "자유 스레딩 빌드의 참조 카운트: 불멸화·편향·지연",
+   "en": "Reference Counting in Free-Threaded CPython",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "디버깅",
+   "summary": "GIL 없는 CPython이 불멸화·편향·지연·스레드별 참조 카운트로 경합을 줄이는 대신 메모리 해제가 늦어지는 손익을 분석한다.",
+   "objectives": [
+    "편향 참조 카운트가 객체를 소유한 스레드의 빠른 경로와 다른 스레드의 느린 경로를 나누고, queued 상태가 되면 해제가 eval breaker 시점까지 미뤄질 수 있다는 점으로 객체가 기본 빌드보다 오래 사는 이유를 설명할 수 있다",
+    "지연 참조 카운트가 걸린 객체(모듈, 모듈 최상위 함수, 클래스 본문의 메서드, 디스크립터, threading.local 객체)는 카운트가 0이 되어도 다음 GC 실행 때 해제된다는 점으로 메모리 해제 시점을 분석할 수 있다",
+    "3.14 기준 불멸화 대상(코드 상수와 sys.intern 문자열)과 힙 타입·코드 객체·모듈 __dict__의 스레드별 카운트가 경합을 줄이는 대신 해제를 늦추고, gc.collect()가 이를 합쳐 풀어 준다는 점을 근거로 메모리 사용 증가를 진단할 수 있다"
+   ],
+   "prerequisites": [
+    "be.async.gil",
+    "cs.lang.garbage-collection"
+   ],
+   "related": [
+    "dev.debug.cpython-allocator",
+    "dev.debug.cyclic-gc-internals"
+   ],
+   "aliases": [
+    "자유 스레딩 참조 카운트",
+    "free-threaded reference counting",
+    "free-threaded CPython 메모리",
+    "GIL 없는 빌드 참조 카운트"
+   ],
+   "refs": [
+    "https://docs.python.org/3/howto/free-threading-python.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "dev"
+  },
+  {
+   "id": "dev.debug.subinterpreter-isolation",
+   "title": "하위 인터프리터의 격리: 인터프리터별 GIL과 객체 공유",
+   "en": "Subinterpreter Isolation: Per-Interpreter GIL and Object Sharing",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "디버깅",
+   "summary": "한 프로세스의 여러 인터프리터가 각자 GIL로 병렬 실행되는 구조와, 격리를 지키려고 객체 공유를 제한하는 손익을 분석한다.",
+   "objectives": [
+    "3.12부터 PyInterpreterConfig의 gil을 PyInterpreterConfig_OWN_GIL로 두면 하위 인터프리터가 자기 GIL로 병렬 실행되고, 이때 use_main_obmalloc은 0, check_multi_interp_extensions는 1이어야 한다는 제약을 설명할 수 있다",
+    "다단계 초기화 확장은 인터프리터마다 모듈 객체를 따로 만들고 단일 단계 초기화 확장은 첫 import 때 저장한 딕셔너리의 얕은 복사본을 나눠 쓴다는 차이로 확장 모듈이 오동작하는 원인을 분석할 수 있다",
+    "concurrent.interpreters(3.14)에서 객체가 기본적으로 pickle 복사로 넘어가고 가변 데이터는 memoryview와 Queue만 나눈다는 점을 근거로 스레드·프로세스와 공유 비용을 비교할 수 있다",
+    "같은 프로세스의 인터프리터는 확장 모듈과 os.close 같은 저수준 연산 때문에 완전히 격리되지 않고 PyGILState API가 깨질 수 있다는 점을 근거로 보안 경계로 쓰지 않는 판단을 할 수 있다"
+   ],
+   "prerequisites": [
+    "be.async.gil"
+   ],
+   "related": [
+    "dev.debug.free-threading-refcount"
+   ],
+   "aliases": [
+    "하위 인터프리터",
+    "서브인터프리터",
+    "subinterpreter",
+    "concurrent.interpreters",
+    "다중 인터프리터",
+    "multiple interpreters"
+   ],
+   "refs": [
+    "https://docs.python.org/3/c-api/subinterpreters.html",
+    "https://docs.python.org/3/library/concurrent.interpreters.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.build-backend-interface",
+   "title": "빌드 백엔드 인터페이스: PEP 517·660 훅",
+   "en": "Build Backend Interface: PEP 517 Hooks and PEP 660 Editable Installs",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "개발 환경",
+   "summary": "pip·uv 같은 프런트엔드가 빌드 백엔드의 훅을 하위 프로세스로 불러 sdist·wheel·편집 가능 wheel을 만드는 구조와 그 한계를 분석한다.",
+   "objectives": [
+    "프런트엔드가 [build-system] 요구 사항을 갖춘 환경에서 훅마다 새 하위 프로세스로 백엔드를 부르는 이유와, 백엔드가 표준 라이브러리와 선언한 요구 사항 밖의 패키지를 가정하면 안 된다는 규칙을 설명할 수 있다",
+    "필수 훅(build_wheel·build_sdist)과 선택 훅(get_requires_for_build_wheel·prepare_metadata_for_build_wheel)의 역할, 그리고 메타데이터 훅이 없으면 프런트엔드가 wheel을 빌드해 메타데이터를 읽는다는 대체 경로로 빌드 지연을 분석할 수 있다",
+    "sdist를 먼저 만들고 푼 트리에서 wheel을 빌드하는 경로와 소스 트리에서 바로 빌드하는 경로의 차이를 알고 두 결과가 어긋나는 문제를 찾을 수 있다",
+    "build_editable이 .pth 파일·대리 모듈·심볼릭 링크 같은 방식으로 소스 트리를 가리키는 일회용 wheel을 만든다는 점과, 진입점·의존성을 바꾸거나 C 확장 같은 비Python 코드를 바꾸면 다시 설치하거나 빌드해야 한다는 한계를 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "be.python.project-layout",
+    "be.python.venv-packages"
+   ],
+   "related": [
+    "dev.basics.uv-workspace"
+   ],
+   "aliases": [
+    "PEP 517",
+    "빌드 백엔드 훅",
+    "build backend hooks",
+    "파이썬 빌드 백엔드",
+    "Python build backend",
+    "build_wheel 훅"
+   ],
+   "refs": [
+    "https://peps.python.org/pep-0517/",
+    "https://peps.python.org/pep-0660/",
+    "https://packaging.python.org/en/latest/specifications/pyproject-toml/"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.typing-variance",
+   "title": "파이썬 타입 검사의 변성: 변성 추론과 Protocol",
+   "en": "Variance in Python Type Checking: Inference and Protocols",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "개발 환경",
+   "summary": "typing 명세가 제네릭의 공변·반공변·불변을 정하고 추론하는 절차와 Protocol의 구조적 할당 규칙으로 타입 검사 오류를 분석한다.",
+   "objectives": [
+    "list[Employee]를 받는 함수가 Employee를 넣으면 list[Manager]를 넘긴 호출자의 보장이 깨진다는 예로 가변 컨테이너가 불변이고 Sequence·Mapping 같은 읽기 전용 컨테이너가 공변인 이유를 설명할 수 있다",
+    "대상 매개변수를 object로 둔 upper 특수화와 자기 자신으로 둔 lower 특수화 중 어느 쪽이 다른 쪽에 할당되는지로 공변·반공변·불변을 정하는 변성 추론 절차를 따라 클래스의 변성을 판정할 수 있다",
+    "Protocol이 MRO가 아니라 모든 멤버의 타입으로 할당 가능성을 정하고, 가변 속성이 있으면 불변이 되며 선언한 변성이 정의와 맞지 않으면 검사기가 경고한다는 규칙으로 검사 오류를 분석할 수 있다"
+   ],
+   "prerequisites": [
+    "be.python.typing-advanced"
+   ],
+   "related": [
+    "fe.ts.variance-annotations",
+    "fe.ts.type-compatibility-soundness"
+   ],
+   "aliases": [
+    "파이썬 변성",
+    "Python variance",
+    "파이썬 공변과 반공변",
+    "Python covariance and contravariance",
+    "typing Protocol 할당 규칙"
+   ],
+   "refs": [
+    "https://typing.python.org/en/latest/spec/generics.html",
+    "https://typing.python.org/en/latest/spec/protocol.html"
+   ],
+   "domain": "dev"
+  },
+  {
    "id": "dev.git.reflog",
    "title": "reflog",
    "en": "Reflog",
@@ -10149,6 +10328,161 @@
    ],
    "refs": [
     "https://git-scm.com/docs/git-pack-objects"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.git.promisor-remote",
+   "title": "promisor 원격(promisor remote)",
+   "en": "Git Promisor Remote",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "Git",
+   "summary": "부분 클론에서 빠진 객체를 요청하면 내주겠다고 약속하는 원격으로, remote.<name>.promisor로 표시한다.",
+   "parent": "dev.git.partial-clone-internals",
+   "related": [
+    "dev.git.partial-clone"
+   ],
+   "aliases": [
+    "promisor remote",
+    "remote.<name>.promisor",
+    "extensions.partialClone"
+   ],
+   "refs": [
+    "https://git-scm.com/docs/partial-clone"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.debug.biased-refcount",
+   "title": "편향 참조 카운트(biased reference counting)",
+   "en": "Biased Reference Counting",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "디버깅",
+   "summary": "객체를 소유한 스레드는 빠른 경로로, 다른 스레드는 느린 경로로 참조 카운트를 바꾸는 자유 스레딩 CPython의 방식으로, 객체 해제가 늦어질 수 있다.",
+   "parent": "dev.debug.free-threading-refcount",
+   "aliases": [
+    "biased reference counting",
+    "편향 참조 카운팅",
+    "CPython 편향 참조 카운트"
+   ],
+   "refs": [
+    "https://docs.python.org/3/howto/free-threading-python.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.debug.immortal-object",
+   "title": "불멸 객체(immortal object)",
+   "en": "Immortal Object",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "디버깅",
+   "summary": "참조 카운트가 바뀌지 않아 인터프리터가 도는 동안 해제되지 않는 CPython 객체로, None과 True가 그 예다.",
+   "parent": "dev.debug.free-threading-refcount",
+   "related": [
+    "cs.lang.reference-counting"
+   ],
+   "aliases": [
+    "immortal object",
+    "불멸화된 객체",
+    "sys._is_immortal",
+    "PEP 683 불멸 객체"
+   ],
+   "refs": [
+    "https://docs.python.org/3/glossary.html#term-immortal",
+    "https://docs.python.org/3/howto/free-threading-python.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.debug.per-interpreter-gil",
+   "title": "인터프리터별 GIL(PEP 684)",
+   "en": "Per-Interpreter GIL",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "디버깅",
+   "summary": "3.12부터 하위 인터프리터가 주 인터프리터와 GIL을 나눠 쓰지 않고 자기 GIL을 가져 여러 코어에서 함께 돌 수 있게 한 방식이다.",
+   "parent": "dev.debug.subinterpreter-isolation",
+   "related": [
+    "be.async.gil-term"
+   ],
+   "aliases": [
+    "per-interpreter GIL",
+    "인터프리터별 GIL",
+    "PyInterpreterConfig_OWN_GIL",
+    "PEP 684"
+   ],
+   "refs": [
+    "https://docs.python.org/3/c-api/subinterpreters.html"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.build-isolation",
+   "title": "빌드 격리(build isolation)",
+   "en": "Python Build Isolation",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "개발 환경",
+   "summary": "빌드마다 선언한 빌드 요구 사항만 깔린 별도 환경을 만들어 백엔드를 돌리는 방식으로, PEP 517은 이를 권고로만 둔다.",
+   "parent": "dev.basics.build-backend-interface",
+   "aliases": [
+    "build isolation",
+    "빌드 격리",
+    "--no-build-isolation",
+    "격리된 빌드 환경"
+   ],
+   "refs": [
+    "https://peps.python.org/pep-0517/"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.editable-wheel",
+   "title": "편집 가능 wheel(PEP 660)",
+   "en": "Editable Wheel",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "개발 환경",
+   "summary": "build_editable 훅이 소스 트리를 가리키도록 만들어 설치 후 버리는 wheel로, 배포하거나 캐시하지 않는다.",
+   "parent": "dev.basics.build-backend-interface",
+   "aliases": [
+    "editable wheel",
+    "build_editable",
+    "PEP 660",
+    "PEP 660 편집 가능 wheel"
+   ],
+   "refs": [
+    "https://peps.python.org/pep-0660/"
+   ],
+   "domain": "dev"
+  },
+  {
+   "id": "dev.basics.variance-inference",
+   "title": "변성 추론(PEP 695 타입 매개변수)",
+   "en": "Variance Inference for Type Parameters",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "개발 환경",
+   "summary": "PEP 695 문법의 타입 매개변수나 infer_variance=True인 TypeVar의 변성을 검사기가 클래스 정의로부터 정하는 규칙이다.",
+   "parent": "dev.basics.typing-variance",
+   "aliases": [
+    "Python variance inference",
+    "infer_variance",
+    "PEP 695 변성 추론",
+    "타입 매개변수 변성 추론"
+   ],
+   "refs": [
+    "https://typing.python.org/en/latest/spec/generics.html"
    ],
    "domain": "dev"
   },
@@ -19435,6 +19769,170 @@
    "domain": "cs"
   },
   {
+   "id": "cs.os.seqlock-internals",
+   "title": "시퀀스 카운터와 seqlock의 내부",
+   "en": "Sequence Counters and Sequential Locks",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "읽는 쪽은 잠그지 않고 카운터 값이 바뀌면 다시 읽게 해 쓰기를 우선하는 리눅스 커널 동기화 방식의 동작과 제약이다.",
+   "objectives": [
+    "쓰기 중에는 카운터가 홀수가 되고 읽는 쪽이 시작·끝 값을 비교해 다시 읽는 흐름을 설명할 수 있다",
+    "seqcount_t는 쓰는 쪽을 따로 직렬화해야 하고 seqlock_t는 내장 스핀락으로 이를 대신하는 차이를 비교할 수 있다",
+    "보호할 데이터에 포인터가 있으면 쓰는 쪽이 그 포인터를 무효로 만들 수 있어 이 방식을 쓸 수 없는 이유를 설명할 수 있다",
+    "읽는 쪽이 쓰는 쪽을 끼어들 수 있는 NMI 같은 상황에서 래치 카운터가 두 벌의 사본으로 문제를 피하는 방식을 분석할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.os.lock-implementation",
+    "cs.arch.memory-ordering-barriers"
+   ],
+   "related": [
+    "cs.os.rcu"
+   ],
+   "aliases": [
+    "seqlock",
+    "seqlock_t",
+    "seqcount_t",
+    "리눅스 시퀀스 락"
+   ],
+   "refs": [
+    "https://docs.kernel.org/locking/seqlock.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.priority-inheritance-mutex",
+   "title": "우선순위 상속 뮤텍스의 내부: rt-mutex",
+   "en": "Priority Inheritance Mutex (rt-mutex)",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "잠금을 가진 낮은 우선순위 작업을 기다리는 가장 높은 작업의 우선순위로 잠시 올려 끝없는 우선순위 역전을 막는 리눅스 rt-mutex의 구조다.",
+   "objectives": [
+    "중간 우선순위 작업이 잠금 소유자를 계속 선점해 높은 작업이 기한 없이 밀리는 끝없는 우선순위 역전을 예로 설명할 수 있다",
+    "우선순위 상속이 소유자를 기다리는 가장 높은 작업의 우선순위로 올렸다가 잠금을 풀면 되돌리는 동작을 설명할 수 있다",
+    "잠금이 겹쳐 잡힐 때 PI 사슬을 따라 상속이 전파되고, 사슬 깊이 제한과 대기자 트리 관리가 비용이 되는 이유를 분석할 수 있다",
+    "대기자가 없을 때 원자적 비교 후 교환으로 빠르게 잡고 대기자가 있으면 느린 경로로 넘어가는 구조를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.os.lock-implementation",
+    "cs.os.mutex-lock"
+   ],
+   "related": [
+    "cs.os.futex"
+   ],
+   "aliases": [
+    "rt-mutex",
+    "rtmutex",
+    "priority inheritance",
+    "PI 뮤텍스",
+    "우선순위 상속 잠금"
+   ],
+   "refs": [
+    "https://docs.kernel.org/locking/rt-mutex-design.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.sched-deadline",
+   "title": "마감 기반 스케줄링: SCHED_DEADLINE의 EDF와 CBS",
+   "en": "SCHED_DEADLINE Scheduling (EDF and CBS)",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "실행량·마감·주기 세 값으로 CPU 몫을 예약하고 가장 이른 마감부터 실행하는 리눅스 SCHED_DEADLINE의 동작과 보장의 한계다.",
+   "objectives": [
+    "runtime ≤ deadline ≤ period 조건과 매 주기마다 마감 안에 실행량을 받는 예약 모델을 설명할 수 있다",
+    "실행량을 다 쓴 작업이 CBS에 의해 마감까지 멈추고 다음 주기에 다시 채워져 다른 작업과 격리되는 동작을 설명할 수 있다",
+    "실행량/주기 합을 sched_rt_runtime_us 비율로 묶는 승인 검사가 전역 EDF에서 마감을 보장하지 않고 지연을 묶는 데 그치는 이유를 분석할 수 있다",
+    "SCHED_DEADLINE 작업이 SCHED_FIFO·SCHED_RR보다 먼저 실행되고 reset-on-fork 없이는 fork가 실패하는 제약을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.os.fair-scheduler-internals"
+   ],
+   "aliases": [
+    "SCHED_DEADLINE",
+    "sched_setattr",
+    "리눅스 데드라인 스케줄러"
+   ],
+   "refs": [
+    "https://docs.kernel.org/scheduler/sched-deadline.html",
+    "https://man7.org/linux/man-pages/man7/sched.7.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.numa-memory-policy",
+   "title": "NUMA 메모리 정책: 로컬 할당과 인터리브의 손익",
+   "en": "NUMA Memory Policy",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "여러 NUMA 노드 가운데 어디서 페이지를 받을지 정하는 리눅스 메모리 정책의 모드·범위와 지연·대역폭의 손익이다.",
+   "objectives": [
+    "로컬 할당·BIND·PREFERRED·INTERLEAVE 모드가 페이지를 어느 노드에서 받는지 비교할 수 있다",
+    "정책이 페이지를 새로 할당할 때만 적용되어 익명 메모리는 처음 건드린 스레드의 정책을 따르고, 이미 할당된 페이지는 옮기지 않으면 그대로라는 점으로 배치를 분석할 수 있다",
+    "인터리브가 지연 대신 대역폭을 노리는 이유와 페이지 하나는 여전히 한 노드의 대역폭에 묶이는 한계를 설명할 수 있다",
+    "시스템 기본·태스크·VMA·공유 정책 범위의 우선순위와 fork·exec 상속 차이를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.os.address-translation-internals",
+    "cs.arch.cache-coherence-false-sharing"
+   ],
+   "related": [
+    "ops.k8s.memory-manager"
+   ],
+   "aliases": [
+    "NUMA memory policy",
+    "set_mempolicy",
+    "mbind",
+    "NUMA 메모리 배치",
+    "메모리 정책 모드"
+   ],
+   "refs": [
+    "https://docs.kernel.org/admin-guide/mm/numa_memory_policy.html",
+    "https://man7.org/linux/man-pages/man2/set_mempolicy.2.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.wound-wait-mutex",
+   "title": "여러 잠금을 교착 없이 잡기: wound/wait 뮤텍스",
+   "en": "Wound/Wait Deadlock-Proof Mutex",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "잠금 순서를 정할 수 없을 때 트랜잭션의 나이로 누가 물러설지 정해 교착을 피하는 리눅스 ww_mutex의 설계와 두 알고리즘의 손익이다.",
+   "objectives": [
+    "잠글 대상의 순서를 바깥에서 정하는 경우 고정 잠금 순서로 교착을 막을 수 없는 이유를 설명할 수 있다",
+    "전역 카운터에서 받은 티켓을 재시도 때도 유지해 결국 진행이 보장되는 획득 문맥의 역할을 설명할 수 있다",
+    "-EDEADLK를 받은 쪽이 가진 잠금을 모두 풀고 다툰 잠금부터 기다렸다 다시 잡는 물러서기 절차를 설명할 수 있다",
+    "wait-die와 wound-wait의 물러서기 횟수와 복구 비용을 비교해 고를 수 있다"
+   ],
+   "prerequisites": [
+    "cs.os.lock-implementation",
+    "cs.os.mutex-lock"
+   ],
+   "related": [
+    "db.internals.locks"
+   ],
+   "aliases": [
+    "ww_mutex",
+    "wound/wait mutex",
+    "ww-mutex",
+    "교착 회피 뮤텍스"
+   ],
+   "refs": [
+    "https://docs.kernel.org/locking/ww-mutex-design.html"
+   ],
+   "domain": "cs"
+  },
+  {
    "id": "cs.os.tlb",
    "title": "TLB(주소 변환 캐시)",
    "en": "Translation Lookaside Buffer (TLB)",
@@ -20084,6 +20582,166 @@
    ],
    "refs": [
     "https://xlinux.nist.gov/dads/HTML/extendibleHashing.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.seqcount-latch",
+   "title": "래치 시퀀스 카운터(seqcount_latch_t)",
+   "en": "Latch Sequence Counter",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "데이터를 두 벌 두고 카운터의 짝홀로 읽을 사본을 골라, 읽는 쪽이 쓰기 도중에 끼어들어도 안전하게 읽게 하는 시퀀스 카운터다.",
+   "parent": "cs.os.seqlock-internals",
+   "aliases": [
+    "seqcount_latch_t",
+    "seqcount latch",
+    "래치 카운터"
+   ],
+   "refs": [
+    "https://docs.kernel.org/locking/seqlock.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.priority-inversion",
+   "title": "우선순위 역전(priority inversion)",
+   "en": "Priority Inversion",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "높은 우선순위 작업이 낮은 작업이 가진 잠금을 기다리느라 실제로는 낮은 작업이 먼저 실행되는 현상이다.",
+   "parent": "cs.os.priority-inheritance-mutex",
+   "aliases": [
+    "우선순위 뒤집힘",
+    "unbounded priority inversion",
+    "끝없는 우선순위 역전"
+   ],
+   "refs": [
+    "https://docs.kernel.org/locking/rt-mutex-design.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.pi-chain",
+   "title": "PI 사슬(우선순위 상속 사슬)",
+   "en": "PI Chain",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "작업과 뮤텍스가 차례로 이어져 우선순위 상속이 거슬러 전파되는 경로로, 합쳐질 수는 있어도 갈라지지 않는다.",
+   "parent": "cs.os.priority-inheritance-mutex",
+   "aliases": [
+    "PI chain",
+    "priority inheritance chain",
+    "상속 사슬"
+   ],
+   "refs": [
+    "https://docs.kernel.org/locking/rt-mutex-design.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.earliest-deadline-first",
+   "title": "EDF(가장 이른 마감 우선)",
+   "en": "Earliest Deadline First",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "실행할 수 있는 작업 가운데 스케줄링 마감이 가장 이른 작업을 먼저 실행하는 실시간 스케줄링 알고리즘이다.",
+   "parent": "cs.os.sched-deadline",
+   "aliases": [
+    "EDF 스케줄링",
+    "earliest deadline first",
+    "전역 EDF",
+    "global EDF"
+   ],
+   "refs": [
+    "https://docs.kernel.org/scheduler/sched-deadline.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.constant-bandwidth-server",
+   "title": "CBS(상수 대역폭 서버)",
+   "en": "Constant Bandwidth Server",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "작업마다 스케줄링 마감을 매기고 예약한 실행량을 넘으면 멈춰 세워 작업끼리 서로 방해하지 못하게 하는 대역폭 예약 방식이다.",
+   "parent": "cs.os.sched-deadline",
+   "aliases": [
+    "constant bandwidth server",
+    "CBS 스케줄링"
+   ],
+   "refs": [
+    "https://docs.kernel.org/scheduler/sched-deadline.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.mpol-interleave",
+   "title": "인터리브 메모리 정책(MPOL_INTERLEAVE)",
+   "en": "Interleaved Memory Policy",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "페이지를 지정한 NUMA 노드들에 번갈아 나눠 할당해 지연보다 전체 메모리 대역폭을 노리는 정책 모드다.",
+   "parent": "cs.os.numa-memory-policy",
+   "aliases": [
+    "MPOL_INTERLEAVE",
+    "NUMA interleave",
+    "NUMA 인터리브"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man2/set_mempolicy.2.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.wait-die",
+   "title": "wait-die(대기-소멸) 방식",
+   "en": "Wait-Die Scheme",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "나이 많은 쪽은 젊은 소유자를 기다리고, 젊은 쪽이 나이 많은 소유자의 잠금을 원하면 스스로 물러서는 교착 회피 방식이다.",
+   "parent": "cs.os.wound-wait-mutex",
+   "aliases": [
+    "wait-die",
+    "wait/die",
+    "대기-소멸 방식"
+   ],
+   "refs": [
+    "https://docs.kernel.org/locking/ww-mutex-design.html"
+   ],
+   "domain": "cs"
+  },
+  {
+   "id": "cs.os.wound-wait",
+   "title": "wound-wait(상처-대기) 방식",
+   "en": "Wound-Wait Scheme",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "운영체제",
+   "summary": "나이 많은 쪽이 젊은 소유자에게 물러서라고 요구하고, 젊은 쪽은 나이 많은 소유자를 기다리는 교착 회피 방식이다.",
+   "parent": "cs.os.wound-wait-mutex",
+   "aliases": [
+    "wound-wait",
+    "wound/wait 방식",
+    "상처-대기 방식"
+   ],
+   "refs": [
+    "https://docs.kernel.org/locking/ww-mutex-design.html"
    ],
    "domain": "cs"
   },
@@ -27494,6 +28152,43 @@
    "domain": "plan"
   },
   {
+   "id": "plan.figma.plugin-data-storage",
+   "title": "Figma 플러그인 데이터 저장 위치의 손익",
+   "en": "Figma Plugin Data Storage Trade-offs",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "플러그인 정보를 문서 노드에 비공개로 둘지, 다른 플러그인과 공유할지, 사용자 기기에 둘지를 범위·크기·보안 성질로 견주는 Figma Plugin API 설계다.",
+   "objectives": [
+    "setPluginData·setSharedPluginData·clientStorage가 각각 문서와 함께 가는지, 사용자 기기에만 남는지에 따라 협업자 간 공유 여부가 달라지는 점을 설명할 수 있다",
+    "노드 데이터의 항목당 100kB 문자열 제한과 clientStorage의 플러그인당 5MB 한도, 지원 자료형 차이를 근거로 저장 위치를 고를 수 있다",
+    "비공개 플러그인 데이터도 .fig 파일을 풀면 보이고 clientStorage도 사용자에게는 감춰지지 않으며 캐시 삭제로 사라질 수 있다는 점을 근거로 민감한 값을 두지 않을 곳을 판단할 수 있다",
+    "플러그인 ID가 바뀌면 비공개 데이터와 clientStorage를 읽을 수 없게 되는 위험을 배포 설계에 반영할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.codegen-plugin"
+   ],
+   "related": [
+    "plan.figma.plugin-sandbox",
+    "plan.figma.plugin-traversal-performance"
+   ],
+   "aliases": [
+    "Figma 플러그인 저장소",
+    "Figma setPluginData",
+    "Figma 플러그인 데이터",
+    "plugin data storage"
+   ],
+   "refs": [
+    "https://developers.figma.com/docs/plugins/api/properties/nodes-setplugindata/",
+    "https://developers.figma.com/docs/plugins/api/properties/nodes-setsharedplugindata/",
+    "https://developers.figma.com/docs/plugins/api/figma-clientStorage/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.variables-modes",
    "title": "Figma 변수와 모드",
    "en": "Figma Variables and Modes",
@@ -28735,6 +29430,49 @@
    "domain": "plan"
   },
   {
+   "id": "plan.figma.shared-plugin-data",
+   "title": "Figma 공유 플러그인 데이터(sharedPluginData)",
+   "en": "Figma Shared Plugin Data",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "네임스페이스를 붙여 노드·스타일에 저장하고 어느 플러그인이나 읽을 수 있게 하는 공개 데이터로, 항목당 100kB 문자열까지 담는다.",
+   "parent": "plan.figma.plugin-data-storage",
+   "aliases": [
+    "setSharedPluginData",
+    "getSharedPluginData",
+    "Figma 플러그인 간 데이터 공유"
+   ],
+   "refs": [
+    "https://developers.figma.com/docs/plugins/api/properties/nodes-setsharedplugindata/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.figma.client-storage",
+   "title": "Figma clientStorage",
+   "en": "Figma clientStorage",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "플러그인이 문서가 아닌 사용자 기기에 비동기로 값을 저장하는 공간으로, 플러그인마다 5MB까지 쓰고 다른 사용자와 동기화되지 않는다.",
+   "parent": "plan.figma.plugin-data-storage",
+   "aliases": [
+    "figma.clientStorage",
+    "Figma 플러그인 로컬 저장소"
+   ],
+   "refs": [
+    "https://developers.figma.com/docs/plugins/api/figma-clientStorage/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "plan"
+  },
+  {
    "id": "plan.basics.wcag-conformance-model",
    "title": "WCAG 2.2 적합성 요구사항과 적합성 주장",
    "en": "WCAG 2.2 Conformance Requirements and Claims",
@@ -29211,6 +29949,107 @@
    "domain": "plan"
   },
   {
+   "id": "plan.basics.live-region-semantics",
+   "title": "라이브 영역 알림의 의미 모델: 정중함·원자성·변경 종류",
+   "en": "Live Region Semantics: Politeness, Atomicity and Relevant Changes",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "포커스 밖에서 바뀐 내용을 보조기기가 언제, 얼마만큼, 어떤 변경일 때 읽을지를 aria-live·aria-atomic·aria-relevant·aria-busy가 정하는 WAI-ARIA 1.2 규칙이다.",
+   "objectives": [
+    "off·polite·assertive가 알림 시점과 대기 중인 알림 처리에 주는 차이를 근거로 assertive를 꼭 필요한 중단에만 써야 하는 이유를 설명할 수 있다",
+    "aria-atomic과 aria-relevant 값이 가장 가까운 조상에서 정해지는 방식과, 바뀐 노드만 읽을지 영역 전체를 읽을지에 따른 손익을 비교할 수 있다",
+    "여러 번 나눠 바뀌는 영역에 aria-busy를 걸어 변경을 한 번에 처리하게 하는 방식과 그 한계를 판단할 수 있다",
+    "결과·대기·진행·오류를 알리는 문구가 WCAG 4.1.3 상태 메시지에 해당하는지, 포커스 이동 같은 맥락 변경이라 해당하지 않는지 가를 수 있다"
+   ],
+   "prerequisites": [
+    "fe.html.accessible-markup"
+   ],
+   "related": [
+    "fe.html.aria-live",
+    "plan.basics.composite-widget-focus"
+   ],
+   "aliases": [
+    "라이브 영역 알림 설계",
+    "live region politeness",
+    "알림 정중함 수준"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/wai-aria-1.2/",
+    "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-relevant",
+    "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.sample-size-power",
+   "title": "표본 크기와 검정력 계산: α·β·검출할 차이",
+   "en": "Sample Size and Statistical Power Calculation",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "유의수준 α, 놓칠 위험 β, 검출할 차이 δ, 변동성으로 필요한 표본 수를 계산하고 그 사이의 손익을 따지는 NIST 통계 핸드북의 방법이다.",
+   "objectives": [
+    "평균이 기준값에서 δ만큼 바뀌었는지 보는 검정에서 표본 수가 α와 β의 임계값 합의 제곱과 (σ/δ)²에 비례하는 구조를 근거로 검출할 차이를 절반으로 줄이면 표본이 약 네 배 드는 이유를 설명할 수 있다",
+    "양측 검정은 α/2를, 단측 검정은 α를 쓰는 차이가 필요한 표본 수에 주는 영향을 비교할 수 있다",
+    "불량률 같은 비율이 기준 비율 p0에서 p1로 바뀌었는지 보는 검정에서 표본 수를 구하고 1/δ를 더하는 연속성 보정을 쓸지 판단할 수 있다",
+    "σ를 모를 때 t 분포로 바꾸고 자유도가 표본 수에 달려 있어 반복 계산해야 하는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.ab-testing-design"
+   ],
+   "related": [
+    "plan.basics.usability-benchmarking"
+   ],
+   "aliases": [
+    "표본 크기 계산",
+    "sample size calculation",
+    "검정력 분석",
+    "power analysis"
+   ],
+   "refs": [
+    "https://www.itl.nist.gov/div898/handbook/prc/section2/prc222.htm",
+    "https://www.itl.nist.gov/div898/handbook/prc/section2/prc242.htm",
+    "https://www.itl.nist.gov/div898/handbook/prc/section1/prc131.htm"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.inert-hidden-modal",
+   "title": "aria-hidden·inert·aria-modal 범위 비교",
+   "en": "Removing Content from Interaction: aria-hidden, inert and aria-modal",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "보조기기에만 숨기는 aria-hidden, 포커스·입력·보조기기 노출을 모두 막는 HTML inert, 모달 밖을 이용 불가로 알리는 aria-modal의 범위와 손익을 견주는 표준 규칙이다.",
+   "objectives": [
+    "aria-hidden이 접근성 API 노출만 바꾸고 inert는 포인터 입력·텍스트 선택·편집·페이지 내 찾기·포커스까지 막는 차이를 설명할 수 있다",
+    "showModal로 연 대화상자가 문서를 막힌 상태로 만들어 대화상자 밖 노드를 모두 inert로 만드는 방식과, aria-modal만 단 경우 작성자가 따로 지켜야 할 것을 비교할 수 있다",
+    "보이는 내용을 inert로 만들거나 aria-hidden으로 숨기면 일부 사용자가 그 내용을 쓰지 못하게 되는 위험을 근거로 적용 범위를 판단할 수 있다",
+    "로딩 중인 영역은 inert, 개별 입력 칸은 disabled처럼 상황에 맞는 수단을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "fe.html.accessible-markup"
+   ],
+   "related": [
+    "plan.basics.composite-widget-focus",
+    "plan.basics.core-aam-role-mapping"
+   ],
+   "aliases": [
+    "aria-hidden과 inert 차이",
+    "inert vs aria-hidden",
+    "모달 바깥 비활성화"
+   ],
+   "refs": [
+    "https://html.spec.whatwg.org/multipage/interaction.html",
+    "https://www.w3.org/TR/wai-aria-1.2/"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.basics.wcag2ict",
    "title": "WCAG2ICT로 앱·문서에 WCAG 적용하기",
    "en": "Applying WCAG to Non-Web ICT with WCAG2ICT",
@@ -29506,6 +30345,41 @@
    "domain": "plan"
   },
   {
+   "id": "plan.figma.plugin-change-events",
+   "title": "Figma 플러그인 변경 감지 이벤트의 범위와 비용",
+   "en": "Figma Plugin Change Events: Scope and Cost",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "Figma와 디자인 시스템",
+   "summary": "documentchange·stylechange·페이지별 nodechange 중 무엇으로 문서 변경을 들을지, 일괄 비동기 전달과 동적 페이지 로딩 비용을 근거로 고르는 Figma Plugin API 설계다.",
+   "objectives": [
+    "documentchange 콜백이 동기로 불리지 않고 여러 변경이 묶여 한 번만 올 수 있으며, 콜백 안에서 플러그인이 한 변경과 스타일·메인 컴포넌트로 생긴 하위 변경은 보고되지 않는 점을 근거로 변경 추적 로직의 빈틈을 분석할 수 있다",
+    "dynamic-page 문서 접근에서 documentchange를 쓰려면 loadAllPagesAsync가 먼저 필요해 생기는 지연과, stylechange나 PageNode의 nodechange로 범위를 좁히는 대안의 손익을 비교할 수 있다",
+    "변경 항목의 type과 origin(LOCAL·REMOTE)을 보고 내 편집과 다른 사용자 편집을 나눠 처리하고, 처리 전에 지워진 노드가 RemovedNode로 오는 경우를 다룰 수 있다"
+   ],
+   "prerequisites": [
+    "plan.figma.plugin-traversal-performance"
+   ],
+   "related": [
+    "plan.figma.dynamic-page-loading",
+    "plan.figma.plugin-data-storage"
+   ],
+   "aliases": [
+    "Figma documentchange",
+    "Figma nodechange",
+    "Figma 문서 변경 이벤트",
+    "figma.on documentchange"
+   ],
+   "refs": [
+    "https://developers.figma.com/docs/plugins/api/properties/figma-on/",
+    "https://developers.figma.com/docs/plugins/api/DocumentChange/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "plan"
+  },
+  {
    "id": "plan.basics.accessibility-supported",
    "title": "접근성 지원 기술 사용(accessibility supported)",
    "en": "Accessibility Supported Ways of Using Technologies",
@@ -29608,6 +30482,66 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-13",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.status-message",
+   "title": "상태 메시지(Status Messages)",
+   "en": "Status Messages (WCAG 4.1.3)",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "동작 결과·대기·진행·오류를 알리되 맥락을 바꾸지 않는 내용 변경으로, WCAG 4.1.3은 포커스를 옮기지 않고도 보조기기가 알 수 있게 하라고 요구한다.",
+   "parent": "plan.basics.live-region-semantics",
+   "aliases": [
+    "WCAG 4.1.3",
+    "status messages",
+    "상태 알림 기준"
+   ],
+   "refs": [
+    "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.statistical-power",
+   "title": "통계적 검정력(1−β)",
+   "en": "Statistical Power",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "실제로 차이가 있을 때 검정이 그 차이를 찾아낼 확률로, 차이를 놓칠 위험 β를 1에서 뺀 값이다.",
+   "parent": "plan.basics.sample-size-power",
+   "aliases": [
+    "검정력",
+    "statistical power",
+    "1-β"
+   ],
+   "refs": [
+    "https://www.itl.nist.gov/div898/handbook/prc/section2/prc242.htm"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.inert-attribute",
+   "title": "HTML inert 속성",
+   "en": "HTML inert Attribute",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "요소와 그 자손을 포커스·클릭·선택·편집·페이지 내 찾기에서 빼고 보조기기에도 노출하지 않게 하는 HTML 불리언 속성이다.",
+   "parent": "plan.basics.inert-hidden-modal",
+   "aliases": [
+    "inert attribute",
+    "inert 서브트리",
+    "비활성 서브트리"
+   ],
+   "refs": [
+    "https://html.spec.whatwg.org/multipage/interaction.html"
+   ],
    "domain": "plan"
   },
   {
@@ -30221,6 +31155,50 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-13",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.aria-atomic",
+   "title": "aria-atomic",
+   "en": "aria-atomic",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "라이브 영역이 바뀔 때 보조기기가 바뀐 노드만 읽을지(false, 기본값) 영역 전체를 라벨과 함께 읽을지(true)를 정하는 ARIA 속성이다.",
+   "parent": "plan.basics.live-region-semantics",
+   "related": [
+    "plan.basics.aria-relevant"
+   ],
+   "aliases": [
+    "원자적 알림",
+    "라이브 영역 전체 읽기"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/wai-aria-1.2/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.aria-relevant",
+   "title": "aria-relevant",
+   "en": "aria-relevant",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "라이브 영역에서 노드 추가·삭제·텍스트 변경 중 무엇을 알릴지 정하는 ARIA 속성으로, 지정이 없으면 additions text로 본다.",
+   "parent": "plan.basics.live-region-semantics",
+   "related": [
+    "plan.basics.aria-atomic"
+   ],
+   "aliases": [
+    "알릴 변경 종류",
+    "aria-relevant removals"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-relevant"
+   ],
    "domain": "plan"
   },
   {
@@ -49722,6 +50700,28 @@
    "domain": "db"
   },
   {
+   "id": "db.internals.hash-mem-multiplier",
+   "title": "hash_mem_multiplier: 해시 연산에 더 주는 메모리",
+   "en": "PostgreSQL hash_mem_multiplier",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "해시 조인·해시 집계 같은 해시 연산이 work_mem의 몇 배(기본 2.0)까지 쓰고 나서 임시 파일로 넘길지 정하는 PostgreSQL 설정이다.",
+   "related": [
+    "db.internals.query-planner",
+    "db.internals.parallel-query"
+   ],
+   "aliases": [
+    "hash_mem_multiplier",
+    "PostgreSQL 해시 메모리 배수"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/runtime-config-resource.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.internals.query-planner",
    "title": "PostgreSQL 실행 계획과 비용 추정",
    "en": "Query Plans and Cost Estimation",
@@ -50190,6 +51190,146 @@
    "domain": "db"
   },
   {
+   "id": "db.cache.redis-key-expiration",
+   "title": "Redis 키 만료의 내부: 수동 만료와 능동 만료",
+   "en": "Redis Key Expiration Internals: Passive and Active Expiry",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "캐시",
+   "summary": "Redis는 접근할 때 지우는 수동 만료와 무작위 표본을 주기적으로 검사하는 능동 만료를 함께 써서 만료된 키를 치운다.",
+   "objectives": [
+    "다시 읽히지 않는 만료 키가 수동 만료만으로는 메모리에 남는 까닭과 능동 만료가 표본 검사로 이를 메우는 방식을 설명할 수 있다",
+    "만료 시각이 절대 Unix 타임스탬프로 저장되어 RDB를 시계가 어긋난 서버로 옮기거나 시스템 시각을 바꾸면 키가 한꺼번에 만료될 수 있음을 설명할 수 있다",
+    "마스터가 만료 시 DEL을 만들어 AOF와 복제본에 보내고 복제본은 스스로 만료하지 않는 설계가 일관성을 지키는 방식을 설명할 수 있다",
+    "hz·active-expire-effort·lazyfree-lazy-expire가 CPU·지연·메모리 사이에서 만드는 손익을 따질 수 있다"
+   ],
+   "prerequisites": [
+    "db.cache.redis-eviction",
+    "db.cache.redis-persistence"
+   ],
+   "related": [
+    "db.cache.redis-replication-internals"
+   ],
+   "aliases": [
+    "Redis 키 만료",
+    "Redis key expiration",
+    "Redis 능동 만료",
+    "Redis active expiry",
+    "Redis 수동 만료"
+   ],
+   "refs": [
+    "https://redis.io/docs/latest/commands/expire/",
+    "https://raw.githubusercontent.com/redis/redis/8.10/redis.conf"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.nosql.mongodb-replication-internals",
+   "title": "MongoDB 복제의 내부: oplog·선출·롤백",
+   "en": "MongoDB Replication Internals: Oplog, Elections and Rollbacks",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "NoSQL",
+   "summary": "MongoDB 레플리카 셋은 멱등인 oplog 항목을 복제하고, 하트비트로 장애를 알아 선출하며, 과반에 닿지 않은 쓰기는 롤백한다.",
+   "objectives": [
+    "oplog 항목이 멱등이라 다시 적용해도 안전하고, 연결이 끊긴 secondary는 oplog 창 안에 돌아와야만 복제로 따라잡을 수 있음을 설명할 수 있다",
+    "하트비트와 electionTimeoutMillis가 장애 감지와 선출 시간을 정하고, 선출 동안에는 쓰기를 받지 못하는 손익을 설명할 수 있다",
+    "가장 높은 optime을 가진 멤버만 primary가 될 수 있고, 소수 쪽에 남은 primary는 물러나는 규칙을 네트워크 분할에 적용해 설명할 수 있다",
+    "과반에 복제되지 않은 쓰기가 옛 primary에서 롤백되어 <dbpath>/rollback 아래 파일로 남는 과정을 설명하고, 투표 멤버의 저널링을 켜고 w: \"majority\"를 쓰면 확인된 쓰기의 롤백을 막을 수 있음을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "db.nosql.mongodb-write-concern-read-preference"
+   ],
+   "related": [
+    "db.cache.redis-replication-internals",
+    "db.nosql.wiredtiger-internals"
+   ],
+   "aliases": [
+    "MongoDB 복제",
+    "MongoDB replication",
+    "MongoDB 레플리카 셋",
+    "MongoDB replica set",
+    "MongoDB 선출",
+    "MongoDB 롤백"
+   ],
+   "refs": [
+    "https://www.mongodb.com/docs/manual/core/replica-set-oplog/",
+    "https://www.mongodb.com/docs/manual/core/replica-set-elections/",
+    "https://www.mongodb.com/docs/manual/core/replica-set-rollbacks/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.row-estimation",
+   "title": "PostgreSQL 행 수 추정: MCV·히스토그램·선택도",
+   "en": "PostgreSQL Row Estimation: MCVs, Histograms and Selectivity",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "PostgreSQL 플래너는 pg_statistic의 최빈값 목록과 히스토그램, n_distinct로 조건마다 선택도를 계산해 예상 행 수를 낸다.",
+   "objectives": [
+    "범위 조건의 선택도를 히스토그램 구간 안의 선형 보간으로, 같음 조건의 선택도를 최빈값 빈도나 n_distinct로 계산하는 과정을 따라갈 수 있다",
+    "여러 조건의 선택도를 서로 독립이라 보고 곱하기 때문에 열끼리 상관이 있으면 행 수를 크게 낮춰 잡는 원인을 설명할 수 있다",
+    "조인 선택도가 null_frac과 n_distinct, 양쪽의 최빈값 목록으로 정해지며 조인 방식과 따로 추정된다는 점을 설명할 수 있다",
+    "reltuples를 현재 페이지 수에 맞춰 늘려 잡는 방식과 ANALYZE 표본 추출 때문에 추정치가 실행마다 조금씩 바뀌는 까닭을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "db.internals.query-planner"
+   ],
+   "related": [
+    "db.internals.extended-statistics"
+   ],
+   "aliases": [
+    "PostgreSQL 행 수 추정",
+    "PostgreSQL row estimation",
+    "PostgreSQL 선택도",
+    "PostgreSQL selectivity"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/row-estimation-examples.html",
+    "https://www.postgresql.org/docs/current/planner-stats.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.orm.session-identity-map-flush",
+   "title": "SQLAlchemy Session의 identity map과 flush",
+   "en": "SQLAlchemy Session Internals: Identity Map, Autoflush and Expiration",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "ORM",
+   "summary": "SQLAlchemy Session은 기본 키마다 객체 하나를 identity map에 두고, 질의 전에 변경을 flush하며, 롤백 때와 기본 설정의 커밋 때 객체를 만료시킨다.",
+   "objectives": [
+    "identity map 때문에 같은 행을 두 번 조회해도 같은 객체가 돌아오고 이미 읽은 속성은 새 질의 결과로 덮이지 않아 오래된 값이 남을 수 있음을 설명할 수 있다",
+    "질의·지연 로딩 전에 일어나는 autoflush와 commit 때 늘 일어나는 flush의 시점을 설명하고, flush가 실패하면 rollback() 전까지 Session을 쓸 수 없는 까닭을 설명할 수 있다",
+    "기본 설정(expire_on_commit=True)의 commit 뒤와 모든 rollback 뒤 객체가 만료되어 다음 접근 때 SELECT가 나가는 손익과, expire()·refresh()·populate_existing의 차이를 설명할 수 있다",
+    "Session 안의 객체가 약하게 참조되어 바뀌지 않은 persistent 객체는 애플리케이션이 참조를 놓으면 사라질 수 있음을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "db.orm.n-plus-one"
+   ],
+   "related": [
+    "db.orm.async-expire-on-commit",
+    "be.arch.unit-of-work"
+   ],
+   "aliases": [
+    "SQLAlchemy identity map",
+    "SQLAlchemy 아이덴티티 맵",
+    "SQLAlchemy autoflush",
+    "SQLAlchemy flush",
+    "SQLAlchemy 객체 상태"
+   ],
+   "refs": [
+    "https://docs.sqlalchemy.org/en/20/orm/session_basics.html",
+    "https://docs.sqlalchemy.org/en/20/orm/session_state_management.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.internals.wal-replication",
    "title": "WAL과 복제",
    "en": "WAL and Replication",
@@ -50579,6 +51719,35 @@
    "domain": "db"
   },
   {
+   "id": "db.internals.hash-index",
+   "title": "PostgreSQL 해시 인덱스의 내부와 손익",
+   "en": "PostgreSQL Hash Index Internals and Trade-offs",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "PostgreSQL 해시 인덱스는 값 대신 4바이트 해시만 버킷 페이지에 담아 같음 검색을 빠르게 하지만 범위·고유·다중 열을 지원하지 않는다.",
+   "objectives": [
+    "메타 페이지·기본 버킷 페이지·넘침 페이지·비트맵 페이지가 맡는 일을 설명할 수 있다",
+    "해시값만 저장해 긴 값에서 B-tree보다 작아지는 대신 모든 검색이 손실 검색이 되고 = 연산자만 쓸 수 있는 손익을 설명할 수 있다",
+    "값이 한쪽에 몰리면 넘침 페이지 사슬이 길어져 B-tree보다 블록 접근이 많아질 수 있음을 근거로 해시 인덱스가 맞는 열을 고를 수 있다",
+    "버킷 분할이 삽입하는 세션에서 일어나고 버킷 수는 줄지 않아 REINDEX로만 인덱스를 줄일 수 있는 운영 비용을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "db.internals.btree",
+    "db.internals.index-access-methods"
+   ],
+   "aliases": [
+    "PostgreSQL 해시 인덱스",
+    "PostgreSQL hash index",
+    "USING hash 인덱스"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/hash-index.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.internals.xid-wraparound",
    "title": "트랜잭션 ID 겹침과 동결(freeze)",
    "en": "Transaction ID Wraparound and Freezing",
@@ -50776,6 +51945,46 @@
    ],
    "refs": [
     "https://www.mongodb.com/docs/manual/reference/read-concern-majority/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.nosql.oplog-window",
+   "title": "oplog 창: secondary가 따라잡을 수 있는 시간",
+   "en": "MongoDB Oplog Window",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "NoSQL",
+   "summary": "oplog의 가장 새 항목과 가장 옛 항목 사이의 시간으로, 끊긴 secondary는 이 안에 다시 이어져야 복제로 따라잡는다.",
+   "parent": "db.nosql.mongodb-replication-internals",
+   "aliases": [
+    "oplog window",
+    "MongoDB oplog 창"
+   ],
+   "refs": [
+    "https://www.mongodb.com/docs/manual/core/replica-set-oplog/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.most-common-values",
+   "title": "최빈값 목록(MCV)과 most_common_freqs",
+   "en": "PostgreSQL Most Common Values (MCV) List",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "ANALYZE가 열마다 자주 나오는 값과 그 빈도를 pg_stats에 적어 두는 목록으로, 같음 조건의 선택도를 이 빈도로 바로 정한다.",
+   "parent": "db.internals.row-estimation",
+   "aliases": [
+    "most_common_vals",
+    "most_common_freqs",
+    "PostgreSQL MCV 목록",
+    "PostgreSQL MCV list"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/row-estimation-examples.html"
    ],
    "domain": "db"
   },
@@ -51225,6 +52434,82 @@
    ],
    "refs": [
     "https://redis.io/docs/latest/operate/oss_and_stack/management/optimization/memory-optimization/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.cache.active-expire-effort",
+   "title": "active-expire-effort: Redis 능동 만료의 노력 수준",
+   "en": "Redis active-expire-effort",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "캐시",
+   "summary": "기본값 1에서 최대 10까지 올려 능동 만료 주기가 더 애쓰게 하며, CPU와 지연을 더 쓰는 대신 메모리에 남는 만료 키를 줄인다.",
+   "parent": "db.cache.redis-key-expiration",
+   "aliases": [
+    "active-expire-effort",
+    "Redis 만료 노력 수준"
+   ],
+   "refs": [
+    "https://raw.githubusercontent.com/redis/redis/8.10/redis.conf"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.cache.lazyfree-lazy-expire",
+   "title": "lazyfree-lazy-expire: 만료 키를 백그라운드에서 지우기",
+   "en": "Redis lazyfree-lazy-expire",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "캐시",
+   "summary": "기본값 no에서는 만료된 키를 DEL처럼 막으며 지우고, yes로 바꾸면 UNLINK처럼 백그라운드 스레드가 메모리를 돌려받는다.",
+   "parent": "db.cache.redis-key-expiration",
+   "aliases": [
+    "lazyfree-lazy-expire",
+    "Redis 만료 키 지연 해제"
+   ],
+   "refs": [
+    "https://raw.githubusercontent.com/redis/redis/8.10/redis.conf"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.nosql.election-timeout-millis",
+   "title": "electionTimeoutMillis: MongoDB 선출 대기 시간",
+   "en": "MongoDB electionTimeoutMillis",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "NoSQL",
+   "summary": "secondary가 primary와 이 시간(기본 10초)보다 오래 연결이 끊기면 선출을 시작하게 하는 레플리카 셋 설정이다.",
+   "parent": "db.nosql.mongodb-replication-internals",
+   "aliases": [
+    "electionTimeoutMillis",
+    "MongoDB 선출 제한 시간"
+   ],
+   "refs": [
+    "https://www.mongodb.com/docs/manual/core/replica-set-elections/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.hash-overflow-page",
+   "title": "해시 인덱스 넘침 페이지",
+   "en": "Hash Index Overflow Page",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "PostgreSQL 해시 인덱스에서 기본 버킷 페이지가 차면 그 버킷에 사슬로 이어 붙이는 페이지로, 검색은 사슬 전체를 읽는다.",
+   "parent": "db.internals.hash-index",
+   "aliases": [
+    "hash overflow page",
+    "PostgreSQL 해시 넘침 페이지"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/hash-index.html"
    ],
    "domain": "db"
   },
@@ -124428,6 +125713,77 @@
    "domain": "mlops"
   },
   {
+   "id": "mlops.serve.vllm-prefix-cache-internals",
+   "title": "vLLM 접두사 캐시의 내부: 블록 해시와 LRU 축출",
+   "en": "vLLM Automatic Prefix Caching Internals",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "vLLM이 꽉 찬 KV 블록마다 앞 블록 해시를 이어 붙인 해시로 재사용을 찾고, 참조 수가 0인 블록을 빈 블록 큐의 앞에서부터 축출하는 구조를 분석한다.",
+   "objectives": [
+    "블록 해시가 부모 해시·블록 토큰·추가 키(LoRA ID·멀티모달 해시·cache_salt)로 이루어져 앞부분 전체가 같아야 적중하는 이유를 설명할 수 있다",
+    "덜 찬 마지막 블록은 캐시되지 않고, v1의 덧붙이기 전용 블록 테이블 때문에 같은 내용이 두 번 캐시될 수 있다는 점으로 적중률이 기대보다 낮은 원인을 분석할 수 있다",
+    "요청이 끝나면 블록을 역순으로 빈 블록 큐 끝에 넣어 접두사의 끝 블록부터 축출되는 순서와 참조 수의 역할을 설명할 수 있다",
+    "sha256·sha256_cbor·xxhash 해시 방식의 재현성·속도·충돌 위험을 비교해 다중 테넌트 환경에 맞는 방식을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.serve.vllm-prefix-cache-ops"
+   ],
+   "related": [
+    "llm.internals.kv-cache",
+    "mlops.serve.vllm-hybrid-kv-cache"
+   ],
+   "aliases": [
+    "vLLM APC 내부",
+    "vLLM prefix caching internals",
+    "vLLM 접두사 캐시 설계",
+    "vLLM 빈 블록 큐"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/design/prefix_caching/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.evidently-drift-method-selection",
+   "title": "Evidently 드리프트 검정 자동 선택: 표본 크기와 임계값의 뜻",
+   "en": "Evidently Default Drift Method Selection",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "Evidently가 열 유형·기준 데이터 크기·고유값 수로 K-S·카이제곱·Z 검정이나 Wasserstein·Jensen-Shannon 거리를 고르고, 방법마다 임계값을 다르게 읽는 규칙을 분석한다.",
+   "objectives": [
+    "기준 데이터가 1000개 이하인지, 열이 수치형·범주형인지, 수치형이라도 고유값이 5개 이하인지에 따라 기본 방법이 어떻게 갈리는지 설명할 수 있다",
+    "p값 검정은 임계값보다 작을 때, 거리 방법은 임계값 이상일 때 드리프트로 본다는 차이로 임계값을 바꿀 때 결과가 어느 쪽으로 움직일지 판단할 수 있다",
+    "텍스트 열을 기준·현재 문장을 가려내는 분류기의 ROC AUC로 판정하는 방식과, 작은 데이터에서 무작위 분류기 분포의 백분위를 쓰는 이유를 설명할 수 있다",
+    "drift_share로 데이터셋 전체 드리프트를 정하는 규칙과 열별 방법·임계값을 바꾸는 손익을 따질 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.observe.evidently-test-conditions",
+    "mlops.observe.drift-detection"
+   ],
+   "related": [
+    "mlops.observe.evidently-data-drift-preset"
+   ],
+   "aliases": [
+    "Evidently 드리프트 방법",
+    "Evidently drift method",
+    "Evidently stattest",
+    "Evidently 기본 드리프트 알고리즘"
+   ],
+   "refs": [
+    "https://docs.evidentlyai.com/metrics/explainer_drift",
+    "https://docs.evidentlyai.com/metrics/customize_data_drift"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
    "id": "mlops.serve.inference-optimization",
    "title": "모델 서빙과 양자화",
    "en": "Model Serving and Quantization",
@@ -124886,6 +126242,75 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-13",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.vllm-torch-compile-integration",
+   "title": "vLLM torch.compile 내부: 컴파일 캐시와 조각 그래프",
+   "en": "vLLM torch.compile Integration Internals",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "vLLM이 모델을 어텐션에서 잘라 조각마다 Inductor로 컴파일하고 그 결과를 디스크에 캐시해 시작 시간과 실행 속도를 맞바꾸는 구조를 분석한다.",
+   "objectives": [
+    "어텐션을 사용자 정의 연산으로 감싸 한 그래프로 잡은 뒤 splitting_ops에서 잘라, 가운데 층들이 같은 컴파일 결과를 나눠 쓰는 구조를 설명할 수 있다",
+    "컴파일 캐시 디렉터리가 vLLM 설정·PyTorch 컴파일러 설정·모델 forward 코드로 정해진다는 점으로 캐시를 다른 배포에 옮겨 쓸 수 있는 조건과 다시 컴파일되는 경우를 판단할 수 있다",
+    "동적 형상 처리 방식(BACKED·UNBACKED·BACKED_SIZE_OBLIVIOUS)이 가드를 다루는 차이와 그 안전성·최적화 손익을 비교할 수 있다",
+    "compile_sizes로 크기별 정적 컴파일과 자동 튜닝을 켰을 때 첫 실행 시간이 늘어나는 대신 얻는 속도 이득을 따질 수 있다"
+   ],
+   "prerequisites": [
+    "ml.nn.torch-compile-troubleshooting",
+    "mlops.serve.vllm-v1-process-architecture"
+   ],
+   "related": [
+    "mlops.serve.vllm-cudagraph-modes"
+   ],
+   "aliases": [
+    "vLLM torch.compile",
+    "vLLM 컴파일 통합",
+    "vLLM piecewise compile",
+    "vLLM 조각 컴파일"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/design/torch_compile/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.triton-response-cache",
+   "title": "Triton 응답 캐시의 손익: 요청 해시와 로컬·Redis 캐시",
+   "en": "Triton Response Cache Trade-offs",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "Triton이 모델 이름·버전·입력 텐서의 해시로 같은 요청의 결과를 돌려주는 응답 캐시가 언제 이득이고 언제 손해인지, 로컬과 Redis 구현을 비교해 따진다.",
+   "objectives": [
+    "요청 해시가 모델 이름·버전·입력 텐서로 만들어지고 64비트 해시 충돌 시 엉뚱한 결과가 돌아올 수 있다는 위험을 설명할 수 있다",
+    "CPU 메모리 밖의 입력·출력 텐서, 실패한 요청, 시퀀스 배처, 디커플드 모델이 캐시되지 않는 조건으로 적중이 없는 원인을 분석할 수 있다",
+    "최상위 앙상블 캐시가 구성 모델 모두가 지원할 때만 되고, 앙상블에서 놓쳐도 구성 모델 캐시에서 적중할 수 있는 동작을 설명할 수 있다",
+    "로컬 캐시와 Redis 캐시를 재시작 뒤 유지·여러 인스턴스 공유·Redis 장애 시 동작으로 비교하고, 중복 요청 비율과 모델 비용으로 캐시를 켤지 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.serve.triton-ensemble-vs-bls"
+   ],
+   "related": [
+    "mlops.serve.triton-batcher-design"
+   ],
+   "aliases": [
+    "Triton response cache",
+    "Triton 응답 캐시",
+    "Triton 추론 결과 캐시",
+    "Triton Redis cache"
+   ],
+   "refs": [
+    "https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/user_guide/response_cache.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "mlops"
   },
   {
@@ -125615,6 +127040,146 @@
    "refs": [
     "https://docs.ray.io/en/latest/ray-core/scheduling/placement-group.html"
    ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.vllm-block-hash-chain",
+   "title": "vLLM 블록 해시 연쇄(부모 해시·추가 키)",
+   "en": "vLLM KV Block Hash Chain",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "꽉 찬 KV 블록마다 앞 블록의 해시, 블록 안 토큰, LoRA ID·멀티모달 입력 해시·cache_salt 같은 추가 키를 함께 해시해 접두사 전체를 하나의 키로 나타내는 방식이다.",
+   "parent": "mlops.serve.vllm-prefix-cache-internals",
+   "related": [
+    "mlops.serve.vllm-cache-salt"
+   ],
+   "aliases": [
+    "vLLM block hash",
+    "vLLM 블록 해시",
+    "parent block hash",
+    "부모 블록 해시"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/design/prefix_caching/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.vllm-prefix-hash-algo",
+   "title": "vLLM 블록 해시 방식(prefix-caching-hash-algo)",
+   "en": "vLLM Prefix Caching Hash Algorithm",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "블록 해시를 sha256·sha256_cbor·xxhash·xxhash_cbor 중 무엇으로 만들지 정하는 vLLM 옵션으로, 재현성·속도·충돌 위험을 맞바꾼다.",
+   "parent": "mlops.serve.vllm-prefix-cache-internals",
+   "aliases": [
+    "prefix-caching-hash-algo",
+    "prefix_caching_hash_algo",
+    "sha256_cbor",
+    "xxhash_cbor"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/design/prefix_caching/",
+    "https://docs.vllm.ai/en/latest/configuration/engine_args/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.vllm-compile-cache-dir",
+   "title": "vLLM 컴파일 결과 캐시(torch_compile_cache)",
+   "en": "vLLM torch.compile Cache Directory",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "vLLM이 Inductor 컴파일 결과를 ~/.cache/vllm/torch_compile_cache/ 아래에 설정·코드별 디렉터리로 저장해 다음 시작 때 컴파일을 건너뛰게 하는 캐시로, 환경 변수로 끌 수 있다.",
+   "parent": "mlops.serve.vllm-torch-compile-integration",
+   "aliases": [
+    "VLLM_DISABLE_COMPILE_CACHE",
+    "torch_compile_cache",
+    "vLLM torch.compile cache"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/design/torch_compile/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.vllm-dynamic-shapes-type",
+   "title": "vLLM 동적 형상 방식(DynamicShapesConfig type)",
+   "en": "vLLM Dynamic Shapes Configuration",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "vLLM이 torch.compile 가드를 다루는 방식을 BACKED·UNBACKED·BACKED_SIZE_OBLIVIOUS 중에서 고르는 설정으로, 속도와 안전성을 맞바꾼다.",
+   "parent": "mlops.serve.vllm-torch-compile-integration",
+   "aliases": [
+    "DynamicShapesConfig",
+    "BACKED_SIZE_OBLIVIOUS",
+    "vLLM guard dropping",
+    "vLLM 가드 제거"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/design/torch_compile/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.evidently-drift-share",
+   "title": "drift_share(Evidently 데이터셋 드리프트 비율)",
+   "en": "Evidently drift_share",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "드리프트가 난 열의 비율이 이 값에 이르면 데이터셋 전체를 드리프트로 판정하게 하는 Evidently 데이터셋 수준 설정으로, 기본값은 0.5다.",
+   "parent": "mlops.observe.evidently-drift-method-selection",
+   "aliases": [
+    "drift_share",
+    "Evidently 드리프트 열 비율",
+    "dataset drift share"
+   ],
+   "refs": [
+    "https://docs.evidentlyai.com/metrics/customize_data_drift"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.observe.evidently-text-domain-classifier",
+   "title": "텍스트 드리프트 판별 분류기(Evidently)",
+   "en": "Evidently Text Drift Domain Classifier",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "기준 텍스트와 현재 텍스트를 가려내도록 이진 분류기를 학습해 그 ROC AUC가 임계값을 넘으면 텍스트 열에 드리프트가 있다고 보는 Evidently의 방식이다.",
+   "parent": "mlops.observe.evidently-drift-method-selection",
+   "aliases": [
+    "perc_text_content_drift",
+    "abs_text_content_drift",
+    "Evidently text drift",
+    "Evidently 텍스트 드리프트"
+   ],
+   "refs": [
+    "https://docs.evidentlyai.com/metrics/explainer_drift"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "mlops"
   }
  ]
