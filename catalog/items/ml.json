@@ -9497,6 +9497,42 @@
     ]
   },
   {
+    "id": "ml.supervised.successive-halving-search",
+    "title": "연속 반감 탐색: 자원 일정과 후보 탈락의 손익",
+    "en": "Successive Halving Search: Resource Schedules and Elimination Trade-offs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "모든 후보를 적은 자원으로 먼저 평가하고 반복마다 자원을 factor배 늘리며 후보를 factor분의 1로 줄이는 하이퍼파라미터 탐색의 내부와 손익이다.",
+    "objectives": [
+      "factor와 min_resources로 반복마다 쓰는 자원 양과 남는 후보 수를 계산하고, 자원이 모자랄 때 aggressive_elimination이 첫 반복을 되풀이해 후보를 줄이는 이유를 설명할 수 있다",
+      "min_resources를 크게 또는 작게 잡을 때 후보 구별력과 계산 시간이 어떻게 맞바뀌는지 설명할 수 있다",
+      "자원을 다 쓰도록 맞추는 exhaust 설정이 대개 더 나은 최종 후보를 주지만 시간이 조금 더 드는 이유를 설명할 수 있다",
+      "best_params_가 마지막 반복만 반영하므로 cv_results_를 iter와 n_resources로 나눠 읽어야 하는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.hyperparameter-search"
+    ],
+    "related": [
+      "ml.supervised.randomized-search",
+      "ml.eval.nested-cross-validation"
+    ],
+    "aliases": [
+      "successive halving",
+      "HalvingGridSearchCV",
+      "HalvingRandomSearchCV",
+      "연속 반감",
+      "할빙 서치"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/grid_search.html#successive-halving-user-guide",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.HalvingGridSearchCV.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
     "id": "ml.nn.activation-checkpointing",
     "title": "활성화 체크포인팅(torch.utils.checkpoint)",
     "en": "Activation Checkpointing",
@@ -10414,5 +10450,25 @@
     "refs": [
       "https://docs.pytorch.org/docs/2.15/notes/gradcheck.html"
     ]
+  },
+  {
+    "id": "ml.supervised.aggressive-elimination",
+    "title": "적극적 후보 탈락(aggressive_elimination)",
+    "en": "Aggressive Elimination of Candidates",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "자원이 모자라 마지막 반복에 factor개보다 많은 후보가 남을 때 첫 반복의 최소 자원으로 평가를 되풀이해 후보를 먼저 줄이는 연속 반감 탐색 옵션이다.",
+    "parent": "ml.supervised.successive-halving-search",
+    "aliases": [
+      "aggressive_elimination",
+      "적극적 탈락"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/grid_search.html#aggressive-elimination-of-candidates"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
   }
 ]
