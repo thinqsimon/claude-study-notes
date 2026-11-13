@@ -674,7 +674,7 @@ StudyNotes/
 3. 사전은 아직 백엔드·API 중심입니다. 대화에 나온 개념이 사전에 없으면 노트를 만들지 않고 후보함에 적습니다
 4. 설명 수준(1 왕초보 · 2 입문 · 3 기초 · 4 실전 · 5 심화)은 처음 실행할 때 한 번 고르면 기억됩니다.
    바꾸려면 `/study-notes 4`, `/study-notes 실전`처럼 붙여 부릅니다 (Codex는 `$study-notes 4`)
-5. 옵션: `/study-notes u` 많이 쓰기(한 번에 30개까지) · `/study-notes c` 남은 주제 이어 쓰기 · `/study-notes h` 사용법 · `/study-notes d` 현재 단계와 정리 상태 · `/study-notes s` 진행 중 정리 취소
+5. 옵션: `/study-notes u` 많이 쓰기(한 번에 30개까지) · `/study-notes c` 남은 주제 이어 쓰기 · `/study-notes h` 사용법 · `/study-notes d` 현재 단계와 정리 상태 · `/study-notes l 3` 노트 없이 단계만 바꾸기 · `/study-notes s` 진행 중 정리 취소
    (정리 도중 ESC로 멈춘 뒤 `s`를 부르면 미완성 노트를 지우고, 다음 실행 때 같은 대화부터 다시 정리합니다)
 
 ## 상태 확인

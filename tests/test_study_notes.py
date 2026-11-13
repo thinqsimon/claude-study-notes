@@ -215,6 +215,16 @@ class ExtractCommitTest(unittest.TestCase):
                      "--notes-root", str(self.root), "--level", "중급"])
         self.assertFalse((self.root / ".state").exists())
 
+    def test_level_only_change_leaves_checkpoint_alone(self):
+        """`/study-notes l 4`: 단계만 바꾸고 대화·체크포인트·진행 중 표시는 건드리지 않는다."""
+        run("level", "4", "--notes-root", str(self.root))
+        self.assertFalse((self.root / ".state").exists())
+        status = run("status", "--agent", "claude", "--cwd", str(self.cwd), "--session", self.session,
+                     "--notes-root", str(self.root))
+        self.assertEqual((status["level_label"], status["level_source"]), ("4단계 실전", "saved"))
+        self.assertEqual(status["unsummarized_messages"], 2)
+        self.assertIsNone(status["in_progress"])
+
     def test_commit_writes_level_column(self):
         self.extract("--level", "3")
         result = self.commit(self.write_v1_note(NOTE))
@@ -336,7 +346,7 @@ class DocsTest(unittest.TestCase):
     def test_skill_and_readme_describe_options(self):
         for doc in (SKILL_DIR / "SKILL.md", ROOT / "README.md"):
             text = doc.read_text(encoding="utf-8")
-            for marker in ("/study-notes h", "/study-notes d", "/study-notes s", "cancel"):
+            for marker in ("/study-notes h", "/study-notes d", "/study-notes l", "/study-notes s", "cancel"):
                 with self.subTest(doc=doc.name, marker=marker):
                     self.assertIn(marker, text)
 
