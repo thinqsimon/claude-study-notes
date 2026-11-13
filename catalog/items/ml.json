@@ -7150,6 +7150,40 @@
     ]
   },
   {
+    "id": "ml.supervised.gaussian-process-regression-kernels",
+    "title": "가우시안 프로세스 회귀: 커널 고르기와 예측 불확실성",
+    "en": "Gaussian Process Regression: Choosing Kernels and Reading Predictive Uncertainty",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "GaussianProcessRegressor에 데이터 모양에 맞는 커널을 골라 학습하고, 예측 평균과 표준편차로 불확실성을 읽는 흐름이다.",
+    "objectives": [
+      "매끄러움과 주기성을 근거로 RBF·Matern·RationalQuadratic·ExpSineSquared 가운데 커널을 고르고 +와 *로 조합할 수 있다",
+      "predict(return_std=True)의 표준편차로 평균 주위 구간을 그리고 sample_y로 학습 전 사전 표본과 학습 뒤 사후 표본을 비교할 수 있다",
+      "fit 뒤 kernel_과 log_marginal_likelihood_value_를 커널별로 비교해 데이터에 맞지 않는 커널을 가려낼 수 있다",
+      "predict에서 return_std와 return_cov는 둘 중 하나만 요청할 수 있다는 제약에 맞춰 필요한 쪽을 골라 쓸 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.linear-regression",
+      "ml.supervised.svm-classification"
+    ],
+    "related": [
+      "ml.supervised.kernel-approximation"
+    ],
+    "aliases": [
+      "가우시안 프로세스 회귀",
+      "Gaussian process regression",
+      "GP 회귀 커널 선택",
+      "GP 예측 불확실성"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/gaussian_process.html",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.gaussian_process.GaussianProcessRegressor.html",
+      "https://scikit-learn.org/stable/auto_examples/gaussian_process/plot_gpr_prior_posterior.html"
+    ]
+  },
+  {
     "id": "ml.nn.activation-function",
     "title": "활성화 함수",
     "en": "Activation Function",
@@ -8796,6 +8830,40 @@
     "checked_at": "2026-11-13"
   },
   {
+    "id": "ml.supervised.randomized-tree-ensembles",
+    "title": "랜덤 포레스트·Extra-Trees 내부: 무작위화와 분산 감소의 손익",
+    "en": "Randomized Tree Ensembles: Randomization and Variance Reduction in Random Forests and Extra-Trees",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "부트스트랩 표본·후보 특성·분할 임계값을 무작위로 정해 트리 사이 상관을 낮추고 평균으로 분산을 줄이는 대신 편향이 조금 느는 손익을 다룬다.",
+    "objectives": [
+      "부트스트랩 표본과 후보 특성의 무작위 선택이 트리 오차의 상관을 낮춰 평균에서 분산을 줄이고 편향은 조금 늘릴 수 있는 원리를 설명할 수 있다",
+      "scikit-learn이 트리마다 클래스 하나에 투표하는 원 논문 방식 대신 확률 예측을 평균한다는 차이를 설명할 수 있다",
+      "임계값까지 무작위로 뽑는 Extra-Trees가 랜덤 포레스트보다 대개 분산을 조금 더 줄이고 편향을 조금 더 늘리는 손익을 판단할 수 있다",
+      "oob_score가 bootstrap=True일 때만 쓸 수 있는 이유와 트리 수가 적으면 OOB 결정 함수에 NaN이 생길 수 있는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.tree-ensembles",
+      "ml.supervised.cart-tree-internals"
+    ],
+    "related": [
+      "ml.supervised.hgbt-histogram-internals",
+      "ml.eval.mdi-importance"
+    ],
+    "aliases": [
+      "무작위화 트리 앙상블",
+      "randomized tree ensembles",
+      "랜덤 포레스트 내부",
+      "random forest internals"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/ensemble.html",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html"
+    ]
+  },
+  {
     "id": "ml.training.backprop",
     "title": "역전파와 경사 하강법",
     "en": "Backpropagation and Gradient Descent",
@@ -9247,6 +9315,104 @@
     ]
   },
   {
+    "id": "ml.unsupervised.gaussian-mixture-internals",
+    "title": "가우시안 혼합 모델 내부: EM과 변분 추론의 손익",
+    "en": "Gaussian Mixture Internals: EM versus Variational Inference",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "가우시안 혼합 모델을 EM으로 우도만 최대화할 때와 사전 분포를 둔 변분 추론으로 맞출 때의 특이해, 성분 수 선택, 속도 손익을 비교한다.",
+    "objectives": [
+      "EM이 우도만 최대화해 평균을 0 쪽으로 끌지 않는 대신, 성분당 점이 적으면 공분산 추정이 무너져 우도가 무한대로 발산할 수 있는 이유를 설명할 수 있다",
+      "spherical·diag·tied·full 공분산 형태와 성분 수를 BIC로 고를 때 BIC가 데이터가 많고 실제로 혼합 분포에서 나온 경우에만 점근적으로 맞는다는 한계를 설명할 수 있다",
+      "kmeans·k-means++·random_from_data·random 초기화의 속도와 수렴 위험을 비교해 고를 수 있다",
+      "BayesianGaussianMixture가 가중치 집중 사전으로 필요 없는 성분의 가중치를 0 가까이 줄이는 원리와 EM보다 느리고 추론 편향이 생길 수 있는 손해를 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.unsupervised.kmeans-clustering",
+      "ml.unsupervised.kmeans-algorithm-variants"
+    ],
+    "related": [
+      "ml.unsupervised.density-clustering-internals"
+    ],
+    "aliases": [
+      "가우시안 혼합 모델",
+      "Gaussian mixture model",
+      "GaussianMixture",
+      "GMM 군집화",
+      "GMM EM 알고리즘"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/mixture.html"
+    ]
+  },
+  {
+    "id": "ml.unsupervised.covariance-estimation",
+    "title": "공분산 추정의 손익: 수축·희소 정밀도·강건 추정",
+    "en": "Covariance Estimation Trade-offs: Shrinkage, Sparse Precision and Robust Estimators",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "경험적 공분산이 흔들리는 조건에서 수축 추정, 희소 역공분산, 최소 공분산 행렬식 추정이 각각 무엇을 얻고 잃는지 비교한다.",
+    "objectives": [
+      "관측 수에 비해 특성이 많을 때 경험적 공분산이 고윳값을 잘못 추정해 정밀도 행렬이 부정확하거나 역행렬을 구하지 못하는 이유를 설명할 수 있다",
+      "기본 수축·Ledoit-Wolf·OAS가 수축 계수를 정하는 기준과 OAS가 가우시안 데이터를 가정한다는 점을 비교해 추정기를 고를 수 있다",
+      "GraphicalLasso가 l1 벌점으로 희소한 정밀도 행렬을 얻어 표본이 적을 때 유리하지만 표본이 많거나 상관이 강하면 수치적으로 불안정할 수 있다는 손익을 판단할 수 있다",
+      "MinCovDet가 행렬식이 가장 작은 관측 부분집합으로 공분산을 구해 이상치가 있어도 쓸 만한 마할라노비스 거리를 주는 원리를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.unsupervised.outlier-novelty-detection"
+    ],
+    "related": [
+      "ml.supervised.lasso-solvers",
+      "ml.unsupervised.pca-svd-solvers"
+    ],
+    "aliases": [
+      "공분산 추정",
+      "covariance estimation",
+      "sklearn.covariance",
+      "정밀도 행렬 추정",
+      "GraphicalLasso"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/covariance.html"
+    ]
+  },
+  {
+    "id": "ml.nn.gradcheck-internals",
+    "title": "gradcheck 내부: 수치·해석 야코비안 비교와 빠른 모드",
+    "en": "Gradcheck Mechanics: Numerical versus Analytical Jacobians and Fast Mode",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "PyTorch gradcheck가 유한 차분과 역방향 자동 미분으로 구한 야코비안을 비교하는 방식과, 빠른 모드가 스칼라 하나로 비용을 줄이는 원리를 다룬다.",
+    "objectives": [
+      "중심 차분으로 만든 수치 야코비안과 역방향 자동 미분으로 만든 해석 야코비안을 원소별로 비교하는 기본 모드가 입력·출력 크기에 따라 비싸지는 이유를 설명할 수 있다",
+      "복소 입력에서 켤레 Wirtinger 도함수의 두 배를 비교 기준으로 쓰고 복소 출력은 실수부와 허수부로 나눠 검사하는 이유를 설명할 수 있다",
+      "무작위 벡터 v와 단위 벡터 u로 vᵀJu 하나만 비교하는 빠른 모드의 비용 이점과, 불일치가 나오면 기본 모드로 다시 돌려 자세히 보는 흐름을 판단할 수 있다",
+      "기본 허용 오차가 배정밀도 입력에 맞춰져 있어 float32 입력으로 검사하면 실패하기 쉬운 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.nn.autograd-internals"
+    ],
+    "related": [
+      "ml.nn.pytorch-numerical-accuracy"
+    ],
+    "aliases": [
+      "torch.autograd.gradcheck",
+      "gradcheck mechanics",
+      "PyTorch 기울기 검사",
+      "PyTorch gradcheck"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/notes/gradcheck.html",
+      "https://docs.pytorch.org/docs/2.15/generated/torch.autograd.gradcheck.gradcheck.html"
+    ]
+  },
+  {
     "id": "ml.nn.activation-checkpointing",
     "title": "활성화 체크포인팅(torch.utils.checkpoint)",
     "en": "Activation Checkpointing",
@@ -9398,6 +9564,26 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ml.supervised.oob-score",
+    "title": "OOB 추정(out-of-bag 점수)",
+    "en": "Out-of-Bag Estimate",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "부트스트랩 표본에 뽑히지 않은 학습 표본으로 각 트리를 평가해 별도 검증 세트 없이 일반화 점수를 추정하는 방법이다.",
+    "parent": "ml.supervised.randomized-tree-ensembles",
+    "aliases": [
+      "oob_score",
+      "out-of-bag estimate",
+      "OOB 점수",
+      "아웃오브백 추정"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html"
+    ]
   },
   {
     "id": "ml.eval.equality-of-opportunity",
@@ -10025,6 +10211,124 @@
     ],
     "refs": [
       "https://docs.pytorch.org/tutorials/intermediate/memory_format_tutorial.html"
+    ]
+  },
+  {
+    "id": "ml.supervised.extra-trees",
+    "title": "Extra-Trees(극단적 무작위 트리)",
+    "en": "Extremely Randomized Trees",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "후보 특성마다 분할 임계값을 무작위로 뽑아 그중 가장 나은 것을 쓰는 트리 앙상블로, 기본적으로 부트스트랩 없이 전체 데이터를 쓴다.",
+    "parent": "ml.supervised.randomized-tree-ensembles",
+    "aliases": [
+      "ExtraTreesClassifier",
+      "ExtraTreesRegressor",
+      "extremely randomized trees",
+      "극단적 무작위 트리"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/ensemble.html"
+    ]
+  },
+  {
+    "id": "ml.unsupervised.gmm-covariance-type",
+    "title": "GMM 공분산 형태(covariance_type)",
+    "en": "Gaussian Mixture Covariance Type",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "가우시안 혼합의 각 성분 공분산을 구형·대각·공유·전체 가운데 무엇으로 둘지 정하는 설정이다.",
+    "parent": "ml.unsupervised.gaussian-mixture-internals",
+    "aliases": [
+      "GMM covariance_type",
+      "GMM 공분산 유형",
+      "GaussianMixture covariance_type"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/mixture.html"
+    ]
+  },
+  {
+    "id": "ml.unsupervised.dirichlet-process-prior",
+    "title": "디리클레 과정 사전(혼합 가중치)",
+    "en": "Dirichlet Process Prior for Mixture Weights",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "군집 수에 상한이 없는 분할 위의 사전 분포로, BayesianGaussianMixture가 막대 꺾기 표현을 잘라 근사해 쓰는 기본 가중치 사전이다.",
+    "parent": "ml.unsupervised.gaussian-mixture-internals",
+    "aliases": [
+      "Dirichlet process",
+      "디리클레 과정",
+      "stick-breaking",
+      "막대 꺾기 표현"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/mixture.html"
+    ]
+  },
+  {
+    "id": "ml.unsupervised.ledoit-wolf-shrinkage",
+    "title": "Ledoit-Wolf 수축 추정",
+    "en": "Ledoit-Wolf Shrinkage",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "경험적 공분산을 단위 행렬의 배수 쪽으로 줄일 때 평균 제곱 오차가 가장 작아지는 수축 계수를 공식으로 정하는 공분산 추정법이다.",
+    "parent": "ml.unsupervised.covariance-estimation",
+    "aliases": [
+      "LedoitWolf",
+      "Ledoit-Wolf shrinkage",
+      "레도잇-울프 수축",
+      "ledoit_wolf"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/covariance.html"
+    ]
+  },
+  {
+    "id": "ml.unsupervised.min-covariance-determinant",
+    "title": "최소 공분산 행렬식 추정(MinCovDet)",
+    "en": "Minimum Covariance Determinant",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "공분산 행렬식이 가장 작은 관측 부분집합으로 위치와 공분산을 구한 뒤 보정·재가중해 이상치에 강하게 만든 추정법이다.",
+    "parent": "ml.unsupervised.covariance-estimation",
+    "aliases": [
+      "MinCovDet",
+      "Minimum Covariance Determinant",
+      "FastMCD",
+      "최소 공분산 행렬식"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/covariance.html"
+    ]
+  },
+  {
+    "id": "ml.nn.fast-gradcheck",
+    "title": "빠른 gradcheck(fast_mode)",
+    "en": "Fast Gradcheck",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "전체 야코비안 대신 무작위 벡터로 줄인 스칼라 vᵀJu 하나를 수치·해석 양쪽에서 구해 비교하는 gradcheck의 빠른 검사 방식이다.",
+    "parent": "ml.nn.gradcheck-internals",
+    "aliases": [
+      "fast gradcheck",
+      "fast_mode=True",
+      "빠른 기울기 검사"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/notes/gradcheck.html"
     ]
   }
 ]

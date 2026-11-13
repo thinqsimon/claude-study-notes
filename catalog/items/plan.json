@@ -8944,6 +8944,72 @@
     ]
   },
   {
+    "id": "plan.basics.multiple-comparison-procedures",
+    "title": "다중 비교 절차: Tukey·Scheffé·Bonferroni 손익",
+    "en": "Multiple Comparison Procedures: Tukey, Scheffé and Bonferroni",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "세 안 이상을 견줄 때 쌍마다 검정을 되풀이하면 전체 오류율이 커지므로, 비교 묶음 전체의 신뢰수준을 지키는 절차를 골라 쓰는 NIST 통계 핸드북의 방법이다.",
+    "objectives": [
+      "모든 쌍에 개별 검정을 되풀이하면 비교 묶음 전체의 신뢰수준을 지키지 못하는 이유를 설명할 수 있다",
+      "대비를 결과를 보기 전에 정할 때와 결과를 본 뒤 고를 때 쓸 수 있는 절차가 달라지는 이유를 말할 수 있다",
+      "모든 쌍 비교에는 Tukey, 모든 대비에는 Scheffé, 미리 고른 적은 수의 비교에는 Bonferroni가 대개 더 좁은 구간을 주는 손익을 비교할 수 있다",
+      "어느 한 절차도 늘 가장 좁은 구간을 주지는 않는다는 점을 근거로 비교의 수와 종류에 맞춰 절차를 고를 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.ab-testing-design",
+      "plan.basics.sample-size-power"
+    ],
+    "aliases": [
+      "다중 비교",
+      "multiple comparisons",
+      "동시 신뢰구간",
+      "simultaneous confidence intervals",
+      "사후 검정"
+    ],
+    "refs": [
+      "https://www.itl.nist.gov/div898/handbook/prc/section4/prc47.htm",
+      "https://www.itl.nist.gov/div898/handbook/prc/section4/prc471.htm",
+      "https://www.itl.nist.gov/div898/handbook/prc/section4/prc472.htm",
+      "https://www.itl.nist.gov/div898/handbook/prc/section4/prc473.htm"
+    ]
+  },
+  {
+    "id": "plan.basics.experimental-unit-restricted-randomization",
+    "title": "실험 단위와 무작위화 제약: 블로킹·분할구 설계",
+    "en": "Experimental Units and Restricted Randomization",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "처리를 받는 단위의 크기가 여럿이거나 무작위화가 묶음 안으로 제한될 때, 단위 크기마다 오차항을 따로 두어야 결론이 틀리지 않는다는 실험 설계 원리다.",
+    "objectives": [
+      "처리 조합이 적용되는 실험 단위를 정의하고, 웨이퍼 안의 위치처럼 중첩된 변동원을 무작위 효과로 두어 분산 성분을 따로 추정해야 하는 이유를 설명할 수 있다",
+      "통제할 수 있는 성가신 요인은 블로킹으로, 나머지는 무작위화로 다루는 손익을 비교할 수 있다",
+      "바꾸기 어려운 요인 때문에 무작위화가 제한되면 분할구 설계가 되어 단위 크기마다 오차항이 생기는 구조를 설명할 수 있다",
+      "오차항을 하나만 두고 분석했을 때 잘못된 결론이 나올 수 있음을 근거로 혼합 모형 분석이 필요한지 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.ab-testing-design",
+      "plan.basics.sample-size-power"
+    ],
+    "aliases": [
+      "실험 단위",
+      "experimental unit",
+      "무작위화 제약",
+      "restricted randomization",
+      "중첩 변동",
+      "nested variation"
+    ],
+    "refs": [
+      "https://www.itl.nist.gov/div898/handbook/pri/section5/pri55.htm",
+      "https://www.itl.nist.gov/div898/handbook/pri/section3/pri332.htm",
+      "https://www.itl.nist.gov/div898/handbook/pri/section7/pri7.htm"
+    ]
+  },
+  {
     "id": "plan.basics.wcag2ict",
     "title": "WCAG2ICT로 앱·문서에 WCAG 적용하기",
     "en": "Applying WCAG to Non-Web ICT with WCAG2ICT",
@@ -9264,6 +9330,102 @@
     "checked_at": "2026-11-13"
   },
   {
+    "id": "plan.figma.widget-synced-state-concurrency",
+    "title": "Figma 위젯 동기 상태와 동시 편집 충돌",
+    "en": "Figma Widget Synced State and Concurrent Edits",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "여러 사람이 동시에 누르는 Figma 위젯에서 값 하나를 덮어쓰는 동기 상태와 키별로 합치는 동기 맵이 충돌을 어떻게 처리하는지 견주는 위젯 API 설계다.",
+    "objectives": [
+      "useSyncedState가 마지막 쓰기만 남겨 동시 클릭한 카운터에서 한 표가 사라지는 원인을 설명할 수 있다",
+      "사용자별 키에 값을 두는 useSyncedMap이 동시 변경을 합치는 방식을 근거로 투표처럼 기여자가 많은 데이터의 저장 방식을 고를 수 있다",
+      "함께 유효해야 하는 값은 상태 하나로 묶고 서로 독립인 값은 상태를 나누는 손익을 비교할 수 있다",
+      "렌더링이 위젯 상태에만 기대고 상호작용한 클라이언트에서만 실행되며 다른 클라이언트는 파일 변경으로 결과를 받는 구조를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.plugin-data-storage"
+    ],
+    "related": [
+      "plan.figma.widget"
+    ],
+    "aliases": [
+      "Figma 위젯 상태",
+      "Figma widget state",
+      "Figma 위젯 멀티플레이어",
+      "Figma widget multiplayer"
+    ],
+    "refs": [
+      "https://developers.figma.com/docs/widgets/widget-state-and-multiplayer/",
+      "https://developers.figma.com/docs/widgets/how-widgets-run/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "plan.basics.flash-threshold-computation",
+    "title": "번쩍임 임계의 계산: 시야 10도 면적과 휘도 변화",
+    "en": "Computing General and Red Flash Thresholds",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "WCAG 2.3.1의 번쩍임을 상대 휘도 변화 쌍, 시야 10도 안의 면적, 포화 빨강 색도 차이로 정의하는 계산 근거와 화면 크기·시청 거리 가정의 한계를 다룬다.",
+    "objectives": [
+      "상대 휘도가 10% 이상 오르내리는 쌍이면서 어두운 쪽이 0.80 아래일 때 일반 번쩍임으로 세는 계산을 설명할 수 있다",
+      "1024×768 화면의 341×256 픽셀 사각형이 시야 10도를 근사하고 동시에 번쩍이는 면적이 그 25%를 넘으면 안 되는 근거를 설명할 수 있다",
+      "확대·근거리 시청에서는 통과한 면적도 위험할 수 있는 이유를 들어 기준의 시청 거리 가정이 지닌 한계를 판단할 수 있다",
+      "전체 화면으로 볼 수 있는 영상은 가장 큰 크기로, 짧은 반복 영상은 반복 상태로 분석해야 하는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.motion-and-flash-design"
+    ],
+    "related": [
+      "plan.basics.wcag2-contrast-algorithm",
+      "plan.basics.relative-luminance"
+    ],
+    "aliases": [
+      "번쩍임 임계 계산",
+      "flash threshold computation",
+      "시야 10도 면적"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold.html"
+    ]
+  },
+  {
+    "id": "plan.basics.partial-dom-position-semantics",
+    "title": "DOM에 일부만 있는 목록·그리드의 위치 정보",
+    "en": "Position Semantics for Partially Rendered Lists and Grids",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "문서 크기를 줄이려고 항목 일부만 DOM에 둘 때, 보조기기가 전체 몇 개 중 몇 번째인지 알 수 있게 위치와 전체 개수를 직접 알리는 WAI-ARIA 1.2 규칙이다.",
+    "objectives": [
+      "모든 항목이 DOM에 있으면 사용자 에이전트가 위치와 개수를 계산하지만 일부만 있으면 작성자가 값을 줘야 하는 이유를 설명할 수 있다",
+      "aria-setsize·aria-posinset은 집합의 구성원에 붙고 aria-rowcount·aria-rowindex는 표·그리드에 쓰는 차이를 구분할 수 있다",
+      "전체 개수를 모를 때 -1을 쓰는 규칙이 aria-rowcount에서는 MUST, aria-setsize에서는 SHOULD인 차이를 말할 수 있다",
+      "행 인덱스가 1 이상이고 앞 행보다 커야 하며 여러 행에 걸친 셀은 시작 행을 쓰는 규칙으로 가상화 그리드의 마크업 오류를 찾을 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.composite-widget-focus"
+    ],
+    "related": [
+      "plan.basics.live-region-semantics"
+    ],
+    "aliases": [
+      "가상 스크롤 접근성",
+      "virtualized grid accessibility",
+      "aria-setsize",
+      "aria-posinset"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/wai-aria-1.2/"
+    ]
+  },
+  {
     "id": "plan.basics.accessibility-supported",
     "title": "접근성 지원 기술 사용(accessibility supported)",
     "en": "Accessibility Supported Ways of Using Technologies",
@@ -9418,6 +9580,29 @@
     ],
     "refs": [
       "https://html.spec.whatwg.org/multipage/interaction.html"
+    ]
+  },
+  {
+    "id": "plan.basics.bonferroni-method",
+    "title": "Bonferroni 방법",
+    "en": "Bonferroni Method",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "미리 고른 g개의 비교 각각을 신뢰수준 1−α/g로 세워 묶음 전체의 신뢰수준을 1−α 이상으로 지키는 다중 비교 방법이다.",
+    "parent": "plan.basics.multiple-comparison-procedures",
+    "related": [
+      "plan.basics.tukey-method"
+    ],
+    "aliases": [
+      "Bonferroni",
+      "본페로니",
+      "본페로니 보정",
+      "Bonferroni correction"
+    ],
+    "refs": [
+      "https://www.itl.nist.gov/div898/handbook/prc/section4/prc473.htm"
     ]
   },
   {
@@ -10044,6 +10229,133 @@
     ],
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-relevant"
+    ]
+  },
+  {
+    "id": "plan.basics.tukey-method",
+    "title": "Tukey 방법과 Tukey-Kramer",
+    "en": "Tukey's Method and Tukey-Kramer",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "스튜던트화 범위 분포로 모든 쌍의 평균 차이에 동시 신뢰구간을 주며, 표본 크기가 같으면 정확하고 다르면 보수적인 다중 비교 방법이다.",
+    "parent": "plan.basics.multiple-comparison-procedures",
+    "related": [
+      "plan.basics.bonferroni-method"
+    ],
+    "aliases": [
+      "Tukey HSD",
+      "튜키 방법",
+      "Tukey-Kramer",
+      "튜키 HSD"
+    ],
+    "refs": [
+      "https://www.itl.nist.gov/div898/handbook/prc/section4/prc471.htm"
+    ]
+  },
+  {
+    "id": "plan.basics.randomized-block-design",
+    "title": "랜덤화 블록 설계",
+    "en": "Randomized Block Design",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "중요한 성가신 요인을 고정한 블록마다 주 요인의 모든 수준을 배치하고 무작위화는 블록 안에서만 하는 실험 설계다.",
+    "parent": "plan.basics.experimental-unit-restricted-randomization",
+    "related": [
+      "plan.basics.split-plot-design"
+    ],
+    "aliases": [
+      "randomized block design",
+      "난괴법",
+      "랜덤화 블록"
+    ],
+    "refs": [
+      "https://www.itl.nist.gov/div898/handbook/pri/section3/pri332.htm"
+    ]
+  },
+  {
+    "id": "plan.basics.split-plot-design",
+    "title": "분할구 설계(split-plot)",
+    "en": "Split-Plot Design",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "바꾸기 어려운 요인은 큰 단위(전체구)에, 나머지 요인은 그 안의 작은 단위(부분구)에 배정해 오차항이 둘 생기는 실험 설계다.",
+    "parent": "plan.basics.experimental-unit-restricted-randomization",
+    "related": [
+      "plan.basics.randomized-block-design"
+    ],
+    "aliases": [
+      "split-plot design",
+      "분할구",
+      "분할구 실험",
+      "전체구와 부분구"
+    ],
+    "refs": [
+      "https://www.itl.nist.gov/div898/handbook/pri/section5/pri55.htm"
+    ]
+  },
+  {
+    "id": "plan.figma.use-synced-map",
+    "title": "Figma 위젯 useSyncedMap",
+    "en": "Figma Widget useSyncedMap",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "키마다 값을 따로 두고 여러 클라이언트가 만들고 고치고 지운 키를 합쳐, 동시 변경이 서로 덮어쓰지 않게 하는 Figma 위젯 훅이다.",
+    "parent": "plan.figma.widget-synced-state-concurrency",
+    "aliases": [
+      "useSyncedMap",
+      "Figma 동기 맵",
+      "Figma synced map"
+    ],
+    "refs": [
+      "https://developers.figma.com/docs/widgets/widget-state-and-multiplayer/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "plan.basics.saturated-red",
+    "title": "포화 빨강(saturated red)",
+    "en": "Saturated Red (WCAG Red Flash)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "한쪽 상태에서 R/(R+G+B)가 0.8 이상이고 CIE 1976 UCS 색도 차이가 0.2를 넘는 전환을 빨강 번쩍임으로 보는 WCAG 2.2의 작업 정의다.",
+    "parent": "plan.basics.flash-threshold-computation",
+    "aliases": [
+      "포화 빨강",
+      "saturated red",
+      "빨강 번쩍임 색도"
+    ],
+    "refs": [
+      "https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold.html"
+    ]
+  },
+  {
+    "id": "plan.basics.aria-rowcount-rowindex",
+    "title": "aria-rowcount와 aria-rowindex",
+    "en": "aria-rowcount and aria-rowindex",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "표·그리드의 행이 일부만 DOM에 있을 때 전체 행 수와 각 행의 1부터 세는 위치를 알리는 ARIA 속성으로, 전체 수를 모르면 행 수를 -1로 둔다.",
+    "parent": "plan.basics.partial-dom-position-semantics",
+    "aliases": [
+      "aria-rowcount",
+      "aria-rowindex",
+      "행 인덱스 속성"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/wai-aria-1.2/"
     ]
   }
 ]

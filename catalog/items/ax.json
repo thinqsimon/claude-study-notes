@@ -5208,6 +5208,40 @@
     "checked_at": "2026-11-10"
   },
   {
+    "id": "ax.coding.agent-team-basics",
+    "title": "에이전트 팀으로 일 나누기: 리드·팀원·작업 목록",
+    "en": "Getting Started with Claude Code Agent Teams",
+    "kind": "topic",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "실험 기능인 에이전트 팀을 켜고, 리드 세션이 팀원을 띄워 공유 작업 목록과 메시지로 일을 나눠 맡기는 기본 흐름이다.",
+    "objectives": [
+      "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS를 settings.json의 env에 1로 넣어 켜고, 맡길 일과 팀원 역할을 말로 적어 팀을 시작할 수 있다",
+      "에이전트 패널에서 팀원을 골라 대화 기록을 보고 직접 메시지를 보내며, Ctrl+T로 작업 목록을 열어 대기·진행·완료 상태와 막힌 작업을 확인할 수 있다",
+      "리드의 대화 기록이 팀원에게 넘어가지 않으므로 시작 지시에 필요한 맥락을 담고, 팀원마다 다른 파일을 맡겨 덮어쓰기를 피할 수 있다",
+      "결과만 필요한 일은 하위 에이전트에, 서로 의논할 일은 팀에 맡기도록 고르고, 다 쓴 팀원은 이름을 불러 종료를 요청할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.agent-first",
+      "ax.coding.custom-subagents"
+    ],
+    "related": [
+      "ax.coding.worktree-sessions"
+    ],
+    "aliases": [
+      "에이전트 팀 켜기",
+      "에이전트 팀 시작하기",
+      "start an agent team",
+      "팀원 띄우기"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/agent-teams"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
     "id": "ax.coding.slash-command",
     "title": "슬래시 명령(/이름)",
     "en": "Slash Command",
@@ -9457,6 +9491,39 @@
     "checked_at": "2026-11-13"
   },
   {
+    "id": "ax.security.unbounded-consumption-defenses",
+    "title": "LLM 무제한 소비 공격 유형과 방어 계층",
+    "en": "Defense Layers Against LLM Unbounded Consumption",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "OWASP LLM10이 든 자원 고갈·비용 공격·모델 복제·부채널 공격을 나누고, 입력 제한·속도 제한부터 출력 노출 제한까지 어느 방어가 어느 공격을 막는지 맞춰 본다.",
+    "objectives": [
+      "가변 길이 입력 홍수·컨텍스트 초과 반복·자원 집약 질의·비용 공격(Denial of Wallet)·API 모델 추출·기능 복제·부채널 공격이 각각 가용성·비용·모델 자산 가운데 무엇을 노리는지 나눌 수 있다",
+      "입력 크기 제한·속도 제한·자원 할당 관리·타임아웃과 스로틀링은 자원과 비용 공격을 줄이지만, 모델 복제에는 logits·logprobs 노출 제한·워터마크·적대적 학습 같은 다른 계층이 필요한 이유를 설명할 수 있다",
+      "부하가 몰릴 때 일부 기능을 유지하는 단계적 기능 저하와 대기 작업 수 제한·동적 확장을 비교해 장애 때 서비스를 어떻게 남길지 정할 수 있다",
+      "OWASP의 공격 시나리오를 근거로 기존 서비스의 방어 공백을 찾고 기록·감시·이상 탐지로 메울 곳을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "be.rest.rate-limit",
+      "ax.security.aml-attack-taxonomy"
+    ],
+    "related": [
+      "mlops.guardrail.unbounded-consumption",
+      "ax.security.model-extraction"
+    ],
+    "aliases": [
+      "LLM10 방어",
+      "unbounded consumption mitigation",
+      "LLM 자원 고갈 방어",
+      "LLM 비용 공격 방어"
+    ],
+    "refs": [
+      "https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/"
+    ]
+  },
+  {
     "id": "ax.security.evasion-defense-tradeoffs",
     "title": "회피 공격 방어의 손익: 적대적 학습·무작위 평활화·형식 검증",
     "en": "Trade-offs of Evasion Attack Mitigations",
@@ -9701,6 +9768,114 @@
     ],
     "refs": [
       "https://code.claude.com/docs/en/agent-teams"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "ax.coding.cross-session-messaging-internals",
+    "title": "세션 간 메시지의 전달 경로와 수신 통제",
+    "en": "Cross-Session Messaging: Delivery Paths and Inbound Controls",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "Claude Code 세션끼리 주고받는 메시지가 소켓과 서버 중 어디로 가는지, 받는 세션이 무엇을 막고 언제 보류하는지 알고 권한 우회 위험을 따진다.",
+    "objectives": [
+      "같은 기기에서는 세션별 유닉스 도메인 소켓(Windows는 named pipe)으로, 다른 기기와 클라우드 세션은 Anthropic 서버와 Remote Control 연결로 메시지가 가는 경로 차이를 설명하고 기기 밖으로 나가는 메시지에 승인을 거는 설정을 고를 수 있다",
+      "받은 메시지가 권한 승인·설정 변경·명령 실행을 하지 못하고 받는 세션의 권한 프롬프트가 그대로 뜬다는 규칙으로 세션 사이 권한 우회 위험을 판단할 수 있다",
+      "설정값이 없을 때 권한 확인을 건너뛰는 세션과 아닌 세션으로 나눠 전달·보류를 정하는 기본값, 자기 하위 프로세스가 보낸 메시지의 예외, accept·hold·refuse 값을 비교해 무인 claude -p 작업자의 수신 설정을 정할 수 있다",
+      "메시지 크기 상한, 발신자별 속도 제한, 같은 메시지 반복 제거, 최대 50개 대기 같은 한계로 두 세션 사이 메시지 고리가 스스로 멈추는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.worktree-sessions",
+      "ax.coding.subagents-permission-modes"
+    ],
+    "related": [
+      "ax.coding.inter-agent-message-trust",
+      "ax.coding.agent-team-coordination"
+    ],
+    "aliases": [
+      "cross-session messaging",
+      "세션 간 메시지",
+      "Claude Code 세션 간 메시지",
+      "/list-agents",
+      "/peers"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/cross-session-messaging"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "ax.security.remote-control-trust-boundary",
+    "title": "Remote Control의 연결 구조와 신뢰 경계",
+    "en": "Remote Control Connection Architecture and Trust Boundary",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "휴대폰·브라우저에서 내 기기의 Claude Code 세션을 조종할 때 연결이 어떻게 맺어지고 무엇이 서버에 남는지 알고, 신뢰 기기 요구와 데이터 보존 제약을 따진다.",
+    "objectives": [
+      "로컬 세션이 아웃바운드 HTTPS만 써서 Anthropic API에 등록하고 작업을 폴링하며 목적별 단기 자격 증명을 쓰는 구조로, 들어오는 포트를 열지 않고도 원격 조작이 되는 원리를 설명할 수 있다",
+      "코드 실행과 파일 접근은 내 기기에 남지만 연결 중 대화 기록은 Anthropic 서버에 저장되고, Zero Data Retention이나 HIPAA 구성 조직에서는 켤 수 없다는 점으로 데이터 요구와 충돌하는지 판단할 수 있다",
+      "Trusted Devices가 등록된 기기와 18시간 이내 로그인을 함께 요구해 로그인된 계정만으로는 세션을 보거나 조종하지 못하게 하는 방식과, 켜기 전에 시작한 세션은 보호받지 못하는 한계를 설명할 수 있다",
+      "실행 위치와 로컬 MCP 서버·설정을 쓰는지를 기준으로 Remote Control과 클라우드 세션을 비교해 고를 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.cloud-sessions",
+      "ax.coding.agent-data-usage"
+    ],
+    "related": [
+      "ax.coding.self-hosted-env-trust"
+    ],
+    "aliases": [
+      "Claude Code Remote Control",
+      "claude remote-control",
+      "/remote-control",
+      "Claude Code 원격 제어",
+      "disableRemoteControl"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/remote-control"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "ax.security.channel-trust-boundary",
+    "title": "채널로 들어오는 이벤트의 신뢰 경계와 권한 중계",
+    "en": "Claude Code Channels: Event Injection Trust Boundary and Permission Relay",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "채팅·웹훅 이벤트를 실행 중인 세션에 밀어 넣는 채널이 프롬프트 인젝션 통로가 되는 이유와, 발신자 확인·권한 중계·조직 정책이 막는 범위를 따진다.",
+    "objectives": [
+      "채널이 Claude Code가 띄운 stdio MCP 서버로 notifications/claude/channel 이벤트를 보내 모델에게 channel 태그로 보이고, 채널로 등록되지 않았거나 정책에 막히면 오류 없이 버려지는 구조를 설명할 수 있다",
+      "대화방이 아니라 보낸 사람의 신원으로 거르지 않으면 허용된 그룹 채팅의 누구나 세션에 지시를 넣을 수 있는 이유를 설명할 수 있다",
+      "권한 중계를 켜면 채널로 답할 수 있는 누구나 도구 사용을 승인할 수 있다는 점과, 다섯 글자 요청 ID 일치·먼저 온 답 적용·자격 증명 가리기가 막는 범위와 못 막는 범위를 근거로 켤지 판단할 수 있다",
+      ".mcp.json 등록만으로는 이벤트를 넣지 못하고 세션별 --channels 선택, channelsEnabled, allowedChannelPlugins가 겹쳐 통제하는 층을 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.coding.mcp-servers",
+      "ax.coding.agent-prompt-injection"
+    ],
+    "related": [
+      "ax.security.third-party-mcp-risks",
+      "ax.security.prompt-injection-defense-tradeoffs"
+    ],
+    "aliases": [
+      "Claude Code channels",
+      "Claude Code 채널",
+      "--channels",
+      "notifications/claude/channel",
+      "channelsEnabled"
+    ],
+    "refs": [
+      "https://code.claude.com/docs/en/channels",
+      "https://code.claude.com/docs/en/channels-reference"
     ],
     "volatile": true,
     "checked_at": "2026-11-13"
@@ -10544,5 +10719,158 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-13"
+  },
+  {
+    "id": "ax.coding.cross-session-inbound-default",
+    "title": "세션 간 메시지 수신 정책(crossSessionInbound)",
+    "en": "Cross-Session Inbound Policy (crossSessionInbound)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "다른 세션이 보낸 메시지를 accept·hold·refuse로 처리하는 설정으로, 값이 없으면 두 세션이 권한 확인을 건너뛰는지에 따라 전달하거나 승인 대기로 보류한다.",
+    "parent": "ax.coding.cross-session-messaging-internals",
+    "aliases": [
+      "crossSessionInbound",
+      "Messages from your other sessions",
+      "세션 간 메시지 수신 설정",
+      "세션 메시지 수신 정책"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "ax.coding.own-child-message-check",
+    "title": "자기 하위 프로세스 메시지 확인",
+    "en": "Own-Child Message Verification",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 네이티브 개발",
+    "summary": "훅이나 Bash 명령이 자기 세션 소켓에 보낸 메시지를 프로세스 증거나 세션 토큰으로 확인해 기본값에서 바로 전달하는 규칙으로, 운영체제마다 확인 방법이 다르다.",
+    "parent": "ax.coding.cross-session-messaging-internals",
+    "aliases": [
+      "CLAUDE_CODE_MESSAGING_TOKEN",
+      "own-child message",
+      "세션 메시징 토큰",
+      "자기 하위 프로세스 메시지"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "ax.coding.isolate-peer-machines",
+    "title": "다른 기기로 가는 메시지 승인(isolatePeerMachines)",
+    "en": "Approval for Cross-Machine Messages (isolatePeerMachines)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "true로 두면 이 기기 밖 세션으로 가는 메시지마다 bypassPermissions 모드에서도 사람 승인을 받게 하는 설정으로, 어느 범위의 true든 적용돼 프로젝트 파일로 켤 수는 있어도 끌 수는 없다.",
+    "parent": "ax.coding.cross-session-messaging-internals",
+    "aliases": [
+      "isolatePeerMachines",
+      "기기 간 메시지 승인",
+      "cross-machine message approval"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "ax.security.remote-control-trusted-devices",
+    "title": "Remote Control 신뢰 기기(Trusted Devices)",
+    "en": "Trusted Devices for Remote Control",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "Remote Control 세션을 보거나 조종하려면 등록된 기기와 18시간 이내 로그인을 함께 요구하는 베타 설정으로, 생체 정보는 저장하지 않고 기기 공개 키와 기본 메타데이터만 저장한다.",
+    "parent": "ax.security.remote-control-trust-boundary",
+    "aliases": [
+      "Require trusted devices",
+      "Remote Control 기기 등록",
+      "신뢰 기기 등록",
+      "trusted device enrollment"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "ax.security.channel-sender-gating",
+    "title": "채널 발신자 허용 목록(sender gating)",
+    "en": "Channel Sender Gating",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "채널 서버가 이벤트를 넘기기 전에 대화방이 아닌 보낸 사람 ID를 허용 목록과 대조해 나머지를 조용히 버리는 검사로, Telegram·Discord는 페어링으로 목록을 만든다.",
+    "parent": "ax.security.channel-trust-boundary",
+    "aliases": [
+      "channel sender allowlist",
+      "채널 페어링",
+      "sender gating",
+      "채널 발신자 확인"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "ax.security.channel-permission-relay",
+    "title": "채널 권한 중계(permission relay)",
+    "en": "Channel Permission Relay",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "도구 승인 창을 채널로도 보내 원격에서 다섯 글자 요청 ID와 함께 허용·거부하게 하는 기능으로, 터미널과 원격 중 먼저 온 답이 적용되고 프로젝트 신뢰 창은 중계되지 않는다.",
+    "parent": "ax.security.channel-trust-boundary",
+    "aliases": [
+      "permission relay",
+      "claude/channel/permission",
+      "원격 권한 승인 중계",
+      "permission_request 알림"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "ax.security.logprobs-exposure-limit",
+    "title": "logits·logprobs 노출 제한",
+    "en": "Limiting Exposure of Logits and Logprobs",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "API 응답에서 logit_bias와 logprobs를 막거나 흐려 공격자가 출력 확률 정보를 모아 모델을 베끼기 어렵게 하는 방어다.",
+    "parent": "ax.security.unbounded-consumption-defenses",
+    "related": [
+      "ax.security.model-extraction"
+    ],
+    "aliases": [
+      "logprobs 노출 제한",
+      "logit_bias 제한",
+      "limit logprobs exposure"
+    ]
+  },
+  {
+    "id": "ax.security.glitch-token-filtering",
+    "title": "글리치 토큰 거르기",
+    "en": "Glitch Token Filtering",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "알려진 글리치 토큰 목록을 유지하고 모델 출력을 컨텍스트 창에 넣기 전에 검사하는 OWASP LLM10의 완화 방법이다.",
+    "related": [
+      "ax.security.unbounded-consumption-defenses"
+    ],
+    "aliases": [
+      "글리치 토큰 필터링",
+      "글리치 토큰 검사",
+      "OWASP glitch token filtering"
+    ],
+    "refs": [
+      "https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/"
+    ]
   }
 ]

@@ -8583,6 +8583,63 @@
     ]
   },
   {
+    "id": "cs.arch.spectre-side-channels",
+    "title": "Spectre 부채널: 추측 실행이 남기는 흔적과 완화",
+    "en": "Spectre Side Channels and Mitigations",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "컴퓨터 구조",
+    "summary": "CPU가 분기를 추측해 미리 실행한 명령이 캐시에 흔적을 남겨 비밀이 새는 공격과, 커널이 고르는 완화책들의 비용을 다룬다.",
+    "objectives": [
+      "경계 검사 우회(변형 1)와 분기 대상 주입(변형 2)이 추측 실행과 캐시 부채널로 데이터를 빼내는 과정을 비교해 설명할 수 있다",
+      "retpoline·eIBRS·IBPB·STIBP가 각각 어느 분기 예측 상태를 막는지 구분할 수 있다",
+      "사용자 프로세스·다른 프로세스·가상 머신 손님 같은 공격 경로에 따라 필요한 완화가 달라짐을 근거로 들 수 있다",
+      "간접 분기 추측을 끄거나 모든 프로그램에 제한하면 느려지는 손익을 신뢰 수준에 맞춰 따질 수 있다"
+    ],
+    "prerequisites": [
+      "cs.arch.memory-hierarchy",
+      "cs.arch.cache-coherence-false-sharing"
+    ],
+    "aliases": [
+      "스펙터",
+      "Spectre 취약점",
+      "Spectre 공격",
+      "Spectre side channel"
+    ],
+    "refs": [
+      "https://docs.kernel.org/admin-guide/hw-vuln/spectre.html"
+    ]
+  },
+  {
+    "id": "cs.os.dirty-page-writeback",
+    "title": "더러운 페이지 되쓰기: 배경 플러시와 쓰기 조절",
+    "en": "Dirty Page Writeback and Write Throttling",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "운영체제",
+    "summary": "리눅스가 페이지 캐시의 더러운 페이지를 나이와 비율 문턱에 따라 배경 스레드로 써 내고, 문턱을 넘으면 쓰는 프로세스가 직접 써 내게 하는 구조를 다룬다.",
+    "objectives": [
+      "dirty_background_ratio와 dirty_ratio가 각각 배경 플러시 시작과 쓰는 프로세스의 직접 되쓰기를 정하는 차이를 설명할 수 있다",
+      "비율 문턱의 분모가 전체 메모리가 아니라 빈 페이지와 회수 가능한 페이지의 합임을 근거로 실제 문턱을 따질 수 있다",
+      "dirty_expire_centisecs와 dirty_writeback_centisecs가 정하는 데이터 나이와 깨어나는 주기를 구분하고, 주기를 0으로 두면 주기적 되쓰기가 꺼짐을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.os.virtual-memory",
+      "cs.os.fs-journaling"
+    ],
+    "aliases": [
+      "페이지 캐시 되쓰기",
+      "dirty page writeback",
+      "리눅스 쓰기 조절",
+      "Linux dirty writeback"
+    ],
+    "refs": [
+      "https://docs.kernel.org/admin-guide/sysctl/vm.html"
+    ]
+  },
+  {
     "id": "cs.os.page-replacement",
     "title": "페이지 교체 정책: LRU 근사와 스래싱",
     "en": "Page Replacement Policies: Approximating LRU and Thrashing",
@@ -9074,6 +9131,87 @@
     ],
     "refs": [
       "https://docs.kernel.org/locking/ww-mutex-design.html"
+    ]
+  },
+  {
+    "id": "cs.data.deflate-internals",
+    "title": "DEFLATE의 내부: LZ77 일치와 허프만 부호",
+    "en": "DEFLATE Internals: LZ77 Matching and Huffman Coding",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "DEFLATE가 32KB 창 안의 길이 3~258바이트 반복을 거리·길이 쌍으로 바꾸고 블록마다 고정 또는 동적 허프만 부호로 싸는 방식을 다룬다.",
+    "objectives": [
+      "저장·고정 허프만·동적 허프만 세 블록 형식이 어떤 자료에서 유리한지 비교할 수 있다",
+      "부호 길이 목록만으로 정준 허프만 부호를 다시 만드는 순서를 설명할 수 있다",
+      "해시 사슬 탐색 길이와 지연 일치가 압축률과 속도를 맞바꾸는 방식을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.data.lossless-compression"
+    ],
+    "aliases": [
+      "deflate 내부",
+      "LZ77 허프만",
+      "deflate block format"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc1951"
+    ]
+  },
+  {
+    "id": "cs.net.hash-next-hop-disruption",
+    "title": "해시로 경로 나누기의 흐트러짐: 모듈로·해시 임계값·HRW",
+    "en": "Hash-Based Next-Hop Selection and Disruption",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "흐름을 해시로 여러 다음 홉에 나눌 때 모듈로-N·해시 임계값·HRW가 조회 비용과 홉 추가·제거 시 옮겨지는 흐름 비율을 어떻게 맞바꾸는지 다룬다.",
+    "objectives": [
+      "다음 홉이 하나 바뀔 때 모듈로-N은 (N−1)/N, 해시 임계값은 1/4~1/2, HRW는 1/N의 흐름이 옮겨짐을 비교할 수 있다",
+      "HRW가 흐트러짐은 가장 적지만 선택에 O(N)이 드는 손익을 근거로 방식을 고를 수 있다",
+      "해시 임계값에서 가장자리보다 가운데 구간을 빼고 넣을 때 흐트러짐이 줄어드는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.dsa.hash-table",
+      "cs.net.routing"
+    ],
+    "aliases": [
+      "ECMP 해시",
+      "해시 임계값",
+      "hash-threshold",
+      "ECMP next-hop selection"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc2992"
+    ]
+  },
+  {
+    "id": "cs.os.zswap",
+    "title": "zswap: 스왑 페이지 압축 캐시의 손익",
+    "en": "zswap Compressed Swap Cache",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "스왑으로 나갈 페이지를 램의 압축 풀에 먼저 담아 CPU 시간을 들여 스왑 I/O를 줄이고, 풀이 차면 오래된 것부터 실제 스왑 장치로 내보내는 리눅스 기능이다.",
+    "objectives": [
+      "zswap이 CPU 사이클을 쓰는 대신 스왑 I/O를 줄이고, 압축 캐시 읽기가 스왑 장치보다 빠를 때 성능이 오르는 손익을 설명할 수 있다",
+      "max_pool_percent 한도에 닿으면 LRU 순서로 스왑 장치에 되쓰고 accept_threshold_percent까지 줄 때까지 새 페이지를 받지 않는 동작을 설명할 수 있다",
+      "같은 값으로 채워진 페이지를 압축 없이 값 하나로 저장하는 이유와 실행 중 압축기를 바꿔도 기존 풀은 옛 압축기를 쓰는 동작을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.os.virtual-memory",
+      "cs.os.page-replacement"
+    ],
+    "aliases": [
+      "압축 스왑 캐시",
+      "compressed swap cache",
+      "zswap pool"
+    ],
+    "refs": [
+      "https://docs.kernel.org/admin-guide/mm/zswap.html"
     ]
   },
   {
@@ -9847,6 +9985,135 @@
     ],
     "refs": [
       "https://docs.kernel.org/locking/ww-mutex-design.html"
+    ]
+  },
+  {
+    "id": "cs.arch.retpoline",
+    "title": "retpoline(간접 분기를 되돌림 발판으로 바꾸기)",
+    "en": "Retpoline",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "컴퓨터 구조",
+    "summary": "컴파일러가 간접 분기를 되돌림 발판으로 바꿔 분기 대상 주입을 막는 기법으로, 하드웨어 완화가 있는 CPU에서는 실행 중에 꺼진다.",
+    "parent": "cs.arch.spectre-side-channels",
+    "aliases": [
+      "리트폴린",
+      "return trampoline"
+    ],
+    "refs": [
+      "https://docs.kernel.org/admin-guide/hw-vuln/spectre.html"
+    ]
+  },
+  {
+    "id": "cs.arch.bounds-check-bypass",
+    "title": "경계 검사 우회(Spectre 변형 1)",
+    "en": "Bounds Check Bypass (Spectre Variant 1)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "컴퓨터 구조",
+    "summary": "배열 범위 검사 같은 조건 분기를 CPU가 추측으로 건너뛰어 범위 밖 값을 읽고 캐시에 흔적을 남기는 Spectre의 첫째 변형이다.",
+    "parent": "cs.arch.spectre-side-channels",
+    "aliases": [
+      "Spectre v1",
+      "Spectre variant 1",
+      "스펙터 변형 1"
+    ],
+    "refs": [
+      "https://docs.kernel.org/admin-guide/hw-vuln/spectre.html"
+    ]
+  },
+  {
+    "id": "cs.data.canonical-huffman-code",
+    "title": "정준 허프만 부호(canonical Huffman code)",
+    "en": "Canonical Huffman Code",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "같은 길이의 부호를 기호 순서대로 연속 배정하고 짧은 부호를 앞에 두어, 부호 길이 목록만 보내도 부호표 전체가 정해지게 하는 규칙이다.",
+    "parent": "cs.data.deflate-internals",
+    "aliases": [
+      "정준 허프만",
+      "canonical Huffman"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc1951"
+    ]
+  },
+  {
+    "id": "cs.data.lazy-matching",
+    "title": "지연 일치(lazy matching)",
+    "en": "Lazy Matching",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "데이터 표현",
+    "summary": "일치를 찾은 뒤 바로 다음 바이트에서 더 긴 일치가 시작되는지 보고, 그렇다면 앞 일치를 글자 하나로 내보내고 긴 쪽을 쓰는 압축기 기법이다.",
+    "parent": "cs.data.deflate-internals",
+    "aliases": [
+      "lazy match",
+      "LZ77 지연 일치"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc1951"
+    ]
+  },
+  {
+    "id": "cs.net.highest-random-weight",
+    "title": "HRW(최고 무작위 가중치) 선택",
+    "en": "Highest Random Weight (HRW)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "네트워크",
+    "summary": "후보마다 키와 함께 해시한 가중치를 계산해 가장 큰 쪽을 고르는 방식으로, 후보 하나가 바뀌면 흐름의 1/N만 옮겨지지만 선택에 O(N)이 든다.",
+    "parent": "cs.net.hash-next-hop-disruption",
+    "aliases": [
+      "랑데부 해싱",
+      "rendezvous hashing",
+      "HRW 해싱"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc2992"
+    ]
+  },
+  {
+    "id": "cs.os.dirty-ratio",
+    "title": "dirty_ratio와 dirty_background_ratio",
+    "en": "dirty_ratio and dirty_background_ratio",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "더러운 페이지가 빈 페이지와 회수 가능한 페이지를 합친 메모리의 dirty_background_ratio를 넘으면 배경 스레드가, dirty_ratio를 넘으면 쓰는 프로세스가 직접 써 내게 하는 리눅스 설정이다.",
+    "parent": "cs.os.dirty-page-writeback",
+    "aliases": [
+      "dirty_background_ratio",
+      "vm.dirty_ratio",
+      "vm.dirty_background_ratio"
+    ],
+    "refs": [
+      "https://docs.kernel.org/admin-guide/sysctl/vm.html"
+    ]
+  },
+  {
+    "id": "cs.os.zswap-accept-threshold",
+    "title": "zswap 수용 문턱(accept_threshold_percent)",
+    "en": "zswap accept_threshold_percent",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "운영체제",
+    "summary": "zswap 풀이 한 번 가득 차면 사용량이 이 백분율까지 내려갈 때까지 새 페이지를 받지 않게 하는 이력 현상 설정으로, 100이면 이 동작이 꺼진다.",
+    "parent": "cs.os.zswap",
+    "aliases": [
+      "accept_threshold_percent",
+      "zswap 히스테리시스"
+    ],
+    "refs": [
+      "https://docs.kernel.org/admin-guide/mm/zswap.html"
     ]
   }
 ]

@@ -9008,6 +9008,39 @@
     ]
   },
   {
+    "id": "db.internals.index-only-scan",
+    "title": "인덱스 전용 스캔의 조건과 손익",
+    "en": "Index-Only Scans and Covering Indexes",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "DB 내부",
+    "summary": "PostgreSQL이 힙을 읽지 않고 인덱스만으로 답하려면 인덱스 종류·참조 열·가시성 맵 비트가 모두 맞아야 하고, 페이로드 열은 인덱스를 키우는 대가를 치른다.",
+    "objectives": [
+      "인덱스 종류가 지원하고 질의가 인덱스에 든 열만 참조할 때만 인덱스 전용 스캔이 가능한 까닭을 2차 인덱스 구조로 설명할 수 있다",
+      "가시성 맵의 all-visible 비트가 꺼진 페이지는 힙을 다시 읽어야 해 자주 바뀌는 표에서는 이득이 줄어드는 과정을 설명할 수 있다",
+      "INCLUDE로 붙인 페이로드 열이 중복 저장과 인덱스 비대, 최대 크기 초과로 인한 삽입 실패를 부르는 손익을 따질 수 있다",
+      "표현식 인덱스에서 플래너가 원래 열을 요구해 인덱스 전용 스캔을 버리는 경우와 부분 인덱스의 WHERE 열은 9.6부터 다시 확인하지 않는 경우를 구분할 수 있다"
+    ],
+    "prerequisites": [
+      "db.internals.index-design",
+      "db.internals.heap-page-layout"
+    ],
+    "related": [
+      "db.internals.btree"
+    ],
+    "aliases": [
+      "인덱스 전용 스캔",
+      "index-only scan",
+      "Index Only Scan",
+      "PostgreSQL 인덱스 전용 스캔"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/indexes-index-only-scans.html",
+      "https://www.postgresql.org/docs/current/storage-vm.html"
+    ]
+  },
+  {
     "id": "db.internals.wal-replication",
     "title": "WAL과 복제",
     "en": "WAL and Replication",
@@ -9413,6 +9446,107 @@
     ]
   },
   {
+    "id": "db.cache.redis-cluster-failover",
+    "title": "Redis Cluster 장애 감지와 복제본 승격의 내부",
+    "en": "Redis Cluster Failure Detection and Replica Promotion",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "캐시",
+    "summary": "Redis Cluster 노드들이 가십으로 PFAIL을 FAIL로 올리고, 복제본이 과반 마스터의 표를 받아 새 configEpoch로 승격하는 과정을 다룬다.",
+    "objectives": [
+      "NODE_TIMEOUT을 넘긴 PFAIL이 정해진 시간 창 안에 과반 마스터의 보고를 모아야 FAIL로 바뀌는 약한 합의의 한계를 설명할 수 있다",
+      "복제본이 currentEpoch를 올리고 FAILOVER_AUTH_REQUEST로 표를 모으는 과정과 복제 오프셋 순위에 따른 선출 지연 식을 설명할 수 있다",
+      "더 큰 configEpoch가 슬롯 소유권 충돌에서 이기는 규칙으로 분할 뒤 설정이 수렴하는 과정을 설명할 수 있다",
+      "복제본 이동(replica migration)이 복제본 없는 마스터를 채워 연이은 단일 장애에 버티게 하는 방식과 그 조건을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "db.cache.redis-cluster-keys",
+      "db.cache.redis-replication-internals"
+    ],
+    "related": [
+      "db.cache.redis-sentinel"
+    ],
+    "aliases": [
+      "Redis Cluster 장애 조치",
+      "Redis Cluster failover",
+      "PFAIL",
+      "Redis 복제본 승격",
+      "Redis Cluster replica election"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/operate/oss_and_stack/reference/cluster-spec/"
+    ]
+  },
+  {
+    "id": "db.nosql.mongodb-balancer-internals",
+    "title": "MongoDB 샤딩 밸런서와 범위 이동의 내부",
+    "en": "MongoDB Sharded Cluster Balancer and Range Migration",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "NoSQL",
+    "summary": "config 서버 primary에서 도는 밸런서가 샤드 사이 데이터 차이가 범위 크기의 3배를 넘을 때 범위를 옮기고, 원본 사본을 비동기로 지우는 과정과 그 비용을 다룬다.",
+    "objectives": [
+      "moveRange부터 메타데이터 갱신, 원본 삭제까지 범위 이동 단계와 그동안 원본 샤드가 쓰기를 맡는 방식을 설명할 수 있다",
+      "샤드 하나가 한 번에 이동 하나에만 참여해 샤드 n개에서 동시 이동이 n/2개로 묶이는 까닭과 기본 128MB 범위에서 384MB 차이가 기준이 되는 계산을 설명할 수 있다",
+      "범위 삭제가 캐시와 I/O를 압박하고 열린 커서 때문에 멈출 수 있는 위험과 rangeDeleterBatchSize·rangeDeleterBatchDelayMS로 조절하는 손익을 따질 수 있다",
+      "범위 크기를 줄이면 분포는 고르지만 이동이 잦아지고, 청크 메타데이터 갱신이 라우팅 표 크기에 비례해 CRUD를 잠깐 막는 손익을 따질 수 있다"
+    ],
+    "prerequisites": [
+      "db.internals.partitioning",
+      "db.nosql.mongodb-write-concern-read-preference"
+    ],
+    "related": [
+      "db.nosql.mongodb-replication-internals"
+    ],
+    "aliases": [
+      "MongoDB 밸런서",
+      "MongoDB balancer",
+      "MongoDB 청크 이동",
+      "MongoDB chunk migration",
+      "moveRange",
+      "MongoDB 범위 이동"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/core/sharding-balancer-administration/",
+      "https://www.mongodb.com/docs/manual/core/sharding-data-partitioning/"
+    ]
+  },
+  {
+    "id": "db.orm.sql-compilation-cache",
+    "title": "SQLAlchemy SQL 컴파일 캐시의 내부와 손익",
+    "en": "SQLAlchemy SQL Compilation Caching",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "ORM",
+    "summary": "SQLAlchemy가 문장 구조로 만든 캐시 키에 컴파일된 SQL 문자열을 엔진별 LRU 캐시로 저장해 다시 쓰는 방식과 메모리·적중률의 손익을 다룬다.",
+    "objectives": [
+      "문장의 구조는 캐시 키에 들고 바인드 값은 빠지기 때문에 값만 다른 문장이 같은 컴파일 결과를 다시 쓰는 과정을 설명할 수 있다",
+      "로그의 [generated in]·[cached since]·[no key] 표시로 캐시 적중과 실패, 캐시할 수 없는 구성을 가려낼 수 있다",
+      "query_cache_size 기본 500과 목표의 150%까지 자랐다가 LRU로 줄이는 동작, 문장당 메모리 추정치를 근거로 캐시 크기를 따질 수 있다",
+      "서드파티 방언이 supports_statement_cache를 명시해야 캐시가 켜지고 LIMIT·OFFSET 값을 SQL에 그대로 넣으면 안 되는 까닭을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "db.orm.core-connection",
+      "db.orm.select-construct"
+    ],
+    "related": [
+      "db.internals.prepared-statements"
+    ],
+    "aliases": [
+      "SQLAlchemy 컴파일 캐시",
+      "SQL compilation caching",
+      "query_cache_size",
+      "SQLAlchemy 문장 캐시",
+      "compiled_cache"
+    ],
+    "refs": [
+      "https://docs.sqlalchemy.org/en/20/core/connections.html"
+    ]
+  },
+  {
     "id": "db.internals.xid-wraparound",
     "title": "트랜잭션 ID 겹침과 동결(freeze)",
     "en": "Transaction ID Wraparound and Freezing",
@@ -9640,6 +9774,27 @@
     ],
     "refs": [
       "https://www.postgresql.org/docs/current/row-estimation-examples.html"
+    ]
+  },
+  {
+    "id": "db.internals.include-columns",
+    "title": "INCLUDE 열: 검색 키가 아닌 페이로드 열",
+    "en": "Index INCLUDE Columns",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "DB 내부",
+    "summary": "CREATE INDEX의 INCLUDE로 붙인 열은 검색 키가 아니라 값만 담아 두는 열로, 유일성 검사에서 빠지고 B-tree·GiST·SP-GiST에서만 쓸 수 있다.",
+    "parent": "db.internals.index-only-scan",
+    "aliases": [
+      "PostgreSQL INCLUDE 절",
+      "INCLUDE 열",
+      "PostgreSQL INCLUDE index",
+      "PostgreSQL non-key column"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/indexes-index-only-scans.html",
+      "https://www.postgresql.org/docs/current/sql-createindex.html"
     ]
   },
   {
@@ -10140,6 +10295,129 @@
     ],
     "refs": [
       "https://www.postgresql.org/docs/current/hash-index.html"
+    ]
+  },
+  {
+    "id": "db.cache.redis-config-epoch",
+    "title": "Redis Cluster configEpoch와 currentEpoch",
+    "en": "Redis Cluster configEpoch and currentEpoch",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "캐시",
+    "summary": "currentEpoch는 클러스터 전체의 논리 시계이고, configEpoch는 마스터가 슬롯 설정에 붙이는 판 번호로 더 큰 값이 충돌에서 이긴다.",
+    "parent": "db.cache.redis-cluster-failover",
+    "aliases": [
+      "configEpoch",
+      "currentEpoch",
+      "Redis Cluster epoch",
+      "클러스터 에포크"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/operate/oss_and_stack/reference/cluster-spec/"
+    ]
+  },
+  {
+    "id": "db.cache.cluster-migration-barrier",
+    "title": "cluster-migration-barrier: 복제본 이동의 하한",
+    "en": "cluster-migration-barrier",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "캐시",
+    "summary": "Redis Cluster에서 복제본이 다른 마스터로 옮겨 가기 전에 원래 마스터에 남아 있어야 할 정상 복제본 수를 정하는 설정이다.",
+    "parent": "db.cache.redis-cluster-failover",
+    "aliases": [
+      "cluster-migration-barrier",
+      "Redis 복제본 이동",
+      "Redis replica migration"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/operate/oss_and_stack/reference/cluster-spec/"
+    ]
+  },
+  {
+    "id": "db.nosql.jumbo-chunk",
+    "title": "점보 청크: 나눌 수 없는 큰 청크",
+    "en": "Jumbo Chunk",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "NoSQL",
+    "summary": "정한 청크 크기를 넘었는데 대개 샤드 키 값 하나로만 이뤄져 더 쪼갤 수 없어 밸런서가 옮기기 어려운 MongoDB 청크다.",
+    "parent": "db.nosql.mongodb-balancer-internals",
+    "aliases": [
+      "jumbo chunk",
+      "MongoDB 점보 청크",
+      "forceJumbo",
+      "attemptToBalanceJumboChunks"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/core/sharding-data-partitioning/",
+      "https://www.mongodb.com/docs/manual/core/sharding-balancer-administration/"
+    ]
+  },
+  {
+    "id": "db.nosql.range-deleter",
+    "title": "범위 삭제기와 고아 문서",
+    "en": "Range Deleter and Orphaned Documents",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "NoSQL",
+    "summary": "범위 이동이 끝난 뒤 원본 샤드에 남은 사본(고아 문서)을 일괄 단위로 지우는 MongoDB 백그라운드 작업으로, 캐시와 I/O를 크게 쓴다.",
+    "parent": "db.nosql.mongodb-balancer-internals",
+    "aliases": [
+      "range deleter",
+      "MongoDB 범위 삭제",
+      "orphaned document",
+      "MongoDB 고아 문서",
+      "rangeDeleterBatchSize"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/core/sharding-balancer-administration/"
+    ]
+  },
+  {
+    "id": "db.orm.lambda-stmt",
+    "title": "lambda_stmt: 문장 구성까지 캐시하는 람다 문장",
+    "en": "SQLAlchemy Lambda Statements",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "ORM",
+    "summary": "SQL 문자열뿐 아니라 파이썬 쪽 문장 구성까지 캐시하고 람다의 코드 객체로 짧은 캐시 키를 만들어 반복 실행을 빠르게 하는 SQLAlchemy 기능이다.",
+    "parent": "db.orm.sql-compilation-cache",
+    "aliases": [
+      "lambda_stmt",
+      "SQLAlchemy 람다 문장",
+      "lambda statement",
+      "track_closure_variables"
+    ],
+    "refs": [
+      "https://docs.sqlalchemy.org/en/20/core/connections.html"
+    ]
+  },
+  {
+    "id": "db.orm.insertmanyvalues",
+    "title": "insertmanyvalues: 여러 행 INSERT를 묶어 보내기",
+    "en": "SQLAlchemy Insert Many Values",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "ORM",
+    "summary": "SQLAlchemy가 여러 행 INSERT를 VALUES 여러 개를 담은 문장으로 묶어 대개 1000행씩 보내고, sort_by_parameter_order를 주면 RETURNING 행을 입력 순서에 맞춘다.",
+    "related": [
+      "db.orm.session-identity-map-flush"
+    ],
+    "aliases": [
+      "insertmanyvalues",
+      "insertmanyvalues_page_size",
+      "SQLAlchemy 묶음 INSERT",
+      "SQLAlchemy batched INSERT"
+    ],
+    "refs": [
+      "https://docs.sqlalchemy.org/en/20/core/connections.html"
     ]
   }
 ]
