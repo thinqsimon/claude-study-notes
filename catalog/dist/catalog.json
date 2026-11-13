@@ -1,5 +1,5 @@
 {
- "version": "0.84.0",
+ "version": "0.85.0",
  "domains": [
   {
    "prefix": "dev",
@@ -40770,6 +40770,108 @@
    "domain": "be"
   },
   {
+   "id": "be.arch.grpc-deadline-propagation",
+   "title": "gRPC 데드라인과 취소 전파",
+   "en": "gRPC Deadlines and Cancellation Propagation",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "구조 설계",
+   "summary": "gRPC가 남은 시간을 시간 제한 값으로 실어 보내 데드라인과 취소를 서비스 호출 사슬 아래로 넘기는 방식과 그 한계를 분석한다.",
+   "objectives": [
+    "gRPC가 절대 시각 대신 경과 시간을 뺀 남은 시간을 보내 서버 사이 시계 차이를 피하는 원리를 설명할 수 있다",
+    "데드라인이 지나면 클라이언트는 DEADLINE_EXCEEDED로 끝나고 서버 호출은 CANCELLED로 취소되지만 처리기 코드는 스스로 멈춰야 하는 까닭을 설명할 수 있다",
+    "중간 서버가 받은 데드라인과 취소를 다음 호출로 넘기는지가 언어마다 다르다는 점을 근거로 호출 사슬의 낭비 작업을 찾을 수 있다",
+    "기본 데드라인이 없을 때 생기는 무한 대기 위험을 들어 데드라인 값을 정하는 근거를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "be.arch.api-styles"
+   ],
+   "related": [
+    "be.integrate.resilience"
+   ],
+   "aliases": [
+    "gRPC 데드라인",
+    "gRPC deadline",
+    "데드라인 전파",
+    "deadline propagation",
+    "gRPC 취소 전파",
+    "DEADLINE_EXCEEDED"
+   ],
+   "refs": [
+    "https://grpc.io/docs/guides/deadlines/",
+    "https://grpc.io/docs/guides/cancellation/"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.auth.webauthn-rp-verification",
+   "title": "WebAuthn 신뢰 당사자 검증 절차",
+   "en": "WebAuthn Relying Party Verification",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "인증·인가",
+   "summary": "패스키 등록 때 서버가 challenge·origin·RP ID 해시·플래그·증명을 차례로 검사하는 W3C WebAuthn 절차와 각 검사가 막는 공격을 분석한다.",
+   "objectives": [
+    "등록 응답에서 challenge, origin, rpIdHash를 대조하는 단계가 각각 무엇을 막는지 설명할 수 있다",
+    "인증자 데이터의 UP·UV·BE·BS 플래그를 읽고 사용자 확인 요구와 백업 상태 규칙에 맞는지 판단할 수 있다",
+    "이미 알려진 자격 증명 ID로 온 등록을 실패시키라는 규칙이 공격자가 피해자의 자격 증명을 자기 계정에 등록해 피해자를 공격자 계정으로 로그인시키는 공격을 막는 원리를 설명할 수 있다",
+    "Basic·Self·AttCA·AnonCA·None 증명 유형의 신뢰 판단 방식을 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "be.auth.login-abuse"
+   ],
+   "aliases": [
+    "WebAuthn 등록 검증",
+    "WebAuthn 신뢰 당사자",
+    "WebAuthn relying party",
+    "패스키 서버 검증",
+    "passkey verification",
+    "FIDO2 서버"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/webauthn-3/"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.auth.access-token-validation-models",
+   "title": "액세스 토큰 검증: 토큰 조회와 JWT 프로필",
+   "en": "Access Token Validation: Introspection vs JWT Profile",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "인증·인가",
+   "summary": "리소스 서버가 불투명 토큰을 인가 서버에 물어보는 RFC 7662 방식과 at+jwt 토큰을 스스로 검증하는 RFC 9068 방식을 폐기·부하·정보 노출 면에서 비교한다.",
+   "objectives": [
+    "토큰 조회 응답의 active 값만으로 판단하고 비활성 토큰에는 다른 정보를 돌려주지 않는 까닭을 설명할 수 있다",
+    "조회 결과를 캐시할 때 폐기된 토큰을 받아들일 위험과 exp를 넘겨 캐시하지 말라는 규칙을 손익으로 따질 수 있다",
+    "RFC 9068의 typ·iss·aud·서명·만료 검사 순서를 따라 JWT 액세스 토큰 검증 코드를 점검할 수 있다",
+    "리소스마다 다른 aud를 쓰지 않을 때 생기는 JWT 혼동 위험을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "be.auth.jwt-attacks",
+    "be.auth.jwt-vs-session"
+   ],
+   "related": [
+    "be.auth.oidc"
+   ],
+   "aliases": [
+    "OAuth 토큰 조회",
+    "token introspection",
+    "RFC 7662",
+    "RFC 9068",
+    "JWT 액세스 토큰 프로필",
+    "JWT access token profile"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc7662",
+    "https://www.rfc-editor.org/rfc/rfc9068"
+   ],
+   "domain": "be"
+  },
+  {
    "id": "be.async.asgi",
    "title": "ASGI: 파이썬 비동기 서버의 약속",
    "en": "ASGI Specification",
@@ -41307,6 +41409,72 @@
    ],
    "refs": [
     "https://www.rfc-editor.org/rfc/rfc6455.html"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.arch.grpc-retry-hedging",
+   "title": "gRPC 재시도 정책과 헤징",
+   "en": "gRPC Retry Policy and Hedging",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "구조 설계",
+   "summary": "gRPC 클라이언트가 서비스 설정으로 실패한 호출을 다시 보내거나 같은 요청을 여러 백엔드에 겹쳐 보내는 동작과 그 부하 손익을 분석한다.",
+   "objectives": [
+    "투명 재시도가 요청이 서버 응용 코드에 닿았는지에 따라 횟수가 달라지는 규칙을 설명할 수 있다",
+    "응답 헤더를 받으면 호출이 확정되어 더는 재시도하지 않는 규칙으로 재시도 가능 범위를 판단할 수 있다",
+    "재시도와 헤징을 비교해 꼬리 지연과 백엔드 부하 사이의 손익을 따질 수 있다",
+    "grpc-retry-pushback-ms로 서버가 다음 시도를 늦추거나 막는 동작을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "be.arch.api-styles",
+    "be.integrate.resilience"
+   ],
+   "related": [
+    "be.run.load-control"
+   ],
+   "aliases": [
+    "gRPC 재시도",
+    "gRPC retry",
+    "gRPC 재시도 정책",
+    "gRPC retryPolicy",
+    "투명 재시도",
+    "transparent retry"
+   ],
+   "refs": [
+    "https://grpc.io/docs/guides/retry/",
+    "https://grpc.io/docs/guides/request-hedging/"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.auth.pushed-authorization-request",
+   "title": "OAuth 푸시 인가 요청(PAR)",
+   "en": "OAuth Pushed Authorization Requests",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "인증·인가",
+   "summary": "인가 요청 매개변수를 브라우저 URL 대신 백채널 POST로 먼저 보내고 짧은 request_uri만 리다이렉트에 싣는 RFC 9126 방식의 손익을 분석한다.",
+   "objectives": [
+    "PAR 엔드포인트에서 클라이언트 인증을 먼저 하면 사용자 상호작용 전에 잘못된 요청을 거를 수 있는 까닭을 설명할 수 있다",
+    "매개변수를 URL 대신 요청 본문으로 보낼 때 무결성·기밀성·URL 길이 면에서 얻는 것을 앞단 채널 방식과 비교할 수 있다",
+    "request_uri 추측, 재사용, 바꿔치기 위험과 일회 사용·PKCE·state로 막는 방법을 설명할 수 있다",
+    "require_pushed_authorization_requests 메타데이터로 PAR만 허용하게 했을 때의 효과를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "be.auth.oauth-attacks"
+   ],
+   "aliases": [
+    "Pushed Authorization Requests",
+    "RFC 9126",
+    "OAuth PAR",
+    "푸시 인가 요청",
+    "PAR 엔드포인트"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9126"
    ],
    "domain": "be"
   },
@@ -41960,6 +42128,151 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-13",
+   "domain": "be"
+  },
+  {
+   "id": "be.arch.grpc-timeout-header",
+   "title": "grpc-timeout 헤더",
+   "en": "grpc-timeout Header",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "구조 설계",
+   "summary": "gRPC가 HTTP/2 요청에 남은 시간을 최대 8자리 정수와 H·M·S·m·u·n 단위로 실어 보내는 헤더로, 없으면 서버는 무한으로 본다.",
+   "parent": "be.arch.grpc-deadline-propagation",
+   "aliases": [
+    "grpc-timeout",
+    "gRPC timeout 헤더"
+   ],
+   "refs": [
+    "https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2.md"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.arch.grpc-hedging",
+   "title": "gRPC 요청 헤징",
+   "en": "gRPC Request Hedging",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "구조 설계",
+   "summary": "같은 요청을 hedgingDelay 간격으로 최대 5개까지 여러 백엔드에 보내고 먼저 온 응답을 쓴 뒤 나머지를 취소하는 gRPC 정책이다.",
+   "parent": "be.arch.grpc-retry-hedging",
+   "aliases": [
+    "gRPC hedging",
+    "hedgingPolicy",
+    "요청 헤징",
+    "request hedging"
+   ],
+   "refs": [
+    "https://grpc.io/docs/guides/request-hedging/"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.arch.grpc-retry-throttling",
+   "title": "gRPC 재시도 제한(retryThrottling)",
+   "en": "gRPC Retry Throttling",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "구조 설계",
+   "summary": "서버별 토큰 수를 실패마다 1씩 깎고 성공마다 tokenRatio만큼 채워, maxTokens의 절반 아래로 떨어지면 재시도와 헤징을 멈추는 gRPC 장치다.",
+   "parent": "be.arch.grpc-retry-hedging",
+   "related": [
+    "be.run.token-bucket"
+   ],
+   "aliases": [
+    "retryThrottling",
+    "gRPC retry throttling",
+    "gRPC 재시도 스로틀링"
+   ],
+   "refs": [
+    "https://grpc.io/docs/guides/retry/",
+    "https://grpc.io/docs/guides/request-hedging/"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.auth.webauthn-sign-count",
+   "title": "WebAuthn 서명 카운터",
+   "en": "WebAuthn Signature Counter",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "인증·인가",
+   "summary": "인증자가 서명에 성공할 때마다 올리는 값으로, 저장된 값과 새 값 중 하나라도 0이 아닌데 새 값이 저장된 값보다 크지 않으면 신뢰 당사자는 복제를 의심한다.",
+   "parent": "be.auth.webauthn-rp-verification",
+   "aliases": [
+    "signCount",
+    "signature counter",
+    "WebAuthn 서명 횟수"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/webauthn-3/"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.auth.webauthn-attestation",
+   "title": "WebAuthn 증명(attestation)",
+   "en": "WebAuthn Attestation",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "인증·인가",
+   "summary": "등록 때 인증자가 새 공개 키와 함께 대개 자기 출신을 서명해 보내는 문장으로, 신뢰 당사자는 유형과 인증서 체인을 보고 받을지 정한다.",
+   "parent": "be.auth.webauthn-rp-verification",
+   "aliases": [
+    "WebAuthn attestation",
+    "attestation statement",
+    "WebAuthn 증명 문장",
+    "패스키 증명"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/webauthn-3/"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.auth.par-request-uri",
+   "title": "PAR request_uri",
+   "en": "PAR request_uri",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "인증·인가",
+   "summary": "PAR 엔드포인트가 201 응답으로 돌려주는 짧은 수명의 참조값으로, 강한 무작위성을 담고 만든 클라이언트에 묶이며 한 번만 쓰는 것이 권고된다.",
+   "parent": "be.auth.pushed-authorization-request",
+   "aliases": [
+    "PAR 요청 URI",
+    "urn:ietf:params:oauth:request_uri",
+    "pushed request_uri"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9126"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.auth.token-introspection-active",
+   "title": "토큰 조회 응답의 active",
+   "en": "Introspection active Claim",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "인증·인가",
+   "summary": "RFC 7662 토큰 조회 응답에서 유일한 필수 값으로, 토큰이 발급됐고 폐기되지 않았으며 유효 기간 안이면 대개 true다.",
+   "parent": "be.auth.access-token-validation-models",
+   "aliases": [
+    "introspection active",
+    "active: false",
+    "토큰 활성 여부"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc7662"
+   ],
    "domain": "be"
   },
   {
@@ -61883,6 +62196,73 @@
    "domain": "fe"
   },
   {
+   "id": "fe.css.container-query-size-containment",
+   "title": "컨테이너 쿼리와 크기 격리",
+   "en": "Container Queries and Size Containment",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "CSS",
+   "summary": "컨테이너 크기 쿼리가 쿼리 대상에 크기 격리를 걸어 내용과 크기 사이의 순환을 끊는 원리와 그 때문에 생기는 크기 붕괴 같은 손익을 분석한다.",
+   "objectives": [
+    "container-type의 size·inline-size가 어떤 격리를 걸고 왜 그 격리 없이는 쿼리 결과와 내용 크기가 서로를 바꾸는 순환이 생기는지 설명할 수 있다",
+    "크기 격리된 컨테이너가 내용으로 크기를 정하지 못해 문맥이나 명시 크기가 없으면 무너지는 원인을 찾을 수 있다",
+    "size와 inline-size, 이름 있는 컨테이너와 가장 가까운 조상 컨테이너를 상황에 따라 비교해 고를 수 있다"
+   ],
+   "prerequisites": [
+    "fe.css.responsive-design",
+    "fe.css.value-processing"
+   ],
+   "related": [
+    "fe.internals.css-containment"
+   ],
+   "aliases": [
+    "container-type",
+    "CSS 컨테이너 크기 쿼리",
+    "container size queries",
+    "컨테이너 크기 격리"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_queries",
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/container-type",
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Using"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.react.compiler-memoization",
+   "title": "React Compiler 자동 메모이제이션과 React 규칙",
+   "en": "React Compiler Automatic Memoization and the Rules of React",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "React",
+   "summary": "React Compiler가 빌드 때 컴포넌트와 Hook 안의 JSX와 계산을 메모하는 범위, React 규칙을 어길 수 있는 코드는 건너뛰는 동작, 메모에 정확성을 기댄 코드가 깨지는 원인을 분석한다.",
+   "objectives": [
+    "컴파일러가 메모하는 대상(컴포넌트·Hook 안의 JSX와 계산)과 메모하지 않는 대상(일반 함수, 컴포넌트 사이 공유)을 구분할 수 있다",
+    "순수성·불변성·Hook 호출 규칙이 자동 최적화의 전제인 이유를 설명할 수 있다",
+    "규칙 위반을 의심하면 최적화를 건너뛰는 동작과 감지하지 못한 위반 때문에 생기는 런타임 문제를 구분하고 \"use no memo\"로 컴파일러 관여 여부를 가려 분석할 수 있다",
+    "참조 동일성에 기댄 Effect처럼 메모이제이션에 정확성을 맡긴 코드가 컴파일 후 과하게 실행되거나 갱신을 놓치는 원인을 찾을 수 있다"
+   ],
+   "prerequisites": [
+    "fe.internals.react-reconciliation",
+    "fe.internals.react-memoization"
+   ],
+   "aliases": [
+    "React Compiler",
+    "리액트 컴파일러",
+    "React 자동 메모이제이션"
+   ],
+   "refs": [
+    "https://react.dev/learn/react-compiler/introduction",
+    "https://react.dev/learn/react-compiler/debugging",
+    "https://react.dev/reference/rules"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "fe"
+  },
+  {
    "id": "fe.internals.web-vitals",
    "title": "Core Web Vitals 분석과 최적화",
    "en": "Core Web Vitals Optimization",
@@ -62243,6 +62623,113 @@
    "refs": [
     "https://w3c.github.io/ServiceWorker/",
     "https://web.dev/articles/service-worker-lifecycle"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.wasm-linear-memory",
+   "title": "WebAssembly 선형 메모리와 JS 경계",
+   "en": "WebAssembly Linear Memory and the JavaScript Boundary",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "Wasm 인스턴스가 64KiB 페이지 단위로 늘어나는 선형 메모리를 쓰고 JS와는 동기 호출·메모리 뷰·테이블·전역으로 값을 주고받는 구조와 그 손익을 분석한다.",
+   "objectives": [
+    "선형 메모리·테이블·전역이 각각 무엇을 담고 JS에서 어떻게 보이는지 설명할 수 있다",
+    "JS와 Wasm이 memory.buffer 위의 DataView·형식화 배열로 같은 바이트를 주고받을 때 리틀 엔디언 규칙과 grow 뒤 이전 버퍼가 분리되는 규칙을 근거로 교환 오류를 분석할 수 있다",
+    "Wasm이 DOM에 직접 닿지 못해 JS를 거쳐야 하는 구조가 설계에 주는 제약을 따질 수 있다",
+    "메모리를 가져오기로 공유해 여러 인스턴스를 잇는 방식과 인스턴스마다 메모리를 따로 두는 방식을 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.internals.js-memory-reachability"
+   ],
+   "related": [
+    "fe.internals.shared-memory-atomics"
+   ],
+   "aliases": [
+    "WebAssembly 메모리",
+    "Wasm 선형 메모리",
+    "WebAssembly linear memory",
+    "WebAssembly.Memory",
+    "Wasm JS 상호 운용"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/WebAssembly/Guides/Concepts",
+    "https://developer.mozilla.org/en-US/docs/WebAssembly/Guides/Using_the_JavaScript_API",
+    "https://developer.mozilla.org/en-US/docs/WebAssembly/Reference/JavaScript_interface/Memory",
+    "https://developer.mozilla.org/en-US/docs/WebAssembly/Reference/JavaScript_interface/Memory/grow"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.view-transition-pipeline",
+   "title": "뷰 전환의 캡처·렌더링 억제·의사 요소 트리",
+   "en": "View Transition Capture, Rendering Suppression, and Pseudo-element Tree",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "View Transition API가 이전 상태를 캡처하고 렌더링을 잠시 억제한 뒤 의사 요소 트리로 이전·새 스냅숏을 애니메이션하는 과정과 건너뛰기 조건을 분석한다.",
+   "objectives": [
+    "이전 상태 캡처, 렌더링 억제, 업데이트 콜백, 의사 요소 트리 생성, 애니메이션 종료의 순서를 updateCallbackDone·ready·finished 프로미스와 짝지어 설명할 수 있다",
+    "::view-transition부터 ::view-transition-old·new까지의 트리 구조와 이전 스냅숏은 정적 이미지, 새 스냅숏은 살아 있는 화면이라는 차이를 설명할 수 있다",
+    "문서가 숨겨짐, 이름 중복, 콜백 거부, 시간 초과 같은 건너뛰기 원인을 구분하고 그때도 DOM 갱신은 일어난다는 점을 근거로 장애를 분석할 수 있다",
+    "이름이 붙은 요소가 쌓임 맥락과 백드롭 루트를 만들어 생기는 부작용을 따질 수 있다"
+   ],
+   "prerequisites": [
+    "fe.internals.render-pipeline",
+    "fe.css.stacking-context-painting-order"
+   ],
+   "related": [
+    "fe.internals.update-the-rendering"
+   ],
+   "aliases": [
+    "View Transition API",
+    "뷰 트랜지션",
+    "startViewTransition",
+    "화면 전환 애니메이션 API"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API/Using",
+    "https://www.w3.org/TR/css-view-transitions-1/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.prioritized-task-scheduling",
+   "title": "우선순위 작업 스케줄링과 양보",
+   "en": "Prioritized Task Scheduling and Yielding",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "scheduler.postTask의 세 우선순위 큐와 scheduler.yield의 이어 실행이 같은 우선순위의 다른 작업보다 앞서는 규칙을 근거로 긴 작업을 나누는 방식의 손익을 분석한다.",
+   "objectives": [
+    "user-blocking·user-visible·background 우선순위와 같은 우선순위 안의 등록 순서로 작업 실행 순서를 예측할 수 있다",
+    "yield 뒤의 이어 실행이 같은 우선순위 postTask 작업보다 앞서고 더 높은 우선순위 작업보다는 뒤에 오는 규칙을 코드로 보일 수 있다",
+    "우선순위를 고정할 때와 TaskController로 바꾸거나 취소할 수 있게 둘 때를 비교할 수 있다",
+    "postTask 안에서 부른 yield가 바깥 작업의 우선순위와 취소 신호를 물려받는 동작을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.internals.event-loop"
+   ],
+   "related": [
+    "fe.internals.update-the-rendering"
+   ],
+   "aliases": [
+    "Prioritized Task Scheduling API",
+    "scheduler.postTask",
+    "scheduler.yield",
+    "작업 우선순위 스케줄링"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/API/Prioritized_Task_Scheduling_API",
+    "https://developer.mozilla.org/en-US/docs/Web/API/Scheduler/yield"
    ],
    "volatile": true,
    "checked_at": "2026-11-13",
@@ -62986,6 +63473,169 @@
    ],
    "refs": [
     "https://w3c.github.io/ServiceWorker/"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.wasm-memory-grow-detach",
+   "title": "Memory.grow와 ArrayBuffer 분리",
+   "en": "WebAssembly Memory.grow and Buffer Detachment",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "공유되지 않은 WebAssembly 메모리를 grow로 늘리면 이전 ArrayBuffer가 분리돼 그 위의 뷰를 memory.buffer에서 다시 만들어야 하는 규칙이다.",
+   "parent": "fe.internals.wasm-linear-memory",
+   "aliases": [
+    "memory.grow",
+    "Wasm 메모리 늘리기",
+    "detached ArrayBuffer",
+    "분리된 ArrayBuffer"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/WebAssembly/Reference/JavaScript_interface/Memory/grow",
+    "https://developer.mozilla.org/en-US/docs/WebAssembly/Guides/Using_the_JavaScript_API"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.view-transition-name",
+   "title": "view-transition-name 속성",
+   "en": "view-transition-name",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "요소를 따로 캡처해 자기 전환 그룹을 갖게 하는 CSS 속성으로, 같은 시점에 렌더링된 두 요소가 같은 이름을 쓰면 ready가 거부되고 전환이 건너뛰어진다.",
+   "parent": "fe.internals.view-transition-pipeline",
+   "aliases": [
+    "view-transition-name",
+    "뷰 전환 이름",
+    "view-transition-name 속성"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API/Using",
+    "https://www.w3.org/TR/css-view-transitions-1/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.cross-document-view-transition",
+   "title": "문서 간 뷰 전환",
+   "en": "Cross-document View Transitions",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "같은 출처의 두 문서가 모두 @view-transition { navigation: auto; }로 동의하면 탐색 사이에 전환이 일어나고, 의사 요소 트리는 도착 문서에만 생기는 방식이다.",
+   "related": [
+    "fe.internals.view-transition-pipeline"
+   ],
+   "aliases": [
+    "MPA 뷰 전환",
+    "@view-transition",
+    "cross-document view transition",
+    "문서 간 뷰 트랜지션"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API/Using"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.css.container-query-units",
+   "title": "컨테이너 쿼리 길이 단위",
+   "en": "Container Query Length Units",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "CSS",
+   "summary": "cqw·cqh·cqi·cqb·cqmin·cqmax처럼 쿼리 컨테이너 크기의 1%를 기준으로 하는 길이 단위로, 쓸 수 있는 컨테이너가 없으면 그 축의 작은 뷰포트 단위로 대신한다.",
+   "related": [
+    "fe.css.container-query-size-containment"
+   ],
+   "aliases": [
+    "cqi 단위",
+    "cqw 단위",
+    "container query units",
+    "컨테이너 쿼리 단위"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_queries"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.react.use-no-memo",
+   "title": "\"use no memo\" 지시어",
+   "en": "\"use no memo\" Directive",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "React",
+   "summary": "함수 본문이나 파일 맨 앞에 두어 React Compiler가 그 함수나 모듈을 최적화하지 않고 그대로 두게 하는 임시 탈출구 지시어다.",
+   "parent": "fe.react.compiler-memoization",
+   "aliases": [
+    "use no memo",
+    "use no forget",
+    "React Compiler 제외 지시어"
+   ],
+   "refs": [
+    "https://react.dev/reference/react-compiler/directives/use-no-memo",
+    "https://react.dev/learn/react-compiler/debugging"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.task-priority-mutability",
+   "title": "작업 우선순위의 고정과 변경",
+   "en": "Mutable and Immutable Task Priority",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "postTask에 priority를 주면 우선순위가 고정되고, priority 없이 TaskSignal을 넘길 때만 TaskController.setPriority로 바꿀 수 있다는 규칙이다.",
+   "parent": "fe.internals.prioritized-task-scheduling",
+   "aliases": [
+    "TaskSignal",
+    "TaskController",
+    "TaskController.setPriority",
+    "prioritychange 이벤트"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/API/Prioritized_Task_Scheduling_API"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.long-animation-frames",
+   "title": "긴 애니메이션 프레임(LoAF) 측정",
+   "en": "Long Animation Frames API",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "렌더링 갱신이 50ms 넘게 늦어진 프레임을 통째로 기록해 blockingDuration과 스크립트 진입점까지 알려 주는 성능 항목으로, 개별 작업만 보는 Long Tasks API의 빈틈을 메운다.",
+   "related": [
+    "fe.internals.web-vitals",
+    "fe.internals.inp-subparts"
+   ],
+   "aliases": [
+    "Long Animation Frames API",
+    "LoAF API",
+    "long-animation-frame 항목",
+    "PerformanceLongAnimationFrameTiming"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/API/Performance_API/Long_animation_frame_timing"
    ],
    "domain": "fe"
   },
@@ -73050,6 +73700,149 @@
    "domain": "llm"
   },
   {
+   "id": "llm.internals.soft-prompt-methods",
+   "title": "소프트 프롬프트 학습의 내부: 프롬프트·프리픽스·P-튜닝",
+   "en": "Soft Prompt Methods: Prompt Tuning, Prefix Tuning and P-Tuning",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "모델은 얼려 두고 입력이나 각 층에 붙인 학습 가능한 가상 토큰만 다듬는 소프트 프롬프트 방식들이 넣는 위치와 최적화 방법에서 어떻게 갈리는지 분석한다.",
+   "objectives": [
+    "프롬프트 튜닝은 입력 임베딩에만, 프리픽스 튜닝은 모든 층에 학습 벡터를 넣는 차이를 구조로 비교하고 가상 토큰을 사람이 읽을 수 없는 이유를 설명할 수 있다",
+    "프리픽스를 바로 학습하면 불안정해 별도 피드포워드망으로 재매개변수화하는 이유와, 그 투영을 켜면 기존 KV 접두사로 초기화할 수 없는 손익을 설명할 수 있다",
+    "P-튜닝이 프롬프트 토큰을 입력 어디에나 두고 프롬프트 인코더로 최적화하며 입력에만 넣는 방식이 프리픽스 튜닝과 어떻게 다른지 비교할 수 있다",
+    "PEFT의 프리픽스 튜닝이 인코더-디코더 모델에서는 디코더에만 붙어 논문 구성과 달라 성능이 낮을 수 있다는 점을 근거로 방법을 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.finetune.peft-picture",
+    "llm.internals.inference-phases"
+   ],
+   "related": [
+    "mlops.finetune.lora-internals"
+   ],
+   "aliases": [
+    "소프트 프롬프트",
+    "soft prompt",
+    "PEFT prompt tuning",
+    "프리픽스 튜닝",
+    "prefix tuning",
+    "P-tuning"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/peft/main/en/conceptual_guides/prompting",
+    "https://huggingface.co/docs/peft/main/en/package_reference/prefix_tuning",
+    "https://huggingface.co/docs/peft/main/en/package_reference/p_tuning"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.orthogonal-finetuning",
+   "title": "직교 미세 조정의 내부: OFT·BOFT",
+   "en": "Orthogonal Finetuning Internals: OFT and BOFT",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "얼린 가중치에 직교 행렬을 곱해 갱신하는 OFT와 이를 버터플라이 인수분해로 일반화한 BOFT가 LoRA의 덧셈식 갱신과 다른 점과 블록 크기·매개변수화의 손익을 분석한다.",
+   "objectives": [
+    "LoRA의 덧셈식 저랭크 갱신과 OFT·BOFT의 곱셈식 직교 갱신을 비교하고, 학습 뒤 직교 행렬을 원래 가중치에 곱해 병합할 수 있는 이유를 설명할 수 있다",
+    "직교성이 초구면 에너지를 바꾸지 않게 묶어 사전 학습 지식을 잊는 일을 줄이는 원리를 설명할 수 있다",
+    "블록 수 r과 oft_block_size의 곱이 층 차원과 같다는 제약 아래 블록 크기가 갱신 밀도와 학습 파라미터 수를 바꾸는 손익과, 버터플라이 인수 수가 유효 블록 크기를 바꾸는 관계를 분석할 수 있다",
+    "역행렬이 필요한 정확한 케일리 매개변수화와 근사인 케일리-노이만 매개변수화의 속도·정확도 손익을 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.finetune.lora-internals"
+   ],
+   "related": [
+    "mlops.finetune.adapter-merge"
+   ],
+   "aliases": [
+    "OFT",
+    "BOFT",
+    "orthogonal finetuning",
+    "직교 파인튜닝",
+    "버터플라이 직교 미세 조정",
+    "OFTConfig"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/peft/main/en/conceptual_guides/oft"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.fp8-training",
+   "title": "FP8 학습 백엔드의 내부와 손익",
+   "en": "FP8 Training Internals: TransformerEngine, torchao and MS-AMP",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "학습의 일부나 전부를 16비트 대신 8비트 부동소수점으로 돌리는 백엔드들이 연산·통신·가중치·옵티마이저 상태의 정밀도를 어떻게 나눠 메모리와 정확도를 맞바꾸는지 분석한다.",
+   "objectives": [
+    "FP16 AMP·TransformerEngine·MS-AMP 수준별로 행렬 곱·통신·가중치·기울기·옵티마이저 상태를 어느 정밀도로 두는지 비교해 메모리와 정확도 손익을 분석할 수 있다",
+    "TransformerEngine이 nn.Linear·nn.LayerNorm만 바꿔 넣어 그 층 비중이 큰 수십억 파라미터 이상 모델에서 대개 이득이 보이는 이유와, amax 이력으로 스케일 인자를 정하는 설정이 무엇을 조절하는지 설명할 수 있다",
+    "torchao가 수치 안정성을 위해 첫 층과 마지막 층을 원래 정밀도로 남기는 방식과 CPU RAM 효율 적재를 함께 쓸 수 없는 제약을 설명할 수 있다",
+    "지원 GPU 세대와 백엔드 유지 보수 상태를 근거로 FP8 백엔드를 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.nn.mixed-precision-training"
+   ],
+   "related": [
+    "llm.internals.weight-quantization-schemes",
+    "ml.nn.bfloat16-float16"
+   ],
+   "aliases": [
+    "FP8 학습",
+    "FP8 training",
+    "8비트 부동소수점 학습",
+    "TransformerEngine FP8 학습",
+    "Accelerate FP8"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/accelerate/concept_guides/low_precision_training",
+    "https://huggingface.co/docs/accelerate/usage_guides/low_precision_training"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.fsdp-vs-deepspeed",
+   "title": "FSDP와 DeepSpeed ZeRO 비교: 분할·오프로딩·정밀도 처리",
+   "en": "FSDP vs DeepSpeed ZeRO: Sharding, Offloading and Precision Handling",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "Accelerate에서 고를 수 있는 두 분산 학습 틀이 모델을 나누는 범위, 오프로딩 단위, 평탄화 파라미터와 옵티마이저의 정밀도, 체크포인트 저장 방식에서 갈리는 손익을 분석한다.",
+   "objectives": [
+    "ZeRO 1·2·3단계가 옵티마이저 상태·기울기·파라미터를 차례로 나누는 범위와 FSDP FULL_SHARD가 ZeRO 3단계에 대응하는 관계를 설명할 수 있다",
+    "FSDP의 전부 아니면 전무 오프로딩과 DeepSpeed의 파라미터·옵티마이저 따로 오프로딩·NVMe 오프로딩을 적용 범위로 비교할 수 있다",
+    "평탄화 파라미터를 쓰는 FSDP1 기준으로, DeepSpeed가 torch_dtype과 상관없이 평탄화 파라미터와 옵티마이저를 float32로 올려 GPU가 적을 때 메모리 부담이 커지는 이유와, 혼합 정밀도 없는 FSDP는 낮은 정밀도로 옵티마이저를 돌릴 수 있는 차이를 분석할 수 있다",
+    "ZeRO 3단계 체크포인트를 한 랭크로 모아 16비트로 저장할지 분할 저장 뒤 zero_to_fp32.py로 바꿀지를 저장 시간과 메모리로 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.nn.fsdp-sharding"
+   ],
+   "related": [
+    "llm.internals.big-model-dispatch"
+   ],
+   "aliases": [
+    "FSDP vs DeepSpeed",
+    "DeepSpeed와 FSDP 비교",
+    "DeepSpeed 정밀도 업캐스팅",
+    "FSDP DeepSpeed 차이"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/accelerate/concept_guides/fsdp_and_deepspeed",
+    "https://huggingface.co/docs/accelerate/usage_guides/deepspeed"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "llm"
+  },
+  {
    "id": "llm.internals.kv-cache",
    "title": "KV 캐시",
    "en": "KV Cache",
@@ -73827,6 +74620,136 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-13",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.prefix-projection",
+   "title": "프리픽스 재매개변수화(prefix_projection)",
+   "en": "Prefix Reparameterization (prefix_projection)",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "프리픽스를 직접 학습하지 않고 2층 MLP로 투영해 만드는 PEFT 프리픽스 튜닝 옵션으로, 켜면 KV 접두사로 초기화하거나 불러올 수 없다.",
+   "parent": "llm.internals.soft-prompt-methods",
+   "aliases": [
+    "prefix_projection",
+    "프리픽스 투영",
+    "prefix reparameterization"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/peft/main/en/package_reference/prefix_tuning"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.ptuning-prompt-encoder",
+   "title": "P-튜닝 프롬프트 인코더(PromptEncoder)",
+   "en": "P-Tuning Prompt Encoder",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "P-튜닝에서 가상 토큰 임베딩을 MLP 또는 LSTM으로 만들어 내는 학습용 망으로, PEFT 기본값은 MLP이고 은닉 크기와 층 수를 정한다.",
+   "parent": "llm.internals.soft-prompt-methods",
+   "aliases": [
+    "PromptEncoder",
+    "PromptEncoderConfig",
+    "encoder_reparameterization_type",
+    "P-tuning 인코더"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/peft/main/en/package_reference/p_tuning"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.cayley-neumann",
+   "title": "케일리-노이만 매개변수화(use_cayley_neumann)",
+   "en": "Cayley-Neumann Parameterization",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "OFT의 직교 행렬을 역행렬 계산 없이 근사로 만드는 방식으로, 정확한 케일리 매개변수화보다 빠르지만 근사 오차로 성능이 조금 떨어질 수 있다.",
+   "parent": "llm.internals.orthogonal-finetuning",
+   "aliases": [
+    "use_cayley_neumann",
+    "Cayley-Neumann",
+    "케일리-노이만 근사"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/peft/main/en/conceptual_guides/oft"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.adalora",
+   "title": "AdaLoRA(적응형 랭크 배분)",
+   "en": "AdaLoRA (Adaptive LoRA)",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "증분 행렬을 SVD 꼴로 두고 중요도가 낮은 특이값을 잘라 층마다 랭크를 다르게 나누는 LoRA 변형으로, 매 스텝 update_and_allocate를 불러야 한다.",
+   "related": [
+    "mlops.finetune.lora-internals",
+    "mlops.finetune.lora-rank"
+   ],
+   "aliases": [
+    "AdaLoRA",
+    "Adaptive LoRA",
+    "AdaLoraConfig",
+    "update_and_allocate"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/peft/main/en/package_reference/adalora"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.fp8-amax-scaling",
+   "title": "FP8 amax 이력 스케일링(amax_history_len)",
+   "en": "FP8 Amax History Scaling",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "TransformerEngine이 최근 최댓값(amax) 기록으로 FP8 스케일 인자를 정하는 방식으로, 기록 길이·계산법(max·most_recent)·재계산 간격·margin을 고른다.",
+   "parent": "llm.internals.fp8-training",
+   "aliases": [
+    "amax_history_len",
+    "amax_compute_algo",
+    "amax 이력",
+    "amax history"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/accelerate/concept_guides/low_precision_training"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.zero-stages",
+   "title": "ZeRO 단계(DeepSpeed Stage 1·2·3)",
+   "en": "ZeRO Stages",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "데이터 병렬 GPU들이 1단계는 옵티마이저 상태, 2단계는 기울기까지, 3단계는 파라미터까지 나눠 들어 중복 메모리를 없애는 DeepSpeed의 분할 단계다.",
+   "parent": "llm.internals.fsdp-vs-deepspeed",
+   "aliases": [
+    "zero_stage",
+    "ZeRO-3",
+    "ZeRO stage 3",
+    "Zero Redundancy Optimizer",
+    "DeepSpeed ZeRO"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/accelerate/usage_guides/deepspeed"
+   ],
    "domain": "llm"
   },
   {
@@ -83287,6 +84210,186 @@
    "domain": "rag"
   },
   {
+   "id": "rag.retrieval.elasticsearch-ltr-rescore",
+   "title": "Elasticsearch 학습 순위(LTR) 재순위의 구조와 비용",
+   "en": "Elasticsearch Learning to Rank Rescoring",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "검색 내부",
+   "summary": "판정 목록으로 밖에서 학습한 결정 트리 모델이 1차 검색 상위 문서를 특징 질의 값으로 다시 매기는 2단계 순위 구조다.",
+   "objectives": [
+    "검색 맥락·판정 목록·특징 추출·GBDT 모델이 이어지는 LTR의 흐름과, 모델 학습은 Elasticsearch 밖에서 하고 추론만 안에서 하는 구조를 설명할 수 있다",
+    "특징 하나하나가 템플릿 질의로 계산되는 까닭에 특징 수와 판정 목록 크기가 클러스터 부하를 키운다는 점을 근거로 학습 데이터 추출 위치를 정할 수 있다",
+    "LTR 점수가 1차 질의 점수와 견줄 수 없어 window_size를 from + size 이상으로 두고 페이지마다 같게 유지해야 하는 이유를 설명할 수 있다",
+    "학습과 검색 때 같은 특징 추출 정의를 쓰지 않으면 순위가 어긋나는 위험을 따져 eland로 모델과 추출 설정을 함께 올리는 방식을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "rag.retrieval.hybrid-rerank",
+    "rag.retrieval.bm25-scoring-internals"
+   ],
+   "related": [
+    "rag.retrieval.vespa-phased-ranking",
+    "rag.retrieval.reranking"
+   ],
+   "aliases": [
+    "Elasticsearch LTR",
+    "Elasticsearch learning to rank",
+    "learning_to_rank rescorer",
+    "Elasticsearch LTR 재순위"
+   ],
+   "refs": [
+    "https://www.elastic.co/docs/solutions/search/ranking/learning-to-rank-ltr",
+    "https://www.elastic.co/docs/solutions/search/ranking/learning-to-rank-model-training",
+    "https://www.elastic.co/docs/solutions/search/ranking/learning-to-rank-search-usage"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.a2a-trust-model",
+   "title": "A2A 신뢰 모델: 카드 서명 검증·카드 캐시·작업 중 인가",
+   "en": "A2A Trust Model: Agent Card Signatures, Caching, and In-Task Authorization",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "A2A가 에이전트 카드를 JCS로 정규화해 서명·검증하고, 카드를 캐시하며, 작업 중 인가 요청을 위임할 때 생기는 보안 손익을 다룬다.",
+   "objectives": [
+    "설정하지 않은 선택 칸은 빼고 명시한 칸은 기본값이라도 넣으며 signatures 칸은 늘 빼는 RFC 8785 정규화 규칙이 서명 검증 성공을 좌우하는 이유를 설명할 수 있다",
+    "보호 헤더의 alg·kid·jku와 서명 입력의 구성을 따라 검증 단계를 밟고, 서명을 여러 개 두어 키를 교체하는 방식을 판단할 수 있다",
+    "Cache-Control·ETag와 조건부 요청으로 카드를 다시 받는 비용과, 인증 뒤 받은 확장 카드로 캐시를 바꾸는 시점을 따질 수 있다",
+    "TASK_STATE_AUTH_REQUIRED로 인가를 위임할 때 대역 내 자격 증명이 연쇄된 에이전트 모두에 드러나는 위험과 상태 전이만으로는 인가가 아니라는 규칙을 근거로 설계를 고를 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.a2a-protocol-internals",
+    "be.auth.jwt-attacks"
+   ],
+   "related": [
+    "rag.agent.mcp-client-registration"
+   ],
+   "aliases": [
+    "A2A 보안 모델",
+    "A2A security",
+    "A2A 카드 서명 검증",
+    "AgentCardSignature",
+    "A2A in-task authorization"
+   ],
+   "refs": [
+    "https://a2a-protocol.org/latest/specification/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.weaviate-rotational-quantization",
+   "title": "Weaviate 회전 양자화(RQ)의 내부: 회전·비트 수·재채점",
+   "en": "Weaviate Rotational Quantization Internals",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "벡터 DB",
+   "summary": "학습 없이 벡터를 무작위 회전한 뒤 8·4·1비트로 줄이는 Weaviate의 양자화로, 비트 수마다 압축률과 재현율, 재채점 의존도가 다르다.",
+   "objectives": [
+    "월시-아다마르 변환 기반 회전 뒤 벡터마다 최솟값·최댓값 구간으로 양자화하는 과정과, 학습 단계가 없어 색인을 만들 때 바로 켤 수 있는 이유를 설명할 수 있다",
+    "8비트·4비트·1비트 RQ의 대략적 압축률과 재현율, 질의 벡터를 저장 벡터보다 높은 정밀도로 두는 비대칭 계산을 비교할 수 있다",
+    "벡터마다 붙는 보조 데이터와 64·256 단위 채우기 때문에 낮은 차원에서 압축률이 떨어지는 까닭을 계산할 수 있다",
+    "rescoreLimit로 더 많이 가져와 원본 벡터로 다시 채점할 때의 재현율과 질의 속도 손익을 비트 수에 맞춰 따질 수 있다"
+   ],
+   "prerequisites": [
+    "rag.vector-db.product-quantization-internals",
+    "rag.vector-db.weaviate-index-types"
+   ],
+   "related": [
+    "rag.vector-db.elasticsearch-vector-quantization",
+    "rag.embedding.quantization"
+   ],
+   "aliases": [
+    "Weaviate RQ",
+    "rotational quantization",
+    "회전 양자화",
+    "Weaviate 회전 양자화"
+   ],
+   "refs": [
+    "https://docs.weaviate.io/weaviate/concepts/vector-quantization"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.vespa-streaming-search",
+   "title": "Vespa 스트리밍 검색: 색인 없는 그룹별 검색의 손익",
+   "en": "Vespa Streaming Search",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "검색 내부",
+   "summary": "색인을 만들지 않고 원본 문서만 저장해 질의마다 고른 그룹의 문서를 훑는 Vespa 방식으로, 작은 그룹이 많은 개인 데이터에 맞다.",
+   "objectives": [
+    "색인 유지 비용을 없애고 질의 때 그룹 문서를 훑는 구조가 문서당 약 45바이트 메모리로 노드당 매우 많은 문서를 담게 하는 이유를 설명할 수 있다",
+    "그룹이 평균적으로 전체 말뭉치보다 작을 때 스트리밍 검색이 맞는다는 조건과 가끔 생기는 큰 그룹을 여러 콘텐츠 노드에 나눠 병렬로 훑는 방식을 근거로 색인 방식과 비교할 수 있다",
+    "낱말 통계가 없어 bm25에 averageFieldLength 조정이 필요하고 HNSW가 없어 최근접 이웃 검색이 늘 정확 검색이 되는 차이를 따질 수 있다",
+    "vCPU를 늘려도 지연이 줄지 않으면 IO 병목으로 보고 문서 저장소 캐시와 직접 IO 설정을 검토할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.vector-db.multitenancy-design",
+    "rag.vector-index.internals"
+   ],
+   "related": [
+    "rag.retrieval.vespa-phased-ranking"
+   ],
+   "aliases": [
+    "Vespa streaming search",
+    "Vespa streaming mode",
+    "Vespa 스트리밍 모드",
+    "Vespa 스트리밍 검색"
+   ],
+   "refs": [
+    "https://docs.vespa.ai/en/performance/streaming-search.html"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.weaviate-replication-consistency",
+   "title": "Weaviate 리더 없는 복제와 조정 가능한 일관성",
+   "en": "Weaviate Leaderless Replication and Tunable Consistency",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "벡터 DB",
+   "summary": "Weaviate가 메타데이터는 Raft로, 데이터 객체는 리더 없는 복제와 읽기·쓰기 일관성 수준으로 다루고 어긋난 복제본을 고치는 방식이다.",
+   "objectives": [
+    "메타데이터는 Raft 과반 승인으로, 데이터 객체는 모든 복제본에 쓰되 일관성 수준만큼만 응답을 기다리는 두 모델의 차이를 설명할 수 있다",
+    "ONE·QUORUM·ALL 조합이 r + w > n을 만족할 때만 강한 일관성이 되는 이유를 들어 읽기 위주·쓰기 위주 조합을 고를 수 있다",
+    "머클 트리 비동기 복제와 읽기 때 복구가 어긋난 복제본을 고치는 시점을 비교하고, ONE 읽기가 낡은 값을 돌려줄 수 있는 경우를 판단할 수 있다",
+    "삭제 충돌 해결 전략에 따라 지운 객체가 되살아나거나 사라지는 결과를 따져 전략을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "cs.dist.replication-majority",
+    "rag.vector-db.multitenancy-design"
+   ],
+   "related": [
+    "rag.vector-db.qdrant-replication-consistency",
+    "cs.dist.raft-consensus"
+   ],
+   "aliases": [
+    "Weaviate replication",
+    "Weaviate 복제",
+    "Weaviate consistency level",
+    "Weaviate 일관성 수준",
+    "Weaviate repair-on-read"
+   ],
+   "refs": [
+    "https://docs.weaviate.io/weaviate/concepts/replication-architecture/consistency"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "rag"
+  },
+  {
    "id": "rag.vector-db.qdrant-segment-optimizer",
    "title": "Qdrant 세그먼트와 최적화기: 색인·삭제 정리·읽기 쓰기 경합",
    "en": "Qdrant Segments and Optimizers",
@@ -83823,6 +84926,28 @@
    "refs": [
     "https://docs.langchain.com/oss/python/langgraph/graph-api-control-flow"
    ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.ltr-window-size",
+   "title": "LTR 재순위 창 크기(window_size)",
+   "en": "Learning to Rank Rescore Window Size",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "검색 내부",
+   "summary": "Elasticsearch LTR 재순위기가 1차 결과 상위 몇 개를 다시 매길지 정하는 필수 값으로, from + size 이상이어야 순위가 뒤틀리지 않는다.",
+   "parent": "rag.retrieval.elasticsearch-ltr-rescore",
+   "aliases": [
+    "Elasticsearch LTR window_size",
+    "LTR 재순위 창",
+    "learning_to_rank window_size"
+   ],
+   "refs": [
+    "https://www.elastic.co/docs/solutions/search/ranking/learning-to-rank-search-usage"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
    "domain": "rag"
   },
   {
@@ -84509,6 +85634,135 @@
    ],
    "refs": [
     "https://www.elastic.co/docs/deploy-manage/production-guidance/optimize-performance/approximate-knn-search"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.ltr-feature-extractor",
+   "title": "LTR 특징 추출 질의(QueryFeatureExtractor)",
+   "en": "LTR Query Feature Extractor",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "검색 내부",
+   "summary": "특징 이름과 {{query}} 자리표시자가 든 템플릿 질의로 LTR 모델의 입력 값 하나를 정의하는 eland의 추출기다.",
+   "parent": "rag.retrieval.elasticsearch-ltr-rescore",
+   "aliases": [
+    "eland QueryFeatureExtractor",
+    "Elasticsearch LTR 특징 추출기",
+    "eland 특징 추출"
+   ],
+   "refs": [
+    "https://www.elastic.co/docs/solutions/search/ranking/learning-to-rank-model-training"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.a2a-card-canonicalization",
+   "title": "A2A 에이전트 카드 정규화(RFC 8785 JCS)",
+   "en": "A2A Agent Card Canonicalization (JCS)",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "서명 전에 RFC 8785 JCS로 키를 사전순 정렬하고 공백을 없애며, 설정하지 않은 선택 칸과 signatures 칸을 빼서 같은 바이트열을 만드는 A2A 카드 절차다.",
+   "parent": "rag.agent.a2a-trust-model",
+   "aliases": [
+    "A2A 카드 정규화",
+    "A2A JCS 정규화",
+    "A2A Agent Card canonicalization"
+   ],
+   "refs": [
+    "https://a2a-protocol.org/latest/specification/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.walsh-hadamard-rotation",
+   "title": "RQ의 월시-아다마르 의사 무작위 회전",
+   "en": "Walsh-Hadamard Pseudorandom Rotation in Weaviate RQ",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "벡터 DB",
+   "summary": "양자화 전에 벡터 값을 고르게 퍼뜨리려고 월시-아다마르 변환으로 빠르게 적용하는 의사 무작위 회전이다.",
+   "parent": "rag.vector-db.weaviate-rotational-quantization",
+   "aliases": [
+    "Weaviate RQ 회전",
+    "RQ 회전 단계",
+    "RQ Walsh-Hadamard rotation"
+   ],
+   "refs": [
+    "https://docs.weaviate.io/weaviate/concepts/vector-quantization"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.weaviate-rescore-limit",
+   "title": "Weaviate 재채점 후보 수(rescoreLimit)",
+   "en": "Weaviate Rescore Limit",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "벡터 DB",
+   "summary": "압축 벡터로 몇 개를 먼저 가져와 원본 벡터로 다시 채점할지 정하는 Weaviate 값으로, 질의 limit와 비교해 큰 쪽을 쓴다.",
+   "parent": "rag.vector-db.weaviate-rotational-quantization",
+   "aliases": [
+    "rescoreLimit",
+    "Weaviate 재채점",
+    "Weaviate rescoring",
+    "Weaviate over-fetching"
+   ],
+   "refs": [
+    "https://docs.weaviate.io/weaviate/concepts/vector-quantization"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.vespa-streaming-groupname",
+   "title": "Vespa 스트리밍 그룹 선택(streaming.groupname)",
+   "en": "Vespa streaming.groupname",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "검색 내부",
+   "summary": "문서 ID의 g= 그룹 값과 짝을 이루어 스트리밍 검색이 훑을 문서 묶음을 질의 때 고르는 Vespa 매개변수다.",
+   "parent": "rag.retrieval.vespa-streaming-search",
+   "aliases": [
+    "streaming.groupname",
+    "Vespa groupname",
+    "Vespa 문서 그룹 ID"
+   ],
+   "refs": [
+    "https://docs.vespa.ai/en/performance/streaming-search.html"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.weaviate-deletion-resolution",
+   "title": "Weaviate 삭제 충돌 해결 전략",
+   "en": "Weaviate Deletion Resolution Strategy",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "벡터 DB",
+   "summary": "복제본끼리 삭제 여부가 엇갈릴 때 그대로 두거나, 삭제를 늘 이기게 하거나, 시각이 늦은 작업을 이기게 하는 Weaviate 설정이다.",
+   "parent": "rag.vector-db.weaviate-replication-consistency",
+   "aliases": [
+    "DeleteOnConflict",
+    "TimeBasedResolution",
+    "NoAutomatedResolution"
+   ],
+   "refs": [
+    "https://docs.weaviate.io/weaviate/concepts/replication-architecture/consistency"
    ],
    "volatile": true,
    "checked_at": "2026-11-13",
@@ -104359,6 +105613,144 @@
    "domain": "ops"
   },
   {
+   "id": "ops.k8s.dynamic-resource-allocation",
+   "title": "동적 자원 할당(DRA)의 내부",
+   "en": "Kubernetes Dynamic Resource Allocation Internals",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "드라이버가 ResourceSlice로 장치를 알리고 스케줄러가 ResourceClaim에 장치를 골라 적은 뒤 그 장치에 닿는 노드에 파드를 놓는 Kubernetes의 장치 할당 방식이다.",
+   "objectives": [
+    "ResourceSlice 게시, 클레임 생성, 스케줄러의 장치 거르기와 할당 기록, kubelet과 드라이버의 장치 준비로 이어지는 흐름을 단계별로 설명할 수 있다",
+    "스케줄러가 풀과 슬라이스를 이름의 사전 순으로 보며 처음 맞는 장치를 고르는 first-fit 할당이 드라이버의 이름 짓기에 주는 영향을 분석할 수 있다",
+    "ResourceClaim을 여러 파드가 함께 쓰는 경우와 ResourceClaimTemplate으로 파드마다 클레임을 만드는 경우의 수명과 공유 범위를 비교할 수 있다",
+    "DRA 장치에는 스케줄러 선점이 없어 높은 우선순위 파드도 장치가 풀릴 때까지 Pending에 머무는 한계를 근거로 장애를 분석할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.k8s.scheduling",
+    "ops.k8s.scheduling-framework"
+   ],
+   "related": [
+    "ops.k8s.pod-priority-preemption"
+   ],
+   "aliases": [
+    "Kubernetes DRA",
+    "동적 자원 할당",
+    "dynamic resource allocation",
+    "DRA 드라이버"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/resource-management/dynamic-resource-allocation/",
+    "https://kubernetes.io/docs/concepts/resource-management/dynamic-resource-allocation/how-dra-works/",
+    "https://kubernetes.io/docs/concepts/resource-management/dynamic-resource-allocation/dra-api/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.node-graceful-shutdown",
+   "title": "노드 그레이스풀 셧다운과 비정상 종료 처리",
+   "en": "Graceful and Non-Graceful Node Shutdown",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "kubelet이 systemd 억제 잠금으로 노드 종료를 늦추며 파드를 단계별로 끝내는 방식과, 이를 놓친 노드를 out-of-service 테인트로 복구하는 방식이다.",
+   "objectives": [
+    "kubelet이 systemd 억제 잠금으로 종료를 늦추고 노드를 NotReady로 바꿔 새 파드를 막은 뒤 일반 파드와 중요 파드를 차례로 끝내는 과정을 설명할 수 있다",
+    "shutdownGracePeriod와 shutdownGracePeriodCriticalPods 두 단계 방식과 PriorityClass 범위별로 시간을 나누는 우선순위 기반 방식을 비교할 수 있다",
+    "kubelet이 종료를 감지하지 못한 노드에서 StatefulSet 파드가 Terminating에 머물고 볼륨이 떼어지지 않는 원인을 분석할 수 있다",
+    "6분 시간 제한 뒤의 강제 볼륨 분리가 데이터 손상을 부를 수 있다는 위험을 근거로 out-of-service 테인트 절차와 견줘 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.k8s.pod-graceful-termination",
+    "ops.k8s.pod-priority-preemption"
+   ],
+   "related": [
+    "ops.k8s.disruption-budget",
+    "ops.k8s.node-pressure-eviction"
+   ],
+   "aliases": [
+    "노드 그레이스풀 셧다운",
+    "graceful node shutdown",
+    "non-graceful node shutdown",
+    "노드 종료 처리"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/cluster-administration/node-shutdown/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.server-side-apply",
+   "title": "서버 측 적용과 필드 소유권",
+   "en": "Kubernetes Server-Side Apply and Field Management",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "API 서버가 객체의 필드마다 소유한 관리자를 기록하고 그 소유권을 근거로 병합과 충돌을 정하는 Kubernetes의 선언적 적용 방식이다.",
+   "objectives": [
+    "managedFields에 기록된 관리자와 작업 종류를 읽고, 다른 관리자가 가진 필드를 다른 값으로 적용할 때 충돌이 나는 이유를 설명할 수 있다",
+    "충돌이 났을 때 강제로 덮어쓰기, 필드 내려놓기, 같은 값으로 공동 소유하기의 결과를 비교해 고를 수 있다",
+    "listType·mapType 병합 표지가 목록과 맵을 통째로 바꿀지 항목별로 관리할지를 어떻게 정하는지 분석할 수 있다",
+    "last-applied-configuration 주석에 기대는 클라이언트 측 적용과 견줘 서버 측 적용으로 옮길 때 생기는 충돌을 진단할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.k8s.basics"
+   ],
+   "related": [
+    "ops.k8s.hpa-replicas-conflict",
+    "ops.k8s.api-watch-consistency"
+   ],
+   "aliases": [
+    "Server-Side Apply",
+    "서버 측 적용",
+    "kubectl apply --server-side",
+    "Kubernetes 필드 소유권"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/reference/using-api/server-side-apply/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.owner-gc-cascading-deletion",
+   "title": "소유자 참조와 연쇄 삭제의 동작",
+   "en": "Owner References and Cascading Deletion",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "가비지 컬렉터가 ownerReferences로 딸린 객체를 찾아 포그라운드·백그라운드·고아 방식으로 지우고 파이널라이저가 그 끝을 붙잡는 Kubernetes 삭제 동작이다.",
+   "objectives": [
+    "포그라운드 삭제에서 소유자에 deletionTimestamp와 foregroundDeletion 파이널라이저가 붙고 blockOwnerDeletion이 참인 딸린 객체만 소유자 삭제를 막는 순서를 설명할 수 있다",
+    "포그라운드, 기본값인 백그라운드, 딸린 객체를 남기는 고아 방식의 삭제 순서와 결과를 비교할 수 있다",
+    "삭제 요청 뒤 파이널라이저를 더할 수 없고 목록이 빌 때 객체가 사라지는 규칙으로 Terminating에 멈춘 객체의 원인을 분석할 수 있다",
+    "다른 네임스페이스의 소유자를 가리킨 딸린 객체는 소유자가 없는 것으로 여겨 지워지고 네임스페이스 범위 소유자를 가리킨 클러스터 범위 객체는 정리되지 않는 차이를 OwnerRefInvalidNamespace 경고 이벤트로 진단할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.k8s.basics"
+   ],
+   "related": [
+    "ops.k8s.api-watch-consistency"
+   ],
+   "aliases": [
+    "ownerReferences",
+    "Kubernetes 연쇄 삭제",
+    "Kubernetes cascading deletion",
+    "Kubernetes 파이널라이저",
+    "Kubernetes finalizers"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/architecture/garbage-collection/",
+    "https://kubernetes.io/docs/concepts/overview/working-with-objects/finalizers/"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.observe.incident-analysis",
    "title": "장애 분석과 회고",
    "en": "Incident Analysis and Postmortems",
@@ -104799,6 +106191,43 @@
    "domain": "ops"
   },
   {
+   "id": "ops.container.image-lazy-pulling",
+   "title": "컨테이너 이미지 지연 풀링: eStargz와 SOCI",
+   "en": "Lazy Pulling Container Images with eStargz and SOCI",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "컨테이너 내부",
+   "summary": "레이어를 다 받기 전에 컨테이너를 띄우고 필요한 파일만 HTTP 범위 요청으로 가져오는 방식으로, 레이어를 바꾸는 eStargz와 별도 색인을 쓰는 SOCI가 있다.",
+   "objectives": [
+    "eStargz가 파일마다 따로 압축한 gzip 멤버, 마지막 항목의 TOC, 고정 크기 꼬리말로 범위 요청만으로 파일을 찾는 구조를 설명할 수 있다",
+    "우선 파일을 앞에 두고 랜드마크 파일로 경계를 표시해 미리 가져오는 배치가 시작 시간에 주는 손익을 분석할 수 있다",
+    "TOC 다이제스트 주석과 파일·청크별 chunkDigest로 내려받은 조각을 검증하는 방식을 설명할 수 있다",
+    "referrers API로 색인을 찾는 SOCI 색인 매니페스트 v1과 이미지에 색인을 묶는 v2를 예측 가능성과 가시성 면에서 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.container.oci-image-manifest",
+    "ops.container.cri-shim-runtime"
+   ],
+   "related": [
+    "ops.container.oci-referrers-api",
+    "ops.container.overlay2-storage"
+   ],
+   "aliases": [
+    "이미지 지연 풀링",
+    "lazy pulling",
+    "stargz snapshotter",
+    "SOCI snapshotter"
+   ],
+   "refs": [
+    "https://github.com/containerd/stargz-snapshotter/blob/main/docs/estargz.md",
+    "https://github.com/awslabs/soci-snapshotter/blob/main/docs/soci-index-manifest-v2.md"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ops"
+  },
+  {
    "id": "ops.k8s.resource-version-410-gone",
    "title": "resourceVersion 만료와 410 Gone",
    "en": "Expired resourceVersion and 410 Gone",
@@ -104989,6 +106418,89 @@
    ],
    "refs": [
     "https://docs.kernel.org/bpf/verifier.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.resourceclaim",
+   "title": "ResourceClaim과 ResourceClaimTemplate",
+   "en": "ResourceClaim and ResourceClaimTemplate",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "DeviceClass를 가리키고 CEL 선택자로 장치 조건을 적는 DRA의 장치 요청 객체이며, 템플릿을 쓰면 파드마다 따로 만들어지고 파드와 함께 지워진다.",
+   "parent": "ops.k8s.dynamic-resource-allocation",
+   "aliases": [
+    "ResourceClaim",
+    "ResourceClaimTemplate",
+    "리소스 클레임",
+    "DRA 클레임"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/resource-management/dynamic-resource-allocation/dra-api/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.shutdown-grace-period-critical-pods",
+   "title": "shutdownGracePeriodCriticalPods",
+   "en": "shutdownGracePeriodCriticalPods",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "노드 종료 유예 시간 shutdownGracePeriod 가운데 중요 파드에 남겨 두는 몫으로, 둘 다 0이 아니어야 기능이 켜지고 이 값은 전체보다 작아야 한다.",
+   "parent": "ops.k8s.node-graceful-shutdown",
+   "aliases": [
+    "중요 파드 종료 유예 시간",
+    "critical pods shutdown grace period",
+    "kubelet shutdownGracePeriodCriticalPods"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/cluster-administration/node-shutdown/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.out-of-service-taint",
+   "title": "out-of-service 테인트",
+   "en": "node.kubernetes.io/out-of-service Taint",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "꺼진 노드에 운영자가 직접 붙이면 맞는 톨러레이션이 없는 파드를 강제로 지우고 볼륨을 바로 떼어 다른 노드에서 다시 뜨게 하는 테인트다.",
+   "parent": "ops.k8s.node-graceful-shutdown",
+   "aliases": [
+    "out-of-service taint",
+    "node.kubernetes.io/out-of-service",
+    "아웃 오브 서비스 테인트"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/cluster-administration/node-shutdown/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.managed-fields",
+   "title": "managedFields",
+   "en": "managedFields",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "객체의 metadata에 관리자 이름, Apply·Update 작업 종류, 맡은 필드 목록을 남기는 서버 측 적용의 소유권 기록이다.",
+   "parent": "ops.k8s.server-side-apply",
+   "aliases": [
+    "metadata.managedFields",
+    "--show-managed-fields",
+    "Kubernetes managedFields"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/reference/using-api/server-side-apply/"
    ],
    "domain": "ops"
   },
@@ -105468,6 +106980,92 @@
    "refs": [
     "https://docs.kernel.org/bpf/libbpf/libbpf_overview.html"
    ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.list-type-merge-markers",
+   "title": "listType 병합 표지",
+   "en": "x-kubernetes-list-type Merge Markers",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "목록을 atomic·set·map 가운데 무엇으로 다룰지 정해 서버 측 적용이 목록을 통째로 바꿀지 항목별로 소유할지를 가르는 스키마 표지다.",
+   "parent": "ops.k8s.server-side-apply",
+   "aliases": [
+    "listType",
+    "x-kubernetes-list-type",
+    "+listType 표지",
+    "listType=map"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/reference/using-api/server-side-apply/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.block-owner-deletion",
+   "title": "blockOwnerDeletion과 foregroundDeletion",
+   "en": "blockOwnerDeletion and foregroundDeletion",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "포그라운드 삭제에서 소유자에 붙는 foregroundDeletion 파이널라이저와, 그 소유자 삭제를 끝까지 막을 수 있는 딸린 객체의 ownerReference 표시다.",
+   "parent": "ops.k8s.owner-gc-cascading-deletion",
+   "aliases": [
+    "blockOwnerDeletion",
+    "foregroundDeletion",
+    "포그라운드 연쇄 삭제",
+    "foreground cascading deletion"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/architecture/garbage-collection/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.container.estargz-toc",
+   "title": "eStargz TOC와 꼬리말",
+   "en": "eStargz TOC and Footer",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "컨테이너 내부",
+   "summary": "레이어 끝의 stargz.index.json에 파일과 청크의 위치·크기를 적고 고정 크기 꼬리말에 그 위치를 남겨 범위 요청으로 파일을 찾게 하는 eStargz의 목차다.",
+   "parent": "ops.container.image-lazy-pulling",
+   "aliases": [
+    "eStargz TOC",
+    "stargz.index.json",
+    "eStargz footer",
+    "TOCEntry"
+   ],
+   "refs": [
+    "https://github.com/containerd/stargz-snapshotter/blob/main/docs/estargz.md"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.container.soci-index-manifest-v2",
+   "title": "SOCI 색인 매니페스트 v2",
+   "en": "SOCI Index Manifest v2",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "컨테이너 내부",
+   "summary": "SOCI 색인을 이미지와 한 묶음으로 변환해 레지스트리 사이에서 함께 옮기고 나중에 붙이거나 뗄 수 없게 한 SOCI 지연 로딩용 이미지 형식이다.",
+   "parent": "ops.container.image-lazy-pulling",
+   "aliases": [
+    "SOCI index manifest v2",
+    "SOCI-enabled image",
+    "SOCI 활성 이미지",
+    "soci convert"
+   ],
+   "refs": [
+    "https://github.com/awslabs/soci-snapshotter/blob/main/docs/soci-index-manifest-v2.md"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-12",
    "domain": "ops"
   },
   {

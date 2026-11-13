@@ -9176,6 +9176,105 @@
     ]
   },
   {
+    "id": "be.arch.grpc-deadline-propagation",
+    "title": "gRPC 데드라인과 취소 전파",
+    "en": "gRPC Deadlines and Cancellation Propagation",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "구조 설계",
+    "summary": "gRPC가 남은 시간을 시간 제한 값으로 실어 보내 데드라인과 취소를 서비스 호출 사슬 아래로 넘기는 방식과 그 한계를 분석한다.",
+    "objectives": [
+      "gRPC가 절대 시각 대신 경과 시간을 뺀 남은 시간을 보내 서버 사이 시계 차이를 피하는 원리를 설명할 수 있다",
+      "데드라인이 지나면 클라이언트는 DEADLINE_EXCEEDED로 끝나고 서버 호출은 CANCELLED로 취소되지만 처리기 코드는 스스로 멈춰야 하는 까닭을 설명할 수 있다",
+      "중간 서버가 받은 데드라인과 취소를 다음 호출로 넘기는지가 언어마다 다르다는 점을 근거로 호출 사슬의 낭비 작업을 찾을 수 있다",
+      "기본 데드라인이 없을 때 생기는 무한 대기 위험을 들어 데드라인 값을 정하는 근거를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "be.arch.api-styles"
+    ],
+    "related": [
+      "be.integrate.resilience"
+    ],
+    "aliases": [
+      "gRPC 데드라인",
+      "gRPC deadline",
+      "데드라인 전파",
+      "deadline propagation",
+      "gRPC 취소 전파",
+      "DEADLINE_EXCEEDED"
+    ],
+    "refs": [
+      "https://grpc.io/docs/guides/deadlines/",
+      "https://grpc.io/docs/guides/cancellation/"
+    ]
+  },
+  {
+    "id": "be.auth.webauthn-rp-verification",
+    "title": "WebAuthn 신뢰 당사자 검증 절차",
+    "en": "WebAuthn Relying Party Verification",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "인증·인가",
+    "summary": "패스키 등록 때 서버가 challenge·origin·RP ID 해시·플래그·증명을 차례로 검사하는 W3C WebAuthn 절차와 각 검사가 막는 공격을 분석한다.",
+    "objectives": [
+      "등록 응답에서 challenge, origin, rpIdHash를 대조하는 단계가 각각 무엇을 막는지 설명할 수 있다",
+      "인증자 데이터의 UP·UV·BE·BS 플래그를 읽고 사용자 확인 요구와 백업 상태 규칙에 맞는지 판단할 수 있다",
+      "이미 알려진 자격 증명 ID로 온 등록을 실패시키라는 규칙이 공격자가 피해자의 자격 증명을 자기 계정에 등록해 피해자를 공격자 계정으로 로그인시키는 공격을 막는 원리를 설명할 수 있다",
+      "Basic·Self·AttCA·AnonCA·None 증명 유형의 신뢰 판단 방식을 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "be.auth.login-abuse"
+    ],
+    "aliases": [
+      "WebAuthn 등록 검증",
+      "WebAuthn 신뢰 당사자",
+      "WebAuthn relying party",
+      "패스키 서버 검증",
+      "passkey verification",
+      "FIDO2 서버"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/webauthn-3/"
+    ]
+  },
+  {
+    "id": "be.auth.access-token-validation-models",
+    "title": "액세스 토큰 검증: 토큰 조회와 JWT 프로필",
+    "en": "Access Token Validation: Introspection vs JWT Profile",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "인증·인가",
+    "summary": "리소스 서버가 불투명 토큰을 인가 서버에 물어보는 RFC 7662 방식과 at+jwt 토큰을 스스로 검증하는 RFC 9068 방식을 폐기·부하·정보 노출 면에서 비교한다.",
+    "objectives": [
+      "토큰 조회 응답의 active 값만으로 판단하고 비활성 토큰에는 다른 정보를 돌려주지 않는 까닭을 설명할 수 있다",
+      "조회 결과를 캐시할 때 폐기된 토큰을 받아들일 위험과 exp를 넘겨 캐시하지 말라는 규칙을 손익으로 따질 수 있다",
+      "RFC 9068의 typ·iss·aud·서명·만료 검사 순서를 따라 JWT 액세스 토큰 검증 코드를 점검할 수 있다",
+      "리소스마다 다른 aud를 쓰지 않을 때 생기는 JWT 혼동 위험을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "be.auth.jwt-attacks",
+      "be.auth.jwt-vs-session"
+    ],
+    "related": [
+      "be.auth.oidc"
+    ],
+    "aliases": [
+      "OAuth 토큰 조회",
+      "token introspection",
+      "RFC 7662",
+      "RFC 9068",
+      "JWT 액세스 토큰 프로필",
+      "JWT access token profile"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc7662",
+      "https://www.rfc-editor.org/rfc/rfc9068"
+    ]
+  },
+  {
     "id": "be.async.asgi",
     "title": "ASGI: 파이썬 비동기 서버의 약속",
     "en": "ASGI Specification",
@@ -9697,6 +9796,70 @@
     ],
     "refs": [
       "https://www.rfc-editor.org/rfc/rfc6455.html"
+    ]
+  },
+  {
+    "id": "be.arch.grpc-retry-hedging",
+    "title": "gRPC 재시도 정책과 헤징",
+    "en": "gRPC Retry Policy and Hedging",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "구조 설계",
+    "summary": "gRPC 클라이언트가 서비스 설정으로 실패한 호출을 다시 보내거나 같은 요청을 여러 백엔드에 겹쳐 보내는 동작과 그 부하 손익을 분석한다.",
+    "objectives": [
+      "투명 재시도가 요청이 서버 응용 코드에 닿았는지에 따라 횟수가 달라지는 규칙을 설명할 수 있다",
+      "응답 헤더를 받으면 호출이 확정되어 더는 재시도하지 않는 규칙으로 재시도 가능 범위를 판단할 수 있다",
+      "재시도와 헤징을 비교해 꼬리 지연과 백엔드 부하 사이의 손익을 따질 수 있다",
+      "grpc-retry-pushback-ms로 서버가 다음 시도를 늦추거나 막는 동작을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "be.arch.api-styles",
+      "be.integrate.resilience"
+    ],
+    "related": [
+      "be.run.load-control"
+    ],
+    "aliases": [
+      "gRPC 재시도",
+      "gRPC retry",
+      "gRPC 재시도 정책",
+      "gRPC retryPolicy",
+      "투명 재시도",
+      "transparent retry"
+    ],
+    "refs": [
+      "https://grpc.io/docs/guides/retry/",
+      "https://grpc.io/docs/guides/request-hedging/"
+    ]
+  },
+  {
+    "id": "be.auth.pushed-authorization-request",
+    "title": "OAuth 푸시 인가 요청(PAR)",
+    "en": "OAuth Pushed Authorization Requests",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "인증·인가",
+    "summary": "인가 요청 매개변수를 브라우저 URL 대신 백채널 POST로 먼저 보내고 짧은 request_uri만 리다이렉트에 싣는 RFC 9126 방식의 손익을 분석한다.",
+    "objectives": [
+      "PAR 엔드포인트에서 클라이언트 인증을 먼저 하면 사용자 상호작용 전에 잘못된 요청을 거를 수 있는 까닭을 설명할 수 있다",
+      "매개변수를 URL 대신 요청 본문으로 보낼 때 무결성·기밀성·URL 길이 면에서 얻는 것을 앞단 채널 방식과 비교할 수 있다",
+      "request_uri 추측, 재사용, 바꿔치기 위험과 일회 사용·PKCE·state로 막는 방법을 설명할 수 있다",
+      "require_pushed_authorization_requests 메타데이터로 PAR만 허용하게 했을 때의 효과를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "be.auth.oauth-attacks"
+    ],
+    "aliases": [
+      "Pushed Authorization Requests",
+      "RFC 9126",
+      "OAuth PAR",
+      "푸시 인가 요청",
+      "PAR 엔드포인트"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9126"
     ]
   },
   {
@@ -10316,5 +10479,143 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-13"
+  },
+  {
+    "id": "be.arch.grpc-timeout-header",
+    "title": "grpc-timeout 헤더",
+    "en": "grpc-timeout Header",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "구조 설계",
+    "summary": "gRPC가 HTTP/2 요청에 남은 시간을 최대 8자리 정수와 H·M·S·m·u·n 단위로 실어 보내는 헤더로, 없으면 서버는 무한으로 본다.",
+    "parent": "be.arch.grpc-deadline-propagation",
+    "aliases": [
+      "grpc-timeout",
+      "gRPC timeout 헤더"
+    ],
+    "refs": [
+      "https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2.md"
+    ]
+  },
+  {
+    "id": "be.arch.grpc-hedging",
+    "title": "gRPC 요청 헤징",
+    "en": "gRPC Request Hedging",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "구조 설계",
+    "summary": "같은 요청을 hedgingDelay 간격으로 최대 5개까지 여러 백엔드에 보내고 먼저 온 응답을 쓴 뒤 나머지를 취소하는 gRPC 정책이다.",
+    "parent": "be.arch.grpc-retry-hedging",
+    "aliases": [
+      "gRPC hedging",
+      "hedgingPolicy",
+      "요청 헤징",
+      "request hedging"
+    ],
+    "refs": [
+      "https://grpc.io/docs/guides/request-hedging/"
+    ]
+  },
+  {
+    "id": "be.arch.grpc-retry-throttling",
+    "title": "gRPC 재시도 제한(retryThrottling)",
+    "en": "gRPC Retry Throttling",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "구조 설계",
+    "summary": "서버별 토큰 수를 실패마다 1씩 깎고 성공마다 tokenRatio만큼 채워, maxTokens의 절반 아래로 떨어지면 재시도와 헤징을 멈추는 gRPC 장치다.",
+    "parent": "be.arch.grpc-retry-hedging",
+    "related": [
+      "be.run.token-bucket"
+    ],
+    "aliases": [
+      "retryThrottling",
+      "gRPC retry throttling",
+      "gRPC 재시도 스로틀링"
+    ],
+    "refs": [
+      "https://grpc.io/docs/guides/retry/",
+      "https://grpc.io/docs/guides/request-hedging/"
+    ]
+  },
+  {
+    "id": "be.auth.webauthn-sign-count",
+    "title": "WebAuthn 서명 카운터",
+    "en": "WebAuthn Signature Counter",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "인증·인가",
+    "summary": "인증자가 서명에 성공할 때마다 올리는 값으로, 저장된 값과 새 값 중 하나라도 0이 아닌데 새 값이 저장된 값보다 크지 않으면 신뢰 당사자는 복제를 의심한다.",
+    "parent": "be.auth.webauthn-rp-verification",
+    "aliases": [
+      "signCount",
+      "signature counter",
+      "WebAuthn 서명 횟수"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/webauthn-3/"
+    ]
+  },
+  {
+    "id": "be.auth.webauthn-attestation",
+    "title": "WebAuthn 증명(attestation)",
+    "en": "WebAuthn Attestation",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "인증·인가",
+    "summary": "등록 때 인증자가 새 공개 키와 함께 대개 자기 출신을 서명해 보내는 문장으로, 신뢰 당사자는 유형과 인증서 체인을 보고 받을지 정한다.",
+    "parent": "be.auth.webauthn-rp-verification",
+    "aliases": [
+      "WebAuthn attestation",
+      "attestation statement",
+      "WebAuthn 증명 문장",
+      "패스키 증명"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/webauthn-3/"
+    ]
+  },
+  {
+    "id": "be.auth.par-request-uri",
+    "title": "PAR request_uri",
+    "en": "PAR request_uri",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "인증·인가",
+    "summary": "PAR 엔드포인트가 201 응답으로 돌려주는 짧은 수명의 참조값으로, 강한 무작위성을 담고 만든 클라이언트에 묶이며 한 번만 쓰는 것이 권고된다.",
+    "parent": "be.auth.pushed-authorization-request",
+    "aliases": [
+      "PAR 요청 URI",
+      "urn:ietf:params:oauth:request_uri",
+      "pushed request_uri"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9126"
+    ]
+  },
+  {
+    "id": "be.auth.token-introspection-active",
+    "title": "토큰 조회 응답의 active",
+    "en": "Introspection active Claim",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "인증·인가",
+    "summary": "RFC 7662 토큰 조회 응답에서 유일한 필수 값으로, 토큰이 발급됐고 폐기되지 않았으며 유효 기간 안이면 대개 true다.",
+    "parent": "be.auth.access-token-validation-models",
+    "aliases": [
+      "introspection active",
+      "active: false",
+      "토큰 활성 여부"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc7662"
+    ]
   }
 ]

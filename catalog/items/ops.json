@@ -8561,6 +8561,140 @@
     ]
   },
   {
+    "id": "ops.k8s.dynamic-resource-allocation",
+    "title": "동적 자원 할당(DRA)의 내부",
+    "en": "Kubernetes Dynamic Resource Allocation Internals",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "드라이버가 ResourceSlice로 장치를 알리고 스케줄러가 ResourceClaim에 장치를 골라 적은 뒤 그 장치에 닿는 노드에 파드를 놓는 Kubernetes의 장치 할당 방식이다.",
+    "objectives": [
+      "ResourceSlice 게시, 클레임 생성, 스케줄러의 장치 거르기와 할당 기록, kubelet과 드라이버의 장치 준비로 이어지는 흐름을 단계별로 설명할 수 있다",
+      "스케줄러가 풀과 슬라이스를 이름의 사전 순으로 보며 처음 맞는 장치를 고르는 first-fit 할당이 드라이버의 이름 짓기에 주는 영향을 분석할 수 있다",
+      "ResourceClaim을 여러 파드가 함께 쓰는 경우와 ResourceClaimTemplate으로 파드마다 클레임을 만드는 경우의 수명과 공유 범위를 비교할 수 있다",
+      "DRA 장치에는 스케줄러 선점이 없어 높은 우선순위 파드도 장치가 풀릴 때까지 Pending에 머무는 한계를 근거로 장애를 분석할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.scheduling",
+      "ops.k8s.scheduling-framework"
+    ],
+    "related": [
+      "ops.k8s.pod-priority-preemption"
+    ],
+    "aliases": [
+      "Kubernetes DRA",
+      "동적 자원 할당",
+      "dynamic resource allocation",
+      "DRA 드라이버"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/resource-management/dynamic-resource-allocation/",
+      "https://kubernetes.io/docs/concepts/resource-management/dynamic-resource-allocation/how-dra-works/",
+      "https://kubernetes.io/docs/concepts/resource-management/dynamic-resource-allocation/dra-api/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ops.k8s.node-graceful-shutdown",
+    "title": "노드 그레이스풀 셧다운과 비정상 종료 처리",
+    "en": "Graceful and Non-Graceful Node Shutdown",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "kubelet이 systemd 억제 잠금으로 노드 종료를 늦추며 파드를 단계별로 끝내는 방식과, 이를 놓친 노드를 out-of-service 테인트로 복구하는 방식이다.",
+    "objectives": [
+      "kubelet이 systemd 억제 잠금으로 종료를 늦추고 노드를 NotReady로 바꿔 새 파드를 막은 뒤 일반 파드와 중요 파드를 차례로 끝내는 과정을 설명할 수 있다",
+      "shutdownGracePeriod와 shutdownGracePeriodCriticalPods 두 단계 방식과 PriorityClass 범위별로 시간을 나누는 우선순위 기반 방식을 비교할 수 있다",
+      "kubelet이 종료를 감지하지 못한 노드에서 StatefulSet 파드가 Terminating에 머물고 볼륨이 떼어지지 않는 원인을 분석할 수 있다",
+      "6분 시간 제한 뒤의 강제 볼륨 분리가 데이터 손상을 부를 수 있다는 위험을 근거로 out-of-service 테인트 절차와 견줘 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.pod-graceful-termination",
+      "ops.k8s.pod-priority-preemption"
+    ],
+    "related": [
+      "ops.k8s.disruption-budget",
+      "ops.k8s.node-pressure-eviction"
+    ],
+    "aliases": [
+      "노드 그레이스풀 셧다운",
+      "graceful node shutdown",
+      "non-graceful node shutdown",
+      "노드 종료 처리"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/cluster-administration/node-shutdown/"
+    ]
+  },
+  {
+    "id": "ops.k8s.server-side-apply",
+    "title": "서버 측 적용과 필드 소유권",
+    "en": "Kubernetes Server-Side Apply and Field Management",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "API 서버가 객체의 필드마다 소유한 관리자를 기록하고 그 소유권을 근거로 병합과 충돌을 정하는 Kubernetes의 선언적 적용 방식이다.",
+    "objectives": [
+      "managedFields에 기록된 관리자와 작업 종류를 읽고, 다른 관리자가 가진 필드를 다른 값으로 적용할 때 충돌이 나는 이유를 설명할 수 있다",
+      "충돌이 났을 때 강제로 덮어쓰기, 필드 내려놓기, 같은 값으로 공동 소유하기의 결과를 비교해 고를 수 있다",
+      "listType·mapType 병합 표지가 목록과 맵을 통째로 바꿀지 항목별로 관리할지를 어떻게 정하는지 분석할 수 있다",
+      "last-applied-configuration 주석에 기대는 클라이언트 측 적용과 견줘 서버 측 적용으로 옮길 때 생기는 충돌을 진단할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.basics"
+    ],
+    "related": [
+      "ops.k8s.hpa-replicas-conflict",
+      "ops.k8s.api-watch-consistency"
+    ],
+    "aliases": [
+      "Server-Side Apply",
+      "서버 측 적용",
+      "kubectl apply --server-side",
+      "Kubernetes 필드 소유권"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/reference/using-api/server-side-apply/"
+    ]
+  },
+  {
+    "id": "ops.k8s.owner-gc-cascading-deletion",
+    "title": "소유자 참조와 연쇄 삭제의 동작",
+    "en": "Owner References and Cascading Deletion",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "가비지 컬렉터가 ownerReferences로 딸린 객체를 찾아 포그라운드·백그라운드·고아 방식으로 지우고 파이널라이저가 그 끝을 붙잡는 Kubernetes 삭제 동작이다.",
+    "objectives": [
+      "포그라운드 삭제에서 소유자에 deletionTimestamp와 foregroundDeletion 파이널라이저가 붙고 blockOwnerDeletion이 참인 딸린 객체만 소유자 삭제를 막는 순서를 설명할 수 있다",
+      "포그라운드, 기본값인 백그라운드, 딸린 객체를 남기는 고아 방식의 삭제 순서와 결과를 비교할 수 있다",
+      "삭제 요청 뒤 파이널라이저를 더할 수 없고 목록이 빌 때 객체가 사라지는 규칙으로 Terminating에 멈춘 객체의 원인을 분석할 수 있다",
+      "다른 네임스페이스의 소유자를 가리킨 딸린 객체는 소유자가 없는 것으로 여겨 지워지고 네임스페이스 범위 소유자를 가리킨 클러스터 범위 객체는 정리되지 않는 차이를 OwnerRefInvalidNamespace 경고 이벤트로 진단할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.basics"
+    ],
+    "related": [
+      "ops.k8s.api-watch-consistency"
+    ],
+    "aliases": [
+      "ownerReferences",
+      "Kubernetes 연쇄 삭제",
+      "Kubernetes cascading deletion",
+      "Kubernetes 파이널라이저",
+      "Kubernetes finalizers"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/architecture/garbage-collection/",
+      "https://kubernetes.io/docs/concepts/overview/working-with-objects/finalizers/"
+    ]
+  },
+  {
     "id": "ops.observe.incident-analysis",
     "title": "장애 분석과 회고",
     "en": "Incident Analysis and Postmortems",
@@ -8987,6 +9121,42 @@
     ]
   },
   {
+    "id": "ops.container.image-lazy-pulling",
+    "title": "컨테이너 이미지 지연 풀링: eStargz와 SOCI",
+    "en": "Lazy Pulling Container Images with eStargz and SOCI",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "컨테이너 내부",
+    "summary": "레이어를 다 받기 전에 컨테이너를 띄우고 필요한 파일만 HTTP 범위 요청으로 가져오는 방식으로, 레이어를 바꾸는 eStargz와 별도 색인을 쓰는 SOCI가 있다.",
+    "objectives": [
+      "eStargz가 파일마다 따로 압축한 gzip 멤버, 마지막 항목의 TOC, 고정 크기 꼬리말로 범위 요청만으로 파일을 찾는 구조를 설명할 수 있다",
+      "우선 파일을 앞에 두고 랜드마크 파일로 경계를 표시해 미리 가져오는 배치가 시작 시간에 주는 손익을 분석할 수 있다",
+      "TOC 다이제스트 주석과 파일·청크별 chunkDigest로 내려받은 조각을 검증하는 방식을 설명할 수 있다",
+      "referrers API로 색인을 찾는 SOCI 색인 매니페스트 v1과 이미지에 색인을 묶는 v2를 예측 가능성과 가시성 면에서 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.container.oci-image-manifest",
+      "ops.container.cri-shim-runtime"
+    ],
+    "related": [
+      "ops.container.oci-referrers-api",
+      "ops.container.overlay2-storage"
+    ],
+    "aliases": [
+      "이미지 지연 풀링",
+      "lazy pulling",
+      "stargz snapshotter",
+      "SOCI snapshotter"
+    ],
+    "refs": [
+      "https://github.com/containerd/stargz-snapshotter/blob/main/docs/estargz.md",
+      "https://github.com/awslabs/soci-snapshotter/blob/main/docs/soci-index-manifest-v2.md"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "ops.k8s.resource-version-410-gone",
     "title": "resourceVersion 만료와 410 Gone",
     "en": "Expired resourceVersion and 410 Gone",
@@ -9169,6 +9339,85 @@
     ],
     "refs": [
       "https://docs.kernel.org/bpf/verifier.html"
+    ]
+  },
+  {
+    "id": "ops.k8s.resourceclaim",
+    "title": "ResourceClaim과 ResourceClaimTemplate",
+    "en": "ResourceClaim and ResourceClaimTemplate",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "DeviceClass를 가리키고 CEL 선택자로 장치 조건을 적는 DRA의 장치 요청 객체이며, 템플릿을 쓰면 파드마다 따로 만들어지고 파드와 함께 지워진다.",
+    "parent": "ops.k8s.dynamic-resource-allocation",
+    "aliases": [
+      "ResourceClaim",
+      "ResourceClaimTemplate",
+      "리소스 클레임",
+      "DRA 클레임"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/resource-management/dynamic-resource-allocation/dra-api/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ops.k8s.shutdown-grace-period-critical-pods",
+    "title": "shutdownGracePeriodCriticalPods",
+    "en": "shutdownGracePeriodCriticalPods",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "노드 종료 유예 시간 shutdownGracePeriod 가운데 중요 파드에 남겨 두는 몫으로, 둘 다 0이 아니어야 기능이 켜지고 이 값은 전체보다 작아야 한다.",
+    "parent": "ops.k8s.node-graceful-shutdown",
+    "aliases": [
+      "중요 파드 종료 유예 시간",
+      "critical pods shutdown grace period",
+      "kubelet shutdownGracePeriodCriticalPods"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/cluster-administration/node-shutdown/"
+    ]
+  },
+  {
+    "id": "ops.k8s.out-of-service-taint",
+    "title": "out-of-service 테인트",
+    "en": "node.kubernetes.io/out-of-service Taint",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "꺼진 노드에 운영자가 직접 붙이면 맞는 톨러레이션이 없는 파드를 강제로 지우고 볼륨을 바로 떼어 다른 노드에서 다시 뜨게 하는 테인트다.",
+    "parent": "ops.k8s.node-graceful-shutdown",
+    "aliases": [
+      "out-of-service taint",
+      "node.kubernetes.io/out-of-service",
+      "아웃 오브 서비스 테인트"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/cluster-administration/node-shutdown/"
+    ]
+  },
+  {
+    "id": "ops.k8s.managed-fields",
+    "title": "managedFields",
+    "en": "managedFields",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "객체의 metadata에 관리자 이름, Apply·Update 작업 종류, 맡은 필드 목록을 남기는 서버 측 적용의 소유권 기록이다.",
+    "parent": "ops.k8s.server-side-apply",
+    "aliases": [
+      "metadata.managedFields",
+      "--show-managed-fields",
+      "Kubernetes managedFields"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/reference/using-api/server-side-apply/"
     ]
   },
   {
@@ -9625,5 +9874,87 @@
     "refs": [
       "https://docs.kernel.org/bpf/libbpf/libbpf_overview.html"
     ]
+  },
+  {
+    "id": "ops.k8s.list-type-merge-markers",
+    "title": "listType 병합 표지",
+    "en": "x-kubernetes-list-type Merge Markers",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "목록을 atomic·set·map 가운데 무엇으로 다룰지 정해 서버 측 적용이 목록을 통째로 바꿀지 항목별로 소유할지를 가르는 스키마 표지다.",
+    "parent": "ops.k8s.server-side-apply",
+    "aliases": [
+      "listType",
+      "x-kubernetes-list-type",
+      "+listType 표지",
+      "listType=map"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/reference/using-api/server-side-apply/"
+    ]
+  },
+  {
+    "id": "ops.k8s.block-owner-deletion",
+    "title": "blockOwnerDeletion과 foregroundDeletion",
+    "en": "blockOwnerDeletion and foregroundDeletion",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "포그라운드 삭제에서 소유자에 붙는 foregroundDeletion 파이널라이저와, 그 소유자 삭제를 끝까지 막을 수 있는 딸린 객체의 ownerReference 표시다.",
+    "parent": "ops.k8s.owner-gc-cascading-deletion",
+    "aliases": [
+      "blockOwnerDeletion",
+      "foregroundDeletion",
+      "포그라운드 연쇄 삭제",
+      "foreground cascading deletion"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/architecture/garbage-collection/"
+    ]
+  },
+  {
+    "id": "ops.container.estargz-toc",
+    "title": "eStargz TOC와 꼬리말",
+    "en": "eStargz TOC and Footer",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "컨테이너 내부",
+    "summary": "레이어 끝의 stargz.index.json에 파일과 청크의 위치·크기를 적고 고정 크기 꼬리말에 그 위치를 남겨 범위 요청으로 파일을 찾게 하는 eStargz의 목차다.",
+    "parent": "ops.container.image-lazy-pulling",
+    "aliases": [
+      "eStargz TOC",
+      "stargz.index.json",
+      "eStargz footer",
+      "TOCEntry"
+    ],
+    "refs": [
+      "https://github.com/containerd/stargz-snapshotter/blob/main/docs/estargz.md"
+    ]
+  },
+  {
+    "id": "ops.container.soci-index-manifest-v2",
+    "title": "SOCI 색인 매니페스트 v2",
+    "en": "SOCI Index Manifest v2",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "컨테이너 내부",
+    "summary": "SOCI 색인을 이미지와 한 묶음으로 변환해 레지스트리 사이에서 함께 옮기고 나중에 붙이거나 뗄 수 없게 한 SOCI 지연 로딩용 이미지 형식이다.",
+    "parent": "ops.container.image-lazy-pulling",
+    "aliases": [
+      "SOCI index manifest v2",
+      "SOCI-enabled image",
+      "SOCI 활성 이미지",
+      "soci convert"
+    ],
+    "refs": [
+      "https://github.com/awslabs/soci-snapshotter/blob/main/docs/soci-index-manifest-v2.md"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
   }
 ]

@@ -9705,6 +9705,145 @@
     "checked_at": "2026-11-13"
   },
   {
+    "id": "llm.internals.soft-prompt-methods",
+    "title": "소프트 프롬프트 학습의 내부: 프롬프트·프리픽스·P-튜닝",
+    "en": "Soft Prompt Methods: Prompt Tuning, Prefix Tuning and P-Tuning",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "모델은 얼려 두고 입력이나 각 층에 붙인 학습 가능한 가상 토큰만 다듬는 소프트 프롬프트 방식들이 넣는 위치와 최적화 방법에서 어떻게 갈리는지 분석한다.",
+    "objectives": [
+      "프롬프트 튜닝은 입력 임베딩에만, 프리픽스 튜닝은 모든 층에 학습 벡터를 넣는 차이를 구조로 비교하고 가상 토큰을 사람이 읽을 수 없는 이유를 설명할 수 있다",
+      "프리픽스를 바로 학습하면 불안정해 별도 피드포워드망으로 재매개변수화하는 이유와, 그 투영을 켜면 기존 KV 접두사로 초기화할 수 없는 손익을 설명할 수 있다",
+      "P-튜닝이 프롬프트 토큰을 입력 어디에나 두고 프롬프트 인코더로 최적화하며 입력에만 넣는 방식이 프리픽스 튜닝과 어떻게 다른지 비교할 수 있다",
+      "PEFT의 프리픽스 튜닝이 인코더-디코더 모델에서는 디코더에만 붙어 논문 구성과 달라 성능이 낮을 수 있다는 점을 근거로 방법을 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.finetune.peft-picture",
+      "llm.internals.inference-phases"
+    ],
+    "related": [
+      "mlops.finetune.lora-internals"
+    ],
+    "aliases": [
+      "소프트 프롬프트",
+      "soft prompt",
+      "PEFT prompt tuning",
+      "프리픽스 튜닝",
+      "prefix tuning",
+      "P-tuning"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/peft/main/en/conceptual_guides/prompting",
+      "https://huggingface.co/docs/peft/main/en/package_reference/prefix_tuning",
+      "https://huggingface.co/docs/peft/main/en/package_reference/p_tuning"
+    ]
+  },
+  {
+    "id": "llm.internals.orthogonal-finetuning",
+    "title": "직교 미세 조정의 내부: OFT·BOFT",
+    "en": "Orthogonal Finetuning Internals: OFT and BOFT",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "얼린 가중치에 직교 행렬을 곱해 갱신하는 OFT와 이를 버터플라이 인수분해로 일반화한 BOFT가 LoRA의 덧셈식 갱신과 다른 점과 블록 크기·매개변수화의 손익을 분석한다.",
+    "objectives": [
+      "LoRA의 덧셈식 저랭크 갱신과 OFT·BOFT의 곱셈식 직교 갱신을 비교하고, 학습 뒤 직교 행렬을 원래 가중치에 곱해 병합할 수 있는 이유를 설명할 수 있다",
+      "직교성이 초구면 에너지를 바꾸지 않게 묶어 사전 학습 지식을 잊는 일을 줄이는 원리를 설명할 수 있다",
+      "블록 수 r과 oft_block_size의 곱이 층 차원과 같다는 제약 아래 블록 크기가 갱신 밀도와 학습 파라미터 수를 바꾸는 손익과, 버터플라이 인수 수가 유효 블록 크기를 바꾸는 관계를 분석할 수 있다",
+      "역행렬이 필요한 정확한 케일리 매개변수화와 근사인 케일리-노이만 매개변수화의 속도·정확도 손익을 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.finetune.lora-internals"
+    ],
+    "related": [
+      "mlops.finetune.adapter-merge"
+    ],
+    "aliases": [
+      "OFT",
+      "BOFT",
+      "orthogonal finetuning",
+      "직교 파인튜닝",
+      "버터플라이 직교 미세 조정",
+      "OFTConfig"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/peft/main/en/conceptual_guides/oft"
+    ]
+  },
+  {
+    "id": "llm.internals.fp8-training",
+    "title": "FP8 학습 백엔드의 내부와 손익",
+    "en": "FP8 Training Internals: TransformerEngine, torchao and MS-AMP",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "학습의 일부나 전부를 16비트 대신 8비트 부동소수점으로 돌리는 백엔드들이 연산·통신·가중치·옵티마이저 상태의 정밀도를 어떻게 나눠 메모리와 정확도를 맞바꾸는지 분석한다.",
+    "objectives": [
+      "FP16 AMP·TransformerEngine·MS-AMP 수준별로 행렬 곱·통신·가중치·기울기·옵티마이저 상태를 어느 정밀도로 두는지 비교해 메모리와 정확도 손익을 분석할 수 있다",
+      "TransformerEngine이 nn.Linear·nn.LayerNorm만 바꿔 넣어 그 층 비중이 큰 수십억 파라미터 이상 모델에서 대개 이득이 보이는 이유와, amax 이력으로 스케일 인자를 정하는 설정이 무엇을 조절하는지 설명할 수 있다",
+      "torchao가 수치 안정성을 위해 첫 층과 마지막 층을 원래 정밀도로 남기는 방식과 CPU RAM 효율 적재를 함께 쓸 수 없는 제약을 설명할 수 있다",
+      "지원 GPU 세대와 백엔드 유지 보수 상태를 근거로 FP8 백엔드를 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.nn.mixed-precision-training"
+    ],
+    "related": [
+      "llm.internals.weight-quantization-schemes",
+      "ml.nn.bfloat16-float16"
+    ],
+    "aliases": [
+      "FP8 학습",
+      "FP8 training",
+      "8비트 부동소수점 학습",
+      "TransformerEngine FP8 학습",
+      "Accelerate FP8"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/accelerate/concept_guides/low_precision_training",
+      "https://huggingface.co/docs/accelerate/usage_guides/low_precision_training"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "llm.internals.fsdp-vs-deepspeed",
+    "title": "FSDP와 DeepSpeed ZeRO 비교: 분할·오프로딩·정밀도 처리",
+    "en": "FSDP vs DeepSpeed ZeRO: Sharding, Offloading and Precision Handling",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "Accelerate에서 고를 수 있는 두 분산 학습 틀이 모델을 나누는 범위, 오프로딩 단위, 평탄화 파라미터와 옵티마이저의 정밀도, 체크포인트 저장 방식에서 갈리는 손익을 분석한다.",
+    "objectives": [
+      "ZeRO 1·2·3단계가 옵티마이저 상태·기울기·파라미터를 차례로 나누는 범위와 FSDP FULL_SHARD가 ZeRO 3단계에 대응하는 관계를 설명할 수 있다",
+      "FSDP의 전부 아니면 전무 오프로딩과 DeepSpeed의 파라미터·옵티마이저 따로 오프로딩·NVMe 오프로딩을 적용 범위로 비교할 수 있다",
+      "평탄화 파라미터를 쓰는 FSDP1 기준으로, DeepSpeed가 torch_dtype과 상관없이 평탄화 파라미터와 옵티마이저를 float32로 올려 GPU가 적을 때 메모리 부담이 커지는 이유와, 혼합 정밀도 없는 FSDP는 낮은 정밀도로 옵티마이저를 돌릴 수 있는 차이를 분석할 수 있다",
+      "ZeRO 3단계 체크포인트를 한 랭크로 모아 16비트로 저장할지 분할 저장 뒤 zero_to_fp32.py로 바꿀지를 저장 시간과 메모리로 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.nn.fsdp-sharding"
+    ],
+    "related": [
+      "llm.internals.big-model-dispatch"
+    ],
+    "aliases": [
+      "FSDP vs DeepSpeed",
+      "DeepSpeed와 FSDP 비교",
+      "DeepSpeed 정밀도 업캐스팅",
+      "FSDP DeepSpeed 차이"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/accelerate/concept_guides/fsdp_and_deepspeed",
+      "https://huggingface.co/docs/accelerate/usage_guides/deepspeed"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
     "id": "llm.internals.kv-cache",
     "title": "KV 캐시",
     "en": "KV Cache",
@@ -10446,5 +10585,129 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-13"
+  },
+  {
+    "id": "llm.internals.prefix-projection",
+    "title": "프리픽스 재매개변수화(prefix_projection)",
+    "en": "Prefix Reparameterization (prefix_projection)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "프리픽스를 직접 학습하지 않고 2층 MLP로 투영해 만드는 PEFT 프리픽스 튜닝 옵션으로, 켜면 KV 접두사로 초기화하거나 불러올 수 없다.",
+    "parent": "llm.internals.soft-prompt-methods",
+    "aliases": [
+      "prefix_projection",
+      "프리픽스 투영",
+      "prefix reparameterization"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/peft/main/en/package_reference/prefix_tuning"
+    ]
+  },
+  {
+    "id": "llm.internals.ptuning-prompt-encoder",
+    "title": "P-튜닝 프롬프트 인코더(PromptEncoder)",
+    "en": "P-Tuning Prompt Encoder",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "P-튜닝에서 가상 토큰 임베딩을 MLP 또는 LSTM으로 만들어 내는 학습용 망으로, PEFT 기본값은 MLP이고 은닉 크기와 층 수를 정한다.",
+    "parent": "llm.internals.soft-prompt-methods",
+    "aliases": [
+      "PromptEncoder",
+      "PromptEncoderConfig",
+      "encoder_reparameterization_type",
+      "P-tuning 인코더"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/peft/main/en/package_reference/p_tuning"
+    ]
+  },
+  {
+    "id": "llm.internals.cayley-neumann",
+    "title": "케일리-노이만 매개변수화(use_cayley_neumann)",
+    "en": "Cayley-Neumann Parameterization",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "OFT의 직교 행렬을 역행렬 계산 없이 근사로 만드는 방식으로, 정확한 케일리 매개변수화보다 빠르지만 근사 오차로 성능이 조금 떨어질 수 있다.",
+    "parent": "llm.internals.orthogonal-finetuning",
+    "aliases": [
+      "use_cayley_neumann",
+      "Cayley-Neumann",
+      "케일리-노이만 근사"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/peft/main/en/conceptual_guides/oft"
+    ]
+  },
+  {
+    "id": "llm.internals.adalora",
+    "title": "AdaLoRA(적응형 랭크 배분)",
+    "en": "AdaLoRA (Adaptive LoRA)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "증분 행렬을 SVD 꼴로 두고 중요도가 낮은 특이값을 잘라 층마다 랭크를 다르게 나누는 LoRA 변형으로, 매 스텝 update_and_allocate를 불러야 한다.",
+    "related": [
+      "mlops.finetune.lora-internals",
+      "mlops.finetune.lora-rank"
+    ],
+    "aliases": [
+      "AdaLoRA",
+      "Adaptive LoRA",
+      "AdaLoraConfig",
+      "update_and_allocate"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/peft/main/en/package_reference/adalora"
+    ]
+  },
+  {
+    "id": "llm.internals.fp8-amax-scaling",
+    "title": "FP8 amax 이력 스케일링(amax_history_len)",
+    "en": "FP8 Amax History Scaling",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "TransformerEngine이 최근 최댓값(amax) 기록으로 FP8 스케일 인자를 정하는 방식으로, 기록 길이·계산법(max·most_recent)·재계산 간격·margin을 고른다.",
+    "parent": "llm.internals.fp8-training",
+    "aliases": [
+      "amax_history_len",
+      "amax_compute_algo",
+      "amax 이력",
+      "amax history"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/accelerate/concept_guides/low_precision_training"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "llm.internals.zero-stages",
+    "title": "ZeRO 단계(DeepSpeed Stage 1·2·3)",
+    "en": "ZeRO Stages",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "데이터 병렬 GPU들이 1단계는 옵티마이저 상태, 2단계는 기울기까지, 3단계는 파라미터까지 나눠 들어 중복 메모리를 없애는 DeepSpeed의 분할 단계다.",
+    "parent": "llm.internals.fsdp-vs-deepspeed",
+    "aliases": [
+      "zero_stage",
+      "ZeRO-3",
+      "ZeRO stage 3",
+      "Zero Redundancy Optimizer",
+      "DeepSpeed ZeRO"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/accelerate/usage_guides/deepspeed"
+    ]
   }
 ]

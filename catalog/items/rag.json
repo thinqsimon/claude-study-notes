@@ -9112,6 +9112,181 @@
     "checked_at": "2026-11-13"
   },
   {
+    "id": "rag.retrieval.elasticsearch-ltr-rescore",
+    "title": "Elasticsearch 학습 순위(LTR) 재순위의 구조와 비용",
+    "en": "Elasticsearch Learning to Rank Rescoring",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "검색 내부",
+    "summary": "판정 목록으로 밖에서 학습한 결정 트리 모델이 1차 검색 상위 문서를 특징 질의 값으로 다시 매기는 2단계 순위 구조다.",
+    "objectives": [
+      "검색 맥락·판정 목록·특징 추출·GBDT 모델이 이어지는 LTR의 흐름과, 모델 학습은 Elasticsearch 밖에서 하고 추론만 안에서 하는 구조를 설명할 수 있다",
+      "특징 하나하나가 템플릿 질의로 계산되는 까닭에 특징 수와 판정 목록 크기가 클러스터 부하를 키운다는 점을 근거로 학습 데이터 추출 위치를 정할 수 있다",
+      "LTR 점수가 1차 질의 점수와 견줄 수 없어 window_size를 from + size 이상으로 두고 페이지마다 같게 유지해야 하는 이유를 설명할 수 있다",
+      "학습과 검색 때 같은 특징 추출 정의를 쓰지 않으면 순위가 어긋나는 위험을 따져 eland로 모델과 추출 설정을 함께 올리는 방식을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "rag.retrieval.hybrid-rerank",
+      "rag.retrieval.bm25-scoring-internals"
+    ],
+    "related": [
+      "rag.retrieval.vespa-phased-ranking",
+      "rag.retrieval.reranking"
+    ],
+    "aliases": [
+      "Elasticsearch LTR",
+      "Elasticsearch learning to rank",
+      "learning_to_rank rescorer",
+      "Elasticsearch LTR 재순위"
+    ],
+    "refs": [
+      "https://www.elastic.co/docs/solutions/search/ranking/learning-to-rank-ltr",
+      "https://www.elastic.co/docs/solutions/search/ranking/learning-to-rank-model-training",
+      "https://www.elastic.co/docs/solutions/search/ranking/learning-to-rank-search-usage"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "rag.agent.a2a-trust-model",
+    "title": "A2A 신뢰 모델: 카드 서명 검증·카드 캐시·작업 중 인가",
+    "en": "A2A Trust Model: Agent Card Signatures, Caching, and In-Task Authorization",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "A2A가 에이전트 카드를 JCS로 정규화해 서명·검증하고, 카드를 캐시하며, 작업 중 인가 요청을 위임할 때 생기는 보안 손익을 다룬다.",
+    "objectives": [
+      "설정하지 않은 선택 칸은 빼고 명시한 칸은 기본값이라도 넣으며 signatures 칸은 늘 빼는 RFC 8785 정규화 규칙이 서명 검증 성공을 좌우하는 이유를 설명할 수 있다",
+      "보호 헤더의 alg·kid·jku와 서명 입력의 구성을 따라 검증 단계를 밟고, 서명을 여러 개 두어 키를 교체하는 방식을 판단할 수 있다",
+      "Cache-Control·ETag와 조건부 요청으로 카드를 다시 받는 비용과, 인증 뒤 받은 확장 카드로 캐시를 바꾸는 시점을 따질 수 있다",
+      "TASK_STATE_AUTH_REQUIRED로 인가를 위임할 때 대역 내 자격 증명이 연쇄된 에이전트 모두에 드러나는 위험과 상태 전이만으로는 인가가 아니라는 규칙을 근거로 설계를 고를 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.a2a-protocol-internals",
+      "be.auth.jwt-attacks"
+    ],
+    "related": [
+      "rag.agent.mcp-client-registration"
+    ],
+    "aliases": [
+      "A2A 보안 모델",
+      "A2A security",
+      "A2A 카드 서명 검증",
+      "AgentCardSignature",
+      "A2A in-task authorization"
+    ],
+    "refs": [
+      "https://a2a-protocol.org/latest/specification/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "rag.vector-db.weaviate-rotational-quantization",
+    "title": "Weaviate 회전 양자화(RQ)의 내부: 회전·비트 수·재채점",
+    "en": "Weaviate Rotational Quantization Internals",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "벡터 DB",
+    "summary": "학습 없이 벡터를 무작위 회전한 뒤 8·4·1비트로 줄이는 Weaviate의 양자화로, 비트 수마다 압축률과 재현율, 재채점 의존도가 다르다.",
+    "objectives": [
+      "월시-아다마르 변환 기반 회전 뒤 벡터마다 최솟값·최댓값 구간으로 양자화하는 과정과, 학습 단계가 없어 색인을 만들 때 바로 켤 수 있는 이유를 설명할 수 있다",
+      "8비트·4비트·1비트 RQ의 대략적 압축률과 재현율, 질의 벡터를 저장 벡터보다 높은 정밀도로 두는 비대칭 계산을 비교할 수 있다",
+      "벡터마다 붙는 보조 데이터와 64·256 단위 채우기 때문에 낮은 차원에서 압축률이 떨어지는 까닭을 계산할 수 있다",
+      "rescoreLimit로 더 많이 가져와 원본 벡터로 다시 채점할 때의 재현율과 질의 속도 손익을 비트 수에 맞춰 따질 수 있다"
+    ],
+    "prerequisites": [
+      "rag.vector-db.product-quantization-internals",
+      "rag.vector-db.weaviate-index-types"
+    ],
+    "related": [
+      "rag.vector-db.elasticsearch-vector-quantization",
+      "rag.embedding.quantization"
+    ],
+    "aliases": [
+      "Weaviate RQ",
+      "rotational quantization",
+      "회전 양자화",
+      "Weaviate 회전 양자화"
+    ],
+    "refs": [
+      "https://docs.weaviate.io/weaviate/concepts/vector-quantization"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "rag.retrieval.vespa-streaming-search",
+    "title": "Vespa 스트리밍 검색: 색인 없는 그룹별 검색의 손익",
+    "en": "Vespa Streaming Search",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "검색 내부",
+    "summary": "색인을 만들지 않고 원본 문서만 저장해 질의마다 고른 그룹의 문서를 훑는 Vespa 방식으로, 작은 그룹이 많은 개인 데이터에 맞다.",
+    "objectives": [
+      "색인 유지 비용을 없애고 질의 때 그룹 문서를 훑는 구조가 문서당 약 45바이트 메모리로 노드당 매우 많은 문서를 담게 하는 이유를 설명할 수 있다",
+      "그룹이 평균적으로 전체 말뭉치보다 작을 때 스트리밍 검색이 맞는다는 조건과 가끔 생기는 큰 그룹을 여러 콘텐츠 노드에 나눠 병렬로 훑는 방식을 근거로 색인 방식과 비교할 수 있다",
+      "낱말 통계가 없어 bm25에 averageFieldLength 조정이 필요하고 HNSW가 없어 최근접 이웃 검색이 늘 정확 검색이 되는 차이를 따질 수 있다",
+      "vCPU를 늘려도 지연이 줄지 않으면 IO 병목으로 보고 문서 저장소 캐시와 직접 IO 설정을 검토할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.vector-db.multitenancy-design",
+      "rag.vector-index.internals"
+    ],
+    "related": [
+      "rag.retrieval.vespa-phased-ranking"
+    ],
+    "aliases": [
+      "Vespa streaming search",
+      "Vespa streaming mode",
+      "Vespa 스트리밍 모드",
+      "Vespa 스트리밍 검색"
+    ],
+    "refs": [
+      "https://docs.vespa.ai/en/performance/streaming-search.html"
+    ]
+  },
+  {
+    "id": "rag.vector-db.weaviate-replication-consistency",
+    "title": "Weaviate 리더 없는 복제와 조정 가능한 일관성",
+    "en": "Weaviate Leaderless Replication and Tunable Consistency",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "벡터 DB",
+    "summary": "Weaviate가 메타데이터는 Raft로, 데이터 객체는 리더 없는 복제와 읽기·쓰기 일관성 수준으로 다루고 어긋난 복제본을 고치는 방식이다.",
+    "objectives": [
+      "메타데이터는 Raft 과반 승인으로, 데이터 객체는 모든 복제본에 쓰되 일관성 수준만큼만 응답을 기다리는 두 모델의 차이를 설명할 수 있다",
+      "ONE·QUORUM·ALL 조합이 r + w > n을 만족할 때만 강한 일관성이 되는 이유를 들어 읽기 위주·쓰기 위주 조합을 고를 수 있다",
+      "머클 트리 비동기 복제와 읽기 때 복구가 어긋난 복제본을 고치는 시점을 비교하고, ONE 읽기가 낡은 값을 돌려줄 수 있는 경우를 판단할 수 있다",
+      "삭제 충돌 해결 전략에 따라 지운 객체가 되살아나거나 사라지는 결과를 따져 전략을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "cs.dist.replication-majority",
+      "rag.vector-db.multitenancy-design"
+    ],
+    "related": [
+      "rag.vector-db.qdrant-replication-consistency",
+      "cs.dist.raft-consensus"
+    ],
+    "aliases": [
+      "Weaviate replication",
+      "Weaviate 복제",
+      "Weaviate consistency level",
+      "Weaviate 일관성 수준",
+      "Weaviate repair-on-read"
+    ],
+    "refs": [
+      "https://docs.weaviate.io/weaviate/concepts/replication-architecture/consistency"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
     "id": "rag.vector-db.qdrant-segment-optimizer",
     "title": "Qdrant 세그먼트와 최적화기: 색인·삭제 정리·읽기 쓰기 경합",
     "en": "Qdrant Segments and Optimizers",
@@ -9632,6 +9807,27 @@
     "refs": [
       "https://docs.langchain.com/oss/python/langgraph/graph-api-control-flow"
     ]
+  },
+  {
+    "id": "rag.retrieval.ltr-window-size",
+    "title": "LTR 재순위 창 크기(window_size)",
+    "en": "Learning to Rank Rescore Window Size",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "검색 내부",
+    "summary": "Elasticsearch LTR 재순위기가 1차 결과 상위 몇 개를 다시 매길지 정하는 필수 값으로, from + size 이상이어야 순위가 뒤틀리지 않는다.",
+    "parent": "rag.retrieval.elasticsearch-ltr-rescore",
+    "aliases": [
+      "Elasticsearch LTR window_size",
+      "LTR 재순위 창",
+      "learning_to_rank window_size"
+    ],
+    "refs": [
+      "https://www.elastic.co/docs/solutions/search/ranking/learning-to-rank-search-usage"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
   },
   {
     "id": "rag.embedding.quantization",
@@ -10288,6 +10484,129 @@
     ],
     "refs": [
       "https://www.elastic.co/docs/deploy-manage/production-guidance/optimize-performance/approximate-knn-search"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "rag.retrieval.ltr-feature-extractor",
+    "title": "LTR 특징 추출 질의(QueryFeatureExtractor)",
+    "en": "LTR Query Feature Extractor",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "검색 내부",
+    "summary": "특징 이름과 {{query}} 자리표시자가 든 템플릿 질의로 LTR 모델의 입력 값 하나를 정의하는 eland의 추출기다.",
+    "parent": "rag.retrieval.elasticsearch-ltr-rescore",
+    "aliases": [
+      "eland QueryFeatureExtractor",
+      "Elasticsearch LTR 특징 추출기",
+      "eland 특징 추출"
+    ],
+    "refs": [
+      "https://www.elastic.co/docs/solutions/search/ranking/learning-to-rank-model-training"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "rag.agent.a2a-card-canonicalization",
+    "title": "A2A 에이전트 카드 정규화(RFC 8785 JCS)",
+    "en": "A2A Agent Card Canonicalization (JCS)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "서명 전에 RFC 8785 JCS로 키를 사전순 정렬하고 공백을 없애며, 설정하지 않은 선택 칸과 signatures 칸을 빼서 같은 바이트열을 만드는 A2A 카드 절차다.",
+    "parent": "rag.agent.a2a-trust-model",
+    "aliases": [
+      "A2A 카드 정규화",
+      "A2A JCS 정규화",
+      "A2A Agent Card canonicalization"
+    ],
+    "refs": [
+      "https://a2a-protocol.org/latest/specification/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "rag.vector-db.walsh-hadamard-rotation",
+    "title": "RQ의 월시-아다마르 의사 무작위 회전",
+    "en": "Walsh-Hadamard Pseudorandom Rotation in Weaviate RQ",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "양자화 전에 벡터 값을 고르게 퍼뜨리려고 월시-아다마르 변환으로 빠르게 적용하는 의사 무작위 회전이다.",
+    "parent": "rag.vector-db.weaviate-rotational-quantization",
+    "aliases": [
+      "Weaviate RQ 회전",
+      "RQ 회전 단계",
+      "RQ Walsh-Hadamard rotation"
+    ],
+    "refs": [
+      "https://docs.weaviate.io/weaviate/concepts/vector-quantization"
+    ]
+  },
+  {
+    "id": "rag.vector-db.weaviate-rescore-limit",
+    "title": "Weaviate 재채점 후보 수(rescoreLimit)",
+    "en": "Weaviate Rescore Limit",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "압축 벡터로 몇 개를 먼저 가져와 원본 벡터로 다시 채점할지 정하는 Weaviate 값으로, 질의 limit와 비교해 큰 쪽을 쓴다.",
+    "parent": "rag.vector-db.weaviate-rotational-quantization",
+    "aliases": [
+      "rescoreLimit",
+      "Weaviate 재채점",
+      "Weaviate rescoring",
+      "Weaviate over-fetching"
+    ],
+    "refs": [
+      "https://docs.weaviate.io/weaviate/concepts/vector-quantization"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "rag.retrieval.vespa-streaming-groupname",
+    "title": "Vespa 스트리밍 그룹 선택(streaming.groupname)",
+    "en": "Vespa streaming.groupname",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "검색 내부",
+    "summary": "문서 ID의 g= 그룹 값과 짝을 이루어 스트리밍 검색이 훑을 문서 묶음을 질의 때 고르는 Vespa 매개변수다.",
+    "parent": "rag.retrieval.vespa-streaming-search",
+    "aliases": [
+      "streaming.groupname",
+      "Vespa groupname",
+      "Vespa 문서 그룹 ID"
+    ],
+    "refs": [
+      "https://docs.vespa.ai/en/performance/streaming-search.html"
+    ]
+  },
+  {
+    "id": "rag.vector-db.weaviate-deletion-resolution",
+    "title": "Weaviate 삭제 충돌 해결 전략",
+    "en": "Weaviate Deletion Resolution Strategy",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "복제본끼리 삭제 여부가 엇갈릴 때 그대로 두거나, 삭제를 늘 이기게 하거나, 시각이 늦은 작업을 이기게 하는 Weaviate 설정이다.",
+    "parent": "rag.vector-db.weaviate-replication-consistency",
+    "aliases": [
+      "DeleteOnConflict",
+      "TimeBasedResolution",
+      "NoAutomatedResolution"
+    ],
+    "refs": [
+      "https://docs.weaviate.io/weaviate/concepts/replication-architecture/consistency"
     ],
     "volatile": true,
     "checked_at": "2026-11-13"
