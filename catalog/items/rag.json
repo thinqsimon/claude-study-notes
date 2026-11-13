@@ -9729,6 +9729,38 @@
     "checked_at": "2026-11-13"
   },
   {
+    "id": "rag.vector-db.qdrant-shard-transfer",
+    "title": "Qdrant 샤드 전송 방식의 손익",
+    "en": "Qdrant Shard Transfer Methods and Trade-offs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "Qdrant가 샤드를 다른 노드로 옮기거나 복구할 때 레코드 스트리밍·스냅숏·WAL 차분 중 무엇을 쓰느냐에 따라 재색인 비용·디스크·쓰기 순서가 달라지는 손익을 다룬다.",
+    "objectives": [
+      "stream_records가 색인과 양자화 데이터를 옮기지 않아 대상 노드에서 다시 색인해야 하고 쓰기 순서가 약하다는 점을 근거로 그 비용을 따질 수 있다",
+      "snapshot 전송이 색인까지 옮겨 바로 쓸 수 있는 대신 양쪽 노드의 추가 디스크와 REST·내부 gRPC 연결이 필요한 손익을 설명할 수 있다",
+      "wal_delta가 놓친 연산만 보내 빠르지만 WAL에 남은 최근 연산 범위 안에서만 되고 풀지 못하면 stream_records로 넘어간다는 점을 근거로 짧은 장애와 긴 장애의 복구 시간을 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.vector-db.qdrant-replication-consistency"
+    ],
+    "related": [
+      "rag.vector-db.qdrant-segment-optimizer"
+    ],
+    "aliases": [
+      "Qdrant 샤드 전송",
+      "Qdrant shard transfer",
+      "Qdrant 샤드 이동",
+      "Qdrant shard transfer method"
+    ],
+    "refs": [
+      "https://qdrant.tech/documentation/scaling/distributed_deployment/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
     "id": "rag.vector-index.recall",
     "title": "재현율",
     "en": "Recall",
@@ -10607,6 +10639,50 @@
     ],
     "refs": [
       "https://docs.weaviate.io/weaviate/concepts/replication-architecture/consistency"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "rag.vector-db.qdrant-wal-delta-transfer",
+    "title": "Qdrant WAL 차분 샤드 전송(wal_delta)",
+    "en": "Qdrant WAL Delta Shard Transfer",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "두 샤드의 WAL을 맞대어 대상이 놓친 연산만 보내는 Qdrant 전송 방식으로, 1.9.0부터 죽은 샤드 자동 복구의 기본값이다.",
+    "parent": "rag.vector-db.qdrant-shard-transfer",
+    "aliases": [
+      "Qdrant wal_delta",
+      "Qdrant WAL 델타 전송",
+      "Qdrant WAL delta transfer"
+    ],
+    "refs": [
+      "https://qdrant.tech/documentation/scaling/distributed_deployment/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "rag.vector-db.weaviate-async-indexing",
+    "title": "Weaviate 비동기 색인(ASYNC_INDEXING)",
+    "en": "Weaviate Asynchronous Indexing",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "Weaviate가 객체 저장은 바로 끝내고 벡터 색인 갱신은 큐에 넣어 뒤에서 따라잡게 해, 쓰기 병목을 줄이는 대신 검색에 잡히기까지 잠깐 늦어지는 방식이다.",
+    "related": [
+      "rag.vector-db.weaviate-index-types"
+    ],
+    "aliases": [
+      "Weaviate async indexing",
+      "Weaviate 비동기 색인",
+      "Weaviate 색인 큐"
+    ],
+    "refs": [
+      "https://docs.weaviate.io/weaviate/concepts/vector-index"
     ],
     "volatile": true,
     "checked_at": "2026-11-13"

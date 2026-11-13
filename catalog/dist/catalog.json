@@ -1,5 +1,5 @@
 {
- "version": "0.87.0",
+ "version": "0.88.0",
  "domains": [
   {
    "prefix": "dev",
@@ -28810,6 +28810,42 @@
    "domain": "plan"
   },
   {
+   "id": "plan.basics.focus-visible-heuristics",
+   "title": ":focus-visible 판정 휴리스틱과 스타일 선택",
+   "en": ":focus-visible Heuristics and Focus Style Choice",
+   "kind": "topic",
+   "level": 4,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "브라우저가 입력 방식과 포커스 이동 경위를 보고 포커스 링을 그릴지 정하는 :focus-visible 휴리스틱을 알고 :focus 스타일과 함께 쓸지 고르는 일이다.",
+   "objectives": [
+    "키보드 입력을 받는 요소, 키보드 사용, 포인터 사용, 자동으로 포커스를 받는 새 요소에서 :focus와 :focus-visible의 일치 여부가 어떻게 갈리는지 설명할 수 있다",
+    "스크립트가 포커스를 옮기면 이전 요소의 표시 여부가 새 요소로 이어진다는 제안을 근거로 포커스 링이 보이거나 숨는 원인을 찾을 수 있다",
+    "판정 휴리스틱이 비규범 제안이고 사용자가 늘 표시를 원하면 그것이 앞선다는 점을 들어 브라우저마다 표시가 다른 까닭을 설명할 수 있다",
+    ":focus-visible만 꾸미면 포인터 사용자에게 표시가 보이지 않을 수 있다는 점을 따져 :focus 스타일을 함께 둘지 고를 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.focus-visibility-design"
+   ],
+   "related": [
+    "plan.basics.composite-widget-focus"
+   ],
+   "aliases": [
+    ":focus-visible 휴리스틱",
+    "focus-visible heuristics",
+    "포커스 링 표시 판정",
+    "focus-visible 의사 클래스"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/selectors-4/",
+    "https://www.w3.org/WAI/WCAG22/Techniques/css/C45",
+    "https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "plan"
+  },
+  {
    "id": "plan.figma.variables-modes",
    "title": "Figma 변수와 모드",
    "en": "Figma Variables and Modes",
@@ -37924,6 +37960,43 @@
    "domain": "be"
   },
   {
+   "id": "be.auth.passkey-flow",
+   "title": "패스키(WebAuthn) 로그인의 흐름",
+   "en": "Passkey Login Flow with WebAuthn",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "인증·인가",
+   "summary": "패스키는 기기가 만든 키 쌍의 개인 키로 서버가 낸 challenge에 서명해 비밀번호 없이 로그인하는 WebAuthn 방식이다.",
+   "objectives": [
+    "등록 의식에서 navigator.credentials.create()로 키 쌍을 만들고 돌아온 공개 키를 사용자와 묶어 서버에 저장하는 흐름을 구현할 수 있다",
+    "인증 의식에서 서버가 만든 challenge를 navigator.credentials.get()에 넘기고 돌아온 서명을 저장된 공개 키로 확인하는 흐름을 구현할 수 있다",
+    "개인 키는 인증자에 남고 서버는 공개 키만 저장해 서버의 공개 키가 새어도 로그인할 수 없다는 점을 비밀번호 저장과 비교해 설명할 수 있다",
+    "challenge를 요청마다 새 난수로 만들지 않거나 서버에서 challenge·origin·RP ID를 대조하지 않는 실수를 찾아 고칠 수 있다"
+   ],
+   "prerequisites": [
+    "be.auth.session-cookie",
+    "be.auth.mfa-idea"
+   ],
+   "related": [
+    "be.auth.password-storage",
+    "be.auth.webauthn-rp-verification"
+   ],
+   "aliases": [
+    "WebAuthn",
+    "Web Authentication",
+    "Web Authentication API",
+    "패스키",
+    "passkey",
+    "패스키 로그인"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/API/Web_Authentication_API",
+    "https://www.w3.org/TR/webauthn-3/"
+   ],
+   "domain": "be"
+  },
+  {
    "id": "be.python.dataclass",
    "title": "데이터클래스",
    "en": "Dataclasses",
@@ -42424,6 +42497,40 @@
    "domain": "be"
   },
   {
+   "id": "be.auth.token-exchange",
+   "title": "OAuth 토큰 교환: 위임과 가장",
+   "en": "OAuth 2.0 Token Exchange: Delegation and Impersonation",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "인증·인가",
+   "summary": "RFC 8693 토큰 교환으로 받은 토큰을 다른 서비스용 토큰으로 바꿀 때 위임과 가장의 의미 차이와 행위자 표현, 남용 위험을 분석한다.",
+   "objectives": [
+    "가장은 받은 쪽이 주체와 구별되지 않고 위임은 행위자가 자기 신원을 유지한다는 차이를 발급 토큰의 주체·행위자 표현으로 설명할 수 있다",
+    "subject_token·actor_token·audience·resource·scope로 대상 서비스를 좁히는 요청을 설계하고, 대상을 여럿 적으면 요청 권한이 대상과 scope의 곱이 되어 실패하기 쉬운 이유를 설명할 수 있다",
+    "중첩된 act 클레임에서 현재 행위자를 찾고 이전 행위자는 접근 제어 판단에 쓰지 않는다는 규칙을 적용할 수 있다",
+    "클라이언트 인증 없이 교환을 허용하면 탈취된 토큰을 가진 누구나 다른 토큰으로 바꿀 수 있는 위험과, may_act·scope·짧은 수명으로 위임을 제한하는 방법을 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "be.auth.oidc",
+    "be.auth.access-token-validation-models"
+   ],
+   "related": [
+    "be.auth.sender-constrained"
+   ],
+   "aliases": [
+    "OAuth 토큰 교환",
+    "OAuth token exchange",
+    "RFC 8693",
+    "토큰 교환 승인",
+    "token-exchange grant"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc8693"
+   ],
+   "domain": "be"
+  },
+  {
    "id": "be.http.tls-term",
    "title": "TLS",
    "en": "Transport Layer Security",
@@ -43217,6 +43324,48 @@
    ],
    "refs": [
     "https://www.rfc-editor.org/rfc/rfc7662"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.auth.actor-claim",
+   "title": "act 클레임",
+   "en": "Actor (act) Claim",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "인증·인가",
+   "summary": "위임으로 발급된 JWT에서 지금 주체를 대신해 행동하는 당사자를 밝히는 클레임으로, 중첩되면 가장 바깥쪽이 현재 행위자다.",
+   "parent": "be.auth.token-exchange",
+   "aliases": [
+    "act claim",
+    "actor claim",
+    "JWT act 클레임",
+    "행위자 클레임"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc8693"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.auth.may-act-claim",
+   "title": "may_act 클레임",
+   "en": "Authorized Actor (may_act) Claim",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "인증·인가",
+   "summary": "JWT 주체를 대신해 행동해도 되는 당사자를 밝혀, 인가 서버가 토큰 교환의 위임이나 가장 요청을 허락할지 판단하게 하는 클레임이다.",
+   "parent": "be.auth.token-exchange",
+   "aliases": [
+    "may_act",
+    "may_act claim",
+    "authorized actor claim",
+    "허가된 행위자 클레임"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc8693"
    ],
    "domain": "be"
   },
@@ -86698,6 +86847,39 @@
    "domain": "rag"
   },
   {
+   "id": "rag.vector-db.qdrant-shard-transfer",
+   "title": "Qdrant 샤드 전송 방식의 손익",
+   "en": "Qdrant Shard Transfer Methods and Trade-offs",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "벡터 DB",
+   "summary": "Qdrant가 샤드를 다른 노드로 옮기거나 복구할 때 레코드 스트리밍·스냅숏·WAL 차분 중 무엇을 쓰느냐에 따라 재색인 비용·디스크·쓰기 순서가 달라지는 손익을 다룬다.",
+   "objectives": [
+    "stream_records가 색인과 양자화 데이터를 옮기지 않아 대상 노드에서 다시 색인해야 하고 쓰기 순서가 약하다는 점을 근거로 그 비용을 따질 수 있다",
+    "snapshot 전송이 색인까지 옮겨 바로 쓸 수 있는 대신 양쪽 노드의 추가 디스크와 REST·내부 gRPC 연결이 필요한 손익을 설명할 수 있다",
+    "wal_delta가 놓친 연산만 보내 빠르지만 WAL에 남은 최근 연산 범위 안에서만 되고 풀지 못하면 stream_records로 넘어간다는 점을 근거로 짧은 장애와 긴 장애의 복구 시간을 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.vector-db.qdrant-replication-consistency"
+   ],
+   "related": [
+    "rag.vector-db.qdrant-segment-optimizer"
+   ],
+   "aliases": [
+    "Qdrant 샤드 전송",
+    "Qdrant shard transfer",
+    "Qdrant 샤드 이동",
+    "Qdrant shard transfer method"
+   ],
+   "refs": [
+    "https://qdrant.tech/documentation/scaling/distributed_deployment/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "rag"
+  },
+  {
    "id": "rag.vector-index.recall",
    "title": "재현율",
    "en": "Recall",
@@ -87616,6 +87798,52 @@
    ],
    "refs": [
     "https://docs.weaviate.io/weaviate/concepts/replication-architecture/consistency"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.qdrant-wal-delta-transfer",
+   "title": "Qdrant WAL 차분 샤드 전송(wal_delta)",
+   "en": "Qdrant WAL Delta Shard Transfer",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "벡터 DB",
+   "summary": "두 샤드의 WAL을 맞대어 대상이 놓친 연산만 보내는 Qdrant 전송 방식으로, 1.9.0부터 죽은 샤드 자동 복구의 기본값이다.",
+   "parent": "rag.vector-db.qdrant-shard-transfer",
+   "aliases": [
+    "Qdrant wal_delta",
+    "Qdrant WAL 델타 전송",
+    "Qdrant WAL delta transfer"
+   ],
+   "refs": [
+    "https://qdrant.tech/documentation/scaling/distributed_deployment/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.weaviate-async-indexing",
+   "title": "Weaviate 비동기 색인(ASYNC_INDEXING)",
+   "en": "Weaviate Asynchronous Indexing",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "벡터 DB",
+   "summary": "Weaviate가 객체 저장은 바로 끝내고 벡터 색인 갱신은 큐에 넣어 뒤에서 따라잡게 해, 쓰기 병목을 줄이는 대신 검색에 잡히기까지 잠깐 늦어지는 방식이다.",
+   "related": [
+    "rag.vector-db.weaviate-index-types"
+   ],
+   "aliases": [
+    "Weaviate async indexing",
+    "Weaviate 비동기 색인",
+    "Weaviate 색인 큐"
+   ],
+   "refs": [
+    "https://docs.weaviate.io/weaviate/concepts/vector-index"
    ],
    "volatile": true,
    "checked_at": "2026-11-13",
@@ -92985,6 +93213,42 @@
    "domain": "ax"
   },
   {
+   "id": "ax.coding.remote-control-basics",
+   "title": "Remote Control로 다른 기기에서 세션 이어 보기",
+   "en": "Continuing a Local Claude Code Session with Remote Control",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "내 컴퓨터에서 도는 Claude Code 세션을 휴대폰 앱이나 브라우저의 claude.ai/code에 연결해, 코드는 내 기기에서 돌게 둔 채 다른 곳에서 대화를 이어 가는 방법이다.",
+   "objectives": [
+    "서버 모드(claude remote-control), 원격이 켜진 대화형 세션(claude --remote-control), 이미 연 세션에서 /remote-control 가운데 상황에 맞는 시작 방법을 골라 켤 수 있다",
+    "터미널에 뜨는 URL이나 QR 코드, 또는 claude.ai/code와 Claude 앱의 세션 목록에서 이름으로 찾아 다른 기기에서 연결할 수 있다",
+    "서버 모드에서 --spawn의 same-dir·worktree·session 차이를 알고, 여러 세션이 같은 파일을 고칠 때 worktree를 고를 수 있다",
+    "터미널을 닫거나 claude 프로세스가 멈추면 세션이 끊기고 /plugin·/resume 같은 일부 명령은 로컬에서만 된다는 한계를 알고, 멈춘 서버의 세션을 같은 폴더에서 다시 불러올 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.session-resume",
+    "ax.coding.worktree-sessions"
+   ],
+   "related": [
+    "ax.coding.cloud-sessions"
+   ],
+   "aliases": [
+    "claude --remote-control",
+    "claude rc",
+    "/rc 명령",
+    "Remote Control 세션",
+    "휴대폰으로 Claude Code 이어 하기"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/remote-control"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "ax"
+  },
+  {
    "id": "ax.coding.scheduled-tasks",
    "title": "에이전트 작업 예약하기: /loop와 클라우드 예약 작업",
    "en": "Scheduling Agent Work with /loop and Cloud Scheduled Tasks",
@@ -94473,6 +94737,29 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-10",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.remote-control-spawn-mode",
+   "title": "Remote Control 서버의 세션 생성 방식(--spawn)",
+   "en": "Remote Control Server Spawn Mode",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "claude remote-control 서버가 새 세션을 만드는 방식으로, same-dir은 한 폴더를 함께 쓰고 worktree는 세션마다 git 워크트리를 주며 session은 세션 하나만 받는다.",
+   "parent": "ax.coding.remote-control-basics",
+   "related": [
+    "ax.coding.worktree-sessions"
+   ],
+   "aliases": [
+    "--spawn worktree",
+    "--spawn same-dir",
+    "Remote Control spawn mode",
+    "Remote Control 생성 방식"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
    "domain": "ax"
   },
   {
@@ -114778,6 +115065,43 @@
    "domain": "ml"
   },
   {
+   "id": "ml.unsupervised.gaussian-mixture-clustering",
+   "title": "GaussianMixture로 확률 군집화: BIC와 소속 확률",
+   "en": "Probabilistic Clustering with GaussianMixture",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "scikit-learn GaussianMixture를 학습해 성분 수와 공분산 형태를 BIC로 고르고, predict_proba로 표본마다 성분별 확률을 읽는다.",
+   "objectives": [
+    "GaussianMixture를 fit하고 predict로 표본마다 가장 그럴듯한 성분 번호를 받을 수 있다",
+    "n_components와 covariance_type 후보마다 bic·aic 값을 구해 값이 가장 낮은 모델을 고를 수 있다",
+    "predict_proba가 돌려주는 (표본 수, 성분 수) 배열에서 표본마다 각 성분의 확률을 읽을 수 있다",
+    "converged_로 EM 수렴 여부를 확인하고 n_init으로 여러 번 초기화해 가장 좋은 결과를 남길 수 있다"
+   ],
+   "prerequisites": [
+    "ml.unsupervised.kmeans-clustering",
+    "ml.supervised.sklearn-first-model"
+   ],
+   "related": [
+    "ml.unsupervised.gaussian-mixture-internals",
+    "ml.supervised.predict-proba",
+    "ml.supervised.hyperparameter-search"
+   ],
+   "aliases": [
+    "GMM 소프트 군집",
+    "sklearn GaussianMixture",
+    "GMM predict_proba",
+    "GaussianMixture 성분 수 선택"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/mixture.html",
+    "https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html",
+    "https://scikit-learn.org/stable/auto_examples/mixture/plot_gmm_selection.html"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.training.learning-rate",
    "title": "학습률",
    "en": "Learning Rate",
@@ -115737,6 +116061,31 @@
    "domain": "ml"
   },
   {
+   "id": "ml.unsupervised.gmm-bic",
+   "title": "BIC(베이즈 정보 기준)",
+   "en": "Bayesian Information Criterion (BIC)",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "AI 기초",
+   "summary": "GaussianMixture.bic가 현재 모델과 입력 데이터로 계산하는 정보 기준으로, 값이 낮을수록 좋아 성분 수를 고를 때 쓴다.",
+   "parent": "ml.unsupervised.gaussian-mixture-clustering",
+   "related": [
+    "ml.unsupervised.gmm-aic"
+   ],
+   "aliases": [
+    "베이즈 정보 기준",
+    "Bayesian information criterion",
+    "GaussianMixture.bic",
+    "GMM BIC"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html",
+    "https://scikit-learn.org/stable/modules/mixture.html"
+   ],
+   "domain": "ml"
+  },
+  {
    "id": "ml.unsupervised.silhouette-score",
    "title": "실루엣 점수",
    "en": "Silhouette Score",
@@ -116044,6 +116393,31 @@
    ],
    "refs": [
     "https://scikit-learn.org/stable/modules/feature_selection.html#recursive-feature-elimination"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.unsupervised.gmm-aic",
+   "title": "AIC(아카이케 정보 기준)",
+   "en": "Akaike Information Criterion (AIC)",
+   "kind": "term",
+   "level": 3,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "GaussianMixture.aic가 현재 모델과 입력 데이터로 계산하는 정보 기준으로, 값이 낮을수록 좋으며 BIC와 함께 비교한다.",
+   "parent": "ml.unsupervised.gaussian-mixture-clustering",
+   "related": [
+    "ml.unsupervised.gmm-bic"
+   ],
+   "aliases": [
+    "아카이케 정보 기준",
+    "Akaike information criterion",
+    "GaussianMixture.aic",
+    "GMM AIC"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html",
+    "https://scikit-learn.org/stable/auto_examples/mixture/plot_gmm_selection.html"
    ],
    "domain": "ml"
   },

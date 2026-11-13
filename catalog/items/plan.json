@@ -7158,6 +7158,41 @@
     "checked_at": "2026-11-13"
   },
   {
+    "id": "plan.basics.focus-visible-heuristics",
+    "title": ":focus-visible 판정 휴리스틱과 스타일 선택",
+    "en": ":focus-visible Heuristics and Focus Style Choice",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "브라우저가 입력 방식과 포커스 이동 경위를 보고 포커스 링을 그릴지 정하는 :focus-visible 휴리스틱을 알고 :focus 스타일과 함께 쓸지 고르는 일이다.",
+    "objectives": [
+      "키보드 입력을 받는 요소, 키보드 사용, 포인터 사용, 자동으로 포커스를 받는 새 요소에서 :focus와 :focus-visible의 일치 여부가 어떻게 갈리는지 설명할 수 있다",
+      "스크립트가 포커스를 옮기면 이전 요소의 표시 여부가 새 요소로 이어진다는 제안을 근거로 포커스 링이 보이거나 숨는 원인을 찾을 수 있다",
+      "판정 휴리스틱이 비규범 제안이고 사용자가 늘 표시를 원하면 그것이 앞선다는 점을 들어 브라우저마다 표시가 다른 까닭을 설명할 수 있다",
+      ":focus-visible만 꾸미면 포인터 사용자에게 표시가 보이지 않을 수 있다는 점을 따져 :focus 스타일을 함께 둘지 고를 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.focus-visibility-design"
+    ],
+    "related": [
+      "plan.basics.composite-widget-focus"
+    ],
+    "aliases": [
+      ":focus-visible 휴리스틱",
+      "focus-visible heuristics",
+      "포커스 링 표시 판정",
+      "focus-visible 의사 클래스"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/selectors-4/",
+      "https://www.w3.org/WAI/WCAG22/Techniques/css/C45",
+      "https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
     "id": "plan.figma.variables-modes",
     "title": "Figma 변수와 모드",
     "en": "Figma Variables and Modes",

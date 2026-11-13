@@ -4991,6 +4991,42 @@
     ]
   },
   {
+    "id": "ml.unsupervised.gaussian-mixture-clustering",
+    "title": "GaussianMixture로 확률 군집화: BIC와 소속 확률",
+    "en": "Probabilistic Clustering with GaussianMixture",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "scikit-learn GaussianMixture를 학습해 성분 수와 공분산 형태를 BIC로 고르고, predict_proba로 표본마다 성분별 확률을 읽는다.",
+    "objectives": [
+      "GaussianMixture를 fit하고 predict로 표본마다 가장 그럴듯한 성분 번호를 받을 수 있다",
+      "n_components와 covariance_type 후보마다 bic·aic 값을 구해 값이 가장 낮은 모델을 고를 수 있다",
+      "predict_proba가 돌려주는 (표본 수, 성분 수) 배열에서 표본마다 각 성분의 확률을 읽을 수 있다",
+      "converged_로 EM 수렴 여부를 확인하고 n_init으로 여러 번 초기화해 가장 좋은 결과를 남길 수 있다"
+    ],
+    "prerequisites": [
+      "ml.unsupervised.kmeans-clustering",
+      "ml.supervised.sklearn-first-model"
+    ],
+    "related": [
+      "ml.unsupervised.gaussian-mixture-internals",
+      "ml.supervised.predict-proba",
+      "ml.supervised.hyperparameter-search"
+    ],
+    "aliases": [
+      "GMM 소프트 군집",
+      "sklearn GaussianMixture",
+      "GMM predict_proba",
+      "GaussianMixture 성분 수 선택"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/mixture.html",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html",
+      "https://scikit-learn.org/stable/auto_examples/mixture/plot_gmm_selection.html"
+    ]
+  },
+  {
     "id": "ml.training.learning-rate",
     "title": "학습률",
     "en": "Learning Rate",
@@ -5907,6 +5943,30 @@
     ]
   },
   {
+    "id": "ml.unsupervised.gmm-bic",
+    "title": "BIC(베이즈 정보 기준)",
+    "en": "Bayesian Information Criterion (BIC)",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "AI 기초",
+    "summary": "GaussianMixture.bic가 현재 모델과 입력 데이터로 계산하는 정보 기준으로, 값이 낮을수록 좋아 성분 수를 고를 때 쓴다.",
+    "parent": "ml.unsupervised.gaussian-mixture-clustering",
+    "related": [
+      "ml.unsupervised.gmm-aic"
+    ],
+    "aliases": [
+      "베이즈 정보 기준",
+      "Bayesian information criterion",
+      "GaussianMixture.bic",
+      "GMM BIC"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html",
+      "https://scikit-learn.org/stable/modules/mixture.html"
+    ]
+  },
+  {
     "id": "ml.unsupervised.silhouette-score",
     "title": "실루엣 점수",
     "en": "Silhouette Score",
@@ -6201,6 +6261,30 @@
     ],
     "refs": [
       "https://scikit-learn.org/stable/modules/feature_selection.html#recursive-feature-elimination"
+    ]
+  },
+  {
+    "id": "ml.unsupervised.gmm-aic",
+    "title": "AIC(아카이케 정보 기준)",
+    "en": "Akaike Information Criterion (AIC)",
+    "kind": "term",
+    "level": 3,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "GaussianMixture.aic가 현재 모델과 입력 데이터로 계산하는 정보 기준으로, 값이 낮을수록 좋으며 BIC와 함께 비교한다.",
+    "parent": "ml.unsupervised.gaussian-mixture-clustering",
+    "related": [
+      "ml.unsupervised.gmm-bic"
+    ],
+    "aliases": [
+      "아카이케 정보 기준",
+      "Akaike information criterion",
+      "GaussianMixture.aic",
+      "GMM AIC"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html",
+      "https://scikit-learn.org/stable/auto_examples/mixture/plot_gmm_selection.html"
     ]
   },
   {
