@@ -8387,6 +8387,180 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "ops.container.user-namespaces",
+    "title": "user namespace의 ID 매핑과 권한 범위",
+    "en": "User Namespace ID Mapping and Capability Scope",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "컨테이너 내부",
+    "summary": "컨테이너 안의 root를 호스트의 비특권 ID로 옮겨 적고, 케이퍼빌리티가 그 네임스페이스가 소유한 자원에만 통하게 하는 격리 장치다.",
+    "objectives": [
+      "user namespace 안에서 얻은 케이퍼빌리티가 그 네임스페이스가 소유한 자원에만 통하고 커널 모듈 적재 같은 전역 작업에는 통하지 않는 이유를 설명할 수 있다",
+      "uid_map·gid_map에 매핑되지 않은 ID가 오버플로 ID(대개 65534)로 보이는 동작으로 컨테이너 안 파일 소유권 문제를 분석할 수 있다",
+      "Kubernetes 파드에 hostUsers: false를 켤 때 필요한 커널(Linux 6.3 이상)·idmap 마운트·런타임 조건과 얻는 보안 이득을 비교해 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.container.isolation",
+      "ops.k8s.pod-security-standards"
+    ],
+    "related": [
+      "ops.container.linux-capabilities"
+    ],
+    "aliases": [
+      "user namespace",
+      "사용자 네임스페이스",
+      "userns",
+      "CLONE_NEWUSER",
+      "Kubernetes 사용자 네임스페이스"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man7/user_namespaces.7.html",
+      "https://kubernetes.io/docs/concepts/workloads/pods/user-namespaces/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "ops.k8s.bound-sa-token",
+    "title": "바운드 서비스 어카운트 토큰의 내부",
+    "en": "Bound Service Account Token Internals",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "TokenRequest로 받은 짧은 수명의 토큰을 파드·Secret·노드 객체에 묶어, 그 객체가 사라지면 인증이 끊기게 하는 구조다.",
+    "objectives": [
+      "바운드 토큰의 JWT 비공개 클레임에 담긴 객체 name·uid로 kube-apiserver가 토큰을 받아들이거나 거부하는 과정을 설명할 수 있다",
+      "개별 토큰을 취소할 중앙 기록이 없다는 성질을 근거로, 토큰이 샜을 때 파드 삭제와 ServiceAccount 재생성 중 대응을 고를 수 있다",
+      "Secret 기반 장기 토큰과 TokenRequest 기반 시한부 토큰을 유출 위험과 관리 비용으로 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.rbac-least-privilege",
+      "ops.k8s.secrets-security"
+    ],
+    "related": [
+      "ops.k8s.automount-sa-token",
+      "be.auth.cert-bound-token"
+    ],
+    "aliases": [
+      "bound service account token",
+      "Kubernetes 바운드 토큰",
+      "TokenRequest API",
+      "Kubernetes 토큰 바인딩",
+      "시한부 서비스 어카운트 토큰"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/",
+      "https://kubernetes.io/docs/concepts/security/service-accounts/"
+    ]
+  },
+  {
+    "id": "ops.container.seccomp-filter",
+    "title": "seccomp 필터의 동작: BPF 검사와 반환 동작",
+    "en": "Seccomp BPF Filter Internals",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "컨테이너 내부",
+    "summary": "시스템 콜 번호와 인자 값을 BPF 프로그램으로 검사해 허용·오류 반환·종료 등을 정하는 커널 필터의 구조와 한계다.",
+    "objectives": [
+      "seccomp 필터가 seccomp_data의 인자 값만 보고 포인터가 가리키는 내용은 못 본다는 한계를 근거로 경로 기반 차단이 어려운 이유를 설명할 수 있다",
+      "필터를 여러 개 쌓았을 때 가장 제한적인 반환 동작이 이긴다는 규칙으로 실제 적용되는 결과를 추론할 수 있다",
+      "필터 설치에 no_new_privs나 CAP_SYS_ADMIN이 필요한 이유와 아키텍처 값을 검사하지 않으면 생기는 우회 위험을 설명할 수 있다",
+      "Kubernetes에서 RuntimeDefault·Localhost·Unconfined 프로필의 차이와 privileged 컨테이너는 항상 Unconfined로 도는 점을 근거로 프로필을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "ops.container.isolation",
+      "ops.k8s.pod-security-standards"
+    ],
+    "related": [
+      "ops.linux.systemd-sandboxing",
+      "ops.container.linux-capabilities"
+    ],
+    "aliases": [
+      "seccomp-bpf",
+      "seccomp filter",
+      "시스템 콜 필터",
+      "SECCOMP_MODE_FILTER",
+      "Kubernetes seccomp 프로필"
+    ],
+    "refs": [
+      "https://docs.kernel.org/userspace-api/seccomp_filter.html",
+      "https://kubernetes.io/docs/reference/node/seccomp/"
+    ]
+  },
+  {
+    "id": "ops.container.cri-shim-runtime",
+    "title": "CRI·containerd shim·runc의 계층 구조",
+    "en": "CRI, containerd Shims, and runc Layering",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "컨테이너 내부",
+    "summary": "kubelet이 gRPC CRI로 런타임을 부르고, 런타임이 ttrpc로 shim을, shim이 runc 같은 엔진을 실행해 컨테이너를 만드는 층 나누기다.",
+    "objectives": [
+      "kubelet이 gRPC 클라이언트로 CRI v1 API를 부르고, v1을 지원하지 않는 런타임에서는 노드 등록이 실패하는 동작을 설명할 수 있다",
+      "containerd가 컨테이너를 직접 띄우지 않고 shim이 fork/exec로 runc를 실행하는 구조를 근거로 컨테이너 생성 실패가 어느 층에서 났는지 좁힐 수 있다",
+      "shim이 하위 리퍼로 끝난 컨테이너 프로세스를 거두는 역할과 containerd가 shim에 다시 붙지 못할 때 delete 명령이 맡는 정리를 설명할 수 있다",
+      "RuntimeClass의 handler로 일반 runc와 하드웨어 가상화 런타임을 나눠 쓸 때 격리와 오버헤드의 손익을 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.container.isolation",
+      "ops.k8s.basics"
+    ],
+    "related": [
+      "ops.container.oci-image-manifest"
+    ],
+    "aliases": [
+      "Container Runtime Interface",
+      "Kubernetes CRI",
+      "containerd shim",
+      "runtime v2 shim",
+      "containerd-shim-runc-v2"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/architecture/cri/",
+      "https://github.com/containerd/containerd/blob/main/docs/runtime-v2.md",
+      "https://kubernetes.io/docs/concepts/containers/runtime-class/"
+    ]
+  },
+  {
+    "id": "ops.observe.ebpf-program-lifecycle",
+    "title": "eBPF 관측 도구의 내부: 적재·검증·부착",
+    "en": "eBPF Program Lifecycle for Observability",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "관측",
+    "summary": "커널 안에서 안전하게 도는 작은 프로그램을 검증기로 확인한 뒤 kprobe·tracepoint에 붙이고, 맵으로 사용자 공간과 결과를 주고받는 구조다.",
+    "objectives": [
+      "libbpf 앱이 open·load·attach·tear down 단계를 거치며 각 단계에서 맵 생성·검증·훅 연결이 일어나는 순서를 설명할 수 있다",
+      "검증기가 모든 경로를 흉내 내며 레지스터 상태를 추적하는 방식을 근거로 프로그램이 적재를 거부당한 원인을 분석할 수 있다",
+      "BPF 맵의 종류(해시·배열·CPU별 배열 등)와 파일 디스크립터 기반 수명을 근거로 관측 데이터를 모으는 방식을 고를 수 있다",
+      "BTF와 CO-RE가 커널 버전마다 다른 구조체 배치를 맞춰 주는 원리를 근거로 한 번 빌드한 도구를 여러 커널에 배포할 때의 조건을 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.observe.metrics",
+      "ops.linux.process-signals"
+    ],
+    "related": [
+      "dev.debug.linux-perf-python",
+      "ops.linux.psi-pressure"
+    ],
+    "aliases": [
+      "eBPF 관측",
+      "eBPF tracing",
+      "libbpf",
+      "BPF 프로그램 적재"
+    ],
+    "refs": [
+      "https://docs.kernel.org/bpf/libbpf/libbpf_overview.html",
+      "https://docs.kernel.org/bpf/verifier.html",
+      "https://docs.kernel.org/bpf/maps.html"
+    ]
+  },
+  {
     "id": "ops.observe.incident-analysis",
     "title": "장애 분석과 회고",
     "en": "Incident Analysis and Postmortems",
@@ -8936,6 +9110,68 @@
     ]
   },
   {
+    "id": "ops.k8s.host-users-false",
+    "title": "hostUsers: false로 파드 사용자 네임스페이스 켜기",
+    "en": "Pod hostUsers: false",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "파드 spec에 hostUsers: false를 두면 kubelet이 노드 안에서 겹치지 않는 호스트 ID 범위를 골라 파드마다 user namespace를 만든다.",
+    "parent": "ops.container.user-namespaces",
+    "aliases": [
+      "hostUsers",
+      "spec.hostUsers",
+      "Kubernetes userns 파드"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/workloads/pods/user-namespaces/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "ops.k8s.projected-sa-token-volume",
+    "title": "serviceAccountToken 투영 볼륨",
+    "en": "serviceAccountToken Projected Volume",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "audience·expirationSeconds(기본 1시간, 최소 10분)·path를 정해 kubelet이 만료 전에 갱신하는 토큰 파일을 파드에 넣는 볼륨이다.",
+    "parent": "ops.k8s.bound-sa-token",
+    "aliases": [
+      "serviceAccountToken 볼륨",
+      "projected token volume",
+      "토큰 투영 볼륨",
+      "serviceAccountToken expirationSeconds"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/storage/projected-volumes/",
+      "https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/"
+    ]
+  },
+  {
+    "id": "ops.observe.ebpf-verifier",
+    "title": "eBPF 검증기",
+    "en": "eBPF Verifier",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "관측",
+    "summary": "적재 전에 제어 흐름을 DAG로 검사하고 모든 경로를 흉내 내 레지스터·스택 상태를 추적하며, 같은 상태는 가지치기로 건너뛴다.",
+    "parent": "ops.observe.ebpf-program-lifecycle",
+    "aliases": [
+      "BPF 검증기",
+      "eBPF verifier",
+      "BPF verifier",
+      "BPF verifier log"
+    ],
+    "refs": [
+      "https://docs.kernel.org/bpf/verifier.html"
+    ]
+  },
+  {
     "id": "ops.observe.slo",
     "title": "SLO",
     "en": "Service Level Objective",
@@ -9309,6 +9545,85 @@
     ],
     "refs": [
       "https://etcd.io/docs/v3.6/learning/design-learner/"
+    ]
+  },
+  {
+    "id": "ops.container.uid-gid-map",
+    "title": "uid_map·gid_map ID 매핑 파일",
+    "en": "uid_map and gid_map",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "컨테이너 내부",
+    "summary": "안쪽 시작 ID·바깥 시작 ID·범위 길이 세 수로 된 줄을 한 번만 쓸 수 있는 파일로, 줄 수는 Linux 4.16부터 최대 340이다.",
+    "parent": "ops.container.user-namespaces",
+    "aliases": [
+      "uid_map",
+      "gid_map",
+      "/proc/pid/uid_map",
+      "user namespace UID 매핑"
+    ],
+    "refs": [
+      "https://man7.org/linux/man-pages/man7/user_namespaces.7.html"
+    ]
+  },
+  {
+    "id": "ops.container.seccomp-return-actions",
+    "title": "seccomp 반환 동작과 우선순위",
+    "en": "Seccomp Return Actions and Precedence",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "컨테이너 내부",
+    "summary": "KILL_PROCESS·KILL_THREAD·TRAP·ERRNO·USER_NOTIF·TRACE·LOG·ALLOW 순으로 앞쪽이 강하며, 여러 필터의 결과 중 가장 강한 것이 적용된다.",
+    "parent": "ops.container.seccomp-filter",
+    "aliases": [
+      "SECCOMP_RET_ERRNO",
+      "SECCOMP_RET_KILL_PROCESS",
+      "SECCOMP_RET_USER_NOTIF",
+      "seccomp action precedence"
+    ],
+    "refs": [
+      "https://docs.kernel.org/userspace-api/seccomp_filter.html"
+    ]
+  },
+  {
+    "id": "ops.k8s.runtimeclass-handler",
+    "title": "RuntimeClass와 handler",
+    "en": "RuntimeClass Handler",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "파드의 runtimeClassName이 가리키는 RuntimeClass의 handler로 노드의 CRI 런타임 설정을 고르고, overhead와 scheduling으로 비용과 배치를 함께 정한다.",
+    "parent": "ops.container.cri-shim-runtime",
+    "aliases": [
+      "RuntimeClass",
+      "runtimeClassName",
+      "Kubernetes 런타임 클래스"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/containers/runtime-class/"
+    ]
+  },
+  {
+    "id": "ops.observe.bpf-co-re",
+    "title": "BPF CO-RE와 BTF",
+    "en": "BPF CO-RE and BTF",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "관측",
+    "summary": "프로그램에 기록된 BTF 타입 정보를 실행 중인 커널의 /sys/kernel/btf/vmlinux와 비교해 libbpf가 필드 오프셋을 고쳐 주는 이식 방식이다.",
+    "parent": "ops.observe.ebpf-program-lifecycle",
+    "aliases": [
+      "CO-RE",
+      "Compile Once Run Everywhere",
+      "vmlinux.h",
+      "bpf_core_read"
+    ],
+    "refs": [
+      "https://docs.kernel.org/bpf/libbpf/libbpf_overview.html"
     ]
   }
 ]

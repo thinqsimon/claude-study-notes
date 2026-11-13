@@ -9114,6 +9114,68 @@
     ]
   },
   {
+    "id": "be.async.contextvars",
+    "title": "컨텍스트 변수와 비동기 문맥 전파",
+    "en": "Context Variables in asyncio",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "비동기·실시간",
+    "summary": "태스크마다 현재 문맥을 복사해 요청 ID 같은 값이 동시 실행 중에 섞이지 않게 하는 원리와 한계를 분석한다.",
+    "objectives": [
+      "태스크가 만들어질 때 현재 Context를 복사해 그 안에서 코루틴을 돌리는 동작을 코드로 보일 수 있다",
+      "자식 태스크에서 set한 값이 그 태스크를 만든 쪽에 보이지 않는 이유를 Context.run의 의미로 설명할 수 있다",
+      "set이 돌려주는 토큰으로 이전 값을 되돌리는 패턴과 토큰을 한 번만 쓸 수 있는 제약을 설명할 수 있다",
+      "동시 실행 코드에서 threading.local 대신 컨텍스트 변수를 써야 하는 이유를 따질 수 있다"
+    ],
+    "prerequisites": [
+      "be.async.event-loop-internals",
+      "be.error.structured-logging"
+    ],
+    "aliases": [
+      "contextvars",
+      "ContextVar",
+      "copy_context",
+      "PEP 567"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/contextvars.html",
+      "https://docs.python.org/3/library/asyncio-task.html#creating-tasks"
+    ]
+  },
+  {
+    "id": "be.auth.password-hash-cost",
+    "title": "비밀번호 해시의 비용 인자와 페퍼",
+    "en": "Password Hashing Work Factors and Peppers",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "인증·인가",
+    "summary": "Argon2id·scrypt·bcrypt·PBKDF2의 비용 인자와 페퍼, 옛 해시 갱신 방식을 공격 비용과 서버 부하로 비교한다.",
+    "objectives": [
+      "Argon2id·scrypt·bcrypt·PBKDF2 가운데 상황에 맞는 것을 OWASP 권장 비용 인자와 함께 고를 수 있다",
+      "비용 인자를 높일 때 로그인 지연과 CPU 고갈로 인한 서비스 거부 위험의 손익을 자기 서버 측정으로 따질 수 있다",
+      "페퍼를 해시 전과 후에 넣는 방식을 비교하고 페퍼가 유출되면 사용자 비밀번호 재설정이 필요한 비용을 설명할 수 있다",
+      "bcrypt의 72바이트 입력 한도와 사전 해시가 부르는 널 바이트·셔킹 문제, 옛 해시를 옮기는 방법을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "be.auth.password-storage",
+      "be.security.crypto-basics"
+    ],
+    "related": [
+      "be.auth.login-abuse"
+    ],
+    "aliases": [
+      "password pepper",
+      "password work factor",
+      "비밀번호 해시 비용 인자",
+      "Argon2id 매개변수"
+    ],
+    "refs": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html"
+    ]
+  },
+  {
     "id": "be.async.asgi",
     "title": "ASGI: 파이썬 비동기 서버의 약속",
     "en": "ASGI Specification",
@@ -9546,6 +9608,95 @@
     "refs": [
       "https://www.rfc-editor.org/rfc/rfc7541.html",
       "https://www.rfc-editor.org/rfc/rfc9204.html"
+    ]
+  },
+  {
+    "id": "be.async.asgi-lifespan",
+    "title": "ASGI lifespan 프로토콜의 동작",
+    "en": "ASGI Lifespan Protocol",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "비동기·실시간",
+    "summary": "서버가 연결을 받기 전후에 앱과 startup·shutdown 메시지를 주고받는 순서와 실패 규칙, 상태 복사를 분석한다.",
+    "objectives": [
+      "서버가 startup.complete를 받기 전에는 연결을 처리하지 않고, shutdown은 연결을 닫은 뒤에 보내는 순서를 설명할 수 있다",
+      "앱이 lifespan 범위에서 예외를 내면 서버가 이벤트 없이 계속 도는 것과 startup.failed를 보내 서버를 멈추는 것의 차이를 따질 수 있다",
+      "lifespan 상태가 요청마다 얕게 복사되어 최상위 키 변경은 격리되지만 안의 가변 객체는 공유된다는 점을 들어 위험을 분석할 수 있다",
+      "요청을 처리하는 이벤트 루프마다 lifespan을 한 번 돌려야 하는 이유를 자원과 루프의 관계로 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "be.fastapi.lifespan",
+      "be.async.asgi"
+    ],
+    "aliases": [
+      "ASGI lifespan",
+      "lifespan 프로토콜",
+      "lifespan.startup.failed",
+      "lifespan.shutdown"
+    ],
+    "refs": [
+      "https://asgi.readthedocs.io/en/latest/specs/lifespan.html",
+      "https://starlette.dev/lifespan/",
+      "https://uvicorn.dev/settings/"
+    ]
+  },
+  {
+    "id": "be.http.structured-fields",
+    "title": "HTTP 구조화 필드 값",
+    "en": "Structured Field Values for HTTP",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "HTTP",
+    "summary": "새 HTTP 헤더가 Item·List·Dictionary 자료 모델과 엄격한 파싱 알고리즘을 함께 쓰게 하는 RFC 9651의 규칙이다.",
+    "objectives": [
+      "헤더 값을 Item·List·Dictionary와 Inner List, Parameters로 나눠 읽을 수 있다",
+      "파싱에 실패하면 필드 전체를 없는 것처럼 무시하고 부분 파싱을 허용하지 않는 엄격한 처리가 상호 운용성과 보안에 주는 손익을 따질 수 있다",
+      "기존 헤더는 스스로 채택하지 않는 한 이 규칙으로 다시 정의되지 않는다는 점을 들어 범용 파서의 적용 범위를 판단할 수 있다",
+      "RFC 8941에서 RFC 9651로 오며 더해진 Date와 Display String 형식을 구분하고 Display String을 표시할 때의 위험을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "be.http.headers-body"
+    ],
+    "aliases": [
+      "RFC 9651",
+      "RFC 8941",
+      "Structured Fields",
+      "구조화 헤더"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc9651.html"
+    ]
+  },
+  {
+    "id": "be.async.websocket-protocol",
+    "title": "WebSocket 프레임과 마스킹",
+    "en": "WebSocket Framing and Masking",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "비동기·실시간",
+    "summary": "RFC 6455의 여는 핸드셰이크, 프레임 구조, 클라이언트 마스킹, 닫기 절차가 왜 그렇게 설계됐는지 분석한다.",
+    "objectives": [
+      "Sec-WebSocket-Key에 고정 GUID를 붙여 SHA-1과 base64로 Sec-WebSocket-Accept 값을 만드는 과정을 설명할 수 있다",
+      "FIN·opcode·길이 필드로 조각난 메시지와 그 사이에 끼어드는 제어 프레임을 해석할 수 있다",
+      "클라이언트만 프레임마다 예측할 수 없는 키로 마스킹해야 하는 이유를 중간 캐시 오염 공격으로 설명할 수 있다",
+      "프레임 크기와 재조립된 메시지 크기에 한도를 두지 않을 때의 서비스 거부 위험을 따질 수 있다"
+    ],
+    "prerequisites": [
+      "be.async.websocket",
+      "be.async.realtime-choice"
+    ],
+    "aliases": [
+      "RFC 6455",
+      "WebSocket 프레임",
+      "WebSocket 프레이밍",
+      "Sec-WebSocket-Accept",
+      "WebSocket opcode"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc6455.html"
     ]
   },
   {
@@ -10024,5 +10175,146 @@
     "refs": [
       "https://www.rfc-editor.org/rfc/rfc9204.html"
     ]
+  },
+  {
+    "id": "be.async.lifespan-state",
+    "title": "lifespan 상태",
+    "en": "Lifespan State",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "비동기·실시간",
+    "summary": "lifespan에서 만든 자원을 담아 두고 요청마다 얕은 복사본으로 넘겨주는 ASGI의 상태 이름 공간이다.",
+    "parent": "be.async.asgi-lifespan",
+    "aliases": [
+      "lifespan state",
+      "ASGI state 이름 공간"
+    ],
+    "refs": [
+      "https://asgi.readthedocs.io/en/latest/specs/lifespan.html"
+    ]
+  },
+  {
+    "id": "be.async.contextvar-token",
+    "title": "ContextVar 토큰",
+    "en": "ContextVar Token",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "비동기·실시간",
+    "summary": "ContextVar.set이 돌려주는 값으로, reset에 넘기면 이전 값을 되돌리며 한 번만 쓸 수 있고 3.14부터 with 문에도 쓴다.",
+    "parent": "be.async.contextvars",
+    "aliases": [
+      "contextvars.Token",
+      "ContextVar.reset",
+      "var.reset(token)"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/contextvars.html"
+    ]
+  },
+  {
+    "id": "be.async.websocket-masking-key",
+    "title": "WebSocket 마스킹 키",
+    "en": "WebSocket Masking Key",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "비동기·실시간",
+    "summary": "클라이언트가 보내는 프레임마다 새로 고른 4바이트 값으로 본문을 XOR해 선 위의 바이트를 공격자가 정하지 못하게 한다.",
+    "parent": "be.async.websocket-protocol",
+    "aliases": [
+      "WebSocket masking key",
+      "client-to-server masking",
+      "WebSocket 프레임 마스킹"
+    ],
+    "refs": [
+      "https://www.rfc-editor.org/rfc/rfc6455.html#section-5.3"
+    ]
+  },
+  {
+    "id": "be.auth.password-shucking",
+    "title": "비밀번호 셔킹",
+    "en": "Password Shucking",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "인증·인가",
+    "summary": "bcrypt 앞에 둔 사전 해시가 다른 곳에도 쓰여 그 값이 알려지면 bcrypt 크래킹이 안쪽 해시 크래킹으로 줄어드는 공격이다.",
+    "parent": "be.auth.password-hash-cost",
+    "aliases": [
+      "password shucking",
+      "해시 셔킹",
+      "shucking 공격"
+    ],
+    "refs": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html#pre-hashing-passwords-with-bcrypt"
+    ]
+  },
+  {
+    "id": "be.async.uncancel",
+    "title": "취소 요청 수와 uncancel",
+    "en": "Task Cancellation Count and uncancel()",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "비동기·실시간",
+    "summary": "Task.cancelling()이 세는 대기 중 취소 요청을 하나 줄이는 asyncio 메서드로, 3.13부터 0이 되면 걸린 취소를 거둔다.",
+    "related": [
+      "be.async.event-loop-internals"
+    ],
+    "aliases": [
+      "Task.uncancel",
+      "Task.cancelling",
+      "asyncio 취소 카운트"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/asyncio-task.html#task-cancellation"
+    ]
+  },
+  {
+    "id": "be.async.eager-task-factory",
+    "title": "eager 태스크 팩토리",
+    "en": "Eager Task Factory",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "비동기·실시간",
+    "summary": "태스크를 만들 때 코루틴을 곧바로 실행해 막히지 않고 끝나면 루프 예약을 건너뛰는 3.12 asyncio 기능으로, 실행 순서가 바뀔 수 있다.",
+    "related": [
+      "be.async.event-loop-internals"
+    ],
+    "aliases": [
+      "eager_task_factory",
+      "asyncio eager task",
+      "eager_start"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/asyncio-task.html#eager-task-factory"
+    ]
+  },
+  {
+    "id": "be.rest.ratelimit-headers",
+    "title": "RateLimit 헤더 필드",
+    "en": "RateLimit Header Fields",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "REST API",
+    "summary": "RateLimit-Policy로 할당량 정책을, RateLimit로 남은 할당량과 유효 창을 구조화 필드로 알리는 IETF 초안의 응답 헤더다.",
+    "related": [
+      "be.rest.rate-limit",
+      "be.http.structured-fields"
+    ],
+    "aliases": [
+      "RateLimit-Policy",
+      "ratelimit headers",
+      "draft-ietf-httpapi-ratelimit-headers"
+    ],
+    "refs": [
+      "https://datatracker.ietf.org/doc/draft-ietf-httpapi-ratelimit-headers/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
   }
 ]

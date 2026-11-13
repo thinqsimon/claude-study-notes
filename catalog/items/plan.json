@@ -8634,6 +8634,141 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "plan.basics.unicode-line-breaking",
+    "title": "유니코드 줄 바꿈 알고리즘과 한국어 줄 바꿈 방식",
+    "en": "Unicode Line Breaking Algorithm (UAX #14)",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "글자마다 줄 바꿈 클래스를 주고 우선순위 규칙으로 줄을 나눌 수 있는 자리를 찾는 UAX #14의 동작과 맞춤 조정의 손익이다.",
+    "objectives": [
+      "줄 바꿈 클래스와 우선순위 규칙이 필수 줄 바꿈과 줄 바꿈 기회를 정하는 과정을 설명할 수 있다",
+      "한글을 기본 ID 클래스로 둘 때와 AL로 맞춤 조정할 때 줄 나뉨이 어떻게 달라지는지 비교할 수 있다",
+      "CSS word-break: keep-all과 overflow-wrap이 UAX #14 기본 동작을 어떻게 바꾸는지 근거로 문구 배치를 판단할 수 있다",
+      "줄 바꿈 규칙의 맞춤 조정이 적합한 경우와 공개 의무를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.ui-writing"
+    ],
+    "related": [
+      "plan.basics.uax29-word-boundaries"
+    ],
+    "aliases": [
+      "UAX #14",
+      "UAX 14",
+      "Unicode line breaking",
+      "유니코드 줄 바꿈 규칙",
+      "한국어 줄 바꿈 방식"
+    ],
+    "refs": [
+      "https://www.unicode.org/reports/tr14/",
+      "https://www.w3.org/TR/css-text-3/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "plan.basics.unicode-collation",
+    "title": "유니코드 콜레이션 알고리즘과 언어별 정렬",
+    "en": "Unicode Collation Algorithm (UTS #10)",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "다단계 가중치로 문자열 순서를 정하는 UCA의 구조와, 기본 표·언어별 조정·정렬 키 방식의 손익이다.",
+    "objectives": [
+      "1~4단계 가중치가 기본 글자·악센트·대소문자·구두점 차이를 차례로 가르는 방식을 설명할 수 있다",
+      "DUCET 기본 순서와 CLDR 언어별 조정의 관계를 근거로 목록 정렬 요구사항을 정할 수 있다",
+      "정렬 키를 미리 만드는 방식과 증분 비교 방식의 성능 손익을 비교할 수 있다",
+      "콜레이션 강도로 대소문자·악센트를 무시하는 검색 일치 규칙을 설계할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.bcp47-language-tags"
+    ],
+    "related": [
+      "plan.basics.cldr-locale-inheritance"
+    ],
+    "aliases": [
+      "UCA",
+      "UTS #10",
+      "Unicode collation",
+      "유니코드 콜레이션",
+      "언어별 정렬 순서"
+    ],
+    "refs": [
+      "https://www.unicode.org/reports/tr10/"
+    ]
+  },
+  {
+    "id": "plan.basics.cldr-locale-inheritance",
+    "title": "CLDR 로캘 상속과 대체 조회 순서",
+    "en": "CLDR Locale Inheritance and Lookup",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "로캘 ID를 끝에서 잘라 루트까지 올라가는 CLDR 기본 상속과 parentLocales·측면 상속·지역 우선 상속이 그 순서를 바꾸는 방식이다.",
+    "objectives": [
+      "번들 조회와 항목 조회가 기본 로캘을 거치는지 여부로 어떻게 다른지 설명할 수 있다",
+      "parentLocales가 잘라 내기 상속을 덮어써 es_419 같은 지역 묶음과 비기본 문자 체계 로캘의 부모를 바꾸는 경우를 설명할 수 있다",
+      "count 같은 속성이 부모로 가기 전에 같은 로캘 안에서 측면 상속되는 순서를 추적할 수 있다",
+      "지역 우선 상속이 언어를 떼고 지역을 기본 키로 삼아 주 정보·달력·측정 단위 같은 지역 선호 자원을 찾는 방식을 근거로 다국어 형식 누락을 분석할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.bcp47-language-tags"
+    ],
+    "related": [
+      "plan.basics.messageformat2",
+      "plan.basics.cldr-skeleton-matching"
+    ],
+    "aliases": [
+      "CLDR 로캘 상속",
+      "CLDR locale inheritance",
+      "로캘 대체 조회",
+      "CLDR 로캘 폴백"
+    ],
+    "refs": [
+      "https://www.unicode.org/reports/tr35/tr35-79/tr35.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "plan.basics.forced-colors-mode",
+    "title": "강제 색상 모드와 시스템 색 설계",
+    "en": "Forced Colors Mode",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "사용자 팔레트를 강제하려고 브라우저가 작성자 색을 시스템 색으로 바꾸는 규칙과, 이를 해치지 않는 색 설계의 손익이다.",
+    "objectives": [
+      "강제 색상 모드에서 어떤 속성의 색이 시스템 색으로 바뀌고 그림자·배경 이미지가 어떻게 계산되는지 설명할 수 있다",
+      "계산값은 그대로 두고 사용값만 바뀌는 동작을 근거로 색 토큰이 깨지는 원인을 분석할 수 있다",
+      "forced-color-adjust의 auto·none·preserve-parent-color를 언제 써야 하는지 판단할 수 있다",
+      "시스템 색의 전경·배경 짝을 지켜야 대비가 보장되는 이유와 지문 수집 위험을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.color-contrast",
+      "plan.basics.wcag2-contrast-algorithm"
+    ],
+    "related": [
+      "plan.figma.design-token-architecture"
+    ],
+    "aliases": [
+      "forced colors mode",
+      "강제 색상 모드",
+      "Windows 고대비 모드"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/css-color-adjust-1/",
+      "https://www.w3.org/TR/css-color-4/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
     "id": "plan.basics.wcag2ict",
     "title": "WCAG2ICT로 앱·문서에 WCAG 적용하기",
     "en": "Applying WCAG to Non-Web ICT with WCAG2ICT",
@@ -8890,6 +9025,36 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "plan.basics.uax29-word-boundaries",
+    "title": "UAX #29 단어 경계 규칙과 검색·선택 단위",
+    "en": "Unicode Word Boundaries (UAX #29)",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "WB 규칙으로 단어 경계를 정하는 UAX #29의 기본 동작과, 한중일·태국어에서 사전 기반 맞춤 조정이 필요한 이유다.",
+    "objectives": [
+      "WB 규칙이 글자·숫자 연속과 구두점을 묶어 단어 경계를 정하는 순서를 설명할 수 있다",
+      "기본 규칙이 표의 문자 주변에서 모두 끊고 태국어에는 사전 조회가 필요한 이유를 설명할 수 있다",
+      "전체 단어 검색과 더블클릭 선택이 단어 경계에 기대는 방식을 근거로 검색 기능 요구사항을 정할 수 있다"
+    ],
+    "prerequisites": [
+      "cs.data.grapheme-length"
+    ],
+    "related": [
+      "plan.basics.unicode-line-breaking"
+    ],
+    "aliases": [
+      "UAX #29 단어 경계",
+      "Unicode word boundaries",
+      "단어 경계 규칙",
+      "word segmentation 규칙"
+    ],
+    "refs": [
+      "https://www.unicode.org/reports/tr29/"
+    ]
+  },
+  {
     "id": "plan.basics.accessibility-supported",
     "title": "접근성 지원 기술 사용(accessibility supported)",
     "en": "Accessibility Supported Ways of Using Technologies",
@@ -8966,6 +9131,28 @@
     "refs": [
       "https://www.w3.org/TR/WCAG22/#dfn-relative-luminance"
     ]
+  },
+  {
+    "id": "plan.basics.css-word-break-keep-all",
+    "title": "CSS word-break: keep-all",
+    "en": "CSS word-break: keep-all",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "기획 기초",
+    "summary": "글자 사이의 암묵적 줄 바꿈 기회를 막아 한국어를 영어처럼 주로 띄어쓰기에서 나누게 하는 CSS 값이다.",
+    "parent": "plan.basics.unicode-line-breaking",
+    "aliases": [
+      "keep-all",
+      "word-break keep-all",
+      "어절 단위 줄 바꿈",
+      "띄어쓰기 단위 줄 바꿈"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/css-text-3/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
   },
   {
     "id": "plan.figma.library-analytics",
@@ -9407,5 +9594,148 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
+  },
+  {
+    "id": "plan.basics.line-break-opportunity",
+    "title": "줄 바꿈 기회와 필수 줄 바꿈",
+    "en": "Line Break Opportunity and Mandatory Break",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "UAX #14가 정하는 것은 줄을 나눠도 되는 자리일 뿐이고, 실제로 어디서 나눌지는 상위 배치 소프트웨어가 고른다는 구분이다.",
+    "parent": "plan.basics.unicode-line-breaking",
+    "aliases": [
+      "break opportunity",
+      "줄 바꿈 기회",
+      "mandatory break",
+      "필수 줄 바꿈"
+    ],
+    "refs": [
+      "https://www.unicode.org/reports/tr14/"
+    ]
+  },
+  {
+    "id": "plan.basics.ducet",
+    "title": "기본 유니코드 콜레이션 요소 표(DUCET)",
+    "en": "Default Unicode Collation Element Table",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "모든 문자에 기본 정렬 가중치를 주지만 특정 언어에 맞는 순서는 아니어서 언어별 조정이 필요한 UCA의 기본 표다.",
+    "parent": "plan.basics.unicode-collation",
+    "aliases": [
+      "DUCET",
+      "Default Unicode Collation Element Table",
+      "콜레이션 기본 표"
+    ],
+    "refs": [
+      "https://www.unicode.org/reports/tr10/"
+    ]
+  },
+  {
+    "id": "plan.basics.collation-sort-key",
+    "title": "UCA 정렬 키(collation sort key)",
+    "en": "Collation Sort Key",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "단계별 가중치를 이어 붙여 바이트 비교만으로 콜레이션 순서를 얻게 한 값으로, 반복 비교에 유리하지만 다른 조정끼리는 비교할 수 없다.",
+    "parent": "plan.basics.unicode-collation",
+    "aliases": [
+      "UCA 정렬 키",
+      "collation sort key",
+      "콜레이션 정렬 키"
+    ],
+    "refs": [
+      "https://www.unicode.org/reports/tr10/"
+    ]
+  },
+  {
+    "id": "plan.basics.cldr-parent-locales",
+    "title": "CLDR parentLocales(부모 로캘 지정)",
+    "en": "CLDR parentLocales",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "로캘 ID 잘라 내기 대신 명시한 부모로 상속하게 하는 CLDR 보충 데이터로, 순환 없이 루트까지 이어져야 한다.",
+    "parent": "plan.basics.cldr-locale-inheritance",
+    "aliases": [
+      "parentLocales",
+      "CLDR 부모 로캘",
+      "CLDR parent locale"
+    ],
+    "refs": [
+      "https://www.unicode.org/reports/tr35/tr35-79/tr35.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "plan.basics.cldr-lateral-inheritance",
+    "title": "CLDR 측면 상속(lateral inheritance)",
+    "en": "CLDR Lateral Inheritance",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "count·gender·alt 같은 속성 값이 없을 때 부모 로캘보다 먼저 같은 로캘 안의 더 일반적인 값으로 대체하는 CLDR 규칙이다.",
+    "parent": "plan.basics.cldr-locale-inheritance",
+    "aliases": [
+      "CLDR 측면 상속",
+      "CLDR lateral inheritance",
+      "lateral inheritance"
+    ],
+    "refs": [
+      "https://www.unicode.org/reports/tr35/tr35-79/tr35.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "plan.basics.forced-color-adjust",
+    "title": "forced-color-adjust 속성",
+    "en": "forced-color-adjust",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "요소가 강제 색상 모드의 색 바꾸기를 받을지 정하는 상속 속성으로, none은 작성자가 직접 색을 맞출 때만 쓴다.",
+    "parent": "plan.basics.forced-colors-mode",
+    "aliases": [
+      "forced-color-adjust",
+      "preserve-parent-color",
+      "강제 색상 조정 해제"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/css-color-adjust-1/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "plan.basics.css-system-colors",
+    "title": "CSS 시스템 색과 전경·배경 짝",
+    "en": "CSS System Colors",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "Canvas·CanvasText·ButtonFace처럼 사용자·OS가 정하는 색 키워드로, 정해진 전경·배경 짝끼리만 읽을 수 있는 대비가 기대된다.",
+    "parent": "plan.basics.forced-colors-mode",
+    "aliases": [
+      "CSS system colors",
+      "CSS 시스템 색",
+      "CanvasText",
+      "ButtonFace"
+    ],
+    "refs": [
+      "https://www.w3.org/TR/css-color-4/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
   }
 ]

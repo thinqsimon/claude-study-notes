@@ -1,5 +1,5 @@
 {
- "version": "0.81.0",
+ "version": "0.82.0",
  "domains": [
   {
    "prefix": "dev",
@@ -29072,6 +29072,145 @@
    "domain": "plan"
   },
   {
+   "id": "plan.basics.unicode-line-breaking",
+   "title": "유니코드 줄 바꿈 알고리즘과 한국어 줄 바꿈 방식",
+   "en": "Unicode Line Breaking Algorithm (UAX #14)",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "글자마다 줄 바꿈 클래스를 주고 우선순위 규칙으로 줄을 나눌 수 있는 자리를 찾는 UAX #14의 동작과 맞춤 조정의 손익이다.",
+   "objectives": [
+    "줄 바꿈 클래스와 우선순위 규칙이 필수 줄 바꿈과 줄 바꿈 기회를 정하는 과정을 설명할 수 있다",
+    "한글을 기본 ID 클래스로 둘 때와 AL로 맞춤 조정할 때 줄 나뉨이 어떻게 달라지는지 비교할 수 있다",
+    "CSS word-break: keep-all과 overflow-wrap이 UAX #14 기본 동작을 어떻게 바꾸는지 근거로 문구 배치를 판단할 수 있다",
+    "줄 바꿈 규칙의 맞춤 조정이 적합한 경우와 공개 의무를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.ui-writing"
+   ],
+   "related": [
+    "plan.basics.uax29-word-boundaries"
+   ],
+   "aliases": [
+    "UAX #14",
+    "UAX 14",
+    "Unicode line breaking",
+    "유니코드 줄 바꿈 규칙",
+    "한국어 줄 바꿈 방식"
+   ],
+   "refs": [
+    "https://www.unicode.org/reports/tr14/",
+    "https://www.w3.org/TR/css-text-3/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.unicode-collation",
+   "title": "유니코드 콜레이션 알고리즘과 언어별 정렬",
+   "en": "Unicode Collation Algorithm (UTS #10)",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "다단계 가중치로 문자열 순서를 정하는 UCA의 구조와, 기본 표·언어별 조정·정렬 키 방식의 손익이다.",
+   "objectives": [
+    "1~4단계 가중치가 기본 글자·악센트·대소문자·구두점 차이를 차례로 가르는 방식을 설명할 수 있다",
+    "DUCET 기본 순서와 CLDR 언어별 조정의 관계를 근거로 목록 정렬 요구사항을 정할 수 있다",
+    "정렬 키를 미리 만드는 방식과 증분 비교 방식의 성능 손익을 비교할 수 있다",
+    "콜레이션 강도로 대소문자·악센트를 무시하는 검색 일치 규칙을 설계할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.bcp47-language-tags"
+   ],
+   "related": [
+    "plan.basics.cldr-locale-inheritance"
+   ],
+   "aliases": [
+    "UCA",
+    "UTS #10",
+    "Unicode collation",
+    "유니코드 콜레이션",
+    "언어별 정렬 순서"
+   ],
+   "refs": [
+    "https://www.unicode.org/reports/tr10/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.cldr-locale-inheritance",
+   "title": "CLDR 로캘 상속과 대체 조회 순서",
+   "en": "CLDR Locale Inheritance and Lookup",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "로캘 ID를 끝에서 잘라 루트까지 올라가는 CLDR 기본 상속과 parentLocales·측면 상속·지역 우선 상속이 그 순서를 바꾸는 방식이다.",
+   "objectives": [
+    "번들 조회와 항목 조회가 기본 로캘을 거치는지 여부로 어떻게 다른지 설명할 수 있다",
+    "parentLocales가 잘라 내기 상속을 덮어써 es_419 같은 지역 묶음과 비기본 문자 체계 로캘의 부모를 바꾸는 경우를 설명할 수 있다",
+    "count 같은 속성이 부모로 가기 전에 같은 로캘 안에서 측면 상속되는 순서를 추적할 수 있다",
+    "지역 우선 상속이 언어를 떼고 지역을 기본 키로 삼아 주 정보·달력·측정 단위 같은 지역 선호 자원을 찾는 방식을 근거로 다국어 형식 누락을 분석할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.bcp47-language-tags"
+   ],
+   "related": [
+    "plan.basics.messageformat2",
+    "plan.basics.cldr-skeleton-matching"
+   ],
+   "aliases": [
+    "CLDR 로캘 상속",
+    "CLDR locale inheritance",
+    "로캘 대체 조회",
+    "CLDR 로캘 폴백"
+   ],
+   "refs": [
+    "https://www.unicode.org/reports/tr35/tr35-79/tr35.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.forced-colors-mode",
+   "title": "강제 색상 모드와 시스템 색 설계",
+   "en": "Forced Colors Mode",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "사용자 팔레트를 강제하려고 브라우저가 작성자 색을 시스템 색으로 바꾸는 규칙과, 이를 해치지 않는 색 설계의 손익이다.",
+   "objectives": [
+    "강제 색상 모드에서 어떤 속성의 색이 시스템 색으로 바뀌고 그림자·배경 이미지가 어떻게 계산되는지 설명할 수 있다",
+    "계산값은 그대로 두고 사용값만 바뀌는 동작을 근거로 색 토큰이 깨지는 원인을 분석할 수 있다",
+    "forced-color-adjust의 auto·none·preserve-parent-color를 언제 써야 하는지 판단할 수 있다",
+    "시스템 색의 전경·배경 짝을 지켜야 대비가 보장되는 이유와 지문 수집 위험을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "plan.basics.color-contrast",
+    "plan.basics.wcag2-contrast-algorithm"
+   ],
+   "related": [
+    "plan.figma.design-token-architecture"
+   ],
+   "aliases": [
+    "forced colors mode",
+    "강제 색상 모드",
+    "Windows 고대비 모드"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/css-color-adjust-1/",
+    "https://www.w3.org/TR/css-color-4/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "plan"
+  },
+  {
    "id": "plan.basics.wcag2ict",
    "title": "WCAG2ICT로 앱·문서에 WCAG 적용하기",
    "en": "Applying WCAG to Non-Web ICT with WCAG2ICT",
@@ -29336,6 +29475,37 @@
    "domain": "plan"
   },
   {
+   "id": "plan.basics.uax29-word-boundaries",
+   "title": "UAX #29 단어 경계 규칙과 검색·선택 단위",
+   "en": "Unicode Word Boundaries (UAX #29)",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "WB 규칙으로 단어 경계를 정하는 UAX #29의 기본 동작과, 한중일·태국어에서 사전 기반 맞춤 조정이 필요한 이유다.",
+   "objectives": [
+    "WB 규칙이 글자·숫자 연속과 구두점을 묶어 단어 경계를 정하는 순서를 설명할 수 있다",
+    "기본 규칙이 표의 문자 주변에서 모두 끊고 태국어에는 사전 조회가 필요한 이유를 설명할 수 있다",
+    "전체 단어 검색과 더블클릭 선택이 단어 경계에 기대는 방식을 근거로 검색 기능 요구사항을 정할 수 있다"
+   ],
+   "prerequisites": [
+    "cs.data.grapheme-length"
+   ],
+   "related": [
+    "plan.basics.unicode-line-breaking"
+   ],
+   "aliases": [
+    "UAX #29 단어 경계",
+    "Unicode word boundaries",
+    "단어 경계 규칙",
+    "word segmentation 규칙"
+   ],
+   "refs": [
+    "https://www.unicode.org/reports/tr29/"
+   ],
+   "domain": "plan"
+  },
+  {
    "id": "plan.basics.accessibility-supported",
    "title": "접근성 지원 기술 사용(accessibility supported)",
    "en": "Accessibility Supported Ways of Using Technologies",
@@ -29415,6 +29585,29 @@
    "refs": [
     "https://www.w3.org/TR/WCAG22/#dfn-relative-luminance"
    ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.css-word-break-keep-all",
+   "title": "CSS word-break: keep-all",
+   "en": "CSS word-break: keep-all",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "기획 기초",
+   "summary": "글자 사이의 암묵적 줄 바꿈 기회를 막아 한국어를 영어처럼 주로 띄어쓰기에서 나누게 하는 CSS 값이다.",
+   "parent": "plan.basics.unicode-line-breaking",
+   "aliases": [
+    "keep-all",
+    "word-break keep-all",
+    "어절 단위 줄 바꿈",
+    "띄어쓰기 단위 줄 바꿈"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/css-text-3/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
    "domain": "plan"
   },
   {
@@ -29878,6 +30071,156 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.line-break-opportunity",
+   "title": "줄 바꿈 기회와 필수 줄 바꿈",
+   "en": "Line Break Opportunity and Mandatory Break",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "UAX #14가 정하는 것은 줄을 나눠도 되는 자리일 뿐이고, 실제로 어디서 나눌지는 상위 배치 소프트웨어가 고른다는 구분이다.",
+   "parent": "plan.basics.unicode-line-breaking",
+   "aliases": [
+    "break opportunity",
+    "줄 바꿈 기회",
+    "mandatory break",
+    "필수 줄 바꿈"
+   ],
+   "refs": [
+    "https://www.unicode.org/reports/tr14/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.ducet",
+   "title": "기본 유니코드 콜레이션 요소 표(DUCET)",
+   "en": "Default Unicode Collation Element Table",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "모든 문자에 기본 정렬 가중치를 주지만 특정 언어에 맞는 순서는 아니어서 언어별 조정이 필요한 UCA의 기본 표다.",
+   "parent": "plan.basics.unicode-collation",
+   "aliases": [
+    "DUCET",
+    "Default Unicode Collation Element Table",
+    "콜레이션 기본 표"
+   ],
+   "refs": [
+    "https://www.unicode.org/reports/tr10/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.collation-sort-key",
+   "title": "UCA 정렬 키(collation sort key)",
+   "en": "Collation Sort Key",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "단계별 가중치를 이어 붙여 바이트 비교만으로 콜레이션 순서를 얻게 한 값으로, 반복 비교에 유리하지만 다른 조정끼리는 비교할 수 없다.",
+   "parent": "plan.basics.unicode-collation",
+   "aliases": [
+    "UCA 정렬 키",
+    "collation sort key",
+    "콜레이션 정렬 키"
+   ],
+   "refs": [
+    "https://www.unicode.org/reports/tr10/"
+   ],
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.cldr-parent-locales",
+   "title": "CLDR parentLocales(부모 로캘 지정)",
+   "en": "CLDR parentLocales",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "로캘 ID 잘라 내기 대신 명시한 부모로 상속하게 하는 CLDR 보충 데이터로, 순환 없이 루트까지 이어져야 한다.",
+   "parent": "plan.basics.cldr-locale-inheritance",
+   "aliases": [
+    "parentLocales",
+    "CLDR 부모 로캘",
+    "CLDR parent locale"
+   ],
+   "refs": [
+    "https://www.unicode.org/reports/tr35/tr35-79/tr35.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.cldr-lateral-inheritance",
+   "title": "CLDR 측면 상속(lateral inheritance)",
+   "en": "CLDR Lateral Inheritance",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "count·gender·alt 같은 속성 값이 없을 때 부모 로캘보다 먼저 같은 로캘 안의 더 일반적인 값으로 대체하는 CLDR 규칙이다.",
+   "parent": "plan.basics.cldr-locale-inheritance",
+   "aliases": [
+    "CLDR 측면 상속",
+    "CLDR lateral inheritance",
+    "lateral inheritance"
+   ],
+   "refs": [
+    "https://www.unicode.org/reports/tr35/tr35-79/tr35.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.forced-color-adjust",
+   "title": "forced-color-adjust 속성",
+   "en": "forced-color-adjust",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "요소가 강제 색상 모드의 색 바꾸기를 받을지 정하는 상속 속성으로, none은 작성자가 직접 색을 맞출 때만 쓴다.",
+   "parent": "plan.basics.forced-colors-mode",
+   "aliases": [
+    "forced-color-adjust",
+    "preserve-parent-color",
+    "강제 색상 조정 해제"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/css-color-adjust-1/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "plan"
+  },
+  {
+   "id": "plan.basics.css-system-colors",
+   "title": "CSS 시스템 색과 전경·배경 짝",
+   "en": "CSS System Colors",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "기획 기초",
+   "summary": "Canvas·CanvasText·ButtonFace처럼 사용자·OS가 정하는 색 키워드로, 정해진 전경·배경 짝끼리만 읽을 수 있는 대비가 기대된다.",
+   "parent": "plan.basics.forced-colors-mode",
+   "aliases": [
+    "CSS system colors",
+    "CSS 시스템 색",
+    "CanvasText",
+    "ButtonFace"
+   ],
+   "refs": [
+    "https://www.w3.org/TR/css-color-4/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
    "domain": "plan"
   },
   {
@@ -39385,6 +39728,70 @@
    "domain": "be"
   },
   {
+   "id": "be.async.contextvars",
+   "title": "컨텍스트 변수와 비동기 문맥 전파",
+   "en": "Context Variables in asyncio",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "비동기·실시간",
+   "summary": "태스크마다 현재 문맥을 복사해 요청 ID 같은 값이 동시 실행 중에 섞이지 않게 하는 원리와 한계를 분석한다.",
+   "objectives": [
+    "태스크가 만들어질 때 현재 Context를 복사해 그 안에서 코루틴을 돌리는 동작을 코드로 보일 수 있다",
+    "자식 태스크에서 set한 값이 그 태스크를 만든 쪽에 보이지 않는 이유를 Context.run의 의미로 설명할 수 있다",
+    "set이 돌려주는 토큰으로 이전 값을 되돌리는 패턴과 토큰을 한 번만 쓸 수 있는 제약을 설명할 수 있다",
+    "동시 실행 코드에서 threading.local 대신 컨텍스트 변수를 써야 하는 이유를 따질 수 있다"
+   ],
+   "prerequisites": [
+    "be.async.event-loop-internals",
+    "be.error.structured-logging"
+   ],
+   "aliases": [
+    "contextvars",
+    "ContextVar",
+    "copy_context",
+    "PEP 567"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/contextvars.html",
+    "https://docs.python.org/3/library/asyncio-task.html#creating-tasks"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.auth.password-hash-cost",
+   "title": "비밀번호 해시의 비용 인자와 페퍼",
+   "en": "Password Hashing Work Factors and Peppers",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "인증·인가",
+   "summary": "Argon2id·scrypt·bcrypt·PBKDF2의 비용 인자와 페퍼, 옛 해시 갱신 방식을 공격 비용과 서버 부하로 비교한다.",
+   "objectives": [
+    "Argon2id·scrypt·bcrypt·PBKDF2 가운데 상황에 맞는 것을 OWASP 권장 비용 인자와 함께 고를 수 있다",
+    "비용 인자를 높일 때 로그인 지연과 CPU 고갈로 인한 서비스 거부 위험의 손익을 자기 서버 측정으로 따질 수 있다",
+    "페퍼를 해시 전과 후에 넣는 방식을 비교하고 페퍼가 유출되면 사용자 비밀번호 재설정이 필요한 비용을 설명할 수 있다",
+    "bcrypt의 72바이트 입력 한도와 사전 해시가 부르는 널 바이트·셔킹 문제, 옛 해시를 옮기는 방법을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "be.auth.password-storage",
+    "be.security.crypto-basics"
+   ],
+   "related": [
+    "be.auth.login-abuse"
+   ],
+   "aliases": [
+    "password pepper",
+    "password work factor",
+    "비밀번호 해시 비용 인자",
+    "Argon2id 매개변수"
+   ],
+   "refs": [
+    "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html"
+   ],
+   "domain": "be"
+  },
+  {
    "id": "be.async.asgi",
    "title": "ASGI: 파이썬 비동기 서버의 약속",
    "en": "ASGI Specification",
@@ -39830,6 +40237,98 @@
    "refs": [
     "https://www.rfc-editor.org/rfc/rfc7541.html",
     "https://www.rfc-editor.org/rfc/rfc9204.html"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.async.asgi-lifespan",
+   "title": "ASGI lifespan 프로토콜의 동작",
+   "en": "ASGI Lifespan Protocol",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "비동기·실시간",
+   "summary": "서버가 연결을 받기 전후에 앱과 startup·shutdown 메시지를 주고받는 순서와 실패 규칙, 상태 복사를 분석한다.",
+   "objectives": [
+    "서버가 startup.complete를 받기 전에는 연결을 처리하지 않고, shutdown은 연결을 닫은 뒤에 보내는 순서를 설명할 수 있다",
+    "앱이 lifespan 범위에서 예외를 내면 서버가 이벤트 없이 계속 도는 것과 startup.failed를 보내 서버를 멈추는 것의 차이를 따질 수 있다",
+    "lifespan 상태가 요청마다 얕게 복사되어 최상위 키 변경은 격리되지만 안의 가변 객체는 공유된다는 점을 들어 위험을 분석할 수 있다",
+    "요청을 처리하는 이벤트 루프마다 lifespan을 한 번 돌려야 하는 이유를 자원과 루프의 관계로 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "be.fastapi.lifespan",
+    "be.async.asgi"
+   ],
+   "aliases": [
+    "ASGI lifespan",
+    "lifespan 프로토콜",
+    "lifespan.startup.failed",
+    "lifespan.shutdown"
+   ],
+   "refs": [
+    "https://asgi.readthedocs.io/en/latest/specs/lifespan.html",
+    "https://starlette.dev/lifespan/",
+    "https://uvicorn.dev/settings/"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.http.structured-fields",
+   "title": "HTTP 구조화 필드 값",
+   "en": "Structured Field Values for HTTP",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "HTTP",
+   "summary": "새 HTTP 헤더가 Item·List·Dictionary 자료 모델과 엄격한 파싱 알고리즘을 함께 쓰게 하는 RFC 9651의 규칙이다.",
+   "objectives": [
+    "헤더 값을 Item·List·Dictionary와 Inner List, Parameters로 나눠 읽을 수 있다",
+    "파싱에 실패하면 필드 전체를 없는 것처럼 무시하고 부분 파싱을 허용하지 않는 엄격한 처리가 상호 운용성과 보안에 주는 손익을 따질 수 있다",
+    "기존 헤더는 스스로 채택하지 않는 한 이 규칙으로 다시 정의되지 않는다는 점을 들어 범용 파서의 적용 범위를 판단할 수 있다",
+    "RFC 8941에서 RFC 9651로 오며 더해진 Date와 Display String 형식을 구분하고 Display String을 표시할 때의 위험을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "be.http.headers-body"
+   ],
+   "aliases": [
+    "RFC 9651",
+    "RFC 8941",
+    "Structured Fields",
+    "구조화 헤더"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc9651.html"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.async.websocket-protocol",
+   "title": "WebSocket 프레임과 마스킹",
+   "en": "WebSocket Framing and Masking",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "비동기·실시간",
+   "summary": "RFC 6455의 여는 핸드셰이크, 프레임 구조, 클라이언트 마스킹, 닫기 절차가 왜 그렇게 설계됐는지 분석한다.",
+   "objectives": [
+    "Sec-WebSocket-Key에 고정 GUID를 붙여 SHA-1과 base64로 Sec-WebSocket-Accept 값을 만드는 과정을 설명할 수 있다",
+    "FIN·opcode·길이 필드로 조각난 메시지와 그 사이에 끼어드는 제어 프레임을 해석할 수 있다",
+    "클라이언트만 프레임마다 예측할 수 없는 키로 마스킹해야 하는 이유를 중간 캐시 오염 공격으로 설명할 수 있다",
+    "프레임 크기와 재조립된 메시지 크기에 한도를 두지 않을 때의 서비스 거부 위험을 따질 수 있다"
+   ],
+   "prerequisites": [
+    "be.async.websocket",
+    "be.async.realtime-choice"
+   ],
+   "aliases": [
+    "RFC 6455",
+    "WebSocket 프레임",
+    "WebSocket 프레이밍",
+    "Sec-WebSocket-Accept",
+    "WebSocket opcode"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc6455.html"
    ],
    "domain": "be"
   },
@@ -40335,6 +40834,154 @@
    "refs": [
     "https://www.rfc-editor.org/rfc/rfc9204.html"
    ],
+   "domain": "be"
+  },
+  {
+   "id": "be.async.lifespan-state",
+   "title": "lifespan 상태",
+   "en": "Lifespan State",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "비동기·실시간",
+   "summary": "lifespan에서 만든 자원을 담아 두고 요청마다 얕은 복사본으로 넘겨주는 ASGI의 상태 이름 공간이다.",
+   "parent": "be.async.asgi-lifespan",
+   "aliases": [
+    "lifespan state",
+    "ASGI state 이름 공간"
+   ],
+   "refs": [
+    "https://asgi.readthedocs.io/en/latest/specs/lifespan.html"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.async.contextvar-token",
+   "title": "ContextVar 토큰",
+   "en": "ContextVar Token",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "비동기·실시간",
+   "summary": "ContextVar.set이 돌려주는 값으로, reset에 넘기면 이전 값을 되돌리며 한 번만 쓸 수 있고 3.14부터 with 문에도 쓴다.",
+   "parent": "be.async.contextvars",
+   "aliases": [
+    "contextvars.Token",
+    "ContextVar.reset",
+    "var.reset(token)"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/contextvars.html"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.async.websocket-masking-key",
+   "title": "WebSocket 마스킹 키",
+   "en": "WebSocket Masking Key",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "비동기·실시간",
+   "summary": "클라이언트가 보내는 프레임마다 새로 고른 4바이트 값으로 본문을 XOR해 선 위의 바이트를 공격자가 정하지 못하게 한다.",
+   "parent": "be.async.websocket-protocol",
+   "aliases": [
+    "WebSocket masking key",
+    "client-to-server masking",
+    "WebSocket 프레임 마스킹"
+   ],
+   "refs": [
+    "https://www.rfc-editor.org/rfc/rfc6455.html#section-5.3"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.auth.password-shucking",
+   "title": "비밀번호 셔킹",
+   "en": "Password Shucking",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "인증·인가",
+   "summary": "bcrypt 앞에 둔 사전 해시가 다른 곳에도 쓰여 그 값이 알려지면 bcrypt 크래킹이 안쪽 해시 크래킹으로 줄어드는 공격이다.",
+   "parent": "be.auth.password-hash-cost",
+   "aliases": [
+    "password shucking",
+    "해시 셔킹",
+    "shucking 공격"
+   ],
+   "refs": [
+    "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html#pre-hashing-passwords-with-bcrypt"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.async.uncancel",
+   "title": "취소 요청 수와 uncancel",
+   "en": "Task Cancellation Count and uncancel()",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "비동기·실시간",
+   "summary": "Task.cancelling()이 세는 대기 중 취소 요청을 하나 줄이는 asyncio 메서드로, 3.13부터 0이 되면 걸린 취소를 거둔다.",
+   "related": [
+    "be.async.event-loop-internals"
+   ],
+   "aliases": [
+    "Task.uncancel",
+    "Task.cancelling",
+    "asyncio 취소 카운트"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/asyncio-task.html#task-cancellation"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.async.eager-task-factory",
+   "title": "eager 태스크 팩토리",
+   "en": "Eager Task Factory",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "비동기·실시간",
+   "summary": "태스크를 만들 때 코루틴을 곧바로 실행해 막히지 않고 끝나면 루프 예약을 건너뛰는 3.12 asyncio 기능으로, 실행 순서가 바뀔 수 있다.",
+   "related": [
+    "be.async.event-loop-internals"
+   ],
+   "aliases": [
+    "eager_task_factory",
+    "asyncio eager task",
+    "eager_start"
+   ],
+   "refs": [
+    "https://docs.python.org/3/library/asyncio-task.html#eager-task-factory"
+   ],
+   "domain": "be"
+  },
+  {
+   "id": "be.rest.ratelimit-headers",
+   "title": "RateLimit 헤더 필드",
+   "en": "RateLimit Header Fields",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "REST API",
+   "summary": "RateLimit-Policy로 할당량 정책을, RateLimit로 남은 할당량과 유효 창을 구조화 필드로 알리는 IETF 초안의 응답 헤더다.",
+   "related": [
+    "be.rest.rate-limit",
+    "be.http.structured-fields"
+   ],
+   "aliases": [
+    "RateLimit-Policy",
+    "ratelimit headers",
+    "draft-ietf-httpapi-ratelimit-headers"
+   ],
+   "refs": [
+    "https://datatracker.ietf.org/doc/draft-ietf-httpapi-ratelimit-headers/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
    "domain": "be"
   },
   {
@@ -49507,6 +50154,42 @@
    "domain": "db"
   },
   {
+   "id": "db.internals.heap-page-layout",
+   "title": "PostgreSQL 힙 페이지와 행 헤더의 구조",
+   "en": "PostgreSQL Heap Page and Tuple Header Layout",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "8kB 페이지가 헤더·항목 식별자 배열·빈 공간·행으로 나뉘고 행 헤더의 t_xmin·t_xmax·t_ctid가 MVCC를 떠받치는 구조를 다룬다.",
+   "objectives": [
+    "24바이트 페이지 헤더의 pd_lower·pd_upper가 항목 식별자 배열과 뒤에서부터 쌓이는 행 사이의 빈 공간을 가리키는 방식을 설명할 수 있다",
+    "항목 식별자가 해제될 때까지 움직이지 않아 페이지 안에서 행을 압축해도 CTID가 유효하게 남는 까닭을 설명할 수 있다",
+    "행 헤더의 t_xmin·t_xmax·t_ctid와 널 비트맵이 행 하나에 붙는 고정 비용과 버전 추적에 쓰이는 방식을 따질 수 있다",
+    "힙 옆에 _vm·_fsm 포크를 따로 두어 VACUUM 건너뛰기와 빈자리 찾기를 빠르게 하는 구조를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "db.internals.mvcc-vacuum"
+   ],
+   "related": [
+    "db.internals.hot-updates",
+    "db.internals.toast"
+   ],
+   "aliases": [
+    "PostgreSQL 페이지 레이아웃",
+    "PostgreSQL page layout",
+    "HeapTupleHeaderData",
+    "PageHeaderData",
+    "PostgreSQL 행 헤더"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/storage-page-layout.html",
+    "https://www.postgresql.org/docs/current/storage-vm.html",
+    "https://www.postgresql.org/docs/current/storage-fsm.html"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.internals.wal-replication",
    "title": "WAL과 복제",
    "en": "WAL and Replication",
@@ -49755,6 +50438,147 @@
    "domain": "db"
   },
   {
+   "id": "db.internals.async-io",
+   "title": "PostgreSQL 18 비동기 I/O의 구조와 손익",
+   "en": "PostgreSQL Asynchronous I/O",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "PostgreSQL 18이 읽기 요청 여러 개를 줄 세워 내보내는 비동기 I/O를 worker·io_uring·sync 방식으로 돌리는 구조와 설정의 손익을 따진다.",
+   "objectives": [
+    "PostgreSQL 18부터 백엔드가 읽기 요청을 여러 개 줄 세워 순차 스캔·비트맵 힙 스캔·VACUUM을 빠르게 하는 원리를 설명할 수 있다",
+    "io_method의 worker(기본값, io_workers 기본 3개)·io_uring(liburing 빌드 필요)·sync를 서버 시작 설정으로 고르는 손익을 따질 수 있다",
+    "effective_io_concurrency(기본 16)를 높이면 지연이 큰 저장 장치에서 이득이 크지만 지나치면 시스템 전체의 I/O 지연이 늘 수 있음을 근거로 값을 판단할 수 있다",
+    "pg_aios 뷰의 state·operation·f_sync로 사용 중인 비동기 I/O 핸들이 어느 단계에 있는지 읽을 수 있다"
+   ],
+   "prerequisites": [
+    "db.internals.shared-buffers"
+   ],
+   "related": [
+    "cs.os.io-uring"
+   ],
+   "aliases": [
+    "PostgreSQL 비동기 I/O",
+    "PostgreSQL AIO",
+    "PostgreSQL asynchronous I/O",
+    "io_method",
+    "pg_aios"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/18/release-18.html",
+    "https://www.postgresql.org/docs/current/runtime-config-resource.html",
+    "https://www.postgresql.org/docs/current/view-pg-aios.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.two-phase-commit",
+   "title": "PostgreSQL 2단계 커밋의 내부와 위험",
+   "en": "PostgreSQL Two-Phase Commit",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "트랜잭션을 세션에서 떼어 디스크에 준비해 두고 외부 관리자가 COMMIT PREPARED로 끝내는 구조와, 오래 남은 준비 트랜잭션이 부르는 장애를 다룬다.",
+   "objectives": [
+    "PREPARE TRANSACTION 뒤 트랜잭션이 세션과 분리되어 다른 세션에서 COMMIT PREPARED나 ROLLBACK PREPARED로 끝낼 수 있는 구조를 설명할 수 있다",
+    "짧은 준비 트랜잭션은 공유 메모리와 WAL에만 있고 체크포인트를 넘기면 pg_twophase 디렉터리에도 기록되는 저장 방식을 설명할 수 있다",
+    "오래 남은 준비 트랜잭션이 잠금을 계속 쥐고 VACUUM 회수를 막아 극단적으로는 XID 겹침을 피하려는 종료까지 부를 수 있음을 pg_prepared_xacts로 진단할 수 있다",
+    "임시 표·WITH HOLD 커서·LISTEN/NOTIFY를 쓴 트랜잭션은 준비할 수 없다는 제약을 근거로 외부 트랜잭션 관리자 설계를 따질 수 있다"
+   ],
+   "prerequisites": [
+    "db.internals.wal-replication",
+    "db.internals.mvcc-vacuum"
+   ],
+   "related": [
+    "be.arch.distributed-transactions",
+    "db.internals.xid-wraparound"
+   ],
+   "aliases": [
+    "PREPARE TRANSACTION",
+    "COMMIT PREPARED",
+    "PostgreSQL 2단계 커밋",
+    "PostgreSQL two-phase commit",
+    "pg_prepared_xacts",
+    "pg_twophase"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/sql-prepare-transaction.html",
+    "https://www.postgresql.org/docs/current/two-phase.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.cache.redis-compact-encodings",
+   "title": "Redis 작은 자료형의 압축 인코딩: listpack과 intset",
+   "en": "Redis Compact Encodings for Small Aggregates",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "캐시",
+   "summary": "작은 Hash·Sorted Set·Set을 선형 배열로 담아 메모리를 아끼다 한도를 넘으면 일반 인코딩으로 바꾸는 Redis의 CPU·메모리 손익을 따진다.",
+   "objectives": [
+    "원소 수와 원소 크기가 한도 아래인 Hash·Sorted Set·정수 Set이 listpack·intset으로 담겨 메모리를 크게 줄이는 원리를 설명할 수 있다",
+    "작을 때만 O(N) 선형 배열을 쓰고 커지면 해시 테이블로 바꾸어 분할 상환 O(1)과 캐시 지역성을 함께 얻는 손익을 따질 수 있다",
+    "Redis 7.0에서 ziplist 설정 이름이 listpack으로 바뀌고 7.2에서 Set용 listpack 설정이 더해진 버전 차이를 구분할 수 있다",
+    "키를 지워도 할당자가 메모리를 OS에 돌려주지 않아 RSS가 최고치에 머물고 단편화 비율이 부풀 수 있음을 근거로 메모리를 최고 사용량 기준으로 잡을 수 있다"
+   ],
+   "prerequisites": [
+    "db.cache.redis-data-types",
+    "db.cache.redis-eviction"
+   ],
+   "related": [
+    "db.cache.redis-hash"
+   ],
+   "aliases": [
+    "Redis 메모리 최적화",
+    "Redis memory optimization",
+    "Redis listpack",
+    "Redis intset",
+    "Redis ziplist"
+   ],
+   "refs": [
+    "https://redis.io/docs/latest/operate/oss_and_stack/management/optimization/memory-optimization/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.nosql.mongodb-causal-consistency",
+   "title": "MongoDB 인과적 일관성 세션과 확인 수준 조합",
+   "en": "MongoDB Causal Consistency and Read/Write Concern Combinations",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "NoSQL",
+   "summary": "클라이언트 세션이 operation time과 cluster time을 따라가며 지키는 네 가지 인과 보장이 읽기·쓰기 확인 수준 조합과 분할 상황에서 어떻게 깨지는지 따진다.",
+   "objectives": [
+    "자기 쓰기 읽기·단조 읽기·단조 쓰기·읽기 뒤 쓰기의 네 보장을 구분하고 \"majority\" 읽기와 \"majority\" 쓰기 조합에서만 내구성 있게 모두 지켜지는 까닭을 설명할 수 있다",
+    "네트워크 분할로 주 노드가 둘로 보일 때 w: 1 쓰기가 옛 주 노드에서 롤백되어 \"majority\" 읽기와 w: 1 조합의 보장이 깨지는 과정을 따질 수 있다",
+    "세션이 응답의 operation time과 cluster time을 기록하고 다른 세션으로 그 값을 넘겨 세션 사이에서도 인과 순서를 잇는 방식을 설명할 수 있다",
+    "세션 바깥의 동시 쓰기와 격리되지 않고 한 세션을 한 스레드만 써야 한다는 제약을 근거로 설계를 점검할 수 있다"
+   ],
+   "prerequisites": [
+    "db.nosql.mongodb-write-concern-read-preference"
+   ],
+   "related": [
+    "db.nosql.wiredtiger-internals"
+   ],
+   "aliases": [
+    "MongoDB 인과적 일관성",
+    "MongoDB causal consistency",
+    "causally consistent session",
+    "MongoDB 인과 일관성 세션"
+   ],
+   "refs": [
+    "https://www.mongodb.com/docs/manual/core/causal-consistency-read-write-concerns/",
+    "https://www.mongodb.com/docs/manual/core/read-isolation-consistency-recency/"
+   ],
+   "domain": "db"
+  },
+  {
    "id": "db.internals.xid-wraparound",
    "title": "트랜잭션 ID 겹침과 동결(freeze)",
    "en": "Transaction ID Wraparound and Freezing",
@@ -49903,6 +50727,55 @@
    ],
    "refs": [
     "https://www.mongodb.com/docs/manual/core/wiredtiger/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.visibility-map",
+   "title": "가시성 맵: all-visible과 all-frozen 비트",
+   "en": "Visibility Map",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "DB 내부",
+   "summary": "힙 페이지마다 두 비트를 두어 VACUUM이 건너뛸 페이지와 인덱스 전용 스캔이 힙을 안 봐도 되는 페이지를 알려 주는 _vm 포크다.",
+   "parent": "db.internals.heap-page-layout",
+   "related": [
+    "db.internals.xid-wraparound"
+   ],
+   "aliases": [
+    "visibility map",
+    "PostgreSQL 가시성 맵",
+    "all-visible 비트",
+    "all-frozen 비트",
+    "pg_visibility"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/storage-vm.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.nosql.read-concern-majority",
+   "title": "읽기 확인 수준 \"majority\": 과반 확정 데이터만 읽기",
+   "en": "MongoDB Read Concern \"majority\"",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "NoSQL",
+   "summary": "각 노드가 주 노드가 계산한 과반 확정 시점의 메모리 뷰에서 답해 롤백되지 않을 데이터만 돌려주는 MongoDB 읽기 확인 수준이다.",
+   "parent": "db.nosql.mongodb-causal-consistency",
+   "related": [
+    "db.nosql.write-concern-majority"
+   ],
+   "aliases": [
+    "read concern majority",
+    "readConcern majority",
+    "MongoDB 과반 읽기",
+    "majority read concern"
+   ],
+   "refs": [
+    "https://www.mongodb.com/docs/manual/reference/read-concern-majority/"
    ],
    "domain": "db"
   },
@@ -50245,6 +51118,113 @@
    ],
    "refs": [
     "https://redis.io/docs/latest/operate/oss_and_stack/management/replication/"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.free-space-map",
+   "title": "여유 공간 맵(FSM)",
+   "en": "Free Space Map",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "페이지마다 빈 공간을 1바이트로 적고 위층이 아래층의 최댓값을 모으는 트리로, 새 행이 들어갈 페이지를 빨리 찾게 하는 _fsm 포크다.",
+   "parent": "db.internals.heap-page-layout",
+   "aliases": [
+    "free space map",
+    "PostgreSQL FSM",
+    "PostgreSQL 여유 공간 맵",
+    "pg_freespacemap"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/storage-fsm.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.ctid",
+   "title": "CTID: 행 버전의 물리 위치",
+   "en": "PostgreSQL CTID",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "페이지 번호와 그 페이지 안 항목 식별자 번호로 행 버전 하나를 가리키는 PostgreSQL의 물리 주소로, UPDATE나 VACUUM FULL 뒤에는 달라져 행 식별자로 쓰지 않는다.",
+   "parent": "db.internals.heap-page-layout",
+   "related": [
+    "db.internals.hot-updates"
+   ],
+   "aliases": [
+    "ctid",
+    "PostgreSQL ctid",
+    "튜플 식별자",
+    "t_ctid"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/storage-page-layout.html",
+    "https://www.postgresql.org/docs/current/ddl-system-columns.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.io-combine-limit",
+   "title": "io_combine_limit: 합쳐 읽는 I/O 크기",
+   "en": "io_combine_limit",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "PostgreSQL이 이웃한 블록을 한 번의 I/O로 합칠 때의 최대 크기로 기본 128kB이며, 서버 시작 설정 io_max_combine_limit을 넘으면 낮은 값이 쓰인다.",
+   "parent": "db.internals.async-io",
+   "aliases": [
+    "PostgreSQL io_combine_limit",
+    "PostgreSQL I/O 합치기 크기"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/runtime-config-resource.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "db"
+  },
+  {
+   "id": "db.internals.max-prepared-transactions",
+   "title": "max_prepared_transactions: 준비 트랜잭션 상한",
+   "en": "max_prepared_transactions",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "DB 내부",
+   "summary": "동시에 준비 상태로 둘 수 있는 트랜잭션 수로 기본 0이라 기능이 꺼져 있고, 서버 시작 때만 바꾸며 스탠바이는 주 서버 이상으로 맞춰야 한다.",
+   "parent": "db.internals.two-phase-commit",
+   "aliases": [
+    "PostgreSQL 준비 트랜잭션 상한"
+   ],
+   "refs": [
+    "https://www.postgresql.org/docs/current/runtime-config-resource.html",
+    "https://www.postgresql.org/docs/current/sql-prepare-transaction.html"
+   ],
+   "domain": "db"
+  },
+  {
+   "id": "db.cache.hash-max-listpack-entries",
+   "title": "Hash listpack 한도 설정",
+   "en": "hash-max-listpack-entries and hash-max-listpack-value",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "캐시",
+   "summary": "Redis 7.0 이상에서 Hash를 listpack으로 둘 최대 원소 수(기본 512)와 원소 크기(기본 64바이트)를 정하는 두 설정으로, 하나라도 넘으면 해시 테이블로 바뀐다.",
+   "parent": "db.cache.redis-compact-encodings",
+   "aliases": [
+    "hash-max-listpack-entries",
+    "hash-max-listpack-value",
+    "hash-max-ziplist-entries",
+    "hash-max-ziplist-value"
+   ],
+   "refs": [
+    "https://redis.io/docs/latest/operate/oss_and_stack/management/optimization/memory-optimization/"
    ],
    "domain": "db"
   },
@@ -55440,6 +56420,42 @@
    "domain": "fe"
   },
   {
+   "id": "fe.ts.conditional-types-basics",
+   "title": "조건부 타입과 infer로 타입 뽑기",
+   "en": "Conditional Types and Extracting Types with infer",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "TypeScript",
+   "summary": "T extends U ? X : Y로 입력 타입에 따라 다른 타입을 고르고, infer로 배열 요소나 함수 반환 타입을 꺼내는 TypeScript 문법이다.",
+   "objectives": [
+    "T extends U ? X : Y가 왼쪽 타입이 오른쪽 타입에 할당 가능한지에 따라 두 타입 중 하나를 고른다는 것을 읽고 제네릭과 함께 쓸 수 있다",
+    "조건부 타입의 참 분기에서 좁혀진 타입으로 T[\"message\"]처럼 속성 타입을 꺼내고 아니면 never를 내는 타입을 만들 수 있다",
+    "infer로 배열의 요소 타입과 함수의 반환 타입을 뽑는 타입을 직접 만들 수 있다",
+    "ReturnType·Parameters·Awaited 같은 내장 유틸리티 타입이 함수와 Promise에서 어떤 타입을 꺼내는지 읽을 수 있다"
+   ],
+   "prerequisites": [
+    "fe.ts.function-types",
+    "fe.ts.union-narrowing"
+   ],
+   "related": [
+    "fe.ts.utility-types",
+    "fe.ts.generics"
+   ],
+   "aliases": [
+    "조건부 타입 기초",
+    "T extends U ? X : Y",
+    "infer 키워드",
+    "TS infer",
+    "ReturnType<T>"
+   ],
+   "refs": [
+    "https://www.typescriptlang.org/docs/handbook/2/conditional-types.html",
+    "https://www.typescriptlang.org/docs/handbook/utility-types.html"
+   ],
+   "domain": "fe"
+  },
+  {
    "id": "fe.react.dependency-array",
    "title": "의존성 배열",
    "en": "Dependency Array",
@@ -59841,6 +60857,113 @@
    "domain": "fe"
   },
   {
+   "id": "fe.internals.update-the-rendering",
+   "title": "이벤트 루프의 렌더링 갱신 단계",
+   "en": "Update the Rendering in the HTML Event Loop",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "HTML 이벤트 루프가 렌더링 기회가 있는 문서만 골라 resize·scroll, 애니메이션 프레임 콜백, 스타일·레이아웃, 관찰자 알림을 정해진 순서로 처리하는 단계다.",
+   "objectives": [
+    "렌더링 기회가 화면 주사율과 스로틀링으로 정해지고 보이지 않는 페이지에서는 초당 4회 안팎 이하로 줄 수 있다는 점으로 콜백 빈도 차이를 설명할 수 있다",
+    "렌더링 갱신에서 resize·scroll 단계, 미디어 쿼리 평가, 애니메이션 프레임 콜백, 스타일·레이아웃 재계산, ResizeObserver, IntersectionObserver가 이 순서로 처리된다는 점으로 콜백 실행 시점을 예측할 수 있다",
+    "보이는 변화도 대기 중인 애니메이션 프레임 콜백도 없는 문서는 갱신이 건너뛰어질 수 있다는 규칙으로 태스크마다 화면이 그려지지 않는 까닭을 설명할 수 있다",
+    "실행할 태스크가 없을 때 유휴 기간이 시작되고 그 마감이 최대 50ms 뒤로 제한되는 규칙으로 유휴 콜백 작업의 크기를 정할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.internals.event-loop",
+    "fe.internals.render-pipeline"
+   ],
+   "related": [
+    "fe.internals.forced-reflow",
+    "fe.internals.inp-subparts"
+   ],
+   "aliases": [
+    "렌더링 갱신 단계",
+    "update the rendering",
+    "HTML update the rendering 단계",
+    "렌더링 갱신 순서"
+   ],
+   "refs": [
+    "https://html.spec.whatwg.org/multipage/webappapis.html#event-loop-processing-model",
+    "https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.css.font-display-timeline-tradeoffs",
+   "title": "웹 글꼴 표시 타임라인과 font-display 손익",
+   "en": "Font Display Timeline and font-display Trade-offs",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "CSS",
+   "summary": "웹 글꼴을 기다리는 동안 블록·스왑·실패 기간에 따라 글자를 숨기거나 대체 글꼴로 그리는 규칙과, 값마다 생기는 보이지 않는 텍스트와 레이아웃 이동의 손익이다.",
+   "objectives": [
+    "글꼴을 처음 쓰려 할 때 시작되는 타이머의 블록·스왑·실패 기간마다 글자가 어떻게 그려지는지 설명할 수 있다",
+    "block·swap·fallback·optional의 블록·스왑 기간 길이 차이로 보이지 않는 텍스트 시간과 늦은 글꼴 교체에 따른 레이아웃 이동의 손익을 비교할 수 있다",
+    "optional에서 첫 페인트에 준비되지 못한 글꼴은 그 페이지에서 쓰이지 않을 수 있고 브라우저가 다운로드를 중단하거나 우선순위를 낮출 수 있다는 점을 근거로 값을 고를 수 있다",
+    "대체 글꼴의 크기를 size-adjust로 웹 글꼴에 맞춰 교체 때 생기는 이동을 줄이는 방법을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.css.web-fonts",
+    "fe.internals.web-vitals"
+   ],
+   "related": [
+    "fe.css.font-display",
+    "fe.next.font-optimization"
+   ],
+   "aliases": [
+    "font-display 전략",
+    "웹 글꼴 로딩 손익",
+    "font-display 손익"
+   ],
+   "refs": [
+    "https://drafts.csswg.org/css-fonts-4/#font-display-timeline",
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@font-face/font-display",
+    "https://web.dev/articles/font-best-practices"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.service-worker-update-check",
+   "title": "서비스 워커 업데이트 검사 알고리즘",
+   "en": "Service Worker Update Check Algorithm",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "브라우저가 언제 서비스 워커 스크립트를 다시 받아 보고, HTTP 캐시 사용 여부와 바이트 비교로 새 워커 설치를 정하는 Service Workers 명세의 Update 알고리즘이다.",
+   "objectives": [
+    "범위 안 페이지 탐색과 push·sync 같은 기능 이벤트가 업데이트 검사를 일으키고, 기능 이벤트로 인한 검사는 24시간 안에 이미 했으면 건너뛰는 조건을 설명할 수 있다",
+    "메인 스크립트와 importScripts로 가져온 스크립트가 바이트 단위로 같으면 새 워커를 만들지 않는 규칙으로 배포 뒤 갱신되지 않는 원인을 분석할 수 있다",
+    "updateViaCache 모드와 등록이 24시간 넘게 검사되지 않았는지에 따라 업데이트 요청이 HTTP 캐시를 우회하는 조건을 설명할 수 있다",
+    "버전마다 스크립트 URL을 바꾸면 옛 워커가 준 옛 페이지가 옛 URL을 계속 등록해 새 워커가 도착하지 못하는 위험을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "fe.internals.service-worker-caching"
+   ],
+   "related": [
+    "fe.internals.service-worker-lifecycle"
+   ],
+   "aliases": [
+    "서비스 워커 업데이트 검사",
+    "service worker update check",
+    "서비스 워커 바이트 비교",
+    "Service Worker Update 알고리즘"
+   ],
+   "refs": [
+    "https://w3c.github.io/ServiceWorker/",
+    "https://web.dev/articles/service-worker-lifecycle"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "fe"
+  },
+  {
    "id": "fe.internals.top-level-await",
    "title": "최상위 await",
    "en": "Top-level await",
@@ -59877,6 +61000,27 @@
    ],
    "refs": [
     "https://www.w3.org/TR/selectors-4/#specificity-rules"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.animation-frame-callbacks",
+   "title": "requestAnimationFrame 콜백 시점",
+   "en": "Timing of requestAnimationFrame Callbacks",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "프론트엔드 내부",
+   "summary": "다음 리페인트 전 렌더링 갱신 단계에서 한 번 실행되는 콜백으로, 같은 프레임의 콜백은 모두 같은 타임스탬프를 받고 숨은 탭에서는 대개 멈춘다.",
+   "parent": "fe.internals.update-the-rendering",
+   "aliases": [
+    "requestAnimationFrame",
+    "rAF 콜백",
+    "cancelAnimationFrame",
+    "애니메이션 프레임 콜백"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame"
    ],
    "domain": "fe"
   },
@@ -60431,6 +61575,132 @@
    "refs": [
     "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascade/Property_value_processing",
     "https://www.w3.org/TR/cssom-1/#resolved-values"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.rendering-opportunity",
+   "title": "렌더링 기회",
+   "en": "Rendering Opportunity",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "브라우저가 화면 주사율과 스로틀링을 따져 지금 문서 내용을 표시할 수 있는 때로, 이 기회가 없는 문서는 렌더링 갱신에서 빠진다.",
+   "parent": "fe.internals.update-the-rendering",
+   "aliases": [
+    "rendering opportunity",
+    "렌더링 스로틀링"
+   ],
+   "refs": [
+    "https://html.spec.whatwg.org/multipage/webappapis.html#rendering-opportunity"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.resize-observer-loop-error",
+   "title": "ResizeObserver 루프 오류",
+   "en": "ResizeObserver Loop Error",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "ResizeObserver 콜백이 다시 크기를 바꿔 더 얕은 요소의 알림이 다음 페인트로 미뤄질 때 window에 나는 오류로, 무한 루프 자체를 멈추지는 않는다.",
+   "parent": "fe.internals.update-the-rendering",
+   "aliases": [
+    "ResizeObserver loop completed with undelivered notifications",
+    "ResizeObserver loop error",
+    "ResizeObserver 무한 루프"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.css.font-display-timeline",
+   "title": "글꼴 표시 타임라인: 블록·스왑·실패 기간",
+   "en": "Font Display Timeline: Block, Swap, and Failure Periods",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "CSS",
+   "summary": "글꼴을 처음 쓰려 할 때 시작해 보이지 않는 대체 글꼴, 보이는 대체 글꼴, 로드 실패 처리로 이어지는 세 기간으로, font-display 값이 각 기간 길이를 정한다.",
+   "parent": "fe.css.font-display-timeline-tradeoffs",
+   "aliases": [
+    "font block period",
+    "font swap period",
+    "글꼴 블록 기간",
+    "글꼴 스왑 기간"
+   ],
+   "refs": [
+    "https://drafts.csswg.org/css-fonts-4/#font-display-timeline"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "fe"
+  },
+  {
+   "id": "fe.css.size-adjust",
+   "title": "size-adjust 기술자",
+   "en": "The size-adjust Descriptor",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "CSS",
+   "summary": "@font-face에 백분율로 적어 그 글꼴의 글리프와 지표를 함께 키우거나 줄이는 기술자로, 대체 글꼴을 웹 글꼴 크기에 맞출 때 쓴다.",
+   "parent": "fe.css.font-display-timeline-tradeoffs",
+   "aliases": [
+    "@font-face size-adjust",
+    "size-adjust descriptor",
+    "대체 글꼴 크기 보정"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@font-face/size-adjust",
+    "https://web.dev/articles/font-best-practices"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.update-via-cache",
+   "title": "updateViaCache 옵션",
+   "en": "Service Worker updateViaCache",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "서비스 워커 등록 때 정해 업데이트 검사에서 HTTP 캐시를 쓸 범위를 고르는 값으로, 기본 imports는 메인 스크립트에는 캐시를 안 쓰고 가져온 스크립트에만 쓴다.",
+   "parent": "fe.internals.service-worker-update-check",
+   "aliases": [
+    "서비스 워커 updateViaCache",
+    "updateViaCache: none",
+    "ServiceWorkerRegistration.updateViaCache"
+   ],
+   "refs": [
+    "https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/updateViaCache",
+    "https://w3c.github.io/ServiceWorker/"
+   ],
+   "domain": "fe"
+  },
+  {
+   "id": "fe.internals.service-worker-termination",
+   "title": "서비스 워커 종료 조건",
+   "en": "Service Worker Termination",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "프론트엔드 내부",
+   "summary": "처리할 이벤트가 없거나 무한 루프·시간 제한 초과 같은 이상이 보이면 브라우저가 서비스 워커를 끝낼 수 있다는 규칙으로, 워커 수명은 이벤트 처리에 묶인다.",
+   "related": [
+    "fe.internals.service-worker-update-check",
+    "fe.internals.service-worker-lifecycle"
+   ],
+   "aliases": [
+    "service worker termination",
+    "서비스 워커 유휴 종료"
+   ],
+   "refs": [
+    "https://w3c.github.io/ServiceWorker/"
    ],
    "domain": "fe"
   },
@@ -100602,6 +101872,185 @@
    "domain": "ops"
   },
   {
+   "id": "ops.container.user-namespaces",
+   "title": "user namespace의 ID 매핑과 권한 범위",
+   "en": "User Namespace ID Mapping and Capability Scope",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "컨테이너 내부",
+   "summary": "컨테이너 안의 root를 호스트의 비특권 ID로 옮겨 적고, 케이퍼빌리티가 그 네임스페이스가 소유한 자원에만 통하게 하는 격리 장치다.",
+   "objectives": [
+    "user namespace 안에서 얻은 케이퍼빌리티가 그 네임스페이스가 소유한 자원에만 통하고 커널 모듈 적재 같은 전역 작업에는 통하지 않는 이유를 설명할 수 있다",
+    "uid_map·gid_map에 매핑되지 않은 ID가 오버플로 ID(대개 65534)로 보이는 동작으로 컨테이너 안 파일 소유권 문제를 분석할 수 있다",
+    "Kubernetes 파드에 hostUsers: false를 켤 때 필요한 커널(Linux 6.3 이상)·idmap 마운트·런타임 조건과 얻는 보안 이득을 비교해 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.container.isolation",
+    "ops.k8s.pod-security-standards"
+   ],
+   "related": [
+    "ops.container.linux-capabilities"
+   ],
+   "aliases": [
+    "user namespace",
+    "사용자 네임스페이스",
+    "userns",
+    "CLONE_NEWUSER",
+    "Kubernetes 사용자 네임스페이스"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man7/user_namespaces.7.html",
+    "https://kubernetes.io/docs/concepts/workloads/pods/user-namespaces/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.bound-sa-token",
+   "title": "바운드 서비스 어카운트 토큰의 내부",
+   "en": "Bound Service Account Token Internals",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "TokenRequest로 받은 짧은 수명의 토큰을 파드·Secret·노드 객체에 묶어, 그 객체가 사라지면 인증이 끊기게 하는 구조다.",
+   "objectives": [
+    "바운드 토큰의 JWT 비공개 클레임에 담긴 객체 name·uid로 kube-apiserver가 토큰을 받아들이거나 거부하는 과정을 설명할 수 있다",
+    "개별 토큰을 취소할 중앙 기록이 없다는 성질을 근거로, 토큰이 샜을 때 파드 삭제와 ServiceAccount 재생성 중 대응을 고를 수 있다",
+    "Secret 기반 장기 토큰과 TokenRequest 기반 시한부 토큰을 유출 위험과 관리 비용으로 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.k8s.rbac-least-privilege",
+    "ops.k8s.secrets-security"
+   ],
+   "related": [
+    "ops.k8s.automount-sa-token",
+    "be.auth.cert-bound-token"
+   ],
+   "aliases": [
+    "bound service account token",
+    "Kubernetes 바운드 토큰",
+    "TokenRequest API",
+    "Kubernetes 토큰 바인딩",
+    "시한부 서비스 어카운트 토큰"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/",
+    "https://kubernetes.io/docs/concepts/security/service-accounts/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.container.seccomp-filter",
+   "title": "seccomp 필터의 동작: BPF 검사와 반환 동작",
+   "en": "Seccomp BPF Filter Internals",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "컨테이너 내부",
+   "summary": "시스템 콜 번호와 인자 값을 BPF 프로그램으로 검사해 허용·오류 반환·종료 등을 정하는 커널 필터의 구조와 한계다.",
+   "objectives": [
+    "seccomp 필터가 seccomp_data의 인자 값만 보고 포인터가 가리키는 내용은 못 본다는 한계를 근거로 경로 기반 차단이 어려운 이유를 설명할 수 있다",
+    "필터를 여러 개 쌓았을 때 가장 제한적인 반환 동작이 이긴다는 규칙으로 실제 적용되는 결과를 추론할 수 있다",
+    "필터 설치에 no_new_privs나 CAP_SYS_ADMIN이 필요한 이유와 아키텍처 값을 검사하지 않으면 생기는 우회 위험을 설명할 수 있다",
+    "Kubernetes에서 RuntimeDefault·Localhost·Unconfined 프로필의 차이와 privileged 컨테이너는 항상 Unconfined로 도는 점을 근거로 프로필을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "ops.container.isolation",
+    "ops.k8s.pod-security-standards"
+   ],
+   "related": [
+    "ops.linux.systemd-sandboxing",
+    "ops.container.linux-capabilities"
+   ],
+   "aliases": [
+    "seccomp-bpf",
+    "seccomp filter",
+    "시스템 콜 필터",
+    "SECCOMP_MODE_FILTER",
+    "Kubernetes seccomp 프로필"
+   ],
+   "refs": [
+    "https://docs.kernel.org/userspace-api/seccomp_filter.html",
+    "https://kubernetes.io/docs/reference/node/seccomp/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.container.cri-shim-runtime",
+   "title": "CRI·containerd shim·runc의 계층 구조",
+   "en": "CRI, containerd Shims, and runc Layering",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "컨테이너 내부",
+   "summary": "kubelet이 gRPC CRI로 런타임을 부르고, 런타임이 ttrpc로 shim을, shim이 runc 같은 엔진을 실행해 컨테이너를 만드는 층 나누기다.",
+   "objectives": [
+    "kubelet이 gRPC 클라이언트로 CRI v1 API를 부르고, v1을 지원하지 않는 런타임에서는 노드 등록이 실패하는 동작을 설명할 수 있다",
+    "containerd가 컨테이너를 직접 띄우지 않고 shim이 fork/exec로 runc를 실행하는 구조를 근거로 컨테이너 생성 실패가 어느 층에서 났는지 좁힐 수 있다",
+    "shim이 하위 리퍼로 끝난 컨테이너 프로세스를 거두는 역할과 containerd가 shim에 다시 붙지 못할 때 delete 명령이 맡는 정리를 설명할 수 있다",
+    "RuntimeClass의 handler로 일반 runc와 하드웨어 가상화 런타임을 나눠 쓸 때 격리와 오버헤드의 손익을 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.container.isolation",
+    "ops.k8s.basics"
+   ],
+   "related": [
+    "ops.container.oci-image-manifest"
+   ],
+   "aliases": [
+    "Container Runtime Interface",
+    "Kubernetes CRI",
+    "containerd shim",
+    "runtime v2 shim",
+    "containerd-shim-runc-v2"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/architecture/cri/",
+    "https://github.com/containerd/containerd/blob/main/docs/runtime-v2.md",
+    "https://kubernetes.io/docs/concepts/containers/runtime-class/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.observe.ebpf-program-lifecycle",
+   "title": "eBPF 관측 도구의 내부: 적재·검증·부착",
+   "en": "eBPF Program Lifecycle for Observability",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "관측",
+   "summary": "커널 안에서 안전하게 도는 작은 프로그램을 검증기로 확인한 뒤 kprobe·tracepoint에 붙이고, 맵으로 사용자 공간과 결과를 주고받는 구조다.",
+   "objectives": [
+    "libbpf 앱이 open·load·attach·tear down 단계를 거치며 각 단계에서 맵 생성·검증·훅 연결이 일어나는 순서를 설명할 수 있다",
+    "검증기가 모든 경로를 흉내 내며 레지스터 상태를 추적하는 방식을 근거로 프로그램이 적재를 거부당한 원인을 분석할 수 있다",
+    "BPF 맵의 종류(해시·배열·CPU별 배열 등)와 파일 디스크립터 기반 수명을 근거로 관측 데이터를 모으는 방식을 고를 수 있다",
+    "BTF와 CO-RE가 커널 버전마다 다른 구조체 배치를 맞춰 주는 원리를 근거로 한 번 빌드한 도구를 여러 커널에 배포할 때의 조건을 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "ops.observe.metrics",
+    "ops.linux.process-signals"
+   ],
+   "related": [
+    "dev.debug.linux-perf-python",
+    "ops.linux.psi-pressure"
+   ],
+   "aliases": [
+    "eBPF 관측",
+    "eBPF tracing",
+    "libbpf",
+    "BPF 프로그램 적재"
+   ],
+   "refs": [
+    "https://docs.kernel.org/bpf/libbpf/libbpf_overview.html",
+    "https://docs.kernel.org/bpf/verifier.html",
+    "https://docs.kernel.org/bpf/maps.html"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.observe.incident-analysis",
    "title": "장애 분석과 회고",
    "en": "Incident Analysis and Postmortems",
@@ -101171,6 +102620,71 @@
    "domain": "ops"
   },
   {
+   "id": "ops.k8s.host-users-false",
+   "title": "hostUsers: false로 파드 사용자 네임스페이스 켜기",
+   "en": "Pod hostUsers: false",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "파드 spec에 hostUsers: false를 두면 kubelet이 노드 안에서 겹치지 않는 호스트 ID 범위를 골라 파드마다 user namespace를 만든다.",
+   "parent": "ops.container.user-namespaces",
+   "aliases": [
+    "hostUsers",
+    "spec.hostUsers",
+    "Kubernetes userns 파드"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/workloads/pods/user-namespaces/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.projected-sa-token-volume",
+   "title": "serviceAccountToken 투영 볼륨",
+   "en": "serviceAccountToken Projected Volume",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "Kubernetes",
+   "summary": "audience·expirationSeconds(기본 1시간, 최소 10분)·path를 정해 kubelet이 만료 전에 갱신하는 토큰 파일을 파드에 넣는 볼륨이다.",
+   "parent": "ops.k8s.bound-sa-token",
+   "aliases": [
+    "serviceAccountToken 볼륨",
+    "projected token volume",
+    "토큰 투영 볼륨",
+    "serviceAccountToken expirationSeconds"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/storage/projected-volumes/",
+    "https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.observe.ebpf-verifier",
+   "title": "eBPF 검증기",
+   "en": "eBPF Verifier",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "관측",
+   "summary": "적재 전에 제어 흐름을 DAG로 검사하고 모든 경로를 흉내 내 레지스터·스택 상태를 추적하며, 같은 상태는 가지치기로 건너뛴다.",
+   "parent": "ops.observe.ebpf-program-lifecycle",
+   "aliases": [
+    "BPF 검증기",
+    "eBPF verifier",
+    "BPF verifier",
+    "BPF verifier log"
+   ],
+   "refs": [
+    "https://docs.kernel.org/bpf/verifier.html"
+   ],
+   "domain": "ops"
+  },
+  {
    "id": "ops.observe.slo",
    "title": "SLO",
    "en": "Service Level Objective",
@@ -101562,6 +103076,89 @@
    ],
    "refs": [
     "https://etcd.io/docs/v3.6/learning/design-learner/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.container.uid-gid-map",
+   "title": "uid_map·gid_map ID 매핑 파일",
+   "en": "uid_map and gid_map",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "컨테이너 내부",
+   "summary": "안쪽 시작 ID·바깥 시작 ID·범위 길이 세 수로 된 줄을 한 번만 쓸 수 있는 파일로, 줄 수는 Linux 4.16부터 최대 340이다.",
+   "parent": "ops.container.user-namespaces",
+   "aliases": [
+    "uid_map",
+    "gid_map",
+    "/proc/pid/uid_map",
+    "user namespace UID 매핑"
+   ],
+   "refs": [
+    "https://man7.org/linux/man-pages/man7/user_namespaces.7.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.container.seccomp-return-actions",
+   "title": "seccomp 반환 동작과 우선순위",
+   "en": "Seccomp Return Actions and Precedence",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "컨테이너 내부",
+   "summary": "KILL_PROCESS·KILL_THREAD·TRAP·ERRNO·USER_NOTIF·TRACE·LOG·ALLOW 순으로 앞쪽이 강하며, 여러 필터의 결과 중 가장 강한 것이 적용된다.",
+   "parent": "ops.container.seccomp-filter",
+   "aliases": [
+    "SECCOMP_RET_ERRNO",
+    "SECCOMP_RET_KILL_PROCESS",
+    "SECCOMP_RET_USER_NOTIF",
+    "seccomp action precedence"
+   ],
+   "refs": [
+    "https://docs.kernel.org/userspace-api/seccomp_filter.html"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.k8s.runtimeclass-handler",
+   "title": "RuntimeClass와 handler",
+   "en": "RuntimeClass Handler",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "Kubernetes",
+   "summary": "파드의 runtimeClassName이 가리키는 RuntimeClass의 handler로 노드의 CRI 런타임 설정을 고르고, overhead와 scheduling으로 비용과 배치를 함께 정한다.",
+   "parent": "ops.container.cri-shim-runtime",
+   "aliases": [
+    "RuntimeClass",
+    "runtimeClassName",
+    "Kubernetes 런타임 클래스"
+   ],
+   "refs": [
+    "https://kubernetes.io/docs/concepts/containers/runtime-class/"
+   ],
+   "domain": "ops"
+  },
+  {
+   "id": "ops.observe.bpf-co-re",
+   "title": "BPF CO-RE와 BTF",
+   "en": "BPF CO-RE and BTF",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "관측",
+   "summary": "프로그램에 기록된 BTF 타입 정보를 실행 중인 커널의 /sys/kernel/btf/vmlinux와 비교해 libbpf가 필드 오프셋을 고쳐 주는 이식 방식이다.",
+   "parent": "ops.observe.ebpf-program-lifecycle",
+   "aliases": [
+    "CO-RE",
+    "Compile Once Run Everywhere",
+    "vmlinux.h",
+    "bpf_core_read"
+   ],
+   "refs": [
+    "https://docs.kernel.org/bpf/libbpf/libbpf_overview.html"
    ],
    "domain": "ops"
   },

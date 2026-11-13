@@ -8816,6 +8816,41 @@
     ]
   },
   {
+    "id": "db.internals.heap-page-layout",
+    "title": "PostgreSQL 힙 페이지와 행 헤더의 구조",
+    "en": "PostgreSQL Heap Page and Tuple Header Layout",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "DB 내부",
+    "summary": "8kB 페이지가 헤더·항목 식별자 배열·빈 공간·행으로 나뉘고 행 헤더의 t_xmin·t_xmax·t_ctid가 MVCC를 떠받치는 구조를 다룬다.",
+    "objectives": [
+      "24바이트 페이지 헤더의 pd_lower·pd_upper가 항목 식별자 배열과 뒤에서부터 쌓이는 행 사이의 빈 공간을 가리키는 방식을 설명할 수 있다",
+      "항목 식별자가 해제될 때까지 움직이지 않아 페이지 안에서 행을 압축해도 CTID가 유효하게 남는 까닭을 설명할 수 있다",
+      "행 헤더의 t_xmin·t_xmax·t_ctid와 널 비트맵이 행 하나에 붙는 고정 비용과 버전 추적에 쓰이는 방식을 따질 수 있다",
+      "힙 옆에 _vm·_fsm 포크를 따로 두어 VACUUM 건너뛰기와 빈자리 찾기를 빠르게 하는 구조를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "db.internals.mvcc-vacuum"
+    ],
+    "related": [
+      "db.internals.hot-updates",
+      "db.internals.toast"
+    ],
+    "aliases": [
+      "PostgreSQL 페이지 레이아웃",
+      "PostgreSQL page layout",
+      "HeapTupleHeaderData",
+      "PageHeaderData",
+      "PostgreSQL 행 헤더"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/storage-page-layout.html",
+      "https://www.postgresql.org/docs/current/storage-vm.html",
+      "https://www.postgresql.org/docs/current/storage-fsm.html"
+    ]
+  },
+  {
     "id": "db.internals.wal-replication",
     "title": "WAL과 복제",
     "en": "WAL and Replication",
@@ -9056,6 +9091,143 @@
     ]
   },
   {
+    "id": "db.internals.async-io",
+    "title": "PostgreSQL 18 비동기 I/O의 구조와 손익",
+    "en": "PostgreSQL Asynchronous I/O",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "DB 내부",
+    "summary": "PostgreSQL 18이 읽기 요청 여러 개를 줄 세워 내보내는 비동기 I/O를 worker·io_uring·sync 방식으로 돌리는 구조와 설정의 손익을 따진다.",
+    "objectives": [
+      "PostgreSQL 18부터 백엔드가 읽기 요청을 여러 개 줄 세워 순차 스캔·비트맵 힙 스캔·VACUUM을 빠르게 하는 원리를 설명할 수 있다",
+      "io_method의 worker(기본값, io_workers 기본 3개)·io_uring(liburing 빌드 필요)·sync를 서버 시작 설정으로 고르는 손익을 따질 수 있다",
+      "effective_io_concurrency(기본 16)를 높이면 지연이 큰 저장 장치에서 이득이 크지만 지나치면 시스템 전체의 I/O 지연이 늘 수 있음을 근거로 값을 판단할 수 있다",
+      "pg_aios 뷰의 state·operation·f_sync로 사용 중인 비동기 I/O 핸들이 어느 단계에 있는지 읽을 수 있다"
+    ],
+    "prerequisites": [
+      "db.internals.shared-buffers"
+    ],
+    "related": [
+      "cs.os.io-uring"
+    ],
+    "aliases": [
+      "PostgreSQL 비동기 I/O",
+      "PostgreSQL AIO",
+      "PostgreSQL asynchronous I/O",
+      "io_method",
+      "pg_aios"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/18/release-18.html",
+      "https://www.postgresql.org/docs/current/runtime-config-resource.html",
+      "https://www.postgresql.org/docs/current/view-pg-aios.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "db.internals.two-phase-commit",
+    "title": "PostgreSQL 2단계 커밋의 내부와 위험",
+    "en": "PostgreSQL Two-Phase Commit",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "DB 내부",
+    "summary": "트랜잭션을 세션에서 떼어 디스크에 준비해 두고 외부 관리자가 COMMIT PREPARED로 끝내는 구조와, 오래 남은 준비 트랜잭션이 부르는 장애를 다룬다.",
+    "objectives": [
+      "PREPARE TRANSACTION 뒤 트랜잭션이 세션과 분리되어 다른 세션에서 COMMIT PREPARED나 ROLLBACK PREPARED로 끝낼 수 있는 구조를 설명할 수 있다",
+      "짧은 준비 트랜잭션은 공유 메모리와 WAL에만 있고 체크포인트를 넘기면 pg_twophase 디렉터리에도 기록되는 저장 방식을 설명할 수 있다",
+      "오래 남은 준비 트랜잭션이 잠금을 계속 쥐고 VACUUM 회수를 막아 극단적으로는 XID 겹침을 피하려는 종료까지 부를 수 있음을 pg_prepared_xacts로 진단할 수 있다",
+      "임시 표·WITH HOLD 커서·LISTEN/NOTIFY를 쓴 트랜잭션은 준비할 수 없다는 제약을 근거로 외부 트랜잭션 관리자 설계를 따질 수 있다"
+    ],
+    "prerequisites": [
+      "db.internals.wal-replication",
+      "db.internals.mvcc-vacuum"
+    ],
+    "related": [
+      "be.arch.distributed-transactions",
+      "db.internals.xid-wraparound"
+    ],
+    "aliases": [
+      "PREPARE TRANSACTION",
+      "COMMIT PREPARED",
+      "PostgreSQL 2단계 커밋",
+      "PostgreSQL two-phase commit",
+      "pg_prepared_xacts",
+      "pg_twophase"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/sql-prepare-transaction.html",
+      "https://www.postgresql.org/docs/current/two-phase.html"
+    ]
+  },
+  {
+    "id": "db.cache.redis-compact-encodings",
+    "title": "Redis 작은 자료형의 압축 인코딩: listpack과 intset",
+    "en": "Redis Compact Encodings for Small Aggregates",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "캐시",
+    "summary": "작은 Hash·Sorted Set·Set을 선형 배열로 담아 메모리를 아끼다 한도를 넘으면 일반 인코딩으로 바꾸는 Redis의 CPU·메모리 손익을 따진다.",
+    "objectives": [
+      "원소 수와 원소 크기가 한도 아래인 Hash·Sorted Set·정수 Set이 listpack·intset으로 담겨 메모리를 크게 줄이는 원리를 설명할 수 있다",
+      "작을 때만 O(N) 선형 배열을 쓰고 커지면 해시 테이블로 바꾸어 분할 상환 O(1)과 캐시 지역성을 함께 얻는 손익을 따질 수 있다",
+      "Redis 7.0에서 ziplist 설정 이름이 listpack으로 바뀌고 7.2에서 Set용 listpack 설정이 더해진 버전 차이를 구분할 수 있다",
+      "키를 지워도 할당자가 메모리를 OS에 돌려주지 않아 RSS가 최고치에 머물고 단편화 비율이 부풀 수 있음을 근거로 메모리를 최고 사용량 기준으로 잡을 수 있다"
+    ],
+    "prerequisites": [
+      "db.cache.redis-data-types",
+      "db.cache.redis-eviction"
+    ],
+    "related": [
+      "db.cache.redis-hash"
+    ],
+    "aliases": [
+      "Redis 메모리 최적화",
+      "Redis memory optimization",
+      "Redis listpack",
+      "Redis intset",
+      "Redis ziplist"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/operate/oss_and_stack/management/optimization/memory-optimization/"
+    ]
+  },
+  {
+    "id": "db.nosql.mongodb-causal-consistency",
+    "title": "MongoDB 인과적 일관성 세션과 확인 수준 조합",
+    "en": "MongoDB Causal Consistency and Read/Write Concern Combinations",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "NoSQL",
+    "summary": "클라이언트 세션이 operation time과 cluster time을 따라가며 지키는 네 가지 인과 보장이 읽기·쓰기 확인 수준 조합과 분할 상황에서 어떻게 깨지는지 따진다.",
+    "objectives": [
+      "자기 쓰기 읽기·단조 읽기·단조 쓰기·읽기 뒤 쓰기의 네 보장을 구분하고 \"majority\" 읽기와 \"majority\" 쓰기 조합에서만 내구성 있게 모두 지켜지는 까닭을 설명할 수 있다",
+      "네트워크 분할로 주 노드가 둘로 보일 때 w: 1 쓰기가 옛 주 노드에서 롤백되어 \"majority\" 읽기와 w: 1 조합의 보장이 깨지는 과정을 따질 수 있다",
+      "세션이 응답의 operation time과 cluster time을 기록하고 다른 세션으로 그 값을 넘겨 세션 사이에서도 인과 순서를 잇는 방식을 설명할 수 있다",
+      "세션 바깥의 동시 쓰기와 격리되지 않고 한 세션을 한 스레드만 써야 한다는 제약을 근거로 설계를 점검할 수 있다"
+    ],
+    "prerequisites": [
+      "db.nosql.mongodb-write-concern-read-preference"
+    ],
+    "related": [
+      "db.nosql.wiredtiger-internals"
+    ],
+    "aliases": [
+      "MongoDB 인과적 일관성",
+      "MongoDB causal consistency",
+      "causally consistent session",
+      "MongoDB 인과 일관성 세션"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/core/causal-consistency-read-write-concerns/",
+      "https://www.mongodb.com/docs/manual/core/read-isolation-consistency-recency/"
+    ]
+  },
+  {
     "id": "db.internals.xid-wraparound",
     "title": "트랜잭션 ID 겹침과 동결(freeze)",
     "en": "Transaction ID Wraparound and Freezing",
@@ -9198,6 +9370,53 @@
     ],
     "refs": [
       "https://www.mongodb.com/docs/manual/core/wiredtiger/"
+    ]
+  },
+  {
+    "id": "db.internals.visibility-map",
+    "title": "가시성 맵: all-visible과 all-frozen 비트",
+    "en": "Visibility Map",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "DB 내부",
+    "summary": "힙 페이지마다 두 비트를 두어 VACUUM이 건너뛸 페이지와 인덱스 전용 스캔이 힙을 안 봐도 되는 페이지를 알려 주는 _vm 포크다.",
+    "parent": "db.internals.heap-page-layout",
+    "related": [
+      "db.internals.xid-wraparound"
+    ],
+    "aliases": [
+      "visibility map",
+      "PostgreSQL 가시성 맵",
+      "all-visible 비트",
+      "all-frozen 비트",
+      "pg_visibility"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/storage-vm.html"
+    ]
+  },
+  {
+    "id": "db.nosql.read-concern-majority",
+    "title": "읽기 확인 수준 \"majority\": 과반 확정 데이터만 읽기",
+    "en": "MongoDB Read Concern \"majority\"",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "NoSQL",
+    "summary": "각 노드가 주 노드가 계산한 과반 확정 시점의 메모리 뷰에서 답해 롤백되지 않을 데이터만 돌려주는 MongoDB 읽기 확인 수준이다.",
+    "parent": "db.nosql.mongodb-causal-consistency",
+    "related": [
+      "db.nosql.write-concern-majority"
+    ],
+    "aliases": [
+      "read concern majority",
+      "readConcern majority",
+      "MongoDB 과반 읽기",
+      "majority read concern"
+    ],
+    "refs": [
+      "https://www.mongodb.com/docs/manual/reference/read-concern-majority/"
     ]
   },
   {
@@ -9524,6 +9743,108 @@
     ],
     "refs": [
       "https://redis.io/docs/latest/operate/oss_and_stack/management/replication/"
+    ]
+  },
+  {
+    "id": "db.internals.free-space-map",
+    "title": "여유 공간 맵(FSM)",
+    "en": "Free Space Map",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "DB 내부",
+    "summary": "페이지마다 빈 공간을 1바이트로 적고 위층이 아래층의 최댓값을 모으는 트리로, 새 행이 들어갈 페이지를 빨리 찾게 하는 _fsm 포크다.",
+    "parent": "db.internals.heap-page-layout",
+    "aliases": [
+      "free space map",
+      "PostgreSQL FSM",
+      "PostgreSQL 여유 공간 맵",
+      "pg_freespacemap"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/storage-fsm.html"
+    ]
+  },
+  {
+    "id": "db.internals.ctid",
+    "title": "CTID: 행 버전의 물리 위치",
+    "en": "PostgreSQL CTID",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "DB 내부",
+    "summary": "페이지 번호와 그 페이지 안 항목 식별자 번호로 행 버전 하나를 가리키는 PostgreSQL의 물리 주소로, UPDATE나 VACUUM FULL 뒤에는 달라져 행 식별자로 쓰지 않는다.",
+    "parent": "db.internals.heap-page-layout",
+    "related": [
+      "db.internals.hot-updates"
+    ],
+    "aliases": [
+      "ctid",
+      "PostgreSQL ctid",
+      "튜플 식별자",
+      "t_ctid"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/storage-page-layout.html",
+      "https://www.postgresql.org/docs/current/ddl-system-columns.html"
+    ]
+  },
+  {
+    "id": "db.internals.io-combine-limit",
+    "title": "io_combine_limit: 합쳐 읽는 I/O 크기",
+    "en": "io_combine_limit",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "DB 내부",
+    "summary": "PostgreSQL이 이웃한 블록을 한 번의 I/O로 합칠 때의 최대 크기로 기본 128kB이며, 서버 시작 설정 io_max_combine_limit을 넘으면 낮은 값이 쓰인다.",
+    "parent": "db.internals.async-io",
+    "aliases": [
+      "PostgreSQL io_combine_limit",
+      "PostgreSQL I/O 합치기 크기"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/runtime-config-resource.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "db.internals.max-prepared-transactions",
+    "title": "max_prepared_transactions: 준비 트랜잭션 상한",
+    "en": "max_prepared_transactions",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "DB 내부",
+    "summary": "동시에 준비 상태로 둘 수 있는 트랜잭션 수로 기본 0이라 기능이 꺼져 있고, 서버 시작 때만 바꾸며 스탠바이는 주 서버 이상으로 맞춰야 한다.",
+    "parent": "db.internals.two-phase-commit",
+    "aliases": [
+      "PostgreSQL 준비 트랜잭션 상한"
+    ],
+    "refs": [
+      "https://www.postgresql.org/docs/current/runtime-config-resource.html",
+      "https://www.postgresql.org/docs/current/sql-prepare-transaction.html"
+    ]
+  },
+  {
+    "id": "db.cache.hash-max-listpack-entries",
+    "title": "Hash listpack 한도 설정",
+    "en": "hash-max-listpack-entries and hash-max-listpack-value",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "캐시",
+    "summary": "Redis 7.0 이상에서 Hash를 listpack으로 둘 최대 원소 수(기본 512)와 원소 크기(기본 64바이트)를 정하는 두 설정으로, 하나라도 넘으면 해시 테이블로 바뀐다.",
+    "parent": "db.cache.redis-compact-encodings",
+    "aliases": [
+      "hash-max-listpack-entries",
+      "hash-max-listpack-value",
+      "hash-max-ziplist-entries",
+      "hash-max-ziplist-value"
+    ],
+    "refs": [
+      "https://redis.io/docs/latest/operate/oss_and_stack/management/optimization/memory-optimization/"
     ]
   }
 ]

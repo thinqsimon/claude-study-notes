@@ -4994,6 +4994,41 @@
     ]
   },
   {
+    "id": "fe.ts.conditional-types-basics",
+    "title": "조건부 타입과 infer로 타입 뽑기",
+    "en": "Conditional Types and Extracting Types with infer",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "TypeScript",
+    "summary": "T extends U ? X : Y로 입력 타입에 따라 다른 타입을 고르고, infer로 배열 요소나 함수 반환 타입을 꺼내는 TypeScript 문법이다.",
+    "objectives": [
+      "T extends U ? X : Y가 왼쪽 타입이 오른쪽 타입에 할당 가능한지에 따라 두 타입 중 하나를 고른다는 것을 읽고 제네릭과 함께 쓸 수 있다",
+      "조건부 타입의 참 분기에서 좁혀진 타입으로 T[\"message\"]처럼 속성 타입을 꺼내고 아니면 never를 내는 타입을 만들 수 있다",
+      "infer로 배열의 요소 타입과 함수의 반환 타입을 뽑는 타입을 직접 만들 수 있다",
+      "ReturnType·Parameters·Awaited 같은 내장 유틸리티 타입이 함수와 Promise에서 어떤 타입을 꺼내는지 읽을 수 있다"
+    ],
+    "prerequisites": [
+      "fe.ts.function-types",
+      "fe.ts.union-narrowing"
+    ],
+    "related": [
+      "fe.ts.utility-types",
+      "fe.ts.generics"
+    ],
+    "aliases": [
+      "조건부 타입 기초",
+      "T extends U ? X : Y",
+      "infer 키워드",
+      "TS infer",
+      "ReturnType<T>"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/2/conditional-types.html",
+      "https://www.typescriptlang.org/docs/handbook/utility-types.html"
+    ]
+  },
+  {
     "id": "fe.react.dependency-array",
     "title": "의존성 배열",
     "en": "Dependency Array",
@@ -9229,6 +9264,110 @@
     ]
   },
   {
+    "id": "fe.internals.update-the-rendering",
+    "title": "이벤트 루프의 렌더링 갱신 단계",
+    "en": "Update the Rendering in the HTML Event Loop",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "프론트엔드 내부",
+    "summary": "HTML 이벤트 루프가 렌더링 기회가 있는 문서만 골라 resize·scroll, 애니메이션 프레임 콜백, 스타일·레이아웃, 관찰자 알림을 정해진 순서로 처리하는 단계다.",
+    "objectives": [
+      "렌더링 기회가 화면 주사율과 스로틀링으로 정해지고 보이지 않는 페이지에서는 초당 4회 안팎 이하로 줄 수 있다는 점으로 콜백 빈도 차이를 설명할 수 있다",
+      "렌더링 갱신에서 resize·scroll 단계, 미디어 쿼리 평가, 애니메이션 프레임 콜백, 스타일·레이아웃 재계산, ResizeObserver, IntersectionObserver가 이 순서로 처리된다는 점으로 콜백 실행 시점을 예측할 수 있다",
+      "보이는 변화도 대기 중인 애니메이션 프레임 콜백도 없는 문서는 갱신이 건너뛰어질 수 있다는 규칙으로 태스크마다 화면이 그려지지 않는 까닭을 설명할 수 있다",
+      "실행할 태스크가 없을 때 유휴 기간이 시작되고 그 마감이 최대 50ms 뒤로 제한되는 규칙으로 유휴 콜백 작업의 크기를 정할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.internals.event-loop",
+      "fe.internals.render-pipeline"
+    ],
+    "related": [
+      "fe.internals.forced-reflow",
+      "fe.internals.inp-subparts"
+    ],
+    "aliases": [
+      "렌더링 갱신 단계",
+      "update the rendering",
+      "HTML update the rendering 단계",
+      "렌더링 갱신 순서"
+    ],
+    "refs": [
+      "https://html.spec.whatwg.org/multipage/webappapis.html#event-loop-processing-model",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame"
+    ]
+  },
+  {
+    "id": "fe.css.font-display-timeline-tradeoffs",
+    "title": "웹 글꼴 표시 타임라인과 font-display 손익",
+    "en": "Font Display Timeline and font-display Trade-offs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "CSS",
+    "summary": "웹 글꼴을 기다리는 동안 블록·스왑·실패 기간에 따라 글자를 숨기거나 대체 글꼴로 그리는 규칙과, 값마다 생기는 보이지 않는 텍스트와 레이아웃 이동의 손익이다.",
+    "objectives": [
+      "글꼴을 처음 쓰려 할 때 시작되는 타이머의 블록·스왑·실패 기간마다 글자가 어떻게 그려지는지 설명할 수 있다",
+      "block·swap·fallback·optional의 블록·스왑 기간 길이 차이로 보이지 않는 텍스트 시간과 늦은 글꼴 교체에 따른 레이아웃 이동의 손익을 비교할 수 있다",
+      "optional에서 첫 페인트에 준비되지 못한 글꼴은 그 페이지에서 쓰이지 않을 수 있고 브라우저가 다운로드를 중단하거나 우선순위를 낮출 수 있다는 점을 근거로 값을 고를 수 있다",
+      "대체 글꼴의 크기를 size-adjust로 웹 글꼴에 맞춰 교체 때 생기는 이동을 줄이는 방법을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.css.web-fonts",
+      "fe.internals.web-vitals"
+    ],
+    "related": [
+      "fe.css.font-display",
+      "fe.next.font-optimization"
+    ],
+    "aliases": [
+      "font-display 전략",
+      "웹 글꼴 로딩 손익",
+      "font-display 손익"
+    ],
+    "refs": [
+      "https://drafts.csswg.org/css-fonts-4/#font-display-timeline",
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@font-face/font-display",
+      "https://web.dev/articles/font-best-practices"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "fe.internals.service-worker-update-check",
+    "title": "서비스 워커 업데이트 검사 알고리즘",
+    "en": "Service Worker Update Check Algorithm",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "프론트엔드 내부",
+    "summary": "브라우저가 언제 서비스 워커 스크립트를 다시 받아 보고, HTTP 캐시 사용 여부와 바이트 비교로 새 워커 설치를 정하는 Service Workers 명세의 Update 알고리즘이다.",
+    "objectives": [
+      "범위 안 페이지 탐색과 push·sync 같은 기능 이벤트가 업데이트 검사를 일으키고, 기능 이벤트로 인한 검사는 24시간 안에 이미 했으면 건너뛰는 조건을 설명할 수 있다",
+      "메인 스크립트와 importScripts로 가져온 스크립트가 바이트 단위로 같으면 새 워커를 만들지 않는 규칙으로 배포 뒤 갱신되지 않는 원인을 분석할 수 있다",
+      "updateViaCache 모드와 등록이 24시간 넘게 검사되지 않았는지에 따라 업데이트 요청이 HTTP 캐시를 우회하는 조건을 설명할 수 있다",
+      "버전마다 스크립트 URL을 바꾸면 옛 워커가 준 옛 페이지가 옛 URL을 계속 등록해 새 워커가 도착하지 못하는 위험을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.internals.service-worker-caching"
+    ],
+    "related": [
+      "fe.internals.service-worker-lifecycle"
+    ],
+    "aliases": [
+      "서비스 워커 업데이트 검사",
+      "service worker update check",
+      "서비스 워커 바이트 비교",
+      "Service Worker Update 알고리즘"
+    ],
+    "refs": [
+      "https://w3c.github.io/ServiceWorker/",
+      "https://web.dev/articles/service-worker-lifecycle"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
     "id": "fe.internals.top-level-await",
     "title": "최상위 await",
     "en": "Top-level await",
@@ -9264,6 +9403,26 @@
     ],
     "refs": [
       "https://www.w3.org/TR/selectors-4/#specificity-rules"
+    ]
+  },
+  {
+    "id": "fe.internals.animation-frame-callbacks",
+    "title": "requestAnimationFrame 콜백 시점",
+    "en": "Timing of requestAnimationFrame Callbacks",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "프론트엔드 내부",
+    "summary": "다음 리페인트 전 렌더링 갱신 단계에서 한 번 실행되는 콜백으로, 같은 프레임의 콜백은 모두 같은 타임스탬프를 받고 숨은 탭에서는 대개 멈춘다.",
+    "parent": "fe.internals.update-the-rendering",
+    "aliases": [
+      "requestAnimationFrame",
+      "rAF 콜백",
+      "cancelAnimationFrame",
+      "애니메이션 프레임 콜백"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame"
     ]
   },
   {
@@ -9793,6 +9952,126 @@
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascade/Property_value_processing",
       "https://www.w3.org/TR/cssom-1/#resolved-values"
+    ]
+  },
+  {
+    "id": "fe.internals.rendering-opportunity",
+    "title": "렌더링 기회",
+    "en": "Rendering Opportunity",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "프론트엔드 내부",
+    "summary": "브라우저가 화면 주사율과 스로틀링을 따져 지금 문서 내용을 표시할 수 있는 때로, 이 기회가 없는 문서는 렌더링 갱신에서 빠진다.",
+    "parent": "fe.internals.update-the-rendering",
+    "aliases": [
+      "rendering opportunity",
+      "렌더링 스로틀링"
+    ],
+    "refs": [
+      "https://html.spec.whatwg.org/multipage/webappapis.html#rendering-opportunity"
+    ]
+  },
+  {
+    "id": "fe.internals.resize-observer-loop-error",
+    "title": "ResizeObserver 루프 오류",
+    "en": "ResizeObserver Loop Error",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "프론트엔드 내부",
+    "summary": "ResizeObserver 콜백이 다시 크기를 바꿔 더 얕은 요소의 알림이 다음 페인트로 미뤄질 때 window에 나는 오류로, 무한 루프 자체를 멈추지는 않는다.",
+    "parent": "fe.internals.update-the-rendering",
+    "aliases": [
+      "ResizeObserver loop completed with undelivered notifications",
+      "ResizeObserver loop error",
+      "ResizeObserver 무한 루프"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver"
+    ]
+  },
+  {
+    "id": "fe.css.font-display-timeline",
+    "title": "글꼴 표시 타임라인: 블록·스왑·실패 기간",
+    "en": "Font Display Timeline: Block, Swap, and Failure Periods",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "CSS",
+    "summary": "글꼴을 처음 쓰려 할 때 시작해 보이지 않는 대체 글꼴, 보이는 대체 글꼴, 로드 실패 처리로 이어지는 세 기간으로, font-display 값이 각 기간 길이를 정한다.",
+    "parent": "fe.css.font-display-timeline-tradeoffs",
+    "aliases": [
+      "font block period",
+      "font swap period",
+      "글꼴 블록 기간",
+      "글꼴 스왑 기간"
+    ],
+    "refs": [
+      "https://drafts.csswg.org/css-fonts-4/#font-display-timeline"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "fe.css.size-adjust",
+    "title": "size-adjust 기술자",
+    "en": "The size-adjust Descriptor",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "CSS",
+    "summary": "@font-face에 백분율로 적어 그 글꼴의 글리프와 지표를 함께 키우거나 줄이는 기술자로, 대체 글꼴을 웹 글꼴 크기에 맞출 때 쓴다.",
+    "parent": "fe.css.font-display-timeline-tradeoffs",
+    "aliases": [
+      "@font-face size-adjust",
+      "size-adjust descriptor",
+      "대체 글꼴 크기 보정"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@font-face/size-adjust",
+      "https://web.dev/articles/font-best-practices"
+    ]
+  },
+  {
+    "id": "fe.internals.update-via-cache",
+    "title": "updateViaCache 옵션",
+    "en": "Service Worker updateViaCache",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "프론트엔드 내부",
+    "summary": "서비스 워커 등록 때 정해 업데이트 검사에서 HTTP 캐시를 쓸 범위를 고르는 값으로, 기본 imports는 메인 스크립트에는 캐시를 안 쓰고 가져온 스크립트에만 쓴다.",
+    "parent": "fe.internals.service-worker-update-check",
+    "aliases": [
+      "서비스 워커 updateViaCache",
+      "updateViaCache: none",
+      "ServiceWorkerRegistration.updateViaCache"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/updateViaCache",
+      "https://w3c.github.io/ServiceWorker/"
+    ]
+  },
+  {
+    "id": "fe.internals.service-worker-termination",
+    "title": "서비스 워커 종료 조건",
+    "en": "Service Worker Termination",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "프론트엔드 내부",
+    "summary": "처리할 이벤트가 없거나 무한 루프·시간 제한 초과 같은 이상이 보이면 브라우저가 서비스 워커를 끝낼 수 있다는 규칙으로, 워커 수명은 이벤트 처리에 묶인다.",
+    "related": [
+      "fe.internals.service-worker-update-check",
+      "fe.internals.service-worker-lifecycle"
+    ],
+    "aliases": [
+      "service worker termination",
+      "서비스 워커 유휴 종료"
+    ],
+    "refs": [
+      "https://w3c.github.io/ServiceWorker/"
     ]
   }
 ]
