@@ -5037,6 +5037,39 @@
     ]
   },
   {
+    "id": "mlops.serve.ray-core-basics",
+    "title": "Ray Core 기초: 원격 함수·액터·ObjectRef",
+    "en": "Ray Core Basics: Remote Functions, Actors, and ObjectRefs",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "@ray.remote로 함수는 병렬 작업, 클래스는 상태를 지닌 액터로 띄우고 돌려받은 ObjectRef를 ray.get으로 풀어 쓰는 Ray Core의 기본 사용법이다.",
+    "objectives": [
+      "@ray.remote 함수를 .remote()로 여러 번 호출해 병렬로 돌리고 ray.get으로 결과를 모을 수 있다",
+      "@ray.remote 클래스로 액터를 만들어 상태를 유지하고, 같은 액터의 메서드 호출은 보낸 순서대로 하나씩 실행됨을 고려해 코드를 짤 수 있다",
+      "ObjectRef를 다른 작업의 인자로 넘기거나 ray.put으로 큰 값을 한 번 올려 복사를 줄이고, ray.wait로 끝난 결과부터 처리할 수 있다",
+      "num_cpus·num_gpus로 작업과 액터의 자원을 요청하고, 이 값이 실제 사용량을 막지 않는 논리 자원이라는 점을 구분할 수 있다"
+    ],
+    "related": [
+      "mlops.serve.ray-serve-architecture"
+    ],
+    "aliases": [
+      "Ray Core",
+      "Ray 원격 함수",
+      "Ray remote function",
+      "Ray 기초",
+      "Ray tasks and actors"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/ray-core/key-concepts.html",
+      "https://docs.ray.io/en/latest/ray-core/walkthrough.html",
+      "https://docs.ray.io/en/latest/ray-core/tasks.html",
+      "https://docs.ray.io/en/latest/ray-core/actors.html",
+      "https://docs.ray.io/en/latest/ray-core/scheduling/resources.html"
+    ]
+  },
+  {
     "id": "mlops.track.experiment-tracking",
     "title": "실험 추적: 파라미터·지표·모델 기록하기",
     "en": "Experiment Tracking with MLflow",
@@ -5681,6 +5714,66 @@
     ],
     "refs": [
       "https://mlflow.org/docs/latest/api_reference/cli.html"
+    ]
+  },
+  {
+    "id": "mlops.serve.ray-object-ref",
+    "title": "ObjectRef(Ray 객체 참조)",
+    "en": "Ray ObjectRef",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "Ray 원격 호출이나 ray.put이 값 대신 돌려주는 원격 객체의 참조로, ray.get으로 값을 받고 작업의 최상위 인자로 넘기면 Ray가 값으로 풀어 준다.",
+    "parent": "mlops.serve.ray-core-basics",
+    "aliases": [
+      "ObjectRef",
+      "Ray 객체 참조",
+      "Ray object ref"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/ray-core/objects.html"
+    ]
+  },
+  {
+    "id": "mlops.serve.ray-actor",
+    "title": "Ray 액터(상태를 지닌 원격 워커)",
+    "en": "Ray Actor",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "@ray.remote를 붙인 클래스의 인스턴스로 자기 프로세스에서 상태를 유지하며, 같은 액터에 보낸 메서드 호출은 보낸 순서대로 하나씩 실행된다.",
+    "parent": "mlops.serve.ray-core-basics",
+    "aliases": [
+      "Ray 액터",
+      "Ray actor",
+      "Ray 액터 핸들",
+      "Ray actor handle"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/ray-core/actors.html"
+    ]
+  },
+  {
+    "id": "mlops.serve.ray-logical-resources",
+    "title": "Ray 논리 자원(num_cpus·num_gpus)",
+    "en": "Ray Logical Resources",
+    "kind": "term",
+    "level": 3,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "Ray가 배치 판단에만 쓰는 가상의 CPU·GPU 수로, 작업 기본값은 CPU 1개이며 실제 사용량은 막지 않고 GPU만 CUDA_VISIBLE_DEVICES로 나눈다.",
+    "parent": "mlops.serve.ray-core-basics",
+    "aliases": [
+      "Ray 논리 자원",
+      "Ray logical resources",
+      "Ray num_gpus",
+      "Ray 분수 GPU",
+      "Ray fractional resources"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/ray-core/scheduling/resources.html"
     ]
   },
   {
@@ -9005,6 +9098,30 @@
     "checked_at": "2026-11-13"
   },
   {
+    "id": "mlops.serve.vllm-fully-sharded-loras",
+    "title": "fully_sharded_loras(vLLM LoRA 전체 샤딩)",
+    "en": "vLLM fully_sharded_loras",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "텐서 병렬에서 기본으로 절반만 나누던 LoRA 계산을 모두 나누게 하는 vLLM 설정으로, 시퀀스가 길거나 랭크·텐서 병렬 크기가 클 때 더 빠를 가능성이 있다.",
+    "related": [
+      "mlops.serve.vllm-lora-serving",
+      "mlops.serve.tensor-parallelism"
+    ],
+    "aliases": [
+      "fully_sharded_loras",
+      "--fully-sharded-loras",
+      "vLLM LoRA 샤딩"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/configuration/engine_args/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
     "id": "mlops.serve.vllm-v1-process-architecture",
     "title": "vLLM V1 프로세스 구조: API 서버·엔진 코어·워커",
     "en": "vLLM V1 Process Architecture",
@@ -9299,6 +9416,39 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-13"
+  },
+  {
+    "id": "mlops.serve.ray-placement-group",
+    "title": "Ray 배치 그룹: 원자적 자원 예약과 묶음 전략",
+    "en": "Ray Placement Groups: Atomic Reservation and Bundle Strategies",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "Ray가 여러 노드에 걸친 자원 묶음을 한꺼번에 예약하는 배치 그룹의 동작과, PACK·SPREAD 엄격성·장애 시 재배치·수명이 분산 서빙에 주는 손익을 분석한다.",
+    "objectives": [
+      "묶음 하나는 한 노드에 들어가야 하고 하나라도 못 들어가면 아무것도 예약하지 않는 원자적 예약이 GPU 여러 장을 함께 쓰는 작업에 주는 이점과 PENDING으로 멈출 위험을 설명할 수 있다",
+      "STRICT_PACK·PACK·STRICT_SPREAD·SPREAD가 조건을 못 맞출 때 실패하는지 다른 노드로 넘어가는지를 비교해 지역성과 장애 분산 사이에서 고를 수 있다",
+      "노드가 죽으면 잃은 묶음만 다른 노드로 우선 재배치되고 자원이 없으면 부분 생성 상태로 남는 동작을 근거로 장애를 분석할 수 있다",
+      "자식 작업이 기본으로 그룹을 물려받지 않고, 그룹을 지우면 쓰던 액터가 강제로 종료되며, 묶음 순서가 GPU 순위와 다를 수 있다는 함정을 진단할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.ray-core-basics",
+      "mlops.serve.ray-scheduling-policy"
+    ],
+    "related": [
+      "mlops.serve.vllm-parallelism"
+    ],
+    "aliases": [
+      "Ray placement group",
+      "Ray 배치 그룹",
+      "Ray 플레이스먼트 그룹",
+      "PlacementGroupSchedulingStrategy",
+      "Ray 갱 스케줄링"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/ray-core/scheduling/placement-group.html"
+    ]
   },
   {
     "id": "mlops.serve.inference-optimization",
@@ -9677,6 +9827,75 @@
       "https://docs.nvidia.com/deploy/mps/latest/when-to-use-mps.html",
       "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/gpu-sharing.html"
     ]
+  },
+  {
+    "id": "mlops.serve.ray-compiled-graph",
+    "title": "Ray Compiled Graph: 정적 실행 그래프의 손익",
+    "en": "Ray Compiled Graph Trade-offs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "같은 액터 작업 그래프를 미리 컴파일해 자원과 NCCL 통신을 준비해 두는 Ray Compiled Graph가 일반 Ray 호출보다 빠른 이유와 그 대가를 분석한다.",
+    "objectives": [
+      "일반 Ray Core의 즉시 실행과 Compiled Graph의 정적 실행을 비교해, 같은 그래프를 반복 실행하는 작업에서 작업당 오버헤드가 약 1ms에서 50µs 미만으로 줄어든다는 문서의 주장이 어디서 오는지 설명할 수 있다",
+      "그래프 작업이 액터의 백그라운드 스레드에서 돌고 액터 하나가 한 번에 그래프 하나에만 참여하며 액터 작업만 지원하는 제약이 설계에 주는 영향을 판단할 수 있다",
+      "with_tensor_transport로 GPU 사이 NCCL 전송을 쓸 때 컴파일 시점에 통신기와 순서를 정해 교착을 막는 방식과, 지점 간 전송만 되고 계산·통신 겹치기는 실험 기능이라는 한계를 분석할 수 있다",
+      "응용 예외는 RayTaskError로 감싸져 그래프가 계속 돌지만 액터 사망 같은 시스템 오류는 그래프를 내린다는 실패 의미를 근거로 장애 대응을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.ray-core-basics",
+      "mlops.serve.ray-object-ownership"
+    ],
+    "related": [
+      "mlops.serve.vllm-cudagraph-modes"
+    ],
+    "aliases": [
+      "Ray Compiled Graphs",
+      "Ray 컴파일 그래프",
+      "Ray aDAG",
+      "experimental_compile"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/ray-core/compiled-graph/ray-compiled-graph.html",
+      "https://docs.ray.io/en/latest/ray-core/compiled-graph/quickstart.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "mlops.serve.ray-serve-autoscaling-pipeline",
+    "title": "Ray Serve 자동 확장 결정 내부: 지표 단계와 사용자 정의 정책",
+    "en": "Ray Serve Autoscaling Decision Internals",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Ray Serve가 레플리카·핸들의 지표를 기록·전송·집계해 컨트롤러의 정책이 복제본 수를 정하는 네 단계와, 주기 설정과 사용자 정의 정책의 손익을 분석한다.",
+    "objectives": [
+      "지표 기록·전송·집계·정책 실행 네 단계와 각 단계의 주기를 근거로, 정책이 0.1초마다 돌아도 결정은 새 지표가 올 때만 바뀌는 이유를 설명할 수 있다",
+      "metrics_interval_s가 upscale_delay_s보다 길면 확장이 늦어지고 주기를 너무 줄이면 헤드 노드 컨트롤러에 부담이 가는 손익을 판단할 수 있다",
+      "aggregation_function의 mean·max·min이 지표를 계단 함수로 보고 합칠 때 복제본 수 결정에 주는 차이를 비교할 수 있다",
+      "컨트롤러에서 돌고 cloudpickle로 직렬화되는 사용자 정의 정책과 응용 단위 정책의 제약을 근거로 기본 정책 대신 쓸지 고를 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.ray-serve-autoscaling",
+      "mlops.serve.ray-serve-architecture"
+    ],
+    "related": [
+      "mlops.serve.kserve-autoscaling"
+    ],
+    "aliases": [
+      "Ray Serve 사용자 정의 자동 확장",
+      "Ray Serve custom autoscaling policy",
+      "Ray Serve 확장 지표 집계",
+      "Ray Serve autoscaling metrics pipeline"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/serve/advanced-guides/advanced-autoscaling.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
   },
   {
     "id": "mlops.observe.data-drift",
@@ -10308,6 +10527,68 @@
     ],
     "refs": [
       "https://docs.nvidia.com/deploy/mps/latest/architecture.html"
+    ]
+  },
+  {
+    "id": "mlops.serve.ray-cgraph-nccl-transport",
+    "title": "Ray Compiled Graph NCCL 텐서 전송",
+    "en": "Ray Compiled Graph NCCL Tensor Transport",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Ray Compiled Graph에서 torch 텐서를 GPU 사이로 NCCL로 바로 보내라고 표시하는 지정으로, 2.42 전에는 with_type_hint(TorchTensorType)를 썼다.",
+    "parent": "mlops.serve.ray-compiled-graph",
+    "aliases": [
+      "with_tensor_transport",
+      "TorchTensorType",
+      "Ray NCCL 전송",
+      "Compiled Graph GPU 통신"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/ray-core/compiled-graph/quickstart.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "mlops.serve.ray-autoscaling-context",
+    "title": "AutoscalingContext(Ray Serve 확장 정책 입력)",
+    "en": "Ray Serve AutoscalingContext",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Ray Serve 사용자 정의 확장 정책이 받는 입력으로 현재 복제본 수, 기본·사용자 지표, 자원으로 조정된 상하한, 반복 사이 정책 상태와 시각을 담는다.",
+    "parent": "mlops.serve.ray-serve-autoscaling-pipeline",
+    "aliases": [
+      "AutoscalingContext",
+      "Ray Serve AutoscalingContext",
+      "Ray Serve 확장 정책 입력"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/serve/advanced-guides/advanced-autoscaling.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "mlops.serve.ray-strict-placement-strategy",
+    "title": "STRICT_PACK·STRICT_SPREAD(엄격 배치 전략)",
+    "en": "Ray STRICT_PACK and STRICT_SPREAD",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "모든 묶음을 한 노드에(STRICT_PACK) 또는 묶음마다 다른 노드에(STRICT_SPREAD) 두도록 강제해, PACK·SPREAD처럼 다른 배치로 물러서지 않는 Ray 배치 그룹 전략이다.",
+    "parent": "mlops.serve.ray-placement-group",
+    "aliases": [
+      "STRICT_PACK",
+      "STRICT_SPREAD",
+      "Ray 엄격 배치 전략"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/ray-core/scheduling/placement-group.html"
     ]
   }
 ]

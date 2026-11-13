@@ -9194,6 +9194,41 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "llm.internals.big-model-dispatch",
+    "title": "큰 모델 적재의 내부: 빈 모델·device_map·오프로딩",
+    "en": "Big Model Loading Internals: Empty Weights, Device Maps and Offloading",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM 내부",
+    "summary": "메모리보다 큰 모델을 빈 모델로 만든 뒤 층별로 GPU·CPU·디스크에 나눠 싣고, 훅으로 필요할 때만 옮겨 돌리는 방식과 그 속도 대가를 다룬다.",
+    "objectives": [
+      "일반 적재가 무작위 초기화 모델과 state dict로 RAM을 두 번 쓰는 이유와 메타 장치 빈 모델이 이를 피하는 원리를 설명할 수 있다",
+      "device_map 자동 배치가 GPU부터 채우고 남는 가중치를 CPU, 그다음 디스크로 보내는 순서와 auto·balanced_low_0·sequential의 차이를 비교할 수 있다",
+      "오프로딩된 가중치를 순전파 직전에 GPU로 올리는 훅 방식이 미리 가져오기 없이 느려지고, 여러 GPU에 나눠도 한 번에 한 GPU만 일하는 이유를 분석할 수 있다",
+      "CUDA 커널 적재로 GPU마다 쓸 수 있는 메모리가 1~2GB 줄고, generate처럼 출력이 입력이 있던 첫 GPU에 남아 그 GPU가 더 많은 메모리를 쓰기 때문에 max_memory로 첫 GPU에 덜 배정하는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.basics.hub-model-load-errors",
+      "llm.internals.weight-quantization-schemes"
+    ],
+    "related": [
+      "llm.internals.cache-offloading"
+    ],
+    "aliases": [
+      "big model inference",
+      "device_map auto",
+      "load_checkpoint_and_dispatch",
+      "Accelerate 오프로딩",
+      "Accelerate big model inference"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/accelerate/concept_guides/big_model_inference"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
     "id": "llm.internals.structured-decoding",
     "title": "구조화 출력의 보장과 한계",
     "en": "Guarantees of Structured Output",
@@ -9527,6 +9562,147 @@
     "refs": [
       "https://huggingface.co/docs/transformers/main/en/internal/generation_utils"
     ]
+  },
+  {
+    "id": "llm.internals.transformers-tensor-parallel",
+    "title": "Transformers 텐서 병렬의 내부: 열·행 분할과 집합 통신",
+    "en": "Tensor Parallelism Internals in Transformers: Colwise and Rowwise Sharding",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "tp_plan이 층마다 가중치를 출력 차원이나 입력 차원으로 GPU에 나누고, 그 사이를 all-reduce·all-gather로 잇는 방식과 손익을 다룬다.",
+    "objectives": [
+      "colwise가 출력 특성 차원을, rowwise가 입력 특성 차원을 나누고 rowwise 출력의 부분합이 all-reduce로 합쳐지는 흐름을 설명할 수 있다",
+      "q·k·v 투영을 colwise로, o_proj를 rowwise로 짝지으면 중간 결과를 모으지 않고 다음 층으로 넘길 수 있는 이유를 분석할 수 있다",
+      "gate_up_proj처럼 묶인 가중치를 기본 분할로 나누면 결과가 틀어지는 이유와 packed 전략이 필요한 경우를 판단할 수 있다",
+      "층마다 결과를 주고받는 텐서 병렬이 빠른 노드 안 통신을 요구하는 이유와 잘못 짠 수동 계획의 위험을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.internals.inference-phases",
+      "llm.internals.kv-head-sharing"
+    ],
+    "related": [
+      "mlops.serve.tensor-parallelism",
+      "ml.nn.fsdp-sharding"
+    ],
+    "aliases": [
+      "tp_plan",
+      "Transformers tensor parallelism",
+      "DistributedConfig tp_size",
+      "Transformers 텐서 병렬",
+      "colwise rowwise 분할"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/transformers/perf_infer_gpu_multi"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "llm.internals.lora-merge-ties-dare",
+    "title": "여러 LoRA 어댑터 합치기의 내부: TIES와 DARE",
+    "en": "Merging Multiple LoRA Adapters: TIES and DARE",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "작업별로 학습한 LoRA 어댑터 여러 개를 추가 학습 없이 하나로 합칠 때, 겹치는 값을 덜어 내고 부호 충돌을 푸는 방식의 원리와 손익을 다룬다.",
+    "objectives": [
+      "TIES가 중복 값을 잘라 내고, 부호를 하나로 정한 뒤, 그 부호와 같은 값만 평균하는 세 단계를 설명할 수 있다",
+      "DARE가 정해진 비율로 값을 무작위로 버리고 남은 값을 키워 다른 병합의 준비 단계로 쓰이는 원리를 설명할 수 있다",
+      "density와 어댑터별 weights가 병합 결과의 크기와 간섭에 주는 영향을 근거로 값을 정할 수 있다",
+      "같은 기반 모델의 LoRA끼리 합칠 때와 달리 전체 미세조정 모델을 합칠 때 특수 토큰 임베딩 위치가 부딪히는 위험을 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.finetune.lora-internals"
+    ],
+    "related": [
+      "mlops.finetune.adapter-merge"
+    ],
+    "aliases": [
+      "add_weighted_adapter",
+      "combination_type",
+      "LoRA 다중 어댑터 병합",
+      "PEFT model merging",
+      "dare_ties"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/peft/developer_guides/model_merging"
+    ]
+  },
+  {
+    "id": "llm.internals.on-policy-distillation",
+    "title": "온정책 지식 증류(GKD)의 내부와 손익",
+    "en": "On-Policy Knowledge Distillation (GKD) Internals",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "학생 모델이 스스로 만든 답에 교사 모델이 토큰별 확률로 피드백하게 해, 학습과 추론의 출력 분포 차이를 줄이는 증류 방식과 설정의 손익을 다룬다.",
+    "objectives": [
+      "고정된 정답 문장으로만 배우는 증류가 추론 때 학생이 만드는 문장과 분포가 어긋나는 문제를 설명할 수 있다",
+      "lmbda가 학생이 생성한 답의 비율을 정하고 0과 1에서 각각 지도 JSD와 온정책 JSD가 되는 차이를 비교할 수 있다",
+      "seq_kd=True와 lmbda=0.0이면 교사가 만든 문장에 교사의 토큰별 피드백을 받는 시퀀스 수준 증류가 되는 조건을 lmbda 설정과 구분해 설명할 수 있다",
+      "논문 저자들이 온정책 비율을 높일 때 성능이 좋았다고 보고한 점과 최적 beta가 작업마다 달랐다는 점을 근거로 실험 범위를 정할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.finetune.sft-trainer",
+      "llm.internals.tokenization-sampling"
+    ],
+    "related": [
+      "llm.basics.knowledge-distillation",
+      "llm.internals.preference-alignment"
+    ],
+    "aliases": [
+      "GKD",
+      "GKDTrainer",
+      "generalized knowledge distillation",
+      "온정책 증류",
+      "on-policy distillation"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/trl/main/en/gkd_trainer"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "llm.internals.rl-vllm-generation",
+    "title": "강화학습 vLLM 생성: colocate·server 모드",
+    "en": "vLLM Generation in Online RL Training: Colocate and Server Modes",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "GRPO 같은 온라인 학습이 답 생성을 vLLM에 맡길 때 GPU 배치 방식, 매 단계 가중치 동기화, 추론 엔진과 학습 엔진의 확률 차이를 다루는 내부와 손익이다.",
+    "objectives": [
+      "온라인 학습에서 생성이 병목인 이유와, server 모드에서 vLLM이 생성만 맡고 옵티마이저 단계마다 학습된 가중치를 NCCL로 받아 오는 흐름을 설명할 수 있다",
+      "학습 GPU를 나눠 쓰는 colocate 모드와 전용 GPU에 따로 띄우는 server 모드를 메모리 경합과 GPU 활용률로 비교할 수 있다",
+      "vLLM이 뽑은 답을 학습 엔진으로 미분하면 온정책 문제가 오프정책이 되어 기울기가 치우치는 이유를 설명할 수 있다",
+      "server 모드가 개발용 엔드포인트를 열어 신뢰된 네트워크에 두어야 하는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "llm.internals.preference-alignment",
+      "llm.internals.continuous-batching-internals"
+    ],
+    "related": [
+      "mlops.serve.vllm-server-dev-mode",
+      "mlops.serve.vllm-sleep-mode"
+    ],
+    "aliases": [
+      "TRL vLLM integration",
+      "vllm_mode",
+      "TRL colocate mode",
+      "use_vllm",
+      "GRPO vLLM 생성"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/trl/main/en/vllm_integration",
+      "https://huggingface.co/docs/trl/main/en/grpo_trainer"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
   },
   {
     "id": "llm.internals.kv-cache",
@@ -10129,5 +10305,146 @@
     "refs": [
       "https://huggingface.co/docs/transformers/main/en/internal/generation_utils"
     ]
+  },
+  {
+    "id": "llm.internals.meta-device-empty-model",
+    "title": "init_empty_weights(메타 장치 빈 모델)",
+    "en": "init_empty_weights and the Meta Device",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "만들어지는 파라미터를 곧바로 데이터 없는 메타 장치로 보내, RAM을 쓰지 않고 아무리 큰 모델 구조라도 먼저 세워 두는 Accelerate 문맥 관리자다.",
+    "parent": "llm.internals.big-model-dispatch",
+    "aliases": [
+      "init_empty_weights",
+      "Accelerate 빈 모델",
+      "Accelerate meta device 초기화",
+      "빈 가중치 모델"
+    ]
+  },
+  {
+    "id": "llm.internals.no-split-module-classes",
+    "title": "no_split_module_classes(나누지 않을 블록)",
+    "en": "no_split_module_classes",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "device_map을 정할 때 잔차 연결이 있는 블록처럼 여러 장치에 쪼개면 안 되는 모듈 이름을 알려 주는 Accelerate 인자다.",
+    "parent": "llm.internals.big-model-dispatch",
+    "aliases": [
+      "no_split_module_classes",
+      "분할 금지 모듈"
+    ]
+  },
+  {
+    "id": "llm.internals.dtensor-placements",
+    "title": "DTensor 배치(Shard·Replicate·Partial)",
+    "en": "DTensor Placements: Shard, Replicate and Partial",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "텐서를 장치 묶음에 어떻게 놓을지 나눔·복제·합산 대기로 표시해, 통신을 배치 바꾸기로 나타내게 하는 PyTorch 분산 텐서의 속성이다.",
+    "parent": "llm.internals.transformers-tensor-parallel",
+    "aliases": [
+      "DTensor placements",
+      "Partial placement",
+      "Shard Replicate Partial",
+      "DTensor 배치"
+    ]
+  },
+  {
+    "id": "llm.internals.packed-tp-strategy",
+    "title": "packed_colwise(묶인 가중치의 텐서 병렬 분할)",
+    "en": "Packed Colwise and Rowwise Tensor Parallel Strategies",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "gate·up처럼 한 행렬에 묶인 가중치를 번갈아 나눠, 각 GPU가 두 부분의 같은 조각을 받게 하는 Transformers 텐서 병렬 전략이다.",
+    "parent": "llm.internals.transformers-tensor-parallel",
+    "aliases": [
+      "packed_colwise",
+      "packed_rowwise",
+      "PackedColwiseParallel",
+      "gate_up_proj 분할"
+    ]
+  },
+  {
+    "id": "llm.internals.ties-sign-election",
+    "title": "TIES 부호 선출(sign election)",
+    "en": "TIES Sign Election",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "여러 모델의 같은 파라미터 값이 서로 다른 부호를 가질 때 하나의 부호로 모은 뒤, 그 부호와 같은 값만 평균에 넣는 TIES 병합의 단계다.",
+    "parent": "llm.internals.lora-merge-ties-dare",
+    "aliases": [
+      "TIES sign election",
+      "부호 충돌 해소",
+      "TIES 부호 선출"
+    ]
+  },
+  {
+    "id": "llm.internals.generalized-jsd",
+    "title": "일반화 젠슨-섀넌 발산(GKD beta)",
+    "en": "Generalized Jensen-Shannon Divergence",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "학생과 교사 분포의 거리를 재는 GKD 손실로, beta가 0이면 정방향 KL, 1이면 역방향 KL에 가깝고 그 사이는 둘을 섞는다.",
+    "parent": "llm.internals.on-policy-distillation",
+    "aliases": [
+      "generalized JSD",
+      "일반화 JSD",
+      "GKD beta"
+    ]
+  },
+  {
+    "id": "llm.internals.rl-importance-sampling-correction",
+    "title": "학습-추론 불일치 중요도 샘플링 보정(TIS·MIS)",
+    "en": "Training-Inference Mismatch Importance Sampling Correction",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "vLLM과 학습 엔진의 확률 비율로 표본을 다시 가중해, 범위를 벗어난 비율을 잘라 쓰거나(TIS) 아예 빼는(MIS) GRPO의 보정이다.",
+    "parent": "llm.internals.rl-vllm-generation",
+    "aliases": [
+      "vllm_importance_sampling_correction",
+      "truncated importance sampling",
+      "masked importance sampling",
+      "TIS MIS 보정"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "llm.internals.grpo-loss-normalization",
+    "title": "GRPO 손실 정규화 방식(loss_type)",
+    "en": "GRPO Loss Normalization (loss_type)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 내부",
+    "summary": "토큰 손실 합을 답마다의 길이, 배치 전체 토큰 수, 고정 상수 중 무엇으로 나눌지 정하는 GRPO 설정으로, 답 길이에 따른 치우침이 달라진다.",
+    "related": [
+      "llm.internals.preference-alignment"
+    ],
+    "aliases": [
+      "GRPO loss_type",
+      "dr_grpo",
+      "DAPO 손실",
+      "GRPO 길이 편향"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/trl/main/en/grpo_trainer"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
   }
 ]

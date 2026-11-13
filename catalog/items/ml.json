@@ -8762,6 +8762,40 @@
     ]
   },
   {
+    "id": "ml.nn.pytorch-numerical-accuracy",
+    "title": "PyTorch 수치 정확도: TF32·축소 정밀도 누적의 손익",
+    "en": "Numerical Accuracy in PyTorch",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "딥러닝",
+    "summary": "PyTorch가 같은 수식에도 비트 단위로 같은 결과를 보장하지 않는 이유와, TF32·축소 정밀도 누적이 속도와 정확도를 맞바꾸는 방식을 다룬다.",
+    "objectives": [
+      "부동소수점 연산의 비결합성 때문에 배치 계산과 개별·슬라이스 계산, CPU와 GPU의 결과가 비트 단위로 다를 수 있음을 설명할 수 있다",
+      "Ampere 이후 NVIDIA GPU에서 TF32가 가수 앞 10비트만 읽는다는 점과 행렬 곱은 끄고 합성곱은 켜 두는 기본값을 근거로 정밀도 설정을 고를 수 있다",
+      "FP16·BF16 행렬 곱의 축소 정밀도 누적이 예상치 못한 inf를 낼 수 있음을 알고 관련 플래그를 끌지 판단할 수 있다",
+      "중간값 넘침과 거의 특이한 행렬의 선형대수 연산이 조용히 틀린 값을 낼 수 있음을 알고 isfinite·svdvals·cond로 점검할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.nn.mixed-precision-training"
+    ],
+    "related": [
+      "cs.data.float-summation",
+      "ml.nn.pytorch-reproducibility"
+    ],
+    "aliases": [
+      "PyTorch numerical accuracy",
+      "PyTorch 수치 정확도",
+      "비트 단위 동일 결과",
+      "bitwise identical results"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/notes/numerical_accuracy.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
     "id": "ml.training.backprop",
     "title": "역전파와 경사 하강법",
     "en": "Backpropagation and Gradient Descent",
@@ -9073,6 +9107,143 @@
     ],
     "refs": [
       "https://scikit-learn.org/stable/modules/sgd.html"
+    ]
+  },
+  {
+    "id": "ml.unsupervised.density-clustering-internals",
+    "title": "밀도 기반 군집 내부: DBSCAN·HDBSCAN·OPTICS의 손익",
+    "en": "Density-Based Clustering Internals: DBSCAN, HDBSCAN, and OPTICS",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "하나의 eps에 기대는 DBSCAN과 여러 밀도 척도를 훑는 HDBSCAN·OPTICS가 군집을 찾는 방식과 메모리·속도 손익을 비교한다.",
+    "objectives": [
+      "DBSCAN이 핵심 샘플을 따라 군집을 넓히는 과정과 경계 샘플의 배정이 데이터 순서에 따라 달라질 수 있는 이유를 설명할 수 있다",
+      "상호 도달 거리 그래프의 최소 신장 트리에서 무거운 간선부터 지워 가며 HDBSCAN이 군집 계층을 만드는 과정을 설명할 수 있다",
+      "트리 색인을 못 쓸 때 DBSCAN이 n² 메모리를 쓰고 OPTICS는 O(n) 메모리를 유지하며, HDBSCAN은 멀티스레드로 OPTICS보다 실행 복잡도가 낫지만 메모리 확장성은 더 나쁘다는 점을 비교해 데이터 크기에 맞는 방법을 고를 수 있다",
+      "OPTICS 도달 거리 그래프에서 xi 기준의 가파른 기울기로 군집을 뽑는 방식과 단일 eps로 잘라 DBSCAN을 흉내 내는 방식의 차이를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.unsupervised.kmeans-clustering"
+    ],
+    "related": [
+      "ml.unsupervised.dbscan",
+      "ml.unsupervised.kmeans-algorithm-variants"
+    ],
+    "aliases": [
+      "밀도 기반 군집 비교",
+      "scikit-learn OPTICS",
+      "OPTICS reachability plot",
+      "cluster_optics_dbscan",
+      "OPTICS 도달 거리 그래프"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/clustering.html#hdbscan",
+      "https://scikit-learn.org/stable/modules/clustering.html#optics",
+      "https://scikit-learn.org/stable/modules/clustering.html#dbscan"
+    ]
+  },
+  {
+    "id": "ml.supervised.gaussian-process-internals",
+    "title": "가우시안 프로세스 내부: 주변 우도 최적화와 계산 비용",
+    "en": "Gaussian Process Internals: Marginal Likelihood Optimization and Cost",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "가우시안 프로세스가 로그 주변 우도로 커널 하이퍼파라미터를 고르는 방식과, 전체 데이터를 쓰는 비희소 모델이라 생기는 계산 비용의 손익을 다룬다.",
+    "objectives": [
+      "로그 주변 우도에 지역 최적이 여럿일 수 있어 n_restarts_optimizer로 무작위 초기값에서 다시 최적화하는 이유를 설명할 수 있다",
+      "커널 행렬 대각에 더하는 alpha와 데이터에서 잡음 수준을 추정하는 WhiteKernel의 차이를 설명할 수 있다",
+      "분류에서 비가우시안 사후 분포를 라플라스 근사로 다루는 방식과 일대다·일대일 다중 분류의 비용 차이를 설명할 수 있다",
+      "분류 비용이 데이터 크기의 세제곱으로 늘고 특성이 수십 개를 넘으면 효율이 떨어지는 점을 근거로 적용 범위를 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.supervised.linear-regression",
+      "ml.supervised.svm-classification"
+    ],
+    "related": [
+      "ml.supervised.kernel-approximation"
+    ],
+    "aliases": [
+      "가우시안 프로세스",
+      "Gaussian process",
+      "가우스 과정",
+      "GaussianProcessRegressor",
+      "GaussianProcessClassifier"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/gaussian_process.html"
+    ]
+  },
+  {
+    "id": "ml.nn.optimizer-implementations",
+    "title": "옵티마이저 구현 손익: for-loop·foreach·fused",
+    "en": "PyTorch Optimizer Implementations: For-loop, Foreach, and Fused",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "같은 옵티마이저라도 매개변수마다 도는 for-loop, 텐서를 묶는 foreach, 한 커널로 합치는 fused 구현이 속도·메모리·지원 범위를 맞바꾼다.",
+    "objectives": [
+      "for-loop·foreach·fused 구현이 커널 호출을 줄이는 방식(가로 융합과 세로 융합)의 차이를 설명할 수 있다",
+      "성능은 대개 fused > foreach > for-loop 순이지만 조건이 맞을 때 foreach가 기본이고 fused는 아직 기본이 아닌 이유를 설명할 수 있다",
+      "foreach가 for-loop보다 매개변수 크기만큼 최대 메모리를 더 쓰는 이유를 알고 메모리가 모자랄 때 대처를 고를 수 있다",
+      "capturable·differentiable 옵션이 CUDA 그래프·torch.compile 지원이나 단계 미분을 얻는 대신 성능을 떨어뜨릴 수 있음을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.nn.training-loop",
+      "ml.nn.training-throughput-tuning"
+    ],
+    "related": [
+      "ml.nn.cudagraph-trees",
+      "ml.nn.optimizer"
+    ],
+    "aliases": [
+      "PyTorch fused optimizer",
+      "torch.optim fused=True",
+      "옵티마이저 커널 융합",
+      "PyTorch 옵티마이저 구현 선택"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/optim.html#algorithms",
+      "https://docs.pytorch.org/docs/2.15/generated/torch.optim.Adam.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "ml.nn.tensor-memory-format",
+    "title": "텐서 메모리 형식: stride와 channels_last의 손익",
+    "en": "Tensor Memory Format: Strides and Channels Last",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "모양은 그대로 두고 stride만 바꿔 NHWC 순서로 저장하는 형식이 합성곱을 빠르게 하는 조건과, 형식이 끊길 때 생기는 비용을 다룬다.",
+    "objectives": [
+      "같은 NCHW 모양에서 연속 형식과 channels_last의 stride가 어떻게 다른지 설명할 수 있다",
+      "clone·점별 연산·cuDNN 합성곱이 형식을 이어 가는 규칙과, 지원하지 않는 연산이 연속 출력을 내 순열 비용이 생기는 지점을 설명할 수 있다",
+      "Tensor Core에서 AMP float16으로 돌릴 때 이득이 가장 크다는 점을 근거로 모델과 입력의 형식을 바꿀지 판단할 수 있다",
+      "C==1이나 H==W==1처럼 모호한 모양에서 to와 contiguous가 다르게 동작하는 점을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ml.nn.tensor-basics",
+      "ml.nn.cnn-image-classifier"
+    ],
+    "related": [
+      "ml.nn.mixed-precision-training"
+    ],
+    "aliases": [
+      "torch.memory_format",
+      "텐서 stride",
+      "tensor strides",
+      "PyTorch 메모리 형식"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/tutorials/intermediate/memory_format_tutorial.html",
+      "https://docs.pytorch.org/docs/2.15/tensor_attributes.html"
     ]
   },
   {
@@ -9704,6 +9875,156 @@
     ],
     "refs": [
       "https://scikit-learn.org/stable/modules/sgd.html"
+    ]
+  },
+  {
+    "id": "ml.nn.tf32",
+    "title": "TF32(TensorFloat-32)",
+    "en": "TensorFloat-32 (TF32)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "Ampere 이후 NVIDIA GPU의 텐서 코어가 FP32 입력의 가수 앞 10비트만 읽어 행렬 곱과 합성곱을 빠르게 하는 연산 방식이다.",
+    "parent": "ml.nn.pytorch-numerical-accuracy",
+    "related": [
+      "ml.nn.bfloat16-float16"
+    ],
+    "aliases": [
+      "TF32 텐서 코어",
+      "allow_tf32",
+      "fp32_precision",
+      "torch.backends.cuda.matmul.fp32_precision"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/notes/numerical_accuracy.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "ml.nn.reduced-precision-reduction",
+    "title": "FP16·BF16 행렬 곱의 축소 정밀도 누적",
+    "en": "Reduced Precision Reduction for FP16 and BF16 GEMMs",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "FP16·BF16 행렬 곱의 중간 누적을 단정밀도 대신 반정밀도로 잘라 속도를 얻는 대신 예상치 못한 inf가 생길 수 있는 GPU 동작이다.",
+    "parent": "ml.nn.pytorch-numerical-accuracy",
+    "aliases": [
+      "축소 정밀도 누적",
+      "reduced precision reduction",
+      "allow_fp16_reduced_precision_reduction",
+      "allow_bf16_reduced_precision_reduction"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/notes/numerical_accuracy.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "ml.unsupervised.hdbscan",
+    "title": "HDBSCAN(계층적 밀도 기반 군집화)",
+    "en": "HDBSCAN",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "eps 없이 min_samples만으로 모든 밀도 척도를 훑어, 밀도가 서로 다른 군집도 찾아내는 계층적 밀도 기반 군집화 방법이다.",
+    "parent": "ml.unsupervised.density-clustering-internals",
+    "related": [
+      "ml.unsupervised.dbscan"
+    ],
+    "aliases": [
+      "계층적 밀도 기반 군집화",
+      "hierarchical DBSCAN",
+      "HDBSCAN min_cluster_size",
+      "sklearn HDBSCAN"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/clustering.html#hdbscan"
+    ]
+  },
+  {
+    "id": "ml.unsupervised.mutual-reachability-distance",
+    "title": "상호 도달 거리(mutual reachability distance)",
+    "en": "Mutual Reachability Distance",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "두 점 각각의 핵심 거리와 두 점 사이 거리 가운데 가장 큰 값으로, HDBSCAN이 군집 계층을 만들 그래프의 간선 가중치로 쓴다.",
+    "parent": "ml.unsupervised.density-clustering-internals",
+    "aliases": [
+      "상호 도달 거리 그래프",
+      "mutual reachability graph",
+      "HDBSCAN 상호 도달 거리"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/clustering.html#mutual-reachability-graph"
+    ]
+  },
+  {
+    "id": "ml.supervised.gp-log-marginal-likelihood",
+    "title": "가우시안 프로세스의 로그 주변 우도",
+    "en": "Log-Marginal-Likelihood in Gaussian Processes",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 기초",
+    "summary": "가우시안 프로세스가 커널 하이퍼파라미터를 고를 때 최대화하는 목적 함수로, 지역 최적이 여럿일 수 있어 최적화를 다시 시작하기도 한다.",
+    "parent": "ml.supervised.gaussian-process-internals",
+    "aliases": [
+      "log marginal likelihood",
+      "로그 주변 우도",
+      "GP 주변 우도",
+      "n_restarts_optimizer"
+    ],
+    "refs": [
+      "https://scikit-learn.org/stable/modules/gaussian_process.html"
+    ]
+  },
+  {
+    "id": "ml.nn.foreach-optimizer",
+    "title": "foreach 옵티마이저 구현(multi-tensor)",
+    "en": "Foreach (Multi-Tensor) Optimizer Implementation",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "여러 매개변수를 텐서 목록으로 묶어 한 번에 갱신해 순차 커널 호출을 줄이는 PyTorch 옵티마이저 구현으로, 최대 메모리를 더 쓴다.",
+    "parent": "ml.nn.optimizer-implementations",
+    "aliases": [
+      "foreach=True",
+      "multi-tensor optimizer",
+      "멀티 텐서 옵티마이저",
+      "foreach optimizer"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/optim.html#algorithms",
+      "https://docs.pytorch.org/docs/2.15/generated/torch.optim.Adam.html"
+    ]
+  },
+  {
+    "id": "ml.nn.channels-last",
+    "title": "channels_last 메모리 형식",
+    "en": "Channels Last Memory Format",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "딥러닝",
+    "summary": "NCHW 모양은 그대로 두고 stride로 채널을 가장 촘촘한 차원으로 만드는 PyTorch의 4차원 텐서 저장 순서다.",
+    "parent": "ml.nn.tensor-memory-format",
+    "aliases": [
+      "torch.channels_last",
+      "PyTorch NHWC 형식",
+      "channels last",
+      "memory_format=torch.channels_last"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/tutorials/intermediate/memory_format_tutorial.html"
     ]
   }
 ]

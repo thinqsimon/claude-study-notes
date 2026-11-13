@@ -9040,6 +9040,78 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "rag.agent.parallel-branch-semantics",
+    "title": "LangGraph 병렬 분기의 실행 의미: 트랜잭션·순서·지연 노드",
+    "en": "LangGraph Parallel Branch Semantics: Transactional Super-steps, Ordering and Deferred Nodes",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "같은 슈퍼스텝의 병렬 분기가 함께 반영되거나 함께 버려지는 규칙과, 갱신 순서·길이가 다른 분기의 합류를 다루는 LangGraph의 실행 의미다.",
+    "objectives": [
+      "병렬 분기 하나가 예외를 내면 그 슈퍼스텝의 갱신이 모두 반영되지 않는 트랜잭션 규칙과, 체크포인터가 있을 때 성공한 노드 결과가 재개 때 다시 돌지 않는 점을 설명할 수 있다",
+      "노드 안의 try/except와 RetryPolicy가 실패한 분기만 다시 돌려 성공한 형제 분기를 건드리지 않는 차이를 근거로 실패 처리 방식을 고를 수 있다",
+      "병렬 슈퍼스텝의 갱신 순서가 일정하지 않다는 점에서 순서가 필요한 결과를 정렬 값과 함께 따로 저장해야 하는 이유를 말할 수 있다",
+      "길이가 다른 분기를 합칠 때 defer=True 노드가 남은 작업이 모두 끝날 때까지 기다리는 동작을 일반 합류와 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.pregel-runtime",
+      "rag.agent.workflow-patterns"
+    ],
+    "related": [
+      "rag.agent.fault-tolerance-design"
+    ],
+    "aliases": [
+      "LangGraph 병렬 분기",
+      "LangGraph parallel branches",
+      "LangGraph 팬아웃 팬인",
+      "LangGraph fan-out fan-in",
+      "병렬 노드 실패 처리"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/graph-api-control-flow"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "rag.agent.graph-migration-compat",
+    "title": "LangGraph 그래프 변경과 진행 중 스레드 호환",
+    "en": "LangGraph Backward Compatibility for In-flight Threads",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "새로 배포한 그래프 코드가 저장된 체크포인트로 재개하는 모든 스레드에 곧바로 적용되는 구조에서 기술·업무·비결정성 호환을 따지는 방법이다.",
+    "objectives": [
+      "실행을 시작 시점 코드에 고정하는 워크플로 엔진과 달리 최신 그래프를 모든 스레드에 적용하는 방식의 이점과 위험을 비교할 수 있다",
+      "엣지 구성은 체크포인트에 저장되지 않고 노드는 이름으로 찾는다는 점을 근거로, 멈춘 스레드에 안전한 변경과 실패를 부르는 노드 이름 변경·삭제를 가를 수 있다",
+      "상태 필드를 NotRequired로 더하고 추가 후 삭제로 이름을 바꾸며, 스레드 시작 때 흐름 버전을 기록해 옛 스레드가 옛 업무 흐름을 따르게 설계할 수 있다",
+      "함수형 API가 재개 때 entrypoint를 처음부터 다시 돌리며 캐시된 task 결과를 호출 위치로 맞추기 때문에, task 순서를 바꾸면 잘못된 캐시 값이 되살아나고 task 밖 비결정 연산은 재개 때 제어 흐름을 바꿀 수 있는 원리를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.checkpoint-persistence",
+      "rag.agent.functional-api"
+    ],
+    "related": [
+      "rag.agent.time-travel-debugging",
+      "rag.agent.fault-tolerance-design"
+    ],
+    "aliases": [
+      "LangGraph 하위 호환",
+      "LangGraph backward compatibility",
+      "LangGraph 그래프 마이그레이션",
+      "LangGraph graph migrations",
+      "진행 중 스레드 호환"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/backward-compatibility",
+      "https://docs.langchain.com/oss/python/langgraph/graph-api"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
     "id": "rag.vector-db.qdrant-segment-optimizer",
     "title": "Qdrant 세그먼트와 최적화기: 색인·삭제 정리·읽기 쓰기 경합",
     "en": "Qdrant Segments and Optimizers",
@@ -9379,6 +9451,109 @@
     ]
   },
   {
+    "id": "rag.agent.mcp-extension-negotiation",
+    "title": "MCP 확장의 협상과 진화 규칙",
+    "en": "MCP Extension Negotiation and Lifecycle",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "MCP 확장이 식별자와 설정 객체로 양쪽 기능 선언에서 협상되고, Experimental·Beta·Stable 단계와 코어 승격을 거치며 바뀌는 규칙을 다룬다.",
+    "objectives": [
+      "2026-07-28판에서 클라이언트는 요청마다 _meta의 clientCapabilities에, 서버는 server/discover 응답의 capabilities에 extensions를 싣는 협상 경로를 이전 판의 initialize 협상과 비교할 수 있다",
+      "한쪽만 확장을 지원할 때 코어 동작으로 물러설지 필수 확장이라 요청을 거절할지 확장의 성격을 근거로 판단할 수 있다",
+      "Experimental·Beta·Stable 단계마다 허용되는 변경과 구현자가 기대할 수 있는 안정성을 비교해 어느 단계 확장을 제품에 쓸지 따질 수 있다",
+      "확장이 코어로 승격된 판 이상에서는 광고 없이도 코어 동작이 되고 이전 판에는 확장의 마지막 판이 적용되는 규칙으로 여러 판을 지원하는 클라이언트의 광고 정책을 정할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.mcp-protocol",
+      "rag.agent.mcp-extensions-idea"
+    ],
+    "related": [
+      "rag.agent.mcp-version-compat"
+    ],
+    "aliases": [
+      "MCP 확장 협상",
+      "MCP extension negotiation",
+      "MCP 확장 수명 주기",
+      "MCP extension lifecycle",
+      "capabilities.extensions"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/extensions/overview",
+      "https://modelcontextprotocol.io/specification/2026-07-28/server/discover"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "rag.retrieval.vespa-phased-ranking",
+    "title": "Vespa 단계별 순위 매기기의 내부와 비용",
+    "en": "Vespa Phased Ranking Internals and Cost",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "검색 내부",
+    "summary": "콘텐츠 노드에서 도는 first-phase·second-phase와 컨테이너에서 도는 global-phase로 순위 계산을 나눠 비싼 모델의 비용 상한을 정하는 Vespa의 구조다.",
+    "objectives": [
+      "first-phase는 노드마다 검색된 모든 결과에, second-phase는 노드마다 상위 결과에, global-phase는 합쳐진 전체 상위 결과에 돈다는 차이로 계산 비용의 상한을 설명할 수 있다",
+      "큰 트리 모델은 second-phase에, 교차 인코더 같은 ONNX 모델은 global-phase에 두는 이유를 벡터 데이터를 네트워크로 옮기는 비용과 함께 따질 수 있다",
+      "global-phase의 normalize_linear·reciprocal_rank_fusion이 rerank-count로 정한 결과 안에서만 정규화된다는 점이 점수 결합에 주는 영향을 설명할 수 있다",
+      "first-phase 함수가 second-phase 함수와 잘 맞물려야 하는 이유를 상위 결과만 다시 채점하는 구조로 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.retrieval.hybrid-rerank",
+      "rag.retrieval.quality"
+    ],
+    "related": [
+      "rag.retrieval.opensearch-score-normalization"
+    ],
+    "aliases": [
+      "Vespa phased ranking",
+      "Vespa 단계별 순위",
+      "Vespa rank-profile",
+      "Vespa 재순위",
+      "Vespa reranking"
+    ],
+    "refs": [
+      "https://docs.vespa.ai/en/ranking/phased-ranking.html"
+    ]
+  },
+  {
+    "id": "rag.vector-db.elasticsearch-knn-capacity",
+    "title": "Elasticsearch 근사 kNN의 메모리와 세그먼트 손익",
+    "en": "Elasticsearch Approximate kNN Capacity: Off-heap RAM, Page Cache and Segments",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "Elasticsearch 근사 kNN이 운영체제 페이지 캐시에 올린 벡터와 세그먼트마다 따로 둔 HNSW 그래프로 검색해 메모리 크기와 세그먼트 수가 지연을 좌우하는 구조다.",
+    "objectives": [
+      "벡터 수·차원·원소 형식·양자화 방식과 HNSW의 m으로 힙 밖 메모리와 디스크 사용량을 추정할 수 있다",
+      "벡터 데이터가 자바 힙이 아니라 페이지 캐시에 있어 작업 집합이 넘치면 지연이 크게 늘어나는 이유와, 미리 올릴 파일과 올리지 말아야 할 원본 벡터 파일을 가를 수 있다",
+      "세그먼트마다 HNSW 그래프가 따로 있어 모든 세그먼트를 뒤진다는 점에서 세그먼트 수를 줄이는 방법과 대량 색인 설정의 손익을 따질 수 있다",
+      "양자화 색인이 원본 벡터를 디스크에 함께 두는 구조에서 메모리가 페이지 캐시에 맞지 않을 때 디스크 재채점을 쓸지 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.vector-index.internals"
+    ],
+    "related": [
+      "rag.vector-db.elasticsearch-vector-quantization",
+      "rag.vector-db.qdrant-segment-optimizer"
+    ],
+    "aliases": [
+      "Elasticsearch kNN 튜닝",
+      "Elasticsearch approximate kNN tuning",
+      "Elasticsearch 벡터 메모리 추정",
+      "Elasticsearch kNN 세그먼트"
+    ],
+    "refs": [
+      "https://www.elastic.co/docs/deploy-manage/production-guidance/optimize-performance/approximate-knn-search"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
     "id": "rag.vector-index.recall",
     "title": "재현율",
     "en": "Recall",
@@ -9433,6 +9608,29 @@
     ],
     "refs": [
       "https://qdrant.tech/documentation/scaling/consistency-guarantees/"
+    ]
+  },
+  {
+    "id": "rag.agent.superstep-transaction",
+    "title": "LangGraph 슈퍼스텝 트랜잭션",
+    "en": "Transactional Super-step in LangGraph",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "에이전트",
+    "summary": "같은 슈퍼스텝의 병렬 분기 가운데 하나라도 예외를 내면 그 단계의 상태 갱신이 하나도 반영되지 않는 LangGraph의 규칙이다.",
+    "parent": "rag.agent.parallel-branch-semantics",
+    "related": [
+      "rag.agent.super-step",
+      "rag.agent.pending-writes"
+    ],
+    "aliases": [
+      "superstep transactional",
+      "LangGraph 슈퍼스텝 원자성",
+      "슈퍼스텝 원자적 반영"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/graph-api-control-flow"
     ]
   },
   {
@@ -9964,5 +10162,134 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
+  },
+  {
+    "id": "rag.agent.deferred-node",
+    "title": "LangGraph 지연 노드(defer=True)",
+    "en": "Deferred Node (defer=True)",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "add_node에 defer=True를 주면 그 노드가 다른 대기 작업이 모두 끝난 뒤에 돌아, 길이가 다른 분기를 한 번에 합칠 수 있다.",
+    "parent": "rag.agent.parallel-branch-semantics",
+    "related": [
+      "rag.agent.orchestrator-worker"
+    ],
+    "aliases": [
+      "defer=True",
+      "LangGraph defer",
+      "LangGraph deferred node",
+      "LangGraph 노드 실행 지연"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/graph-api-control-flow"
+    ]
+  },
+  {
+    "id": "rag.agent.flow-version-flag",
+    "title": "LangGraph 흐름 버전 기록(flow_version)",
+    "en": "Behavioral Version Flag on Thread State",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "스레드를 시작할 때 상태에 업무 흐름 버전을 적고 조건부 엣지로 갈라, 이미 진행 중인 스레드는 옛 흐름을 따르게 하는 방법이다.",
+    "parent": "rag.agent.graph-migration-compat",
+    "aliases": [
+      "flow_version",
+      "LangGraph 업무 호환",
+      "LangGraph business compatibility",
+      "흐름 버전 플래그"
+    ],
+    "refs": [
+      "https://docs.langchain.com/oss/python/langgraph/backward-compatibility"
+    ]
+  },
+  {
+    "id": "rag.agent.mcp-extension-identifier",
+    "title": "MCP 확장 식별자",
+    "en": "MCP Extension Identifier",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "{vendor-prefix}/{extension-name} 꼴로 확장을 가리키는 이름으로, 공식 확장은 io.modelcontextprotocol 접두어를 쓰고 단계가 바뀌어도 그대로다.",
+    "parent": "rag.agent.mcp-extension-negotiation",
+    "aliases": [
+      "MCP extension identifier",
+      "MCP vendor prefix",
+      "MCP 확장 접두어",
+      "MCP 확장 이름 규칙"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/extensions/overview"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "rag.agent.mcp-extension-stage",
+    "title": "MCP 확장 단계(Experimental·Beta·Stable)",
+    "en": "MCP Extension Stages",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "MCP 확장이 아무 때나 바뀌는 Experimental, 깨지는 변경이 드문 Beta, 코어 새 판에서만 바뀌는 Stable 가운데 어디에 있는지를 나타내는 단계다.",
+    "parent": "rag.agent.mcp-extension-negotiation",
+    "aliases": [
+      "MCP extension lifecycle stage",
+      "MCP Experimental 확장",
+      "MCP Beta 확장",
+      "MCP Stable 확장"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/extensions/overview"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "rag.retrieval.vespa-global-phase",
+    "title": "Vespa global-phase 재순위",
+    "en": "Vespa Global-phase Ranking",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "검색 내부",
+    "summary": "콘텐츠 노드가 돌려준 결과를 합친 뒤 무상태 컨테이너에서 기본 100개의 전체 상위 결과를 다시 채점하는 Vespa의 마지막 순위 단계다.",
+    "parent": "rag.retrieval.vespa-phased-ranking",
+    "aliases": [
+      "global-phase",
+      "Vespa global phase",
+      "Vespa global-phase rerank-count",
+      "ranking.globalPhase.rerankCount"
+    ],
+    "refs": [
+      "https://docs.vespa.ai/en/ranking/phased-ranking.html"
+    ]
+  },
+  {
+    "id": "rag.vector-db.elasticsearch-store-preload",
+    "title": "Elasticsearch 벡터 파일 미리 올리기",
+    "en": "Elasticsearch index.store.preload for Vector Files",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "파일 확장자를 골라 페이지 캐시에 미리 올리는 색인 설정으로, 양자화 코드와 HNSW 그래프는 올리고 원본 벡터 파일은 올리지 않는 것이 권장된다.",
+    "parent": "rag.vector-db.elasticsearch-knn-capacity",
+    "aliases": [
+      "index.store.preload",
+      "Elasticsearch preload",
+      "Elasticsearch 파일 캐시 예열",
+      "Elasticsearch .vex 미리 읽기"
+    ],
+    "refs": [
+      "https://www.elastic.co/docs/deploy-manage/production-guidance/optimize-performance/approximate-knn-search"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
   }
 ]

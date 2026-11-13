@@ -1,5 +1,5 @@
 {
- "version": "0.82.0",
+ "version": "0.83.0",
  "domains": [
   {
    "prefix": "dev",
@@ -71239,6 +71239,42 @@
    "domain": "llm"
   },
   {
+   "id": "llm.internals.big-model-dispatch",
+   "title": "큰 모델 적재의 내부: 빈 모델·device_map·오프로딩",
+   "en": "Big Model Loading Internals: Empty Weights, Device Maps and Offloading",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "LLM 내부",
+   "summary": "메모리보다 큰 모델을 빈 모델로 만든 뒤 층별로 GPU·CPU·디스크에 나눠 싣고, 훅으로 필요할 때만 옮겨 돌리는 방식과 그 속도 대가를 다룬다.",
+   "objectives": [
+    "일반 적재가 무작위 초기화 모델과 state dict로 RAM을 두 번 쓰는 이유와 메타 장치 빈 모델이 이를 피하는 원리를 설명할 수 있다",
+    "device_map 자동 배치가 GPU부터 채우고 남는 가중치를 CPU, 그다음 디스크로 보내는 순서와 auto·balanced_low_0·sequential의 차이를 비교할 수 있다",
+    "오프로딩된 가중치를 순전파 직전에 GPU로 올리는 훅 방식이 미리 가져오기 없이 느려지고, 여러 GPU에 나눠도 한 번에 한 GPU만 일하는 이유를 분석할 수 있다",
+    "CUDA 커널 적재로 GPU마다 쓸 수 있는 메모리가 1~2GB 줄고, generate처럼 출력이 입력이 있던 첫 GPU에 남아 그 GPU가 더 많은 메모리를 쓰기 때문에 max_memory로 첫 GPU에 덜 배정하는 이유를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.basics.hub-model-load-errors",
+    "llm.internals.weight-quantization-schemes"
+   ],
+   "related": [
+    "llm.internals.cache-offloading"
+   ],
+   "aliases": [
+    "big model inference",
+    "device_map auto",
+    "load_checkpoint_and_dispatch",
+    "Accelerate 오프로딩",
+    "Accelerate big model inference"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/accelerate/concept_guides/big_model_inference"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "llm"
+  },
+  {
    "id": "llm.internals.structured-decoding",
    "title": "구조화 출력의 보장과 한계",
    "en": "Guarantees of Structured Output",
@@ -71581,6 +71617,151 @@
    "refs": [
     "https://huggingface.co/docs/transformers/main/en/internal/generation_utils"
    ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.transformers-tensor-parallel",
+   "title": "Transformers 텐서 병렬의 내부: 열·행 분할과 집합 통신",
+   "en": "Tensor Parallelism Internals in Transformers: Colwise and Rowwise Sharding",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "tp_plan이 층마다 가중치를 출력 차원이나 입력 차원으로 GPU에 나누고, 그 사이를 all-reduce·all-gather로 잇는 방식과 손익을 다룬다.",
+   "objectives": [
+    "colwise가 출력 특성 차원을, rowwise가 입력 특성 차원을 나누고 rowwise 출력의 부분합이 all-reduce로 합쳐지는 흐름을 설명할 수 있다",
+    "q·k·v 투영을 colwise로, o_proj를 rowwise로 짝지으면 중간 결과를 모으지 않고 다음 층으로 넘길 수 있는 이유를 분석할 수 있다",
+    "gate_up_proj처럼 묶인 가중치를 기본 분할로 나누면 결과가 틀어지는 이유와 packed 전략이 필요한 경우를 판단할 수 있다",
+    "층마다 결과를 주고받는 텐서 병렬이 빠른 노드 안 통신을 요구하는 이유와 잘못 짠 수동 계획의 위험을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.internals.inference-phases",
+    "llm.internals.kv-head-sharing"
+   ],
+   "related": [
+    "mlops.serve.tensor-parallelism",
+    "ml.nn.fsdp-sharding"
+   ],
+   "aliases": [
+    "tp_plan",
+    "Transformers tensor parallelism",
+    "DistributedConfig tp_size",
+    "Transformers 텐서 병렬",
+    "colwise rowwise 분할"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/transformers/perf_infer_gpu_multi"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.lora-merge-ties-dare",
+   "title": "여러 LoRA 어댑터 합치기의 내부: TIES와 DARE",
+   "en": "Merging Multiple LoRA Adapters: TIES and DARE",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "작업별로 학습한 LoRA 어댑터 여러 개를 추가 학습 없이 하나로 합칠 때, 겹치는 값을 덜어 내고 부호 충돌을 푸는 방식의 원리와 손익을 다룬다.",
+   "objectives": [
+    "TIES가 중복 값을 잘라 내고, 부호를 하나로 정한 뒤, 그 부호와 같은 값만 평균하는 세 단계를 설명할 수 있다",
+    "DARE가 정해진 비율로 값을 무작위로 버리고 남은 값을 키워 다른 병합의 준비 단계로 쓰이는 원리를 설명할 수 있다",
+    "density와 어댑터별 weights가 병합 결과의 크기와 간섭에 주는 영향을 근거로 값을 정할 수 있다",
+    "같은 기반 모델의 LoRA끼리 합칠 때와 달리 전체 미세조정 모델을 합칠 때 특수 토큰 임베딩 위치가 부딪히는 위험을 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.finetune.lora-internals"
+   ],
+   "related": [
+    "mlops.finetune.adapter-merge"
+   ],
+   "aliases": [
+    "add_weighted_adapter",
+    "combination_type",
+    "LoRA 다중 어댑터 병합",
+    "PEFT model merging",
+    "dare_ties"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/peft/developer_guides/model_merging"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.on-policy-distillation",
+   "title": "온정책 지식 증류(GKD)의 내부와 손익",
+   "en": "On-Policy Knowledge Distillation (GKD) Internals",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "학생 모델이 스스로 만든 답에 교사 모델이 토큰별 확률로 피드백하게 해, 학습과 추론의 출력 분포 차이를 줄이는 증류 방식과 설정의 손익을 다룬다.",
+   "objectives": [
+    "고정된 정답 문장으로만 배우는 증류가 추론 때 학생이 만드는 문장과 분포가 어긋나는 문제를 설명할 수 있다",
+    "lmbda가 학생이 생성한 답의 비율을 정하고 0과 1에서 각각 지도 JSD와 온정책 JSD가 되는 차이를 비교할 수 있다",
+    "seq_kd=True와 lmbda=0.0이면 교사가 만든 문장에 교사의 토큰별 피드백을 받는 시퀀스 수준 증류가 되는 조건을 lmbda 설정과 구분해 설명할 수 있다",
+    "논문 저자들이 온정책 비율을 높일 때 성능이 좋았다고 보고한 점과 최적 beta가 작업마다 달랐다는 점을 근거로 실험 범위를 정할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.finetune.sft-trainer",
+    "llm.internals.tokenization-sampling"
+   ],
+   "related": [
+    "llm.basics.knowledge-distillation",
+    "llm.internals.preference-alignment"
+   ],
+   "aliases": [
+    "GKD",
+    "GKDTrainer",
+    "generalized knowledge distillation",
+    "온정책 증류",
+    "on-policy distillation"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/trl/main/en/gkd_trainer"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.rl-vllm-generation",
+   "title": "강화학습 vLLM 생성: colocate·server 모드",
+   "en": "vLLM Generation in Online RL Training: Colocate and Server Modes",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "GRPO 같은 온라인 학습이 답 생성을 vLLM에 맡길 때 GPU 배치 방식, 매 단계 가중치 동기화, 추론 엔진과 학습 엔진의 확률 차이를 다루는 내부와 손익이다.",
+   "objectives": [
+    "온라인 학습에서 생성이 병목인 이유와, server 모드에서 vLLM이 생성만 맡고 옵티마이저 단계마다 학습된 가중치를 NCCL로 받아 오는 흐름을 설명할 수 있다",
+    "학습 GPU를 나눠 쓰는 colocate 모드와 전용 GPU에 따로 띄우는 server 모드를 메모리 경합과 GPU 활용률로 비교할 수 있다",
+    "vLLM이 뽑은 답을 학습 엔진으로 미분하면 온정책 문제가 오프정책이 되어 기울기가 치우치는 이유를 설명할 수 있다",
+    "server 모드가 개발용 엔드포인트를 열어 신뢰된 네트워크에 두어야 하는 이유를 말할 수 있다"
+   ],
+   "prerequisites": [
+    "llm.internals.preference-alignment",
+    "llm.internals.continuous-batching-internals"
+   ],
+   "related": [
+    "mlops.serve.vllm-server-dev-mode",
+    "mlops.serve.vllm-sleep-mode"
+   ],
+   "aliases": [
+    "TRL vLLM integration",
+    "vllm_mode",
+    "TRL colocate mode",
+    "use_vllm",
+    "GRPO vLLM 생성"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/trl/main/en/vllm_integration",
+    "https://huggingface.co/docs/trl/main/en/grpo_trainer"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
    "domain": "llm"
   },
   {
@@ -72212,6 +72393,155 @@
    "refs": [
     "https://huggingface.co/docs/transformers/main/en/internal/generation_utils"
    ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.meta-device-empty-model",
+   "title": "init_empty_weights(메타 장치 빈 모델)",
+   "en": "init_empty_weights and the Meta Device",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "만들어지는 파라미터를 곧바로 데이터 없는 메타 장치로 보내, RAM을 쓰지 않고 아무리 큰 모델 구조라도 먼저 세워 두는 Accelerate 문맥 관리자다.",
+   "parent": "llm.internals.big-model-dispatch",
+   "aliases": [
+    "init_empty_weights",
+    "Accelerate 빈 모델",
+    "Accelerate meta device 초기화",
+    "빈 가중치 모델"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.no-split-module-classes",
+   "title": "no_split_module_classes(나누지 않을 블록)",
+   "en": "no_split_module_classes",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "device_map을 정할 때 잔차 연결이 있는 블록처럼 여러 장치에 쪼개면 안 되는 모듈 이름을 알려 주는 Accelerate 인자다.",
+   "parent": "llm.internals.big-model-dispatch",
+   "aliases": [
+    "no_split_module_classes",
+    "분할 금지 모듈"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.dtensor-placements",
+   "title": "DTensor 배치(Shard·Replicate·Partial)",
+   "en": "DTensor Placements: Shard, Replicate and Partial",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "텐서를 장치 묶음에 어떻게 놓을지 나눔·복제·합산 대기로 표시해, 통신을 배치 바꾸기로 나타내게 하는 PyTorch 분산 텐서의 속성이다.",
+   "parent": "llm.internals.transformers-tensor-parallel",
+   "aliases": [
+    "DTensor placements",
+    "Partial placement",
+    "Shard Replicate Partial",
+    "DTensor 배치"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.packed-tp-strategy",
+   "title": "packed_colwise(묶인 가중치의 텐서 병렬 분할)",
+   "en": "Packed Colwise and Rowwise Tensor Parallel Strategies",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "gate·up처럼 한 행렬에 묶인 가중치를 번갈아 나눠, 각 GPU가 두 부분의 같은 조각을 받게 하는 Transformers 텐서 병렬 전략이다.",
+   "parent": "llm.internals.transformers-tensor-parallel",
+   "aliases": [
+    "packed_colwise",
+    "packed_rowwise",
+    "PackedColwiseParallel",
+    "gate_up_proj 분할"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.ties-sign-election",
+   "title": "TIES 부호 선출(sign election)",
+   "en": "TIES Sign Election",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "여러 모델의 같은 파라미터 값이 서로 다른 부호를 가질 때 하나의 부호로 모은 뒤, 그 부호와 같은 값만 평균에 넣는 TIES 병합의 단계다.",
+   "parent": "llm.internals.lora-merge-ties-dare",
+   "aliases": [
+    "TIES sign election",
+    "부호 충돌 해소",
+    "TIES 부호 선출"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.generalized-jsd",
+   "title": "일반화 젠슨-섀넌 발산(GKD beta)",
+   "en": "Generalized Jensen-Shannon Divergence",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "학생과 교사 분포의 거리를 재는 GKD 손실로, beta가 0이면 정방향 KL, 1이면 역방향 KL에 가깝고 그 사이는 둘을 섞는다.",
+   "parent": "llm.internals.on-policy-distillation",
+   "aliases": [
+    "generalized JSD",
+    "일반화 JSD",
+    "GKD beta"
+   ],
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.rl-importance-sampling-correction",
+   "title": "학습-추론 불일치 중요도 샘플링 보정(TIS·MIS)",
+   "en": "Training-Inference Mismatch Importance Sampling Correction",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "vLLM과 학습 엔진의 확률 비율로 표본을 다시 가중해, 범위를 벗어난 비율을 잘라 쓰거나(TIS) 아예 빼는(MIS) GRPO의 보정이다.",
+   "parent": "llm.internals.rl-vllm-generation",
+   "aliases": [
+    "vllm_importance_sampling_correction",
+    "truncated importance sampling",
+    "masked importance sampling",
+    "TIS MIS 보정"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "llm"
+  },
+  {
+   "id": "llm.internals.grpo-loss-normalization",
+   "title": "GRPO 손실 정규화 방식(loss_type)",
+   "en": "GRPO Loss Normalization (loss_type)",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 내부",
+   "summary": "토큰 손실 합을 답마다의 길이, 배치 전체 토큰 수, 고정 상수 중 무엇으로 나눌지 정하는 GRPO 설정으로, 답 길이에 따른 치우침이 달라진다.",
+   "related": [
+    "llm.internals.preference-alignment"
+   ],
+   "aliases": [
+    "GRPO loss_type",
+    "dr_grpo",
+    "DAPO 손실",
+    "GRPO 길이 편향"
+   ],
+   "refs": [
+    "https://huggingface.co/docs/trl/main/en/grpo_trainer"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
    "domain": "llm"
   },
   {
@@ -81598,6 +81928,80 @@
    "domain": "rag"
   },
   {
+   "id": "rag.agent.parallel-branch-semantics",
+   "title": "LangGraph 병렬 분기의 실행 의미: 트랜잭션·순서·지연 노드",
+   "en": "LangGraph Parallel Branch Semantics: Transactional Super-steps, Ordering and Deferred Nodes",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "같은 슈퍼스텝의 병렬 분기가 함께 반영되거나 함께 버려지는 규칙과, 갱신 순서·길이가 다른 분기의 합류를 다루는 LangGraph의 실행 의미다.",
+   "objectives": [
+    "병렬 분기 하나가 예외를 내면 그 슈퍼스텝의 갱신이 모두 반영되지 않는 트랜잭션 규칙과, 체크포인터가 있을 때 성공한 노드 결과가 재개 때 다시 돌지 않는 점을 설명할 수 있다",
+    "노드 안의 try/except와 RetryPolicy가 실패한 분기만 다시 돌려 성공한 형제 분기를 건드리지 않는 차이를 근거로 실패 처리 방식을 고를 수 있다",
+    "병렬 슈퍼스텝의 갱신 순서가 일정하지 않다는 점에서 순서가 필요한 결과를 정렬 값과 함께 따로 저장해야 하는 이유를 말할 수 있다",
+    "길이가 다른 분기를 합칠 때 defer=True 노드가 남은 작업이 모두 끝날 때까지 기다리는 동작을 일반 합류와 비교할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.pregel-runtime",
+    "rag.agent.workflow-patterns"
+   ],
+   "related": [
+    "rag.agent.fault-tolerance-design"
+   ],
+   "aliases": [
+    "LangGraph 병렬 분기",
+    "LangGraph parallel branches",
+    "LangGraph 팬아웃 팬인",
+    "LangGraph fan-out fan-in",
+    "병렬 노드 실패 처리"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/graph-api-control-flow"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.graph-migration-compat",
+   "title": "LangGraph 그래프 변경과 진행 중 스레드 호환",
+   "en": "LangGraph Backward Compatibility for In-flight Threads",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "새로 배포한 그래프 코드가 저장된 체크포인트로 재개하는 모든 스레드에 곧바로 적용되는 구조에서 기술·업무·비결정성 호환을 따지는 방법이다.",
+   "objectives": [
+    "실행을 시작 시점 코드에 고정하는 워크플로 엔진과 달리 최신 그래프를 모든 스레드에 적용하는 방식의 이점과 위험을 비교할 수 있다",
+    "엣지 구성은 체크포인트에 저장되지 않고 노드는 이름으로 찾는다는 점을 근거로, 멈춘 스레드에 안전한 변경과 실패를 부르는 노드 이름 변경·삭제를 가를 수 있다",
+    "상태 필드를 NotRequired로 더하고 추가 후 삭제로 이름을 바꾸며, 스레드 시작 때 흐름 버전을 기록해 옛 스레드가 옛 업무 흐름을 따르게 설계할 수 있다",
+    "함수형 API가 재개 때 entrypoint를 처음부터 다시 돌리며 캐시된 task 결과를 호출 위치로 맞추기 때문에, task 순서를 바꾸면 잘못된 캐시 값이 되살아나고 task 밖 비결정 연산은 재개 때 제어 흐름을 바꿀 수 있는 원리를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.checkpoint-persistence",
+    "rag.agent.functional-api"
+   ],
+   "related": [
+    "rag.agent.time-travel-debugging",
+    "rag.agent.fault-tolerance-design"
+   ],
+   "aliases": [
+    "LangGraph 하위 호환",
+    "LangGraph backward compatibility",
+    "LangGraph 그래프 마이그레이션",
+    "LangGraph graph migrations",
+    "진행 중 스레드 호환"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/backward-compatibility",
+    "https://docs.langchain.com/oss/python/langgraph/graph-api"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "rag"
+  },
+  {
    "id": "rag.vector-db.qdrant-segment-optimizer",
    "title": "Qdrant 세그먼트와 최적화기: 색인·삭제 정리·읽기 쓰기 경합",
    "en": "Qdrant Segments and Optimizers",
@@ -81947,6 +82351,112 @@
    "domain": "rag"
   },
   {
+   "id": "rag.agent.mcp-extension-negotiation",
+   "title": "MCP 확장의 협상과 진화 규칙",
+   "en": "MCP Extension Negotiation and Lifecycle",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "MCP 확장이 식별자와 설정 객체로 양쪽 기능 선언에서 협상되고, Experimental·Beta·Stable 단계와 코어 승격을 거치며 바뀌는 규칙을 다룬다.",
+   "objectives": [
+    "2026-07-28판에서 클라이언트는 요청마다 _meta의 clientCapabilities에, 서버는 server/discover 응답의 capabilities에 extensions를 싣는 협상 경로를 이전 판의 initialize 협상과 비교할 수 있다",
+    "한쪽만 확장을 지원할 때 코어 동작으로 물러설지 필수 확장이라 요청을 거절할지 확장의 성격을 근거로 판단할 수 있다",
+    "Experimental·Beta·Stable 단계마다 허용되는 변경과 구현자가 기대할 수 있는 안정성을 비교해 어느 단계 확장을 제품에 쓸지 따질 수 있다",
+    "확장이 코어로 승격된 판 이상에서는 광고 없이도 코어 동작이 되고 이전 판에는 확장의 마지막 판이 적용되는 규칙으로 여러 판을 지원하는 클라이언트의 광고 정책을 정할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.agent.mcp-protocol",
+    "rag.agent.mcp-extensions-idea"
+   ],
+   "related": [
+    "rag.agent.mcp-version-compat"
+   ],
+   "aliases": [
+    "MCP 확장 협상",
+    "MCP extension negotiation",
+    "MCP 확장 수명 주기",
+    "MCP extension lifecycle",
+    "capabilities.extensions"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/extensions/overview",
+    "https://modelcontextprotocol.io/specification/2026-07-28/server/discover"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.vespa-phased-ranking",
+   "title": "Vespa 단계별 순위 매기기의 내부와 비용",
+   "en": "Vespa Phased Ranking Internals and Cost",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "검색 내부",
+   "summary": "콘텐츠 노드에서 도는 first-phase·second-phase와 컨테이너에서 도는 global-phase로 순위 계산을 나눠 비싼 모델의 비용 상한을 정하는 Vespa의 구조다.",
+   "objectives": [
+    "first-phase는 노드마다 검색된 모든 결과에, second-phase는 노드마다 상위 결과에, global-phase는 합쳐진 전체 상위 결과에 돈다는 차이로 계산 비용의 상한을 설명할 수 있다",
+    "큰 트리 모델은 second-phase에, 교차 인코더 같은 ONNX 모델은 global-phase에 두는 이유를 벡터 데이터를 네트워크로 옮기는 비용과 함께 따질 수 있다",
+    "global-phase의 normalize_linear·reciprocal_rank_fusion이 rerank-count로 정한 결과 안에서만 정규화된다는 점이 점수 결합에 주는 영향을 설명할 수 있다",
+    "first-phase 함수가 second-phase 함수와 잘 맞물려야 하는 이유를 상위 결과만 다시 채점하는 구조로 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.retrieval.hybrid-rerank",
+    "rag.retrieval.quality"
+   ],
+   "related": [
+    "rag.retrieval.opensearch-score-normalization"
+   ],
+   "aliases": [
+    "Vespa phased ranking",
+    "Vespa 단계별 순위",
+    "Vespa rank-profile",
+    "Vespa 재순위",
+    "Vespa reranking"
+   ],
+   "refs": [
+    "https://docs.vespa.ai/en/ranking/phased-ranking.html"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.elasticsearch-knn-capacity",
+   "title": "Elasticsearch 근사 kNN의 메모리와 세그먼트 손익",
+   "en": "Elasticsearch Approximate kNN Capacity: Off-heap RAM, Page Cache and Segments",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "벡터 DB",
+   "summary": "Elasticsearch 근사 kNN이 운영체제 페이지 캐시에 올린 벡터와 세그먼트마다 따로 둔 HNSW 그래프로 검색해 메모리 크기와 세그먼트 수가 지연을 좌우하는 구조다.",
+   "objectives": [
+    "벡터 수·차원·원소 형식·양자화 방식과 HNSW의 m으로 힙 밖 메모리와 디스크 사용량을 추정할 수 있다",
+    "벡터 데이터가 자바 힙이 아니라 페이지 캐시에 있어 작업 집합이 넘치면 지연이 크게 늘어나는 이유와, 미리 올릴 파일과 올리지 말아야 할 원본 벡터 파일을 가를 수 있다",
+    "세그먼트마다 HNSW 그래프가 따로 있어 모든 세그먼트를 뒤진다는 점에서 세그먼트 수를 줄이는 방법과 대량 색인 설정의 손익을 따질 수 있다",
+    "양자화 색인이 원본 벡터를 디스크에 함께 두는 구조에서 메모리가 페이지 캐시에 맞지 않을 때 디스크 재채점을 쓸지 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "rag.vector-index.internals"
+   ],
+   "related": [
+    "rag.vector-db.elasticsearch-vector-quantization",
+    "rag.vector-db.qdrant-segment-optimizer"
+   ],
+   "aliases": [
+    "Elasticsearch kNN 튜닝",
+    "Elasticsearch approximate kNN tuning",
+    "Elasticsearch 벡터 메모리 추정",
+    "Elasticsearch kNN 세그먼트"
+   ],
+   "refs": [
+    "https://www.elastic.co/docs/deploy-manage/production-guidance/optimize-performance/approximate-knn-search"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "rag"
+  },
+  {
    "id": "rag.vector-index.recall",
    "title": "재현율",
    "en": "Recall",
@@ -82003,6 +82513,30 @@
    ],
    "refs": [
     "https://qdrant.tech/documentation/scaling/consistency-guarantees/"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.superstep-transaction",
+   "title": "LangGraph 슈퍼스텝 트랜잭션",
+   "en": "Transactional Super-step in LangGraph",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "에이전트",
+   "summary": "같은 슈퍼스텝의 병렬 분기 가운데 하나라도 예외를 내면 그 단계의 상태 갱신이 하나도 반영되지 않는 LangGraph의 규칙이다.",
+   "parent": "rag.agent.parallel-branch-semantics",
+   "related": [
+    "rag.agent.super-step",
+    "rag.agent.pending-writes"
+   ],
+   "aliases": [
+    "superstep transactional",
+    "LangGraph 슈퍼스텝 원자성",
+    "슈퍼스텝 원자적 반영"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/graph-api-control-flow"
    ],
    "domain": "rag"
   },
@@ -82558,6 +83092,141 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-12",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.deferred-node",
+   "title": "LangGraph 지연 노드(defer=True)",
+   "en": "Deferred Node (defer=True)",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "add_node에 defer=True를 주면 그 노드가 다른 대기 작업이 모두 끝난 뒤에 돌아, 길이가 다른 분기를 한 번에 합칠 수 있다.",
+   "parent": "rag.agent.parallel-branch-semantics",
+   "related": [
+    "rag.agent.orchestrator-worker"
+   ],
+   "aliases": [
+    "defer=True",
+    "LangGraph defer",
+    "LangGraph deferred node",
+    "LangGraph 노드 실행 지연"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/graph-api-control-flow"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.flow-version-flag",
+   "title": "LangGraph 흐름 버전 기록(flow_version)",
+   "en": "Behavioral Version Flag on Thread State",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "스레드를 시작할 때 상태에 업무 흐름 버전을 적고 조건부 엣지로 갈라, 이미 진행 중인 스레드는 옛 흐름을 따르게 하는 방법이다.",
+   "parent": "rag.agent.graph-migration-compat",
+   "aliases": [
+    "flow_version",
+    "LangGraph 업무 호환",
+    "LangGraph business compatibility",
+    "흐름 버전 플래그"
+   ],
+   "refs": [
+    "https://docs.langchain.com/oss/python/langgraph/backward-compatibility"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-extension-identifier",
+   "title": "MCP 확장 식별자",
+   "en": "MCP Extension Identifier",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "{vendor-prefix}/{extension-name} 꼴로 확장을 가리키는 이름으로, 공식 확장은 io.modelcontextprotocol 접두어를 쓰고 단계가 바뀌어도 그대로다.",
+   "parent": "rag.agent.mcp-extension-negotiation",
+   "aliases": [
+    "MCP extension identifier",
+    "MCP vendor prefix",
+    "MCP 확장 접두어",
+    "MCP 확장 이름 규칙"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/extensions/overview"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.agent.mcp-extension-stage",
+   "title": "MCP 확장 단계(Experimental·Beta·Stable)",
+   "en": "MCP Extension Stages",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "에이전트",
+   "summary": "MCP 확장이 아무 때나 바뀌는 Experimental, 깨지는 변경이 드문 Beta, 코어 새 판에서만 바뀌는 Stable 가운데 어디에 있는지를 나타내는 단계다.",
+   "parent": "rag.agent.mcp-extension-negotiation",
+   "aliases": [
+    "MCP extension lifecycle stage",
+    "MCP Experimental 확장",
+    "MCP Beta 확장",
+    "MCP Stable 확장"
+   ],
+   "refs": [
+    "https://modelcontextprotocol.io/extensions/overview"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "rag"
+  },
+  {
+   "id": "rag.retrieval.vespa-global-phase",
+   "title": "Vespa global-phase 재순위",
+   "en": "Vespa Global-phase Ranking",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "검색 내부",
+   "summary": "콘텐츠 노드가 돌려준 결과를 합친 뒤 무상태 컨테이너에서 기본 100개의 전체 상위 결과를 다시 채점하는 Vespa의 마지막 순위 단계다.",
+   "parent": "rag.retrieval.vespa-phased-ranking",
+   "aliases": [
+    "global-phase",
+    "Vespa global phase",
+    "Vespa global-phase rerank-count",
+    "ranking.globalPhase.rerankCount"
+   ],
+   "refs": [
+    "https://docs.vespa.ai/en/ranking/phased-ranking.html"
+   ],
+   "domain": "rag"
+  },
+  {
+   "id": "rag.vector-db.elasticsearch-store-preload",
+   "title": "Elasticsearch 벡터 파일 미리 올리기",
+   "en": "Elasticsearch index.store.preload for Vector Files",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "벡터 DB",
+   "summary": "파일 확장자를 골라 페이지 캐시에 미리 올리는 색인 설정으로, 양자화 코드와 HNSW 그래프는 올리고 원본 벡터 파일은 올리지 않는 것이 권장된다.",
+   "parent": "rag.vector-db.elasticsearch-knn-capacity",
+   "aliases": [
+    "index.store.preload",
+    "Elasticsearch preload",
+    "Elasticsearch 파일 캐시 예열",
+    "Elasticsearch .vex 미리 읽기"
+   ],
+   "refs": [
+    "https://www.elastic.co/docs/deploy-manage/production-guidance/optimize-performance/approximate-knn-search"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
    "domain": "rag"
   },
   {
@@ -92226,6 +92895,149 @@
    "domain": "ax"
   },
   {
+   "id": "ax.coding.hook-execution-internals",
+   "title": "Claude Code 훅 실행 모델의 내부와 손익",
+   "en": "Claude Code Hook Execution Internals",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "한 이벤트의 훅이 병렬로 돌고 종료 코드·시간 초과·결정이 이벤트마다 다르게 해석되는 구조를 알고, 권한 규칙과의 우선순위를 근거로 정책 훅의 강제력을 판단한다.",
+   "objectives": [
+    "한 이벤트에 맞는 훅이 모두 병렬로 돌고 같은 처리기는 설정 파일 사이에서만 한 번으로 합쳐진다는 점으로 훅 사이의 실행 순서를 기대하면 안 되는 이유를 설명할 수 있다",
+    "종료 코드 2가 PreToolUse·UserPromptSubmit·Stop에서는 막고 PostToolUse·Notification에서는 막지 못하며, onFailure: block이 Stop·SubagentStop·TaskCompleted·TeammateIdle과 백그라운드 훅에는 효과가 없다는 점을 근거로 정책 훅을 걸 이벤트를 판단할 수 있다",
+    "여러 PreToolUse 훅의 결정이 deny > defer > ask > allow 순으로 합쳐지고, 훅의 allow가 deny·ask 규칙을 넘지 못하며, 종료 코드 2 차단은 allow 규칙보다 먼저 작동하는 우선순위로 훅과 권한 규칙의 책임을 나눌 수 있다",
+    "명령·HTTP·프롬프트·에이전트·비동기 훅의 기본 제한 시간과 차단 능력을 비교해 검사에 맞는 종류를 고를 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.hook-gates"
+   ],
+   "related": [
+    "ax.coding.permission-rule-debugging",
+    "ax.coding.hook-fail-open"
+   ],
+   "aliases": [
+    "훅 실행 순서",
+    "훅 병렬 실행",
+    "hook execution model",
+    "훅 내부 동작"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/hooks",
+    "https://code.claude.com/docs/en/permissions"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.workspace-trust-boundary",
+   "title": "작업 공간 신뢰의 경계: 신뢰 전에 실행되는 것",
+   "en": "Workspace Trust Boundary in Claude Code",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "저장소가 가져온 훅·MCP 서버·허용 규칙 가운데 무엇이 신뢰 전에 쓰이는지 세션 종류별로 알고, 남의 저장소에서 claude -p를 돌릴 때의 위험과 차단 수단을 비교한다.",
+   "objectives": [
+    "allow 규칙과 추가 디렉터리는 신뢰 뒤에만 쓰이고 deny·ask 규칙은 바로 쓰이는 이유를 능력 부여와 제한의 차이로 설명할 수 있다",
+    "상위 폴더만 신뢰한 경우와 claude -p·SDK 실행에서 설정 파일 훅·.mcp.json 서버·하위 에이전트 프런트매터 훅이 각각 쓰이는지 구분할 수 있다",
+    "신뢰가 저장소 안에서는 git 저장소 루트를 기준으로 저장되고 서브모듈 같은 중첩 저장소에는 이어지지 않는다는 점으로 신뢰 범위를 판단할 수 있다",
+    "남의 저장소에서 claude -p를 돌리기 전에 --setting-sources user·--bare·disableAllHooks가 각각 무엇을 막고 무엇을 남기는지 비교해 고를 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.permission-rule-debugging",
+    "ax.coding.hook-gates"
+   ],
+   "related": [
+    "ax.coding.workspace-trust",
+    "ax.coding.claude-md-external-import"
+   ],
+   "aliases": [
+    "작업 공간 신뢰 경계",
+    "신뢰 전 실행",
+    "untrusted repository claude -p",
+    "저장소 훅 신뢰",
+    "폴더 신뢰 범위"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/permissions"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.subagent-context-isolation",
+   "title": "하위 에이전트 문맥 격리의 내부와 손익",
+   "en": "Subagent Context Isolation Internals",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "하위 에이전트가 새 문맥에서 무엇을 물려받고 무엇을 버리는지 알고, 포크·중첩·백그라운드 실행이 문맥·비용·권한에 주는 손익을 따진다.",
+   "objectives": [
+    "포크가 아닌 하위 에이전트가 받는 것(정의 본문 시스템 프롬프트·위임 메시지·CLAUDE.md·미리 넣은 스킬)과 받지 않는 것(대화 기록·주 대화의 시스템 프롬프트)을 근거로 위임 메시지에 넣을 내용을 정할 수 있다",
+    "포크가 입력 격리를 버리는 대신 부모의 프롬프트 캐시를 재사용해 같은 문맥이 필요한 일에서 새 하위 에이전트보다 싸지는 손익을 설명할 수 있다",
+    "부모가 bypassPermissions·acceptEdits·자동 모드면 하위 에이전트의 permissionMode가 무시되는 상속 규칙으로 권한 설계의 빈틈을 찾을 수 있다",
+    "백그라운드로 돌 때 내장 도구가 줄어 같은 정의가 앞에서 돌 때와 다르게 동작하는 원인을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.subagents-permission-modes"
+   ],
+   "related": [
+    "ax.coding.agent-prompt-cache-layers",
+    "ax.coding.claude-code-context-window"
+   ],
+   "aliases": [
+    "서브에이전트 문맥 격리",
+    "subagent context isolation",
+    "하위 에이전트 컨텍스트 상속",
+    "서브에이전트 권한 상속"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/sub-agents"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.symlink-permission-resolution",
+   "title": "심볼릭 링크를 지나는 권한 검사의 내부",
+   "en": "Symlink Resolution in Agent Permission Checks",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "요청한 경로와 링크가 가리키는 실제 파일을 함께 검사해 allow는 둘 다, deny는 하나만 맞아도 적용하는 Claude Code의 경로 해석 규칙과 남는 빈틈을 따진다.",
+   "objectives": [
+    "allow 규칙은 두 경로가 모두 맞아야 하고 deny 규칙은 하나만 맞아도 되는 비대칭이 링크로 허용 폴더 밖 파일을 읽는 우회를 막는 원리를 설명할 수 있다",
+    "Edit·Write가 링크 자체에 쓰기를 거부해도 중간 디렉터리 링크나 Bash 명령으로는 쓰기가 링크를 지날 수 있고, 그 쓰기가 작업 디렉터리 밖이나 보호 경로로 풀리면 acceptEdits는 자동 승인하지 않고 자동 모드는 허용 규칙이 없는 한 분류기 대신 묻는 동작을 설명할 수 있다",
+    "경로를 풀 수 없으면 도구가 거부하고 파일을 열 때 승인한 위치를 다시 확인하는 이유를 검사와 사용 사이의 경쟁으로 설명할 수 있다",
+    "@ 언급·붙인 이미지·바뀐 파일·IDE 문맥 같은 첨부에도 Read deny 규칙이 적용되는 범위를 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.permission-rule-debugging"
+   ],
+   "related": [
+    "ax.coding.file-deny-rule-scope",
+    "cs.os.toctou"
+   ],
+   "aliases": [
+    "심볼릭 링크 권한 검사",
+    "symlink permission check",
+    "심링크 deny 규칙",
+    "Claude Code symlink 규칙"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/permissions"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "ax"
+  },
+  {
    "id": "ax.security.evasion-defense-tradeoffs",
    "title": "회피 공격 방어의 손익: 적대적 학습·무작위 평활화·형식 검증",
    "en": "Trade-offs of Evasion Attack Mitigations",
@@ -92439,6 +93251,43 @@
    ],
    "refs": [
     "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.800-1.ipd2.pdf"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.agent-team-coordination",
+   "title": "에이전트 팀의 조정 구조와 손익",
+   "en": "Agent Team Coordination Architecture",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "에이전트 팀이 공유 작업 목록·파일 우편함·팀 설정 파일로 조정되는 구조를 알고, 권한 상속·토큰 비용·실험 기능의 한계를 따져 하위 에이전트와 비교한다.",
+   "objectives": [
+    "리드·팀원·작업 목록·우편함의 역할과 작업 가져가기가 파일 잠금으로 동시 가져가기 경쟁을 막는 방식을 설명할 수 있다",
+    "새 팀원이 리드의 권한 모드로 시작하고 리드가 acceptEdits·auto·bypassPermissions면 계획 모드가 아닌 인프로세스 팀원도 그 모드로 돌며, 다른 에이전트가 보낸 메시지는 사용자 승인이나 동의로 쓰이지 않는다는 점으로 팀의 권한 위험을 판단할 수 있다",
+    "팀원마다 독립 문맥이라 토큰이 활성 팀원 수에 비례해 늘고 리드의 대화 기록이 넘어가지 않는 손익을 하위 에이전트와 비교할 수 있다",
+    "세션 이어가기·중첩 팀·리드 교체가 안 되는 한계를 근거로 팀을 쓸 일과 피할 일을 가를 수 있다"
+   ],
+   "prerequisites": [
+    "ax.coding.subagents-permission-modes",
+    "ax.coding.agent-team-cost-control"
+   ],
+   "related": [
+    "ax.coding.subagent",
+    "ax.security.agent-confused-deputy"
+   ],
+   "aliases": [
+    "에이전트 팀",
+    "agent teams",
+    "Claude Code 에이전트 팀",
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS",
+    "팀 리드와 팀원"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/agent-teams"
    ],
    "volatile": true,
    "checked_at": "2026-11-13",
@@ -92748,6 +93597,108 @@
    "refs": [
     "https://docs.sigstore.dev/about/overview/"
    ],
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.hook-decision-precedence",
+   "title": "여러 훅 결정의 합성 순서",
+   "en": "Hook Decision Precedence",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "같은 도구 호출에 여러 PreToolUse 훅이 답하면 deny, defer, ask, allow 순으로 더 강한 결정이 이기는 규칙이다.",
+   "parent": "ax.coding.hook-execution-internals",
+   "related": [
+    "ax.coding.hook-decision"
+   ],
+   "aliases": [
+    "훅 결정 우선순위",
+    "deny > defer > ask > allow",
+    "여러 훅 결정 합치기",
+    "PreToolUse 결정 합성"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/hooks"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.forked-subagent",
+   "title": "포크 하위 에이전트",
+   "en": "Forked Subagent",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 네이티브 개발",
+   "summary": "지금까지의 대화·시스템 프롬프트·도구·모델을 그대로 물려받아 부모의 프롬프트 캐시를 재사용하고 최종 결과만 돌려주는 하위 에이전트다.",
+   "parent": "ax.coding.subagent-context-isolation",
+   "related": [
+    "ax.coding.fork-session"
+   ],
+   "aliases": [
+    "/subtask",
+    "Agent(fork)",
+    "CLAUDE_CODE_FORK_SUBAGENT",
+    "포크 서브에이전트",
+    "fork subagent"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/sub-agents"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.inter-agent-message-trust",
+   "title": "에이전트 간 메시지의 신뢰 수준",
+   "en": "Trust Level of Inter-Agent Messages",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "다른 에이전트가 보낸 메시지를 사용자의 말로 보지 않아, 팀원이 권한 승인이나 동의를 대신하거나 거부된 동작을 다른 팀원에게 넘겨 우회할 수 없게 하는 규칙이다.",
+   "parent": "ax.coding.agent-team-coordination",
+   "related": [
+    "ax.security.agent-confused-deputy"
+   ],
+   "aliases": [
+    "SendMessage 신뢰",
+    "팀원 메시지 신뢰",
+    "relayed approval",
+    "에이전트 메시지 승인 대리"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/agent-teams"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.security.headless-trust-handling",
+   "title": "claude -p·SDK 세션의 신뢰 처리",
+   "en": "Workspace Trust in Headless and SDK Sessions",
+   "kind": "term",
+   "level": 5,
+   "importance": 2,
+   "group": "AI 보안과 윤리",
+   "summary": "claude -p와 SDK 세션은 신뢰 대화상자 없이 저장소의 설정 파일 훅과 .mcp.json 서버를 쓰되(SDK는 project 설정을 읽을 때만) 프로젝트 allow 규칙은 쓰지 않는 신뢰 처리다.",
+   "parent": "ax.security.workspace-trust-boundary",
+   "aliases": [
+    "claude -p 작업 공간 신뢰",
+    "헤드리스 세션 신뢰",
+    "SDK 세션 신뢰",
+    "workspace has not been trusted"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/permissions"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
    "domain": "ax"
   },
   {
@@ -93145,6 +94096,78 @@
    ],
    "refs": [
     "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.800-1.ipd2.pdf"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.hook-defer",
+   "title": "도구 호출 미루기(defer 결정)",
+   "en": "Deferred Tool Call (defer)",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "claude -p에서 한 턴에 도구 호출이 하나일 때 PreToolUse 훅이 defer를 돌려 턴을 끝내고, 호출한 프로그램이 --resume으로 같은 호출을 이어가게 하는 결정이다.",
+   "related": [
+    "ax.coding.hook-decision",
+    "ax.coding.headless-mode"
+   ],
+   "aliases": [
+    "permissionDecision defer",
+    "tool_deferred",
+    "deferred_tool_use",
+    "훅 defer"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/hooks"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.async-hook",
+   "title": "비동기 훅(async·asyncRewake)",
+   "en": "Async Hooks",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "기다리지 않고 뒤에서 도는 훅으로 막거나 결과를 바꿀 수 없고 결과는 다음 턴에 전달되며, asyncRewake 훅은 종료 코드 2로 쉬던 Claude를 바로 깨운다.",
+   "parent": "ax.coding.hook-execution-internals",
+   "aliases": [
+    "async hook",
+    "asyncRewake",
+    "백그라운드 훅",
+    "async: true 훅"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/hooks"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "ax"
+  },
+  {
+   "id": "ax.coding.subagent-spawn-depth",
+   "title": "하위 에이전트 중첩 깊이 제한",
+   "en": "Subagent Spawn Depth Limit",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 네이티브 개발",
+   "summary": "하위 에이전트가 다시 하위 에이전트를 부를 수 있는 층수로 기본은 주 대화 아래 세 층이며, 한도에 이르면 Agent 도구가 빠진다.",
+   "parent": "ax.coding.subagent-context-isolation",
+   "aliases": [
+    "CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH",
+    "서브에이전트 중첩",
+    "nested subagents",
+    "하위 에이전트 중첩"
+   ],
+   "refs": [
+    "https://code.claude.com/docs/en/sub-agents"
    ],
    "volatile": true,
    "checked_at": "2026-11-13",
@@ -112271,6 +113294,41 @@
    "domain": "ml"
   },
   {
+   "id": "ml.nn.pytorch-numerical-accuracy",
+   "title": "PyTorch 수치 정확도: TF32·축소 정밀도 누적의 손익",
+   "en": "Numerical Accuracy in PyTorch",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "딥러닝",
+   "summary": "PyTorch가 같은 수식에도 비트 단위로 같은 결과를 보장하지 않는 이유와, TF32·축소 정밀도 누적이 속도와 정확도를 맞바꾸는 방식을 다룬다.",
+   "objectives": [
+    "부동소수점 연산의 비결합성 때문에 배치 계산과 개별·슬라이스 계산, CPU와 GPU의 결과가 비트 단위로 다를 수 있음을 설명할 수 있다",
+    "Ampere 이후 NVIDIA GPU에서 TF32가 가수 앞 10비트만 읽는다는 점과 행렬 곱은 끄고 합성곱은 켜 두는 기본값을 근거로 정밀도 설정을 고를 수 있다",
+    "FP16·BF16 행렬 곱의 축소 정밀도 누적이 예상치 못한 inf를 낼 수 있음을 알고 관련 플래그를 끌지 판단할 수 있다",
+    "중간값 넘침과 거의 특이한 행렬의 선형대수 연산이 조용히 틀린 값을 낼 수 있음을 알고 isfinite·svdvals·cond로 점검할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.nn.mixed-precision-training"
+   ],
+   "related": [
+    "cs.data.float-summation",
+    "ml.nn.pytorch-reproducibility"
+   ],
+   "aliases": [
+    "PyTorch numerical accuracy",
+    "PyTorch 수치 정확도",
+    "비트 단위 동일 결과",
+    "bitwise identical results"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/2.15/notes/numerical_accuracy.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "ml"
+  },
+  {
    "id": "ml.training.backprop",
    "title": "역전파와 경사 하강법",
    "en": "Backpropagation and Gradient Descent",
@@ -112591,6 +113649,147 @@
    ],
    "refs": [
     "https://scikit-learn.org/stable/modules/sgd.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.unsupervised.density-clustering-internals",
+   "title": "밀도 기반 군집 내부: DBSCAN·HDBSCAN·OPTICS의 손익",
+   "en": "Density-Based Clustering Internals: DBSCAN, HDBSCAN, and OPTICS",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "하나의 eps에 기대는 DBSCAN과 여러 밀도 척도를 훑는 HDBSCAN·OPTICS가 군집을 찾는 방식과 메모리·속도 손익을 비교한다.",
+   "objectives": [
+    "DBSCAN이 핵심 샘플을 따라 군집을 넓히는 과정과 경계 샘플의 배정이 데이터 순서에 따라 달라질 수 있는 이유를 설명할 수 있다",
+    "상호 도달 거리 그래프의 최소 신장 트리에서 무거운 간선부터 지워 가며 HDBSCAN이 군집 계층을 만드는 과정을 설명할 수 있다",
+    "트리 색인을 못 쓸 때 DBSCAN이 n² 메모리를 쓰고 OPTICS는 O(n) 메모리를 유지하며, HDBSCAN은 멀티스레드로 OPTICS보다 실행 복잡도가 낫지만 메모리 확장성은 더 나쁘다는 점을 비교해 데이터 크기에 맞는 방법을 고를 수 있다",
+    "OPTICS 도달 거리 그래프에서 xi 기준의 가파른 기울기로 군집을 뽑는 방식과 단일 eps로 잘라 DBSCAN을 흉내 내는 방식의 차이를 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.unsupervised.kmeans-clustering"
+   ],
+   "related": [
+    "ml.unsupervised.dbscan",
+    "ml.unsupervised.kmeans-algorithm-variants"
+   ],
+   "aliases": [
+    "밀도 기반 군집 비교",
+    "scikit-learn OPTICS",
+    "OPTICS reachability plot",
+    "cluster_optics_dbscan",
+    "OPTICS 도달 거리 그래프"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/clustering.html#hdbscan",
+    "https://scikit-learn.org/stable/modules/clustering.html#optics",
+    "https://scikit-learn.org/stable/modules/clustering.html#dbscan"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.gaussian-process-internals",
+   "title": "가우시안 프로세스 내부: 주변 우도 최적화와 계산 비용",
+   "en": "Gaussian Process Internals: Marginal Likelihood Optimization and Cost",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "가우시안 프로세스가 로그 주변 우도로 커널 하이퍼파라미터를 고르는 방식과, 전체 데이터를 쓰는 비희소 모델이라 생기는 계산 비용의 손익을 다룬다.",
+   "objectives": [
+    "로그 주변 우도에 지역 최적이 여럿일 수 있어 n_restarts_optimizer로 무작위 초기값에서 다시 최적화하는 이유를 설명할 수 있다",
+    "커널 행렬 대각에 더하는 alpha와 데이터에서 잡음 수준을 추정하는 WhiteKernel의 차이를 설명할 수 있다",
+    "분류에서 비가우시안 사후 분포를 라플라스 근사로 다루는 방식과 일대다·일대일 다중 분류의 비용 차이를 설명할 수 있다",
+    "분류 비용이 데이터 크기의 세제곱으로 늘고 특성이 수십 개를 넘으면 효율이 떨어지는 점을 근거로 적용 범위를 판단할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.supervised.linear-regression",
+    "ml.supervised.svm-classification"
+   ],
+   "related": [
+    "ml.supervised.kernel-approximation"
+   ],
+   "aliases": [
+    "가우시안 프로세스",
+    "Gaussian process",
+    "가우스 과정",
+    "GaussianProcessRegressor",
+    "GaussianProcessClassifier"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/gaussian_process.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.optimizer-implementations",
+   "title": "옵티마이저 구현 손익: for-loop·foreach·fused",
+   "en": "PyTorch Optimizer Implementations: For-loop, Foreach, and Fused",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "딥러닝",
+   "summary": "같은 옵티마이저라도 매개변수마다 도는 for-loop, 텐서를 묶는 foreach, 한 커널로 합치는 fused 구현이 속도·메모리·지원 범위를 맞바꾼다.",
+   "objectives": [
+    "for-loop·foreach·fused 구현이 커널 호출을 줄이는 방식(가로 융합과 세로 융합)의 차이를 설명할 수 있다",
+    "성능은 대개 fused > foreach > for-loop 순이지만 조건이 맞을 때 foreach가 기본이고 fused는 아직 기본이 아닌 이유를 설명할 수 있다",
+    "foreach가 for-loop보다 매개변수 크기만큼 최대 메모리를 더 쓰는 이유를 알고 메모리가 모자랄 때 대처를 고를 수 있다",
+    "capturable·differentiable 옵션이 CUDA 그래프·torch.compile 지원이나 단계 미분을 얻는 대신 성능을 떨어뜨릴 수 있음을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.nn.training-loop",
+    "ml.nn.training-throughput-tuning"
+   ],
+   "related": [
+    "ml.nn.cudagraph-trees",
+    "ml.nn.optimizer"
+   ],
+   "aliases": [
+    "PyTorch fused optimizer",
+    "torch.optim fused=True",
+    "옵티마이저 커널 융합",
+    "PyTorch 옵티마이저 구현 선택"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/2.15/optim.html#algorithms",
+    "https://docs.pytorch.org/docs/2.15/generated/torch.optim.Adam.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.tensor-memory-format",
+   "title": "텐서 메모리 형식: stride와 channels_last의 손익",
+   "en": "Tensor Memory Format: Strides and Channels Last",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "딥러닝",
+   "summary": "모양은 그대로 두고 stride만 바꿔 NHWC 순서로 저장하는 형식이 합성곱을 빠르게 하는 조건과, 형식이 끊길 때 생기는 비용을 다룬다.",
+   "objectives": [
+    "같은 NCHW 모양에서 연속 형식과 channels_last의 stride가 어떻게 다른지 설명할 수 있다",
+    "clone·점별 연산·cuDNN 합성곱이 형식을 이어 가는 규칙과, 지원하지 않는 연산이 연속 출력을 내 순열 비용이 생기는 지점을 설명할 수 있다",
+    "Tensor Core에서 AMP float16으로 돌릴 때 이득이 가장 크다는 점을 근거로 모델과 입력의 형식을 바꿀지 판단할 수 있다",
+    "C==1이나 H==W==1처럼 모호한 모양에서 to와 contiguous가 다르게 동작하는 점을 설명할 수 있다"
+   ],
+   "prerequisites": [
+    "ml.nn.tensor-basics",
+    "ml.nn.cnn-image-classifier"
+   ],
+   "related": [
+    "ml.nn.mixed-precision-training"
+   ],
+   "aliases": [
+    "torch.memory_format",
+    "텐서 stride",
+    "tensor strides",
+    "PyTorch 메모리 형식"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/tutorials/intermediate/memory_format_tutorial.html",
+    "https://docs.pytorch.org/docs/2.15/tensor_attributes.html"
    ],
    "domain": "ml"
   },
@@ -113252,6 +114451,163 @@
    ],
    "refs": [
     "https://scikit-learn.org/stable/modules/sgd.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.tf32",
+   "title": "TF32(TensorFloat-32)",
+   "en": "TensorFloat-32 (TF32)",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "딥러닝",
+   "summary": "Ampere 이후 NVIDIA GPU의 텐서 코어가 FP32 입력의 가수 앞 10비트만 읽어 행렬 곱과 합성곱을 빠르게 하는 연산 방식이다.",
+   "parent": "ml.nn.pytorch-numerical-accuracy",
+   "related": [
+    "ml.nn.bfloat16-float16"
+   ],
+   "aliases": [
+    "TF32 텐서 코어",
+    "allow_tf32",
+    "fp32_precision",
+    "torch.backends.cuda.matmul.fp32_precision"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/2.15/notes/numerical_accuracy.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.reduced-precision-reduction",
+   "title": "FP16·BF16 행렬 곱의 축소 정밀도 누적",
+   "en": "Reduced Precision Reduction for FP16 and BF16 GEMMs",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "딥러닝",
+   "summary": "FP16·BF16 행렬 곱의 중간 누적을 단정밀도 대신 반정밀도로 잘라 속도를 얻는 대신 예상치 못한 inf가 생길 수 있는 GPU 동작이다.",
+   "parent": "ml.nn.pytorch-numerical-accuracy",
+   "aliases": [
+    "축소 정밀도 누적",
+    "reduced precision reduction",
+    "allow_fp16_reduced_precision_reduction",
+    "allow_bf16_reduced_precision_reduction"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/2.15/notes/numerical_accuracy.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "ml"
+  },
+  {
+   "id": "ml.unsupervised.hdbscan",
+   "title": "HDBSCAN(계층적 밀도 기반 군집화)",
+   "en": "HDBSCAN",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "eps 없이 min_samples만으로 모든 밀도 척도를 훑어, 밀도가 서로 다른 군집도 찾아내는 계층적 밀도 기반 군집화 방법이다.",
+   "parent": "ml.unsupervised.density-clustering-internals",
+   "related": [
+    "ml.unsupervised.dbscan"
+   ],
+   "aliases": [
+    "계층적 밀도 기반 군집화",
+    "hierarchical DBSCAN",
+    "HDBSCAN min_cluster_size",
+    "sklearn HDBSCAN"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/clustering.html#hdbscan"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.unsupervised.mutual-reachability-distance",
+   "title": "상호 도달 거리(mutual reachability distance)",
+   "en": "Mutual Reachability Distance",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "두 점 각각의 핵심 거리와 두 점 사이 거리 가운데 가장 큰 값으로, HDBSCAN이 군집 계층을 만들 그래프의 간선 가중치로 쓴다.",
+   "parent": "ml.unsupervised.density-clustering-internals",
+   "aliases": [
+    "상호 도달 거리 그래프",
+    "mutual reachability graph",
+    "HDBSCAN 상호 도달 거리"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/clustering.html#mutual-reachability-graph"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.supervised.gp-log-marginal-likelihood",
+   "title": "가우시안 프로세스의 로그 주변 우도",
+   "en": "Log-Marginal-Likelihood in Gaussian Processes",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "AI 기초",
+   "summary": "가우시안 프로세스가 커널 하이퍼파라미터를 고를 때 최대화하는 목적 함수로, 지역 최적이 여럿일 수 있어 최적화를 다시 시작하기도 한다.",
+   "parent": "ml.supervised.gaussian-process-internals",
+   "aliases": [
+    "log marginal likelihood",
+    "로그 주변 우도",
+    "GP 주변 우도",
+    "n_restarts_optimizer"
+   ],
+   "refs": [
+    "https://scikit-learn.org/stable/modules/gaussian_process.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.foreach-optimizer",
+   "title": "foreach 옵티마이저 구현(multi-tensor)",
+   "en": "Foreach (Multi-Tensor) Optimizer Implementation",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "딥러닝",
+   "summary": "여러 매개변수를 텐서 목록으로 묶어 한 번에 갱신해 순차 커널 호출을 줄이는 PyTorch 옵티마이저 구현으로, 최대 메모리를 더 쓴다.",
+   "parent": "ml.nn.optimizer-implementations",
+   "aliases": [
+    "foreach=True",
+    "multi-tensor optimizer",
+    "멀티 텐서 옵티마이저",
+    "foreach optimizer"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/docs/2.15/optim.html#algorithms",
+    "https://docs.pytorch.org/docs/2.15/generated/torch.optim.Adam.html"
+   ],
+   "domain": "ml"
+  },
+  {
+   "id": "ml.nn.channels-last",
+   "title": "channels_last 메모리 형식",
+   "en": "Channels Last Memory Format",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "딥러닝",
+   "summary": "NCHW 모양은 그대로 두고 stride로 채널을 가장 촘촘한 차원으로 만드는 PyTorch의 4차원 텐서 저장 순서다.",
+   "parent": "ml.nn.tensor-memory-format",
+   "aliases": [
+    "torch.channels_last",
+    "PyTorch NHWC 형식",
+    "channels last",
+    "memory_format=torch.channels_last"
+   ],
+   "refs": [
+    "https://docs.pytorch.org/tutorials/intermediate/memory_format_tutorial.html"
    ],
    "domain": "ml"
   },
@@ -118487,6 +119843,40 @@
    "domain": "mlops"
   },
   {
+   "id": "mlops.serve.ray-core-basics",
+   "title": "Ray Core 기초: 원격 함수·액터·ObjectRef",
+   "en": "Ray Core Basics: Remote Functions, Actors, and ObjectRefs",
+   "kind": "topic",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "@ray.remote로 함수는 병렬 작업, 클래스는 상태를 지닌 액터로 띄우고 돌려받은 ObjectRef를 ray.get으로 풀어 쓰는 Ray Core의 기본 사용법이다.",
+   "objectives": [
+    "@ray.remote 함수를 .remote()로 여러 번 호출해 병렬로 돌리고 ray.get으로 결과를 모을 수 있다",
+    "@ray.remote 클래스로 액터를 만들어 상태를 유지하고, 같은 액터의 메서드 호출은 보낸 순서대로 하나씩 실행됨을 고려해 코드를 짤 수 있다",
+    "ObjectRef를 다른 작업의 인자로 넘기거나 ray.put으로 큰 값을 한 번 올려 복사를 줄이고, ray.wait로 끝난 결과부터 처리할 수 있다",
+    "num_cpus·num_gpus로 작업과 액터의 자원을 요청하고, 이 값이 실제 사용량을 막지 않는 논리 자원이라는 점을 구분할 수 있다"
+   ],
+   "related": [
+    "mlops.serve.ray-serve-architecture"
+   ],
+   "aliases": [
+    "Ray Core",
+    "Ray 원격 함수",
+    "Ray remote function",
+    "Ray 기초",
+    "Ray tasks and actors"
+   ],
+   "refs": [
+    "https://docs.ray.io/en/latest/ray-core/key-concepts.html",
+    "https://docs.ray.io/en/latest/ray-core/walkthrough.html",
+    "https://docs.ray.io/en/latest/ray-core/tasks.html",
+    "https://docs.ray.io/en/latest/ray-core/actors.html",
+    "https://docs.ray.io/en/latest/ray-core/scheduling/resources.html"
+   ],
+   "domain": "mlops"
+  },
+  {
    "id": "mlops.track.experiment-tracking",
    "title": "실험 추적: 파라미터·지표·모델 기록하기",
    "en": "Experiment Tracking with MLflow",
@@ -119156,6 +120546,69 @@
    ],
    "refs": [
     "https://mlflow.org/docs/latest/api_reference/cli.html"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.ray-object-ref",
+   "title": "ObjectRef(Ray 객체 참조)",
+   "en": "Ray ObjectRef",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "Ray 원격 호출이나 ray.put이 값 대신 돌려주는 원격 객체의 참조로, ray.get으로 값을 받고 작업의 최상위 인자로 넘기면 Ray가 값으로 풀어 준다.",
+   "parent": "mlops.serve.ray-core-basics",
+   "aliases": [
+    "ObjectRef",
+    "Ray 객체 참조",
+    "Ray object ref"
+   ],
+   "refs": [
+    "https://docs.ray.io/en/latest/ray-core/objects.html"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.ray-actor",
+   "title": "Ray 액터(상태를 지닌 원격 워커)",
+   "en": "Ray Actor",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "@ray.remote를 붙인 클래스의 인스턴스로 자기 프로세스에서 상태를 유지하며, 같은 액터에 보낸 메서드 호출은 보낸 순서대로 하나씩 실행된다.",
+   "parent": "mlops.serve.ray-core-basics",
+   "aliases": [
+    "Ray 액터",
+    "Ray actor",
+    "Ray 액터 핸들",
+    "Ray actor handle"
+   ],
+   "refs": [
+    "https://docs.ray.io/en/latest/ray-core/actors.html"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.ray-logical-resources",
+   "title": "Ray 논리 자원(num_cpus·num_gpus)",
+   "en": "Ray Logical Resources",
+   "kind": "term",
+   "level": 3,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "Ray가 배치 판단에만 쓰는 가상의 CPU·GPU 수로, 작업 기본값은 CPU 1개이며 실제 사용량은 막지 않고 GPU만 CUDA_VISIBLE_DEVICES로 나눈다.",
+   "parent": "mlops.serve.ray-core-basics",
+   "aliases": [
+    "Ray 논리 자원",
+    "Ray logical resources",
+    "Ray num_gpus",
+    "Ray 분수 GPU",
+    "Ray fractional resources"
+   ],
+   "refs": [
+    "https://docs.ray.io/en/latest/ray-core/scheduling/resources.html"
    ],
    "domain": "mlops"
   },
@@ -122611,6 +124064,31 @@
    "domain": "mlops"
   },
   {
+   "id": "mlops.serve.vllm-fully-sharded-loras",
+   "title": "fully_sharded_loras(vLLM LoRA 전체 샤딩)",
+   "en": "vLLM fully_sharded_loras",
+   "kind": "term",
+   "level": 4,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "텐서 병렬에서 기본으로 절반만 나누던 LoRA 계산을 모두 나누게 하는 vLLM 설정으로, 시퀀스가 길거나 랭크·텐서 병렬 크기가 클 때 더 빠를 가능성이 있다.",
+   "related": [
+    "mlops.serve.vllm-lora-serving",
+    "mlops.serve.tensor-parallelism"
+   ],
+   "aliases": [
+    "fully_sharded_loras",
+    "--fully-sharded-loras",
+    "vLLM LoRA 샤딩"
+   ],
+   "refs": [
+    "https://docs.vllm.ai/en/latest/configuration/engine_args/"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "mlops"
+  },
+  {
    "id": "mlops.serve.vllm-v1-process-architecture",
    "title": "vLLM V1 프로세스 구조: API 서버·엔진 코어·워커",
    "en": "vLLM V1 Process Architecture",
@@ -122913,6 +124391,40 @@
    ],
    "volatile": true,
    "checked_at": "2026-11-13",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.ray-placement-group",
+   "title": "Ray 배치 그룹: 원자적 자원 예약과 묶음 전략",
+   "en": "Ray Placement Groups: Atomic Reservation and Bundle Strategies",
+   "kind": "topic",
+   "level": 5,
+   "importance": 2,
+   "group": "LLM 운영",
+   "summary": "Ray가 여러 노드에 걸친 자원 묶음을 한꺼번에 예약하는 배치 그룹의 동작과, PACK·SPREAD 엄격성·장애 시 재배치·수명이 분산 서빙에 주는 손익을 분석한다.",
+   "objectives": [
+    "묶음 하나는 한 노드에 들어가야 하고 하나라도 못 들어가면 아무것도 예약하지 않는 원자적 예약이 GPU 여러 장을 함께 쓰는 작업에 주는 이점과 PENDING으로 멈출 위험을 설명할 수 있다",
+    "STRICT_PACK·PACK·STRICT_SPREAD·SPREAD가 조건을 못 맞출 때 실패하는지 다른 노드로 넘어가는지를 비교해 지역성과 장애 분산 사이에서 고를 수 있다",
+    "노드가 죽으면 잃은 묶음만 다른 노드로 우선 재배치되고 자원이 없으면 부분 생성 상태로 남는 동작을 근거로 장애를 분석할 수 있다",
+    "자식 작업이 기본으로 그룹을 물려받지 않고, 그룹을 지우면 쓰던 액터가 강제로 종료되며, 묶음 순서가 GPU 순위와 다를 수 있다는 함정을 진단할 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.serve.ray-core-basics",
+    "mlops.serve.ray-scheduling-policy"
+   ],
+   "related": [
+    "mlops.serve.vllm-parallelism"
+   ],
+   "aliases": [
+    "Ray placement group",
+    "Ray 배치 그룹",
+    "Ray 플레이스먼트 그룹",
+    "PlacementGroupSchedulingStrategy",
+    "Ray 갱 스케줄링"
+   ],
+   "refs": [
+    "https://docs.ray.io/en/latest/ray-core/scheduling/placement-group.html"
+   ],
    "domain": "mlops"
   },
   {
@@ -123303,6 +124815,77 @@
     "https://docs.nvidia.com/deploy/mps/latest/when-to-use-mps.html",
     "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/gpu-sharing.html"
    ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.ray-compiled-graph",
+   "title": "Ray Compiled Graph: 정적 실행 그래프의 손익",
+   "en": "Ray Compiled Graph Trade-offs",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "같은 액터 작업 그래프를 미리 컴파일해 자원과 NCCL 통신을 준비해 두는 Ray Compiled Graph가 일반 Ray 호출보다 빠른 이유와 그 대가를 분석한다.",
+   "objectives": [
+    "일반 Ray Core의 즉시 실행과 Compiled Graph의 정적 실행을 비교해, 같은 그래프를 반복 실행하는 작업에서 작업당 오버헤드가 약 1ms에서 50µs 미만으로 줄어든다는 문서의 주장이 어디서 오는지 설명할 수 있다",
+    "그래프 작업이 액터의 백그라운드 스레드에서 돌고 액터 하나가 한 번에 그래프 하나에만 참여하며 액터 작업만 지원하는 제약이 설계에 주는 영향을 판단할 수 있다",
+    "with_tensor_transport로 GPU 사이 NCCL 전송을 쓸 때 컴파일 시점에 통신기와 순서를 정해 교착을 막는 방식과, 지점 간 전송만 되고 계산·통신 겹치기는 실험 기능이라는 한계를 분석할 수 있다",
+    "응용 예외는 RayTaskError로 감싸져 그래프가 계속 돌지만 액터 사망 같은 시스템 오류는 그래프를 내린다는 실패 의미를 근거로 장애 대응을 고를 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.serve.ray-core-basics",
+    "mlops.serve.ray-object-ownership"
+   ],
+   "related": [
+    "mlops.serve.vllm-cudagraph-modes"
+   ],
+   "aliases": [
+    "Ray Compiled Graphs",
+    "Ray 컴파일 그래프",
+    "Ray aDAG",
+    "experimental_compile"
+   ],
+   "refs": [
+    "https://docs.ray.io/en/latest/ray-core/compiled-graph/ray-compiled-graph.html",
+    "https://docs.ray.io/en/latest/ray-core/compiled-graph/quickstart.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.ray-serve-autoscaling-pipeline",
+   "title": "Ray Serve 자동 확장 결정 내부: 지표 단계와 사용자 정의 정책",
+   "en": "Ray Serve Autoscaling Decision Internals",
+   "kind": "topic",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "Ray Serve가 레플리카·핸들의 지표를 기록·전송·집계해 컨트롤러의 정책이 복제본 수를 정하는 네 단계와, 주기 설정과 사용자 정의 정책의 손익을 분석한다.",
+   "objectives": [
+    "지표 기록·전송·집계·정책 실행 네 단계와 각 단계의 주기를 근거로, 정책이 0.1초마다 돌아도 결정은 새 지표가 올 때만 바뀌는 이유를 설명할 수 있다",
+    "metrics_interval_s가 upscale_delay_s보다 길면 확장이 늦어지고 주기를 너무 줄이면 헤드 노드 컨트롤러에 부담이 가는 손익을 판단할 수 있다",
+    "aggregation_function의 mean·max·min이 지표를 계단 함수로 보고 합칠 때 복제본 수 결정에 주는 차이를 비교할 수 있다",
+    "컨트롤러에서 돌고 cloudpickle로 직렬화되는 사용자 정의 정책과 응용 단위 정책의 제약을 근거로 기본 정책 대신 쓸지 고를 수 있다"
+   ],
+   "prerequisites": [
+    "mlops.serve.ray-serve-autoscaling",
+    "mlops.serve.ray-serve-architecture"
+   ],
+   "related": [
+    "mlops.serve.kserve-autoscaling"
+   ],
+   "aliases": [
+    "Ray Serve 사용자 정의 자동 확장",
+    "Ray Serve custom autoscaling policy",
+    "Ray Serve 확장 지표 집계",
+    "Ray Serve autoscaling metrics pipeline"
+   ],
+   "refs": [
+    "https://docs.ray.io/en/latest/serve/advanced-guides/advanced-autoscaling.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
    "domain": "mlops"
   },
   {
@@ -123966,6 +125549,71 @@
    ],
    "refs": [
     "https://docs.nvidia.com/deploy/mps/latest/architecture.html"
+   ],
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.ray-cgraph-nccl-transport",
+   "title": "Ray Compiled Graph NCCL 텐서 전송",
+   "en": "Ray Compiled Graph NCCL Tensor Transport",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "Ray Compiled Graph에서 torch 텐서를 GPU 사이로 NCCL로 바로 보내라고 표시하는 지정으로, 2.42 전에는 with_type_hint(TorchTensorType)를 썼다.",
+   "parent": "mlops.serve.ray-compiled-graph",
+   "aliases": [
+    "with_tensor_transport",
+    "TorchTensorType",
+    "Ray NCCL 전송",
+    "Compiled Graph GPU 통신"
+   ],
+   "refs": [
+    "https://docs.ray.io/en/latest/ray-core/compiled-graph/quickstart.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.ray-autoscaling-context",
+   "title": "AutoscalingContext(Ray Serve 확장 정책 입력)",
+   "en": "Ray Serve AutoscalingContext",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "Ray Serve 사용자 정의 확장 정책이 받는 입력으로 현재 복제본 수, 기본·사용자 지표, 자원으로 조정된 상하한, 반복 사이 정책 상태와 시각을 담는다.",
+   "parent": "mlops.serve.ray-serve-autoscaling-pipeline",
+   "aliases": [
+    "AutoscalingContext",
+    "Ray Serve AutoscalingContext",
+    "Ray Serve 확장 정책 입력"
+   ],
+   "refs": [
+    "https://docs.ray.io/en/latest/serve/advanced-guides/advanced-autoscaling.html"
+   ],
+   "volatile": true,
+   "checked_at": "2026-11-13",
+   "domain": "mlops"
+  },
+  {
+   "id": "mlops.serve.ray-strict-placement-strategy",
+   "title": "STRICT_PACK·STRICT_SPREAD(엄격 배치 전략)",
+   "en": "Ray STRICT_PACK and STRICT_SPREAD",
+   "kind": "term",
+   "level": 5,
+   "importance": 3,
+   "group": "LLM 운영",
+   "summary": "모든 묶음을 한 노드에(STRICT_PACK) 또는 묶음마다 다른 노드에(STRICT_SPREAD) 두도록 강제해, PACK·SPREAD처럼 다른 배치로 물러서지 않는 Ray 배치 그룹 전략이다.",
+   "parent": "mlops.serve.ray-placement-group",
+   "aliases": [
+    "STRICT_PACK",
+    "STRICT_SPREAD",
+    "Ray 엄격 배치 전략"
+   ],
+   "refs": [
+    "https://docs.ray.io/en/latest/ray-core/scheduling/placement-group.html"
    ],
    "domain": "mlops"
   }
