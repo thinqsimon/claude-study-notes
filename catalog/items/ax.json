@@ -9581,6 +9581,80 @@
     ]
   },
   {
+    "id": "ax.governance.deidentification-reidentification-risk",
+    "title": "비식별화 기법과 재식별 위험의 손익",
+    "en": "De-Identification Techniques and Re-Identification Risk",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "식별자 제거·준식별자 변환·해시 치환 같은 비식별화가 연결 공격과 여러 번 공개에 왜 뚫리는지 알고 유용성과 재식별 위험을 저울질해 기법을 고른다.",
+    "objectives": [
+      "식별자와 준식별자를 잘못 분류하거나 외부 데이터와의 연결을 위협 모형에서 빠뜨리면 k-익명성 같은 기준을 지켜도 재식별될 수 있음을 설명할 수 있다",
+      "직접 식별자를 암호화나 해시로 바꾸는 방식이 키 유출과 무차별 대입에 약해 권장되지 않는 이유를 들어 대안을 고를 수 있다",
+      "가명으로 이어진 기록·고차원 데이터·같은 원본의 여러 차례 공개가 재식별 위험을 키우는 경로를 짚고, 차분 프라이버시와 달리 대부분의 비식별화 기법은 누적 손실을 계산할 수 없다는 점을 근거로 공개 방식을 정할 수 있다",
+      "직접 식별자만 가리는 데이터 마스킹 도구가 공개용 비식별화의 유일한 수단으로 부족한 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ax.governance.genai-privacy-lifecycle",
+      "ax.basics.personal-data"
+    ],
+    "related": [
+      "ax.governance.pseudonymized-data",
+      "ax.security.training-data-privacy-attacks",
+      "plan.basics.research-anonymisation"
+    ],
+    "aliases": [
+      "비식별화",
+      "비식별 조치",
+      "de-identification",
+      "재식별 위험",
+      "re-identification risk",
+      "NIST SP 800-188"
+    ],
+    "refs": [
+      "https://csrc.nist.gov/pubs/sp/800/188/final",
+      "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-188.pdf"
+    ]
+  },
+  {
+    "id": "ax.security.poisoning-defense-tradeoffs",
+    "title": "오염 공격 방어의 손익: 데이터 정제·강건 학습·모델 검사",
+    "en": "Trade-offs of Poisoning Attack Mitigations",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "가용성·표적·백도어·모델 오염마다 맞는 방어가 다르며, 데이터 정제·강건 학습·트리거 복원·모델 검사·인증 방어가 무엇을 막고 어디서 뚫리는지 비교한다.",
+    "objectives": [
+      "가용성 오염은 성능 지표 감시로 대개 드러나지만 표적·백도어 오염은 소수 표본만 바꿔 지표로 잡기 어렵다는 차이를 근거로 감시와 사전 방어의 비중을 정할 수 있다",
+      "학습 데이터 정제가 오염 표본 비율이 클 때는 잘 듣지만 은밀한 공격과 클린 레이블 백도어에는 약해지는 손익을 설명할 수 있다",
+      "트리거 복원과 모델 검사가 고정된 트리거 패턴을 가정해 의미·기능 트리거에 약하고, 메타 분류기는 수천 개의 그림자 모델 학습 비용을 치른다는 한계를 비교할 수 있다",
+      "연합 학습의 모델 오염에 쓰는 비잔틴 강건 집계·기울기 자르기·차분 프라이버시가 정확도를 내주면서도 완전한 방어가 아닌 이유를 들어 방어 조합을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "ax.security.aml-attack-taxonomy"
+    ],
+    "related": [
+      "ax.security.data-poisoning",
+      "ax.security.backdoor-sleeper",
+      "ax.security.model-supply-chain",
+      "ax.security.evasion-defense-tradeoffs"
+    ],
+    "aliases": [
+      "오염 공격 방어",
+      "poisoning mitigation",
+      "포이즈닝 방어",
+      "학습 데이터 정제",
+      "training data sanitization"
+    ],
+    "refs": [
+      "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2025.pdf",
+      "https://csrc.nist.gov/pubs/ai/100/2/e2025/final",
+      "https://genai.owasp.org/llmrisk/llm042025-data-and-model-poisoning/"
+    ]
+  },
+  {
     "id": "ax.security.evasion-defense-tradeoffs",
     "title": "회피 공격 방어의 손익: 적대적 학습·무작위 평활화·형식 검증",
     "en": "Trade-offs of Evasion Attack Mitigations",
@@ -9936,6 +10010,76 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-13"
+  },
+  {
+    "id": "ax.security.dp-guarantee-evaluation",
+    "title": "차분 프라이버시 보증 평가: 프라이버시 단위·신뢰 모델·구현 위험",
+    "en": "Evaluating Differential Privacy Guarantees",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "같은 ε이라도 무엇을 한 사람의 데이터로 보는지, 누구를 믿는지, 구현이 부동소수점·부채널을 막는지에 따라 실제 보호가 달라짐을 따져 차분 프라이버시 주장을 평가한다.",
+    "objectives": [
+      "이벤트 수준과 사용자 수준 프라이버시 단위가 보호하는 대상을 비교해 ε 값만으로 보증을 견주면 안 되는 이유를 설명할 수 있다",
+      "유한·무한 차분 프라이버시의 이웃 정의 차이로 데이터셋 크기가 새는지 판단할 수 있다",
+      "중앙 모델과 로컬 모델의 신뢰 가정과 정확도 손실을 비교하고, 셔플·보안 계산 모델이 그 사이를 노리는 방식을 설명할 수 있다",
+      "부동소수점 연산과 부채널 같은 구현상의 프라이버시 위험을 근거로 직접 구현보다 검증된 라이브러리를 고를 수 있다"
+    ],
+    "prerequisites": [
+      "ax.security.training-data-privacy-attacks"
+    ],
+    "related": [
+      "ax.governance.deidentification-reidentification-risk"
+    ],
+    "aliases": [
+      "NIST SP 800-226",
+      "차분 프라이버시 평가",
+      "DP 보증 평가",
+      "differential privacy pyramid",
+      "차분 프라이버시 피라미드"
+    ],
+    "refs": [
+      "https://csrc.nist.gov/pubs/sp/800/226/final",
+      "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-226.pdf"
+    ]
+  },
+  {
+    "id": "ax.governance.synthetic-data-privacy",
+    "title": "합성 데이터의 프라이버시와 유용성 손익",
+    "en": "Privacy and Utility Trade-offs of Synthetic Data",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "부분·완전 합성 데이터와 차분 프라이버시 합성 데이터가 원본 정보를 얼마나 흘리고 어떤 통계를 잃는지 비교해 학습·시험용 데이터 공개 방식을 정한다.",
+    "objectives": [
+      "부분 합성·완전 합성·시험용 데이터가 원본과 맺는 관계와 형식적 보증의 유무를 구분할 수 있다",
+      "차분 프라이버시 없이 만든 합성 데이터와 원본을 외울 수 있는 딥러닝 생성 모델이 재식별·프라이버시 공격에 노출되는 이유를 설명할 수 있다",
+      "주변 분포 기반 방식이 속성 간 상관을 지키려 할수록 신호가 약해지고, 현재의 딥러닝 기반 차분 프라이버시 합성 데이터는 저차원 표 데이터에서 대개 품질이 더 낮다는 손익을 비교할 수 있다",
+      "합성 데이터의 오차·하위 집단 편향을 원본 검증 서비스와 데이터 안 합성 표시로 다루는 방법을 고를 수 있다"
+    ],
+    "prerequisites": [
+      "ax.security.training-data-privacy-attacks",
+      "ax.governance.genai-privacy-lifecycle"
+    ],
+    "related": [
+      "ax.governance.deidentification-reidentification-risk",
+      "ax.security.dp-guarantee-evaluation"
+    ],
+    "aliases": [
+      "합성 데이터 프라이버시",
+      "synthetic data privacy",
+      "차분 프라이버시 합성 데이터",
+      "DP synthetic data",
+      "완전 합성 데이터",
+      "fully synthetic data"
+    ],
+    "refs": [
+      "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-188.pdf",
+      "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-226.pdf",
+      "https://csrc.nist.gov/pubs/sp/800/188/final"
+    ]
   },
   {
     "id": "ax.security.model-provenance",
@@ -10326,6 +10470,73 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-13"
+  },
+  {
+    "id": "ax.governance.k-anonymity",
+    "title": "k-익명성(k-anonymity)",
+    "en": "k-Anonymity",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "준식별자 값 조합마다 같은 값을 가진 기록이 k개 이상 있게 만드는 비식별화 기준으로, 여러 번 공개할 때의 누적 손실은 셈하지 못한다.",
+    "parent": "ax.governance.deidentification-reidentification-risk",
+    "related": [
+      "ax.security.differential-privacy-budget"
+    ],
+    "aliases": [
+      "k-익명성",
+      "k 익명성",
+      "k-anonymous",
+      "k-익명화"
+    ],
+    "refs": [
+      "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-188.pdf"
+    ]
+  },
+  {
+    "id": "ax.governance.quasi-identifier",
+    "title": "준식별자(quasi-identifier)",
+    "en": "Quasi-Identifier",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "생년·지역처럼 그 자체로는 누구인지 모르지만 다른 정보와 이으면 개인을 가려낼 수 있는 속성으로, 연결 공격의 재료가 된다.",
+    "parent": "ax.governance.deidentification-reidentification-risk",
+    "aliases": [
+      "준식별자",
+      "간접 식별자",
+      "quasi-identifiers",
+      "indirect identifier"
+    ],
+    "refs": [
+      "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-188.pdf"
+    ]
+  },
+  {
+    "id": "ax.security.clean-label-poisoning",
+    "title": "클린 레이블 오염(clean-label poisoning)",
+    "en": "Clean-Label Poisoning",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "AI 보안과 윤리",
+    "summary": "공격자가 레이블은 못 건드리고 학습 표본만 조작하는 오염 공격으로, 레이블을 외부에서 붙이는 환경에서 현실적이며 데이터 정제로 잡기 어렵다.",
+    "parent": "ax.security.poisoning-defense-tradeoffs",
+    "related": [
+      "ax.security.backdoor-sleeper"
+    ],
+    "aliases": [
+      "clean-label attack",
+      "클린 레이블 공격",
+      "클린 레이블 백도어",
+      "clean-label backdoor",
+      "NISTAML.012"
+    ],
+    "refs": [
+      "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2025.pdf"
+    ]
   },
   {
     "id": "ax.security.ai-bom",
@@ -10928,6 +11139,65 @@
     ],
     "refs": [
       "https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/"
+    ]
+  },
+  {
+    "id": "ax.security.byzantine-robust-aggregation",
+    "title": "비잔틴 강건 집계",
+    "en": "Byzantine-Resilient Aggregation",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "연합 학습 서버가 악성 클라이언트의 모델 갱신을 골라 빼고 합치는 규칙으로, 제약을 넣어 최적화한 공격에는 우회될 수 있다.",
+    "parent": "ax.security.poisoning-defense-tradeoffs",
+    "aliases": [
+      "Byzantine-robust aggregation",
+      "강건 집계 규칙"
+    ],
+    "refs": [
+      "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-2e2025.pdf"
+    ]
+  },
+  {
+    "id": "ax.security.dp-unit-of-privacy",
+    "title": "프라이버시 단위(unit of privacy)",
+    "en": "Unit of Privacy",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "차분 프라이버시에서 이웃 데이터셋이 무엇 하나만큼 다른지 정하는 기준으로, 이벤트 수준이면 사람이 아닌 거래 하나만 보호해 보증이 약해진다.",
+    "parent": "ax.security.dp-guarantee-evaluation",
+    "aliases": [
+      "프라이버시 단위",
+      "이벤트 수준 프라이버시",
+      "event-level privacy",
+      "사용자 수준 프라이버시",
+      "user-level privacy"
+    ],
+    "refs": [
+      "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-226.pdf"
+    ]
+  },
+  {
+    "id": "ax.security.local-differential-privacy",
+    "title": "로컬 차분 프라이버시(local differential privacy)",
+    "en": "Local Differential Privacy",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "AI 보안과 윤리",
+    "summary": "각 사람이 자기 데이터에 잡음을 넣은 뒤 보내 수집자를 믿지 않아도 되는 방식으로, 잡음이 쌓여 신호가 강한 질의에만 쓸모가 있다.",
+    "parent": "ax.security.dp-guarantee-evaluation",
+    "aliases": [
+      "로컬 차분 프라이버시",
+      "로컬 DP",
+      "local DP",
+      "local model of differential privacy"
+    ],
+    "refs": [
+      "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-226.pdf"
     ]
   }
 ]

@@ -7193,6 +7193,76 @@
     "checked_at": "2026-11-13"
   },
   {
+    "id": "plan.figma.plugin-network-access",
+    "title": "Figma 플러그인 네트워크 접근 선언과 CSP·CORS 제약",
+    "en": "Figma Plugin Network Access, CSP and CORS Constraints",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "manifest의 networkAccess 선언이 CSP로 플러그인 요청을 막는 방식과, null 출처 iframe 때문에 생기는 CORS 제약을 보안 손익과 함께 다룬다.",
+    "objectives": [
+      "allowedDomains에 없는 곳으로 보낸 요청이 CSP 오류로 막히는 구조를 근거로 플러그인 요청 실패의 원인을 분석할 수 있다",
+      "도메인 단위, 경로 단위, \"none\", \"*\" 선언이 막는 범위와 공개되는 reasoning 요구를 비교해 노출 범위를 판단할 수 있다",
+      "플러그인 iframe의 출처가 null이라 Access-Control-Allow-Origin: *를 주는 API만 부를 수 있다는 제약을 근거로 중계 서버가 필요한지 판단할 수 있다",
+      "개발용 devAllowedDomains와 배포용 allowedDomains를 나눠 두는 이유를 말할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.plugin-data-storage",
+      "be.http.cors"
+    ],
+    "related": [
+      "plan.figma.plugin-sandbox",
+      "be.security.csp"
+    ],
+    "aliases": [
+      "Figma networkAccess",
+      "Figma 플러그인 네트워크 접근",
+      "devAllowedDomains",
+      "플러그인 네트워크 허용 목록"
+    ],
+    "refs": [
+      "https://developers.figma.com/docs/plugins/making-network-requests/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "plan.figma.webhook-delivery-verification",
+    "title": "Figma 웹훅 재시도·패스코드 검증과 이벤트 누락 대비",
+    "en": "Figma Webhook Retries, Passcode Verification and Missed Events",
+    "kind": "topic",
+    "level": 4,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Figma 웹훅이 실패한 전송을 5분·30분·3시간 뒤 세 번만 다시 보내고 패스코드로 발신자를 확인하는 구조를 보고 수신 서버의 신뢰성과 보안을 설계한다.",
+    "objectives": [
+      "200이 아니거나 늦은 응답을 실패로 보고 세 번까지만 다시 보내는 재시도 방식을 근거로, 수신 서버가 먼저 응답하고 처리를 뒤로 미루는 설계의 이점을 설명할 수 있다",
+      "패스코드가 조회 응답에서 가려지고 이벤트에만 실린다는 점과 틀린 패스코드에 400을 주면 웹훅이 바로 멈춘다는 동작을 근거로 검증 실패의 영향을 분석할 수 있다",
+      "팀·폴더·파일 컨텍스트마다 다른 웹훅 개수 한도와 알림 범위를 비교해 어느 단위에 웹훅을 걸지 판단할 수 있다",
+      "지난 7일의 요청·응답 기록을 조회해 재시도가 끝난 이벤트의 누락을 찾아낼 수 있다"
+    ],
+    "prerequisites": [
+      "be.integrate.webhook"
+    ],
+    "related": [
+      "plan.figma.library-publish-webhook",
+      "plan.figma.rest-api-rate-limits"
+    ],
+    "aliases": [
+      "Figma 웹훅 재시도",
+      "Figma webhook retry",
+      "Figma 웹훅 요청 기록",
+      "Figma 웹훅 컨텍스트"
+    ],
+    "refs": [
+      "https://developers.figma.com/docs/rest-api/webhooks/",
+      "https://developers.figma.com/docs/rest-api/webhooks-security/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
     "id": "plan.figma.variables-modes",
     "title": "Figma 변수와 모드",
     "en": "Figma Variables and Modes",
@@ -8419,6 +8489,49 @@
     "checked_at": "2026-11-13"
   },
   {
+    "id": "plan.figma.plugin-null-origin",
+    "title": "Figma 플러그인 iframe의 null 출처",
+    "en": "Null Origin of Figma Plugin iframes",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Figma 플러그인 UI iframe은 출처가 null이어서 모든 출처를 허용하는 CORS 응답을 주는 API만 직접 부를 수 있다.",
+    "parent": "plan.figma.plugin-network-access",
+    "related": [
+      "be.http.cors"
+    ],
+    "aliases": [
+      "Figma 플러그인 null origin",
+      "플러그인 iframe 출처"
+    ],
+    "refs": [
+      "https://developers.figma.com/docs/plugins/making-network-requests/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "plan.figma.webhook-passcode",
+    "title": "Figma 웹훅 패스코드",
+    "en": "Figma Webhook Passcode",
+    "kind": "term",
+    "level": 4,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "웹훅을 만들 때 정하고 받는 이벤트마다 대조해 Figma 웹훅의 발신자를 확인하는 값이다.",
+    "parent": "plan.figma.webhook-delivery-verification",
+    "aliases": [
+      "Figma webhook passcode",
+      "웹훅 패스코드"
+    ],
+    "refs": [
+      "https://developers.figma.com/docs/rest-api/webhooks-security/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
     "id": "plan.basics.wcag-conformance-model",
     "title": "WCAG 2.2 적합성 요구사항과 적합성 주장",
     "en": "WCAG 2.2 Conformance Requirements and Claims",
@@ -9045,6 +9158,44 @@
     ]
   },
   {
+    "id": "plan.figma.api-credential-models",
+    "title": "Figma API 자격 증명 비교: 개인 토큰·OAuth 앱·플랜 토큰",
+    "en": "Figma API Credential Models: PAT, OAuth Apps and Plan Access Tokens",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "Figma와 디자인 시스템",
+    "summary": "개인 접근 토큰, OAuth 앱, 플랜 접근 토큰이 누구 권한으로 움직이고 얼마나 오래 가며 무엇까지 닿는지 비교해 연동의 보안 손익을 판단한다.",
+    "objectives": [
+      "개인 접근 토큰은 만든 사용자의 권한으로 요청하고 최대 90일까지라는 점을 근거로, 사람이 떠나거나 권한이 바뀔 때 연동이 끊기는 위험을 설명할 수 있다",
+      "OAuth 앱의 인가 코드 30초 만료, 액세스 토큰 기본 90일, 갱신 때 이전 액세스 토큰이 무효가 되는 동작을 근거로 토큰 갱신 장애를 분석할 수 있다",
+      "플랜 접근 토큰이 사용자에 묶이지 않고 허용 목록으로 자원을 좁히며 최대 365일 가는 대신 일부 쓰기 엔드포인트를 못 쓴다는 손익을 비교할 수 있다",
+      "범위(scope)가 조직·파일 권한을 넘어서지 못한다는 성질을 근거로 최소 권한 설계를 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.figma.rest-api-rate-limits",
+      "be.auth.oauth2"
+    ],
+    "related": [
+      "plan.figma.variables-rest-api-sync"
+    ],
+    "aliases": [
+      "Figma API 인증",
+      "Figma OAuth 앱",
+      "Figma 개인 접근 토큰",
+      "Figma PAT"
+    ],
+    "refs": [
+      "https://developers.figma.com/docs/rest-api/authentication/",
+      "https://developers.figma.com/docs/rest-api/oauth-apps/",
+      "https://developers.figma.com/docs/rest-api/plan-access-tokens/",
+      "https://developers.figma.com/docs/rest-api/scopes/",
+      "https://developers.figma.com/docs/rest-api/changelog/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
     "id": "plan.basics.wcag2ict",
     "title": "WCAG2ICT로 앱·문서에 WCAG 적용하기",
     "en": "Applying WCAG to Non-Web ICT with WCAG2ICT",
@@ -9458,6 +9609,40 @@
     ],
     "refs": [
       "https://www.w3.org/TR/wai-aria-1.2/"
+    ]
+  },
+  {
+    "id": "plan.basics.fractional-factorial-aliasing",
+    "title": "부분 요인 설계의 교락과 해상도",
+    "en": "Fractional Factorial Designs: Aliasing and Resolution",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "여러 요인을 함께 바꾸는 실험에서 2^k개 조합 중 일부만 돌릴 때 어떤 효과끼리 섞이는지를 생성자와 정의 관계로 계산하고 실행 수와 맞바꾼다.",
+    "objectives": [
+      "생성자에서 정의 관계를 얻고 각 요인을 곱해 별칭 구조를 계산할 수 있다",
+      "해상도 III·IV·V가 주효과와 두 요인 상호작용의 섞임을 각각 어디까지 허용하는지 비교할 수 있다",
+      "섞인 상호작용이 무시할 만하다는 가정이 깨질 때 교락된 추정치를 잘못 읽는 이유를 설명할 수 있다",
+      "같은 실행 수와 해상도의 설계 중 짧은 단어가 적은 설계를 고르고, 상호작용이 의심되는 요인을 별칭이 없는 열에 배치할 수 있다"
+    ],
+    "prerequisites": [
+      "plan.basics.ab-testing-design",
+      "plan.basics.experimental-unit-restricted-randomization"
+    ],
+    "related": [
+      "plan.basics.multiple-comparison-procedures"
+    ],
+    "aliases": [
+      "부분 요인 설계",
+      "fractional factorial design",
+      "효과 교락",
+      "2^(k-p) 설계"
+    ],
+    "refs": [
+      "https://www.itl.nist.gov/div898/handbook/pri/section3/pri334.htm",
+      "https://www.itl.nist.gov/div898/handbook/pri/section3/pri3343.htm",
+      "https://www.itl.nist.gov/div898/handbook/pri/section3/pri3344.htm"
     ]
   },
   {
@@ -10391,6 +10576,84 @@
     ],
     "refs": [
       "https://www.w3.org/TR/wai-aria-1.2/"
+    ]
+  },
+  {
+    "id": "plan.figma.plan-access-token",
+    "title": "Figma 플랜 접근 토큰",
+    "en": "Figma Plan Access Token",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "Organization·Enterprise 관리자가 만드는 사용자에 묶이지 않은 Figma API 토큰으로, 자원 허용 목록을 둘 수 있고 최대 365일 유효하다.",
+    "parent": "plan.figma.api-credential-models",
+    "aliases": [
+      "Figma plan access token",
+      "플랜 접근 토큰"
+    ],
+    "refs": [
+      "https://developers.figma.com/docs/rest-api/plan-access-tokens/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "plan.figma.granular-api-scopes",
+    "title": "Figma API 세분 범위와 files:read 폐기",
+    "en": "Figma Granular API Scopes and files:read Deprecation",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Figma와 디자인 시스템",
+    "summary": "지나치게 넓은 files:read 대신 file_content:read처럼 엔드포인트 묶음별로 나뉜 범위를 골라 토큰이 닿는 면을 줄이는 Figma API 권한 단위다.",
+    "parent": "plan.figma.api-credential-models",
+    "aliases": [
+      "Figma API scopes",
+      "Figma 토큰 범위",
+      "file_content:read"
+    ],
+    "refs": [
+      "https://developers.figma.com/docs/rest-api/scopes/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "plan.basics.design-resolution",
+    "title": "실험 설계 해상도(design resolution)",
+    "en": "Design Resolution",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "부분 요인 설계의 정의 관계에서 가장 짧은 단어의 길이로, 클수록 낮은 차수 효과끼리 덜 섞이지만 실행 수가 늘어난다.",
+    "parent": "plan.basics.fractional-factorial-aliasing",
+    "aliases": [
+      "설계 해상도",
+      "resolution IV 설계",
+      "해상도 V 설계"
+    ],
+    "refs": [
+      "https://www.itl.nist.gov/div898/handbook/pri/section3/pri3344.htm"
+    ]
+  },
+  {
+    "id": "plan.basics.minimum-aberration",
+    "title": "최소 수차 설계(minimum aberration)",
+    "en": "Minimum Aberration Design",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "기획 기초",
+    "summary": "실행 수와 해상도가 같은 부분 요인 설계 가운데 정의 관계에 짧은 단어가 가장 적어 두 요인 상호작용의 섞임이 가장 덜한 설계다.",
+    "parent": "plan.basics.fractional-factorial-aliasing",
+    "aliases": [
+      "minimum aberration",
+      "최소 수차"
+    ],
+    "refs": [
+      "https://www.itl.nist.gov/div898/handbook/pri/section3/pri3344.htm"
     ]
   }
 ]

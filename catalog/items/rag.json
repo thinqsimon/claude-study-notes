@@ -9761,6 +9761,151 @@
     "checked_at": "2026-11-13"
   },
   {
+    "id": "rag.vector-db.opensearch-knn-engines",
+    "title": "OpenSearch k-NN 엔진의 손익 비교",
+    "en": "OpenSearch k-NN Engines Compared: Faiss, Lucene and JVector",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "OpenSearch 벡터 색인을 Faiss·Lucene·JVector 엔진 가운데 무엇으로 만드느냐에 따라 필터 방식·규모·메모리·학습 필요가 갈리는 손익을 다룬다.",
+    "objectives": [
+      "Faiss의 HNSW·IVF와 Lucene의 HNSW·flat, JVector의 DiskANN이 학습 필요·필터 시점·압축 방식에서 어떻게 다른지 비교할 수 있다",
+      "검색 중에 필터를 거는 Lucene과 검색 뒤에 거르는 Faiss의 차이를 근거로, 벡터 수가 1천만 개 미만인 작은 배포와 큰 배포에서 엔진을 고를 수 있다",
+      "HNSW와 IVF의 메모리 추정식과 복제본·서킷 브레이커 한도를 써서 노드에 필요한 메모리를 따질 수 있다",
+      "메모리가 모자랄 때 PQ·fp_16 인코더나 JVector를 쓰는 대안이 품질과 메모리에 주는 손익을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.vector-index.internals"
+    ],
+    "related": [
+      "rag.vector-db.elasticsearch-knn-capacity",
+      "rag.vector-db.diskann-internals",
+      "rag.vector-db.weaviate-index-types"
+    ],
+    "aliases": [
+      "OpenSearch k-NN 엔진",
+      "OpenSearch knn engine",
+      "OpenSearch Faiss 엔진",
+      "OpenSearch Lucene 엔진",
+      "OpenSearch JVector"
+    ],
+    "refs": [
+      "https://docs.opensearch.org/latest/mappings/supported-field-types/knn-methods-engines/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "rag.vector-db.gpu-cagra-internals",
+    "title": "GPU 그래프 색인 CAGRA의 손익",
+    "en": "GPU Graph Index CAGRA Trade-offs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "Milvus의 GPU_CAGRA가 GPU에서 그래프를 만들고 가지쳐 검색하는 방식과, GPU 메모리·처리량·지연·CPU 검색 전환 사이의 손익을 다룬다.",
+    "objectives": [
+      "가지치기 전 그래프 차수와 뒤 그래프 차수, IVF_PQ·NN_DESCENT 구축 방식이 구축 시간과 재현율에 주는 영향을 설명할 수 있다",
+      "itopk_size·search_width가 재현율과 검색 속도에 주는 손익과 이 값들이 top-K 상한을 정하는 방식을 따질 수 있다",
+      "CAGRA가 원본 데이터의 약 1.8배 GPU 메모리를 쓰고 모든 색인을 GPU 메모리에 올린다는 점에서 GPU_IVF_FLAT·GPU_IVF_PQ·GPU_BRUTE_FORCE와 메모리를 비교할 수 있다",
+      "GPU 색인이 지연을 꼭 줄이지는 않고 요청이 몰리거나 질의 벡터가 많을 때 처리량을 높인다는 점과 GPU 구축·CPU 검색(adapt_for_cpu)의 손익을 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.vector-index.internals"
+    ],
+    "related": [
+      "rag.vector-db.diskann-internals",
+      "rag.vector-db.milvus-architecture",
+      "rag.vector-db.product-quantization-internals"
+    ],
+    "aliases": [
+      "CAGRA",
+      "GPU_CAGRA",
+      "Milvus GPU 색인",
+      "Milvus GPU index",
+      "GPU 벡터 색인"
+    ],
+    "refs": [
+      "https://milvus.io/docs/gpu-cagra.md",
+      "https://milvus.io/docs/gpu_index.md"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "rag.vector-db.milvus-clustering-compaction",
+    "title": "Milvus 클러스터링 압축과 세그먼트 가지치기",
+    "en": "Milvus Clustering Compaction and Segment Pruning",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "스칼라 클러스터링 키의 값 범위대로 엔티티를 세그먼트에 다시 나눠 담고, 검색 때 맞지 않는 세그먼트를 건너뛰게 해 큰 컬렉션의 검색 비용을 줄이는 Milvus의 압축이다.",
+    "objectives": [
+      "엔티티가 세그먼트에 임의로 들어가 검색이 많은 세그먼트를 뒤지는 문제와, 클러스터링 키 범위로 다시 나눠 담는 압축이 이를 줄이는 원리를 설명할 수 있다",
+      "PartitionStats가 세그먼트와 키 값을 잇고 질의에 키 조건이 있을 때만 세그먼트를 건너뛰게 한다는 점에서 효과가 나는 질의와 나지 않는 질의를 가를 수 있다",
+      "자동 실행 간격·새 데이터 크기 임계값·제한 시간 설정이 압축 빈도와 실패에 주는 영향을 따질 수 있다",
+      "자주 거는 필터 필드나 테넌트 필드를 키로 고르는 까닭과, 가지치기 비율이 높을수록 처리량이 오른 벤치마크 결과를 근거로 도입 여부를 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.vector-db.milvus-architecture"
+    ],
+    "related": [
+      "rag.vector-db.qdrant-segment-optimizer",
+      "rag.vector-db.multitenancy-design"
+    ],
+    "aliases": [
+      "Milvus clustering compaction",
+      "Milvus 클러스터링 압축",
+      "Milvus 클러스터링 키",
+      "is_clustering_key"
+    ],
+    "refs": [
+      "https://milvus.io/docs/clustering-compaction.md"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "rag.agent.mcp-header-mirroring",
+    "title": "MCP 요청 헤더 미러링과 본문 일치 검증",
+    "en": "MCP Request Header Mirroring and Body Validation",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "Streamable HTTP에서 메서드·이름·지정한 도구 인자를 HTTP 헤더로 복사해 중간 장비가 본문 없이 다루게 하고, 서버가 헤더와 본문이 같은지 검사해 어긋남을 막는 설계다.",
+    "objectives": [
+      "MCP-Protocol-Version·Mcp-Method·Mcp-Name 헤더가 본문의 어느 값을 옮기는지와 부하 분산기·게이트웨이가 본문을 읽지 않고 라우팅하게 되는 이점을 설명할 수 있다",
+      "헤더로 라우팅하는 장비와 본문으로 실행하는 서버가 다른 값을 믿을 때 생기는 위험을, 본문을 처리하는 서버가 400과 -32020으로 거절하는 규칙과 함께 분석할 수 있다",
+      "헤더에 담을 수 없는 값을 =?base64?...?= 표식으로 감싸는 규칙과 비교 전에 반드시 풀어야 하는 까닭을 말할 수 있다",
+      "헤더로 정책을 거는 중간 장비가 헤더·본문 검증을 요구하지 않는 이전 버전 요청을 거절해야 하는 까닭과, 민감한 인자를 헤더로 내보내면 안 되는 까닭을 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "rag.agent.mcp-protocol",
+      "rag.agent.mcp-connect"
+    ],
+    "related": [
+      "rag.agent.mcp-version-compat",
+      "rag.agent.mcp-security-threats",
+      "rag.agent.mcp-header-mismatch"
+    ],
+    "aliases": [
+      "MCP 헤더 미러링",
+      "MCP header mirroring",
+      "Mcp-Method 헤더",
+      "Mcp-Name 헤더",
+      "MCP 표준 요청 헤더"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http",
+      "https://modelcontextprotocol.io/specification/2026-07-28/server/tools"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
     "id": "rag.vector-index.recall",
     "title": "재현율",
     "en": "Recall",
@@ -10683,6 +10828,142 @@
     ],
     "refs": [
       "https://docs.weaviate.io/weaviate/concepts/vector-index"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "rag.vector-db.opensearch-knn-memory-estimate",
+    "title": "OpenSearch k-NN 메모리 추정식",
+    "en": "OpenSearch k-NN Memory Estimation",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "HNSW는 벡터마다 1.1×(4×차원+8×m) 바이트, IVF는 1.1×(4×차원×벡터 수+4×nlist×차원) 바이트로 네이티브 색인 메모리를 어림하는 식이다.",
+    "parent": "rag.vector-db.opensearch-knn-engines",
+    "aliases": [
+      "OpenSearch k-NN 메모리 추정",
+      "OpenSearch HNSW memory estimation",
+      "OpenSearch IVF memory estimation"
+    ],
+    "refs": [
+      "https://docs.opensearch.org/latest/mappings/supported-field-types/knn-methods-engines/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "rag.vector-db.opensearch-ivf-training",
+    "title": "OpenSearch Faiss IVF 학습 요구(Train API)",
+    "en": "OpenSearch Faiss IVF Training Requirement",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "Faiss IVF 색인은 Train API로 최소 nlist개 이상의 학습 벡터를 먼저 넣어 모델을 만들어야 하고, 모자라면 모델이 failed 상태가 된다.",
+    "parent": "rag.vector-db.opensearch-knn-engines",
+    "related": [
+      "rag.vector-db.ivfflat-lists-probes"
+    ],
+    "aliases": [
+      "OpenSearch Train API",
+      "OpenSearch IVF 학습",
+      "OpenSearch k-NN 모델 학습"
+    ],
+    "refs": [
+      "https://docs.opensearch.org/latest/mappings/supported-field-types/knn-methods-engines/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "rag.vector-db.cagra-graph-degree",
+    "title": "CAGRA 가지치기 전후 그래프 차수",
+    "en": "CAGRA intermediate_graph_degree and graph_degree",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "CAGRA가 먼저 만드는 그래프의 차수(intermediate_graph_degree, 기본 128)와 가지친 뒤 남기는 차수(graph_degree, 기본 64)로, 둘의 차이가 클수록 구축이 오래 걸린다.",
+    "parent": "rag.vector-db.gpu-cagra-internals",
+    "aliases": [
+      "intermediate_graph_degree",
+      "CAGRA graph_degree",
+      "CAGRA 그래프 차수"
+    ],
+    "refs": [
+      "https://milvus.io/docs/gpu-cagra.md"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "rag.vector-db.milvus-partition-stats",
+    "title": "Milvus PartitionStats 세그먼트 가지치기",
+    "en": "Milvus PartitionStats Segment Pruning",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "벡터 DB",
+    "summary": "클러스터링 압축 때 만들어지는 세그먼트별 클러스터링 키 값 지도로, queryNode.enableSegmentPrune을 켜면 키 조건에 맞지 않는 세그먼트를 검색에서 뺀다.",
+    "parent": "rag.vector-db.milvus-clustering-compaction",
+    "aliases": [
+      "PartitionStats",
+      "enableSegmentPrune",
+      "Milvus segment pruning",
+      "Milvus 세그먼트 가지치기"
+    ],
+    "refs": [
+      "https://milvus.io/docs/clustering-compaction.md"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "rag.agent.mcp-x-mcp-header",
+    "title": "MCP 도구 인자 헤더 지정(x-mcp-header)",
+    "en": "MCP x-mcp-header Tool Parameter Annotation",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "도구 inputSchema의 원시형 인자에 붙여 그 값을 Mcp-Param-{이름} 헤더로 보내게 하는 표시로, properties만 거쳐 닿는 인자에만 쓸 수 있고 어기면 클라이언트가 그 도구를 뺀다.",
+    "parent": "rag.agent.mcp-header-mirroring",
+    "aliases": [
+      "x-mcp-header",
+      "Mcp-Param 헤더",
+      "MCP 인자 헤더"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "rag.agent.mcp-schema-ref-resolution",
+    "title": "MCP 스키마 $ref 해석 제한과 검증 자원 한도",
+    "en": "MCP JSON Schema $ref Resolution and Validation Bounds",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "에이전트",
+    "summary": "MCP 구현은 네트워크 URI를 가리키는 $ref를 기본으로 따라가지 않고, anyOf·oneOf 같은 조합 키워드에 깊이·개수·시간 한도를 둬 악성 스키마가 검증기를 마비시키지 못하게 한다.",
+    "related": [
+      "rag.agent.mcp-security-threats",
+      "rag.agent.mcp-protocol"
+    ],
+    "aliases": [
+      "MCP $ref 해석",
+      "MCP JSON Schema $ref",
+      "MCP 스키마 원격 참조",
+      "MCP schema DoS"
+    ],
+    "refs": [
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic/index",
+      "https://modelcontextprotocol.io/specification/2026-07-28/server/tools"
     ],
     "volatile": true,
     "checked_at": "2026-11-13"
