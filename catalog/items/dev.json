@@ -8133,6 +8133,103 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "dev.basics.venv-internals",
+    "title": "가상 환경의 내부: pyvenv.cfg와 sys.prefix",
+    "en": "How Python Virtual Environments Work",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "개발 환경",
+    "summary": "인터프리터가 실행 파일 옆의 pyvenv.cfg를 찾아 sys.prefix를 바꾸고 site-packages 검색 범위를 정하는 시작 과정이다.",
+    "objectives": [
+      "인터프리터가 실행 파일과 같은 폴더나 그 위 폴더에서 pyvenv.cfg를 찾아 sys.prefix와 sys.base_prefix를 다르게 정하는 과정을 설명할 수 있다",
+      "3.14부터 sys.prefix가 site 모듈이 아니라 경로 초기화 단계에서 정해져 -S 옵션의 영향을 받지 않게 된 차이를 설명할 수 있다",
+      "include-system-site-packages 값에 따라 시스템·사용자 site-packages가 검색 경로에 들어가는지 판단할 수 있다",
+      "활성화 없이도 가상 환경이 동작하는 이유와, 셔뱅의 절대 경로 때문에 가상 환경을 복사해 옮기지 말아야 하는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "be.python.venv"
+    ],
+    "related": [
+      "dev.debug.sys-path-shadowing",
+      "dev.debug.import-system"
+    ],
+    "aliases": [
+      "venv 내부 동작",
+      "how venvs work",
+      "가상 환경 동작 원리",
+      "venv 격리 원리"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/venv.html",
+      "https://docs.python.org/3/library/sys_path_init.html",
+      "https://docs.python.org/3/library/site.html"
+    ]
+  },
+  {
+    "id": "dev.basics.deferred-annotations",
+    "title": "어노테이션 지연 평가의 내부: __annotate__와 형식",
+    "en": "Deferred Evaluation of Annotations",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "개발 환경",
+    "summary": "파이썬 3.14부터 어노테이션을 정의할 때가 아니라 읽을 때 컴파일러가 만든 __annotate__ 함수로 평가하는 방식과 그 형식별 한계다.",
+    "objectives": [
+      "즉시 평가(3.13까지), from __future__ import annotations의 문자열 저장, 3.14의 지연 평가가 정의되지 않은 이름을 다루는 방식을 비교할 수 있다",
+      "컴파일러가 만든 __annotate__ 함수는 직접 부르면 VALUE 형식만 지원하고 FORWARDREF·STRING 형식은 annotationlib가 특수 환경에서 다시 불러 만든다는 점과 각 형식이 돌려주는 값을 설명할 수 있다",
+      "STRING·FORWARDREF 형식이 조건식·불리언 연산·f-문자열을 제대로 되살리지 못하는 한계를 근거로 결과를 의심할 수 있다",
+      "어노테이션을 읽는 일이 임의 코드를 실행할 수 있어 신뢰할 수 없는 문자열을 넘기면 안 되는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "be.python.type-hints"
+    ],
+    "related": [
+      "dev.basics.typing-variance"
+    ],
+    "aliases": [
+      "PEP 649",
+      "PEP 749",
+      "annotationlib",
+      "지연 어노테이션",
+      "lazy annotations",
+      "deferred annotations"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/annotationlib.html"
+    ]
+  },
+  {
+    "id": "dev.basics.wheel-compat-tags",
+    "title": "wheel 호환 태그와 안정 ABI의 손익",
+    "en": "Wheel Compatibility Tags and the Stable ABI",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "개발 환경",
+    "summary": "wheel 파일 이름의 파이썬·ABI·플랫폼 태그로 설치기가 맞는 빌드를 고르는 규칙과, 안정 ABI 빌드 하나로 여러 버전을 덮는 방식의 손익이다.",
+    "objectives": [
+      "파이썬 태그·ABI 태그·플랫폼 태그를 읽고 설치기가 지원 태그 목록에서 가장 구체적인 wheel을 먼저 고르는 순서를 설명할 수 있다",
+      "manylinux_x_y·musllinux_x_y 태그가 최소 glibc·musl 버전으로 호환 범위를 정하는 방식을 설명할 수 있다",
+      "abi3 빌드가 여러 마이너 버전을 덮는 대신 일부 매크로를 못 쓰고 인라인되지 않는 함수가 생기는 성능 손익을 비교할 수 있다",
+      "안정 ABI가 링크·메모리 배치 문제는 막아도 동작 변화는 막지 못해 지원하는 마이너 버전마다 시험해야 하는 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "be.python.venv-packages",
+      "dev.basics.build-backend-interface"
+    ],
+    "aliases": [
+      "platform compatibility tags",
+      "플랫폼 호환 태그",
+      "wheel 태그",
+      "wheel tags"
+    ],
+    "refs": [
+      "https://packaging.python.org/en/latest/specifications/platform-compatibility-tags/",
+      "https://docs.python.org/3/c-api/stable.html"
+    ]
+  },
+  {
     "id": "dev.robust.crash-consistency",
     "title": "크래시 일관성: 쓰기 순서와 커밋 지점",
     "en": "Crash Consistency: Write Ordering and the Commit Point",
@@ -8993,6 +9090,74 @@
     ]
   },
   {
+    "id": "dev.debug.cpython-jit",
+    "title": "CPython JIT의 내부: 트레이스와 copy-and-patch",
+    "en": "CPython JIT Compiler",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "CPython 3.13부터 실험 기능으로 빌드할 수 있는 JIT가 바이트코드가 아니라 최적화된 마이크로 연산 트레이스를 기계어 템플릿으로 바꾸는 방식과 그 손익이다.",
+    "objectives": [
+      "JIT가 기본 인터프리터의 바이트코드가 아니라 최적화된 마이크로 연산 트레이스를 컴파일해 디스패치·디코딩 비용을 줄이는 구조를 설명할 수 있다",
+      "copy-and-patch 방식에서 LLVM이 빌드할 때만 필요하고 실행할 때는 필요 없는 이유를 설명할 수 있다",
+      "PEP 744가 밝힌 '기존 특수화 인터프리터와 비슷한 속도'와 '기본 인터프리터보다 약 10~20% 많은 메모리'를 근거로 실험 단계의 JIT를 운영에 켜지 말라는 권고를 설명할 수 있다",
+      "--enable-experimental-jit의 yes·yes-off·interpreter 값과 PYTHON_JIT로 빌드와 실행 시 켜고 끄는 방식을 구분할 수 있다"
+    ],
+    "prerequisites": [
+      "dev.debug.specializing-interpreter",
+      "cs.lang.jit-compiler"
+    ],
+    "related": [
+      "db.internals.jit"
+    ],
+    "aliases": [
+      "CPython JIT",
+      "CPython 실험적 JIT",
+      "CPython experimental JIT",
+      "PEP 744"
+    ],
+    "refs": [
+      "https://peps.python.org/pep-0744/",
+      "https://docs.python.org/3/using/configure.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "dev.basics.typeis-narrowing",
+    "title": "사용자 정의 타입 좁히기: TypeGuard와 TypeIs",
+    "en": "User-Defined Type Narrowing: TypeGuard and TypeIs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "개발 환경",
+    "summary": "bool을 돌려주는 검사 함수로 타입을 좁힐 때 TypeGuard와 TypeIs가 참·거짓 분기에서 인자 타입을 다르게 계산하는 타입 명세의 규칙이다.",
+    "objectives": [
+      "TypeGuard는 참 분기에서만 좁히고 TypeIs는 원래 타입과 반환 타입의 교집합·여집합으로 두 분기 모두 좁히는 차이를 설명할 수 있다",
+      "TypeIs의 반환 타입은 입력 타입에 대입 가능해야 하지만 TypeGuard의 반환 타입은 더 좁지 않아도 된다는 규칙으로, 입력과 무관한 타입으로 좁히는 검사 함수에 어느 쪽을 써야 하는지 판단할 수 있다",
+      "TypeGuard는 bool의 서브타입으로 취급되고 TypeIs는 인자 타입에 불변이라 TypeIs[B]가 TypeIs[A]의 서브타입이 아니라는 규칙으로 콜백 타입 오류를 분석할 수 있다"
+    ],
+    "prerequisites": [
+      "be.python.type-hints",
+      "dev.basics.typing-variance"
+    ],
+    "related": [
+      "fe.ts.union-narrowing"
+    ],
+    "aliases": [
+      "typing.TypeIs",
+      "typing.TypeGuard",
+      "PEP 742",
+      "PEP 647",
+      "TypeIs 좁히기",
+      "TypeIs narrowing"
+    ],
+    "refs": [
+      "https://typing.python.org/en/latest/spec/narrowing.html"
+    ]
+  },
+  {
     "id": "dev.git.reflog",
     "title": "reflog",
     "en": "Reflog",
@@ -9051,6 +9216,89 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
+  },
+  {
+    "id": "dev.basics.pyvenv-cfg",
+    "title": "pyvenv.cfg 파일",
+    "en": "pyvenv.cfg",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "개발 환경",
+    "summary": "가상 환경 폴더 맨 위에 놓여 기반 파이썬 위치(home)와 시스템 패키지 포함 여부를 적어 두는 설정 파일이다.",
+    "parent": "dev.basics.venv-internals",
+    "aliases": [
+      "pyvenv cfg",
+      "가상 환경 설정 파일",
+      "include-system-site-packages"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/venv.html",
+      "https://docs.python.org/3/library/site.html"
+    ]
+  },
+  {
+    "id": "dev.basics.sys-base-prefix",
+    "title": "sys.prefix와 sys.base_prefix",
+    "en": "sys.prefix and sys.base_prefix",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "개발 환경",
+    "summary": "가상 환경 안에서는 sys.prefix가 환경 폴더를, sys.base_prefix가 환경을 만든 기반 설치를 가리켜 둘을 비교하면 가상 환경 여부를 알 수 있다.",
+    "parent": "dev.basics.venv-internals",
+    "aliases": [
+      "sys.base_prefix",
+      "sys.base_exec_prefix",
+      "base prefix"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/sys_path_init.html",
+      "https://docs.python.org/3/library/venv.html"
+    ]
+  },
+  {
+    "id": "dev.basics.manylinux-tag",
+    "title": "manylinux 플랫폼 태그",
+    "en": "manylinux Platform Tag",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "개발 환경",
+    "summary": "manylinux_x_y_arch 꼴로 wheel이 요구하는 최소 glibc 버전을 밝혀 여러 리눅스 배포판에서 쓸 수 있게 하는 플랫폼 태그다.",
+    "parent": "dev.basics.wheel-compat-tags",
+    "aliases": [
+      "manylinux",
+      "manylinux_x_y",
+      "manylinux2014",
+      "PEP 600"
+    ],
+    "refs": [
+      "https://packaging.python.org/en/latest/specifications/platform-compatibility-tags/"
+    ]
+  },
+  {
+    "id": "dev.basics.stable-abi",
+    "title": "안정 ABI와 제한 API(abi3)",
+    "en": "Stable ABI and Limited API",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "개발 환경",
+    "summary": "Py_LIMITED_API로 제한 API만 쓰게 해, Stable ABI 3.x로 컴파일한 확장 모듈이 자유 스레딩이 아닌 CPython 3.x 이상에서 돌게 하는 약속이다.",
+    "parent": "dev.basics.wheel-compat-tags",
+    "aliases": [
+      "CPython Stable ABI",
+      "Python Limited API",
+      "Py_LIMITED_API",
+      "abi3",
+      "abi3t"
+    ],
+    "refs": [
+      "https://docs.python.org/3/c-api/stable.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
   },
   {
     "id": "dev.git.packfile",
@@ -9823,5 +10071,86 @@
     "refs": [
       "https://typing.python.org/en/latest/spec/generics.html"
     ]
+  },
+  {
+    "id": "dev.basics.annotate-function",
+    "title": "__annotate__ 함수",
+    "en": "Annotate Function",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "개발 환경",
+    "summary": "컴파일러가 함수·클래스·모듈마다 만들어 두고 형식 값을 받아 어노테이션 딕셔너리를 돌려주는 평가 함수다.",
+    "parent": "dev.basics.deferred-annotations",
+    "aliases": [
+      "annotate function",
+      "어노테이트 함수",
+      "__annotate__"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/annotationlib.html"
+    ]
+  },
+  {
+    "id": "dev.basics.annotation-format",
+    "title": "어노테이션 형식(VALUE·FORWARDREF·STRING)",
+    "en": "annotationlib.Format",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "개발 환경",
+    "summary": "어노테이션을 실제 값, 풀리지 않은 이름은 ForwardRef로 둔 값, 소스 비슷한 문자열 중 무엇으로 받을지 고르는 annotationlib의 열거형이다.",
+    "parent": "dev.basics.deferred-annotations",
+    "aliases": [
+      "Format.FORWARDREF",
+      "Format.STRING",
+      "annotationlib Format",
+      "annotationlib.Format"
+    ],
+    "refs": [
+      "https://docs.python.org/3/library/annotationlib.html"
+    ]
+  },
+  {
+    "id": "dev.debug.copy-and-patch",
+    "title": "copy-and-patch 템플릿 JIT",
+    "en": "Copy-and-Patch Compilation",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "빌드할 때 마이크로 연산마다 기계어 조각을 미리 만들어 두고 실행 중에 이어 붙여 값만 채우는 CPython JIT의 코드 생성 방식이다.",
+    "parent": "dev.debug.cpython-jit",
+    "aliases": [
+      "copy and patch",
+      "카피 앤 패치",
+      "copy-and-patch JIT"
+    ],
+    "refs": [
+      "https://peps.python.org/pep-0744/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "dev.debug.python-jit-env",
+    "title": "PYTHON_JIT와 --enable-experimental-jit",
+    "en": "PYTHON_JIT and --enable-experimental-jit",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "디버깅",
+    "summary": "CPython을 JIT와 함께 빌드하는 configure 옵션과, 빌드된 JIT를 실행할 때 0 또는 1로 끄고 켜는 환경 변수다.",
+    "parent": "dev.debug.cpython-jit",
+    "aliases": [
+      "PYTHON_JIT",
+      "enable-experimental-jit",
+      "CPython JIT 빌드 옵션"
+    ],
+    "refs": [
+      "https://docs.python.org/3/using/configure.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
   }
 ]

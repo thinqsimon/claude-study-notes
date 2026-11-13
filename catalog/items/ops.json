@@ -8695,6 +8695,114 @@
     ]
   },
   {
+    "id": "ops.k8s.admission-webhook-chain",
+    "title": "어드미션 웹훅의 호출 순서와 실패 정책",
+    "en": "Admission Webhook Ordering and Failure Policy",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "API 서버가 변경 웹훅, 스키마 검사, 검증 웹훅 순으로 요청을 거르는 흐름과 실패 정책·재호출이 가용성과 보안에 주는 손익을 분석한다.",
+    "objectives": [
+      "변경 웹훅이 먼저 돌고 검증 웹훅이 마지막에 도는 순서 때문에 최종 상태를 확인할 정책은 검증 웹훅에 두어야 하는 이유를 설명할 수 있다",
+      "failurePolicy가 Fail(기본값)일 때와 Ignore일 때 웹훅 장애·시간 초과(기본 10초)가 클러스터 쓰기 가용성과 정책 우회에 주는 영향을 비교할 수 있다",
+      "reinvocationPolicy IfNeeded로 다시 불리는 웹훅이 멱등해야 하고 호출 순서에 기대면 안 되는 이유를 분석할 수 있다",
+      "부작용이 있는 웹훅이 sideEffects를 NoneOnDryRun으로 밝히고 dryRun 요청에서 부작용을 막아야 하는 이유와, 승인돼도 저장이 보장되지 않아 조정 장치가 필요한 이유를 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.basics",
+      "ops.k8s.rbac-least-privilege"
+    ],
+    "related": [
+      "ops.k8s.pod-security-standards",
+      "ops.k8s.server-side-apply"
+    ],
+    "aliases": [
+      "admission webhook",
+      "어드미션 웹훅",
+      "Kubernetes 어드미션 웹훅",
+      "MutatingWebhookConfiguration",
+      "ValidatingWebhookConfiguration"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/",
+      "https://kubernetes.io/docs/concepts/cluster-administration/admission-webhooks-good-practices/"
+    ]
+  },
+  {
+    "id": "ops.k8s.lease-leader-election",
+    "title": "Lease로 하는 리더 선출과 노드 하트비트",
+    "en": "Leases for Leader Election and Node Heartbeats",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "coordination.k8s.io Lease 객체로 노드 하트비트와 컨트롤 플레인 구성 요소의 리더 선출이 이루어지는 방식과 장애 조치 지연의 손익을 분석한다.",
+    "objectives": [
+      "kubelet이 kube-node-lease 네임스페이스의 Lease renewTime을 갱신하는 것을 컨트롤 플레인이 노드 가용성 판단에 쓰는 방식을 설명할 수 있다",
+      "HA 구성에서 kube-controller-manager와 kube-scheduler가 Lease로 한 인스턴스만 활성화하는 방식과, holderIdentity·leaseDurationSeconds·renewTime으로 현재 리더와 만료 시점을 읽을 수 있다",
+      "resourceVersion 기반 낙관적 동시성으로 동시 갱신 중 하나만 성공하게 하는 원리와, 리더가 갱신을 멈추면 Lease가 만료된 뒤에야 새 선출이 시작되는 장애 조치 지연을 분석할 수 있다",
+      "API 서버 식별 Lease(apiserver-로 시작, kube-system)와 직접 만든 컨트롤러용 Lease를 구분할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.k8s.basics",
+      "ops.k8s.api-watch-consistency"
+    ],
+    "related": [
+      "cs.dist.leader-lease-read",
+      "ops.k8s.etcd-membership-learner"
+    ],
+    "aliases": [
+      "Kubernetes Lease",
+      "쿠버네티스 Lease",
+      "쿠버네티스 리더 선출",
+      "Kubernetes leader election",
+      "노드 하트비트 Lease"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/architecture/leases/",
+      "https://kubernetes.io/docs/concepts/cluster-administration/coordinated-leader-election/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ops.container.cpu-bandwidth-throttling",
+    "title": "CFS 대역폭 제어와 CPU 스로틀링",
+    "en": "CFS Bandwidth Control and CPU Throttling",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "컨테이너 내부",
+    "summary": "cgroup이 주기마다 받은 CPU 시간 할당량을 다 쓰면 다음 주기까지 멈추는 CFS 대역폭 제어의 동작과, 지연·처리량 손익을 분석한다.",
+    "objectives": [
+      "cpu.max의 할당량과 주기(기본값 max 100000, 곧 무제한·100ms)로 그룹이 한 주기에 쓸 CPU 시간이 정해지고, 다 쓰면 남은 주기 동안 스로틀되는 동작을 설명할 수 있다",
+      "전역 풀에서 CPU별 조각(기본 5ms)으로 실행 시간을 나눠 주고 조각이 만료되지 않아, 스레드가 많은 앱이 CPU마다 남은 조각(약 1ms)만큼 할당량을 잠깐 넘을 수 있지만 긴 구간 평균은 할당량에 묶이는 점을 설명할 수 있다",
+      "그룹의 한도가 부모를 넘을 수 없어 자기 할당량이 남아도 조상 한도 때문에 스로틀될 수 있다는 계층 규칙을 알고, cpu.stat의 nr_throttled·throttled_usec와 cpu.stat.local의 throttled_usec를 견줘 원인을 가를 수 있다",
+      "cpu.max.burst(기본 0, 할당량 이하)로 쓰지 않은 대역폭을 모아 두었다 쓰게 할 때 순간 부하 처리와 다른 그룹에 대한 간섭·마감 놓침 위험 사이의 손익을 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.container.resource-limits",
+      "ops.container.isolation"
+    ],
+    "related": [
+      "cs.os.fair-scheduler-internals",
+      "ops.container.cgroup-v2-memory-controller",
+      "ops.k8s.cpu-topology-manager"
+    ],
+    "aliases": [
+      "CFS bandwidth control",
+      "CFS 대역폭 제어",
+      "cpu.max",
+      "CFS 할당량 스로틀링",
+      "cgroup CPU 스로틀링"
+    ],
+    "refs": [
+      "https://docs.kernel.org/scheduler/sched-bwc.html",
+      "https://docs.kernel.org/admin-guide/cgroup-v2.html"
+    ]
+  },
+  {
     "id": "ops.observe.incident-analysis",
     "title": "장애 분석과 회고",
     "en": "Incident Analysis and Postmortems",
@@ -9157,6 +9265,77 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "ops.container.cgroup-io-controller",
+    "title": "cgroup v2 IO 컨트롤러와 writeback 귀속",
+    "en": "cgroup v2 IO Controller and Writeback Attribution",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "컨테이너 내부",
+    "summary": "io.max·io.weight·io.latency로 블록 장치 I/O를 나누는 방식과, 더티 페이지 writeback을 inode 단위로 cgroup에 귀속하는 내부 규칙의 손익을 분석한다.",
+    "objectives": [
+      "io.max의 장치별 절대 상한(rbps·wbps·riops·wiops)과 io.weight의 비례 배분(기본 100, 1~10000)이 경합 상황에서 다르게 동작하는 점을 비교할 수 있다",
+      "io.latency가 같은 계층의 형제만 조절하고 모든 그룹이 목표를 지키면 아무것도 하지 않는 작업 보존 방식이라는 점으로 지연 보호의 손익을 설명할 수 있다",
+      "메모리는 페이지 단위로, writeback 소유는 inode 단위로 따져 다른 cgroup이 다수를 쓰면 소유가 넘어가고 여러 cgroup이 한 inode에 동시에 쓰면 잘 지원되지 않는다는 점을 분석할 수 있다",
+      "cgroup writeback을 지원하지 않는 파일 시스템에서는 모든 writeback이 루트 cgroup으로 잡힌다는 점으로 I/O 통계를 해석할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.container.isolation",
+      "ops.container.cgroup-v2-memory-controller"
+    ],
+    "related": [
+      "cs.os.dirty-page-writeback",
+      "ops.linux.psi-pressure"
+    ],
+    "aliases": [
+      "cgroup IO 컨트롤러",
+      "cgroup v2 io controller",
+      "io.max",
+      "io.weight",
+      "cgroup writeback"
+    ],
+    "refs": [
+      "https://docs.kernel.org/admin-guide/cgroup-v2.html"
+    ]
+  },
+  {
+    "id": "ops.docker.gateway-modes",
+    "title": "Docker 브리지 게이트웨이 모드와 NAT 손익",
+    "en": "Docker Bridge Gateway Modes and NAT Trade-offs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "Docker",
+    "summary": "Docker 브리지 네트워크의 nat·routed·nat-unprotected·isolated 게이트웨이 모드가 포트 공개, 마스커레이딩, 외부 노출에 주는 차이와 보안 손익을 비교한다.",
+    "objectives": [
+      "기본 nat 모드는 공개 포트마다 NAT와 마스커레이딩 규칙을 두고, routed 모드는 NAT 없이 공개 포트만 열고 컨테이너 주소로 내보낸다는 차이를 비교할 수 있다",
+      "nat-unprotected 모드에서는 포트 필터링이 없어 공개하지 않은 포트도 직접 라우팅으로 닿는다는 위험을 설명할 수 있다",
+      "nat 모드에서 특정 호스트 주소에 공개한 포트도 IP 포워딩이 켜져 있으면 다른 인터페이스로 닿을 수 있다는 점과, 공개 주소를 정하지 않으면 모든 인터페이스에 열린다는 점으로 노출 범위를 분석할 수 있다",
+      "iptables 백엔드와 실험 단계의 nftables 백엔드가 IP 포워딩 활성화와 기본 drop 포워딩 정책에서 다르게 동작하는 점을 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.docker.container-networking",
+      "ops.network.ufw-open-ports"
+    ],
+    "related": [
+      "ops.docker.ufw-bypass",
+      "ops.network.bind-address",
+      "ops.k8s.kube-proxy-modes"
+    ],
+    "aliases": [
+      "Docker gateway mode",
+      "Docker 게이트웨이 모드",
+      "gateway_mode_ipv4",
+      "Docker routed 모드"
+    ],
+    "refs": [
+      "https://docs.docker.com/engine/network/port-publishing/",
+      "https://docs.docker.com/engine/network/packet-filtering-firewalls/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
     "id": "ops.k8s.resource-version-410-gone",
     "title": "resourceVersion 만료와 410 Gone",
     "en": "Expired resourceVersion and 410 Gone",
@@ -9418,6 +9597,45 @@
     ],
     "refs": [
       "https://kubernetes.io/docs/reference/using-api/server-side-apply/"
+    ]
+  },
+  {
+    "id": "ops.k8s.webhook-failure-policy",
+    "title": "어드미션 웹훅 failurePolicy",
+    "en": "Admission Webhook failurePolicy",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "Kubernetes",
+    "summary": "웹훅 호출이 네트워크 오류·시간 초과·잘못된 응답으로 실패할 때 요청을 거절할지(Fail, 기본값) 무시하고 진행할지(Ignore) 정하는 설정이다.",
+    "parent": "ops.k8s.admission-webhook-chain",
+    "aliases": [
+      "webhook failurePolicy",
+      "웹훅 실패 정책",
+      "admission webhook failurePolicy"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/"
+    ]
+  },
+  {
+    "id": "ops.container.cpu-stat-throttled",
+    "title": "cpu.stat의 nr_throttled와 throttled_usec",
+    "en": "cpu.stat nr_throttled and throttled_usec",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "컨테이너 내부",
+    "summary": "cgroup v2 cpu.stat에서 스로틀된 횟수와 총 시간을 보여 주는 값으로, 조상 한도가 아닌 자기 한도로 생긴 스로틀만 센다.",
+    "parent": "ops.container.cpu-bandwidth-throttling",
+    "aliases": [
+      "nr_throttled",
+      "throttled_usec",
+      "cgroup cpu.stat"
+    ],
+    "refs": [
+      "https://docs.kernel.org/admin-guide/cgroup-v2.html",
+      "https://docs.kernel.org/scheduler/sched-bwc.html"
     ]
   },
   {
@@ -9956,5 +10174,106 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ops.k8s.webhook-reinvocation-policy",
+    "title": "변경 웹훅 reinvocationPolicy",
+    "en": "Mutating Webhook reinvocationPolicy",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "다른 어드미션 플러그인이 객체를 바꾼 뒤 변경 웹훅을 다시 부를지 정하는 설정으로, 기본 Never이고 IfNeeded면 다시 불릴 수 있으나 횟수는 보장되지 않는다.",
+    "parent": "ops.k8s.admission-webhook-chain",
+    "aliases": [
+      "webhook reinvocationPolicy",
+      "웹훅 재호출 정책",
+      "변경 웹훅 재호출"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/"
+    ]
+  },
+  {
+    "id": "ops.k8s.leasecandidate",
+    "title": "LeaseCandidate와 조정된 리더 선출",
+    "en": "LeaseCandidate and Coordinated Leader Election",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Kubernetes",
+    "summary": "kube-controller-manager·kube-scheduler가 LeaseCandidate로 후보를 등록하고 에뮬레이션 버전이 가장 낮은 후보를 리더로 정하는 베타 기능이다.",
+    "related": [
+      "ops.k8s.lease-leader-election"
+    ],
+    "aliases": [
+      "LeaseCandidate",
+      "coordinated leader election",
+      "조정된 리더 선출",
+      "OldestEmulationVersion"
+    ],
+    "refs": [
+      "https://kubernetes.io/docs/concepts/cluster-administration/coordinated-leader-election/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-12"
+  },
+  {
+    "id": "ops.container.cpu-max-burst",
+    "title": "cpu.max.burst 버스트 허용량",
+    "en": "cpu.max.burst",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "컨테이너 내부",
+    "summary": "cgroup이 앞 주기에 쓰지 않은 CPU 대역폭을 할당량 이하만큼 모아 두었다가 순간 부하에 쓰게 하는 설정으로, 기본값 0이면 모으지 않는다.",
+    "parent": "ops.container.cpu-bandwidth-throttling",
+    "aliases": [
+      "cpu.max.burst",
+      "CFS burst",
+      "cpu.cfs_burst_us"
+    ],
+    "refs": [
+      "https://docs.kernel.org/scheduler/sched-bwc.html",
+      "https://docs.kernel.org/admin-guide/cgroup-v2.html"
+    ]
+  },
+  {
+    "id": "ops.container.io-latency-target",
+    "title": "io.latency 지연 목표",
+    "en": "cgroup io.latency Target",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "컨테이너 내부",
+    "summary": "cgroup에 장치별 I/O 지연 목표(마이크로초)를 주면 그 그룹이 목표를 못 지킬 때 같은 계층에서 목표가 더 높은 형제 그룹을 늦추는 cgroup v2 설정이다.",
+    "parent": "ops.container.cgroup-io-controller",
+    "aliases": [
+      "io.latency",
+      "cgroup IO 지연 목표",
+      "blk-iolatency"
+    ],
+    "refs": [
+      "https://docs.kernel.org/admin-guide/cgroup-v2.html"
+    ]
+  },
+  {
+    "id": "ops.docker.direct-routing",
+    "title": "Docker 직접 라우팅(allow-direct-routing)",
+    "en": "Docker Direct Routing",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "Docker",
+    "summary": "다른 호스트가 Docker 호스트를 거쳐 브리지 네트워크 컨테이너 주소의 공개 포트로 직접 접속하게 허용하는 데몬 설정으로, 네트워크 옵션으로 인터페이스를 좁힐 수 있다.",
+    "parent": "ops.docker.gateway-modes",
+    "aliases": [
+      "allow-direct-routing",
+      "Docker direct routing",
+      "Docker 컨테이너 직접 라우팅"
+    ],
+    "refs": [
+      "https://docs.docker.com/engine/network/port-publishing/"
+    ]
   }
 ]

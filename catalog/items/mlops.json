@@ -5207,6 +5207,37 @@
     ]
   },
   {
+    "id": "mlops.serve.ray-data-batch-inference",
+    "title": "Ray Data로 오프라인 배치 추론 돌리기",
+    "en": "Offline Batch Inference with Ray Data",
+    "kind": "topic",
+    "level": 3,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "고정된 입력 데이터에 Ray Data map_batches와 액터 풀을 써서 모델을 한 번만 올리고 배치 단위로 예측을 만드는 기본 방법이다.",
+    "objectives": [
+      "모델을 __init__에서 불러오는 클래스를 map_batches에 넘기고 ActorPoolStrategy로 액터 수를 정해 배치 추론을 실행할 수 있다",
+      "GPU 추론에서 액터마다 num_gpus=1을 주고 동시 실행 수를 클러스터 GPU 수에 맞출 수 있다",
+      "batch_size를 GPU 메모리가 허용하는 한 크게 잡고 메모리 부족이 나면 줄이며, CPU 추론에는 auto를 쓸 수 있다",
+      "무거운 CPU 전처리를 별도 map 단계로 떼어 전처리와 추론이 겹쳐 돌게 할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.ray-core-basics"
+    ],
+    "related": [
+      "mlops.serve.vllm-offline-inference"
+    ],
+    "aliases": [
+      "Ray Data 배치 추론",
+      "Ray Data batch inference",
+      "Ray Data map_batches",
+      "ActorPoolStrategy"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/data/batch-inference.html"
+    ]
+  },
+  {
     "id": "mlops.track.model-registry",
     "title": "모델 레지스트리",
     "en": "Model Registry",
@@ -9520,6 +9551,74 @@
     "checked_at": "2026-11-12"
   },
   {
+    "id": "mlops.guardrail.safetensors-vs-pickle",
+    "title": "모델 가중치 저장 형식의 손익: pickle과 safetensors",
+    "en": "Model Weight Serialization Trade-offs: Pickle vs Safetensors",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "pickle 기반 체크포인트는 불러올 때 코드가 실행될 수 있고, safetensors는 텐서와 헤더만 담아 안전과 메모리 매핑 속도를 함께 얻는 차이를 분석한다.",
+    "objectives": [
+      "torch.load가 내부에서 unpickler를 써서 믿을 수 없는 파일을 열면 코드가 실행될 수 있는 이유와 weights_only=True가 허용 범위를 텐서·기본 자료형·딕셔너리·등록한 타입으로 좁히는 방식을 설명할 수 있다",
+      "safetensors 파일이 앞 8바이트의 헤더 길이, JSON 헤더(dtype·shape·data_offsets), 텐서 바이트로 나뉘는 구조 덕분에 전체를 받지 않고 메타데이터만 읽거나 일부 텐서만 잘라 불러올 수 있음을 설명할 수 있다",
+      "safetensors가 파일을 메모리 매핑해 불필요한 복사를 건너뛰는 원리와 공식 벤치마크에서 CPU·GPU 로딩 속도 차이가 다르게 나온 까닭을 설명할 수 있다",
+      "외부 모델을 받을 때 safetensors만 허용, weights_only 로드, 파일 검사 중 어느 조합을 쓸지 보안과 호환성의 손익으로 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.guardrail.modelaudit-scan"
+    ],
+    "related": [
+      "ax.security.model-supply-chain",
+      "be.security.integrity"
+    ],
+    "aliases": [
+      "safetensors 형식",
+      "safetensors format",
+      "pickle 체크포인트 위험",
+      "pickle vs safetensors",
+      "모델 가중치 직렬화"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/safetensors/index",
+      "https://huggingface.co/docs/safetensors/metadata_parsing",
+      "https://huggingface.co/docs/safetensors/speed",
+      "https://docs.pytorch.org/docs/2.15/generated/torch.load.html"
+    ]
+  },
+  {
+    "id": "mlops.observe.otel-collector-resiliency",
+    "title": "OTel Collector 유실 방지 손익: 메모리 큐와 WAL",
+    "en": "OpenTelemetry Collector Resiliency Trade-offs",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "Collector가 내보내기 실패 때 메모리 큐, 디스크 WAL, Kafka 같은 메시지 큐로 데이터를 버티는 방식과 각각이 여전히 데이터를 잃는 조건을 비교한다.",
+    "objectives": [
+      "exporter의 sending_queue가 메모리에 요청을 쌓다가 가득 차면 새 데이터를 버리고, 재시도 창이 끝나면 가장 오래된 데이터를 버리는 동작을 설명할 수 있다",
+      "file_storage 확장으로 큐를 디스크 WAL에 두면 재시작 뒤 이어 보낼 수 있지만 디스크 고장·용량 부족·긴 장애에는 여전히 잃는 이유를 들어 메모리 큐와 손익을 비교할 수 있다",
+      "자료가 꼽는 유실 상황과 큐 크기·용량·전송 실패 지표를 근거로 트레이스 유실 장애의 원인을 짚을 수 있다",
+      "에이전트와 게이트웨이를 나누는 구조에서 큐를 어느 구간에 둘지, SDK와 로컬 에이전트 사이에는 왜 두지 말라고 하는지 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "ops.observe.tracing",
+      "mlops.observe.head-tail-sampling"
+    ],
+    "related": [
+      "mlops.observe.tail-sampling-processor"
+    ],
+    "aliases": [
+      "Collector 복원력",
+      "OpenTelemetry Collector resiliency",
+      "Collector 데이터 유실",
+      "Collector sending_queue"
+    ],
+    "refs": [
+      "https://opentelemetry.io/docs/collector/resiliency/"
+    ]
+  },
+  {
     "id": "mlops.serve.inference-optimization",
     "title": "모델 서빙과 양자화",
     "en": "Model Serving and Quantization",
@@ -10032,6 +10131,97 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.serve.ray-data-streaming-execution",
+    "title": "Ray Data 스트리밍 실행의 내부: 계획·스케줄링 루프·메모리 모델",
+    "en": "Ray Data Streaming Execution Internals",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Ray Data가 논리 계획을 물리 연산자로 바꾸고 스케줄링 루프와 백프레셔로 블록을 흘려보내며 노드 메모리를 나눠 쓰는 방식을 분석한다.",
+    "objectives": [
+      "map_batches 같은 호출이 논리 계획을 쌓고 실행 시작 때 플래너가 물리 계획으로 바꾸며, OperatorFusionRule이 이어진 map 연산자를 합쳐 직렬화를 줄이는 과정을 설명할 수 있다",
+      "스케줄링 루프가 입력이 있고 자원이 남고 백프레셔에 걸리지 않은 연산자만 고르고, 후보가 여럿이면 출력 큐가 가장 작은 쪽에 일을 주는 규칙을 근거로 단계별 처리 속도 차이를 분석할 수 있다",
+      "노드 메모리가 기본으로 객체 저장소 30%, 시스템 10%, 나머지 논리 메모리로 나뉘는 모델을 근거로, 큐가 쌓이면 메모리 부족 대신 디스크 스필과 디스크 부족 오류가 나는 이유를 설명할 수 있다",
+      "블록 크기 목표와 동적 분할이 큰 행에서는 지켜지지 않는 한계를 알고 메모리 장애 원인을 짚을 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.ray-data-batch-inference",
+      "mlops.serve.ray-object-ownership"
+    ],
+    "related": [
+      "mlops.serve.ray-object-spilling",
+      "mlops.serve.static-dynamic-inference"
+    ],
+    "aliases": [
+      "Ray Data 스트리밍 실행",
+      "Ray Data streaming execution",
+      "Ray Data internals",
+      "Ray Data 백프레셔",
+      "Ray Data 메모리 모델"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/data/internals.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "mlops.serve.vllm-metrics-design",
+    "title": "vLLM 지표 설계의 내부: 이벤트 시각과 집계",
+    "en": "vLLM Metrics Design Internals",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "vLLM V1이 엔진 코어에서는 요청 이벤트 시각과 스케줄러 통계만 모으고 지표 계산은 API 서버의 바깥 루프에서 해 GPU 실행과 겹치게 하는 설계를 분석한다.",
+    "objectives": [
+      "엔진 코어가 QUEUED·SCHEDULED·PREEMPTED·NEW_TOKENS 시각을 찍고 프런트엔드가 EngineCoreOutputs로 간격 지표를 계산하는 이유를 프로세스마다 다른 monotonic 시계와 함께 설명할 수 있다",
+      "디코드 중 선점이 토큰 간·디코드·추론 간격에, 프리필 중 선점이 TTFT·프리필 간격에 들어가는 규칙을 근거로 지연 지표를 해석할 수 있다",
+      "API 서버가 여럿일 때만 Prometheus 다중 프로세스 모드를 쓰고 그때 기본 파이썬·프로세스 지표가 빠지는 손익을 설명할 수 있다",
+      "접두사 캐시를 적중률 게이지 대신 조회·적중 카운터로 내보내는 선택과 새 지표 추가·폐기의 비용을 근거로 지표 설계를 판단할 수 있다"
+    ],
+    "prerequisites": [
+      "mlops.serve.vllm-v1-process-architecture",
+      "mlops.serve.vllm-latency-tuning"
+    ],
+    "related": [
+      "mlops.serve.vllm-request-phase-latency",
+      "mlops.serve.prefix-cache-hit-rate",
+      "ops.observe.metrics"
+    ],
+    "aliases": [
+      "vLLM 지표 설계",
+      "vLLM metrics design",
+      "vLLM 엔진 코어 이벤트"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/design/metrics/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "mlops.guardrail.torch-load-weights-only",
+    "title": "torch.load weights_only(제한된 언피클링)",
+    "en": "torch.load weights_only",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "LLM 운영",
+    "summary": "torch.load가 텐서·기본 자료형·딕셔너리와 add_safe_globals로 등록한 타입만 복원하도록 언피클러를 제한하는 인자다.",
+    "parent": "mlops.guardrail.safetensors-vs-pickle",
+    "aliases": [
+      "weights_only",
+      "torch.load weights_only",
+      "add_safe_globals",
+      "PyTorch 제한 언피클링"
+    ],
+    "refs": [
+      "https://docs.pytorch.org/docs/2.15/generated/torch.load.html"
+    ]
   },
   {
     "id": "mlops.observe.data-drift",
@@ -10860,5 +11050,132 @@
     ],
     "volatile": true,
     "checked_at": "2026-11-12"
+  },
+  {
+    "id": "mlops.guardrail.safetensors-header",
+    "title": "safetensors 헤더(길이 8바이트와 JSON 헤더)",
+    "en": "Safetensors Header",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "파일 앞 8바이트 리틀 엔디언 정수로 길이를 밝히고 이어지는 JSON에 텐서별 dtype·shape·data_offsets와 __metadata__를 담는 safetensors의 머리 부분이다.",
+    "parent": "mlops.guardrail.safetensors-vs-pickle",
+    "aliases": [
+      "safetensors 헤더",
+      "safetensors header",
+      "data_offsets",
+      "safetensors __metadata__"
+    ],
+    "refs": [
+      "https://huggingface.co/docs/safetensors/metadata_parsing"
+    ]
+  },
+  {
+    "id": "mlops.serve.ray-data-operator-fusion",
+    "title": "Ray Data 연산자 융합(OperatorFusionRule)",
+    "en": "Ray Data Operator Fusion",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Ray Data 플래너가 물리 계획에서 이어진 map 연산자들을 하나로 합쳐 단계 사이의 불필요한 직렬화를 없애는 최적화 규칙이다.",
+    "parent": "mlops.serve.ray-data-streaming-execution",
+    "aliases": [
+      "OperatorFusionRule",
+      "Ray Data operator fusion",
+      "Ray Data 연산자 합치기"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/data/internals.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "mlops.serve.ray-data-block-size",
+    "title": "Ray Data 블록 크기 목표와 동적 블록 분할",
+    "en": "Ray Data Block Size Limiting and Dynamic Block Splitting",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Ray Data가 기본으로 블록을 1MiB~128MiB 사이로 맞추고 목표 최대의 1.5배인 192MiB를 넘으면 나누지만 행 하나는 쪼개지 못하는 규칙이다.",
+    "parent": "mlops.serve.ray-data-streaming-execution",
+    "aliases": [
+      "target_max_block_size",
+      "target_min_block_size",
+      "Ray Data dynamic block splitting",
+      "Ray Data 블록 분할"
+    ],
+    "refs": [
+      "https://docs.ray.io/en/latest/data/internals.html"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "mlops.observe.collector-persistent-queue",
+    "title": "Collector 지속 큐(file_storage WAL)",
+    "en": "Collector Persistent Sending Queue",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "exporter의 sending_queue에 file_storage 확장을 storage로 연결해 보낼 데이터를 먼저 디스크 로그에 쓰고 재시작 뒤 이어 보내게 하는 설정이다.",
+    "parent": "mlops.observe.otel-collector-resiliency",
+    "aliases": [
+      "Collector file_storage",
+      "Collector WAL",
+      "Collector persistent queue",
+      "Collector 지속 큐"
+    ],
+    "refs": [
+      "https://opentelemetry.io/docs/collector/resiliency/"
+    ]
+  },
+  {
+    "id": "mlops.observe.collector-retry-on-failure",
+    "title": "Collector 재시도 창(retry_on_failure)",
+    "en": "Collector retry_on_failure and max_elapsed_time",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "Collector exporter가 지터를 섞은 지수 백오프로 재전송하다가 max_elapsed_time이 지나면 큐의 가장 오래된 데이터를 버리게 하는 재시도 설정이다.",
+    "parent": "mlops.observe.otel-collector-resiliency",
+    "aliases": [
+      "Collector max_elapsed_time",
+      "Collector retry_on_failure",
+      "Collector 재시도",
+      "Collector retry"
+    ],
+    "refs": [
+      "https://opentelemetry.io/docs/collector/resiliency/"
+    ]
+  },
+  {
+    "id": "mlops.serve.vllm-prometheus-multiprocess",
+    "title": "vLLM Prometheus 다중 프로세스 모드",
+    "en": "vLLM Prometheus Multiprocess Mode",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "LLM 운영",
+    "summary": "vLLM이 --api-server-count가 1보다 클 때만 prometheus_client 다중 프로세스 모드로 지표를 모으고, 이때 기본 파이썬·프로세스 지표는 내보내지 않는 동작이다.",
+    "parent": "mlops.serve.vllm-metrics-design",
+    "related": [
+      "mlops.serve.vllm-api-server-count"
+    ],
+    "aliases": [
+      "vLLM multiprocess metrics",
+      "vLLM 다중 프로세스 지표",
+      "vLLM prometheus_client multiprocess"
+    ],
+    "refs": [
+      "https://docs.vllm.ai/en/latest/design/metrics/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
   }
 ]

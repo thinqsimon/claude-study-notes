@@ -5029,6 +5029,38 @@
     ]
   },
   {
+    "id": "fe.css.container-queries",
+    "title": "컨테이너 쿼리로 컴포넌트 단위 반응형 만들기",
+    "en": "Component-Level Responsive Design with Container Queries",
+    "kind": "topic",
+    "level": 3,
+    "importance": 2,
+    "group": "CSS",
+    "summary": "화면 전체가 아니라 컴포넌트를 감싼 컨테이너의 크기에 따라 스타일을 바꾸도록 @container 규칙을 쓰는 반응형 방법이다.",
+    "objectives": [
+      "container-type: inline-size로 컨테이너를 선언하고 @container 크기 조건으로 그 안 요소의 레이아웃을 바꿀 수 있다",
+      "미디어 쿼리는 뷰포트를, 컨테이너 쿼리는 가장 가까운 조상 컨테이너를 기준으로 삼는 차이를 알고 둘 중 맞는 것을 고를 수 있다",
+      "container-name이나 container 단축 속성으로 이름을 붙여 원하는 컨테이너만 겨냥하는 쿼리를 쓸 수 있다",
+      "컨테이너를 선언하지 않았거나 container-type이 기본값 normal이라 크기 쿼리가 적용되지 않는 실수를 찾아 고칠 수 있다"
+    ],
+    "prerequisites": [
+      "fe.css.responsive-design"
+    ],
+    "related": [
+      "fe.css.media-query",
+      "fe.css.container-query-units"
+    ],
+    "aliases": [
+      "컨테이너 쿼리",
+      "container queries",
+      "@container 규칙"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_queries",
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@container"
+    ]
+  },
+  {
     "id": "fe.react.dependency-array",
     "title": "의존성 배열",
     "en": "Dependency Array",
@@ -9078,6 +9110,107 @@
     "checked_at": "2026-11-13"
   },
   {
+    "id": "fe.css.top-layer-rendering",
+    "title": "최상위 레이어의 렌더링과 팝오버 스택",
+    "en": "Top Layer Rendering and Popover Stacks",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "CSS",
+    "summary": "모달 dialog·팝오버·전체 화면 요소가 조상과 z-index를 벗어나 문서 위에 그려지는 최상위 레이어의 순서·쌓임·제거 규칙을 분석한다.",
+    "objectives": [
+      "최상위 레이어 요소가 루트 요소의 형제 상자로 만들어져 조상의 overflow·opacity·mask에 잘리거나 가려지지 않고 나중에 들어온 요소가 위에 그려지는 원리를 설명할 수 있다",
+      "루트 쌓임 맥락을 먼저 칠한 뒤 최상위 레이어를 순서대로 ::backdrop과 함께 칠하는 페인트 순서로 일반 요소가 z-index를 높여도 그 위에 오지 못하는 이유를 설명할 수 있다",
+      "auto·hint·manual 팝오버가 auto 스택과 hint 스택에서 서로를 닫는 규칙과 showModal·requestFullscreen이 auto 팝오버를 닫는 상호작용을 분석할 수 있다",
+      "제거를 요청한 요소가 overlay 값이 none이 될 때까지 최상위 레이어에 남는 방식으로 닫힘 애니메이션이 보이는 시점을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.css.stacking-context-painting-order"
+    ],
+    "related": [
+      "fe.html.dialog-element"
+    ],
+    "aliases": [
+      "top layer",
+      "톱 레이어",
+      "CSS top layer"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Glossary/Top_layer",
+      "https://drafts.csswg.org/css-position-4/",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Popover_API/Using"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "fe.ts.control-flow-analysis",
+    "title": "TypeScript 제어 흐름 분석과 좁히기의 경계",
+    "en": "TypeScript Control Flow Analysis and Its Limits",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "TypeScript",
+    "summary": "TypeScript 검사기가 코드 경로를 따라 타입을 좁히고 합치는 방식과 클로저·타입 술어에서 좁힘이 유지되거나 끊기는 조건을 버전별로 분석한다.",
+    "objectives": [
+      "도달 가능한 경로를 따라 좁힌 타입이 분기가 합쳐지는 곳에서 유니언으로 다시 합쳐지고 대입은 선언 타입으로 검사된다는 점으로 각 지점의 타입을 예측할 수 있다",
+      "TypeScript 5.4부터 매개변수와 let 변수가 마지막 대입 뒤에 만든 화살표 함수·함수 표현식 안에서 좁힘을 유지하되, 중첩 함수 안에서 대입하거나 함수 선언이면 유지되지 않는 이유를 설명할 수 있다",
+      "TypeScript 5.5의 타입 술어 추론이 true면 T이고 false면 T가 아님이 함께 성립할 때만 일어나, (number | undefined)[]를 score => !!score로 거르면 0 때문에 좁혀지지 않는 원인을 찾을 수 있다",
+      "직접 쓴 is 술어는 검사되지 않아 as 단언만큼만 안전하다는 손익을 추론된 술어와 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.ts.union-narrowing"
+    ],
+    "related": [
+      "fe.ts.type-assertion",
+      "fe.ts.type-compatibility-soundness"
+    ],
+    "aliases": [
+      "TypeScript control flow analysis",
+      "TS 제어 흐름 분석",
+      "클로저 안 타입 좁히기"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
+      "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-4.html",
+      "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html"
+    ]
+  },
+  {
+    "id": "fe.js.promise-resolution",
+    "title": "Promise 해결 절차와 thenable 따라가기",
+    "en": "Promise Resolution and Thenable Assimilation",
+    "kind": "topic",
+    "level": 5,
+    "importance": 2,
+    "group": "JavaScript",
+    "summary": "resolve가 받은 값이 자기 자신·thenable·일반 값인지에 따라 프로미스의 운명이 정해지는 절차와 await가 이를 따르는 방식, 작업 큐 순서를 분석한다.",
+    "objectives": [
+      "resolved와 fulfilled를 구분해 다른 프로미스로 해결된 프로미스가 이미 고정됐지만 아직 대기 중이거나 거부될 수 있음을 설명할 수 있다",
+      "resolve 함수가 자기 자신·thenable·thenable이 아닌 값을 받을 때 각각 TypeError로 거부, then의 비동기 호출, 즉시 이행으로 갈리는 절차를 설명할 수 있다",
+      "await가 네이티브 프로미스는 then을 부르지 않고 기다리고 thenable은 then을 불러 새 프로미스를 만들며 이미 이행된 값도 마이크로태스크 뒤에 이어 실행되는 순서를 예측할 수 있다",
+      "같은 대기 중 프로미스를 Promise.race 등에 반복해 넘기면 떼어 낼 수 없는 처리기가 쌓이는 문제를 AbortSignal로 작업을 취소하는 방식과 비교할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.js.promises-async",
+      "fe.internals.event-loop"
+    ],
+    "related": [
+      "fe.js.promise-all"
+    ],
+    "aliases": [
+      "promise resolution",
+      "프로미스 해결 절차",
+      "resolve 함수 동작",
+      "resolved promise"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/Promise",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await"
+    ]
+  },
+  {
     "id": "fe.internals.web-vitals",
     "title": "Core Web Vitals 분석과 최적화",
     "en": "Core Web Vitals Optimization",
@@ -9537,6 +9670,40 @@
     "checked_at": "2026-11-13"
   },
   {
+    "id": "fe.css.registered-custom-properties",
+    "title": "@property 등록 속성의 타입 검사와 계산값",
+    "en": "Registered Custom Properties: Type Checking and Computed Values",
+    "kind": "topic",
+    "level": 5,
+    "importance": 3,
+    "group": "CSS",
+    "summary": "@property로 등록한 사용자 정의 속성이 syntax 검사, 상속 제어, 정규 단위 계산값, 타입별 보간에서 미등록 속성과 어떻게 다르게 동작하는지 분석한다.",
+    "objectives": [
+      "미등록 사용자 정의 속성이 파싱 때 거의 모든 값을 받아 두었다가 var() 치환에서 무효가 되면 대상 속성이 상속값이나 초기값으로 돌아가는 과정을 설명할 수 있다",
+      "등록 속성은 syntax에 맞지 않는 값이 initial-value로 돌아가고 em 같은 길이가 정규 단위로 계산돼 그 값으로 상속된다는 점을 미등록 속성과 비교할 수 있다",
+      "syntax·inherits가 빠졌거나 initial-value가 계산상 독립적이지 않아 @property 규칙 전체가 무시되는 원인을 찾을 수 있다",
+      "등록 속성이 파싱된 타입의 계산값으로 보간되기 때문에 그라디언트 안의 백분율 같은 값을 애니메이션할 수 있음을 설명할 수 있다"
+    ],
+    "prerequisites": [
+      "fe.css.value-processing"
+    ],
+    "related": [
+      "fe.css.custom-properties"
+    ],
+    "aliases": [
+      "@property",
+      "CSS @property",
+      "registered custom property",
+      "등록된 사용자 정의 속성",
+      "CSS.registerProperty"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@property",
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+      "https://drafts.css-houdini.org/css-properties-values-api-1/"
+    ]
+  },
+  {
     "id": "fe.internals.top-level-await",
     "title": "최상위 await",
     "en": "Top-level await",
@@ -9592,6 +9759,25 @@
     ],
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame"
+    ]
+  },
+  {
+    "id": "fe.ts.inferred-type-predicates",
+    "title": "추론된 타입 술어",
+    "en": "Inferred Type Predicates",
+    "kind": "term",
+    "level": 5,
+    "importance": 2,
+    "group": "TypeScript",
+    "summary": "TypeScript 5.5부터 반환 타입을 적지 않은 단일 return 함수가 매개변수를 좁히는 불리언을 돌려주면 x is T 술어를 스스로 붙여 filter 결과까지 좁히는 기능이다.",
+    "parent": "fe.ts.control-flow-analysis",
+    "aliases": [
+      "inferred type predicates",
+      "타입 술어 추론",
+      "TS 5.5 타입 술어"
+    ],
+    "refs": [
+      "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-5.html"
     ]
   },
   {
@@ -10397,6 +10583,130 @@
     ],
     "refs": [
       "https://developer.mozilla.org/en-US/docs/Web/API/Performance_API/Long_animation_frame_timing"
+    ]
+  },
+  {
+    "id": "fe.css.container-style-query",
+    "title": "컨테이너 스타일 쿼리 style()",
+    "en": "Container Style Queries",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "CSS",
+    "summary": "@container style()로 컨테이너의 계산값을 묻는 쿼리로, 콜론 형식은 계산값을 그대로 견주고 비교 연산자 형식은 양쪽을 수치로 계산해 견준다.",
+    "related": [
+      "fe.css.container-queries",
+      "fe.css.registered-custom-properties"
+    ],
+    "aliases": [
+      "container style queries",
+      "@container style()",
+      "CSS 스타일 쿼리"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@container"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "fe.css.popover-stacks",
+    "title": "팝오버 auto 스택과 hint 스택",
+    "en": "Popover Auto and Hint Stacks",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "CSS",
+    "summary": "브라우저가 auto 팝오버와 hint 팝오버를 따로 쌓아 두고, 새 팝오버를 열 때 중첩 관계가 아닌 같은 종류의 팝오버를 닫는 규칙이다.",
+    "parent": "fe.css.top-layer-rendering",
+    "aliases": [
+      "popover auto stack",
+      "popover hint stack",
+      "팝오버 스택"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/API/Popover_API/Using"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "fe.css.overlay-property",
+    "title": "overlay 속성과 최상위 레이어 제거 대기",
+    "en": "The overlay Property and Pending Top Layer Removal",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "CSS",
+    "summary": "브라우저만 설정하는 overlay 속성으로, 제거를 요청한 요소를 값이 none으로 바뀔 때까지 최상위 레이어에 남겨 닫힘 전환이 보이게 한다.",
+    "parent": "fe.css.top-layer-rendering",
+    "aliases": [
+      "CSS overlay 속성",
+      "overlay: auto",
+      "pending top layer removal"
+    ],
+    "refs": [
+      "https://drafts.csswg.org/css-position-4/"
+    ],
+    "volatile": true,
+    "checked_at": "2026-11-13"
+  },
+  {
+    "id": "fe.css.invalid-at-computed-value-time",
+    "title": "계산값 시점 무효",
+    "en": "Invalid at Computed-Value Time",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "CSS",
+    "summary": "var() 치환 뒤 값이 대상 속성에 맞지 않거나 등록 속성 값이 syntax에 맞지 않아 계산값 시점에야 무효가 되고 상속값이나 초기값으로 돌아가는 상태다.",
+    "parent": "fe.css.registered-custom-properties",
+    "aliases": [
+      "invalid at computed-value time",
+      "IACVT",
+      "valid at computed time"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties",
+      "https://drafts.css-houdini.org/css-properties-values-api-1/"
+    ]
+  },
+  {
+    "id": "fe.css.computationally-independent",
+    "title": "계산상 독립적인 initial-value",
+    "en": "Computationally Independent Initial Value",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "CSS",
+    "summary": "@property의 initial-value가 em처럼 부모 값에 기대는 단위 없이 계산값으로 바뀔 수 있어야 한다는 조건으로, 어기면 syntax가 \"*\"가 아닌 한 규칙 전체가 무시된다.",
+    "parent": "fe.css.registered-custom-properties",
+    "aliases": [
+      "computationally independent",
+      "@property initial-value 조건"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@property"
+    ]
+  },
+  {
+    "id": "fe.js.thenable",
+    "title": "thenable",
+    "en": "Thenable",
+    "kind": "term",
+    "level": 5,
+    "importance": 3,
+    "group": "JavaScript",
+    "summary": "호출할 수 있는 then 메서드를 가진 객체로, 언어가 프로미스 자리에서 받아 그 then을 비동기로 불러 최종 상태를 따라가게 한다.",
+    "parent": "fe.js.promise-resolution",
+    "aliases": [
+      "thenable 객체",
+      "thenables",
+      "then 메서드를 가진 객체"
+    ],
+    "refs": [
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/Promise"
     ]
   }
 ]
